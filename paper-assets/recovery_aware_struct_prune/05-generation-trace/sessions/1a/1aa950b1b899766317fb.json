@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1aa950b1b899766317fb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval gsm8k sft standard 20 1p5b",
+  "task_key": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "0ad7a7ffc11f6ef968e8d7e392a4f0b1ee4f47eccaec27993aba4369a3cbbb26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果 JSON（核心字段）\n\n```json\n{\n  \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\",\n  \"mode\": \"greedy\",\n  \"accuracy\": 0.22896133434420016,\n  \"stderr\": 0.01156902486841511,\n  \"n_correct\": 302,\n  \"n_total\": 1319,\n  \"eos_stats\": {\n    \"natural_eos\": 1193,\n    \"truncated\": 126,\n    \"eos_rate\": 0.9044730856709629,\n    \"avg_response_length\": 516.69,\n    \"max_response_length\": 4096,\n    \"min_response_length\": 32\n  },\n  \"temperature\": 0.0,\n  \"do_sample\": false,\n  \"examples\": [ ... 20 examples ... ]\n}\n```\n\n## 关键指标\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **22.90%** (302/1319) |\n| Stderr | ±1.16% |\n| EOS rate | 90.45% (126 truncated) |\n| Avg response length | 516.7 tokens |\n\n## Log 尾部\n\n- 模型加载时检测到 Non-uniform MLP：`intermediate_size range [3738, 8960]`\n- 评估耗时约 4h15m（1319 samples，greedy decoding）\n- 最终输出：`GSM8K Accuracy: 0.2290 ± 0.0116 (302/1319)`\n- 退出码 0，正常完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-gsm8k-sft-standard-20-1p5b.md"
+}

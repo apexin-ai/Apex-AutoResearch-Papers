@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_mbpp_sft_standard_20_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:56:27.627Z",
+    "updated_at": "2026-05-19T20:56:52.842Z",
+    "hypothesis": "MBPP pass@1 eval on SFT Standard 20% model @2048. Dense baseline=53.48% (200/374). 前两次被外部 SIGTERM 杀死 (189/374)。手动 tmux 无 timeout wrapper 重跑。预期 pass@1 ~12.8% (基于前次 180/374 checkpoint)。关联 C2 capability breadth。"
+  },
+  "timestamp": "2026-05-19T20:56:53.297216+00:00",
+  "trigger": "update_registry"
+}

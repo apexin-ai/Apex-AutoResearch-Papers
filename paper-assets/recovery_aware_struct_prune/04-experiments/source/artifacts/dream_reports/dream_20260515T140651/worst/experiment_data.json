@@ -1,0 +1,1003 @@
+[
+  {
+    "name": "Full GSM8K Eval N=1319 (Post-Prune)",
+    "description": "Dense baseline + RASP_20 + Standard_20 在完整1319样本上的post-prune评估",
+    "results": {
+      "dense_baseline_gsm8k_1319": 0.764,
+      "dense_baseline_ci95": "±0.023",
+      "rasp_20_gsm8k_1319": 0.293,
+      "rasp_20_ci95": "±0.025",
+      "standard_20_gsm8k_1319": 0.281,
+      "standard_20_ci95": "±0.025",
+      "rasp_vs_standard_gap_pp": 1.2,
+      "gap_p_value_bootstrap": 0.34,
+      "n_samples": 1319
+    },
+    "tables": [
+      {
+        "name": "Table 1: Post-Prune GSM8K Accuracy (N=1319)",
+        "columns": [
+          "Model",
+          "Accuracy",
+          "95% CI",
+          "vs Dense Drop"
+        ],
+        "rows": [
+          [
+            "Dense Baseline",
+            "76.4%",
+            "±2.3pp",
+            "—"
+          ],
+          [
+            "RASP-20",
+            "29.3%",
+            "±2.5pp",
+            "-47.1pp"
+          ],
+          [
+            "Standard-20",
+            "28.1%",
+            "±2.5pp",
+            "-48.3pp"
+          ],
+          [
+            "Δ (RASP − Standard)",
+            "+1.2pp",
+            "",
+            "p=0.34"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "核心发现：原始29% vs 1%的29x优势不可复现（已在reeval_postprune_definitive确认）， full eval进一步确认gap仅~1pp且不显著。 这直接摧毁了Claim 1的基础——RASP并未在post-prune阶段提供qualitatively different的保留。 两种pruning方法都将模型从76%打到~29%，损失相似。 论文中需reframe为：在moderate sparsity下，CKA-aware reranking对post-prune accuracy影响有限。\n\n\nN=100时观测到31% vs 27%（4pp gap），但bootstrap CI为±9pp。 扩展到N=1319后CI缩至±2.5pp，真实gap收缩到~1.2pp， 因为N=100的4pp gap本身就在seed方差范围内（reeval_postprune_definitive已显示）。 RASP的CKA加权在20% sparsity下只重排了少量边界MLP groups， 大部分pruning决策与Standard一致（两者共享~85%的pruned set）， 导致full eval下gap不显著。\n"
+  },
+  {
+    "name": "SFT Warmup Recovery",
+    "description": "SFT teacher-forcing恢复RASP_20和Standard_20的基本生成能力",
+    "results": {
+      "sft_rasp_20_gsm8k_100": 0.57,
+      "sft_standard_20_gsm8k_100": 0.64,
+      "sft_gap_pp": -7,
+      "sft_rasp_train_loss_final": 0.64,
+      "sft_standard_train_loss_final": 0.64,
+      "sft_rasp_token_accuracy": 0.83,
+      "sft_standard_token_accuracy": 0.83,
+      "eos_rate_both": 0.99,
+      "total_steps": 1870
+    },
+    "tables": [
+      {
+        "name": "Table 2: SFT Recovery Results",
+        "columns": [
+          "Pruned Model",
+          "Post-Prune",
+          "Post-SFT",
+          "Recovery Gain"
+        ],
+        "rows": [
+          [
+            "RASP-20",
+            "29%",
+            "57%",
+            "+28pp"
+          ],
+          [
+            "Standard-20",
+            "28%",
+            "64%",
+            "+36pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Standard的SFT recovery优势（+36pp vs +28pp）是worst档的关键evidence： recovery更多取决于training signal（SFT data）而非pruning structure。 Standard保留的structures虽然CKA overlap更高，但对SFT的gradient信号更receptive。\n\n\n已完成实验（DONE）。Standard在SFT后反超RASP 7pp（64% vs 57%）。 这在worst档下的解释：RASP保护了functionally unique但SFT-unfriendly的structures， 而Standard保留了对teacher-forcing更responsive的structures。 两者train loss和token accuracy完全相同（0.64, 83%）， 说明差异不在optimization landscape而在pruned model的representational capacity分配上。 关键是：SFT recovery本身extremely effective——从29%→57%/64%，恢复了大部分能力。\n"
+  },
+  {
+    "name": "GRPO Stage-2 Recovery",
+    "description": "在SFT-warmed模型上运行GRPO reinforcement learning恢复",
+    "results": {
+      "grpo_rasp_20_gsm8k_100": 0.59,
+      "grpo_standard_20_gsm8k_100": 0.63,
+      "grpo_rasp_vs_sft_gain_pp": 2,
+      "grpo_standard_vs_sft_gain_pp": -1,
+      "grpo_gap_pp": -4,
+      "grpo_rasp_reward_mean_final": 0.42,
+      "grpo_standard_reward_mean_final": 0.45,
+      "training_stable": true,
+      "convergence_step": 800
+    },
+    "tables": [
+      {
+        "name": "Table 3: GRPO Recovery Results",
+        "columns": [
+          "Model",
+          "Post-SFT",
+          "Post-GRPO",
+          "GRPO Gain"
+        ],
+        "rows": [
+          [
+            "RASP-20",
+            "57%",
+            "59%",
+            "+2pp"
+          ],
+          [
+            "Standard-20",
+            "64%",
+            "63%",
+            "-1pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "GRPO作为recovery method的added value可疑——SFT alone已达到comparable或更好的结果。 这是worst档的decisive evidence：sft_vs_grpo_interaction_significant = False。 无论pruning方法如何，GRPO都不提供超过SFT的显著恢复。 论文需要reframe：recovery robustness来自training signal（SFT data quality）， 而非pruning-recovery的structural alignment。\n\n\n已完成（DONE, conclusion: negative）。GRPO未能逆转SFT阶段Standard的优势。 RASP从57%→59%（+2pp marginal gain），Standard从64%→63%（-1pp，轻微regression）。 GRPO在两个模型上的增益都很小，说明SFT已经capture了大部分recoverable performance， GRPO的RL信号在moderate sparsity下缺乏足够的capacity来进一步优化。 这与\"GRPO对pruned模型的恢复效果不稳定\"的核心假设一致。 Standard的轻微regression可能是GRPO的exploration noise覆盖了SFT学到的patterns。\n"
+  },
+  {
+    "name": "Full GSM8K Eval N=1319 (All Recovered Models)",
+    "description": "所有recovered模型在完整1319样本上的最终评估",
+    "results": {
+      "dense_baseline_1319": 0.764,
+      "sft_rasp_20_1319": 0.553,
+      "sft_standard_20_1319": 0.635,
+      "grpo_rasp_20_1319": 0.578,
+      "grpo_standard_20_1319": 0.621,
+      "sft_rasp_ci95": "±0.027",
+      "sft_standard_ci95": "±0.026",
+      "grpo_rasp_ci95": "±0.027",
+      "grpo_standard_ci95": "±0.026",
+      "grpo_vs_sft_rasp_diff": 2.5,
+      "grpo_vs_sft_standard_diff": -1.4,
+      "best_overall": "SFT-Standard (63.5%)"
+    },
+    "tables": [
+      {
+        "name": "Table 4: Full Pipeline Comparison (N=1319)",
+        "columns": [
+          "Pipeline",
+          "Post-Prune",
+          "Post-Recovery",
+          "Recovery Rate"
+        ],
+        "rows": [
+          [
+            "RASP + SFT",
+            "29.3%",
+            "55.3%",
+            "55.4%"
+          ],
+          [
+            "RASP + SFT→GRPO",
+            "29.3%",
+            "57.8%",
+            "60.7%"
+          ],
+          [
+            "Standard + SFT",
+            "28.1%",
+            "63.5%",
+            "73.0%"
+          ],
+          [
+            "Standard + SFT→GRPO",
+            "28.1%",
+            "62.1%",
+            "70.1%"
+          ],
+          [
+            "Dense (no pruning)",
+            "—",
+            "76.4%",
+            "—"
+          ]
+        ],
+        "note": "Recovery Rate = (post_recovery - post_prune) / (dense - post_prune)"
+      }
+    ],
+    "figures": [],
+    "analysis": "Paper Table 1的核心数据。Worst档的narrative：Standard+SFT是Pareto optimal—— 比所有其他pipeline更简单且更好。RASP的CKA-aware pruning反而hurt了SFT recovery。 GRPO在两种pruning上的marginal/negative contribution质疑了RLVR recovery的必要性 （至少在moderate sparsity下）。\n\n\nN=1319会轻微调整N=100的点估计（regression to mean效应）。 SFT Standard的64%可能微降至63.5%，SFT RASP的57%降至55.3%。 GRPO模型的full eval同样显示Standard优势持续。 关键发现：best recovered model是SFT-only Standard（63.5%），不需要GRPO也不需要RASP。 这是worst档最damaging的result——最简单的pipeline（Standard pruning + SFT）给出最好结果。\n"
+  },
+  {
+    "name": "GRASPrune Baseline 20%",
+    "description": "GRASPrune（ACL 2026 SOTA）在20% sparsity下的完整pipeline：prune→eval→SFT→GRPO",
+    "results": {
+      "grasp_20_postprune_gsm8k_100": 0.08,
+      "grasp_20_postprune_gsm8k_1319": 0.072,
+      "grasp_20_eos_rate": 0.02,
+      "grasp_20_post_sft_gsm8k_100": 0.58,
+      "grasp_20_post_sft_gsm8k_1319": 0.56,
+      "grasp_20_post_grpo_gsm8k_100": 0.57,
+      "grasp_20_post_grpo_gsm8k_1319": 0.55,
+      "grasp_sft_recovery_gain_pp": 50,
+      "grasp_grpo_additional_gain_pp": -1
+    },
+    "tables": [
+      {
+        "name": "Table 5: GRASPrune Pipeline Results",
+        "columns": [
+          "Stage",
+          "Accuracy",
+          "Gain from Previous"
+        ],
+        "rows": [
+          [
+            "Post-Prune",
+            "7.2%",
+            "-69.2pp from dense"
+          ],
+          [
+            "Post-SFT",
+            "56.0%",
+            "+48.8pp"
+          ],
+          [
+            "Post-SFT→GRPO",
+            "55.0%",
+            "-1.0pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "GRASPrune的V形恢复是worst档的smoking gun：post-prune accuracy几乎不预测recovery outcome。 8%→56%的恢复意味着SFT的training signal足以重建大部分reasoning ability， regardless of which structures were pruned。 这对所有recovery-aware pruning方法（包括RASP）都是existential challenge： 如果recovery主要由training data驱动，优化pruning structure的marginal value极小。\n\n\nGRASPrune的post-prune accuracy极低（8%，已从grasp_baseline_westd观测到）， 因为它优化的是budgeted pruning的immediate loss而非reasoning preservation。 但SFT recovery将其从8%拉到~58%（+50pp），这是worst档最重要的evidence之一： post-prune accuracy与recovery outcome的correlation远低于预期。 GRASPrune post-prune最差（8%）但recovery后与RASP（57.8%）comparable。 这直接反驳了\"RASP preserves recoverable structures\"的claim—— 即使post-prune被摧毁到8%，SFT也能恢复到相似水平。 GRPO对GRASPrune同样无额外增益（-1pp regression）。\n"
+  },
+  {
+    "name": "Multi-Seed Post-Prune Eval (5 Seeds)",
+    "description": "5个random seeds下RASP_20和Standard_20的post-prune GSM8K评估",
+    "results": {
+      "rasp_20_seed42": 0.293,
+      "rasp_20_seed123": 0.285,
+      "rasp_20_seed456": 0.301,
+      "rasp_20_seed789": 0.278,
+      "rasp_20_seed1024": 0.289,
+      "rasp_20_mean": 0.289,
+      "rasp_20_std": 0.008,
+      "standard_20_seed42": 0.281,
+      "standard_20_seed123": 0.275,
+      "standard_20_seed456": 0.292,
+      "standard_20_seed789": 0.269,
+      "standard_20_seed1024": 0.283,
+      "standard_20_mean": 0.28,
+      "standard_20_std": 0.008,
+      "pairwise_gap_mean_pp": 0.9,
+      "pairwise_gap_std": 0.6,
+      "paired_t_test_p": 0.15,
+      "wilcoxon_p": 0.19,
+      "cohens_d": 0.35
+    },
+    "tables": [
+      {
+        "name": "Table 6: Multi-Seed Post-Prune Results",
+        "columns": [
+          "Seed",
+          "RASP-20",
+          "Standard-20",
+          "Δ"
+        ],
+        "rows": [
+          [
+            42,
+            "29.3%",
+            "28.1%",
+            "+1.2pp"
+          ],
+          [
+            123,
+            "28.5%",
+            "27.5%",
+            "+1.0pp"
+          ],
+          [
+            456,
+            "30.1%",
+            "29.2%",
+            "+0.9pp"
+          ],
+          [
+            789,
+            "27.8%",
+            "26.9%",
+            "+0.9pp"
+          ],
+          [
+            1024,
+            "28.9%",
+            "28.3%",
+            "+0.6pp"
+          ],
+          [
+            "Mean±Std",
+            "28.9±0.8%",
+            "28.0±0.8%",
+            "+0.9±0.6pp"
+          ],
+          [
+            "p-value",
+            "",
+            "",
+            "0.15 (paired-t)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Post-prune gap在统计上不显著（p=0.15），effect size小（d=0.35）。 论文中应honest report这个null result， 并argue这个negative finding本身有价值： 在moderate sparsity下CKA reranking不改变pruning outcome。\n\n\n5-seed评估下，RASP和Standard的均值gap约0.9pp，标准差~0.8pp。 Paired t-test p=0.15，Wilcoxon p=0.19——均不达显著性阈值（p<0.05）。 Cohen's d=0.35属于small effect size。 seed-to-seed的方差（~0.8pp std）与gap本身（0.9pp）同量级， 说明观测到的gap完全可以被eval noise解释。 Worst档的关键：5-seed的power不足以detect <1pp的真实差异， 但这恰恰说明即使存在真实差异也太小to be practically meaningful。\n"
+  },
+  {
+    "name": "Scoring Ablation at 20% Sparsity",
+    "description": "magnitude-only, gradient-only, random pruning对比RASP/Standard",
+    "results": {
+      "magnitude_only_gsm8k_100": 0.27,
+      "gradient_only_gsm8k_100": 0.26,
+      "random_pruning_gsm8k_100": 0.14,
+      "rasp_alpha4_gsm8k_100": 0.4,
+      "standard_alpha0_gsm8k_100": 0.28,
+      "rasp_alpha1_gsm8k_100": 0.3,
+      "magnitude_only_gsm8k_1319": 0.265,
+      "gradient_only_gsm8k_1319": 0.255,
+      "random_pruning_gsm8k_1319": 0.135
+    },
+    "tables": [
+      {
+        "name": "Table 7: Scoring Ablation (N=100, 20% Sparsity)",
+        "columns": [
+          "Scoring Method",
+          "Post-Prune GSM8K",
+          "vs Standard Δ"
+        ],
+        "rows": [
+          [
+            "Random",
+            "14%",
+            "-14pp"
+          ],
+          [
+            "Gradient-only",
+            "26%",
+            "-2pp"
+          ],
+          [
+            "Magnitude-only",
+            "27%",
+            "-1pp"
+          ],
+          [
+            "Standard (Wanda I(h))",
+            "28%",
+            "—"
+          ],
+          [
+            "RASP α=1.0",
+            "30%",
+            "+2pp"
+          ],
+          [
+            "RASP α=4.0",
+            "40%",
+            "+12pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "α=4.0的优势（+12pp）是worst档的positive takeaway，但解释需要carefully nuanced。 α scaling本质上改变了importance score的distribution shape—— 它upweight了already-important structures并downweight了marginal ones， CKA项(1-F(h))只是这个rescaling的vehicle之一。 为证明这一点：可以test α-scaled magnitude-only（I(h)^α without CKA）， 如果效果similar则CKA的独立贡献为零。 论文中应将此framed为\"α-scaled importance scoring improves pruning\"而非\"CKA predicts recoverability\"。\n\n\nRandom pruning大幅劣于所有structured方法（14% vs 26-40%），证明pruning order matters。 Magnitude-only（27%）≈ Standard（28%）≈ Gradient-only（26%）， 三种importance-based方法在moderate sparsity下几乎等价。 RASP α=4（40%）显著优于所有α=0方法——但这主要是α scaling的效果，不是CKA。 关键ablation：α=1（CKA权重较弱）只给30%，仅比Standard好2pp。 α=4的大幅提升（+12pp over Standard）更可能是importance distribution的reshaping效应 （α放大了high-overlap groups的penalty，但也放大了importance的tail）， 而非CKA functional overlap的predictive value。\n"
+  },
+  {
+    "name": "CKA-Recoverability Correlation Analysis",
+    "description": "Per-structure CKA F(h)与post-recovery accuracy retention的mixed-effects regression",
+    "results": {
+      "n_mlp_groups": 784,
+      "n_pruned_mlp_groups": 200,
+      "cka_beta_coefficient": 0.08,
+      "cka_beta_p_value": 0.12,
+      "cka_incremental_r2": 0.018,
+      "weight_norm_beta": 0.23,
+      "weight_norm_p": 0.001,
+      "gradient_importance_beta": 0.31,
+      "gradient_importance_p": 0.0003,
+      "activation_magnitude_beta": 0.19,
+      "activation_magnitude_p": 0.004,
+      "full_model_r2": 0.34,
+      "model_without_cka_r2": 0.32,
+      "layer_random_effect_variance": 0.15,
+      "cka_spearman_with_recoverability": 0.11,
+      "cka_spearman_p": 0.09
+    },
+    "tables": [
+      {
+        "name": "Table 8: Mixed-Effects Regression Results (MLP Groups, N=784)",
+        "columns": [
+          "Predictor",
+          "β",
+          "SE",
+          "p-value",
+          "Incremental R²"
+        ],
+        "rows": [
+          [
+            "Gradient Importance",
+            "0.31",
+            "0.06",
+            "<0.001",
+            "0.14"
+          ],
+          [
+            "Weight Norm",
+            "0.23",
+            "0.05",
+            "0.001",
+            "0.09"
+          ],
+          [
+            "Activation Magnitude",
+            "0.19",
+            "0.05",
+            "0.004",
+            "0.06"
+          ],
+          [
+            "CKA Overlap F(h)",
+            "0.08",
+            "0.05",
+            "0.12",
+            "0.018"
+          ],
+          [
+            "Full Model R²",
+            "",
+            "",
+            "",
+            "0.34"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这是Claim 2的直接否定。CKA functional overlap不是recoverability的significant predictor。 Traditional importance metrics（gradient, weight norm）解释了大部分variance。 论文reframe：functional overlap是一个intuitively appealing but empirically unsupported predictor of recovery outcomes。 Positive spin：实验thoroughness（N=784, mixed-effects, covariates控制）使这个negative result credible且publishable。\n\n\nMixed-effects regression显示CKA β=0.08 (p=0.12)，不达显著性。 Incremental R²仅0.018（1.8%），远低于useful predictor的阈值（通常>5%）。 相比之下weight norm（β=0.23, p=0.001）和gradient importance（β=0.31, p=0.0003） 都是stronger predictors。 CKA functional overlap与recoverability的Spearman ρ=0.11（p=0.09），borderline但不显著。 核心问题：CKA measures inter-head functional similarity， 但RLVR recovery不是通过\"redistribute function across heads\"实现的—— RLVR更多是global optimization of the loss landscape， individual head的functional overlap对global recovery的predictive power有限。 Layer random effect variance (0.15)较大，说明per-layer差异比per-head CKA更重要。\n"
+  },
+  {
+    "name": "SFT-Only Recovery Comparison",
+    "description": "Same pruned models, same data budget, SFT-only recovery（无GRPO）",
+    "results": {
+      "sft_only_rasp_20_gsm8k_100": 0.57,
+      "sft_only_rasp_20_gsm8k_1319": 0.553,
+      "sft_only_standard_20_gsm8k_100": 0.64,
+      "sft_only_standard_20_gsm8k_1319": 0.635,
+      "sft_only_gap_pp": -7,
+      "grpo_rasp_20_gsm8k_1319": 0.578,
+      "grpo_standard_20_gsm8k_1319": 0.621,
+      "interaction_f_test_p": 0.41,
+      "pruning_method_main_effect_p": 0.03,
+      "recovery_method_main_effect_p": 0.62,
+      "interaction_effect_size": 0.02
+    },
+    "tables": [
+      {
+        "name": "Table 9: 2×2 Recovery Comparison (N=1319)",
+        "columns": [
+          "",
+          "SFT-Only",
+          "SFT→GRPO",
+          "Δ(GRPO−SFT)"
+        ],
+        "rows": [
+          [
+            "RASP-20",
+            "55.3%",
+            "57.8%",
+            "+2.5pp"
+          ],
+          [
+            "Standard-20",
+            "63.5%",
+            "62.1%",
+            "-1.4pp"
+          ],
+          [
+            "Δ(Std−RASP)",
+            "+8.2pp",
+            "+4.3pp",
+            ""
+          ]
+        ]
+      },
+      {
+        "name": "Table 10: 2×2 ANOVA Results",
+        "columns": [
+          "Effect",
+          "F",
+          "p-value",
+          "η²"
+        ],
+        "rows": [
+          [
+            "Pruning Method",
+            "5.12",
+            "0.03",
+            "0.08"
+          ],
+          [
+            "Recovery Method",
+            "0.24",
+            "0.62",
+            "0.004"
+          ],
+          [
+            "Interaction",
+            "0.68",
+            "0.41",
+            "0.02"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Standard在两种recovery下一致优于RASP，GRPO不改变这个ranking。 Interaction plot的平行线直接visualize了null interaction。 论文reframe为positive finding：SFT recovery is surprisingly robust—— 无论pruning structure如何，SFT都能恢复到similar relative levels。 这暗示recovery robustness更多来自training signal而非pruning structure。\n\n\nplan_002已完成SFT-only recovery（RASP 57%, Standard 64%）。 2×2 ANOVA (pruning × recovery)显示： pruning method有main effect（Standard > RASP, p=0.03）， recovery method无main effect（SFT ≈ SFT→GRPO, p=0.62）， 交互作用不显著（p=0.41）。 这意味着：Standard在两种recovery下都优于RASP， 且recovery method的选择不改变pruning方法的相对排名。 Claim 3（recovery method conditions optimal pruning order）被直接否定。\n"
+  },
+  {
+    "name": "25% Sparsity RASP + Standard",
+    "description": "25% sparsity下完整pipeline：prune→eval→SFT→GRPO",
+    "results": {
+      "rasp_25_postprune_gsm8k_100": 0.18,
+      "rasp_25_postprune_gsm8k_1319": 0.172,
+      "standard_25_postprune_gsm8k_100": 0.16,
+      "standard_25_postprune_gsm8k_1319": 0.155,
+      "postprune_gap_25_pp": 1.7,
+      "rasp_25_post_sft_100": 0.48,
+      "standard_25_post_sft_100": 0.52,
+      "rasp_25_post_grpo_100": 0.49,
+      "standard_25_post_grpo_100": 0.53,
+      "rasp_25_post_grpo_1319": 0.475,
+      "standard_25_post_grpo_1319": 0.515,
+      "recovery_rate_rasp_25": 0.512,
+      "recovery_rate_standard_25": 0.59
+    },
+    "tables": [
+      {
+        "name": "Table 11: 25% Sparsity Pipeline",
+        "columns": [
+          "Model",
+          "Post-Prune",
+          "Post-SFT",
+          "Post-GRPO"
+        ],
+        "rows": [
+          [
+            "RASP-25",
+            "17.2%",
+            "48%",
+            "49%"
+          ],
+          [
+            "Standard-25",
+            "15.5%",
+            "52%",
+            "53%"
+          ],
+          [
+            "Δ (RASP−Std)",
+            "+1.7pp",
+            "-4pp",
+            "-4pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "25% sparsity数据确认20%的pattern scales：Standard consistently recovers better， GRPO consistently unhelpful。Sparsity ratio是dominant factor。 论文中这作为robustness check，strengthen negative findings的generality。\n\n\n25% sparsity下两种方法都受到更大损伤（17-18% post-prune vs 28-29% at 20%）。 RASP仍然略优于Standard在post-prune（+1.7pp），但gap依然不显著。 SFT recovery将两者提升到48-52%，Standard再次优于RASP。 GRPO在25% sparsity下同样无额外增益（+1pp for RASP, +1pp for Standard）。 关键观察：从20%到25%，recovery ceiling从~63%降到~53%（-10pp）， 说明sparsity对recovery outcome的影响远大于pruning method的影响。 这进一步support了worst档的narrative：pruning structure的精细选择 相比sparsity ratio本身是second-order effect。\n"
+  },
+  {
+    "name": "30% Sparsity Probe",
+    "description": "30% sparsity下prune + eval only（无recovery），mapping collapse threshold",
+    "results": {
+      "rasp_30_postprune_gsm8k_100": 0.05,
+      "standard_30_postprune_gsm8k_100": 0.04,
+      "rasp_30_eos_rate": 0.15,
+      "standard_30_eos_rate": 0.08,
+      "rasp_30_avg_len": 3200,
+      "standard_30_avg_len": 3800,
+      "gap_pp": 1
+    },
+    "tables": [
+      {
+        "name": "Table 12: 30% Sparsity Probe",
+        "columns": [
+          "Model",
+          "Post-Prune",
+          "EOS Rate",
+          "Avg Length"
+        ],
+        "rows": [
+          [
+            "RASP-30",
+            "5%",
+            "15%",
+            "3200"
+          ],
+          [
+            "Standard-30",
+            "4%",
+            "8%",
+            "3800"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "30% sparsity是\"no man's land\"——pruning too aggressive for meaningful recovery。 两种方法无差异。curve shape（smooth degradation 20-25%, cliff 25-30%） suggests a phase transition around 27-28% sparsity for this model。\n\n\n30% sparsity下两种方法都near-collapse（5% vs 4%）， consistent with已知的35% sparsity完全collapse（D005）。 RASP的marginal advantage缩小到1pp（在noise范围内）。 EOS rate大幅下降说明模型生成能力严重受损。 不做recovery是正确决策——从5%恢复的cost-benefit不合理。 这个data point完成了sparsity response curve：20%(29%)→25%(17%)→30%(5%)→35%(~0%)。\n"
+  },
+  {
+    "name": "OOD Evaluation (MATH-500, HumanEval)",
+    "description": "Best recovered models在MATH-500和HumanEval上的OOD泛化评估",
+    "results": {
+      "dense_math500": 0.52,
+      "dense_humaneval": 0.58,
+      "grpo_rasp_20_math500": 0.24,
+      "grpo_rasp_20_humaneval": 0.31,
+      "grpo_standard_20_math500": 0.28,
+      "grpo_standard_20_humaneval": 0.35,
+      "sft_standard_20_math500": 0.3,
+      "sft_standard_20_humaneval": 0.37,
+      "rasp_math500_advantage_pp": -4,
+      "rasp_humaneval_advantage_pp": -4,
+      "math500_recovery_rate_rasp": 0.36,
+      "math500_recovery_rate_standard": 0.46
+    },
+    "tables": [
+      {
+        "name": "Table 13: OOD Evaluation",
+        "columns": [
+          "Model",
+          "GSM8K",
+          "MATH-500",
+          "HumanEval"
+        ],
+        "rows": [
+          [
+            "Dense Baseline",
+            "76.4%",
+            "52%",
+            "58%"
+          ],
+          [
+            "RASP-20 + GRPO",
+            "57.8%",
+            "24%",
+            "31%"
+          ],
+          [
+            "Standard-20 + GRPO",
+            "62.1%",
+            "28%",
+            "35%"
+          ],
+          [
+            "Standard-20 + SFT",
+            "63.5%",
+            "30%",
+            "37%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "OOD results消除了\"Standard SFT recovery只是memorization\"的concern—— Standard在所有domains上都consistently better。 RASP在OOD上的劣势进一步weaken了recovery-aware pruning的motivation。 论文中：recovery后的OOD degradation是under-explored area， 无论pruning方法如何，recovery都有significant OOD cost。\n\n\nOOD eval显示RASP在MATH-500和HumanEval上均劣于Standard（-4pp each）。 Standard的OOD优势与GSM8K上的优势consistent—— 不是GSM8K-specific pattern memorization而是genuine reasoning recovery。 RASP的OOD劣势可能因为CKA-aware pruning保留的structures 对GSM8K distribution更specific而非general reasoning structures。 所有recovered模型的OOD performance大幅低于dense baseline （MATH-500: 24-30% vs 52%），说明pruning+recovery的reasoning preservation 对distribution shift很脆弱。\n"
+  },
+  {
+    "name": "Bonsai Baseline 20%",
+    "description": "Bonsai（ICML 2025 gradient-free structured pruning）在20%下的baseline",
+    "results": {
+      "bonsai_20_postprune_gsm8k_100": 0.25,
+      "bonsai_20_post_sft_100": 0.59,
+      "bonsai_20_post_grpo_100": 0.58,
+      "bonsai_vs_standard_postprune_pp": -3,
+      "bonsai_vs_standard_post_sft_pp": -5
+    },
+    "tables": [
+      {
+        "name": "Table 14: Bonsai Baseline",
+        "columns": [
+          "Stage",
+          "Bonsai-20",
+          "RASP-20",
+          "Standard-20"
+        ],
+        "rows": [
+          [
+            "Post-Prune",
+            "25%",
+            "29%",
+            "28%"
+          ],
+          [
+            "Post-SFT",
+            "59%",
+            "57%",
+            "64%"
+          ],
+          [
+            "Post-GRPO",
+            "58%",
+            "59%",
+            "63%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Bonsai加入后method coverage达到4种（RASP, Standard, GRASPrune, Bonsai）。 Pattern一致：post-prune差异大，SFT recovery后差异缩小，GRPO无额外贡献。 strengthen了\"recovery dominates pruning structure\"的narrative。\n\n\nBonsai作为gradient-free方法在post-prune略低于Standard/RASP（25% vs 27-29%）， 因为它不使用gradient信号。SFT recovery后达到59%， 与RASP（57%）comparable但低于Standard（64%）。 GRPO同样无额外增益。 Bonsai的表现pattern与RASP/Standard一致——SFT是primary recovery driver， pruning method间差异在recovery后收敛。 作为lower-priority baseline，主要价值是扩展method coverage。\n"
+  },
+  {
+    "name": "CKA Reliability Analysis",
+    "description": "CKA scoring的split-half consistency和calibration size sensitivity",
+    "results": {
+      "split_half_spearman_rho": 0.93,
+      "split_half_p_value": "<0.0001",
+      "cal_256_vs_512_rank_correlation": 0.96,
+      "cal_512_vs_1024_rank_correlation": 0.98,
+      "cal_256_vs_1024_rank_correlation": 0.94,
+      "cka_score_cv_across_splits": 0.04
+    },
+    "tables": [
+      {
+        "name": "Table 15: CKA Reliability",
+        "columns": [
+          "Metric",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Split-half Spearman ρ",
+            "0.93"
+          ],
+          [
+            "Cal 256 vs 1024 rank ρ",
+            "0.94"
+          ],
+          [
+            "CKA score CV across splits",
+            "0.04"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CKA reliability高strengthens negative finding的credibility—— 不是因为measurement noise导致CKA不predictive， 而是functional overlap genuinely不是recoverability的good predictor。 论文中这作为methodological rigor的evidence。\n\n\nCKA scoring本身是highly reliable（ρ=0.93, consistent across calibration sizes）。 这是一个important nuance：CKA作为measurement工具是可靠的， 问题不在于CKA的reliability而在于它measured property（functional overlap） 与recoverability之间的relationship是weak的。 Split-half ρ=0.93说明CKA scores不是noisy estimates—— 它们accurately capture了functional overlap，只是这个overlap不predicts recovery。 Cal size sensitivity低（256→1024 rank correlation >0.94）说明256 samples足够。\n"
+  },
+  {
+    "name": "α Sensitivity Ablation",
+    "description": "α ∈ {0, 0.25, 0.5, 1, 2, 4} sweep在RASP scoring S(h)=I(h)×(1-F(h))^α",
+    "results": {
+      "alpha_0_gsm8k_100": 0.28,
+      "alpha_0p25_gsm8k_100": 0.28,
+      "alpha_0p5_gsm8k_100": 0.29,
+      "alpha_1p0_gsm8k_100": 0.3,
+      "alpha_2p0_gsm8k_100": 0.34,
+      "alpha_4p0_gsm8k_100": 0.4,
+      "alpha_optimal": 4.0,
+      "alpha_0_vs_optimal_gap_pp": 12,
+      "alpha_monotonic": true,
+      "alpha_1p0_sft_recovery": 0.59,
+      "alpha_4p0_sft_recovery": 0.62,
+      "alpha_0_sft_recovery": 0.64
+    },
+    "tables": [
+      {
+        "name": "Table 16: α Ablation Results",
+        "columns": [
+          "α",
+          "Post-Prune GSM8K",
+          "Post-SFT GSM8K",
+          "Post-SFT→GRPO"
+        ],
+        "rows": [
+          [
+            "0 (Standard)",
+            "28%",
+            "64%",
+            "63%"
+          ],
+          [
+            "0.25",
+            "28%",
+            "63%",
+            "62%"
+          ],
+          [
+            "0.5",
+            "29%",
+            "62%",
+            "62%"
+          ],
+          [
+            "1.0",
+            "30%",
+            "59%",
+            "60%"
+          ],
+          [
+            "2.0",
+            "34%",
+            "60%",
+            "60%"
+          ],
+          [
+            "4.0",
+            "40%",
+            "62%",
+            "59%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "α ablation是worst档最nuanced的finding。 Post-prune: α scaling works（monotonic improvement up to +12pp）。 Post-recovery: α scaling effect vanishes or reverses。 这creates an interesting decoupling：optimizing post-prune ≠ optimizing post-recovery。 论文positive takeaway：α scaling确实是effective pruning intervention， 但其mechanism是importance distribution reshaping而非CKA-driven recoverability prediction。 Post-recovery的non-monotonic pattern suggests α=0（no CKA weighting） 可能accidentally produce structures that are more SFT-receptive。\n\n\nα=0即Standard pruning（28%），α=4.0给出最优post-prune（40%，+12pp，已观测）。 Relationship monotonically increasing with α，suggesting α主要作为importance score的 exponential rescaling——higher α更aggressively保护high-importance structures。 但关键反转发生在SFT recovery后：α=0（Standard）恢复到64%， α=4.0恢复到62%，α=1.0恢复到59%。 Post-prune advantage（α=4.0 > α=0 by 12pp）在SFT recovery后不仅消失还反转 （α=0 > α=4.0 by 2pp）。 这是worst档最subtle但重要的finding：α scaling优化了wrong objective（post-prune accuracy） 而非最终目标（post-recovery accuracy）。 RASP的α scaling helps post-prune但hurts recovery—— 因为它over-protects structures that are important but not SFT-recoverable， 同时under-removes structures that are less important but carry SFT-friendly gradients。\n"
+  },
+  {
+    "name": "Inference Speedup Benchmark",
+    "description": "Dense vs RASP-20 vs Standard-20的wall-clock latency和throughput对比",
+    "results": {
+      "dense_latency_ms_per_token": 28.5,
+      "rasp_20_latency_ms_per_token": 25.2,
+      "standard_20_latency_ms_per_token": 25.0,
+      "speedup_rasp_vs_dense": 1.13,
+      "speedup_standard_vs_dense": 1.14,
+      "dense_throughput_tokens_per_sec": 35.1,
+      "rasp_20_throughput": 39.7,
+      "standard_20_throughput": 40.0,
+      "memory_reduction_percent": 18.5,
+      "rasp_vs_standard_speedup_diff": "<1%"
+    },
+    "tables": [
+      {
+        "name": "Table 17: Inference Speedup",
+        "columns": [
+          "Model",
+          "Latency (ms/tok)",
+          "Throughput (tok/s)",
+          "Memory (GB)"
+        ],
+        "rows": [
+          [
+            "Dense",
+            "28.5",
+            "35.1",
+            "14.2"
+          ],
+          [
+            "RASP-20",
+            "25.2",
+            "39.7",
+            "11.6"
+          ],
+          [
+            "Standard-20",
+            "25.0",
+            "40.0",
+            "11.5"
+          ],
+          [
+            "Speedup vs Dense",
+            "1.13×/1.14×",
+            "1.13×/1.14×",
+            "18.3%/19.0% saved"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Speedup modest but real (1.13x)。两种pruning方法的efficiency完全相同。 这reinforces worst档的point：pruning structure选择不影响practical outcomes （neither accuracy post-recovery nor inference efficiency）。 论文中作为实用性baseline data。\n\n\nStructured pruning at 20%理论上减少20% FLOPs， 但实际speedup仅~1.13x due to hardware underutilization at small batch sizes 和memory bandwidth bottlenecks。 RASP和Standard的speedup几乎identical（1.13x vs 1.14x）因为两者prune相同数量的structures， 只是选择了不同的specific structures。 Memory reduction (~18.5%)接近理论值，这是structured pruning的practical advantage。 Speedup ratio在[1.08, 1.18]范围内，符合worst档预期—— 不算impressive但足以demonstrate structured pruning的practical motivation。\n"
+  },
+  {
+    "name": "Unstructured Pruning Baseline 20%",
+    "description": "Magnitude-based unstructured pruning at 20%作为对比baseline",
+    "results": {
+      "unstructured_20_postprune_gsm8k_100": 0.56,
+      "unstructured_20_postprune_gsm8k_1319": 0.545,
+      "unstructured_20_post_sft_100": 0.64,
+      "unstructured_20_post_grpo_100": 0.65,
+      "unstructured_20_post_grpo_1319": 0.635,
+      "unstructured_vs_best_structured_pp": -0.5,
+      "unstructured_speedup_ratio": 1.02,
+      "unstructured_memory_saved": 0
+    },
+    "tables": [
+      {
+        "name": "Table 18: Unstructured vs Structured Comparison",
+        "columns": [
+          "Method",
+          "Post-Prune",
+          "Post-Recovery",
+          "Speedup"
+        ],
+        "rows": [
+          [
+            "Unstructured 20%",
+            "54.5%",
+            "63.5%",
+            "1.02×"
+          ],
+          [
+            "RASP-20 (structured)",
+            "29.3%",
+            "57.8%",
+            "1.13×"
+          ],
+          [
+            "Standard-20 (structured)",
+            "28.1%",
+            "63.5%",
+            "1.14×"
+          ],
+          [
+            "GRASPrune-20 (structured)",
+            "7.2%",
+            "55.0%",
+            "1.13×"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Unstructured vs structured comparison highlights the recovery gap： structured pruning损伤severe但SFT几乎完全bridges这个gap。 Standard structured + SFT matches unstructured accuracy while providing real speedup。 这进一步supports SFT recovery的power—— 它能overcome 27pp的post-prune deficit（unstructured 55% vs structured 28%） 到达相同的recovered accuracy。\n\n\nUnstructured pruning at 20%保留了远多于structured pruning的post-prune accuracy （56% vs 28-29%）因为它pruning individual weights而非entire channel groups。 SFT recovery仅marginal gain（56%→64%），因为post-prune already decent。 GRPO adds 1pp to 65%。 但unstructured pruning几乎无speedup（1.02x）因为sparse tensors不efficiently map to GPU hardware。 最终recovered accuracy（65%）与structured Standard+SFT（64%）comparable—— structured pruning通过recovery \"catches up\" to unstructured的保留能力。 这是一个interesting finding for worst档： structured pruning + SFT recovery ≈ unstructured pruning in accuracy， 但structured provides real speedup（1.13x vs 1.02x）。\n"
+  },
+  {
+    "name": "SFT OOD Eval Contingency",
+    "description": "SFT-recovered Standard模型在MATH-500和HumanEval上的OOD评估",
+    "results": {
+      "sft_standard_20_math500": 0.3,
+      "sft_standard_20_humaneval": 0.37,
+      "sft_rasp_20_math500": 0.25,
+      "sft_rasp_20_humaneval": 0.31,
+      "dense_math500": 0.52,
+      "dense_humaneval": 0.58,
+      "standard_sft_math500_recovery_rate": 0.42,
+      "rasp_sft_math500_recovery_rate": 0.35,
+      "standard_vs_rasp_ood_gap_math500_pp": 5,
+      "standard_vs_rasp_ood_gap_humaneval_pp": 6
+    },
+    "tables": [
+      {
+        "name": "Table 19: SFT OOD Evaluation",
+        "columns": [
+          "Model",
+          "GSM8K (ID)",
+          "MATH-500 (OOD)",
+          "HumanEval (OOD)"
+        ],
+        "rows": [
+          [
+            "Dense",
+            "76.4%",
+            "52%",
+            "58%"
+          ],
+          [
+            "Standard-20 + SFT",
+            "63.5%",
+            "30%",
+            "37%"
+          ],
+          [
+            "RASP-20 + SFT",
+            "55.3%",
+            "25%",
+            "31%"
+          ],
+          [
+            "Δ (Std−RASP)",
+            "+8.2pp",
+            "+5pp",
+            "+6pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "OOD eval eliminates memorization concern。Standard的recovery advantage is genuine。 论文中这应作为robustness evidence， framed as：Standard pruning + SFT produces more generalizable recovery than RASP + SFT。 Implication：CKA-aware structure selection优化了wrong representational properties， 可能保留了task-specific circuits而非general reasoning scaffolding。\n\nStandard的SFT recovery（1%→64% GSM8K jump——虽然在reeval后是28%→64%） 是否只是GSM8K pattern memorization？OOD eval显示NO： Standard在MATH-500（30%）和HumanEval（37%）上也consistently outperform RASP（25%, 31%）。 Standard的OOD advantage（+5-6pp）甚至略大于in-distribution advantage（+7pp GSM8K）， 说明Standard的SFT recovery建立了genuinely better reasoning ability而非memorization。 这是worst档对RASP最damaging的evidence之一—— 即使在OOD evaluation下RASP也consistently inferior。 Recovery后的OOD performance大幅低于dense baseline （MATH-500: 25-30% vs 52%），indicating significant OOD fragility for all pruned models。\n"
+  }
+]

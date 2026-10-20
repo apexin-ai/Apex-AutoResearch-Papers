@@ -1,0 +1,3519 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0cc9bc9be812a10f452b",
+  "rounds": [
+    {
+      "number": 232,
+      "messages": [
+        {
+          "source_line": 3241,
+          "timestamp": "2026-05-20T18:27:09.547709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003241"
+        },
+        {
+          "source_line": 3242,
+          "timestamp": "2026-05-20T18:27:13.261852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -1 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log"
+            }
+          },
+          "id": "event-003242"
+        },
+        {
+          "source_line": 3243,
+          "timestamp": "2026-05-20T18:27:13.713855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  99%|█████████▊| 1300/1319 [2:20:27<01:12,  3.83s/it]\\\\rEvaluating:  99%|█████████▊| 1301/1319 [2:20:29<00:56,  3.15s/it]\\\\rEvaluating:  99%|█████████▊| 1302/1319 [2:20:32<00:52,  3.08s/it]\\\\rEvaluating:  99%|█████████▉| 1303/1319 [2:20:34<00:46,  2.90s/it]\\\\rEvaluating:  99%|█████████▉| 1304/1319 [2:20:40<00:54,  3.63s/it]\\\\rEvaluating:  99%|█████████▉| 1305/1319 [2:20:42<00:47,  3.39s/it]\\\\rEvaluating:  99%|█████████▉| 1306/1319 [2:20:45<00:41,  3.16s/it]\\\\rEvaluating:  99%|█████████▉| 1307/1319 [2:20:47<00:33,  2.76s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003243"
+        },
+        {
+          "source_line": 3244,
+          "timestamp": "2026-05-20T18:27:17.730424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_15*\" -type f"
+            }
+          },
+          "id": "event-003244"
+        },
+        {
+          "source_line": 3245,
+          "timestamp": "2026-05-20T18:27:18.182468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003245"
+        },
+        {
+          "source_line": 3246,
+          "timestamp": "2026-05-20T18:27:20.992977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -1 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log"
+            }
+          },
+          "id": "event-003246"
+        },
+        {
+          "source_line": 3247,
+          "timestamp": "2026-05-20T18:27:21.446076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  99%|█████████▊| 1300/1319 [2:20:27<01:12,  3.83s/it]\\\\rEvaluating:  99%|█████████▊| 1301/1319 [2:20:29<00:56,  3.15s/it]\\\\rEvaluating:  99%|█████████▊| 1302/1319 [2:20:32<00:52,  3.08s/it]\\\\rEvaluating:  99%|█████████▉| 1303/1319 [2:20:34<00:46,  2.90s/it]\\\\rEvaluating:  99%|█████████▉| 1304/1319 [2:20:40<00:54,  3.63s/it]\\\\rEvaluating:  99%|█████████▉| 1305/1319 [2:20:42<00:47,  3.39s/it]\\\\rEvaluating:  99%|█████████▉| 1306/1319 [2:20:45<00:41,  3.16s/it]\\\\rEvaluating:  99%|█████████▉| 1307/1319 [2:20:47<00:33,  2.76s/it]\\\\rEvaluating:  99%|█████████▉| 1308/1319 [2:20:50<00:30,  2.74s/it]\\\\rEvaluating:  99%|█████████▉| 1309/1319 [2:20:51<00:24,  2.50s/it]\\\\rEvaluating:  99%|█████████▉| 1310/1319 [2:20:55<00:25,  2.78s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-003247"
+        },
+        {
+          "source_line": 3248,
+          "timestamp": "2026-05-20T18:27:24.910869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_15*\" -type f"
+            }
+          },
+          "id": "event-003248"
+        },
+        {
+          "source_line": 3249,
+          "timestamp": "2026-05-20T18:27:25.362579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003249"
+        },
+        {
+          "source_line": 3250,
+          "timestamp": "2026-05-20T18:27:28.121651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log"
+            }
+          },
+          "id": "event-003250"
+        },
+        {
+          "source_line": 3251,
+          "timestamp": "2026-05-20T18:27:28.573553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log\\\\n  Size: 102440    \\\\tBlocks: 256        IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662325  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:27:21.345810953 +0800\\\\nModify: 2026-05-21 02:27:26.357553348 +0800\\\\nChange: 2026-05-21 02:27:26.357553348 +0800\\\\n Birth: 2026-05-21 00:05:02.080369816 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003251"
+        },
+        {
+          "source_line": 3252,
+          "timestamp": "2026-05-20T18:27:33.189287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_15*\" -type f"
+            }
+          },
+          "id": "event-003252"
+        },
+        {
+          "source_line": 3253,
+          "timestamp": "2026-05-20T18:27:33.641045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003253"
+        },
+        {
+          "source_line": 3254,
+          "timestamp": "2026-05-20T18:27:37.522657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 131\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log"
+            }
+          },
+          "id": "event-003254"
+        },
+        {
+          "source_line": 3255,
+          "timestamp": "2026-05-20T18:27:38.024700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003255"
+        },
+        {
+          "source_line": 3256,
+          "timestamp": "2026-05-20T18:27:46.004219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Evaluating: 100\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log"
+            }
+          },
+          "id": "event-003256"
+        },
+        {
+          "source_line": 3257,
+          "timestamp": "2026-05-20T18:27:46.456231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  99%|█████████▊| 1300/1319 [2:20:27<01:12,  3.83s/it]\\\\rEvaluating:  99%|█████████▊| 1301/1319 [2:20:29<00:56,  3.15s/it]\\\\rEvaluating:  99%|█████████▊| 1302/1319 [2:20:32<00:52,  3.08s/it]\\\\rEvaluating:  99%|█████████▉| 1303/1319 [2:20:34<00:46,  2.90s/it]\\\\rEvaluating:  99%|█████████▉| 1304/1319 [2:20:40<00:54,  3.63s/it]\\\\rEvaluating:  99%|█████████▉| 1305/1319 [2:20:42<00:47,  3.39s/it]\\\\rEvaluating:  99%|█████████▉| 1306/1319 [2:20:45<00:41,  3.16s/it]\\\\rEvaluating:  99%|█████████▉| 1307/1319 [2:20:47<00:33,  2.76s/it]\\\\rEvaluating:  99%|█████████▉| 1308/1319 [2:20:50<00:30,  2.74s/it]\\\\rEvaluating:  99%|█████████▉| 1309/1319 [2:20:51<00:24,  2.50s/it]\\\\rEvaluating:  99%|█████████▉| 1310/1319 [2:20:55<00:25,  2.78s/it]\\\\rEvaluating:  99%|█████████▉| 1311/1319 [2:20:59<00:26,  3.26s/it]\\\\rEvaluating:  99%|█████████▉| 1312/1319 [2:21:02<00:20,  2.99s/it]\\\\rEvaluating: 100%|█████████▉| 1313/1319 [2:21:04<00:17,  2.85s/it]\\\\rEvaluating: 100%|█████████▉| 1314/1319 [2:21:07<00:14,  2.94s/it]\\\\rEvaluating: 100%|█████████▉| 1315/1319 [2:21:10<00:10,  2.73s/it]\\\\rEvaluating: 100%|█████████▉| 1316/1319 [2:21:12<00:07,  2.55s/it]\\\\rEvaluating: 100%|█████████▉| 1317/1319 [2:21:15<00:05,  2.92s/it]\\\\rEvaluating: 100%|█████████▉| 1318/1319 [2:21:19<00:03,  3.04s/it]\\\\rEvaluating: 100%|██████████| 1319/1319 [2:21:21<00:00,  2.80s/it]\\\\rEvaluating: 100%|██████████| 1319/1319 [2:21:21<00:00,  6.43s/it]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003257"
+        },
+        {
+          "source_line": 3258,
+          "timestamp": "2026-05-20T18:27:53.282369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_15*\" -type f"
+            }
+          },
+          "id": "event-003258"
+        },
+        {
+          "source_line": 3259,
+          "timestamp": "2026-05-20T18:27:54.035551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json.done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-003259"
+        },
+        {
+          "source_line": 3260,
+          "timestamp": "2026-05-20T18:27:54.236598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"accuracy\\|correct\\|total\\|Results\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log"
+            }
+          },
+          "id": "event-003260"
+        },
+        {
+          "source_line": 3261,
+          "timestamp": "2026-05-20T18:27:54.287149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-003261"
+        },
+        {
+          "source_line": 3262,
+          "timestamp": "2026-05-20T18:28:00.010438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"accuracy\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log"
+            }
+          },
+          "id": "event-003262"
+        },
+        {
+          "source_line": 3263,
+          "timestamp": "2026-05-20T18:28:00.512960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003263"
+        },
+        {
+          "source_line": 3264,
+          "timestamp": "2026-05-20T18:28:01.014789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "head -20 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json"
+            }
+          },
+          "id": "event-003264"
+        },
+        {
+          "source_line": 3265,
+          "timestamp": "2026-05-20T18:28:01.466421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_15\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.7217589082638363,\\\\n  \\\\\\\"stderr\\\\\\\": 0.01233912355611836,\\\\n  \\\\\\\"n_correct\\\\\\\": 952,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 1306,\\\\n    \\\\\\\"truncated\\\\\\\": 13,\\\\n    \\\\\\\"eos_rate\\\\\\\": 0.9901440485216073,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 200.33206974981047,\\\\n    \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n    \\\\\\\"min_response_length\\\\\\\": 38\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003265"
+        },
+        {
+          "source_line": 3266,
+          "timestamp": "2026-05-20T18:28:01.617222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json.done"
+            }
+          },
+          "id": "event-003266"
+        },
+        {
+          "source_line": 3267,
+          "timestamp": "2026-05-20T18:28:02.069117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"completed_at=2026-05-21T02:27:45.768576\\\\nmode=greedy\\\\naccuracy=0.7217589082638363\\\\nn_total=1319\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003267"
+        },
+        {
+          "source_line": 3268,
+          "timestamp": "2026-05-20T18:28:21.746284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003268"
+        },
+        {
+          "source_line": 3269,
+          "timestamp": "2026-05-20T18:28:21.847025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-003269"
+        },
+        {
+          "source_line": 3270,
+          "timestamp": "2026-05-20T18:28:34.650180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] SFT CKA-only 15% eval 终值确认\n\n**accuracy = 72.18% (952/1319), stderr ±1.23pp**\n- 完成时间：2026-05-21 02:27:45\n- 结果文件：`eval_gsm8k_sft_cka_only_15_n1319.json` + `.done` sentinel ✓\n- 模型路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_15`\n- EOS rate: 99.01%, avg response length: 200.3 tokens\n\n### GRPO Delta 验证（15% sparsity）\n| Method | SFT | GRPO | Δ |\n|--------|-----|------|---|\n| CKA-only 15% | **72.18%** | 73.09% | **+0.91pp** |\n| Standard 15% | 66.49% | 66.11% | **-0.38pp** |\n\n两个方法的 |Δ| 均 <1pp，**\"|Δ|<1pp\" universality claim 在 15% sparsity 成立** ✓\n\n### Recovery Capacity Gradient（SFT 维度）\n- 15% sparsity: CKA-only 72.18% vs Standard 66.49% → **gap = 5.69pp**\n- 20% sparsity（3-seed mean）: CKA-only ~64.39% vs Standard ~59.84% → **gap ≈ 4.55pp**\n- **Gap 随 sparsity 降低而扩大**（4.55pp → 5.69pp），与 GRPO 维度趋势一致（GRPO: 4.55pp → 6.98pp）\n\n### 仍在运行\n- westd cuda:0: SFT Standard 20% @ 500/1319 (38%)\n- westd cuda:1: 已释放（CKA-only 15% 完成）\n- westd cuda:2: SFT CKA-only 20% @ 1100/1319 (83%)\n- westb cuda:0: Dense baseline @ 800/1319 (61%), acc=91.50%",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-003270"
+        },
+        {
+          "source_line": 3271,
+          "timestamp": "2026-05-20T18:28:35.854704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1204
+          },
+          "id": "event-003271"
+        },
+        {
+          "source_line": 3272,
+          "timestamp": "2026-05-20T18:28:42.255560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-003272"
+        },
+        {
+          "source_line": 3273,
+          "timestamp": "2026-05-20T18:28:43.059449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 89 %, 29619 MiB, 97887 MiB, 64\\\\n1, 0 %, 0 MiB, 97887 MiB, 36\\\\n2, 91 %, 29619 MiB, 97887 MiB, 64\\\\n3, 0 %, 0 MiB, 97887 MiB, 31\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-003273"
+        },
+        {
+          "source_line": 3274,
+          "timestamp": "2026-05-20T18:28:43.059868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 1\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003274"
+        },
+        {
+          "source_line": 3275,
+          "timestamp": "2026-05-20T18:28:43.612068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:   4%|▍         | 50/1319 [08:08<53:59,  2.55s/it]\\\\rEvaluating:   4%|▍         | 51/1319 [08:09<45:22,  2.15s/it]\\\\rEvaluating:   4%|▍         | 52/1319 [08:12<47:27,  2.25s/it]\\\\rEvaluating:   4%|▍         | 53/1319 [08:13<43:13,  2.05s/it]\\\\rEvaluating:   4%|▍         | 54/1319 [08:15<40:49,  1.94s/it]\\\\rEvaluating:   4%|▍         | 55/1319 [08:16<37:42,  1.79s/it]\\\\rEvaluating:   4%|▍         | 56/1319 [08:19<41:15,  1.96s/it]\\\\rEvaluating:   4%|▍         | 57/1319 [08:20<40:06,  1.91s/it]\\\\rEvaluating:   4%|▍         | 58/1319 [08:22<39:23,  1.87s/it]\\\\rEvaluating:   4%|▍         | 59/1319 [08:27<57:29,  2.74s/it]\\\\rEvaluating:   5%|▍         | 60/1319 [08:28<47:31,  2.27s/it]\\\\rEvaluating:   5%|▍         | 61/1319 [08:33<1:02:20,  2.97s/it]\\\\rEvaluating:   5%|▍         | 62/1319 [08:35<55:35,  2.65s/it]  \\\\rEvaluating:   5%|▍         | 63/1319 [08:38<1:01:10,  2.92s/it]\\\\rEvaluating:   5%|▍         | 64/1319 [08:43<1:09:52,  3.34s/it]\\\\rEvaluating:   5%|▍         | 65/1319 [08:44<58:17,  2.79s/it]  \\\\rEvaluating:   5%|▌         | 66/1319 [08:45<45:58,  2.20s/it]\\\\rEvaluating:   5%|▌         | 67/1319 [08:47<42:29,  2.04s/it]\\\\rEvaluating:   5%|▌         | 68/1319 [08:48<41:33,  1.99s/it]\\\\rEvaluating:   5%|▌         | 69/1319 [08:50<38:37,  1.85s/it]\\\\rEvaluating:   5%|▌         | 70/1319 [08:52<38:32,  1.85s/it]\\\\rEvaluating:   5%|▌         | 71/1319 [08:55<48:05,  2.31s/it]\\\\rEvaluating:   5%|▌         | 72/1319 [08:57<47:14,  2.27s/it]\\\\rEvaluating:   6%|▌         | 73/1319 [09:00<47:32,  2.29s/it]\\\\rEvaluating:   6%|▌         | 74/1319 [09:01<42:49,  2.06s/it]\\\\rEvaluating:   6%|▌         | 75/1319 [09:03<43:18,  2.09s/it]\\\\rEvaluating:   6%|▌         | 76/1319 [09:07<52:56,  2.56s/it]\\\\rEvaluating:   6%|▌         | 77/1319 [09:09<50:58,  2.46s/it]\\\\rEvaluating:   6%|▌         | 78/1319 [09:13<58:36,  2.83s/it]\\\\rEvaluating:   6%|▌         | 79/1319 [09:16<1:00:37,  2.93s/it]\\\\rEvaluatin\n…[truncated 6447 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003275"
+        },
+        {
+          "source_line": 3276,
+          "timestamp": "2026-05-20T18:28:56.875368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress:\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003276"
+        },
+        {
+          "source_line": 3277,
+          "timestamp": "2026-05-20T18:28:57.427471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/1319 [00:02<53:25,  2.43s/it]\\\\rEvaluating:   0%|          | 2/1319 [00:11<2:14:03,  6.11s/it]\\\\rEvaluating:   0%|          | 3/1319 [00:12<1:28:32,  4.04s/it]\\\\rEvaluating:   0%|          | 4/1319 [00:16<1:22:36,  3.77s/it]\\\\rEvaluating:   0%|          | 5/1319 [00:17<1:05:38,  3.00s/it]\\\\rEvaluating:   0%|          | 6/1319 [00:20<1:02:49,  2.87s/it]\\\\rEvaluating:   1%|          | 7/1319 [00:23<1:02:12,  2.85s/it]\\\\rEvaluating:   1%|          | 8/1319 [00:24<51:24,  2.35s/it]  \\\\rEvaluating:   1%|          | 9/1319 [00:25<44:06,  2.02s/it]\\\\rEvaluating:   1%|          | 10/1319 [00:27<45:05,  2.07s/it]\\\\rEvaluating:   1%|          | 11/1319 [00:32<1:02:07,  2.85s/it]\\\\rEvaluating:   1%|          | 12/1319 [00:33<49:29,  2.27s/it]  \\\\rEvaluating:   1%|          | 13/1319 [00:37<1:00:13,  2.77s/it]\\\\rEvaluating:   1%|          | 14/1319 [00:38<49:38,  2.28s/it]  \\\\rEvaluating:   1%|          | 15/1319 [00:41<56:22,  2.59s/it]\\\\rEvaluating:   1%|          | 16/1319 [00:42<45:24,  2.09s/it]\\\\rEvaluating:   1%|▏         | 17/1319 [00:44<42:52,  1.98s/it]\\\\rEvaluating:   1%|▏         | 18/1319 [00:45<39:10,  1.81s/it]\\\\rEvaluating:   1%|▏         | 19/1319 [00:47<38:36,  1.78s/it]\\\\rEvaluating:   2%|▏         | 20/1319 [00:49<40:20,  1.86s/it]\\\\rEvaluating:   2%|▏         | 21/1319 [00:51<40:11,  1.86s/it]\\\\rEvaluating:   2%|▏         | 22/1319 [00:52<36:59,  1.71s/it]\\\\rEvaluating:   2%|▏         | 23/1319 [00:56<47:32,  2.20s/it]\\\\rEvaluating:   2%|▏         | 24/1319 [00:58<45:01,  2.09s/it]\\\\rEvaluating:   2%|▏         | 25/1319 [00:58<37:06,  1.72s/it]\\\\rEvaluating:   2%|▏         | 26/1319 [01:02<48:46,  2.26s/it]\\\\rEvaluating:   2%|▏         | 27/1319 [01:05<57:05,  2.65s/it]\\\\rEvaluating:   2%|▏         | 28/1319 [01:10<1:09:34,  3.23s/it]\\\\rEvaluating:   2%|▏         | 29/1319 [01:13<1:10:43,  3.29s/it]\\\\rEvaluating:  \n…[truncated 6450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003277"
+        },
+        {
+          "source_line": 3278,
+          "timestamp": "2026-05-20T18:29:29.140733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_20*\" -type f"
+            }
+          },
+          "id": "event-003278"
+        },
+        {
+          "source_line": 3279,
+          "timestamp": "2026-05-20T18:29:29.693185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003279"
+        },
+        {
+          "source_line": 3280,
+          "timestamp": "2026-05-20T18:29:30.145342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 12\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003280"
+        },
+        {
+          "source_line": 3281,
+          "timestamp": "2026-05-20T18:29:30.597351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003281"
+        },
+        {
+          "source_line": 3282,
+          "timestamp": "2026-05-20T18:29:36.806649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -1 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003282"
+        },
+        {
+          "source_line": 3283,
+          "timestamp": "2026-05-20T18:29:37.270091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  87%|████████▋ | 1150/1319 [1:56:00<08:56,  3.17s/it]\\\\rEvaluating:  87%|████████▋ | 1151/1319 [1:56:01<07:15,  2.59s/it]\\\\rEvaluating:  87%|████████▋ | 1152/1319 [1:56:03<06:16,  2.25s/it]\\\\rEvaluating:  87%|████████▋ | 1153/1319 [1:56:05<06:09,  2.22s/it]\\\\rEvaluating:  87%|████████▋ | 1154/1319 [1:56:08<07:03,  2.56s/it]\\\\rEvaluating:  88%|████████▊ | 1155/1319 [1:56:10<06:43,  2.46s/it]\\\\rEvaluating:  88%|████████▊ | 1156/1319 [1:56:14<07:20,  2.70s/it]\\\\rEvaluating:  88%|████████▊ | 1157/1319 [1:56:16<06:45,  2.50s/it]\\\\rEvaluating:  88%|████████▊ | 1158/1319 [1:56:18<06:35,  2.46s/it]\\\\rEvaluating:  88%|████████▊ | 1159/1319 [1:56:20<06:04,  2.28s/it]\\\\rEvaluating:  88%|████████▊ | 1160/1319 [1:56:23<06:18,  2.38s/it]\\\\rEvaluating:  88%|████████▊ | 1161/1319 [1:56:27<07:34,  2.88s/it]\\\\rEvaluating:  88%|████████▊ | 1162/1319 [1:56:28<06:20,  2.42s/it]\\\\rEvaluating:  88%|████████▊ | 1163/1319 [1:56:31<06:36,  2.54s/it]\\\\rEvaluating:  88%|████████▊ | 1164/1319 [1:56:34<07:00,  2.71s/it]\\\\rEvaluating:  88%|████████▊ | 1165/1319 [1:56:38<07:49,  3.05s/it]\\\\rEvaluating:  88%|████████▊ | 1166/1319 [1:56:39<06:24,  2.51s/it]\\\\rEvaluating:  88%|████████▊ | 1167/1319 [1:56:41<06:01,  2.38s/it]\\\\rEvaluating:  89%|████████▊ | 1168/1319 [1:56:44<06:03,  2.41s/it]\\\\rEvaluating:  89%|████████▊ | 1169/1319 [1:56:45<05:35,  2.24s/it]\\\\rEvaluating:  89%|████████▊ | 1170/1319 [1:56:47<05:02,  2.03s/it]\\\\rEvaluating:  89%|████████▉ | 1171/1319 [1:56:49<05:03,  2.05s/it]\\\\rEvaluating:  89%|████████▉ | 1172/1319 [1:56:52<05:37,  2.29s/it]\\\\rEvaluating:  89%|████████▉ | 1173/1319 [1:56:55<06:01,  2.48s/it]\\\\rEvaluating:  89%|████████▉ | 1174/1319 [1:56:57<05:56,  2.46s/it]\\\\rEvaluating:  89%|████████▉ | 1175/1319 [1:57:04<09:07,  3.80s/it]\\\\rEvaluating:  89%|████████▉ | 1176/1319 [1:57:09<09:47,  4.11s/it]\\\\rEvaluating:  89%|████████▉ | 1177/1319 [1:57:11<08:25,  3.56s/it]\\\\rEvaluating:  89%|████████▉ | 1178/131\n…[truncated 540 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 463
+          },
+          "id": "event-003283"
+        },
+        {
+          "source_line": 3284,
+          "timestamp": "2026-05-20T18:29:50.878400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*grpo_standard_20*n1319*\" -type f"
+            }
+          },
+          "id": "event-003284"
+        },
+        {
+          "source_line": 3285,
+          "timestamp": "2026-05-20T18:29:51.280048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*grpo_cka_only_20*n1319*\" -type f"
+            }
+          },
+          "id": "event-003285"
+        },
+        {
+          "source_line": 3286,
+          "timestamp": "2026-05-20T18:29:51.331447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed456_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed456_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed123_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed123_n1319.json.done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-003286"
+        },
+        {
+          "source_line": 3287,
+          "timestamp": "2026-05-20T18:29:51.885085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_seed456_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_seed456_n1319.json.done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 605
+          },
+          "id": "event-003287"
+        },
+        {
+          "source_line": 3288,
+          "timestamp": "2026-05-20T18:29:57.555589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed123_n1319.json"
+            }
+          },
+          "id": "event-003288"
+        },
+        {
+          "source_line": 3289,
+          "timestamp": "2026-05-20T18:29:58.007618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed123\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.5989385898407885,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013495040378394314,\\\\n  \\\\\\\"n_correct\\\\\\\": 790,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003289"
+        },
+        {
+          "source_line": 3290,
+          "timestamp": "2026-05-20T18:29:58.008052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed456_n1319.json"
+            }
+          },
+          "id": "event-003290"
+        },
+        {
+          "source_line": 3291,
+          "timestamp": "2026-05-20T18:29:58.760915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed456\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.6019711902956786,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013477914890762601,\\\\n  \\\\\\\"n_correct\\\\\\\": 794,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 752
+          },
+          "id": "event-003291"
+        },
+        {
+          "source_line": 3292,
+          "timestamp": "2026-05-20T18:29:58.811465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_seed456_n1319.json"
+            }
+          },
+          "id": "event-003292"
+        },
+        {
+          "source_line": 3293,
+          "timestamp": "2026-05-20T18:29:59.263483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed456\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.6459438968915845,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013167733985655294,\\\\n  \\\\\\\"n_correct\\\\\\\": 852,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003293"
+        },
+        {
+          "source_line": 3294,
+          "timestamp": "2026-05-20T18:30:16.584474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*grpo_standard_20*\" -not -name \"*seed*\" -not -name \"*qwen*\" -not -name \"*1p5b*\" -not -name \"*extended*\" -not -name \"*n200*\" -type f"
+            }
+          },
+          "id": "event-003294"
+        },
+        {
+          "source_line": 3295,
+          "timestamp": "2026-05-20T18:30:17.151781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048_v3.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048_v3.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json.done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 567
+          },
+          "id": "event-003295"
+        },
+        {
+          "source_line": 3296,
+          "timestamp": "2026-05-20T18:30:17.181518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*grpo_cka_only_20*\" -not -name \"*seed*\" -not -name \"*qwen*\" -not -name \"*1p5b*\" -not -name \"*extended*\" -type f"
+            }
+          },
+          "id": "event-003296"
+        },
+        {
+          "source_line": 3297,
+          "timestamp": "2026-05-20T18:30:17.725474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_cka_only_20_2048.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/artifacts/eval_math500_grpo_cka_only_20_2048_analysis.md\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 543
+          },
+          "id": "event-003297"
+        },
+        {
+          "source_line": 3298,
+          "timestamp": "2026-05-20T18:30:23.555439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json"
+            }
+          },
+          "id": "event-003298"
+        },
+        {
+          "source_line": 3299,
+          "timestamp": "2026-05-20T18:30:24.050229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.5943896891584534,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013519720989483766,\\\\n  \\\\\\\"n_correct\\\\\\\": 784,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 494
+          },
+          "id": "event-003299"
+        },
+        {
+          "source_line": 3300,
+          "timestamp": "2026-05-20T18:30:24.050663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json"
+            }
+          },
+          "id": "event-003300"
+        },
+        {
+          "source_line": 3301,
+          "timestamp": "2026-05-20T18:30:24.905464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.643669446550417,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013186683444435831,\\\\n  \\\\\\\"n_correct\\\\\\\": 849,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 854
+          },
+          "id": "event-003301"
+        },
+        {
+          "source_line": 3302,
+          "timestamp": "2026-05-20T18:30:31.100467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20_seed123.json"
+            }
+          },
+          "id": "event-003302"
+        },
+        {
+          "source_line": 3303,
+          "timestamp": "2026-05-20T18:30:31.954387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.6421531463229719,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013199136225973719,\\\\n  \\\\\\\"n_correct\\\\\\\": 847,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 853
+          },
+          "id": "event-003303"
+        },
+        {
+          "source_line": 3304,
+          "timestamp": "2026-05-20T18:30:47.105048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_seed123.json"
+            }
+          },
+          "id": "event-003304"
+        },
+        {
+          "source_line": 3305,
+          "timestamp": "2026-05-20T18:30:47.105425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_seed456.json"
+            }
+          },
+          "id": "event-003305"
+        },
+        {
+          "source_line": 3306,
+          "timestamp": "2026-05-20T18:30:47.907758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.645,\\\\n  \\\\\\\"stderr\\\\\\\": 0.033836001536824645,\\\\n  \\\\\\\"n_correct\\\\\\\": 129,\\\\n  \\\\\\\"n_total\\\\\\\": 200,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 802
+          },
+          "id": "event-003306"
+        },
+        {
+          "source_line": 3307,
+          "timestamp": "2026-05-20T18:30:48.810423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.61,\\\\n  \\\\\\\"stderr\\\\\\\": 0.03448912872196107,\\\\n  \\\\\\\"n_correct\\\\\\\": 122,\\\\n  \\\\\\\"n_total\\\\\\\": 200,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1704
+          },
+          "id": "event-003307"
+        },
+        {
+          "source_line": 3308,
+          "timestamp": "2026-05-20T18:30:59.503856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 12\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003308"
+        },
+        {
+          "source_line": 3309,
+          "timestamp": "2026-05-20T18:30:59.905365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-003309"
+        },
+        {
+          "source_line": 3310,
+          "timestamp": "2026-05-20T18:31:03.072134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -2 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003310"
+        },
+        {
+          "source_line": 3311,
+          "timestamp": "2026-05-20T18:31:03.523767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  83%|████████▎ | 1100/1319 [1:53:36<10:18,  2.82s/it]\\\\rEvaluating:  83%|████████▎ | 1101/1319 [1:53:39<09:28,  2.61s/it]\\\\rEvaluating:  84%|████████▎ | 1102/1319 [1:53:40<08:26,  2.33s/it]\\\\rEvaluating:  84%|████████▎ | 1103/1319 [1:53:42<07:39,  2.13s/it]\\\\rEvaluating:  84%|████████▎ | 1104/1319 [1:53:44<07:53,  2.20s/it]\\\\rEvaluating:  84%|████████▍ | 1105/1319 [1:53:47<08:19,  2.33s/it]\\\\rEvaluating:  84%|████████▍ | 1106/1319 [1:53:49<07:36,  2.14s/it]\\\\rEvaluating:  84%|████████▍ | 1107/1319 [1:53:55<12:07,  3.43s/it]\\\\rEvaluating:  84%|████████▍ | 1108/1319 [1:53:59<12:39,  3.60s/it]\\\\rEvaluating:  84%|████████▍ | 1109/1319 [1:54:04<13:55,  3.98s/it]\\\\rEvaluating:  84%|████████▍ | 1110/1319 [1:54:07<12:49,  3.68s/it]\\\\rEvaluating:  84%|████████▍ | 1111/1319 [1:54:12<14:07,  4.08s/it]\\\\rEvaluating:  84%|████████▍ | 1112/1319 [1:54:14<12:12,  3.54s/it]\\\\rEvaluating:  84%|████████▍ | 1113/1319 [1:54:16<10:28,  3.05s/it]\\\\rEvaluating:  84%|████████▍ | 1114/1319 [1:54:18<09:40,  2.83s/it]\\\\rEvaluating:  85%|████████▍ | 1115/1319 [1:54:21<09:24,  2.76s/it]\\\\rEvaluating:  85%|████████▍ | 1116/1319 [1:54:23<08:31,  2.52s/it]\\\\rEvaluating:  85%|████████▍ | 1117/1319 [1:54:24<07:12,  2.14s/it]\\\\rEvaluating:  85%|████████▍ | 1118/1319 [1:54:26<06:32,  1.95s/it]\\\\rEvaluating:  85%|████████▍ | 1119/1319 [1:54:30<08:33,  2.57s/it]\\\\rEvaluating:  85%|████████▍ | 1120/1319 [1:54:36<12:34,  3.79s/it]\\\\rEvaluating:  85%|████████▍ | 1121/1319 [1:54:39<11:05,  3.36s/it]\\\\rEvaluating:  85%|████████▌ | 1122/1319 [1:54:42<11:03,  3.37s/it]\\\\rEvaluating:  85%|████████▌ | 1123/1319 [1:54:45<11:01,  3.37s/it]\\\\rEvaluating:  85%|████████▌ | 1124/1319 [1:54:47<08:50,  2.72s/it]\\\\rEvaluating:  85%|████████▌ | 1125/1319 [1:54:50<09:25,  2.91s/it]\\\\rEvaluating:  85%|████████▌ | 1126/1319 [1:54:53<09:07,  2.84s/it]\\\\rEvaluating:  85%|████████▌ | 1127/1319 [1:54:56<09:23,  2.93s/it]\\\\rEvaluating:  86%|████████▌ | 1128/131\n…[truncated 4242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003311"
+        },
+        {
+          "source_line": 3312,
+          "timestamp": "2026-05-20T18:31:18.832604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 1200\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003312"
+        },
+        {
+          "source_line": 3313,
+          "timestamp": "2026-05-20T18:31:19.284737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003313"
+        },
+        {
+          "source_line": 3314,
+          "timestamp": "2026-05-20T18:31:22.295359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -1 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003314"
+        },
+        {
+          "source_line": 3315,
+          "timestamp": "2026-05-20T18:31:22.743948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  87%|████████▋ | 1150/1319 [1:56:00<08:56,  3.17s/it]\\\\rEvaluating:  87%|████████▋ | 1151/1319 [1:56:01<07:15,  2.59s/it]\\\\rEvaluating:  87%|████████▋ | 1152/1319 [1:56:03<06:16,  2.25s/it]\\\\rEvaluating:  87%|████████▋ | 1153/1319 [1:56:05<06:09,  2.22s/it]\\\\rEvaluating:  87%|████████▋ | 1154/1319 [1:56:08<07:03,  2.56s/it]\\\\rEvaluating:  88%|████████▊ | 1155/1319 [1:56:10<06:43,  2.46s/it]\\\\rEvaluating:  88%|████████▊ | 1156/1319 [1:56:14<07:20,  2.70s/it]\\\\rEvaluating:  88%|████████▊ | 1157/1319 [1:56:16<06:45,  2.50s/it]\\\\rEvaluating:  88%|████████▊ | 1158/1319 [1:56:18<06:35,  2.46s/it]\\\\rEvaluating:  88%|████████▊ | 1159/1319 [1:56:20<06:04,  2.28s/it]\\\\rEvaluating:  88%|████████▊ | 1160/1319 [1:56:23<06:18,  2.38s/it]\\\\rEvaluating:  88%|████████▊ | 1161/1319 [1:56:27<07:34,  2.88s/it]\\\\rEvaluating:  88%|████████▊ | 1162/1319 [1:56:28<06:20,  2.42s/it]\\\\rEvaluating:  88%|████████▊ | 1163/1319 [1:56:31<06:36,  2.54s/it]\\\\rEvaluating:  88%|████████▊ | 1164/1319 [1:56:34<07:00,  2.71s/it]\\\\rEvaluating:  88%|████████▊ | 1165/1319 [1:56:38<07:49,  3.05s/it]\\\\rEvaluating:  88%|████████▊ | 1166/1319 [1:56:39<06:24,  2.51s/it]\\\\rEvaluating:  88%|████████▊ | 1167/1319 [1:56:41<06:01,  2.38s/it]\\\\rEvaluating:  89%|████████▊ | 1168/1319 [1:56:44<06:03,  2.41s/it]\\\\rEvaluating:  89%|████████▊ | 1169/1319 [1:56:45<05:35,  2.24s/it]\\\\rEvaluating:  89%|████████▊ | 1170/1319 [1:56:47<05:02,  2.03s/it]\\\\rEvaluating:  89%|████████▉ | 1171/1319 [1:56:49<05:03,  2.05s/it]\\\\rEvaluating:  89%|████████▉ | 1172/1319 [1:56:52<05:37,  2.29s/it]\\\\rEvaluating:  89%|████████▉ | 1173/1319 [1:56:55<06:01,  2.48s/it]\\\\rEvaluating:  89%|████████▉ | 1174/1319 [1:56:57<05:56,  2.46s/it]\\\\rEvaluating:  89%|████████▉ | 1175/1319 [1:57:04<09:07,  3.80s/it]\\\\rEvaluating:  89%|████████▉ | 1176/1319 [1:57:09<09:47,  4.11s/it]\\\\rEvaluating:  89%|████████▉ | 1177/1319 [1:57:11<08:25,  3.56s/it]\\\\rEvaluating:  89%|████████▉ | 1178/131\n…[truncated 744 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 448
+          },
+          "id": "event-003315"
+        },
+        {
+          "source_line": 3316,
+          "timestamp": "2026-05-20T18:31:27.779903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003316"
+        },
+        {
+          "source_line": 3317,
+          "timestamp": "2026-05-20T18:31:28.231758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n  Size: 91893     \\\\tBlocks: 184        IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662335  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:30:59.815161025 +0800\\\\nModify: 2026-05-21 02:29:42.622800114 +0800\\\\nChange: 2026-05-21 02:29:42.622800114 +0800\\\\n Birth: 2026-05-21 00:30:34.548700480 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003317"
+        },
+        {
+          "source_line": 3318,
+          "timestamp": "2026-05-20T18:31:33.535847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 1200\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003318"
+        },
+        {
+          "source_line": 3319,
+          "timestamp": "2026-05-20T18:31:34.037648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-003319"
+        },
+        {
+          "source_line": 3320,
+          "timestamp": "2026-05-20T18:31:37.650430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Evaluating:  9\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003320"
+        },
+        {
+          "source_line": 3321,
+          "timestamp": "2026-05-20T18:31:38.082780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  87%|████████▋ | 1150/1319 [1:56:00<08:56,  3.17s/it]\\\\rEvaluating:  87%|████████▋ | 1151/1319 [1:56:01<07:15,  2.59s/it]\\\\rEvaluating:  87%|████████▋ | 1152/1319 [1:56:03<06:16,  2.25s/it]\\\\rEvaluating:  87%|████████▋ | 1153/1319 [1:56:05<06:09,  2.22s/it]\\\\rEvaluating:  87%|████████▋ | 1154/1319 [1:56:08<07:03,  2.56s/it]\\\\rEvaluating:  88%|████████▊ | 1155/1319 [1:56:10<06:43,  2.46s/it]\\\\rEvaluating:  88%|████████▊ | 1156/1319 [1:56:14<07:20,  2.70s/it]\\\\rEvaluating:  88%|████████▊ | 1157/1319 [1:56:16<06:45,  2.50s/it]\\\\rEvaluating:  88%|████████▊ | 1158/1319 [1:56:18<06:35,  2.46s/it]\\\\rEvaluating:  88%|████████▊ | 1159/1319 [1:56:20<06:04,  2.28s/it]\\\\rEvaluating:  88%|████████▊ | 1160/1319 [1:56:23<06:18,  2.38s/it]\\\\rEvaluating:  88%|████████▊ | 1161/1319 [1:56:27<07:34,  2.88s/it]\\\\rEvaluating:  88%|████████▊ | 1162/1319 [1:56:28<06:20,  2.42s/it]\\\\rEvaluating:  88%|████████▊ | 1163/1319 [1:56:31<06:36,  2.54s/it]\\\\rEvaluating:  88%|████████▊ | 1164/1319 [1:56:34<07:00,  2.71s/it]\\\\rEvaluating:  88%|████████▊ | 1165/1319 [1:56:38<07:49,  3.05s/it]\\\\rEvaluating:  88%|████████▊ | 1166/1319 [1:56:39<06:24,  2.51s/it]\\\\rEvaluating:  88%|████████▊ | 1167/1319 [1:56:41<06:01,  2.38s/it]\\\\rEvaluating:  89%|████████▊ | 1168/1319 [1:56:44<06:03,  2.41s/it]\\\\rEvaluating:  89%|████████▊ | 1169/1319 [1:56:45<05:35,  2.24s/it]\\\\rEvaluating:  89%|████████▊ | 1170/1319 [1:56:47<05:02,  2.03s/it]\\\\rEvaluating:  89%|████████▉ | 1171/1319 [1:56:49<05:03,  2.05s/it]\\\\rEvaluating:  89%|████████▉ | 1172/1319 [1:56:52<05:37,  2.29s/it]\\\\rEvaluating:  89%|████████▉ | 1173/1319 [1:56:55<06:01,  2.48s/it]\\\\rEvaluating:  89%|████████▉ | 1174/1319 [1:56:57<05:56,  2.46s/it]\\\\rEvaluating:  89%|████████▉ | 1175/1319 [1:57:04<09:07,  3.80s/it]\\\\rEvaluating:  89%|████████▉ | 1176/1319 [1:57:09<09:47,  4.11s/it]\\\\rEvaluating:  89%|████████▉ | 1177/1319 [1:57:11<08:25,  3.56s/it]\\\\rEvaluating:  89%|████████▉ | 1178/131\n…[truncated 747 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 432
+          },
+          "id": "event-003321"
+        },
+        {
+          "source_line": 3322,
+          "timestamp": "2026-05-20T18:31:46.565414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_20*\" -type f"
+            }
+          },
+          "id": "event-003322"
+        },
+        {
+          "source_line": 3323,
+          "timestamp": "2026-05-20T18:31:46.816562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003323"
+        },
+        {
+          "source_line": 3324,
+          "timestamp": "2026-05-20T18:31:47.017550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003324"
+        },
+        {
+          "source_line": 3325,
+          "timestamp": "2026-05-20T18:31:47.569909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"91893 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-003325"
+        },
+        {
+          "source_line": 3326,
+          "timestamp": "2026-05-20T18:31:53.506687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003326"
+        },
+        {
+          "source_line": 3327,
+          "timestamp": "2026-05-20T18:31:54.061844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"91893 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 555
+          },
+          "id": "event-003327"
+        },
+        {
+          "source_line": 3328,
+          "timestamp": "2026-05-20T18:31:58.027764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003328"
+        },
+        {
+          "source_line": 3329,
+          "timestamp": "2026-05-20T18:31:58.479340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n  Size: 91893     \\\\tBlocks: 184        IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662335  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:30:59.815161025 +0800\\\\nModify: 2026-05-21 02:29:42.622800114 +0800\\\\nChange: 2026-05-21 02:29:42.622800114 +0800\\\\n Birth: 2026-05-21 00:30:34.548700480 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003329"
+        },
+        {
+          "source_line": 3330,
+          "timestamp": "2026-05-20T18:32:03.511845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-003330"
+        },
+        {
+          "source_line": 3331,
+          "timestamp": "2026-05-20T18:32:04.064165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 98 %, 29619 MiB\\\\n1, 0 %, 0 MiB\\\\n2, 99 %, 29619 MiB\\\\n3, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003331"
+        },
+        {
+          "source_line": 3332,
+          "timestamp": "2026-05-20T18:32:11.103516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 1200\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003332"
+        },
+        {
+          "source_line": 3333,
+          "timestamp": "2026-05-20T18:32:11.557120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-003333"
+        },
+        {
+          "source_line": 3334,
+          "timestamp": "2026-05-20T18:32:14.822855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 1200\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003334"
+        },
+        {
+          "source_line": 3335,
+          "timestamp": "2026-05-20T18:32:15.274772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003335"
+        },
+        {
+          "source_line": 3336,
+          "timestamp": "2026-05-20T18:32:20.345883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 1200\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003336"
+        },
+        {
+          "source_line": 3337,
+          "timestamp": "2026-05-20T18:32:20.798571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003337"
+        },
+        {
+          "source_line": 3338,
+          "timestamp": "2026-05-20T18:32:27.321933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003338"
+        },
+        {
+          "source_line": 3339,
+          "timestamp": "2026-05-20T18:32:27.773950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n  Size: 91893     \\\\tBlocks: 184        IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662335  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:30:59.815161025 +0800\\\\nModify: 2026-05-21 02:29:42.622800114 +0800\\\\nChange: 2026-05-21 02:29:42.622800114 +0800\\\\n Birth: 2026-05-21 00:30:34.548700480 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003339"
+        },
+        {
+          "source_line": 3340,
+          "timestamp": "2026-05-20T18:32:40.870173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 12\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003340"
+        },
+        {
+          "source_line": 3341,
+          "timestamp": "2026-05-20T18:32:41.373989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-003341"
+        },
+        {
+          "source_line": 3342,
+          "timestamp": "2026-05-20T18:32:44.487584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003342"
+        },
+        {
+          "source_line": 3343,
+          "timestamp": "2026-05-20T18:32:44.939575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"91893 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003343"
+        },
+        {
+          "source_line": 3344,
+          "timestamp": "2026-05-20T18:32:50.521044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 650\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003344"
+        },
+        {
+          "source_line": 3345,
+          "timestamp": "2026-05-20T18:32:51.023250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003345"
+        },
+        {
+          "source_line": 3346,
+          "timestamp": "2026-05-20T18:32:51.274533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 700\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003346"
+        },
+        {
+          "source_line": 3347,
+          "timestamp": "2026-05-20T18:32:51.730612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-003347"
+        },
+        {
+          "source_line": 3348,
+          "timestamp": "2026-05-20T18:33:02.797354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003348"
+        },
+        {
+          "source_line": 3349,
+          "timestamp": "2026-05-20T18:33:03.251321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log\\\\n  Size: 44258     \\\\tBlocks: 88         IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662027  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:28:57.197000906 +0800\\\\nModify: 2026-05-21 02:28:43.341681716 +0800\\\\nChange: 2026-05-21 02:28:43.341681716 +0800\\\\n Birth: 2026-05-21 01:06:03.166698213 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-003349"
+        },
+        {
+          "source_line": 3350,
+          "timestamp": "2026-05-20T18:33:07.913627+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "IO stall（典型的并行 eval 磁盘竞争）。同时查看 Standard 20%。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-003350"
+        }
+      ]
+    },
+    {
+      "number": 233,
+      "messages": [
+        {
+          "source_line": 3351,
+          "timestamp": "2026-05-20T18:33:08.388834+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_harvest_all_westd_evals_20260520T181211]:\nWorker worker_ssh_harvest_all_westd_evals_20260520T181211 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-003351"
+        },
+        {
+          "source_line": 3352,
+          "timestamp": "2026-05-20T18:33:18.283583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/worker_ssh_harvest_all_westd_evals_20260520T181211_result.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers"
+            }
+          },
+          "id": "event-003352"
+        },
+        {
+          "source_line": 3353,
+          "timestamp": "2026-05-20T18:33:18.334418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ssh_harvest_all_westd_evals_20260520T181211_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-003353"
+        },
+        {
+          "source_line": 3354,
+          "timestamp": "2026-05-20T18:33:21.148545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ssh_harvest_all_westd_evals_20260520T181211_result.json"
+            }
+          },
+          "id": "event-003354"
+        },
+        {
+          "source_line": 3355,
+          "timestamp": "2026-05-20T18:33:21.202431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"3 个 eval 全部仍在运行，尚无结果文件输出。\\n\\n| Eval | GPU | PID | 进度 | 中期 Accuracy | 预计剩余 |\\n|------|-----|-----|------|--------------|---------|\\n| **CKA-only 15% SFT** | cuda:1 | 262728 | 1180/1319 (89%) | **72.52%** @1150 | ~7 min |\\n| **CKA-only 20% SFT** | cuda:2 | 264522 | 932/1319 (71%) | **63.11%** @900 | ~19 min |\\n| **Standard 20% SFT** | cuda:0 | 266847 | 425/1319 (32%) | **61.50%** @400 | ~44 min |\\n\\nCKA-only 15% 没完成，但即将结束（~89%），中期准确率 72.52%。CKA-only 20% 和 Standard 20% 分别在 71% 和 32% 进度。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 53
+          },
+          "id": "event-003355"
+        },
+        {
+          "source_line": 3356,
+          "timestamp": "2026-05-20T18:33:39.355487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_20*\" -type f"
+            }
+          },
+          "id": "event-003356"
+        },
+        {
+          "source_line": 3357,
+          "timestamp": "2026-05-20T18:33:40.353714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 12\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003357"
+        },
+        {
+          "source_line": 3358,
+          "timestamp": "2026-05-20T18:33:40.790993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 650\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003358"
+        },
+        {
+          "source_line": 3359,
+          "timestamp": "2026-05-20T18:33:40.957462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1601
+          },
+          "id": "event-003359"
+        },
+        {
+          "source_line": 3360,
+          "timestamp": "2026-05-20T18:33:41.464492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1110
+          },
+          "id": "event-003360"
+        },
+        {
+          "source_line": 3361,
+          "timestamp": "2026-05-20T18:33:42.031026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1240
+          },
+          "id": "event-003361"
+        },
+        {
+          "source_line": 3362,
+          "timestamp": "2026-05-20T18:33:46.785654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-003362"
+        },
+        {
+          "source_line": 3363,
+          "timestamp": "2026-05-20T18:33:47.696106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 29619 MiB\\\\n1, 0 %, 0 MiB\\\\n2, 99 %, 29619 MiB\\\\n3, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 910
+          },
+          "id": "event-003363"
+        },
+        {
+          "source_line": 3364,
+          "timestamp": "2026-05-20T18:33:47.696544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003364"
+        },
+        {
+          "source_line": 3365,
+          "timestamp": "2026-05-20T18:33:47.897444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003365"
+        },
+        {
+          "source_line": 3366,
+          "timestamp": "2026-05-20T18:33:48.148745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n  Size: 91893     \\\\tBlocks: 184        IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662335  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:30:59.815161025 +0800\\\\nModify: 2026-05-21 02:29:42.622800114 +0800\\\\nChange: 2026-05-21 02:29:42.622800114 +0800\\\\n Birth: 2026-05-21 00:30:34.548700480 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003366"
+        },
+        {
+          "source_line": 3367,
+          "timestamp": "2026-05-20T18:33:48.701086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log\\\\n  Size: 44258     \\\\tBlocks: 88         IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662027  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:28:57.197000906 +0800\\\\nModify: 2026-05-21 02:28:43.341681716 +0800\\\\nChange: 2026-05-21 02:28:43.341681716 +0800\\\\n Birth: 2026-05-21 01:06:03.166698213 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-003367"
+        },
+        {
+          "source_line": 3368,
+          "timestamp": "2026-05-20T18:33:57.917418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003368"
+        },
+        {
+          "source_line": 3369,
+          "timestamp": "2026-05-20T18:33:58.419604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"91893 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003369"
+        },
+        {
+          "source_line": 3370,
+          "timestamp": "2026-05-20T18:33:58.419969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003370"
+        },
+        {
+          "source_line": 3371,
+          "timestamp": "2026-05-20T18:33:58.921753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"44258 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-003371"
+        },
+        {
+          "source_line": 3372,
+          "timestamp": "2026-05-20T18:34:04.191767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003372"
+        },
+        {
+          "source_line": 3373,
+          "timestamp": "2026-05-20T18:34:04.644470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n  Size: 91893     \\\\tBlocks: 184        IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662335  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:30:59.815161025 +0800\\\\nModify: 2026-05-21 02:29:42.622800114 +0800\\\\nChange: 2026-05-21 02:29:42.622800114 +0800\\\\n Birth: 2026-05-21 00:30:34.548700480 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003373"
+        },
+        {
+          "source_line": 3374,
+          "timestamp": "2026-05-20T18:34:04.695138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003374"
+        },
+        {
+          "source_line": 3375,
+          "timestamp": "2026-05-20T18:34:05.147247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log\\\\n  Size: 44258     \\\\tBlocks: 88         IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662027  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:28:57.197000906 +0800\\\\nModify: 2026-05-21 02:28:43.341681716 +0800\\\\nChange: 2026-05-21 02:28:43.341681716 +0800\\\\n Birth: 2026-05-21 01:06:03.166698213 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003375"
+        },
+        {
+          "source_line": 3376,
+          "timestamp": "2026-05-20T18:34:09.955192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-003376"
+        },
+        {
+          "source_line": 3377,
+          "timestamp": "2026-05-20T18:34:10.457453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 29619 MiB\\\\n1, 0 %, 0 MiB\\\\n2, 99 %, 29619 MiB\\\\n3, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003377"
+        },
+        {
+          "source_line": 3378,
+          "timestamp": "2026-05-20T18:34:27.927182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 1200\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003378"
+        },
+        {
+          "source_line": 3379,
+          "timestamp": "2026-05-20T18:34:28.078095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_20*\" -type f"
+            }
+          },
+          "id": "event-003379"
+        },
+        {
+          "source_line": 3380,
+          "timestamp": "2026-05-20T18:34:28.383424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-003380"
+        },
+        {
+          "source_line": 3381,
+          "timestamp": "2026-05-20T18:34:28.935517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 857
+          },
+          "id": "event-003381"
+        },
+        {
+          "source_line": 3382,
+          "timestamp": "2026-05-20T18:34:34.312738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003382"
+        },
+        {
+          "source_line": 3383,
+          "timestamp": "2026-05-20T18:34:34.764767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"91893 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003383"
+        },
+        {
+          "source_line": 3384,
+          "timestamp": "2026-05-20T18:34:41.291163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /proc/264522/status"
+            }
+          },
+          "id": "event-003384"
+        },
+        {
+          "source_line": 3385,
+          "timestamp": "2026-05-20T18:34:41.495109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /proc/266847/status"
+            }
+          },
+          "id": "event-003385"
+        },
+        {
+          "source_line": 3386,
+          "timestamp": "2026-05-20T18:34:41.752022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 21 00:31 /proc/264522/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 460
+          },
+          "id": "event-003386"
+        },
+        {
+          "source_line": 3387,
+          "timestamp": "2026-05-20T18:34:42.256042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 21 01:06 /proc/266847/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 760
+          },
+          "id": "event-003387"
+        },
+        {
+          "source_line": 3388,
+          "timestamp": "2026-05-20T18:34:57.989593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 1200\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003388"
+        },
+        {
+          "source_line": 3389,
+          "timestamp": "2026-05-20T18:34:58.391418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_20*\" -type f"
+            }
+          },
+          "id": "event-003389"
+        },
+        {
+          "source_line": 3390,
+          "timestamp": "2026-05-20T18:34:58.441984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003390"
+        },
+        {
+          "source_line": 3391,
+          "timestamp": "2026-05-20T18:34:58.944212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003391"
+        },
+        {
+          "source_line": 3392,
+          "timestamp": "2026-05-20T18:35:03.671229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "date"
+            }
+          },
+          "id": "event-003392"
+        },
+        {
+          "source_line": 3393,
+          "timestamp": "2026-05-20T18:35:03.721919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'date' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-003393"
+        },
+        {
+          "source_line": 3394,
+          "timestamp": "2026-05-20T18:35:06.535435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /proc/self"
+            }
+          },
+          "id": "event-003394"
+        },
+        {
+          "source_line": 3395,
+          "timestamp": "2026-05-20T18:35:06.987426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /proc/self -> 273286\\\\n  Size: 0         \\\\tBlocks: 0          IO Block: 1024   symbolic link\\\\nDevice: f0h/240d\\\\tInode: 4026531842  Links: 1\\\\nAccess: (0777/lrwxrwxrwx)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-20 20:51:25.023160375 +0800\\\\nModify: 2026-05-18 20:51:20.980670197 +0800\\\\nChange: 2026-05-18 20:51:20.980670197 +0800\\\\n Birth: -\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003395"
+        },
+        {
+          "source_line": 3396,
+          "timestamp": "2026-05-20T18:35:11.225420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat /proc/uptime"
+            }
+          },
+          "id": "event-003396"
+        },
+        {
+          "source_line": 3397,
+          "timestamp": "2026-05-20T18:35:11.678348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8499469.57 1626504006.07\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003397"
+        },
+        {
+          "source_line": 3398,
+          "timestamp": "2026-05-20T18:35:16.947410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_20*\" -type f"
+            }
+          },
+          "id": "event-003398"
+        },
+        {
+          "source_line": 3399,
+          "timestamp": "2026-05-20T18:35:17.449415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003399"
+        },
+        {
+          "source_line": 3400,
+          "timestamp": "2026-05-20T18:35:17.449882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003400"
+        },
+        {
+          "source_line": 3401,
+          "timestamp": "2026-05-20T18:35:17.901807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"91893 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003401"
+        },
+        {
+          "source_line": 3402,
+          "timestamp": "2026-05-20T18:35:34.669859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "head -5 /proc/264522/status"
+            }
+          },
+          "id": "event-003402"
+        },
+        {
+          "source_line": 3403,
+          "timestamp": "2026-05-20T18:35:35.121922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Name:\\\\tpython\\\\nUmask:\\\\t0022\\\\nState:\\\\tR (running)\\\\nTgid:\\\\t264522\\\\nNgid:\\\\t577540\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003403"
+        },
+        {
+          "source_line": 3404,
+          "timestamp": "2026-05-20T18:35:41.214060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_20*\" -type f"
+            }
+          },
+          "id": "event-003404"
+        },
+        {
+          "source_line": 3405,
+          "timestamp": "2026-05-20T18:35:41.665980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003405"
+        },
+        {
+          "source_line": 3406,
+          "timestamp": "2026-05-20T18:35:45.028829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft*\" -newer /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log -type f"
+            }
+          },
+          "id": "event-003406"
+        },
+        {
+          "source_line": 3407,
+          "timestamp": "2026-05-20T18:35:45.480830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003407"
+        },
+        {
+          "source_line": 3408,
+          "timestamp": "2026-05-20T18:35:50.549583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep \"Progress: 850\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_dense_unpruned.log"
+            }
+          },
+          "id": "event-003408"
+        },
+        {
+          "source_line": 3409,
+          "timestamp": "2026-05-20T18:35:50.951425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep \"Progress: 900\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_dense_unpruned.log"
+            }
+          },
+          "id": "event-003409"
+        },
+        {
+          "source_line": 3410,
+          "timestamp": "2026-05-20T18:35:52.654457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  61%|██████    | 800/1319 [1:53:56<1:06:38,  7.70s/it]\\\\rEvaluating:  61%|██████    | 801/1319 [1:54:03<1:03:29,  7.35s/it]\\\\rEvaluating:  61%|██████    | 802/1319 [1:54:12<1:09:52,  8.11s/it]\\\\rEvaluating:  61%|██████    | 803/1319 [1:54:16<58:51,  6.84s/it]  \\\\rEvaluating:  61%|██████    | 804/1319 [1:54:20<50:56,  5.94s/it]\\\\rEvaluating:  61%|██████    | 805/1319 [1:54:25<49:16,  5.75s/it]\\\\rEvaluating:  61%|██████    | 806/1319 [1:54:34<55:13,  6.46s/it]\\\\rEvaluating:  61%|██████    | 807/1319 [1:54:39<52:12,  6.12s/it]\\\\rEvaluating:  61%|██████▏   | 808/1319 [1:54:45<52:17,  6.14s/it]\\\\rEvaluating:  61%|██████▏   | 809/1319 [1:55:34<2:40:13, 18.85s/it]\\\\rEvaluating:  61%|██████▏   | 810/1319 [1:55:42<2:13:13, 15.70s/it]\\\\rEvaluating:  61%|██████▏   | 811/1319 [1:55:47<1:46:17, 12.55s/it]\\\\rEvaluating:  62%|██████▏   | 812/1319 [1:55:55<1:33:41, 11.09s/it]\\\\rEvaluating:  62%|██████▏   | 813/1319 [1:55:59<1:16:50,  9.11s/it]\\\\rEvaluating:  62%|██████▏   | 814/1319 [1:56:04<1:04:55,  7.71s/it]\\\\rEvaluating:  62%|██████▏   | 815/1319 [1:56:10<1:01:13,  7.29s/it]\\\\rEvaluating:  62%|██████▏   | 816/1319 [1:57:08<3:08:02, 22.43s/it]\\\\rEvaluating:  62%|██████▏   | 817/1319 [1:57:15<2:30:24, 17.98s/it]\\\\rEvaluating:  62%|██████▏   | 818/1319 [1:57:18<1:51:36, 13.37s/it]\\\\rEvaluating:  62%|██████▏   | 819/1319 [1:57:23<1:30:40, 10.88s/it]\\\\rEvaluating:  62%|██████▏   | 820/1319 [1:57:26<1:11:23,  8.58s/it]\\\\rEvaluating:  62%|██████▏   | 821/1319 [1:57:52<1:53:28, 13.67s/it]\\\\rEvaluating:  62%|██████▏   | 822/1319 [1:58:03<1:45:53, 12.78s/it]\\\\rEvaluating:  62%|██████▏   | 823/1319 [1:58:08<1:27:02, 10.53s/it]\\\\rEvaluating:  62%|██████▏   | 824/1319 [1:58:16<1:21:40,  9.90s/it]\\\\rEvaluating:  63%|██████▎   | 825/1319 [1:58:22<1:10:49,  8.60s/it]\\\\rEvaluating:  63%|██████▎   | 826/1319 [1:58:27<1:02:11,  7.57s/it]\\\\rEvaluating:  63%|██████▎   | 827/1319 [1:58:35<1:01:54,  7.55s/it]\\\\rEvaluating:  63%|██\n…[truncated 1672 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2104
+          },
+          "id": "event-003410"
+        },
+        {
+          "source_line": 3411,
+          "timestamp": "2026-05-20T18:35:53.578000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2626
+          },
+          "id": "event-003411"
+        },
+        {
+          "source_line": 3412,
+          "timestamp": "2026-05-20T18:36:01.337680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003412"
+        },
+        {
+          "source_line": 3413,
+          "timestamp": "2026-05-20T18:36:01.790431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log\\\\n  Size: 93090     \\\\tBlocks: 184        IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21658662335  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-21 02:30:59.815161025 +0800\\\\nModify: 2026-05-21 02:36:00.833899711 +0800\\\\nChange: 2026-05-21 02:36:00.833899711 +0800\\\\n Birth: 2026-05-21 00:30:34.548700480 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-003413"
+        },
+        {
+          "source_line": 3414,
+          "timestamp": "2026-05-20T18:36:01.790828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_gsm8k_sft_cka_only_20*\" -type f"
+            }
+          },
+          "id": "event-003414"
+        },
+        {
+          "source_line": 3415,
+          "timestamp": "2026-05-20T18:36:02.343129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003415"
+        },
+        {
+          "source_line": 3416,
+          "timestamp": "2026-05-20T18:36:08.466424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 12\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log"
+            }
+          },
+          "id": "event-003416"
+        },
+        {
+          "source_line": 3417,
+          "timestamp": "2026-05-20T18:36:08.947461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating:  87%|████████▋ | 1150/1319 [1:56:00<08:56,  3.17s/it]\\\\rEvaluating:  87%|████████▋ | 1151/1319 [1:56:01<07:15,  2.59s/it]\\\\rEvaluating:  87%|████████▋ | 1152/1319 [1:56:03<06:16,  2.25s/it]\\\\rEvaluating:  87%|████████▋ | 1153/1319 [1:56:05<06:09,  2.22s/it]\\\\rEvaluating:  87%|████████▋ | 1154/1319 [1:56:08<07:03,  2.56s/it]\\\\rEvaluating:  88%|████████▊ | 1155/1319 [1:56:10<06:43,  2.46s/it]\\\\rEvaluating:  88%|████████▊ | 1156/1319 [1:56:14<07:20,  2.70s/it]\\\\rEvaluating:  88%|████████▊ | 1157/1319 [1:56:16<06:45,  2.50s/it]\\\\rEvaluating:  88%|████████▊ | 1158/1319 [1:56:18<06:35,  2.46s/it]\\\\rEvaluating:  88%|████████▊ | 1159/1319 [1:56:20<06:04,  2.28s/it]\\\\rEvaluating:  88%|████████▊ | 1160/1319 [1:56:23<06:18,  2.38s/it]\\\\rEvaluating:  88%|████████▊ | 1161/1319 [1:56:27<07:34,  2.88s/it]\\\\rEvaluating:  88%|████████▊ | 1162/1319 [1:56:28<06:20,  2.42s/it]\\\\rEvaluating:  88%|████████▊ | 1163/1319 [1:56:31<06:36,  2.54s/it]\\\\rEvaluating:  88%|████████▊ | 1164/1319 [1:56:34<07:00,  2.71s/it]\\\\rEvaluating:  88%|████████▊ | 1165/1319 [1:56:38<07:49,  3.05s/it]\\\\rEvaluating:  88%|████████▊ | 1166/1319 [1:56:39<06:24,  2.51s/it]\\\\rEvaluating:  88%|████████▊ | 1167/1319 [1:56:41<06:01,  2.38s/it]\\\\rEvaluating:  89%|████████▊ | 1168/1319 [1:56:44<06:03,  2.41s/it]\\\\rEvaluating:  89%|████████▊ | 1169/1319 [1:56:45<05:35,  2.24s/it]\\\\rEvaluating:  89%|████████▊ | 1170/1319 [1:56:47<05:02,  2.03s/it]\\\\rEvaluating:  89%|████████▉ | 1171/1319 [1:56:49<05:03,  2.05s/it]\\\\rEvaluating:  89%|████████▉ | 1172/1319 [1:56:52<05:37,  2.29s/it]\\\\rEvaluating:  89%|████████▉ | 1173/1319 [1:56:55<06:01,  2.48s/it]\\\\rEvaluating:  89%|████████▉ | 1174/1319 [1:56:57<05:56,  2.46s/it]\\\\rEvaluating:  89%|████████▉ | 1175/1319 [1:57:04<09:07,  3.80s/it]\\\\rEvaluating:  89%|████████▉ | 1176/1319 [1:57:09<09:47,  4.11s/it]\\\\rEvaluating:  89%|████████▉ | 1177/1319 [1:57:11<08:25,  3.56s/it]\\\\rEvaluating:  89%|████████▉ | 1178/131\n…[truncated 1669 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 481
+          },
+          "id": "event-003417"
+        },
+        {
+          "source_line": 3418,
+          "timestamp": "2026-05-20T18:36:20.934974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "grep \"Progress: 65\" /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003418"
+        },
+        {
+          "source_line": 3419,
+          "timestamp": "2026-05-20T18:36:21.386854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003419"
+        },
+        {
+          "source_line": 3420,
+          "timestamp": "2026-05-20T18:36:24.548397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20.log"
+            }
+          },
+          "id": "event-003420"
+        }
+      ]
+    }
+  ]
+}

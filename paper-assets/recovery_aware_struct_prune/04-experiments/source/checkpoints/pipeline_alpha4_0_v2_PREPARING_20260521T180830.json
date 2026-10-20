@@ -1,0 +1,34 @@
+{
+  "exp_id": "pipeline_alpha4_0_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:01:07.962Z",
+    "updated_at": "2026-05-21T18:08:29.518Z",
+    "hypothesis": "α=4.0 has highest post-prune accuracy (40% GSM8K). If α=4.0 GRPO also collapses (reward→0 like α=1.0 RASP), it proves RASP collapse is a structural defect of the scoring method, not a hyperparameter issue. If GRPO recovers, α tuning can mitigate collapse. Retry after disk cleanup.",
+    "parent": "pipeline_alpha4_0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && bash scripts/run_alpha4_pipeline.sh 0\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "398417",
+      "log_path": "~/runs/recovery_aware_struct_prune/pipeline_alpha4_0_v2.log",
+      "submitted_at": "2026-05-21T18:01:18.267Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T18:08:25.618Z"
+    },
+    "failure_reason": "Traceback → ain_sft_warmup.py\", line 121, in <module> main() File \"/root/recovery_aware_struct_prune/src/train_sft_warmup.py\", line 88, in main sft_config = SFTConfig( ^^^^^^^^^^ TypeError: SFTConfig.__init__() got an unexpected keyword argument 'max_seq_length'",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T18:08:30.194479+00:00",
+  "trigger": "update_registry"
+}

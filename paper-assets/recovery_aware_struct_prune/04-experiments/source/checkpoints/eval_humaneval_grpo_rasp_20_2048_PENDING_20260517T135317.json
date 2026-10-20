@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_humaneval_grpo_rasp_20_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:41:44.795Z",
+    "updated_at": "2026-05-17T13:53:17.344Z",
+    "hypothesis": "HumanEval pass@1 for GRPO RASP 20% with max_new_tokens=2048. Completes 4-way HumanEval@2048 matrix. If GRPO RASP > GRPO Standard on code generation, reinforces C3 (RASP preserves transferable structures). Queued for westd cuda:0 after unpruned 2048 completes."
+  },
+  "timestamp": "2026-05-17T13:53:17.838766+00:00",
+  "trigger": "update_registry"
+}

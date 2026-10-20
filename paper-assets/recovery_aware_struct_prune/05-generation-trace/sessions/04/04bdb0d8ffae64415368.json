@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04bdb0d8ffae64415368",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose gpu state and harvest",
+  "task_key": "worker_diagnose_gpu_state_and_harvest_20260519T152702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_state_and_harvest_20260519T152702_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "cffcc379c969ab90fb5dab739611a07878af5d9b79da31a8c053a54235688615"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "旧 PID 96018、86171、112015 已全部结束。汇总如下：\n\n```\n=== westd-29022 ===\ncuda:0: 空闲 (0%, 0 MiB)\ncuda:1: PID 113408 — eval_mbpp_grpo_cka_only_20 (95%, 17518 MiB) 运行 47min\ncuda:2: PID 108291 — eval_mbpp_dense_unpruned (91%, 17658 MiB) 运行 1h39m\ncuda:3: 空闲 (0%, 0 MiB)\n\n旧 PID 状态：96018 (eval_humaneval_grpo_cka_only_20_1p5b_2048)、86171 (eval_humaneval_sft_standard_20_2048_v3)、112015 (sft_shortgpt_20) 均已结束。\n\n=== westb-23072 ===\ncuda:0: PID 900959 — eval_humaneval_grpo_standard_20_1p5b_2048 (94%, 4186 MiB) 运行 27min\n        （原 PID 890559 eval_humaneval_sft_standard_20_1p5b_2048 已结束）\ncuda:1: 空闲 (0%, 0 MiB)\n\n=== eval_gsm8k_grpo_rasp_20_fair 结果 ===\n状态: 已完成 (2026-05-19 23:20:25)\naccuracy: 0.6088 ± 0.0134\ncorrect: 803 / 1319\nmode: greedy\neos_rate: 98.79%\navg_response_length: 195.7 tokens\ntruncated: 16 / 1319\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-state-and-harvest.md"
+}

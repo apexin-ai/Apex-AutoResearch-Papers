@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13e8bb4b510b52eacfff",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb check harvest fill 20260522",
+  "task_key": "worker_ops_westb_check_harvest_fill_20260522_20260522T031815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_check_harvest_fill_20260522_20260522T031815_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "8ba70e1e096a743bc4aa86be88c61916ab2e3e4e457a5e3f01b06ebc1dc005ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在跑，无需收割。westd 连接失败。\n\n```\n== westb GPU 状态 ==\nGPU 0: 17053/97887 MiB, 100% util\nGPU 1: 4395/97887 MiB, 81% util\n\n== eval_math500_sft_cka_only_20_v7 ==\n状态: RUNNING (361/500, ~2h37m elapsed)\n进度: 72% complete, ~1h remaining\nRegistry: 未更新（仍在运行）\n\n== eval_math500_sft_cka_only_20_1p5b ==\n状态: RUNNING (204/500, ~45m elapsed)\n进度: 41% complete, ~1h remaining\nRegistry: 未更新（仍在运行）\n\n== westd ==\n连接: FAILED (Unable to connect to port 29022 on 36.103.198.204)\n\n== 空卡填充 ==\n空闲 GPU: 无（两卡均被占用）\n新提交: 无\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-check-harvest-fill-20260522.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "alpha_ablation_sweep",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:15:39.765Z",
+    "updated_at": "2026-05-15T22:02:36.122Z",
+    "hypothesis": "plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity."
+  },
+  "timestamp": "2026-05-15T22:02:36.248329+00:00",
+  "trigger": "update_registry"
+}

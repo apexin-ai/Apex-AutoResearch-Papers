@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_20_v7",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:40:59.108Z",
+    "updated_at": "2026-05-22T00:41:13.045Z",
+    "hypothesis": "CKA-only 20% SFT MATH-500 @2048 re-run on dedicated westb:0 GPU. v6 killed at 317/500 to split GPU workload. Expected ~29% based on prior @4096 results.",
+    "parent": "eval_math500_sft_cka_only_20_v6"
+  },
+  "timestamp": "2026-05-22T00:41:13.673199+00:00",
+  "trigger": "update_registry"
+}

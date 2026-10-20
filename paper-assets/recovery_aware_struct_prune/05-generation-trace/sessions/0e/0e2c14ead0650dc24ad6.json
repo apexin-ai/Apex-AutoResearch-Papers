@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e2c14ead0650dc24ad6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest eval math500 grpo standard 25 v2",
+  "task_key": "worker_harvest_eval_math500_grpo_standard_25_v2_20260521T222718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval_math500_grpo_standard_25_v2_20260521T222718_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "801fd2ec36c96adb275630383d177a76f44e9c14f7f92fa712931e56b72a98b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。\n\n**最终结果汇总**：\n\n| 指标 | Standard 25% GRPO (ckpt-100) | Standard 25% SFT (对比) |\n|------|------|------|\n| Accuracy | **12.8%** (64/500) | 13.0% (65/500) |\n| Truncated | 326 | 318 |\n| Natural EOS | 174 | 182 |\n| Avg response len | 1399.4 | — |\n\n**Conclusion: negative**。GRPO checkpoint-100 在 MATH-500 @2048 上未超过 SFT baseline（12.8% vs 13.0%），且 truncation 更多（326 vs 318），说明 GRPO 训练未有效恢复 Standard 25% 剪枝模型的数学推理能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-math500-grpo-standard-25-v2.md"
+}

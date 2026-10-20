@@ -1,0 +1,11 @@
+paper_key: "llm_pruner_2023"
+title: "LLM-Pruner: On the Structural Pruning of Large Language Models"
+venue: "NeurIPS 2023"
+full_text_available: false
+research:
+  baselines: [L2 magnitude pruning, random pruning, gradient-based with multiple aggregation strategies]
+  metrics: [{name: "perplexity (WikiText2, PTB)", direction: "lower_better"}, {name: "zero-shot accuracy (7 tasks)", direction: "higher_better"}]
+  datasets: [{name: "WikiText2", size: "standard"}, {name: "PTB", size: "standard"}, {name: "BoolQ/PIQA/HellaSwag/WinoGrande/ARC-e/ARC-c/OBQA", size: "standard"}, {name: "BookCorpus", size: "10 samples calibration"}, {name: "Alpaca", size: "~50K recovery"}]
+  ablation_dimensions: [importance criterion, aggregation strategy, LoRA recovery]
+  training_recipe: {recovery: "LoRA, 3 hours, 50K data"}
+  method_family: "task-agnostic structural pruning + LoRA recovery"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07aedd3b9baf78da2e5b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops alpha sweep monitor v2",
+  "task_key": "worker_ops_alpha-sweep-monitor-v2_20260515T213548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_alpha-sweep-monitor-v2_20260515T213548_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "a0bd2d24074a547bcbf3a5f178e40839bf4dab57d8081be1d1e359ab9a917f49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态汇总：**\n- 原始 sweep 脚本在 α=0.0 eval 阶段因 HuggingFace 网络不可达崩溃\n- α=0.0 后来被单独重跑成功：**accuracy=27%, EOS rate=80%, avg_len=1192**\n- α=0.25/0.5/1.0/2.0 从未执行\n- 已创建修复脚本（加了 `HF_HUB_OFFLINE=1`、正确的 `--importance_path`/`--cka_path`/`--mode rasp` 参数）并启动（PID 556867）\n- 3 分钟后回来检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-alpha-sweep-monitor-v2.md"
+}

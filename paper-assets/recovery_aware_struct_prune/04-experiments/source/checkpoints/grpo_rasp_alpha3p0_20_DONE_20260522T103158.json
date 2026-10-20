@@ -1,0 +1,32 @@
+{
+  "exp_id": "grpo_rasp_alpha3p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:48:06.001Z",
+    "updated_at": "2026-05-22T10:31:57.909Z",
+    "hypothesis": "α=3.0 GRPO 100 steps on checkpoint-935 (1 epoch SFT). Dose-response data point between α=2.0 and α=4.0. If monotonic: higher α → higher GSM8K accuracy, confirming CKA overlap suppression causally harms recovery.",
+    "parent": "grpo_alpha4_20",
+    "spec": {
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "command": "train_grpo_v5.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --output_dir grpo_rasp_alpha3p0_20 --max_steps 100 --learning_rate 1e-6 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_completion_length 512 --temperature 0.4 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_8bit",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "pid": "170676",
+      "data_path": "openai/gsm8k (train split)",
+      "data_count": 7473,
+      "checkpoint_source": "sft_rasp_alpha3p0_20/checkpoint-935",
+      "eval_data": "N/A - GRPO training",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20/checkpoint-100",
+      "log_path": "/tmp/alpha3p0_grpo.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T10:31:57.909Z"
+  },
+  "timestamp": "2026-05-22T10:31:58.571386+00:00",
+  "trigger": "update_registry"
+}

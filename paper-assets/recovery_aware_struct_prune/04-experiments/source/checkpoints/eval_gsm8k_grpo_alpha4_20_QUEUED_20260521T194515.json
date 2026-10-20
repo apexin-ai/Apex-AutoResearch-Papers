@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_gsm8k_grpo_alpha4_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:27:31.038Z",
+    "updated_at": "2026-05-21T19:45:15.107Z",
+    "hypothesis": "α=4.0 GRPO GSM8K accuracy (N=1319). If comparable to CKA-only/Standard GRPO (~60-64%), proves α=4.0 avoids RASP collapse. If near-zero like α=1.0 RASP, confirms collapse is structural.",
+    "parent": "grpo_alpha4_20",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100 --max_samples 1319 --output_path /root/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha4_20.json\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "412988",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha4_20.log",
+      "submitted_at": "2026-05-21T19:28:24.342Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T19:45:15.688785+00:00",
+  "trigger": "update_registry"
+}

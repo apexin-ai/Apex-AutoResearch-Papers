@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12420825fa84e534e4b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops push anon repo",
+  "task_key": "worker_ops_push_anon_repo_20260524T065519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_push_anon_repo_20260524T065519_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "c232007d262b01c8487ebb4abc8ff9ec478a7b7f854f49f7958a40c860ff0137"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推送完成。\n\n- Commit: `2875533`\n- 变更: 120 files changed（删除旧代码/脚本，替换为纯论文文件）\n- 远程: `anonymous-nlp-2026/recovery_aware_struct_prune` main 分支已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-push-anon-repo.md"
+}

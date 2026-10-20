@@ -1,0 +1,63 @@
+{
+  "exp_id": "grpo_rasp_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:42:40.256Z",
+    "updated_at": "2026-05-16T17:05:18.125Z",
+    "hypothesis": "RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "21408",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_rasp_25.log",
+      "submitted_at": "2026-05-16T15:52:28.168Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)",
+      "seed": 42,
+      "wall_clock_seconds": 4223.8,
+      "gpu_hours": 1.17
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T17:02:50.600Z"
+    },
+    "failure_reason": "FALSE POSITIVE: Cron 误判。实验实际 100/100 步完成，模型已保存，W&B (bc4ojqie) 正常 finalize。进程正常退出后 ~7min Cron 检测到无存活进程，错误标记为 failed。",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T17:02:51.984Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T17:02:53.863552+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25",
+    "metrics": {
+      "step_100": {
+        "reward": 0.009375,
+        "reward_std": 0.03149,
+        "frac_reward_zero_std": 0.875,
+        "kl": 0.0007035,
+        "loss": 0.01275,
+        "entropy": 0.04262,
+        "grad_norm": 0.05371
+      },
+      "wandb_run_id": "bc4ojqie",
+      "wall_clock_min": 57.95
+    }
+  },
+  "timestamp": "2026-05-16T17:05:18.296998+00:00",
+  "trigger": "update_registry"
+}

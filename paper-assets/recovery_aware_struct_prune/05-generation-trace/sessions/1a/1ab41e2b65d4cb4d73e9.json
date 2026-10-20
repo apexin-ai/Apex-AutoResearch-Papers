@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ab41e2b65d4cb4d73e9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval sft standard 20 2048 v2",
+  "task_key": "worker_analysis_eval_humaneval_sft_standard_20_2048_v2_20260517T174540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_sft_standard_20_2048_v2_20260517T174540_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "df712c1a53575d80f987484d4a7439cdbd505757b95ee0054af984d5dd4dcfb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验已标记为 DONE(negative)，分析报告已注册。\n\n**结果摘要：**\n\n| Model | HumanEval pass@1 |\n|---|---|\n| Unpruned | 45.12% |\n| GRPO RASP 20% | 14.63% |\n| **SFT Standard 20%** | **11.59%** |\n| SFT RASP 20% | 10.37% |\n\nSFT Standard (11.59%) 略高于 SFT RASP (10.37%)，差异 1.22pp 在 stderr (2.5pp) 范围内，不显著。GRPO RASP 仍是所有剪枝模型中 HumanEval 最高的，支持 C3。C1（RASP 优势）在 HumanEval 上无支撑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-sft-standard-20-2048-v2.md"
+}

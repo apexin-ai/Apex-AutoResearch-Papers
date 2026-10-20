@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_mbpp_dense_unpruned",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:47:53.814Z",
+    "updated_at": "2026-05-19T16:16:40.474Z",
+    "hypothesis": "Dense unpruned DeepSeek-R1-Distill-Qwen-7B MBPP pass@1 baseline @2048. Establishes ceiling performance for MBPP code generation. All pruned models' MBPP results will be compared against this baseline.",
+    "spec": {
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_dense_unpruned.json'",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_mbpp_dense_unpruned.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MBPP",
+      "data_count": 374,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B",
+      "eval_data": "MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)",
+      "checkpoint_path": "/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B",
+      "pid": "108291"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T16:14:39.089Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T16:14:42.070Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T16:14:46.802899+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T16:16:40.910896+00:00",
+  "trigger": "update_registry"
+}

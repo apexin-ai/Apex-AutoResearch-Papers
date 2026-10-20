@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fde22fce91d9ddf7ca9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops cuda2 cascade grpo cka only 2048",
+  "task_key": "worker_ops_cuda2_cascade_grpo_cka_only_2048_20260518T232246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2_cascade_grpo_cka_only_2048_20260518T232246_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "ca7c20a0188e25135b0c03decb7ae873a6f1bcd8f6223095eba3bd9f8c4c3dac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部状态汇总：\n\n### 1. SFT 重训完成\n- **train_loss**: 0.758, **mean_token_accuracy**: 0.8252, **epoch**: 2, **runtime**: 1688s\n- 模型已保存到 `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/` (12.3GB)\n- Registry 已更新为 success\n\n### 2. GRPO CKA-only MATH-500 @2048 已启动\n- **PID 36703**, cuda:2, 12488MiB 已加载\n- tmux session: `eval_math500_grpo_cka_only_20_2048`\n- 正在加载 MATH 数据集，即将开始推理\n\n### 3. 其他 GPU 进度\n| GPU | 任务 | 进度 | 当前 Acc |\n|-----|------|------|----------|\n| cuda:0 | Dense @2048 | 187/500 (37%) | 55.3% |\n| cuda:1 | Standard GRPO v2 | 355/500 (71%) | 25.1% |\n| cuda:3 | RASP GRPO | 470/500 (94%) | 24.0% |\n\ncuda:3 RASP GRPO 快跑完了，约 8 分钟后结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda2-cascade-grpo-cka-only-2048.md"
+}

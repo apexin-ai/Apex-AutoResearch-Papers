@@ -1,0 +1,3527 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0cc9bc9be812a10f452b",
+  "rounds": [
+    {
+      "number": 109,
+      "messages": [
+        {
+          "source_line": 1801,
+          "timestamp": "2026-05-19T18:42:47.247032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ps -p 909411 -o pid,etime --no-headers"
+            }
+          },
+          "id": "event-001801"
+        },
+        {
+          "source_line": 1802,
+          "timestamp": "2026-05-19T18:42:49.216448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1969
+          },
+          "id": "event-001802"
+        },
+        {
+          "source_line": 1803,
+          "timestamp": "2026-05-19T18:43:01.355249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_1p5b_2048.json"
+            }
+          },
+          "id": "event-001803"
+        },
+        {
+          "source_line": 1804,
+          "timestamp": "2026-05-19T18:43:02.057668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_1p5b_2048.json"
+            }
+          },
+          "id": "event-001804"
+        },
+        {
+          "source_line": 1805,
+          "timestamp": "2026-05-19T18:43:02.158444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 16818 May 20 02:38 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_1p5b_2048.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-001805"
+        },
+        {
+          "source_line": 1806,
+          "timestamp": "2026-05-19T18:43:03.061925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"HumanEval\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.0,\\\\n  \\\\\\\"stderr\\\\\\\": 0.0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001806"
+        },
+        {
+          "source_line": 1807,
+          "timestamp": "2026-05-19T18:43:09.689091+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件存在且数据一致（pass@1=0.0）。westb cuda:0 现已空闲。\n\n1.5B HumanEval 全部完成，符合预期的全面崩溃模式：\n- CKA-only SFT: 0.61%\n- CKA-only GRPO: 0%\n- Standard GRPO: 0.61%\n- **RASP SFT: 0%** ← 新\n- RASP GRPO: cancelled（必然也是 ~0%）\n\n无异常，不需要报告 Director。westb cuda:0 已空闲，cuda:1 在跑 eval_mbpp_sft_cka_only_20_1p5b。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001807"
+        }
+      ]
+    },
+    {
+      "number": 110,
+      "messages": [
+        {
+          "source_line": 1808,
+          "timestamp": "2026-05-19T18:43:10.355005+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diagnose_eval_mbpp_sft_cka_only_20_1p5b_exit_20260519T184119]:\nWorker worker_diagnose_eval_mbpp_sft_cka_only_20_1p5b_exit_20260519T184119 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001808"
+        },
+        {
+          "source_line": 1809,
+          "timestamp": "2026-05-19T18:43:17.153791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_sft_cka_only_20_1p5b:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001809"
+        },
+        {
+          "source_line": 1810,
+          "timestamp": "2026-05-19T18:43:17.254666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9551:  eval_mbpp_sft_cka_only_20_1p5b:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001810"
+        },
+        {
+          "source_line": 1811,
+          "timestamp": "2026-05-19T18:43:20.066459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "offset": "9551",
+              "limit": "45"
+            }
+          },
+          "id": "event-001811"
+        },
+        {
+          "source_line": 1812,
+          "timestamp": "2026-05-19T18:43:20.066949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9551\t  eval_mbpp_sft_cka_only_20_1p5b:\n9552\t    status: DONE\n9553\t    retry_count: 0\n9554\t    created_at: '2026-05-19T18:37:10.228Z'\n9555\t    updated_at: '2026-05-19T18:42:18.484Z'\n9556\t    hypothesis: 'MBPP pass@1 for 1.5B SFT CKA-only 20% model @2048. Dense 7B baseline=53.48%.\n9557\t      1.5B cross-scale validation: if 1.5B SFT CKA-only shows higher MBPP pass@1 than\n9558\t      1.5B SFT Standard/RASP, confirms recovery gradient generalizes across model\n9559\t      scales on code benchmark.'\n9560\t    spec:\n9561\t      command: python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\n9562\t        --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.json\n9563\t      server: westb-23072\n9564\t      gpu: cuda:1\n9565\t      data_path: MBPP\n9566\t      data_count: 500\n9567\t      model_name: Qwen2.5-Coder-1.5B-SFT-CKA-Only-20\n9568\t      seed: 42\n9569\t      checkpoint_source: /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\n9570\t      eval_data: MBPP\n9571\t      log_path: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.log\n9572\t      checkpoint_path: /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\n9573\t      failure_reason: Network unreachable - AutoDL instance failed to reach huggingface.co\n9574\t        to download MBPP dataset. source /etc/network_turbo was not active or dataset\n9575\t        was not pre-cached.\n9576\t    conclusion: failed\n9577\t    completed_at: '2026-05-19T18:42:18.484Z'\n9578\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001812"
+        },
+        {
+          "source_line": 1813,
+          "timestamp": "2026-05-19T18:43:26.446058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls -d /root/.cache/huggingface/datasets/mbpp"
+            }
+          },
+          "id": "event-001813"
+        },
+        {
+          "source_line": 1814,
+          "timestamp": "2026-05-19T18:43:28.666367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/.cache/huggingface/datasets/mbpp': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2220
+          },
+          "id": "event-001814"
+        },
+        {
+          "source_line": 1815,
+          "timestamp": "2026-05-19T18:43:37.655358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] **eval_mbpp_sft_cka_only_20_1p5b 失败：westb 无 MBPP 数据集缓存**\n\n失败原因：`Network unreachable` — westb 上没有 MBPP dataset cache（`/root/.cache/huggingface/datasets/mbpp` 不存在），且 `source /etc/network_turbo` 未激活。\n\nwestd 上有缓存（`/root/.cache/huggingface/datasets/mbpp/full/0.0.0/...`，其他 MBPP eval 都从这里读取）。\n\n**修复方案**（二选一）：\n1. 从 westd rsync MBPP cache 到 westb：`rsync -avz /root/.cache/huggingface/datasets/mbpp westb:/root/.cache/huggingface/datasets/`\n2. 在 westb 上先 `source /etc/network_turbo` 再重跑\n\n**同时提醒**：westb 上所有 MBPP eval 都会遇到同样问题。如果计划在 westb 上跑更多 1.5B MBPP 实验，应先一次性同步 dataset cache。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-001815"
+        },
+        {
+          "source_line": 1816,
+          "timestamp": "2026-05-19T18:43:41.155550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3500
+          },
+          "id": "event-001816"
+        },
+        {
+          "source_line": 1817,
+          "timestamp": "2026-05-19T18:43:43.853454+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "1.5B MBPP eval 在 westb 上因网络不可达（HuggingFace MBPP dataset 未缓存）失败。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001817"
+        }
+      ]
+    },
+    {
+      "number": 111,
+      "messages": [
+        {
+          "source_line": 1818,
+          "timestamp": "2026-05-19T18:44:56.631512+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_fix_eval_mbpp_sft_cka_only_20_1p5b_retry_20260519T184326]:\nWorker worker_fix_eval_mbpp_sft_cka_only_20_1p5b_retry_20260519T184326 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "worker_done:worker_fix_eval_mbpp_sft_cka_only_20_1p5b_retry_20260519t184326"
+          },
+          "id": "event-001818"
+        },
+        {
+          "source_line": 1819,
+          "timestamp": "2026-05-19T18:45:04.143466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "offset": "9551",
+              "limit": "40"
+            }
+          },
+          "id": "event-001819"
+        },
+        {
+          "source_line": 1820,
+          "timestamp": "2026-05-19T18:45:04.545814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9551\t  eval_mbpp_sft_cka_only_20_1p5b:\n9552\t    status: DONE\n9553\t    retry_count: 0\n9554\t    created_at: '2026-05-19T18:37:10.228Z'\n9555\t    updated_at: '2026-05-19T18:42:18.484Z'\n9556\t    hypothesis: 'MBPP pass@1 for 1.5B SFT CKA-only 20% model @2048. Dense 7B baseline=53.48%.\n9557\t      1.5B cross-scale validation: if 1.5B SFT CKA-only shows higher MBPP pass@1 than\n9558\t      1.5B SFT Standard/RASP, confirms recovery gradient generalizes across model\n9559\t      scales on code benchmark.'\n9560\t    spec:\n9561\t      command: python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\n9562\t        --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.json\n9563\t      server: westb-23072\n9564\t      gpu: cuda:1\n9565\t      data_path: MBPP\n9566\t      data_count: 500\n9567\t      model_name: Qwen2.5-Coder-1.5B-SFT-CKA-Only-20\n9568\t      seed: 42\n9569\t      checkpoint_source: /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\n9570\t      eval_data: MBPP\n9571\t      log_path: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.log\n9572\t      checkpoint_path: /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\n9573\t      failure_reason: Network unreachable - AutoDL instance failed to reach huggingface.co\n9574\t        to download MBPP dataset. source /etc/network_turbo was not active or dataset\n9575\t        was not pre-cached.\n9576\t    conclusion: failed\n9577\t    completed_at: '2026-05-19T18:42:18.484Z'\n9578\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-001820"
+        },
+        {
+          "source_line": 1821,
+          "timestamp": "2026-05-19T18:45:04.596589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-001821"
+        },
+        {
+          "source_line": 1822,
+          "timestamp": "2026-05-19T18:45:06.704135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"916225, GPU-7b195135-ddad-2206-ed75-0d99e677e086, 3442 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2107
+          },
+          "id": "event-001822"
+        },
+        {
+          "source_line": 1823,
+          "timestamp": "2026-05-19T18:45:12.969109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ps -p 916225 -o pid,ppid,etime,cmd --no-headers"
+            }
+          },
+          "id": "event-001823"
+        },
+        {
+          "source_line": 1824,
+          "timestamp": "2026-05-19T18:45:13.119991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls -d /root/.cache/huggingface/datasets/mbpp"
+            }
+          },
+          "id": "event-001824"
+        },
+        {
+          "source_line": 1825,
+          "timestamp": "2026-05-19T18:45:13.722003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"916225 916217       00:40 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 752
+          },
+          "id": "event-001825"
+        },
+        {
+          "source_line": 1826,
+          "timestamp": "2026-05-19T18:45:14.625657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/.cache/huggingface/datasets/mbpp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1505
+          },
+          "id": "event-001826"
+        },
+        {
+          "source_line": 1827,
+          "timestamp": "2026-05-19T18:45:19.768052+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 修复了问题：MBPP dataset cache 已同步到 westb，PID 916225 正在运行 eval_mbpp_sft_cka_only_20_1p5b（40s elapsed，模型已加载 3.4GB）。Registry 仍为 DONE/failed 但属于老问题（不更新 registry）。无需上报——修复正确，进程运行中。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001827"
+        }
+      ]
+    },
+    {
+      "number": 112,
+      "messages": [
+        {
+          "source_line": 1828,
+          "timestamp": "2026-05-19T18:46:42.776071+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diagnose_eval_mbpp_grpo_rasp_20_death_20260519T183517]:\nWorker worker_diagnose_eval_mbpp_grpo_rasp_20_death_20260519T183517 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001828"
+        },
+        {
+          "source_line": 1829,
+          "timestamp": "2026-05-19T18:46:49.904562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 127964 -o pid,etime --no-headers"
+            }
+          },
+          "id": "event-001829"
+        },
+        {
+          "source_line": 1830,
+          "timestamp": "2026-05-19T18:46:50.559131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -3 /tmp/eval_mbpp_grpo_rasp_20.log"
+            }
+          },
+          "id": "event-001830"
+        },
+        {
+          "source_line": 1831,
+          "timestamp": "2026-05-19T18:46:51.061293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"127964       13:50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1156
+          },
+          "id": "event-001831"
+        },
+        {
+          "source_line": 1832,
+          "timestamp": "2026-05-19T18:46:51.613644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 02:26:31,543 [WARNING] Found the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 02:26:31,573 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/374 [00:00<?, ?it/s]\\\\rMBPP:   0%|          | 1/374 [00:05<31:52,  5.13s/it]\\\\rMBPP:   1%|          | 2/374 [00:21<1:11:17, 11.50s/it]\\\\rMBPP:   1%|          | 3/374 [02:06<5:37:09, 54.53s/it]\\\\rMBPP:   1%|          | 4/374 [02:09<3:30:14, 34.09s/it]\\\\rMBPP:   1%|▏         | 5/374 [02:13<2:21:55, 23.08s/it]\\\\rMBPP:   2%|▏         | 6/374 [03:55<5:06:04, 49.90s/it]\\\\rMBPP:   2%|▏         | 7/374 [03:58<3:32:50, 34.80s/it]\\\\rMBPP:   2%|▏         | 8/374 [05:37<5:36:15, 55.12s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1054
+          },
+          "id": "event-001832"
+        },
+        {
+          "source_line": 1833,
+          "timestamp": "2026-05-19T18:47:04.111050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_rasp_20.log"
+            }
+          },
+          "id": "event-001833"
+        },
+        {
+          "source_line": 1834,
+          "timestamp": "2026-05-19T18:47:04.462581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-001834"
+        },
+        {
+          "source_line": 1835,
+          "timestamp": "2026-05-19T18:47:04.563327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 02:21:24,545 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\\\\n2026-05-20 02:21:25,144 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-20 02:22:46,861 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\\\\nTerminated\\\\nEXIT_CODE=129\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001835"
+        },
+        {
+          "source_line": 1836,
+          "timestamp": "2026-05-19T18:47:05.216457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 95 %, 17019 MiB\\\\n1, 94 %, 16767 MiB\\\\n2, 98 %, 17277 MiB\\\\n3, 94 %, 17263 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-001836"
+        },
+        {
+          "source_line": 1837,
+          "timestamp": "2026-05-19T18:47:19.446550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 127962 -o pid,cmd --no-headers"
+            }
+          },
+          "id": "event-001837"
+        },
+        {
+          "source_line": 1838,
+          "timestamp": "2026-05-19T18:47:19.898474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"127962 bash -c CUDA_VISIBLE_DEVICES=1 bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_rasp_20.json\\\\\\\" 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001838"
+        },
+        {
+          "source_line": 1839,
+          "timestamp": "2026-05-19T18:47:24.924363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log"
+            }
+          },
+          "id": "event-001839"
+        },
+        {
+          "source_line": 1840,
+          "timestamp": "2026-05-19T18:47:25.375905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 02:35:48,385 [WARNING] Using the latest cached version of the dataset since mbpp couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 02:35:48,386 [WARNING] Found the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 02:35:48,405 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/374 [00:00<?, ?it/s]\\\\rMBPP:   0%|          | 1/374 [00:05<31:46,  5.11s/it]\\\\rMBPP:   1%|          | 2/374 [00:21<1:11:04, 11.46s/it]\\\\rMBPP:   1%|          | 3/374 [02:06<5:37:00, 54.50s/it]\\\\rMBPP:   1%|          | 4/374 [02:09<3:30:07, 34.07s/it]\\\\rMBPP:   1%|▏         | 5/374 [02:13<2:21:51, 23.07s/it]\\\\rMBPP:   2%|▏         | 6/374 [03:55<5:06:00, 49.89s/it]\\\\rMBPP:   2%|���         | 7/374 [03:58<3:32:47, 34.79s/it]\\\\rMBPP:   2%|▏         | 8/374 [05:37<5:36:13, 55.12s/it]\\\\rMBPP:   2%|▏         | 9/374 [07:17<7:01:00, 69.21s/it]\\\\rMBPP:   3%|▎         | 10/374 [07:22<4:58:56, 49.28s/it]\\\\rMBPP:   3%|▎         | 11/374 [09:07<6:42:07, 66.47s/it]\\\\rMBPP:   3%|▎         | 12/374 [09:13<4:49:33, 47.99s/it]\\\\rMBPP:   3%|▎         | 13/374 [09:16<3:27:27, 34.48s/it]\\\\rMBPP:   4%|▎         | 14/374 [09:20<2:30:50, 25.14s/it]\\\\rMBPP:   4%|▍         | 15/374 [09:23<1:51:27, 18.63s/it]\\\\rMBPP:   4%|▍         | 16/374 [11:09<4:27:40, 44.86s/it]\\\\rMBPP:   5%|▍         | 17/374 [11:16<3:19:33, 33.54s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001840"
+        },
+        {
+          "source_line": 1841,
+          "timestamp": "2026-05-19T18:47:30.530898+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 127964 正常运行，17/374（5%），日志路径在 `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log`。进度与运行时间（~14min）匹配。无异常，继续监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001841"
+        }
+      ]
+    },
+    {
+      "number": 113,
+      "messages": [
+        {
+          "source_line": 1842,
+          "timestamp": "2026-05-19T18:50:15.952025+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_eval_mbpp_grpo_rasp_20_20260519T183514]:\nWorker worker_diag_eval_mbpp_grpo_rasp_20_20260519T183514 已完成（status=failed），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "worker_done:worker_diag_eval_mbpp_grpo_rasp_20_20260519t183514"
+          },
+          "id": "event-001842"
+        },
+        {
+          "source_line": 1843,
+          "timestamp": "2026-05-19T18:50:22.142421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 127964 -o pid,etime --no-headers"
+            }
+          },
+          "id": "event-001843"
+        },
+        {
+          "source_line": 1844,
+          "timestamp": "2026-05-19T18:50:22.844882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -2 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log"
+            }
+          },
+          "id": "event-001844"
+        },
+        {
+          "source_line": 1845,
+          "timestamp": "2026-05-19T18:50:23.346752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"127964       17:22\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1204
+          },
+          "id": "event-001845"
+        },
+        {
+          "source_line": 1846,
+          "timestamp": "2026-05-19T18:50:23.849438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 02:35:48,405 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/374 [00:00<?, ?it/s]\\\\rMBPP:   0%|          | 1/374 [00:05<31:46,  5.11s/it]\\\\rMBPP:   1%|          | 2/374 [00:21<1:11:04, 11.46s/it]\\\\rMBPP:   1%|          | 3/374 [02:06<5:37:00, 54.50s/it]\\\\rMBPP:   1%|          | 4/374 [02:09<3:30:07, 34.07s/it]\\\\rMBPP:   1%|▏         | 5/374 [02:13<2:21:51, 23.07s/it]\\\\rMBPP:   2%|▏         | 6/374 [03:55<5:06:00, 49.89s/it]\\\\rMBPP:   2%|▏         | 7/374 [03:58<3:32:47, 34.79s/it]\\\\rMBPP:   2%|▏         | 8/374 [05:37<5:36:13, 55.12s/it]\\\\rMBPP:   2%|▏         | 9/374 [07:17<7:01:00, 69.21s/it]\\\\rMBPP:   3%|▎         | 10/374 [07:22<4:58:56, 49.28s/it]\\\\rMBPP:   3%|▎         | 11/374 [09:07<6:42:07, 66.47s/it]\\\\rMBPP:   3%|▎         | 12/374 [09:13<4:49:33, 47.99s/it]\\\\rMBPP:   3%|▎         | 13/374 [09:16<3:27:27, 34.48s/it]\\\\rMBPP:   4%|▎         | 14/374 [09:20<2:30:50, 25.14s/it]\\\\rMBPP:   4%|▍         | 15/374 [09:23<1:51:27, 18.63s/it]\\\\rMBPP:   4%|▍         | 16/374 [11:09<4:27:40, 44.86s/it]\\\\rMBPP:   5%|▍         | 17/374 [11:16<3:19:33, 33.54s/it]\\\\rMBPP:   5%|▍         | 18/374 [13:00<5:23:18, 54.49s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001846"
+        },
+        {
+          "source_line": 1847,
+          "timestamp": "2026-05-19T18:50:30.212577+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 127964 存活 17 分钟，进度 18/374（5%），正常运行中。这个 worker（status=failed）是之前诊断 PID 127000 死因的旧任务，与当前运行无关。无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001847"
+        }
+      ]
+    },
+    {
+      "number": 114,
+      "messages": [
+        {
+          "source_line": 1848,
+          "timestamp": "2026-05-19T18:51:44.683889+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_scout_westb_1p5b_models_20260519T185019]:\nWorker worker_scout_westb_1p5b_models_20260519T185019 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001848"
+        },
+        {
+          "source_line": 1849,
+          "timestamp": "2026-05-19T18:51:53.621407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "6",
+              "fields": "['status', 'updated_at', 'hypothesis', 'server', 'gpu', 'conclusion', 'metrics', 'spec']"
+            }
+          },
+          "id": "event-001849"
+        },
+        {
+          "source_line": 1850,
+          "timestamp": "2026-05-19T18:51:54.275749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_mbpp_sft_cka_only_20_1p5b\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-19T18:47:44.722Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 for 1.5B SFT CKA-only 20% model @2048. Dense 7B baseline=53.48%. 1.5B cross-scale validation: if 1.5B SFT CKA-only shows higher MBPP pass@1 than 1.5B SFT Standard/RASP, confirms recovery gradient generalizes across model scales on code benchmark.\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"google-research-datasets/mbpp (sanitized)\\\", \\\"data_count\\\": 374, \\\"model_name\\\": \\\"Qwen2.5-1.5B-pruned-20%-SFT-CKA-only\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\\", \\\"eval_data\\\": \\\"MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)\\\"}}, \\\"eval_humaneval_sft_rasp_20_1p5b_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:41:55.593Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT RASP HumanEval pass@1 @2048. Cross-scale validation. 7B GRPO RASP: 10.98%. RASP pruning expected between Standard and CKA-only on code generation at 1.5B scale.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_1p5b_2048.json --seed 42\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"909411\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"seed\\\": 42, \\\"c\n…[truncated 5393 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 654
+          },
+          "id": "event-001850"
+        },
+        {
+          "source_line": 1851,
+          "timestamp": "2026-05-19T18:52:05.681431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-001851"
+        },
+        {
+          "source_line": 1852,
+          "timestamp": "2026-05-19T18:52:09.348471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB\\\\n1, 93 %, 4215 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3667
+          },
+          "id": "event-001852"
+        },
+        {
+          "source_line": 1853,
+          "timestamp": "2026-05-19T18:52:20.496715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'QUEUED'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['status', 'hypothesis', 'server', 'gpu']"
+            }
+          },
+          "id": "event-001853"
+        },
+        {
+          "source_line": 1854,
+          "timestamp": "2026-05-19T18:52:21.501713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.958}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001854"
+        },
+        {
+          "source_line": 1855,
+          "timestamp": "2026-05-19T18:52:24.666862+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 QUEUED 实验。westb cuda:0 空闲且无安排。当前状态整体稳定，5/6 GPU 在跑，不需要紧急报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001855"
+        }
+      ]
+    },
+    {
+      "number": 115,
+      "messages": [
+        {
+          "source_line": 1856,
+          "timestamp": "2026-05-19T18:52:25.112427+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_fix_westb_mbpp_dataset_sync_20260519T185123]:\nWorker worker_fix_westb_mbpp_dataset_sync_20260519T185123 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001856"
+        },
+        {
+          "source_line": 1857,
+          "timestamp": "2026-05-19T18:52:33.461138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls -la /root/.cache/huggingface/datasets/mbpp/full/0.0.0/"
+            }
+          },
+          "id": "event-001857"
+        },
+        {
+          "source_line": 1858,
+          "timestamp": "2026-05-19T18:52:33.913076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-001858"
+        },
+        {
+          "source_line": 1859,
+          "timestamp": "2026-05-19T18:52:37.626701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 3 root root  62 May 20 02:45 .\\\\ndrwxr-xr-x 3 root root  27 May 20 02:45 ..\\\\ndrwxr-xr-x 2 root root 156 May 20 02:45 4bb6404fdc6cacfda99d4ac4205087b89d32030c\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4165
+          },
+          "id": "event-001859"
+        },
+        {
+          "source_line": 1860,
+          "timestamp": "2026-05-19T18:52:39.634304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"916225, GPU-7b195135-ddad-2206-ed75-0d99e677e086, 4206 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5721
+          },
+          "id": "event-001860"
+        },
+        {
+          "source_line": 1861,
+          "timestamp": "2026-05-19T18:52:44.387522+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "MBPP dataset cache 已同步到 westb（`4bb6404fdc6cacfda99d4ac4205087b89d32030c`），与 westd 一致。eval_mbpp_sft_cka_only_20_1p5b (PID 916225) 在 westb cuda:1 正常运行中。westb cuda:0 仍空闲——后续 1.5B MBPP 实验可直接使用，不会再遇到 dataset 缓存问题。\n\n无需报告 Director，状态正常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001861"
+        }
+      ]
+    },
+    {
+      "number": 116,
+      "messages": [
+        {
+          "source_line": 1862,
+          "timestamp": "2026-05-19T18:57:16.348444+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_fix_westb_disk_cleanup_and_submit_mbpp_20260519T185248]:\nWorker worker_fix_westb_disk_cleanup_and_submit_mbpp_20260519T185248 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001862"
+        },
+        {
+          "source_line": 1863,
+          "timestamp": "2026-05-19T18:57:24.222540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-001863"
+        },
+        {
+          "source_line": 1864,
+          "timestamp": "2026-05-19T18:57:25.197709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "3",
+              "fields": "['status', 'updated_at', 'hypothesis', 'server', 'gpu', 'spec', 'conclusion']"
+            }
+          },
+          "id": "event-001864"
+        },
+        {
+          "source_line": 1865,
+          "timestamp": "2026-05-19T18:57:28.427081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 95 %, 4117 MiB\\\\n1, 75 %, 4257 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4204
+          },
+          "id": "event-001865"
+        },
+        {
+          "source_line": 1866,
+          "timestamp": "2026-05-19T18:57:29.041776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_mbpp_sft_standard_20_1p5b\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-19T18:56:51.727Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard 20% MBPP pass@1 @2048. 与 westb:1 同时跑的 1.5B SFT CKA-only MBPP 对比，验证 recovery gradient 在 1.5B scale 上的 MBPP 表现。预期 CKA-only > Standard，与 7B GSM8K 跨 scale 一致。关联 C2。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20_1p5b.json\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"0\\\", \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"mbpp\\\", \\\"data_path\\\": \\\"mbpp\\\", \\\"data_count\\\": 0, \\\"seed\\\": 0}}, \\\"eval_humaneval_sft_rasp_20_1p5b_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:52:30.545Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT RASP HumanEval pass@1 @2048. Cross-scale validation. 7B GRPO RASP: 10.98%. RASP pruning expected between Standard and CKA-only on code generation at 1.5B scale.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_1p5b_2048.json --seed 42\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"909411\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\", \\\"eval_data\\\": \\\"HumanEval\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B-pruned-rasp-20-SFT\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0, \\\"stderr\\\": 0, \\\"n_passed\\\": 0, \\\"n_total\\\": 164}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_1p5b_2048.json\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware\n…[truncated 1404 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3844
+          },
+          "id": "event-001866"
+        },
+        {
+          "source_line": 1867,
+          "timestamp": "2026-05-19T18:57:41.150924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-001867"
+        },
+        {
+          "source_line": 1868,
+          "timestamp": "2026-05-19T18:57:42.906932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"917409, GPU-549a7198-85c3-248c-9f75-5b8d5ff146f4, 4186 MiB, python\\\\n916225, GPU-7b195135-ddad-2206-ed75-0d99e677e086, 4248 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1756
+          },
+          "id": "event-001868"
+        },
+        {
+          "source_line": 1869,
+          "timestamp": "2026-05-19T18:57:46.349603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,gpu_uuid --format=csv,noheader"
+            }
+          },
+          "id": "event-001869"
+        },
+        {
+          "source_line": 1870,
+          "timestamp": "2026-05-19T18:57:48.056663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, GPU-549a7198-85c3-248c-9f75-5b8d5ff146f4\\\\n1, GPU-7b195135-ddad-2206-ed75-0d99e677e086\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1707
+          },
+          "id": "event-001870"
+        },
+        {
+          "source_line": 1871,
+          "timestamp": "2026-05-19T18:57:53.048097+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 张 GPU 全部活跃，GPU 白名单内。\n\n- **westb cuda:0**: PID 917409 — eval_mbpp_sft_standard_20_1p5b (4.2GB)\n- **westb cuda:1**: PID 916225 — eval_mbpp_sft_cka_only_20_1p5b (4.2GB)\n- **westd cuda:0**: eval_mbpp_sft_standard_20\n- **westd cuda:1**: eval_mbpp_grpo_rasp_20 (PID 127964)\n- **westd cuda:2**: eval_mbpp_grpo_standard_20\n- **westd cuda:3**: eval_mbpp_sft_cka_only_20\n\n无异常，不需要报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001871"
+        }
+      ]
+    },
+    {
+      "number": 117,
+      "messages": [
+        {
+          "source_line": 1872,
+          "timestamp": "2026-05-19T19:59:07.243494+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diag_eval_mbpp_sft_cka_only_20_exit_20260519T195746]:\nWorker worker_diag_eval_mbpp_sft_cka_only_20_exit_20260519T195746 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001872"
+        },
+        {
+          "source_line": 1873,
+          "timestamp": "2026-05-19T19:59:16.751176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_sft_cka_only_20:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001873"
+        },
+        {
+          "source_line": 1874,
+          "timestamp": "2026-05-19T19:59:16.852111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9370:  eval_mbpp_sft_cka_only_20:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001874"
+        },
+        {
+          "source_line": 1875,
+          "timestamp": "2026-05-19T19:59:19.913892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "offset": "9370",
+              "limit": "40"
+            }
+          },
+          "id": "event-001875"
+        },
+        {
+          "source_line": 1876,
+          "timestamp": "2026-05-19T19:59:19.914224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9370\t  eval_mbpp_sft_cka_only_20:\n9371\t    status: DONE\n9372\t    retry_count: 0\n9373\t    created_at: '2026-05-19T17:20:00.596Z'\n9374\t    updated_at: '2026-05-19T19:58:30.970Z'\n9375\t    hypothesis: MBPP pass@1 eval on SFT CKA-only 20% model. Dense baseline=53.48%\n9376\t      (200/374). CKA-only preserves most code generation capability after pruning.\n9377\t      Compare SFT vs GRPO on MBPP to test redistribution hypothesis on second code\n9378\t      benchmark.\n9379\t    spec:\n9380\t      command: CUDA_VISIBLE_DEVICES=3 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\n9381\t        --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_cka_only_20.json\n9382\t      server: westd-29022\n9383\t      gpu: cuda:3\n9384\t      pid: 123029\n9385\t      log_path: /tmp/eval_mbpp_sft_cka_only_20.log\n9386\t      checkpoint_source: /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\n9387\t      eval_data: MBPP sanitized (374 tasks)\n9388\t      data_path: google-research-datasets/mbpp (sanitized)\n9389\t      data_count: 374\n9390\t      model_name: Qwen2.5-7B-pruned-20%-SFT-CKA-only\n9391\t      seed: 42\n9392\t    conclusion: success\n9393\t    metrics:\n9394\t      pass_at_1: 0.1283\n9395\t      stderr: 0.0173\n9396\t      n_correct: 48\n9397\t      n_total: 374\n9398\t      dense_baseline_pass_at_1: 0.5348\n9399\t      degradation_pct: 76.01\n9400\t      avg_response_length: 643.8\n9401\t      median_response_length: 363.5\n9402\t    checkpoint_path: /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\n9403\t    log_path: /tmp/eval_mbpp_sft_cka_only_20.log\n9404\t    completed_at: '2026-05-19T19:58:30.970Z'\n9405\t  eval_gsm8k_grpo_cka_only_20_seed123:\n9406\t    status: DONE\n9407\t    retry_count: 0\n9408\t    created_at: '2026-05-19T17:47:34.008Z'\n9409\t    updated_at: '2026-05-19T17:48:24.627Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001876"
+        },
+        {
+          "source_line": 1877,
+          "timestamp": "2026-05-19T19:59:29.598673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "head -8 /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_cka_only_20.json"
+            }
+          },
+          "id": "event-001877"
+        },
+        {
+          "source_line": 1878,
+          "timestamp": "2026-05-19T19:59:30.453340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-001878"
+        },
+        {
+          "source_line": 1879,
+          "timestamp": "2026-05-19T19:59:30.654534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-001879"
+        },
+        {
+          "source_line": 1880,
+          "timestamp": "2026-05-19T19:59:30.905799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"MBPP\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.12834224598930483,\\\\n  \\\\\\\"stderr\\\\\\\": 0.01729505770674039,\\\\n  \\\\\\\"n_correct\\\\\\\": 48,\\\\n  \\\\\\\"n_total\\\\\\\": 374,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1307
+          },
+          "id": "event-001880"
+        },
+        {
+          "source_line": 1881,
+          "timestamp": "2026-05-19T19:59:31.508453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 97 %, 17277 MiB\\\\n1, 98 %, 17277 MiB\\\\n2, 97 %, 17277 MiB\\\\n3, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1055
+          },
+          "id": "event-001881"
+        },
+        {
+          "source_line": 1882,
+          "timestamp": "2026-05-19T19:59:34.921325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 95 %, 4237 MiB\\\\n1, 94 %, 4259 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4266
+          },
+          "id": "event-001882"
+        },
+        {
+          "source_line": 1883,
+          "timestamp": "2026-05-19T19:59:46.618583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -3 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log"
+            }
+          },
+          "id": "event-001883"
+        },
+        {
+          "source_line": 1884,
+          "timestamp": "2026-05-19T19:59:46.970414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -3 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log"
+            }
+          },
+          "id": "event-001884"
+        },
+        {
+          "source_line": 1885,
+          "timestamp": "2026-05-19T19:59:47.422243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rMBPP:  27%|██▋       | 100/374 [50:31<1:58:04, 25.85s/it]\\\\rMBPP:  27%|██▋       | 101/374 [50:35<1:27:34, 19.25s/it]\\\\rMBPP:  27%|██▋       | 102/374 [52:20<3:23:02, 44.79s/it]\\\\rMBPP:  28%|██▊       | 103/374 [52:22<2:25:37, 32.24s/it]\\\\rMBPP:  28%|██▊       | 104/374 [54:04<3:58:59, 53.11s/it]\\\\rMBPP:  28%|██▊       | 105/374 [55:54<5:14:38, 70.18s/it]\\\\rMBPP:  28%|██▊       | 106/374 [57:40<6:00:39, 80.74s/it]\\\\rMBPP:  29%|██▊       | 107/374 [59:19<6:24:31, 86.41s/it]\\\\rMBPP:  29%|██▉       | 108/374 [59:23<4:32:58, 61.57s/it]\\\\rMBPP:  29%|██▉       | 109/374 [59:27<3:16:03, 44.39s/it]\\\\rMBPP:  29%|██▉       | 110/374 [59:30<2:20:16, 31.88s/it]\\\\rMBPP:  30%|██▉       | 111/374 [59:33<1:41:59, 23.27s/it]\\\\rMBPP:  30%|██▉       | 112/374 [59:37<1:15:59, 17.40s/it]\\\\rMBPP:  30%|███       | 113/374 [1:01:17<3:03:34, 42.20s/it]\\\\rMBPP:  30%|███       | 114/374 [1:01:20<2:11:32, 30.36s/it]\\\\rMBPP:  31%|███       | 115/374 [1:01:23<1:35:54, 22.22s/it]\\\\rMBPP:  31%|███       | 116/374 [1:03:02<3:14:26, 45.22s/it]\\\\rMBPP:  31%|███▏      | 117/374 [1:04:45<4:28:53, 62.77s/it]\\\\rMBPP:  32%|███▏      | 118/374 [1:06:31<5:22:11, 75.52s/it]\\\\rMBPP:  32%|███▏      | 119/374 [1:06:35<3:50:43, 54.29s/it]2026-05-20 03:42:27,657 [INFO] Progress: 120/374, Pass@1: 0.1250\\\\n\\\\rMBPP:  32%|███▏      | 120/374 [1:06:39<2:45:02, 38.99s/it]\\\\rMBPP:  32%|███▏      | 121/374 [1:08:25<4:09:23, 59.14s/it]\\\\rMBPP:  33%|███▎      | 122/374 [1:08:29<2:59:23, 42.71s/it]\\\\rMBPP:  33%|███▎      | 123/374 [1:08:33<2:09:44, 31.02s/it]\\\\rMBPP:  33%|███▎      | 124/374 [1:08:35<1:33:16, 22.39s/it]\\\\rMBPP:  33%|███▎      | 125/374 [1:08:43<1:14:51, 18.04s/it]\\\\rMBPP:  34%|███▎      | 126/374 [1:08:47<57:27, 13.90s/it]  \\\\rMBPP:  34%|███▍      | 127/374 [1:09:01<57:10, 13.89s/it]\\\\rMBPP:  34%|███▍      | 128/374 [1:09:06<45:58, 11.21s/it]\\\\rMBPP:  34%|███▍      | 129/374 [1:09:11<37:37,  9.21s/it]\\\\rMBPP:  35%|███▍      | 130/374 [1:09:17<34:10,\n…[truncated 1542 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-001885"
+        },
+        {
+          "source_line": 1886,
+          "timestamp": "2026-05-19T19:59:47.633634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rMBPP:  70%|██████▉   | 260/374 [3:03:05<1:30:26, 47.60s/it]\\\\rMBPP:  70%|██████▉   | 261/374 [3:03:13<1:06:58, 35.56s/it]\\\\rMBPP:  70%|███████   | 262/374 [3:03:26<53:41, 28.76s/it]  \\\\rMBPP:  70%|███████   | 263/374 [3:05:12<1:36:09, 51.98s/it]\\\\rMBPP:  71%|███████   | 264/374 [3:05:22<1:12:36, 39.60s/it]\\\\rMBPP:  71%|███████   | 265/374 [3:07:10<1:49:13, 60.13s/it]\\\\rMBPP:  71%|███████   | 266/374 [3:07:41<1:32:09, 51.20s/it]\\\\rMBPP:  71%|███████▏  | 267/374 [3:07:43<1:04:53, 36.39s/it]\\\\rMBPP:  72%|███████▏  | 268/374 [3:07:53<50:21, 28.51s/it]  \\\\rMBPP:  72%|███████▏  | 269/374 [3:08:09<43:13, 24.70s/it]\\\\rMBPP:  72%|███████▏  | 270/374 [3:08:20<35:41, 20.59s/it]\\\\rMBPP:  72%|███████▏  | 271/374 [3:09:59<1:16:13, 44.40s/it]\\\\rMBPP:  73%|███████▎  | 272/374 [3:10:14<1:00:10, 35.40s/it]\\\\rMBPP:  73%|███████▎  | 273/374 [3:10:27<48:32, 28.84s/it]  \\\\rMBPP:  73%|███████▎  | 274/374 [3:12:07<1:23:30, 50.10s/it]\\\\rMBPP:  74%|███████▎  | 275/374 [3:12:19<1:03:34, 38.53s/it]\\\\rMBPP:  74%|███████▍  | 276/374 [3:12:30<49:31, 30.32s/it]  \\\\rMBPP:  74%|███████▍  | 277/374 [3:12:37<37:42, 23.32s/it]\\\\rMBPP:  74%|███████▍  | 278/374 [3:14:20<1:15:49, 47.39s/it]\\\\rMBPP:  75%|███████▍  | 279/374 [3:16:01<1:40:18, 63.35s/it]2026-05-20 03:40:15,314 [INFO] Progress: 280/374, Pass@1: 0.1393\\\\n\\\\rMBPP:  75%|███████▍  | 280/374 [3:16:07<1:12:09, 46.06s/it]\\\\rMBPP:  75%|███████▌  | 281/374 [3:16:36<1:03:39, 41.06s/it]\\\\rMBPP:  75%|███████▌  | 282/374 [3:18:16<1:30:11, 58.82s/it]\\\\rMBPP:  76%|███████▌  | 283/374 [3:19:06<1:25:02, 56.07s/it]\\\\rMBPP:  76%|███████▌  | 284/374 [3:20:48<1:44:41, 69.79s/it]\\\\rMBPP:  76%|███████▌  | 285/374 [3:21:14<1:23:55, 56.58s/it]\\\\rMBPP:  76%|███████▋  | 286/374 [3:21:36<1:08:09, 46.47s/it]\\\\rMBPP:  77%|███████▋  | 287/374 [3:21:39<48:15, 33.28s/it]  \\\\rMBPP:  77%|███████▋  | 288/374 [3:21:55<40:26, 28.22s/it]\\\\rMBPP:  77%|███████▋  | 289/374 [3:22:07<33:02, 23.32s/it]\\\\rMBPP:  78%|███████▊  | 2\n…[truncated 1417 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 663
+          },
+          "id": "event-001886"
+        },
+        {
+          "source_line": 1887,
+          "timestamp": "2026-05-19T19:59:47.692293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -3 /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log"
+            }
+          },
+          "id": "event-001887"
+        },
+        {
+          "source_line": 1888,
+          "timestamp": "2026-05-19T19:59:48.196644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rMBPP:  27%|██▋       | 100/374 [1:08:22<2:04:06, 27.18s/it]\\\\rMBPP:  27%|██▋       | 101/374 [1:08:38<1:48:06, 23.76s/it]\\\\rMBPP:  27%|██▋       | 102/374 [1:10:22<3:36:45, 47.81s/it]\\\\rMBPP:  28%|██▊       | 103/374 [1:10:38<2:53:12, 38.35s/it]\\\\rMBPP:  28%|██▊       | 104/374 [1:11:42<3:26:49, 45.96s/it]\\\\rMBPP:  28%|██▊       | 105/374 [1:11:49<2:32:53, 34.10s/it]\\\\rMBPP:  28%|██▊       | 106/374 [1:11:59<2:00:52, 27.06s/it]\\\\rMBPP:  29%|██▊       | 107/374 [1:12:01<1:27:16, 19.61s/it]\\\\rMBPP:  29%|██▉       | 108/374 [1:12:14<1:18:05, 17.61s/it]\\\\rMBPP:  29%|██▉       | 109/374 [1:12:32<1:18:07, 17.69s/it]\\\\rMBPP:  29%|██▉       | 110/374 [1:12:49<1:16:37, 17.41s/it]\\\\rMBPP:  30%|██▉       | 111/374 [1:13:26<1:41:47, 23.22s/it]\\\\rMBPP:  30%|██▉       | 112/374 [1:13:36<1:24:57, 19.45s/it]\\\\rMBPP:  30%|███       | 113/374 [1:15:16<3:09:23, 43.54s/it]\\\\rMBPP:  30%|███       | 114/374 [1:15:23<2:20:35, 32.44s/it]\\\\rMBPP:  31%|███       | 115/374 [1:15:30<1:47:13, 24.84s/it]\\\\rMBPP:  31%|███       | 116/374 [1:15:43<1:31:07, 21.19s/it]\\\\rMBPP:  31%|███▏      | 117/374 [1:16:04<1:30:53, 21.22s/it]\\\\rMBPP:  32%|███▏      | 118/374 [1:17:49<3:17:30, 46.29s/it]\\\\rMBPP:  32%|███▏      | 119/374 [1:19:28<4:24:08, 62.15s/it]2026-05-20 03:32:43,168 [INFO] Progress: 120/374, Pass@1: 0.1417\\\\n\\\\rMBPP:  32%|███▏      | 120/374 [1:21:18<5:24:09, 76.57s/it]\\\\rMBPP:  32%|███▏      | 121/374 [1:21:59<4:37:29, 65.81s/it]\\\\rMBPP:  33%|███▎      | 122/374 [1:22:13<3:31:42, 50.41s/it]\\\\rMBPP:  33%|███▎      | 123/374 [1:22:23<2:39:38, 38.16s/it]\\\\rMBPP:  33%|███▎      | 124/374 [1:24:02<3:55:35, 56.54s/it]\\\\rMBPP:  33%|███▎      | 125/374 [1:24:11<2:54:50, 42.13s/it]\\\\rMBPP:  34%|███▎      | 126/374 [1:24:14<2:06:02, 30.49s/it]\\\\rMBPP:  34%|███▍      | 127/374 [1:25:57<3:34:41, 52.15s/it]\\\\rMBPP:  34%|███▍      | 128/374 [1:27:39<4:35:20, 67.16s/it]\\\\rMBPP:  34%|███▍      | 129/374 [1:27:54<3:29:54, 51.40s/it]\\\\rMBPP:  35%|███\n…[truncated 1704 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-001888"
+        },
+        {
+          "source_line": 1889,
+          "timestamp": "2026-05-19T20:00:05.103358+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 MBPP eval 正常推进。westd cuda:3 空闲——eval_mbpp_sft_rasp_20 应尽快提交。\n\n当前 7B MBPP 进度速览：\n- **CKA-only SFT**: 12.83% ✓ | **CKA-only GRPO**: 14.17% ✓\n- **Standard GRPO**: ~13.7%@300/374 (83%, ~30min) | **Standard SFT**: ~12.9%@140 (41%)\n- **RASP GRPO**: ~12.1%@140 (41%) | **RASP SFT**: 未跑（需 westd）\n\n初步观察：MBPP 上各 method 差异很小（12-14%），远不如 GSM8K 上的显著分化（59-64%）。待最终数据确认。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001889"
+        }
+      ]
+    },
+    {
+      "number": 118,
+      "messages": [
+        {
+          "source_line": 1890,
+          "timestamp": "2026-05-19T20:21:34.127542+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:eval_mbpp_grpo_standard_20]:\n实验 eval_mbpp_grpo_standard_20 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001890"
+        },
+        {
+          "source_line": 1891,
+          "timestamp": "2026-05-19T20:21:43.584120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 120188 -o pid,etime --no-headers"
+            }
+          },
+          "id": "event-001891"
+        },
+        {
+          "source_line": 1892,
+          "timestamp": "2026-05-19T20:21:44.842702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1258
+          },
+          "id": "event-001892"
+        },
+        {
+          "source_line": 1893,
+          "timestamp": "2026-05-19T20:21:50.827724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json"
+            }
+          },
+          "id": "event-001893"
+        },
+        {
+          "source_line": 1894,
+          "timestamp": "2026-05-19T20:21:51.379761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001894"
+        },
+        {
+          "source_line": 1895,
+          "timestamp": "2026-05-19T20:21:51.530624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -10 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log"
+            }
+          },
+          "id": "event-001895"
+        },
+        {
+          "source_line": 1896,
+          "timestamp": "2026-05-19T20:21:52.084134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rMBPP:  37%|███▋      | 140/374 [1:43:53<1:53:24, 29.08s/it]\\\\rMBPP:  38%|███▊      | 141/374 [1:44:01<1:28:28, 22.78s/it]\\\\rMBPP:  38%|███▊      | 142/374 [1:45:44<3:01:19, 46.90s/it]\\\\rMBPP:  38%|███▊      | 143/374 [1:47:36<4:16:13, 66.55s/it]\\\\rMBPP:  39%|███▊      | 144/374 [1:47:46<3:09:07, 49.34s/it]\\\\rMBPP:  39%|███▉      | 145/374 [1:48:14<2:44:12, 43.02s/it]\\\\rMBPP:  39%|███▉      | 146/374 [1:48:22<2:03:48, 32.58s/it]\\\\rMBPP:  39%|███▉      | 147/374 [1:49:23<2:34:51, 40.93s/it]\\\\rMBPP:  40%|███▉      | 148/374 [1:51:03<3:41:39, 58.85s/it]\\\\rMBPP:  40%|███▉      | 149/374 [1:51:16<2:49:10, 45.12s/it]\\\\rMBPP:  40%|████      | 150/374 [1:51:27<2:09:36, 34.71s/it]\\\\rMBPP:  40%|████      | 151/374 [1:51:44<1:48:59, 29.33s/it]\\\\rMBPP:  41%|████      | 152/374 [1:53:23<3:06:28, 50.40s/it]\\\\rMBPP:  41%|████      | 153/374 [1:53:30<2:17:15, 37.26s/it]\\\\rMBPP:  41%|████      | 154/374 [1:53:36<1:42:17, 27.90s/it]\\\\rMBPP:  41%|████▏     | 155/374 [1:55:17<3:02:21, 49.96s/it]\\\\rMBPP:  42%|████▏     | 156/374 [1:56:57<3:56:13, 65.02s/it]\\\\rMBPP:  42%|████▏     | 157/374 [1:57:12<3:00:40, 49.95s/it]\\\\rMBPP:  42%|████▏     | 158/374 [1:57:22<2:16:26, 37.90s/it]\\\\rMBPP:  43%|████▎     | 159/374 [1:58:06<2:22:10, 39.68s/it]2026-05-20 02:22:34,671 [INFO] Progress: 160/374, Pass@1: 0.1000\\\\n\\\\rMBPP:  43%|████▎     | 160/374 [1:58:26<2:00:46, 33.86s/it]\\\\rMBPP:  43%|████▎     | 161/374 [1:58:30<1:28:32, 24.94s/it]\\\\rMBPP:  43%|████▎     | 162/374 [1:58:51<1:23:25, 23.61s/it]\\\\rMBPP:  44%|████▎     | 163/374 [2:00:32<2:45:32, 47.07s/it]\\\\rMBPP:  44%|████▍     | 164/374 [2:00:55<2:19:18, 39.80s/it]\\\\rMBPP:  44%|████▍     | 165/374 [2:02:34<3:20:39, 57.60s/it]\\\\rMBPP:  44%|████▍     | 166/374 [2:04:25<4:14:15, 73.35s/it]\\\\rMBPP:  45%|████▍     | 167/374 [2:06:06<4:42:18, 81.83s/it]\\\\rMBPP:  45%|████▍     | 168/374 [2:06:31<3:42:19, 64.76s/it]\\\\rMBPP:  45%|████▌     | 169/374 [2:06:54<2:58:49, 52.34s/it]\\\\rMBPP:  45%|███\n…[truncated 6471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-001896"
+        },
+        {
+          "source_line": 1897,
+          "timestamp": "2026-05-19T20:22:06.479584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_grpo_standard_20:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001897"
+        },
+        {
+          "source_line": 1898,
+          "timestamp": "2026-05-19T20:22:06.530247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9316:  eval_mbpp_grpo_standard_20:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001898"
+        },
+        {
+          "source_line": 1899,
+          "timestamp": "2026-05-19T20:22:10.652757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "offset": "9316",
+              "limit": "35"
+            }
+          },
+          "id": "event-001899"
+        },
+        {
+          "source_line": 1900,
+          "timestamp": "2026-05-19T20:22:10.703455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9316\t  eval_mbpp_grpo_standard_20:\n9317\t    status: DONE\n9318\t    retry_count: 0\n9319\t    created_at: '2026-05-19T16:20:40.387Z'\n9320\t    updated_at: '2026-05-19T20:21:30.394Z'\n9321\t    hypothesis: Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare\n9322\t      with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37%\n9323\t      — if capability breadth claim holds, Standard should show larger degradation\n9324\t      on code generation (MBPP) than math (GSM8K).\n9325\t    spec:\n9326\t      command: bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune\n9327\t        && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path\n9328\t        /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\n9329\t        --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json'\n9330\t      server: westd-29022\n9331\t      gpu:\n9332\t      - cuda:2\n9333\t      pid: '120183'\n9334\t      log_path: ~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log\n9335\t      submitted_at: '2026-05-19T16:21:09.105Z'\n9336\t      submitted_via: submit_training_job\n9337\t      backend: tmux\n9338\t      account: root\n9339\t      wall_clock_seconds: 14417.6\n9340\t      gpu_hours: 4.0\n9341\t    reproduce:\n9342\t      finished_at: '2026-05-19T20:21:23.644Z'\n9343\t    failure_reason: EXIT_CODE=124 (timeout — exceeded timeout_hours)\n9344\t    conclusion: failed\n9345\t    completed_at: '2026-05-19T20:21:26.749Z'\n9346\t    extra:\n9347\t      hook_events:\n9348\t      - event: on_failed\n9349\t        action: agent\n9350\t        ts: '2026-05-19T20:21:34.707924+00:00'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001900"
+        },
+        {
+          "source_line": 1901,
+          "timestamp": "2026-05-19T20:22:31.830225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] **eval_mbpp_grpo_standard_20 被 submit_training_job 的 timeout 杀死（EXIT_CODE=124）**\n\n进度 335/374（90%），运行 4h（14417s），pass@1 收敛约 13.1%（@320: 13.13%）。结果文件不存在——距完成仅差 39 个 task 约 30 分钟就被 timeout 截断。\n\n**根因**：submit_training_job 默认 timeout_hours 太短（4h），MBPP 7B GRPO 模型 374 task + max_new_tokens=2048 需要约 4.5h。\n\n**当前 westd 空闲 GPU**：cuda:2 + cuda:3（2 张空转）。建议：\n1. **westd cuda:2**：立即重跑 eval_mbpp_grpo_standard_20，timeout 设为 6h 或取消\n2. **westd cuda:3**：提交 eval_mbpp_sft_rasp_20（model_path=sft_rasp_20_westd，7B MBPP 矩阵最后缺失 cell）\n\n**系统性问题**：submit_training_job 的 timeout_hours 默认值对 MBPP 374-task eval 不够。当前还有 2 个 MBPP eval 在跑（sft_standard cuda:0, grpo_rasp cuda:1），也可能触发同样的 4h timeout——请检查并提前调整。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-001901"
+        },
+        {
+          "source_line": 1902,
+          "timestamp": "2026-05-19T20:22:35.345629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3515
+          },
+          "id": "event-001902"
+        },
+        {
+          "source_line": 1903,
+          "timestamp": "2026-05-19T20:22:38.276601+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_mbpp_grpo_standard_20 在 335/374（90%）时被 timeout 杀掉（EXIT_CODE=124），约 4 小时运行。结果文件不存在。pass@1 收敛约 13%。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001903"
+        }
+      ]
+    },
+    {
+      "number": 119,
+      "messages": [
+        {
+          "source_line": 1904,
+          "timestamp": "2026-05-19T20:22:38.908624+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:eval_mbpp_grpo_standard_20]:\n实验 eval_mbpp_grpo_standard_20 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001904"
+        },
+        {
+          "source_line": 1905,
+          "timestamp": "2026-05-19T20:22:47.145457+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 重复触发，已在上条报告中覆盖。eval_mbpp_grpo_standard_20 因 4h timeout 被杀（EXIT_CODE=124, 335/374），等待 Director 安排重跑。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001905"
+        }
+      ]
+    },
+    {
+      "number": 120,
+      "messages": [
+        {
+          "source_line": 1906,
+          "timestamp": "2026-05-19T20:28:44.133567+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:eval_mbpp_sft_standard_20]:\n实验 eval_mbpp_sft_standard_20 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001906"
+        },
+        {
+          "source_line": 1907,
+          "timestamp": "2026-05-19T20:28:54.293421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 125512 -o pid,etime --no-headers"
+            }
+          },
+          "id": "event-001907"
+        },
+        {
+          "source_line": 1908,
+          "timestamp": "2026-05-19T20:28:54.746534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json"
+            }
+          },
+          "id": "event-001908"
+        },
+        {
+          "source_line": 1909,
+          "timestamp": "2026-05-19T20:28:55.349373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1055
+          },
+          "id": "event-001909"
+        },
+        {
+          "source_line": 1910,
+          "timestamp": "2026-05-19T20:28:55.932027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1185
+          },
+          "id": "event-001910"
+        },
+        {
+          "source_line": 1911,
+          "timestamp": "2026-05-19T20:28:59.095571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log"
+            }
+          },
+          "id": "event-001911"
+        },
+        {
+          "source_line": 1912,
+          "timestamp": "2026-05-19T20:28:59.598645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rMBPP:  32%|███▏      | 120/374 [1:21:18<5:24:09, 76.57s/it]\\\\rMBPP:  32%|███▏      | 121/374 [1:21:59<4:37:29, 65.81s/it]\\\\rMBPP:  33%|███▎      | 122/374 [1:22:13<3:31:42, 50.41s/it]\\\\rMBPP:  33%|███▎      | 123/374 [1:22:23<2:39:38, 38.16s/it]\\\\rMBPP:  33%|███▎      | 124/374 [1:24:02<3:55:35, 56.54s/it]\\\\rMBPP:  33%|███▎      | 125/374 [1:24:11<2:54:50, 42.13s/it]\\\\rMBPP:  34%|███▎      | 126/374 [1:24:14<2:06:02, 30.49s/it]\\\\rMBPP:  34%|███▍      | 127/374 [1:25:57<3:34:41, 52.15s/it]\\\\rMBPP:  34%|███▍      | 128/374 [1:27:39<4:35:20, 67.16s/it]\\\\rMBPP:  34%|███▍      | 129/374 [1:27:54<3:29:54, 51.40s/it]\\\\rMBPP:  35%|███▍      | 130/374 [1:28:23<3:01:49, 44.71s/it]\\\\rMBPP:  35%|███▌      | 131/374 [1:28:41<2:29:03, 36.80s/it]\\\\rMBPP:  35%|███▌      | 132/374 [1:28:56<2:01:43, 30.18s/it]\\\\rMBPP:  36%|███▌      | 133/374 [1:29:18<1:51:57, 27.87s/it]\\\\rMBPP:  36%|███▌      | 134/374 [1:30:59<3:18:45, 49.69s/it]\\\\rMBPP:  36%|███▌      | 135/374 [1:32:38<4:17:07, 64.55s/it]\\\\rMBPP:  36%|███▋      | 136/374 [1:32:44<3:06:47, 47.09s/it]\\\\rMBPP:  37%|███▋      | 137/374 [1:33:02<2:31:06, 38.25s/it]\\\\rMBPP:  37%|███▋      | 138/374 [1:34:20<3:17:14, 50.15s/it]\\\\rMBPP:  37%|███▋      | 139/374 [1:35:04<3:09:45, 48.45s/it]2026-05-20 03:46:54,034 [INFO] Progress: 140/374, Pass@1: 0.1286\\\\n\\\\rMBPP:  37%|███▋      | 140/374 [1:35:29<2:40:54, 41.26s/it]\\\\rMBPP:  38%|███▊      | 141/374 [1:35:40<2:04:46, 32.13s/it]\\\\rMBPP:  38%|███▊      | 142/374 [1:36:45<2:43:09, 42.20s/it]\\\\rMBPP:  38%|███▊      | 143/374 [1:38:37<4:02:37, 63.02s/it]\\\\rMBPP:  39%|███▊      | 144/374 [1:38:46<2:59:19, 46.78s/it]\\\\rMBPP:  39%|███▉      | 145/374 [1:39:29<2:54:40, 45.76s/it]\\\\rMBPP:  39%|███▉      | 146/374 [1:39:35<2:08:09, 33.73s/it]\\\\rMBPP:  39%|███▉      | 147/374 [1:41:19<3:27:09, 54.75s/it]\\\\rMBPP:  40%|███▉      | 148/374 [1:42:59<4:17:29, 68.36s/it]\\\\rMBPP:  40%|███▉      | 149/374 [1:43:15<3:17:49, 52.75s/it]\\\\rMBPP:  40%|███\n…[truncated 2731 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-001912"
+        },
+        {
+          "source_line": 1913,
+          "timestamp": "2026-05-19T20:29:10.923579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-001913"
+        },
+        {
+          "source_line": 1914,
+          "timestamp": "2026-05-19T20:29:11.475903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB\\\\n1, 98 %, 17277 MiB\\\\n2, 96 %, 13119 MiB\\\\n3, 88 %, 12811 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001914"
+        },
+        {
+          "source_line": 1915,
+          "timestamp": "2026-05-19T20:29:11.476327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 127964 -o pid,etime --no-headers"
+            }
+          },
+          "id": "event-001915"
+        },
+        {
+          "source_line": 1916,
+          "timestamp": "2026-05-19T20:29:11.978518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"127964    01:56:10\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001916"
+        },
+        {
+          "source_line": 1917,
+          "timestamp": "2026-05-19T20:29:23.006992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-001917"
+        },
+        {
+          "source_line": 1918,
+          "timestamp": "2026-05-19T20:29:23.609384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"127964, GPU-ce0f2777-60eb-9e2d-8a71-b291f0fd9862, 17268 MiB, python\\\\n135726, GPU-fd1974e9-1073-6c9d-ef0e-b4517a1bd1ac, 13110 MiB, /root/miniconda3/bin/python\\\\n133679, GPU-893d671d-d57f-55be-2df8-686a356756ee, 12802 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-001918"
+        },
+        {
+          "source_line": 1919,
+          "timestamp": "2026-05-19T20:29:27.778428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 135726 -o pid,etime,cmd --no-headers"
+            }
+          },
+          "id": "event-001919"
+        },
+        {
+          "source_line": 1920,
+          "timestamp": "2026-05-19T20:29:28.029530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 133679 -o pid,etime,cmd --no-headers"
+            }
+          },
+          "id": "event-001920"
+        },
+        {
+          "source_line": 1921,
+          "timestamp": "2026-05-19T20:29:28.230806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"135726       04:09 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001921"
+        },
+        {
+          "source_line": 1922,
+          "timestamp": "2026-05-19T20:29:28.732849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"133679       29:15 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-001922"
+        },
+        {
+          "source_line": 1923,
+          "timestamp": "2026-05-19T20:29:47.577407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] **eval_mbpp_sft_standard_20 也被杀（EXIT_CODE=143/SIGTERM），189/374（51%），pass@1≈12.8%**\n\n与 grpo_standard 的 timeout（EXIT_CODE=124）不同，sft_standard 收到的是 SIGTERM（143）。可能是同一 timeout 机制的不同信号。\n\n**当前 westd 状态**：\n- cuda:0: **空闲** ← 需重跑 eval_mbpp_sft_standard_20\n- cuda:1: eval_mbpp_grpo_rasp_20 (PID 127964, 1h56m, **也有 timeout 风险**)\n- cuda:2: eval_mbpp_grpo_standard_20 retry (PID 135726, 4min, 刚开始)\n- cuda:3: eval_mbpp_sft_rasp_20 (PID 133679, 29min, sft_rasp_20_westd ✓)\n\n**紧急**：\n1. westd cuda:0 立即提交 eval_mbpp_sft_standard_20 重试，**必须加大或取消 timeout**\n2. 确认 cuda:1/2/3 上的进程 timeout 设置是否已调整——否则全部会在 4h 时被杀\n3. 特别关注 cuda:1 eval_mbpp_grpo_rasp_20：手动提交（非 submit_training_job），可能不受 timeout 限制——需确认",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-001923"
+        },
+        {
+          "source_line": 1924,
+          "timestamp": "2026-05-19T20:29:51.144114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3566
+          },
+          "id": "event-001924"
+        },
+        {
+          "source_line": 1925,
+          "timestamp": "2026-05-19T20:29:53.651756+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "好消息：cuda:2 重跑了 grpo_standard，cuda:3 终于跑上了 sft_rasp_20（正确 westd 路径）。但 cuda:0 空闲且 eval_mbpp_sft_standard_20 需要重跑。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer"
+          },
+          "id": "event-001925"
+        }
+      ]
+    },
+    {
+      "number": 121,
+      "messages": [
+        {
+          "source_line": 1926,
+          "timestamp": "2026-05-19T20:31:19.211386+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_fix_mbpp_timeout_audit_and_resubmit_20260519T202345]:\nWorker worker_fix_mbpp_timeout_audit_and_resubmit_20260519T202345 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "source": "system"
+          },
+          "id": "event-001926"
+        },
+        {
+          "source_line": 1927,
+          "timestamp": "2026-05-19T20:31:25.904437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "8",
+              "fields": "['status', 'updated_at', 'server', 'gpu', 'spec', 'conclusion', 'metrics']"
+            }
+          },
+          "id": "event-001927"
+        },
+        {
+          "source_line": 1928,
+          "timestamp": "2026-05-19T20:31:26.307428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-001928"
+        },
+        {
+          "source_line": 1929,
+          "timestamp": "2026-05-19T20:31:26.679370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_mbpp_sft_standard_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T20:28:39.279Z\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"125512\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T18:08:37.482Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 8401.8, \\\"gpu_hours\\\": 2.33}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_mbpp_grpo_standard_20_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-19T20:25:20.782Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"135721\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T20:25:20.211Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_mbpp_grpo_standard_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T20:24:35.666Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICE\n…[truncated 5236 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 774
+          },
+          "id": "event-001929"
+        },
+        {
+          "source_line": 1930,
+          "timestamp": "2026-05-19T20:31:28.012462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 12497 MiB\\\\n1, 98 %, 17277 MiB\\\\n2, 97 %, 16767 MiB\\\\n3, 88 %, 12811 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1705
+          },
+          "id": "event-001930"
+        },
+        {
+          "source_line": 1931,
+          "timestamp": "2026-05-19T20:31:43.101994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-001931"
+        },
+        {
+          "source_line": 1932,
+          "timestamp": "2026-05-19T20:31:43.590657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"136270, GPU-b0514b26-657b-5010-9c8a-0cfa75ef3680, 12674 MiB, python\\\\n127964, GPU-ce0f2777-60eb-9e2d-8a71-b291f0fd9862, 17268 MiB, python\\\\n135726, GPU-fd1974e9-1073-6c9d-ef0e-b4517a1bd1ac, 16758 MiB, /root/miniconda3/bin/python\\\\n133679, GPU-893d671d-d57f-55be-2df8-686a356756ee, 12802 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 488
+          },
+          "id": "event-001932"
+        },
+        {
+          "source_line": 1933,
+          "timestamp": "2026-05-19T20:33:51.983838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-001933"
+        },
+        {
+          "source_line": 1934,
+          "timestamp": "2026-05-19T20:33:52.003595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 19
+          },
+          "id": "event-001934"
+        },
+        {
+          "source_line": 1935,
+          "timestamp": "2026-05-19T20:33:56.109415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001935"
+        },
+        {
+          "source_line": 1936,
+          "timestamp": "2026-05-19T20:33:56.561311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-001936"
+        },
+        {
+          "source_line": 1937,
+          "timestamp": "2026-05-19T20:33:57.013042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 97887 MiB\\\\n1, 97 %, 17277 MiB, 97887 MiB\\\\n2, 0 %, 0 MiB, 97887 MiB\\\\n3, 88 %, 12811 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-001937"
+        },
+        {
+          "source_line": 1938,
+          "timestamp": "2026-05-19T20:33:57.515232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"127964, GPU-ce0f2777-60eb-9e2d-8a71-b291f0fd9862, 17268 MiB\\\\n133679, GPU-893d671d-d57f-55be-2df8-686a356756ee, 12802 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-001938"
+        },
+        {
+          "source_line": 1939,
+          "timestamp": "2026-05-19T20:33:57.515597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001939"
+        },
+        {
+          "source_line": 1940,
+          "timestamp": "2026-05-19T20:33:58.474316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-001940"
+        },
+        {
+          "source_line": 1941,
+          "timestamp": "2026-05-19T20:33:59.087785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['exp_id', 'status', 'spec', 'updated_at']"
+            }
+          },
+          "id": "event-001941"
+        },
+        {
+          "source_line": 1942,
+          "timestamp": "2026-05-19T20:34:00.820525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 95 %, 4237 MiB, 97887 MiB\\\\n1, 95 %, 4259 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3304
+          },
+          "id": "event-001942"
+        },
+        {
+          "source_line": 1943,
+          "timestamp": "2026-05-19T20:34:02.512814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"917409, GPU-549a7198-85c3-248c-9f75-5b8d5ff146f4, 4228 MiB\\\\n916225, GPU-7b195135-ddad-2206-ed75-0d99e677e086, 4250 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4038
+          },
+          "id": "event-001943"
+        },
+        {
+          "source_line": 1944,
+          "timestamp": "2026-05-19T20:34:03.271895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_mbpp_sft_rasp_20\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-19T20:00:15.840Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"133674\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T20:00:13.578Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_mbpp_sft_standard_20_1p5b\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-19T18:56:51.727Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20_1p5b.json\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"0\\\", \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"mbpp\\\", \\\"data_path\\\": \\\"mbpp\\\", \\\"data_count\\\": 0, \\\"seed\\\": 0}}, \\\"eval_mbpp_sft_cka_only_20_1p5b\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-19T18:47:44.722Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"google-research-datasets/mbpp (sanitized)\\\", \\\"data_count\\\": 37\n…[truncated 1189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 4183
+          },
+          "id": "event-001944"
+        },
+        {
+          "source_line": 1945,
+          "timestamp": "2026-05-19T20:34:17.766435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20*.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json 2>&1"
+            }
+          },
+          "id": "event-001945"
+        },
+        {
+          "source_line": 1946,
+          "timestamp": "2026-05-19T20:34:18.268943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001946"
+        },
+        {
+          "source_line": 1947,
+          "timestamp": "2026-05-19T20:34:18.739888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log 2>&1"
+            }
+          },
+          "id": "event-001947"
+        },
+        {
+          "source_line": 1948,
+          "timestamp": "2026-05-19T20:34:18.740568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-001948"
+        },
+        {
+          "source_line": 1949,
+          "timestamp": "2026-05-19T20:34:19.694824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log 2>&1"
+            }
+          },
+          "id": "event-001949"
+        },
+        {
+          "source_line": 1950,
+          "timestamp": "2026-05-19T20:34:20.146404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-001950"
+        },
+        {
+          "source_line": 1951,
+          "timestamp": "2026-05-19T20:34:20.447477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log 2>&1"
+            }
+          },
+          "id": "event-001951"
+        },
+        {
+          "source_line": 1952,
+          "timestamp": "2026-05-19T20:34:20.497994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-001952"
+        },
+        {
+          "source_line": 1953,
+          "timestamp": "2026-05-19T20:34:24.160234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/"
+            }
+          },
+          "id": "event-001953"
+        },
+        {
+          "source_line": 1954,
+          "timestamp": "2026-05-19T20:34:25.114144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20100\\\\ndrwxr-xr-x  3 root root    8192 May 20 03:56 .\\\\ndrwxr-xr-x 47 root root    4096 May 20 01:23 ..\\\\ndrwxr-xr-x  2 root root      68 May 19 11:10 artifacts\\\\n-rw-r--r--  1 root root   24388 May 19 12:00 bootstrap_ci_accuracy_v2.json\\\\n-rw-r--r--  1 root root  147700 May 19 11:11 bootstrap_ci_plot.png\\\\n-rw-r--r--  1 root root    1435 May 19 11:11 bootstrap_ci_results.json\\\\n-rw-r--r--  1 root root  123229 May 16 13:31 cka_scores_qwen_math.pt\\\\n-rw-r--r--  1 root root  139567 May 17 00:10 eval_grpo_rasp_20_qwen_math.json\\\\n-rw-r--r--  1 root root   16920 May 17 00:10 eval_grpo_rasp_20_qwen_math.log\\\\n-rw-r--r--  1 root root    5791 May 17 04:23 eval_grpo_rasp_25.log\\\\n-rw-r--r--  1 root root  139116 May 17 00:29 eval_grpo_rasp_25_qwen_math.json\\\\n-rw-r--r--  1 root root   17175 May 17 00:29 eval_grpo_rasp_25_qwen_math.log\\\\n-rw-r--r--  1 root root  142114 May 17 04:17 eval_grpo_rasp_rlvr_20_qwen_math.json\\\\n-rw-r--r--  1 root root  141915 May 17 00:11 eval_grpo_standard_20_qwen_math.json\\\\n-rw-r--r--  1 root root   16928 May 17 00:11 eval_grpo_standard_20_qwen_math.log\\\\n-rw-r--r--  1 root root  140695 May 17 03:56 eval_grpo_standard_25.json\\\\n-rw-r--r--  1 root root 1001709 May 17 10:38 eval_grpo_standard_25_n1319.json\\\\n-rw-r--r--  1 root root  140695 May 17 00:31 eval_grpo_standard_25_qwen_math.json\\\\n-rw-r--r--  1 root root   17195 May 17 00:31 eval_grpo_standard_25_qwen_math.log\\\\n-rw-r--r--  1 root root 1070195 May 16 12:44 eval_grpo_unpruned_v2_step100.json\\\\n-rw-r--r--  1 root root 1070744 May 16 12:45 eval_grpo_unpruned_v2_step90.json\\\\n-rw-r--r--  1 root root 1060385 May 19 11:45 eval_gsm8k_grpo_cka_only_20_extended_300.json\\\\n-rw-r--r--  1 root root 1020601 May 19 23:20 eval_gsm8k_grpo_rasp_20_fair.json\\\\n-rw-r--r--  1 root root      93 May 19 23:20 eval_gsm8k_grpo_rasp_20_fair.json.done\\\\n-rw-r--r--  1 root root  104057 May 19 23:20 eval_gsm8k_grpo_rasp_20_fair.log\\\\n-rw-r--r--  1 root ro\n…[truncated 6406 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-001954"
+        },
+        {
+          "source_line": 1955,
+          "timestamp": "2026-05-19T20:34:25.114500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/runs/recovery_aware_struct_prune/ -name \"eval_mbpp_grpo_standard_20*\" -o -name \"eval_mbpp_sft_standard_20*\""
+            }
+          },
+          "id": "event-001955"
+        },
+        {
+          "source_line": 1956,
+          "timestamp": "2026-05-19T20:34:25.716297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log\\\\n/root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log\\\\n/root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 601
+          },
+          "id": "event-001956"
+        },
+        {
+          "source_line": 1957,
+          "timestamp": "2026-05-19T20:34:25.766836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/logs/ -name \"eval_mbpp*\""
+            }
+          },
+          "id": "event-001957"
+        },
+        {
+          "source_line": 1958,
+          "timestamp": "2026-05-19T20:34:26.219434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001958"
+        },
+        {
+          "source_line": 1959,
+          "timestamp": "2026-05-19T20:34:38.665198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -40 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log"
+            }
+          },
+          "id": "event-001959"
+        },
+        {
+          "source_line": 1960,
+          "timestamp": "2026-05-19T20:34:39.267818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 04:25:23,003 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\\n2026-05-20 04:25:23,607 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-20 04:26:47,812 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py\\\\n2026-05-20 04:28:08,068 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-20 04:28:08,068 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since mbpp couldn't be found on the Hugging Face Hub\\\\n2026-05-20 04:28:09,071 [WARNING] Using the latest cached version of the dataset since mbpp couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 04:28:09,072 [WARNING] Found the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 04:28:09,094 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/374 [00:00<?, ?it/s]\\\\rMBPP:   0%|          | 1/374 [00:35<3:40:57, 35.54s/it]\\\\rMBPP:   1%|          | 2/374 [00:48<2:19:02, 22.42s/it]\\\\rMBPP:   1%|          | 3/374 [02:34<6:14:53, 60.63s/it]\\\\rMBPP:   1%|          | 4/374 [02:47<4:16:04, 41.53s/it]\\\\rMBPP:   1%|▏         | 5/374 [02:58<3:08:07, 30.59s/it]\\\\rMBPP:   2%|▏         | 6/374 [04:40<5:36:29, 54.86s/it]\\\\rMBPP:   2%|▏         | 7/374 [04:51<4:07:46, 40.51s/it]Terminated\\\\nEXIT_CODE\n…[truncated 111 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-001960"
+        },
+        {
+          "source_line": 1961,
+          "timestamp": "2026-05-19T20:34:39.318404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -40 /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log"
+            }
+          },
+          "id": "event-001961"
+        },
+        {
+          "source_line": 1962,
+          "timestamp": "2026-05-19T20:34:39.720209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -20 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log"
+            }
+          },
+          "id": "event-001962"
+        },
+        {
+          "source_line": 1963,
+          "timestamp": "2026-05-19T20:34:39.821092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 02:08:40,323 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\\n2026-05-20 02:08:40,921 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-20 02:10:03,376 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py\\\\n2026-05-20 02:11:23,634 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-20 02:11:23,634 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since mbpp couldn't be found on the Hugging Face Hub\\\\n2026-05-20 02:11:24,637 [WARNING] Using the latest cached version of the dataset since mbpp couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 02:11:24,639 [WARNING] Found the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 02:11:24,658 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/374 [00:00<?, ?it/s]\\\\rMBPP:   0%|          | 1/374 [00:08<54:39,  8.79s/it]\\\\rMBPP:   1%|          | 2/374 [00:19<1:01:29,  9.92s/it]\\\\rMBPP:   1%|          | 3/374 [02:04<5:30:59, 53.53s/it]\\\\rMBPP:   1%|          | 4/374 [03:43<7:19:56, 71.34s/it]\\\\rMBPP:   1%|▏         | 5/374 [03:53<5:03:32, 49.36s/it]\\\\rMBPP:   2%|▏         | 6/374 [04:08<3:51:08, 37.69s/it]\\\\rMBPP:   2%|▏         | 7/374 [04:13<2:44:44, 26.93s/it]\\\\rMBPP:   2%|▏         | 8/374 [05:5\n…[truncated 6452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-001963"
+        },
+        {
+          "source_line": 1964,
+          "timestamp": "2026-05-19T20:34:40.373601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 02:35:47,382 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-20 02:35:47,383 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since mbpp couldn't be found on the Hugging Face Hub\\\\n2026-05-20 02:35:48,385 [WARNING] Using the latest cached version of the dataset since mbpp couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 02:35:48,386 [WARNING] Found the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\\\n2026-05-20 02:35:48,405 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/374 [00:00<?, ?it/s]\\\\rMBPP:   0%|          | 1/374 [00:05<31:46,  5.11s/it]\\\\rMBPP:   1%|          | 2/374 [00:21<1:11:04, 11.46s/it]\\\\rMBPP:   1%|          | 3/374 [02:06<5:37:00, 54.50s/it]\\\\rMBPP:   1%|          | 4/374 [02:09<3:30:07, 34.07s/it]\\\\rMBPP:   1%|▏         | 5/374 [02:13<2:21:51, 23.07s/it]\\\\rMBPP:   2%|▏         | 6/374 [03:55<5:06:00, 49.89s/it]\\\\rMBPP:   2%|▏         | 7/374 [03:58<3:32:47, 34.79s/it]\\\\rMBPP:   2%|▏         | 8/374 [05:37<5:36:13, 55.12s/it]\\\\rMBPP:   2%|▏         | 9/374 [07:17<7:01:00, 69.21s/it]\\\\rMBPP:   3%|▎         | 10/374 [07:22<4:58:56, 49.28s/it]\\\\rMBPP:   3%|▎         | 11/374 [09:07<6:42:07, 66.47s/it]\\\\rMBPP:   3%|▎         | 12/374 [09:13<4:49:33, 47.99s/it]\\\\rMBPP:   3%|▎         | 13/374 [09:16<3:27:27, 34.48s/it]\\\\rMBPP:   4%|▎         | 14/374 [09:20<2:30:50, 25.14s/it]\\\\rMBPP:   4%|▍         | 15/374 [09:23<1:51:27, 18.63s/it]\\\\rMBPP:   4%|▍    \n…[truncated 6457 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 653
+          },
+          "id": "event-001964"
+        },
+        {
+          "source_line": 1965,
+          "timestamp": "2026-05-19T20:35:42.656533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/runs/recovery_aware_struct_prune/ -name \"eval_mbpp_sft_standard_20*\""
+            }
+          },
+          "id": "event-001965"
+        },
+        {
+          "source_line": 1966,
+          "timestamp": "2026-05-19T20:35:43.058294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log"
+            }
+          },
+          "id": "event-001966"
+        },
+        {
+          "source_line": 1967,
+          "timestamp": "2026-05-19T20:35:43.560450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-001967"
+        },
+        {
+          "source_line": 1968,
+          "timestamp": "2026-05-19T20:35:44.062578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log\\\\n  Size: 14235     \\\\tBlocks: 32         IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21478226228  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-20 04:28:36.419915781 +0800\\\\nModify: 2026-05-20 04:27:15.283460752 +0800\\\\nChange: 2026-05-20 04:27:15.283460752 +0800\\\\n Birth: 2026-05-20 02:08:37.170520886 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001968"
+        },
+        {
+          "source_line": 1969,
+          "timestamp": "2026-05-19T20:35:44.062996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "stat /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log"
+            }
+          },
+          "id": "event-001969"
+        },
+        {
+          "source_line": 1970,
+          "timestamp": "2026-05-19T20:35:44.565000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log\\\\n  Size: 1913      \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 75h/117d\\\\tInode: 21478228288  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-20 04:34:39.037515072 +0800\\\\nModify: 2026-05-20 04:33:11.445180023 +0800\\\\nChange: 2026-05-20 04:33:11.445180023 +0800\\\\n Birth: 2026-05-20 04:25:19.906726828 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-001970"
+        },
+        {
+          "source_line": 1971,
+          "timestamp": "2026-05-19T20:35:45.368408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "recovery_aware_struct_prune",
+              "limit": "15",
+              "fields": "['exp_id', 'status', 'metrics', 'conclusion', 'updated_at']"
+            }
+          },
+          "id": "event-001971"
+        },
+        {
+          "source_line": 1972,
+          "timestamp": "2026-05-19T20:35:45.970850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_mbpp_sft_standard_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T20:28:39.279Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_mbpp_grpo_standard_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T20:24:35.666Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_mbpp_sft_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T19:58:30.970Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1283, \\\"stderr\\\": 0.0173, \\\"n_correct\\\": 48, \\\"n_total\\\": 374, \\\"dense_baseline_pass_at_1\\\": 0.5348, \\\"degradation_pct\\\": 76.01, \\\"avg_response_length\\\": 643.8, \\\"median_response_length\\\": 363.5}}, \\\"eval_humaneval_sft_rasp_20_1p5b_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:52:30.545Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0, \\\"n_correct\\\": 0, \\\"n_total\\\": 164, \\\"note\\\": \\\"1.5B SFT RASP, all truncated at 2048 tokens\\\"}}, \\\"eval_humaneval_grpo_rasp_20_1p5b_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:36:01.960Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_mbpp_grpo_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:17:54.178Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1417, \\\"n_correct\\\": 53, \\\"n_total\\\": 374, \\\"stderr\\\": 0.018}}, \\\"eval_gsm8k_grpo_shortgpt_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:17:53.164Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 43.37, \\\"n_correct\\\": 572, \\\"n_total\\\": 1319, \\\"stderr\\\": 0.0136}}, \\\"eval_gsm8k_sft_shortgpt_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:03:15.831Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 44.73, \\\"n_correct\\\": 590, \\\"n_total\\\": 1319}}, \\\"grpo_shortgpt_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:02:50.896Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sft_shortgpt_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T18:02:48.590Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"e\n…[truncated 1968 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 602
+          },
+          "id": "event-001972"
+        },
+        {
+          "source_line": 1973,
+          "timestamp": "2026-05-19T20:36:09.835732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -10 /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log"
+            }
+          },
+          "id": "event-001973"
+        },
+        {
+          "source_line": 1974,
+          "timestamp": "2026-05-19T20:36:09.936506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval_mbpp_grpo_standard_20_v2'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001974"
+        },
+        {
+          "source_line": 1975,
+          "timestamp": "2026-05-19T20:36:10.641679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rMBPP:   5%|▌         | 20/374 [04:18<1:08:45, 11.65s/it]\\\\rMBPP:   6%|▌         | 21/374 [04:22<54:51,  9.33s/it]  \\\\rMBPP:   6%|▌         | 22/374 [04:25<42:26,  7.23s/it]\\\\rMBPP:   6%|▌         | 23/374 [04:26<32:31,  5.56s/it]\\\\rMBPP:   6%|▋         | 24/374 [04:28<25:37,  4.39s/it]\\\\rMBPP:   7%|▋         | 25/374 [04:53<1:01:53, 10.64s/it]\\\\rMBPP:   7%|▋         | 26/374 [04:56<48:19,  8.33s/it]  \\\\rMBPP:   7%|▋         | 27/374 [04:57<36:12,  6.26s/it]\\\\rMBPP:   7%|▋         | 28/374 [05:23<1:08:54, 11.95s/it]\\\\rMBPP:   8%|▊         | 29/374 [05:48<1:31:36, 15.93s/it]\\\\rMBPP:   8%|▊         | 30/374 [06:13<1:47:15, 18.71s/it]\\\\rMBPP:   8%|▊         | 31/374 [06:38<1:58:05, 20.66s/it]\\\\rMBPP:   9%|▊         | 32/374 [07:04<2:05:41, 22.05s/it]\\\\rMBPP:   9%|▉         | 33/374 [07:06<1:32:09, 16.22s/it]\\\\rMBPP:   9%|▉         | 34/374 [07:31<1:47:06, 18.90s/it]\\\\rMBPP:   9%|▉         | 35/374 [07:33<1:18:07, 13.83s/it]\\\\rMBPP:  10%|▉         | 36/374 [07:35<57:33, 10.22s/it]  \\\\rMBPP:  10%|▉         | 37/374 [08:00<1:22:33, 14.70s/it]\\\\rMBPP:  10%|█         | 38/374 [08:04<1:04:32, 11.52s/it]\\\\rMBPP:  10%|█         | 39/374 [08:07<49:58,  8.95s/it]  2026-05-20 04:11:12,083 [INFO] Progress: 40/374, Pass@1: 0.0750\\\\n\\\\rMBPP:  11%|█         | 40/374 [08:09<38:22,  6.89s/it]\\\\rMBPP:  11%|█         | 41/374 [08:12<31:02,  5.59s/it]\\\\rMBPP:  11%|█         | 42/374 [08:37<1:03:29, 11.47s/it]\\\\rMBPP:  11%|█▏        | 43/374 [08:40<48:27,  8.78s/it]  \\\\rMBPP:  12%|█▏        | 44/374 [09:05<1:15:24, 13.71s/it]\\\\rMBPP:  12%|█▏        | 45/374 [09:30<1:34:04, 17.16s/it]\\\\rMBPP:  12%|█▏        | 46/374 [09:32<1:08:45, 12.58s/it]\\\\rMBPP:  13%|█▎        | 47/374 [09:42<1:04:15, 11.79s/it]\\\\rMBPP:  13%|█▎        | 48/374 [09:46<51:28,  9.48s/it]  \\\\rMBPP:  13%|█▎        | 49/374 [09:48<39:32,  7.30s/it]\\\\rMBPP:  13%|█▎        | 50/374 [09:50<30:29,  5.65s/it]\\\\rMBPP:  14%|█▎        | 51/374 [09:51<23:23,  4.35s/it]\\\\rMBPP:\n…[truncated 6484 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 805
+          },
+          "id": "event-001975"
+        },
+        {
+          "source_line": 1976,
+          "timestamp": "2026-05-19T20:36:11.191366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7991}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1254
+          },
+          "id": "event-001976"
+        },
+        {
+          "source_line": 1977,
+          "timestamp": "2026-05-19T20:36:11.197416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"eval_mbpp*1p5b*\""
+            }
+          },
+          "id": "event-001977"
+        },
+        {
+          "source_line": 1978,
+          "timestamp": "2026-05-19T20:36:12.614771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1417
+          },
+          "id": "event-001978"
+        },
+        {
+          "source_line": 1979,
+          "timestamp": "2026-05-19T20:36:32.848001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_dense_unpruned.json')); print(f'pass@1={d.get(\\\"pass_at_1\\\",\\\"N/A\\\")}, n_correct={d.get(\\\"n_correct\\\",\\\"N/A\\\")}, n_total={d.get(\\\"n_total\\\",\\\"N/A\\\")}')\""
+            }
+          },
+          "id": "event-001979"
+        },
+        {
+          "source_line": 1980,
+          "timestamp": "2026-05-19T20:36:33.249917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-001980"
+        }
+      ]
+    }
+  ]
+}

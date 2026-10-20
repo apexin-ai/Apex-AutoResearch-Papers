@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e4ba1b8dd9c830e520c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest humaneval sft standard 25",
+  "task_key": "worker_ssh_harvest_humaneval_sft_standard_25_20260521T024237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_humaneval_sft_standard_25_20260521T024237_result.json",
+    "occurrence": 1,
+    "bytes": 240,
+    "sha256": "13b1c874e103d8c0f3e1f8f6af826dc63d2f03d0551b0a6c2cb85db4f5c5ac34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**结果汇总**：`eval_humaneval_sft_standard_25` — **pass@1 = 1.83%** (3/164, ±1.05%)。几乎所有样本都生成到 max_tokens=512 截断，仅 HumanEval/23 等 3 题通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-humaneval-sft-standard-25.md"
+}

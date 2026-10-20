@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21324a128980aa4ec347",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westd eval progress",
+  "task_key": "worker_ssh_check_westd_eval_progress_20260520T162531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_eval_progress_20260520T162531_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "21c32876fd056cff2584313fd5d35f5b73e6f7879580840810defbe6df049039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 任务 | 状态 | 进度 | 准确率 | 备注 |\n|-----|------|------|------|--------|------|\n| cuda:1 | eval_gsm8k_sft_cka_only_15 | **ALIVE** | 158/1319 (12%) | 80.67% @150 | 运行 20m47s，~3.1s/it，ETA ~60min |\n| cuda:2 | eval_gsm8k_sft_standard_15 | **DONE** | 1319/1319 | **66.49%** (877/1319) | 已保存结果 |\n| cuda:3 | eval_gsm8k_grpo_standard_15_v2 | **DONE** | 1319/1319 | **66.11%** (872/1319) | 已保存结果 |\n\n两个已完成任务的 eos_rate 均为 99.3%，avg_response_length ~183-184 tokens。sft_cka_only_15 目前中期 acc 80.67%，显著高于另外两个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-eval-progress.md"
+}

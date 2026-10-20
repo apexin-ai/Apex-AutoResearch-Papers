@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pass_k8_standard_20_grpo_qwen_math_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:54:25.214Z",
+    "updated_at": "2026-05-16T21:54:39.715Z",
+    "hypothesis": "Qwen2.5-Math-7B Standard 20% post-GRPO pass@k=8 (N=200, T=0.7, seed=42). C1 diversity 对照：frac_zero=0.85 collapse 模型的 sampling diversity。重跑 v1（僵尸进程被 kill）。Parent: grpo_standard_qwen_math_v3.",
+    "parent": "grpo_standard_qwen_math_v3"
+  },
+  "timestamp": "2026-05-16T21:54:39.931536+00:00",
+  "trigger": "update_registry"
+}

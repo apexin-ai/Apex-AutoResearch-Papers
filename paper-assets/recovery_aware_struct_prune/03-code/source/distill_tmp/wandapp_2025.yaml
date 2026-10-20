@@ -1,0 +1,11 @@
+paper_key: "wandapp_2025"
+title: "Wanda++: Pruning Large Language Models via Regional Gradients"
+venue: "ACL 2025 Findings"
+full_text_available: false
+research:
+  baselines: [Wanda, SparseGPT, GBLM]
+  metrics: [{name: "perplexity (WikiText2, C4)", direction: "lower_better"}, {name: "zero-shot accuracy (9 tasks)", direction: "higher_better"}]
+  datasets: [{name: "C4", size: "128 samples calibration"}, {name: "WikiText2", size: "eval"}, {name: "BoolQ/RTE/MRPC/WiC/HellaSwag/ARC-e/ARC-c/WinoGrande/OBQA", size: "standard"}]
+  ablation_dimensions: [regional gradient scope, sparsity pattern]
+  training_recipe: {}
+  method_family: "weight pruning with regional gradients"

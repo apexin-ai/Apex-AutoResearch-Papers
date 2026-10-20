@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_math500_sft_rasp_alpha2p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:06:22.386Z",
+    "updated_at": "2026-05-22T15:09:02.665Z",
+    "hypothesis": "α=2.0 SFT MATH-500 eval @2048. Dose-response peak on GSM8K (64.97% SFT). Cross-benchmark validation: if α=2.0 also peaks on MATH-500, inverted-U generalizes beyond GSM8K (strengthens MF4 + N1)."
+  },
+  "timestamp": "2026-05-22T15:09:03.343921+00:00",
+  "trigger": "update_registry"
+}

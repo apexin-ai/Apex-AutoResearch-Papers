@@ -1,0 +1,16 @@
+{
+  "exp_id": "pipeline_standard_15",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:09:55.898Z",
+    "updated_at": "2026-05-20T05:10:48.819Z",
+    "hypothesis": "Standard pruning at 15% sparsity full pipeline (prune→SFT→GRPO 100 steps→GSM8K eval N=1319). Baseline comparison for CKA-only at same sparsity. Standard pruning uses magnitude-only importance, expected to show lower GRPO recovery than CKA-only.",
+    "notes": "SFT complete: train_loss=0.668, final_loss=0.5363, mean_token_accuracy=0.8561, runtime=1733s. Model saved to /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_15/"
+  },
+  "timestamp": "2026-05-20T05:10:49.275721+00:00",
+  "trigger": "update_registry"
+}

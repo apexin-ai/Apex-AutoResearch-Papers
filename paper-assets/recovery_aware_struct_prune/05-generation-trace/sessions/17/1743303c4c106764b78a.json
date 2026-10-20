@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1743303c4c106764b78a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis floor ablation 0p6 v2",
+  "task_key": "worker_analysis_floor_ablation_0p6_v2_20260523T162814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_floor_ablation_0p6_v2_20260523T162814_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "bb083f64df3e3720d14b0aeec201a66a06bc6760e61c513c107cc801347428ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## floor_ablation_0p6_cka_only_20_v2 结果\n\n### GSM8K Eval\n- Accuracy: **62.02%** (818/1319)\n- EOS rate: 0.9803\n- Avg response length: 252.7 tokens\n\n### GRPO Training (100 steps)\n- Final reward: 0.2419\n- Final loss: -0.01401\n- Peak reward: 0.3394 (step 80)\n- Final KL: 0.002682\n- 无报错，EXIT_CODE=0\n\n### Checkpoint\n- 路径: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_floor_0.6/`\n- 状态: **成功** — model.safetensors (12.3GB) + checkpoint-100 均存在\n\n### W&B\n- run_id: `sbmz0hbv`\n- run name: `grpo_cka_only_20_floor_0.6`\n- project: `recovery_aware_struct_prune`\n\n### Floor Ratio Ablation 对比\n\n| Floor | GSM8K Acc | 备注 |\n|-------|-----------|------|\n| 0.3 | **65.05%** | 最佳 |\n| 0.4 (baseline) | 64.37% | |\n| 0.5 | 61.71% | |\n| 0.6 | 62.02% | 本次 |\n\nfloor=0.6 (62.02%) 与 floor=0.5 (61.71%) 接近，略高 0.3pp，但明显低于 floor=0.3 和 0.4。总体趋势：floor 越高性能越差，但 0.5→0.6 差异不大（可能在置信区间内，±1.34%）。最优 floor 仍是 0.3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-floor-ablation-0p6-v2.md"
+}

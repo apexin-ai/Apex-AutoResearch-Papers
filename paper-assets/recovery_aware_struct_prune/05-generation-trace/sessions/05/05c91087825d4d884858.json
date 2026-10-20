@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05c91087825d4d884858",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code standard grpo v5 prep",
+  "task_key": "worker_code_standard-grpo-v5-prep_20260515T123134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_standard-grpo-v5-prep_20260515T123134_result.json",
+    "occurrence": 1,
+    "bytes": 1975,
+    "sha256": "5d41075f9e27b799d4feb87dcc02f0e326876ab5cd59f9c430ad0ab97c455acb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n### 1. Standard v5 脚本内容\n\n```bash\n#!/bin/bash\n# GRPO v5 Standard — cuda:1\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/recovery_aware_struct_prune\n\nCUDA_VISIBLE_DEVICES=1 python src/train_grpo_v5.py \\\n    --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 \\\n    --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20 \\\n    --gpu 0 \\\n    --max_completion_length 512 \\\n    --steps_per_generation 4 \\\n    --num_train_epochs 1 \\\n    --max_samples 1000 \\\n    --learning_rate 1e-6 \\\n    --beta 0.01 \\\n    --loss_type dapo \\\n    --format_reward_weight 0.1 \\\n    --temperature 0.4 \\\n    --repetition_penalty 1.15 \\\n    --gradient_checkpointing true \\\n    --save_total_limit 3 \\\n    --save_steps 100 \\\n    --reward_desert_patience 50 \\\n    --run_name grpo_stage2_standard_20_v5\n```\n\n### 2. 与 RASP v5 的参数差异\n\n| 参数 | RASP v5 | Standard v5 |\n|------|---------|-------------|\n| `CUDA_VISIBLE_DEVICES` | 0 | **1** |\n| `--model_path` | `sft_rasp_20` | **`sft_standard_20`** |\n| `--output_dir` | `grpo_stage2_rasp_20_v5` | **`grpo_stage2_standard_20`** |\n| `--run_name` | `grpo_stage2_rasp_20_v5` | **`grpo_stage2_standard_20_v5`** |\n\n其余参数完全一致（beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, max_completion_length=512, gradient_checkpointing=true, steps_per_generation=4 等）。\n\n### 3. sft_standard_20_retrain 进度\n\n**已完成。** `sft_standard_20` 目录下 `model.safetensors` (12GB) 已保存，包含 checkpoint-935 和 checkpoint-1870。tmux session `sft_standard_20_retrain` 已不存在（训练结束后自动关闭）。可以立即启动 Standard v5 GRPO。\n\n### 4. 脚本验证\n\n- 脚本路径：`/root/recovery_aware_struct_prune/scripts/run_grpo_v5_standard.sh`\n- `bash -n` 语法检查：**通过**\n- 已设置可执行权限"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-standard-grpo-v5-prep.md"
+}

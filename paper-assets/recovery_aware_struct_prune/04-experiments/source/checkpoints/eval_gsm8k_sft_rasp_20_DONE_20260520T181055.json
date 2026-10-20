@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_gsm8k_sft_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:09:04.809Z",
+    "updated_at": "2026-05-20T18:10:54.576Z",
+    "hypothesis": "GSM8K N=1319 eval on RASP 20% SFT checkpoint (pre-GRPO). Fills Table 2 SFT column for RASP method. Compare with CKA-only and Standard SFT baselines at same sparsity.",
+    "parent": "pipeline_rasp_20",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_n1319.json",
+      "server": "westd-29022",
+      "gpu": "cuda:3",
+      "pid": 267009,
+      "data_path": "gsm8k/test",
+      "data_count": 1319,
+      "model_name": "sft_rasp_20_westd (Qwen2.5-7B, 20% RASP sparsity, SFT only)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd",
+      "eval_data": "gsm8k:test:1319",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_rasp_20.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_n1319.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gsm8k_accuracy": 0.6149,
+      "gsm8k_accuracy_ci": 0.0134,
+      "correct": 811,
+      "total": 1319,
+      "eos_rate": 0.9826,
+      "avg_response_length": 216.5
+    },
+    "completed_at": "2026-05-20T18:10:54.576Z"
+  },
+  "timestamp": "2026-05-20T18:10:55.072110+00:00",
+  "trigger": "update_registry"
+}

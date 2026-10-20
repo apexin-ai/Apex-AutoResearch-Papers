@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_gsm8k_sft_rasp_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:10:57.471Z",
+    "updated_at": "2026-05-18T18:10:57.471Z"
+  },
+  "timestamp": "2026-05-18T18:10:57.840390+00:00",
+  "trigger": "update_registry"
+}

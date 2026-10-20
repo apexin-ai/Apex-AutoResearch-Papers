@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\caption{Recovery pipeline comparison on GSM8K (N=100, greedy decoding). Each column shows accuracy after the corresponding stage. Recovery $\Delta$ = final accuracy $-$ post-prune accuracy.}
+\label{tab:recovery}
+\begin{tabular}{l S[table-format=2.0] S[table-format=2.0] S[table-format=2.0] S[table-format=3.0]}
+\toprule
+{Pruning Method} & {Post-Prune (\%)} & {+SFT (\%)} & {+GRPO (\%)} & {Recovery $\Delta$} \\
+\midrule
+Standard 20\%  & 1  & 64 & \textcolor{gray}{TBD} & \textcolor{gray}{TBD} \\
+RASP 20\%      & 29 & 57 & \textcolor{gray}{TBD} & \textcolor{gray}{TBD} \\
+GRASPrune 20\% & \textcolor{gray}{TBD} & \textcolor{gray}{TBD} & \textcolor{gray}{TBD} & \textcolor{gray}{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table}

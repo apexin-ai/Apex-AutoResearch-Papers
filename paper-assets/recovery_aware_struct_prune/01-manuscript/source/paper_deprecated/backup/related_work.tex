@@ -1,0 +1,47 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Structured Pruning of Large Language Models}
+\label{sec:rw_pruning}
+
+Structured pruning removes entire architectural units---attention heads, MLP channels, or layers---to reduce model size while maintaining hardware-friendly dense computation.
+LLM-Pruner~\citep{llmpruner2023} introduced dependency-aware structural pruning that respects inter-component coupling in transformer architectures.
+Bonsai~\citep{bonsai2025} achieves competitive structured pruning using only forward passes, eliminating the need for gradient computation.
+GRASPrune~\citep{graspprune2026} advances the state of the art with global gating that jointly prunes FFN channels and KV head groups under a unified budget constraint.
+ShortGPT~\citep{shortgpt2024} and SliceGPT~\citep{slicegpt2024} target layer-level depth pruning, while Wanda~\citep{wanda2024} addresses unstructured weight sparsity---both complementary but orthogonal to the width-level structural pruning we study.
+
+For reasoning models specifically, RESP~\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\% on GSM8K at 40\% structured sparsity without any recovery training.
+\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.
+RAC~\citep{rac2025} demonstrates that chain-of-thought calibrated reconstruction dramatically improves unstructured and 2:4 semi-structured pruning but does not extend to full structural pruning.
+\citet{doingmore2026} reveal that unstructured pruning can improve test-time scaling for reasoning while structured pruning degrades it, suggesting that \emph{which} structures are removed critically shapes recovery potential.
+
+RASP differs from all the above in that it optimizes the pruning decision for post-RLVR recoverability: structures are scored not only by their importance but by whether their function can be redistributed across retained structures during reinforcement learning recovery.
+
+\subsection{Pruning-Aware Recovery and Re-training}
+\label{sec:rw_recovery}
+
+Post-pruning recovery is essential at moderate to high compression ratios.
+\citet{selfhealing2025} demonstrate that RLVR recovery restores pruned reasoning models to 95\%+ accuracy at 25\% compression, significantly outperforming SFT recovery (${\sim}$80\%).
+This establishes RLVR as the preferred recovery paradigm for reasoning models, but Self-Healing treats the pruning method as a black box and tests only one compression ratio---it does not study whether the \emph{choice} of what to prune affects how well RLVR can recover.
+
+P\textsuperscript{2} Law~\citep{p2law2025} establishes scaling laws for post-training loss after pruning ($L \propto (1/\rho)^\gamma$), predicting recovery data requirements at a given compression ratio, but studies only continual pre-training rather than RLVR or SFT.
+PASER~\citep{paser2025} optimizes which recovery \emph{data} to use through manifold learning and capability-aware budget allocation---complementary to RASP, which optimizes which \emph{structures} to prune for recoverability.
+PAT~\citep{pat2025} shows that jointly considering pruning and fine-tuning objectives outperforms the sequential prune-then-finetune pipeline.
+
+The Lottery Ticket Hypothesis~\citep{frankle2019lth} asks which subnetworks can train effectively from random initialization.
+RASP extends this notion to what we term \emph{paradigm-conditioned trainability}: the optimal subnetwork to retain depends not only on the task but on the recovery paradigm (RLVR vs.\ SFT), as each paradigm imposes fundamentally different functional requirements on the retained architecture.
+
+\subsection{RLVR Training Dynamics}
+\label{sec:rw_rlvr}
+
+Understanding how RLVR reshapes model representations is central to predicting which pruned structures are recoverable.
+\citet{rlsqueezes2026} show that RLVR and SFT shape reasoning capabilities through fundamentally different mechanisms: RLVR \emph{compresses} incorrect reasoning trajectories via global exploration, while SFT \emph{expands} correct trajectories via local imitation.
+This asymmetry provides the theoretical foundation for RASP---structures with high functional overlap are more amenable to RLVR's redistribution mechanism, as their function can be absorbed by similar retained structures during global policy optimization, whereas SFT's trajectory-imitation objective cannot achieve such redistribution.
+OPSD~\citep{opsd2026} proposes a post-RL compaction stage that further compresses reasoning traces after RLVR training, reinforcing the view that RLVR-trained models exhibit compressible internal structure.
+
+\paragraph{CKA-based pruning.}
+CKA~\citep{kornblith2019cka} has been previously applied to pruning, but at a fundamentally different granularity and with a different objective.
+MPruner~\citep{mpruner2024} uses \emph{inter-layer} CKA to cluster globally redundant layers for depth pruning in CNNs and general transformers, achieving up to 50\% parameter reduction by removing entire layers whose representations are similar to adjacent layers.
+\citet{lachance2024cka} similarly apply CKA-based layer similarity for depth pruning of VGGNet.
+Both operate at the \emph{layer} level, using CKA to identify which layers are redundant and can be removed with minimal accuracy loss.
+In contrast, RASP uses \emph{intra-layer} CKA between individual GQA groups and MLP channels to predict per-structure recoverability under RLVR---a finer granularity (width vs.\ depth pruning) optimizing for a different objective (post-recovery reasoning performance vs.\ immediate accuracy preservation).

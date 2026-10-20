@@ -1,0 +1,1259 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{llmpruner2023,graspprune2026}
+\citation{deepseek2025r1,shao2024grpo}
+\citation{deepseek2025r1}
+\citation{shao2024grpo}
+\citation{cobbe2021gsm8k}
+\citation{selfhealing2025}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN@col{2}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\citation{graspprune2026,resp2025,llmpruner2023,bonsai2025,paser2025,pat2025}
+\citation{rlsqueezes2026}
+\citation{kornblith2019cka}
+\citation{llmpruner2023}
+\citation{shortgpt2024}
+\citation{llmpruner2023}
+\citation{bonsai2025}
+\citation{graspprune2026}
+\citation{shortgpt2024}
+\citation{slicegpt2024}
+\citation{wanda2024}
+\citation{doingmore2026}
+\citation{resp2025}
+\citation{rac2025}
+\citation{ssgr2025}
+\citation{llms2lrms2026}
+\citation{fang_2025}
+\citation{funcnet_2025}
+\citation{mpruner2024}
+\citation{kornblith2019cka}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Controlled comparison framework. All four pruning criteria share the same structural analysis (Taylor importance + CKA overlap) and identical recovery pipeline (SFT warmup $\to $ GRPO). Despite identical training, the criteria produce divergent outcomes: CKA-only achieves active learning while Standard and \textsc  {Rasp}{} collapse.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:framework}{{1}{2}{Controlled comparison framework. All four pruning criteria share the same structural analysis (Taylor importance + CKA overlap) and identical recovery pipeline (SFT warmup $\to $ GRPO). Despite identical training, the criteria produce divergent outcomes: CKA-only achieves active learning while Standard and \rasp {} collapse}{figure.caption.1}{}}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN@col{2}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\@LN{144}{1}
+\@LN{145}{1}
+\@LN{146}{1}
+\@LN{147}{1}
+\@LN{148}{1}
+\@LN{149}{1}
+\@LN{150}{1}
+\@LN{151}{1}
+\@LN{152}{1}
+\@LN{153}{1}
+\@LN{154}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structured pruning of LLMs.}{2}{section*.2}\protected@file@percent }
+\@LN{155}{1}
+\@LN{156}{1}
+\@LN{157}{1}
+\@LN{158}{1}
+\@LN{159}{1}
+\@LN{160}{1}
+\@LN{161}{1}
+\@LN{162}{1}
+\@LN{163}{1}
+\@LN{164}{1}
+\@LN{165}{1}
+\citation{selfhealing2025}
+\citation{p2law2025}
+\citation{paser2025}
+\citation{pat2025}
+\citation{restorelcc_2025}
+\citation{boiling_frog_2026}
+\citation{opsd2026}
+\citation{frankle2019lth}
+\citation{rlsqueezes2026}
+\citation{gao2023overoptimization}
+\citation{dong2025rlplus}
+\citation{shah2025comedy}
+\citation{ainslie2023gqa}
+\citation{shao2024grpo}
+\@LN@col{1}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@writefile{toc}{\contentsline {paragraph}{Pruning-aware recovery.}{3}{section*.3}\protected@file@percent }
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@writefile{toc}{\contentsline {paragraph}{RLVR training dynamics.}{3}{section*.4}\protected@file@percent }
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN@col{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\@LN{231}{2}
+\@LN{232}{2}
+\@LN{233}{2}
+\@LN{234}{2}
+\@LN{235}{2}
+\@LN{236}{2}
+\@LN{237}{2}
+\@LN{238}{2}
+\@LN{239}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Preliminaries and Notation}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:prelim}{{3.1}{3}{Preliminaries and Notation}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structured pruning.}{3}{section*.5}\protected@file@percent }
+\@LN{240}{2}
+\@LN{241}{2}
+\@LN{242}{2}
+\@LN{243}{2}
+\@LN{244}{2}
+\@LN{245}{2}
+\@LN{246}{2}
+\@writefile{toc}{\contentsline {paragraph}{Grouped Query Attention (GQA).}{3}{section*.6}\protected@file@percent }
+\@LN{247}{2}
+\@LN{248}{2}
+\@LN{249}{2}
+\@LN{250}{2}
+\@LN{251}{2}
+\@LN{252}{2}
+\@LN{253}{2}
+\@LN{254}{2}
+\@LN{255}{2}
+\@LN{256}{2}
+\@writefile{toc}{\contentsline {paragraph}{RLVR and GRPO.}{3}{section*.7}\protected@file@percent }
+\@LN{257}{2}
+\@LN{258}{2}
+\@LN{259}{2}
+\@LN{260}{2}
+\@LN{261}{2}
+\@LN{262}{2}
+\citation{cobbe2021gsm8k}
+\citation{kornblith2019cka}
+\citation{mpruner2024,lachance2024cka}
+\citation{davari2023cka,klabunde_similarity_survey_2025}
+\citation{llmpruner2023}
+\@LN@col{1}
+\@LN{263}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Structural Analysis}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:structural_analysis}{{3.2}{4}{Structural Analysis}{subsection.3.2}{}}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@writefile{toc}{\contentsline {paragraph}{Calibration data.}{4}{section*.8}\protected@file@percent }
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@writefile{toc}{\contentsline {paragraph}{Structural importance.}{4}{section*.9}\protected@file@percent }
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\newlabel{eq:importance}{{1}{4}{Structural importance}{equation.1}{}}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@writefile{toc}{\contentsline {paragraph}{Functional overlap via CKA.}{4}{section*.10}\protected@file@percent }
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\newlabel{eq:cka}{{2}{4}{Functional overlap via CKA}{equation.2}{}}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@LN{299}{3}
+\newlabel{eq:overlap}{{3}{4}{Functional overlap via CKA}{equation.3}{}}
+\@LN{300}{3}
+\@LN{301}{3}
+\@LN{302}{3}
+\@LN{303}{3}
+\@LN@col{2}
+\@LN{304}{3}
+\@LN{305}{3}
+\@LN{306}{3}
+\@LN{307}{3}
+\@LN{308}{3}
+\@LN{309}{3}
+\@LN{310}{3}
+\@LN{311}{3}
+\@LN{312}{3}
+\@writefile{toc}{\contentsline {paragraph}{CKA reliability.}{4}{section*.11}\protected@file@percent }
+\@LN{313}{3}
+\@LN{314}{3}
+\@LN{315}{3}
+\@LN{316}{3}
+\@LN{317}{3}
+\@LN{318}{3}
+\@LN{319}{3}
+\@LN{320}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Pruning Scoring Criteria}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:scoring}{{3.3}{4}{Pruning Scoring Criteria}{subsection.3.3}{}}
+\@LN{321}{3}
+\@LN{322}{3}
+\@LN{323}{3}
+\@LN{324}{3}
+\@LN{325}{3}
+\@LN{326}{3}
+\@LN{327}{3}
+\@LN{328}{3}
+\@LN{329}{3}
+\@LN{330}{3}
+\@writefile{toc}{\contentsline {paragraph}{Standard (importance-only).}{4}{section*.12}\protected@file@percent }
+\@LN{331}{3}
+\@LN{332}{3}
+\@LN{333}{3}
+\newlabel{eq:standard}{{4}{4}{Standard (importance-only)}{equation.4}{}}
+\@LN{334}{3}
+\@LN{335}{3}
+\@LN{336}{3}
+\@LN{337}{3}
+\@writefile{toc}{\contentsline {paragraph}{RASP (recovery-aware composite).}{4}{section*.13}\protected@file@percent }
+\@LN{338}{3}
+\@LN{339}{3}
+\@LN{340}{3}
+\newlabel{eq:score}{{5}{4}{RASP (recovery-aware composite)}{equation.5}{}}
+\@LN{341}{3}
+\@LN{342}{3}
+\@LN{343}{3}
+\@LN{344}{3}
+\@LN{345}{3}
+\@LN{346}{3}
+\@LN{347}{3}
+\citation{rlsqueezes2026}
+\citation{rlsqueezes2026}
+\citation{deepseek2025r1}
+\citation{qwen2.5}
+\citation{ainslie2023gqa}
+\citation{cobbe2021gsm8k}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{CKA-only (overlap-only).}{5}{section*.14}\protected@file@percent }
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\newlabel{eq:cka_only}{{6}{5}{CKA-only (overlap-only)}{equation.6}{}}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@writefile{toc}{\contentsline {paragraph}{Random.}{5}{section*.15}\protected@file@percent }
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Two-Stage Recovery}{5}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:recovery}{{3.4}{5}{Two-Stage Recovery}{subsection.3.4}{}}
+\@LN{374}{4}
+\@LN{375}{4}
+\@LN{376}{4}
+\@LN{377}{4}
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: SFT warmup.}{5}{section*.16}\protected@file@percent }
+\@LN{378}{4}
+\@LN{379}{4}
+\@LN{380}{4}
+\@LN{381}{4}
+\@LN{382}{4}
+\@LN{383}{4}
+\@LN{384}{4}
+\@LN{385}{4}
+\@LN{386}{4}
+\@LN{387}{4}
+\@LN{388}{4}
+\@LN{389}{4}
+\@LN{390}{4}
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: GRPO alignment.}{5}{section*.17}\protected@file@percent }
+\@LN{391}{4}
+\@LN{392}{4}
+\@LN{393}{4}
+\@LN{394}{4}
+\@LN{395}{4}
+\@LN@col{2}
+\@LN{396}{4}
+\@LN{397}{4}
+\@LN{398}{4}
+\@LN{399}{4}
+\@LN{400}{4}
+\@LN{401}{4}
+\@LN{402}{4}
+\@LN{403}{4}
+\@LN{404}{4}
+\@LN{405}{4}
+\@LN{406}{4}
+\@LN{407}{4}
+\@LN{408}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Recovery Capacity Diagnostics}{5}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:diagnostics}{{3.5}{5}{Recovery Capacity Diagnostics}{subsection.3.5}{}}
+\@LN{409}{4}
+\@LN{410}{4}
+\@LN{411}{4}
+\@LN{412}{4}
+\@LN{413}{4}
+\@LN{414}{4}
+\@LN{415}{4}
+\@LN{416}{4}
+\@LN{417}{4}
+\@LN{418}{4}
+\@LN{419}{4}
+\@LN{420}{4}
+\@LN{421}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experiments}{section.4}{}}
+\@LN{422}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp_setup}{{4.1}{5}{Experimental Setup}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Base model and evaluation.}{5}{section*.18}\protected@file@percent }
+\@LN{423}{4}
+\@LN{424}{4}
+\@LN{425}{4}
+\@LN{426}{4}
+\@LN{427}{4}
+\@LN{428}{4}
+\@LN{429}{4}
+\@LN{430}{4}
+\@LN{431}{4}
+\@LN{432}{4}
+\@LN{433}{4}
+\@LN{434}{4}
+\@LN{435}{4}
+\@LN{436}{4}
+\@LN{437}{4}
+\@writefile{toc}{\contentsline {paragraph}{Pruning methods.}{5}{section*.19}\protected@file@percent }
+\@LN{438}{4}
+\@LN{439}{4}
+\@LN{440}{4}
+\@LN{441}{4}
+\@LN{442}{4}
+\@LN{443}{4}
+\citation{llmpruner2023}
+\citation{shao2024grpo}
+\@LN@col{1}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\@LN{453}{5}
+\@LN{454}{5}
+\@LN{455}{5}
+\@LN{456}{5}
+\@LN{457}{5}
+\@writefile{toc}{\contentsline {paragraph}{Recovery pipeline and hardware.}{6}{section*.20}\protected@file@percent }
+\@LN{458}{5}
+\@LN{459}{5}
+\@LN{460}{5}
+\@LN{461}{5}
+\@LN{462}{5}
+\@LN{463}{5}
+\@LN{464}{5}
+\@LN{465}{5}
+\@LN{466}{5}
+\@LN{467}{5}
+\@LN{468}{5}
+\@LN{469}{5}
+\@LN{470}{5}
+\@LN{471}{5}
+\@LN{472}{5}
+\@LN{473}{5}
+\@LN{474}{5}
+\@LN{475}{5}
+\@LN{476}{5}
+\@LN{477}{5}
+\@LN{478}{5}
+\@LN{479}{5}
+\@LN{480}{5}
+\@LN{481}{5}
+\@LN{482}{5}
+\@LN{483}{5}
+\@LN{484}{5}
+\@LN{485}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Recovery Capacity Gradient}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:recovery_gradient}{{4.2}{6}{Recovery Capacity Gradient}{subsection.4.2}{}}
+\@LN{486}{5}
+\@LN{487}{5}
+\@LN{488}{5}
+\@LN{489}{5}
+\@LN{490}{5}
+\@LN{491}{5}
+\@LN{492}{5}
+\@LN{493}{5}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Recovery capacity gradient: GRPO dynamics for four pruning criteria at 20\% sparsity under identical configuration (lr $1{\times }10^{-6}$, $\beta {=}0.01$, $T{=}0.4$, 100 steps). Peak reward = best across 100 training steps. $f_0$: fraction of training batches where all sampled completions receive identical reward (lower = healthier exploration). Best in \textbf  {bold}, second-best \underline  {underlined}.}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:recovery_gradient}{{1}{6}{Recovery capacity gradient: GRPO dynamics for four pruning criteria at 20\% sparsity under identical configuration (lr $1{\times }10^{-6}$, $\beta {=}0.01$, $T{=}0.4$, 100 steps). Peak reward = best across 100 training steps. $f_0$: fraction of training batches where all sampled completions receive identical reward (lower = healthier exploration). Best in \textbf {bold}, second-best \underline {underlined}}{table.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces GRPO reward trajectories for four pruning criteria and the unpruned model under identical training configuration ($\beta {=}0.01$, $T{=}0.4$, 100 steps). CKA-only reaches 0.354 peak reward with an observed recovery event at step 90. Random oscillates between 0.14 and 0.19 (training timed out at step 97; 9 steps shown). Standard peaks at 0.081 before borderline collapse. \textsc  {Rasp}{} peaks at 0.061 (step 50) and declines to 0.010 by step 100.}}{6}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:reward_trajectories}{{2}{6}{GRPO reward trajectories for four pruning criteria and the unpruned model under identical training configuration ($\beta {=}0.01$, $T{=}0.4$, 100 steps). CKA-only reaches 0.354 peak reward with an observed recovery event at step 90. Random oscillates between 0.14 and 0.19 (training timed out at step 97; 9 steps shown). Standard peaks at 0.081 before borderline collapse. \rasp {} peaks at 0.061 (step 50) and declines to 0.010 by step 100}{figure.caption.22}{}}
+\@LN{494}{5}
+\@LN{495}{5}
+\@LN{496}{5}
+\@LN{497}{5}
+\@LN{498}{5}
+\@LN{499}{5}
+\@LN{500}{5}
+\@LN{501}{5}
+\@LN{502}{5}
+\@LN{503}{5}
+\@LN{504}{5}
+\@LN{505}{5}
+\@LN{506}{5}
+\@LN{507}{5}
+\@LN{508}{5}
+\@LN{509}{5}
+\@LN{510}{5}
+\@LN{511}{5}
+\@LN{512}{5}
+\citation{shortgpt2024}
+\citation{hendrycks2021math}
+\citation{chen2021humaneval}
+\citation{austin2021mbpp}
+\citation{shortgpt2024}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Training dynamics diagnostics. (a)~$f_0$ (fraction of zero-variance batches): CKA-only stays below 0.35; Standard and \textsc  {Rasp}{} remain in the collapse zone ($f_0 > 0.5$) throughout training. (b)~Gradient norm: Standard exhibits a transient minimum of 0.017 at step 90 before recovering to 2.41 at step 100; \textsc  {Rasp}{} gradient norms remain predominantly near zero.}}{7}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:collapse_dynamics}{{3}{7}{Training dynamics diagnostics. (a)~$f_0$ (fraction of zero-variance batches): CKA-only stays below 0.35; Standard and \rasp {} remain in the collapse zone ($f_0 > 0.5$) throughout training. (b)~Gradient norm: Standard exhibits a transient minimum of 0.017 at step 90 before recovering to 2.41 at step 100; \rasp {} gradient norms remain predominantly near zero}{figure.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces GRPO responsiveness on GSM8K ($N{=}1{,}319$, greedy decoding). All pruned models use the controlled v5 GRPO configuration (identical hyperparameters including \texttt  {reward\_desert\_patience}{$=$}50), evaluated at step 100. CKA-only and Standard report mean $\pm $ std over 3 GRPO seeds; \textsc  {Rasp}{} uses a single seed. Best in \textbf  {bold}, second-best \underline  {underlined}.}}{7}{table.caption.24}\protected@file@percent }
+\newlabel{tab:decoupling}{{2}{7}{GRPO responsiveness on GSM8K ($N{=}1{,}319$, greedy decoding). All pruned models use the controlled v5 GRPO configuration (identical hyperparameters including \texttt {reward\_desert\_patience}{$=$}50), evaluated at step 100. CKA-only and Standard report mean $\pm $ std over 3 GRPO seeds; \rasp {} uses a single seed. Best in \textbf {bold}, second-best \underline {underlined}}{table.caption.24}{}}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}GRPO Responsiveness and Scale}{7}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:decoupling}{{4.3}{7}{GRPO Responsiveness and Scale}{subsection.4.3}{}}
+\@LN{517}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@LN{520}{6}
+\@LN{521}{6}
+\@LN{522}{6}
+\@LN{523}{6}
+\@LN{524}{6}
+\@LN{525}{6}
+\@LN{526}{6}
+\@LN{527}{6}
+\@LN{528}{6}
+\@LN{529}{6}
+\@LN{530}{6}
+\@LN{531}{6}
+\@LN{532}{6}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Layer-wise CKA similarity between dense and pruned representations (28 layers). CKA-only diverges most from dense ($\mu {=}0.62$) yet recovers best; Standard ($\mu {=}0.90$), Random ($\mu {=}0.92$), and \textsc  {Rasp}{} ($\mu {=}0.88$) preserve dense fidelity but collapse under RL.}}{7}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:cka_heatmap}{{4}{7}{Layer-wise CKA similarity between dense and pruned representations (28 layers). CKA-only diverges most from dense ($\mu {=}0.62$) yet recovers best; Standard ($\mu {=}0.90$), Random ($\mu {=}0.92$), and \rasp {} ($\mu {=}0.88$) preserve dense fidelity but collapse under RL}{figure.caption.27}{}}
+\@LN{533}{6}
+\@LN{534}{6}
+\@LN{535}{6}
+\@LN{536}{6}
+\@LN{537}{6}
+\@LN{538}{6}
+\newlabel{sec:ood}{{4.3}{7}{GRPO Responsiveness and Scale}{table.caption.24}{}}
+\@LN{539}{6}
+\@LN{540}{6}
+\@LN{541}{6}
+\@LN{542}{6}
+\@LN{543}{6}
+\@LN{544}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Additional Results}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:additional_results}{{4.4}{7}{Additional Results}{subsection.4.4}{}}
+\newlabel{sec:sft_gradient}{{4.4}{7}{Post-SFT accuracy does not predict GRPO outcome}{section*.25}{}}
+\@LN{545}{6}
+\@writefile{toc}{\contentsline {paragraph}{Post-SFT accuracy does not predict GRPO outcome.}{7}{section*.25}\protected@file@percent }
+\@LN{546}{6}
+\@LN{547}{6}
+\@LN{548}{6}
+\@LN{549}{6}
+\@LN{550}{6}
+\@LN{551}{6}
+\@LN{552}{6}
+\@LN{553}{6}
+\@LN{554}{6}
+\@LN{555}{6}
+\@LN{556}{6}
+\@LN{557}{6}
+\@LN{558}{6}
+\@LN{559}{6}
+\newlabel{sec:sparsity_cliff}{{4.4}{7}{Additional results}{section*.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Additional results.}{7}{section*.26}\protected@file@percent }
+\@LN{560}{6}
+\@LN{561}{6}
+\@LN{562}{6}
+\@LN{563}{6}
+\@LN{564}{6}
+\@LN{565}{6}
+\@LN{566}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Extended Analysis}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:extended_analysis}{{4.5}{7}{Extended Analysis}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Representational diversity.}{7}{section*.29}\protected@file@percent }
+\@LN{567}{6}
+\@LN{568}{6}
+\@LN{569}{6}
+\@LN{570}{6}
+\citation{qwen2.5}
+\citation{selfhealing2025}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-scale validation at 20\% sparsity. 7B: DeepSeek-R1-Distill-Qwen-7B (GSM8K mean over 3 seeds for CKA-only and Standard; see Table~\ref {tab:decoupling}). 1.5B: DeepSeek-R1-Distill-Qwen-1.5B (single seed). GSM8K accuracy ($N{=}1{,}319$). 7B reward = peak across 100 GRPO steps (cf.\ Table~\ref {tab:recovery_gradient}); 1.5B reward = mean across training steps.}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:cross_scale}{{3}{8}{Cross-scale validation at 20\% sparsity. 7B: DeepSeek-R1-Distill-Qwen-7B (GSM8K mean over 3 seeds for CKA-only and Standard; see Table~\ref {tab:decoupling}). 1.5B: DeepSeek-R1-Distill-Qwen-1.5B (single seed). GSM8K accuracy ($N{=}1{,}319$). 7B reward = peak across 100 GRPO steps (cf.\ Table~\ref {tab:recovery_gradient}); 1.5B reward = mean across training steps}{table.caption.28}{}}
+\@LN{571}{7}
+\@LN{572}{7}
+\@LN{573}{7}
+\@LN{574}{7}
+\@writefile{toc}{\contentsline {paragraph}{Extended training cannot rescue collapse.}{8}{section*.30}\protected@file@percent }
+\@LN{575}{7}
+\@LN{576}{7}
+\@LN{577}{7}
+\@LN{578}{7}
+\@LN{579}{7}
+\@LN{580}{7}
+\@LN{581}{7}
+\@LN{582}{7}
+\@writefile{toc}{\contentsline {paragraph}{Cross-scale and cross-architecture generalization.}{8}{section*.31}\protected@file@percent }
+\@LN{583}{7}
+\@LN{584}{7}
+\@LN{585}{7}
+\@LN{586}{7}
+\@LN{587}{7}
+\@LN{588}{7}
+\@LN{589}{7}
+\@LN{590}{7}
+\@LN{591}{7}
+\@LN{592}{7}
+\@LN{593}{7}
+\@LN{594}{7}
+\@LN{595}{7}
+\@LN{596}{7}
+\@LN{597}{7}
+\@LN{598}{7}
+\@LN{599}{7}
+\@LN{600}{7}
+\@LN{601}{7}
+\@LN{602}{7}
+\@LN{603}{7}
+\@LN{604}{7}
+\@LN{605}{7}
+\@LN@col{2}
+\@LN{606}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion and Conclusion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{8}{Discussion and Conclusion}{section.5}{}}
+\@LN{607}{7}
+\@LN{608}{7}
+\@LN{609}{7}
+\@LN{610}{7}
+\@LN{611}{7}
+\@LN{612}{7}
+\@LN{613}{7}
+\@LN{614}{7}
+\@LN{615}{7}
+\@LN{616}{7}
+\@LN{617}{7}
+\@LN{618}{7}
+\@LN{619}{7}
+\@LN{620}{7}
+\@LN{621}{7}
+\@LN{622}{7}
+\@LN{623}{7}
+\@LN{624}{7}
+\@LN{625}{7}
+\@LN{626}{7}
+\@LN{627}{7}
+\@LN{628}{7}
+\@LN{629}{7}
+\@LN{630}{7}
+\@LN{631}{7}
+\@LN{632}{7}
+\@LN{633}{7}
+\@LN{634}{7}
+\@LN{635}{7}
+\@LN{636}{7}
+\@LN{637}{7}
+\@LN{638}{7}
+\@LN{639}{7}
+\@LN{640}{7}
+\@LN{641}{7}
+\@LN{642}{7}
+\@LN{643}{7}
+\@LN{644}{7}
+\@LN{645}{7}
+\@LN{646}{7}
+\@LN{647}{7}
+\@LN{648}{7}
+\@LN{649}{7}
+\@LN{650}{7}
+\@LN{651}{7}
+\@LN{652}{7}
+\@LN{653}{7}
+\@LN{654}{7}
+\@LN{655}{7}
+\@LN{656}{7}
+\citation{deepseek2025r1}
+\bibdata{references}
+\bibcite{ainslie2023gqa}{{1}{2023}{{Ainslie et~al.}}{{Ainslie, Lee-Thorp, de~Jong, Zemlyanskiy, Lebr{\'o}n, and Sanghai}}}
+\bibcite{slicegpt2024}{{2}{2024}{{Ashkboos et~al.}}{{Ashkboos, Croci, Gennari~do Nascimento, Hoefler, and Hensman}}}
+\bibcite{austin2021mbpp}{{3}{2021}{{Austin et~al.}}{{Austin, Odena, Nye, Bosma, Michalewski, Dohan, Jiang, Cai, Terry, Le, and Sutton}}}
+\bibcite{chen2021humaneval}{{4}{2021}{{Chen et~al.}}{{Chen, Tworek, Jun, Yuan, Pinto, Kaplan, Edwards, Burda, Joseph, Brockman et~al.}}}
+\bibcite{p2law2025}{{5}{2025}{{Chen et~al.}}{{Chen, Hu, Zhang, Wang, Li, Chen, and Zhang}}}
+\bibcite{cobbe2021gsm8k}{{6}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
+\bibcite{davari2023cka}{{7}{2023}{{Davari et~al.}}{{Davari, Horoi, Natik, Lajoie, Wolf, and Belilovsky}}}
+\bibcite{deepseek2025r1}{{8}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{llms2lrms2026}{{9}{2026}{{Ding et~al.}}{{Ding, Zhao, Ye, Chen, and Shen}}}
+\@LN@col{1}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@writefile{toc}{\contentsline {paragraph}{Architecture sensitivity.}{9}{section*.33}\protected@file@percent }
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@writefile{toc}{\contentsline {paragraph}{Benchmark scope and sparsity ratio.}{9}{section*.34}\protected@file@percent }
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\@LN{683}{8}
+\@LN{684}{8}
+\@LN{685}{8}
+\@writefile{toc}{\contentsline {paragraph}{Limited hardware configurations.}{9}{section*.35}\protected@file@percent }
+\@LN{686}{8}
+\@LN{687}{8}
+\@LN{688}{8}
+\@LN{689}{8}
+\@LN{690}{8}
+\@LN{691}{8}
+\@LN{692}{8}
+\@writefile{toc}{\contentsline {paragraph}{Seed diversity.}{9}{section*.36}\protected@file@percent }
+\@LN{693}{8}
+\@LN{694}{8}
+\@LN{695}{8}
+\@LN{696}{8}
+\@LN{697}{8}
+\@LN{698}{8}
+\@LN{699}{8}
+\@LN{700}{8}
+\@LN{701}{8}
+\@LN{702}{8}
+\@LN{703}{8}
+\@LN@col{2}
+\@LN{704}{8}
+\@LN{705}{8}
+\@LN{706}{8}
+\@LN{707}{8}
+\@LN{708}{8}
+\@LN{709}{8}
+\@LN{710}{8}
+\@LN{711}{8}
+\@LN{712}{8}
+\@LN{713}{8}
+\@LN{714}{8}
+\@LN{715}{8}
+\@LN{716}{8}
+\@LN{717}{8}
+\@LN{718}{8}
+\@LN{719}{8}
+\@LN{720}{8}
+\@LN{721}{8}
+\@LN{722}{8}
+\@LN{723}{8}
+\@LN{724}{8}
+\@LN{725}{8}
+\@LN{726}{8}
+\@LN{727}{8}
+\@LN{728}{8}
+\@LN{729}{8}
+\@LN{730}{8}
+\@LN{731}{8}
+\@LN{732}{8}
+\@LN{733}{8}
+\@LN{734}{8}
+\@LN{735}{8}
+\@LN{736}{8}
+\@LN{737}{8}
+\@LN{738}{8}
+\@LN{739}{8}
+\@LN{740}{8}
+\@LN{741}{8}
+\@LN{742}{8}
+\@LN{743}{8}
+\@LN{744}{8}
+\@LN{745}{8}
+\@LN{746}{8}
+\@LN{747}{8}
+\@LN{748}{8}
+\@LN{749}{8}
+\@LN{750}{8}
+\@LN{751}{8}
+\@LN{752}{8}
+\@LN{753}{8}
+\@LN{754}{8}
+\@LN{755}{8}
+\@LN{756}{8}
+\bibcite{dong2025rlplus}{{10}{2025}{{Dong et~al.}}{{Dong, Jiang, Tao, Liu, Zhang, Mou, Cao, Ma, Chen, Li, Jin, Huang, Li, and Li}}}
+\bibcite{restorelcc_2025}{{11}{2025}{{Feng et~al.}}{{Feng, Zhou, Zhu, Li, Chua, Mak, Ng, and Mao}}}
+\bibcite{frankle2019lth}{{12}{2019}{{Frankle and Carbin}}{{}}}
+\bibcite{gao2023overoptimization}{{13}{2023}{{Gao et~al.}}{{Gao, Schulman, and Hilton}}}
+\bibcite{paser2025}{{14}{2025}{{He et~al.}}{{He, Yin, Zhen, Zhang, Yuan, and Ma}}}
+\bibcite{hendrycks2021math}{{15}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Kadavath, Arora, Basart, Tang, Song, and Steinhardt}}}
+\bibcite{mpruner2024}{{16}{2024}{{Hu et~al.}}{{Hu, Park, Ferraiuolo, Ko, Kim, Song, and Kim}}}
+\bibcite{selfhealing2025}{{17}{2025}{{Ji et~al.}}{{Ji, Lin, Li, Wu, Yao, Jia, Mo, and Zhang}}}
+\bibcite{opsd2026}{{18}{2026}{{Kim and Lee}}{{}}}
+\bibcite{klabunde_similarity_survey_2025}{{19}{2023}{{Klabunde et~al.}}{{Klabunde, Schumacher, Strohmaier, and Lemmerich}}}
+\bibcite{bonsai2025}{{20}{2025}{{Kolawole et~al.}}{{Kolawole, Dery, Kagy, Smith, Neubig, and Talwalkar}}}
+\bibcite{kornblith2019cka}{{21}{2019}{{Kornblith et~al.}}{{Kornblith, Norouzi, Lee, and Hinton}}}
+\bibcite{lachance2024cka}{{22}{2022}{{Lachance}}{{}}}
+\bibcite{funcnet_2025}{{23}{2025{a}}{{Liu et~al.}}{{Liu, Ning, Xia, Gao, Qiang, Ge, Han, and Hu}}}
+\bibcite{pat2025}{{24}{2025{b}}{{Liu et~al.}}{{Liu, Yang, Chen, Zhang, Wang, Du, and Du}}}
+\bibcite{rac2025}{{25}{2025}{{Lucas et~al.}}{{Lucas, Behdin, Wang, Song, Tang, and Mazumder}}}
+\bibcite{llmpruner2023}{{26}{2023}{{Ma et~al.}}{{Ma, Fang, and Wang}}}
+\bibcite{rlsqueezes2026}{{27}{2026}{{Matsutani et~al.}}{{Matsutani, Takashiro, Minegishi, Kojima, Iwasawa, and Matsuo}}}
+\bibcite{shortgpt2024}{{28}{2024}{{Men et~al.}}{{Men, Xu, Zhang, Wang, Lin, Lu, Han, and Chen}}}
+\bibcite{doingmore2026}{{29}{2026}{{Monjur et~al.}}{{Monjur, Nahin, and Chhabra}}}
+\bibcite{shah2025comedy}{{30}{2025}{{Shah et~al.}}{{Shah, Obando-Ceron, Jain, Bartoldson, Kailkhura, Mittal, Berseth, Castro, Bengio, Malkin, Jain, Venkatraman, and Courville}}}
+\bibcite{shao2024grpo}{{31}{2024}{{Shao et~al.}}{{Shao, Wang, Zhu, Xu, Song, Zhang, Li, Wu, and Guo}}}
+\bibcite{wanda2024}{{32}{2024}{{Sun et~al.}}{{Sun, Liu, Bair, and Kolter}}}
+\@LN@col{1}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\@LN{789}{9}
+\@LN{790}{9}
+\@LN{791}{9}
+\@LN{792}{9}
+\@LN{793}{9}
+\@LN{794}{9}
+\@LN{795}{9}
+\@LN{796}{9}
+\@LN{797}{9}
+\@LN{798}{9}
+\@LN{799}{9}
+\@LN{800}{9}
+\@LN{801}{9}
+\@LN{802}{9}
+\@LN{803}{9}
+\@LN{804}{9}
+\@LN{805}{9}
+\@LN{806}{9}
+\@LN{807}{9}
+\@LN{808}{9}
+\@LN{809}{9}
+\@LN{810}{9}
+\@LN{811}{9}
+\@LN@col{2}
+\@LN{812}{9}
+\@LN{813}{9}
+\@LN{814}{9}
+\@LN{815}{9}
+\@LN{816}{9}
+\@LN{817}{9}
+\@LN{818}{9}
+\@LN{819}{9}
+\@LN{820}{9}
+\@LN{821}{9}
+\@LN{822}{9}
+\@LN{823}{9}
+\@LN{824}{9}
+\@LN{825}{9}
+\@LN{826}{9}
+\@LN{827}{9}
+\@LN{828}{9}
+\@LN{829}{9}
+\@LN{830}{9}
+\@LN{831}{9}
+\@LN{832}{9}
+\@LN{833}{9}
+\@LN{834}{9}
+\@LN{835}{9}
+\@LN{836}{9}
+\@LN{837}{9}
+\@LN{838}{9}
+\@LN{839}{9}
+\@LN{840}{9}
+\@LN{841}{9}
+\@LN{842}{9}
+\@LN{843}{9}
+\@LN{844}{9}
+\@LN{845}{9}
+\@LN{846}{9}
+\@LN{847}{9}
+\@LN{848}{9}
+\@LN{849}{9}
+\@LN{850}{9}
+\@LN{851}{9}
+\@LN{852}{9}
+\@LN{853}{9}
+\@LN{854}{9}
+\@LN{855}{9}
+\@LN{856}{9}
+\@LN{857}{9}
+\@LN{858}{9}
+\@LN{859}{9}
+\@LN{860}{9}
+\@LN{861}{9}
+\@LN{862}{9}
+\@LN{863}{9}
+\@LN{864}{9}
+\@LN{865}{9}
+\@LN{866}{9}
+\bibcite{resp2025}{{33}{2025}{{Wang et~al.}}{{Wang, Diao, Le, Wang, Wang, Lee, Yeh, and Yang}}}
+\bibcite{graspprune2026}{{34}{2026}{{Wang et~al.}}{{Wang, Xiao, Xiao, Li, Mao, and Qin}}}
+\bibcite{ssgr2025}{{35}{2025}{{Xiang et~al.}}{{Xiang, Ji, Li, and Zhang}}}
+\bibcite{qwen2.5}{{36}{2024}{{Yang et~al.}}{{Yang, Yang, Zhang, Hui, Zheng, Yu, Li et~al.}}}
+\bibcite{fang_2025}{{37}{2025}{{Yu et~al.}}{{Yu, An, Zhu, Zhu, Tang, and Wang}}}
+\bibcite{boiling_frog_2026}{{38}{2026}{{Zhao et~al.}}{{Zhao, Zhou, Wu, Hu, Xu, Dou, Kawaguchi, Joty, Li, and Shieh}}}
+\@LN@col{1}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN{877}{10}
+\@LN{878}{10}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\@LN{885}{10}
+\@LN{886}{10}
+\@LN{887}{10}
+\@LN{888}{10}
+\@LN{889}{10}
+\@LN{890}{10}
+\@LN{891}{10}
+\@LN{892}{10}
+\@LN{893}{10}
+\@LN{894}{10}
+\@LN{895}{10}
+\@LN{896}{10}
+\@LN{897}{10}
+\@LN{898}{10}
+\@LN{899}{10}
+\@LN{900}{10}
+\@LN{901}{10}
+\@LN{902}{10}
+\@LN{903}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Training Details}{11}{appendix.A}\protected@file@percent }
+\newlabel{sec:appendix_training}{{A}{11}{Training Details}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Hyperparameter details for SFT warmup and GRPO recovery stages.}}{11}{table.caption.39}\protected@file@percent }
+\newlabel{tab:hyperparams}{{4}{11}{Hyperparameter details for SFT warmup and GRPO recovery stages}{table.caption.39}{}}
+\@LN@col{2}
+\@LN{904}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Algorithm}{11}{appendix.B}\protected@file@percent }
+\newlabel{sec:appendix_algo}{{B}{11}{Algorithm}{appendix.B}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Controlled Pruning Comparison Framework}}{11}{algorithm.1}\protected@file@percent }
+\newlabel{alg:rasp}{{1}{11}{Controlled Pruning Comparison Framework}{algorithm.1}{}}
+\@LN{905}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Inference Efficiency}{11}{appendix.C}\protected@file@percent }
+\newlabel{sec:appendix_inference}{{C}{11}{Inference Efficiency}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Inference characteristics at 20\% sparsity (clean v2 benchmark, single-GPU, no contention). Pruning reduces parameters by 19\% and memory by ${\sim }$28\%, with TTFT improving 18\%. Per-token throughput decreases 19\% (0.81$\times $) due to non-uniform layer widths from full-layer removal that current GPU kernels do not optimize.}}{11}{table.caption.40}\protected@file@percent }
+\newlabel{tab:inference}{{5}{11}{Inference characteristics at 20\% sparsity (clean v2 benchmark, single-GPU, no contention). Pruning reduces parameters by 19\% and memory by ${\sim }$28\%, with TTFT improving 18\%. Per-token throughput decreases 19\% (0.81$\times $) due to non-uniform layer widths from full-layer removal that current GPU kernels do not optimize}{table.caption.40}{}}
+\@LN{906}{10}
+\@LN{907}{10}
+\@LN{908}{10}
+\@LN{909}{10}
+\@LN{910}{10}
+\@LN{911}{10}
+\@LN{912}{10}
+\@LN{913}{10}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Effect of CKA coefficient $\alpha $ on post-prune accuracy at 20\% sparsity ($N{=}100$). $\alpha {=}0.0$ reduces to Standard importance-only pruning. Best in \textbf  {bold}, second-best \underline  {underlined}.}}{12}{table.caption.41}\protected@file@percent }
+\newlabel{tab:alpha}{{6}{12}{Effect of CKA coefficient $\alpha $ on post-prune accuracy at 20\% sparsity ($N{=}100$). $\alpha {=}0.0$ reduces to Standard importance-only pruning. Best in \textbf {bold}, second-best \underline {underlined}}{table.caption.41}{}}
+\@LN{914}{11}
+\@LN{915}{11}
+\@LN{916}{11}
+\@LN{917}{11}
+\@LN{918}{11}
+\@LN{919}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {D}CKA Coefficient $\alpha $ Ablation}{12}{appendix.D}\protected@file@percent }
+\newlabel{sec:appendix_alpha}{{D}{12}{CKA Coefficient $\alpha $ Ablation}{appendix.D}{}}
+\@LN{920}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Extended Training Dynamics}{12}{appendix.E}\protected@file@percent }
+\newlabel{sec:appendix_extended}{{E}{12}{Extended Training Dynamics}{appendix.E}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Extended GRPO training (300 steps, 3$\times $ original budget). (a)~Standard reward shows zero net gain (0.054$\to $0.056); CKA-only oscillates in the 0.22--0.44 range with a 5.5$\times $ gap at step 300. (b)~Standard $f_0$ remains in the collapse zone ($>$0.5); CKA-only stays below 0.30.}}{12}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:extended_training}{{5}{12}{Extended GRPO training (300 steps, 3$\times $ original budget). (a)~Standard reward shows zero net gain (0.054$\to $0.056); CKA-only oscillates in the 0.22--0.44 range with a 5.5$\times $ gap at step 300. (b)~Standard $f_0$ remains in the collapse zone ($>$0.5); CKA-only stays below 0.30}{figure.caption.42}{}}
+\@LN{921}{11}
+\@LN{922}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {F}MATH-500 Out-of-Distribution Evaluation}{12}{appendix.F}\protected@file@percent }
+\newlabel{sec:appendix_math500}{{F}{12}{MATH-500 Out-of-Distribution Evaluation}{appendix.F}{}}
+\@LN{923}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {G}MBPP Code Generation}{12}{appendix.G}\protected@file@percent }
+\newlabel{sec:appendix_mbpp}{{G}{12}{MBPP Code Generation}{appendix.G}{}}
+\@LN{924}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {H}CKA Scoring Stability}{12}{appendix.H}\protected@file@percent }
+\newlabel{sec:appendix_cka_stability}{{H}{12}{CKA Scoring Stability}{appendix.H}{}}
+\@LN{925}{11}
+\@LN{926}{11}
+\@LN{927}{11}
+\@LN{928}{11}
+\@LN{929}{11}
+\@LN{930}{11}
+\@LN{931}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Seed Reproducibility}{12}{appendix.I}\protected@file@percent }
+\newlabel{sec:appendix_seed}{{I}{12}{Seed Reproducibility}{appendix.I}{}}
+\@LN{932}{11}
+\@LN{933}{11}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Out-of-distribution evaluation on MATH-500 ($N{=}500$, greedy decoding, \texttt  {max\_new\_tokens=2048}). The recovery capacity gradient persists: CKA-only maintains a ${\sim }$6\,pp advantage over importance-based methods.}}{12}{table.caption.43}\protected@file@percent }
+\newlabel{tab:math500}{{7}{12}{Out-of-distribution evaluation on MATH-500 ($N{=}500$, greedy decoding, \texttt {max\_new\_tokens=2048}). The recovery capacity gradient persists: CKA-only maintains a ${\sim }$6\,pp advantage over importance-based methods}{table.caption.43}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces MBPP code generation accuracy ($N{=}374$, greedy decoding). All fine-grained pruning methods converge near a capability floor (${\sim }$75\% code capability loss vs Dense), limiting differentiation (${\sim }$1\,pp range, within stderr). ShortGPT shows a larger GRPO delta ($+$4.01\,pp) but at the 95\% CI boundary (stderr ${\approx }$1.55\,pp).}}{12}{table.caption.44}\protected@file@percent }
+\newlabel{tab:mbpp}{{8}{12}{MBPP code generation accuracy ($N{=}374$, greedy decoding). All fine-grained pruning methods converge near a capability floor (${\sim }$75\% code capability loss vs Dense), limiting differentiation (${\sim }$1\,pp range, within stderr). ShortGPT shows a larger GRPO delta ($+$4.01\,pp) but at the 95\% CI boundary (stderr ${\approx }$1.55\,pp)}{table.caption.44}{}}
+\@LN{934}{11}
+\@LN{935}{11}
+\@LN{936}{11}
+\@LN{937}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Sparsity Cliff at 30\%}{12}{appendix.J}\protected@file@percent }
+\newlabel{sec:appendix_sparsity_cliff}{{J}{12}{Sparsity Cliff at 30\%}{appendix.J}{}}
+\@LN{938}{11}
+\@LN{939}{11}
+\@LN{940}{11}
+\@LN{941}{11}
+\@LN{942}{11}
+\@LN{943}{11}
+\@LN{944}{11}
+\@LN{945}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Multi-Seed GRPO Results}{12}{appendix.K}\protected@file@percent }
+\newlabel{sec:appendix_multiseed}{{K}{12}{Multi-Seed GRPO Results}{appendix.K}{}}
+\@LN{946}{11}
+\@LN{947}{11}
+\@LN{948}{11}
+\@LN{949}{11}
+\citation{qwen2.5}
+\citation{qwen2.5}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces CKA scoring stability across calibration sizes. Spearman $\rho $ between structure rankings produced by different calibration set sizes. High correlation ($\rho \geq 0.964$) indicates that CKA-based scoring is robust to calibration data volume.}}{13}{table.caption.45}\protected@file@percent }
+\newlabel{tab:cka_stability}{{9}{13}{CKA scoring stability across calibration sizes. Spearman $\rho $ between structure rankings produced by different calibration set sizes. High correlation ($\rho \geq 0.964$) indicates that CKA-based scoring is robust to calibration data volume}{table.caption.45}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Sparsity cliff at 30\% structured sparsity ($N{=}100$). All tested pruning criteria collapse, with near-zero accuracy and EOS generation rates below 6\%.}}{13}{table.caption.46}\protected@file@percent }
+\newlabel{tab:sparsity_cliff}{{10}{13}{Sparsity cliff at 30\% structured sparsity ($N{=}100$). All tested pruning criteria collapse, with near-zero accuracy and EOS generation rates below 6\%}{table.caption.46}{}}
+\@LN{950}{12}
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN{953}{12}
+\@LN{954}{12}
+\@LN{955}{12}
+\@LN{956}{12}
+\@LN{957}{12}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Cross-Sparsity Validation}{13}{appendix.L}\protected@file@percent }
+\newlabel{sec:appendix_cross_sparsity}{{L}{13}{Cross-Sparsity Validation}{appendix.L}{}}
+\@LN{961}{12}
+\@LN{962}{12}
+\@LN{963}{12}
+\@LN{964}{12}
+\@LN{965}{12}
+\@LN{966}{12}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@LN{970}{12}
+\@LN{971}{12}
+\@LN{972}{12}
+\@LN{973}{12}
+\@LN{974}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Cross-Architecture Validation}{13}{appendix.M}\protected@file@percent }
+\newlabel{sec:appendix_cross_arch}{{M}{13}{Cross-Architecture Validation}{appendix.M}{}}
+\@LN{975}{12}
+\@LN{976}{12}
+\@LN{977}{12}
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Multi-seed GRPO results on GSM8K ($N{=}1{,}319$). CKA-only and Standard each trained with 3 GRPO seeds (42, 123, 456); pruning calibration and SFT are identical across all runs within each sparsity level.}}{13}{table.caption.47}\protected@file@percent }
+\newlabel{tab:multiseed}{{11}{13}{Multi-seed GRPO results on GSM8K ($N{=}1{,}319$). CKA-only and Standard each trained with 3 GRPO seeds (42, 123, 456); pruning calibration and SFT are identical across all runs within each sparsity level}{table.caption.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-sparsity validation on DeepSeek-R1-Distill-Qwen-7B. GSM8K accuracy ($N{=}1{,}319$) after SFT warmup and GRPO recovery. 15\% and 20\% GRPO values are mean over 3 seeds (see Tables~\ref {tab:decoupling},~\ref {tab:multiseed}). $^\ddagger $Single seed. Mean $|\Delta | \leq 1$\,pp across all conditions.}}{13}{table.caption.48}\protected@file@percent }
+\newlabel{tab:cross_sparsity}{{12}{13}{Cross-sparsity validation on DeepSeek-R1-Distill-Qwen-7B. GSM8K accuracy ($N{=}1{,}319$) after SFT warmup and GRPO recovery. 15\% and 20\% GRPO values are mean over 3 seeds (see Tables~\ref {tab:decoupling},~\ref {tab:multiseed}). $^\ddagger $Single seed. Mean $|\Delta | \leq 1$\,pp across all conditions}{table.caption.48}{}}
+\@LN{980}{12}
+\@LN{981}{12}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@LN{987}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {N}KL Divergence During GRPO Training}{13}{appendix.N}\protected@file@percent }
+\newlabel{sec:appendix_kl}{{N}{13}{KL Divergence During GRPO Training}{appendix.N}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-architecture validation on Qwen2.5-Math-7B~\citep  {qwen2.5} at 20\% structured sparsity. Accuracy evaluated on GSM8K ($N{=}200$). Post-SFT reports mean $\pm $ std over multiple SFT runs. EOS rate: fraction of generations that produce a valid end-of-sequence token.}}{14}{table.caption.49}\protected@file@percent }
+\newlabel{tab:cross_arch}{{13}{14}{Cross-architecture validation on Qwen2.5-Math-7B~\citep {qwen2.5} at 20\% structured sparsity. Accuracy evaluated on GSM8K ($N{=}200$). Post-SFT reports mean $\pm $ std over multiple SFT runs. EOS rate: fraction of generations that produce a valid end-of-sequence token}{table.caption.49}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces KL divergence between the policy and reference model during GRPO training. RASP maintains near-zero KL ($<$0.001), consistent with minimal policy movement during collapse. Random shows the highest KL (${\sim }$0.004--0.005), indicating more policy exploration. CKA-only and Standard fall between these extremes.}}{14}{figure.caption.50}\protected@file@percent }
+\newlabel{fig:kl_divergence}{{6}{14}{KL divergence between the policy and reference model during GRPO training. RASP maintains near-zero KL ($<$0.001), consistent with minimal policy movement during collapse. Random shows the highest KL (${\sim }$0.004--0.005), indicating more policy exploration. CKA-only and Standard fall between these extremes}{figure.caption.50}{}}
+\@LN@col{2}
+\gdef \@abspage@last{14}

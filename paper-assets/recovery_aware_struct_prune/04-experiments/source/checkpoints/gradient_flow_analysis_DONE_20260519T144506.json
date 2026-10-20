@@ -1,0 +1,27 @@
+{
+  "exp_id": "gradient_flow_analysis",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:44:25.606Z",
+    "updated_at": "2026-05-19T14:45:06.578Z",
+    "hypothesis": "CKA-only pruned models exhibit stronger gradient flow (higher per-layer gradient norms) compared to Standard pruned models, enabling more effective GRPO recovery. Standard pruning creates weaker gradient signals that limit training effectiveness.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/gradient_flow_analysis.py --model_paths pruned_cka_only_20 pruned_standard_20 --model_names CKA-only Standard --n_steps 20 --seed 42",
+      "server": "westb-23072",
+      "data_path": "openai/gsm8k (cached)",
+      "data_count": 20,
+      "model_name": "Qwen2-7B pruned variants",
+      "seed": 42,
+      "checkpoint_path": "N/A (analysis only)",
+      "log_path": "/tmp/gradient_flow.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T14:45:06.578Z"
+  },
+  "timestamp": "2026-05-19T14:45:06.986644+00:00",
+  "trigger": "update_registry"
+}

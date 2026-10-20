@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_math500_grpo_standard_20_fair_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:34:50.380Z",
+    "updated_at": "2026-05-21T22:35:09.832Z",
+    "hypothesis": "Standard GRPO 20% on MATH-500 @2048 to fill P0 data gap. Standard 25% GRPO scored 12.8% — expect 20% to score higher due to less aggressive pruning.",
+    "parent": "grpo_standard_20_fair",
+    "spec": {
+      "command": "python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/ --max_new_tokens 2048 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_20_fair_2048/results.json",
+      "server": "westd-29022:cuda:0",
+      "data_path": "MATH-500 (HF cached)",
+      "data_count": 500,
+      "model_name": "grpo_stage2_standard_20_fair",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/",
+      "eval_data": "MATH-500"
+    }
+  },
+  "timestamp": "2026-05-21T22:35:10.980715+00:00",
+  "trigger": "update_registry"
+}

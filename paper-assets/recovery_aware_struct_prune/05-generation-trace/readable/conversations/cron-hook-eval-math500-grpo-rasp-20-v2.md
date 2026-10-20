@@ -1,0 +1,829 @@
+# cron hook eval math500 grpo rasp 20 v2
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/cron_hook_eval_math500_grpo_rasp_20_v2.jsonl`
+- **Structured JSON:** [`edd0628c84b9eb2e5e2e.json`](../../sessions/ed/edd0628c84b9eb2e5e2e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T23:38:46.859193+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #19。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: westb cuda:0,1 + westd cuda:0,1,2,3。不得使用其他设备
+- **westb-23072 SSH 当前不可达**——禁止向 westb 提交任何新任务直到 SSH 恢复（等用户添加公钥）
+- D051 裁定: MATH-500 上 GRPO vs SFT 对比不可用于 C3 论证（max_new_tokens 配置不公平），仅作 supplementary
+- CKA-only pruning 实现方式: prune.py 用 `--mode rasp --alpha 1` + dummy importance (全1)，不是独立 mode
+- grpo_cka_only_20 和 grpo_random_20 的 step-100 final data 在 westb 上，SSH 修复前无法读取
+- ARR May 25 deadline（8天），不可 fallback 降级会议
+
+### 2. 🖥️ 基础设施快照
+- **westb-23072**: root@westb-23072, /root/recovery_aware_struct_prune, 2×GPU — **SSH 阻塞中**
+- **westd-11672**: root@westd-11672, /root/recovery_aware_struct_prune, 4×GPU (cuda:0-3)
+- Python: /root/miniconda3/bin/python（两台均为 miniconda，不要假设 .venv）
+- 预置镜像: aml-train（连接后 detect_image 确认）
+- W&B: 有配置（project 内各 GRPO 实验有 wandb logging）
+- 磁盘: westd 上次清理后 ~312GB 可用
+- 活跃 cron 监控 9 个进程:
+  - westd: eval_math500_grpo_standard_20 (PID 14556), eval_math500_grpo_rasp_20_v3 (PID 31706), eval_sft_cka_only_20_n1319 (PID 49475), eval_postprune_cka_only_30 (PID 59403), eval_postprune_standard_30 (PID 47667), eval_math500_grpo_unpruned (PID 64467), eval_math500_sft_cka_only_20 (PID 65395)
+  - westb: grpo_random_20 (PID 719679), grpo_cka_only_20 (PID 725227)
+
+### 3. 📊 当前状态
+上一轮完成了 D056 framing 全面改写（Recovery Capacity Gradient 为主贡献）+ Paper Agent intro rewrite worker。当前 0 个 active worker，9 个实验在跑（全部 eval 或 GRPO training 的尾声）。
+
+**RUNNING 实验摘要:**
+| exp_id | 说明 | 服务器 |
+|--------|------|--------|
+| grpo_cka_only_20 | CKA-only GRPO 100-step（step 70 已确认 super-recovery） | westb |
+| grpo_random_20 | Random GRPO 100-step（step 70 stagnation） | westb |
+| eval_math500_grpo_standard_20 | Standard GRPO MATH-500 (interim 32.7%@309/500) | westd |
+| eval_math500_grpo_rasp_20_v3 | RASP GRPO MATH-500 v3 (无 timeout) | westd |
+| eval_math500_grpo_unpruned | Unpruned GRPO MATH-500 baseline | westd |
+| eval_math500_sft_cka_only_20 | CKA-only SFT MATH-500 | westd |
+| eval_sft_cka_only_20_n1319 | CKA-only SFT GSM8K full (interim 63%@1037) | westd |
+| eval_postprune_standard_30 | Standard 30% post-prune GSM8K | westd |
+| eval_postprune_cka_only_30 | CKA-only 30% post-prune (重试) | westd |
+
+**等待中:**
+- westb SSH 恢复（用户操作）
+- 9 个 cron 回调（实验完成时自动触发）
+- Paper Agent intro rewrite worker 已无活跃 worker（可能已完成或被清理，下一轮需确认产出）
+
+### 4. 📋 待办（条件触发式）
+- westb SSH 恢复 → 立即读 grpo_cka_only_20 + grpo_random_20 step-100 final metrics → 更新 C2 表格 → 启动 fair GRPO retrain (grpo_rasp_20_fair + grpo_standard_20_fair, D051 fix)
+- eval_math500_grpo_standard_20 完成 → 确认 final accuracy（interim 32.7%）→ 对比 SFT Standard 26% → 计算 C1 MATH-500 improvement (+Xpp)
+- eval_math500_grpo_unpruned 完成 → 确认 unpruned GRPO MATH-500 baseline → 若 > 73.6%(pre-GRPO) 则 GRPO genuinely helps OOD
+- eval_sft_cka_only_20_n1319 完成 → 确认 CKA-only SFT 最终值（pilot 64%）→ 完善 SFT equalization claim
+- eval_math500_sft_cka_only_20 完成 → CKA-only SFT MATH-500 baseline → 未来对比 GRPO CKA-only MATH-500
+- eval_postprune_cka_only_30 完成 → 若 0%，30% cliff 是 universal；若 >0%，CKA-only 在高 sparsity 更 robust（更新 paper observation）
+- 所有 MATH-500 + GSM8K final 到齐 → Paper Agent Full Draft → scoring_ablation_batch 等补充实验
+- Paper intro rewrite 产出需确认（check artifacts/ 或 paper/ 目录）
+
+### 5. 🎯 战略上下文
+**核心结论链:**
+- D044: pivot 到 universal decoupling → D049: 维持双现象 → D053: CKA-only GRPO 最稳定（逆转 hypothesis）→ D054: C2 升级为 recovery capacity hierarchy → D055: C1 收窄为 in-distribution → D056: framing 全面改写，Recovery Capacity Gradient 为主贡献
+
+**最容易判断错的事:**
+1. **不要把 MATH-500 GRPO 结果用于方法间 C3 对比**——D051 已裁定配置不公平（GRPO 模型的 max_new_tokens 配置与 SFT 不一致）。只能用于同方法 GRPO vs SFT 对比（C1 证据）
+2. **grpo_cka_only_20 的 hypothesis 被逆转**——原始预测是"CKA-only collapse 最快"，实际是"super-recovery 最强"。这个逆转是 D053 的核心发现，paper framing 已据此重写
+3. **SFT equalization 意味着 C2 只在 GRPO 阶段有意义**——post-SFT 所有方法收敛 59-64%，pruning criterion 的影响只在 GRPO recovery capacity 上体现
+4. **westb 上的两个 GRPO 实验是论文核心数据**——step-100 final numbers 决定 C2 表格最终值。SSH 修复后第一件事就是读这些数据
+5. **fair retrain (D051) 是审稿人可能问的重要补充**——当前 RASP v9 只跑了 30 steps vs 其他 100 steps，需要统一配置重跑才能公平对比
+
+## 项目硬约束 (memory.md 节选)
+
+## 决策约束
+
+### D055: C1 收窄为 in-distribution decoupling (2026-05-17)
+C1 从 "universal decoupling" 收窄为 in-distribution decoupling。MATH-500 等 cross-benchmark 数据用于界定边界。
+
+### D054: C2 升级为 recovery capacity hierarchy (2026-05-17)
+C2 从 "collapse gradient" 升级为 "recovery capacity hierarchy"。
+
+### D053: CKA-only GRPO 最稳定 (provisional)
+CKA-only 剪枝的 GRPO 训练最稳定，逆转了原始 hypothesis（预测它最快 collapse）。Redundancy-Stability Tradeoff: 保留冗余结构 = GRPO 更稳定。
+
+### D052: C3 降级为 observation
+C2 collapse gradient 升为主力 contribution。
+
+### D051: MATH-500 GRPO 对比不可用于 C3
+配置不公平（GRPO max_new_tokens 远大于 SFT 实际使用量），partial results 仅作 supplementary evidence。
+
+### D044: 核心叙事 pivot
+从 "RASP enables better RL recovery" pivot 为 "universal decoupling"。Reward 涨但 accuracy 不跟是 universal 现象（unpruned 也是），不是 pruning-specific。
+
+### D049: 维持 C1 双现象
+不采纳 "pruning disables GRPO" 叙事。C1 = collapse + decoupling 双现象。
+
+### D050: RASP-RLVR 降级为 ablation
+Negative result，不是 core contribution。
+
+## 可查的历史
+前 62 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T23:38:58.077318+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T23:38:58.178327+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T23:39:01.695670+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T23:39:02.100134+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T23:39:02.603693+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_math500_sft_cka_only_20\": {\"created_at\": \"2026-05-17T22:59:03.755Z\", \"hypothesis\": \"CKA-only SFT MATH-500 baseline. With SFT Standard=26%, SFT RASP=24.2%, if CKA-only SFT > 26%, CKA-only scoring has OOD advantage. Future comparison with GRPO CKA-only MATH-500 tests C1 decoupling for CKA-only method.\", \"status\": \"RUNNING\", \"updated_at\": \"2026-05-17T23:20:20.522Z\"}, \"eval_math500_grpo_unpruned\": {\"created_at\": \"2026-05-17T18:14:45.810Z\", \"hypothesis\": \"MATH-500 accuracy for unpruned GRPO v2 (step-100). Establishes MATH-500 baseline: if unpruned post-GRPO ≈ 73.6% (pre-GRPO), confirms decoupling pattern holds on harder benchmark. If higher, GRPO genuinely helps unpruned but not pruned = pruning-specific failure.\", \"parent\": \"eval_math500_unpruned\", \"status\": \"RUNNING\", \"updated_at\": \"2026-05-17T23:17:46.119Z\"}, \"eval_sft_cka_only_20_n1319\": {\"created_at\": \"2026-05-17T18:20:20.406Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K N=1319. Post-prune 38.5% highest among all scoring methods. If post-SFT also highest, CKA-only has SFT advantage. If converges to ~60%, confirms SFT equalizes all scoring methods. N=200 pilot showed 64.0%.\", \"status\": \"RUNNING\", \"updated_at\": \"2026-05-17T19:18:20.530Z\"}, \"eval_postprune_standard_30\": {\"created_at\": \"2026-05-17T19:08:46.051Z\", \"hypothesis\": \"Standard 30% post-prune GSM8K accuracy (N=200). At 20% Standard post-prune was 17.5%, at 25% was ~15%. 30% should show further degradation. Compared with RASP 30% post-prune (running) to verify RASP advantage persists at higher sparsity. Extends multi-sparsity degradation curve.\", \"parent\": \"prune_standard_30\", \"status\": \"RUNNING\", \"updated_at\": \"2026-05-17T19:11:24.401Z\"}, \"eval_math500_grpo_standard_20\": {\"created_at\": \"2026-05-17T09:27:18.869Z\", \"hypothesis\": \"MATH-500 accuracy for grpo_standard_20 vs sft_standard_20. If grpo_standard ≈ sft_
+…[truncated 1647 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 908
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T23:39:02.604153+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T23:39:02.604426+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T23:39:32.534512+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 9, \"results\": [{\"exp_id\": \"eval_math500_grpo_standard_20\", \"success\": true, \"actions\": [\"Job still running (pid=14556)\"]}, {\"exp_id\": \"grpo_random_20\", \"success\": true, \"actions\": [\"Job still running (pid=719679)\"]}, {\"exp_id\": \"grpo_cka_only_20\", \"success\": true, \"actions\": [\"Job still running (pid=725227)\"]}, {\"exp_id\": \"eval_math500_grpo_rasp_20_v3\", \"success\": true, \"actions\": [\"Job still running (pid=31706)\"]}, {\"exp_id\": \"eval_sft_cka_only_20_n1319\", \"success\": true, \"actions\": [\"Job still running (pid=49475)\"]}, {\"exp_id\": \"eval_postprune_cka_only_30\", \"success\": true, \"actions\": [\"Job still running (pid=59403)\"]}, {\"exp_id\": \"eval_postprune_standard_30\", \"success\": true, \"actions\": [\"Job still running (pid=47667)\"]}, {\"exp_id\": \"eval_math500_grpo_unpruned\", \"success\": true, \"actions\": [\"Job still running (pid=64467)\"]}, {\"exp_id\": \"eval_math500_sft_cka_only_20\", \"success\": true, \"actions\": [\"Job still running (pid=65395)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 30434
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T23:39:32.535192+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_math500_sft_cka_only_20 | CKA-only SFT MATH-500 baseline. With SFT Standard=26%, SFT RASP=24.2%, if CKA-only SFT > 26%, CKA-only scoring has OOD advantage. Future comparison with GRPO CKA-only MATH-500 tests C1 decoupling for CKA-only method. | — | — | — |\\n| eval_sft_cka_only_20_n1319 | CKA-only 20% post-SFT GSM8K N=1319. Post-prune 38.5% highest among all scoring methods. If post-SFT also highest, CKA-only has SFT advantage. If converges to ~60%, confirms SFT equalizes all scoring methods. N=200 pilot showed 64.0%. | — | — | — |\\n| eval_postprune_standard_30 | Standard 30% post-prune GSM8K accuracy (N=200). At 20% Standard post-prune was 17.5%, at 25% was ~15%. 30% should show further degradation. Compared with RASP 30% post-prune (running) to verify RASP advantage persists at higher sparsity. Extends multi-sparsity degradation curve. | — | — | — |\\n\\n## 待处理\\n- eval_math500_grpo_unpruned: MATH-500 accuracy for unpruned GRPO v2 (step-100). Establishes MATH-500 baseline: if unpruned post-GRPO ≈ 73.6% (pre-GRPO), confirms decoupling pattern holds on harder benchmark. If higher, GRPO genuinely helps unpruned but not pruned = pruning-specific failure.（等待人工审批）\\n- eval_math500_sft_rasp_25: MATH-500 accuracy for RASP 25% post-SFT. Extends MATH-500 cross-benchmark data to 25% sparsity. If MATH-500 recovery rate at 25% &lt; 20% (RASP 20% SFT = 24.2%), confirms sparsity gradient on harder benchmark. Parent: sft_rasp_25.（准备中）\\n- eval_humaneval_sft_standard_20_2048: HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery. Que
+…[truncated 4578 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 29931
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T23:39:32.586065+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-17 23:27 UTC | 更新原因: D056 framing rewrite + westb SSH blocker + current status refresh\\n\\n## 核心方向\\nPruning criterion determines RL recovery capacity: CKA-only (representational diversity preservation) enables active super-recovery, gradient-based scoring destroys it. 4-method gradient as main contribution. 详见 paper_framing.md (D056 全面改写)。\\n\\n## 当前进展\\n**Research Phase — Framing Finalized (D056)**\\n- Core 20% data: ✅ 4-method GRPO dynamics complete (step 70 confirmed, step 100 data on westb pending SSH fix)\\n- C1 (in-distribution saturation): 等 MATH-500 final results 确认\\n- C2 (recovery capacity gradient): step 70 数据已充分支撑，等 step 100 final numbers\\n- 30% sparsity cliff: RASP 0%, Standard 3% (interim), CKA-only 0% — universal\\n- Inference speedup: RASP 37.8% vs Standard 7.7% confirmed\\n- SFT equalization: all methods converge 59-64% (not significant)\\n- Paper writing: Paper Agent active (intro rewrite worker running)\\n- **阻塞**: westb SSH unreachable — 无法读 GRPO final data、无法启动 fair retrain\\n\\n## 近期任务\\n- [ ] 修复 westb SSH 连接（等用户添加公钥）\\n- [ ] 读取 GRPO 100-step final dynamics (grpo_cka_only_20 + grpo_random_20) on westb\\n- [ ] 启动 fair GRPO retrain: grpo_rasp_20_fair + grpo_standard_20_fair on westb (D051 fix)\\n- [ ] 确认 eval_sft_cka_only_20_n1319 最终结果\\n- [ ] 确认 eval_math500_grpo_standard_20 最终结果 (500/500)\\n- [ ] 确认 eval_postprune_standard_30 最终结果\\n- [ ] Agent 处理 westd worker 结果后汇报\\n- [ ] Paper Agent 完成 intro rewrite\\n- [ ] 所有关键数据到齐后 → Paper Agent Full Draft\\n\\n## GPU 预算\\n- westb-23072: cuda:0, cuda:1 (2 GPUs) — **SSH 阻塞，无法使用**\\n- westd-11672: cuda:0, cuda:1, cuda:2, cuda:3 (4 GPUs) — evals running/idle\\n\\n## 关键里程碑\\n| 里程碑 | 状态 | 备注 |\\n|--------|------|------|\\n| MVP Pass | ✅ D014 | RASP 31% vs Standard 27% pos
+…[truncated 2184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 29981
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T23:39:57.654046+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T23:39:57.654423+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T23:40:00.619429+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "status": "done",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "status": "done",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T23:40:00.773760+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_eval_math500_sft_cka_only_20_20260517T231846\", \"task_type\": \"eval:math500_sft_cka_only_20\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T23:18:46.947462+00:00\", \"ended_at\": \"2026-05-17T23:20:28.811502+00:00\"}, {\"worker_id\": \"worker_analysis_eval_postprune_cka_only_30_failure_20260517T231849\", \"task_type\": \"analysis:eval_postprune_cka_only_30_failure\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T23:18:49.663498+00:00\", \"ended_at\": \"2026-05-17T23:19:57.770314+00:00\"}, {\"worker_id\": \"worker_analysis_recent_results_batch_20260517T231904\", \"task_type\": \"analysis:recent_results_batch\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T23:19:04.836812+00:00\", \"ended_at\": \"2026-05-17T23:22:28.129808+00:00\"}, {\"worker_id\": \"worker_paper_introduction_rewrite_20260517T232114\", \"task_type\": \"paper:introduction_rewrite\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T23:21:14.361451+00:00\", \"ended_at\": \"2026-05-17T23:23:21.752584+00:00\"}, {\"worker_id\": \"worker_paper_experiments_results_20260517T232143\", \"task_type\": \"paper:experiments_results\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T23:21:43.591729+00:00\", \"ended_at\": \"2026-05-17T23:36:55.649619+00:00\"}], \"count\": 5}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 154
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T23:40:11.278441+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/**",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T23:40:11.780676+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/table1_postprune.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/table2_recovery.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/figure_plan.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/literature_notes_063cda.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/literature_notes.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/backup/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/backup/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/backup/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/backup/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/acl.sty
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/acl_natbib.bst
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/table3_alpha.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/method.tex
+/home/ub
+…[truncated 5049 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "Glob",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T23:40:11.781030+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/artifacts/**",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T23:40:11.831593+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/correlation_analysis.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/intermediate/model_utils_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/mvp_progress_20260514.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/related_work_notes.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/report/mvp_v2_analysis.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/mvp_v2_analysis.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/grpo_rasp_20_4096_status.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260514T233950/logs/phase1_attempt0.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260514T233950/logs/phase2_best_attempt0.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260514T233950/logs/phase2_median_attempt0.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260514T233950/logs/phase2_worst_attempt0.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260514T233950/best/imagined_experiments.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260514T233950/best/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260514T233950/best/paper_framing.md
+/home/ubunt
+…[truncated 12476 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T23:40:35.609193+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T23:40:35.710137+00:00_
+
+1	\section{Introduction}
+2	\label{sec:intro}
+3	
+4	Large Language Models (LLMs) trained with Reinforcement Learning with Verifiable Rewards (RLVR) achieve strong mathematical reasoning~\citep{deepseek2025r1,shao2024grpo}, but their parameter counts and extended chain-of-thought traces make deployment costly.
+5	Structured pruning, which removes entire attention heads or MLP channels, provides a hardware-friendly compression path that reduces both memory and latency without specialized sparse-computation support~\citep{llmpruner2023,graspprune2026}.
+6	Because structured pruning at moderate sparsity severely degrades reasoning ability, a post-pruning recovery stage is essential.
+7	The standard compression pipeline therefore proceeds in three stages: prune, recover via Supervised Fine-Tuning (SFT), then align via RLVR to restore reasoning quality.
+8	This final alignment step appears straightforward: on an unpruned DeepSeek-R1-Distill-Qwen-7B~\citep{deepseek2025r1}, 100 steps of Group Relative Policy Optimization (GRPO;~\citealp{shao2024grpo}) raises the reward from 0 to 0.661.
+9	Yet accuracy on GSM8K~\citep{cobbe2021gsm8k} remains exactly 81.27\%, with 1,072 of 1,319 test problems producing identical correct answers before and after alignment.
+10	The reward improvement is an illusion: GRPO learns to produce outputs that score higher rewards without solving additional problems.
+11	
+12	This observation has immediate practical consequences for the compression pipeline.
+13	\citet{selfhealing2025} report that RLVR-based recovery restores pruned reasoning models to 95\%+ of original performance at 25\% compression, establishing RLVR as the preferred recovery paradigm.
+14	However, their evaluation reports only final-checkpoint accuracy and does not document per-step training dynamics during GRPO.
+15	If GRPO reward gains fail to reflect genuine reasoning improvement even on unpruned models, the claim that RLVR ``recovers'' pruned models demands scrutiny.
+16	The problem becomes a
+…[truncated 4006 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T23:41:37.400519+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 6/6 (westd 4 eval + westb 2 GRPO) | Worker 0 (等回调) | 磁盘: westd ~312GB 可用 | westb SSH 阻塞\n\n**Loop #19 状态同步**\n\n全部 9 个实验仍在运行，无完成回调：\n- westd (6 evals): math500_grpo_standard_20, math500_grpo_rasp_20_v3, math500_grpo_unpruned, math500_sft_cka_only_20, sft_cka_only_20_n1319, postprune_standard_30 + postprune_cka_only_30(重试)\n- westb (2 GRPO training): grpo_cka_only_20, grpo_random_20 — SSH 阻塞无法查看进度\n\n**Paper Worker 产出确认:**\n- intro rewrite 完成，但基于旧 3-method narrative（RASP/Standard/Unpruned），尚未整合 4-method gradient (D053-D056)\n- experiments/results section 完成\n- 两者均需等 step-100 final data 后用 4-method gradient 更新\n\n**阻塞项不变:** westb SSH 修复后才能读 GRPO final metrics + 启动 fair retrain (D051)\n\n无需 Director 决策，继续等 cron 回调。",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 6/6 (westd 4 eval + westb 2 GRPO) | Worker 0 (等回调) | 磁盘: westd ~312GB 可用 | westb SSH 阻塞\n\n**Loop #19 状态同步**\n\n全部 9 个实验仍在运行，无完成回调：\n- westd (6 evals): math500_grpo_standard_20, math500_grpo_rasp_20_v3, math500_grpo_unpruned, math500_sft_cka_only_20, sft_cka_only_20_n1319, postprune_standard_30 + postprune_cka_only_30(重试)\n- westb (2 GRPO training): grpo_cka_only_20, grpo_random_20 — SSH 阻塞无法查看进度\n\n**Paper Worker 产出确认:**\n- intro rewrite 完成，但基于旧 3-method narrative（RASP/Standard/Unpruned），尚未整合 4-method gradient (D053-D056)\n- experiments/results section 完成\n- 两者均需等 step-100 final data 后用 4-method gradient 更新\n\n**阻塞项不变:** westb SSH 修复后才能读 GRPO final metrics + 启动 fair retrain (D051)\n\n无需 Director 决策，继续等 cron 回调。",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T23:41:41.116103+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3715
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-17T23:42:08.627227+00:00_
+
+Session #19 初始化完成。
+
+**当前状态总结：**
+- 9 个实验全部仍在运行（7 个 westd eval + 2 个 westb GRPO training）
+- 6/6 GPU 满载
+- Paper intro + experiments sections 已由 worker 完成（待 4-method data 后更新）
+- 主阻塞：westb SSH 不可达
+- 无待处理的 cron 回调
+
+等待实验完成回调触发下一步操作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_math500_grpo_rasp_20_v2"
+}
+```
+
+</details>
+
+---

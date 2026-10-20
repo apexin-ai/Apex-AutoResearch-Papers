@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05d89472deb5b586d2db",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops grpo stage2 progress",
+  "task_key": "worker_ops_grpo-stage2-progress_20260515T031037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_grpo-stage2-progress_20260515T031037_result.json",
+    "occurrence": 1,
+    "bytes": 1723,
+    "sha256": "b28e22e0803414b6bbcbb8e654c865d51dd29dbbcd06a92951308d709d4d2c96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRPO Stage 2 进度报告（2026-05-15 ~03:12 UTC）\n\n### 进程状态\n\n| 实验 | PID | 运行时间 | 状态 |\n|------|-----|---------|------|\n| grpo_stage2_rasp_20 | 263888 | 1h59m | Ss+ (存活) |\n| grpo_stage2_standard_20 | 263966 | 1h59m | Ss+ (存活) |\n\n### GPU 状态\n\n| GPU | 利用率 | 显存 | 功耗 |\n|-----|--------|------|------|\n| cuda:0 (rasp) | 100% | 52.0 / 97.9 GB | 596W |\n| cuda:1 (standard) | 100% | 52.0 / 97.9 GB | 604W |\n\n### 训练进度\n\n| 实验 | 当前 step | 总 step | Step 1 耗时 | 预估 ETA |\n|------|----------|---------|------------|----------|\n| rasp_20 | **1/500** | 500 | 1h50m55s | ~38.5 天 (922h) |\n| standard_20 | **1/500** | 500 | 1h52m04s | ~38.8 天 (932h) |\n\n### 关键指标\n\n**暂无。** wandb 只记录了 profiling 数据（generate、compute_loss 等），训练指标（reward、loss、grad_norm、clip_ratio）尚未出现。Step 1 刚完成，Step 2 正在 generation 阶段（已进行约 7 分钟）。\n\n### Checkpoint\n\n两个实验目录下均无 checkpoint，只有空的 `completions/` 目录。\n\n### 健康判断\n\n- **进程正常**：两个实验均存活，GPU 满载运行\n- **严重问题：速度极慢**。每 step ~1h51m，500 steps 需要 **~38 天**。瓶颈在 `transformers.generate`（单 GPU 上对剪枝后的非均匀 MLP 模型做多轮 completion 生成）。按这个速度基本不可行，需要考虑：\n  - 减少 `num_generations`（每 prompt 的 completion 数）\n  - 减少总 step 数\n  - 减小 `max_new_tokens`\n  - 启用 vLLM 后端加速生成\n- **无异常信号**：没有零梯度/NaN/OOM 等问题，但因为只完成了 1 step，还不足以判断 reward desert"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-grpo-stage2-progress.md"
+}

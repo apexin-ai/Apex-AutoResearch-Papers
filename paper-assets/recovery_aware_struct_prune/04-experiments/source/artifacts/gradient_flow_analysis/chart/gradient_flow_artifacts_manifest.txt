@@ -1,0 +1,6 @@
+Remote files on westb-23072:
+- /root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow/gradient_flow_comparison.pdf
+- /root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow/gradient_flow_comparison.png
+- /root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow/gradient_stability_comparison.pdf
+- /root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow/gradient_stability_comparison.png
+- /root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow/gradient_flow_stats.json

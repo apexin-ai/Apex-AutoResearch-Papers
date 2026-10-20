@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d82e5acef4123054238",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb cuda0 cka only prune eval",
+  "task_key": "worker_ops_westb_cuda0_cka_only_prune_eval_20260517T112543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_cuda0_cka_only_prune_eval_20260517T112543_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "463dd53ae68b8fa22849f33a50b0ade764abb5ebf91d51c01e008455a8e668f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已开始推理，0/200 samples。进程正常运行。\n\n**报告：**\n\n- **Pruning**: 成功完成\n  - 模式: `cka_only` (score = 1 - CKA overlap)\n  - 实际 sparsity: 19.09% (目标 20%)\n  - 200/784 MLP groups 被剪掉，attention 未剪 (--skip_attention)\n  - 产出: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/` (12GB)\n\n- **Eval GSM8K**: 已启动\n  - PID 710113 (父进程 710613)，cuda:0 占用 12374 MiB\n  - 200 samples，正在推理中\n  - 日志: `/tmp/eval_cka_only_20.log`\n  - 结果输出: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_cka_only_20_n200.json`\n\n- **注意**: cuda:0 同时运行 SFT training (PID 704557, 50GB) 和本 eval (12GB)，总共 ~63GB / 98GB，空间充足。eval 速度可能略受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-cuda0-cka-only-prune-eval.md"
+}

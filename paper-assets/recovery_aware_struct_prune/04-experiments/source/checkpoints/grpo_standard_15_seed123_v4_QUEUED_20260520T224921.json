@@ -1,0 +1,28 @@
+{
+  "exp_id": "grpo_standard_15_seed123_v4",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:48:45.710Z",
+    "updated_at": "2026-05-20T22:49:21.384Z",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_15 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_15_seed123_v4 --max_steps 100 --seed 123'",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "291601",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_15_seed123_v4.log",
+      "submitted_at": "2026-05-20T22:48:44.900Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Retry #4 of Standard 15% seed123 GRPO. v1=disk full, v2=wrong model path, v3=checkpoint saved to root partition then moved by cleanup. v4: absolute output_dir on data disk (/root/autodl-tmp/), absolute model_path, HF_HUB_OFFLINE=1. v5 fair config (100 steps, beta=0.01, temperature=0.4, lr=1e-6, dapo, format_reward=0.1)."
+  },
+  "timestamp": "2026-05-20T22:49:21.890376+00:00",
+  "trigger": "update_registry"
+}

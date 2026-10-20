@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_humaneval_grpo_standard_20_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:41:03.761Z",
+    "updated_at": "2026-05-17T17:53:28.198Z",
+    "hypothesis": "HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. 512-token results invalidated due to truncation artifact (RASP shorter outputs biased). Part of complete 4-way HumanEval@2048 comparison: unpruned / SFT RASP / GRPO Standard / GRPO RASP.",
+    "parent": "eval_humaneval_grpo_standard_20",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "27194",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_standard_20_2048.log",
+      "submitted_at": "2026-05-17T13:41:38.223Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T17:53:27.556Z"
+    }
+  },
+  "timestamp": "2026-05-17T17:53:28.475901+00:00",
+  "trigger": "update_registry"
+}

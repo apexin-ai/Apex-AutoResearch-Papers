@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_math500_sft_random_20_fixed_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:17:29.791Z",
+    "updated_at": "2026-05-24T08:58:13.786Z",
+    "hypothesis": "SFT Random 20% MATH-500 with fixed eval script. v1/v2 killed by contention/SIGTERM. v3 with max_new_tokens=2048, timeout=72000s. Slow SFT ~10h (model degradation, hits token limit).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_random_20_fixed_v3.json --seed 42 --dtype bfloat16",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "335348",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20",
+      "eval_data": "MATH-500",
+      "model_name": "sft_random_20",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "seed": 42
+    },
+    "metrics": {
+      "accuracy": 0.166,
+      "n_correct": 83,
+      "n_total": 500,
+      "stderr": 0.0166,
+      "truncation_rate": 0.658,
+      "avg_response_length": 1470.44,
+      "natural_eos": 171,
+      "truncated": 329
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_random_20_fixed_v3.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-24T08:58:13.786Z"
+  },
+  "timestamp": "2026-05-24T08:58:14.508032+00:00",
+  "trigger": "update_registry"
+}

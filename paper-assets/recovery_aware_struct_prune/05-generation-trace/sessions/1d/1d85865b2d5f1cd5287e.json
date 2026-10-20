@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d85865b2d5f1cd5287e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb math500 grpo standard25 v2",
+  "task_key": "worker_ssh_westb_math500_grpo_standard25_v2_20260521T135155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_math500_grpo_standard25_v2_20260521T135155_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "80b308dfe55498346830f3d53784e44df900cce92fd420aab9d9d276f01401d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 99426 已经在运行你要的任务了——同模型、同 checkpoint-100、同 `--max_new_tokens 2048`，已跑了 2 分 24 秒，占用 cuda:0 ~11780 MiB。\n\n看起来这个 eval 已经被启动过了。要我直接监控这个进程的输出，还是需要 kill 掉重新按你的参数（`--n_samples 500 --temperature 0 --output_dir`）启动？当前进程用的是 `--output_path` 而非 `--output_dir`，且没有 `--n_samples 500` 和 `--temperature 0` 参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-math500-grpo-standard25-v2.md"
+}

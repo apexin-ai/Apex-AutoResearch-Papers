@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_math500_sft_rasp_alpha2p0_20_fixed",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T19:48:01.183Z",
+    "updated_at": "2026-05-24T03:08:37.102Z",
+    "hypothesis": "SFT RASP α=2.0 20% MATH-500 with fixed eval script. Model on westd (sft_rasp_alpha2p0_20). P1 dose-response table.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha2p0_20_fixed.json\"",
+      "server": "westd-32935",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "171964",
+      "checkpoint_source": "sft_rasp_alpha2p0_20",
+      "eval_data": "MATH-500",
+      "model_name": "sft_rasp_alpha2p0_20",
+      "seed": 42,
+      "data_path": "MATH-500",
+      "data_count": 500
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T03:08:38.417921+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_math500_grpo_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-17T09:27:18.869Z",
+    "hypothesis": "MATH-500 accuracy for grpo_standard_20 vs sft_standard_20. If grpo_standard ≈ sft_standard on MATH-500 (as on GSM8K), C1 decoupling holds across benchmarks. Tests cross-benchmark generalization of C1.",
+    "parent": "eval_math500_sft_rasp_20",
+    "retry_count": 0,
+    "spec": {
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "14556",
+      "server": "westd-11672"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-18T05:19:37.537Z",
+    "notes": "Log at non-standard path: /root/autodl-tmp/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log (not in ~/runs/). Progress 409/500 @03:18 UTC, interim acc@400=25.25%, ~4h remaining.",
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 11672 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T05:19:37.537Z"
+  },
+  "timestamp": "2026-05-18T05:19:38.341035+00:00",
+  "trigger": "update_registry"
+}

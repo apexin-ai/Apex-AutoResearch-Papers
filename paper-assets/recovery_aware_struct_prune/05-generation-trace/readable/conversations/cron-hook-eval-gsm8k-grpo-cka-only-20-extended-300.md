@@ -1,0 +1,588 @@
+# cron hook eval gsm8k grpo cka only 20 extended 300
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/cron_hook_eval_gsm8k_grpo_cka_only_20_extended_300.jsonl`
+- **Structured JSON:** [`f2156c2db09ed9789197.json`](../../sessions/f2/f2156c2db09ed9789197.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+20 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T03:46:40.772076+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: eval_gsm8k_grpo_cka_only_20_extended_300
+- project: recovery_aware_struct_prune
+- server: westd-29022
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-19T03:46:52.898385+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-19T03:46:52.999190+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T03:46:56.316134+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T03:46:56.316582+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T03:46:57.170059+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T03:46:57.170551+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T03:46:57.222942+00:00_
+
+Error: result (146,990 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-6328f952/ab8078d8-03db-49c9-a49e-3c949e12269c/tool-results/mcp-agent-ml-research-read_registry-1779162417168.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-6328f952/ab8078d8-03db-49c9-a49e-3c949e12269c/tool-results/mcp-agent-ml-research-read_registry-1779162417168.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-6328f952/ab8078d8-03db-49c9-a49e-3c949e12269c/tool-results/mcp-agent-ml-research-read_registry-1779162417168.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 906
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T03:47:02.594577+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"eval_math500_sft_standard_20_2048_v2\", \"success\": true, \"actions\": [\"Job still running (pid=56146)\"]}, {\"exp_id\": \"eval_gsm8k_grpo_standard_20_extended_300\", \"success\": true, \"actions\": [\"Job still running (pid=59413)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6277
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T03:47:02.595443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T03:46:38Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 220 个实验 — ANALYZING 3, DONE 191, PREPARING 25, RUNNING 1\\n**DONE 分布**: failed 35, killed 15, negative 15, success 126\\n\\n### GPU 占用\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-29022:cuda:0, westd-29022:cuda:1, westd-29022:cuda:2, westd-29022:cuda:3\\n- **实际运行**: 1 张 — westd-29022:cuda:0(eval_math500_sft_standard_20_2048_v2)\\n- **空闲（分配了没跑）**: westd-29022:cuda:1\\n\\n### 💾 磁盘余量\\n- **westb-23072**:\\n  - `/autodl-pub`: 6.7T/14T 可用（已用 53%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\n- **westd-29022**:\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval_math500_sft_standard_20_2048_v2` | westd-29022 | cuda:0 | 56146 | `…re_struct_prune/results/math500_sft_standard_20_2048_v2.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `inference_bench_clean_v2` [success] — 2026-05-19T02:44:07\\n- `eval_gsm8k_sft_rasp_20_1p5b` [success] — 2026-05-19T02:43:38\\n- `eval_math500_grpo_standard_20_fair_v2` [success] — 2026-05-19T01:39:52\\n- `eval_math500_sft_rasp_20_2048` [success] — 2026-05-19T01:39:03\\n- `eval_math500_dense_2048` [success] — 2026-05-19T01:34:41\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_math500_sft_standard_20_2048_v2 | SFT Standard 20% MATH-500 @2048 with correct GSM8K-trained model (retrained on westd). Fair C1 comparison with GRPO Stand
+…[truncated 5070 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 5425
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T03:47:02.596127+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-19 03:12 UTC | 更新原因: D068 aggressive expansion: Reviewer gap analysis + GPU reallocation + CKA-only HumanEval P0 dispatched\\n\\n## 核心方向\\nPruning criterion determines post-RLVR recovery capacity. Recovery capacity gradient: CKA-only >> importance-based methods (Standard ≈ RASP). Holds across 7B and 1.5B scales. 详见 paper_framing.md.\\n\\n## 当前阶段: Aggressive Expansion (D068) + Writing\\n\\n### 已完成核心数据\\n- **C2 Recovery Gradient (7B)**: ✅ Fair 4-method (v5): CKA-only 0.354 >> Random 0.19 >> Standard 0.081 > RASP 0.061\\n- **E2 Extended Training**: ✅ CKA-only 300步 0.22-0.44 sustained. Standard 0.056 permanent collapse. 5.5x gap.\\n- **E3 CKA Heatmap**: ✅ 4-panel figure. CKA-only diag 0.620 vs Standard 0.904.\\n- **1.5B Cross-Scale**: ✅ CKA-only 35.48% >> RASP 26.16% > Standard 22.29%.\\n- **C1 Decoupling**: ✅ GRPO delta ≈ 0 everywhere (ID/OOD/scale).\\n- **Alpha Ablation**: ✅ U-shape confirmed.\\n- **MATH-500 @2048**: ✅ Config audit 7/7. GRPO CKA-only final: **29.2%**. Recovery gradient persists OOD.\\n- **Inference TPS**: ✅ Honest framing (0.81x TPS).\\n\\n### MATH-500 @2048 (D064 resolved)\\n| Method | SFT @2048 | GRPO @2048 | GRPO Δ |\\n|--------|-----------|------------|--------|\\n| Dense | **53.0%** ✅ | N/A | — |\\n| CKA-only | **29.0%** ✅ | **29.2%** ✅ | +0.2pp |\\n| Standard | 🔄 20.8% (104/500) | **26.4%** ✅ | — |\\n| RASP | **22.6%** ✅ | **24.0%** ✅ | +1.4pp |\\n\\n### 1.5B GRPO Delta\\n| Method | GRPO | SFT | Delta |\\n|--------|------|-----|-------|\\n| CKA-only | 35.48% | 35.63% | -0.15pp ✅ |\\n| RASP | 26.16% | 26.91% | -0.75pp ✅ |\\n| Standard | 22.29% | 🔄 97.2% done | — |\\n\\n## D068 Aggressive Expansion Plan (Reviewer gap analysis)\\n\\n### P0 (不做就不可能 4.0)\\n| # | 实验 | GPU | 状态 | 预计完成 |\\n|---|------|-----|------|--
+…[truncated 4089 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 5425
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T03:47:14.434255+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'exp_id': 'eval_gsm8k_grpo_cka_only_20_extended_300'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'exp_id': 'eval_gsm8k_grpo_cka_only_20_extended_300'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T03:47:14.986576+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5318}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T03:47:31.838354+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-6328f952/ab8078d8-03db-49c9-a49e-3c949e12269c/tool-results/mcp-agent-ml-research-read_registry-1779162417168.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntarget = 'eval_gsm8k_grpo_cka_only_20_extended_300'\nif target in exps:\n    print(json.dumps(exps[target], indent=2))\nelse:\n    # search\n    for k in exps:\n        if 'cka_only_20_extended' in k and 'gsm8k' in k:\n            print(f'Found: {k}')\n            print(json.dumps(exps[k], indent=2))\n\"\n",
+  "description": "Extract target experiment from registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-6328f952/ab8078d8-03db-49c9-a49e-3c949e12269c/tool-results/mcp-agent-ml-research-read_registry-1779162417168.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\ntarget = 'eval_gsm8k_grpo_cka_only_20_extended_300'\nif target in exps:\n    print(json.dumps(exps[target], indent=2))\nelse:\n    # search\n    for k in exps:\n        if 'cka_only_20_extended' in k and 'gsm8k' in k:\n            print(f'Found: {k}')\n            print(json.dumps(exps[k], indent=2))\n\"\n",
+    "description": "Extract target experiment from registry dump"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T03:47:32.276559+00:00_
+
+{
+  "status": "ANALYZING",
+  "created_at": "2026-05-19T01:42:30.325Z",
+  "updated_at": "2026-05-19T03:46:35.495Z",
+  "hypothesis": "E2 extended GRPO CKA-only 300\u6b65 GSM8K accuracy (N=1319). Compare with 100\u6b65 (64.37%) to test whether extended GRPO training improves ID accuracy. E2 showed sustained reward oscillation (0.22-0.44) without collapse.",
+  "parent": "grpo_cka_only_20_extended_300"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "Bash",
+  "elapsed_ms": 438
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T03:47:40.247215+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T03:47:40.247697+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T03:47:58.418474+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务\n分析实验 eval_gsm8k_grpo_cka_only_20_extended_300 的结果，提取 GSM8K 准确率。\n\n## 背景\n这是 E2 Extended Training 实验的评估：CKA-only 20% 剪枝模型经过 300步 GRPO 训练后的 GSM8K 准确率评估（N=1319）。\n- 100步时准确率: 64.37%\n- 本实验测试 300步训练是否提升 ID 准确率\n- 父实验: grpo_cka_only_20_extended_300\n- 服务器: westd-29022\n\n## 步骤\n\n1. SSH 到 westd-29022，找到实验的 log 文件和结果文件。检查以下路径：\n   - `/root/recovery_aware_struct_prune/results/` 下含 `gsm8k_grpo_cka_only_20_extended_300` 的文件\n   - 也检查 `/root/recovery_aware_struct_prune/` 下的 `.log` 文件\n   - 用 `find /root/recovery_aware_struct_prune/ -name \"*cka_only*extended*300*\" -o -name \"*cka_only*300*gsm8k*\"` 搜索\n\n2. 读取结果文件，提取：\n   - GSM8K accuracy (correct / total)\n   - 具体数字：正确数、总数、百分比\n   - 如果有 per-sample 结果，统计一下\n\n3. 也检查 W&B 是否有对应 metrics（用 fetch_wandb_metrics 如果有 run_id）\n\n4. 将分析结果写入 artifacts：\n   - 路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/eval_gsm8k_grpo_cka_only_20_extended_300/analysis.md`\n   - 内容包括：accuracy、与 100步对比、结论\n\n5. 用 update_registry 更新实验：\n   - field: \"conclusion\", value: 根据结果判断 \"success\" 或 \"negative\"\n   - field: \"metrics\", value: {\"gsm8k_accuracy\": X, \"correct\": N, \"total\": 1319}\n   - field: \"status\", value: \"DONE\"\n   - 判断标准：如果 300步准确率 ≥ 100步 (64.37%)，conclusion=success；如果显著低于 100步，conclusion=negative\n\n6. 设置 checkpoint_path 和 log_path（从服务器上找到的实际路径）\n\n## 关键对比\n- 100步 CKA-only GRPO: 64.37% (849/1319)\n- Standard 20% GRPO 100步: 58.91%\n- RASP 20% GRPO 100步: 56.71%\n- Dense unpruned: 72.78%\n",
+  "tool_groups": "['ssh', 'wandb', 'registry']",
+  "tools": "['register_artifact']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:eval_gsm8k_grpo_cka_only_20_extended_300",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务\n分析实验 eval_gsm8k_grpo_cka_only_20_extended_300 的结果，提取 GSM8K 准确率。\n\n## 背景\n这是 E2 Extended Training 实验的评估：CKA-only 20% 剪枝模型经过 300步 GRPO 训练后的 GSM8K 准确率评估（N=1319）。\n- 100步时准确率: 64.37%\n- 本实验测试 300步训练是否提升 ID 准确率\n- 父实验: grpo_cka_only_20_extended_300\n- 服务器: westd-29022\n\n## 步骤\n\n1. SSH 到 westd-29022，找到实验的 log 文件和结果文件。检查以下路径：\n   - `/root/recovery_aware_struct_prune/results/` 下含 `gsm8k_grpo_cka_only_20_extended_300` 的文件\n   - 也检查 `/root/recovery_aware_struct_prune/` 下的 `.log` 文件\n   - 用 `find /root/recovery_aware_struct_prune/ -name \"*cka_only*extended*300*\" -o -name \"*cka_only*300*gsm8k*\"` 搜索\n\n2. 读取结果文件，提取：\n   - GSM8K accuracy (correct / total)\n   - 具体数字：正确数、总数、百分比\n   - 如果有 per-sample 结果，统计一下\n\n3. 也检查 W&B 是否有对应 metrics（用 fetch_wandb_metrics 如果有 run_id）\n\n4. 将分析结果写入 artifacts：\n   - 路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/eval_gsm8k_grpo_cka_only_20_extended_300/analysis.md`\n   - 内容包括：accuracy、与 100步对比、结论\n\n5. 用 update_registry 更新实验：\n   - field: \"conclusion\", value: 根据结果判断 \"success\" 或 \"negative\"\n   - field: \"metrics\", value: {\"gsm8k_accuracy\": X, \"correct\": N, \"total\": 1319}\n   - field: \"status\", value: \"DONE\"\n   - 判断标准：如果 300步准确率 ≥ 100步 (64.37%)，conclusion=success；如果显著低于 100步，conclusion=negative\n\n6. 设置 checkpoint_path 和 log_path（从服务器上找到的实际路径）\n\n## 关键对比\n- 100步 CKA-only GRPO: 64.37% (849/1319)\n- Standard 20% GRPO 100步: 58.91%\n- RASP 20% GRPO 100步: 56.71%\n- Dense unpruned: 72.78%\n",
+    "tool_groups": "['ssh', 'wandb', 'registry']",
+    "tools": "['register_artifact']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T03:48:01.382323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_eval_gsm8k_grpo_cka_only_20_extended_300_20260519T034758\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_analysis_eval_gsm8k_grpo_cka_only_20_extended_300_20260519T034758.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_eval_gsm8k_grpo_cka_only_20_extended_300_20260519T034758 started. Use get_worker_status('worker_analysis_eval_gsm8k_grpo_cka_only_20_extended_300_20260519T034758') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2963
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-19T03:48:08.675691+00:00_
+
+Worker 已派出分析 eval_gsm8k_grpo_cka_only_20_extended_300 结果。等待 `[WORKER DONE]` 回调后处理结果并向 Director 汇报。
+
+当前状态：
+- **eval_math500_sft_standard_20_2048_v2**: RUNNING (westd cuda:0, pid 56146)
+- **eval_gsm8k_grpo_standard_20_extended_300**: RUNNING (pid 59413) — E2 Standard 300步
+- **eval_gsm8k_grpo_cka_only_20_extended_300**: ANALYZING → Worker 正在分析
+- **westb cuda:0**: 空闲
+- **westb cuda:1**: SFT Standard 1.5B 已近完成 (97.2%)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_20_extended_300"
+}
+```
+
+</details>
+
+---

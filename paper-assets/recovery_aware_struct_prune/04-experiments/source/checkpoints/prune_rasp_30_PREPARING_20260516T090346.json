@@ -1,0 +1,14 @@
+{
+  "exp_id": "prune_rasp_30",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:03:45.925Z",
+    "updated_at": "2026-05-16T09:03:45.925Z"
+  },
+  "timestamp": "2026-05-16T09:03:46.059114+00:00",
+  "trigger": "update_registry"
+}

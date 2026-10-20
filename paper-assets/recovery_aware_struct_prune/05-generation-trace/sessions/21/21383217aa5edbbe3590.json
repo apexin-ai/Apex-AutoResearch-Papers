@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21383217aa5edbbe3590",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh eval math500 grpo random20 cuda1",
+  "task_key": "worker_ssh_eval_math500_grpo_random20_cuda1_20260521T101943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_math500_grpo_random20_cuda1_20260521T101943_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "2180cbef98ea062ff383c7096a579c22e610f44f0ef988902d0ad5e51485f5ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已开始运行！模型加载到 `cuda:0`（CUDA_VISIBLE_DEVICES=1，即物理 GPU 1），数据集加载完成，正在评估 500 题。\n\n---\n\n## 汇总\n\n### 任务 1: Random 20% GRPO eval (cuda:1)\n- **模型路径**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/checkpoint-100/model.safetensors` (12G, 339 keys)\n- **PID**: 359173\n- **GPU**: cuda:1（CUDA_VISIBLE_DEVICES=1）\n- **状态**: 已启动，正在评估 500 题\n- **日志**: `/root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20.log`\n\n### 任务 2: cuda:0 / cuda:2 进度\n\n| Eval | GPU | 进度 | Acc@50 | 运行时间 |\n|------|-----|------|--------|---------|\n| GRPO CKA-only 25% | cuda:0 | **74/500 (15%)** | 0.1800 | ~1h54m |\n| SFT CKA-only 25% | cuda:2 | **63/500 (13%)** | 0.2400 | ~1h25m |\n\n三张 GPU 均在工作，按当前速度每个 eval 预计总耗时 ~12-13h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-math500-grpo-random20-cuda1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21bea737204206d48945",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code graspprune baseline prep",
+  "task_key": "worker_code_graspprune-baseline-prep_20260515T113113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_graspprune-baseline-prep_20260515T113113_result.json",
+    "occurrence": 1,
+    "bytes": 1827,
+    "sha256": "7879cc9942c2d549ed636a66b6e6acfdc090acb374d7198ba03a72e8bdc744c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 和 --help 全部通过。\n\n---\n\n## 报告\n\n### GRASPrune 兼容性分析\n\n| 维度 | 结论 |\n|------|------|\n| **Qwen2 架构支持** | 原生支持。`gates.py` 有 `QwenMLPGate` + `QwenAttnGate`，`infer_model_family()` 自动识别 Qwen |\n| **MLP intermediate dimension 粒度** | 原生支持。对 FFN intermediate channels 逐个学习 gate score，与 RASP 一致 |\n| **Attention 粒度** | KV group 级别（每个 KV head 为一个 pruning unit），比 RASP 的 GQA group 粒度等价 |\n| **与 eval_gsm8k.py 兼容** | 需经 HF 转换。GRASPrune 输出 safetensors + meta.json 格式，`convert_to_hf` 转为含 `per_layer_*` config 的 HF 目录，`model_utils.load_pruned_model` 可直接加载 |\n\n### 适配内容\n\n**无需代码修改**——GRASPrune 原生满足所有需求。脚本 `run_graspprune_baseline.py` 仅做编排：\n1. 调用 `run_pruning_pipeline()` 执行 gate training → budget mask → rescale → materialize → export\n2. 调用 `graspprune_load()` + 提取 per-layer 维度信息 → 保存为 HF 格式\n\n### 产出\n\n- `/root/recovery_aware_struct_prune/scripts/run_graspprune_baseline.py` — 适配脚本，支持 `--dry-run`、`--convert-only`、`--skip-convert` 等模式\n- 已有 `src/convert_graspune_to_hf.py` 和 `scripts/run_graspune.sh` 可继续使用\n\n### 预计 GPU 时间\n\n- Gate training: 4 epochs × 512 samples on 7B model ≈ **15-25 分钟**（RTX PRO 6000, single GPU）\n- Rescale compensation: ~5 分钟\n- HF 转换: CPU only, ~2 分钟\n- **总计 ~25-35 分钟**\n\n### 执行命令（实际跑时）\n\n```bash\nCUDA_VISIBLE_DEVICES=0 python scripts/run_graspprune_baseline.py\n# 评估:\ncd /root/recovery_aware_struct_prune/src\npython eval_gsm8k.py --model_path /root/autodl-tmp/pruned_graspprune_20\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-graspprune-baseline-prep.md"
+}

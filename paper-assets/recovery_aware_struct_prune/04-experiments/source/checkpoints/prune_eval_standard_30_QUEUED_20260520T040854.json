@@ -1,0 +1,15 @@
+{
+  "exp_id": "prune_eval_standard_30",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:08:24.071Z",
+    "updated_at": "2026-05-20T04:08:54.428Z",
+    "hypothesis": "Standard importance pruning at 30% sparsity post-prune GSM8K accuracy. Extends sparsity ladder (20%→25%→30%) to probe Standard degradation curve. No SFT/GRPO recovery, raw post-prune performance."
+  },
+  "timestamp": "2026-05-20T04:08:54.896878+00:00",
+  "trigger": "update_registry"
+}

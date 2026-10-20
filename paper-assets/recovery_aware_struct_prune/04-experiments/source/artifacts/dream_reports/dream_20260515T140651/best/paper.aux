@@ -1,0 +1,127 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{deepseek2025r1}
+\citation{qwq2024}
+\citation{selfhealing2025}
+\citation{graspprune2026}
+\citation{resp2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{llmpruner2023}
+\citation{slicegpt2024}
+\citation{graspprune2026}
+\citation{bonsai2025}
+\citation{selfhealing2025}
+\citation{paser2025}
+\citation{kornblith2019cka}
+\citation{mpruner2024}
+\citation{rlsqueezes2026}
+\newlabel{eq:rasp}{{1}{2}{Introduction}{equation.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structured Pruning for LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recovery of Pruned Reasoning Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA in Model Analysis.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL Squeezes, SFT Expands.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\citation{grpo2024}
+\citation{graspprune2026}
+\citation{bonsai2025}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scoring Function}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Importance $I(h){}$.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Functional Overlap $F(h){}$.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Combined Score.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Recovery Pipeline}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{3}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results at 20\% structured sparsity on GSM8K (N=1319). Recovery (\%) = Post-GRPO / Baseline $\times $ 100.}}{4}{table.caption.12}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{Main results at 20\% structured sparsity on GSM8K (N=1319). Recovery (\%) = Post-GRPO / Baseline $\times $ 100}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 5-seed post-prune evaluation at 20\% sparsity (GSM8K, N=1319).}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:seeds}{{2}{4}{5-seed post-prune evaluation at 20\% sparsity (GSM8K, N=1319)}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sparsity levels.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results: Recovery Amplification}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_results}{{5.1}{4}{Main Results: Recovery Amplification}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Statistical robustness.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Post-Prune Robustness Across Seeds}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:seeds}{{5.2}{4}{Post-Prune Robustness Across Seeds}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}GRPO Recovery Dynamics}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:grpo}{{5.3}{4}{GRPO Recovery Dynamics}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces SFT$\to $GRPO recovery dynamics. GRPO $\Delta $ = Post-GRPO $-$ Post-SFT.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:grpo}{{3}{5}{SFT$\to $GRPO recovery dynamics. GRPO $\Delta $ = Post-GRPO $-$ Post-SFT}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Pruning $\times $ Recovery interaction. Main effects are non-significant; the 25pp interaction is highly significant ($p = 0.0008$).}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:interaction}{{4}{5}{Pruning $\times $ Recovery interaction. Main effects are non-significant; the 25pp interaction is highly significant ($p = 0.0008$)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Pruning $\times $ Recovery Interaction}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:interaction}{{5.4}{5}{Pruning $\times $ Recovery Interaction}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}CKA--Recoverability Correlation}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:correlation}{{5.5}{5}{CKA--Recoverability Correlation}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Scoring Ablation}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:ablation}{{5.6}{5}{Scoring Ablation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}$\alpha $ Sensitivity}{5}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:alpha}{{5.7}{5}{$\alpha $ Sensitivity}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Mixed-effects regression predicting per-structure recoverability. CKA overlap dominates all other predictors (partial $R^2 = 0.22$). VIF$_{\max } = 2.6$.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:regression}{{5}{6}{Mixed-effects regression predicting per-structure recoverability. CKA overlap dominates all other predictors (partial $R^2 = 0.22$). VIF$_{\max } = 2.6$}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scoring ablation at 20\% sparsity (post-prune GSM8K). Gradient-only corresponds to Standard pruning.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:ablation}{{6}{6}{Scoring ablation at 20\% sparsity (post-prune GSM8K). Gradient-only corresponds to Standard pruning}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}GRASPrune Baseline: Breaking the Linear Assumption}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:graspprune}{{5.8}{6}{GRASPrune Baseline: Breaking the Linear Assumption}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Multi-Sparsity Analysis}{6}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:sparsity}{{5.9}{6}{Multi-Sparsity Analysis}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Out-of-Distribution Evaluation}{6}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:ood}{{5.10}{6}{Out-of-Distribution Evaluation}{subsection.5.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces $\alpha $ ablation at 20\% sparsity (post-prune GSM8K). $\alpha = 0$ reduces to importance-only.}}{7}{table.caption.19}\protected@file@percent }
+\newlabel{tab:alpha}{{7}{7}{$\alpha $ ablation at 20\% sparsity (post-prune GSM8K). $\alpha = 0$ reduces to importance-only}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces GRASPrune breaks the ``recovery $\propto $ post-prune accuracy'' assumption.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:graspprune}{{8}{7}{GRASPrune breaks the ``recovery $\propto $ post-prune accuracy'' assumption}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{SFT recovery is shallow.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Structured vs.\ Unstructured Pruning}{7}{subsection.5.11}\protected@file@percent }
+\newlabel{sec:unstructured}{{5.11}{7}{Structured vs.\ Unstructured Pruning}{subsection.5.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}CKA Reliability}{7}{subsection.5.12}\protected@file@percent }
+\newlabel{sec:reliability}{{5.12}{7}{CKA Reliability}{subsection.5.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{The Redundancy Paradox.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does Standard degrade under GRPO?}{7}{section*.26}\protected@file@percent }
+\bibcite{deepseek2025r1}{{1}{2025}{{DeepSeek-AI}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Multi-sparsity comparison. RASP{}'s advantage grows with sparsity (17pp$\to $23pp). At 30\%, both methods approach collapse.}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:sparsity}{{9}{8}{Multi-sparsity comparison. \method {}'s advantage grows with sparsity (17pp$\to $23pp). At 30\%, both methods approach collapse}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces OOD evaluation of recovered models (20\% sparsity, SFT+GRPO recovery). RASP{}'s advantage generalizes across benchmarks.}}{8}{table.caption.22}\protected@file@percent }
+\newlabel{tab:ood}{{10}{8}{OOD evaluation of recovered models (20\% sparsity, SFT+GRPO recovery). \method {}'s advantage generalizes across benchmarks}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Connection to Lottery Ticket Hypothesis.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibcite{qwq2024}{{2}{2024}{{QwQ Team}}{{}}}
+\bibcite{selfhealing2025}{{3}{2025}{{Chen et~al.}}{{}}}
+\bibcite{graspprune2026}{{4}{2026}{{Wang et~al.}}{{}}}
+\bibcite{bonsai2025}{{5}{2025}{{Zhang et~al.}}{{}}}
+\bibcite{resp2025}{{6}{2025}{{Li et~al.}}{{}}}
+\bibcite{paser2025}{{7}{2025}{{Liu et~al.}}{{}}}
+\bibcite{kornblith2019cka}{{8}{2019}{{Kornblith et~al.}}{{}}}
+\bibcite{llmpruner2023}{{9}{2023}{{Ma et~al.}}{{}}}
+\bibcite{slicegpt2024}{{10}{2024}{{Ashkboos et~al.}}{{}}}
+\bibcite{mpruner2024}{{11}{2024}{{Liu et~al.}}{{}}}
+\bibcite{grpo2024}{{12}{2024}{{Shao et~al.}}{{}}}
+\bibcite{rlsqueezes2026}{{13}{2026}{{Huang et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Structured vs.\ unstructured pruning at 20\% sparsity. RASP{} structured pruning dominates on both accuracy and inference speed.}}{9}{table.caption.24}\protected@file@percent }
+\newlabel{tab:unstructured}{{11}{9}{Structured vs.\ unstructured pruning at 20\% sparsity. \method {} structured pruning dominates on both accuracy and inference speed}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Extended Baselines}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:baselines}{{A}{9}{Extended Baselines}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Sparsity Collapse Map}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:collapse}{{B}{9}{Sparsity Collapse Map}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Extended baselines at 20\% sparsity.}}{10}{table.caption.30}\protected@file@percent }
+\newlabel{tab:extended}{{12}{10}{Extended baselines at 20\% sparsity}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Sparsity collapse map. Recoverable sparsity $\leq $25\% for this model class.}}{10}{table.caption.31}\protected@file@percent }
+\newlabel{tab:collapse}{{13}{10}{Sparsity collapse map. Recoverable sparsity $\leq $25\% for this model class}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Inference Benchmark}{10}{appendix.C}\protected@file@percent }
+\newlabel{app:inference}{{C}{10}{Inference Benchmark}{appendix.C}{}}
+\gdef \@abspage@last{10}

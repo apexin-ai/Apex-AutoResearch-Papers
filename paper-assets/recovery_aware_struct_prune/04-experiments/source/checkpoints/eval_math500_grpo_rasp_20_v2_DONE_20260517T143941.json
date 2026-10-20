@@ -1,0 +1,59 @@
+{
+  "exp_id": "eval_math500_grpo_rasp_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:34:15.861Z",
+    "updated_at": "2026-05-17T14:39:40.783Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && export HF_ENDPOINT=https://hf-mirror.com && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20.json\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "11891",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v2.log",
+      "submitted_at": "2026-05-17T08:34:15.514Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "grpo_stage2_rasp_20_v9",
+      "seed": 42,
+      "checkpoint_source": "grpo_stage2_rasp_20_v9",
+      "eval_data": "MATH-500 (500 problems)",
+      "wall_clock_seconds": 21731.3,
+      "gpu_hours": 6.04,
+      "failure_reason": "EXIT_CODE=124 timeout after ~6h. GRPO model generates extremely long chains (~112s/problem vs ~25s for SFT). Only completed 193/500 problems. Partial acc at 150 problems: 30.67%.",
+      "partial_metrics": {
+        "math500_acc_partial": 0.3067,
+        "problems_completed": 193,
+        "problems_total": 500,
+        "wall_time_hours": 6
+      }
+    },
+    "hypothesis": "MATH-500 accuracy for grpo_rasp_20 (grpo_stage2_rasp_20_v9) vs sft_rasp_20. If GRPO adds math reasoning beyond SFT recovery, grpo_rasp should outperform sft_rasp on MATH-500. If not, reinforces C1.",
+    "parent": "eval_math500_grpo_rasp_20",
+    "reproduce": {
+      "finished_at": "2026-05-17T14:36:27.427Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T14:36:26.812Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T14:36:33.909661+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-17T14:39:41.087929+00:00",
+  "trigger": "update_registry"
+}

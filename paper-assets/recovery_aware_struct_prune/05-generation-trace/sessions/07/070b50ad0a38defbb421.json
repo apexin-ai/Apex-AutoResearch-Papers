@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "070b50ad0a38defbb421",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify v3 sft standard westd1",
+  "task_key": "worker_ssh_verify_v3_sft_standard_westd1_20260523T120054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_v3_sft_standard_westd1_20260523T120054_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "df654f2f2d52fd221f417768543bc69ff4a88c2f2c258c9879b87ddea3804cf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认：PID 108574 就是 v3 eval 进程，仍在运行中，不是幽灵条目。**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | `python src/eval_math500.py --model_path .../sft_standard_20 --output_path .../eval_math500_sft_standard_20_2048_v3.json` |\n| 运行时间 | 5 小时 59 分 |\n| 进度 | **402/500** (80.4%) |\n| GPU | cuda:1, 利用率 99%, 显存 19251 MiB |\n| 结果文件 | 尚未生成（eval 完成后才写入） |\n| 预计剩余 | ~98 题，按当前速度约 1.5-2 小时完成 |\n\n进程活跃、GPU 满载推理中，不应 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-v3-sft-standard-westd1.md"
+}

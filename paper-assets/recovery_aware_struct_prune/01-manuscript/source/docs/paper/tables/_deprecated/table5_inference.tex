@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Inference efficiency at 20\% sparsity. Latency averaged over 100 GSM8K problems. Both pruned configurations remove ${\sim}$1.45B parameters; the latency gap arises from differences in layer-wise sparsity distribution. Best pruned result in \textbf{bold}.}
+\label{tab:inference}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Configuration & Latency\,(s) & Speedup\,(\%) & Memory\,(GB) & Mem.\,Red.\,(\%) \\
+\midrule
+Dense & 6.682 & -- & 16.22 & -- \\
+\rasp{} ($\alpha{=}1.0$) 20\% & \textbf{4.156} & \textbf{37.8} & 11.60 & 28.5 \\
+Standard 20\% & 6.167 & 7.7 & 11.61 & 28.4 \\
+\bottomrule
+\end{tabular}
+\end{table}

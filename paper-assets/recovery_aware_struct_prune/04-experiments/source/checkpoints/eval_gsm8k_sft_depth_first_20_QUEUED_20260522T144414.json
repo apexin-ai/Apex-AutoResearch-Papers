@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_sft_depth_first_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:20:43.950Z",
+    "updated_at": "2026-05-22T14:44:14.341Z",
+    "hypothesis": "MF5 depth-first SFT GSM8K eval. Establishes SFT baseline for depth-first pruning method, paired with GRPO eval to check C1 decoupling for this baseline method.",
+    "parent": "pipeline_depth_first_20"
+  },
+  "timestamp": "2026-05-22T14:44:14.964000+00:00",
+  "trigger": "update_registry"
+}

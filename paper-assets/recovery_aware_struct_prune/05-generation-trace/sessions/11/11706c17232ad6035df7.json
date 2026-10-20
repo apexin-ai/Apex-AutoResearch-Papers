@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11706c17232ad6035df7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_16_1779015820.md",
+  "task_key": "loop_16_1779015820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779015820.md",
+    "occurrence": 1,
+    "bytes": 5169,
+    "sha256": "51f25c5878112197111bd33d46fac978b992e68086cc8a4629bac9bcae09e132"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-17T10:06:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单（C004）：westb-23072 cuda:0/1 + westd-11672 cuda:0/1/2/3，共 6 张。白名单外严禁启动实验\n- 模型/checkpoint/大文件只写 `/root/autodl-tmp/recovery_aware_struct_prune/`（C002），根分区仅 30GB，写满会导致实验崩溃\n- westb↔westd 之间无 SSH key 互信，模型传输需中转（HF Hub 或本地）\n- eval 脚本不走 W&B，cron 会误判 failed——收到 eval 类 failed 回调先检查 registry 是否已有 metrics\n- sft_recovery.py 参数名：`--learning_rate`/`--num_train_epochs`/`--gradient_accumulation_steps`/`--batch_size`/`--max_seq_len`/`--gpu`/`--seed`。用 `--lr`/`--epochs` 会 EXIT_CODE=2\n- Qwen2.5 系列模型 generate() 必须加 `eos_token_id=[151643, 151645]`，否则每 sample 跑满 max_tokens\n- DDL: **EMNLP 2026 ARR May 25**（距今 ~8 天）\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: root@westb-23072, 工作目录 `/root/recovery_aware_struct_prune`（代码）, 数据盘 `/root/autodl-tmp/recovery_aware_struct_prune`（模型/checkpoint）, Python `/root/miniconda3/bin/python`, conda base\n- **westd-11672**: root@westd-11672, 同样结构, 4×RTX PRO 6000 (~95GB each)\n- westb 2×GPU (~98GB each)\n- W&B project: recovery_aware_struct_prune（GRPO 实验走 W&B，eval 实验不走）\n- 活跃 cron 监控：\n  - `scoring_ablation_batch_v2` — westb cuda:0, miss 1/5（进程可能已挂，需要检查）\n  - `eval_math500_unpruned` — 状态 PREPARING 但 cron 报 still running（矛盾，需核实）\n  - `eval_math500_grpo_standard_20` — westd, PID 14556, still running\n\n### 3. 📊 当前状态\n\n**RUNNING 实验（5 个）**:\n| exp_id | 服务器 | GPU | 摘要 |\n|--------|--------|-----|------|\n| scoring_ablation_batch_v2 | westb | cuda:0 | 4种 scoring method ablation (MLP-only), cron miss 1/5 ⚠️ 可能已挂 |\n| gradient_sft_v3 | westb | cuda:0 | Gradient-pruned model SFT recovery（与 scoring ablation 共享 cuda:0？需核实冲突） |\n| eval_math500_grpo_rasp_20_v2 | westd | cuda:3 | RASP GRPO MATH-500 eval |\n| eval_math500_grpo_standard_20 | westd | cuda:2 | Standard GRPO MATH-500 eval |\n| eval_humaneval_grpo_standard_20 | westd | cuda:2 | HumanEval pass@1 for Standard GRPO |\n\n**空闲 GPU（3 张）**: westb cuda:1, westd cuda:0, westd cuda:1 — ⚠️ 这是失职状态\n\n**Worker 池: 0** — ⚠️ 也是失职状态\n\n**等待中**: 无活跃 Worker，无待处理的 Worker 回调。Cron 在监控上述 3 个实验。\n\n**关键待确认**:\n- scoring_ablation_batch_v2 cron miss 1/5 — 进程可能已退出，下一个 session 应立即 poll 确认\n- gradient_sft_v3 和 scoring_ablation_batch_v2 都报 westb cuda:0 — 可能有 GPU 冲突\n- eval_math500_unpruned 状态 PREPARING 但 cron 报 running — 状态不一致\n\n### 4. 📋 待办（条件触发式）\n- scoring_ablation_batch_v2 cron 再 miss → spawn Worker SSH 检查进程是否存活 + 读 log，死了则收结果更新 registry\n- eval_math500_grpo_standard_20 完成 → 与 sft_standard_20 MATH-500 对比（C1 cross-benchmark）\n- eval_math500_grpo_rasp_20_v2 完成 → 与 sft_rasp_20 MATH-500 对比（C1 cross-benchmark）\n- eval_humaneval_grpo_standard_20 完成 → 与 sft_standard_20 HumanEval 对比\n- gradient_sft_v3 完成 → eval GSM8K → scoring ablation 数据点（gradient scoring post-SFT）\n- **空闲 GPU 立即填满**: westb cuda:1 可跑 PREPARING 队列中的实验（如 eval_math500_unpruned / prune_unstructured_20）; westd cuda:0/1 可启动 25% GRPO（grpo_standard_25 / grpo_rasp_25）\n- 25% SFT eval 结果确认 → 更新 paper_framing.md → 启动 25% GRPO（需 Director 审批）\n- Paper Agent Step 2 (Plot Generation) 完成 → 审查 plots → Step 3 Draft\n\n### 5. 🎯 战略上下文\n\n**核心 narrative (D044/D045 后)**:\n- C1: GRPO reward-accuracy decoupling 是 universal（unpruned/RASP/Standard 三者均 Δ≈0），pruning 额外导致 collapse\n- C2: Collapse severity gradient（RASP step~10 permanent > Standard step~60 transient > Unpruned stable）诊断 structural damage\n- C3: Recovery method conditions optimal pruning（SFT 下 RASP 略优，RLVR 下 RASP 有害 → Redundancy-Stability Tradeoff）\n- 20% 核心数据 ALL COMPLETE，当前做 scope expansion（25% sparsity + Qwen2.5-Math-7B cross-model）\n\n**易判断错的事**:\n- RASP vs Standard SFT gap 只有 +2.2pp (p=0.25)，**不显著**。论文里只能说 marginal advantage，不能 claim significant\n- RASP-RLVR（反转 CKA）已被 D050 降格为 negative ablation，不要再投入 GPU\n- C2 表述已调整（D048）：\"collapse severity correlates with structural damage type (universal), but recovery dynamics are model-dependent\"\n- Unpruned GRPO v1 (grpo_unpruned_baseline) 设计错误（无 SFT），v2 才是正确 baseline\n- Alpha sweep post-SFT 敏感度很低（range 5.5pp），paper claim 应聚焦 post-prune 阶段的 α 效应\n- **时间最紧迫的事**: 3 张 GPU 空闲 + 0 Worker = 严重资源浪费，DDL 8 天内必须并行推 25% GRPO + Qwen Math pipeline + scoring ablation + paper writing\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779015820.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "grpo_stage2_rasp_20_v8",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:32:38.536Z",
+    "updated_at": "2026-05-15T14:40:29.694Z",
+    "hypothesis": "D031: GRPO v8 RASP — v7 disk crash fix. HF cache redirected to data disk. 8-bit AdamW, max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True, 100 steps. Parent: sft_rasp_20.",
+    "parent": "sft_rasp_20"
+  },
+  "timestamp": "2026-05-15T14:40:29.773157+00:00",
+  "trigger": "update_registry"
+}

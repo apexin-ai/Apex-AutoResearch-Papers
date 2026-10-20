@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e5e35e42998561ed608",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code full status check westd",
+  "task_key": "worker_code_full-status-check-westd_20260515T093116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full-status-check-westd_20260515T093116_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "91c0d2ddfd4a70fb9b8da03aa4e39ad379a87dc19f9d4ea8952a097ff506c195"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== GPU ===\n0, 51523 MiB, 73 %\n1, 51441 MiB, 86 %\n\n=== PROCESSES ===\nPID 16795  163%CPU  python src/sft_recovery.py --model_path .../alpha_0.0 --output_dir .../sft_ablation/alpha_0.0 --gpu 0 --num_train_epochs 2 --learning_rate 2e-5\nPID 16796  164%CPU  python src/sft_recovery.py --model_path .../alpha_0.5 --output_dir .../sft_ablation/alpha_0.5 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5\n\n=== PID 7186 ===\n7186  bash -c cd /root/recovery_a...  ELAPSED 01:55:23\n\n=== ALPHA ABLATION RESULTS ===\nalpha_0.0/eval_results.json — NO FILE\nalpha_0.5/eval_results.json — NO FILE\nalpha_1.0/eval_results.json — NO FILE\nalpha_2.0/eval_results.json — NO FILE\nalpha_4.0/eval_results.json — NO FILE\n\n=== PIPELINE LOG (ablation_full.log) ===\nSFT 正在训练中：\n  alpha_0.0 (gpu 0): step 621/1870, epoch ~0.33, loss ~0.82-0.88, token_acc ~0.78\n  alpha_0.5 (gpu 1): step 645/1870, epoch ~0.34, loss ~0.82-0.88, token_acc ~0.78\n  速度: ~1.0 it/s 每卡，已跑 ~10 分钟\n\n=== D023 RE-EVAL RESULTS ===\n/tmp/reeval_standard_20.log — 空文件\n/tmp/reeval_rasp_20.log — NO FILE\n\n=== DISK ===\n/dev/md0  250G  95G  156G  38%  /root/autodl-tmp\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-status-check-westd.md"
+}

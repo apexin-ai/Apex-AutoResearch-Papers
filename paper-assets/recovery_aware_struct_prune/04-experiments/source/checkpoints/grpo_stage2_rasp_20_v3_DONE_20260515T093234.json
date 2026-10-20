@@ -1,0 +1,36 @@
+{
+  "exp_id": "grpo_stage2_rasp_20_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:58:52.482Z",
+    "updated_at": "2026-05-15T09:32:34.875Z",
+    "spec": {
+      "command": "crashed immediately",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "233484",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_stage2_rasp_20_v3.log",
+      "submitted_at": "2026-05-15T07:58:52.440Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 1000,
+      "model_name": "sft_rasp_20",
+      "seed": 42,
+      "wall_clock_seconds": 5622.4,
+      "gpu_hours": 1.56
+    },
+    "conclusion": "failed",
+    "failure_reason": "beta>0 triggers GRPOTrainer.from_pretrained for ref_model, but pruned model up_proj shape [8128,3584] mismatches config expectation [18944,3584]. RuntimeError: ignore_mismatched_sizes=False.",
+    "completed_at": "2026-05-15T09:32:34.875Z"
+  },
+  "timestamp": "2026-05-15T09:32:34.913648+00:00",
+  "trigger": "update_registry"
+}

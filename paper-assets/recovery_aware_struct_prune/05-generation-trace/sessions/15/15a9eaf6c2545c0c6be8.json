@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "15a9eaf6c2545c0c6be8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code d019 sft standard retrain",
+  "task_key": "worker_code_d019-sft-standard-retrain_20260515T075735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d019-sft-standard-retrain_20260515T075735.log",
+    "occurrence": 1,
+    "bytes": 714162,
+    "sha256": "ab599c7a698525d4f5b5b4ac9d2195d16606338398e93546aec37779a3801e3a"
+  },
+  "statistics": {
+    "messages": 429,
+    "user_turns": 0,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 107,
+      "tool_call": 159,
+      "tool_result": 159,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 429,
+      "chunks": [
+        {
+          "path": "15a9eaf6c2545c0c6be8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "15a9eaf6c2545c0c6be8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "15a9eaf6c2545c0c6be8-part-0003.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d019-sft-standard-retrain.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19d5f35b137f8969e501",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260514T194806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260514T194806_result.json",
+    "occurrence": 1,
+    "bytes": 1302,
+    "sha256": "f818c51f7355682b6d98272fddbef1bf486458b7ae4b59fec730990c9d0c7b5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "literature_map.yaml 已更新（24 → 31 篇）。\n\n## 扫描报告\n\n新增 **7 篇**论文：\n\n**Method-component（3 篇，高相关）：**\n- **FANG** (2512.23014, Dec 2025) — function-aware neuron grouping，与我们的 CKA functional overlap 思路最接近，但用 activation-based grouping 且无 recovery 组件\n- **FuncNet** (2508.05239, Aug 2025) — ICA 分解 LLM 功能网络再剪枝，类似 \"digital brain\" 动机，无 RLVR recovery\n- **RestoreLCC** (2510.21834, NeurIPS 2025) — activation compensation 恢复剪枝损失，plug-and-play，可与我们 RLVR 组合做 staged recovery\n\n**Background（4 篇）：**\n- **HAP-E** (ICLR 2026 submitted) — Hessian-aware structured pruning + adaptive budget\n- **SlimLLM** (2505.22689, ICML 2025) — PCA-based channel/head importance\n- **SPAP** (2505.03373) — optimization-based MLP pruning\n- **Wanda++** (2503.04992, ACL 2025) — regional gradient 增强的 unstructured pruning\n\n**直接竞品：未发现。** 无论文同时组合 CKA + structured pruning + RLVR recovery。FANG/FuncNet 做了 function-aware pruning 但无 recovery；Self-Healing 做了 RLVR recovery 但无 CKA-guided selection。我们的 novelty（CKA overlap 指导剪枝 → 预测 RLVR recoverability）仍然独特。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan.md"
+}

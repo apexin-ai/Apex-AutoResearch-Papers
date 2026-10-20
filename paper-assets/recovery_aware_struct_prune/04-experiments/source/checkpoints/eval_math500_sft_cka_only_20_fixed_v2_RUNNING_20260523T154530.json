@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_20_fixed_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:44:55.222Z",
+    "updated_at": "2026-05-23T15:45:28.592Z",
+    "hypothesis": "SFT CKA-only 20% MATH-500 with fixed eval script. Retry on westb (checkpoint location). Replaces buggy NEW result (26.8%) with consistent scoring.",
+    "server": "westb-23072",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-23072",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-23T15:45:16.783Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_fixed.json\"",
+      "code_commit": "e6ce5f70bb3b993ba8964f0ea62d2f6001155551"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_fixed.json\"",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "306963",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20_fixed_v2.log",
+      "submitted_at": "2026-05-23T15:45:23.180Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "306963",
+    "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20_fixed_v2.log"
+  },
+  "timestamp": "2026-05-23T15:45:30.731800+00:00",
+  "trigger": "update_registry"
+}

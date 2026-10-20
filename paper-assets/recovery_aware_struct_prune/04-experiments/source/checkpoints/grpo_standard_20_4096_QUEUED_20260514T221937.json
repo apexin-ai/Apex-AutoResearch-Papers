@@ -1,0 +1,24 @@
+{
+  "exp_id": "grpo_standard_20_4096",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:19:37.356Z",
+    "updated_at": "2026-05-14T22:19:37.356Z",
+    "spec": {
+      "hypothesis": "D010: Standard-pruned model (20% sparsity, post-prune 1% GSM8K) GRPO recovery with max_completion_length=4096 (fix D009 truncation). Negative control for RASP comparison.",
+      "parent": "mvp_rasp_pipeline_v4",
+      "command": "python src/train_grpo.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovered_standard_20_4096 --gpu 0 --max_completion_length 4096 --num_train_epochs 1 --max_samples 2000 --learning_rate 1e-6 --save_total_limit 2 --save_steps 200 --reward_desert_patience 50",
+      "server": "westb-23072",
+      "model_name": "pruned_standard_20",
+      "data_path": "gsm8k",
+      "data_count": 2000,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T22:19:37.402430+00:00",
+  "trigger": "update_registry"
+}

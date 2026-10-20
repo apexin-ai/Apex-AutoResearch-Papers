@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e54b6bf5c755209834b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westd disk cleanup",
+  "task_key": "worker_fix_westd_disk_cleanup_20260516T134144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd_disk_cleanup_20260516T134144_result.json",
+    "occurrence": 1,
+    "bytes": 2082,
+    "sha256": "c19d299ec0f7748e250a386e7613bb597f2b7ba1fa87c172c4e6f3df587d2cba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。下面是完整报告和清理计划。\n\n---\n\n## 诊断结果\n\n**数据盘 `/dev/md0`：750G 已 100% 满，仅剩 2.2M**\n\n### 占用分布\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| grpo_rasp_qwen_math | 132G | 6 个 checkpoint (15-40) |\n| grpo_standard_qwen_math | 154G | 6 个 checkpoint (10-35) |\n| grpo_rasp_25_qwen_math | 100G | 5 个 checkpoint (5-25) |\n| grpo_standard_25_qwen_math | 100G | 5 个 checkpoint (5-25) |\n| grpo_unpruned_v2 | 46G | 1 个 checkpoint (100) |\n| grpo_standard_v8_step50 | 12G | 无 checkpoint |\n| pruned_* (8个) | ~80G | 禁删 |\n| sft_* (9个) | ~96G | 禁删 |\n| models/ | 29G | DeepSeek-R1 + Qwen2.5-Math |\n| 其他 | <1G | |\n\n### Checkpoint 完整性\n\n| 实验 | 最新可用 checkpoint | 损坏的 checkpoint |\n|------|---------------------|-------------------|\n| grpo_rasp_qwen_math | **checkpoint-35** (27G, 完整) | checkpoint-40 (48K, model.safetensors 仅 40KB) |\n| grpo_standard_qwen_math | **checkpoint-30** (27G, 完整) | checkpoint-35 (23G, optimizer 截断 12.2G vs 正常 15.7G, 缺 trainer_state/rng_state/scheduler) |\n| grpo_rasp_25_qwen_math | **checkpoint-20** (25G, 完整) | checkpoint-25 (48K, model.safetensors 仅 40KB) |\n| grpo_standard_25_qwen_math | **checkpoint-20** (25G, 完整) | checkpoint-25 (48K, model.safetensors 仅 40KB) |\n\n### 清理计划\n\n**Phase 1 — 删除损坏 checkpoint (~23G)**\n- `grpo_rasp_qwen_math/checkpoint-40` (48K)\n- `grpo_standard_qwen_math/checkpoint-35` (23G)\n- `grpo_rasp_25_qwen_math/checkpoint-25` (48K)\n- `grpo_standard_25_qwen_math/checkpoint-25` (48K)\n\n**Phase 2 — 删除旧 checkpoint，每个实验仅保留最新完整的 (~366G)**\n- `grpo_rasp_qwen_math`: 删 15,20,25,30 (保留 35) → ~108G\n- `grpo_standard_qwen_math`: 删 10,15,20,25 (保留 30) → ~108G\n- `grpo_rasp_25_qwen_math`: 删 5,10,15 (保留 20) → ~75G\n- `grpo_standard_25_qwen_math`: 删 5,10,15 (保留 20) → ~75G\n\n**预计释放 ~389G，清理后数据盘约 48% 使用率（~361G/750G）。**\n\n确认执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd-disk-cleanup.md"
+}

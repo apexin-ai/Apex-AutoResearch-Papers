@@ -1,0 +1,17 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:33.342911+00:00",
+  "completed_at": "2026-05-25T21:15:37.175385+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "agent_error",
+      "message": "[ERROR] Agent exited 1: You've hit your limit · resets 12am (UTC)"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 0,
+    "info": 1
+  }
+}

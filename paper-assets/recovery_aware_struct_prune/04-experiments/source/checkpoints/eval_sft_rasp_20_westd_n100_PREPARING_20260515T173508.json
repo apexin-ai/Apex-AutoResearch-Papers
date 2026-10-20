@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_sft_rasp_20_westd_n100",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:35:08.417Z",
+    "updated_at": "2026-05-15T17:35:08.417Z"
+  },
+  "timestamp": "2026-05-15T17:35:08.505144+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1814 @@
+{
+  "schema_version": "1.0",
+  "id": "075ebeb7374c3c4f4738",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "eval capture westd all results",
+  "task_key": "worker_eval_capture-westd-all-results_20260515T163912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_capture-westd-all-results_20260515T163912.jsonl",
+    "occurrence": 1,
+    "bytes": 68328,
+    "sha256": "6a6db0763bbf78dd76168367f8faf4fa56f631e7c6e8fc1ad9253ec7e6f3f83b"
+  },
+  "statistics": {
+    "messages": 89,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "tool_call": 44,
+      "tool_result": 44,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T16:41:25.362232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T16:41:25.362579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T16:41:25.362760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls -la /root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.json /root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.json /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T16:41:25.362901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T16:41:25.363027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls -la /root/recovery_aware_struct_prune/results/eval_*grasp* /root/recovery_aware_struct_prune/results/eval_*alpha* 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T16:41:25.363152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T16:41:25.363287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls -la /root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T16:41:25.363415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T16:41:25.363550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /root/recovery_aware_struct_prune/results/ -name \"eval_sft_*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T16:41:25.363670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /root/recovery_aware_struct_prune/results/ -name \"eval_*grasp*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T16:41:25.363803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.0_n100.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_1.0_n100.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.log\\\\n/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log\\\\n/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T16:41:25.363925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /root/recovery_aware_struct_prune/results/ -name \"eval_*alpha*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T16:41:25.364046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/results/eval_grasp_n100.log\\\\n/root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log\\\\n/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T16:41:25.364170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/results/alpha_ablation/eval_prune_alpha_0.0.json\\\\n/root/recovery_aware_struct_prune/results/alpha_ablation/eval_prune_alpha_0.5.json\\\\n/root/recovery_aware_struct_prune/results/alpha_ablation/eval_prune_alpha_1.0.json\\\\n/root/recovery_aware_struct_prune/results/alpha_ablation/eval_prune_alpha_2.0.json\\\\n/root/recovery_aware_struct_prune/results/alpha_ablation/eval_prune_alpha_4.0.json\\\\n/root/recovery_aware_struct_prune/results/eval_alpha_4.0_greedy.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.0_n100.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_1.0_n100.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.log\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T16:41:25.364324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T16:41:25.364448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T16:41:25.364721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.62,\\\\n  \\\\\\\"stderr\\\\\\\": 0.048538644398046386,\\\\n  \\\\\\\"n_correct\\\\\\\": 62,\\\\n  \\\\\\\"n_total\\\\\\\": 100,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 97,\\\\n    \\\\\\\"truncated\\\\\\\": 3,\\\\n    \\\\\\\"eos_rate\\\\\\\": 0.97,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 277.41,\\\\n    \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n    \\\\\\\"min_response_length\\\\\\\": 63\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"Let the ages of Darrell and Allen be 7x and 11x respectively.\\\\\\\\n\\\\\\\\nThe total age of the two is 7x + 11x = 162.\\\\\\\\n\\\\\\\\nSo, 18x = 162, which means x = 162/18 = <<162/18=9>>9.\\\\\\\\n\\\\\\\\nThe age of Allen is 11x = 11*9 = <<11*9=99>>99 years.\\\\\\\\n</think>\\\\\\\\n\\\\\\\\nLet the ages of **Darrell** and **Allen** be represented by the variables **7x** and **11x** respectively, where **x** is a common multiplier.\\\\\\\\n\\\\\\\\nThe total age of the two is given as:\\\\\\\\n\\\\\\\\\\\\\\\\[\\\\\\\\n7x + 11x = 162\\\\\\\\n\\\\\\\\\\\\\\\\]\\\\\\\\nSimplifying the equation:\\\\\\\\n\\\\\\\\\\\\\\\\[\\\\\\\\n18x = 162\\\\\\\\n\\\\\\\\\\\\\\\\]\\\\\\\\nDividing both sides by 18:\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 308,\\\\n      \\\\\\\"hit_eos\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large butto\n…[truncated 7362 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T16:41:25.365018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.41,\\\\n  \\\\\\\"stderr\\\\\\\": 0.04918333050943175,\\\\n  \\\\\\\"n_correct\\\\\\\": 41,\\\\n  \\\\\\\"n_total\\\\\\\": 100,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 98,\\\\n    \\\\\\\"truncated\\\\\\\": 2,\\\\n    \\\\\\\"eos_rate\\\\\\\": 0.98,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 225.78,\\\\n    \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n    \\\\\\\"min_response_length\\\\\\\": 57\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"119\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"Let the ages of Allen and Darrell be 11x and 7x respectively.\\\\\\\\nThe total age is 11x + 7x = 18x\\\\\\\\nThe total age is 18x = 162\\\\\\\\nx = <<9 = 9>>9\\\\\\\\nAllen's age is 11x = <<11*9=99>>99\\\\\\\\nAllen's age 10 years from now is 99 + 10 = <<99+10=119>>119\\\\\\\\n#### 119\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 121,\\\\n      \\\\\\\"hit_eos\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"89\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"135\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"Lorraine starts with 30 small stickers and 40 large stickers.\n…[truncated 7293 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T16:41:25.365185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -30 /root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T16:41:25.365350+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 00:07:38,708 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\\n2026-05-16 00:07:39,343 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\\\\", line 403, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\\\\", line 342, in main\\\\n    model = load_pruned_model(args.model_path, device_map=\\\\\\\"auto\\\\\\\", torch_dtype=torch_dtype)\\\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/recovery_aware_struct_prune/src/model_utils.py\\\\\\\", line 95, in load_pruned_model\\\\n    state_dict = _load_state_dict(model_path)\\\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/recovery_aware_struct_prune/src/model_utils.py\\\\\\\", line 19, in _load_state_dict\\\\n    state_dict.update(load_file(os.path.join(model_path, f)))\\\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/safetensors/torch.py\\\\\\\", line 336, in load_file\\\\n    with safe_open(filename, framework=\\\\\\\"pt\\\\\\\", device=device) as f:\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nsafetensors_rust.SafetensorError: Error while deserializing header: incomplete metadata, file not fully covered\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T16:41:25.365485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T16:41:25.365749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.07,\\\\n  \\\\\\\"stderr\\\\\\\": 0.02551470164434615,\\\\n  \\\\\\\"n_correct\\\\\\\": 7,\\\\n  \\\\\\\"n_total\\\\\\\": 100,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 2,\\\\n    \\\\\\\"truncated\\\\\\\": 98,\\\\n    \\\\\\\"eos_rate\\\\\\\": 0.02,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 4019.52,\\\\n    \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n    \\\\\\\"min_response_length\\\\\\\": 177\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"11\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"Okay, let me try to figure out this problem. So, the problem says that the ratio of their ages is 7:11. That means if I think of their ages as parts of a whole, the total number of parts would be 7 + 1 = 2 parts. So, each part is equal to the total age divided by the total number of parts. \\\\\\\\n\\\\\\\\nLet me write that down. If 2 parts are equal to 162 years, then each part must be equal to 162 divided by 2. Let me calculate that. 162 divided by 2 equals 81. So, each part is equal to 81 years. \\\\\\\\n\\\\\\\\nNow, Alle\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 4096,\\\\n      \\\\\\\"hit_eos\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for sma\n…[truncated 7155 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T16:41:25.365964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T16:41:25.366101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0011}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T16:41:25.366221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "30",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T16:41:25.366365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sft_alpha2_0_westd\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:41:05.720Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:41:05.720Z\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0012}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T16:41:25.366514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_2p0",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T16:41:25.366645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0011}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T16:41:25.366764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T16:41:25.366883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T16:41:25.366997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_0p5",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T16:41:25.367113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0009}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T16:41:25.367274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_2p0",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T16:41:25.367405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_2p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:13.916Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:13.916Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0655}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T16:41:25.367519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T16:41:25.367636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:14.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:14.409Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0188}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T16:41:25.367745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_0p5",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T16:41:25.367866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_0p5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:15.049Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:15.049Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0194}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T16:41:25.367982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_2p0",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 --n_samples 100 --output_path results/eval_sft_alpha_2.0_n100.json', 'server': 'westd-11672', 'data_path': 'gsm8k', 'data_count': 100, 'model_name': 'qwen2.5-3b-sft-alpha2.0', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0', 'eval_data': 'gsm8k_test_n100'}"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T16:41:25.368116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_2p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:13.916Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:21.886Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 --n_samples 100 --output_path results/eval_sft_alpha_2.0_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha2.0\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0239}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T16:41:25.368236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --n_samples 100 --output_path results/eval_sft_grasp_20_n100.json', 'server': 'westd-11672', 'data_path': 'gsm8k', 'data_count': 100, 'model_name': 'qwen2.5-3b-sft-grasp20', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20', 'eval_data': 'gsm8k_test_n100'}"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T16:41:25.368393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:14.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:24.242Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --n_samples 100 --output_path results/eval_sft_grasp_20_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0253}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T16:41:25.368520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_0p5",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5 --n_samples 100 --output_path results/eval_sft_alpha_0.5_n100.json', 'server': 'westd-11672', 'data_path': 'gsm8k', 'data_count': 100, 'model_name': 'qwen2.5-3b-sft-alpha0.5', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5', 'eval_data': 'gsm8k_test_n100'}"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T16:41:25.368654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_0p5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:15.049Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:26.198Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5 --n_samples 100 --output_path results/eval_sft_alpha_0.5_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0272}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T16:41:25.368783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_2p0",
+              "field": "log_path",
+              "value": "/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.log"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T16:41:25.368909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_2p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:13.916Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:29.984Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 --n_samples 100 --output_path results/eval_sft_alpha_2.0_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha2.0\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0094}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T16:41:25.369024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_2p0",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T16:41:25.369155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_2p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:13.916Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:30.930Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 --n_samples 100 --output_path results/eval_sft_alpha_2.0_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha2.0\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0101}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T16:41:25.369289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20",
+              "field": "log_path",
+              "value": "/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T16:41:25.369422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:14.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:31.868Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --n_samples 100 --output_path results/eval_sft_grasp_20_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0104}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T16:41:25.369538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T16:41:25.369661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:14.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:32.810Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --n_samples 100 --output_path results/eval_sft_grasp_20_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0109}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T16:41:25.369800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_0p5",
+              "field": "log_path",
+              "value": "/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T16:41:25.369997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_0p5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:15.049Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:33.739Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5 --n_samples 100 --output_path results/eval_sft_alpha_0.5_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0101}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T16:41:25.370255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_0p5",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T16:41:25.370662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_0p5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:15.049Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:34.217Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5 --n_samples 100 --output_path results/eval_sft_alpha_0.5_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0121}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T16:41:25.371002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_2p0",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T16:41:25.371242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_2p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:13.916Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:37.706Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 --n_samples 100 --output_path results/eval_sft_alpha_2.0_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha2.0\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0161}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T16:41:25.371514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_2p0",
+              "field": "metrics",
+              "value": "{'accuracy': 0.62, 'stderr': 0.0485, 'n_correct': 62, 'n_total': 100, 'eos_rate': 0.97, 'avg_len': 277.41}"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T16:41:25.371755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_2p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:13.916Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:39.610Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 --n_samples 100 --output_path results/eval_sft_alpha_2.0_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha2.0\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.62, \\\"stderr\\\": 0.0485, \\\"n_correct\\\": 62, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.97, \\\"avg_len\\\": 277.41}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0156}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T16:41:25.371989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T16:41:25.372200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:14.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:40.051Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --n_samples 100 --output_path results/eval_sft_grasp_20_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0189}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T16:41:25.372615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20",
+              "field": "metrics",
+              "value": "{'accuracy': 0.41, 'stderr': 0.0492, 'n_correct': 41, 'n_total': 100, 'eos_rate': 0.98, 'avg_len': 225.78}"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T16:41:25.373099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:14.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:41.588Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --n_samples 100 --output_path results/eval_sft_grasp_20_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.41, \\\"stderr\\\": 0.0492, \\\"n_correct\\\": 41, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.98, \\\"avg_len\\\": 225.78}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0132}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T16:41:25.373884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_0p5",
+              "field": "conclusion",
+              "value": "negative"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T16:41:25.374099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_0p5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:15.049Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:41.933Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5 --n_samples 100 --output_path results/eval_sft_alpha_0.5_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0175}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T16:41:25.374249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_0p5",
+              "field": "metrics",
+              "value": "{'error': 'safetensors corrupt: incomplete metadata, file not fully covered'}"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T16:41:25.374448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_0p5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:15.049Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:43.075Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5 --n_samples 100 --output_path results/eval_sft_alpha_0.5_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"error\\\": \\\"safetensors corrupt: incomplete metadata, file not fully covered\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0138}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T16:41:25.374599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_2p0",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T16:41:25.374757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_2p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:13.916Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:46.869Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 --n_samples 100 --output_path results/eval_sft_alpha_2.0_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha2.0\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_2.0_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.62, \\\"stderr\\\": 0.0485, \\\"n_correct\\\": 62, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.97, \\\"avg_len\\\": 277.41}, \\\"completed_at\\\": \\\"2026-05-15T16:40:46.869Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0512}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T16:41:25.374903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T16:41:25.375060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:14.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:47.442Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --n_samples 100 --output_path results/eval_sft_grasp_20_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.41, \\\"stderr\\\": 0.0492, \\\"n_correct\\\": 41, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.98, \\\"avg_len\\\": 225.78}, \\\"completed_at\\\": \\\"2026-05-15T16:40:47.442Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0829}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T16:41:25.375194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_alpha_0p5",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T16:41:25.375385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_alpha_0p5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:15.049Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:47.863Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5 --n_samples 100 --output_path results/eval_sft_alpha_0.5_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-sft-alpha0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_alpha_0.5_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"error\\\": \\\"safetensors corrupt: incomplete metadata, file not fully covered\\\"}, \\\"completed_at\\\": \\\"2026-05-15T16:40:47.863Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0437}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T16:41:25.375545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grasp_baseline_westd",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T16:41:25.375680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grasp_baseline_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:51.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:51.440Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0325}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T16:41:25.375804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grasp_baseline_westd",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --n_samples 100', 'server': 'westd-11672', 'data_path': 'gsm8k', 'data_count': 100, 'model_name': 'qwen2.5-3b-pruned-grasp20', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20', 'eval_data': 'gsm8k_test_n100'}"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T16:41:25.375946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grasp_baseline_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:51.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:55.995Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --n_samples 100\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-pruned-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.038}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T16:41:25.376067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grasp_baseline_westd",
+              "field": "log_path",
+              "value": "/root/recovery_aware_struct_prune/results/eval_grasp_n100.log"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T16:41:25.376198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grasp_baseline_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:51.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:59.801Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --n_samples 100\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-pruned-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_grasp_n100.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0161}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T16:41:25.376358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grasp_baseline_westd",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T16:41:25.376502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grasp_baseline_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:51.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:41:00.273Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --n_samples 100\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-pruned-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_grasp_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0158}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T16:41:25.376627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grasp_baseline_westd",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T16:41:25.376756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grasp_baseline_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:51.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:41:05.012Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --n_samples 100\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-pruned-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_grasp_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0252}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T16:41:25.376881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grasp_baseline_westd",
+              "field": "metrics",
+              "value": "{'accuracy': 0.07, 'stderr': 0.0255, 'n_correct': 7, 'n_total': 100, 'eos_rate': 0.02, 'avg_len': 4019.52}"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T16:41:25.377023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grasp_baseline_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:51.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:41:06.029Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --n_samples 100\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-pruned-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_grasp_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.07, \\\"stderr\\\": 0.0255, \\\"n_correct\\\": 7, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.02, \\\"avg_len\\\": 4019.52}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0201}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T16:41:25.377152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grasp_baseline_westd",
+              "field": "status",
+              "value": "DONE"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T16:41:25.377321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grasp_baseline_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:40:51.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:41:13.070Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --n_samples 100\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"qwen2.5-3b-pruned-grasp20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\"}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_grasp_n100.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.07, \\\"stderr\\\": 0.0255, \\\"n_correct\\\": 7, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.02, \\\"avg_len\\\": 4019.52}, \\\"completed_at\\\": \\\"2026-05-15T16:41:13.070Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0348}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T16:41:25.377522+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。汇总表：\n\n## GSM8K Accuracy 对比 (n=100, greedy)\n\n| 配置 | Post-Prune | Post-SFT | SFT 恢复 |\n|------|-----------|----------|---------|\n| α=0.0 (magnitude-only) | — | 64% | — |\n| **α=0.5** | 25% | **FAIL** (checkpoint 损坏) | — |\n| α=1.0 | 27% | 57% | +30pp |\n| **α=2.0** | 29% | **62%** | +33pp |\n| α=4.0 | 40% | 62% | +22pp |\n| Standard (LLM-Pruner) | 27% | 64% | +37pp |\n| RASP | 31% | 57% | +26pp |\n| **GraSP-20** | **7%** (eos_rate=2%) | **41%** | +34pp |\n\n### 关键发现\n\n1. **α=2.0 post-SFT = 62%**，与 α=4.0 持平，但 post-prune 更低 (29% vs 40%)。SFT 恢复能力强。\n2. **GraSP post-SFT = 41%**，虽然 SFT 恢复了 +34pp，但绝对值远低于其他方法。GraSP pre-SFT 仅 7% 且 eos_rate=2%（几乎全部 truncated），说明剪枝后模型结构严重受损。\n3. **α=0.5 eval 失败** — safetensors 文件损坏 (`incomplete metadata, file not fully covered`)，SFT checkpoint 需要重新保存或重训。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_capture-westd-all-results_20260515T163912"
+          },
+          "id": "event-000089"
+        }
+      ],
+      "message_count": 89
+    }
+  ],
+  "readable_path": "readable/conversations/eval-capture-westd-all-results.md"
+}

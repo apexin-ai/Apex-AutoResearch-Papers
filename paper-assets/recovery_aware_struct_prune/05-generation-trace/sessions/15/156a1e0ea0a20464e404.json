@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "156a1e0ea0a20464e404",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest gsm8k sft standard 25 final v2",
+  "task_key": "worker_ssh_harvest_gsm8k_sft_standard_25_final_v2_20260521T143017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_gsm8k_sft_standard_25_final_v2_20260521T143017_result.json",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "9094c4e2606739c38e12c28c6134f915643d9f6e26b1fd4303c8229bdcd8c998"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 分钟后自动回来收结果。当前状态：\n- **进度**: 1253/1319 (95%)\n- **interim acc**: 50.96%\n- **eos_rate**: 95.20%\n- **avg_len**: 337"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-gsm8k-sft-standard-25-final-v2.md"
+}

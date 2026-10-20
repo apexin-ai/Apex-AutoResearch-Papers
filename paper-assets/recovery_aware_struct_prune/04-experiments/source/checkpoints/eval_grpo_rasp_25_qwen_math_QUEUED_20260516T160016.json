@@ -1,0 +1,20 @@
+{
+  "exp_id": "eval_grpo_rasp_25_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:59:53.951Z",
+    "updated_at": "2026-05-16T16:00:16.768Z",
+    "spec": {
+      "hypothesis": "Qwen2.5-Math-7B RASP 25% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_rasp_25_qwen_math.",
+      "parent": "grpo_rasp_25_qwen_math",
+      "server": "westd-11672",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-16T16:00:16.940811+00:00",
+  "trigger": "update_registry"
+}

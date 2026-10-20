@@ -1,0 +1,47 @@
+{
+  "exp_id": "gradient_sft_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:28:21.646Z",
+    "updated_at": "2026-05-17T10:08:07.026Z",
+    "spec": {
+      "command": "python src/sft_recovery.py --model_path pruned_gradient_20 --output_dir sft_gradient_20 --gpu 0 --save_strategy no --seed 42",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "699032",
+      "log_path": "~/runs/recovery_aware_struct_prune/gradient_sft_v3.log",
+      "submitted_at": "2026-05-17T09:28:21.306Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k (SFT training data)",
+      "data_count": 7473,
+      "model_name": "pruned_gradient_20",
+      "seed": 42,
+      "checkpoint_source": "pruned_gradient_20 (gradient scoring, 19.09% sparsity)",
+      "eval_data": "N/A - this is SFT training, not eval",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_gradient_20",
+      "wall_clock_seconds": 2385.7,
+      "gpu_hours": 0.66
+    },
+    "hypothesis": "SFT recovery on gradient-pruned model (25.5% post-prune acc). If SFT recovers gradient to ~50-60%, gradient scoring is viable but weaker than CKA-aware. If recovery fails or minimal, gradient scoring causes irreversible damage similar to magnitude.",
+    "parent": "scoring_ablation_batch_v2",
+    "conclusion": "success",
+    "metrics": {
+      "final_loss": 0.644,
+      "token_accuracy": 0.825,
+      "epochs": 2,
+      "steps": 1870,
+      "output_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_gradient_20"
+    },
+    "completed_at": "2026-05-17T10:08:07.026Z"
+  },
+  "timestamp": "2026-05-17T10:08:07.271090+00:00",
+  "trigger": "update_registry"
+}

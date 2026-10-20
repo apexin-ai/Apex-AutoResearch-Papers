@@ -1,0 +1,1864 @@
+# ssh check eval progress all gpus
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_ssh_check_eval_progress_all_gpus_20260523T065745.jsonl`
+- **Structured JSON:** [`216759f6bc28c9b1f963.json`](../../sessions/21/216759f6bc28c9b1f963.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T07:01:25.916432+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T07:01:25.916788+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T07:01:25.916993+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ps -p 100223,108569,83161,105828 -o pid,etime,pcpu,pmem --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ps -p 100223,108569,83161,105828 -o pid,etime,pcpu,pmem --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T07:01:25.917155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps -p 250766,262771 -o pid,etime,pcpu,pmem --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ps -p 250766,262771 -o pid,etime,pcpu,pmem --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T07:01:25.917345+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 83161    08:34:00  101  0.1\\n100223    03:37:06  102  0.1\\n105828    01:50:09  105  0.1\\n108569       56:40  0.0  0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T07:01:25.917502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"250766    07:47:51  0.0  0.0\\n262771    03:58:30  104  0.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T07:01:25.917666+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha3p0_20.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_2048_v3.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_v2.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_20_2048_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha3p0_20.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_2048_v3.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_v2.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_20_2048_v2.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T07:01:25.917808+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha3p0_20.json': No such file or directory\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_2048_v3.json': No such file or directory\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_v2.json': No such file or directory\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_20_2048_v2.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T07:01:25.917936+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T07:01:25.918071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 98 %, 17257 MiB, 97887 MiB\\n1, 99 %, 16767 MiB, 97887 MiB\\n2, 99 %, 17651 MiB, 97887 MiB\\n3, 98 %, 17005 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T07:01:25.918193+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T07:01:25.918350+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T07:01:25.918489+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json': No such file or directory\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T07:01:25.918613+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 19895 MiB, 97887 MiB\\n1, 99 %, 18097 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T07:01:25.918766+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls -la /root/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha3p0_20.json /root/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_2048_v3.json /root/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_v2.json /root/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_20_2048_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls -la /root/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha3p0_20.json /root/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_2048_v3.json /root/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_v2.json /root/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_20_2048_v2.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T07:01:25.918899+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha3p0_20.json': No such file or directory\\nls: cannot access '/root/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_2048_v3.json': No such file or directory\\nls: cannot access '/root/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_v2.json': No such file or directory\\nls: cannot access '/root/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_20_2048_v2.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T07:01:25.919029+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json /root/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -la /root/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json /root/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T07:01:25.919155+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json': No such file or directory\\nls: cannot access '/root/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T07:01:25.919330+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root/recovery_aware_struct_prune -name \"eval_math500*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root/recovery_aware_struct_prune -name \"eval_math500*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T07:01:25.919477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_2048.log\\n/root/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_2048_v2.log\\n/root/recovery_aware_struct_prune/logs/eval_math500_sft_random_20_v2.log\\n/root/recovery_aware_struct_prune/logs/eval_math500_sft_random_20_v3.log\\n/root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json\\n/root/recovery_aware_struct_prune/results/eval_math500_sft_random_20_v3.json\\n/root/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha2p0_20.log\\n/root/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha2p0_20.json\\n/root/recovery_aware_struct_prune/src/eval_math500.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T07:01:25.919600+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune -name \"eval_math500*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune -name \"eval_math500*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T07:01:25.919746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_v2.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_alpha0p5_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_alpha4p0_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_alpha1p0_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_alpha3p0_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_westd.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_random_20_v2.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_rasp_alpha4p0_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_alpha3p0_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_cka_only_20_2048_v2.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/artifacts/eval_math500_grpo_cka_only_20_2048_analysis.md\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_v4.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_unpruned.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha4p0_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha0p5_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha1p0_20_v2.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/
+…[truncated 425 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T07:01:25.919889+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/recovery_aware_struct_prune -name \"eval_math500*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/recovery_aware_struct_prune -name \"eval_math500*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T07:01:25.920009+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune -name \"eval_math500*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune -name \"eval_math500*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T07:01:25.920134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_v7.log\\n/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_1p5b.log\\n/root/recovery_aware_struct_prune/logs/eval_math500_sft_standard_20_1p5b.log\\n/root/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_20_1p5b.log\\n/root/recovery_aware_struct_prune/src/eval_math500.py\\n/root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_v7.json\\n/root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_1p5b.json\\n/root/recovery_aware_struct_prune/results/eval_math500_sft_rasp_20_1p5b.json\\n/root/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_1p5b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T07:01:25.920274+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_westb.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T07:01:25.920448+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_random_20_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_random_20_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T07:01:25.920693+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu May 21 21:33:23 2026).\\n2026-05-23 06:25:54,534 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu May 21 21:33:23 2026).\\n2026-05-23 06:25:54,553 [INFO] Loaded 500 problems\\n2026-05-23 06:25:54,553 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [02:29<20:40:10, 149.12s/it]\\rMATH-500 eval:   0%|          | 2/500 [06:15<26:54:12, 194.48s/it]\\rMATH-500 eval:   1%|          | 3/500 [09:51<28:13:32, 204.45s/it]\\rMATH-500 eval:   1%|          | 4/500 [10:11<18:07:02, 131.50s/it]\\rMATH-500 eval:   1%|          | 5/500 [10:43<13:08:44, 95.60s/it] \\rMATH-500 eval:   1%|          | 6/500 [10:46<8:47:28, 64.07s/it] \\rMATH-500 eval:   1%|▏         | 7/500 [14:15<15:17:00, 111.60s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [17:54<19:56:05, 145.86s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [18:35<15:24:53, 113.02s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [22:26<20:20:02, 149.39s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [25:59<22:56:10, 168.86s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [29:37<24:55:12, 183.84s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [33:17<26:21:20, 194.83s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [33:24<18:38:51, 138.13s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [37:11<22:11:30, 164.72s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [41:08<25:04:42, 186.53s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [44:41<26:05:03, 194.42s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [48:43<27:57:32, 208.82s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [52:36<2
+…[truncated 6423 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T07:01:25.920908+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_alpha3p0_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_alpha3p0_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T07:01:25.921154+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu May 21 21:33:23 2026).\\n2026-05-23 11:22:26,892 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu May 21 21:33:23 2026).\\n2026-05-23 11:22:26,911 [INFO] Loaded 500 problems\\n2026-05-23 11:22:26,911 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [00:03<27:01,  3.25s/it]\\rMATH-500 eval:   0%|          | 2/500 [01:43<8:21:56, 60.47s/it]\\rMATH-500 eval:   1%|          | 3/500 [03:20<10:37:12, 76.93s/it]\\rMATH-500 eval:   1%|          | 4/500 [03:22<6:31:01, 47.30s/it] \\rMATH-500 eval:   1%|          | 5/500 [03:27<4:26:34, 32.31s/it]\\rMATH-500 eval:   1%|          | 6/500 [03:29<3:01:05, 21.99s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [03:33<2:10:53, 15.93s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [03:48<2:08:57, 15.73s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [03:51<1:35:16, 11.64s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [03:59<1:26:19, 10.57s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [04:01<1:04:49,  7.95s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [05:38<4:45:41, 35.13s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [05:44<3:31:47, 26.09s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [05:46<2:32:37, 18.84s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [05:49<1:55:35, 14.30s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [05:55<1:34:55, 11.77s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [05:57<1:11:27,  8.88s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [07:45<5:10:07, 38.60s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [07:48<3:43:46, 27.91s/it]\\rMATH-500 eval:
+…[truncated 6434 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T07:01:25.921359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_cka_only_20_2048_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_cka_only_20_2048_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T07:01:25.921574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu May 21 21:33:23 2026).\\n2026-05-23 13:09:25,364 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu May 21 21:33:23 2026).\\n2026-05-23 13:09:25,383 [INFO] Loaded 500 problems\\n2026-05-23 13:09:25,383 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [01:37<13:28:10, 97.18s/it]\\rMATH-500 eval:   0%|          | 2/500 [01:43<6:04:05, 43.87s/it] \\rMATH-500 eval:   1%|          | 3/500 [03:20<9:23:54, 68.08s/it]\\rMATH-500 eval:   1%|          | 4/500 [03:22<5:48:11, 42.12s/it]\\rMATH-500 eval:   1%|          | 5/500 [03:30<4:03:54, 29.56s/it]\\rMATH-500 eval:   1%|          | 6/500 [03:33<2:49:02, 20.53s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [03:36<2:02:44, 14.94s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [03:56<2:16:12, 16.61s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [03:59<1:39:51, 12.20s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [04:08<1:31:57, 11.26s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [05:43<5:01:41, 37.02s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [07:21<7:31:27, 55.51s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [07:26<5:26:30, 40.23s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [07:28<3:52:45, 28.74s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [07:31<2:49:32, 20.97s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [07:37<2:11:58, 16.36s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [07:39<1:35:40, 11.89s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [07:47<1:26:45, 10.80s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [07:50<1:09:08,  8.63s/it]\\rMATH-500 eva
+…[truncated 6431 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T07:01:25.921736+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -5 /root/recovery_aware_struct_prune/logs/eval_math500_sft_standard_20_2048_v3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -5 /root/recovery_aware_struct_prune/logs/eval_math500_sft_standard_20_2048_v3.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T07:01:25.921871+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/recovery_aware_struct_prune/logs/eval_math500_sft_standard_20_2048_v3.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T07:01:25.921997+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-23T07:01:25.922119+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T07:01:25.922281+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-23 06:27:28,770 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-23 06:27:28,846 [INFO] Loaded 500 problems\\n2026-05-23 06:27:28,846 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [01:37<13:28:32, 97.22s/it]\\rMATH-500 eval:   0%|          | 2/500 [03:18<13:44:35, 99.35s/it]\\rMATH-500 eval:   1%|          | 3/500 [03:23<7:49:00, 56.62s/it] \\rMATH-500 eval:   1%|          | 4/500 [04:58<9:51:34, 71.56s/it]\\rMATH-500 eval:   1%|          | 5/500 [06:55<12:05:50, 87.98s/it]\\rMATH-500 eval:   1%|          | 6/500 [06:58<8:07:37, 59.23s/it] \\rMATH-500 eval:   1%|▏         | 7/500 [07:01<5:35:39, 40.85s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [08:45<8:19:56, 60.97s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [10:21<9:47:52, 71.84s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [12:05<11:06:48, 81.65s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [13:40<11:39:01, 85.77s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [15:17<12:05:46, 89.23s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [16:55<12:25:48, 91.89s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [18:40<12:57:00, 95.93s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [20:21<13:07:42, 97.45s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T07:01:25.922510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-23 11:02:47,233 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-23 11:02:47,299 [INFO] Loaded 500 problems\\n2026-05-23 11:02:47,299 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [00:02<21:49,  2.62s/it]\\rMATH-500 eval:   0%|          | 2/500 [01:44<8:24:56, 60.84s/it]\\rMATH-500 eval:   1%|          | 3/500 [01:49<4:52:00, 35.25s/it]\\rMATH-500 eval:   1%|          | 4/500 [01:51<3:03:16, 22.17s/it]\\rMATH-500 eval:   1%|          | 5/500 [03:50<7:50:52, 57.08s/it]\\rMATH-500 eval:   1%|          | 6/500 [03:51<5:13:31, 38.08s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [03:53<3:35:40, 26.25s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [05:32<6:44:58, 49.39s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [05:34<4:44:48, 34.80s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [07:19<7:41:09, 56.47s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [07:22<5:25:53, 39.99s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [09:00<7:49:41, 57.75s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [09:05<5:38:33, 41.71s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [09:08<4:01:55, 29.87s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [09:29<3:41:34, 27.41s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [09:39<2:57:16, 21.98s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [09:40<2:06:51, 15.76s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [11:30<5:52:51, 43.92s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [13:15<8:19:12, 62.27s/it]\\rMATH-500 eval:  
+…[truncated 6430 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T07:01:25.922697+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root -name \"*sft_standard_20_2048_v3*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root -name \"*sft_standard_20_2048_v3*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T07:01:25.922831+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048_v3.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_2048_v3.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T07:01:25.922954+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -20 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tail -20 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-23T07:01:25.923076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "wc -l /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "wc -l /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T07:01:25.923245+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 06:24:32,998 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final\\n2026-05-23 06:24:33,684 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-23 06:26:17,529 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=0)\\n2026-05-23 06:26:17,531 [INFO] Loading MATH-500 dataset...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/MATH-500.py\\n2026-05-23 06:27:27,764 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/MATH-500.py\\nRetrying in 1s [Retry 1/5].\\n2026-05-23 06:27:27,765 [WARNING] Retrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub\\n2026-05-23 06:27:28,767 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-23 06:27:28,770 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-23 06:27:28,846 [INFO] Loaded 500 problems\\n2026-05-23 06:27:28,846 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [01:37<13:28:32, 97.22s/it]\\rMATH-500 eval:   0%|          | 2/500 [03:18<13:44:35, 99.35s/it]\\rMATH-500 ev
+…[truncated 976 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T07:01:25.923419+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"14 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T07:01:25.923593+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ps --ppid 108569 -o pid,etime,pcpu,pmem,comm --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ps --ppid 108569 -o pid,etime,pcpu,pmem,comm --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T07:01:25.923724+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"108574       58:32  110  0.1 python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T07:01:25.923845+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps --ppid 250766 -o pid,etime,pcpu,pmem,comm --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ps --ppid 250766 -o pid,etime,pcpu,pmem,comm --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-23T07:01:25.923971+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls -la /proc/108569/fd/1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls -la /proc/108569/fd/1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-23T07:01:25.924126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"250771    07:49:42  102  0.1 python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-23T07:01:25.924299+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /proc/250766/fd/1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -la /proc/250766/fd/1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T07:01:25.924439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 23 14:59 /proc/108569/fd/1 -> pipe:[296467882]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T07:01:25.924561+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 23 14:59 /proc/250766/fd/1 -> pipe:[703251433]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T07:01:25.924716+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls -la /proc/108574/fd/2",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls -la /proc/108574/fd/2",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T07:01:25.924844+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 23 15:00 /proc/108574/fd/2 -> /tmp/eval_math500_sft_standard_20_2048_v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T07:01:25.924963+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root -name \"*sft_standard*2048*v3*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root -name \"*sft_standard*2048*v3*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T07:01:25.925085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048_v3.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_2048_v3.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T07:01:25.925236+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /proc/250771/fd/2",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -la /proc/250771/fd/2",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T07:01:25.925386+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"l-wx------ 1 root root 64 May 23 15:00 /proc/250771/fd/2 -> /tmp/eval_math500_sft_qwen_cka_only_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T07:01:25.925540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -3 /tmp/eval_math500_sft_standard_20_2048_v3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -3 /tmp/eval_math500_sft_standard_20_2048_v3.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T07:01:25.925721+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 14:02:54,904 [INFO] Loaded 500 problems\\n2026-05-23 14:02:54,904 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [00:48<6:40:20, 48.14s/it]\\rMATH-500 eval:   0%|          | 2/500 [02:29<11:00:47, 79.61s/it]\\rMATH-500 eval:   1%|          | 3/500 [02:34<6:16:58, 45.51s/it] \\rMATH-500 eval:   1%|          | 4/500 [02:37<3:57:45, 28.76s/it]\\rMATH-500 eval:   1%|          | 5/500 [02:45<2:54:34, 21.16s/it]\\rMATH-500 eval:   1%|          | 6/500 [02:46<1:58:28, 14.39s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [04:22<5:36:16, 40.93s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [06:01<8:06:58, 59.39s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [06:05<5:45:20, 42.20s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [07:50<8:21:59, 61.47s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [09:26<9:47:18, 72.06s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [11:04<10:51:18, 80.08s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [11:13<7:54:00, 58.40s/it] \\rMATH-500 eval:   3%|▎         | 14/500 [11:16<5:37:56, 41.72s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [12:58<8:04:10, 59.90s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [14:45<9:56:49, 73.99s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [14:46<7:00:51, 52.28s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [16:36<9:17:03, 69.34s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [16:41<6:41:38, 50.10s/it]\\rMATH-500 eval:   4%|▍         | 20/500 [18:18<8:34:44, 64.34s/it]\\rMATH-500 eval:   4%|▍         | 21/500 [18:19<6:01:20, 45.26s/it]\\rMATH-500 eval:   4%|▍         | 22/500 [19:55<8:02:37, 60.58s/it]\\rMATH-500 eval:   5%|▍         | 23/500 [21:38<9:42:49, 73.31s/it]\\rMATH-500 eval:   5%|▍         | 24/500 [23:15<10:36:15, 80.20s/it]\\rMATH-500 eval:   5%|▌         | 25/500 [24:56<11:25:17, 86.56s/it]\\rMATH-500 eval:   5%|▌         | 26/500 [26:36<11:55:03, 90.51s/it]\\rMATH-
+…[truncated 2820 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T07:01:25.925880+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -3 /tmp/eval_math500_sft_qwen_cka_only_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tail -3 /tmp/eval_math500_sft_qwen_cka_only_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T07:01:25.926082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 07:12:02,108 [INFO] Loaded 500 problems\\n2026-05-23 07:12:02,108 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [01:36<13:26:13, 96.94s/it]\\rMATH-500 eval:   0%|          | 2/500 [03:17<13:41:55, 99.03s/it]\\rMATH-500 eval:   1%|          | 3/500 [03:23<7:47:15, 56.41s/it] \\rMATH-500 eval:   1%|          | 4/500 [04:57<9:49:13, 71.28s/it]\\rMATH-500 eval:   1%|          | 5/500 [06:54<12:03:38, 87.71s/it]\\rMATH-500 eval:   1%|          | 6/500 [06:57<8:05:53, 59.02s/it] \\rMATH-500 eval:   1%|▏         | 7/500 [07:00<5:34:14, 40.68s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [08:43<8:17:50, 60.71s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [10:19<9:45:32, 71.55s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [12:02<11:04:55, 81.42s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [13:37<11:37:05, 85.53s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [15:14<12:04:24, 89.07s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [16:52<12:24:38, 91.74s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [18:37<12:55:51, 95.79s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [20:18<13:06:26, 97.29s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [22:04<13:24:44, 99.76s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [23:38<13:10:49, 98.24s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [25:26<13:32:27, 101.14s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [27:10<13:36:09, 101.81s/it]\\rMATH-500 eval:   4%|▍         | 20/500 [27:14<9:40:31, 72.57s/it]  \\rMATH-500 eval:   4%|▍         | 21/500 [28:48<10:30:13, 78.94s/it]\\rMATH-500 eval:   4%|▍         | 22/500 [30:23<11:07:21, 83.77s/it]\\rMATH-500 eval:   5%|▍         | 23/500 [32:05<11:48:47, 89.16s/it]\\rMATH-500 eval:   5%|▍         | 24/500 [33:40<12:01:22, 90.93s/it]\\rMATH-500 eval:   5%|▌         | 25/500 [35:20<12:21:41, 93.69s/it]\\rMATH-500 eval:   5%|▌         | 26/500 [36:58<12:31:51, 
+…[truncated 6438 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-23T07:01:25.926334+00:00_
+
+全部数据收集完毕。汇总如下：
+
+## MATH-500 Eval 进度汇总
+
+| 排名 | GPU | exp_id | 进度 | 已用时间 | 近期速度 | 预计剩余 |
+|:---:|------|--------|------|---------|---------|---------|
+| **1** | **westd:0** | grpo_rasp_alpha3p0_20 | **428/500 (86%)** | 3h35m | ~64s/it | **~1h15m** |
+| 2 | westb:0 | sft_qwen_math_cka_only_20 | 341/500 (68%) | 7h48m | ~70s/it | ~3h |
+| 3 | westb:1 | grpo_rasp_alpha0p5_20 | 283/500 (57%) | 3h56m | ~45s/it | ~2h45m |
+| 4 | westd:3 | grpo_cka_only_20_2048_v2 | 219/500 (44%) | 1h49m | ~39s/it | ~3h |
+| 5 | westd:2 | grpo_random_20_v2 | 301/500 (60%) | 8h31m | ~83s/it | ~4h30m |
+| 6 | **westd:1** | sft_standard_20_2048_v3 | **66/500 (13%)** | 56m | ~88s/it | **~10h+** |
+
+### 关键结论
+
+- **westd:0 最先完成**，约 1h15m 后（~16:15 UTC）。这是 westd 上最早空出的 GPU，可用于 floor ablation。
+- westb 两个 eval 大约同时完成（~3h 后）。
+- **westd:1 进度最慢**（13%，且每 item ~88s），刚启动不到 1 小时，预计还需 10h+，是最后完成的。
+- westd:2 虽然已到 60%，但速度很慢（~83s/it），也需要 ~4.5h。
+
+所有 6 个进程均存活且 GPU 利用率 98-100%，运行正常。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_check_eval_progress_all_gpus_20260523T065745"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08e5e12781a8c85c3392",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval math500 grpo cka only 20 fixed",
+  "task_key": "worker_analyze_eval_math500_grpo_cka_only_20_fixed_20260523T231328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_math500_grpo_cka_only_20_fixed_20260523T231328_result.json",
+    "occurrence": 1,
+    "bytes": 103,
+    "sha256": "3eeea7e58e4e1958c17ff52619519e8967a0c775af97103c6822dd2dc920e9fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MATH-500 accuracy = 27.6%（138/500，stderr ±2.0%，无异常/warning，EXIT_CODE=0）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-math500-grpo-cka-only-20-fixed.md"
+}

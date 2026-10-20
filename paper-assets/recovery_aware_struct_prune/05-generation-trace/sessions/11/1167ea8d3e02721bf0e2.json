@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1167ea8d3e02721bf0e2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd verify retry3",
+  "task_key": "worker_code_westd-verify-retry3_20260515T134324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-verify-retry3_20260515T134324_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "9193743f9fe4b68894c95d6d7e28ebae473cfd0b70500a84ceff230d6bd66477"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### sft_alpha4_0_westd_retry — **已失败 (EXIT_CODE=2)**\n- pid 37013 **不存在**，进程已退出\n- 失败原因：`unrecognized arguments: --save_strategy no --overwrite_output_dir`\n- `sft_recovery.py` 不支持 `--save_strategy` 和 `--overwrite_output_dir` 参数\n- GPU 1 当前完全空闲 (0 MiB, 0% utilization)\n\n### grasp_baseline_westd — **正常运行中**\n- pid 34195 存在，实际 GPU 进程 pid 为 34206，在 GPU 0 上运行\n- 显存占用：13070 MiB / 97887 MiB，GPU 利用率 90%\n- 评测进度：66/1319 (5%)，每样本约 50.9s，预计还需约 17.7 小时\n- 50 样本处 acc=0.0800, eos_rate=2.00%, avg_len=4019（accuracy 很低，eos_rate 极低说明模型几乎不停止生成）\n\n### 异常进程\n无异常残留进程。\n\n### 需要处理\nsft_alpha4_0_westd_retry 需要第 4 次重试——从 `sft_recovery.py` 的启动命令中移除 `--save_strategy no` 和 `--overwrite_output_dir` 这两个不支持的参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-verify-retry3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20a907dd0bbe093e2179",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd reconnect v2 20260522",
+  "task_key": "worker_ops_westd_reconnect_v2_20260522_20260522T023607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_reconnect_v2_20260522_20260522T023607_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "2bc0e37a3100bcdf4ac6e2af72952237ea11ef50fa1588c11b8bbdd924126ab6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 连接 ==\nwestd-29022: FAILED\n  - IP: 36.103.198.204\n  - Port: 29022\n  - 错误: Unable to connect to port 29022\n```\n\nAutoDL 实例可能已重启导致端口变化。请到 AutoDL 控制台确认实例状态和新的 SSH 端口，然后更新 `~/.ssh/config` 中 westd-29022 的端口配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-reconnect-v2-20260522.md"
+}

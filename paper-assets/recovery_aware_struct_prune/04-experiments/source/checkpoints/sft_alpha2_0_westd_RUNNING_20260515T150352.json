@@ -1,0 +1,29 @@
+{
+  "exp_id": "sft_alpha2_0_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:32:54.953Z",
+    "updated_at": "2026-05-15T15:03:51.939Z",
+    "hypothesis": "D027: α=2.0 pruned model SFT recovery on westd. α=2.0 post-prune accuracy 29%. Same SFT params as other α variants (2 epochs, lr=2e-5, batch=1, grad_accum=8). Completes α ablation sweep.",
+    "parent": "alpha_ablation_westd_cal256",
+    "notes": "α=2.0 SFT 已成功启动在 GPU 1。PID 43065 (nohup wrapper PID 43060). 35/1870 steps (~2%), loss 从 1.9 降至 1.39, mean_token_accuracy=0.71。~1.87s/step, 预计总运行约 58 min。与 α=1.0 eval (PID 42535) 共享 GPU 1, 合计 73.7GB VRAM。日志: /tmp/sft_alpha2_0.log",
+    "spec": {
+      "command": "python sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_models/pruned_rasp_20_alpha2.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 --gpu 1 --epochs 2 --lr 2e-5 --batch_size 1 --grad_accum 8",
+      "server": "westd-11672",
+      "data_path": "gsm8k train split",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (RASP pruned alpha=2.0, 20% sparsity)",
+      "seed": 42,
+      "pid": 43065,
+      "gpu": "cuda:1",
+      "checkpoint_source": "alpha_ablation_westd_cal256 (pruned_rasp_20_alpha2.0)",
+      "eval_data": "gsm8k train (SFT recovery, not eval)"
+    }
+  },
+  "timestamp": "2026-05-15T15:03:52.004636+00:00",
+  "trigger": "update_registry"
+}

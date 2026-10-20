@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_math500_sft_rasp_alpha3p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:26:16.273Z",
+    "updated_at": "2026-05-22T22:12:26.406Z",
+    "hypothesis": "α=3.0 SFT MATH-500 eval @2048. Dose-response \"下降段确认点\": GSM8K α=3.0 SFT=64.14% (below α=2.0 peak 64.97%). If MATH-500 also shows α=3.0 < α=2.0, confirms inverted-U descending arm cross-benchmark. Completes 5/5 MATH-500 dose-response.",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_alpha3p0_20.log"
+    },
+    "metrics": {
+      "accuracy": 0.232,
+      "correct": 116,
+      "total": 500,
+      "truncated": 144,
+      "stderr": 0.0189
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T22:12:26.406Z"
+  },
+  "timestamp": "2026-05-22T22:12:27.106510+00:00",
+  "trigger": "update_registry"
+}

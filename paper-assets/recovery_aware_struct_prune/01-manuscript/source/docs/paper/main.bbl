@@ -1,0 +1,304 @@
+\begin{thebibliography}{39}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Ainslie et~al.(2023)Ainslie, Lee-Thorp, de~Jong, Zemlyanskiy,
+  Lebr{\'o}n, and Sanghai}]{ainslie2023gqa}
+Joshua Ainslie, James Lee-Thorp, Michiel de~Jong, Yury Zemlyanskiy, Federico
+  Lebr{\'o}n, and Sumit Sanghai. 2023.
+\newblock \href {https://arxiv.org/abs/2305.13245} {{GQA}: Training generalized
+  multi-query transformer models from multi-head checkpoints}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Ashkboos et~al.(2024)Ashkboos, Croci, Gennari~do Nascimento, Hoefler,
+  and Hensman}]{slicegpt2024}
+Saleh Ashkboos, Maximilian~L. Croci, Marcelo Gennari~do Nascimento, Torsten
+  Hoefler, and James Hensman. 2024.
+\newblock \href {https://arxiv.org/abs/2401.15024} {{SliceGPT}: Compress large
+  language models by deleting rows and columns}.
+\newblock In \emph{Proceedings of the 12th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Austin et~al.(2021)Austin, Odena, Nye, Bosma, Michalewski, Dohan,
+  Jiang, Cai, Terry, Le, and Sutton}]{austin2021mbpp}
+Jacob Austin, Augustus Odena, Maxwell Nye, Maarten Bosma, Henryk Michalewski,
+  David Dohan, Ellen Jiang, Carrie Cai, Michael Terry, Quoc Le, and Charles
+  Sutton. 2021.
+\newblock Program synthesis with large language models.
+\newblock \emph{arXiv preprint arXiv:2108.07732}.
+
+\bibitem[{Chen et~al.(2025)Chen, Hu, Zhang, Wang, Li, Chen, and
+  Zhang}]{p2law2025}
+Xiaodong Chen, Yuxuan Hu, Xiaokang Zhang, Yanling Wang, Cuiping Li, Hong Chen,
+  and Jing Zhang. 2025.
+\newblock \href {https://arxiv.org/abs/2411.10272} {{$P^2$} law: Scaling law
+  for post-training after model pruning}.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}]{cobbe2021gsm8k}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman. 2021.
+\newblock \href {https://arxiv.org/abs/2110.14168} {Training verifiers to solve
+  math word problems}.
+\newblock \emph{arXiv preprint arXiv:2110.14168}.
+
+\bibitem[{Davari et~al.(2023)Davari, Horoi, Natik, Lajoie, Wolf, and
+  Belilovsky}]{davari2023cka}
+MohammadReza Davari, Stefan Horoi, Amine Natik, Guillaume Lajoie, Guy Wolf, and
+  Eugene Belilovsky. 2023.
+\newblock \href {https://arxiv.org/abs/2210.16156} {Reliability of {CKA} as a
+  similarity measure in deep learning}.
+\newblock In \emph{Proceedings of the 11th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{{DeepSeek-AI}(2025)}]{deepseek2025r1}
+{DeepSeek-AI}. 2025.
+\newblock \href {https://arxiv.org/abs/2501.12948} {Deepseek-r1: Incentivizing
+  reasoning capability in llms via reinforcement learning}.
+\newblock \emph{arXiv preprint arXiv:2501.12948}.
+
+\bibitem[{Deng et~al.(2025)Deng, Li, Gong, Ren, Thrampoulidis, and
+  Li}]{deng2025grpocollapse}
+Wenlong Deng, Yushu Li, Boying Gong, Yi~Ren, Christos Thrampoulidis, and
+  Xiaoxiao Li. 2025.
+\newblock On group relative policy optimization collapse in agent search: The
+  lazy likelihood-displacement.
+\newblock \emph{arXiv preprint arXiv:2512.04220}.
+
+\bibitem[{Ding et~al.(2026)Ding, Zhao, Ye, Chen, and Shen}]{llms2lrms2026}
+Longwei Ding, Anhao Zhao, Fanghua Ye, Ziyang Chen, and Xiaoyu Shen. 2026.
+\newblock \href {https://arxiv.org/abs/2601.18091} {From {LLMs} to {LRMs}:
+  Rethinking pruning for reasoning-centric models}.
+\newblock \emph{arXiv preprint arXiv:2601.18091}.
+
+\bibitem[{Feng et~al.(2025)Feng, Zhou, Zhu, Li, Chua, Mak, Ng, and
+  Mao}]{restorelcc_2025}
+Zijian Feng, Hanzhang Zhou, Zixiao Zhu, Tianjiao Li, Jia Jim~Deryl Chua,
+  Lee~Onn Mak, Gee~Wah Ng, and Kezhi Mao. 2025.
+\newblock \href {https://arxiv.org/abs/2510.21834} {{RestoreLCC}: Restoring
+  pruned large language models via lost component compensation}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{He et~al.(2025)He, Yin, Zhen, Zhang, Yuan, and Ma}]{paser2025}
+Bowei He, Lihao Yin, Hui-Ling Zhen, Xiaokun Zhang, Mingxuan Yuan, and Chen Ma.
+  2025.
+\newblock \href {https://arxiv.org/abs/2502.12594} {Paser: Post-training data
+  selection for efficient pruned large language model recovery}.
+\newblock \emph{arXiv preprint arXiv:2502.12594}.
+\newblock Under review.
+
+\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart,
+  Tang, Song, and Steinhardt}]{hendrycks2021math}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric
+  Tang, Dawn Song, and Jacob Steinhardt. 2021.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Hu et~al.(2024)Hu, Park, Ferraiuolo, Ko, Kim, Song, and
+  Kim}]{mpruner2024}
+Seungbeom Hu, Chanjun Park, Andrew Ferraiuolo, Sang-Ki Ko, Jinwoo Kim, Haein
+  Song, and Jieung Kim. 2024.
+\newblock \href {https://arxiv.org/abs/2408.13482} {Mpruner: Optimizing neural
+  network size with cka-based mutual information pruning}.
+\newblock \emph{arXiv preprint arXiv:2408.13482}.
+
+\bibitem[{Ji et~al.(2025)Ji, Lin, Li, Wu, Yao, Jia, Mo, and
+  Zhang}]{selfhealing2025}
+Yixin Ji, Zhimin Lin, Juntao Li, Kaixin Wu, Kai Yao, Xu~Jia, Linjian Mo, and
+  Min Zhang. 2025.
+\newblock \href {https://openreview.net/forum?id=Cy8Qa4gAst} {Self-healing:
+  Recovering pruned large reasoning models via reinforcement learning}.
+\newblock \emph{OpenReview preprint}.
+
+\bibitem[{Kim and Lee(2026)}]{opsd2026}
+Jaehoon Kim and Dongha Lee. 2026.
+\newblock \href {https://arxiv.org/abs/2605.06188} {{OPSD} compresses what
+  {RLVR} teaches: A post-{RL} compaction stage for reasoning models}.
+\newblock \emph{arXiv preprint arXiv:2605.06188}.
+
+\bibitem[{Klabunde et~al.(2025)Klabunde, Schumacher, Strohmaier, and
+  Lemmerich}]{klabunde_similarity_survey_2023}
+Max Klabunde, Tobias Schumacher, Markus Strohmaier, and Florian Lemmerich.
+  2025.
+\newblock \href {https://arxiv.org/abs/2305.06329} {Similarity of neural
+  network models: A survey of functional and representational measures}.
+\newblock \emph{ACM Computing Surveys}, 57(9).
+
+\bibitem[{Kolawole et~al.(2024)Kolawole, Dery, Kagy, Smith, Neubig, and
+  Talwalkar}]{bonsai2025}
+Steven Kolawole, Lucio Dery, Jean-Fran\c{c}ois Kagy, Virginia Smith, Graham
+  Neubig, and Ameet Talwalkar. 2024.
+\newblock \href {https://arxiv.org/abs/2402.05406} {Everybody prune now:
+  Structured pruning of llms with only forward passes}.
+\newblock \emph{arXiv preprint arXiv:2402.05406}.
+
+\bibitem[{Kornblith et~al.(2019)Kornblith, Norouzi, Lee, and
+  Hinton}]{kornblith2019cka}
+Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton. 2019.
+\newblock \href {https://arxiv.org/abs/1905.00414} {Similarity of neural
+  network representations revisited}.
+\newblock In \emph{Proceedings of the 36th International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Lachance(2022)}]{lachance2022cka}
+Alex Lachance. 2022.
+\newblock \href {https://digitalcommons.uri.edu/theses/2283/} {Using centered
+  kernel alignment for understanding and pruning neural networks}.
+\newblock Master's thesis, University of Rhode Island.
+
+\bibitem[{Liu et~al.(2025{\natexlab{a}})Liu, Ning, Xia, Gao, Qiang, Ge, Han,
+  and Hu}]{funcnet_2025}
+Yiheng Liu, Junhao Ning, Sichen Xia, Xiaohui Gao, Ning Qiang, Bao Ge, Junwei
+  Han, and Xintao Hu. 2025{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2508.05239} {Pruning large language
+  models by identifying and preserving functional networks}.
+\newblock \emph{arXiv preprint arXiv:2508.05239}.
+
+\bibitem[{Liu et~al.(2025{\natexlab{b}})Liu, Yang, Chen, Zhang, Wang, Du, and
+  Du}]{pat2025}
+Yijiang Liu, Huanrui Yang, Youxin Chen, Rongyu Zhang, Miao Wang, Yuan Du, and
+  Li~Du. 2025{\natexlab{b}}.
+\newblock \href {https://arxiv.org/abs/2408.14721} {{PAT}: Pruning-aware tuning
+  for large language models}.
+\newblock In \emph{Proceedings of the 39th AAAI Conference on Artificial
+  Intelligence (AAAI)}.
+
+\bibitem[{Lucas et~al.(2026)Lucas, Behdin, Wang, Song, Tang, and
+  Mazumder}]{rac2025}
+Ryan Lucas, Kayhan Behdin, Zhipeng Wang, Qingquan Song, Shao Tang, and Rahul
+  Mazumder. 2026.
+\newblock \href {https://arxiv.org/abs/2509.12464} {Reasoning models can be
+  accurately pruned via chain-of-thought reconstruction}.
+\newblock In \emph{Proceedings of the 14th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Ma et~al.(2023)Ma, Fang, and Wang}]{llmpruner2023}
+Xinyin Ma, Gongfan Fang, and Xinchao Wang. 2023.
+\newblock \href {https://arxiv.org/abs/2305.11627} {Llm-pruner: On the
+  structural pruning of large language models}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Matsutani et~al.(2025)Matsutani, Takashiro, Minegishi, Kojima,
+  Iwasawa, and Matsuo}]{rlsqueezes2026}
+Kohsei Matsutani, Shota Takashiro, Gouki Minegishi, Takeshi Kojima, Yusuke
+  Iwasawa, and Yutaka Matsuo. 2025.
+\newblock \href {https://arxiv.org/abs/2509.21128} {Rl squeezes, sft expands: A
+  comparative study of reasoning llms}.
+\newblock \emph{arXiv preprint arXiv:2509.21128}.
+
+\bibitem[{Men et~al.(2024)Men, Xu, Zhang, Wang, Lin, Lu, Han, and
+  Chen}]{shortgpt2024}
+Xin Men, Mingyu Xu, Qingyu Zhang, Bingning Wang, Hongyu Lin, Yaojie Lu, Xianpei
+  Han, and Weipeng Chen. 2024.
+\newblock \href {https://arxiv.org/abs/2403.03853} {{ShortGPT}: Layers in large
+  language models are more redundant than you expect}.
+\newblock \emph{arXiv preprint arXiv:2403.03853}.
+
+\bibitem[{Mroueh(2025)}]{mroueh2025grpodynamics}
+Youssef Mroueh. 2025.
+\newblock Reinforcement learning with verifiable rewards: {GRPO}'s effective
+  loss, dynamics, and success amplification.
+\newblock \emph{arXiv preprint arXiv:2503.06639}.
+
+\bibitem[{Mukherjee et~al.(2025)Mukherjee, Yuan, Hakkani-T{\"u}r, and
+  Peng}]{mukherjee2025rlsubnetworks}
+Sagnik Mukherjee, Lifan Yuan, Dilek Hakkani-T{\"u}r, and Hao Peng. 2025.
+\newblock Reinforcement learning finetunes small subnetworks in large language
+  models.
+\newblock \emph{arXiv preprint arXiv:2505.11711}.
+
+\bibitem[{Shao et~al.(2024)Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu,
+  and Guo}]{shao2024grpo}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei
+  Zhang, Mingchuan Zhang, Y.K. Li, Y.~Wu, and Daya Guo. 2024.
+\newblock \href {https://arxiv.org/abs/2402.03300} {Deepseekmath: Pushing the
+  limits of mathematical reasoning in open language models}.
+\newblock \emph{arXiv preprint arXiv:2402.03300}.
+
+\bibitem[{Shrestha et~al.(2026)Shrestha, Shrestha, Nepal, Kim, and
+  Ross}]{shrestha2026layerpruninglimits}
+Safal Shrestha, Anubhav Shrestha, Aadim Nepal, Minwu Kim, and Keith Ross. 2026.
+\newblock On the limits of layer pruning for generative reasoning in {LLMs}.
+\newblock \emph{arXiv preprint arXiv:2602.01997}.
+
+\bibitem[{Suk and Duan(2025)}]{suk2025rlvrdynamics}
+Joe Suk and Yaqi Duan. 2025.
+\newblock On the optimization dynamics of {RLVR}: Gradient gap and step size
+  thresholds.
+\newblock \emph{arXiv preprint arXiv:2510.08539}.
+
+\bibitem[{Wang et~al.(2026{\natexlab{a}})Wang, Wu, Jin, Xu, Chen, and
+  Miao}]{wang2026linearity}
+Tianle Wang, Zhongyuan Wu, Shenghao Jin, Hao Xu, Wei Chen, and Ning Miao.
+  2026{\natexlab{a}}.
+\newblock Not all steps are informative: On the linearity of {LLMs}' {RLVR}
+  training.
+\newblock \emph{arXiv preprint arXiv:2601.04537}.
+
+\bibitem[{Wang et~al.(2025)Wang, Diao, Le, Wang, Wang, Lee, Yeh, and
+  Yang}]{resp2025}
+Ziyan Wang, Enmao Diao, Qi~Le, Pu~Wang, Guanchu Wang, Minwoo Lee, Shu-ping Yeh,
+  and Li~Yang. 2025.
+\newblock \href {https://arxiv.org/abs/2512.02185} {Think before you prune:
+  Self-reflective structured pruning for reasoning language models}.
+\newblock \emph{arXiv preprint arXiv:2512.02185}.
+
+\bibitem[{Wang et~al.(2026{\natexlab{b}})Wang, Xiao, Xiao, Li, Mao, and
+  Qin}]{graspprune2026}
+Ziyang Wang, Jiangfeng Xiao, Chuan Xiao, Ruoxiang Li, Rui Mao, and Jianbin Qin.
+  2026{\natexlab{b}}.
+\newblock \href {https://arxiv.org/abs/2604.19398} {Grasprune: Global gating
+  for budgeted structured pruning of large language models}.
+\newblock \emph{arXiv preprint arXiv:2604.19398}.
+
+\bibitem[{Xiang et~al.(2025)Xiang, Ji, Li, and Zhang}]{ssgr2025}
+Yang Xiang, Yixin Ji, Juntao Li, and Min Zhang. 2025.
+\newblock \href {https://arxiv.org/abs/2511.18864} {Think before you prune:
+  Selective self-generated calibration for pruning large reasoning models}.
+\newblock \emph{arXiv preprint arXiv:2511.18864}.
+
+\bibitem[{Yang et~al.(2024)Yang, Yang, Zhang, Hui, Zheng, Yu, Li
+  et~al.}]{qwen2.5}
+An~Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen Yu,
+  Chengyuan Li, and 1 others. 2024.
+\newblock \href {https://arxiv.org/abs/2412.15115} {Qwen2.5 technical report}.
+\newblock \emph{arXiv preprint arXiv:2412.15115}.
+
+\bibitem[{Yu et~al.(2025)Yu, An, Zhu, Zhu, Tang, and Wang}]{fang_2025}
+Tao Yu, Yongqi An, Kuan Zhu, Guibo Zhu, Ming Tang, and Jinqiao Wang. 2025.
+\newblock \href {https://arxiv.org/abs/2512.23014} {{FANG}: Improving
+  generalization in {LLM} structured pruning via function-aware neuron
+  grouping}.
+\newblock \emph{arXiv preprint arXiv:2512.23014}.
+
+\bibitem[{Zhang et~al.(2025)Zhang, Kwek, Zhang, Nguyen, Mitra, and
+  Zhang}]{li2025reasoning_compression}
+Nan Zhang, Eugene Kwek, Yusen Zhang, Ngoc-Hieu Nguyen, Prasenjit Mitra, and Rui
+  Zhang. 2025.
+\newblock When reasoning meets compression: Understanding the effects of {LLMs}
+  compression on large reasoning models.
+\newblock \emph{arXiv preprint arXiv:2504.02010}.
+
+\bibitem[{Zhao et~al.(2025)Zhao, Yuan, Wu, Wang, Yang, and
+  Naseem}]{canpruning2025}
+Shangziqi Zhao, Jiahao Yuan, Jinyang Wu, Zhenglin Wang, Guisong Yang, and Usman
+  Naseem. 2025.
+\newblock Can pruning improve reasoning? revisiting long-{CoT} compression with
+  capability in mind for better reasoning.
+\newblock \emph{arXiv preprint arXiv:2505.14582}.
+
+\bibitem[{Zhao et~al.(2026)Zhao, Zhou, Wu, Hu, Xu, Dou, Kawaguchi, Joty, Li,
+  and Shieh}]{boiling_frog_2026}
+Yiran Zhao, Shengyang Zhou, Zijian Wu, Tongyan Hu, Yuhui Xu, Rengan Dou, Kenji
+  Kawaguchi, Shafiq Joty, Junnan Li, and Michael~Qizhe Shieh. 2026.
+\newblock \href {https://arxiv.org/abs/2602.04919} {Gradually compacting large
+  language models for reasoning like a boiling frog}.
+\newblock \emph{arXiv preprint arXiv:2602.04919}.
+
+\end{thebibliography}

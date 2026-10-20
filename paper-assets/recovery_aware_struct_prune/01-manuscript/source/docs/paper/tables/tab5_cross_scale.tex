@@ -1,0 +1,19 @@
+\begin{table}[h]
+\centering
+\small
+\caption{Cross-scale validation at 20\% sparsity. 7B: DeepSeek-R1-Distill-Qwen-7B (GSM8K mean over 3 seeds for CKA-only and Standard; see Table~\ref{tab:decoupling}). 1.5B: DeepSeek-R1-Distill-Qwen-1.5B (single seed). GSM8K accuracy ($N{=}1{,}319$). 7B reward = peak across 100 GRPO steps (cf.\ Table~\ref{tab:recovery_gradient}); 1.5B reward = mean across training steps.}
+\label{tab:cross_scale}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{2}{c}{7B} & \multicolumn{2}{c}{1.5B} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Peak Rew. & GSM8K\,(\%) & Rew. & GSM8K\,(\%) \\
+\midrule
+CKA-only & \textbf{0.354} & \textbf{64.39} & \textbf{0.238} & \textbf{35.48} \\
+Standard & 0.081 & 59.84 & 0.084 & 22.29 \\
+\rasp{} ($\alpha{=}1.0$) & 0.061 & 60.88 & 0.099 & 26.16 \\
+Random & 0.190 & -- & -- & -- \\
+\bottomrule
+\end{tabular}}
+\end{table}

@@ -1,0 +1,33 @@
+{
+  "exp_id": "grpo_standard_15_seed456_v4",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:48:48.683Z",
+    "updated_at": "2026-05-20T22:51:29.186Z",
+    "spec": {
+      "command": "python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_15 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_15_seed456_v4 --max_steps 100 --seed 456",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "291694",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_15_seed456_v4.log",
+      "submitted_at": "2026-05-20T22:48:47.934Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "gsm8k",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B-pruned-standard-15pct",
+      "seed": 456
+    },
+    "hypothesis": "Retry #4 of Standard 15% seed456 GRPO. v1=disk full, v2=wrong model path, v3=checkpoint saved to root partition then moved by cleanup. v4: absolute output_dir on data disk (/root/autodl-tmp/), absolute model_path, HF_HUB_OFFLINE=1. v5 fair config (100 steps, beta=0.01, temperature=0.4, lr=1e-6, dapo, format_reward=0.1).",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T22:51:29.697289+00:00",
+  "trigger": "update_registry"
+}

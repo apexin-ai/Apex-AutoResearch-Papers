@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00dd2e1fe04cb9e0a3b6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops prune standard 30",
+  "task_key": "worker_ops_prune_standard_30_20260516T090533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prune_standard_30_20260516T090533_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "c35dd8e528d7f8e6b987853c00103053c400fc6a2dd8e31826779b0c6b95a908"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Standard 30% 剪枝完成。\n\n**结果摘要：**\n- Checkpoint: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30/`\n- model.safetensors: 10.1GB, 339 keys\n- 实际稀疏度: **28.54%**（目标 30%）\n- MLP groups pruned: 299/784, Attn GQA groups pruned: 0/112\n- 剪枝后参数量: 5,442,379,264\n- 纯 CPU 执行，耗时约 25 秒（不含模型加载）\n\n注意：模型实际路径是 `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/`（不在 `models/` 子目录下）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prune-standard-30.md"
+}

@@ -1,0 +1,21 @@
+% Limitations — required by ACL/EMNLP
+
+\paragraph{Single model and architecture.}
+We evaluate \rasp{} exclusively on DeepSeek-R1-Distill-Qwen-7B~\citep{deepseek2025r1}, a 7B-parameter reasoning model with GQA ($G{=}7$).
+Whether the Redundancy Paradox and \rasp{}'s advantages generalize to other model families (e.g., LLaMA, Mistral), scales (1B--70B), or attention configurations (MHA, MQA) remains an open question.
+The intra-layer CKA overlap dynamics may differ substantially in architectures with more KV heads or different MLP structures.
+Extending to multiple architectures and scales is a priority for future work, constrained here by the computational cost of the full prune--recover--evaluate pipeline.
+
+\paragraph{Single benchmark and sparsity ratio.}
+Our evaluation uses GSM8K~\citep{cobbe2021gsm8k} as the sole reasoning benchmark and a fixed 20\% structured sparsity.
+GSM8K tests multi-step arithmetic reasoning but does not cover other reasoning modalities such as logical, commonsense, or code reasoning~\citep{hendrycks2021mmlu,chen2021humaneval}.
+Similarly, the interaction between functional overlap and recoverability may behave differently at higher sparsity ratios where more structures must be removed and functional redistribution becomes harder.
+
+\paragraph{No inference speedup measurement.}
+Although structured pruning removes entire attention heads and MLP channels---which in principle enables wall-clock speedup without sparse-computation support---we do not report actual inference latency or throughput measurements.
+The realized speedup depends on hardware, batch size, and framework-level kernel support for non-standard hidden dimensions, and validating these factors is beyond the scope of the current study.
+
+\paragraph{Limited seed diversity.}
+Our experiments use a single random seed for both pruning calibration and recovery training.
+While we report statistical significance for post-prune accuracy differences via Fisher's exact test ($N{=}100$), the variance introduced by seed-dependent calibration data sampling and GRPO training dynamics is not captured.
+Multi-seed replication across 3--5 seeds would strengthen confidence in the reported effect sizes.

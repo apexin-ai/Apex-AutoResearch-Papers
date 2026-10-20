@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "038a49b39dc0cfbeb993",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check gsm8k grpo cka only 20 v2 result",
+  "task_key": "worker_check_gsm8k_grpo_cka_only_20_v2_result_20260518T083323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gsm8k_grpo_cka_only_20_v2_result_20260518T083323_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "ac203f1334fc451ac9da2bd315cafb0dda5b89839bf7dd73d2e15c6ab7604fe2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**eval_gsm8k_grpo_cka_only_20_v2 结果：**\n\n| 指标 | 值 |\n|---|---|\n| accuracy | **64.37%** (849/1319) |\n| stderr | ±1.32% |\n| eos_rate | 98.86% |\n| avg_response_length | 203.4 tokens |\n| wall_time | ~2h29m |\n| status | DONE (success) |\n\n**Tab2 对比：**\n\n| Method | SFT | GRPO | GRPO vs SFT |\n|---|---|---|---|\n| CKA-only | 63.91% | **64.37%** | +0.46pp |\n| Standard | 59.29% | 58.91% | -0.38pp |\n| RASP | 61.49% | 61.87% | +0.38pp |\n\nCKA-only GRPO (64.37%) > CKA-only SFT (63.91%)，GRPO 对 CKA-only 恢复有正向增益，但幅度不大 (+0.46pp，在 stderr 范围内)。CKA-only 在 SFT 和 GRPO 两个阶段都是所有方法中最高的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gsm8k-grpo-cka-only-20-v2-result.md"
+}

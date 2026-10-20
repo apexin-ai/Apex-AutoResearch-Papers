@@ -1,0 +1,63 @@
+{
+  "exp_id": "eval_math500_sft_rasp_20_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:36:16.836Z",
+    "updated_at": "2026-05-19T01:39:03.294Z",
+    "hypothesis": "SFT RASP 20% MATH-500 accuracy with max_new_tokens=2048. Fair comparison with GRPO RASP @2048 (24.0%) for C1 decoupling on MATH-500. SFT recovery should show lower reasoning capability than GRPO recovery on structurally pruned model.",
+    "parent": "eval_math500_sft_rasp_20",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_rasp_20_2048.json --max_new_tokens 2048'",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "39767",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_rasp_20_2048.log",
+      "submitted_at": "2026-05-18T23:54:16.231Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "sft_rasp_20_westd",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd",
+      "eval_data": "MATH-500",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd",
+      "wall_clock_seconds": 6287.1,
+      "gpu_hours": 1.75
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T01:36:05.254Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T01:36:12.478557+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.226,
+      "n_correct": 113,
+      "n_total": 500,
+      "stderr": 0.0187,
+      "natural_eos": 314,
+      "truncated": 186,
+      "natural_eos_pct": 0.628,
+      "avg_response_length": 930.58,
+      "median_response_length": 274
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T01:39:03.294Z"
+  },
+  "timestamp": "2026-05-19T01:39:03.674200+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_mbpp_grpo_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:20:40.387Z",
+    "updated_at": "2026-05-19T20:21:24.747Z",
+    "hypothesis": "Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37% — if capability breadth claim holds, Standard should show larger degradation on code generation (MBPP) than math (GSM8K).",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json'",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "120183",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log",
+      "submitted_at": "2026-05-19T16:21:09.105Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T20:21:23.644Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T20:21:25.199477+00:00",
+  "trigger": "update_registry"
+}

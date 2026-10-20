@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "133301432962a7383f92",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb disk analysis",
+  "task_key": "worker_ssh_westb_disk_analysis_20260523T124345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_disk_analysis_20260523T124345_result.json",
+    "occurrence": 1,
+    "bytes": 3454,
+    "sha256": "6215c727c390132c677900f3fcafe3411dde58288dfd1473d71c72c21d9c8b49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是分析结果：\n\n---\n\n```\n总体: 241G/250G (97%) — 仅剩 9.2G\n\n大目录:\n- /root/autodl-tmp/recovery_aware_struct_prune/: 226G (本项目)\n- /root/autodl-tmp/models/Qwen2.5-Math-7B:       15G  (基座模型)\n- /root/autodl-tmp/data/:                          1.5G\n- /root/autodl-tmp/logs/:                          64M\n```\n\n### recovery_aware_struct_prune 子目录明细 (226G)\n\n| 目录 | 大小 | 有 final model? | 有 checkpoint? |\n|------|------|-----------------|----------------|\n| **7B 模型 (~12G/个)** | | | |\n| grpo_qwen_math_cka_only_20 | **24G** | ✅ model.safetensors | checkpoint-100 (12G 冗余) |\n| grpo_rasp_alpha0p5_20 | **23G** | ✅ model.safetensors | checkpoint-100 (~11G 冗余) |\n| grpo_cka_only_20 | 12G | ❌ | checkpoint-100 (即最终模型) |\n| grpo_cka_only_20_seed123 | 12G | ✅ model.safetensors | 无 |\n| sft_rasp_rlvr_20 | 12G | ❌ | checkpoint-1870 (即最终模型) |\n| sft_rasp_alpha3p0_20 | 12G | ❌ | checkpoint-935 (即最终模型) |\n| sft_random_20 | 12G | — | — |\n| sft_cka_only_20 | 12G | — | — |\n| pruned_rasp_rlvr_20 | 12G | — | — |\n| pruned_standard_25 | 11G | — | — |\n| pruned_cka_only_20_qwen_math | 12G | — | — |\n| pruned_standard_20_qwen_math | 12G | — | — |\n| sft_qwen_math_cka_only_20_final | 12G | — | — |\n| sft_standard_20_qwen_math_final | 12G | — | — |\n| pruned_rasp_alpha3p0_20 | 12G | — | — |\n| **1.5B 模型 (~2.8G/个)** | | | |\n| pruned_standard_20_1p5b | 2.8G | — | — |\n| pruned_cka_only_20_1p5b | 2.8G | — | — |\n| pruned_rasp_20_1p5b | 2.8G | — | — |\n| sft_cka_only_20_1p5b | 2.8G | — | — |\n| sft_standard_20_1p5b | 2.8G | — | — |\n| sft_rasp_20_1p5b | 2.8G | — | — |\n| grpo_cka_only_20_1p5b | 2.8G | ❌ | checkpoint-100 |\n| grpo_standard_20_1p5b | 2.8G | ✅ | 无 |\n| grpo_rasp_20_1p5b | 2.8G | ❌ | checkpoint-100 |\n| **其他** | | | |\n| grpo_alpha4_20_eval | 2.9G | ✅ | 无 |\n| models/DeepSeek-R1-Distill-Qwen-1.5B | 3.4G | — | — |\n| **空/废弃** | | | |\n| grpo_random_20_seed456 | 0 | — | 空目录 |\n| grpo_rasp_alpha3p0_20 | 132K | — | 仅 completions |\n\n---\n\n### 可安全删除（本项目）\n\n| 路径 | 大小 | 原因 |\n|------|------|------|\n| `grpo_qwen_math_cka_only_20/checkpoint-100/` | **~12G** | 冗余中间 checkpoint，final model 已存在于根目录 |\n| `grpo_rasp_alpha0p5_20/checkpoint-100/` | **~11G** | 同上 |\n| `grpo_random_20_seed456/` | 0 | 空目录，无任何文件 |\n| `grpo_rasp_alpha3p0_20/` | 132K | 近乎空目录，仅 completions，无模型文件 |\n\n### 需确认后可删除\n\n| 路径 | 大小 | 需确认 |\n|------|------|--------|\n| `models/Qwen2.5-Math-7B` | **15G** | 是否仍需要此基座模型？如 Qwen-Math 实验已完成且不再需要重新剪枝，可删 |\n| `pruned_standard_25/` | **11G** | 25% 剪枝率实验，其他均为 20%，是否为已弃用的旧实验？ |\n\n### 不可删除\n\n| 路径 | 大小 | 原因 |\n|------|------|------|\n| 所有含 final model 的 `grpo_*/sft_*/pruned_*` 目录 | ~190G | 论文实验所需的最终模型 |\n| `models/DeepSeek-R1-Distill-Qwen-1.5B` | 3.4G | 1.5B 实验基座模型 |\n\n---\n\n```\n确定可释放:   ~23G  (两个冗余 checkpoint)\n确认后可释放: ~26G  (Qwen-Math-7B 基座 + pruned_standard_25)\n清理后剩余:   ~32-58G 可用空间 (从 9.2G 提升)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-disk-analysis.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "floor_ablation_0p5_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:17:27.612Z",
+    "updated_at": "2026-05-23T08:57:44.467Z",
+    "hypothesis": "Floor ratio ablation: raising the MLP floor from 0.4 to 0.5 constrains pruning to be more conservative. If floor=0.5 improves GSM8K accuracy over floor=0.4, it suggests CKA-only criterion benefits from a higher minimum layer size. Maps the sensitivity curve of floor parameter on recovery quality."
+  },
+  "timestamp": "2026-05-23T08:57:45.168170+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "grpo_stage2_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:11:10.490Z",
+    "updated_at": "2026-05-15T03:33:11.856Z",
+    "hypothesis": "GRPO Stage 2 (plan_003): SFT-warmed RASP-pruned model recovers reasoning via RLVR. Post-SFT accuracy 57% (greedy eval N=100), EOS restored. If GRPO pushes RASP significantly above Standard, confirms CKA-aware pruning preserves RLVR-recoverable structures.",
+    "parent": "sft_rasp_20",
+    "spec": {
+      "command": "python src/train_grpo.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20 --gpu 0 --max_completion_length 4096 --num_train_epochs 1 --max_samples 2000 --learning_rate 1e-6 --save_total_limit 3 --save_steps 100 --reward_desert_patience 50 --run_name grpo_stage2_rasp_20",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "263888",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_stage2_rasp_20.log",
+      "data_path": "openai/gsm8k",
+      "data_count": 2000,
+      "model_name": "sft_rasp_20 (SFT-warmed pruned_rasp_20)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20",
+      "eval_data": "gsm8k",
+      "hyperparams": {
+        "max_completion_length": 4096,
+        "learning_rate": 1e-06,
+        "num_train_epochs": 1,
+        "reward_desert_patience": 50
+      },
+      "checkpoint_path": "N/A (killed before producing checkpoint)"
+    },
+    "conclusion": "killed",
+    "notes": "D017: Killed for parameter optimization restart. max_completion_length 4096→1024 (SFT后EOS 99%, avg 176 tokens, 4096浪费). max_samples 2000→1000. Superseded by grpo_stage2_rasp_20_v2.",
+    "completed_at": "2026-05-15T03:32:11.694Z"
+  },
+  "timestamp": "2026-05-15T03:33:11.890929+00:00",
+  "trigger": "update_registry"
+}

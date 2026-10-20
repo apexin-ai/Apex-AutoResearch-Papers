@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05c88355c55ab2239d47",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor mf3 grpo then eval",
+  "task_key": "worker_monitor_mf3_grpo_then_eval_20260522T092959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_mf3_grpo_then_eval_20260522T092959_result.json",
+    "occurrence": 1,
+    "bytes": 71,
+    "sha256": "2ff8480f428bda8ecd4d791569bdc4433d1e2651669be9a290cf382c4ae665c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "270s 后检查 GRPO 完成状态和 eval 启动情况。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-mf3-grpo-then-eval.md"
+}

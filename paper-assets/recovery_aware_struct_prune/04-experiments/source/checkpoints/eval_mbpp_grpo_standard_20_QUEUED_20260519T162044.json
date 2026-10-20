@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_mbpp_grpo_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:20:40.387Z",
+    "updated_at": "2026-05-19T16:20:43.980Z",
+    "hypothesis": "Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37% — if capability breadth claim holds, Standard should show larger degradation on code generation (MBPP) than math (GSM8K)."
+  },
+  "timestamp": "2026-05-19T16:20:44.408219+00:00",
+  "trigger": "update_registry"
+}

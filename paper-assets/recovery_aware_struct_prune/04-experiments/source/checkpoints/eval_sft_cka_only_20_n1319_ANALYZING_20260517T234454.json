@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_sft_cka_only_20_n1319",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-17T18:20:20.406Z",
+    "hypothesis": "CKA-only 20% post-SFT GSM8K N=1319. Post-prune 38.5% highest among all scoring methods. If post-SFT also highest, CKA-only has SFT advantage. If converges to ~60%, confirms SFT equalizes all scoring methods. N=200 pilot showed 64.0%.",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "sft_cka_only_20",
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json",
+      "data_count": 1319,
+      "data_path": "openai/gsm8k",
+      "eval_data": "GSM8K (1319 samples, greedy)",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_sft_cka_only_20_n1319.log",
+      "model_name": "sft_cka_only_20",
+      "pid": "49475",
+      "seed": 42,
+      "server": "westd-11672",
+      "submitted_at": "2026-05-17T19:17:43.358Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-17T23:44:54.181Z",
+    "reproduce": {
+      "finished_at": "2026-05-17T23:44:53.493Z"
+    }
+  },
+  "timestamp": "2026-05-17T23:44:54.487654+00:00",
+  "trigger": "update_registry"
+}

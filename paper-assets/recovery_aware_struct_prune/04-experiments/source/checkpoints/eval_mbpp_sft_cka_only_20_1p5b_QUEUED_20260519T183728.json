@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_mbpp_sft_cka_only_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:37:10.228Z",
+    "updated_at": "2026-05-19T18:37:27.532Z",
+    "hypothesis": "MBPP pass@1 for 1.5B SFT CKA-only 20% model @2048. Dense 7B baseline=53.48%. 1.5B cross-scale validation: if 1.5B SFT CKA-only shows higher MBPP pass@1 than 1.5B SFT Standard/RASP, confirms recovery gradient generalizes across model scales on code benchmark."
+  },
+  "timestamp": "2026-05-19T18:37:28.023062+00:00",
+  "trigger": "update_registry"
+}

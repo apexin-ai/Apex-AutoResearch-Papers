@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_grpo_cka_only_15_seed456",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:35:29.444Z",
+    "updated_at": "2026-05-20T21:35:42.708Z",
+    "hypothesis": "GSM8K N=1319 eval on CKA-only 15% GRPO seed456. Multi-seed validation for 15% sparsity gap statistical significance.",
+    "parent": "grpo_cka_only_15_seed456"
+  },
+  "timestamp": "2026-05-20T21:35:43.238803+00:00",
+  "trigger": "update_registry"
+}

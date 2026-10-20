@@ -1,0 +1,11 @@
+paper_key: "lachance_thesis_2024"
+title: "Using Centered Kernel Alignment for Understanding and Pruning Neural Networks"
+venue: "URI Master's Thesis 2024"
+full_text_available: false
+research:
+  baselines: [iterative magnitude pruning, random pruning]
+  metrics: [{name: "CKA similarity", direction: "context_dependent"}, {name: "test accuracy", direction: "higher_better"}]
+  datasets: [{name: "CIFAR-10", size: "standard"}, {name: "image classification benchmarks", size: "standard"}]
+  ablation_dimensions: [CKA-guided vs magnitude-based pruning]
+  training_recipe: {}
+  method_family: "CKA-based similarity pruning"

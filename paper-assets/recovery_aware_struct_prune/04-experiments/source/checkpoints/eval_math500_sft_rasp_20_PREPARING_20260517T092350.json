@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_sft_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:23:52.474Z",
+    "updated_at": "2026-05-17T09:23:50.464Z",
+    "hypothesis": "MATH-500 eval for RASP 20% post-SFT model. Tests whether RASP pruning+recovery generalizes beyond GSM8K to harder math reasoning (MATH-500). Part of Plan_012 extended eval.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T09:23:50.730752+00:00",
+  "trigger": "update_registry"
+}

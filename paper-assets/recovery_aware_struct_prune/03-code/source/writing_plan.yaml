@@ -1,0 +1,272 @@
+meta:
+  venue: EMNLP 2026
+  track: main
+  template: ""
+  template_note: "ARR May 25 submission. ACL template already set up in docs/paper/. Complete rewrite with D056 framing (Recovery Capacity Gradient)."
+  page_limit: 8
+  deadline: 2026-05-25
+  core_claim: "Structural pruning criterion determines post-RLVR recovery capacity: under controlled GRPO training, only CKA-based scoring (pure representational diversity preservation) achieves meaningful RL learning, while gradient-based importance scoring progressively destroys trainability. The recovery capacity gradient CKA-only >> Random >> Standard > RASP reveals that gradient importance — the industry standard — is actively harmful for post-pruning RL alignment."
+  created_at: 2026-05-18T14:00:00Z
+  updated_at: 2026-05-18T14:00:00Z
+  framing_version: D056
+  previous_narrative: "D045 Redundancy-Stability Tradeoff — invalidated by D058 confound; rebuilt with fair 4-method comparison"
+  narrative_shift: "From 2-method tradeoff (RASP vs Standard) to 4-method recovery capacity gradient with CKA-only as actionable solution"
+  confound_resolution: "D058: All 4 methods retrained under identical v5 config (beta=0.01, temp=0.4, maxlen=1024, DAPO). Gradient confirmed."
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: The prune-recover-align pipeline treats pruning decisions as independent of RL alignment. We show this is wrong."
+      - "Finding: 4-method controlled comparison reveals a recovery capacity gradient — CKA-only >> Random >> Standard > RASP"
+      - "Mechanism: Gradient importance scoring removes representationally unique structures that RL exploration requires"
+      - "CKA-only: Only method achieving meaningful GRPO learning (5.7x reward vs Standard, 28x vs RASP)"
+      - "Observation: GRPO reward-accuracy decoupling is primarily in-distribution saturation"
+    dependencies: [experiments, method]
+    tables: []
+    figures: []
+    registry_refs: [grpo_cka_only_20, grpo_random_20, grpo_standard_20_fair, grpo_rasp_20_fair]
+
+  - section: introduction
+    word_budget: 1200
+    core_bullets:
+      - "Hook: Gradient-based importance scoring — the industry standard for LLM pruning — destroys RL trainability. Under controlled GRPO training, gradient-pruned models collapse while CKA-pruned models achieve active learning."
+      - "Context: Prune-recover-align pipeline assumes independence. Self-Healing (2025) claims 95%+ RLVR recovery but uses single method, no dynamics."
+      - "Gap: No work has compared multiple pruning criteria under RL alignment or identified representational diversity as causal factor."
+      - "Our approach: 4-method controlled comparison (CKA-only, Random, Standard, RASP) under identical GRPO config reveals recovery capacity gradient."
+      - "Key insight: Gradient importance removes 'unimportant' structures that are representationally unique — precisely what RL exploration needs. CKA scoring preserves this diversity."
+      - "C2 (Main): Recovery capacity gradient — CKA-only achieves active learning (peak reward 0.342, 5.7x Standard), while Standard/RASP collapse permanently."
+      - "C1: GRPO reward-accuracy decoupling is in-distribution saturation — GSM8K saturated, MATH-500 shows marginal improvement."
+      - "Practical: CKA-only scoring as actionable recommendation for RL-intended pruning. Inference speedup asymmetry (37.8% vs 7.7%) as bonus."
+    dependencies: [experiments]
+    citation_hints:
+      - "selfhealing2025, shao2024grpo, deepseek2025r1"
+      - "graspprune2026, resp2025, rlsqueezes2026"
+      - "kornblith2019cka, mpruner2024"
+    figures: [fig1_framework]
+    tables: []
+    registry_refs: [grpo_cka_only_20, grpo_random_20, grpo_standard_20_fair, grpo_rasp_20_fair, grpo_unpruned_v2, eval_sft_cka_only_20_n1319, eval_sft_standard_full_westd, eval_sft_rasp_full_westd]
+
+  - section: related_work
+    word_budget: 800
+    core_bullets:
+      - "Cluster 1 — Structured Pruning for LLMs: LLM-Pruner→GRASPrune→RESP→Bonsai; none studies post-pruning RL alignment interaction"
+      - "Cluster 2 — RLVR for Reasoning Models: GRPO, Self-Healing (claims 95% but single method), OPSD; none documents pruning-induced collapse"
+      - "Cluster 3 — Pruning-Recovery Interaction: Self-Healing (single ratio), PASER (data), PAT (joint); all treat pruning as black box"
+      - "Cluster 4 — RL Training Instability: reward hacking, policy collapse; not previously connected to structural pruning criterion"
+      - "Cluster 5 — CKA/Function-Aware Methods: MPruner (inter-layer depth), FANG (neuron grouping), FuncNet (ICA); we use intra-layer CKA as recovery capacity predictor"
+    dependencies: [introduction]
+    tables: []
+    figures: []
+    registry_refs: []
+
+  - section: method
+    word_budget: 1500
+    core_bullets:
+      - "Overview: 4 pruning scoring criteria + controlled GRPO comparison"
+      - "Shared Stage 1: Taylor importance I(h) + intra-layer CKA overlap F(h) on reasoning traces"
+      - "Scoring criteria: (1) Standard = I(h) only; (2) RASP = I(h)×(1-F(h))^α; (3) CKA-only = F(h)-based ranking (remove highest overlap first); (4) Random baseline"
+      - "Per-layer capacity floor (≥40% MLP retention)"
+      - "Two-stage recovery: SFT warmup → GRPO alignment (identical v5 config for all methods)"
+      - "Recovery capacity diagnostic: frac_zero_std, grad_norm, reward trajectory, completion diversity"
+      - "Key conceptual: gradient importance scoring removes 'unimportant' but representationally unique structures"
+    dependencies: []
+    notation_table:
+      "I(h)": "Structural importance (Taylor expansion)"
+      "F(h)": "Functional overlap (intra-layer CKA)"
+      "S(h)": "RASP composite score I(h)×(1-F(h))^α"
+      "\\alpha": "Overlap weight (default 1.0)"
+    figures: [fig1_framework]
+    tables: []
+    registry_refs: []
+
+  - section: experiments
+    word_budget: 2500
+    core_bullets:
+      - "§4.1 Setup: DeepSeek-R1-Distill-Qwen-7B, GSM8K (cal=512, eval=1319), 20% sparsity, 4 pruning methods, identical v5 GRPO config"
+      - "§4.2 Recovery Capacity Gradient (C2 Main): Table 1 (4-method dynamics) + Figure 2 (reward trajectories) + Figure 3 (collapse diagnostics). Three distinct failure modes: active learning (CKA-only), stagnation (Random), collapse (Standard/RASP)."
+      - "§4.3 Reward-Accuracy Decoupling (C1): Table 2 (SFT vs GRPO accuracy). In-distribution saturation on GSM8K. MATH-500 marginal improvement [TBD-MATH500 final numbers]."
+      - "§4.4 SFT Gradient: CKA-only 63.9% > RASP 61.5% > Standard 59.3%. Diversity preservation helps SFT too, but RL gradient is qualitatively larger."
+      - "§4.5 Sparsity Cliff: 30% universal collapse (RASP 0%, CKA-only 0%, Standard 4%). Recovery gradient meaningful in 20-25% range."
+      - "§4.6 Inference Speedup: RASP 37.8% vs Standard 7.7% latency. Pruning distribution matters."
+      - "§4.7 Ablation: α sweep U-shape. CKA-only late decline analysis."
+      - "§4.8 Discussion: Connection to Self-Healing, gradient importance as harmful factor, practical recommendations."
+    dependencies: []
+    registry_refs:
+      - grpo_cka_only_20
+      - grpo_random_20
+      - grpo_standard_20_fair
+      - grpo_rasp_20_fair
+      - grpo_unpruned_v2
+      - eval_sft_cka_only_20_n1319
+      - eval_sft_standard_full_westd
+      - eval_sft_rasp_full_westd
+      - eval_grpo_unpruned_v2_step100
+      - eval_grpo_standard_step50_full
+      - eval_grpo_rasp_v9_step5
+      - eval_postprune_standard_30
+      - eval_postprune_rasp_30
+      - eval_postprune_cka_only_30
+      - inference_speedup_plan016_v2
+      - alpha_ablation_sweep
+      - eval_math500_unpruned
+      - eval_math500_sft_standard_20
+      - eval_math500_sft_rasp_20
+    tables: [tab1_recovery_gradient, tab2_decoupling, tab3_sft_gradient, tab4_sparsity_cliff, tab5_inference, tab6_ablation, tab7_hyperparams]
+    figures: [fig2_reward_trajectories, fig3_collapse_dynamics]
+
+  - section: conclusion
+    word_budget: 400
+    core_bullets:
+      - "Summary: First controlled multi-method comparison revealing recovery capacity gradient under GRPO"
+      - "Key finding: Gradient importance scoring — the industry standard — is actively harmful for post-pruning RL alignment"
+      - "Actionable: CKA-only scoring as recommendation for RL-intended pruning; any criterion works for SFT-only"
+      - "Broader: Pruning and recovery cannot be treated as independent pipeline stages"
+      - "Future: Extended RL training, multi-model validation, RLVR-aware pruning algorithms"
+    dependencies: [experiments, method]
+    tables: []
+    figures: []
+    registry_refs: []
+
+visualization_plan:
+  - fig_id: fig1_framework
+    type: conceptual
+    tool: matplotlib
+    description: "4-method comparison framework. Top: Shared structural analysis (Taylor importance + CKA overlap). Middle: 4 scoring criteria (CKA-only, Random, Standard, RASP) with formulas. Bottom: Identical recovery pipeline (SFT→GRPO) leading to divergent outcomes (active learning → stagnation → collapse). Visual emphasis on gradient importance as the harmful factor."
+    placement: introduction
+    aspect_ratio: "16:9"
+    data_source: "conceptual, no data needed"
+
+  - fig_id: fig2_reward_trajectories
+    type: statistical
+    tool: matplotlib
+    description: "Recovery capacity gradient — reward over training steps. 5 lines: Unpruned (stable high ~0.66), CKA-only (rises to peak 0.342 at step 80, declines to 0.242 at step 90+), Random (flat 0.14-0.19), Standard (peaks 0.081 then collapses), RASP (immediately ~0.01). Annotate CKA-only peak and late decline. Key message: only CKA-only achieves meaningful learning."
+    data_source: "registry: grpo_unpruned_v2, grpo_cka_only_20, grpo_random_20, grpo_standard_20_fair, grpo_rasp_20_fair"
+    placement: experiments
+    aspect_ratio: "16:9"
+
+  - fig_id: fig3_collapse_dynamics
+    type: statistical
+    tool: matplotlib
+    description: "Collapse diagnostics. 2×2 subplot: (a) frac_zero_std over steps (CKA-only drops to 0.125; Standard/RASP rise above 0.5/0.85), (b) grad_norm over steps (Standard collapses to 0.017), (c) reward over steps (same as fig2 but smaller), (d) KL divergence (CKA-only stable 0.0016). Four lines per subplot: CKA-only, Random, Standard, RASP. Annotate collapse onsets."
+    data_source: "registry: grpo_cka_only_20, grpo_random_20, grpo_standard_20_fair, grpo_rasp_20_fair"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+table_plan:
+  - table_id: tab1_recovery_gradient
+    caption: "Recovery capacity gradient under GRPO (20% sparsity, identical v5 config). Only CKA-only achieves meaningful RL learning."
+    placement: experiments
+    type: comparison
+    columns: [Method, Best Reward, Mean Reward, Best frac_zero_std, Pattern]
+    data_source: "registry: grpo_cka_only_20, grpo_random_20, grpo_standard_20_fair, grpo_rasp_20_fair"
+    notes: "C2 headline table. Gradient: CKA-only >> Random >> Standard > RASP."
+
+  - table_id: tab2_decoupling
+    caption: "GRPO reward-accuracy decoupling on GSM8K (N=1319, greedy, seed=42)."
+    placement: experiments
+    type: comparison
+    columns: [Model, SFT Acc (%), GRPO Acc (%), Δ (pp), Peak Reward]
+    data_source: "registry: eval_sft_unpruned_full, eval_grpo_unpruned_v2_step100, eval_sft_standard_full_westd, eval_grpo_standard_step50_full, eval_sft_rasp_full_westd, eval_grpo_rasp_v9_step5, eval_sft_cka_only_20_n1319"
+    notes: "C1 evidence. All Δ ≤ 1pp. MATH-500 row added when data completes."
+
+  - table_id: tab3_sft_gradient
+    caption: "Post-SFT accuracy by pruning method (N=1319, 20% sparsity)."
+    placement: experiments
+    type: comparison
+    columns: [Method, Post-SFT Acc (%), Δ vs Standard]
+    data_source: "registry: eval_sft_cka_only_20_n1319, eval_sft_rasp_full_westd, eval_sft_standard_full_westd"
+    notes: "CKA-only 63.9% > RASP 61.5% > Standard 59.3%. CKA-only vs Standard p≈0.015."
+
+  - table_id: tab4_sparsity_cliff
+    caption: "30% sparsity cliff: universal post-prune collapse."
+    placement: experiments
+    type: comparison
+    columns: [Method, Post-prune Acc (%), EOS Rate]
+    data_source: "registry: eval_postprune_rasp_30, eval_postprune_standard_30, eval_postprune_cka_only_30"
+    notes: "All methods collapse at 30%. Recovery gradient meaningful only in 20-25% range."
+
+  - table_id: tab5_inference
+    caption: "Inference speedup by pruning method (20% sparsity)."
+    placement: experiments
+    type: comparison
+    columns: [Method, Latency (s), Speedup (%), Memory (GB), Memory Reduction (%)]
+    data_source: "registry: inference_speedup_plan016_v2"
+    notes: "RASP 37.8% vs Standard 7.7% despite same parameter count."
+
+  - table_id: tab6_ablation
+    caption: "CKA overlap weight α ablation (N=100, 20% sparsity)."
+    placement: experiments
+    type: ablation
+    columns: ["α", Post-prune Acc (%), EOS Rate, Avg Response Length]
+    data_source: "registry: alpha_ablation_sweep"
+    baseline_row: "α=0.0 (Standard equivalent)"
+
+  - table_id: tab7_hyperparams
+    caption: "Training hyperparameters for SFT warmup and GRPO alignment."
+    placement: appendix
+    type: configuration
+    columns: [Parameter, SFT Value, GRPO Value]
+    data_source: "manual"
+
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "structured pruning for reasoning LLMs"
+    - "RLVR alignment failure and reward hacking"
+    - "pruning-recovery interaction"
+    - "representational diversity and RL exploration"
+  micro_clusters:
+    - cluster_name: "Structured Pruning for LLMs"
+      search_queries:
+        - "structured pruning large language model 2024 2025"
+        - "LLM-Pruner width pruning transformer"
+      must_cite:
+        - "LLM-Pruner (Ma et al. 2023)"
+        - "GRASPrune (ACL 2026)"
+        - "RESP (Dec 2025)"
+        - "Bonsai (ICML 2025)"
+      target_count: 8
+    - cluster_name: "RLVR Recovery and Training Dynamics"
+      search_queries:
+        - "reinforcement learning verifiable rewards reasoning"
+        - "GRPO training dynamics language models"
+      must_cite:
+        - "Self-Healing (ICLR 2026 submission)"
+        - "RL Squeezes SFT Expands (ICLR 2026)"
+        - "GRPO/DeepSeekMath (Shao et al. 2024)"
+      target_count: 6
+    - cluster_name: "Pruning-Recovery Interaction"
+      search_queries:
+        - "post-pruning recovery fine-tuning LLM"
+        - "pruning aware training alignment"
+      must_cite:
+        - "PASER (2025)"
+        - "PAT (AAAI 2025)"
+        - "P2 Law (ACL 2025)"
+        - "Boiling Frog (2026)"
+      target_count: 6
+    - cluster_name: "RL Training Instability"
+      search_queries:
+        - "reward hacking RLHF policy collapse"
+        - "RL training instability language models"
+      must_cite: []
+      target_count: 3
+    - cluster_name: "CKA and Function-Aware Methods"
+      search_queries:
+        - "CKA pruning neural network similarity"
+        - "function-aware neuron pruning LLM"
+      must_cite:
+        - "CKA (Kornblith et al. 2019)"
+        - "MPruner (2024)"
+        - "FANG (2025)"
+        - "FuncNet (2025)"
+      target_count: 6
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - abstract
+  - conclusion

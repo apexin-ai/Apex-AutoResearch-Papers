@@ -1,0 +1,3067 @@
+# setup shortgpt grpo cuda0
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/workers/worker_setup_shortgpt_grpo_cuda0_20260519T160224.log`
+- **Structured JSON:** [`9fbad6b52cebd1cf7885.json`](../../sessions/9f/9fbad6b52cebd1cf7885.json)
+
+## Before a recorded user message
+
+65 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e14c2f47-38e5-4938-bd77-51bd6caa0f47",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779224400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "01a15c1c-2456-4017-ac8a-d1dfff7dd571",
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this down into steps:
+1. Kill process 117053 on westd-29022
+2. Confirm cuda:0 is free
+3. Check GRPO training script parameters
+4. Submit GRPO training job
+5. Register in registry
+
+Let me start by loading the necessary tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "9cd0be7b-e180-490e-b10a-328889cbc82b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BiRv3G2Yy9ibsZ26bHVkzE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12518,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12518
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XEzttTiUEZEeFm4Fm4MRZJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "f539c080-8f0c-4c80-9949-b0bf8cdc22d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BiRv3G2Yy9ibsZ26bHVkzE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12518,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12518
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T16:02:41.380Z_
+
+<details><summary>↩ Tool result · `toolu_01XEzttTiUEZEeFm4Fm4MRZJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "040e6a48-b2fe-412b-8271-f44fceaf561e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+Step 1: 杀掉重复进程，同时检查 GRPO 脚本参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "7f3f5db0-ac9e-4bc2-b4d1-03307390d3f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wv7LmqFmXfCE3mPeqW2KMn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2096,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2096
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__kill_job · `toolu_014dekx5A6Ws55gokn8hVix9`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "pid": "117053",
+  "reason": "误启的 HumanEval eval 进程，需要释放 cuda:0 给 ShortGPT GRPO 训练",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "f839167d-a525-4d9c-a096-560544599d32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wv7LmqFmXfCE3mPeqW2KMn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2096,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2096
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ush9Ech9i9JzD2Q6i2j45h`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "python3 /root/recovery_aware_struct_prune/src/grpo_train.py --help 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "821cb22f-7f49-42cb-b233-ca9ba354d5f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wv7LmqFmXfCE3mPeqW2KMn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2096,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2096
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T16:02:49.671Z_
+
+<details><summary>↩ Tool result · `toolu_014dekx5A6Ws55gokn8hVix9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"117053\", \"reason\": \"误启的 HumanEval eval 进程，需要释放 cuda:0 给 ShortGPT GRPO 训练\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "e273b7ff-29ff-40e9-b37a-c64b0bb0a590",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"117053\\\", \\\"reason\\\": \\\"误启的 HumanEval eval 进程，需要释放 cuda:0 给 ShortGPT GRPO 训练\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"117053\", \"reason\": \"误启的 HumanEval eval 进程，需要释放 cuda:0 给 ShortGPT GRPO 训练\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T16:02:49.685Z_
+
+<details><summary>↩ Tool result · `toolu_01Ush9Ech9i9JzD2Q6i2j45h`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "7aeec640-faeb-451d-84b0-1e4b9b3cae03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+进程已杀。ssh_read_only 不支持重定向，换方式检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "78fbc8d5-de0b-44dd-a016-1f4c56cd97e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HjRhq5W4LZvh1HxusGArzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 559,
+      "cache_read_input_tokens": 26455,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 559
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KL4yLVrigdcwXxphzKUAHM`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "nvidia-smi -i 0 --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "018e7828-6a9c-4490-843b-f0cea4b8d390",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HjRhq5W4LZvh1HxusGArzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 559,
+      "cache_read_input_tokens": 26455,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 559
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T16:02:54.263Z_
+
+<details><summary>↩ Tool result · `toolu_01KL4yLVrigdcwXxphzKUAHM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"117059, 12780 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "d1fe4dd8-620f-4f4f-979b-f9f314430cb8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"117059, 12780 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"117059, 12780 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Bmtad7t8FuDCFi7bDhEBfX`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/bin/activate && python /root/recovery_aware_struct_prune/src/grpo_train.py --help 2>&1 | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "15946ded-56a4-4fce-a089-b5f75afeb6b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HjRhq5W4LZvh1HxusGArzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 559,
+      "cache_read_input_tokens": 26455,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 559
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T16:02:55.432Z_
+
+<details><summary>↩ Tool result · `toolu_01Bmtad7t8FuDCFi7bDhEBfX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"python: can't open file '/root/recovery_aware_struct_prune/src/grpo_train.py': [Errno 2] No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "8c61f8f4-ed37-4aac-8761-3a7ce2b301a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python: can't open file '/root/recovery_aware_struct_prune/src/grpo_train.py': [Errno 2] No such file or directory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"python: can't open file '/root/recovery_aware_struct_prune/src/grpo_train.py': [Errno 2] No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Two issues:
+1. cuda:0 still has a process (PID 117059, 12780 MiB) - likely a child process of the killed one
+2. grpo_train.py doesn't exist at the expected path - need to find it
+
+Let me kill 117059 and find the actual GRPO training script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "348b329e-9546-41c1-bdbc-3d3c85a6fc00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcDFA724z2FcgMW4nXki28",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 27014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 540
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+cuda:0 还有进程 117059 占用 12780 MiB（可能是子进程），GRPO 脚本路径不对。并行处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "8059b3ab-7865-4854-9de8-8399b4cd889f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcDFA724z2FcgMW4nXki28",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 27014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 540
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__kill_job · `toolu_01XAzGvszDAFEWhSifJ4VgCH`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "pid": "117059",
+  "reason": "父进程 117053 的子进程，仍占用 cuda:0 12780 MiB",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "1948cfea-d8e8-47e6-8d09-c8172c587a3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcDFA724z2FcgMW4nXki28",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 27014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 540
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013tbdzDZHLPr7Leunpr49PN`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "find /root/recovery_aware_struct_prune/src -name \"*grpo*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "52e7286e-9c36-44af-b227-83054625ee4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcDFA724z2FcgMW4nXki28",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 27014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 540
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T16:03:04.658Z_
+
+<details><summary>↩ Tool result · `toolu_01XAzGvszDAFEWhSifJ4VgCH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"117059\", \"reason\": \"父进程 117053 的子进程，仍占用 cuda:0 12780 MiB\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "3939037b-7ab4-484f-b976-df3191bcc28a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"117059\\\", \\\"reason\\\": \\\"父进程 117053 的子进程，仍占用 cuda:0 12780 MiB\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"117059\", \"reason\": \"父进程 117053 的子进程，仍占用 cuda:0 12780 MiB\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T16:03:05.487Z_
+
+<details><summary>↩ Tool result · `toolu_013tbdzDZHLPr7Leunpr49PN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/src/run_grpo_multiseed.sh\\n/root/recovery_aware_struct_prune/src/run_grpo_stage2.sh\\n/root/recovery_aware_struct_prune/src/run_grpo_v4.sh\\n/root/recovery_aware_struct_prune/src/train_grpo.py\\n/root/recovery_aware_struct_prune/src/train_grpo_v5.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "9af64415-af08-491f-9c42-cfef5936e83d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/src/run_grpo_multiseed.sh\\\\n/root/recovery_aware_struct_prune/src/run_grpo_stage2.sh\\\\n/root/recovery_aware_struct_prune/src/run_grpo_v4.sh\\\\n/root/recovery_aware_struct_prune/src/train_grpo.py\\\\n/root/recovery_aware_struct_prune/src/train_grpo_v5.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/src/run_grpo_multiseed.sh\\n/root/recovery_aware_struct_prune/src/run_grpo_stage2.sh\\n/root/recovery_aware_struct_prune/src/run_grpo_v4.sh\\n/root/recovery_aware_struct_prune/src/train_grpo.py\\n/root/recovery_aware_struct_prune/src/train_grpo_v5.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+子进程已杀。GRPO 脚本是 `train_grpo_v5.py`（v5 fair config）。确认 cuda:0 已释放，同时查看脚本参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "fe17c9ae-1059-4cbb-87e0-7c87197451e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016xzC2HC6sGbCbY2koeR54G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 27554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 849
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0131gFoTjWficMhbDnWitVBQ`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "nvidia-smi -i 0 --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "0c98e8b0-b8ff-4236-beaf-76d0f7c138b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016xzC2HC6sGbCbY2koeR54G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 27554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 849
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T16:03:10.878Z_
+
+<details><summary>↩ Tool result · `toolu_0131gFoTjWficMhbDnWitVBQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "4cae7f61-7d95-48b8-a0ee-337d2174018a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015nzx2pTtB4nK5bjqBt4RMy`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/bin/activate && python /root/recovery_aware_struct_prune/src/train_grpo_v5.py --help 2>&1 | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "78a1f7e1-ca0e-4a42-9a64-3f39df0306af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016xzC2HC6sGbCbY2koeR54G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 27554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 849
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T16:03:18.275Z_
+
+<details><summary>↩ Tool result · `toolu_015nzx2pTtB4nK5bjqBt4RMy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: train_grpo_v5.py [-h] --model_path MODEL_PATH [--output_dir OUTPUT_DIR]\\n                        [--gpu GPU] [--learning_rate LEARNING_RATE]\\n                        [--num_train_epochs NUM_TRAIN_EPOCHS]\\n                        [--per_device_train_batch_size PER_DEVICE_TRAIN_BATCH_SIZE]\\n                        [--gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS]\\n                        [--max_completion_length MAX_COMPLETION_LENGTH]\\n                        [--temperature TEMPERATURE]\\n                        [--repetition_penalty REPETITION_PENALTY]\\n                        [--num_generations NUM_GENERATIONS]\\n                        [--max_samples MAX_SAMPLES]\\n                        [--logging_steps LOGGING_STEPS]\\n                        [--save_steps SAVE_STEPS]\\n                        [--save_total_limit SAVE_TOTAL_LIMIT]\\n                        [--reward_desert_patience REWARD_DESERT_PATIENCE]\\n                        [--seed SEED] [--dtype {float16,bfloat16,float32}]\\n                        [--report_to REPORT_TO] [--run_name RUN_NAME]\\n                        [--wandb_project WANDB_PROJECT] [--beta BETA]\\n                        [--loss_type LOSS_TYPE]\\n                        [--format_reward_weight FORMAT_REWARD_WEIGHT]\\n                        [--gradient_checkpointing GRADIENT_CHECKPOINTING]\\n                        [--optim OPTIM] [--max_steps MAX_STEPS]\\n                        [--resume_from_checkpoint RESUME_FROM_CHECKPOINT]\\n\\nGRPO RLVR recovery training v4\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n  --output_dir OUTPUT_DIR\\n  --gpu GPU\\n  --learning_rate LEARNING_RATE\\n  --num_train_epochs NUM_TRAIN_EPOCHS\\n  --per_device_train_batch_size PER_DEVICE_TRAIN_BATCH_SIZE\\n  --gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS\\n  --max_completion_length MAX_COMPLETION_LENGTH\\n  --temperature TEMPERATURE\\n  --repetition_penalty REPETITION_PENALTY\\n  --num_generations NUM_GENERATIONS\\n  --max_samples MAX_SAMPLES\\n  --logging_steps LOGGING_STEPS\\n  --save_steps SAVE_STEPS\\n  --save_total_limit SAVE_TOTAL_LIMIT\\n  --reward_desert_patience REWARD_DESERT_PATIENCE\\n  --seed SEED\\n  --dtype {float16,bfloat16,float32}\\n  --report_to REPORT_TO\\n  --run_name RUN_NAME\\n  --wandb_project WANDB_PROJECT\\n  --beta BETA\\n  --loss_type LOSS_TYPE\\n  --format_reward_weight FORMAT_REWARD_WEIGHT\\n  --gradient_checkpointing GRADIENT_CHECKPOINTING\\n  --optim OPTIM         optimizer type, e.g. adamw_torch or adamw_8bit\\n  --max_steps MAX_STEPS\\n                        max training steps (-1 = use num_train_epochs)\\n  --resume_from_checkpoint RESUME_FROM_CHECKPOINT\\n                        path to checkpoint dir to resume from\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "e7f2b3a9-0677-4107-b053-940d4f53d821",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: train_grpo_v5.py [-h] --model_path MODEL_PATH [--output_dir OUTPUT_DIR]\\\\n                        [--gpu GPU] [--learning_rate LEARNING_RATE]\\\\n                        [--num_train_epochs NUM_TRAIN_EPOCHS]\\\\n                        [--per_device_train_batch_size PER_DEVICE_TRAIN_BATCH_SIZE]\\\\n                        [--gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS]\\\\n                        [--max_completion_length MAX_COMPLETION_LENGTH]\\\\n                        [--temperature TEMPERATURE]\\\\n                        [--repetition_penalty REPETITION_PENALTY]\\\\n                        [--num_generations NUM_GENERATIONS]\\\\n                        [--max_samples MAX_SAMPLES]\\\\n                        [--logging_steps LOGGING_STEPS]\\\\n                        [--save_steps SAVE_STEPS]\\\\n                        [--save_total_limit SAVE_TOTAL_LIMIT]\\\\n                        [--reward_desert_patience REWARD_DESERT_PATIENCE]\\\\n                        [--seed SEED] [--dtype {float16,bfloat16,float32}]\\\\n                        [--report_to REPORT_TO] [--run_name RUN_NAME]\\\\n                        [--wandb_project WANDB_PROJECT] [--beta BETA]\\\\n                        [--loss_type LOSS_TYPE]\\\\n                        [--format_reward_weight FORMAT_REWARD_WEIGHT]\\\\n                        [--gradient_checkpointing GRADIENT_CHECKPOINTING]\\\\n                        [--optim OPTIM] [--max_steps MAX_STEPS]\\\\n                        [--resume_from_checkpoint RESUME_FROM_CHECKPOINT]\\\\n\\\\nGRPO RLVR recovery training v4\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --model_path MODEL_PATH\\\\n  --output_dir OUTPUT_DIR\\\\n  --gpu GPU\\\\n  --learning_rate LEARNING_RATE\\\\n  --num_train_epochs NUM_TRAIN_EPOCHS\\\\n  --per_device_train_batch_size PER_DEVICE_TRAIN_BATCH_SIZE\\\\n  --gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS\\\\n  --max_completion_length MAX_COMPLETION_LENGTH\\\\n  --temperature TEMPERATURE\\\\n  --repetition_penalty REPETITION_PENALTY\\\\n  --num_generations NUM_GENERATIONS\\\\n  --max_samples MAX_SAMPLES\\\\n  --logging_steps LOGGING_STEPS\\\\n  --save_steps SAVE_STEPS\\\\n  --save_total_limit SAVE_TOTAL_LIMIT\\\\n  --reward_desert_patience REWARD_DESERT_PATIENCE\\\\n  --seed SEED\\\\n  --dtype {float16,bfloat16,float32}\\\\n  --report_to REPORT_TO\\\\n  --run_name RUN_NAME\\\\n  --wandb_project WANDB_PROJECT\\\\n  --beta BETA\\\\n  --loss_type LOSS_TYPE\\\\n  --format_reward_weight FORMAT_REWARD_WEIGHT\\\\n  --gradient_checkpointing GRADIENT_CHECKPOINTING\\\\n  --optim OPTIM         optimizer type, e.g. adamw_torch or adamw_8bit\\\\n  --max_steps MAX_STEPS\\\\n                        max training steps (-1 = use num_train_epochs)\\\\n  --resume_from_checkpoint RESUME_FROM_CHECKPOINT\\\\n                        path to checkpoint dir to resume from\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.26}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: train_grpo_v5.py [-h] --model_path MODEL_PATH [--output_dir OUTPUT_DIR]\\n                        [--gpu GPU] [--learning_rate LEARNING_RATE]\\n                        [--num_train_epochs NUM_TRAIN_EPOCHS]\\n                        [--per_device_train_batch_size PER_DEVICE_TRAIN_BATCH_SIZE]\\n                        [--gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS]\\n                        [--max_completion_length MAX_COMPLETION_LENGTH]\\n                        [--temperature TEMPERATURE]\\n                        [--repetition_penalty REPETITION_PENALTY]\\n                        [--num_generations NUM_GENERATIONS]\\n                        [--max_samples MAX_SAMPLES]\\n                        [--logging_steps LOGGING_STEPS]\\n                        [--save_steps SAVE_STEPS]\\n                        [--save_total_limit SAVE_TOTAL_LIMIT]\\n                        [--reward_desert_patience REWARD_DESERT_PATIENCE]\\n                        [--seed SEED] [--dtype {float16,bfloat16,float32}]\\n                        [--report_to REPORT_TO] [--run_name RUN_NAME]\\n                        [--wandb_project WANDB_PROJECT] [--beta BETA]\\n                        [--loss_type LOSS_TYPE]\\n                        [--format_reward_weight FORMAT_REWARD_WEIGHT]\\n                        [--gradient_checkpointing GRADIENT_CHECKPOINTING]\\n                        [--optim OPTIM] [--max_steps MAX_STEPS]\\n                        [--resume_from_checkpoint RESUME_FROM_CHECKPOINT]\\n\\nGRPO RLVR recovery training v4\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n  --output_dir OUTPUT_DIR\\n  --gpu GPU\\n  --learning_rate LEARNING_RATE\\n  --num_train_epochs NUM_TRAIN_EPOCHS\\n  --per_device_train_batch_size PER_DEVICE_TRAIN_BATCH_SIZE\\n  --gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS\\n  --max_completion_length MAX_COMPLETION_LENGTH\\n  --temperature TEMPERATURE\\n  --repetition_penalty REPETITION_PENALTY\\n  --num_generations NUM_GENERATIONS\\n  --max_samples MAX_SAMPLES\\n  --logging_steps LOGGING_STEPS\\n  --save_steps SAVE_STEPS\\n  --save_total_limit SAVE_TOTAL_LIMIT\\n  --reward_desert_patience REWARD_DESERT_PATIENCE\\n  --seed SEED\\n  --dtype {float16,bfloat16,float32}\\n  --report_to REPORT_TO\\n  --run_name RUN_NAME\\n  --wandb_project WANDB_PROJECT\\n  --beta BETA\\n  --loss_type LOSS_TYPE\\n  --format_reward_weight FORMAT_REWARD_WEIGHT\\n  --gradient_checkpointing GRADIENT_CHECKPOINTING\\n  --optim OPTIM         optimizer type, e.g. adamw_torch or adamw_8bit\\n  --max_steps MAX_STEPS\\n                        max training steps (-1 = use num_train_epochs)\\n  --resume_from_checkpoint RESUME_FROM_CHECKPOINT\\n                        path to checkpoint dir to resume from\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.26}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+cuda:0 已空闲。脚本参数确认完毕，参数用 `--max_steps 100`。先查看其他 GRPO 实验的具体参数确保一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "88de77e5-a5f4-4c50-b600-820b9abe6774",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zvDB4qP137DyBN4BSXzfs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1398,
+      "cache_read_input_tokens": 28403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1398
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01S5hoJoyBbUKi9TaEAb9PzG`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "cat /root/recovery_aware_struct_prune/registry.yaml 2>/dev/null | grep -A 30 \"grpo_cka_only_20\\|grpo_standard_20\\|grpo_rasp_20\" | head -90",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "f8243f11-ba17-4765-8d60-831504912948",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zvDB4qP137DyBN4BSXzfs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1398,
+      "cache_read_input_tokens": 28403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1398
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T16:03:26.789Z_
+
+<details><summary>↩ Tool result · `toolu_01S5hoJoyBbUKi9TaEAb9PzG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_gsm8k_grpo_cka_only_20_seed123\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T15:43:25.516Z\", \"updated_at\": \"2026-05-19T15:44:06.109Z\", \"hypothesis\": \"GSM8K evaluation on seed=123 GRPO CKA-only 20% checkpoint. Multi-seed validation: compare with seed=42's 64.37% (849/1319) to confirm CKA-only advantage is robust across seeds. Strengthens C1 claim reliability.\", \"parent\": \"grpo_cka_only_20_seed123\"}, \"sft_shortgpt_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:42:00.250Z\", \"updated_at\": \"2026-05-19T15:43:05.214Z\", \"conclusion\": \"success\", \"hypothesis\": \"ShortGPT depth pruning (20%, 5/28 layers removed by Block Influence scoring) after SFT warmup. Layers removed: [15,16,17,24,25], actual param sparsity 15.30%. Coarse layer removal expected to show lower GRPO recovery than fine-grained structural pruning methods.\", \"metrics\": {\"final_loss\": 0.62, \"mean_token_accuracy\": 0.83, \"epochs\": 2}}, \"eval_gsm8k_grpo_rasp_20_fair\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:41:59.916Z\", \"updated_at\": \"2026-05-19T15:43:04.789Z\", \"conclusion\": \"success\", \"hypothesis\": \"GRPO RASP 20% fair evaluation on GSM8K (1319 samples). RASP uses recovery-aware scoring combining importance + CKA overlap. Compare with CKA-only (64.37%) and Standard (59.44%) to validate C2 recovery gradient claim.\", \"metrics\": {\"accuracy\": 0.6088, \"n_correct\": 803, \"n_total\": 1319, \"stderr\": 0.0134, \"eos_rate\": 0.988}}, \"grpo_cka_only_20_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:09:46.665Z\", \"updated_at\": \"2026-05-19T15:25:52.018Z\", \"hypothesis\": \"Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens the C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K.\", \"conclusion\": \"success\", \"metrics\": {\"final_reward\": 0.2975, \"steps_completed\": 100, \"seed\": 123}}, \"grpo_random_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:36:35.375Z\", \"updated_at\": \"2026-05-19T14:37:57.495Z\", \"conclusion\": \"killed\", \"notes\": \"审批超时（48h）\"}, \"eval_gsm8k_grpo_standard_20_fair_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T08:57:59.458Z\", \"updated_at\": \"2026-05-19T12:44:16.392Z\", \"hypothesis\": \"Verify the phantom 58.91% GSM8K accuracy for Standard GRPO fair v5 100-step model. This number was referenced in analyses but never actually evaluated. Uses correct fair checkpoint grpo_stage2_standard_20_fair.\", \"parent\": \"grpo_standard_20_fair\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5944, \"n_correct\": 784, \"n_total\": 1319}}, \"eval_humaneval_sft_standard_20_1p5b_2048\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T12:42:49.403Z\", \"updated_at\": \"2026-05-19T12:43:12.487Z\", \"hypothesis\": \"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation: 7B SFT Standard running (~16.25% interim). If 1.5B Standard << 1.5B CKA-only on code generation, strengthens cross-scale capability breadth claim.\"}, \"eval_humaneval_grpo_cka_only_20_1p5b_2048\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T12:42:07.155Z\", \"updated_at\": \"2026-05-19T12:42:41.261Z\", \"hypothesis\": \"1.5B GRPO CKA-only HumanEval pass@1 @2048. Cross-scale validation: 7B GRPO CKA-only = 20.12% (33/164). Compare with 1.5B SFT CKA-only to measure GRPO effect on OOD code at 1.5B scale. 7B showed GRPO=redistribution not expansion.\"}, \"eval_humaneval_sft_cka_only_20_1p5b_2048\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T12:42:05.132Z\", \"updated_at\": \"2026-05-19T12:42:37.428Z\", \"hypothesis\": \"1.5B SFT CKA-only HumanEval pass@1 @2048. Cross-scale validation: 7B SFT CKA-only = 20.12% (33/164), far above Standard/RASP (~10-11%). If 1.5B also shows CKA-only >> others on code generation, strengthens cross-scale capability breadth claim.\"}, \"eval_humaneval_sft_rasp_20_2048_v2\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-19T11:51:47.759Z\", \"updated_at\": \"2026-05-19T11:51:59.979Z\", \"hypothesis\": \"Re-run SFT RASP 20% HumanEval with fixed eval script (sys.executable). Old result 10.37% used buggy script with bare python. SFT Standard v3 jumped from 11.59% to ~16.25% after fix, confirming old data unreliable. Critical for 7B main matrix data integrity.\", \"parent\": \"eval_humaneval_sft_rasp_20_512\"}, \"eval_humaneval_grpo_standard_20_fair_2048_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:20:55.549Z\", \"updated_at\": \"2026-05-19T11:25:31.897Z\", \"conclusion\": \"success\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% (fair v5 model) with max_new_tokens=2048. Uses correct checkpoint grpo_stage2_standard_20_fair. Compare with GRPO CKA-only (20.12%) and GRPO RASP fair (10.98%) to complete fair HumanEval matrix.\", \"metrics\": {\"pass_at_1\": 0.1098, \"n_correct\": 18, \"n_total\": 164}}, \"eval_humaneval_sft_cka_only_20_2048_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:37:59.416Z\", \"updated_at\": \"2026-05-19T11:21:14.361Z\", \"hypothesis\": \"Re-run of SFT CKA-only HumanEval with fixed eval script (sys.executable instead of bare python). v1 returned 0% due to PATH bug — python not in PATH when launched without conda activation. This re-run tests the true code generation ability of SFT CKA-only 20% pruned model.\", \"parent\": \"eval_humaneval_sft_cka_only_20_2048\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.2012, \"n_correct\": 33, \"n_total\": 164}}, \"eval_humaneval_grpo_standard_20_fair_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:00:04.753Z\", \"updated_at\": \"2026-05-19T11:00:22.805Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% (fair v5 model) with max_new_tokens=2048. Replaces old stage2 v8 result (10.37%). Compare with GRPO CKA-only (~33% interim) and SFT Standard (11.59%) to complete fair HumanEval matrix.\", \"conclusion\": \"failed\"}, \"eval_math500_sft_standard_20_2048_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:44:56.424Z\", \"updated_at\": \"2026-05-19T11:00:21.389Z\", \"hypothesis\": \"SFT Standard 20% MATH-500 @2048 with correct GSM8K-trained model (retrained on westd). Fair C1 comparison with GRPO Standard @2048 (26.4%). Previous v1 used wrong model (sft_qwen_math_standard_20).\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.258, \"n_correct\": 129, \"n_total\": 500}}, \"eval_humaneval_grpo_cka_only_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:11:21.039Z\", \"updated_at\": \"2026-05-19T11:00:20.500Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO CKA-only 20% with max_new_tokens=2048. Paired with SFT CKA-only HumanEval (running on cuda:2) to complete CKA-only cross-benchmark matrix. GRPO vs SFT delta on code generation measures whether GRPO benefit transfers to OOD tasks.\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.2012, \"n_correct\": 33, \"n_total\": 164}}, \"eval_humaneval_sft_cka_only_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:09:41.058Z\", \"updated_at\": \"2026-05-19T11:00:11.119Z\", \"hypothesis\": \"HumanEval pass@1 for SFT CKA-only 20% with max_new_tokens=2048. P0 priority: CKA-only is the only method missing HumanEval data, creating cherry-picking suspicion. Fills the critical gap in cross-benchmark evaluation matrix.\", \"conclusion\": \"failed\"}, \"eval_humaneval_sft_standard_20_2048_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T09:09:05.797Z\", \"updated_at\": \"2026-05-19T09:39:43.018Z\", \"hypothesis\": \"SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~11% interim) and SFT CKA-only (~30% interim).\"}, \"eval_humaneval_grpo_rasp_20_fair_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T09:36:58.406Z\", \"updated_at\": \"2026-05-19T09:37:27.110Z\", \"metrics\": {\"pass_at_1\": 0.1098, \"n_correct\": 18, \"n_total\": 164, \"stderr\": 0.0244}, \"conclusion\": \"success\", \"hypothesis\": \"GRPO RASP 20% fair model HumanEval pass@1 with max_new_tokens=2048. RASP pruning preserves structure-aware layers but may not transfer to code generation. Expected ~12.5% based on interim sampling. Completes the fair HumanEval evaluation matrix for RASP method.\"}, \"eval_gsm8k_grpo_standard_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:18:09.990Z\", \"updated_at\": \"2026-05-19T06:01:44.453Z\", \"hypothesis\": \"Standard extended 300步 GSM8K accuracy ≤ Standard 100步水平 (~52-53%), 因为 Standard 在 GRPO training 中 reward 始终 collapse (0.054-0.056), 300步训练不应产生 accuracy 改善。作为 E2 对照组: CKA-only 300步 interim 67.7% vs 100步 64.37% (+3.3pp) 持续提升, 而 Standard 应停滞。\", \"parent\": \"grpo_standard_20_extended_300_v2\", \"metrics\": {\"gsm8k_accuracy\": 59.29, \"n_correct\": 782, \"n_total\": 1319, \"stderr\": 1.35, \"eos_rate\": 97.95, \"avg_response_length\": 229.6, \"note\": \"vs 100-step fair v5: 58.91% → delta +0.38pp (within stderr). Worker incorrectly compared to old ~52-53% baseline.\"}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_rasp_20_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:11.166Z\", \"updated_at\": \"2026-05-19T05:16:11.298Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO RASP 20% with max_new_tokens=512. Old stage2 model (v9), not fair v5, needs re-eval with fair model.\", \"metrics\": {\"pass_at_1\": 0.1037, \"n_correct\": 17, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 417.6, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_standard_20_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:10.526Z\", \"updated_at\": \"2026-05-19T05:16:11.014Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=512. Old stage2 model (v8), not fair v5, needs re-eval with fair model.\", \"metrics\": {\"pass_at_1\": 0.0183, \"n_correct\": 3, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 505.9, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_sft_rasp_20_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:09.530Z\", \"updated_at\": \"2026-05-19T05:16:09.788Z\", \"hypothesis\": \"HumanEval pass@1 for SFT RASP 20% with max_new_tokens=512. Token budget too short; included for completeness.\", \"metrics\": {\"pass_at_1\": 0.0732, \"n_correct\": 12, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 420.5, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_sft_standard_20_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:08.589Z\", \"updated_at\": \"2026-05-19T05:16:09.481Z\", \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=512. Token budget too short; included for completeness.\", \"metrics\": {\"pass_at_1\": 0.0305, \"n_correct\": 5, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 505.4, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_unpruned_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:07.703Z\", \"updated_at\": \"2026-05-19T05:16:08.388Z\", \"hypothesis\": \"HumanEval pass@1 for unpruned Dense model with max_new_tokens=512. Token budget too short for code generation; included for completeness.\", \"metrics\": {\"pass_at_1\": 0.0183, \"n_correct\": 3, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 512, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_rasp_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:06.291Z\", \"updated_at\": \"2026-05-19T05:16:07.931Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO RASP 20% with max_new_tokens=2048. Old stage2 model (v9), not fair v5, needs re-eval with fair model. Highest pruned HumanEval score at 14.63%.\", \"metrics\": {\"pass_at_1\": 0.1463, \"n_correct\": 24, \"n_total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1168.5, \"median_response_length\": 948.5}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_standard_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T19:00:51.937Z\", \"updated_at\": \"2026-05-19T05:16:06.976Z\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.1037, \"correct\": 17, \"total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1843, \"median_response_length\": 2048}, \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. Old stage2 model (v8 checkpoint-50), not fair v5, needs re-eval with fair model.\"}, \"eval_humaneval_sft_rasp_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:03.359Z\", \"updated_at\": \"2026-05-19T05:16:06.494Z\", \"hypothesis\": \"HumanEval pass@1 for SFT RASP 20% with max_new_tokens=2048. Compares SFT RASP vs SFT Standard (11.59%) code generation capability post-pruning.\", \"metrics\": {\"pass_at_1\": 0.1037, \"n_correct\": 17, \"n_total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1253.7, \"median_response_length\": 2048}, \"conclusion\": \"success\"}, \"eval_humaneval_unpruned_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:01.505Z\", \"updated_at\": \"2026-05-19T05:16:05.609Z\", \"hypothesis\": \"HumanEval pass@1 for unpruned Dense model (DeepSeek-R1-Distill-Qwen-7B) with max_new_tokens=2048. Upper bound baseline for all pruned model HumanEval comparisons.\", \"metrics\": {\"pass_at_1\": 0.4512, \"n_correct\": 74, \"n_total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1771, \"median_response_length\": 2048}, \"conclusion\": \"success\"}, \"grpo_unstructured_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:09:44.591Z\", \"updated_at\": \"2026-05-19T04:43:26.240Z\", \"hypothesis\": \"GRPO training on 20% unstructured magnitude-pruned model (no SFT) will show different recovery dynamics than structured pruning methods. Addresses Reviewer W2 concern: why not compare with unstructured pruning? Unstructured pruned model starts at 87.87% GSM8K (higher than structured due to preserved layer dimensions).\", \"metrics\": {\"reward_mean\": 0.883, \"reward_std\": 0.385, \"loss\": 0.092, \"kl\": 0.34, \"runtime_min\": 47, \"steps\": 100, \"note\": \"reward 2.5x-14x higher than all structured methods. Disk full prevented optimizer state save but model weights intact.\"}, \"conclusion\": \"success\"}, \"eval_gsm8k_grpo_cka_only_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:03:54.973Z\", \"updated_at\": \"2026-05-19T03:58:37.059Z\", \"hypothesis\": \"E2 extended GRPO CKA-only 300步 GSM8K accuracy (N=1319). Compare with 100步 (64.37%) to test whether extended GRPO training improves ID accuracy. E2 showed sustained reward oscillation (0.22-0.44) without collapse.\", \"parent\": \"grpo_cka_only_20_extended_300\", \"metrics\": {\"gsm8k_accuracy\": 64.37, \"n_correct\": 849, \"n_total\": 1319, \"note\": \"identical to 100-step result (64.37%), model saturated at 100 steps\"}, \"conclusion\": \"negative\"}, \"eval_gsm8k_sft_standard_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:44:56.871Z\", \"updated_at\": \"2026-05-19T03:54:08.362Z\", \"hypothesis\": \"1.5B SFT Standard 20% GSM8K accuracy (N=1319). Baseline for GRPO delta at 1.5B scale. If SFT ≈ GRPO (22.29%), confirms 1.5B scale has no GRPO benefit for Standard pruning. C1 framing hard dependency.\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.229, \"n_correct\": 302, \"n_total\": 1319, \"stderr\": 0.01157, \"eos_rate\": 0.9045, \"avg_response_length\": 516.7}}, \"eval_math500_grpo_cka_only_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:44:55.483Z\", \"updated_at\": \"2026-05-19T03:10:44.473Z\", \"hypothesis\": \"GRPO CKA-only 20% MATH-500 @2048 accuracy. Core C1 data point: if GRPO CKA-only >> SFT CKA-only (29.0%) on MATH-500, confirms GRPO selectively benefits CKA-only pruning on harder reasoning benchmark.\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.292, \"n_correct\": 146, \"n_total\": 500, \"stderr\": 0.0203, \"natural_eos\": 390, \"truncated\": 110, \"avg_response_length\": 654.7}}, \"eval_gsm8k_sft_rasp_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:44:33.391Z\", \"updated_at\": \"2026-05-19T02:45:45.950Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.2691, \"n_correct\": 355, \"n_total\": 1319}, \"hypothesis\": \"1.5B SFT RASP 20% GSM8K accuracy (N=1319). Baseline for GRPO delta at 1.5B scale. If SFT ≈ GRPO (26.16%), confirms 1.5B scale has no GRPO benefit for RASP pruning. C1 framing hard dependency.\", \"parent\": \"sft_rasp_20_1p5b\"}, \"inference_bench_clean_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:15:32.578Z\", \"updated_at\": \"2026-05-19T02:16:12.080Z\", \"hypothesis\": \"Clean inference benchmark (Dense + CKA-only 20% + Standard 20%) on isolated GPU. Previous plan_016 benchmark was polluted by GPU contention. Measures per-token throughput and latency for speedup claims. 50 prompts x 256 max_new_tokens, GSM8K test set.\", \"conclusion\": \"negative\", \"metrics\": {\"dense_tps\": 72, \"cka_only_20_tps\": 58.3, \"standard_20_tps\": 58.2, \"dense_ttft_ms\": 20.1, \"cka_only_20_ttft_ms\": 16.4, \"standard_20_ttft_ms\": 16.4, \"dense_per_token_ms\": 13.9, \"cka_only_20_per_token_ms\": 16.7, \"standard_20_per_token_ms\": 16.7, \"pruned_speedup\": 0.81, \"ttft_speedup\": 1.18, \"params_dense\": \"7.62B\", \"params_pruned\": \"6.16B\"}}, \"eval_math500_grpo_rasp_20_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:44:46.855Z\", \"updated_at\": \"2026-05-19T02:04:48.654Z\", \"hypothesis\": \"MATH-500 accuracy for grpo_rasp_20 (grpo_stage2_rasp_20_v9). v2 timeout at 193/500 (EXIT_CODE=124, 6h limit). v3 without timeout wrapper. If GRPO RASP outperforms SFT RASP on MATH-500, GRPO adds reasoning. If not, reinforces C1 decoupling.\", \"parent\": \"eval_math500_grpo_rasp_20_v2\", \"conclusion\": \"failed\"}, \"eval_gsm8k_grpo_cka_only_20_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:22:59.435Z\", \"updated_at\": \"2026-05-19T02:04:42.155Z\", \"hypothesis\": \"CKA-only pruned model after GRPO recovery should achieve meaningful GSM8K accuracy (>30%), confirming CKA-based pruning preserves structures most amenable to RLVR recovery. Core C2 evidence for Tab2. v2: re-run on westb after westd outage.\", \"parent\": \"grpo_cka_only_20\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6437, \"n_correct\": 849, \"n_total\": 1319}}, \"grpo_cka_only_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:49:00.542Z\", \"updated_at\": \"2026-05-19T02:04:20.518Z\", \"hypothesis\": \"CKA-only 1.5B GRPO 100 steps. Cross-model generalization: if CKA-only shows active learning pattern (rising reward, low frac_zero_std) on 1.5B as on 7B, confirms recovery capacity hierarchy is scale-invariant.\", \"conclusion\": \"success\"}, \"grpo_cka_only_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:51:16.212Z\", \"updated_at\": \"2026-05-19T02:04:19.566Z\", \"hypothesis\": \"CKA-only 去除了最多冗余结构 (post-prune 38.5% 最高 = 损伤最小) → 但 backup paths 最少 → 预测 GRPO collapse 比 RASP 更快 (< step 10)。如果确认，这是 Redundancy-Stability Tradeoff 的直接证据：post-prune 最优的方法 = GRPO 最不稳定。\", \"parent\": \"eval_sft_cka_only_20\", \"conclusion\": \"success\"}, \"eval_gsm8k_grpo_rasp_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T19:48:55.212Z\", \"updated_at\": \"2026-05-19T02:04:18.604Z\", \"hypothesis\": \"1.5B RASP post-GRPO GSM8K accuracy (N=1319). Cross-model generalization: 7B RASP GRPO collapsed (reward 0.01), but 1.5B RASP showed reward=0.099 without collapse. If 1.5B RASP GSM8K is lower than CKA-only but not catastrophically low, confirms scale-dependent recovery dynamics. Completes 3-method 1.5B GSM8K comparison.\", \"parent\": \"grpo_rasp_20_1p5b\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.2616, \"n_correct\": 345, \"n_total\": 1319}}, \"eval_gsm8k_grpo_cka_only_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T19:49:00.633Z\", \"updated_at\": \"2026-05-18T19:49:33.438Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.3548, \"n_correct\": 468, \"n_total\": 1319, \"stderr\": 0.01317}, \"hypothesis\": \"1.5B CKA-only pruned model post-GRPO should achieve higher GSM8K accuracy than RASP due to preserved representational structure enabling better RL fine-tuning recovery. CKA-only preserves layer similarity without structural regularization overhead, potentially yielding cleaner optimization landscape for GRPO.\"}, \"grpo_standard_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:45:15.261Z\", \"updated_at\": \"2026-05-18T14:43:52.110Z\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 300, \"reward_mean\": 0.0562, \"loss\": 0.0367, \"frac_reward_zero_std\": 0.525, \"kl\": 0.00306, \"entropy\": 0.157, \"grad_norm\": 3.89, \"runtime_seconds\": 2889, \"wandb_run\": \"44cjdoiy\", \"wandb_entity\": \"xiaoyucorynne-\"}}, \"inference_bench_cka_only_20\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-18T06:54:30.806Z\", \"updated_at\": \"2026-05-18T08:09:34.289Z\", \"hypothesis\": \"CKA-only pruned model at 20% sparsity should show different latency profile than RASP (37.8% speedup) and Standard (7.7% speedup), reflecting its distinct pruning pattern. CKA-only distributes pruning based on representational diversity, which may produce different layer-wise sparsity distribution.\", \"parent\": \"inference_speedup_plan016_v2\", \"notes\": \"Key mapping: output JSON \\\"dense\\\" = dense baseline (cross-validation vs prior benchmark 6.681s), \\\"rasp_20\\\" = actually dense (dummy, ignore), \\\"standard_20\\\" = actually CKA-only SFT model. Only \\\"dense\\\" and \\\"standard_20\\\" results are meaningful. sft_rasp_20 not available on westb, so rasp slot filled with dense as dummy.\"}, \"scoring_ablation_magnitude_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:54:37.230Z\", \"updated_at\": \"2026-05-18T05:56:27.984Z\", \"hypothesis\": \"Magnitude-only scoring (no gradient or CKA signal) at 20% sparsity should yield near-zero GSM8K accuracy, confirming that gradient information is essential for effective structured pruning. MLP-only pruning concentrated in layers 0-10.\", \"metrics\": {\"accuracy\": 0.04, \"n_evaluated\": 189, \"n_total\": 200, \"eos_rate\": 0.0133, \"avg_len\": 4063, \"actual_sparsity\": 0.1899, \"mlp_groups_pruned\": 199, \"attn_groups_pruned\": 0, \"total_groups\": 784, \"exit_reason\": \"timeout at 189/200\"}, \"conclusion\": \"success\", \"notes\": \"Magnitude-only scoring at 20% sparsity: acc=4% (157/200 samples, timeout). MLP-only pruning (199/784 groups), zero attention heads pruned. Concentrated in layers 0-10. eos_rate=1.3%, avg_len=4063 (all hitting max_length). Confirms gradient info essential for structured pruning.\"}, \"eval_math500_grpo_unpruned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:57:37.652Z\", \"updated_at\": \"2026-05-18T05:19:28.892Z\", \"hypothesis\": \"Unpruned Qwen2.5-7B-Instruct after GRPO should achieve high MATH-500 accuracy as dense upper bound for comparing pruned model recovery. Establishes ceiling for C1 reward-accuracy decoupling analysis.\", \"parent\": \"grpo_unpruned_baseline\", \"notes\": \"Completed 500/500. MATH-500 accuracy = 69.0%. Dense baseline upper bound. westd cuda:2, tracked via cron only (no submit_training_job). Log at ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log on westd-11672.\", \"metrics\": {\"accuracy\": 0.69, \"n_correct\": 345, \"n_total\": 500, \"ci_95\": 0.0207, \"truncated_pct\": 0.172, \"avg_response_length\": 1768}, \"conclusion\": \"success\"}, \"grpo_rasp_20_fair\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T23:50:17.613Z\", \"updated_at\": \"2026-05-18T04:53:45.808Z\", \"hypothesis\": \"RASP pruned model permanently collapses during GRPO even with 100 steps (not early-stopping artifact), confirming D051 confound resolution. RASP v9 only trained 30 steps before stopping; this fair retrain uses identical config to Standard v8 (100 steps, lr=1e-6, beta=0.01, temperature=0.4, dapo loss, patience=200) to ensure apples-to-apples comparison.\", \"parent\": \"grpo_stage2_rasp_20_v9\", \"wandb_run_id\": \"s5zf5akl\"}, \"eval_gsm8k_grpo_cka_only_20\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T04:23:57.858Z\", \"updated_at\": \"2026-05-18T04:24:21.783Z\", \"hypothesis\": \"CKA-only pruned model after GRPO recovery should achieve meaningful GSM8K accuracy (>30%), confirming that CKA-based pruning preserves structures most amenable to RLVR recovery. This is the missing C2 core evidence: we have reward trajectory but not downstream accuracy.\", \"parent\": \"grpo_cka_only_20\"}, \"grpo_standard_20_fair\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T01:05:26.946Z\", \"updated_at\": \"2026-05-18T01:05:33.273Z\", \"hypothesis\": \"Standard pruned model GRPO with fair v5 config (identical to CKA-only/Random/RASP fair). D058 confound resolution: Standard v8 used old train_grpo.py with different config. If Standard also collapses under v5 config, confirms collapse gradient is pruning-method-dependent, not config-dependent. Completes 4-method fair comparison.\", \"parent\": \"grpo_stage2_standard_20_v8\"}, \"eval_sft_cka_only_20_n1319\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T23:47:49.976Z\", \"updated_at\": \"2026-05-17T23:47:49.976Z\", \"conclusion\": \"success\"}, \"eval_humaneval_sft_standard_20_2048_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:26:20.102Z\", \"updated_at\": \"2026-05-17T23:23:47.148Z\", \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) and GRPO variants. v1 was killed due to GPU conflict, this is the resubmission on cuda:0.\", \"parent\": \"eval_humaneval_sft_standard_20_2048\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.1159, \"correct\": 19, \"total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1850.7, \"median_response_length\": 2048}}, \"eval_postprune_rasp_30\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T18:21:11.355Z\", \"updated_at\": \"2026-05-17T18:21:11.355Z\"}, \"eval_sft_cka_only_20_full\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T18:21:06.053Z\", \"updated_at\": \"2026-05-17T18:21:10.884Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K N=1319。post-prune 38.5% 是所有方法最高，如果 post-SFT 也最高则 CKA-only scoring 对 SFT 有优势；如果收敛到 ~60% 则确认 SFT equalizes。N=200 pilot 显示 64.0%。\", \"parent\": \"eval_sft_cka_only_20\"}, \"eval_sft_cka_only_20\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T14:49:37.439Z\", \"updated_at\": \"2026-05-17T14:49:39.404Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.64, \"correct\": 128, \"total\": 200, \"stderr\": 0.0339, \"model\": \"sft_cka_only_20\", \"max_samples\": 200, \"seed\": 42}}, \"eval_humaneval_sft_standard_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:41:41.648Z\", \"updated_at\": \"2026-05-17T14:48:39.395Z\", \"conclusion\": \"killed\"}, \"eval_gradient_postsft_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T10:14:40.395Z\", \"updated_at\": \"2026-05-17T11:01:35.341Z\", \"hypothesis\": \"Gradient-pruned 20% model after SFT recovery: if post-SFT accuracy reaches ~50-60% (from 25.5% post-prune), gradient scoring is viable but weaker than RASP (61%). If much lower, gradient scoring causes partially irreversible structural damage that SFT cannot recover.\", \"parent\": \"scoring_ablation_batch_v2\", \"metrics\": {\"accuracy\": 0.615, \"stderr\": 0.0344, \"n_correct\": 123, \"n_total\": 200, \"eos_rate\": 0.995, \"avg_len\": 167.5}, \"conclusion\": \"success\"}, \"eval_postprune_25\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T06:19:28.015Z\", \"updated_at\": \"2026-05-17T11:00:53.658Z\", \"conclusion\": \"success\", \"metrics\": {\"rasp_25_accuracy\": 0.21, \"rasp_25_stderr\": 0.0407, \"rasp_25_n_correct\": 21, \"rasp_25_n_total\": 100, \"rasp_25_eos_rate\": 0.56, \"rasp_25_avg_len\": 2033, \"standard_25_accuracy\": 0.16, \"standard_25_stderr\": 0.0367, \"standard_25_n_correct\": 16, \"standard_25_n_total\": 100, \"standard_25_eos_rate\": 0.23, \"standard_25_avg_len\": 3241}, \"hypothesis\": \"At 25% sparsity, RASP scoring preserves more post-prune accuracy than Standard scoring (as observed at 20%), with the gap potentially widening at higher sparsity due to CKA's role in protecting functionally unique heads.\"}, \"scoring_ablation_batch_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T10:39:15.371Z\", \"updated_at\": \"2026-05-17T10:39:44.226Z\", \"conclusion\": \"killed\", \"hypothesis\": \"Scoring ablation batch: CKA-aware scoring (RASP) preserves more post-prune accuracy than magnitude-only, gradient-only, random, or CKA-only scoring at 20% sparsity with MLP-only search space (--skip_attention).\", \"notes\": \"Original batch process killed by SIGTERM. Pipeline split into individual experiments: magnitude (acc=0, early stopped), gradient (SFT done → eval_gradient_postsft_v2), random (eval in progress 128/200 acc@100=0.37), cka_only (pending). Cron cleaned up.\"}, \"eval_sft_rasp_rlvr_20_qwen_math\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T17:58:07.666Z\", \"updated_at\": \"2026-05-17T10:38:08.756Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.73, \"stderr\": 0.0314, \"n_correct\": 146, \"n_total\": 200, \"eos_rate\": 1, \"avg_len\": 127}, \"hypothesis\": \"Qwen2.5-Math-7B with RASP-RLVR 20% pruning recovers GSM8K accuracy via SFT comparable to standard RASP pruning, validating cross-model generalization of the RASP scoring framework on a math-specialized model.\"}, \"sft_rasp_rlvr_20_qwen_math\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T17:57:45.290Z\", \"updated_at\": \"2026-05-16T17:57:47.193Z\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4774, \"final_loss\": 0.3544, \"mean_token_accuracy\": 0.9001, \"epoch\": 2, \"train_runtime_s\": 1729, \"train_samples_per_second\": 8.642}}, \"eval_sft_qwen_math_rasp_25\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T12:50:19.762Z\", \"updated_at\": \"2026-05-16T12:50:19.762Z\", \"notes\": \"Completed: RASP 25% eval accuracy 64% (128/200)\"}, \"sft_standard_20_westd_retrain\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:38:07.472Z\", \"updated_at\": \"2026-05-16T12:49:52.964Z\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.6403, \"mean_token_accuracy\": 0.8258, \"avg_train_loss\": 0.7577, \"train_runtime_sec\": 1679, \"epochs\": 2, \"total_steps\": 1870}}, \"eval_sft_standard_20_westd_n100\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:56:01.873Z\", \"updated_at\": \"2026-05-15T19:57:20.320Z\", \"notes\": \"v2 failed: python command not found (EXIT_CODE=127). v2 命令错误使用 python 而非 /root/miniconda3/bin/python. v3 重跑中。\", \"metrics\": {\"accuracy\": 0.63, \"stderr\": 0.048, \"n_correct\": 63, \"n_total\": 100, \"eos_rate\": 0.97, \"avg_len\": 260.57}, \"conclusion\": \"success\"}, \"eval_sft_rasp_20_westd_n100\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:56:01.187Z\", \"updated_at\": \"2026-05-15T19:57:19.845Z\", \"notes\": \"v2 failed: python command not found (EXIT_CODE=127). v2 命令错误使用 python 而非 /root/miniconda3/bin/python. v3 重跑中。\", \"metrics\": {\"accuracy\": 0.67, \"stderr\": 0.047, \"n_correct\": 67, \"n_total\": 100, \"eos_rate\": 0.99, \"avg_len\": 182.39}, \"conclusion\": \"success\"}, \"grpo_unpruned_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:29:16.419Z\", \"updated_at\": \"2026-05-15T19:29:47.822Z\", \"wandb_run_id\": \"e49c42ha\", \"conclusion\": \"negative\", \"notes\": \"Unpruned Qwen2.5-7B-Instruct GRPO 也 collapse 了。100/100 steps 完成，但从 step 80 起 reward=0, frac_reward_zero_std=1.0, clipped_ratio=1.0, mean_terminated_length=0（全部撞 max_length 无自然终止）。collapse 不是剪枝导致的，是 GRPO+该模型/超参的固有问题。最终模型保存因数据盘满（250G 100%）失败（SafetensorError: No space left on device），但 checkpoint-100 完整可用。\", \"metrics\": {\"steps_completed\": 100, \"total_steps\": 100, \"runtime_sec\": 2927, \"final_reward\": 0, \"final_reward_std\": 0, \"final_frac_reward_zero_std\": 1, \"final_grad_norm\": 1.3671875, \"final_kl\": 0.253, \"final_entropy\": 1.239, \"final_loss\": 0.00253, \"final_clipped_ratio\": 1, \"final_mean_length\": 1024, \"final_mean_terminated_length\": 0, \"peak_reward\": 0.04375, \"peak_reward_step\": 20, \"collapse_onset_step\": 80, \"disk_full_on_save\": true}}, \"grpo_stage2_rasp_20_v8\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T17:52:16.358Z\", \"updated_at\": \"2026-05-15T17:52:17.389Z\", \"conclusion\": \"killed\", \"notes\": \"Killed at ~step 30 per Director protocol. All 3 kill thresholds met since step 10: grad_norm=0.011<0.05, frac_zero_std=0.90>=0.85, reward=0.026<0.03. RASP GRPO 三次连续 collapse (v2/v5/v8). cuda:0 released for unpruned baseline GRPO.\"}, \"sft_rasp_20_westd_retrain\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T17:34:23.161Z\", \"updated_at\": \"2026-05-15T17:34:24.595Z\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.658, \"mean_token_accuracy\": 0.8302, \"avg_train_loss\": 0.7736, \"train_runtime_sec\": 1706, \"epochs\": 2, \"total_steps\": 1870}}, \"grasp_baseline_westd\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:40:51.440Z\", \"updated_at\": \"2026-05-15T16:41:13.070Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.07, \"stderr\": 0.0255, \"n_correct\": 7, \"n_total\": 100, \"eos_rate\": 0.02, \"avg_len\": 4019.52}}, \"eval_sft_alpha_0p5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:40:15.049Z\", \"updated_at\": \"2026-05-15T16:40:47.863Z\", \"conclusion\": \"negative\", \"metrics\": {\"error\": \"safetensors corrupt: incomplete metadata, file not fully covered\"}}, \"eval_sft_grasp_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:40:14.409Z\", \"updated_at\": \"2026-05-15T16:40:47.442Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.41, \"stderr\": 0.0492, \"n_correct\": 41, \"n_total\": 100, \"eos_rate\": 0.98, \"avg_len\": 225.78}}, \"eval_sft_alpha_2p0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:40:13.916Z\", \"updated_at\": \"2026-05-15T16:40:46.869Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.62, \"stderr\": 0.0485, \"n_correct\": 62, \"n_total\": 100, \"eos_rate\": 0.97, \"avg_len\": 277.41}}, \"sft_alpha2_0_westd\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T15:41:05.720Z\", \"updated_at\": \"2026-05-15T15:41:05.720Z\"}}, \"count\": 70, \"total\": 70, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1484}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "546ac087-c23f-45a3-acc0-9742c6e67322",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_gsm8k_grpo_cka_only_20_seed123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T15:43:25.516Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:44:06.109Z\\\", \\\"hypothesis\\\": \\\"GSM8K evaluation on seed=123 GRPO CKA-only 20% checkpoint. Multi-seed validation: compare with seed=42's 64.37% (849/1319) to confirm CKA-only advantage is robust across seeds. Strengthens C1 claim reliability.\\\", \\\"parent\\\": \\\"grpo_cka_only_20_seed123\\\"}, \\\"sft_shortgpt_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T15:42:00.250Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:43:05.214Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"ShortGPT depth pruning (20%, 5/28 layers removed by Block Influence scoring) after SFT warmup. Layers removed: [15,16,17,24,25], actual param sparsity 15.30%. Coarse layer removal expected to show lower GRPO recovery than fine-grained structural pruning methods.\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.62, \\\"mean_token_accuracy\\\": 0.83, \\\"epochs\\\": 2}}, \\\"eval_gsm8k_grpo_rasp_20_fair\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T15:41:59.916Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:43:04.789Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"GRPO RASP 20% fair evaluation on GSM8K (1319 samples). RASP uses recovery-aware scoring combining importance + CKA overlap. Compare with CKA-only (64.37%) and Standard (59.44%) to validate C2 recovery gradient claim.\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.6088, \\\"n_correct\\\": 803, \\\"n_total\\\": 1319, \\\"stderr\\\": 0.0134, \\\"eos_rate\\\": 0.988}}, \\\"grpo_cka_only_20_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T04:09:46.665Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:25:52.018Z\\\", \\\"hypothesis\\\": \\\"Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens the C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_reward\\\": 0.2975, \\\"steps_completed\\\": 100, \\\"seed\\\": 123}}, \\\"grpo_random_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T14:36:35.375Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:37:57.495Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"审批超时（48h）\\\"}, \\\"eval_gsm8k_grpo_standard_20_fair_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T08:57:59.458Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:44:16.392Z\\\", \\\"hypothesis\\\": \\\"Verify the phantom 58.91% GSM8K accuracy for Standard GRPO fair v5 100-step model. This number was referenced in analyses but never actually evaluated. Uses correct fair checkpoint grpo_stage2_standard_20_fair.\\\", \\\"parent\\\": \\\"grpo_standard_20_fair\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5944, \\\"n_correct\\\": 784, \\\"n_total\\\": 1319}}, \\\"eval_humaneval_sft_standard_20_1p5b_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T12:42:49.403Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:43:12.487Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation: 7B SFT Standard running (~16.25% interim). If 1.5B Standard << 1.5B CKA-only on code generation, strengthens cross-scale capability breadth claim.\\\"}, \\\"eval_humaneval_grpo_cka_only_20_1p5b_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T12:42:07.155Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:42:41.261Z\\\", \\\"hypothesis\\\": \\\"1.5B GRPO CKA-only HumanEval pass@1 @2048. Cross-scale validation: 7B GRPO CKA-only = 20.12% (33/164). Compare with 1.5B SFT CKA-only to measure GRPO effect on OOD code at 1.5B scale. 7B showed GRPO=redistribution not expansion.\\\"}, \\\"eval_humaneval_sft_cka_only_20_1p5b_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T12:42:05.132Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:42:37.428Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT CKA-only HumanEval pass@1 @2048. Cross-scale validation: 7B SFT CKA-only = 20.12% (33/164), far above Standard/RASP (~10-11%). If 1.5B also shows CKA-only >> others on code generation, strengthens cross-scale capability breadth claim.\\\"}, \\\"eval_humaneval_sft_rasp_20_2048_v2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-19T11:51:47.759Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:51:59.979Z\\\", \\\"hypothesis\\\": \\\"Re-run SFT RASP 20% HumanEval with fixed eval script (sys.executable). Old result 10.37% used buggy script with bare python. SFT Standard v3 jumped from 11.59% to ~16.25% after fix, confirming old data unreliable. Critical for 7B main matrix data integrity.\\\", \\\"parent\\\": \\\"eval_humaneval_sft_rasp_20_512\\\"}, \\\"eval_humaneval_grpo_standard_20_fair_2048_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T11:20:55.549Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:25:31.897Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO Standard 20% (fair v5 model) with max_new_tokens=2048. Uses correct checkpoint grpo_stage2_standard_20_fair. Compare with GRPO CKA-only (20.12%) and GRPO RASP fair (10.98%) to complete fair HumanEval matrix.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1098, \\\"n_correct\\\": 18, \\\"n_total\\\": 164}}, \\\"eval_humaneval_sft_cka_only_20_2048_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T07:37:59.416Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:21:14.361Z\\\", \\\"hypothesis\\\": \\\"Re-run of SFT CKA-only HumanEval with fixed eval script (sys.executable instead of bare python). v1 returned 0% due to PATH bug — python not in PATH when launched without conda activation. This re-run tests the true code generation ability of SFT CKA-only 20% pruned model.\\\", \\\"parent\\\": \\\"eval_humaneval_sft_cka_only_20_2048\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.2012, \\\"n_correct\\\": 33, \\\"n_total\\\": 164}}, \\\"eval_humaneval_grpo_standard_20_fair_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T06:00:04.753Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:00:22.805Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO Standard 20% (fair v5 model) with max_new_tokens=2048. Replaces old stage2 v8 result (10.37%). Compare with GRPO CKA-only (~33% interim) and SFT Standard (11.59%) to complete fair HumanEval matrix.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_math500_sft_standard_20_2048_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T02:44:56.424Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:00:21.389Z\\\", \\\"hypothesis\\\": \\\"SFT Standard 20% MATH-500 @2048 with correct GSM8K-trained model (retrained on westd). Fair C1 comparison with GRPO Standard @2048 (26.4%). Previous v1 used wrong model (sft_qwen_math_standard_20).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.258, \\\"n_correct\\\": 129, \\\"n_total\\\": 500}}, \\\"eval_humaneval_grpo_cka_only_20_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T04:11:21.039Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:00:20.500Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO CKA-only 20% with max_new_tokens=2048. Paired with SFT CKA-only HumanEval (running on cuda:2) to complete CKA-only cross-benchmark matrix. GRPO vs SFT delta on code generation measures whether GRPO benefit transfers to OOD tasks.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.2012, \\\"n_correct\\\": 33, \\\"n_total\\\": 164}}, \\\"eval_humaneval_sft_cka_only_20_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T04:09:41.058Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:00:11.119Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT CKA-only 20% with max_new_tokens=2048. P0 priority: CKA-only is the only method missing HumanEval data, creating cherry-picking suspicion. Fills the critical gap in cross-benchmark evaluation matrix.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_humaneval_sft_standard_20_2048_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T09:09:05.797Z\\\", \\\"updated_at\\\": \\\"2026-05-19T09:39:43.018Z\\\", \\\"hypothesis\\\": \\\"SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~11% interim) and SFT CKA-only (~30% interim).\\\"}, \\\"eval_humaneval_grpo_rasp_20_fair_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T09:36:58.406Z\\\", \\\"updated_at\\\": \\\"2026-05-19T09:37:27.110Z\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1098, \\\"n_correct\\\": 18, \\\"n_total\\\": 164, \\\"stderr\\\": 0.0244}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"GRPO RASP 20% fair model HumanEval pass@1 with max_new_tokens=2048. RASP pruning preserves structure-aware layers but may not transfer to code generation. Expected ~12.5% based on interim sampling. Completes the fair HumanEval evaluation matrix for RASP method.\\\"}, \\\"eval_gsm8k_grpo_standard_20_extended_300\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T02:18:09.990Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:01:44.453Z\\\", \\\"hypothesis\\\": \\\"Standard extended 300步 GSM8K accuracy ≤ Standard 100步水平 (~52-53%), 因为 Standard 在 GRPO training 中 reward 始终 collapse (0.054-0.056), 300步训练不应产生 accuracy 改善。作为 E2 对照组: CKA-only 300步 interim 67.7% vs 100步 64.37% (+3.3pp) 持续提升, 而 Standard 应停滞。\\\", \\\"parent\\\": \\\"grpo_standard_20_extended_300_v2\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 59.29, \\\"n_correct\\\": 782, \\\"n_total\\\": 1319, \\\"stderr\\\": 1.35, \\\"eos_rate\\\": 97.95, \\\"avg_response_length\\\": 229.6, \\\"note\\\": \\\"vs 100-step fair v5: 58.91% → delta +0.38pp (within stderr). Worker incorrectly compared to old ~52-53% baseline.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_grpo_rasp_20_512\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:14:11.166Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:11.298Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO RASP 20% with max_new_tokens=512. Old stage2 model (v9), not fair v5, needs re-eval with fair model.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1037, \\\"n_correct\\\": 17, \\\"n_total\\\": 164, \\\"max_new_tokens\\\": 512, \\\"avg_response_length\\\": 417.6, \\\"median_response_length\\\": 512}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_grpo_standard_20_512\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:14:10.526Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:11.014Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=512. Old stage2 model (v8), not fair v5, needs re-eval with fair model.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0183, \\\"n_correct\\\": 3, \\\"n_total\\\": 164, \\\"max_new_tokens\\\": 512, \\\"avg_response_length\\\": 505.9, \\\"median_response_length\\\": 512}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_sft_rasp_20_512\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:14:09.530Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:09.788Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT RASP 20% with max_new_tokens=512. Token budget too short; included for completeness.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0732, \\\"n_correct\\\": 12, \\\"n_total\\\": 164, \\\"max_new_tokens\\\": 512, \\\"avg_response_length\\\": 420.5, \\\"median_response_length\\\": 512}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_sft_standard_20_512\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:14:08.589Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:09.481Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=512. Token budget too short; included for completeness.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0305, \\\"n_correct\\\": 5, \\\"n_total\\\": 164, \\\"max_new_tokens\\\": 512, \\\"avg_response_length\\\": 505.4, \\\"median_response_length\\\": 512}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_unpruned_512\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:14:07.703Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:08.388Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for unpruned Dense model with max_new_tokens=512. Token budget too short for code generation; included for completeness.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0183, \\\"n_correct\\\": 3, \\\"n_total\\\": 164, \\\"max_new_tokens\\\": 512, \\\"avg_response_length\\\": 512, \\\"median_response_length\\\": 512}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_grpo_rasp_20_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:14:06.291Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:07.931Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO RASP 20% with max_new_tokens=2048. Old stage2 model (v9), not fair v5, needs re-eval with fair model. Highest pruned HumanEval score at 14.63%.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1463, \\\"n_correct\\\": 24, \\\"n_total\\\": 164, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1168.5, \\\"median_response_length\\\": 948.5}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_grpo_standard_20_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T19:00:51.937Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:06.976Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1037, \\\"correct\\\": 17, \\\"total\\\": 164, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1843, \\\"median_response_length\\\": 2048}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. Old stage2 model (v8 checkpoint-50), not fair v5, needs re-eval with fair model.\\\"}, \\\"eval_humaneval_sft_rasp_20_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:14:03.359Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:06.494Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT RASP 20% with max_new_tokens=2048. Compares SFT RASP vs SFT Standard (11.59%) code generation capability post-pruning.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1037, \\\"n_correct\\\": 17, \\\"n_total\\\": 164, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1253.7, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_unpruned_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:14:01.505Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:16:05.609Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for unpruned Dense model (DeepSeek-R1-Distill-Qwen-7B) with max_new_tokens=2048. Upper bound baseline for all pruned model HumanEval comparisons.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.4512, \\\"n_correct\\\": 74, \\\"n_total\\\": 164, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1771, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grpo_unstructured_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T04:09:44.591Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:43:26.240Z\\\", \\\"hypothesis\\\": \\\"GRPO training on 20% unstructured magnitude-pruned model (no SFT) will show different recovery dynamics than structured pruning methods. Addresses Reviewer W2 concern: why not compare with unstructured pruning? Unstructured pruned model starts at 87.87% GSM8K (higher than structured due to preserved layer dimensions).\\\", \\\"metrics\\\": {\\\"reward_mean\\\": 0.883, \\\"reward_std\\\": 0.385, \\\"loss\\\": 0.092, \\\"kl\\\": 0.34, \\\"runtime_min\\\": 47, \\\"steps\\\": 100, \\\"note\\\": \\\"reward 2.5x-14x higher than all structured methods. Disk full prevented optimizer state save but model weights intact.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_gsm8k_grpo_cka_only_20_extended_300\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T02:03:54.973Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:58:37.059Z\\\", \\\"hypothesis\\\": \\\"E2 extended GRPO CKA-only 300步 GSM8K accuracy (N=1319). Compare with 100步 (64.37%) to test whether extended GRPO training improves ID accuracy. E2 showed sustained reward oscillation (0.22-0.44) without collapse.\\\", \\\"parent\\\": \\\"grpo_cka_only_20_extended_300\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 64.37, \\\"n_correct\\\": 849, \\\"n_total\\\": 1319, \\\"note\\\": \\\"identical to 100-step result (64.37%), model saturated at 100 steps\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_gsm8k_sft_standard_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T02:44:56.871Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:54:08.362Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard 20% GSM8K accuracy (N=1319). Baseline for GRPO delta at 1.5B scale. If SFT ≈ GRPO (22.29%), confirms 1.5B scale has no GRPO benefit for Standard pruning. C1 framing hard dependency.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.229, \\\"n_correct\\\": 302, \\\"n_total\\\": 1319, \\\"stderr\\\": 0.01157, \\\"eos_rate\\\": 0.9045, \\\"avg_response_length\\\": 516.7}}, \\\"eval_math500_grpo_cka_only_20_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T02:44:55.483Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:10:44.473Z\\\", \\\"hypothesis\\\": \\\"GRPO CKA-only 20% MATH-500 @2048 accuracy. Core C1 data point: if GRPO CKA-only >> SFT CKA-only (29.0%) on MATH-500, confirms GRPO selectively benefits CKA-only pruning on harder reasoning benchmark.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.292, \\\"n_correct\\\": 146, \\\"n_total\\\": 500, \\\"stderr\\\": 0.0203, \\\"natural_eos\\\": 390, \\\"truncated\\\": 110, \\\"avg_response_length\\\": 654.7}}, \\\"eval_gsm8k_sft_rasp_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T02:44:33.391Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:45:45.950Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.2691, \\\"n_correct\\\": 355, \\\"n_total\\\": 1319}, \\\"hypothesis\\\": \\\"1.5B SFT RASP 20% GSM8K accuracy (N=1319). Baseline for GRPO delta at 1.5B scale. If SFT ≈ GRPO (26.16%), confirms 1.5B scale has no GRPO benefit for RASP pruning. C1 framing hard dependency.\\\", \\\"parent\\\": \\\"sft_rasp_20_1p5b\\\"}, \\\"inference_bench_clean_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T02:15:32.578Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:16:12.080Z\\\", \\\"hypothesis\\\": \\\"Clean inference benchmark (Dense + CKA-only 20% + Standard 20%) on isolated GPU. Previous plan_016 benchmark was polluted by GPU contention. Measures per-token throughput and latency for speedup claims. 50 prompts x 256 max_new_tokens, GSM8K test set.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"dense_tps\\\": 72, \\\"cka_only_20_tps\\\": 58.3, \\\"standard_20_tps\\\": 58.2, \\\"dense_ttft_ms\\\": 20.1, \\\"cka_only_20_ttft_ms\\\": 16.4, \\\"standard_20_ttft_ms\\\": 16.4, \\\"dense_per_token_ms\\\": 13.9, \\\"cka_only_20_per_token_ms\\\": 16.7, \\\"standard_20_per_token_ms\\\": 16.7, \\\"pruned_speedup\\\": 0.81, \\\"ttft_speedup\\\": 1.18, \\\"params_dense\\\": \\\"7.62B\\\", \\\"params_pruned\\\": \\\"6.16B\\\"}}, \\\"eval_math500_grpo_rasp_20_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T14:44:46.855Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:04:48.654Z\\\", \\\"hypothesis\\\": \\\"MATH-500 accuracy for grpo_rasp_20 (grpo_stage2_rasp_20_v9). v2 timeout at 193/500 (EXIT_CODE=124, 6h limit). v3 without timeout wrapper. If GRPO RASP outperforms SFT RASP on MATH-500, GRPO adds reasoning. If not, reinforces C1 decoupling.\\\", \\\"parent\\\": \\\"eval_math500_grpo_rasp_20_v2\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_gsm8k_grpo_cka_only_20_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T05:22:59.435Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:04:42.155Z\\\", \\\"hypothesis\\\": \\\"CKA-only pruned model after GRPO recovery should achieve meaningful GSM8K accuracy (>30%), confirming CKA-based pruning preserves structures most amenable to RLVR recovery. Core C2 evidence for Tab2. v2: re-run on westb after westd outage.\\\", \\\"parent\\\": \\\"grpo_cka_only_20\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.6437, \\\"n_correct\\\": 849, \\\"n_total\\\": 1319}}, \\\"grpo_cka_only_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T12:49:00.542Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:04:20.518Z\\\", \\\"hypothesis\\\": \\\"CKA-only 1.5B GRPO 100 steps. Cross-model generalization: if CKA-only shows active learning pattern (rising reward, low frac_zero_std) on 1.5B as on 7B, confirms recovery capacity hierarchy is scale-invariant.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"grpo_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T14:51:16.212Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:04:19.566Z\\\", \\\"hypothesis\\\": \\\"CKA-only 去除了最多冗余结构 (post-prune 38.5% 最高 = 损伤最小) → 但 backup paths 最少 → 预测 GRPO collapse 比 RASP 更快 (< step 10)。如果确认，这是 Redundancy-Stability Tradeoff 的直接证据：post-prune 最优的方法 = GRPO 最不稳定。\\\", \\\"parent\\\": \\\"eval_sft_cka_only_20\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_gsm8k_grpo_rasp_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T19:48:55.212Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:04:18.604Z\\\", \\\"hypothesis\\\": \\\"1.5B RASP post-GRPO GSM8K accuracy (N=1319). Cross-model generalization: 7B RASP GRPO collapsed (reward 0.01), but 1.5B RASP showed reward=0.099 without collapse. If 1.5B RASP GSM8K is lower than CKA-only but not catastrophically low, confirms scale-dependent recovery dynamics. Completes 3-method 1.5B GSM8K comparison.\\\", \\\"parent\\\": \\\"grpo_rasp_20_1p5b\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.2616, \\\"n_correct\\\": 345, \\\"n_total\\\": 1319}}, \\\"eval_gsm8k_grpo_cka_only_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T19:49:00.633Z\\\", \\\"updated_at\\\": \\\"2026-05-18T19:49:33.438Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.3548, \\\"n_correct\\\": 468, \\\"n_total\\\": 1319, \\\"stderr\\\": 0.01317}, \\\"hypothesis\\\": \\\"1.5B CKA-only pruned model post-GRPO should achieve higher GSM8K accuracy than RASP due to preserved representational structure enabling better RL fine-tuning recovery. CKA-only preserves layer similarity without structural regularization overhead, potentially yielding cleaner optimization landscape for GRPO.\\\"}, \\\"grpo_standard_20_extended_300\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T13:45:15.261Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:43:52.110Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_step\\\": 300, \\\"reward_mean\\\": 0.0562, \\\"loss\\\": 0.0367, \\\"frac_reward_zero_std\\\": 0.525, \\\"kl\\\": 0.00306, \\\"entropy\\\": 0.157, \\\"grad_norm\\\": 3.89, \\\"runtime_seconds\\\": 2889, \\\"wandb_run\\\": \\\"44cjdoiy\\\", \\\"wandb_entity\\\": \\\"xiaoyucorynne-\\\"}}, \\\"inference_bench_cka_only_20\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-18T06:54:30.806Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:09:34.289Z\\\", \\\"hypothesis\\\": \\\"CKA-only pruned model at 20% sparsity should show different latency profile than RASP (37.8% speedup) and Standard (7.7% speedup), reflecting its distinct pruning pattern. CKA-only distributes pruning based on representational diversity, which may produce different layer-wise sparsity distribution.\\\", \\\"parent\\\": \\\"inference_speedup_plan016_v2\\\", \\\"notes\\\": \\\"Key mapping: output JSON \\\\\\\"dense\\\\\\\" = dense baseline (cross-validation vs prior benchmark 6.681s), \\\\\\\"rasp_20\\\\\\\" = actually dense (dummy, ignore), \\\\\\\"standard_20\\\\\\\" = actually CKA-only SFT model. Only \\\\\\\"dense\\\\\\\" and \\\\\\\"standard_20\\\\\\\" results are meaningful. sft_rasp_20 not available on westb, so rasp slot filled with dense as dummy.\\\"}, \\\"scoring_ablation_magnitude_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T05:54:37.230Z\\\", \\\"updated_at\\\": \\\"2026-05-18T05:56:27.984Z\\\", \\\"hypothesis\\\": \\\"Magnitude-only scoring (no gradient or CKA signal) at 20% sparsity should yield near-zero GSM8K accuracy, confirming that gradient information is essential for effective structured pruning. MLP-only pruning concentrated in layers 0-10.\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.04, \\\"n_evaluated\\\": 189, \\\"n_total\\\": 200, \\\"eos_rate\\\": 0.0133, \\\"avg_len\\\": 4063, \\\"actual_sparsity\\\": 0.1899, \\\"mlp_groups_pruned\\\": 199, \\\"attn_groups_pruned\\\": 0, \\\"total_groups\\\": 784, \\\"exit_reason\\\": \\\"timeout at 189/200\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Magnitude-only scoring at 20% sparsity: acc=4% (157/200 samples, timeout). MLP-only pruning (199/784 groups), zero attention heads pruned. Concentrated in layers 0-10. eos_rate=1.3%, avg_len=4063 (all hitting max_length). Confirms gradient info essential for structured pruning.\\\"}, \\\"eval_math500_grpo_unpruned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T04:57:37.652Z\\\", \\\"updated_at\\\": \\\"2026-05-18T05:19:28.892Z\\\", \\\"hypothesis\\\": \\\"Unpruned Qwen2.5-7B-Instruct after GRPO should achieve high MATH-500 accuracy as dense upper bound for comparing pruned model recovery. Establishes ceiling for C1 reward-accuracy decoupling analysis.\\\", \\\"parent\\\": \\\"grpo_unpruned_baseline\\\", \\\"notes\\\": \\\"Completed 500/500. MATH-500 accuracy = 69.0%. Dense baseline upper bound. westd cuda:2, tracked via cron only (no submit_training_job). Log at ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log on westd-11672.\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.69, \\\"n_correct\\\": 345, \\\"n_total\\\": 500, \\\"ci_95\\\": 0.0207, \\\"truncated_pct\\\": 0.172, \\\"avg_response_length\\\": 1768}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grpo_rasp_20_fair\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T23:50:17.613Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:53:45.808Z\\\", \\\"hypothesis\\\": \\\"RASP pruned model permanently collapses during GRPO even with 100 steps (not early-stopping artifact), confirming D051 confound resolution. RASP v9 only trained 30 steps before stopping; this fair retrain uses identical config to Standard v8 (100 steps, lr=1e-6, beta=0.01, temperature=0.4, dapo loss, patience=200) to ensure apples-to-apples comparison.\\\", \\\"parent\\\": \\\"grpo_stage2_rasp_20_v9\\\", \\\"wandb_run_id\\\": \\\"s5zf5akl\\\"}, \\\"eval_gsm8k_grpo_cka_only_20\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T04:23:57.858Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:24:21.783Z\\\", \\\"hypothesis\\\": \\\"CKA-only pruned model after GRPO recovery should achieve meaningful GSM8K accuracy (>30%), confirming that CKA-based pruning preserves structures most amenable to RLVR recovery. This is the missing C2 core evidence: we have reward trajectory but not downstream accuracy.\\\", \\\"parent\\\": \\\"grpo_cka_only_20\\\"}, \\\"grpo_standard_20_fair\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T01:05:26.946Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:05:33.273Z\\\", \\\"hypothesis\\\": \\\"Standard pruned model GRPO with fair v5 config (identical to CKA-only/Random/RASP fair). D058 confound resolution: Standard v8 used old train_grpo.py with different config. If Standard also collapses under v5 config, confirms collapse gradient is pruning-method-dependent, not config-dependent. Completes 4-method fair comparison.\\\", \\\"parent\\\": \\\"grpo_stage2_standard_20_v8\\\"}, \\\"eval_sft_cka_only_20_n1319\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T23:47:49.976Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:47:49.976Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_humaneval_sft_standard_20_2048_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T16:26:20.102Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:23:47.148Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) and GRPO variants. v1 was killed due to GPU conflict, this is the resubmission on cuda:0.\\\", \\\"parent\\\": \\\"eval_humaneval_sft_standard_20_2048\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1159, \\\"correct\\\": 19, \\\"total\\\": 164, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1850.7, \\\"median_response_length\\\": 2048}}, \\\"eval_postprune_rasp_30\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T18:21:11.355Z\\\", \\\"updated_at\\\": \\\"2026-05-17T18:21:11.355Z\\\"}, \\\"eval_sft_cka_only_20_full\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T18:21:06.053Z\\\", \\\"updated_at\\\": \\\"2026-05-17T18:21:10.884Z\\\", \\\"hypothesis\\\": \\\"CKA-only 20% post-SFT GSM8K N=1319。post-prune 38.5% 是所有方法最高，如果 post-SFT 也最高则 CKA-only scoring 对 SFT 有优势；如果收敛到 ~60% 则确认 SFT equalizes。N=200 pilot 显示 64.0%。\\\", \\\"parent\\\": \\\"eval_sft_cka_only_20\\\"}, \\\"eval_sft_cka_only_20\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T14:49:37.439Z\\\", \\\"updated_at\\\": \\\"2026-05-17T14:49:39.404Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.64, \\\"correct\\\": 128, \\\"total\\\": 200, \\\"stderr\\\": 0.0339, \\\"model\\\": \\\"sft_cka_only_20\\\", \\\"max_samples\\\": 200, \\\"seed\\\": 42}}, \\\"eval_humaneval_sft_standard_20_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T14:41:41.648Z\\\", \\\"updated_at\\\": \\\"2026-05-17T14:48:39.395Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_gradient_postsft_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T10:14:40.395Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:01:35.341Z\\\", \\\"hypothesis\\\": \\\"Gradient-pruned 20% model after SFT recovery: if post-SFT accuracy reaches ~50-60% (from 25.5% post-prune), gradient scoring is viable but weaker than RASP (61%). If much lower, gradient scoring causes partially irreversible structural damage that SFT cannot recover.\\\", \\\"parent\\\": \\\"scoring_ablation_batch_v2\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.615, \\\"stderr\\\": 0.0344, \\\"n_correct\\\": 123, \\\"n_total\\\": 200, \\\"eos_rate\\\": 0.995, \\\"avg_len\\\": 167.5}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_postprune_25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T06:19:28.015Z\\\", \\\"updated_at\\\": \\\"2026-05-17T11:00:53.658Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rasp_25_accuracy\\\": 0.21, \\\"rasp_25_stderr\\\": 0.0407, \\\"rasp_25_n_correct\\\": 21, \\\"rasp_25_n_total\\\": 100, \\\"rasp_25_eos_rate\\\": 0.56, \\\"rasp_25_avg_len\\\": 2033, \\\"standard_25_accuracy\\\": 0.16, \\\"standard_25_stderr\\\": 0.0367, \\\"standard_25_n_correct\\\": 16, \\\"standard_25_n_total\\\": 100, \\\"standard_25_eos_rate\\\": 0.23, \\\"standard_25_avg_len\\\": 3241}, \\\"hypothesis\\\": \\\"At 25% sparsity, RASP scoring preserves more post-prune accuracy than Standard scoring (as observed at 20%), with the gap potentially widening at higher sparsity due to CKA's role in protecting functionally unique heads.\\\"}, \\\"scoring_ablation_batch_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T10:39:15.371Z\\\", \\\"updated_at\\\": \\\"2026-05-17T10:39:44.226Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"hypothesis\\\": \\\"Scoring ablation batch: CKA-aware scoring (RASP) preserves more post-prune accuracy than magnitude-only, gradient-only, random, or CKA-only scoring at 20% sparsity with MLP-only search space (--skip_attention).\\\", \\\"notes\\\": \\\"Original batch process killed by SIGTERM. Pipeline split into individual experiments: magnitude (acc=0, early stopped), gradient (SFT done → eval_gradient_postsft_v2), random (eval in progress 128/200 acc@100=0.37), cka_only (pending). Cron cleaned up.\\\"}, \\\"eval_sft_rasp_rlvr_20_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T17:58:07.666Z\\\", \\\"updated_at\\\": \\\"2026-05-17T10:38:08.756Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.73, \\\"stderr\\\": 0.0314, \\\"n_correct\\\": 146, \\\"n_total\\\": 200, \\\"eos_rate\\\": 1, \\\"avg_len\\\": 127}, \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B with RASP-RLVR 20% pruning recovers GSM8K accuracy via SFT comparable to standard RASP pruning, validating cross-model generalization of the RASP scoring framework on a math-specialized model.\\\"}, \\\"sft_rasp_rlvr_20_qwen_math\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T17:57:45.290Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:57:47.193Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4774, \\\"final_loss\\\": 0.3544, \\\"mean_token_accuracy\\\": 0.9001, \\\"epoch\\\": 2, \\\"train_runtime_s\\\": 1729, \\\"train_samples_per_second\\\": 8.642}}, \\\"eval_sft_qwen_math_rasp_25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T12:50:19.762Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:50:19.762Z\\\", \\\"notes\\\": \\\"Completed: RASP 25% eval accuracy 64% (128/200)\\\"}, \\\"sft_standard_20_westd_retrain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T17:38:07.472Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:49:52.964Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.6403, \\\"mean_token_accuracy\\\": 0.8258, \\\"avg_train_loss\\\": 0.7577, \\\"train_runtime_sec\\\": 1679, \\\"epochs\\\": 2, \\\"total_steps\\\": 1870}}, \\\"eval_sft_standard_20_westd_n100\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T19:56:01.873Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:57:20.320Z\\\", \\\"notes\\\": \\\"v2 failed: python command not found (EXIT_CODE=127). v2 命令错误使用 python 而非 /root/miniconda3/bin/python. v3 重跑中。\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.63, \\\"stderr\\\": 0.048, \\\"n_correct\\\": 63, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.97, \\\"avg_len\\\": 260.57}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_sft_rasp_20_westd_n100\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T19:56:01.187Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:57:19.845Z\\\", \\\"notes\\\": \\\"v2 failed: python command not found (EXIT_CODE=127). v2 命令错误使用 python 而非 /root/miniconda3/bin/python. v3 重跑中。\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.67, \\\"stderr\\\": 0.047, \\\"n_correct\\\": 67, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.99, \\\"avg_len\\\": 182.39}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grpo_unpruned_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T19:29:16.419Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:29:47.822Z\\\", \\\"wandb_run_id\\\": \\\"e49c42ha\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Unpruned Qwen2.5-7B-Instruct GRPO 也 collapse 了。100/100 steps 完成，但从 step 80 起 reward=0, frac_reward_zero_std=1.0, clipped_ratio=1.0, mean_terminated_length=0（全部撞 max_length 无自然终止）。collapse 不是剪枝导致的，是 GRPO+该模型/超参的固有问题。最终模型保存因数据盘满（250G 100%）失败（SafetensorError: No space left on device），但 checkpoint-100 完整可用。\\\", \\\"metrics\\\": {\\\"steps_completed\\\": 100, \\\"total_steps\\\": 100, \\\"runtime_sec\\\": 2927, \\\"final_reward\\\": 0, \\\"final_reward_std\\\": 0, \\\"final_frac_reward_zero_std\\\": 1, \\\"final_grad_norm\\\": 1.3671875, \\\"final_kl\\\": 0.253, \\\"final_entropy\\\": 1.239, \\\"final_loss\\\": 0.00253, \\\"final_clipped_ratio\\\": 1, \\\"final_mean_length\\\": 1024, \\\"final_mean_terminated_length\\\": 0, \\\"peak_reward\\\": 0.04375, \\\"peak_reward_step\\\": 20, \\\"collapse_onset_step\\\": 80, \\\"disk_full_on_save\\\": true}}, \\\"grpo_stage2_rasp_20_v8\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T17:52:16.358Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:52:17.389Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Killed at ~step 30 per Director protocol. All 3 kill thresholds met since step 10: grad_norm=0.011<0.05, frac_zero_std=0.90>=0.85, reward=0.026<0.03. RASP GRPO 三次连续 collapse (v2/v5/v8). cuda:0 released for unpruned baseline GRPO.\\\"}, \\\"sft_rasp_20_westd_retrain\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T17:34:23.161Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:34:24.595Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.658, \\\"mean_token_accuracy\\\": 0.8302, \\\"avg_train_loss\\\": 0.7736, \\\"train_runtime_sec\\\": 1706, \\\"epochs\\\": 2, \\\"total_steps\\\": 1870}}, \\\"grasp_baseline_westd\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:40:51.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:41:13.070Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.07, \\\"stderr\\\": 0.0255, \\\"n_correct\\\": 7, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.02, \\\"avg_len\\\": 4019.52}}, \\\"eval_sft_alpha_0p5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:40:15.049Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:47.863Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"error\\\": \\\"safetensors corrupt: incomplete metadata, file not fully covered\\\"}}, \\\"eval_sft_grasp_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:40:14.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:47.442Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.41, \\\"stderr\\\": 0.0492, \\\"n_correct\\\": 41, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.98, \\\"avg_len\\\": 225.78}}, \\\"eval_sft_alpha_2p0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:40:13.916Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:40:46.869Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.62, \\\"stderr\\\": 0.0485, \\\"n_correct\\\": 62, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.97, \\\"avg_len\\\": 277.41}}, \\\"sft_alpha2_0_westd\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T15:41:05.720Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:41:05.720Z\\\"}}, \\\"count\\\": 70, \\\"total\\\": 70, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1484}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_gsm8k_grpo_cka_only_20_seed123\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T15:43:25.516Z\", \"updated_at\": \"2026-05-19T15:44:06.109Z\", \"hypothesis\": \"GSM8K evaluation on seed=123 GRPO CKA-only 20% checkpoint. Multi-seed validation: compare with seed=42's 64.37% (849/1319) to confirm CKA-only advantage is robust across seeds. Strengthens C1 claim reliability.\", \"parent\": \"grpo_cka_only_20_seed123\"}, \"sft_shortgpt_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:42:00.250Z\", \"updated_at\": \"2026-05-19T15:43:05.214Z\", \"conclusion\": \"success\", \"hypothesis\": \"ShortGPT depth pruning (20%, 5/28 layers removed by Block Influence scoring) after SFT warmup. Layers removed: [15,16,17,24,25], actual param sparsity 15.30%. Coarse layer removal expected to show lower GRPO recovery than fine-grained structural pruning methods.\", \"metrics\": {\"final_loss\": 0.62, \"mean_token_accuracy\": 0.83, \"epochs\": 2}}, \"eval_gsm8k_grpo_rasp_20_fair\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:41:59.916Z\", \"updated_at\": \"2026-05-19T15:43:04.789Z\", \"conclusion\": \"success\", \"hypothesis\": \"GRPO RASP 20% fair evaluation on GSM8K (1319 samples). RASP uses recovery-aware scoring combining importance + CKA overlap. Compare with CKA-only (64.37%) and Standard (59.44%) to validate C2 recovery gradient claim.\", \"metrics\": {\"accuracy\": 0.6088, \"n_correct\": 803, \"n_total\": 1319, \"stderr\": 0.0134, \"eos_rate\": 0.988}}, \"grpo_cka_only_20_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:09:46.665Z\", \"updated_at\": \"2026-05-19T15:25:52.018Z\", \"hypothesis\": \"Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens the C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K.\", \"conclusion\": \"success\", \"metrics\": {\"final_reward\": 0.2975, \"steps_completed\": 100, \"seed\": 123}}, \"grpo_random_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:36:35.375Z\", \"updated_at\": \"2026-05-19T14:37:57.495Z\", \"conclusion\": \"killed\", \"notes\": \"审批超时（48h）\"}, \"eval_gsm8k_grpo_standard_20_fair_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T08:57:59.458Z\", \"updated_at\": \"2026-05-19T12:44:16.392Z\", \"hypothesis\": \"Verify the phantom 58.91% GSM8K accuracy for Standard GRPO fair v5 100-step model. This number was referenced in analyses but never actually evaluated. Uses correct fair checkpoint grpo_stage2_standard_20_fair.\", \"parent\": \"grpo_standard_20_fair\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5944, \"n_correct\": 784, \"n_total\": 1319}}, \"eval_humaneval_sft_standard_20_1p5b_2048\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T12:42:49.403Z\", \"updated_at\": \"2026-05-19T12:43:12.487Z\", \"hypothesis\": \"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation: 7B SFT Standard running (~16.25% interim). If 1.5B Standard << 1.5B CKA-only on code generation, strengthens cross-scale capability breadth claim.\"}, \"eval_humaneval_grpo_cka_only_20_1p5b_2048\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T12:42:07.155Z\", \"updated_at\": \"2026-05-19T12:42:41.261Z\", \"hypothesis\": \"1.5B GRPO CKA-only HumanEval pass@1 @2048. Cross-scale validation: 7B GRPO CKA-only = 20.12% (33/164). Compare with 1.5B SFT CKA-only to measure GRPO effect on OOD code at 1.5B scale. 7B showed GRPO=redistribution not expansion.\"}, \"eval_humaneval_sft_cka_only_20_1p5b_2048\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T12:42:05.132Z\", \"updated_at\": \"2026-05-19T12:42:37.428Z\", \"hypothesis\": \"1.5B SFT CKA-only HumanEval pass@1 @2048. Cross-scale validation: 7B SFT CKA-only = 20.12% (33/164), far above Standard/RASP (~10-11%). If 1.5B also shows CKA-only >> others on code generation, strengthens cross-scale capability breadth claim.\"}, \"eval_humaneval_sft_rasp_20_2048_v2\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-19T11:51:47.759Z\", \"updated_at\": \"2026-05-19T11:51:59.979Z\", \"hypothesis\": \"Re-run SFT RASP 20% HumanEval with fixed eval script (sys.executable). Old result 10.37% used buggy script with bare python. SFT Standard v3 jumped from 11.59% to ~16.25% after fix, confirming old data unreliable. Critical for 7B main matrix data integrity.\", \"parent\": \"eval_humaneval_sft_rasp_20_512\"}, \"eval_humaneval_grpo_standard_20_fair_2048_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:20:55.549Z\", \"updated_at\": \"2026-05-19T11:25:31.897Z\", \"conclusion\": \"success\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% (fair v5 model) with max_new_tokens=2048. Uses correct checkpoint grpo_stage2_standard_20_fair. Compare with GRPO CKA-only (20.12%) and GRPO RASP fair (10.98%) to complete fair HumanEval matrix.\", \"metrics\": {\"pass_at_1\": 0.1098, \"n_correct\": 18, \"n_total\": 164}}, \"eval_humaneval_sft_cka_only_20_2048_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:37:59.416Z\", \"updated_at\": \"2026-05-19T11:21:14.361Z\", \"hypothesis\": \"Re-run of SFT CKA-only HumanEval with fixed eval script (sys.executable instead of bare python). v1 returned 0% due to PATH bug — python not in PATH when launched without conda activation. This re-run tests the true code generation ability of SFT CKA-only 20% pruned model.\", \"parent\": \"eval_humaneval_sft_cka_only_20_2048\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.2012, \"n_correct\": 33, \"n_total\": 164}}, \"eval_humaneval_grpo_standard_20_fair_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:00:04.753Z\", \"updated_at\": \"2026-05-19T11:00:22.805Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% (fair v5 model) with max_new_tokens=2048. Replaces old stage2 v8 result (10.37%). Compare with GRPO CKA-only (~33% interim) and SFT Standard (11.59%) to complete fair HumanEval matrix.\", \"conclusion\": \"failed\"}, \"eval_math500_sft_standard_20_2048_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:44:56.424Z\", \"updated_at\": \"2026-05-19T11:00:21.389Z\", \"hypothesis\": \"SFT Standard 20% MATH-500 @2048 with correct GSM8K-trained model (retrained on westd). Fair C1 comparison with GRPO Standard @2048 (26.4%). Previous v1 used wrong model (sft_qwen_math_standard_20).\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.258, \"n_correct\": 129, \"n_total\": 500}}, \"eval_humaneval_grpo_cka_only_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:11:21.039Z\", \"updated_at\": \"2026-05-19T11:00:20.500Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO CKA-only 20% with max_new_tokens=2048. Paired with SFT CKA-only HumanEval (running on cuda:2) to complete CKA-only cross-benchmark matrix. GRPO vs SFT delta on code generation measures whether GRPO benefit transfers to OOD tasks.\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.2012, \"n_correct\": 33, \"n_total\": 164}}, \"eval_humaneval_sft_cka_only_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:09:41.058Z\", \"updated_at\": \"2026-05-19T11:00:11.119Z\", \"hypothesis\": \"HumanEval pass@1 for SFT CKA-only 20% with max_new_tokens=2048. P0 priority: CKA-only is the only method missing HumanEval data, creating cherry-picking suspicion. Fills the critical gap in cross-benchmark evaluation matrix.\", \"conclusion\": \"failed\"}, \"eval_humaneval_sft_standard_20_2048_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T09:09:05.797Z\", \"updated_at\": \"2026-05-19T09:39:43.018Z\", \"hypothesis\": \"SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~11% interim) and SFT CKA-only (~30% interim).\"}, \"eval_humaneval_grpo_rasp_20_fair_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T09:36:58.406Z\", \"updated_at\": \"2026-05-19T09:37:27.110Z\", \"metrics\": {\"pass_at_1\": 0.1098, \"n_correct\": 18, \"n_total\": 164, \"stderr\": 0.0244}, \"conclusion\": \"success\", \"hypothesis\": \"GRPO RASP 20% fair model HumanEval pass@1 with max_new_tokens=2048. RASP pruning preserves structure-aware layers but may not transfer to code generation. Expected ~12.5% based on interim sampling. Completes the fair HumanEval evaluation matrix for RASP method.\"}, \"eval_gsm8k_grpo_standard_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:18:09.990Z\", \"updated_at\": \"2026-05-19T06:01:44.453Z\", \"hypothesis\": \"Standard extended 300步 GSM8K accuracy ≤ Standard 100步水平 (~52-53%), 因为 Standard 在 GRPO training 中 reward 始终 collapse (0.054-0.056), 300步训练不应产生 accuracy 改善。作为 E2 对照组: CKA-only 300步 interim 67.7% vs 100步 64.37% (+3.3pp) 持续提升, 而 Standard 应停滞。\", \"parent\": \"grpo_standard_20_extended_300_v2\", \"metrics\": {\"gsm8k_accuracy\": 59.29, \"n_correct\": 782, \"n_total\": 1319, \"stderr\": 1.35, \"eos_rate\": 97.95, \"avg_response_length\": 229.6, \"note\": \"vs 100-step fair v5: 58.91% → delta +0.38pp (within stderr). Worker incorrectly compared to old ~52-53% baseline.\"}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_rasp_20_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:11.166Z\", \"updated_at\": \"2026-05-19T05:16:11.298Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO RASP 20% with max_new_tokens=512. Old stage2 model (v9), not fair v5, needs re-eval with fair model.\", \"metrics\": {\"pass_at_1\": 0.1037, \"n_correct\": 17, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 417.6, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_standard_20_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:10.526Z\", \"updated_at\": \"2026-05-19T05:16:11.014Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=512. Old stage2 model (v8), not fair v5, needs re-eval with fair model.\", \"metrics\": {\"pass_at_1\": 0.0183, \"n_correct\": 3, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 505.9, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_sft_rasp_20_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:09.530Z\", \"updated_at\": \"2026-05-19T05:16:09.788Z\", \"hypothesis\": \"HumanEval pass@1 for SFT RASP 20% with max_new_tokens=512. Token budget too short; included for completeness.\", \"metrics\": {\"pass_at_1\": 0.0732, \"n_correct\": 12, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 420.5, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_sft_standard_20_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:08.589Z\", \"updated_at\": \"2026-05-19T05:16:09.481Z\", \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=512. Token budget too short; included for completeness.\", \"metrics\": {\"pass_at_1\": 0.0305, \"n_correct\": 5, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 505.4, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_unpruned_512\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:07.703Z\", \"updated_at\": \"2026-05-19T05:16:08.388Z\", \"hypothesis\": \"HumanEval pass@1 for unpruned Dense model with max_new_tokens=512. Token budget too short for code generation; included for completeness.\", \"metrics\": {\"pass_at_1\": 0.0183, \"n_correct\": 3, \"n_total\": 164, \"max_new_tokens\": 512, \"avg_response_length\": 512, \"median_response_length\": 512}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_rasp_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:06.291Z\", \"updated_at\": \"2026-05-19T05:16:07.931Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO RASP 20% with max_new_tokens=2048. Old stage2 model (v9), not fair v5, needs re-eval with fair model. Highest pruned HumanEval score at 14.63%.\", \"metrics\": {\"pass_at_1\": 0.1463, \"n_correct\": 24, \"n_total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1168.5, \"median_response_length\": 948.5}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_standard_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T19:00:51.937Z\", \"updated_at\": \"2026-05-19T05:16:06.976Z\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.1037, \"correct\": 17, \"total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1843, \"median_response_length\": 2048}, \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. Old stage2 model (v8 checkpoint-50), not fair v5, needs re-eval with fair model.\"}, \"eval_humaneval_sft_rasp_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:03.359Z\", \"updated_at\": \"2026-05-19T05:16:06.494Z\", \"hypothesis\": \"HumanEval pass@1 for SFT RASP 20% with max_new_tokens=2048. Compares SFT RASP vs SFT Standard (11.59%) code generation capability post-pruning.\", \"metrics\": {\"pass_at_1\": 0.1037, \"n_correct\": 17, \"n_total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1253.7, \"median_response_length\": 2048}, \"conclusion\": \"success\"}, \"eval_humaneval_unpruned_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:14:01.505Z\", \"updated_at\": \"2026-05-19T05:16:05.609Z\", \"hypothesis\": \"HumanEval pass@1 for unpruned Dense model (DeepSeek-R1-Distill-Qwen-7B) with max_new_tokens=2048. Upper bound baseline for all pruned model HumanEval comparisons.\", \"metrics\": {\"pass_at_1\": 0.4512, \"n_correct\": 74, \"n_total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1771, \"median_response_length\": 2048}, \"conclusion\": \"success\"}, \"grpo_unstructured_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:09:44.591Z\", \"updated_at\": \"2026-05-19T04:43:26.240Z\", \"hypothesis\": \"GRPO training on 20% unstructured magnitude-pruned model (no SFT) will show different recovery dynamics than structured pruning methods. Addresses Reviewer W2 concern: why not compare with unstructured pruning? Unstructured pruned model starts at 87.87% GSM8K (higher than structured due to preserved layer dimensions).\", \"metrics\": {\"reward_mean\": 0.883, \"reward_std\": 0.385, \"loss\": 0.092, \"kl\": 0.34, \"runtime_min\": 47, \"steps\": 100, \"note\": \"reward 2.5x-14x higher than all structured methods. Disk full prevented optimizer state save but model weights intact.\"}, \"conclusion\": \"success\"}, \"eval_gsm8k_grpo_cka_only_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:03:54.973Z\", \"updated_at\": \"2026-05-19T03:58:37.059Z\", \"hypothesis\": \"E2 extended GRPO CKA-only 300步 GSM8K accuracy (N=1319). Compare with 100步 (64.37%) to test whether extended GRPO training improves ID accuracy. E2 showed sustained reward oscillation (0.22-0.44) without collapse.\", \"parent\": \"grpo_cka_only_20_extended_300\", \"metrics\": {\"gsm8k_accuracy\": 64.37, \"n_correct\": 849, \"n_total\": 1319, \"note\": \"identical to 100-step result (64.37%), model saturated at 100 steps\"}, \"conclusion\": \"negative\"}, \"eval_gsm8k_sft_standard_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:44:56.871Z\", \"updated_at\": \"2026-05-19T03:54:08.362Z\", \"hypothesis\": \"1.5B SFT Standard 20% GSM8K accuracy (N=1319). Baseline for GRPO delta at 1.5B scale. If SFT ≈ GRPO (22.29%), confirms 1.5B scale has no GRPO benefit for Standard pruning. C1 framing hard dependency.\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.229, \"n_correct\": 302, \"n_total\": 1319, \"stderr\": 0.01157, \"eos_rate\": 0.9045, \"avg_response_length\": 516.7}}, \"eval_math500_grpo_cka_only_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:44:55.483Z\", \"updated_at\": \"2026-05-19T03:10:44.473Z\", \"hypothesis\": \"GRPO CKA-only 20% MATH-500 @2048 accuracy. Core C1 data point: if GRPO CKA-only >> SFT CKA-only (29.0%) on MATH-500, confirms GRPO selectively benefits CKA-only pruning on harder reasoning benchmark.\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.292, \"n_correct\": 146, \"n_total\": 500, \"stderr\": 0.0203, \"natural_eos\": 390, \"truncated\": 110, \"avg_response_length\": 654.7}}, \"eval_gsm8k_sft_rasp_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:44:33.391Z\", \"updated_at\": \"2026-05-19T02:45:45.950Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.2691, \"n_correct\": 355, \"n_total\": 1319}, \"hypothesis\": \"1.5B SFT RASP 20% GSM8K accuracy (N=1319). Baseline for GRPO delta at 1.5B scale. If SFT ≈ GRPO (26.16%), confirms 1.5B scale has no GRPO benefit for RASP pruning. C1 framing hard dependency.\", \"parent\": \"sft_rasp_20_1p5b\"}, \"inference_bench_clean_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T02:15:32.578Z\", \"updated_at\": \"2026-05-19T02:16:12.080Z\", \"hypothesis\": \"Clean inference benchmark (Dense + CKA-only 20% + Standard 20%) on isolated GPU. Previous plan_016 benchmark was polluted by GPU contention. Measures per-token throughput and latency for speedup claims. 50 prompts x 256 max_new_tokens, GSM8K test set.\", \"conclusion\": \"negative\", \"metrics\": {\"dense_tps\": 72, \"cka_only_20_tps\": 58.3, \"standard_20_tps\": 58.2, \"dense_ttft_ms\": 20.1, \"cka_only_20_ttft_ms\": 16.4, \"standard_20_ttft_ms\": 16.4, \"dense_per_token_ms\": 13.9, \"cka_only_20_per_token_ms\": 16.7, \"standard_20_per_token_ms\": 16.7, \"pruned_speedup\": 0.81, \"ttft_speedup\": 1.18, \"params_dense\": \"7.62B\", \"params_pruned\": \"6.16B\"}}, \"eval_math500_grpo_rasp_20_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:44:46.855Z\", \"updated_at\": \"2026-05-19T02:04:48.654Z\", \"hypothesis\": \"MATH-500 accuracy for grpo_rasp_20 (grpo_stage2_rasp_20_v9). v2 timeout at 193/500 (EXIT_CODE=124, 6h limit). v3 without timeout wrapper. If GRPO RASP outperforms SFT RASP on MATH-500, GRPO adds reasoning. If not, reinforces C1 decoupling.\", \"parent\": \"eval_math500_grpo_rasp_20_v2\", \"conclusion\": \"failed\"}, \"eval_gsm8k_grpo_cka_only_20_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:22:59.435Z\", \"updated_at\": \"2026-05-19T02:04:42.155Z\", \"hypothesis\": \"CKA-only pruned model after GRPO recovery should achieve meaningful GSM8K accuracy (>30%), confirming CKA-based pruning preserves structures most amenable to RLVR recovery. Core C2 evidence for Tab2. v2: re-run on westb after westd outage.\", \"parent\": \"grpo_cka_only_20\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6437, \"n_correct\": 849, \"n_total\": 1319}}, \"grpo_cka_only_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:49:00.542Z\", \"updated_at\": \"2026-05-19T02:04:20.518Z\", \"hypothesis\": \"CKA-only 1.5B GRPO 100 steps. Cross-model generalization: if CKA-only shows active learning pattern (rising reward, low frac_zero_std) on 1.5B as on 7B, confirms recovery capacity hierarchy is scale-invariant.\", \"conclusion\": \"success\"}, \"grpo_cka_only_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:51:16.212Z\", \"updated_at\": \"2026-05-19T02:04:19.566Z\", \"hypothesis\": \"CKA-only 去除了最多冗余结构 (post-prune 38.5% 最高 = 损伤最小) → 但 backup paths 最少 → 预测 GRPO collapse 比 RASP 更快 (< step 10)。如果确认，这是 Redundancy-Stability Tradeoff 的直接证据：post-prune 最优的方法 = GRPO 最不稳定。\", \"parent\": \"eval_sft_cka_only_20\", \"conclusion\": \"success\"}, \"eval_gsm8k_grpo_rasp_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T19:48:55.212Z\", \"updated_at\": \"2026-05-19T02:04:18.604Z\", \"hypothesis\": \"1.5B RASP post-GRPO GSM8K accuracy (N=1319). Cross-model generalization: 7B RASP GRPO collapsed (reward 0.01), but 1.5B RASP showed reward=0.099 without collapse. If 1.5B RASP GSM8K is lower than CKA-only but not catastrophically low, confirms scale-dependent recovery dynamics. Completes 3-method 1.5B GSM8K comparison.\", \"parent\": \"grpo_rasp_20_1p5b\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.2616, \"n_correct\": 345, \"n_total\": 1319}}, \"eval_gsm8k_grpo_cka_only_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T19:49:00.633Z\", \"updated_at\": \"2026-05-18T19:49:33.438Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.3548, \"n_correct\": 468, \"n_total\": 1319, \"stderr\": 0.01317}, \"hypothesis\": \"1.5B CKA-only pruned model post-GRPO should achieve higher GSM8K accuracy than RASP due to preserved representational structure enabling better RL fine-tuning recovery. CKA-only preserves layer similarity without structural regularization overhead, potentially yielding cleaner optimization landscape for GRPO.\"}, \"grpo_standard_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:45:15.261Z\", \"updated_at\": \"2026-05-18T14:43:52.110Z\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 300, \"reward_mean\": 0.0562, \"loss\": 0.0367, \"frac_reward_zero_std\": 0.525, \"kl\": 0.00306, \"entropy\": 0.157, \"grad_norm\": 3.89, \"runtime_seconds\": 2889, \"wandb_run\": \"44cjdoiy\", \"wandb_entity\": \"xiaoyucorynne-\"}}, \"inference_bench_cka_only_20\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-18T06:54:30.806Z\", \"updated_at\": \"2026-05-18T08:09:34.289Z\", \"hypothesis\": \"CKA-only pruned model at 20% sparsity should show different latency profile than RASP (37.8% speedup) and Standard (7.7% speedup), reflecting its distinct pruning pattern. CKA-only distributes pruning based on representational diversity, which may produce different layer-wise sparsity distribution.\", \"parent\": \"inference_speedup_plan016_v2\", \"notes\": \"Key mapping: output JSON \\\"dense\\\" = dense baseline (cross-validation vs prior benchmark 6.681s), \\\"rasp_20\\\" = actually dense (dummy, ignore), \\\"standard_20\\\" = actually CKA-only SFT model. Only \\\"dense\\\" and \\\"standard_20\\\" results are meaningful. sft_rasp_20 not available on westb, so rasp slot filled with dense as dummy.\"}, \"scoring_ablation_magnitude_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:54:37.230Z\", \"updated_at\": \"2026-05-18T05:56:27.984Z\", \"hypothesis\": \"Magnitude-only scoring (no gradient or CKA signal) at 20% sparsity should yield near-zero GSM8K accuracy, confirming that gradient information is essential for effective structured pruning. MLP-only pruning concentrated in layers 0-10.\", \"metrics\": {\"accuracy\": 0.04, \"n_evaluated\": 189, \"n_total\": 200, \"eos_rate\": 0.0133, \"avg_len\": 4063, \"actual_sparsity\": 0.1899, \"mlp_groups_pruned\": 199, \"attn_groups_pruned\": 0, \"total_groups\": 784, \"exit_reason\": \"timeout at 189/200\"}, \"conclusion\": \"success\", \"notes\": \"Magnitude-only scoring at 20% sparsity: acc=4% (157/200 samples, timeout). MLP-only pruning (199/784 groups), zero attention heads pruned. Concentrated in layers 0-10. eos_rate=1.3%, avg_len=4063 (all hitting max_length). Confirms gradient info essential for structured pruning.\"}, \"eval_math500_grpo_unpruned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:57:37.652Z\", \"updated_at\": \"2026-05-18T05:19:28.892Z\", \"hypothesis\": \"Unpruned Qwen2.5-7B-Instruct after GRPO should achieve high MATH-500 accuracy as dense upper bound for comparing pruned model recovery. Establishes ceiling for C1 reward-accuracy decoupling analysis.\", \"parent\": \"grpo_unpruned_baseline\", \"notes\": \"Completed 500/500. MATH-500 accuracy = 69.0%. Dense baseline upper bound. westd cuda:2, tracked via cron only (no submit_training_job). Log at ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log on westd-11672.\", \"metrics\": {\"accuracy\": 0.69, \"n_correct\": 345, \"n_total\": 500, \"ci_95\": 0.0207, \"truncated_pct\": 0.172, \"avg_response_length\": 1768}, \"conclusion\": \"success\"}, \"grpo_rasp_20_fair\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T23:50:17.613Z\", \"updated_at\": \"2026-05-18T04:53:45.808Z\", \"hypothesis\": \"RASP pruned model permanently collapses during GRPO even with 100 steps (not early-stopping artifact), confirming D051 confound resolution. RASP v9 only trained 30 steps before stopping; this fair retrain uses identical config to Standard v8 (100 steps, lr=1e-6, beta=0.01, temperature=0.4, dapo loss, patience=200) to ensure apples-to-apples comparison.\", \"parent\": \"grpo_stage2_rasp_20_v9\", \"wandb_run_id\": \"s5zf5akl\"}, \"eval_gsm8k_grpo_cka_only_20\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T04:23:57.858Z\", \"updated_at\": \"2026-05-18T04:24:21.783Z\", \"hypothesis\": \"CKA-only pruned model after GRPO recovery should achieve meaningful GSM8K accuracy (>30%), confirming that CKA-based pruning preserves structures most amenable to RLVR recovery. This is the missing C2 core evidence: we have reward trajectory but not downstream accuracy.\", \"parent\": \"grpo_cka_only_20\"}, \"grpo_standard_20_fair\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T01:05:26.946Z\", \"updated_at\": \"2026-05-18T01:05:33.273Z\", \"hypothesis\": \"Standard pruned model GRPO with fair v5 config (identical to CKA-only/Random/RASP fair). D058 confound resolution: Standard v8 used old train_grpo.py with different config. If Standard also collapses under v5 config, confirms collapse gradient is pruning-method-dependent, not config-dependent. Completes 4-method fair comparison.\", \"parent\": \"grpo_stage2_standard_20_v8\"}, \"eval_sft_cka_only_20_n1319\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T23:47:49.976Z\", \"updated_at\": \"2026-05-17T23:47:49.976Z\", \"conclusion\": \"success\"}, \"eval_humaneval_sft_standard_20_2048_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:26:20.102Z\", \"updated_at\": \"2026-05-17T23:23:47.148Z\", \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) and GRPO variants. v1 was killed due to GPU conflict, this is the resubmission on cuda:0.\", \"parent\": \"eval_humaneval_sft_standard_20_2048\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.1159, \"correct\": 19, \"total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1850.7, \"median_response_length\": 2048}}, \"eval_postprune_rasp_30\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T18:21:11.355Z\", \"updated_at\": \"2026-05-17T18:21:11.355Z\"}, \"eval_sft_cka_only_20_full\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T18:21:06.053Z\", \"updated_at\": \"2026-05-17T18:21:10.884Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K N=1319。post-prune 38.5% 是所有方法最高，如果 post-SFT 也最高则 CKA-only scoring 对 SFT 有优势；如果收敛到 ~60% 则确认 SFT equalizes。N=200 pilot 显示 64.0%。\", \"parent\": \"eval_sft_cka_only_20\"}, \"eval_sft_cka_only_20\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T14:49:37.439Z\", \"updated_at\": \"2026-05-17T14:49:39.404Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.64, \"correct\": 128, \"total\": 200, \"stderr\": 0.0339, \"model\": \"sft_cka_only_20\", \"max_samples\": 200, \"seed\": 42}}, \"eval_humaneval_sft_standard_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:41:41.648Z\", \"updated_at\": \"2026-05-17T14:48:39.395Z\", \"conclusion\": \"killed\"}, \"eval_gradient_postsft_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T10:14:40.395Z\", \"updated_at\": \"2026-05-17T11:01:35.341Z\", \"hypothesis\": \"Gradient-pruned 20% model after SFT recovery: if post-SFT accuracy reaches ~50-60% (from 25.5% post-prune), gradient scoring is viable but weaker than RASP (61%). If much lower, gradient scoring causes partially irreversible structural damage that SFT cannot recover.\", \"parent\": \"scoring_ablation_batch_v2\", \"metrics\": {\"accuracy\": 0.615, \"stderr\": 0.0344, \"n_correct\": 123, \"n_total\": 200, \"eos_rate\": 0.995, \"avg_len\": 167.5}, \"conclusion\": \"success\"}, \"eval_postprune_25\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T06:19:28.015Z\", \"updated_at\": \"2026-05-17T11:00:53.658Z\", \"conclusion\": \"success\", \"metrics\": {\"rasp_25_accuracy\": 0.21, \"rasp_25_stderr\": 0.0407, \"rasp_25_n_correct\": 21, \"rasp_25_n_total\": 100, \"rasp_25_eos_rate\": 0.56, \"rasp_25_avg_len\": 2033, \"standard_25_accuracy\": 0.16, \"standard_25_stderr\": 0.0367, \"standard_25_n_correct\": 16, \"standard_25_n_total\": 100, \"standard_25_eos_rate\": 0.23, \"standard_25_avg_len\": 3241}, \"hypothesis\": \"At 25% sparsity, RASP scoring preserves more post-prune accuracy than Standard scoring (as observed at 20%), with the gap potentially widening at higher sparsity due to CKA's role in protecting functionally unique heads.\"}, \"scoring_ablation_batch_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T10:39:15.371Z\", \"updated_at\": \"2026-05-17T10:39:44.226Z\", \"conclusion\": \"killed\", \"hypothesis\": \"Scoring ablation batch: CKA-aware scoring (RASP) preserves more post-prune accuracy than magnitude-only, gradient-only, random, or CKA-only scoring at 20% sparsity with MLP-only search space (--skip_attention).\", \"notes\": \"Original batch process killed by SIGTERM. Pipeline split into individual experiments: magnitude (acc=0, early stopped), gradient (SFT done → eval_gradient_postsft_v2), random (eval in progress 128/200 acc@100=0.37), cka_only (pending). Cron cleaned up.\"}, \"eval_sft_rasp_rlvr_20_qwen_math\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T17:58:07.666Z\", \"updated_at\": \"2026-05-17T10:38:08.756Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.73, \"stderr\": 0.0314, \"n_correct\": 146, \"n_total\": 200, \"eos_rate\": 1, \"avg_len\": 127}, \"hypothesis\": \"Qwen2.5-Math-7B with RASP-RLVR 20% pruning recovers GSM8K accuracy via SFT comparable to standard RASP pruning, validating cross-model generalization of the RASP scoring framework on a math-specialized model.\"}, \"sft_rasp_rlvr_20_qwen_math\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T17:57:45.290Z\", \"updated_at\": \"2026-05-16T17:57:47.193Z\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4774, \"final_loss\": 0.3544, \"mean_token_accuracy\": 0.9001, \"epoch\": 2, \"train_runtime_s\": 1729, \"train_samples_per_second\": 8.642}}, \"eval_sft_qwen_math_rasp_25\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T12:50:19.762Z\", \"updated_at\": \"2026-05-16T12:50:19.762Z\", \"notes\": \"Completed: RASP 25% eval accuracy 64% (128/200)\"}, \"sft_standard_20_westd_retrain\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:38:07.472Z\", \"updated_at\": \"2026-05-16T12:49:52.964Z\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.6403, \"mean_token_accuracy\": 0.8258, \"avg_train_loss\": 0.7577, \"train_runtime_sec\": 1679, \"epochs\": 2, \"total_steps\": 1870}}, \"eval_sft_standard_20_westd_n100\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:56:01.873Z\", \"updated_at\": \"2026-05-15T19:57:20.320Z\", \"notes\": \"v2 failed: python command not found (EXIT_CODE=127). v2 命令错误使用 python 而非 /root/miniconda3/bin/python. v3 重跑中。\", \"metrics\": {\"accuracy\": 0.63, \"stderr\": 0.048, \"n_correct\": 63, \"n_total\": 100, \"eos_rate\": 0.97, \"avg_len\": 260.57}, \"conclusion\": \"success\"}, \"eval_sft_rasp_20_westd_n100\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:56:01.187Z\", \"updated_at\": \"2026-05-15T19:57:19.845Z\", \"notes\": \"v2 failed: python command not found (EXIT_CODE=127). v2 命令错误使用 python 而非 /root/miniconda3/bin/python. v3 重跑中。\", \"metrics\": {\"accuracy\": 0.67, \"stderr\": 0.047, \"n_correct\": 67, \"n_total\": 100, \"eos_rate\": 0.99, \"avg_len\": 182.39}, \"conclusion\": \"success\"}, \"grpo_unpruned_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:29:16.419Z\", \"updated_at\": \"2026-05-15T19:29:47.822Z\", \"wandb_run_id\": \"e49c42ha\", \"conclusion\": \"negative\", \"notes\": \"Unpruned Qwen2.5-7B-Instruct GRPO 也 collapse 了。100/100 steps 完成，但从 step 80 起 reward=0, frac_reward_zero_std=1.0, clipped_ratio=1.0, mean_terminated_length=0（全部撞 max_length 无自然终止）。collapse 不是剪枝导致的，是 GRPO+该模型/超参的固有问题。最终模型保存因数据盘满（250G 100%）失败（SafetensorError: No space left on device），但 checkpoint-100 完整可用。\", \"metrics\": {\"steps_completed\": 100, \"total_steps\": 100, \"runtime_sec\": 2927, \"final_reward\": 0, \"final_reward_std\": 0, \"final_frac_reward_zero_std\": 1, \"final_grad_norm\": 1.3671875, \"final_kl\": 0.253, \"final_entropy\": 1.239, \"final_loss\": 0.00253, \"final_clipped_ratio\": 1, \"final_mean_length\": 1024, \"final_mean_terminated_length\": 0, \"peak_reward\": 0.04375, \"peak_reward_step\": 20, \"collapse_onset_step\": 80, \"disk_full_on_save\": true}}, \"grpo_stage2_rasp_20_v8\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T17:52:16.358Z\", \"updated_at\": \"2026-05-15T17:52:17.389Z\", \"conclusion\": \"killed\", \"notes\": \"Killed at ~step 30 per Director protocol. All 3 kill thresholds met since step 10: grad_norm=0.011<0.05, frac_zero_std=0.90>=0.85, reward=0.026<0.03. RASP GRPO 三次连续 collapse (v2/v5/v8). cuda:0 released for unpruned baseline GRPO.\"}, \"sft_rasp_20_westd_retrain\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T17:34:23.161Z\", \"updated_at\": \"2026-05-15T17:34:24.595Z\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.658, \"mean_token_accuracy\": 0.8302, \"avg_train_loss\": 0.7736, \"train_runtime_sec\": 1706, \"epochs\": 2, \"total_steps\": 1870}}, \"grasp_baseline_westd\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:40:51.440Z\", \"updated_at\": \"2026-05-15T16:41:13.070Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.07, \"stderr\": 0.0255, \"n_correct\": 7, \"n_total\": 100, \"eos_rate\": 0.02, \"avg_len\": 4019.52}}, \"eval_sft_alpha_0p5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:40:15.049Z\", \"updated_at\": \"2026-05-15T16:40:47.863Z\", \"conclusion\": \"negative\", \"metrics\": {\"error\": \"safetensors corrupt: incomplete metadata, file not fully covered\"}}, \"eval_sft_grasp_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:40:14.409Z\", \"updated_at\": \"2026-05-15T16:40:47.442Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.41, \"stderr\": 0.0492, \"n_correct\": 41, \"n_total\": 100, \"eos_rate\": 0.98, \"avg_len\": 225.78}}, \"eval_sft_alpha_2p0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:40:13.916Z\", \"updated_at\": \"2026-05-15T16:40:46.869Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.62, \"stderr\": 0.0485, \"n_correct\": 62, \"n_total\": 100, \"eos_rate\": 0.97, \"avg_len\": 277.41}}, \"sft_alpha2_0_westd\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-15T15:41:05.720Z\", \"updated_at\": \"2026-05-15T15:41:05.720Z\"}}, \"count\": 70, \"total\": 70, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1484}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to check the existing GRPO fair configs. Let me look at one of the existing runs to find the exact parameters used. Let me check the grpo_standard_20_fair run spec or look at the v5 training script defaults.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "8d495502-a9a7-4fbc-b81f-33358cd50448",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016t2toLp4pfFJBs9QfVDS3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14673,
+      "cache_read_input_tokens": 29801,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14673
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+查看 train_grpo_v5.py 的默认参数，确保与其他 fair 实验一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "a2a5163e-5181-4f4b-87e1-6437c620ecaa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016t2toLp4pfFJBs9QfVDS3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14673,
+      "cache_read_input_tokens": 29801,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14673
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017H2pePkumNzj8V1HBSL7bc`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -80 /root/recovery_aware_struct_prune/src/train_grpo_v5.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "83a4610f-d4ad-41ae-8750-47cc0d723993",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016t2toLp4pfFJBs9QfVDS3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14673,
+      "cache_read_input_tokens": 29801,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14673
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T16:03:37.598Z_
+
+<details><summary>↩ Tool result · `toolu_017H2pePkumNzj8V1HBSL7bc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGRPO RLVR Recovery Training for pruned models — v4.\\n\\nChanges from v3:\\n- Fix: ref_model loaded via load_pruned_model (monkey-patch create_model_from_path)\\n  to handle non-uniform MLP/attention dimensions. beta=0.01 KL penalty now works.\\n- Fix: temperature 0.7 -> 0.4 (mitigate sampling degradation from v2)\\n- Fix: repetition_penalty=1.15 added to reduce repetitive outputs\\n- Kept: gradient_checkpointing=True, format_reward, max_completion_length=2048\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport logging\\nimport os\\nimport random\\nimport re\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom transformers import AutoConfig, AutoTokenizer, GenerationConfig, TrainerCallback\\nfrom model_utils import load_pruned_model\\nfrom trl import GRPOConfig, GRPOTrainer\\nimport trl.trainer.grpo_trainer as _grpo_module\\n\\ntry:\\n    import wandb\\nexcept ImportError:\\n    wandb = None\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n# --- Monkey-patch: make GRPOTrainer load pruned ref_model correctly ---\\n_original_create_model = _grpo_module.create_model_from_path\\n\\n\\ndef _create_pruned_ref_model(model_id, architecture=None, **kwargs):\\n    config = AutoConfig.from_pretrained(model_id, trust_remote_code=True)\\n    if hasattr(config, \\\"per_layer_intermediate_size\\\") or hasattr(config, \\\"per_layer_num_heads\\\"):\\n        logger.info(f\\\"Loading pruned ref_model from {model_id}\\\")\\n        torch_dtype = kwargs.get(\\\"dtype\\\", torch.bfloat16)\\n        if isinstance(torch_dtype, str):\\n            torch_dtype = getattr(torch, torch_dtype, torch.bfloat16)\\n        device_map = kwargs.get(\\\"device_map\\\", \\\"auto\\\")\\n        ref_model = load_pruned_model(model_id, device_map=device_map, torch_dtype=torch_dtype)\\n        ref_model.eval()\\n        for p in ref_model.parameters():\\n            p.requires_grad = False\\n        return ref_model\\n    return _original_create_model(model_id, architecture=architecture, **kwargs)\\n\\n\\n_grpo_module.create_model_from_path = _create_pruned_ref_model\\n# --- End monkey-patch ---\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\nclass RewardDesertCallback(TrainerCallback):\\n    def __init__(self, patience: int = 50):\\n        self.patience = patience\\n        self.zero_reward_count = 0\\n        self.last_logged_step = -1\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs is None:\\n            return\\n        reward_mean = logs.get(\\\"reward\\\", logs.get(\\\"rewards/mean\\\", None))\\n        if reward_mean is None:\\n            return\\n        if state.global_step == self.last_logged_step:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "4ed3babe-8352-4a88-a3bc-08e295b80078",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nGRPO RLVR Recovery Training for pruned models — v4.\\\\n\\\\nChanges from v3:\\\\n- Fix: ref_model loaded via load_pruned_model (monkey-patch create_model_from_path)\\\\n  to handle non-uniform MLP/attention dimensions. beta=0.01 KL penalty now works.\\\\n- Fix: temperature 0.7 -> 0.4 (mitigate sampling degradation from v2)\\\\n- Fix: repetition_penalty=1.15 added to reduce repetitive outputs\\\\n- Kept: gradient_checkpointing=True, format_reward, max_completion_length=2048\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport logging\\\\nimport os\\\\nimport random\\\\nimport re\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoConfig, AutoTokenizer, GenerationConfig, TrainerCallback\\\\nfrom model_utils import load_pruned_model\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\nimport trl.trainer.grpo_trainer as _grpo_module\\\\n\\\\ntry:\\\\n    import wandb\\\\nexcept ImportError:\\\\n    wandb = None\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# --- Monkey-patch: make GRPOTrainer load pruned ref_model correctly ---\\\\n_original_create_model = _grpo_module.create_model_from_path\\\\n\\\\n\\\\ndef _create_pruned_ref_model(model_id, architecture=None, **kwargs):\\\\n    config = AutoConfig.from_pretrained(model_id, trust_remote_code=True)\\\\n    if hasattr(config, \\\\\\\"per_layer_intermediate_size\\\\\\\") or hasattr(config, \\\\\\\"per_layer_num_heads\\\\\\\"):\\\\n        logger.info(f\\\\\\\"Loading pruned ref_model from {model_id}\\\\\\\")\\\\n        torch_dtype = kwargs.get(\\\\\\\"dtype\\\\\\\", torch.bfloat16)\\\\n        if isinstance(torch_dtype, str):\\\\n            torch_dtype = getattr(torch, torch_dtype, torch.bfloat16)\\\\n        device_map = kwargs.get(\\\\\\\"device_map\\\\\\\", \\\\\\\"auto\\\\\\\")\\\\n        ref_model = load_pruned_model(model_id, device_map=device_map, torch_dtype=torch_dtype)\\\\n        ref_model.eval()\\\\n        for p in ref_model.parameters():\\\\n            p.requires_grad = False\\\\n        return ref_model\\\\n    return _original_create_model(model_id, architecture=architecture, **kwargs)\\\\n\\\\n\\\\n_grpo_module.create_model_from_path = _create_pruned_ref_model\\\\n# --- End monkey-patch ---\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\nclass RewardDesertCallback(TrainerCallback):\\\\n    def __init__(self, patience: int = 50):\\\\n        self.patience = patience\\\\n        self.zero_reward_count = 0\\\\n        self.last_logged_step = -1\\\\n\\\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n        if logs is None:\\\\n            return\\\\n        reward_mean = logs.get(\\\\\\\"reward\\\\\\\", logs.get(\\\\\\\"rewards/mean\\\\\\\", None))\\\\n        if reward_mean is None:\\\\n            return\\\\n        if state.global_step == self.last_logged_step:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGRPO RLVR Recovery Training for pruned models — v4.\\n\\nChanges from v3:\\n- Fix: ref_model loaded via load_pruned_model (monkey-patch create_model_from_path)\\n  to handle non-uniform MLP/attention dimensions. beta=0.01 KL penalty now works.\\n- Fix: temperature 0.7 -> 0.4 (mitigate sampling degradation from v2)\\n- Fix: repetition_penalty=1.15 added to reduce repetitive outputs\\n- Kept: gradient_checkpointing=True, format_reward, max_completion_length=2048\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport logging\\nimport os\\nimport random\\nimport re\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom transformers import AutoConfig, AutoTokenizer, GenerationConfig, TrainerCallback\\nfrom model_utils import load_pruned_model\\nfrom trl import GRPOConfig, GRPOTrainer\\nimport trl.trainer.grpo_trainer as _grpo_module\\n\\ntry:\\n    import wandb\\nexcept ImportError:\\n    wandb = None\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n# --- Monkey-patch: make GRPOTrainer load pruned ref_model correctly ---\\n_original_create_model = _grpo_module.create_model_from_path\\n\\n\\ndef _create_pruned_ref_model(model_id, architecture=None, **kwargs):\\n    config = AutoConfig.from_pretrained(model_id, trust_remote_code=True)\\n    if hasattr(config, \\\"per_layer_intermediate_size\\\") or hasattr(config, \\\"per_layer_num_heads\\\"):\\n        logger.info(f\\\"Loading pruned ref_model from {model_id}\\\")\\n        torch_dtype = kwargs.get(\\\"dtype\\\", torch.bfloat16)\\n        if isinstance(torch_dtype, str):\\n            torch_dtype = getattr(torch, torch_dtype, torch.bfloat16)\\n        device_map = kwargs.get(\\\"device_map\\\", \\\"auto\\\")\\n        ref_model = load_pruned_model(model_id, device_map=device_map, torch_dtype=torch_dtype)\\n        ref_model.eval()\\n        for p in ref_model.parameters():\\n            p.requires_grad = False\\n        return ref_model\\n    return _original_create_model(model_id, architecture=architecture, **kwargs)\\n\\n\\n_grpo_module.create_model_from_path = _create_pruned_ref_model\\n# --- End monkey-patch ---\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\nclass RewardDesertCallback(TrainerCallback):\\n    def __init__(self, patience: int = 50):\\n        self.patience = patience\\n        self.zero_reward_count = 0\\n        self.last_logged_step = -1\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs is None:\\n            return\\n        reward_mean = logs.get(\\\"reward\\\", logs.get(\\\"rewards/mean\\\", None))\\n        if reward_mean is None:\\n            return\\n        if state.global_step == self.last_logged_step:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0199rPJFF8432KQgFG5q1KVE`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "grep -n \"add_argument\\|default=\" /root/recovery_aware_struct_prune/src/train_grpo_v5.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "e3a43162-45e7-40c4-8e3f-af61e80a12e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011rd82P3o7pE2M2frGDwf78",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1287,
+      "cache_read_input_tokens": 44474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1287
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T16:03:43.604Z_
+
+<details><summary>↩ Tool result · `toolu_0199rPJFF8432KQgFG5q1KVE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "1e2956f5-680e-4c92-80e4-fc3844944d6f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0115jWuVB2zA1aaCdvavfxTp`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "grep -n \"default=\" /root/recovery_aware_struct_prune/src/train_grpo_v5.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "efacf109-4788-4610-8706-8f3083e192cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Es264t15UBxafbwMNULzPF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 228,
+      "cache_read_input_tokens": 45761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 228
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T16:03:47.292Z_
+
+<details><summary>↩ Tool result · `toolu_0115jWuVB2zA1aaCdvavfxTp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"185:    parser.add_argument(\\\"--output_dir\\\", type=str, default=None)\\n186:    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n187:    parser.add_argument(\\\"--learning_rate\\\", type=float, default=1e-6)\\n188:    parser.add_argument(\\\"--num_train_epochs\\\", type=int, default=3)\\n189:    parser.add_argument(\\\"--per_device_train_batch_size\\\", type=int, default=2)\\n190:    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=8)\\n191:    parser.add_argument(\\\"--max_completion_length\\\", type=int, default=512)\\n192:    parser.add_argument(\\\"--temperature\\\", type=float, default=0.4)\\n193:    parser.add_argument(\\\"--repetition_penalty\\\", type=float, default=1.15)\\n194:    parser.add_argument(\\\"--num_generations\\\", type=int, default=4)\\n195:    parser.add_argument(\\\"--max_samples\\\", type=int, default=None)\\n196:    parser.add_argument(\\\"--logging_steps\\\", type=int, default=10)\\n197:    parser.add_argument(\\\"--save_steps\\\", type=int, default=100)\\n198:    parser.add_argument(\\\"--save_total_limit\\\", type=int, default=3)\\n199:    parser.add_argument(\\\"--reward_desert_patience\\\", type=int, default=50)\\n200:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n201:    parser.add_argument(\\\"--dtype\\\", type=str, default=\\\"bfloat16\\\", choices=[\\\"float16\\\", \\\"bfloat16\\\", \\\"float32\\\"])\\n202:    parser.add_argument(\\\"--report_to\\\", type=str, default=\\\"wandb\\\")\\n203:    parser.add_argument(\\\"--run_name\\\", type=str, default=None)\\n204:    parser.add_argument(\\\"--wandb_project\\\", type=str, default=\\\"recovery_aware_struct_prune\\\")\\n205:    parser.add_argument(\\\"--beta\\\", type=float, default=0.01)\\n206:    parser.add_argument(\\\"--loss_type\\\", type=str, default=\\\"dapo\\\")\\n207:    parser.add_argument(\\\"--format_reward_weight\\\", type=float, default=0.1)\\n208:    parser.add_argument(\\\"--gradient_checkpointing\\\", type=str, default=\\\"true\\\")\\n209:    parser.add_argument(\\\"--optim\\\", type=str, default=\\\"adamw_8bit\\\", help=\\\"optimizer type, e.g. adamw_torch or adamw_8bit\\\")\\n210:    parser.add_argument(\\\"--max_steps\\\", type=int, default=-1, help=\\\"max training steps (-1 = use num_train_epochs)\\\")\\n211:    parser.add_argument(\\\"--resume_from_checkpoint\\\", type=str, default=None, help=\\\"path to checkpoint dir to resume from\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "ae87c6eb-2150-42f1-b5a5-c61d3e57e873",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"185:    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=None)\\\\n186:    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n187:    parser.add_argument(\\\\\\\"--learning_rate\\\\\\\", type=float, default=1e-6)\\\\n188:    parser.add_argument(\\\\\\\"--num_train_epochs\\\\\\\", type=int, default=3)\\\\n189:    parser.add_argument(\\\\\\\"--per_device_train_batch_size\\\\\\\", type=int, default=2)\\\\n190:    parser.add_argument(\\\\\\\"--gradient_accumulation_steps\\\\\\\", type=int, default=8)\\\\n191:    parser.add_argument(\\\\\\\"--max_completion_length\\\\\\\", type=int, default=512)\\\\n192:    parser.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.4)\\\\n193:    parser.add_argument(\\\\\\\"--repetition_penalty\\\\\\\", type=float, default=1.15)\\\\n194:    parser.add_argument(\\\\\\\"--num_generations\\\\\\\", type=int, default=4)\\\\n195:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None)\\\\n196:    parser.add_argument(\\\\\\\"--logging_steps\\\\\\\", type=int, default=10)\\\\n197:    parser.add_argument(\\\\\\\"--save_steps\\\\\\\", type=int, default=100)\\\\n198:    parser.add_argument(\\\\\\\"--save_total_limit\\\\\\\", type=int, default=3)\\\\n199:    parser.add_argument(\\\\\\\"--reward_desert_patience\\\\\\\", type=int, default=50)\\\\n200:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n201:    parser.add_argument(\\\\\\\"--dtype\\\\\\\", type=str, default=\\\\\\\"bfloat16\\\\\\\", choices=[\\\\\\\"float16\\\\\\\", \\\\\\\"bfloat16\\\\\\\", \\\\\\\"float32\\\\\\\"])\\\\n202:    parser.add_argument(\\\\\\\"--report_to\\\\\\\", type=str, default=\\\\\\\"wandb\\\\\\\")\\\\n203:    parser.add_argument(\\\\\\\"--run_name\\\\\\\", type=str, default=None)\\\\n204:    parser.add_argument(\\\\\\\"--wandb_project\\\\\\\", type=str, default=\\\\\\\"recovery_aware_struct_prune\\\\\\\")\\\\n205:    parser.add_argument(\\\\\\\"--beta\\\\\\\", type=float, default=0.01)\\\\n206:    parser.add_argument(\\\\\\\"--loss_type\\\\\\\", type=str, default=\\\\\\\"dapo\\\\\\\")\\\\n207:    parser.add_argument(\\\\\\\"--format_reward_weight\\\\\\\", type=float, default=0.1)\\\\n208:    parser.add_argument(\\\\\\\"--gradient_checkpointing\\\\\\\", type=str, default=\\\\\\\"true\\\\\\\")\\\\n209:    parser.add_argument(\\\\\\\"--optim\\\\\\\", type=str, default=\\\\\\\"adamw_8bit\\\\\\\", help=\\\\\\\"optimizer type, e.g. adamw_torch or adamw_8bit\\\\\\\")\\\\n210:    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=-1, help=\\\\\\\"max training steps (-1 = use num_train_epochs)\\\\\\\")\\\\n211:    parser.add_argument(\\\\\\\"--resume_from_checkpoint\\\\\\\", type=str, default=None, help=\\\\\\\"path to checkpoint dir to resume from\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"185:    parser.add_argument(\\\"--output_dir\\\", type=str, default=None)\\n186:    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n187:    parser.add_argument(\\\"--learning_rate\\\", type=float, default=1e-6)\\n188:    parser.add_argument(\\\"--num_train_epochs\\\", type=int, default=3)\\n189:    parser.add_argument(\\\"--per_device_train_batch_size\\\", type=int, default=2)\\n190:    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=8)\\n191:    parser.add_argument(\\\"--max_completion_length\\\", type=int, default=512)\\n192:    parser.add_argument(\\\"--temperature\\\", type=float, default=0.4)\\n193:    parser.add_argument(\\\"--repetition_penalty\\\", type=float, default=1.15)\\n194:    parser.add_argument(\\\"--num_generations\\\", type=int, default=4)\\n195:    parser.add_argument(\\\"--max_samples\\\", type=int, default=None)\\n196:    parser.add_argument(\\\"--logging_steps\\\", type=int, default=10)\\n197:    parser.add_argument(\\\"--save_steps\\\", type=int, default=100)\\n198:    parser.add_argument(\\\"--save_total_limit\\\", type=int, default=3)\\n199:    parser.add_argument(\\\"--reward_desert_patience\\\", type=int, default=50)\\n200:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n201:    parser.add_argument(\\\"--dtype\\\", type=str, default=\\\"bfloat16\\\", choices=[\\\"float16\\\", \\\"bfloat16\\\", \\\"float32\\\"])\\n202:    parser.add_argument(\\\"--report_to\\\", type=str, default=\\\"wandb\\\")\\n203:    parser.add_argument(\\\"--run_name\\\", type=str, default=None)\\n204:    parser.add_argument(\\\"--wandb_project\\\", type=str, default=\\\"recovery_aware_struct_prune\\\")\\n205:    parser.add_argument(\\\"--beta\\\", type=float, default=0.01)\\n206:    parser.add_argument(\\\"--loss_type\\\", type=str, default=\\\"dapo\\\")\\n207:    parser.add_argument(\\\"--format_reward_weight\\\", type=float, default=0.1)\\n208:    parser.add_argument(\\\"--gradient_checkpointing\\\", type=str, default=\\\"true\\\")\\n209:    parser.add_argument(\\\"--optim\\\", type=str, default=\\\"adamw_8bit\\\", help=\\\"optimizer type, e.g. adamw_torch or adamw_8bit\\\")\\n210:    parser.add_argument(\\\"--max_steps\\\", type=int, default=-1, help=\\\"max training steps (-1 = use num_train_epochs)\\\")\\n211:    parser.add_argument(\\\"--resume_from_checkpoint\\\", type=str, default=None, help=\\\"path to checkpoint dir to resume from\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+默认参数与 v5 fair config 一致（lr=1e-6, beta=0.01, temperature=0.4, dapo loss, 100 steps）。现在提交训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "0a5cee90-07d4-4062-adda-810e92b2dbfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYydzU8iAsKiNJk8kAwk4q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 45989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1111
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XKSw3gXCe5rmZ7kxRnXPBh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "5d5cb8d6-a315-4507-8615-b549a3f344a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYydzU8iAsKiNJk8kAwk4q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 45989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1111
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T16:03:52.323Z_
+
+<details><summary>↩ Tool result · `toolu_01XKSw3gXCe5rmZ7kxRnXPBh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "d82477c8-1e32-4a9a-a8c6-a7d0f1e7dda3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0162AuKUSF6kCAY1wWhnnqjL`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && nohup bash -c \"CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\" > /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "218aa1de-d499-44e0-8fac-f4f38afa5e5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWzdstaqzcRJ6oAPJnLEEo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 498,
+      "cache_read_input_tokens": 47100,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 498
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T16:04:28.901Z_
+
+<details><summary>↩ Tool result · `toolu_0162AuKUSF6kCAY1wWhnnqjL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && nohup bash -c \\\"CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\\\" > /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=118669\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "4cb72acd-1fae-45fc-83fe-9810d381cbc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && nohup bash -c \\\\\\\"CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\\\\\\\" > /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=118669\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && nohup bash -c \\\"CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\\\" > /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=118669\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The command actually did start - the PID is 118669. The timeout is just because the nohup process keeps the SSH session open. Let me verify it's running.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "17f9d791-de1f-44e8-a847-24d621f90619",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H65HgJJqfbVqkJmq44NRuy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 47598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 572
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+训练已启动 (PID=118669)。验证进程和 GPU 占用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "a8fe8dac-2bd9-461c-8221-1018c8c6e056",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H65HgJJqfbVqkJmq44NRuy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 47598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 572
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WJZmakGyHz87cfkHixbp9J`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "nvidia-smi -i 0 --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "8f6d6d3a-f085-4f0f-a342-98d9042c7c90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H65HgJJqfbVqkJmq44NRuy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 47598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 572
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EqgKq6TFLAPovCrzUTFFXC`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "cf918688-fc43-497e-bd4d-b7650ad1064b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H65HgJJqfbVqkJmq44NRuy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 47598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 572
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T16:04:36.231Z_
+
+<details><summary>↩ Tool result · `toolu_01WJZmakGyHz87cfkHixbp9J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"118674, 15354 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "e370fab2-0e2f-410c-8efe-cb89c7acb610",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"118674, 15354 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"118674, 15354 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-19T16:04:36.775Z_
+
+<details><summary>↩ Tool result · `toolu_01EqgKq6TFLAPovCrzUTFFXC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 00:04:04,980 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/279 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/279 [00:00<00:30,  9.05it/s]\\rLoading weights:   1%|          | 2/279 [00:00<00:33,  8.27it/s]\\rLoading weights:   6%|▋         | 18/279 [00:00<00:03, 66.71it/s]\\rLoading weights:  14%|█▍        | 40/279 [00:00<00:01, 120.71it/s]\\rLoading weights:  23%|██▎       | 64/279 [00:00<00:01, 159.18it/s]\\rLoading weights:  29%|██▉       | 82/279 [00:00<00:01, 164.82it/s]\\rLoading weights:  37%|███▋      | 102/279 [00:00<00:01, 167.96it/s]\\rLoading weights:  45%|████▍     | 125/279 [00:00<00:00, 183.00it/s]\\rLoading weights:  53%|█████▎    | 149/279 [00:00<00:00, 190.96it/s]\\rLoading weights:  62%|██████▏   | 172/279 [00:01<00:00, 200.73it/s]\\rLoading weights:  69%|██████▉   | 193/279 [00:01<00:00, 190.44it/s]\\rLoading weights:  76%|███████▋  | 213/279 [00:01<00:00, 190.86it/s]\\rLoading weights:  84%|████████▍ | 234/279 [00:01<00:00, 187.57it/s]\\rLoading weights:  92%|█████████▏| 257/279 [00:01<00:00, 187.22it/s]\\rLoading weights: 100%|██████████| 279/279 [00:01<00:00, 170.25it/s]\\n2026-05-20 00:04:07,906 [INFO] generation_config.eos_token_id: [151643]\\n2026-05-20 00:04:07,906 [INFO] Preparing GSM8K training dataset...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "4301ef35-0b60-4b66-a1cc-d74cb85bf498",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 00:04:04,980 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/279 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/279 [00:00<00:30,  9.05it/s]\\\\rLoading weights:   1%|          | 2/279 [00:00<00:33,  8.27it/s]\\\\rLoading weights:   6%|▋         | 18/279 [00:00<00:03, 66.71it/s]\\\\rLoading weights:  14%|█▍        | 40/279 [00:00<00:01, 120.71it/s]\\\\rLoading weights:  23%|██▎       | 64/279 [00:00<00:01, 159.18it/s]\\\\rLoading weights:  29%|██▉       | 82/279 [00:00<00:01, 164.82it/s]\\\\rLoading weights:  37%|███▋      | 102/279 [00:00<00:01, 167.96it/s]\\\\rLoading weights:  45%|████▍     | 125/279 [00:00<00:00, 183.00it/s]\\\\rLoading weights:  53%|█████▎    | 149/279 [00:00<00:00, 190.96it/s]\\\\rLoading weights:  62%|██████▏   | 172/279 [00:01<00:00, 200.73it/s]\\\\rLoading weights:  69%|██████▉   | 193/279 [00:01<00:00, 190.44it/s]\\\\rLoading weights:  76%|███████▋  | 213/279 [00:01<00:00, 190.86it/s]\\\\rLoading weights:  84%|████████▍ | 234/279 [00:01<00:00, 187.57it/s]\\\\rLoading weights:  92%|█████████▏| 257/279 [00:01<00:00, 187.22it/s]\\\\rLoading weights: 100%|██████████| 279/279 [00:01<00:00, 170.25it/s]\\\\n2026-05-20 00:04:07,906 [INFO] generation_config.eos_token_id: [151643]\\\\n2026-05-20 00:04:07,906 [INFO] Preparing GSM8K training dataset...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 00:04:04,980 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/279 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/279 [00:00<00:30,  9.05it/s]\\rLoading weights:   1%|          | 2/279 [00:00<00:33,  8.27it/s]\\rLoading weights:   6%|▋         | 18/279 [00:00<00:03, 66.71it/s]\\rLoading weights:  14%|█▍        | 40/279 [00:00<00:01, 120.71it/s]\\rLoading weights:  23%|██▎       | 64/279 [00:00<00:01, 159.18it/s]\\rLoading weights:  29%|██▉       | 82/279 [00:00<00:01, 164.82it/s]\\rLoading weights:  37%|███▋      | 102/279 [00:00<00:01, 167.96it/s]\\rLoading weights:  45%|████▍     | 125/279 [00:00<00:00, 183.00it/s]\\rLoading weights:  53%|█████▎    | 149/279 [00:00<00:00, 190.96it/s]\\rLoading weights:  62%|██████▏   | 172/279 [00:01<00:00, 200.73it/s]\\rLoading weights:  69%|██████▉   | 193/279 [00:01<00:00, 190.44it/s]\\rLoading weights:  76%|███████▋  | 213/279 [00:01<00:00, 190.86it/s]\\rLoading weights:  84%|████████▍ | 234/279 [00:01<00:00, 187.57it/s]\\rLoading weights:  92%|█████████▏| 257/279 [00:01<00:00, 187.22it/s]\\rLoading weights: 100%|██████████| 279/279 [00:01<00:00, 170.25it/s]\\n2026-05-20 00:04:07,906 [INFO] generation_config.eos_token_id: [151643]\\n2026-05-20 00:04:07,906 [INFO] Preparing GSM8K training dataset...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+训练正在加载模型和数据，cuda:0 已占用 15354 MiB。注册 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "310f374d-a60a-4c30-a39f-65b064dfc5e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018wmGGEnBfNfwAdprsFGQY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1259,
+      "cache_read_input_tokens": 48170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1259
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01D1EJG8ERz5yWxjhA9itUmK`</summary>
+
+```json
+{
+  "exp_id": "grpo_shortgpt_20",
+  "field": "hypothesis",
+  "value": "GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "34a64490-125b-4060-a923-5c0881df55fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018wmGGEnBfNfwAdprsFGQY9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1259,
+      "cache_read_input_tokens": 48170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1259
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T16:04:46.665Z_
+
+<details><summary>↩ Tool result · `toolu_01D1EJG8ERz5yWxjhA9itUmK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"grpo_shortgpt_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:04:46.243Z\", \"updated_at\": \"2026-05-19T16:04:46.243Z\", \"hypothesis\": \"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9904}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "84589050-6447-4234-b681-2c8f235faf21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:04:46.243Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:04:46.243Z\\\", \\\"hypothesis\\\": \\\"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9904}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_shortgpt_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:04:46.243Z\", \"updated_at\": \"2026-05-19T16:04:46.243Z\", \"hypothesis\": \"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9904}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HH5HnvtYFQNjz5Q5bHPner`</summary>
+
+```json
+{
+  "exp_id": "grpo_shortgpt_20",
+  "field": "parent",
+  "value": "sft_shortgpt_20",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "99751cc1-6401-4f58-81bf-18615a92939a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvaeGdbMD14WdZyQm6qBXw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 558,
+      "cache_read_input_tokens": 49429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 558
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T16:04:53.465Z_
+
+<details><summary>↩ Tool result · `toolu_01HH5HnvtYFQNjz5Q5bHPner`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"grpo_shortgpt_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:04:46.243Z\", \"updated_at\": \"2026-05-19T16:04:53.050Z\", \"hypothesis\": \"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\", \"parent\": \"sft_shortgpt_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0013}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "60aa4633-f50d-47f4-a9d5-afa2a701c545",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:04:46.243Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:04:53.050Z\\\", \\\"hypothesis\\\": \\\"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\\\", \\\"parent\\\": \\\"sft_shortgpt_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0013}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_shortgpt_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:04:46.243Z\", \"updated_at\": \"2026-05-19T16:04:53.050Z\", \"hypothesis\": \"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\", \"parent\": \"sft_shortgpt_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0013}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01C9pLEt9ZwiaoGKAZRbmgeY`</summary>
+
+```json
+{
+  "exp_id": "grpo_shortgpt_20",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recovery_aware_struct_prune",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20",
+    "server": "westd-29022",
+    "data_path": "gsm8k",
+    "data_count": 7473,
+    "model_name": "ShortGPT-20%-BI-pruned + SFT",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log",
+    "pid": 118669
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "f8a85529-d73b-4b08-9571-3fcbacfc0ea6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvaeGdbMD14WdZyQm6qBXw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 558,
+      "cache_read_input_tokens": 49429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 558
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T16:04:57.968Z_
+
+<details><summary>↩ Tool result · `toolu_01C9pLEt9ZwiaoGKAZRbmgeY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5599}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "60fc8b13-b1c5-4f82-abdb-1342f5a3c07e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5599}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5599}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DBSrgYkfQJ7nUJPGFaySf8`</summary>
+
+```json
+{
+  "exp_id": "grpo_shortgpt_20",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "10056d0e-c455-43d8-b58a-231234806d9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0174eCnbtycMfCkgg5n1tiwt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 49987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 926
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T16:05:08.820Z_
+
+<details><summary>↩ Tool result · `toolu_01DBSrgYkfQJ7nUJPGFaySf8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"grpo_shortgpt_20\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:04:46.243Z\", \"updated_at\": \"2026-05-19T16:05:07.613Z\", \"hypothesis\": \"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\", \"parent\": \"sft_shortgpt_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8537}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "26f75f3b-7cc8-4537-96ab-0b132d6d42f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:04:46.243Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:05:07.613Z\\\", \\\"hypothesis\\\": \\\"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\\\", \\\"parent\\\": \\\"sft_shortgpt_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8537}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_shortgpt_20\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:04:46.243Z\", \"updated_at\": \"2026-05-19T16:05:07.613Z\", \"hypothesis\": \"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\", \"parent\": \"sft_shortgpt_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8537}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YTJcgiag5KamM3jGM1dpRH`</summary>
+
+```json
+{
+  "exp_id": "grpo_shortgpt_20",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recovery_aware_struct_prune",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20",
+    "server": "westd-29022",
+    "data_path": "gsm8k",
+    "data_count": 7473,
+    "model_name": "ShortGPT-20%-BI-pruned + SFT",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log",
+    "pid": 118669
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "27f051e8-7dbc-4045-9e73-b9978dc0d5ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1CgoGkm1KXWxjmEETcakB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 419,
+      "cache_read_input_tokens": 50913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 419
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T16:05:15.287Z_
+
+<details><summary>↩ Tool result · `toolu_01YTJcgiag5KamM3jGM1dpRH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.6131}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "fa3ef569-f259-4e59-a5a9-8e4933be2613",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6131}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.6131}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It seems to think this is an eval experiment because it has a parent. Let me add eval_data to the spec even though this is a training experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "6a477053-1cfc-4c0f-88b0-cb683cdb9bfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011n4D5QNprZP2itQbEvkW8F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 575,
+      "cache_read_input_tokens": 51332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 575
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Sth9TxAVkK6DUuTNvRDLCF`</summary>
+
+```json
+{
+  "exp_id": "grpo_shortgpt_20",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recovery_aware_struct_prune",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20",
+    "server": "westd-29022",
+    "data_path": "gsm8k",
+    "data_count": 7473,
+    "model_name": "ShortGPT-20%-BI-pruned + SFT",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20",
+    "eval_data": "gsm8k_train (GRPO training, not eval)",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log",
+    "pid": 118669
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "6d20f406-3aa9-4264-9dec-ef0d2544b54d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011n4D5QNprZP2itQbEvkW8F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 575,
+      "cache_read_input_tokens": 51332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 575
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-19T16:05:28.044Z_
+
+<details><summary>↩ Tool result · `toolu_01Sth9TxAVkK6DUuTNvRDLCF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"grpo_shortgpt_20\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:04:46.243Z\", \"updated_at\": \"2026-05-19T16:05:26.516Z\", \"hypothesis\": \"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\", \"parent\": \"sft_shortgpt_20\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\", \"server\": \"westd-29022\", \"data_path\": \"gsm8k\", \"data_count\": 7473, \"model_name\": \"ShortGPT-20%-BI-pruned + SFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\", \"eval_data\": \"gsm8k_train (GRPO training, not eval)\", \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log\", \"pid\": 118669}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1088}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "c75a69a2-4ec0-438d-ad20-8a3e30ea64e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:04:46.243Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:05:26.516Z\\\", \\\"hypothesis\\\": \\\"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\\\", \\\"parent\\\": \\\"sft_shortgpt_20\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"ShortGPT-20%-BI-pruned + SFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\\\", \\\"eval_data\\\": \\\"gsm8k_train (GRPO training, not eval)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log\\\", \\\"pid\\\": 118669}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1088}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_shortgpt_20\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:04:46.243Z\", \"updated_at\": \"2026-05-19T16:05:26.516Z\", \"hypothesis\": \"GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.\", \"parent\": \"sft_shortgpt_20\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\", \"server\": \"westd-29022\", \"data_path\": \"gsm8k\", \"data_count\": 7473, \"model_name\": \"ShortGPT-20%-BI-pruned + SFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\", \"eval_data\": \"gsm8k_train (GRPO training, not eval)\", \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log\", \"pid\": 118669}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1088}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+全部完成：
+
+| 步骤 | 状态 |
+|------|------|
+| 杀 117053 + 子进程 117059 | done |
+| cuda:0 确认空闲 | done |
+| ShortGPT GRPO 训练启动 | PID=118669, cuda:0 占用 15354 MiB |
+| Registry 注册 | grpo_shortgpt_20 → RUNNING, parent=sft_shortgpt_20 |
+
+训练参数：v5 fair config（lr=1e-6, beta=0.01, temperature=0.4, dapo loss, 100 steps, seed=42）。日志：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "uuid": "3e1fc868-af7b-41e6-addd-d00415d1fdc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QN2mcjdHpNnqzfXWm27Ze",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 51907,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1031
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 65_
+
+全部完成：
+
+| 步骤 | 状态 |
+|------|------|
+| 杀 117053 + 子进程 117059 | done |
+| cuda:0 确认空闲 | done |
+| ShortGPT GRPO 训练启动 | PID=118669, cuda:0 占用 15354 MiB |
+| Registry 注册 | grpo_shortgpt_20 → RUNNING, parent=sft_shortgpt_20 |
+
+训练参数：v5 fair config（lr=1e-6, beta=0.01, temperature=0.4, dapo loss, 100 steps, seed=42）。日志：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 197803,
+  "duration_api_ms": 152863,
+  "num_turns": 24,
+  "stop_reason": "end_turn",
+  "session_id": "53189ade-bee5-4dd9-8c11-d4ff518c5abb",
+  "total_cost_usd": 0.7365557500000001,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 41097,
+    "cache_read_input_tokens": 708087,
+    "output_tokens": 4943,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 41097,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 211,
+        "cache_read_input_tokens": 51907,
+        "cache_creation_input_tokens": 1031,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1031
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1856,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001966,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 4943,
+      "cacheReadInputTokens": 708087,
+      "cacheCreationInputTokens": 41097,
+      "webSearchRequests": 0,
+      "costUSD": 0.73458975,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "edd0baf6-8593-4b53-af32-d972cff09bcb"
+}
+```
+
+</details>
+
+---

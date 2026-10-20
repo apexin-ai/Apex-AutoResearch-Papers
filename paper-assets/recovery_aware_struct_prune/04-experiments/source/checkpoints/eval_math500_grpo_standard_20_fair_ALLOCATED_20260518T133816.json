@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_grpo_standard_20_fair",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:38:06.779Z",
+    "updated_at": "2026-05-18T13:38:16.636Z",
+    "hypothesis": "Standard 20% post-GRPO MATH-500 accuracy (fair v5 config). Cross-benchmark validation: if Standard GRPO shows same decoupling pattern on MATH-500 as GSM8K (post-GRPO ≈ post-SFT), confirms C1 decoupling is not benchmark-specific.",
+    "parent": "grpo_standard_20_fair"
+  },
+  "timestamp": "2026-05-18T13:38:16.970737+00:00",
+  "trigger": "update_registry"
+}

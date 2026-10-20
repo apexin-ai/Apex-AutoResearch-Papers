@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f5dd607077ec552ca9b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh floor results and v3 check",
+  "task_key": "worker_ssh_floor_results_and_v3_check_20260523T122447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_floor_results_and_v3_check_20260523T122447_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "d95d0b8a01e201067cb4010971b136db37bdf0203805ca1d3dbc828a14589252"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nFloor 0.5: 运行中, 1290/1319 (98%), 当前 acc≈61.7% (at 1250样本点), PID 125118 @ GPU:3\nFloor 0.3 SFT: 无 SFT-only eval（pipeline 只在 GRPO 后做 eval，SFT 阶段仅有 training token accuracy≈83.6%，非 GSM8K accuracy）\nv3 MATH-500: 运行中, 429/500 (86%), PID 108574 @ GPU:1\nFloor 0.6 v2: 运行中, GRPO 阶段 57/100 steps (57%), PID 132510 @ GPU:0\nGPU: [0: 86%, 1: 98%, 2: 0%, 3: 86%]\n```\n\nFloor 0.3 GRPO eval 已完成供参考：accuracy=65.05% (858/1319)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-floor-results-and-v3-check.md"
+}

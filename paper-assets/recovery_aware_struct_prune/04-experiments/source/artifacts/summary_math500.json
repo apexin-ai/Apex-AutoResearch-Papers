@@ -1,0 +1,147 @@
+{
+  "generated_at": "2026-05-24T03:10:34.604587+00:00",
+  "source": "registry",
+  "experiments": {
+    "eval_math500_dense_unpruned": {
+      "accuracy": 0.736,
+      "truncation_rate": 0.248,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_grpo_alpha3p0_20_fixed": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "PREPARING"
+    },
+    "eval_math500_grpo_cka_only_20_fixed": {
+      "accuracy": 0.276,
+      "truncation_rate": null,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_grpo_cka_only_25_fixed": {
+      "accuracy": 0.176,
+      "truncation_rate": 0.266,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_grpo_random_20_fixed": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "RUNNING"
+    },
+    "eval_math500_grpo_rasp_alpha0p5_20_fixed": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "not_found"
+    },
+    "eval_math500_grpo_rasp_alpha1p0_20_fixed": {
+      "accuracy": 0.23,
+      "truncation_rate": 0.36,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_grpo_rasp_alpha2p0_20_fixed": {
+      "accuracy": 0.274,
+      "truncation_rate": 0.302,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_grpo_rasp_alpha4p0_20_fixed": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "not_found"
+    },
+    "eval_math500_grpo_standard_20_fixed": {
+      "accuracy": 0.27,
+      "truncation_rate": null,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_grpo_unpruned": {
+      "accuracy": 0.69,
+      "truncation_rate": 0.172,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_sft_cka_only_20_fixed_v2": {
+      "accuracy": 0.274,
+      "truncation_rate": 0.232,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_sft_cka_only_25_fixed": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "not_found"
+    },
+    "eval_math500_sft_random_20_fixed_v3": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "RUNNING"
+    },
+    "eval_math500_sft_rasp_alpha0p5_20_fixed": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "RUNNING"
+    },
+    "eval_math500_sft_rasp_alpha1p0_20_fixed": {
+      "accuracy": 0.216,
+      "truncation_rate": null,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_sft_rasp_alpha2p0_20_fixed": {
+      "accuracy": 0.256,
+      "truncation_rate": 0.31,
+      "registry_match": true,
+      "status": "done"
+    },
+    "eval_math500_sft_rasp_alpha3p0_20_fixed": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "not_found"
+    },
+    "eval_math500_sft_rasp_alpha4p0_20_fixed": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "PREPARING"
+    },
+    "eval_math500_sft_standard_20_fixed_v4": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "RUNNING"
+    },
+    "eval_math500_sft_standard_25_fixed_v2": {
+      "accuracy": null,
+      "truncation_rate": null,
+      "registry_match": null,
+      "status": "RUNNING"
+    }
+  },
+  "missing": [
+    "eval_math500_grpo_alpha3p0_20_fixed",
+    "eval_math500_grpo_random_20_fixed",
+    "eval_math500_grpo_rasp_alpha0p5_20_fixed",
+    "eval_math500_grpo_rasp_alpha4p0_20_fixed",
+    "eval_math500_sft_cka_only_25_fixed",
+    "eval_math500_sft_random_20_fixed_v3",
+    "eval_math500_sft_rasp_alpha0p5_20_fixed",
+    "eval_math500_sft_rasp_alpha3p0_20_fixed",
+    "eval_math500_sft_rasp_alpha4p0_20_fixed",
+    "eval_math500_sft_standard_20_fixed_v4",
+    "eval_math500_sft_standard_25_fixed_v2"
+  ],
+  "total_done": 10,
+  "total_expected": 21
+}

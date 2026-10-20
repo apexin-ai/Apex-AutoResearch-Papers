@@ -1,0 +1,2395 @@
+# cron hook eval sft cka only 20 full 20260517T231441 995675
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 76
+- **Recorded user turns:** 2
+- **Tool calls:** 36
+- **Original source:** `logs/chats/archive/cron_hook_eval_sft_cka_only_20_full_20260517T231441_995675.jsonl`
+- **Structured JSON:** [`1774b4fe5a0ada7143a2.json`](../../sessions/17/1774b4fe5a0ada7143a2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T19:01:41.959801+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: eval_sft_cka_only_20_full
+- project: recovery_aware_struct_prune
+- server: westd-11672
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T19:01:57.325789+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T19:01:57.426655+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T19:02:02.394166+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T19:02:02.896638+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T19:02:03.400234+00:00_
+
+Error: result (115,006 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1006
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T19:02:03.400715+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T19:02:03.453436+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T19:02:16.474340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 5, \"results\": [{\"exp_id\": \"eval_math500_grpo_standard_20\", \"success\": true, \"actions\": [\"Job still running (pid=14556)\"]}, {\"exp_id\": \"grpo_random_20\", \"success\": true, \"actions\": [\"Job still running (pid=719679)\"]}, {\"exp_id\": \"grpo_cka_only_20\", \"success\": true, \"actions\": [\"Job still running (pid=725227)\"]}, {\"exp_id\": \"eval_math500_grpo_rasp_20_v3\", \"success\": true, \"actions\": [\"Job still running (pid=31706)\"]}, {\"exp_id\": \"eval_postprune_rasp_30\", \"success\": true, \"actions\": [\"Skipped (created 41s ago < interval 120s)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 13577
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T19:02:16.525412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-17T19:01:40Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 170 个实验 — DONE 144, PREPARING 21, RUNNING 5\\n**DONE 分布**: failed 25, killed 11, negative 14, success 94\\n\\n### GPU 占用\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-11672:cuda:0, westd-11672:cuda:1, westd-11672:cuda:2, westd-11672:cuda:3\\n- **实际运行**: 4 张 — westb-23072:cuda:1(grpo_random_20), westb-23072:cuda:0(grpo_cka_only_20), westd-11672:cuda:3(eval_math500_grpo_rasp_20_v3), westd-11672:cuda:2(eval_postprune_rasp_30)\\n- **空闲（分配了没跑）**: westd-11672:cuda:0\\n\\n### 💾 磁盘余量\\n- **westb-23072**:\\n  - `/autodl-pub`: 7.0T/14T 可用（已用 51%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\n- **westd-11672**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval_math500_grpo_standard_20` | ? | cuda:1 | ? | `—` |\\n| `grpo_random_20` | westb-23072 | cuda:1 | 719679 | `~/runs/recovery_aware_struct_prune/grpo_random_20.log` |\\n| `grpo_cka_only_20` | westb-23072 | cuda:0 | 725227 | `~/runs/recovery_aware_struct_prune/grpo_cka_only_20.log` |\\n| `eval_math500_grpo_rasp_20_v3` | westd-11672 | cuda:3 | 31706 | `…ecovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log` |\\n| `eval_postprune_rasp_30` | westd-11672 | cuda:2 | 44265 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `eval_sft_cka_only_20_full` [failed] — 2026-05-17T19:01:36 — EXIT_CODE=1 (generic error — check log tail)\\n- `eval_humaneval_grpo_standard_20_2048` [success] — 2026-05-17T18:16:11\\n- `grpo_rasp_25` [success] — 2026-05-17T18:06:56 — FALSE POSITI
+…[truncated 6365 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 13124
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T19:02:16.526100+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-16 08:05 UTC | 更新原因: D044/D045 narrative pivot complete, 25% expansion in progress, ROADMAP 16h stale refresh\\n\\n> 核心方向详见 paper_framing.md | 实验计划详见 experiment_plan.yaml\\n\\n## 核心方向\\n**Redundancy-Stability Tradeoff**: GRPO alignment fundamentally fails on structurally pruned reasoning models — reward improves but accuracy never follows (universal decoupling). Pruning adds training collapse whose severity diagnoses structural damage type. Functional redundancy plays opposite roles under SFT vs RLVR recovery.\\n\\n## 目标会议\\nEMNLP 2026 ARR May 25 提交（距今 ~9 天）\\n\\n## 当前阶段\\n**Research Phase — Scope Expansion** (D044/D045 后)\\n- Core 20% data: ✅ ALL COMPLETE (3 claims fully supported)\\n- 25% sparsity expansion: SFT 完成, eval 进行中/刚完成, GRPO 待启动\\n- Qwen2.5-Math-7B (Phase 2): importance+CKA scores 已算, RASP pruning 进行中\\n- Paper writing: Paper Agent Step 2 (Plot Generation) 进行中\\n\\n## 核心证据 (20% sparsity, N=1319)\\n| 实验 | 结果 | Claim |\\n|------|------|-------|\\n| Unpruned SFT → GRPO step-100 | 81.27% → 81.27% (Δ=0.00, reward 0→0.661) | C1: Universal decoupling |\\n| RASP GRPO v9 collapse | Permanent step ~10, peak reward 0.039, frac_zero_std→0.95 | C2: Collapse gradient |\\n| Standard GRPO v8 collapse | Transient dip step ~60, recovery step ~90 | C2: Collapse gradient |\\n| Unpruned GRPO v2 | 100 steps stable, no collapse, reward 0.661 | C2: Pruning-specificity |\\n| RASP SFT vs Standard SFT | 61.49% vs 59.29% (Δ=+2.2pp, p=0.25) | C3: SFT marginal advantage |\\n| RASP step-10 eval | 61.87% (collapse onset ≠ accuracy loss) | Bidirectional decoupling |\\n\\n## Scope Expansion 进度\\n### Phase 1: 25% Sparsity (intensify collapse)\\n- [x] pruned_rasp_25 + pruned_standard_25\\n- [x] sft_rasp_25 + sft_standard_25\\n- [ ] eval_sft_standard_25 
+…[truncated 2964 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 13072
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T19:02:26.622441+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\n# Find the failed experiment\nfor exp in registry:\n    if exp.get('exp_id') == 'eval_sft_cka_only_20_full':\n        print(json.dumps(exp, indent=2))\n        break\n\"",
+  "description": "Extract eval_sft_cka_only_20_full details from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\n# Find the failed experiment\nfor exp in registry:\n    if exp.get('exp_id') == 'eval_sft_cka_only_20_full':\n        print(json.dumps(exp, indent=2))\n        break\n\"",
+    "description": "Extract eval_sft_cka_only_20_full details from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T19:02:27.025043+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    if exp.get('exp_id') == 'eval_sft_cka_only_20_full':
+       ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Bash",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T19:02:35.411469+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\n# Check structure\nif isinstance(registry, dict):\n    experiments = registry.get('experiments', registry.get('data', []))\nelif isinstance(registry, list):\n    experiments = registry\nelse:\n    print(type(registry))\n    sys.exit(1)\n\nfor exp in experiments:\n    if isinstance(exp, dict) and exp.get('exp_id') == 'eval_sft_cka_only_20_full':\n        print(json.dumps(exp, indent=2))\n        break\n    elif isinstance(exp, str):\n        # Maybe it's a YAML string\n        print('Registry is string format, first 500 chars:')\n        print(result_str[:500])\n        break\n\"",
+  "description": "Parse registry structure and find experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\n# Check structure\nif isinstance(registry, dict):\n    experiments = registry.get('experiments', registry.get('data', []))\nelif isinstance(registry, list):\n    experiments = registry\nelse:\n    print(type(registry))\n    sys.exit(1)\n\nfor exp in experiments:\n    if isinstance(exp, dict) and exp.get('exp_id') == 'eval_sft_cka_only_20_full':\n        print(json.dumps(exp, indent=2))\n        break\n    elif isinstance(exp, str):\n        # Maybe it's a YAML string\n        print('Registry is string format, first 500 chars:')\n        print(result_str[:500])\n        break\n\"",
+    "description": "Parse registry structure and find experiment"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T19:02:35.512435+00:00_
+
+Registry is string format, first 500 chars:
+{"success": true, "data": {"experiments": {"eval_sft_cka_only_20_full": {"status": "DONE", "created_at": "2026-05-17T18:22:00Z", "updated_at": "2026-05-17T19:01:36.713Z", "hypothesis": "CKA-only 20% post-SFT GSM8K N=1319. post-prune 38.5% highest, if post-SFT also highest then CKA-only scoring has SFT advantage; if converges to ~60% confirms SFT equalizes. N=200 pilot showed 64.0%.", "parent": "eval_sft_cka_only_20", "conclusion": "failed"}, "eval_postprune_rasp_30": {"status": "RUNNING", "creat
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T19:02:40.833450+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\nexp = registry['data']['experiments']['eval_sft_cka_only_20_full']\nprint(json.dumps(exp, indent=2))\n\"",
+  "description": "Get full experiment details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/28d8108e-1941-4589-b8a0-035f1aeefca1/tool-results/mcp-agent-ml-research-read_registry-1779044523312.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\nexp = registry['data']['experiments']['eval_sft_cka_only_20_full']\nprint(json.dumps(exp, indent=2))\n\"",
+    "description": "Get full experiment details"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T19:02:40.934324+00:00_
+
+{
+  "status": "DONE",
+  "created_at": "2026-05-17T18:22:00Z",
+  "updated_at": "2026-05-17T19:01:36.713Z",
+  "hypothesis": "CKA-only 20% post-SFT GSM8K N=1319. post-prune 38.5% highest, if post-SFT also highest then CKA-only scoring has SFT advantage; if converges to ~60% confirms SFT equalizes. N=200 pilot showed 64.0%.",
+  "parent": "eval_sft_cka_only_20",
+  "conclusion": "failed"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T19:02:46.255448+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'exp_id': 'eval_sft_cka_only_20_full'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'exp_id': 'eval_sft_cka_only_20_full'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T19:02:46.708987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4232}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T19:02:51.035228+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+  "fields": "['*']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+    "fields": "['*']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T19:02:51.437587+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_sft_cka_only_20_full\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T18:22:00Z\", \"updated_at\": \"2026-05-17T19:01:36.713Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K N=1319. post-prune 38.5% highest, if post-SFT also highest then CKA-only scoring has SFT advantage; if converges to ~60% confirms SFT equalizes. N=200 pilot showed 64.0%.\", \"parent\": \"eval_sft_cka_only_20\", \"spec\": {\"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"44066\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 1319, \"model_name\": \"sft_cka_only_20\", \"seed\": 42, \"checkpoint_source\": \"sft_cka_only_20\", \"eval_data\": \"GSM8K (1319 samples, greedy)\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T19:01:31.886Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T19:01:36.713Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T19:01:41.355386+00:00\"}]}}, \"eval_math500_grpo_rasp_20_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:34:15.861Z\", \"updated_at\": \"2026-05-17T14:59:30.795Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && export HF_ENDPOINT=https://hf-mirror.com && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:3\"], \"pid\": \"11891\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v2.log\", \"submitted_at\": \"2026-05-17T08:34:15.514Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tm
+…[truncated 7342 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T19:03:00.898424+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T19:03:00.999301+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_10fc939a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T19:03:04.734097+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T19:03:04.786451+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T19:03:11.087545+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T19:03:11.289445+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T19:03:15.254580+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T19:03:15.305231+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T19:03:20.067453+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T19:03:20.170606+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T19:03:25.443048+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T19:03:25.594021+00:00_
+
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/__init__.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/skills.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/versions.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_params.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/__init__.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_params.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_retrieve_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_delete_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md
+/home/ubuntu/agent-ml-research/core/skills/__init__.py
+/home/ubuntu/agent-ml-research/core/skills/tracker.py
+/home/ubuntu/agent-ml-research/core/skills/evolution.py
+/home/ubuntu/agent-ml-research/core/skills/loader.py
+/home/ubuntu/agent-ml-research/core/skills/plugin_loader.py
+/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md
+/home/ubuntu/agent-ml-re
+…[truncated 5730 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Glob",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T19:03:30.726668+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T19:03:30.777481+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-17T19:03:44.582366+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T19:03:44.582858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"content\": \"# Debug Report: eval_humaneval_grpo_rasp_20_2048\\n\\n## 诊断结论：实验已成功完成，无需重试\\n\\n### 失败根因\\n\\nEXIT_CODE=129 = SIGHUP (128+1)，不是 OOM/SIGKILL。\\n\\n进程在完成全部 164/164 题评测并保存结果后，收到 SIGHUP 信号退出。原因是 SSH 会话/终端在 ~2.5 小时运行后断开（terminal hangup），进程在写完结果文件后、clean exit 之前被挂断。\\n\\n**这不是 OOM，不是 GPU 内存不足，不是计算失败。**\\n\\n### 实验结果（已完整保存）\\n\\n- **pass@1: 0.1463 ± 0.0276 (24/164)**\\n- 平均生成长度: 1168.5 tokens，中位数: 948.5 tokens\\n- 结果文件: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_rasp_20_2048.json` (60KB)\\n- 运行时间: ~2h28m (21:56 - 00:24)\\n\\n### 重试建议\\n\\n**无需重试。** 结果完整有效，可直接使用。\\n\\n如果 job runner 因 EXIT_CODE≠0 标记为失败，建议：\\n1. 直接读取已保存的 JSON 结果文件\\n2. 在 job tracker 中手动标记为成功\\n3. 未来可在 eval 脚本中加 `nohup` 或 `setsid` 防止 SIGHUP 导致的误报\\n\\n### 与 SFT 对比参考\\n\\n- GRPO 模型 (rasp_20): pass@1 = 0.1463\\n- 需要对比 SFT 模型的结果来判断 GRPO 训练效果\\n\", \"total_chars\": 775, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-17T19:03:45.034818+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T19:03:45.185814+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T19:03:53.023431+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "exp_id": "eval_sft_cka_only_20_full",
+  "project": "recovery_aware_struct_prune",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-11672",
+    "exp_id": "eval_sft_cka_only_20_full",
+    "project": "recovery_aware_struct_prune",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T19:03:53.525769+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"2026-05-18 02:21:20,218 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\", \"Traceback (most recent call last):\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 422, in cached_files\", \"    hf_hub_download(\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 84, in _inner_fn\", \"    validate_repo_id(arg_value)\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 132, in validate_repo_id\", \"    raise HFValidationError(\", \"huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20'. Use `repo_type` argument if needed.\", \"\", \"The above exception was the direct cause of the following exception:\", \"\", \"Traceback (most recent call last):\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\\\", line 692, in from_pretrained\", \"    config = AutoConfig.from_pretrained(\", \"             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py\\\", line 374, in from_pretrained\", \"    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)\", \"                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/configuration_utils.py\\\", line 682, in get_config_dict\", \"    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)\", \"                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packag
+…[truncated 4177 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T19:04:30.765653+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:eval_sft_cka_only_20_full",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "SSH 到 westd-11672 (account: root)，诊断并修复实验 eval_sft_cka_only_20_full 的失败问题。\n\n## 问题\neval_gsm8k.py 第 463 行 `AutoTokenizer.from_pretrained(args.model_path)` 失败，因为模型目录缺少 tokenizer 文件。\n\n错误路径: `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20`\n错误: OSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name'\n\n这意味着该目录不存在或缺少 tokenizer_config.json / tokenizer.json 等文件。\n\n## 诊断步骤\n1. 检查 `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20` 是否存在\n2. 如果存在，列出其中的文件（ls -la），确认是否缺少 tokenizer 文件\n3. 如果缺少 tokenizer 文件：从基础模型复制。基础模型路径可能是：\n   - `/root/autodl-tmp/recovery_aware_struct_prune/DeepSeek-R1-Distill-Qwen-7B` \n   - 或 `/root/autodl-pub/models/DeepSeek-R1-Distill-Qwen-7B`\n   - 用 find 搜索 DeepSeek-R1-Distill-Qwen-7B 在 /root 下的位置\n4. 复制 tokenizer 相关文件到 sft_cka_only_20 目录：tokenizer_config.json, tokenizer.json, special_tokens_map.json, merges.txt (如有), vocab.json (如有)\n5. 如果目录本身不存在：检查 SFT 训练是否输出到了其他路径（检查 sft_cka_only_20 相关的训练日志）\n\n## 修复后验证\n```bash\nsource /root/miniconda3/bin/activate\ncd /root/recovery_aware_struct_prune\npython -c \"from transformers import AutoTokenizer; t = AutoTokenizer.from_pretrained('/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20'); print('OK', len(t))\"\n```\n\n## 输出\n最后输出一行 JSON：\n{\"root_cause\":\"<具体原因>\",\"fix_applied\":\"<做了什么修复>\",\"verified\":true/false}",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:eval_sft_cka_only_20_full",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "SSH 到 westd-11672 (account: root)，诊断并修复实验 eval_sft_cka_only_20_full 的失败问题。\n\n## 问题\neval_gsm8k.py 第 463 行 `AutoTokenizer.from_pretrained(args.model_path)` 失败，因为模型目录缺少 tokenizer 文件。\n\n错误路径: `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20`\n错误: OSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name'\n\n这意味着该目录不存在或缺少 tokenizer_config.json / tokenizer.json 等文件。\n\n## 诊断步骤\n1. 检查 `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20` 是否存在\n2. 如果存在，列出其中的文件（ls -la），确认是否缺少 tokenizer 文件\n3. 如果缺少 tokenizer 文件：从基础模型复制。基础模型路径可能是：\n   - `/root/autodl-tmp/recovery_aware_struct_prune/DeepSeek-R1-Distill-Qwen-7B` \n   - 或 `/root/autodl-pub/models/DeepSeek-R1-Distill-Qwen-7B`\n   - 用 find 搜索 DeepSeek-R1-Distill-Qwen-7B 在 /root 下的位置\n4. 复制 tokenizer 相关文件到 sft_cka_only_20 目录：tokenizer_config.json, tokenizer.json, special_tokens_map.json, merges.txt (如有), vocab.json (如有)\n5. 如果目录本身不存在：检查 SFT 训练是否输出到了其他路径（检查 sft_cka_only_20 相关的训练日志）\n\n## 修复后验证\n```bash\nsource /root/miniconda3/bin/activate\ncd /root/recovery_aware_struct_prune\npython -c \"from transformers import AutoTokenizer; t = AutoTokenizer.from_pretrained('/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20'); print('OK', len(t))\"\n```\n\n## 输出\n最后输出一行 JSON：\n{\"root_cause\":\"<具体原因>\",\"fix_applied\":\"<做了什么修复>\",\"verified\":true/false}",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T19:04:33.412456+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_sft_cka_only_20_full",
+  "field": "notes",
+  "value": "失败原因: EXIT_CODE=1 — AutoTokenizer.from_pretrained 无法加载 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 的 tokenizer（目录缺少 tokenizer 文件或不存在）。transformers fallback 到 HuggingFace Hub 下载时路径格式无效报错。| 类型: infrastructure | 已派 Worker 诊断修复",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_sft_cka_only_20_full",
+    "field": "notes",
+    "value": "失败原因: EXIT_CODE=1 — AutoTokenizer.from_pretrained 无法加载 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 的 tokenizer（目录缺少 tokenizer 文件或不存在）。transformers fallback 到 HuggingFace Hub 下载时路径格式无效报错。| 类型: infrastructure | 已派 Worker 诊断修复",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T19:04:34.111639+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_eval_sft_cka_only_20_full_20260517T190431\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_diagnose_eval_sft_cka_only_20_full_20260517T190431.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_eval_sft_cka_only_20_full_20260517T190431 started. Use get_worker_status('worker_diagnose_eval_sft_cka_only_20_full_20260517T190431') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3345
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T19:04:35.532040+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_sft_cka_only_20_full\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T18:22:00Z\", \"updated_at\": \"2026-05-17T19:04:34.857Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K N=1319. post-prune 38.5% highest, if post-SFT also highest then CKA-only scoring has SFT advantage; if converges to ~60% confirms SFT equalizes. N=200 pilot showed 64.0%.\", \"parent\": \"eval_sft_cka_only_20\", \"spec\": {\"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"44066\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 1319, \"model_name\": \"sft_cka_only_20\", \"seed\": 42, \"checkpoint_source\": \"sft_cka_only_20\", \"eval_data\": \"GSM8K (1319 samples, greedy)\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T19:01:31.886Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T19:01:36.713Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T19:01:41.355386+00:00\"}]}, \"notes\": \"失败原因: EXIT_CODE=1 — AutoTokenizer.from_pretrained 无法加载 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 的 tokenizer（目录缺少 tokenizer 文件或不存在）。transformers fallback 到 HuggingFace Hub 下载时路径格式无效报错。| 类型: infrastructure | 已派 Worker 诊断修复\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4282}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2119
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-17T19:04:46.277596+00:00_
+
+Worker 已派出诊断修复。Registry 已更新。
+
+**诊断结论**：`eval_sft_cka_only_20_full` 失败原因是 infrastructure 类错误——`/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20` 目录缺少 tokenizer 文件，导致 `AutoTokenizer.from_pretrained()` 在 eval_gsm8k.py:463 报错。Worker `worker_diagnose_eval_sft_cka_only_20_full_20260517T190431` 正在 SSH 修复（补充 tokenizer 文件），修复验证后将重提交实验。
+
+当前状态：
+- 5 个实验 RUNNING（eval_math500_grpo_standard_20, grpo_random_20, grpo_cka_only_20, eval_math500_grpo_rasp_20_v3, eval_postprune_rasp_30）
+- westd-11672 cuda:0 空闲（刚失败释放）— Worker 修复后可重跑
+- 1 个 Worker 活跃（诊断修复中）
+
+等待 Worker 回调后重提交实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_sft_cka_only_20_full"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+30 recorded events
+
+### User
+
+_source line 47 · 2026-05-17T23:12:12.609518+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-17T23:12:34.145921+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T23:12:34.196653+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-17T23:12:38.493641+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T23:12:38.514672+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T23:12:39.557287+00:00_
+
+Error: result (273,930 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/3d6afb91-df8b-4b77-86f6-ad5c43141e99/tool-results/mcp-agent-ml-research-read_registry-1779059559506.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-10fc939a/3d6afb91-df8b-4b77-86f6-ad5c43141e99/tool-results/mcp-agent-ml-research-read_registry-1779059559506.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1063
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T23:12:39.609882+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-17T23:12:40.062775+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T23:12:57.247705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 6, \"results\": [{\"exp_id\": \"eval_math500_grpo_standard_20\", \"success\": true, \"actions\": [\"Job still running (pid=14556)\"]}, {\"exp_id\": \"grpo_random_20\", \"success\": true, \"actions\": [\"Job still running (pid=719679)\"]}, {\"exp_id\": \"grpo_cka_only_20\", \"success\": true, \"actions\": [\"Job still running (pid=725227)\"]}, {\"exp_id\": \"eval_math500_grpo_rasp_20_v3\", \"success\": true, \"actions\": [\"Job still running (pid=31706)\"]}, {\"exp_id\": \"eval_sft_cka_only_20_n1319\", \"success\": true, \"actions\": [\"Job still running (pid=49475)\"]}, {\"exp_id\": \"eval_postprune_cka_only_30\", \"success\": true, \"actions\": [\"Job still running (pid=59403)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 18733
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T23:12:57.298582+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_sft_cka_only_20_n1319 | CKA-only 20% post-SFT GSM8K N=1319. Post-prune 38.5% highest among all scoring methods. If post-SFT also highest, CKA-only has SFT advantage. If converges to ~60%, confirms SFT equalizes all scoring methods. N=200 pilot showed 64.0%. | — | — | — |\\n| eval_postprune_standard_30 | Standard 30% post-prune GSM8K accuracy (N=200). At 20% Standard post-prune was 17.5%, at 25% was ~15%. 30% should show further degradation. Compared with RASP 30% post-prune (running) to verify RASP advantage persists at higher sparsity. Extends multi-sparsity degradation curve. | — | — | — |\\n| eval_math500_grpo_standard_20 | MATH-500 accuracy for grpo_standard_20 vs sft_standard_20. If grpo_standard ≈ sft_standard on MATH-500 (as on GSM8K), C1 decoupling holds across benchmarks. Tests cross-benchmark generalization of C1. | — | — | — |\\n\\n## 待处理\\n- eval_math500_grpo_unpruned: MATH-500 accuracy for unpruned GRPO v2 (step-100). Establishes MATH-500 baseline: if unpruned post-GRPO ≈ 73.6% (pre-GRPO), confirms decoupling pattern holds on harder benchmark. If higher, GRPO genuinely helps unpruned but not pruned = pruning-specific failure.（准备中）\\n- eval_math500_sft_cka_only_20: CKA-only SFT MATH-500 baseline. With SFT Standard=26%, SFT RASP=24.2%, if CKA-only SFT > 26%, CKA-only scoring has OOD advantage. Future comparison with GRPO CKA-only MATH-500 tests C1 decoupling for CKA-only method.（准备中）\\n- eval_math500_sft_rasp_25: MATH-500 accuracy for RASP 25% post-SFT. Extends MATH-500 cross-benchmark data to 25% sparsity. If MATH-500 recovery rate at 25% &lt; 20% (RASP 20% SFT = 24.2%), confirms sparsity gradient on harder benchmark. Parent: sf
+…[truncated 4569 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 17688
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-17T23:12:57.349436+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-16 08:05 UTC | 更新原因: D044/D045 narrative pivot complete, 25% expansion in progress, ROADMAP 16h stale refresh\\n\\n> 核心方向详见 paper_framing.md | 实验计划详见 experiment_plan.yaml\\n\\n## 核心方向\\n**Redundancy-Stability Tradeoff**: GRPO alignment fundamentally fails on structurally pruned reasoning models — reward improves but accuracy never follows (universal decoupling). Pruning adds training collapse whose severity diagnoses structural damage type. Functional redundancy plays opposite roles under SFT vs RLVR recovery.\\n\\n## 目标会议\\nEMNLP 2026 ARR May 25 提交（距今 ~9 天）\\n\\n## 当前阶段\\n**Research Phase — Scope Expansion** (D044/D045 后)\\n- Core 20% data: ✅ ALL COMPLETE (3 claims fully supported)\\n- 25% sparsity expansion: SFT 完成, eval 进行中/刚完成, GRPO 待启动\\n- Qwen2.5-Math-7B (Phase 2): importance+CKA scores 已算, RASP pruning 进行中\\n- Paper writing: Paper Agent Step 2 (Plot Generation) 进行中\\n\\n## 核心证据 (20% sparsity, N=1319)\\n| 实验 | 结果 | Claim |\\n|------|------|-------|\\n| Unpruned SFT → GRPO step-100 | 81.27% → 81.27% (Δ=0.00, reward 0→0.661) | C1: Universal decoupling |\\n| RASP GRPO v9 collapse | Permanent step ~10, peak reward 0.039, frac_zero_std→0.95 | C2: Collapse gradient |\\n| Standard GRPO v8 collapse | Transient dip step ~60, recovery step ~90 | C2: Collapse gradient |\\n| Unpruned GRPO v2 | 100 steps stable, no collapse, reward 0.661 | C2: Pruning-specificity |\\n| RASP SFT vs Standard SFT | 61.49% vs 59.29% (Δ=+2.2pp, p=0.25) | C3: SFT marginal advantage |\\n| RASP step-10 eval | 61.87% (collapse onset ≠ accuracy loss) | Bidirectional decoupling |\\n\\n## Scope Expansion 进度\\n### Phase 1: 25% Sparsity (intensify collapse)\\n- [x] pruned_rasp_25 + pruned_standard_25\\n- [x] sft_rasp_25 + sft_standard_25\\n- [ ] eval_sft_standard_25 
+…[truncated 2944 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 17286
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-17T23:13:03.183426+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-17T23:13:03.636863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_sft_cka_only_20_n1319\": {\"created_at\": \"2026-05-17T18:20:20.406Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K N=1319. Post-prune 38.5% highest among all scoring methods. If post-SFT also highest, CKA-only has SFT advantage. If converges to ~60%, confirms SFT equalizes all scoring methods. N=200 pilot showed 64.0%.\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"sft_cka_only_20\", \"command\": \"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json\", \"data_count\": 1319, \"data_path\": \"openai/gsm8k\", \"eval_data\": \"GSM8K (1319 samples, greedy)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_sft_cka_only_20_n1319.log\", \"model_name\": \"sft_cka_only_20\", \"pid\": \"49475\", \"seed\": 42, \"server\": \"westd-11672\", \"submitted_at\": \"2026-05-17T19:17:43.358Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"RUNNING\", \"updated_at\": \"2026-05-17T19:18:20.530Z\"}, \"eval_postprune_standard_30\": {\"created_at\": \"2026-05-17T19:08:46.051Z\", \"hypothesis\": \"Standard 30% post-prune GSM8K accuracy (N=200). At 20% Standard post-prune was 17.5%, at 25% was ~15%. 30% should show further degradation. Compared with RASP 30% post-prune (running) to verify RASP advantage persists at higher sparsity. Extends multi-sparsity degradation curve.\", \"parent\": \"prune_standard_30\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"pruned_standard_30\", \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30 --max_samples 2
+…[truncated 5225 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-17T23:13:03.637386+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'PREPARING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'PREPARING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T23:13:04.189609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_math500_grpo_unpruned\": {\"created_at\": \"2026-05-17T18:14:45.810Z\", \"hypothesis\": \"MATH-500 accuracy for unpruned GRPO v2 (step-100). Establishes MATH-500 baseline: if unpruned post-GRPO ≈ 73.6% (pre-GRPO), confirms decoupling pattern holds on harder benchmark. If higher, GRPO genuinely helps unpruned but not pruned = pruning-specific failure.\", \"parent\": \"eval_math500_unpruned\", \"retry_count\": 0, \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T23:09:14.246Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:2\"], \"pid\": \"64467\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log\", \"submitted_at\": \"2026-05-17T23:09:13.871Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_math500_sft_cka_only_20\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T22:59:03.755Z\", \"updated_at\": \"2026-05-17T22:59:03.755Z\", \"hypothesis\": \"CKA-only SFT MATH-500 baseline. With SFT Standard=26%, SFT RASP=24.2%, if CKA-only SFT > 26%, CKA-only scoring has OOD advantage. Future comparison with GRPO CKA-only MATH-500 tests C1 decoupling for CKA-only method.\"}, \"eval_math500_sft_rasp_25\": {\"created_at\": \"2026-05-17T18:14:47.071Z\", \"hypothesis\": \"MATH-500 accuracy for RASP 25% post-SFT. Extends MATH-500 cross-benchmark data to 25% sparsity. If MATH-500 recovery rate at 25% &lt; 20% (RASP 20% SFT = 24.2%), confirms sparsity gradient on harder benchmark. Parent: sft_rasp_25.\", \"parent\": \"sft_rasp_25\", \"retry_count\": 0, \"status\": \"PREPARING\", \"update
+…[truncated 14545 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-17T23:13:04.390714+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-17T23:13:04.441502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"content\": \"# Project Memory — recovery_aware_struct_prune\\n\\n## 基础设施经验\\n\\n### tokenizer 同步问题 (2026-05-17)\\nSFT 模型在 server A 训练后，server B 上 eval 会失败（AutoTokenizer 找不到 tokenizer 文件）。原因：HF Trainer save_pretrained 可能不保存 tokenizer，或 rsync 时遗漏。修复：从基础模型复制 tokenizer_config.json, tokenizer.json, special_tokens_map.json 等文件到 SFT checkpoint 目录。\\n\\n### GRPO 模型 MATH-500 eval 超时 (2026-05-17)\\nGRPO 模型在 MATH-500 上生成极长推理链 (~112s/problem vs SFT ~25s)，6h timeout 仅完成 193/500 题。v3 已去除 timeout 限制。D051 裁定 MATH-500 GRPO 对比不可用于 C3 论证（GRPO 和 SFT 的 max_new_tokens 配置不公平）。\\n\\n### eval_humaneval EXIT_CODE=129 (2026-05-17)\\nEXIT_CODE=129 = SIGHUP (128+1)，进程已完成全部评测并保存结果后 SSH 断连。结果有效，不需重跑。\\n\\n### sft_cka_only_20 跨服务器传输 (2026-05-17)\\nsft_cka_only_20 模型只存在于 westb-23072。通过 EC2 跳板中转 rsync 成功传输到 westd。磁盘清理后 westd 有 312GB 可用。\\n\\n### CKA-only pruning 实现方式 (2026-05-17)\\nprune.py 没有 cka_only mode。用 dummy importance (全1) + `--mode rasp --alpha 1` 实现：score = 1 × (1-F(h)) = 纯 CKA-only scoring。CKA-only 只剪 MLP（303/784 groups），0 attn heads（CKA overlap 在 attn 不够高）。\\n\\n## 关键实验发现\\n\\n### HumanEval@2048 超加性交互效应 (2026-05-17)\\nRASP 单独不帮 HumanEval（SFT RASP 10.37% < SFT Standard 11.59%），GRPO 单独不帮（GRPO Standard 10.37%），但 RASP+GRPO = 14.63% 是最优。这是超加性交互，不是独立主效应。意味着 C1 应从\\\"独立主效应\\\"改为\\\"RASP 保留了 GRPO 可以利用的结构\\\"。代码生成对剪枝极度敏感（67-77% 相对下降 vs GSM8K 25-35%）。N=164 下剪枝模型间差异未达统计显著性。\\n\\n### 30% sparsity cliff (2026-05-17 confirmed)\\nRASP 30% post-prune: **0% accuracy** (0/200), 97% truncated, avg_len=3984。Standard 30%: 3.0% @ 139/200。存在 25%→30% 的 hard cliff：模型完全丧失推理能力。对比 20%(RASP 29%, Standard 17.5%) 和 25%(RASP 21%, Standard 16%)，降解曲线在 30% 断崖。CKA-only 30% (28.92% actual sparsity) eval 重试中。\\n\\n### GRPO collapse 在 25% 同样发生 (2026-05-17)\\ngrpo_rasp_25: 100/100 steps, frac_reward_zero_std=0.875, reward=0.009, entropy=0.043。与 RASP 20% 类似（frac_zero_std=0.95
+…[truncated 1806 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-17T23:13:08.370904+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T23:13:08.421569+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-17T23:13:11.030287+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-17T23:13:11.532412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-17T23:13:11.683372+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "recovery_aware_struct_prune",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "recovery_aware_struct_prune",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-17T23:13:11.733923+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"recovery_aware_struct_prune\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/recovery_aware_struct_prune\", \"servers\": [{\"account\": \"root\", \"server\": \"westb-23072\"}, {\"account\": \"root\", \"server\": \"westd-11672\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-17T23:13:14.544178+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__poll_cron",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__poll_cron",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-17T23:13:14.594915+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-17T23:13:19.550893+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_constraints",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_constraints",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-17T23:13:19.551360+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-17T23:13:22.365087+00:00_
+
+called mcp__agent-ml-research__list_constraints
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_constraints</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__list_constraints",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-17T23:13:22.415879+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"constraints\": [{\"id\": \"C002\", \"added\": \"2026-05-14 15:19 UTC\", \"summary\": \"所有模型/checkpoint/大文件只写 /root/autodl-tmp/recovery_aware_struct_prune/，禁止写根分区（根分区仅 30GB）\", \"scope\": \"worker\", \"reason\": \"根分区 100% 满导致 v4 剪枝失败。AutoDL 根分区只有 30GB，模型文件 10GB+ 必须写数据盘。\", \"decision_id\": \"D005\"}, {\"id\": \"C003\", \"added\": \"2026-05-15 06:31 UTC\", \"summary\": \"westd-11672 GPU 分配：cuda:0 和 cuda:1 均属本项目独占，可用于 α ablation、baseline 实验等。与 westb-23072 (C001) 同等管理。\", \"scope\": \"all\", \"reason\": \"Manager 新分配 westd-11672 (2×RTX PRO 6000) 给本项目，需明确 GPU 归属边界供 Reviewer 审查。\"}, {\"id\": \"C004\", \"added\": \"2026-05-16 11:14 UTC\", \"summary\": \"GPU 白名单：westb-23072 cuda:0/1 + westd-11672 cuda:0/1/2/3（共 6 张）。严禁在白名单外的 GPU 上启动实验。\", \"scope\": \"all\", \"reason\": \"westd 扩容至 4 GPU (2026-05-16)，原 C001 仅 4 张已过时。\"}], \"count\": 3}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_sft_cka_only_20_full",
+  "tool": "mcp__agent-ml-research__list_constraints",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-17T23:14:41.993849+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 (C004): westb-23072 cuda:0/1 + westd-11672 cuda:0/1/2/3，共 6 张，严禁用其他 GPU
+- 大文件只写 `/root/autodl-tmp/recovery_aware_struct_prune/`，禁止写根分区（仅 30GB，C002）
+- MATH-500 GRPO vs SFT 对比不可用于 C3 论证——配置不公平（D051），只能做 supplementary evidence
+- CKA-only pruning 没有专用 mode：用 dummy importance (全1) + `--mode rasp --alpha 1` 实现纯 CKA-only scoring
+- 跨服务器传模型需走 EC2 跳板 rsync（westb↔westd 不能直连）
+- SFT checkpoint 传到另一台机器后，必须检查 tokenizer 文件是否齐全（AutoTokenizer 常找不到）
+
+### 2. 🖥️ 基础设施快照
+- **westb-23072**: 2× ~98GB GPU (RTX PRO 6000)，root 账号
+  - 工作目录: `/root/recovery_aware_struct_prune`，数据盘: `/root/autodl-tmp/recovery_aware_struct_prune/`
+  - Python: `/root/miniconda3/bin/python`（`source /root/miniconda3/bin/activate`）
+  - 活跃: grpo_cka_only_20 (PID 725227, cuda:0, tmux) + grpo_random_20 (PID 719679, cuda:1, tmux)
+- **westd-11672**: 4× ~95GB GPU，root 账号
+  - 同样路径结构，conda 同上
+  - 活跃: eval_math500_grpo_standard_20 (PID 14556, cuda:1) + eval_math500_grpo_rasp_20_v3 (PID 31706, cuda:3) + eval_sft_cka_only_20_n1319 (PID 49475, cuda:0) + eval_postprune_cka_only_30 (PID 59403, cron 显示 running 但 report 标 failed，需确认) + eval_math500_grpo_unpruned (PID 64467, cuda:2, 刚提交 PREPARING 态)
+- **Cron 监控**: 6 个活跃 cron（上述 6 个 RUNNING 实验各一个）
+- **W&B**: project=recovery_aware_struct_prune，run_name 与 exp_id 对应
+- **磁盘**: westd 上次清理后 ~312GB 可用
+
+### 3. 📊 当前状态
+**刚做完**: D053-D055 narrative pivot（C2 升级为 recovery capacity hierarchy，C1 收窄为 in-distribution decoupling，C3 降级为 observation），提交了 grpo_cka_only_20 和 grpo_random_20 两个关键 ablation GRPO 实验。
+
+**RUNNING (6 个实验)**:
+| exp_id | 服务器/GPU | 摘要 |
+|--------|-----------|------|
+| grpo_cka_only_20 | westb:0 | CKA-only GRPO 100步，step70 时 reward 0.31↑ 无 collapse（D053 核心证据）|
+| grpo_random_20 | westb:1 | Random GRPO 100步，step70 时 reward 0.19 缓慢，未 collapse |
+| eval_math500_grpo_standard_20 | westd:1 | MATH-500 eval，已 309/500，28.33% |
+| eval_math500_grpo_rasp_20_v3 | westd:3 | MATH-500 eval (no timeout)，已 256/500，28.00% |
+| eval_sft_cka_only_20_n1319 | westd:0 | CKA-only SFT GSM8K N=1319，已 1037/1319，63% |
+| eval_postprune_cka_only_30 | westd:? | cron 说 running (PID 59403) 但 report 标 failed，需 poll 确认 |
+
+**等待中**:
+- eval_math500_grpo_unpruned 刚提交 (westd:2, PID 64467)，状态仍 PREPARING，需确认是否已转 RUNNING 并注册 cron
+- 0 个 Worker 在运行 ← 违反 L1 硬约束（Worker 池 < 2），但当前所有任务都是 cron 监控的 eval/training，无需 Worker 常驻
+- Paper Agent Step 2 (Plot Generation) 状态不明，ROADMAP 说"进行中"但无 Worker
+
+### 4. 📋 待办（条件触发式）
+- grpo_cka_only_20 完成 → spawn worker 跑 GSM8K eval (N=1319) + 分析 collapse dynamics 全程 → 汇报 Director 确认 D053 最终结论
+- grpo_random_20 完成 → 同上 eval → 与 CKA-only/RASP/Standard 四方 GRPO collapse 对比表 → 确认 recovery capacity hierarchy 排序
+- eval_math500_grpo_standard_20 + eval_math500_grpo_rasp_20_v3 两个都完成 → 对比 MATH-500 GRPO decoupling (预期两者 ≈28%)，与 SFT MATH-500 数据 (Standard 26%, RASP 24.2%) 对比 → 更新 C1 in-distribution decoupling 证据
+- eval_sft_cka_only_20_n1319 完成 → 确认 SFT equalization (~63%) → 更新 paper tables
+- eval_math500_grpo_unpruned 完成 → 确认 unpruned MATH-500 baseline，如 ≈73.6% 则 decoupling 确认
+- 上述 eval 全部完成后 → westd 4 卡全空 → 优先启动: (1) 25% GRPO (grpo_standard_25 + grpo_rasp_25) 用 westb 2 卡, (2) Qwen2.5-Math-7B pipeline 继续 (prune → SFT → eval) 用 westd
+- Paper Agent 需推进 → 派 Worker 继续 Step 2 plot generation 或直接进 Step 3 drafting（用 20% 核心数据先写主体，后续 patch 25%/ablation 数据）
+- DDL 距今 ~8 天 (May 25 ARR)，论文写作和实验必须并行
+
+### 5. 🎯 战略上下文
+**核心叙事 (D044/D045 pivot 后)**:
+- **C1 (in-distribution decoupling)**: GRPO reward 涨但 accuracy 不跟，pruned/unpruned 都是。GSM8K 数据充分，MATH-500 正在补充
+- **C2 (recovery capacity hierarchy)**: 主力贡献。四种 scoring 的 GRPO collapse 行为形成清晰排序: CKA-only(最稳) > Random > Standard(borderline) > RASP(instant collapse)。这**逆转**了原始 hypothesis——保留冗余结构 = GRPO 更稳定，移除冗余(RASP) = 最脆弱。这是 Redundancy-Stability Tradeoff 的核心证据
+- **C3 (SFT recovery)**: 降级为 observation，不是 core claim
+
+**最容易判断错的事**:
+1. **CKA-only 结果逆转了 narrative**——原来预测 CKA-only 最快 collapse（因为移除冗余最多），结果它最稳定。不要按旧 hypothesis 理解结果
+2. **D053 是 provisional**——grpo_cka_only_20 和 grpo_random_20 还在跑，最终 100 步的 collapse 行为可能变化（尤其 CKA-only 可能 late collapse）。汇报时标注 provisional
+3. **MATH-500 数据不能和 GSM8K 简单混用**——D051 裁定 GRPO 的 MATH-500 对比有配置公平性问题，只能做 supplementary
+4. **eval_postprune_cka_only_30 状态矛盾**——cron 说 running 但 report 说 failed，接手后第一件事 poll 确认
+5. **Paper writing 严重滞后**——ROADMAP 说 Step 2 进行中但无活跃 Worker，距 DDL 8 天，必须立即并行推进写作
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_sft_cka_only_20_full"
+}
+```
+
+</details>
+
+---

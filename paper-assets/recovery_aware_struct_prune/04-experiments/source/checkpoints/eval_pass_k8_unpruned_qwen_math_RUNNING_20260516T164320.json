@@ -1,0 +1,25 @@
+{
+  "exp_id": "eval_pass_k8_unpruned_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:43:10.425Z",
+    "updated_at": "2026-05-16T16:43:19.924Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json",
+      "server": "westd-11672",
+      "gpu": "cuda:1",
+      "data_path": "GSM8K",
+      "data_count": 200,
+      "model_name": "grpo_unpruned_v2",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2",
+      "eval_data": "GSM8K (N=200, pass@8, T=0.7)"
+    }
+  },
+  "timestamp": "2026-05-16T16:43:20.133289+00:00",
+  "trigger": "update_registry"
+}

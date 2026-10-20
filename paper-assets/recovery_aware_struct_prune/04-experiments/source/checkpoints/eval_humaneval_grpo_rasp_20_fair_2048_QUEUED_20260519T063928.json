@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_humaneval_grpo_rasp_20_fair_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:38:59.146Z",
+    "updated_at": "2026-05-19T06:39:28.495Z",
+    "hypothesis": "HumanEval pass@1 for GRPO RASP 20% (fair model) with max_new_tokens=2048. Fair model trained with same setup as Standard/CKA-only for unbiased comparison on code generation.",
+    "parent": "grpo_stage2_rasp_20_fair"
+  },
+  "timestamp": "2026-05-19T06:39:28.877090+00:00",
+  "trigger": "update_registry"
+}

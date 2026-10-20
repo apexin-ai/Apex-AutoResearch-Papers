@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ca0cfa606d6f14f4fe5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check grpo rasp exit",
+  "task_key": "worker_ops_check-grpo-rasp-exit_20260514T213532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-grpo-rasp-exit_20260514T213532_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "3c0b71c3670917aa78471c304384802b1d31a918a7726f814dd3f44284cdfabb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 `DONE / negative`，cron 不存在（可能已被清除）。\n\n**结论：grpo_rasp_20_fast 是负面结果。** 核心问题是 pruned model 生成的 completions 全部退化——hit max_length 1024，输出重复无意义字符（`. . . .`），几乎无正确答案。GRPO 需要组内 reward 方差来计算 advantage，但当 97.5-100% 的 completions reward 都是 0 时，advantage=0，loss=0，grad_norm=0，模型完全没有更新。\n\n尽管 RASP pruned model post-prune 有 29% GSM8K accuracy（greedy decode），GRPO 的 sampling 配置下模型无法产生任何有效 completion 来启动学习。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-grpo-rasp-exit.md"
+}

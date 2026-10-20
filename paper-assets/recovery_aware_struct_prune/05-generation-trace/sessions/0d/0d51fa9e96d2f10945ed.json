@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d51fa9e96d2f10945ed",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup step100",
+  "task_key": "worker_ops_westb-disk-cleanup-step100_20260515T214137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-disk-cleanup-step100_20260515T214137_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "6b32c1d9a4378c8c19b7064cd1937423fcb31cfe520a4187ecd0e2b488f097d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**释放 ~38GB，当前可用 63GB**（超过 55GB 目标）。\n\n删除内容：\n- `grpo_stage2_standard_20_v8/checkpoint-50/optimizer.pt` — 15.8GB（model.safetensors 保留）\n- `sft_rasp_20/checkpoint-935/optimizer.pt` — 24.6GB（中间 checkpoint，训练已完成到 step 1870，模型文件保留）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-step100.md"
+}

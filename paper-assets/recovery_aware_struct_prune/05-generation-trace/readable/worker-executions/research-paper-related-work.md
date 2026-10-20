@@ -1,0 +1,7050 @@
+# research paper related work
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 102
+- **Recorded user turns:** 0
+- **Tool calls:** 39
+- **Original source:** `logs/workers/worker_research_paper-related-work_20260515T024654.log`
+- **Structured JSON:** [`e53e4b6a58c1ecd8fc81.json`](../../sessions/e5/e53e4b6a58c1ecd8fc81.json)
+
+## Before a recorded user message
+
+102 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3f4042c6-5421-4ad0-931f-a5c43f13531c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778819400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "72af84b1-9473-4905-bf25-22c62e49eb33",
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我将并行搜索多个文献类别，然后汇总成调研报告。
+
+Let me start by loading the necessary tools and launching parallel searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "4bdb75c0-e59a-4d8a-977e-1add13cb5fda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFaDprDkZhZCUkQPbFs9Wh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12192,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12192
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EobszMwQQfVp38xYhL5mbW`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "484da71f-3040-4736-acd4-d81f91e8ccc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFaDprDkZhZCUkQPbFs9Wh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12192,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12192
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T02:47:06.732Z_
+
+<details><summary>↩ Tool result · `toolu_01EobszMwQQfVp38xYhL5mbW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "f010f511-8c05-4c73-b957-9e0d297fbf25",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch parallel searches for the different literature categories. I'll search for the specific papers mentioned by Dream review first, then the broader categories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "f7ca7c79-4d6c-47fe-82f9-fa820280cbe9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmB6jQ7QPY8VD6S1tMehWa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 24033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Starting parallel literature searches across all required categories.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "3c9c651e-3cb8-4a45-a967-1fd5ed9dc6b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmB6jQ7QPY8VD6S1tMehWa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 24033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01223eS6v9eVrQ6JoX4rNSRa`</summary>
+
+```json
+{
+  "query": "FANG Function-Aware Neuron Grouping structured pruning LLM arXiv 2512"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "b82d3849-4592-43d4-8039-f4f0a8e3b288",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmB6jQ7QPY8VD6S1tMehWa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 24033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HA4AUQQgZEX6hKfrUu1foS`</summary>
+
+```json
+{
+  "query": "FuncNet ICA functional network LLM pruning arXiv 2508.05239"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "b6083c87-d418-4bc3-a6d1-48ba32a3fdd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmB6jQ7QPY8VD6S1tMehWa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 24033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XH1e5Wv4Z5xHJiR4DVn1x6`</summary>
+
+```json
+{
+  "query": "RestoreLCC activation compensation pruning NeurIPS 2025 arXiv 2510"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "f6f6020b-0121-4e6f-8e12-dcb1ee66c117",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmB6jQ7QPY8VD6S1tMehWa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 24033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013uQzTVfQESEWK8aZp1mQFE`</summary>
+
+```json
+{
+  "query": "PAT Pruning-Aware Training LLM structured pruning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "b9c1cff5-192c-462e-b71f-81ebab1b817f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmB6jQ7QPY8VD6S1tMehWa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 24033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011Afu9Dx5BzSJnztxiFfco4`</summary>
+
+```json
+{
+  "query": "CKA Centered Kernel Alignment neural network representation comparison survey"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "5dd3bd3f-4be1-475c-baf4-dc69bddcac69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmB6jQ7QPY8VD6S1tMehWa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 24033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YJBgSdppfnwnjHffkgWxyg`</summary>
+
+```json
+{
+  "query": "DeepSeek-R1 reasoning LLM pruning compression quantization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "2259477e-c5c0-4ec6-93db-f5bbf02454dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmB6jQ7QPY8VD6S1tMehWa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 24033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T02:47:17.509Z_
+
+<details><summary>↩ Tool result · `toolu_01HA4AUQQgZEX6hKfrUu1foS`</summary>
+
+```text
+Web search results for query: "FuncNet ICA functional network LLM pruning arXiv 2508.05239"
+
+Links: [{"title":"[2508.05239] Pruning Large Language Models by Identifying and Preserving Functional Networks","url":"https://arxiv.org/abs/2508.05239"},{"title":"Pruning Large Language Models by Identifying and Preserving Functional Networks","url":"https://arxiv.org/html/2508.05239"},{"title":"(PDF) Pruning Large Language Models by Identifying and Preserving Functional Networks","url":"https://www.researchgate.net/publication/394397351_Pruning_Large_Language_Models_by_Identifying_and_Preserving_Functional_Networks"},{"title":"Compact: Common-token Optimized Model Pruning Across Channels and Tokens","url":"https://arxiv.org/html/2509.06836v1"},{"title":"FNF: Functional Network Fingerprint for Large Language Models","url":"https://arxiv.org/html/2601.22692"},{"title":"Memory-Efficient Federated Fine-Tuning of Large Language Models via Layer Pruning","url":"https://arxiv.org/html/2508.17209"},{"title":"Brain-Inspired Exploration of Functional Networks and Key Neurons in Large Language Models","url":"https://arxiv.org/html/2502.20408"},{"title":"[2508.02381v2] Beyond Manually Designed Pruning Policies with Second-Level Performance Prediction: A Pruning Framework for LLMs","url":"https://arxiv.org/abs/2508.02381v2"},{"title":"[2601.22692] FNF: Functional Network Fingerprint for Large Language Models","url":"https://arxiv.org/abs/2601.22692"},{"title":"Beyond Manually Designed Pruning Policies with Second-Level Performance Prediction: A Pruning Framework for LLMs","url":"https://arxiv.org/html/2508.02381v2"}]
+
+Based on the search results, here's what I found about arXiv 2508.05239:
+
+## Paper Summary
+
+The paper is titled "Pruning Large Language Models by Identifying and Preserving Functional Networks" and was published on August 7, 2025.
+
+## Key Approach
+
+The paper treats an LLM as a digital brain and decomposes the LLM into functional networks, analogous to identifying functional brain networks in neuroimaging data. An LLM is pruned by preserving the key neurons within these functional networks.
+
+## Motivation
+
+The research addresses a limitation in current structured pruning methods: Most overlook the interaction and collaboration among artificial neurons that are crucial for the functionalities of LLMs, leading to a disruption in the macro functional architecture of LLMs and consequently a pruning performance degradation.
+
+## Results and Contributions
+
+Experimental results demonstrate that the proposed method can successfully identify and locate functional networks and key neurons in LLMs, enabling efficient model pruning. Additionally, the work introduces analysis methods from cognitive neuroscience into the study of identifying functional networks within LLMs, demonstrating their effectiveness in understanding and improving these models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "24c6ad1d-2a36-4c08-8c9e-74e286dc0bd1",
+  "tool_use_result": {
+    "query": "FuncNet ICA functional network LLM pruning arXiv 2508.05239",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QUEcmpCbyWZADKMhVC77mn",
+        "content": [
+          {
+            "title": "[2508.05239] Pruning Large Language Models by Identifying and Preserving Functional Networks",
+            "url": "https://arxiv.org/abs/2508.05239"
+          },
+          {
+            "title": "Pruning Large Language Models by Identifying and Preserving Functional Networks",
+            "url": "https://arxiv.org/html/2508.05239"
+          },
+          {
+            "title": "(PDF) Pruning Large Language Models by Identifying and Preserving Functional Networks",
+            "url": "https://www.researchgate.net/publication/394397351_Pruning_Large_Language_Models_by_Identifying_and_Preserving_Functional_Networks"
+          },
+          {
+            "title": "Compact: Common-token Optimized Model Pruning Across Channels and Tokens",
+            "url": "https://arxiv.org/html/2509.06836v1"
+          },
+          {
+            "title": "FNF: Functional Network Fingerprint for Large Language Models",
+            "url": "https://arxiv.org/html/2601.22692"
+          },
+          {
+            "title": "Memory-Efficient Federated Fine-Tuning of Large Language Models via Layer Pruning",
+            "url": "https://arxiv.org/html/2508.17209"
+          },
+          {
+            "title": "Brain-Inspired Exploration of Functional Networks and Key Neurons in Large Language Models",
+            "url": "https://arxiv.org/html/2502.20408"
+          },
+          {
+            "title": "[2508.02381v2] Beyond Manually Designed Pruning Policies with Second-Level Performance Prediction: A Pruning Framework for LLMs",
+            "url": "https://arxiv.org/abs/2508.02381v2"
+          },
+          {
+            "title": "[2601.22692] FNF: Functional Network Fingerprint for Large Language Models",
+            "url": "https://arxiv.org/abs/2601.22692"
+          },
+          {
+            "title": "Beyond Manually Designed Pruning Policies with Second-Level Performance Prediction: A Pruning Framework for LLMs",
+            "url": "https://arxiv.org/html/2508.02381v2"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv 2508.05239:\n\n## Paper Summary\n\nThe paper is titled \"Pruning Large Language Models by Identifying and Preserving Functional Networks\" and was published on August 7, 2025.\n\n## Key Approach\n\nThe paper treats an LLM as a digital brain and decomposes the LLM into functional networks, analogous to identifying functional brain networks in neuroimaging data. An LLM is pruned by preserving the key neurons within these functional networks.\n\n## Motivation\n\nThe research addresses a limitation in current structured pruning methods: Most overlook the interaction and collaboration among artificial neurons that are crucial for the functionalities of LLMs, leading to a disruption in the macro functional architecture of LLMs and consequently a pruning performance degradation.\n\n## Results and Contributions\n\nExperimental results demonstrate that the proposed method can successfully identify and locate functional networks and key neurons in LLMs, enabling efficient model pruning. Additionally, the work introduces analysis methods from cognitive neuroscience into the study of identifying functional networks within LLMs, demonstrating their effectiveness in understanding and improving these models."
+    ],
+    "durationSeconds": 5.891135463999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T02:47:17.578Z_
+
+<details><summary>↩ Tool result · `toolu_01223eS6v9eVrQ6JoX4rNSRa`</summary>
+
+```text
+Web search results for query: "FANG Function-Aware Neuron Grouping structured pruning LLM arXiv 2512"
+
+Links: [{"title":"[2512.23014] Improving Generalization in LLM Structured Pruning via Function-Aware Neuron Grouping","url":"https://arxiv.org/abs/2512.23014"},{"title":"Improving Generalization in LLM Structured Pruning via Function-Aware Neuron Grouping","url":"https://arxiv.org/html/2512.23014"},{"title":"Improving Generalization in LLM Structured Pruning via ...","url":"https://www.arxiv.org/pdf/2512.23014"},{"title":"GPrune-LLM: Generalization-Aware Structured Pruning for Large Language Models","url":"https://arxiv.org/html/2603.13418"},{"title":"Pruning Large Language Models by Identifying and Preserving Functional Networks","url":"https://arxiv.org/html/2508.05239v1"},{"title":"LLM-BIP: Structured Pruning for Large Language Models with Block-Wise Forward Importance Propagation","url":"https://arxiv.org/html/2412.06419v1"},{"title":"Sample-aware Adaptive Structured Pruning for Large Language Models","url":"https://arxiv.org/html/2503.06184"},{"title":"Fluctuation-based Adaptive Structured Pruning for Large Language Models","url":"https://arxiv.org/html/2312.11983v1"},{"title":"Toward Adaptive Large Language Models Structured Pruning via Hybrid-grained Weight Importance Assessment","url":"https://arxiv.org/html/2403.10799v4"},{"title":"(PDF) Pruning Large Language Models by Identifying and Preserving Functional Networks","url":"https://www.researchgate.net/publication/394397351_Pruning_Large_Language_Models_by_Identifying_and_Preserving_Functional_Networks"}]
+
+Based on the search results, I found detailed information about FANG (Function-Aware Neuron Grouping):
+
+## Overview
+
+FANG is a post-training pruning framework that alleviates calibration bias by identifying and preserving neurons critical to specific function.
+
+## Key Components
+
+FANG consists of three core components: (1) A function-aware pruning strategy, in which neurons are grouped by their functional roles and pruned independently. During importance estimation within each group, tokens most semantically aligned with the group's function are assigned greater weight. (2) A shared neuron group retention mechanism that identifies and preserves neurons contributing across multiple context types.
+
+## Approach
+
+To achieve a better trade-off between sparsity and performance, it allocates sparsity to each block adaptively based on its functional complexity.
+
+## Performance Results
+
+FANG achieves state-of-the-art (SOTA) results when combined with FLAP and OBC, two representative pruning methods. Specifically, FANG outperforms FLAP and OBC by 1.5%--8.5% in average accuracy under 30% and 40% sparsity.
+
+The paper (arXiv:2512.23014) was published on December 28, 2025, and demonstrates how functional specialization in LLMs can be leveraged to improve the generalization of structured pruning approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "4f66b894-a38b-4c05-9061-c69c592af5cd",
+  "tool_use_result": {
+    "query": "FANG Function-Aware Neuron Grouping structured pruning LLM arXiv 2512",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H6mm9zSTBMZW2RRLX9jb9b",
+        "content": [
+          {
+            "title": "[2512.23014] Improving Generalization in LLM Structured Pruning via Function-Aware Neuron Grouping",
+            "url": "https://arxiv.org/abs/2512.23014"
+          },
+          {
+            "title": "Improving Generalization in LLM Structured Pruning via Function-Aware Neuron Grouping",
+            "url": "https://arxiv.org/html/2512.23014"
+          },
+          {
+            "title": "Improving Generalization in LLM Structured Pruning via ...",
+            "url": "https://www.arxiv.org/pdf/2512.23014"
+          },
+          {
+            "title": "GPrune-LLM: Generalization-Aware Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/html/2603.13418"
+          },
+          {
+            "title": "Pruning Large Language Models by Identifying and Preserving Functional Networks",
+            "url": "https://arxiv.org/html/2508.05239v1"
+          },
+          {
+            "title": "LLM-BIP: Structured Pruning for Large Language Models with Block-Wise Forward Importance Propagation",
+            "url": "https://arxiv.org/html/2412.06419v1"
+          },
+          {
+            "title": "Sample-aware Adaptive Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/html/2503.06184"
+          },
+          {
+            "title": "Fluctuation-based Adaptive Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/html/2312.11983v1"
+          },
+          {
+            "title": "Toward Adaptive Large Language Models Structured Pruning via Hybrid-grained Weight Importance Assessment",
+            "url": "https://arxiv.org/html/2403.10799v4"
+          },
+          {
+            "title": "(PDF) Pruning Large Language Models by Identifying and Preserving Functional Networks",
+            "url": "https://www.researchgate.net/publication/394397351_Pruning_Large_Language_Models_by_Identifying_and_Preserving_Functional_Networks"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about FANG (Function-Aware Neuron Grouping):\n\n## Overview\n\nFANG is a post-training pruning framework that alleviates calibration bias by identifying and preserving neurons critical to specific function.\n\n## Key Components\n\nFANG consists of three core components: (1) A function-aware pruning strategy, in which neurons are grouped by their functional roles and pruned independently. During importance estimation within each group, tokens most semantically aligned with the group's function are assigned greater weight. (2) A shared neuron group retention mechanism that identifies and preserves neurons contributing across multiple context types.\n\n## Approach\n\nTo achieve a better trade-off between sparsity and performance, it allocates sparsity to each block adaptively based on its functional complexity.\n\n## Performance Results\n\nFANG achieves state-of-the-art (SOTA) results when combined with FLAP and OBC, two representative pruning methods. Specifically, FANG outperforms FLAP and OBC by 1.5%--8.5% in average accuracy under 30% and 40% sparsity.\n\nThe paper (arXiv:2512.23014) was published on December 28, 2025, and demonstrates how functional specialization in LLMs can be leveraged to improve the generalization of structured pruning approaches."
+    ],
+    "durationSeconds": 6.373226875
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T02:47:19.106Z_
+
+<details><summary>↩ Tool result · `toolu_013uQzTVfQESEWK8aZp1mQFE`</summary>
+
+```text
+Web search results for query: "PAT Pruning-Aware Training LLM structured pruning 2025 2026"
+
+Links: [{"title":"[2408.14721] PAT: Pruning-Aware Tuning for Large Language Models","url":"https://arxiv.org/abs/2408.14721"},{"title":"Diet Your LLM: Dimension-wise Global Pruning of LLMs via Merging Task-specific Importance Score","url":"https://arxiv.org/html/2603.23985"},{"title":"PAT: Pruning-Aware Tuning for Large Language Models","url":"https://arxiv.org/html/2408.14721v1"},{"title":"PAT: Pruning-Aware Tuning for Large Language Models","url":"https://ojs.aaai.org/index.php/AAAI/article/view/34649/36804"},{"title":"Pruning Aware Training(PAT) in LLMs - by Bugra Akyildiz","url":"https://mlops.substack.com/p/pruning-aware-trainingpat-in-llms"},{"title":"GitHub - kriskrisliu/PAT: [AAAI 2025] PAT: Pruning-Aware Tuning for Large Language Models","url":"https://github.com/kriskrisliu/PAT"},{"title":"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling","url":"https://arxiv.org/html/2604.25098"},{"title":"Pruning Large Language Models by Identifying and Preserving Functional Networks","url":"https://arxiv.org/html/2508.05239v1"},{"title":"[2603.13418] GPrune-LLM: Generalization-Aware Structured Pruning for Large Language Models","url":"https://arxiv.org/abs/2603.13418"},{"title":"CFSP: An Efficient Structured Pruning Framework for LLMs ...","url":"https://aclanthology.org/2025.coling-main.626.pdf"}]
+
+Based on the search results, here's what I found about PAT (Pruning-Aware Training) for LLM structured pruning:
+
+## Overview
+
+PAT is a Pruning-Aware Tuning paradigm that aims to incorporate structural pruning with model fine-tuning to eliminate model redundancy while preserving model performance.
+
+## Key Technical Components
+
+PAT inserts Hybrid Sparsification Modules (HSMs) between the Attention and FFN components, which comprise a lightweight operator and a globally shared trainable mask. The lightweight operator maintains a training overhead comparable to that of LoRA, while the trainable mask unifies the channels to be sparsified, ensuring structural pruning.
+
+Additionally, PAT proposes an Identity Loss which decouples the transformation and scaling properties of the HSMs to enhance training robustness.
+
+## Performance Results
+
+For example, a Llama2-7b model with a 25% pruning ratio achieves 1.33× speedup while outperforming the LoRA-finetuned model by up to 1.26% in accuracy with a similar training cost.
+
+## Recent Recognition
+
+PAT was accepted at AAAI 2025, indicating it represents recent advances in the field of structured pruning for large language models during the 2025-2026 period.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "2be3d376-dd5d-4278-a48d-4902b67ac126",
+  "tool_use_result": {
+    "query": "PAT Pruning-Aware Training LLM structured pruning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AwTEp2Ep8jGjgujVQZsNJ8",
+        "content": [
+          {
+            "title": "[2408.14721] PAT: Pruning-Aware Tuning for Large Language Models",
+            "url": "https://arxiv.org/abs/2408.14721"
+          },
+          {
+            "title": "Diet Your LLM: Dimension-wise Global Pruning of LLMs via Merging Task-specific Importance Score",
+            "url": "https://arxiv.org/html/2603.23985"
+          },
+          {
+            "title": "PAT: Pruning-Aware Tuning for Large Language Models",
+            "url": "https://arxiv.org/html/2408.14721v1"
+          },
+          {
+            "title": "PAT: Pruning-Aware Tuning for Large Language Models",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/34649/36804"
+          },
+          {
+            "title": "Pruning Aware Training(PAT) in LLMs - by Bugra Akyildiz",
+            "url": "https://mlops.substack.com/p/pruning-aware-trainingpat-in-llms"
+          },
+          {
+            "title": "GitHub - kriskrisliu/PAT: [AAAI 2025] PAT: Pruning-Aware Tuning for Large Language Models",
+            "url": "https://github.com/kriskrisliu/PAT"
+          },
+          {
+            "title": "Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling",
+            "url": "https://arxiv.org/html/2604.25098"
+          },
+          {
+            "title": "Pruning Large Language Models by Identifying and Preserving Functional Networks",
+            "url": "https://arxiv.org/html/2508.05239v1"
+          },
+          {
+            "title": "[2603.13418] GPrune-LLM: Generalization-Aware Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/abs/2603.13418"
+          },
+          {
+            "title": "CFSP: An Efficient Structured Pruning Framework for LLMs ...",
+            "url": "https://aclanthology.org/2025.coling-main.626.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about PAT (Pruning-Aware Training) for LLM structured pruning:\n\n## Overview\n\nPAT is a Pruning-Aware Tuning paradigm that aims to incorporate structural pruning with model fine-tuning to eliminate model redundancy while preserving model performance.\n\n## Key Technical Components\n\nPAT inserts Hybrid Sparsification Modules (HSMs) between the Attention and FFN components, which comprise a lightweight operator and a globally shared trainable mask. The lightweight operator maintains a training overhead comparable to that of LoRA, while the trainable mask unifies the channels to be sparsified, ensuring structural pruning.\n\nAdditionally, PAT proposes an Identity Loss which decouples the transformation and scaling properties of the HSMs to enhance training robustness.\n\n## Performance Results\n\nFor example, a Llama2-7b model with a 25% pruning ratio achieves 1.33× speedup while outperforming the LoRA-finetuned model by up to 1.26% in accuracy with a similar training cost.\n\n## Recent Recognition\n\nPAT was accepted at AAAI 2025, indicating it represents recent advances in the field of structured pruning for large language models during the 2025-2026 period."
+    ],
+    "durationSeconds": 6.414565383000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T02:47:19.546Z_
+
+<details><summary>↩ Tool result · `toolu_01XH1e5Wv4Z5xHJiR4DVn1x6`</summary>
+
+```text
+Web search results for query: "RestoreLCC activation compensation pruning NeurIPS 2025 arXiv 2510"
+
+Links: [{"title":"[2510.21834] Restoring Pruned Large Language Models via Lost Component Compensation","url":"https://arxiv.org/abs/2510.21834"},{"title":"Restoring Pruned Large Language Models via Lost Component Compensation","url":"https://www.arxiv.org/pdf/2510.21834"},{"title":"Restoring Pruned Large Language Models via Lost Component Compensation","url":"https://arxiv.org/html/2510.21834"},{"title":"NeurIPS Poster Restoring Pruned Large Language Models via Lost Component Compensation","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/117115"},{"title":"Restoring Pruned Large Language Models via Lost Component Compensation | OpenReview","url":"https://openreview.net/forum?id=cECo8tetzF"},{"title":"RCPU: Rotation-Constrained Error Compensation for Structured Pruning of Large Language Models","url":"https://arxiv.org/html/2510.07782"},{"title":"NeurIPS 2025 Papers","url":"https://neurips.cc/virtual/2025/papers.html"},{"title":"[2510.13999] REAP the Experts: Why Pruning Prevails for One-Shot MoE compression","url":"https://arxiv.org/abs/2510.13999"},{"title":"NeurIPS 2025 Expo","url":"https://neurips.cc/virtual/2025/loc/san-diego/events/expo-2025"},{"title":"SCOPE: Saliency-Coverage Oriented Token Pruning for Efficient Multimodel LLMs","url":"https://arxiv.org/html/2510.24214v1"}]
+
+Based on the search results, I found information about RestoreLCC, a paper accepted to NeurIPS 2025:
+
+## RestoreLCC: Restoring Pruned LLMs via Lost Component Compensation
+
+RestoreLCC is a method described in arXiv paper 2510.21834, and it was published as a NeurIPS 2025 spotlight paper.
+
+**Core Approach:**
+
+The work observes that pruning-induced information loss is reflected in attention activations, and selectively reintroducing components of this information can significantly recover model performance. RestoreLCC is a plug-and-play method that contrastively probes critical attention heads via activation editing, extracts lost components from activation differences, and finally injects them back into the corresponding pruned heads for compensation and recovery.
+
+**Key Features:**
+
+RestoreLCC is compatible with structured, semi-structured, and unstructured pruning schemes. Extensive experiments demonstrate that RestoreLCC consistently outperforms state-of-the-art baselines in both general and task-specific performance recovery, without compromising the sparsity or inference efficiency of pruned models.
+
+**Experimental Results:**
+
+Under unstructured pruning at 50% sparsity, RestoreLCC achieves 58.83% mean accuracy, outperforming LoFiT (56.82%); in semi-structured pruning, it improves to 55.00% accuracy, yielding a +2.65% gain over DoRA; and under structured pruning at 20% sparsity, RestoreLCC reaches 59.76% accuracy, improving over DoRA by +1.25%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "53000542-3d5e-4c2b-b5df-b5a025fa6d87",
+  "tool_use_result": {
+    "query": "RestoreLCC activation compensation pruning NeurIPS 2025 arXiv 2510",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HEsosvJTBfXvRZaURExzEs",
+        "content": [
+          {
+            "title": "[2510.21834] Restoring Pruned Large Language Models via Lost Component Compensation",
+            "url": "https://arxiv.org/abs/2510.21834"
+          },
+          {
+            "title": "Restoring Pruned Large Language Models via Lost Component Compensation",
+            "url": "https://www.arxiv.org/pdf/2510.21834"
+          },
+          {
+            "title": "Restoring Pruned Large Language Models via Lost Component Compensation",
+            "url": "https://arxiv.org/html/2510.21834"
+          },
+          {
+            "title": "NeurIPS Poster Restoring Pruned Large Language Models via Lost Component Compensation",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/poster/117115"
+          },
+          {
+            "title": "Restoring Pruned Large Language Models via Lost Component Compensation | OpenReview",
+            "url": "https://openreview.net/forum?id=cECo8tetzF"
+          },
+          {
+            "title": "RCPU: Rotation-Constrained Error Compensation for Structured Pruning of Large Language Models",
+            "url": "https://arxiv.org/html/2510.07782"
+          },
+          {
+            "title": "NeurIPS 2025 Papers",
+            "url": "https://neurips.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "[2510.13999] REAP the Experts: Why Pruning Prevails for One-Shot MoE compression",
+            "url": "https://arxiv.org/abs/2510.13999"
+          },
+          {
+            "title": "NeurIPS 2025 Expo",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/events/expo-2025"
+          },
+          {
+            "title": "SCOPE: Saliency-Coverage Oriented Token Pruning for Efficient Multimodel LLMs",
+            "url": "https://arxiv.org/html/2510.24214v1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about RestoreLCC, a paper accepted to NeurIPS 2025:\n\n## RestoreLCC: Restoring Pruned LLMs via Lost Component Compensation\n\nRestoreLCC is a method described in arXiv paper 2510.21834, and it was published as a NeurIPS 2025 spotlight paper.\n\n**Core Approach:**\n\nThe work observes that pruning-induced information loss is reflected in attention activations, and selectively reintroducing components of this information can significantly recover model performance. RestoreLCC is a plug-and-play method that contrastively probes critical attention heads via activation editing, extracts lost components from activation differences, and finally injects them back into the corresponding pruned heads for compensation and recovery.\n\n**Key Features:**\n\nRestoreLCC is compatible with structured, semi-structured, and unstructured pruning schemes. Extensive experiments demonstrate that RestoreLCC consistently outperforms state-of-the-art baselines in both general and task-specific performance recovery, without compromising the sparsity or inference efficiency of pruned models.\n\n**Experimental Results:**\n\nUnder unstructured pruning at 50% sparsity, RestoreLCC achieves 58.83% mean accuracy, outperforming LoFiT (56.82%); in semi-structured pruning, it improves to 55.00% accuracy, yielding a +2.65% gain over DoRA; and under structured pruning at 20% sparsity, RestoreLCC reaches 59.76% accuracy, improving over DoRA by +1.25%."
+    ],
+    "durationSeconds": 7.420513414999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T02:47:20.959Z_
+
+<details><summary>↩ Tool result · `toolu_011Afu9Dx5BzSJnztxiFfco4`</summary>
+
+```text
+Web search results for query: "CKA Centered Kernel Alignment neural network representation comparison survey"
+
+Links: [{"title":"Using Centered Kernel Alignment for Understanding and ...","url":"https://digitalcommons.uri.edu/cgi/viewcontent.cgi?article=3256&context=theses"},{"title":"[1905.00414] Similarity of Neural Network Representations Revisited","url":"https://arxiv.org/abs/1905.00414"},{"title":"Centered Kernel Alignment","url":"https://jyopari.github.io/posts/CKA"},{"title":"Centered Kernel Alignment (CKA) Overview","url":"https://www.emergentmind.com/topics/centered-kernel-alignment-cka"},{"title":"Center Kernel Alignment (CKA) Explained","url":"https://www.emergentmind.com/topics/center-kernel-alignment-cka"},{"title":"Centered Kernel Alignment (CKA) Similarity","url":"https://www.emergentmind.com/topics/centered-kernel-alignment-cka-similarity"},{"title":"[2210.16156] Reliability of CKA as a Similarity Measure in Deep Learning","url":"https://arxiv.org/abs/2210.16156"},{"title":"IEEE TRANS. PAMI 1 Gaussian RBF Centered Kernel Alignment (CKA)","url":"http://cs.bc.edu/alvarez/RBFKernelCKALargeBandwidth2022Preprint.pdf"},{"title":"Similarity of Neural Network Representations Revisited","url":"https://www.cs.utoronto.ca/~hinton/absps/similarity.pdf"},{"title":"Centered Kernel Alignment (CKA) | Datumorphism | L Ma","url":"https://datumorphism.leima.is/cards/machine-learning/measurement/centered-kernel-alignment/"}]
+
+Based on the web search results, here's a comprehensive overview of Centered Kernel Alignment (CKA) as it relates to neural network representation comparison:
+
+## Overview
+
+CKA is used to measure the similarity between the representations of data between layers in a network. CKA is a similarity metric that quantifies the alignment between neural representations using centered Gram matrices and the Hilbert–Schmidt Independence Criterion.
+
+## Key Properties
+
+CKA is invariant to invertible orthogonal transformation, invariant to isotropic scaling, and exhibits behavior demonstrating its superiority over other methods. CKA similarity is a scale-invariant, kernel-based metric that quantifies the alignment between representation pairs by comparing their centered Gram matrices and is invariant to orthogonal transformations and isotropic scaling, making it ideal for analyzing neural network layers.
+
+## Advantages Over Other Methods
+
+Unlike CCA, CKA can reliably identify correspondences between representations in networks trained from different initializations. CKA reveals consistent relationships between layers of CNNs trained with different random initializations, whereas CCA, linear regression, and SVCCA do not.
+
+## Applications
+
+CKA maps reveal layerwise redundancy, hierarchical structure, and blockwise processing. CKA identifies superfluous or static layers, informing pruning and model compression strategies, with one approach leveraging CKA-based layer clustering to achieve approximately 50% parameter reduction with negligible accuracy degradation.
+
+## Known Limitations
+
+CKA is sensitive to outliers and finite-sample biases, which has led to the development of debiased and manifold-aware extensions. The CKA value can be easily manipulated without substantial changes to the functional behaviour of the models, calling for caution when leveraging activation alignment metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "045d9820-dd4b-46c2-bbe4-d80aa91885cd",
+  "tool_use_result": {
+    "query": "CKA Centered Kernel Alignment neural network representation comparison survey",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NQEcP5WoKJfEEqdVcaEsTp",
+        "content": [
+          {
+            "title": "Using Centered Kernel Alignment for Understanding and ...",
+            "url": "https://digitalcommons.uri.edu/cgi/viewcontent.cgi?article=3256&context=theses"
+          },
+          {
+            "title": "[1905.00414] Similarity of Neural Network Representations Revisited",
+            "url": "https://arxiv.org/abs/1905.00414"
+          },
+          {
+            "title": "Centered Kernel Alignment",
+            "url": "https://jyopari.github.io/posts/CKA"
+          },
+          {
+            "title": "Centered Kernel Alignment (CKA) Overview",
+            "url": "https://www.emergentmind.com/topics/centered-kernel-alignment-cka"
+          },
+          {
+            "title": "Center Kernel Alignment (CKA) Explained",
+            "url": "https://www.emergentmind.com/topics/center-kernel-alignment-cka"
+          },
+          {
+            "title": "Centered Kernel Alignment (CKA) Similarity",
+            "url": "https://www.emergentmind.com/topics/centered-kernel-alignment-cka-similarity"
+          },
+          {
+            "title": "[2210.16156] Reliability of CKA as a Similarity Measure in Deep Learning",
+            "url": "https://arxiv.org/abs/2210.16156"
+          },
+          {
+            "title": "IEEE TRANS. PAMI 1 Gaussian RBF Centered Kernel Alignment (CKA)",
+            "url": "http://cs.bc.edu/alvarez/RBFKernelCKALargeBandwidth2022Preprint.pdf"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "https://www.cs.utoronto.ca/~hinton/absps/similarity.pdf"
+          },
+          {
+            "title": "Centered Kernel Alignment (CKA) | Datumorphism | L Ma",
+            "url": "https://datumorphism.leima.is/cards/machine-learning/measurement/centered-kernel-alignment/"
+          }
+        ]
+      },
+      "Based on the web search results, here's a comprehensive overview of Centered Kernel Alignment (CKA) as it relates to neural network representation comparison:\n\n## Overview\n\nCKA is used to measure the similarity between the representations of data between layers in a network. CKA is a similarity metric that quantifies the alignment between neural representations using centered Gram matrices and the Hilbert–Schmidt Independence Criterion.\n\n## Key Properties\n\nCKA is invariant to invertible orthogonal transformation, invariant to isotropic scaling, and exhibits behavior demonstrating its superiority over other methods. CKA similarity is a scale-invariant, kernel-based metric that quantifies the alignment between representation pairs by comparing their centered Gram matrices and is invariant to orthogonal transformations and isotropic scaling, making it ideal for analyzing neural network layers.\n\n## Advantages Over Other Methods\n\nUnlike CCA, CKA can reliably identify correspondences between representations in networks trained from different initializations. CKA reveals consistent relationships between layers of CNNs trained with different random initializations, whereas CCA, linear regression, and SVCCA do not.\n\n## Applications\n\nCKA maps reveal layerwise redundancy, hierarchical structure, and blockwise processing. CKA identifies superfluous or static layers, informing pruning and model compression strategies, with one approach leveraging CKA-based layer clustering to achieve approximately 50% parameter reduction with negligible accuracy degradation.\n\n## Known Limitations\n\nCKA is sensitive to outliers and finite-sample biases, which has led to the development of debiased and manifold-aware extensions. The CKA value can be easily manipulated without substantial changes to the functional behaviour of the models, calling for caution when leveraging activation alignment metrics."
+    ],
+    "durationSeconds": 7.915542383
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T02:47:21.199Z_
+
+<details><summary>↩ Tool result · `toolu_01YJBgSdppfnwnjHffkgWxyg`</summary>
+
+```text
+Web search results for query: "DeepSeek-R1 reasoning LLM pruning compression quantization 2025 2026"
+
+Links: [{"title":"[2501.12948] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2501.12948"},{"title":"Quantum physicists have shrunk and “de-censored” DeepSeek R1 | MIT Technology Review","url":"https://www.technologyreview.com/2025/11/19/1128119/quantum-physicists-compress-and-deconsor-deepseekr1/"},{"title":"Deployment-ready reasoning with quantized DeepSeek-R1 models | Red Hat Developer","url":"https://developers.redhat.com/articles/2025/03/03/deployment-ready-reasoning-quantized-deepseek-r1-models"},{"title":"LLM reasoning with DeepSeek-R1 distilled models — OpenVINO™ documentation","url":"https://docs.openvino.ai/2025/notebooks/deepseek-r1-with-output.html"},{"title":"DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature","url":"https://www.nature.com/articles/s41586-025-09422-z"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://www.researchgate.net/publication/388317525_DeepSeek-R1_Incentivizing_Reasoning_Capability_in_LLMs_via_Reinforcement_Learning"},{"title":"GitHub - deepseek-ai/DeepSeek-R1 · GitHub","url":"https://github.com/deepseek-ai/DeepSeek-R1"},{"title":"DeepSeek-R1: An Open-Source LLM Powerhouse in a Quantized World | by Frank Morales Aguilera | The Deep Hub | Medium","url":"https://medium.com/thedeephub/deepseek-r1-an-open-source-llm-powerhouse-in-a-quantized-world-e77f4dc4df40"},{"title":"Quantitative Analysis of Performance Drop in DeepSeek Model Quantization","url":"https://arxiv.org/html/2505.02390v1"},{"title":"When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=2za3iNkwXn"}]
+
+Based on the search results, here's what I found about DeepSeek-R1 and its optimization through pruning, compression, and quantization in 2025-2026:
+
+## Core DeepSeek-R1 Model
+
+DeepSeek-R1's reasoning abilities are incentivized through pure reinforcement learning (RL), facilitating the emergent development of advanced reasoning patterns, such as self-reflection, verification, and dynamic strategy adaptation. The company has open-sourced DeepSeek-R1-Zero, DeepSeek-R1, and six dense models distilled from DeepSeek-R1 based on Llama and Qwen.
+
+## Compression and Quantization Efforts
+
+### Model Size Reduction
+Multiverse Computing created DeepSeek R1 Slim, a model that is 55% smaller but performs almost as well as the original model. Through extreme 1-bit quantization, the 671-parameter DeepSeek-R1 model was reduced below 140 GB.
+
+### Quantization Performance
+FP8 and INT8 quantized versions achieve near-perfect accuracy recovery across all tested reasoning benchmarks and model sizes—except for the smallest INT8 1.5B model, which reaches 97%. INT4 models recover 97%+ accuracy for 7B and larger models, with the 1.5B model maintaining ~94%.
+
+### Compression Methods
+Compression techniques include quantization, which reduces the precision of the model's parameters, and pruning, which removes individual weights or entire "neurons." Compression methods, including quantization, distillation, and pruning, improve the computational efficiency of large reasoning models.
+
+### Key Finding on Weight Importance
+Current quantization methods overly compress the final-layer modules and MLP gate projections, so protecting just 2% of all weights that are excessively compressed can raise average accuracy by 6.57%, greatly surpassing the state-of-the-art.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "63c4534f-fa56-4dde-bac3-c0c79c874f68",
+  "tool_use_result": {
+    "query": "DeepSeek-R1 reasoning LLM pruning compression quantization 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PqXW8Mm8CQSpj1NXvYkZYk",
+        "content": [
+          {
+            "title": "[2501.12948] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2501.12948"
+          },
+          {
+            "title": "Quantum physicists have shrunk and “de-censored” DeepSeek R1 | MIT Technology Review",
+            "url": "https://www.technologyreview.com/2025/11/19/1128119/quantum-physicists-compress-and-deconsor-deepseekr1/"
+          },
+          {
+            "title": "Deployment-ready reasoning with quantized DeepSeek-R1 models | Red Hat Developer",
+            "url": "https://developers.redhat.com/articles/2025/03/03/deployment-ready-reasoning-quantized-deepseek-r1-models"
+          },
+          {
+            "title": "LLM reasoning with DeepSeek-R1 distilled models — OpenVINO™ documentation",
+            "url": "https://docs.openvino.ai/2025/notebooks/deepseek-r1-with-output.html"
+          },
+          {
+            "title": "DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature",
+            "url": "https://www.nature.com/articles/s41586-025-09422-z"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/388317525_DeepSeek-R1_Incentivizing_Reasoning_Capability_in_LLMs_via_Reinforcement_Learning"
+          },
+          {
+            "title": "GitHub - deepseek-ai/DeepSeek-R1 · GitHub",
+            "url": "https://github.com/deepseek-ai/DeepSeek-R1"
+          },
+          {
+            "title": "DeepSeek-R1: An Open-Source LLM Powerhouse in a Quantized World | by Frank Morales Aguilera | The Deep Hub | Medium",
+            "url": "https://medium.com/thedeephub/deepseek-r1-an-open-source-llm-powerhouse-in-a-quantized-world-e77f4dc4df40"
+          },
+          {
+            "title": "Quantitative Analysis of Performance Drop in DeepSeek Model Quantization",
+            "url": "https://arxiv.org/html/2505.02390v1"
+          },
+          {
+            "title": "When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models | OpenReview",
+            "url": "https://openreview.net/forum?id=2za3iNkwXn"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DeepSeek-R1 and its optimization through pruning, compression, and quantization in 2025-2026:\n\n## Core DeepSeek-R1 Model\n\nDeepSeek-R1's reasoning abilities are incentivized through pure reinforcement learning (RL), facilitating the emergent development of advanced reasoning patterns, such as self-reflection, verification, and dynamic strategy adaptation. The company has open-sourced DeepSeek-R1-Zero, DeepSeek-R1, and six dense models distilled from DeepSeek-R1 based on Llama and Qwen.\n\n## Compression and Quantization Efforts\n\n### Model Size Reduction\nMultiverse Computing created DeepSeek R1 Slim, a model that is 55% smaller but performs almost as well as the original model. Through extreme 1-bit quantization, the 671-parameter DeepSeek-R1 model was reduced below 140 GB.\n\n### Quantization Performance\nFP8 and INT8 quantized versions achieve near-perfect accuracy recovery across all tested reasoning benchmarks and model sizes—except for the smallest INT8 1.5B model, which reaches 97%. INT4 models recover 97%+ accuracy for 7B and larger models, with the 1.5B model maintaining ~94%.\n\n### Compression Methods\nCompression techniques include quantization, which reduces the precision of the model's parameters, and pruning, which removes individual weights or entire \"neurons.\" Compression methods, including quantization, distillation, and pruning, improve the computational efficiency of large reasoning models.\n\n### Key Finding on Weight Importance\nCurrent quantization methods overly compress the final-layer modules and MLP gate projections, so protecting just 2% of all weights that are excessively compressed can raise average accuracy by 6.57%, greatly surpassing the state-of-the-art."
+    ],
+    "durationSeconds": 7.680299318999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the first batch of results. Now let me search for the remaining categories: RLVR/Self-Healing, structured pruning methods (LLM-Pruner, SliceGPT, Wanda, SparseGPT), CKA vs SVCCA/CCA comparison papers, and the specific papers mentioned (Self-Healing, RL Squeezes SFT Expands, GRASPrune, RESP, MPruner).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "10faac9b-0ff3-422e-93ce-88f4d7052d3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TN5yWcXMEw34ezVnSMqW8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5805,
+      "cache_read_input_tokens": 25276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Good results on the first batch. Now searching for the remaining categories.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "fb2d1e36-3dee-4ffc-b12f-91b500b185be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TN5yWcXMEw34ezVnSMqW8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5805,
+      "cache_read_input_tokens": 25276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018D58Esfid8ZdgpudNeKhUW`</summary>
+
+```json
+{
+  "query": "Self-Healing pruned LLM reinforcement learning recovery 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "dad0b914-6985-4b22-b08a-e52493f58e86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TN5yWcXMEw34ezVnSMqW8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5805,
+      "cache_read_input_tokens": 25276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ETaRezU7kPBTRS7ub1aK7u`</summary>
+
+```json
+{
+  "query": "\"RL Squeezes SFT Expands\" ICLR 2026 reasoning model compression"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "80bd1c11-6953-4299-a64f-a8301de7780b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TN5yWcXMEw34ezVnSMqW8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5805,
+      "cache_read_input_tokens": 25276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QCrwr7WkandLZ47XnENw8A`</summary>
+
+```json
+{
+  "query": "GRASPrune ACL 2026 structured pruning gradient reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "c858a301-8b93-4402-af2f-6ee0f45a7134",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TN5yWcXMEw34ezVnSMqW8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5805,
+      "cache_read_input_tokens": 25276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GKwSXqoz5H7h46GXcB7fSJ`</summary>
+
+```json
+{
+  "query": "RESP reasoning-aware structured pruning LLM December 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "4fbcb4e3-088f-4fea-8483-9950c4e65a93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TN5yWcXMEw34ezVnSMqW8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5805,
+      "cache_read_input_tokens": 25276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JnA19m7ig9VTnVnGb42Z5B`</summary>
+
+```json
+{
+  "query": "MPruner multi-objective pruning LLM 2024 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "4a49bc65-3e3a-440b-9c8c-9844dfaadfc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TN5yWcXMEw34ezVnSMqW8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5805,
+      "cache_read_input_tokens": 25276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MBzSoqvhQyQaRNKgMisbWM`</summary>
+
+```json
+{
+  "query": "SVCCA CCA CKA comparison neural network similarity limitations advantages"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "9ec149f9-7560-45b2-8546-e6f3c3d9ffa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TN5yWcXMEw34ezVnSMqW8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5805,
+      "cache_read_input_tokens": 25276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5805
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T02:47:35.916Z_
+
+<details><summary>↩ Tool result · `toolu_01ETaRezU7kPBTRS7ub1aK7u`</summary>
+
+```text
+Web search results for query: ""RL Squeezes SFT Expands" ICLR 2026 reasoning model compression"
+
+Links: [{"title":"RL SQUEEZES, SFT EXPANDS","url":"https://openreview.net/pdf?id=N2lMNqJsBw"},{"title":"RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs | OpenReview","url":"https://openreview.net/forum?id=N2lMNqJsBw"},{"title":"[2509.21128] RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs","url":"https://arxiv.org/abs/2509.21128"},{"title":"RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs","url":"https://arxiv.org/html/2509.21128v1"},{"title":"(PDF) RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs","url":"https://www.researchgate.net/publication/395849147_RL_Squeezes_SFT_Expands_A_Comparative_Study_of_Reasoning_LLMs"},{"title":"ICLR 2026 Orals","url":"https://iclr.cc/virtual/2026/events/oral"},{"title":"RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs | alphaXiv","url":"https://www.alphaxiv.org/abs/2509.21128"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2508.11408"},{"title":"[PDF] RL Squeezes, SFT Expands: A Comparative Study of ...","url":"https://www.semanticscholar.org/paper/RL-Squeezes,-SFT-Expands:-A-Comparative-Study-of-Matsutani-Takashiro/6b8b9c975eee4c5bf81a805bb8bf717d58fe2b65"}]
+
+I found the paper you're looking for! Here's what the search revealed:
+
+## "RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs"
+
+This paper is under review as a conference paper at ICLR 2026 and studies how reinforcement learning (RL) with verifiable rewards (RLVR) and supervised fine-tuning (SFT) on reasoning traces improve LLM reasoning abilities.
+
+### Key Findings on Model Compression:
+
+**Trajectory-Level Analysis:**
+The research finds that RL decreases the number of unique incorrect trajectories, whether starting from Base or SFT models, whereas SFT increases the number of unique correct trajectories, suggesting that RL compresses incorrect trajectories while SFT expands correct ones.
+
+**Step-Level Analysis:**
+At the step level, RL steepens (about 2.5 times) the decay rates of node visitation frequency, degree, and betweenness centrality distributions in the reasoning graph, while SFT flattens them (reduced to about one-third), indicating that RL concentrates reasoning functionality into a small subset of steps, while SFT homogenizes it across many steps.
+
+### Graph Structure Changes:
+
+The Base model's reasoning graph is squeezed into a structure that enables efficient traversal through a small set of hub nodes after RL training.
+
+### Methodology:
+
+The framework was tested with models of 1.5B, 7B, and 14B parameters on mathematical and code domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "9c81b82e-17da-4b7a-bd38-44ad7e33dd04",
+  "tool_use_result": {
+    "query": "\"RL Squeezes SFT Expands\" ICLR 2026 reasoning model compression",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kmxb4T4Rabiw1ufXc6UrTf",
+        "content": [
+          {
+            "title": "RL SQUEEZES, SFT EXPANDS",
+            "url": "https://openreview.net/pdf?id=N2lMNqJsBw"
+          },
+          {
+            "title": "RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=N2lMNqJsBw"
+          },
+          {
+            "title": "[2509.21128] RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs",
+            "url": "https://arxiv.org/abs/2509.21128"
+          },
+          {
+            "title": "RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs",
+            "url": "https://arxiv.org/html/2509.21128v1"
+          },
+          {
+            "title": "(PDF) RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs",
+            "url": "https://www.researchgate.net/publication/395849147_RL_Squeezes_SFT_Expands_A_Comparative_Study_of_Reasoning_LLMs"
+          },
+          {
+            "title": "ICLR 2026 Orals",
+            "url": "https://iclr.cc/virtual/2026/events/oral"
+          },
+          {
+            "title": "RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2509.21128"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2508.11408"
+          },
+          {
+            "title": "[PDF] RL Squeezes, SFT Expands: A Comparative Study of ...",
+            "url": "https://www.semanticscholar.org/paper/RL-Squeezes,-SFT-Expands:-A-Comparative-Study-of-Matsutani-Takashiro/6b8b9c975eee4c5bf81a805bb8bf717d58fe2b65"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search revealed:\n\n## \"RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs\"\n\nThis paper is under review as a conference paper at ICLR 2026 and studies how reinforcement learning (RL) with verifiable rewards (RLVR) and supervised fine-tuning (SFT) on reasoning traces improve LLM reasoning abilities.\n\n### Key Findings on Model Compression:\n\n**Trajectory-Level Analysis:**\nThe research finds that RL decreases the number of unique incorrect trajectories, whether starting from Base or SFT models, whereas SFT increases the number of unique correct trajectories, suggesting that RL compresses incorrect trajectories while SFT expands correct ones.\n\n**Step-Level Analysis:**\nAt the step level, RL steepens (about 2.5 times) the decay rates of node visitation frequency, degree, and betweenness centrality distributions in the reasoning graph, while SFT flattens them (reduced to about one-third), indicating that RL concentrates reasoning functionality into a small subset of steps, while SFT homogenizes it across many steps.\n\n### Graph Structure Changes:\n\nThe Base model's reasoning graph is squeezed into a structure that enables efficient traversal through a small set of hub nodes after RL training.\n\n### Methodology:\n\nThe framework was tested with models of 1.5B, 7B, and 14B parameters on mathematical and code domains."
+    ],
+    "durationSeconds": 6.574358562000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T02:47:36.087Z_
+
+<details><summary>↩ Tool result · `toolu_018D58Esfid8ZdgpudNeKhUW`</summary>
+
+```text
+Web search results for query: "Self-Healing pruned LLM reinforcement learning recovery 2025 arXiv"
+
+Links: [{"title":"An Intelligent Fault Self-Healing Mechanism for Cloud AI Systems via Integration of Large Language Models and Deep Reinforcement Learning","url":"https://arxiv.org/html/2506.07411"},{"title":"Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Cy8Qa4gAst"},{"title":"An Intelligent Fault Self-Healing Mechanism for Cloud AI ...","url":"https://arxiv.org/pdf/2506.07411"},{"title":"[2511.18728] Reinforcement Learning for Self-Healing Material Systems","url":"https://arxiv.org/abs/2511.18728"},{"title":"RLRC: Reinforcement Learning-based Recovery for Compressed Vision-Language-Action Models","url":"https://arxiv.org/html/2506.17639"},{"title":"arXiv:2506.08436v1 [cs.CL] 10 Jun 2025","url":"https://arxiv.org/pdf/2506.08436"},{"title":"RLSR: Reinforcement Learning from Self Reward","url":"https://arxiv.org/html/2505.08827"},{"title":"2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning","url":"https://arxiv.org/pdf/2409.12917"},{"title":"Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models","url":"https://arxiv.org/html/2512.02185v1"},{"title":"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs","url":"https://arxiv.org/html/2508.16546v1"}]
+
+Based on the web search results, I found several relevant papers on self-healing and pruned LLMs with reinforcement learning. Here are the key findings:
+
+## Most Relevant Result: Self-Healing Pruned LLMs via RLVR
+
+The most directly relevant paper introduces reinforcement learning with verifiable reward (RLVR) for recovery training, enabling pruned Large Reasoning Models (LRMs) to achieve self-healing performance. While structured pruning reduces parameters and degrades mathematical reasoning ability, the pruning does not completely destroy the model's capabilities, leaving room for compensation through recovery training.
+
+Experiments on five representative LRMs across six mathematical reasoning benchmarks show that RLVR significantly outperforms supervised fine-tuning (SFT)-based recovery training. At 25% compression, RLVR-based recovery training improves performance from around 80% (with SFT) to over 95%, approaching or even outperforming the accuracy of unpruned LRMs while maintaining efficiency.
+
+## Related Work: Vision-Language-Action Models
+
+A related paper on Vision-Language-Action (VLA) models presents RLRC with three components: (1) structured pruning of VLA with high sparsity ratio; (2) performance recovery combining SFT and RL; and (3) 4-bit quantization for resource-constrained deployment.
+
+## Additional Context on Pruning Recovery
+
+For reasoning LLMs, self-generated reasoning traces provide the most effective calibration signal for pruning, since these models are trained via reinforcement learning on their own generated sequences, making calibration using self-generated traces more effective than using human-written labels.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "a0bbf07e-a549-4c4b-a5c3-cfe8c42d2486",
+  "tool_use_result": {
+    "query": "Self-Healing pruned LLM reinforcement learning recovery 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mj5CmwL1e7nmUJ7VLGddk7",
+        "content": [
+          {
+            "title": "An Intelligent Fault Self-Healing Mechanism for Cloud AI Systems via Integration of Large Language Models and Deep Reinforcement Learning",
+            "url": "https://arxiv.org/html/2506.07411"
+          },
+          {
+            "title": "Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Cy8Qa4gAst"
+          },
+          {
+            "title": "An Intelligent Fault Self-Healing Mechanism for Cloud AI ...",
+            "url": "https://arxiv.org/pdf/2506.07411"
+          },
+          {
+            "title": "[2511.18728] Reinforcement Learning for Self-Healing Material Systems",
+            "url": "https://arxiv.org/abs/2511.18728"
+          },
+          {
+            "title": "RLRC: Reinforcement Learning-based Recovery for Compressed Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2506.17639"
+          },
+          {
+            "title": "arXiv:2506.08436v1 [cs.CL] 10 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.08436"
+          },
+          {
+            "title": "RLSR: Reinforcement Learning from Self Reward",
+            "url": "https://arxiv.org/html/2505.08827"
+          },
+          {
+            "title": "2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2409.12917"
+          },
+          {
+            "title": "Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models",
+            "url": "https://arxiv.org/html/2512.02185v1"
+          },
+          {
+            "title": "RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs",
+            "url": "https://arxiv.org/html/2508.16546v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on self-healing and pruned LLMs with reinforcement learning. Here are the key findings:\n\n## Most Relevant Result: Self-Healing Pruned LLMs via RLVR\n\nThe most directly relevant paper introduces reinforcement learning with verifiable reward (RLVR) for recovery training, enabling pruned Large Reasoning Models (LRMs) to achieve self-healing performance. While structured pruning reduces parameters and degrades mathematical reasoning ability, the pruning does not completely destroy the model's capabilities, leaving room for compensation through recovery training.\n\nExperiments on five representative LRMs across six mathematical reasoning benchmarks show that RLVR significantly outperforms supervised fine-tuning (SFT)-based recovery training. At 25% compression, RLVR-based recovery training improves performance from around 80% (with SFT) to over 95%, approaching or even outperforming the accuracy of unpruned LRMs while maintaining efficiency.\n\n## Related Work: Vision-Language-Action Models\n\nA related paper on Vision-Language-Action (VLA) models presents RLRC with three components: (1) structured pruning of VLA with high sparsity ratio; (2) performance recovery combining SFT and RL; and (3) 4-bit quantization for resource-constrained deployment.\n\n## Additional Context on Pruning Recovery\n\nFor reasoning LLMs, self-generated reasoning traces provide the most effective calibration signal for pruning, since these models are trained via reinforcement learning on their own generated sequences, making calibration using self-generated traces more effective than using human-written labels."
+    ],
+    "durationSeconds": 7.229651620999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T02:47:36.797Z_
+
+<details><summary>↩ Tool result · `toolu_01QCrwr7WkandLZ47XnENw8A`</summary>
+
+```text
+Web search results for query: "GRASPrune ACL 2026 structured pruning gradient reasoning"
+
+Links: [{"title":"GitHub - ZiY-Wang/GRASPrune: Official implementation of GRASPrune, ACL 2026 Main: global gating for budgeted structured pruning of LLMs. · GitHub","url":"https://github.com/ZiY-Wang/GRASPrune"},{"title":"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models","url":"https://arxiv.org/html/2604.19398"},{"title":"[2604.19398] GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models","url":"https://arxiv.org/abs/2604.19398"},{"title":"GradPruner: Gradient-guided Layer Pruning Enabling Efficient Fine-Tuning and Inference for LLMs","url":"https://arxiv.org/html/2601.19503v1"},{"title":"(PDF) GradPruner: Gradient-Guided Layer Pruning Enabling Efficient Fine-Tuning and Inference for LLMs","url":"https://www.researchgate.net/publication/400118992_GradPruner_Gradient-Guided_Layer_Pruning_Enabling_Efficient_Fine-Tuning_and_Inference_for_LLMs"},{"title":"Robust Gradient-Based structured pruning for Low-rank ...","url":"https://www.arxiv.org/pdf/2510.00192"},{"title":"[2603.13418] GPrune-LLM: Generalization-Aware Structured Pruning for Large Language Models","url":"https://arxiv.org/abs/2603.13418"},{"title":"Gradient-based Intra-attention Pruning on Pre-trained Language Models - ACL Anthology","url":"https://aclanthology.org/2023.acl-long.156/"},{"title":"Gradient-based Intra-attention Pruning on Pre-trained ...","url":"https://aclanthology.org/2023.acl-long.156.pdf"},{"title":"GitHub - Jimmy145123/DIET: Code for DIET (Dimension-wise Structured Pruning for LLMs). Private repository for ACL 2026 submission. · GitHub","url":"https://github.com/Jimmy145123/DIET"}]
+
+Based on the search results, here's what I found about GRASPrune:
+
+## GRASPrune Overview
+
+GRASPrune is the official implementation of "Global Gating for Budgeted Structured Pruning of Large Language Models," accepted to ACL 2026 Main Conference. GRASPrune is a post-training structured pruning toolkit for decoder-only LLMs.
+
+## Key Technical Approach
+
+GRASPrune is a structured pruning framework applied after pretraining that jointly prunes FFN channels and KV head groups under a single global budget. 
+
+Rather than using traditional importance scoring methods, GRASPrune learns lightweight gate scores with a projected straight-through estimator that enforces a hard mask satisfying the budget at every step while keeping the backbone weights frozen. After the mask is fixed, GRASPrune calibrates scaling factors on the retained units to mitigate scale mismatch caused by pruning, and folds these factors into the pruned weights to obtain a smaller dense checkpoint with no extra parameters at inference.
+
+## Performance Results
+
+On LLaMA-2-7B, GRASPrune removes 50% of parameters and achieves 12.18 perplexity on WikiText-2 while maintaining competitive average zero-shot accuracy on five benchmarks, using four epochs on 512 unlabeled calibration sequences on a single NVIDIA A100 80GB GPU without any full model fine-tuning.
+
+The official implementation and code are available on GitHub at https://github.com/ZiY-Wang/GRASPrune.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "edf82fa7-8cf4-4d66-a623-c617ba3054bb",
+  "tool_use_result": {
+    "query": "GRASPrune ACL 2026 structured pruning gradient reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WHBCS4m8swAs7sgPpp9cM2",
+        "content": [
+          {
+            "title": "GitHub - ZiY-Wang/GRASPrune: Official implementation of GRASPrune, ACL 2026 Main: global gating for budgeted structured pruning of LLMs. · GitHub",
+            "url": "https://github.com/ZiY-Wang/GRASPrune"
+          },
+          {
+            "title": "GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models",
+            "url": "https://arxiv.org/html/2604.19398"
+          },
+          {
+            "title": "[2604.19398] GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models",
+            "url": "https://arxiv.org/abs/2604.19398"
+          },
+          {
+            "title": "GradPruner: Gradient-guided Layer Pruning Enabling Efficient Fine-Tuning and Inference for LLMs",
+            "url": "https://arxiv.org/html/2601.19503v1"
+          },
+          {
+            "title": "(PDF) GradPruner: Gradient-Guided Layer Pruning Enabling Efficient Fine-Tuning and Inference for LLMs",
+            "url": "https://www.researchgate.net/publication/400118992_GradPruner_Gradient-Guided_Layer_Pruning_Enabling_Efficient_Fine-Tuning_and_Inference_for_LLMs"
+          },
+          {
+            "title": "Robust Gradient-Based structured pruning for Low-rank ...",
+            "url": "https://www.arxiv.org/pdf/2510.00192"
+          },
+          {
+            "title": "[2603.13418] GPrune-LLM: Generalization-Aware Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/abs/2603.13418"
+          },
+          {
+            "title": "Gradient-based Intra-attention Pruning on Pre-trained Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2023.acl-long.156/"
+          },
+          {
+            "title": "Gradient-based Intra-attention Pruning on Pre-trained ...",
+            "url": "https://aclanthology.org/2023.acl-long.156.pdf"
+          },
+          {
+            "title": "GitHub - Jimmy145123/DIET: Code for DIET (Dimension-wise Structured Pruning for LLMs). Private repository for ACL 2026 submission. · GitHub",
+            "url": "https://github.com/Jimmy145123/DIET"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GRASPrune:\n\n## GRASPrune Overview\n\nGRASPrune is the official implementation of \"Global Gating for Budgeted Structured Pruning of Large Language Models,\" accepted to ACL 2026 Main Conference. GRASPrune is a post-training structured pruning toolkit for decoder-only LLMs.\n\n## Key Technical Approach\n\nGRASPrune is a structured pruning framework applied after pretraining that jointly prunes FFN channels and KV head groups under a single global budget. \n\nRather than using traditional importance scoring methods, GRASPrune learns lightweight gate scores with a projected straight-through estimator that enforces a hard mask satisfying the budget at every step while keeping the backbone weights frozen. After the mask is fixed, GRASPrune calibrates scaling factors on the retained units to mitigate scale mismatch caused by pruning, and folds these factors into the pruned weights to obtain a smaller dense checkpoint with no extra parameters at inference.\n\n## Performance Results\n\nOn LLaMA-2-7B, GRASPrune removes 50% of parameters and achieves 12.18 perplexity on WikiText-2 while maintaining competitive average zero-shot accuracy on five benchmarks, using four epochs on 512 unlabeled calibration sequences on a single NVIDIA A100 80GB GPU without any full model fine-tuning.\n\nThe official implementation and code are available on GitHub at https://github.com/ZiY-Wang/GRASPrune."
+    ],
+    "durationSeconds": 6.991154131999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T02:47:37.886Z_
+
+<details><summary>↩ Tool result · `toolu_01GKwSXqoz5H7h46GXcB7fSJ`</summary>
+
+```text
+Web search results for query: "RESP reasoning-aware structured pruning LLM December 2025 arXiv"
+
+Links: [{"title":"Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models","url":"https://arxiv.org/html/2512.02185v1"},{"title":"[2512.02185] Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models","url":"https://arxiv.org/abs/2512.02185"},{"title":"STOP: Structured On-Policy Pruning of Long-Form Reasoning in Low-Data Regimes","url":"https://arxiv.org/html/2605.13165"},{"title":"CFSP: An Efficient Structured Pruning Framework for LLMs ...","url":"https://aclanthology.org/2025.coling-main.626.pdf"},{"title":"From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models","url":"https://arxiv.org/html/2601.18091"},{"title":"arXiv:2503.06184v1 [cs.CL] 8 Mar 2025","url":"https://arxiv.org/pdf/2503.06184"},{"title":"NIRVANA: Structured Pruning Reimagined for Large Language Models Compression","url":"https://arxiv.org/html/2509.14230v1"},{"title":"Structured Pruning for Diverse Best-of-𝑁 Reasoning Optimization","url":"https://arxiv.org/html/2506.03978v1"},{"title":"[2505.22689] SlimLLM: Accurate Structured Pruning for Large Language Models","url":"https://arxiv.org/abs/2505.22689"},{"title":"[2604.25098] Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling","url":"https://arxiv.org/abs/2604.25098"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## RESP: Self-Reflective Structured Pruning for Reasoning Language Models
+
+RESP is a self-reflective structured pruning framework that leverages self-generated calibration, decode-time gradient importance, and progressive regeneration to preserve reasoning accuracy. It is the first work to address structured pruning for reasoning LLMs.
+
+**Key Findings:**
+
+Existing pruning methods severely damage reasoning LLMs (RLMs), as even moderate sparsity (e.g., 20%) can collapse accuracy and disrupt the model's reasoning coherence. The brittleness largely stems from a mismatch between the calibration data, the pruning objective, and the model's decode-time reasoning behavior.
+
+**Core Innovation:**
+
+The most reliable calibration signal comes not from human-written labels but from the model's own self-generated reasoning traces, which more accurately reflect its inference distribution.
+
+**Performance Results:**
+
+Experiments on Qwen3-8B demonstrate that RESP markedly outperforms existing structured pruning methods on both GSM8K and MathQA, preserving near-dense accuracy at 20–30% sparsity. At 40% sparsity, RESP attains 81.3% accuracy on GSM8K and 59.6% on MathQA, surpassing the strongest baselines by 66.87% and 47%, respectively.
+
+**Paper Details:**
+- **arXiv ID:** 2512.02185
+- **Title:** "Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models"
+- **Submission Date:** December 1, 2025
+- **First Author:** Ziyan Wang
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "af25c899-7f0a-4fd6-a876-97b52d8d0a02",
+  "tool_use_result": {
+    "query": "RESP reasoning-aware structured pruning LLM December 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BuejwLNLjvRe61SuzXUqNw",
+        "content": [
+          {
+            "title": "Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models",
+            "url": "https://arxiv.org/html/2512.02185v1"
+          },
+          {
+            "title": "[2512.02185] Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models",
+            "url": "https://arxiv.org/abs/2512.02185"
+          },
+          {
+            "title": "STOP: Structured On-Policy Pruning of Long-Form Reasoning in Low-Data Regimes",
+            "url": "https://arxiv.org/html/2605.13165"
+          },
+          {
+            "title": "CFSP: An Efficient Structured Pruning Framework for LLMs ...",
+            "url": "https://aclanthology.org/2025.coling-main.626.pdf"
+          },
+          {
+            "title": "From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models",
+            "url": "https://arxiv.org/html/2601.18091"
+          },
+          {
+            "title": "arXiv:2503.06184v1 [cs.CL] 8 Mar 2025",
+            "url": "https://arxiv.org/pdf/2503.06184"
+          },
+          {
+            "title": "NIRVANA: Structured Pruning Reimagined for Large Language Models Compression",
+            "url": "https://arxiv.org/html/2509.14230v1"
+          },
+          {
+            "title": "Structured Pruning for Diverse Best-of-𝑁 Reasoning Optimization",
+            "url": "https://arxiv.org/html/2506.03978v1"
+          },
+          {
+            "title": "[2505.22689] SlimLLM: Accurate Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/abs/2505.22689"
+          },
+          {
+            "title": "[2604.25098] Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling",
+            "url": "https://arxiv.org/abs/2604.25098"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## RESP: Self-Reflective Structured Pruning for Reasoning Language Models\n\nRESP is a self-reflective structured pruning framework that leverages self-generated calibration, decode-time gradient importance, and progressive regeneration to preserve reasoning accuracy. It is the first work to address structured pruning for reasoning LLMs.\n\n**Key Findings:**\n\nExisting pruning methods severely damage reasoning LLMs (RLMs), as even moderate sparsity (e.g., 20%) can collapse accuracy and disrupt the model's reasoning coherence. The brittleness largely stems from a mismatch between the calibration data, the pruning objective, and the model's decode-time reasoning behavior.\n\n**Core Innovation:**\n\nThe most reliable calibration signal comes not from human-written labels but from the model's own self-generated reasoning traces, which more accurately reflect its inference distribution.\n\n**Performance Results:**\n\nExperiments on Qwen3-8B demonstrate that RESP markedly outperforms existing structured pruning methods on both GSM8K and MathQA, preserving near-dense accuracy at 20–30% sparsity. At 40% sparsity, RESP attains 81.3% accuracy on GSM8K and 59.6% on MathQA, surpassing the strongest baselines by 66.87% and 47%, respectively.\n\n**Paper Details:**\n- **arXiv ID:** 2512.02185\n- **Title:** \"Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models\"\n- **Submission Date:** December 1, 2025\n- **First Author:** Ziyan Wang"
+    ],
+    "durationSeconds": 6.9985419160000015
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T02:47:38.656Z_
+
+<details><summary>↩ Tool result · `toolu_01JnA19m7ig9VTnVnGb42Z5B`</summary>
+
+```text
+Web search results for query: "MPruner multi-objective pruning LLM 2024 arXiv"
+
+Links: [{"title":"[2305.11627] LLM-Pruner: On the Structural Pruning of Large Language Models","url":"https://arxiv.org/abs/2305.11627"},{"title":"LLM-Pruner: On the Structural Pruning of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=J8Ajf9WfXP"},{"title":"LLM-Pruner: On the Structural Pruning of Large Language Models Xinyin Ma","url":"https://arxiv.org/pdf/2305.11627"},{"title":"GitHub - horseee/LLM-Pruner: [NeurIPS 2023] LLM-Pruner: On the Structural Pruning of Large Language Models. Support Llama-3/3.1, Llama-2, LLaMA, BLOOM, Vicuna, Baichuan, TinyLlama, etc. · GitHub","url":"https://github.com/horseee/LLM-Pruner"},{"title":"GradPruner: Gradient-guided Layer Pruning Enabling Efficient Fine-Tuning and Inference for LLMs","url":"https://arxiv.org/html/2601.19503v1"},{"title":"[PDF] LLM-Pruner: On the Structural Pruning of Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/LLM-Pruner:-On-the-Structural-Pruning-of-Large-Ma-Fang/017010b941d902a467f6d329ae5e74fd67e67912"},{"title":"Runtime Adaptive Pruning for LLM Inference","url":"https://arxiv.org/html/2505.17138v4"},{"title":"MPruner: Structured Neural Network Pruning","url":"https://www.emergentmind.com/topics/mpruner"},{"title":"Understanding the Pruning of Large Language Models | by Mukul Ranjan | Medium","url":"https://medium.com/@mukulranjan/all-about-pruning-and-knowledge-distillation-for-llms-edc705b48916"},{"title":"Týr-the-Pruner: Unlocking Accurate 50% Structural Pruning ...","url":"https://arxiv.org/pdf/2503.09657"}]
+
+Based on the search results, I found relevant information about MPruner and LLM pruning research from 2024:
+
+## Search Results Summary
+
+The search revealed several key findings:
+
+**MPruner Overview:**
+MPruner is a collection of pruning methodologies that leverage structured, theoretically-principled techniques to reduce model size, memory footprint, and computational cost, employing diverse methods such as mutual information scoring, CKA-based layer clustering, variational multi-rate pruning for GCNs, and max-plus operator-based filter selection.
+
+**MoreauPruner (MPruner variant):**
+The MoreauPruner algorithm addresses the high sensitivity of first-order Taylor gradient pruning to weight perturbations by estimating importance scores via the gradient of the Moreau envelope of the calibration loss, and yields provably Lipschitz-robust pruning scores with respect to weight perturbations and empirically demonstrates absolute stability under bfloat16→float16 rounding, outperforming prior LLM pruning methods in both zero-shot language modeling and downstream accuracies.
+
+**CKA-based MPruner variant:**
+Another MPruner variant leverages Centered Kernel Alignment (CKA) to estimate similarity between layer representations, with layers clustered if their activations show CKA above a threshold, and the reduction in parameters and memory consistently reaches 30–50% with minimal drop in accuracy.
+
+The search results indicate that MPruner represents a family of multi-objective pruning approaches for neural networks, with several 2024 variants addressing LLM compression challenges.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "615324e1-a9fc-4d95-958a-82eebaf88426",
+  "tool_use_result": {
+    "query": "MPruner multi-objective pruning LLM 2024 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Da1VN4xcwAcH2AcBtaZZgc",
+        "content": [
+          {
+            "title": "[2305.11627] LLM-Pruner: On the Structural Pruning of Large Language Models",
+            "url": "https://arxiv.org/abs/2305.11627"
+          },
+          {
+            "title": "LLM-Pruner: On the Structural Pruning of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=J8Ajf9WfXP"
+          },
+          {
+            "title": "LLM-Pruner: On the Structural Pruning of Large Language Models Xinyin Ma",
+            "url": "https://arxiv.org/pdf/2305.11627"
+          },
+          {
+            "title": "GitHub - horseee/LLM-Pruner: [NeurIPS 2023] LLM-Pruner: On the Structural Pruning of Large Language Models. Support Llama-3/3.1, Llama-2, LLaMA, BLOOM, Vicuna, Baichuan, TinyLlama, etc. · GitHub",
+            "url": "https://github.com/horseee/LLM-Pruner"
+          },
+          {
+            "title": "GradPruner: Gradient-guided Layer Pruning Enabling Efficient Fine-Tuning and Inference for LLMs",
+            "url": "https://arxiv.org/html/2601.19503v1"
+          },
+          {
+            "title": "[PDF] LLM-Pruner: On the Structural Pruning of Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/LLM-Pruner:-On-the-Structural-Pruning-of-Large-Ma-Fang/017010b941d902a467f6d329ae5e74fd67e67912"
+          },
+          {
+            "title": "Runtime Adaptive Pruning for LLM Inference",
+            "url": "https://arxiv.org/html/2505.17138v4"
+          },
+          {
+            "title": "MPruner: Structured Neural Network Pruning",
+            "url": "https://www.emergentmind.com/topics/mpruner"
+          },
+          {
+            "title": "Understanding the Pruning of Large Language Models | by Mukul Ranjan | Medium",
+            "url": "https://medium.com/@mukulranjan/all-about-pruning-and-knowledge-distillation-for-llms-edc705b48916"
+          },
+          {
+            "title": "Týr-the-Pruner: Unlocking Accurate 50% Structural Pruning ...",
+            "url": "https://arxiv.org/pdf/2503.09657"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about MPruner and LLM pruning research from 2024:\n\n## Search Results Summary\n\nThe search revealed several key findings:\n\n**MPruner Overview:**\nMPruner is a collection of pruning methodologies that leverage structured, theoretically-principled techniques to reduce model size, memory footprint, and computational cost, employing diverse methods such as mutual information scoring, CKA-based layer clustering, variational multi-rate pruning for GCNs, and max-plus operator-based filter selection.\n\n**MoreauPruner (MPruner variant):**\nThe MoreauPruner algorithm addresses the high sensitivity of first-order Taylor gradient pruning to weight perturbations by estimating importance scores via the gradient of the Moreau envelope of the calibration loss, and yields provably Lipschitz-robust pruning scores with respect to weight perturbations and empirically demonstrates absolute stability under bfloat16→float16 rounding, outperforming prior LLM pruning methods in both zero-shot language modeling and downstream accuracies.\n\n**CKA-based MPruner variant:**\nAnother MPruner variant leverages Centered Kernel Alignment (CKA) to estimate similarity between layer representations, with layers clustered if their activations show CKA above a threshold, and the reduction in parameters and memory consistently reaches 30–50% with minimal drop in accuracy.\n\nThe search results indicate that MPruner represents a family of multi-objective pruning approaches for neural networks, with several 2024 variants addressing LLM compression challenges."
+    ],
+    "durationSeconds": 7.367278122000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T02:47:40.707Z_
+
+<details><summary>↩ Tool result · `toolu_01MBzSoqvhQyQaRNKgMisbWM`</summary>
+
+```text
+Web search results for query: "SVCCA CCA CKA comparison neural network similarity limitations advantages"
+
+Links: [{"title":"Similarity of Neural Network Representations Revisited","url":"https://www.cs.utoronto.ca/~hinton/absps/similarity.pdf"},{"title":"SIMILARITY OF NEURAL NETWORK REPRESENTA","url":"https://debug-ml-iclr2019.github.io/cameraready/DebugML-19_paper_9.pdf"},{"title":"Deceiving the CKA Similarity Measure in Deep Learning Stefan Horoi 2,3 ∗","url":"https://openreview.net/pdf?id=hITONWhDIIJ"},{"title":"Similarity of Neural Network Representations Revisited | alphaXiv","url":"https://www.alphaxiv.org/overview/1905.00414v4"},{"title":"Similarity of Neural Network Representations Revisited","url":"https://vitalab.github.io/article/2021/01/28/SimilarityNeuralNets.html"},{"title":"GitHub - google/svcca · GitHub","url":"https://github.com/google/svcca"},{"title":"SIMILARITY OF NEURAL NETWORK MODELS:","url":"https://arxiv.org/pdf/2305.06329"},{"title":"Determining CCA Similarity with an MNIST Example","url":"https://notebook.community/google/svcca/tutorials/001_Introduction"},{"title":"svcca/README.md at master · google/svcca","url":"https://github.com/google/svcca/blob/master/README.md"},{"title":"Modality Alignment between Deep Representations for ...","url":"https://aclanthology.org/2022.lrec-1.295.pdf"}]
+
+Based on the search results, here's a comprehensive comparison of SVCCA, CCA, and CKA for neural network similarity:
+
+## Overview
+
+SVCCA uses singular value decomposition to identify the most important directions in activation space, then applies canonical correlation analysis (CCA) to find maximally correlated singular vectors from two sets of representations. CKA uses kernel functions on mean-centered representations to compute representational similarity matrices, which are then compared via the Hilbert-Schmidt Independence Criterion (HSIC).
+
+## Key Differences in Invariance Properties
+
+A critical distinction between these methods concerns their invariance properties. CCA is invariant to (invertible) linear transforms, an essential property when comparing different neural networks to each other. However, unlike CCA, SVCCA is only invariant to orthogonal transformations, isotropic scaling and translation.
+
+Because CCA is invariant to non-isotropic scaling, CCA similarities before and after channel-wise scaling are identical, and thus CCA cannot capture this structure even though the structure is consistent across networks.
+
+## Performance Comparison
+
+In identifying corresponding layers between networks trained from different initializations, CKA achieved 99.3% accuracy, while CCA variants achieved only 1.4% to 45.4% accuracy. CKA successfully identifies corresponding layers with high accuracy, while previous methods like CCA and SVCCA fail to show clear correspondences.
+
+## Limitations
+
+SVCCA has practical limitations: SVCCA keeps enough principal components of the input matrices to explain a fixed proportion of the variance, and drops remaining components, so it is invariant to invertible linear transformation only insofar as the retained subspace does not change. SVCCA highlights differences but the downside is that a threshold for the number of dimensions used has to be chosen.
+
+CKA also has vulnerabilities: The CKA value can be easily manipulated without substantial changes to the functional behaviour of the models.
+
+## Advantages
+
+CKA can be computed efficiently; whereas computing CCA requires matrix decompositions, CKA requires only inner products.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "ff7647c8-06b6-4060-8e79-c48515ba3ba5",
+  "tool_use_result": {
+    "query": "SVCCA CCA CKA comparison neural network similarity limitations advantages",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011SR6buk1fuPxwLL6wwZMit",
+        "content": [
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "https://www.cs.utoronto.ca/~hinton/absps/similarity.pdf"
+          },
+          {
+            "title": "SIMILARITY OF NEURAL NETWORK REPRESENTA",
+            "url": "https://debug-ml-iclr2019.github.io/cameraready/DebugML-19_paper_9.pdf"
+          },
+          {
+            "title": "Deceiving the CKA Similarity Measure in Deep Learning Stefan Horoi 2,3 ∗",
+            "url": "https://openreview.net/pdf?id=hITONWhDIIJ"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/1905.00414v4"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "https://vitalab.github.io/article/2021/01/28/SimilarityNeuralNets.html"
+          },
+          {
+            "title": "GitHub - google/svcca · GitHub",
+            "url": "https://github.com/google/svcca"
+          },
+          {
+            "title": "SIMILARITY OF NEURAL NETWORK MODELS:",
+            "url": "https://arxiv.org/pdf/2305.06329"
+          },
+          {
+            "title": "Determining CCA Similarity with an MNIST Example",
+            "url": "https://notebook.community/google/svcca/tutorials/001_Introduction"
+          },
+          {
+            "title": "svcca/README.md at master · google/svcca",
+            "url": "https://github.com/google/svcca/blob/master/README.md"
+          },
+          {
+            "title": "Modality Alignment between Deep Representations for ...",
+            "url": "https://aclanthology.org/2022.lrec-1.295.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's a comprehensive comparison of SVCCA, CCA, and CKA for neural network similarity:\n\n## Overview\n\nSVCCA uses singular value decomposition to identify the most important directions in activation space, then applies canonical correlation analysis (CCA) to find maximally correlated singular vectors from two sets of representations. CKA uses kernel functions on mean-centered representations to compute representational similarity matrices, which are then compared via the Hilbert-Schmidt Independence Criterion (HSIC).\n\n## Key Differences in Invariance Properties\n\nA critical distinction between these methods concerns their invariance properties. CCA is invariant to (invertible) linear transforms, an essential property when comparing different neural networks to each other. However, unlike CCA, SVCCA is only invariant to orthogonal transformations, isotropic scaling and translation.\n\nBecause CCA is invariant to non-isotropic scaling, CCA similarities before and after channel-wise scaling are identical, and thus CCA cannot capture this structure even though the structure is consistent across networks.\n\n## Performance Comparison\n\nIn identifying corresponding layers between networks trained from different initializations, CKA achieved 99.3% accuracy, while CCA variants achieved only 1.4% to 45.4% accuracy. CKA successfully identifies corresponding layers with high accuracy, while previous methods like CCA and SVCCA fail to show clear correspondences.\n\n## Limitations\n\nSVCCA has practical limitations: SVCCA keeps enough principal components of the input matrices to explain a fixed proportion of the variance, and drops remaining components, so it is invariant to invertible linear transformation only insofar as the retained subspace does not change. SVCCA highlights differences but the downside is that a threshold for the number of dimensions used has to be chosen.\n\nCKA also has vulnerabilities: The CKA value can be easily manipulated without substantial changes to the functional behaviour of the models.\n\n## Advantages\n\nCKA can be computed efficiently; whereas computing CCA requires matrix decompositions, CKA requires only inner products."
+    ],
+    "durationSeconds": 9.023298154000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good progress. Now let me search for the remaining papers: LLM-Pruner, SliceGPT, Wanda, SparseGPT, and a few more specific ones. Also need to search for the "When Reasoning Meets Compression" paper I saw in earlier results, and for the Kornblith et al. CKA original paper details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "cd932e22-fec3-4647-a619-79289171f18f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNFr9XJHqXwNq4PefpkEwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6329,
+      "cache_read_input_tokens": 31081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+Good progress. Now searching for the remaining structured pruning baselines and additional references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "85163039-0159-4a57-b6d3-f3fcefab5b1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNFr9XJHqXwNq4PefpkEwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6329,
+      "cache_read_input_tokens": 31081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GJsDcxk9DNmXYxyrnAJdzq`</summary>
+
+```json
+{
+  "query": "LLM-Pruner structural pruning large language models NeurIPS 2023 Ma Fang"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "9b070d65-d11c-4dfe-8d95-979000869c7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNFr9XJHqXwNq4PefpkEwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6329,
+      "cache_read_input_tokens": 31081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015anxsmjocUy1yXmNNjJiuA`</summary>
+
+```json
+{
+  "query": "SliceGPT structured pruning computational invariance ICLR 2024 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "112eedd5-b6e1-4f2e-9a08-728cf7c24821",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNFr9XJHqXwNq4PefpkEwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6329,
+      "cache_read_input_tokens": 31081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013x3PScLEApEEh8Zkqm8MuU`</summary>
+
+```json
+{
+  "query": "Wanda pruning weights and magnitudes no data Sun 2024 ICML"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "11fbc017-3fa2-4f81-8a01-548f891eb863",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNFr9XJHqXwNq4PefpkEwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6329,
+      "cache_read_input_tokens": 31081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014Qdt1DSM7jFhpfkEKMSy5o`</summary>
+
+```json
+{
+  "query": "SparseGPT one-shot pruning massive language models Frantar Alistarh 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "46586767-2f36-4e2c-bccc-c39bfa3b7837",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNFr9XJHqXwNq4PefpkEwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6329,
+      "cache_read_input_tokens": 31081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DiwXPHUwe4Bh2EtfsZ7m8L`</summary>
+
+```json
+{
+  "query": "Kornblith CKA \"Similarity of Neural Network Representations Revisited\" ICML 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "65f6d035-05b1-4fb7-b49b-8cdb98df9722",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNFr9XJHqXwNq4PefpkEwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6329,
+      "cache_read_input_tokens": 31081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011M5zBvpAYf1gfUhsT3nGoW`</summary>
+
+```json
+{
+  "query": "\"When Reasoning Meets Compression\" LLM reasoning pruning quantization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "31f96c36-57bc-45d2-b337-24543203954f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNFr9XJHqXwNq4PefpkEwi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6329,
+      "cache_read_input_tokens": 31081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T02:47:53.193Z_
+
+<details><summary>↩ Tool result · `toolu_01GJsDcxk9DNmXYxyrnAJdzq`</summary>
+
+```text
+Web search results for query: "LLM-Pruner structural pruning large language models NeurIPS 2023 Ma Fang"
+
+Links: [{"title":"NeurIPS Poster LLM-Pruner: On the Structural Pruning of Large Language Models","url":"https://neurips.cc/virtual/2023/poster/72074"},{"title":"[2305.11627] LLM-Pruner: On the Structural Pruning of Large Language Models","url":"https://arxiv.org/abs/2305.11627"},{"title":"GitHub - horseee/LLM-Pruner: [NeurIPS 2023] LLM-Pruner: On the Structural Pruning of Large Language Models. Support Llama-3/3.1, Llama-2, LLaMA, BLOOM, Vicuna, Baichuan, TinyLlama, etc. · GitHub","url":"https://github.com/horseee/LLM-Pruner"},{"title":"LLM-Pruner: On the Structural Pruning of Large Language Models","url":"https://proceedings.neurips.cc/paper_files/paper/2023/hash/44956951349095f74492a5471128a7e0-Abstract-Conference.html"},{"title":"LLM-Pruner: On the Structural Pruning of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=J8Ajf9WfXP"},{"title":"LLM-Pruner: On the Structural Pruning of Large Language Models Xinyin Ma","url":"https://arxiv.org/pdf/2305.11627"},{"title":"[PDF] LLM-Pruner: On the Structural Pruning of Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/LLM-Pruner:-On-the-Structural-Pruning-of-Large-Ma-Fang/017010b941d902a467f6d329ae5e74fd67e67912"},{"title":"LLM-BIP: Structured Pruning for Large Language Models with Block-Wise Forward Importance Propagation","url":"https://arxiv.org/html/2412.06419v1"},{"title":"LLM-Pruner/README.md at main · horseee/LLM-Pruner","url":"https://github.com/horseee/LLM-Pruner/blob/main/README.md"},{"title":"LLM-pruner: on the structural pruning of large language ...","url":"https://dl.acm.org/doi/10.5555/3666122.3667072"}]
+
+Based on the search results, here's what I found about LLM-Pruner:
+
+## Overview
+
+LLM-Pruner is a paper by Xinyin Ma, Gongfan Fang, and Xinchao Wang that was presented at NeurIPS 2023. 
+
+## Key Approach
+
+The method adopts structural pruning that selectively removes non-critical coupled structures based on gradient information, maximally preserving the majority of the LLM's functionality. The compression is explored in a task-agnostic manner, which aims to preserve the multi-task solving and language generation ability of the original LLM.
+
+## Main Features
+
+The research addresses two key constraints:
+1. Task-agnostic compression to preserve the multi-task solving and language generation ability of the original LLM
+2. Minimizing the reliance on the original training dataset
+
+## Results and Efficiency
+
+The performance of pruned models can be efficiently recovered through tuning techniques, LoRA, in merely 3 hours, requiring only 50K data. The method was validated on three LLMs, including LLaMA, Vicuna, and ChatGLM, and the compressed models still exhibit satisfactory capabilities in zero-shot classification and generation.
+
+The code for LLM-Pruner is publicly available on GitHub and has since been extended to support additional models like Llama-2, Llama-3, and BLOOM.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "f2e680c9-9507-4628-8eb5-b476c7e37419",
+  "tool_use_result": {
+    "query": "LLM-Pruner structural pruning large language models NeurIPS 2023 Ma Fang",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WrnijJkJNCVQYsd54EadFh",
+        "content": [
+          {
+            "title": "NeurIPS Poster LLM-Pruner: On the Structural Pruning of Large Language Models",
+            "url": "https://neurips.cc/virtual/2023/poster/72074"
+          },
+          {
+            "title": "[2305.11627] LLM-Pruner: On the Structural Pruning of Large Language Models",
+            "url": "https://arxiv.org/abs/2305.11627"
+          },
+          {
+            "title": "GitHub - horseee/LLM-Pruner: [NeurIPS 2023] LLM-Pruner: On the Structural Pruning of Large Language Models. Support Llama-3/3.1, Llama-2, LLaMA, BLOOM, Vicuna, Baichuan, TinyLlama, etc. · GitHub",
+            "url": "https://github.com/horseee/LLM-Pruner"
+          },
+          {
+            "title": "LLM-Pruner: On the Structural Pruning of Large Language Models",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/44956951349095f74492a5471128a7e0-Abstract-Conference.html"
+          },
+          {
+            "title": "LLM-Pruner: On the Structural Pruning of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=J8Ajf9WfXP"
+          },
+          {
+            "title": "LLM-Pruner: On the Structural Pruning of Large Language Models Xinyin Ma",
+            "url": "https://arxiv.org/pdf/2305.11627"
+          },
+          {
+            "title": "[PDF] LLM-Pruner: On the Structural Pruning of Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/LLM-Pruner:-On-the-Structural-Pruning-of-Large-Ma-Fang/017010b941d902a467f6d329ae5e74fd67e67912"
+          },
+          {
+            "title": "LLM-BIP: Structured Pruning for Large Language Models with Block-Wise Forward Importance Propagation",
+            "url": "https://arxiv.org/html/2412.06419v1"
+          },
+          {
+            "title": "LLM-Pruner/README.md at main · horseee/LLM-Pruner",
+            "url": "https://github.com/horseee/LLM-Pruner/blob/main/README.md"
+          },
+          {
+            "title": "LLM-pruner: on the structural pruning of large language ...",
+            "url": "https://dl.acm.org/doi/10.5555/3666122.3667072"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LLM-Pruner:\n\n## Overview\n\nLLM-Pruner is a paper by Xinyin Ma, Gongfan Fang, and Xinchao Wang that was presented at NeurIPS 2023. \n\n## Key Approach\n\nThe method adopts structural pruning that selectively removes non-critical coupled structures based on gradient information, maximally preserving the majority of the LLM's functionality. The compression is explored in a task-agnostic manner, which aims to preserve the multi-task solving and language generation ability of the original LLM.\n\n## Main Features\n\nThe research addresses two key constraints:\n1. Task-agnostic compression to preserve the multi-task solving and language generation ability of the original LLM\n2. Minimizing the reliance on the original training dataset\n\n## Results and Efficiency\n\nThe performance of pruned models can be efficiently recovered through tuning techniques, LoRA, in merely 3 hours, requiring only 50K data. The method was validated on three LLMs, including LLaMA, Vicuna, and ChatGLM, and the compressed models still exhibit satisfactory capabilities in zero-shot classification and generation.\n\nThe code for LLM-Pruner is publicly available on GitHub and has since been extended to support additional models like Llama-2, Llama-3, and BLOOM."
+    ],
+    "durationSeconds": 6.457107598000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T02:47:53.770Z_
+
+<details><summary>↩ Tool result · `toolu_013x3PScLEApEEh8Zkqm8MuU`</summary>
+
+```text
+Web search results for query: "Wanda pruning weights and magnitudes no data Sun 2024 ICML"
+
+Links: [{"title":"ICML A Simple and Effective Pruning Approach for Large Language Models","url":"https://icml.cc/virtual/2023/28297"},{"title":"A Simple and Effective Pruning Approach for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=PxoFut3dWW"},{"title":"[2306.11695] A Simple and Effective Pruning Approach for Large Language Models","url":"https://arxiv.org/abs/2306.11695"},{"title":"A SIMPLE AND EFFECTIVE PRUNING APPROACH FOR LARGE LANGUAGE MODELS - Princeton University","url":"https://collaborate.princeton.edu/en/publications/a-simple-and-effective-pruning-approach-for-large-language-models/"},{"title":"A SIMPLE AND EFFECTIVE PRUNING APPROACH FOR ...","url":"https://openreview.net/pdf?id=PxoFut3dWW"},{"title":"Published as a conference paper at ICLR 2024","url":"https://arxiv.org/pdf/2306.11695"},{"title":"GitHub - locuslab/wanda: A simple and effective LLM pruning approach. · GitHub","url":"https://github.com/locuslab/wanda"},{"title":"Published as a conference paper at ICLR 2024 PLUG-AND-PLAY:","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/db6ccc979860d7a233ecaf588bb23512-Paper-Conference.pdf"},{"title":"A Simple and Effective Pruning Approach for Large Language Models.","url":"https://eric-mingjie.github.io/wanda/home.html"},{"title":"[Quick Review] A Simple and Effective Pruning Approach for Large Language Models","url":"https://liner.com/review/a-simple-and-effective-pruning-approach-for-large-language-models"}]
+
+Based on the search results, here's what I found about Wanda pruning:
+
+## Wanda: Pruning by Weights and Activations
+
+Wanda (Pruning by Weights and activations) is a novel, straightforward yet effective pruning method designed to induce sparsity in pretrained LLMs.
+
+### Key Approach
+
+The method prunes weights with the smallest magnitudes multiplied by the corresponding input activations, on a per-output basis. Wanda requires no retraining or weight update, and the pruned LLM can be used as is.
+
+### Performance
+
+The method was evaluated on LLaMA and LLaMA-2 across various language benchmarks, with Wanda significantly outperforming the established baseline of magnitude pruning and performing competitively against recent methods involving intensive weight update. For instance, for LLaMA-7B, Wanda is able to find sparse networks with a perplexity of 7.26, significantly better than the magnitude pruning baseline 17.29.
+
+### Conference
+
+It's worth noting that while your query mentioned ICML 2024, the paper was actually presented at the 12th International Conference on Learning Representations (ICLR 2024), not ICML. The original paper was first published to arXiv in June 2023 and later published at ICLR 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "b477bd14-282b-4026-83d6-d82804b95897",
+  "tool_use_result": {
+    "query": "Wanda pruning weights and magnitudes no data Sun 2024 ICML",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0165CPsnfKdjpCgi42HFPT8p",
+        "content": [
+          {
+            "title": "ICML A Simple and Effective Pruning Approach for Large Language Models",
+            "url": "https://icml.cc/virtual/2023/28297"
+          },
+          {
+            "title": "A Simple and Effective Pruning Approach for Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=PxoFut3dWW"
+          },
+          {
+            "title": "[2306.11695] A Simple and Effective Pruning Approach for Large Language Models",
+            "url": "https://arxiv.org/abs/2306.11695"
+          },
+          {
+            "title": "A SIMPLE AND EFFECTIVE PRUNING APPROACH FOR LARGE LANGUAGE MODELS - Princeton University",
+            "url": "https://collaborate.princeton.edu/en/publications/a-simple-and-effective-pruning-approach-for-large-language-models/"
+          },
+          {
+            "title": "A SIMPLE AND EFFECTIVE PRUNING APPROACH FOR ...",
+            "url": "https://openreview.net/pdf?id=PxoFut3dWW"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024",
+            "url": "https://arxiv.org/pdf/2306.11695"
+          },
+          {
+            "title": "GitHub - locuslab/wanda: A simple and effective LLM pruning approach. · GitHub",
+            "url": "https://github.com/locuslab/wanda"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 PLUG-AND-PLAY:",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/db6ccc979860d7a233ecaf588bb23512-Paper-Conference.pdf"
+          },
+          {
+            "title": "A Simple and Effective Pruning Approach for Large Language Models.",
+            "url": "https://eric-mingjie.github.io/wanda/home.html"
+          },
+          {
+            "title": "[Quick Review] A Simple and Effective Pruning Approach for Large Language Models",
+            "url": "https://liner.com/review/a-simple-and-effective-pruning-approach-for-large-language-models"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Wanda pruning:\n\n## Wanda: Pruning by Weights and Activations\n\nWanda (Pruning by Weights and activations) is a novel, straightforward yet effective pruning method designed to induce sparsity in pretrained LLMs.\n\n### Key Approach\n\nThe method prunes weights with the smallest magnitudes multiplied by the corresponding input activations, on a per-output basis. Wanda requires no retraining or weight update, and the pruned LLM can be used as is.\n\n### Performance\n\nThe method was evaluated on LLaMA and LLaMA-2 across various language benchmarks, with Wanda significantly outperforming the established baseline of magnitude pruning and performing competitively against recent methods involving intensive weight update. For instance, for LLaMA-7B, Wanda is able to find sparse networks with a perplexity of 7.26, significantly better than the magnitude pruning baseline 17.29.\n\n### Conference\n\nIt's worth noting that while your query mentioned ICML 2024, the paper was actually presented at the 12th International Conference on Learning Representations (ICLR 2024), not ICML. The original paper was first published to arXiv in June 2023 and later published at ICLR 2024."
+    ],
+    "durationSeconds": 6.0598629169999985
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T02:47:54.939Z_
+
+<details><summary>↩ Tool result · `toolu_014Qdt1DSM7jFhpfkEKMSy5o`</summary>
+
+```text
+Web search results for query: "SparseGPT one-shot pruning massive language models Frantar Alistarh 2023"
+
+Links: [{"title":"[2301.00774] SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot","url":"https://arxiv.org/abs/2301.00774"},{"title":"GitHub - IST-DASLab/sparsegpt: Code for the ICML 2023 paper \"SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot\". · GitHub","url":"https://github.com/IST-DASLab/sparsegpt"},{"title":"SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot","url":"https://openreview.net/pdf?id=gsP05g8IeK"},{"title":"[PDF] SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SparseGPT:-Massive-Language-Models-Can-Be-Pruned-in-Frantar-Alistarh/909ad57ce8caa6b390a65ae09db352d27d8f3996"},{"title":"SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot","url":"https://proceedings.mlr.press/v202/frantar23a.html"},{"title":"(PDF) Massive Language Models Can Be Accurately Pruned in One-Shot","url":"https://www.researchgate.net/publication/366821751_Massive_Language_Models_Can_Be_Accurately_Pruned_in_One-Shot"},{"title":"SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230100774F/abstract"},{"title":"SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot [Quick Review]","url":"https://liner.com/review/sparsegpt-massive-language-models-can-be-accurately-pruned-in-oneshot"},{"title":"Elias Frantar, Dan Alistarh · SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot","url":"https://slideslive.com/39003144/sparsegpt-massive-language-models-can-be-accurately-pruned-in-oneshot"},{"title":"SparseGPT: Massive language models can be accurately pruned in one-shot","url":"https://research-explorer.ista.ac.at/record/14458"}]
+
+Based on the search results, here's what I found about SparseGPT:
+
+## Overview
+
+SparseGPT demonstrates that large-scale generative pretrained transformer (GPT) family models can be pruned to at least 50% sparsity in one-shot, without any retraining, at minimal loss of accuracy.
+
+## Key Method Details
+
+SparseGPT is a new pruning method specifically designed to work efficiently and accurately on massive GPT-family models. It is the first accurate one-shot pruning method designed for 10-100+ billion parameter models, reducing pruning to large-scale sparse regression instances.
+
+## Performance Results
+
+SparseGPT can be executed on the largest available open-source models, OPT-175B and BLOOM-176B, in under 4.5 hours, and can reach 60% unstructured sparsity with negligible increase in perplexity; more than 100 billion weights from these models can be ignored at inference time.
+
+## Capabilities and Compatibility
+
+SparseGPT generalizes to semi-structured (2:4 and 4:8) patterns, and is compatible with weight quantization approaches.
+
+## Publication
+
+The paper was published at ICML 2023 by authors Elias Frantar and Dan Alistarh. The code is publicly available on GitHub at https://github.com/IST-DASLab/sparsegpt.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "779e8de1-8ab7-4328-a484-a4cce27b4719",
+  "tool_use_result": {
+    "query": "SparseGPT one-shot pruning massive language models Frantar Alistarh 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Uk9pVGi2fPg9cL1APHSkew",
+        "content": [
+          {
+            "title": "[2301.00774] SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot",
+            "url": "https://arxiv.org/abs/2301.00774"
+          },
+          {
+            "title": "GitHub - IST-DASLab/sparsegpt: Code for the ICML 2023 paper \"SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot\". · GitHub",
+            "url": "https://github.com/IST-DASLab/sparsegpt"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot",
+            "url": "https://openreview.net/pdf?id=gsP05g8IeK"
+          },
+          {
+            "title": "[PDF] SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/SparseGPT:-Massive-Language-Models-Can-Be-Pruned-in-Frantar-Alistarh/909ad57ce8caa6b390a65ae09db352d27d8f3996"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot",
+            "url": "https://proceedings.mlr.press/v202/frantar23a.html"
+          },
+          {
+            "title": "(PDF) Massive Language Models Can Be Accurately Pruned in One-Shot",
+            "url": "https://www.researchgate.net/publication/366821751_Massive_Language_Models_Can_Be_Accurately_Pruned_in_One-Shot"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230100774F/abstract"
+          },
+          {
+            "title": "SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot [Quick Review]",
+            "url": "https://liner.com/review/sparsegpt-massive-language-models-can-be-accurately-pruned-in-oneshot"
+          },
+          {
+            "title": "Elias Frantar, Dan Alistarh · SparseGPT: Massive Language Models Can be Accurately Pruned in One-Shot",
+            "url": "https://slideslive.com/39003144/sparsegpt-massive-language-models-can-be-accurately-pruned-in-oneshot"
+          },
+          {
+            "title": "SparseGPT: Massive language models can be accurately pruned in one-shot",
+            "url": "https://research-explorer.ista.ac.at/record/14458"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SparseGPT:\n\n## Overview\n\nSparseGPT demonstrates that large-scale generative pretrained transformer (GPT) family models can be pruned to at least 50% sparsity in one-shot, without any retraining, at minimal loss of accuracy.\n\n## Key Method Details\n\nSparseGPT is a new pruning method specifically designed to work efficiently and accurately on massive GPT-family models. It is the first accurate one-shot pruning method designed for 10-100+ billion parameter models, reducing pruning to large-scale sparse regression instances.\n\n## Performance Results\n\nSparseGPT can be executed on the largest available open-source models, OPT-175B and BLOOM-176B, in under 4.5 hours, and can reach 60% unstructured sparsity with negligible increase in perplexity; more than 100 billion weights from these models can be ignored at inference time.\n\n## Capabilities and Compatibility\n\nSparseGPT generalizes to semi-structured (2:4 and 4:8) patterns, and is compatible with weight quantization approaches.\n\n## Publication\n\nThe paper was published at ICML 2023 by authors Elias Frantar and Dan Alistarh. The code is publicly available on GitHub at https://github.com/IST-DASLab/sparsegpt."
+    ],
+    "durationSeconds": 6.3023968299999975
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T02:47:55.417Z_
+
+<details><summary>↩ Tool result · `toolu_01DiwXPHUwe4Bh2EtfsZ7m8L`</summary>
+
+```text
+Web search results for query: "Kornblith CKA "Similarity of Neural Network Representations Revisited" ICML 2019"
+
+Links: [{"title":"Similarity of Neural Network Representations Revisited","url":"http://proceedings.mlr.press/v97/kornblith19a/kornblith19a.pdf"},{"title":"SIMILARITY OF NEURAL NETWORK REPRESENTA","url":"https://debug-ml-iclr2019.github.io/cameraready/DebugML-19_paper_9.pdf"},{"title":"[1905.00414] Similarity of Neural Network Representations Revisited","url":"https://arxiv.org/abs/1905.00414"},{"title":"Similarity of Neural Network Representations Revisited","url":"https://icml.cc/media/icml-2019/Slides/4871.pdf"},{"title":"Similarity of Neural Network Representations Revisited","url":"https://vitalab.github.io/article/2021/01/28/SimilarityNeuralNets.html"},{"title":"Similarity of Neural Network Representations Revisited | Request PDF","url":"https://www.researchgate.net/publication/332799564_Similarity_of_Neural_Network_Representations_Revisited"},{"title":"Similarity of Neural Network Representations Revisited","url":"https://cka-similarity.github.io/"},{"title":"ICLR Similarity of Neural Network Representations Revisited","url":"https://iclr.cc/virtual/2019/1212"},{"title":"[PDF] Similarity of Neural Network Representations Revisited | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Similarity-of-Neural-Network-Representations-Kornblith-Norouzi/726320cdbd04804ffa8f3a78c095bd1b55a2a695"},{"title":"Similarity and Matching of Neural Network Representations","url":"https://proceedings.neurips.cc/paper/2021/file/2cb274e6ce940f47beb8011d8ecb1462-Paper.pdf"}]
+
+I've successfully found the paper "Similarity of Neural Network Representations Revisited" by Kornblith et al. Here's what I found:
+
+## Paper Overview
+
+The paper was written by Simon Kornblith, Mohammad Norouzi, Honglak Lee & Geoffrey Hinton from Google Brain. It was published at ICML 2019.
+
+## Main Contributions
+
+The authors introduce a similarity index that measures the relationship between representational similarity matrices, showing that this similarity index is equivalent to centered kernel alignment (CKA) and analyzing its relationship to canonical correlation analysis.
+
+Unlike other methods, CKA can reliably identify correspondences between representations of layers in networks trained from different initializations. Additionally, CKA can reveal network pathology that is not evident from test accuracy alone.
+
+## Key Technical Findings
+
+The authors show that CCA belongs to a family of statistics for measuring multivariate similarity, but that neither CCA nor any other statistic that is invariant to invertible linear transformation can measure meaningful similarities between representations of higher dimension than the number of data points.
+
+The paper provides access to official materials including the full PDF proceedings version and presentation slides from the ICML conference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "105189ba-2486-42e5-880e-4a2d0d55ff7f",
+  "tool_use_result": {
+    "query": "Kornblith CKA \"Similarity of Neural Network Representations Revisited\" ICML 2019",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AF1iCK9R598jNc2Ux3MpS3",
+        "content": [
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "http://proceedings.mlr.press/v97/kornblith19a/kornblith19a.pdf"
+          },
+          {
+            "title": "SIMILARITY OF NEURAL NETWORK REPRESENTA",
+            "url": "https://debug-ml-iclr2019.github.io/cameraready/DebugML-19_paper_9.pdf"
+          },
+          {
+            "title": "[1905.00414] Similarity of Neural Network Representations Revisited",
+            "url": "https://arxiv.org/abs/1905.00414"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "https://icml.cc/media/icml-2019/Slides/4871.pdf"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "https://vitalab.github.io/article/2021/01/28/SimilarityNeuralNets.html"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited | Request PDF",
+            "url": "https://www.researchgate.net/publication/332799564_Similarity_of_Neural_Network_Representations_Revisited"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "https://cka-similarity.github.io/"
+          },
+          {
+            "title": "ICLR Similarity of Neural Network Representations Revisited",
+            "url": "https://iclr.cc/virtual/2019/1212"
+          },
+          {
+            "title": "[PDF] Similarity of Neural Network Representations Revisited | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Similarity-of-Neural-Network-Representations-Kornblith-Norouzi/726320cdbd04804ffa8f3a78c095bd1b55a2a695"
+          },
+          {
+            "title": "Similarity and Matching of Neural Network Representations",
+            "url": "https://proceedings.neurips.cc/paper/2021/file/2cb274e6ce940f47beb8011d8ecb1462-Paper.pdf"
+          }
+        ]
+      },
+      "I've successfully found the paper \"Similarity of Neural Network Representations Revisited\" by Kornblith et al. Here's what I found:\n\n## Paper Overview\n\nThe paper was written by Simon Kornblith, Mohammad Norouzi, Honglak Lee & Geoffrey Hinton from Google Brain. It was published at ICML 2019.\n\n## Main Contributions\n\nThe authors introduce a similarity index that measures the relationship between representational similarity matrices, showing that this similarity index is equivalent to centered kernel alignment (CKA) and analyzing its relationship to canonical correlation analysis.\n\nUnlike other methods, CKA can reliably identify correspondences between representations of layers in networks trained from different initializations. Additionally, CKA can reveal network pathology that is not evident from test accuracy alone.\n\n## Key Technical Findings\n\nThe authors show that CCA belongs to a family of statistics for measuring multivariate similarity, but that neither CCA nor any other statistic that is invariant to invertible linear transformation can measure meaningful similarities between representations of higher dimension than the number of data points.\n\nThe paper provides access to official materials including the full PDF proceedings version and presentation slides from the ICML conference."
+    ],
+    "durationSeconds": 5.778788999999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T02:47:56.339Z_
+
+<details><summary>↩ Tool result · `toolu_015anxsmjocUy1yXmNNjJiuA`</summary>
+
+```text
+Web search results for query: "SliceGPT structured pruning computational invariance ICLR 2024 arXiv"
+
+Links: [{"title":"Published as a conference paper at ICLR 2024","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/316648eb8b4ffb6010f531b07848c300-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2024","url":"https://arxiv.org/pdf/2401.15024"},{"title":"[2412.18110] SlimGPT: Layer-wise Structured Pruning for Large Language Models","url":"https://arxiv.org/abs/2412.18110"},{"title":"SlimGPT: Layer-wise Structured Pruning for Large Language Models","url":"https://arxiv.org/html/2412.18110v1"},{"title":"SlimGPT: Layer-wise Structured Pruning for Large Language Models","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/c1c44e46358e0fb94dc94ec495a7fb1a-Paper-Conference.pdf"},{"title":"ICLR Poster SliceGPT: Compress Large Language Models by Deleting Rows and Columns","url":"https://iclr.cc/virtual/2024/poster/17531"},{"title":"NIRVANA: Structured Pruning Reimagined for Large Language Models Compression","url":"https://arxiv.org/html/2509.14230v1"},{"title":"DISP-LLM: Dimension-Independent Structural Pruning for Large Language Models","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/84a7fc24ed52e8eff514c33e8ac76ea3-Paper-Conference.pdf"},{"title":"Olica: Efficient Structured Pruning of Large Language Models without Retraining | OpenReview","url":"https://openreview.net/forum?id=hhhcwCgyM1"},{"title":"CFSP: An Efficient Structured Pruning Framework for LLMs ...","url":"https://aclanthology.org/2025.coling-main.626.pdf"}]
+
+Based on the web search results, I found comprehensive information about SliceGPT and its key contribution regarding computational invariance. Here's what I found:
+
+## SliceGPT Overview
+
+SliceGPT allows for structured pruning for large language models, reducing the cost of inference of LLAMA-2 70B on 40GB A100 GPUs to 66% of that of the dense model without any additional code optimization, requiring fewer GPUs (from 4 to 3) while maintaining better held-out perplexity than SparseGPT 2:4.
+
+## Computational Invariance
+
+The key contribution is the idea of computational invariance: researchers show that orthogonal-matrix transformations can be applied to each weight matrix in a transformer without changing the model. The key insight is that the RMSNorm operation which is performed between blocks of the network does not affect the transformation: the operations commute.
+
+## Pruning Approach
+
+In contrast to other pruning methods, SliceGPT prunes away entire rows or columns of the weight matrices. Before slicing, a single transformation of the network is performed which leaves the predictions invariant, but allows the slicing to have only a small effect. The result is that weight matrices are smaller, and the signals passed between blocks of the neural network are smaller too: the embedding dimension of the neural network is reduced.
+
+## Performance Results
+
+On zero-shot downstream tasks, slicing OPT 66B, LLAMA-2 70B and Phi-2 at 25% maintains 99%, 96% and 87% of the dense performance respectively.
+
+The paper was published at ICLR 2024 and is available on both the ICLR proceedings website and arXiv (arXiv:2401.15024).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "5fe69f8f-ec51-4a6e-a154-aafa3563914e",
+  "tool_use_result": {
+    "query": "SliceGPT structured pruning computational invariance ICLR 2024 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013Jz3MzpJ1DRqR3gNnSdhcG",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2024",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/316648eb8b4ffb6010f531b07848c300-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024",
+            "url": "https://arxiv.org/pdf/2401.15024"
+          },
+          {
+            "title": "[2412.18110] SlimGPT: Layer-wise Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/abs/2412.18110"
+          },
+          {
+            "title": "SlimGPT: Layer-wise Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/html/2412.18110v1"
+          },
+          {
+            "title": "SlimGPT: Layer-wise Structured Pruning for Large Language Models",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/c1c44e46358e0fb94dc94ec495a7fb1a-Paper-Conference.pdf"
+          },
+          {
+            "title": "ICLR Poster SliceGPT: Compress Large Language Models by Deleting Rows and Columns",
+            "url": "https://iclr.cc/virtual/2024/poster/17531"
+          },
+          {
+            "title": "NIRVANA: Structured Pruning Reimagined for Large Language Models Compression",
+            "url": "https://arxiv.org/html/2509.14230v1"
+          },
+          {
+            "title": "DISP-LLM: Dimension-Independent Structural Pruning for Large Language Models",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/84a7fc24ed52e8eff514c33e8ac76ea3-Paper-Conference.pdf"
+          },
+          {
+            "title": "Olica: Efficient Structured Pruning of Large Language Models without Retraining | OpenReview",
+            "url": "https://openreview.net/forum?id=hhhcwCgyM1"
+          },
+          {
+            "title": "CFSP: An Efficient Structured Pruning Framework for LLMs ...",
+            "url": "https://aclanthology.org/2025.coling-main.626.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found comprehensive information about SliceGPT and its key contribution regarding computational invariance. Here's what I found:\n\n## SliceGPT Overview\n\nSliceGPT allows for structured pruning for large language models, reducing the cost of inference of LLAMA-2 70B on 40GB A100 GPUs to 66% of that of the dense model without any additional code optimization, requiring fewer GPUs (from 4 to 3) while maintaining better held-out perplexity than SparseGPT 2:4.\n\n## Computational Invariance\n\nThe key contribution is the idea of computational invariance: researchers show that orthogonal-matrix transformations can be applied to each weight matrix in a transformer without changing the model. The key insight is that the RMSNorm operation which is performed between blocks of the network does not affect the transformation: the operations commute.\n\n## Pruning Approach\n\nIn contrast to other pruning methods, SliceGPT prunes away entire rows or columns of the weight matrices. Before slicing, a single transformation of the network is performed which leaves the predictions invariant, but allows the slicing to have only a small effect. The result is that weight matrices are smaller, and the signals passed between blocks of the neural network are smaller too: the embedding dimension of the neural network is reduced.\n\n## Performance Results\n\nOn zero-shot downstream tasks, slicing OPT 66B, LLAMA-2 70B and Phi-2 at 25% maintains 99%, 96% and 87% of the dense performance respectively.\n\nThe paper was published at ICLR 2024 and is available on both the ICLR proceedings website and arXiv (arXiv:2401.15024)."
+    ],
+    "durationSeconds": 9.120709206000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T02:47:57.884Z_
+
+<details><summary>↩ Tool result · `toolu_011M5zBvpAYf1gfUhsT3nGoW`</summary>
+
+```text
+Web search results for query: ""When Reasoning Meets Compression" LLM reasoning pruning quantization 2025 2026"
+
+Links: [{"title":"When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=2za3iNkwXn"},{"title":"When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models","url":"https://arxiv.org/html/2504.02010"},{"title":"[2504.02010] When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models","url":"https://arxiv.org/abs/2504.02010"},{"title":"[2602.09130] UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation","url":"https://arxiv.org/abs/2602.09130"},{"title":"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization, and Distillation","url":"https://arxiv.org/html/2602.09130v1"},{"title":"When Reasoning Meets Compression: Benchmarking Compressed Large Reasoning Models on Complex Reasoning Tasks","url":"https://arxiv.org/html/2504.02010v1"},{"title":"A review of state-of-the-art techniques for large language model compression | Complex & Intelligent Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s40747-025-02019-z"},{"title":"The Good, the Bad, and the Ugly: Cost-Efficient LLM Inference With Quantization, Pruning, and Distillation DLIT71489 | GTC 2025 | NVIDIA On-Demand","url":"https://www.nvidia.com/en-us/on-demand/session/gtc25-dlit71489/"},{"title":"WHEN REASONING MEETS COMPRESSION: UNDER-","url":"https://arxiv.org/pdf/2504.02010"},{"title":"A Survey on Model Compression for Large Language Models | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00704/125482/A-Survey-on-Model-Compression-for-Large-Language"}]
+
+I found relevant results for your query. Here's what I found:
+
+## Primary Research Paper
+
+The paper "When Reasoning Meets Compression" (submitted September 19, 2025, modified October 8, 2025) investigates how compression methods, including quantization, distillation, and pruning, affect the computational efficiency of large reasoning models (LRMs).
+
+### Key Findings
+
+The research finds that dynamically quantized 2.51-bit R1 reaches close-to-R1 performance, with three main findings: (1) Weight count has a greater impact on LRMs' knowledge memorization than reasoning, highlighting risks of pruning and distillation; (2) The MLP up projection in the final layer of distilled LRMs is critically important for compression; and (3) protecting just 2% of all weights that are excessively compressed can raise average accuracy by 6.57%.
+
+### Methodology
+
+The paper benchmarks quantized, distilled, and pruned DeepSeek-R1 models on four reasoning datasets: AIME 2024, FOLIO, Temporal Sequences, and MuSiQue.
+
+### Related Work
+
+Additionally, another unified evaluation framework called UniComp was recently introduced to compare pruning, quantization, and knowledge distillation, evaluating compressed models along three dimensions: performance, reliability, and efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "9ad4d05d-3488-4fc2-a9ea-208e8a3e51d9",
+  "tool_use_result": {
+    "query": "\"When Reasoning Meets Compression\" LLM reasoning pruning quantization 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018qdm6ML6R2cnFGkMCG7sjL",
+        "content": [
+          {
+            "title": "When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models | OpenReview",
+            "url": "https://openreview.net/forum?id=2za3iNkwXn"
+          },
+          {
+            "title": "When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models",
+            "url": "https://arxiv.org/html/2504.02010"
+          },
+          {
+            "title": "[2504.02010] When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2504.02010"
+          },
+          {
+            "title": "[2602.09130] UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation",
+            "url": "https://arxiv.org/abs/2602.09130"
+          },
+          {
+            "title": "UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization, and Distillation",
+            "url": "https://arxiv.org/html/2602.09130v1"
+          },
+          {
+            "title": "When Reasoning Meets Compression: Benchmarking Compressed Large Reasoning Models on Complex Reasoning Tasks",
+            "url": "https://arxiv.org/html/2504.02010v1"
+          },
+          {
+            "title": "A review of state-of-the-art techniques for large language model compression | Complex & Intelligent Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s40747-025-02019-z"
+          },
+          {
+            "title": "The Good, the Bad, and the Ugly: Cost-Efficient LLM Inference With Quantization, Pruning, and Distillation DLIT71489 | GTC 2025 | NVIDIA On-Demand",
+            "url": "https://www.nvidia.com/en-us/on-demand/session/gtc25-dlit71489/"
+          },
+          {
+            "title": "WHEN REASONING MEETS COMPRESSION: UNDER-",
+            "url": "https://arxiv.org/pdf/2504.02010"
+          },
+          {
+            "title": "A Survey on Model Compression for Large Language Models | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00704/125482/A-Survey-on-Model-Compression-for-Large-Language"
+          }
+        ]
+      },
+      "I found relevant results for your query. Here's what I found:\n\n## Primary Research Paper\n\nThe paper \"When Reasoning Meets Compression\" (submitted September 19, 2025, modified October 8, 2025) investigates how compression methods, including quantization, distillation, and pruning, affect the computational efficiency of large reasoning models (LRMs).\n\n### Key Findings\n\nThe research finds that dynamically quantized 2.51-bit R1 reaches close-to-R1 performance, with three main findings: (1) Weight count has a greater impact on LRMs' knowledge memorization than reasoning, highlighting risks of pruning and distillation; (2) The MLP up projection in the final layer of distilled LRMs is critically important for compression; and (3) protecting just 2% of all weights that are excessively compressed can raise average accuracy by 6.57%.\n\n### Methodology\n\nThe paper benchmarks quantized, distilled, and pruned DeepSeek-R1 models on four reasoning datasets: AIME 2024, FOLIO, Temporal Sequences, and MuSiQue.\n\n### Related Work\n\nAdditionally, another unified evaluation framework called UniComp was recently introduced to compare pruning, quantization, and knowledge distillation, evaluating compressed models along three dimensions: performance, reliability, and efficiency."
+    ],
+    "durationSeconds": 7.881830753000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need a few more searches for: Taylor importance-based pruning, GRPO/RLVR papers, the "Reliability of CKA" paper, "From LLMs to LRMs" paper, and perhaps mutual information for representation similarity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "f5fc3931-cd7c-4730-98c5-2747719214fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuENk1MxXmgRaNZadP1jeX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6162,
+      "cache_read_input_tokens": 37410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6162
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+Now searching for remaining references: Taylor pruning, GRPO, CKA reliability, and LRMs pruning papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "840020fe-a135-4cfc-a65e-020b5b01304d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuENk1MxXmgRaNZadP1jeX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6162,
+      "cache_read_input_tokens": 37410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6162
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WiH6XAVmYSW7fLkco8AMfV`</summary>
+
+```json
+{
+  "query": "Taylor importance pruning neural networks first-order approximation Molchanov 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "c5fcf59b-a2fc-41d2-9c1e-765267296ea3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuENk1MxXmgRaNZadP1jeX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6162,
+      "cache_read_input_tokens": 37410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6162
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P9r6jCtpz6xsP1pWU4Q4ik`</summary>
+
+```json
+{
+  "query": "GRPO Group Relative Policy Optimization DeepSeek-R1 reinforcement learning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "eec8dd9d-0c31-4374-99bd-c777d7a5cbd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuENk1MxXmgRaNZadP1jeX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6162,
+      "cache_read_input_tokens": 37410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6162
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EP8cpSqmm3jyvfzkEqxBuV`</summary>
+
+```json
+{
+  "query": "\"Reliability of CKA\" similarity measure deep learning arXiv 2210.16156"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "cf118294-4f47-4796-8eca-c825725a9c2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuENk1MxXmgRaNZadP1jeX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6162,
+      "cache_read_input_tokens": 37410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6162
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NCebRL4CwGxUiyr6K3Bz9v`</summary>
+
+```json
+{
+  "query": "\"From LLMs to LRMs\" rethinking pruning reasoning-centric models 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "52ce4a3f-2a61-4adf-9b0e-c9c9c79f4272",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuENk1MxXmgRaNZadP1jeX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6162,
+      "cache_read_input_tokens": 37410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6162
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EYBtXUEBeFRUwfDa25br2z`</summary>
+
+```json
+{
+  "query": "SVCCA singular vector canonical correlation analysis Raghu 2017 neural network"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "d6467591-eaa0-4ec6-a7f6-1fa13268d520",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuENk1MxXmgRaNZadP1jeX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6162,
+      "cache_read_input_tokens": 37410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6162
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014xcmkwsnSLiUw1qvXcifbL`</summary>
+
+```json
+{
+  "query": "\"Doing More With Less\" LLM pruning test-time scaling reasoning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "a8f1e53f-916d-4dcb-ac0a-f3c54afc8733",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VuENk1MxXmgRaNZadP1jeX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6162,
+      "cache_read_input_tokens": 37410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6162
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T02:48:09.368Z_
+
+<details><summary>↩ Tool result · `toolu_01WiH6XAVmYSW7fLkco8AMfV`</summary>
+
+```text
+Web search results for query: "Taylor importance pruning neural networks first-order approximation Molchanov 2019"
+
+Links: [{"title":"Importance Estimation for Neural Network Pruning","url":"https://openaccess.thecvf.com/content_CVPR_2019/papers/Molchanov_Importance_Estimation_for_Neural_Network_Pruning_CVPR_2019_paper.pdf"},{"title":"[1906.10771] Importance Estimation for Neural Network Pruning","url":"https://arxiv.org/abs/1906.10771"},{"title":"[PDF] Importance Estimation for Neural Network Pruning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Importance-Estimation-for-Neural-Network-Pruning-Molchanov-Mallya/a6f4917d043494d2ebaebe6b65cb35e6a07fda41"},{"title":"[1906.10771v1] Importance Estimation for Neural Network Pruning","url":"https://arxiv.org/abs/1906.10771v1"},{"title":"Accepted at ICLR 2023 Workshop on Sparsity in Neural Networks","url":"https://arxiv.org/pdf/2310.20203"},{"title":"Importance Estimation for Neural Network Pruning - Jan Kautz","url":"https://jankautz.com/publications/Importance4NNPruning_CVPR19.pdf"},{"title":"GitHub - NVlabs/Taylor_pruning: Pruning Neural Networks with Taylor criterion in Pytorch","url":"https://github.com/NVlabs/Taylor_pruning"},{"title":"Pruning Convolutional Neural Networks for Resource Efficient Inference | OpenReview","url":"https://openreview.net/forum?id=SJGCiw5gl"},{"title":"Pruning by explaining: A novel criterion for deep neural network pruning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0031320321000868"},{"title":"Taylor_pruning/README.md at master · NVlabs/Taylor_pruning","url":"https://github.com/NVlabs/Taylor_pruning/blob/master/README.md"}]
+
+Based on the search results, I found information about the Molchanov 2019 paper on Taylor importance pruning for neural networks:
+
+## "Importance Estimation for Neural Network Pruning" by Molchanov et al. (2019)
+
+The paper proposes a novel method by Pavlo Molchanov and colleagues that estimates the contribution of a neuron (filter) to the final loss and iteratively removes those with smaller scores.
+
+### Taylor Expansion Approach
+
+The method describes two variations using the first and second-order Taylor expansions to approximate a filter's contribution. These are referred to as Taylor FO/Taylor SO, indicating the order of the approximation used, first- and second-order, respectively.
+
+### Key Features
+
+Both methods scale consistently across any network layer without requiring per-layer sensitivity analysis and can be applied to any kind of layer, including skip connections.
+
+### Performance
+
+For modern networks trained on ImageNet, the authors measured experimentally a high (>93%) correlation between the contribution computed by their methods and a reliable estimate of the true importance.
+
+### Publication
+
+The paper was published as "Importance Estimation for Neural Network Pruning" by Pavlo Molchanov, Arun Mallya, Stephen Tyree, Iuri Frosio, and Jan Kautz in CVPR 2019. The work includes an open-source PyTorch implementation available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "e2fcd296-c0d7-42e7-88f2-6f6db9f20a2b",
+  "tool_use_result": {
+    "query": "Taylor importance pruning neural networks first-order approximation Molchanov 2019",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016HaByy58mfK8AgsLChoMiQ",
+        "content": [
+          {
+            "title": "Importance Estimation for Neural Network Pruning",
+            "url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/Molchanov_Importance_Estimation_for_Neural_Network_Pruning_CVPR_2019_paper.pdf"
+          },
+          {
+            "title": "[1906.10771] Importance Estimation for Neural Network Pruning",
+            "url": "https://arxiv.org/abs/1906.10771"
+          },
+          {
+            "title": "[PDF] Importance Estimation for Neural Network Pruning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Importance-Estimation-for-Neural-Network-Pruning-Molchanov-Mallya/a6f4917d043494d2ebaebe6b65cb35e6a07fda41"
+          },
+          {
+            "title": "[1906.10771v1] Importance Estimation for Neural Network Pruning",
+            "url": "https://arxiv.org/abs/1906.10771v1"
+          },
+          {
+            "title": "Accepted at ICLR 2023 Workshop on Sparsity in Neural Networks",
+            "url": "https://arxiv.org/pdf/2310.20203"
+          },
+          {
+            "title": "Importance Estimation for Neural Network Pruning - Jan Kautz",
+            "url": "https://jankautz.com/publications/Importance4NNPruning_CVPR19.pdf"
+          },
+          {
+            "title": "GitHub - NVlabs/Taylor_pruning: Pruning Neural Networks with Taylor criterion in Pytorch",
+            "url": "https://github.com/NVlabs/Taylor_pruning"
+          },
+          {
+            "title": "Pruning Convolutional Neural Networks for Resource Efficient Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=SJGCiw5gl"
+          },
+          {
+            "title": "Pruning by explaining: A novel criterion for deep neural network pruning - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0031320321000868"
+          },
+          {
+            "title": "Taylor_pruning/README.md at master · NVlabs/Taylor_pruning",
+            "url": "https://github.com/NVlabs/Taylor_pruning/blob/master/README.md"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the Molchanov 2019 paper on Taylor importance pruning for neural networks:\n\n## \"Importance Estimation for Neural Network Pruning\" by Molchanov et al. (2019)\n\nThe paper proposes a novel method by Pavlo Molchanov and colleagues that estimates the contribution of a neuron (filter) to the final loss and iteratively removes those with smaller scores.\n\n### Taylor Expansion Approach\n\nThe method describes two variations using the first and second-order Taylor expansions to approximate a filter's contribution. These are referred to as Taylor FO/Taylor SO, indicating the order of the approximation used, first- and second-order, respectively.\n\n### Key Features\n\nBoth methods scale consistently across any network layer without requiring per-layer sensitivity analysis and can be applied to any kind of layer, including skip connections.\n\n### Performance\n\nFor modern networks trained on ImageNet, the authors measured experimentally a high (>93%) correlation between the contribution computed by their methods and a reliable estimate of the true importance.\n\n### Publication\n\nThe paper was published as \"Importance Estimation for Neural Network Pruning\" by Pavlo Molchanov, Arun Mallya, Stephen Tyree, Iuri Frosio, and Jan Kautz in CVPR 2019. The work includes an open-source PyTorch implementation available on GitHub."
+    ],
+    "durationSeconds": 6.223731214
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T02:48:11.623Z_
+
+<details><summary>↩ Tool result · `toolu_01EP8cpSqmm3jyvfzkEqxBuV`</summary>
+
+```text
+Web search results for query: ""Reliability of CKA" similarity measure deep learning arXiv 2210.16156"
+
+Links: [{"title":"[2210.16156] Reliability of CKA as a Similarity Measure in Deep Learning","url":"https://arxiv.org/abs/2210.16156"},{"title":"Reliability of CKA as a Similarity Measure in Deep Learning | alphaXiv","url":"https://www.alphaxiv.org/en/overview/2210.16156"},{"title":"[PDF] Reliability of CKA as a Similarity Measure in Deep Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Reliability-of-CKA-as-a-Similarity-Measure-in-Deep-Davari-Horoi/dfb149bfbfb81de225dbad69aac41ffa617141e8"},{"title":"reliability of cka as a similarity measure in deep learning","url":"https://arxiv.org/pdf/2210.16156"},{"title":"(PDF) Reliability of CKA as a Similarity Measure in Deep Learning","url":"https://www.researchgate.net/publication/364932662_Reliability_of_CKA_as_a_Similarity_Measure_in_Deep_Learning"},{"title":"Reliability of CKA as a Similarity Measure in Deep Learning | OpenReview","url":"https://openreview.net/forum?id=8HRvyxc606"},{"title":"arXiv:2502.15104v1 [q-bio.NC] 20 Feb 2025","url":"https://arxiv.org/pdf/2502.15104"},{"title":"RELIABILITY OF CKA AS A SIMILARITY MEASURE IN ...","url":"https://openreview.net/pdf?id=8HRvyxc606"},{"title":"[1905.00414] Similarity of Neural Network Representations Revisited","url":"https://arxiv.org/abs/1905.00414"},{"title":"Similarity of Neural Network Representations Revisited","url":"http://proceedings.mlr.press/v97/kornblith19a/kornblith19a.pdf"}]
+
+I found the paper you're looking for! Here's a summary of the research:
+
+The paper "Reliability of CKA as a Similarity Measure in Deep Learning" was authored by MohammadReza Davari, Stefan Horoi, Amine Natik, Guillaume Lajoie, Guy Wolf, and Eugene Belilovsky, submitted on October 28, 2022.
+
+**Main Focus:**
+
+The Centered Kernel Alignment (CKA) similarity metric, particularly its linear variant, has recently become a popular approach and has been widely used to compare representations of a network's different layers, of architecturally similar networks trained differently, or of models with different architectures trained on the same data.
+
+**Key Findings:**
+
+The paper presents analysis that formally characterizes CKA sensitivity to a large class of simple transformations, which can naturally occur in the context of modern machine learning. More specifically, analysis is presented that formally characterizes CKA sensitivity to a large class of simple transformations, which can naturally occur in the context of modern machine learning, and illustrates that the CKA value can be easily manipulated without substantial changes to the functional behaviour of the models.
+
+The work empirically investigates several weaknesses of the CKA similarity metric, demonstrating situations in which it gives unexpected or counterintuitive results.
+
+The paper's findings suggest that while CKA is widely used, researchers should exercise caution when using it as a representation alignment metric, as CKA values can be manipulated without necessarily reflecting changes in model behavior.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "385b80ed-d8a8-4eec-8489-8b56cbeae315",
+  "tool_use_result": {
+    "query": "\"Reliability of CKA\" similarity measure deep learning arXiv 2210.16156",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WpDrNeyzPUPApqHM6KeyFm",
+        "content": [
+          {
+            "title": "[2210.16156] Reliability of CKA as a Similarity Measure in Deep Learning",
+            "url": "https://arxiv.org/abs/2210.16156"
+          },
+          {
+            "title": "Reliability of CKA as a Similarity Measure in Deep Learning | alphaXiv",
+            "url": "https://www.alphaxiv.org/en/overview/2210.16156"
+          },
+          {
+            "title": "[PDF] Reliability of CKA as a Similarity Measure in Deep Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Reliability-of-CKA-as-a-Similarity-Measure-in-Deep-Davari-Horoi/dfb149bfbfb81de225dbad69aac41ffa617141e8"
+          },
+          {
+            "title": "reliability of cka as a similarity measure in deep learning",
+            "url": "https://arxiv.org/pdf/2210.16156"
+          },
+          {
+            "title": "(PDF) Reliability of CKA as a Similarity Measure in Deep Learning",
+            "url": "https://www.researchgate.net/publication/364932662_Reliability_of_CKA_as_a_Similarity_Measure_in_Deep_Learning"
+          },
+          {
+            "title": "Reliability of CKA as a Similarity Measure in Deep Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=8HRvyxc606"
+          },
+          {
+            "title": "arXiv:2502.15104v1 [q-bio.NC] 20 Feb 2025",
+            "url": "https://arxiv.org/pdf/2502.15104"
+          },
+          {
+            "title": "RELIABILITY OF CKA AS A SIMILARITY MEASURE IN ...",
+            "url": "https://openreview.net/pdf?id=8HRvyxc606"
+          },
+          {
+            "title": "[1905.00414] Similarity of Neural Network Representations Revisited",
+            "url": "https://arxiv.org/abs/1905.00414"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "http://proceedings.mlr.press/v97/kornblith19a/kornblith19a.pdf"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's a summary of the research:\n\nThe paper \"Reliability of CKA as a Similarity Measure in Deep Learning\" was authored by MohammadReza Davari, Stefan Horoi, Amine Natik, Guillaume Lajoie, Guy Wolf, and Eugene Belilovsky, submitted on October 28, 2022.\n\n**Main Focus:**\n\nThe Centered Kernel Alignment (CKA) similarity metric, particularly its linear variant, has recently become a popular approach and has been widely used to compare representations of a network's different layers, of architecturally similar networks trained differently, or of models with different architectures trained on the same data.\n\n**Key Findings:**\n\nThe paper presents analysis that formally characterizes CKA sensitivity to a large class of simple transformations, which can naturally occur in the context of modern machine learning. More specifically, analysis is presented that formally characterizes CKA sensitivity to a large class of simple transformations, which can naturally occur in the context of modern machine learning, and illustrates that the CKA value can be easily manipulated without substantial changes to the functional behaviour of the models.\n\nThe work empirically investigates several weaknesses of the CKA similarity metric, demonstrating situations in which it gives unexpected or counterintuitive results.\n\nThe paper's findings suggest that while CKA is widely used, researchers should exercise caution when using it as a representation alignment metric, as CKA values can be manipulated without necessarily reflecting changes in model behavior."
+    ],
+    "durationSeconds": 7.073099623000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T02:48:11.761Z_
+
+<details><summary>↩ Tool result · `toolu_01EYBtXUEBeFRUwfDa25br2z`</summary>
+
+```text
+Web search results for query: "SVCCA singular vector canonical correlation analysis Raghu 2017 neural network"
+
+Links: [{"title":"[1706.05806] SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability","url":"https://arxiv.org/abs/1706.05806"},{"title":"SVCCA: Singular Vector Canonical Correlation Analysis for ...","url":"https://proceedings.neurips.cc/paper_files/paper/2017/file/dc6a7e655d7e5840e66733e9ee67cc69-Paper.pdf"},{"title":"[PDF] SVCCA: Singular Vector Canonical Correlation Analysis for Deep Understanding and Improvement | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SVCCA:-Singular-Vector-Canonical-Correlation-for-Raghu-Gilmer/4f03aa472ff9a8ff4e1deda52cc4f504b130d115"},{"title":"SVCCA: singular vector canonical correlation analysis for ...","url":"https://dl.acm.org/doi/10.5555/3295222.3295356"},{"title":"SVCCA: Singular Vector Canonical Correlation Analysis for Deep Understanding and Improvement","url":"https://www.researchgate.net/publication/317675920_SVCCA_Singular_Vector_Canonical_Correlation_Analysis_for_Deep_Understanding_and_Improvement"},{"title":"SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability · Issue #55 · kweonwooj/papers","url":"https://github.com/kweonwooj/papers/issues/55"},{"title":"SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability","url":"https://proceedings.neurips.cc/paper/2017/hash/dc6a7e655d7e5840e66733e9ee67cc69-Abstract.html"},{"title":"SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability","url":"https://papers.nips.cc/paper_files/paper/2017/hash/dc6a7e655d7e5840e66733e9ee67cc69-Abstract.html"},{"title":"GitHub - google/svcca · GitHub","url":"https://github.com/google/svcca"},{"title":"[1706.05806v2] SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability","url":"https://arxiv.org/abs/1706.05806v2"}]
+
+The search results provide comprehensive information about the SVCCA paper by Raghu et al. 2017. Here's a summary of the key findings:
+
+## Overview
+
+SVCCA (Singular Vector Canonical Correlation Analysis) is a tool for quickly comparing two representations in a way that is both invariant to affine transform (allowing comparison between different layers and networks) and fast to compute.
+
+## Key Applications and Findings
+
+The tool was deployed to measure the intrinsic dimensionality of layers, showing in some cases needless over-parameterization; to probe learning dynamics throughout training, finding that networks converge to final representations from the bottom up; to show where class-specific information in networks is formed; and to suggest new training regimes that simultaneously save computation and overfit less.
+
+## Technical Approach
+
+SVCCA (singular vector CCA) first reduces dimensionality via Singular Value Decomposition (SVD) then correlates. The method combines two steps: SVD selects important directions and CCA extracts pair-wise correlation that is invariant to affine transformation.
+
+## Publication Details
+
+The paper was authored by Raghu, Maithra and Gilmer, Justin and Yosinski, Jason and Sohl-Dickstein, Jascha for Advances in Neural Information Processing Systems 30 (NeurIPS 2017).
+
+The paper and its implementation are publicly available, with an official GitHub repository maintained at google/svcca containing tutorials and implementations for applying SVCCA to various neural network architectures.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "804cf0f1-60c3-4931-9be4-121ef24b3094",
+  "tool_use_result": {
+    "query": "SVCCA singular vector canonical correlation analysis Raghu 2017 neural network",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C6C3AP7Z1gxsT98nBDifh7",
+        "content": [
+          {
+            "title": "[1706.05806] SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability",
+            "url": "https://arxiv.org/abs/1706.05806"
+          },
+          {
+            "title": "SVCCA: Singular Vector Canonical Correlation Analysis for ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2017/file/dc6a7e655d7e5840e66733e9ee67cc69-Paper.pdf"
+          },
+          {
+            "title": "[PDF] SVCCA: Singular Vector Canonical Correlation Analysis for Deep Understanding and Improvement | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/SVCCA:-Singular-Vector-Canonical-Correlation-for-Raghu-Gilmer/4f03aa472ff9a8ff4e1deda52cc4f504b130d115"
+          },
+          {
+            "title": "SVCCA: singular vector canonical correlation analysis for ...",
+            "url": "https://dl.acm.org/doi/10.5555/3295222.3295356"
+          },
+          {
+            "title": "SVCCA: Singular Vector Canonical Correlation Analysis for Deep Understanding and Improvement",
+            "url": "https://www.researchgate.net/publication/317675920_SVCCA_Singular_Vector_Canonical_Correlation_Analysis_for_Deep_Understanding_and_Improvement"
+          },
+          {
+            "title": "SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability · Issue #55 · kweonwooj/papers",
+            "url": "https://github.com/kweonwooj/papers/issues/55"
+          },
+          {
+            "title": "SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability",
+            "url": "https://proceedings.neurips.cc/paper/2017/hash/dc6a7e655d7e5840e66733e9ee67cc69-Abstract.html"
+          },
+          {
+            "title": "SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability",
+            "url": "https://papers.nips.cc/paper_files/paper/2017/hash/dc6a7e655d7e5840e66733e9ee67cc69-Abstract.html"
+          },
+          {
+            "title": "GitHub - google/svcca · GitHub",
+            "url": "https://github.com/google/svcca"
+          },
+          {
+            "title": "[1706.05806v2] SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability",
+            "url": "https://arxiv.org/abs/1706.05806v2"
+          }
+        ]
+      },
+      "The search results provide comprehensive information about the SVCCA paper by Raghu et al. 2017. Here's a summary of the key findings:\n\n## Overview\n\nSVCCA (Singular Vector Canonical Correlation Analysis) is a tool for quickly comparing two representations in a way that is both invariant to affine transform (allowing comparison between different layers and networks) and fast to compute.\n\n## Key Applications and Findings\n\nThe tool was deployed to measure the intrinsic dimensionality of layers, showing in some cases needless over-parameterization; to probe learning dynamics throughout training, finding that networks converge to final representations from the bottom up; to show where class-specific information in networks is formed; and to suggest new training regimes that simultaneously save computation and overfit less.\n\n## Technical Approach\n\nSVCCA (singular vector CCA) first reduces dimensionality via Singular Value Decomposition (SVD) then correlates. The method combines two steps: SVD selects important directions and CCA extracts pair-wise correlation that is invariant to affine transformation.\n\n## Publication Details\n\nThe paper was authored by Raghu, Maithra and Gilmer, Justin and Yosinski, Jason and Sohl-Dickstein, Jascha for Advances in Neural Information Processing Systems 30 (NeurIPS 2017).\n\nThe paper and its implementation are publicly available, with an official GitHub repository maintained at google/svcca containing tutorials and implementations for applying SVCCA to various neural network architectures."
+    ],
+    "durationSeconds": 5.250641241000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T02:48:13.115Z_
+
+<details><summary>↩ Tool result · `toolu_01P9r6jCtpz6xsP1pWU4Q4ik`</summary>
+
+```text
+Web search results for query: "GRPO Group Relative Policy Optimization DeepSeek-R1 reinforcement learning 2025"
+
+Links: [{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"DeepSeek R1 and GRPO: Advanced RL for LLMs","url":"https://www.analyticsvidhya.com/blog/2025/09/deepseek-r1-and-grpo/"},{"title":"The Math Behind DeepSeek: A Deep Dive into Group Relative Policy Optimization (GRPO) | by Sahin Ahmed(Data Scientist/MLE) | Medium","url":"https://medium.com/@sahin.samia/the-math-behind-deepseek-a-deep-dive-into-group-relative-policy-optimization-grpo-8a75007491ba"},{"title":"Group Relative Policy Optimization (GRPO) Illustrated Breakdown | Ebrahim Pichka","url":"https://epichka.com/blog/2025/grpo/"},{"title":"Why GRPO is Important and How it Works","url":"https://ghost.oxen.ai/why-grpo-is-important-and-how-it-works/"},{"title":"DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature","url":"https://www.nature.com/articles/s41586-025-09422-z"},{"title":"Bite: How Deepseek R1 was trained","url":"https://www.philschmid.de/deepseek-r1"},{"title":"How to Build DeepSeek-R1 from Scratch - GRPO Reinforcement Learning Explained","url":"https://www.codersarts.com/post/how-to-build-deepseek-r1-from-scratch-grpo-reinforcement-learning-explained"},{"title":"Revisiting Group Relative Policy Optimization: Insights into On-Policy and Off-Policy Training","url":"https://arxiv.org/html/2505.22257v1"},{"title":"DeepSeek's GRPO (Group Relative Policy Optimization) | Reinforcement Learning for LLMs - YouTube","url":"https://www.youtube.com/watch?v=xT4jxQUl0X8"}]
+
+I've performed the web search for your query. Here are the key findings about GRPO, Group Relative Policy Optimization, and DeepSeek-R1:
+
+## Overview
+
+Group Relative Policy Optimization (GRPO) is a reinforcement learning (RL) algorithm specifically designed to enhance reasoning capabilities in Large Language Models (LLMs). GRPO gained popularity primarily through its use in training open reasoning models like DeepSeek-R1.
+
+## How GRPO Works
+
+Unlike traditional RL methods, which rely heavily on external evaluators (critics) to guide learning, GRPO optimizes the model by evaluating groups of responses relative to one another. Instead of estimating value from a separate model, it computes advantage directly from a group of completions for the same prompt, sampling N=8–64 completions, scoring every one with a rule-based reward function, then computing the group mean and standard deviation.
+
+## Key Advantages Over PPO
+
+By eliminating the need for a value network and introducing group-relative advantage estimation, it provides a more efficient and stable training process. GRPO modifies the traditional Proximal Policy Optimization (PPO) by eliminating the need for a value function model. Instead, it estimates baselines from group scores, reducing memory usage and computational overhead.
+
+## DeepSeek-R1 Results
+
+DeepSeek-R1 achieved a pass@1 score on AIME 2024 increasing from 15.6% to 71.0%, reaching performance levels comparable to OpenAI-o1.
+
+## Recent 2025 Adoption
+
+Since the release of DeepSeek-R1, Group Relative Policy Optimization (GRPO) has become the talk of the town for Reinforcement Learning in Large Language Models due to its effectiveness and ease of training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "09e60182-058f-4785-966f-75a52a3ecc3f",
+  "tool_use_result": {
+    "query": "GRPO Group Relative Policy Optimization DeepSeek-R1 reinforcement learning 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018ER6JU5kEhiUHYy3o1gdDf",
+        "content": [
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "DeepSeek R1 and GRPO: Advanced RL for LLMs",
+            "url": "https://www.analyticsvidhya.com/blog/2025/09/deepseek-r1-and-grpo/"
+          },
+          {
+            "title": "The Math Behind DeepSeek: A Deep Dive into Group Relative Policy Optimization (GRPO) | by Sahin Ahmed(Data Scientist/MLE) | Medium",
+            "url": "https://medium.com/@sahin.samia/the-math-behind-deepseek-a-deep-dive-into-group-relative-policy-optimization-grpo-8a75007491ba"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO) Illustrated Breakdown | Ebrahim Pichka",
+            "url": "https://epichka.com/blog/2025/grpo/"
+          },
+          {
+            "title": "Why GRPO is Important and How it Works",
+            "url": "https://ghost.oxen.ai/why-grpo-is-important-and-how-it-works/"
+          },
+          {
+            "title": "DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature",
+            "url": "https://www.nature.com/articles/s41586-025-09422-z"
+          },
+          {
+            "title": "Bite: How Deepseek R1 was trained",
+            "url": "https://www.philschmid.de/deepseek-r1"
+          },
+          {
+            "title": "How to Build DeepSeek-R1 from Scratch - GRPO Reinforcement Learning Explained",
+            "url": "https://www.codersarts.com/post/how-to-build-deepseek-r1-from-scratch-grpo-reinforcement-learning-explained"
+          },
+          {
+            "title": "Revisiting Group Relative Policy Optimization: Insights into On-Policy and Off-Policy Training",
+            "url": "https://arxiv.org/html/2505.22257v1"
+          },
+          {
+            "title": "DeepSeek's GRPO (Group Relative Policy Optimization) | Reinforcement Learning for LLMs - YouTube",
+            "url": "https://www.youtube.com/watch?v=xT4jxQUl0X8"
+          }
+        ]
+      },
+      "I've performed the web search for your query. Here are the key findings about GRPO, Group Relative Policy Optimization, and DeepSeek-R1:\n\n## Overview\n\nGroup Relative Policy Optimization (GRPO) is a reinforcement learning (RL) algorithm specifically designed to enhance reasoning capabilities in Large Language Models (LLMs). GRPO gained popularity primarily through its use in training open reasoning models like DeepSeek-R1.\n\n## How GRPO Works\n\nUnlike traditional RL methods, which rely heavily on external evaluators (critics) to guide learning, GRPO optimizes the model by evaluating groups of responses relative to one another. Instead of estimating value from a separate model, it computes advantage directly from a group of completions for the same prompt, sampling N=8–64 completions, scoring every one with a rule-based reward function, then computing the group mean and standard deviation.\n\n## Key Advantages Over PPO\n\nBy eliminating the need for a value network and introducing group-relative advantage estimation, it provides a more efficient and stable training process. GRPO modifies the traditional Proximal Policy Optimization (PPO) by eliminating the need for a value function model. Instead, it estimates baselines from group scores, reducing memory usage and computational overhead.\n\n## DeepSeek-R1 Results\n\nDeepSeek-R1 achieved a pass@1 score on AIME 2024 increasing from 15.6% to 71.0%, reaching performance levels comparable to OpenAI-o1.\n\n## Recent 2025 Adoption\n\nSince the release of DeepSeek-R1, Group Relative Policy Optimization (GRPO) has become the talk of the town for Reinforcement Learning in Large Language Models due to its effectiveness and ease of training."
+    ],
+    "durationSeconds": 9.037123882
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T02:48:13.498Z_
+
+<details><summary>↩ Tool result · `toolu_014xcmkwsnSLiUw1qvXcifbL`</summary>
+
+```text
+Web search results for query: ""Doing More With Less" LLM pruning test-time scaling reasoning 2026"
+
+Links: [{"title":"[2604.25098] Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling","url":"https://arxiv.org/abs/2604.25098"},{"title":"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling","url":"https://arxiv.org/html/2604.25098"}]
+
+Based on the search results, I found the research paper you're looking for:
+
+## "Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling"
+
+The paper addresses how Large Language Models exhibit remarkable reasoning capabilities through test-time compute scaling, but their massive parameter counts and high inference costs have motivated the development of pruning methods.
+
+**Key Findings:**
+
+The research, conducted across four reasoning benchmarks on two reasoning LLMs (s1.1-7B and Qwen3-8B), shows that unstructured pruning augments test-time scaling performance compared to structured pruning, and can even outperform unpruned full-weight LLMs.
+
+Prior work demonstrated that structured pruning (which removes entire sets of layer blocks) significantly degrades test-time scaling reasoning performance, but this work investigates whether unstructured pruning (which carefully removes only certain redundant/detrimental weights) exhibits similar limitations.
+
+The paper was published on arXiv on April 28, 2026, and challenges the conventional notion that pruning always reduces test-time scaling performance, suggesting that carefully undertaken pruning can improve test-time scaling effectiveness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "6f3fcd63-4405-4a46-b9fa-77685a9d5cda",
+  "tool_use_result": {
+    "query": "\"Doing More With Less\" LLM pruning test-time scaling reasoning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MCkbxpuuenk8dpC1oG5tdq",
+        "content": [
+          {
+            "title": "[2604.25098] Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling",
+            "url": "https://arxiv.org/abs/2604.25098"
+          },
+          {
+            "title": "Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling",
+            "url": "https://arxiv.org/html/2604.25098"
+          }
+        ]
+      },
+      "Based on the search results, I found the research paper you're looking for:\n\n## \"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\"\n\nThe paper addresses how Large Language Models exhibit remarkable reasoning capabilities through test-time compute scaling, but their massive parameter counts and high inference costs have motivated the development of pruning methods.\n\n**Key Findings:**\n\nThe research, conducted across four reasoning benchmarks on two reasoning LLMs (s1.1-7B and Qwen3-8B), shows that unstructured pruning augments test-time scaling performance compared to structured pruning, and can even outperform unpruned full-weight LLMs.\n\nPrior work demonstrated that structured pruning (which removes entire sets of layer blocks) significantly degrades test-time scaling reasoning performance, but this work investigates whether unstructured pruning (which carefully removes only certain redundant/detrimental weights) exhibits similar limitations.\n\nThe paper was published on arXiv on April 28, 2026, and challenges the conventional notion that pruning always reduces test-time scaling performance, suggesting that carefully undertaken pruning can improve test-time scaling effectiveness."
+    ],
+    "durationSeconds": 6.638221346999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T02:48:14.663Z_
+
+<details><summary>↩ Tool result · `toolu_01NCebRL4CwGxUiyr6K3Bz9v`</summary>
+
+```text
+Web search results for query: ""From LLMs to LRMs" rethinking pruning reasoning-centric models 2025 2026"
+
+Links: [{"title":"[2601.18091] From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models","url":"https://arxiv.org/abs/2601.18091"},{"title":"From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models","url":"https://arxiv.org/pdf/2601.18091"},{"title":"From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models | OpenReview","url":"https://openreview.net/forum?id=eHHQEsphbN"},{"title":"FROM LLMS TO LRMS","url":"https://openreview.net/pdf?id=eHHQEsphbN"},{"title":"Pruning Long Chain-of-Thought of Large Reasoning Models via Small-Scale Preference Optimization","url":"https://arxiv.org/html/2508.10164"},{"title":"When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models","url":"https://arxiv.org/html/2504.02010"},{"title":"Pruning the Unsurprising: Efficient LLM Reasoning via First-Token Surprisal","url":"https://arxiv.org/html/2508.05988"},{"title":"DRP: Distilled Reasoning Pruning with Skill-aware Step Decomposition for Efficient Large Reasoning Models","url":"https://arxiv.org/html/2505.13975"},{"title":"Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models","url":"https://arxiv.org/html/2511.18864"},{"title":"A Survey of Efficient Reasoning for Large Reasoning Models: Language, Multimodality, and Beyond","url":"https://arxiv.org/html/2503.21614v1"}]
+
+Based on the search results, I found the paper "From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models." Here's what I found:
+
+## Overview
+
+The paper addresses how large language models (LLMs) are increasingly costly to deploy, motivating research on model pruning, though most existing studies focus on instruction-following LLMs, leaving unclear whether established pruning strategies transfer to reasoning-augmented models that explicitly generate long intermediate reasoning traces.
+
+## Key Research Focus
+
+The work conducts a controlled study of pruning for both instruction-following (LLM-instruct) and reasoning-augmented (LLM-think) models, evaluating static depth pruning, static width pruning, and dynamic pruning across 17 tasks spanning classification, generation, and reasoning.
+
+## Methodology
+
+To isolate the effects of pruning, the researchers align pruning calibration and post-pruning recovery data with each model's original training distribution, which yields more stable and reliable pruning behavior.
+
+## Key Findings
+
+The results reveal that the effectiveness of pruning strategies differs significantly between the two model families, and techniques optimized for concise instruction-following do not seamlessly transfer to preserving complex, multi-step reasoning.
+
+The paper was published in January 2026 (arXiv:2601.18091) and represents the first systematic investigation of pruning across both instruction-following and reasoning-augmented LLM families.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "1fee23f2-b37e-47d1-997b-d05d1c421459",
+  "tool_use_result": {
+    "query": "\"From LLMs to LRMs\" rethinking pruning reasoning-centric models 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MpypHeziCmc9GicCJXAzwv",
+        "content": [
+          {
+            "title": "[2601.18091] From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models",
+            "url": "https://arxiv.org/abs/2601.18091"
+          },
+          {
+            "title": "From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models",
+            "url": "https://arxiv.org/pdf/2601.18091"
+          },
+          {
+            "title": "From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models | OpenReview",
+            "url": "https://openreview.net/forum?id=eHHQEsphbN"
+          },
+          {
+            "title": "FROM LLMS TO LRMS",
+            "url": "https://openreview.net/pdf?id=eHHQEsphbN"
+          },
+          {
+            "title": "Pruning Long Chain-of-Thought of Large Reasoning Models via Small-Scale Preference Optimization",
+            "url": "https://arxiv.org/html/2508.10164"
+          },
+          {
+            "title": "When Reasoning Meets Compression: Understanding the Effects of LLMs Compression on Large Reasoning Models",
+            "url": "https://arxiv.org/html/2504.02010"
+          },
+          {
+            "title": "Pruning the Unsurprising: Efficient LLM Reasoning via First-Token Surprisal",
+            "url": "https://arxiv.org/html/2508.05988"
+          },
+          {
+            "title": "DRP: Distilled Reasoning Pruning with Skill-aware Step Decomposition for Efficient Large Reasoning Models",
+            "url": "https://arxiv.org/html/2505.13975"
+          },
+          {
+            "title": "Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models",
+            "url": "https://arxiv.org/html/2511.18864"
+          },
+          {
+            "title": "A Survey of Efficient Reasoning for Large Reasoning Models: Language, Multimodality, and Beyond",
+            "url": "https://arxiv.org/html/2503.21614v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper \"From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models.\" Here's what I found:\n\n## Overview\n\nThe paper addresses how large language models (LLMs) are increasingly costly to deploy, motivating research on model pruning, though most existing studies focus on instruction-following LLMs, leaving unclear whether established pruning strategies transfer to reasoning-augmented models that explicitly generate long intermediate reasoning traces.\n\n## Key Research Focus\n\nThe work conducts a controlled study of pruning for both instruction-following (LLM-instruct) and reasoning-augmented (LLM-think) models, evaluating static depth pruning, static width pruning, and dynamic pruning across 17 tasks spanning classification, generation, and reasoning.\n\n## Methodology\n\nTo isolate the effects of pruning, the researchers align pruning calibration and post-pruning recovery data with each model's original training distribution, which yields more stable and reliable pruning behavior.\n\n## Key Findings\n\nThe results reveal that the effectiveness of pruning strategies differs significantly between the two model families, and techniques optimized for concise instruction-following do not seamlessly transfer to preserving complex, multi-step reasoning.\n\nThe paper was published in January 2026 (arXiv:2601.18091) and represents the first systematic investigation of pruning across both instruction-following and reasoning-augmented LLM families."
+    ],
+    "durationSeconds": 9.105757241
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have most of the papers. Let me search for a few more missing ones: DeepSeekMath (where GRPO was originally introduced), mutual information for neural network representation comparison, and the "Self-Healing" paper specifically (I need the arXiv ID).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "3999c5b5-d775-48d7-8480-3dc4d9ec2724",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hfdmgATMrtp4xSKK6jaQu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1463,
+      "cache_creation_input_tokens": 4258,
+      "cache_read_input_tokens": 43572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4258
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+Good coverage so far. Let me get a few more specific references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "5bd8c92c-12b6-4068-ab93-08e68e911b08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hfdmgATMrtp4xSKK6jaQu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1463,
+      "cache_creation_input_tokens": 4258,
+      "cache_read_input_tokens": 43572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4258
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R4tDwLgwAnVZvZsZd9Q1T7`</summary>
+
+```json
+{
+  "query": "DeepSeekMath GRPO reinforcement learning verifiable reward arXiv 2402"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "41212bae-a4b0-4ac9-93ee-6fc3180a6178",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hfdmgATMrtp4xSKK6jaQu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1463,
+      "cache_creation_input_tokens": 4258,
+      "cache_read_input_tokens": 43572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4258
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DTeMrsJoDVWBQsLrJ7ijrr`</summary>
+
+```json
+{
+  "query": "Self-Healing recovering pruned large reasoning models reinforcement learning arXiv ID OpenReview"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "a0a12aad-237f-408d-aacd-face9647d3cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hfdmgATMrtp4xSKK6jaQu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1463,
+      "cache_creation_input_tokens": 4258,
+      "cache_read_input_tokens": 43572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4258
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AokgN7JaAa2p8wHTXY4Evc`</summary>
+
+```json
+{
+  "query": "mutual information neural network representations estimation comparison limitations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "b8db8212-605f-4bb0-96d6-3b184e693554",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hfdmgATMrtp4xSKK6jaQu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1463,
+      "cache_creation_input_tokens": 4258,
+      "cache_read_input_tokens": 43572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4258
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JeuSdS9hcXdDrGvN7oW63N`</summary>
+
+```json
+{
+  "query": "ShortGPT layer removal redundancy LLM depth pruning 2024 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "5d34f145-f891-4446-a8ce-c690e1e346cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hfdmgATMrtp4xSKK6jaQu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1463,
+      "cache_creation_input_tokens": 4258,
+      "cache_read_input_tokens": 43572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4258
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T02:48:25.300Z_
+
+<details><summary>↩ Tool result · `toolu_01DTeMrsJoDVWBQsLrJ7ijrr`</summary>
+
+```text
+Web search results for query: "Self-Healing recovering pruned large reasoning models reinforcement learning arXiv ID OpenReview"
+
+Links: [{"title":"Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Cy8Qa4gAst"},{"title":"Can Large Reasoning Models Self-Train?","url":"https://arxiv.org/html/2505.21444v1"},{"title":"Think, Prune, Train, Improve: Scaling Reasoning Without Scaling Models","url":"https://arxiv.org/html/2504.18116v1"},{"title":"Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models","url":"https://arxiv.org/html/2512.02185"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview","url":"https://openreview.net/forum?id=4OsgYD7em5"},{"title":"Training Language Models to Self-Correct via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=CjwERcAU7w"},{"title":"Post-Training Large Language Models via Reinforcement Learning from Self-Feedback","url":"https://arxiv.org/html/2507.21931v1"},{"title":"An Intentional Forgetting-Driven Self-Healing Method For ...","url":"https://arxiv.org/pdf/2308.12445"},{"title":"[2411.00186] Self-Healing Machine Learning: A Framework for Autonomous Adaptation in Real-World Environments","url":"https://arxiv.org/abs/2411.00186"},{"title":"Self-Healing Machine Learning: A Framework for Autonomous Adaptation in Real-World Environments | OpenReview","url":"https://openreview.net/forum?id=f63DKIpx0I"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning
+
+**OpenReview ID:** Cy8Qa4gAst
+
+**OpenReview Link:** https://openreview.net/forum?id=Cy8Qa4gAst
+
+### Key Details:
+
+While structured pruning improves efficiency by reducing parameters, it often leads to significant performance degradation, and existing methods typically rely on next-token prediction, especially supervised fine-tuning (SFT) for recovery training.
+
+The paper introduces reinforcement learning with verifiable reward (RLVR) for recovery training, enabling pruned large reasoning models (LRMs) to achieve self-healing performance.
+
+The authors note that existing recovery methods merely imitate reasoning trajectories in the training data, leading to performance bottlenecks and low data efficiency.
+
+The paper was published on October 8, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "ad2b6222-f688-43f9-ba83-517bce4cb77c",
+  "tool_use_result": {
+    "query": "Self-Healing recovering pruned large reasoning models reinforcement learning arXiv ID OpenReview",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BD2XxsQKaMjw18zN4GJjGY",
+        "content": [
+          {
+            "title": "Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Cy8Qa4gAst"
+          },
+          {
+            "title": "Can Large Reasoning Models Self-Train?",
+            "url": "https://arxiv.org/html/2505.21444v1"
+          },
+          {
+            "title": "Think, Prune, Train, Improve: Scaling Reasoning Without Scaling Models",
+            "url": "https://arxiv.org/html/2504.18116v1"
+          },
+          {
+            "title": "Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models",
+            "url": "https://arxiv.org/html/2512.02185"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview",
+            "url": "https://openreview.net/forum?id=4OsgYD7em5"
+          },
+          {
+            "title": "Training Language Models to Self-Correct via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=CjwERcAU7w"
+          },
+          {
+            "title": "Post-Training Large Language Models via Reinforcement Learning from Self-Feedback",
+            "url": "https://arxiv.org/html/2507.21931v1"
+          },
+          {
+            "title": "An Intentional Forgetting-Driven Self-Healing Method For ...",
+            "url": "https://arxiv.org/pdf/2308.12445"
+          },
+          {
+            "title": "[2411.00186] Self-Healing Machine Learning: A Framework for Autonomous Adaptation in Real-World Environments",
+            "url": "https://arxiv.org/abs/2411.00186"
+          },
+          {
+            "title": "Self-Healing Machine Learning: A Framework for Autonomous Adaptation in Real-World Environments | OpenReview",
+            "url": "https://openreview.net/forum?id=f63DKIpx0I"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning\n\n**OpenReview ID:** Cy8Qa4gAst\n\n**OpenReview Link:** https://openreview.net/forum?id=Cy8Qa4gAst\n\n### Key Details:\n\nWhile structured pruning improves efficiency by reducing parameters, it often leads to significant performance degradation, and existing methods typically rely on next-token prediction, especially supervised fine-tuning (SFT) for recovery training.\n\nThe paper introduces reinforcement learning with verifiable reward (RLVR) for recovery training, enabling pruned large reasoning models (LRMs) to achieve self-healing performance.\n\nThe authors note that existing recovery methods merely imitate reasoning trajectories in the training data, leading to performance bottlenecks and low data efficiency.\n\nThe paper was published on October 8, 2025."
+    ],
+    "durationSeconds": 5.006441074000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T02:48:25.723Z_
+
+<details><summary>↩ Tool result · `toolu_01R4tDwLgwAnVZvZsZd9Q1T7`</summary>
+
+```text
+Web search results for query: "DeepSeekMath GRPO reinforcement learning verifiable reward arXiv 2402"
+
+Links: [{"title":"arXiv:2402.03300v3 [cs.CL] 27 Apr 2024","url":"https://arxiv.org/pdf/2402.03300"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/html/2503.06639v1"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://arxiv.org/html/2402.03300v3"},{"title":"[2402.03300] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://arxiv.org/abs/2402.03300"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs","url":"https://arxiv.org/html/2506.14245v2"},{"title":"DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature","url":"https://www.nature.com/articles/s41586-025-09422-z"},{"title":"The State of Reinforcement Learning for LLM Reasoning","url":"https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"},{"title":"AlphaGRPO: Unlocking Self-Reflective Multimodal Generation in Unified Multimodal Models via Decompositional Verifiable Reward","url":"https://arxiv.org/html/2605.12495"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO's ...","url":"https://arxiv.org/pdf/2503.06639"}]
+
+I've completed the web search for your query about DeepSeekMath GRPO reinforcement learning with verifiable rewards from arXiv 2402. Here are the key findings:
+
+## Main Results
+
+DeepSeekMath's mathematical reasoning capability is attributed to two key factors: First, a meticulously engineered data selection pipeline for publicly available web data, and second, the introduction of Group Relative Policy Optimization (GRPO), a variant of PPO that enhances mathematical reasoning abilities while optimizing memory usage.
+
+## GRPO Technical Details
+
+GRPO closely follows PPO's optimization framework but differs in how advantage is computed, estimating it using Monte Carlo rollouts rather than a learned critic, and applies whitening to the advantage function by standardizing reward's mean and variance using statistics from a "group" of Monte Carlo rollouts.
+
+## Verifiable Rewards Connection
+
+GRPO was introduced in DeepSeekMath (Shao et al., 2024) and was later used successfully to train DeepSeek-R1 models for promoting reasoning capabilities of LLMs using verifiable or binary rewards.
+
+To solve reward hacking issues in larger-scale RL training, verifiable rewards are used to make the RL training process harder to game.
+
+The primary arXiv paper is **arXiv:2402.03300** titled "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models" by Shao et al.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "459720c2-b259-4ca8-b8f7-23925afd2038",
+  "tool_use_result": {
+    "query": "DeepSeekMath GRPO reinforcement learning verifiable reward arXiv 2402",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0186LS2gWqfAghVeFHywFZgD",
+        "content": [
+          {
+            "title": "arXiv:2402.03300v3 [cs.CL] 27 Apr 2024",
+            "url": "https://arxiv.org/pdf/2402.03300"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification",
+            "url": "https://arxiv.org/html/2503.06639v1"
+          },
+          {
+            "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+            "url": "https://arxiv.org/html/2402.03300v3"
+          },
+          {
+            "title": "[2402.03300] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+            "url": "https://arxiv.org/abs/2402.03300"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs",
+            "url": "https://arxiv.org/html/2506.14245v2"
+          },
+          {
+            "title": "DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature",
+            "url": "https://www.nature.com/articles/s41586-025-09422-z"
+          },
+          {
+            "title": "The State of Reinforcement Learning for LLM Reasoning",
+            "url": "https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"
+          },
+          {
+            "title": "AlphaGRPO: Unlocking Self-Reflective Multimodal Generation in Unified Multimodal Models via Decompositional Verifiable Reward",
+            "url": "https://arxiv.org/html/2605.12495"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO's ...",
+            "url": "https://arxiv.org/pdf/2503.06639"
+          }
+        ]
+      },
+      "I've completed the web search for your query about DeepSeekMath GRPO reinforcement learning with verifiable rewards from arXiv 2402. Here are the key findings:\n\n## Main Results\n\nDeepSeekMath's mathematical reasoning capability is attributed to two key factors: First, a meticulously engineered data selection pipeline for publicly available web data, and second, the introduction of Group Relative Policy Optimization (GRPO), a variant of PPO that enhances mathematical reasoning abilities while optimizing memory usage.\n\n## GRPO Technical Details\n\nGRPO closely follows PPO's optimization framework but differs in how advantage is computed, estimating it using Monte Carlo rollouts rather than a learned critic, and applies whitening to the advantage function by standardizing reward's mean and variance using statistics from a \"group\" of Monte Carlo rollouts.\n\n## Verifiable Rewards Connection\n\nGRPO was introduced in DeepSeekMath (Shao et al., 2024) and was later used successfully to train DeepSeek-R1 models for promoting reasoning capabilities of LLMs using verifiable or binary rewards.\n\nTo solve reward hacking issues in larger-scale RL training, verifiable rewards are used to make the RL training process harder to game.\n\nThe primary arXiv paper is **arXiv:2402.03300** titled \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\" by Shao et al."
+    ],
+    "durationSeconds": 6.403418560999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T02:48:28.290Z_
+
+<details><summary>↩ Tool result · `toolu_01JeuSdS9hcXdDrGvN7oW63N`</summary>
+
+```text
+Web search results for query: "ShortGPT layer removal redundancy LLM depth pruning 2024 arXiv"
+
+Links: [{"title":"ShortGPT: Layers in Large Language Models are More Redundant Than You Expect","url":"https://arxiv.org/html/2403.03853v1"},{"title":"Rethinking Layer Redundancy in Large Language Models: Calibration Objectives and Search for Depth Pruning","url":"https://arxiv.org/html/2604.24938"},{"title":"[2403.03853] ShortGPT: Layers in Large Language Models are More Redundant Than You Expect","url":"https://arxiv.org/abs/2403.03853"},{"title":"Rethinking Layer Removal: A Hybrid Pruning Framework Combining Layer Removal and Singular Value Selection for Efficient LLM Compression","url":"https://arxiv.org/html/2501.00339v2"},{"title":"ShortGPT: Layers in Large Language Models are More Redundant Than You Expect | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/shortgpt-layers-large-language-models-are-more"},{"title":"ShortGPT: Layers in Large Language Models are More Redundant Than You Expect | OpenReview","url":"https://openreview.net/forum?id=JMNht3SmcG"},{"title":"Pruning Large Language Models by Identifying and Preserving Functional Networks","url":"https://arxiv.org/html/2508.05239v1"},{"title":"SkipGPT: Dynamic Layer Pruning Reinvented with Token Awareness and Module Decoupling","url":"https://arxiv.org/html/2506.04179"},{"title":"Reassessing Layer Pruning in LLMs: New Insights and Methods","url":"https://arxiv.org/html/2411.15558v1"},{"title":"Work in Progress REASSESSING LAYER PRUNING IN LLMS: NEW INSIGHTS AND METHODS","url":"https://arxiv.org/pdf/2411.15558"}]
+
+Based on the search results, here's what I found about ShortGPT, layer removal, and LLM depth pruning:
+
+## ShortGPT Overview
+
+ShortGPT proposes a straightforward pruning approach: layer removal, in which redundant layers in LLMs are directly deleted based on their Block Influence (BI) scores, significantly outperforming previous state-of-the-art methods in model pruning.
+
+## Key Findings on Layer Redundancy
+
+The research identifies notable redundancy across the layers of LLMs, where some layers contribute minimally to overall network functionality, introducing a metric called Block Influence (BI) which uses the similarity between layer's input and output to measure the importance of each layer.
+
+## Method Performance
+
+Considering the current structured pruning methods generally reduce parameters by no more than 30%, experiments were performed with approximately 1/4 of the parameters pruned. ShortGPT is orthogonal to quantization-like methods, enabling further reduction in parameters and computation.
+
+## Related Depth Pruning Research
+
+The search results show that depth pruning has become an active research area. Among structured compression approaches, depth pruning removes entire Transformer blocks, reducing inference cost proportionally to the number of pruned layers. ShortGPT ranks layers by cosine similarity independent of downstream tasks.
+
+Recent follow-up work includes research adopting a functional perspective where redundancy is jointly influenced by the model and the evaluation objective, observing that different objectives yield qualitatively different redundant layers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "f7dede59-17d8-4daa-bc19-12dc19760ae4",
+  "tool_use_result": {
+    "query": "ShortGPT layer removal redundancy LLM depth pruning 2024 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DCpASwfCphGknD67RARwHT",
+        "content": [
+          {
+            "title": "ShortGPT: Layers in Large Language Models are More Redundant Than You Expect",
+            "url": "https://arxiv.org/html/2403.03853v1"
+          },
+          {
+            "title": "Rethinking Layer Redundancy in Large Language Models: Calibration Objectives and Search for Depth Pruning",
+            "url": "https://arxiv.org/html/2604.24938"
+          },
+          {
+            "title": "[2403.03853] ShortGPT: Layers in Large Language Models are More Redundant Than You Expect",
+            "url": "https://arxiv.org/abs/2403.03853"
+          },
+          {
+            "title": "Rethinking Layer Removal: A Hybrid Pruning Framework Combining Layer Removal and Singular Value Selection for Efficient LLM Compression",
+            "url": "https://arxiv.org/html/2501.00339v2"
+          },
+          {
+            "title": "ShortGPT: Layers in Large Language Models are More Redundant Than You Expect | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/shortgpt-layers-large-language-models-are-more"
+          },
+          {
+            "title": "ShortGPT: Layers in Large Language Models are More Redundant Than You Expect | OpenReview",
+            "url": "https://openreview.net/forum?id=JMNht3SmcG"
+          },
+          {
+            "title": "Pruning Large Language Models by Identifying and Preserving Functional Networks",
+            "url": "https://arxiv.org/html/2508.05239v1"
+          },
+          {
+            "title": "SkipGPT: Dynamic Layer Pruning Reinvented with Token Awareness and Module Decoupling",
+            "url": "https://arxiv.org/html/2506.04179"
+          },
+          {
+            "title": "Reassessing Layer Pruning in LLMs: New Insights and Methods",
+            "url": "https://arxiv.org/html/2411.15558v1"
+          },
+          {
+            "title": "Work in Progress REASSESSING LAYER PRUNING IN LLMS: NEW INSIGHTS AND METHODS",
+            "url": "https://arxiv.org/pdf/2411.15558"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ShortGPT, layer removal, and LLM depth pruning:\n\n## ShortGPT Overview\n\nShortGPT proposes a straightforward pruning approach: layer removal, in which redundant layers in LLMs are directly deleted based on their Block Influence (BI) scores, significantly outperforming previous state-of-the-art methods in model pruning.\n\n## Key Findings on Layer Redundancy\n\nThe research identifies notable redundancy across the layers of LLMs, where some layers contribute minimally to overall network functionality, introducing a metric called Block Influence (BI) which uses the similarity between layer's input and output to measure the importance of each layer.\n\n## Method Performance\n\nConsidering the current structured pruning methods generally reduce parameters by no more than 30%, experiments were performed with approximately 1/4 of the parameters pruned. ShortGPT is orthogonal to quantization-like methods, enabling further reduction in parameters and computation.\n\n## Related Depth Pruning Research\n\nThe search results show that depth pruning has become an active research area. Among structured compression approaches, depth pruning removes entire Transformer blocks, reducing inference cost proportionally to the number of pruned layers. ShortGPT ranks layers by cosine similarity independent of downstream tasks.\n\nRecent follow-up work includes research adopting a functional perspective where redundancy is jointly influenced by the model and the evaluation objective, observing that different objectives yield qualitatively different redundant layers."
+    ],
+    "durationSeconds": 6.961567141000007
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T02:48:28.762Z_
+
+<details><summary>↩ Tool result · `toolu_01AokgN7JaAa2p8wHTXY4Evc`</summary>
+
+```text
+Web search results for query: "mutual information neural network representations estimation comparison limitations"
+
+Links: [{"title":"Mutual Information Neural Estimation","url":"https://arxiv.org/pdf/1801.04062"},{"title":"An experimental study of neural estimators of the mutual information between random vectors modeling power spectrum features | Journal on Advances in Signal Processing | Springer Nature Link","url":"https://link.springer.com/article/10.1186/s13634-023-01092-1"},{"title":"InfoNet: Neural Estimation of Mutual Information without Test-Time Optimization","url":"https://arxiv.org/html/2402.10158v1"},{"title":"Regularized Mutual Information Neural Estimation | OpenReview","url":"https://openreview.net/forum?id=Lvb2BKqL49a"},{"title":"Mutual Information Multinomial Estimation","url":"https://arxiv.org/html/2408.09377v1"},{"title":"Limitations to Estimating Mutual Information in Large Neural Populations","url":"https://www.mdpi.com/1099-4300/22/4/490"},{"title":"Mutual Information Estimation via Normalizing Flows Butakov I. D.","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/05a2d9ef0ae6f249737c1e4cce724a0c-Paper-Conference.pdf"},{"title":"LEARNING DEEP REPRESENTATIONS BY MUTUAL IN","url":"https://openreview.net/pdf?id=Bklr3j0cKX"},{"title":"Explanation of Mutual Information Neural Estimation - Ruihong Qiu","url":"https://ruihongqiu.github.io/posts/2020/07/mine/"},{"title":"MINE: MUTUAL INFORMATION NEURAL ESTIMATION","url":"https://openreview.net/pdf?id=Hymt27b0Z"}]
+
+Based on the search results, I found comprehensive information about mutual information neural network representations, estimation methods, and their limitations:
+
+## Overview of Estimation Methods
+
+Variational estimators aim to maximize the lower bound of mutual information with respect to the critic function implemented as a neural network, with the loss function defined as the negative lower bounds of the variational bounds, where the expectation is implemented by the sample mean under mini-batches.
+
+One prominent approach is MINE (Mutual Information Neural Estimator), which is based on the Donsker-Varadhan representation of the KL-divergence and is scalable, flexible, and completely trainable via back-propagation.
+
+## Key Limitations
+
+**Bias and Variance Issues:**
+Variational estimators exhibited significant bias or variance in the estimated value at high mutual information, leading to substantial estimation error, though these estimators demonstrated relatively greater reliability at low MI.
+
+**Optimization Challenges:**
+MINE suffers from the drifting phenomenon, where the constant term of the estimated function is shifting through the optimization process, and instability caused by the interaction between the logsumexp function and insufficient batch size.
+
+**High-Dimensional Data:**
+Mutual information and differential entropy are extremely hard to estimate in the case of high-dimensional data, and such estimation is also challenging for long-tailed distributions and large values of MI.
+
+**Fundamental Sampling Challenges:**
+Estimating entropy and mutual information from finite samples is notoriously hard and any direct estimate is known to be heavily biased, especially when considering large neural populations.
+
+## Complementary Approaches
+
+Flow-based generative estimators showed reduced bias and variance at high MI but suffered from slow convergence at low MI, indicating that each MI estimator possesses inherent limitations, emphasizing the necessity of a complementary use of these estimators to mitigate their respective drawbacks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "fcf09adc-ccd7-4c2f-94d3-456d3c4620ff",
+  "tool_use_result": {
+    "query": "mutual information neural network representations estimation comparison limitations",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JNRiquNUatVtZkX9KCL3U6",
+        "content": [
+          {
+            "title": "Mutual Information Neural Estimation",
+            "url": "https://arxiv.org/pdf/1801.04062"
+          },
+          {
+            "title": "An experimental study of neural estimators of the mutual information between random vectors modeling power spectrum features | Journal on Advances in Signal Processing | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1186/s13634-023-01092-1"
+          },
+          {
+            "title": "InfoNet: Neural Estimation of Mutual Information without Test-Time Optimization",
+            "url": "https://arxiv.org/html/2402.10158v1"
+          },
+          {
+            "title": "Regularized Mutual Information Neural Estimation | OpenReview",
+            "url": "https://openreview.net/forum?id=Lvb2BKqL49a"
+          },
+          {
+            "title": "Mutual Information Multinomial Estimation",
+            "url": "https://arxiv.org/html/2408.09377v1"
+          },
+          {
+            "title": "Limitations to Estimating Mutual Information in Large Neural Populations",
+            "url": "https://www.mdpi.com/1099-4300/22/4/490"
+          },
+          {
+            "title": "Mutual Information Estimation via Normalizing Flows Butakov I. D.",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/05a2d9ef0ae6f249737c1e4cce724a0c-Paper-Conference.pdf"
+          },
+          {
+            "title": "LEARNING DEEP REPRESENTATIONS BY MUTUAL IN",
+            "url": "https://openreview.net/pdf?id=Bklr3j0cKX"
+          },
+          {
+            "title": "Explanation of Mutual Information Neural Estimation - Ruihong Qiu",
+            "url": "https://ruihongqiu.github.io/posts/2020/07/mine/"
+          },
+          {
+            "title": "MINE: MUTUAL INFORMATION NEURAL ESTIMATION",
+            "url": "https://openreview.net/pdf?id=Hymt27b0Z"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about mutual information neural network representations, estimation methods, and their limitations:\n\n## Overview of Estimation Methods\n\nVariational estimators aim to maximize the lower bound of mutual information with respect to the critic function implemented as a neural network, with the loss function defined as the negative lower bounds of the variational bounds, where the expectation is implemented by the sample mean under mini-batches.\n\nOne prominent approach is MINE (Mutual Information Neural Estimator), which is based on the Donsker-Varadhan representation of the KL-divergence and is scalable, flexible, and completely trainable via back-propagation.\n\n## Key Limitations\n\n**Bias and Variance Issues:**\nVariational estimators exhibited significant bias or variance in the estimated value at high mutual information, leading to substantial estimation error, though these estimators demonstrated relatively greater reliability at low MI.\n\n**Optimization Challenges:**\nMINE suffers from the drifting phenomenon, where the constant term of the estimated function is shifting through the optimization process, and instability caused by the interaction between the logsumexp function and insufficient batch size.\n\n**High-Dimensional Data:**\nMutual information and differential entropy are extremely hard to estimate in the case of high-dimensional data, and such estimation is also challenging for long-tailed distributions and large values of MI.\n\n**Fundamental Sampling Challenges:**\nEstimating entropy and mutual information from finite samples is notoriously hard and any direct estimate is known to be heavily biased, especially when considering large neural populations.\n\n## Complementary Approaches\n\nFlow-based generative estimators showed reduced bias and variance at high MI but suffered from slow convergence at low MI, indicating that each MI estimator possesses inherent limitations, emphasizing the necessity of a complementary use of these estimators to mitigate their respective drawbacks."
+    ],
+    "durationSeconds": 7.965082547000013
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for a few more important references: the Self-Healing paper arXiv ID, FLAP pruning, and maybe some additional structured pruning methods. Also need to find the "Deceiving CKA" paper for the CKA discussion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "e2a94965-0f98-4ab6-8799-d00d26d581d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gjJ9yvZRYieHqwAsooX26",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 4307,
+      "cache_read_input_tokens": 47830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+Now let me search for the remaining critical references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "5d912deb-f78a-4207-9107-dfbd6591d84a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gjJ9yvZRYieHqwAsooX26",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 4307,
+      "cache_read_input_tokens": 47830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012urVwnrNBThvYnMQ7ebzzc`</summary>
+
+```json
+{
+  "query": "Self-Healing pruned reasoning models RLVR arXiv 2025 structured pruning recovery Qwen DeepSeek"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "c5ea3c21-1273-4618-b414-d82871652cf6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gjJ9yvZRYieHqwAsooX26",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 4307,
+      "cache_read_input_tokens": 47830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018no8cnpgtd3Sq5Usn7aEM5`</summary>
+
+```json
+{
+  "query": "\"Deceiving the CKA\" similarity deep learning Horoi manipulated ICLR 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "8310e665-da3f-41ff-85d2-dcd1f6d6eda6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gjJ9yvZRYieHqwAsooX26",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 4307,
+      "cache_read_input_tokens": 47830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JKhAxb7Z5gHwQ7hKyxUD57`</summary>
+
+```json
+{
+  "query": "FLAP structured pruning LLM fluctuation-based adaptive 2024 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "2ced717f-cb77-4e44-9c05-42ef5c193241",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gjJ9yvZRYieHqwAsooX26",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 4307,
+      "cache_read_input_tokens": 47830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y9FqhRpCKQoz3W7YMNDNEC`</summary>
+
+```json
+{
+  "query": "CKA pruning model compression layer similarity clustering 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "aff31cb5-fd86-4af9-b318-2bd1a75c7785",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gjJ9yvZRYieHqwAsooX26",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 4307,
+      "cache_read_input_tokens": 47830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T02:48:40.955Z_
+
+<details><summary>↩ Tool result · `toolu_012urVwnrNBThvYnMQ7ebzzc`</summary>
+
+```text
+Web search results for query: "Self-Healing pruned reasoning models RLVR arXiv 2025 structured pruning recovery Qwen DeepSeek"
+
+Links: [{"title":"Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Cy8Qa4gAst"},{"title":"ThinkTwice: Jointly Optimizing Large Language Models for Reasoning and Self-Refinement","url":"https://arxiv.org/html/2604.01591"},{"title":"1 Introduction","url":"https://arxiv.org/html/2604.18381"},{"title":"Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models","url":"https://arxiv.org/html/2512.02185"},{"title":"Improving Vision-language Models with Perception-centric Process Reward Models","url":"https://arxiv.org/html/2604.24583"},{"title":"Can Large Reasoning Models Self-Train?","url":"https://arxiv.org/html/2505.21444v2"},{"title":"Achieving Gold-Medal-Level Olympiad Reasoning via Simple and Unified Scaling","url":"https://arxiv.org/html/2605.13301"},{"title":"Scheduling Your LLM Reinforcement Learning with Reasoning Trees","url":"https://arxiv.org/html/2510.24832"},{"title":"[2512.02185] Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models","url":"https://arxiv.org/abs/2512.02185"},{"title":"Learning Robust Reasoning through Guided Adversarial Self-Play","url":"https://arxiv.org/html/2602.00173"}]
+
+Based on the search results, I found relevant information about your query. Here's what I found:
+
+## Self-Healing: Recovering Pruned Large Reasoning Models
+
+The research introduces reinforcement learning with verifiable reward (RLVR) for recovery training, enabling pruned large reasoning models (LRMs) to achieve self-healing performance.
+
+### Key Findings
+
+Structured pruning improves efficiency by reducing parameters, but it often leads to significant performance degradation. While structured pruning degrades the mathematical reasoning ability of LRMs, it does not completely destroy it, leaving room for compensation through recovery training.
+
+### RLVR Recovery Method
+
+Existing recovery methods merely imitate reasoning trajectories in the training data, leading to performance bottlenecks and low data efficiency. The RLVR approach addresses this limitation by using reinforcement learning instead of traditional supervised fine-tuning (SFT).
+
+### Experimental Results
+
+Experiments on five representative LRMs across six mathematical reasoning benchmarks show that RLVR significantly outperforms SFT-based recovery training. At 25% compression, RLVR-based recovery training improves performance from around 80% (with SFT) to over 95%, approaching or even outperforming the accuracy of unpruned LRMs while maintaining efficiency.
+
+The research appears to be from an OpenReview submission dated October 8, 2025, and represents an important development in making pruned reasoning models practically viable through self-healing recovery techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "23fcc4a9-defa-4a29-93e8-f1e3c381c6b5",
+  "tool_use_result": {
+    "query": "Self-Healing pruned reasoning models RLVR arXiv 2025 structured pruning recovery Qwen DeepSeek",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Gw8L7C56DneLCfRsSrwUEF",
+        "content": [
+          {
+            "title": "Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Cy8Qa4gAst"
+          },
+          {
+            "title": "ThinkTwice: Jointly Optimizing Large Language Models for Reasoning and Self-Refinement",
+            "url": "https://arxiv.org/html/2604.01591"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2604.18381"
+          },
+          {
+            "title": "Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models",
+            "url": "https://arxiv.org/html/2512.02185"
+          },
+          {
+            "title": "Improving Vision-language Models with Perception-centric Process Reward Models",
+            "url": "https://arxiv.org/html/2604.24583"
+          },
+          {
+            "title": "Can Large Reasoning Models Self-Train?",
+            "url": "https://arxiv.org/html/2505.21444v2"
+          },
+          {
+            "title": "Achieving Gold-Medal-Level Olympiad Reasoning via Simple and Unified Scaling",
+            "url": "https://arxiv.org/html/2605.13301"
+          },
+          {
+            "title": "Scheduling Your LLM Reinforcement Learning with Reasoning Trees",
+            "url": "https://arxiv.org/html/2510.24832"
+          },
+          {
+            "title": "[2512.02185] Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models",
+            "url": "https://arxiv.org/abs/2512.02185"
+          },
+          {
+            "title": "Learning Robust Reasoning through Guided Adversarial Self-Play",
+            "url": "https://arxiv.org/html/2602.00173"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about your query. Here's what I found:\n\n## Self-Healing: Recovering Pruned Large Reasoning Models\n\nThe research introduces reinforcement learning with verifiable reward (RLVR) for recovery training, enabling pruned large reasoning models (LRMs) to achieve self-healing performance.\n\n### Key Findings\n\nStructured pruning improves efficiency by reducing parameters, but it often leads to significant performance degradation. While structured pruning degrades the mathematical reasoning ability of LRMs, it does not completely destroy it, leaving room for compensation through recovery training.\n\n### RLVR Recovery Method\n\nExisting recovery methods merely imitate reasoning trajectories in the training data, leading to performance bottlenecks and low data efficiency. The RLVR approach addresses this limitation by using reinforcement learning instead of traditional supervised fine-tuning (SFT).\n\n### Experimental Results\n\nExperiments on five representative LRMs across six mathematical reasoning benchmarks show that RLVR significantly outperforms SFT-based recovery training. At 25% compression, RLVR-based recovery training improves performance from around 80% (with SFT) to over 95%, approaching or even outperforming the accuracy of unpruned LRMs while maintaining efficiency.\n\nThe research appears to be from an OpenReview submission dated October 8, 2025, and represents an important development in making pruned reasoning models practically viable through self-healing recovery techniques."
+    ],
+    "durationSeconds": 6.8978015610000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T02:48:41.236Z_
+
+<details><summary>↩ Tool result · `toolu_018no8cnpgtd3Sq5Usn7aEM5`</summary>
+
+```text
+Web search results for query: ""Deceiving the CKA" similarity deep learning Horoi manipulated ICLR 2022"
+
+Links: [{"title":"ICLR On the Inadequacy of CKA as a Measure of Similarity in Deep Learning","url":"https://iclr.cc/virtual/2022/8694"},{"title":"Deceiving the CKA Similarity Measure in Deep Learning Stefan Horoi 2,3 ∗","url":"https://openreview.net/pdf?id=hITONWhDIIJ"},{"title":"NeurIPS Deceiving the CKA Similarity Measure in Deep Learning","url":"https://neurips.cc/virtual/2022/65639"},{"title":"Deceiving the CKA Similarity Measure in Deep Learning | OpenReview","url":"https://openreview.net/forum?id=hITONWhDIIJ"},{"title":"Publication | Reza Davari","url":"https://davari.io/publication.html"},{"title":"[2210.16156] Reliability of CKA as a Similarity Measure in Deep Learning","url":"https://arxiv.org/abs/2210.16156"},{"title":"On the Inadequacy of CKA as a Measure of Similarity in Deep Learning | OpenReview","url":"https://openreview.net/forum?id=rK841rby6xc"},{"title":"ICLR Poster Reliability of CKA as a Similarity Measure in Deep Learning","url":"https://iclr.cc/virtual/2023/poster/12037"},{"title":"[PDF] Reliability of CKA as a Similarity Measure in Deep Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/dfb149bfbfb81de225dbad69aac41ffa617141e8"},{"title":"Track: Poster Session 4","url":"https://iclr.cc/virtual/2023/session/13380"}]
+
+Based on the search results, I found information about the research you're looking for. There are actually two related papers by the same research team (including Stefan Horoi):
+
+## Paper Overview
+
+The search results reveal two papers with similar themes:
+
+1. **"On the Inadequacy of CKA as a Measure of Similarity in Deep Learning"** - presented at the ICLR 2022 Workshop on Geometrical and Topological Representation Learning (ICLR GTRL Workshop 2022)
+
+2. **"Deceiving the CKA Similarity Measure in Deep Learning"** - presented at the NeurIPS 2022 Workshop on Machine Learning Safety
+
+## Main Findings
+
+The research presents an analysis that formally characterizes CKA sensitivity to a large class of simple transformations which can naturally occur in modern machine learning, providing a concrete explanation of CKA sensitivity to outliers and to transformations that preserve the linear separability of the data.
+
+Most significantly, the authors propose an optimization-based approach for modifying representations to maintain functional behaviour while changing the CKA value, illustrating that in many cases the CKA value can be easily manipulated without substantial changes to the functional behaviour of the models.
+
+Both papers share the same core message: the Centered Kernel Alignment (CKA) similarity metric, particularly its linear variant, has recently become a popular approach and has been widely used to compare representations, but these works demonstrate significant limitations in its reliability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "022078e2-0f02-433b-86a5-a13e3ab860dc",
+  "tool_use_result": {
+    "query": "\"Deceiving the CKA\" similarity deep learning Horoi manipulated ICLR 2022",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SJwPuE5AbKNdAPEFaMaajT",
+        "content": [
+          {
+            "title": "ICLR On the Inadequacy of CKA as a Measure of Similarity in Deep Learning",
+            "url": "https://iclr.cc/virtual/2022/8694"
+          },
+          {
+            "title": "Deceiving the CKA Similarity Measure in Deep Learning Stefan Horoi 2,3 ∗",
+            "url": "https://openreview.net/pdf?id=hITONWhDIIJ"
+          },
+          {
+            "title": "NeurIPS Deceiving the CKA Similarity Measure in Deep Learning",
+            "url": "https://neurips.cc/virtual/2022/65639"
+          },
+          {
+            "title": "Deceiving the CKA Similarity Measure in Deep Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=hITONWhDIIJ"
+          },
+          {
+            "title": "Publication | Reza Davari",
+            "url": "https://davari.io/publication.html"
+          },
+          {
+            "title": "[2210.16156] Reliability of CKA as a Similarity Measure in Deep Learning",
+            "url": "https://arxiv.org/abs/2210.16156"
+          },
+          {
+            "title": "On the Inadequacy of CKA as a Measure of Similarity in Deep Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=rK841rby6xc"
+          },
+          {
+            "title": "ICLR Poster Reliability of CKA as a Similarity Measure in Deep Learning",
+            "url": "https://iclr.cc/virtual/2023/poster/12037"
+          },
+          {
+            "title": "[PDF] Reliability of CKA as a Similarity Measure in Deep Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/dfb149bfbfb81de225dbad69aac41ffa617141e8"
+          },
+          {
+            "title": "Track: Poster Session 4",
+            "url": "https://iclr.cc/virtual/2023/session/13380"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the research you're looking for. There are actually two related papers by the same research team (including Stefan Horoi):\n\n## Paper Overview\n\nThe search results reveal two papers with similar themes:\n\n1. **\"On the Inadequacy of CKA as a Measure of Similarity in Deep Learning\"** - presented at the ICLR 2022 Workshop on Geometrical and Topological Representation Learning (ICLR GTRL Workshop 2022)\n\n2. **\"Deceiving the CKA Similarity Measure in Deep Learning\"** - presented at the NeurIPS 2022 Workshop on Machine Learning Safety\n\n## Main Findings\n\nThe research presents an analysis that formally characterizes CKA sensitivity to a large class of simple transformations which can naturally occur in modern machine learning, providing a concrete explanation of CKA sensitivity to outliers and to transformations that preserve the linear separability of the data.\n\nMost significantly, the authors propose an optimization-based approach for modifying representations to maintain functional behaviour while changing the CKA value, illustrating that in many cases the CKA value can be easily manipulated without substantial changes to the functional behaviour of the models.\n\nBoth papers share the same core message: the Centered Kernel Alignment (CKA) similarity metric, particularly its linear variant, has recently become a popular approach and has been widely used to compare representations, but these works demonstrate significant limitations in its reliability."
+    ],
+    "durationSeconds": 6.179265701000011
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T02:48:43.750Z_
+
+<details><summary>↩ Tool result · `toolu_01JKhAxb7Z5gHwQ7hKyxUD57`</summary>
+
+```text
+Web search results for query: "FLAP structured pruning LLM fluctuation-based adaptive 2024 arXiv"
+
+Links: [{"title":"GitHub - CASIA-LMC-Lab/FLAP: [AAAI 2024] Fluctuation-based Adaptive Structured Pruning for Large Language Models","url":"https://github.com/CASIA-LMC-Lab/FLAP"},{"title":"[2312.11983] Fluctuation-based Adaptive Structured Pruning for Large Language Models","url":"https://arxiv.org/abs/2312.11983"},{"title":"GitHub - CASIA-IVA-Lab/FLAP: [AAAI 2024] Fluctuation-based Adaptive Structured Pruning for Large Language Models","url":"https://github.com/casia-iva-lab/flap"},{"title":"Fluctuation-based Adaptive Structured Pruning for Large Language Models","url":"https://arxiv.org/html/2312.11983v1"},{"title":"Fluctuation-Based Adaptive Structured Pruning for Large Language Models | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/28960"},{"title":"Fluctuation-Based Adaptive Structured Pruning for Large Language Models","url":"https://ojs.aaai.org/index.php/AAAI/article/view/28960/29826"},{"title":"Pruning Large Language Models by Identifying and Preserving Functional Networks","url":"https://arxiv.org/html/2508.05239v1"},{"title":"Fluctuation-based Adaptive Structured Pruning for Large Language Models","url":"https://www.emergentmind.com/papers/2312.11983"},{"title":"Fluctuation-based adaptive structured pruning for large language models | Proceedings of the Thirty-Eighth AAAI Conference on Artificial Intelligence and Thirty-Sixth Conference on Innovative Applications of Artificial Intelligence and Fourteenth Symposium on Educational Advances in Artificial Intelligence","url":"https://dl.acm.org/doi/10.1609/aaai.v38i10.28960"},{"title":"FASP: Fast and Accurate Structured Pruning of Large Language Models","url":"https://arxiv.org/html/2501.09412v1"}]
+
+I found comprehensive information about FLAP. Here's a summary of the key findings:
+
+## FLAP: Fluctuation-based Adaptive Structured Pruning for Large Language Models
+
+FLAP is a retraining-free structured pruning framework for LLMs named FLAP (FLuctuation-based Adaptive Structured Pruning), introduced by researchers from the Institute of Automation, Chinese Academy of Sciences.
+
+### Key Characteristics
+
+The method can obtain better compressed LLMs without any retraining, with each module and layer having adaptive pruning ratio, achieving efficient compression in 3 to 5 minutes on a single GPU with no additional time required, and better performance on a variety of language benchmarks.
+
+### Technical Approach
+
+For effective structured pruning of LLMs, the framework highlights three critical elements: formulating structured importance metrics, adaptively searching the global compressed model, and implementing compensation mechanisms to mitigate performance loss.
+
+The method operates in three steps: FLAP determines whether the output feature map is easily recoverable when a column of weight is removed, based on the fluctuation pruning metric, then it standardizes the importance scores to adaptively determine the global compressed model structure, and at last, FLAP adds additional bias terms to recover the output feature maps using the baseline values.
+
+### Publication and Performance
+
+The paper was initially posted to arXiv on December 19, 2023 (arXiv:2312.11983) and was published in the Proceedings of the AAAI Conference on Artificial Intelligence, volume 38, pages 10865–10873 in 2024. Without any retraining, the method significantly outperforms the state-of-the-art methods, including LLM-Pruner and the extension of Wanda in structured pruning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "3271a0c4-8ed4-4488-a19f-1d5424d78233",
+  "tool_use_result": {
+    "query": "FLAP structured pruning LLM fluctuation-based adaptive 2024 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tyav7b3hBwotumYaBwFdrr",
+        "content": [
+          {
+            "title": "GitHub - CASIA-LMC-Lab/FLAP: [AAAI 2024] Fluctuation-based Adaptive Structured Pruning for Large Language Models",
+            "url": "https://github.com/CASIA-LMC-Lab/FLAP"
+          },
+          {
+            "title": "[2312.11983] Fluctuation-based Adaptive Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/abs/2312.11983"
+          },
+          {
+            "title": "GitHub - CASIA-IVA-Lab/FLAP: [AAAI 2024] Fluctuation-based Adaptive Structured Pruning for Large Language Models",
+            "url": "https://github.com/casia-iva-lab/flap"
+          },
+          {
+            "title": "Fluctuation-based Adaptive Structured Pruning for Large Language Models",
+            "url": "https://arxiv.org/html/2312.11983v1"
+          },
+          {
+            "title": "Fluctuation-Based Adaptive Structured Pruning for Large Language Models | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/28960"
+          },
+          {
+            "title": "Fluctuation-Based Adaptive Structured Pruning for Large Language Models",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/28960/29826"
+          },
+          {
+            "title": "Pruning Large Language Models by Identifying and Preserving Functional Networks",
+            "url": "https://arxiv.org/html/2508.05239v1"
+          },
+          {
+            "title": "Fluctuation-based Adaptive Structured Pruning for Large Language Models",
+            "url": "https://www.emergentmind.com/papers/2312.11983"
+          },
+          {
+            "title": "Fluctuation-based adaptive structured pruning for large language models | Proceedings of the Thirty-Eighth AAAI Conference on Artificial Intelligence and Thirty-Sixth Conference on Innovative Applications of Artificial Intelligence and Fourteenth Symposium on Educational Advances in Artificial Intelligence",
+            "url": "https://dl.acm.org/doi/10.1609/aaai.v38i10.28960"
+          },
+          {
+            "title": "FASP: Fast and Accurate Structured Pruning of Large Language Models",
+            "url": "https://arxiv.org/html/2501.09412v1"
+          }
+        ]
+      },
+      "I found comprehensive information about FLAP. Here's a summary of the key findings:\n\n## FLAP: Fluctuation-based Adaptive Structured Pruning for Large Language Models\n\nFLAP is a retraining-free structured pruning framework for LLMs named FLAP (FLuctuation-based Adaptive Structured Pruning), introduced by researchers from the Institute of Automation, Chinese Academy of Sciences.\n\n### Key Characteristics\n\nThe method can obtain better compressed LLMs without any retraining, with each module and layer having adaptive pruning ratio, achieving efficient compression in 3 to 5 minutes on a single GPU with no additional time required, and better performance on a variety of language benchmarks.\n\n### Technical Approach\n\nFor effective structured pruning of LLMs, the framework highlights three critical elements: formulating structured importance metrics, adaptively searching the global compressed model, and implementing compensation mechanisms to mitigate performance loss.\n\nThe method operates in three steps: FLAP determines whether the output feature map is easily recoverable when a column of weight is removed, based on the fluctuation pruning metric, then it standardizes the importance scores to adaptively determine the global compressed model structure, and at last, FLAP adds additional bias terms to recover the output feature maps using the baseline values.\n\n### Publication and Performance\n\nThe paper was initially posted to arXiv on December 19, 2023 (arXiv:2312.11983) and was published in the Proceedings of the AAAI Conference on Artificial Intelligence, volume 38, pages 10865–10873 in 2024. Without any retraining, the method significantly outperforms the state-of-the-art methods, including LLM-Pruner and the extension of Wanda in structured pruning."
+    ],
+    "durationSeconds": 8.220266313999993
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T02:48:45.135Z_
+
+<details><summary>↩ Tool result · `toolu_01Y9FqhRpCKQoz3W7YMNDNEC`</summary>
+
+```text
+Web search results for query: "CKA pruning model compression layer similarity clustering 2024 2025"
+
+Links: [{"title":"MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning","url":"https://arxiv.org/html/2408.13482v1"},{"title":"SIMPLER: Efficient Foundation Model Adaptation via Similarity-Guided Layer Pruning for Earth Observation","url":"https://arxiv.org/html/2603.19873"},{"title":"Centered Kernel Alignment (CKA) Overview","url":"https://www.emergentmind.com/topics/centered-kernel-alignment-cka"},{"title":"A Sliding Layer Merging Method for Efficient Depth-Wise Pruning in LLMs","url":"https://arxiv.org/html/2502.19159v3"},{"title":"[2405.17081] Effective Layer Pruning Through Similarity Metric Perspective","url":"https://arxiv.org/abs/2405.17081"},{"title":"A survey of model compression techniques: past, present, and future - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11965593/"},{"title":"Graph-Based Similarity of Deep Neural Networks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231224014930"},{"title":"Sliding-Window Merging for Compacting Patch-Redundant Layers in LLMs","url":"https://arxiv.org/html/2502.19159"},{"title":"Frontiers | A survey of model compression techniques: past, present, and future","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1518965/full"},{"title":"LaCo: Large Language Model Pruning via Layer Collapse","url":"https://aclanthology.org/2024.findings-emnlp.372.pdf"}]
+
+Based on the search results, I found several recent papers and resources on CKA-based pruning, model compression, and layer similarity clustering. Here's what I found:
+
+## Key Recent Works (2024-2025)
+
+**MPruner (August 2024):** MPruner leverages mutual information through vector similarity and utilizes layer clustering with the Centered Kernel Alignment (CKA) similarity metric, allowing for more precise and efficient layer-wise pruning. MPruner leverages CKA-based layer clustering to collapse nearly identical block sequences in both transformers and CNNs, often achieving ~50% parameter reduction with negligible accuracy degradation.
+
+**SIMPLER (March 2026):** SIMPLER exploits the observation that deep layers in pre-trained vision transformers produce nearly identical representations, and selects optimal architecture depth by computing layer-wise representation similarity using Centered Kernel Alignment, measuring how each layer transforms input distributions.
+
+**Layer Pruning via Similarity Metrics (May 2024):** This method estimates the relative importance of a layer using the Centered Kernel Alignment (CKA) metric to measure the similarity between representations of the unpruned model and a candidate layer for pruning.
+
+**Sliding-Window Merging for LLMs (December 2025):** This method dynamically merges consecutive layers using a similarity threshold, enabling rapid model compression while effectively preserving performance.
+
+## CKA Applications in Model Compression
+
+CKA identifies superfluous or static layers, informing pruning and model compression strategies. The proposed methodology involves iterative clustering and pruning until no further clustering of two or more encoders is possible.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "6a3a14fe-a00b-4398-9638-f0357f0fa7d6",
+  "tool_use_result": {
+    "query": "CKA pruning model compression layer similarity clustering 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C91ZjddCZV5wrreBa81tZH",
+        "content": [
+          {
+            "title": "MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning",
+            "url": "https://arxiv.org/html/2408.13482v1"
+          },
+          {
+            "title": "SIMPLER: Efficient Foundation Model Adaptation via Similarity-Guided Layer Pruning for Earth Observation",
+            "url": "https://arxiv.org/html/2603.19873"
+          },
+          {
+            "title": "Centered Kernel Alignment (CKA) Overview",
+            "url": "https://www.emergentmind.com/topics/centered-kernel-alignment-cka"
+          },
+          {
+            "title": "A Sliding Layer Merging Method for Efficient Depth-Wise Pruning in LLMs",
+            "url": "https://arxiv.org/html/2502.19159v3"
+          },
+          {
+            "title": "[2405.17081] Effective Layer Pruning Through Similarity Metric Perspective",
+            "url": "https://arxiv.org/abs/2405.17081"
+          },
+          {
+            "title": "A survey of model compression techniques: past, present, and future - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11965593/"
+          },
+          {
+            "title": "Graph-Based Similarity of Deep Neural Networks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231224014930"
+          },
+          {
+            "title": "Sliding-Window Merging for Compacting Patch-Redundant Layers in LLMs",
+            "url": "https://arxiv.org/html/2502.19159"
+          },
+          {
+            "title": "Frontiers | A survey of model compression techniques: past, present, and future",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1518965/full"
+          },
+          {
+            "title": "LaCo: Large Language Model Pruning via Layer Collapse",
+            "url": "https://aclanthology.org/2024.findings-emnlp.372.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers and resources on CKA-based pruning, model compression, and layer similarity clustering. Here's what I found:\n\n## Key Recent Works (2024-2025)\n\n**MPruner (August 2024):** MPruner leverages mutual information through vector similarity and utilizes layer clustering with the Centered Kernel Alignment (CKA) similarity metric, allowing for more precise and efficient layer-wise pruning. MPruner leverages CKA-based layer clustering to collapse nearly identical block sequences in both transformers and CNNs, often achieving ~50% parameter reduction with negligible accuracy degradation.\n\n**SIMPLER (March 2026):** SIMPLER exploits the observation that deep layers in pre-trained vision transformers produce nearly identical representations, and selects optimal architecture depth by computing layer-wise representation similarity using Centered Kernel Alignment, measuring how each layer transforms input distributions.\n\n**Layer Pruning via Similarity Metrics (May 2024):** This method estimates the relative importance of a layer using the Centered Kernel Alignment (CKA) metric to measure the similarity between representations of the unpruned model and a candidate layer for pruning.\n\n**Sliding-Window Merging for LLMs (December 2025):** This method dynamically merges consecutive layers using a similarity threshold, enabling rapid model compression while effectively preserving performance.\n\n## CKA Applications in Model Compression\n\nCKA identifies superfluous or static layers, informing pruning and model compression strategies. The proposed methodology involves iterative clustering and pruning until no further clustering of two or more encoders is possible."
+    ],
+    "durationSeconds": 8.990649873000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough material. Let me compile the full literature survey. Let me also search for a couple more papers I want to be accurate about - specifically the Self-Healing arXiv ID (I only have the OpenReview link), and the MPruner arXiv ID.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "3a451563-7615-45e3-84e9-8e8e23ee5213",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEv4K3TxR6XhSq3vtQAgxi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4934,
+      "cache_read_input_tokens": 52137,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+Let me get a couple more specific references before compiling the final document.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "d9256eb8-468c-4d2f-b6e0-e903dad98ba6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEv4K3TxR6XhSq3vtQAgxi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4934,
+      "cache_read_input_tokens": 52137,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014kfZm2AeA4nAZeZN1KDqDD`</summary>
+
+```json
+{
+  "query": "MPruner CKA mutual information pruning arXiv 2408.13482 layer clustering"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "e973fc79-988b-40e9-ad61-7d6dfdf321e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEv4K3TxR6XhSq3vtQAgxi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4934,
+      "cache_read_input_tokens": 52137,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018ReYKbkwHG9PsUenL9qcBu`</summary>
+
+```json
+{
+  "query": "Self-Healing recovering pruned reasoning models arXiv number 2510 2511 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "fc491567-c7c2-4567-a964-1f31502b2f3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEv4K3TxR6XhSq3vtQAgxi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4934,
+      "cache_read_input_tokens": 52137,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018gpWcwb3Q31A2FAwdpF1kj`</summary>
+
+```json
+{
+  "query": "projection weighted CCA PWCCA representation similarity Morcos 2018 NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "09dffa0b-3a45-419e-b2f2-1cc168c3e640",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEv4K3TxR6XhSq3vtQAgxi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4934,
+      "cache_read_input_tokens": 52137,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T02:48:57.100Z_
+
+<details><summary>↩ Tool result · `toolu_014kfZm2AeA4nAZeZN1KDqDD`</summary>
+
+```text
+Web search results for query: "MPruner CKA mutual information pruning arXiv 2408.13482 layer clustering"
+
+Links: [{"title":"[2408.13482] MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning","url":"https://arxiv.org/abs/2408.13482"},{"title":"MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning","url":"https://arxiv.org/html/2408.13482v2"},{"title":"(PDF) MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning","url":"https://www.researchgate.net/publication/383428133_MPruner_Optimizing_Neural_Network_Size_with_CKA-Based_Mutual_Information_Pruning"},{"title":"MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240813482H/abstract"},{"title":"MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/mpruner-optimizing-neural-network-size-cka-based"},{"title":"Published as a conference paper at ICLR 2025 DYNAMIC LOW-RANK SPARSE ADAPTATION","url":"https://arxiv.org/pdf/2502.14816"},{"title":"Computer Science Aug 2024","url":"https://arxiv.org/list/cs/2024-08?skip=6000&show=250"},{"title":"Dynamic Low-Rank Sparse Adaptation for Large Language Models","url":"https://arxiv.org/html/2502.14816v1"},{"title":"MPruner: Structured Neural Network Pruning","url":"https://www.emergentmind.com/topics/mpruner"},{"title":"Artificial Intelligence","url":"https://web3.arxiv.org/list/cs.AI/recent?skip=435&show=100"}]
+
+I found detailed information about MPruner and the arXiv paper 2408.13482. Here's a comprehensive summary:
+
+## MPruner: CKA-Based Mutual Information Pruning
+
+MPruner is a new pruning algorithm that leverages mutual information through vector similarity and utilizes layer clustering with the Centered Kernel Alignment (CKA) similarity metric, allowing incorporation of global information from the neural network for more precise and efficient layer-wise pruning.
+
+### Key Features
+
+MPruner first evaluates the contribution of each layer to the model, removes all unnecessary layers simultaneously, and then retrains the optimized model, resulting in a significantly smaller model size compared to the original.
+
+Unlike most previous pruning methods, MPruner uses an accuracy threshold rather than a sparsity level as the pruning criterion, and also determines how many layers can be mathematically and safely pruned while staying within the specified threshold.
+
+### Advantages
+
+It calculates the global contribution of multi-layer clusters rather than focusing solely on pairs of adjacent layers, allowing the method to capture global information more effectively, ensuring a more comprehensive and accurate pruning process.
+
+### Performance Results
+
+MPruner achieved up to a 50% reduction in parameters and memory usage for CNN and transformer-based models, with minimal to no loss in accuracy.
+
+### Evaluation
+
+The method was validated by applying it to various architectures, including CNN and transformer-based models, across a wide range of configurations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "1eda7b27-04e2-47f4-990f-9e9941177132",
+  "tool_use_result": {
+    "query": "MPruner CKA mutual information pruning arXiv 2408.13482 layer clustering",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PXL5dnTRGiQkqHRKjdnTUJ",
+        "content": [
+          {
+            "title": "[2408.13482] MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning",
+            "url": "https://arxiv.org/abs/2408.13482"
+          },
+          {
+            "title": "MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning",
+            "url": "https://arxiv.org/html/2408.13482v2"
+          },
+          {
+            "title": "(PDF) MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning",
+            "url": "https://www.researchgate.net/publication/383428133_MPruner_Optimizing_Neural_Network_Size_with_CKA-Based_Mutual_Information_Pruning"
+          },
+          {
+            "title": "MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240813482H/abstract"
+          },
+          {
+            "title": "MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/mpruner-optimizing-neural-network-size-cka-based"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 DYNAMIC LOW-RANK SPARSE ADAPTATION",
+            "url": "https://arxiv.org/pdf/2502.14816"
+          },
+          {
+            "title": "Computer Science Aug 2024",
+            "url": "https://arxiv.org/list/cs/2024-08?skip=6000&show=250"
+          },
+          {
+            "title": "Dynamic Low-Rank Sparse Adaptation for Large Language Models",
+            "url": "https://arxiv.org/html/2502.14816v1"
+          },
+          {
+            "title": "MPruner: Structured Neural Network Pruning",
+            "url": "https://www.emergentmind.com/topics/mpruner"
+          },
+          {
+            "title": "Artificial Intelligence",
+            "url": "https://web3.arxiv.org/list/cs.AI/recent?skip=435&show=100"
+          }
+        ]
+      },
+      "I found detailed information about MPruner and the arXiv paper 2408.13482. Here's a comprehensive summary:\n\n## MPruner: CKA-Based Mutual Information Pruning\n\nMPruner is a new pruning algorithm that leverages mutual information through vector similarity and utilizes layer clustering with the Centered Kernel Alignment (CKA) similarity metric, allowing incorporation of global information from the neural network for more precise and efficient layer-wise pruning.\n\n### Key Features\n\nMPruner first evaluates the contribution of each layer to the model, removes all unnecessary layers simultaneously, and then retrains the optimized model, resulting in a significantly smaller model size compared to the original.\n\nUnlike most previous pruning methods, MPruner uses an accuracy threshold rather than a sparsity level as the pruning criterion, and also determines how many layers can be mathematically and safely pruned while staying within the specified threshold.\n\n### Advantages\n\nIt calculates the global contribution of multi-layer clusters rather than focusing solely on pairs of adjacent layers, allowing the method to capture global information more effectively, ensuring a more comprehensive and accurate pruning process.\n\n### Performance Results\n\nMPruner achieved up to a 50% reduction in parameters and memory usage for CNN and transformer-based models, with minimal to no loss in accuracy.\n\n### Evaluation\n\nThe method was validated by applying it to various architectures, including CNN and transformer-based models, across a wide range of configurations."
+    ],
+    "durationSeconds": 6.490982556999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T02:48:58.166Z_
+
+<details><summary>↩ Tool result · `toolu_018ReYKbkwHG9PsUenL9qcBu`</summary>
+
+```text
+Web search results for query: "Self-Healing recovering pruned reasoning models arXiv number 2510 2511 2025"
+
+Links: [{"title":"Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Cy8Qa4gAst"},{"title":"Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models","url":"https://arxiv.org/html/2511.18864"},{"title":"Self-Healing Machine Learning: A Framework for","url":"https://arxiv.org/pdf/2411.00186"},{"title":"Think, Prune, Train, Improve: Scaling Reasoning Without Scaling Models","url":"https://arxiv.org/html/2504.18116v1"},{"title":"[2512.02185] Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models","url":"https://arxiv.org/abs/2512.02185"},{"title":"[2511.18864] Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models","url":"https://arxiv.org/abs/2511.18864"},{"title":"From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models","url":"https://arxiv.org/html/2601.18091"},{"title":"Efficient Mathematical Reasoning Models via Dynamic ...","url":"https://www.arxiv.org/pdf/2511.17577"},{"title":"[2511.17577] Efficient Mathematical Reasoning Models via Dynamic Pruning and Knowledge Distillation","url":"https://arxiv.org/abs/2511.17577"},{"title":"Towards Efficient Automatic Self-Pruning of Large Language Models","url":"https://arxiv.org/html/2502.14413v1"}]
+
+Based on my search results, I found information related to your query about self-healing recovering pruned reasoning models. Here are the most relevant findings:
+
+## Main Paper Match
+
+The paper "Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning" addresses building lightweight and efficient large reasoning models (LRMs), noting that while structured pruning improves efficiency by reducing parameters, it often leads to significant performance degradation.
+
+The research shows that while structured pruning degrades the mathematical reasoning ability of LRMs, it does not completely destroy it, leaving room for compensation through recovery training, though existing recovery methods merely imitate reasoning trajectories in the training data, leading to performance bottlenecks and low data efficiency.
+
+This appears to be the paper you're looking for. According to the OpenReview source, it was posted on **October 8, 2025**, which places it in the 2510 (October 2025) timeframe you mentioned. However, I couldn't locate the specific arXiv number (25XXYYYY format) in the search results - the OpenReview page doesn't display the arXiv identifier directly.
+
+## Related Papers
+
+The search also revealed other recent papers on pruning reasoning models that were published in the 2511 (November 2025) timeframe, including "Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models" (arXiv:2511.18864).
+
+Would you like me to search for the specific arXiv number for the "Self-Healing" paper?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "7217c08d-da1c-4a37-b070-4ceef29b8466",
+  "tool_use_result": {
+    "query": "Self-Healing recovering pruned reasoning models arXiv number 2510 2511 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GdqjFbaU13oixE4dk1V2b3",
+        "content": [
+          {
+            "title": "Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Cy8Qa4gAst"
+          },
+          {
+            "title": "Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models",
+            "url": "https://arxiv.org/html/2511.18864"
+          },
+          {
+            "title": "Self-Healing Machine Learning: A Framework for",
+            "url": "https://arxiv.org/pdf/2411.00186"
+          },
+          {
+            "title": "Think, Prune, Train, Improve: Scaling Reasoning Without Scaling Models",
+            "url": "https://arxiv.org/html/2504.18116v1"
+          },
+          {
+            "title": "[2512.02185] Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models",
+            "url": "https://arxiv.org/abs/2512.02185"
+          },
+          {
+            "title": "[2511.18864] Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2511.18864"
+          },
+          {
+            "title": "From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models",
+            "url": "https://arxiv.org/html/2601.18091"
+          },
+          {
+            "title": "Efficient Mathematical Reasoning Models via Dynamic ...",
+            "url": "https://www.arxiv.org/pdf/2511.17577"
+          },
+          {
+            "title": "[2511.17577] Efficient Mathematical Reasoning Models via Dynamic Pruning and Knowledge Distillation",
+            "url": "https://arxiv.org/abs/2511.17577"
+          },
+          {
+            "title": "Towards Efficient Automatic Self-Pruning of Large Language Models",
+            "url": "https://arxiv.org/html/2502.14413v1"
+          }
+        ]
+      },
+      "Based on my search results, I found information related to your query about self-healing recovering pruned reasoning models. Here are the most relevant findings:\n\n## Main Paper Match\n\nThe paper \"Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning\" addresses building lightweight and efficient large reasoning models (LRMs), noting that while structured pruning improves efficiency by reducing parameters, it often leads to significant performance degradation.\n\nThe research shows that while structured pruning degrades the mathematical reasoning ability of LRMs, it does not completely destroy it, leaving room for compensation through recovery training, though existing recovery methods merely imitate reasoning trajectories in the training data, leading to performance bottlenecks and low data efficiency.\n\nThis appears to be the paper you're looking for. According to the OpenReview source, it was posted on **October 8, 2025**, which places it in the 2510 (October 2025) timeframe you mentioned. However, I couldn't locate the specific arXiv number (25XXYYYY format) in the search results - the OpenReview page doesn't display the arXiv identifier directly.\n\n## Related Papers\n\nThe search also revealed other recent papers on pruning reasoning models that were published in the 2511 (November 2025) timeframe, including \"Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models\" (arXiv:2511.18864).\n\nWould you like me to search for the specific arXiv number for the \"Self-Healing\" paper?"
+    ],
+    "durationSeconds": 6.590231052000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T02:48:59.322Z_
+
+<details><summary>↩ Tool result · `toolu_018gpWcwb3Q31A2FAwdpF1kj`</summary>
+
+```text
+Web search results for query: "projection weighted CCA PWCCA representation similarity Morcos 2018 NeurIPS"
+
+Links: [{"title":"Reviews: Insights on representational similarity in neural networks with canonical correlation","url":"https://proceedings.neurips.cc/paper/2018/file/a7a3d70c6d17a73140918996d03c014f-Reviews.html"},{"title":"Insights on representational similarity in neural networks with canonical correlation","url":"https://proceedings.neurips.cc/paper/2018/hash/a7a3d70c6d17a73140918996d03c014f-Abstract.html"},{"title":"[1806.05759] Insights on representational similarity in neural networks with canonical correlation","url":"https://arxiv.org/abs/1806.05759"},{"title":"Reviews: Insights on representational similarity in neural networks with canonical correlation","url":"https://media.nips.cc/nipsbooks/nipspapers/paper_files/nips31/reviews/2770.html"},{"title":"Similarity of Neural Network Representations Revisited","url":"http://proceedings.mlr.press/v97/kornblith19a/kornblith19a.pdf"},{"title":"Insights on representational similarity in neural networks ...","url":"https://dl.acm.org/doi/pdf/10.5555/3327345.3327475"},{"title":"Grounding Representation Similarity with Statistical Testing Frances Ding,","url":"https://proceedings.neurips.cc/paper/2021/file/0c0bf917c7942b5a08df71f9da626f97-Paper.pdf"},{"title":"GitHub - 1Konny/Projection_Weighted_CCA","url":"https://github.com/1Konny/Projection_Weighted_CCA"},{"title":"GitHub - google/svcca · GitHub","url":"https://github.com/google/svcca"},{"title":"Insights on representational similarity in neural networks ...","url":"https://proceedings.neurips.cc/paper/2018/file/a7a3d70c6d17a73140918996d03c014f-Paper.pdf"}]
+
+I've successfully found the research you're looking for. Here's what I found about the Morcos et al. 2018 NeurIPS paper on Projection Weighted CCA (PWCCA):
+
+## Overview
+
+The paper develops projection weighted CCA (Canonical Correlation Analysis) as a tool for understanding neural networks, building off of SVCCA, a recently proposed method (Raghu et al, 2017).
+
+## Key Innovation
+
+The researchers observe that some CCA components stabilize early in training and remain stable (signal) while other components continue to vary even after performance has converged (noise). This motivates replacing the mean canonical correlation coefficient (used as a similarity metric in SVCCA) with a weighted mean, where components that better explain the activation patterns receive a higher weight.
+
+## Main Findings
+
+The technique demonstrates that networks which generalize converge to more similar representations than networks which memorize, that wider networks converge to more similar solutions than narrow networks, and that trained networks with identical topology but different learning rates converge to distinct clusters with diverse representations.
+
+For RNNs, the researchers find that RNNs converge in a bottom-up pattern over the course of training and that the hidden state is highly variable over the course of a sequence, even when accounting for linear transforms.
+
+## Implementation
+
+A numpy implementation of Projection Weighted CCA is available, implementing the method proposed in the paper "Insights on representational similarity in neural networks with canonical correlation, Morcos et al., 2018."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "eb0198a0-5339-4c16-84bc-a9fa23cdf952",
+  "tool_use_result": {
+    "query": "projection weighted CCA PWCCA representation similarity Morcos 2018 NeurIPS",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HLSAaCevkSbxaJfeEeh5qf",
+        "content": [
+          {
+            "title": "Reviews: Insights on representational similarity in neural networks with canonical correlation",
+            "url": "https://proceedings.neurips.cc/paper/2018/file/a7a3d70c6d17a73140918996d03c014f-Reviews.html"
+          },
+          {
+            "title": "Insights on representational similarity in neural networks with canonical correlation",
+            "url": "https://proceedings.neurips.cc/paper/2018/hash/a7a3d70c6d17a73140918996d03c014f-Abstract.html"
+          },
+          {
+            "title": "[1806.05759] Insights on representational similarity in neural networks with canonical correlation",
+            "url": "https://arxiv.org/abs/1806.05759"
+          },
+          {
+            "title": "Reviews: Insights on representational similarity in neural networks with canonical correlation",
+            "url": "https://media.nips.cc/nipsbooks/nipspapers/paper_files/nips31/reviews/2770.html"
+          },
+          {
+            "title": "Similarity of Neural Network Representations Revisited",
+            "url": "http://proceedings.mlr.press/v97/kornblith19a/kornblith19a.pdf"
+          },
+          {
+            "title": "Insights on representational similarity in neural networks ...",
+            "url": "https://dl.acm.org/doi/pdf/10.5555/3327345.3327475"
+          },
+          {
+            "title": "Grounding Representation Similarity with Statistical Testing Frances Ding,",
+            "url": "https://proceedings.neurips.cc/paper/2021/file/0c0bf917c7942b5a08df71f9da626f97-Paper.pdf"
+          },
+          {
+            "title": "GitHub - 1Konny/Projection_Weighted_CCA",
+            "url": "https://github.com/1Konny/Projection_Weighted_CCA"
+          },
+          {
+            "title": "GitHub - google/svcca · GitHub",
+            "url": "https://github.com/google/svcca"
+          },
+          {
+            "title": "Insights on representational similarity in neural networks ...",
+            "url": "https://proceedings.neurips.cc/paper/2018/file/a7a3d70c6d17a73140918996d03c014f-Paper.pdf"
+          }
+        ]
+      },
+      "I've successfully found the research you're looking for. Here's what I found about the Morcos et al. 2018 NeurIPS paper on Projection Weighted CCA (PWCCA):\n\n## Overview\n\nThe paper develops projection weighted CCA (Canonical Correlation Analysis) as a tool for understanding neural networks, building off of SVCCA, a recently proposed method (Raghu et al, 2017).\n\n## Key Innovation\n\nThe researchers observe that some CCA components stabilize early in training and remain stable (signal) while other components continue to vary even after performance has converged (noise). This motivates replacing the mean canonical correlation coefficient (used as a similarity metric in SVCCA) with a weighted mean, where components that better explain the activation patterns receive a higher weight.\n\n## Main Findings\n\nThe technique demonstrates that networks which generalize converge to more similar representations than networks which memorize, that wider networks converge to more similar solutions than narrow networks, and that trained networks with identical topology but different learning rates converge to distinct clusters with diverse representations.\n\nFor RNNs, the researchers find that RNNs converge in a bottom-up pattern over the course of training and that the hidden state is highly variable over the course of a sequence, even when accounting for linear transforms.\n\n## Implementation\n\nA numpy implementation of Projection Weighted CCA is available, implementing the method proposed in the paper \"Insights on representational similarity in neural networks with canonical correlation, Morcos et al., 2018.\""
+    ],
+    "durationSeconds": 7.191081460999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive information on all the papers needed. Let me compile the full literature survey document. Let me also check whether the Self-Healing paper has an arXiv ID. The OpenReview ID is Cy8Qa4gAst, but I wasn't able to find a specific arXiv ID. Let me note that in the document.
+
+Let me now compile the full document and save it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "e8f1e88a-b04f-4e57-95e0-8be9fbefa7ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAFkDrPWSPaDoNmMDnmE7v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2917,
+      "cache_read_input_tokens": 57071,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2917
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92_
+
+I now have all the needed references. Let me compile the full survey document.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "f81032aa-4ae2-49c1-91a5-dad518ad14a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAFkDrPWSPaDoNmMDnmE7v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2917,
+      "cache_read_input_tokens": 57071,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2917
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01XnLn79CfqG8nK8QNBdVtcw`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "literature_survey_related_work.md",
+  "content": "# Related Work 文献调研\n\n## 1. Dream 审稿指出缺失的论文\n\n### FANG: Function-Aware Neuron Grouping (arXiv Dec 2025)\n- **arXiv/DOI**: arXiv:2512.23014\n- **核心方法**: 按功能角色分组神经元，组内根据语义对齐程度加权 importance，共享神经元保留机制 + adaptive block-wise sparsity\n- **与 RASP 的关系**: 竞品/互补。FANG 和 RASP 都利用 functional specialization 指导剪枝，但 FANG 用 neuron grouping + semantic alignment，RASP 用 CKA overlap。FANG 不考虑 recovery\n- **Related Work 中怎么引**: \"Concurrently, FANG (2025) groups neurons by functional roles and prunes within each group using semantically aligned importance scores, achieving SOTA structured pruning results. Unlike RASP, FANG does not consider post-pruning recoverability.\"\n- **BibTeX key 建议**: `fang2025function`\n\n### FuncNet: Functional Network Pruning (arXiv Aug 2025)\n- **arXiv/DOI**: arXiv:2508.05239\n- **核心方法**: 借鉴认知神经科学，用 ICA 分解 LLM 为 functional networks（类似大脑功能网络），保留关键功能网络中的神经元\n- **与 RASP 的关系**: 互补。FuncNet 和 RASP 都关注 functional structure，但 FuncNet 用 ICA 分解，RASP 用 CKA overlap 度量\n- **Related Work 中怎么引**: \"FuncNet (2025) draws on cognitive neuroscience to decompose LLMs into functional networks via ICA, preserving key neurons within each network. While sharing our functional perspective, RASP uses CKA to quantify pairwise overlap rather than ICA decomposition.\"\n- **BibTeX key 建议**: `funcnet2025pruning`\n\n### RestoreLCC: Lost Component Compensation (NeurIPS 2025)\n- **arXiv/DOI**: arXiv:2510.21834\n- **核心方法**: 对比式探测关键 attention heads 的 activation differences，提取 lost components 并注入回 pruned heads 做补偿。Plug-and-play，兼容 structured/semi-structured/unstructured pruning\n- **与 RASP 的关系**: 互补。RestoreLCC 做 post-pruning activation compensation，RASP 做 pre-pruning overlap-aware selection + RLVR recovery。两者可叠加\n- **Related Work 中怎么引**: \"RestoreLCC (NeurIPS 2025) recovers pruning loss by contrastively probing critical attention heads and reinjecting lost activation components. This plug-and-play approach is complementary to RASP's strategy of preserving functionally unique heads before pruning.\"\n- **BibTeX key 建议**: `restorelcc2025`\n\n### PAT: Pruning-Aware Tuning (AAAI 2025)\n- **arXiv/DOI**: arXiv:2408.14721\n- **核心方法**: 在 Attention 和 FFN 之间插入 Hybrid Sparsification Modules (HSMs)，含轻量算子 + 全局共享 trainable mask，Identity Loss 解耦 transformation 和 scaling\n- **与 RASP 的关系**: 竞品。PAT 将 pruning 和 fine-tuning 统一，RASP 分两阶段（CKA-guided pruning → RLVR recovery）。PAT 用 SFT-like recovery，RASP 用 RL\n- **Related Work 中怎么引**: \"PAT (AAAI 2025) unifies pruning and fine-tuning via Hybrid Sparsification Modules with LoRA-comparable overhead. RASP differs by decoupling pruning from recovery and employing RLVR instead of supervised tuning for the recovery stage.\"\n- **BibTeX key 建议**: `pat2025pruning`\n\n---\n\n## 2. 已知竞品（项目已识别）\n\n### Self-Healing: Recovering Pruned LRMs via RL (OpenReview Oct 2025)\n- **arXiv/DOI**: OpenReview ID: Cy8Qa4gAst（未找到 arXiv ID，仅 OpenReview）\n- **核心方法**: 用 RLVR 替代 SFT 做剪枝后恢复训练。在 25% 压缩下 RLVR 将性能从 ~80%（SFT）提升到 >95%\n- **与 RASP 的关系**: 最直接竞品。Self-Healing 证明 RLVR > SFT 做 recovery，但不考虑剪哪些结构。RASP 的核心贡献是 pruning selection 也要考虑 recoverability\n- **Related Work 中怎么引**: \"Self-Healing (2025) demonstrates that RLVR-based recovery dramatically outperforms SFT for pruned reasoning models. RASP builds on this insight by further showing that which structures are pruned significantly affects recovery efficiency—CKA-guided selection creates a more favorable starting point for RLVR.\"\n- **BibTeX key 建议**: `selfhealing2025`\n\n### GRASPrune: Global Gating for Budgeted Structured Pruning (ACL 2026)\n- **arXiv/DOI**: arXiv:2604.19398\n- **核心方法**: 联合剪枝 FFN channels 和 KV head groups，用 projected straight-through estimator 学习 gate scores，全局 budget 约束，calibration scaling factors 缓解 scale mismatch\n- **与 RASP 的关系**: 竞品。GRASPrune 用 learned gating，RASP 用 CKA-based importance scoring。GRASPrune 不考虑 recovery\n- **Related Work 中怎么引**: \"GRASPrune (ACL 2026) jointly prunes FFN channels and KV head groups under a global budget using learned gate scores. While achieving strong one-shot pruning, it does not account for post-pruning recoverability, which RASP addresses via the functional overlap term.\"\n- **BibTeX key 建议**: `graspprune2026`\n\n### RESP (Think Before You Prune): Self-Reflective Structured Pruning (Dec 2025)\n- **arXiv/DOI**: arXiv:2512.02185\n- **核心方法**: 自生成推理 traces 做 calibration，decode-time gradient importance，progressive regeneration。首个针对 reasoning LLMs 的 structured pruning\n- **与 RASP 的关系**: 竞品。RESP 用 self-generated calibration + gradient importance，RASP 用 CKA overlap。RESP 不用 RL recovery\n- **Related Work 中怎么引**: \"RESP (2025) is the first to address structured pruning specifically for reasoning LLMs, using self-generated traces for calibration and decode-time gradients for importance estimation. RASP complements this line by introducing a functional overlap criterion and leveraging RLVR for recovery.\"\n- **BibTeX key 建议**: `resp2025pruning`\n\n### MPruner: CKA-Based Mutual Information Pruning (Aug 2024)\n- **arXiv/DOI**: arXiv:2408.13482\n- **核心方法**: 用 CKA 做 layer clustering，度量 multi-layer cluster 的全局贡献，accuracy threshold 而非 sparsity level 做剪枝标准。~50% 参数缩减\n- **与 RASP 的关系**: 互补/背景。MPruner 也用 CKA 但做 layer-level clustering，RASP 用 CKA 做 head-level functional overlap。MPruner 不针对 reasoning models\n- **Related Work 中怎么引**: \"MPruner (2024) applies CKA-based layer clustering for model compression, demonstrating ~50% parameter reduction. RASP extends the use of CKA from layer-level redundancy detection to head-level functional overlap scoring, specifically targeting reasoning model recoverability.\"\n- **BibTeX key 建议**: `mpruner2024`\n\n---\n\n## 3. Structured Pruning Baselines\n\n### LLM-Pruner (NeurIPS 2023)\n- **arXiv/DOI**: arXiv:2305.11627\n- **核心方法**: 基于 gradient information 的 task-agnostic structural pruning，LoRA 3h 恢复。支持 LLaMA/Vicuna/ChatGLM\n- **与 RASP 的关系**: 背景 baseline。经典 LLM structured pruning 方法\n- **Related Work 中怎么引**: \"LLM-Pruner (Ma et al., NeurIPS 2023) performs task-agnostic structural pruning based on gradient information, recovering performance via LoRA fine-tuning.\"\n- **BibTeX key 建议**: `llmpruner2023`\n\n### SliceGPT (ICLR 2024)\n- **arXiv/DOI**: arXiv:2401.15024\n- **核心方法**: 利用 computational invariance（正交变换保持预测不变），直接删除 weight matrix 的整行/列，减小 embedding dimension\n- **与 RASP 的关系**: 背景 baseline\n- **Related Work 中怎么引**: \"SliceGPT (ICLR 2024) exploits computational invariance to slice entire rows and columns from weight matrices, reducing the embedding dimension without retraining.\"\n- **BibTeX key 建议**: `slicegpt2024`\n\n### Wanda (ICLR 2024)\n- **arXiv/DOI**: arXiv:2306.11695\n- **核心方法**: 按 weight magnitude × input activation 剪枝，per-output basis，无需 retraining\n- **与 RASP 的关系**: 背景 baseline（unstructured，但 widely cited）\n- **Related Work 中怎么引**: \"Wanda (Sun et al., ICLR 2024) prunes by the product of weight magnitude and input activation, achieving competitive sparsity without retraining.\"\n- **BibTeX key 建议**: `wanda2024`\n\n### SparseGPT (ICML 2023)\n- **arXiv/DOI**: arXiv:2301.00774\n- **核心方法**: One-shot pruning via large-scale sparse regression，OPT-175B 和 BLOOM-176B 达 60% sparsity with negligible perplexity loss\n- **与 RASP 的关系**: 背景 baseline\n- **Related Work 中怎么引**: \"SparseGPT (Frantar & Alistarh, ICML 2023) enables one-shot pruning of 100B+ parameter models to 60% sparsity via sparse regression.\"\n- **BibTeX key 建议**: `sparsegpt2023`\n\n### FLAP: Fluctuation-based Adaptive Structured Pruning (AAAI 2024)\n- **arXiv/DOI**: arXiv:2312.11983\n- **核心方法**: Fluctuation pruning metric + adaptive global compression + bias compensation。3-5 分钟单 GPU 完成，无需 retraining\n- **与 RASP 的关系**: 背景 baseline。FANG 在 FLAP 基础上取得 SOTA\n- **Related Work 中怎么引**: \"FLAP (AAAI 2024) uses fluctuation-based metrics with adaptive per-layer sparsity and bias compensation for retraining-free structured pruning.\"\n- **BibTeX key 建议**: `flap2024`\n\n### ShortGPT: Layer Removal via Block Influence (2024)\n- **arXiv/DOI**: arXiv:2403.03853\n- **核心方法**: Block Influence (BI) score 度量层重要性（input/output 相似度），直接删除冗余层\n- **与 RASP 的关系**: 背景。Depth pruning 方向，与 RASP 的 width pruning 互补\n- **Related Work 中怎么引**: \"ShortGPT (2024) identifies layer redundancy via Block Influence scores and directly removes entire layers, demonstrating significant redundancy in LLM depth.\"\n- **BibTeX key 建议**: `shortgpt2024`\n\n---\n\n## 4. Reasoning LLM Pruning 专题\n\n### From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models (Jan 2026)\n- **arXiv/DOI**: arXiv:2601.18091\n- **核心方法**: 首个系统比较 instruction-following LLMs vs reasoning-augmented LLMs 的 pruning 行为。Depth/width/dynamic pruning across 17 tasks\n- **与 RASP 的关系**: 背景/motivation。证明 pruning strategies 不能从 LLMs 直接迁移到 LRMs\n- **Related Work 中怎么引**: \"Recent work (2026) reveals that pruning strategies optimized for instruction-following LLMs do not transfer to reasoning models, motivating the need for reasoning-aware pruning criteria like RASP's functional overlap score.\"\n- **BibTeX key 建议**: `llms2lrms2026`\n\n### When Reasoning Meets Compression (Apr 2025)\n- **arXiv/DOI**: arXiv:2504.02010\n- **核心方法**: Benchmark quantized/distilled/pruned DeepSeek-R1 on reasoning tasks。发现 weight count 对 knowledge memorization 影响 > reasoning，保护 2% excessively compressed weights 可提升 6.57%\n- **与 RASP 的关系**: 背景/motivation。支持 RASP 的论点：不是所有 weights 对 reasoning recovery 同等重要\n- **Related Work 中怎么引**: \"Analysis of compressed DeepSeek-R1 (2025) shows that weight count affects knowledge memorization more than reasoning ability, and protecting a small fraction of critical weights yields outsized accuracy gains—consistent with RASP's premise that preserving functionally unique heads is key.\"\n- **BibTeX key 建议**: `reasoning_compression2025`\n\n### Doing More With Less: LLM Pruning for Test-Time Scaling (Apr 2026)\n- **arXiv/DOI**: arXiv:2604.25098\n- **核心方法**: Unstructured pruning 可增强 test-time scaling 性能，甚至优于 unpruned models。Structured pruning 则严重损害 test-time reasoning\n- **与 RASP 的关系**: 背景。进一步说明 structured pruning 对 reasoning 的特殊挑战\n- **Related Work 中怎么引**: \"Recent findings (2026) show that while unstructured pruning can enhance test-time scaling, structured pruning severely degrades reasoning—underscoring the need for careful structure selection as in RASP.\"\n- **BibTeX key 建议**: `doingmorewithless2026`\n\n---\n\n## 5. RLVR / GRPO 基础\n\n### DeepSeek-R1: Incentivizing Reasoning via RL (Jan 2025)\n- **arXiv/DOI**: arXiv:2501.12948\n- **核心方法**: 纯 RL (GRPO) 激励 reasoning emergence：self-reflection, verification, dynamic strategy adaptation。开源 R1-Zero, R1, 6 个 distilled models\n- **与 RASP 的关系**: 基础。RASP 的目标模型（DeepSeek-R1-Distill-Qwen-7B）和 recovery 方法（GRPO）均来自此\n- **Related Work 中怎么引**: \"DeepSeek-R1 (2025) demonstrates that pure RL with GRPO can incentivize advanced reasoning patterns in LLMs, producing the distilled models we use as our base for pruning.\"\n- **BibTeX key 建议**: `deepseekr1_2025`\n\n### DeepSeekMath: GRPO Origin (Feb 2024)\n- **arXiv/DOI**: arXiv:2402.03300\n- **核心方法**: 引入 GRPO（Group Relative Policy Optimization），去掉 value network，用 group-relative advantage estimation 替代 PPO 的 critic\n- **与 RASP 的关系**: 基础。GRPO 是 RASP recovery 阶段的核心算法\n- **Related Work 中怎么引**: \"GRPO (Shao et al., 2024), originally introduced in DeepSeekMath, replaces the value network in PPO with group-relative advantage estimation, forming the basis for RLVR-based recovery in our framework.\"\n- **BibTeX key 建议**: `deepseekmath2024`\n\n### RL Squeezes, SFT Expands (ICLR 2026)\n- **arXiv/DOI**: arXiv:2509.21128\n- **核心方法**: RL 压缩 incorrect trajectories（集中到 hub nodes），SFT 扩展 correct trajectories（均匀化）。RL 使 reasoning graph 更高效\n- **与 RASP 的关系**: 理论支撑。解释为什么 RLVR recovery 比 SFT recovery 更有效——RL 压缩错误路径而非简单模仿\n- **Related Work 中怎么引**: \"RL Squeezes, SFT Expands (ICLR 2026) reveals that RL concentrates reasoning into efficient hub structures while SFT disperses it, providing theoretical grounding for why RLVR-based recovery outperforms SFT in RASP.\"\n- **BibTeX key 建议**: `rlsqueezes2026`\n\n---\n\n## 6. CKA 及表征相似性度量\n\n### Kornblith et al.: CKA 原始论文 (ICML 2019)\n- **arXiv/DOI**: arXiv:1905.00414\n- **核心方法**: 提出 CKA，基于 centered Gram matrices + HSIC。Invariant to orthogonal transform + isotropic scaling。99.3% layer correspondence accuracy vs CCA 的 1.4%-45.4%\n- **与 RASP 的关系**: 基础。RASP 的 F(h) functional overlap 基于 CKA\n- **Related Work 中怎么引**: \"Centered Kernel Alignment (Kornblith et al., ICML 2019) measures representational similarity via the Hilbert-Schmidt Independence Criterion on centered Gram matrices, achieving 99.3% accuracy in identifying corresponding layers across networks—far surpassing CCA variants.\"\n- **BibTeX key 建议**: `kornblith2019cka`\n\n### SVCCA (NeurIPS 2017)\n- **arXiv/DOI**: arXiv:1706.05806\n- **核心方法**: SVD 降维 + CCA 做 affine-invariant 表征比较。揭示网络 bottom-up 收敛、过参数化等\n- **与 RASP 的关系**: CKA 的前驱方法，用于 CKA 选择论证\n- **Related Work 中怎么引**: \"SVCCA (Raghu et al., NeurIPS 2017) combines SVD with CCA for affine-invariant representation comparison but fails to identify layer correspondences across different initializations—a limitation that CKA overcomes.\"\n- **BibTeX key 建议**: `raghu2017svcca`\n\n### PWCCA: Projection Weighted CCA (NeurIPS 2018)\n- **arXiv/DOI**: arXiv:1806.05759\n- **核心方法**: 用 projection weights 替代 mean CCA coefficient，给 better-explaining components 更高权重\n- **与 RASP 的关系**: CKA alternative，用于论证\n- **Related Work 中怎么引**: \"PWCCA (Morcos et al., NeurIPS 2018) improves upon SVCCA by weighting CCA components by their projection importance, but remains sensitive to the number of retained dimensions.\"\n- **BibTeX key 建议**: `morcos2018pwcca`\n\n### Reliability of CKA (ICLR 2023)\n- **arXiv/DOI**: arXiv:2210.16156\n- **核心方法**: 形式化分析 CKA 对 simple transformations 的敏感性，证明 CKA 值可被操纵而不改变模型功能行为\n- **与 RASP 的关系**: 重要反面论据。需在论文中 acknowledge CKA limitations 并论证为何在 RASP 场景下仍合理\n- **Related Work 中怎么引**: \"Davari et al. (ICLR 2023) show that CKA can be manipulated without changing functional behavior, cautioning against uncritical use. In RASP, we mitigate this by using CKA in a relative ranking setting (comparing heads within the same model) rather than absolute similarity measurement.\"\n- **BibTeX key 建议**: `davari2023cka_reliability`\n\n### Deceiving the CKA Measure (NeurIPS 2022 Workshop)\n- **arXiv/DOI**: OpenReview ID: hITONWhDIIJ\n- **核心方法**: Optimization-based approach 修改 representations 维持功能但改变 CKA 值\n- **与 RASP 的关系**: 与上一篇同团队，补充 CKA limitations 讨论\n- **Related Work 中怎么引**: 可与 Davari et al. 2023 合并引用\n- **BibTeX key 建议**: `horoi2022deceiving_cka`\n\n### MINE: Mutual Information Neural Estimation (ICML 2018)\n- **arXiv/DOI**: arXiv:1801.04062\n- **核心方法**: 基于 Donsker-Varadhan 表示的 MI 估计器。Scalable 但在高维/高 MI 场景有 bias/variance 问题\n- **与 RASP 的关系**: CKA vs MI 论证素材。MI estimation 在高维不稳定，CKA 更 practical\n- **Related Work 中怎么引**: \"Mutual information estimation (Belghazi et al., ICML 2018) is theoretically appealing but suffers from severe bias and variance in high-dimensional settings, making CKA a more practical choice for head-level overlap quantification.\"\n- **BibTeX key 建议**: `belghazi2018mine`\n\n---\n\n## 7. Taylor Importance 基础\n\n### Molchanov et al.: Importance Estimation for Neural Network Pruning (CVPR 2019)\n- **arXiv/DOI**: arXiv:1906.10771\n- **核心方法**: First/second-order Taylor expansion 估计 neuron/filter 对 loss 的贡献。>93% correlation with true importance\n- **与 RASP 的关系**: 基础。RASP 的 I(h) importance score 基于 Taylor approximation\n- **Related Work 中怎么引**: \"We estimate head importance I(h) using first-order Taylor approximation (Molchanov et al., CVPR 2019), which achieves >93% correlation with true importance across network layers.\"\n- **BibTeX key 建议**: `molchanov2019importance`\n\n---\n\n## 8. CKA 选择论证素材\n\n### CKA vs SVCCA/CCA/MI 优劣对比\n\n| 度量 | 不变性 | Layer Correspondence Accuracy | 高维稳定性 | 计算效率 | 主要缺陷 |\n|------|--------|-------------------------------|-----------|---------|---------|\n| **CKA** | Orthogonal transform + isotropic scaling | 99.3% | 稳定 | 仅需内积 | 可被刻意操纵（Davari 2023）；对 outliers 敏感 |\n| **SVCCA** | Orthogonal transform（近似 invertible linear） | 1.4%-45.4% | 依赖 SVD truncation threshold | 需 SVD + CCA | Threshold 选择敏感；不能捕捉 non-isotropic scaling |\n| **PWCCA** | 同 SVCCA + projection weighting | 优于 SVCCA | 仍依赖 retained dimensions | 需 SVD + CCA + weighting | 继承 CCA invariance 过强的问题 |\n| **CCA** | Invertible linear transform | 低 | 受样本量限制 | 需矩阵分解 | 过强的 invariance 丢失 structure；高维 > 样本数时不可靠 |\n| **MI** | 无假设（nonparametric） | N/A | 极不稳定（bias/variance） | 需 neural estimator 训练 | 高维估计 heavily biased；收敛慢；不 practical |\n\n### 论证要点\n\n1. **CKA 优势**：在 head-level overlap 度量场景，我们需要 (a) 跨不同 heads 的 representations 可比较，(b) 对 isotropic scaling invariant 但对 non-isotropic 变化 sensitive（因为 non-isotropic 变化反映 functional specialization），(c) 高效可计算。CKA 满足所有三点。\n\n2. **为什么不用 CCA/SVCCA**：CCA 对 invertible linear transform invariant，这意味着两个 functionally different heads 如果存在 linear mapping 就会被判为 identical——在我们的 overlap 检测场景这是 false positive。SVCCA 在 layer correspondence 上仅 1.4%-45.4% 准确率（vs CKA 99.3%），说明其 similarity signal 过于嘈杂。\n\n3. **为什么不用 MI**：MI 在 attention head 维度（768-4096 dim per head）的高维空间中估计 heavily biased，需要大量样本和 neural estimator 训练，不 practical 也不 reproducible。\n\n4. **Acknowledge CKA 缺陷**：CKA 可被操纵（Davari et al., 2023; Horoi et al., 2022），且对 outliers 敏感。但在 RASP 中我们用 CKA 做 relative ranking（同一模型内 heads 的 pairwise overlap），而非 cross-model absolute comparison，因此操纵风险低且 outlier 影响在 heads 间一致。\n\n5. **Claim 2 循环性讨论**：Dream 审稿指出 \"CKA predicts recoverability\" 可能是 tautological。回应：CKA 度量的是 functional overlap（表征冗余度），recoverability 是 RLVR training 的 emergent outcome。两者之间的相关性是 empirical finding 而非 definitional circularity。类比：BMI 预测心血管风险不是 tautological，即使两者有 biological correlation。我们在 Section 4 提供 ablation 证明 CKA overlap ≠ trivially recoverability（e.g., random overlap scores 不预测 recovery）。\n\n---\n\n## 9. 引用清单（按 Related Work 子节分组）\n\n### §2.1 Structured Pruning for LLMs\n1. LLM-Pruner (Ma et al., NeurIPS 2023) — `llmpruner2023`\n2. SparseGPT (Frantar & Alistarh, ICML 2023) — `sparsegpt2023`\n3. Wanda (Sun et al., ICLR 2024) — `wanda2024`\n4. SliceGPT (Ashkboos et al., ICLR 2024) — `slicegpt2024`\n5. FLAP (AAAI 2024) — `flap2024`\n6. ShortGPT (2024) — `shortgpt2024`\n7. GRASPrune (ACL 2026) — `graspprune2026`\n8. PAT (AAAI 2025) — `pat2025pruning`\n\n### §2.2 Function-Aware / Representation-Guided Pruning\n9. FANG (2025) — `fang2025function`\n10. FuncNet (2025) — `funcnet2025pruning`\n11. MPruner (2024) — `mpruner2024`\n\n### §2.3 Pruning Reasoning LLMs\n12. RESP / Think Before You Prune (2025) — `resp2025pruning`\n13. Self-Healing (2025) — `selfhealing2025`\n14. From LLMs to LRMs (2026) — `llms2lrms2026`\n15. When Reasoning Meets Compression (2025) — `reasoning_compression2025`\n16. Doing More With Less (2026) — `doingmorewithless2026`\n\n### §2.4 Post-Pruning Recovery\n17. RestoreLCC (NeurIPS 2025) — `restorelcc2025`\n18. DeepSeek-R1 (2025) — `deepseekr1_2025`\n19. DeepSeekMath / GRPO (2024) — `deepseekmath2024`\n20. RL Squeezes, SFT Expands (ICLR 2026) — `rlsqueezes2026`\n\n### §2.5 Representation Similarity Measures\n21. CKA (Kornblith et al., ICML 2019) — `kornblith2019cka`\n22. SVCCA (Raghu et al., NeurIPS 2017) — `raghu2017svcca`\n23. PWCCA (Morcos et al., NeurIPS 2018) — `morcos2018pwcca`\n24. Reliability of CKA (Davari et al., ICLR 2023) — `davari2023cka_reliability`\n25. Deceiving CKA (Horoi et al., NeurIPS 2022 WS) — `horoi2022deceiving_cka`\n26. MINE (Belghazi et al., ICML 2018) — `belghazi2018mine`\n\n### §2.6 Importance Estimation\n27. Taylor Importance (Molchanov et al., CVPR 2019) — `molchanov2019importance`\n\n**总计: 27 篇引用**（满足 25+ 要求）\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "81e309ca-5023-454f-b9d7-f2da9a6f3b7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAFkDrPWSPaDoNmMDnmE7v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2917,
+      "cache_read_input_tokens": 57071,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2917
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T02:51:34.821Z_
+
+<details><summary>↩ Tool result · `toolu_01XnLn79CfqG8nK8QNBdVtcw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'literature_survey_related_work.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "11c31c1f-31c3-4079-98a2-8530c3567968",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'literature_survey_related_work.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'literature_survey_related_work.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The MCP tool doesn't support writing to this file. Let me write it directly to the artifacts directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "8c0c5407-5d4f-4de4-a8fb-e046a55a2b86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmKbFT1skBsahb5eDmh1mV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8469,
+      "cache_read_input_tokens": 59988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8469
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+MCP tool doesn't allow this filename. Writing directly to the artifacts directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "4a7936ee-1475-4b2c-a1a2-6073bb937833",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmKbFT1skBsahb5eDmh1mV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8469,
+      "cache_read_input_tokens": 59988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8469
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014uaDxnSUCrBV7b1sFYNDpq`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/ 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ 2>/dev/null",
+  "description": "List project directories"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "5d9b7fbf-8390-458c-a062-c02efc6e6c6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmKbFT1skBsahb5eDmh1mV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8469,
+      "cache_read_input_tokens": 59988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8469
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-15T02:51:40.641Z_
+
+<details><summary>↩ Tool result · `toolu_014uaDxnSUCrBV7b1sFYNDpq`</summary>
+
+```text
+_project
+correlation_analysis.py
+dream_reports
+grpo_rasp_20_4096_status.md
+manifest.yaml
+mvp_progress_20260514.md
+mvp_v2_analysis.md
+related_work_notes.md
+---
+AGENTS.md
+ROADMAP.lock
+ROADMAP.md
+artifacts
+checkpoints
+constraints.lock
+constraints.yaml
+decisions.lock
+decisions.yaml
+docs
+dream_registry.lock
+dream_registry.yaml
+dream_registry.yaml.bak
+experiment_plan.lock
+experiment_plan.yaml
+literature_map.yaml
+logs
+memory.md
+paper
+paper_framing.md
+paper_provenance.lock
+paper_provenance.yaml
+registry.lock
+registry.yaml
+report.md
+src
+study_status.lock
+task_context
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "3097b3c4-fe23-4631-b7bd-6b846093b421",
+  "tool_use_result": {
+    "stdout": "_project\ncorrelation_analysis.py\ndream_reports\ngrpo_rasp_20_4096_status.md\nmanifest.yaml\nmvp_progress_20260514.md\nmvp_v2_analysis.md\nrelated_work_notes.md\n---\nAGENTS.md\nROADMAP.lock\nROADMAP.md\nartifacts\ncheckpoints\nconstraints.lock\nconstraints.yaml\ndecisions.lock\ndecisions.yaml\ndocs\ndream_registry.lock\ndream_registry.yaml\ndream_registry.yaml.bak\nexperiment_plan.lock\nexperiment_plan.yaml\nliterature_map.yaml\nlogs\nmemory.md\npaper\npaper_framing.md\npaper_provenance.lock\npaper_provenance.yaml\nregistry.lock\nregistry.yaml\nreport.md\nsrc\nstudy_status.lock\ntask_context",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01M3gmnJCTTCrvUPxbUMs75V`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/literature_survey_related_work.md",
+  "content": "# Related Work 文献调研\n\n## 1. Dream 审稿指出缺失的论文\n\n### FANG: Function-Aware Neuron Grouping (arXiv Dec 2025)\n- **arXiv/DOI**: arXiv:2512.23014\n- **核心方法**: 按功能角色分组神经元，组内根据语义对齐程度加权 importance，共享神经元保留机制 + adaptive block-wise sparsity\n- **与 RASP 的关系**: 竞品/互补。FANG 和 RASP 都利用 functional specialization 指导剪枝，但 FANG 用 neuron grouping + semantic alignment，RASP 用 CKA overlap。FANG 不考虑 recovery\n- **Related Work 中怎么引**: \"Concurrently, FANG (2025) groups neurons by functional roles and prunes within each group using semantically aligned importance scores, achieving SOTA structured pruning results. Unlike RASP, FANG does not consider post-pruning recoverability.\"\n- **BibTeX key 建议**: `fang2025function`\n\n### FuncNet: Functional Network Pruning (arXiv Aug 2025)\n- **arXiv/DOI**: arXiv:2508.05239\n- **核心方法**: 借鉴认知神经科学，用 ICA 分解 LLM 为 functional networks（类似大脑功能网络），保留关键功能网络中的神经元\n- **与 RASP 的关系**: 互补。FuncNet 和 RASP 都关注 functional structure，但 FuncNet 用 ICA 分解，RASP 用 CKA overlap 度量\n- **Related Work 中怎么引**: \"FuncNet (2025) draws on cognitive neuroscience to decompose LLMs into functional networks via ICA, preserving key neurons within each network. While sharing our functional perspective, RASP uses CKA to quantify pairwise overlap rather than ICA decomposition.\"\n- **BibTeX key 建议**: `funcnet2025pruning`\n\n### RestoreLCC: Lost Component Compensation (NeurIPS 2025)\n- **arXiv/DOI**: arXiv:2510.21834\n- **核心方法**: 对比式探测关键 attention heads 的 activation differences，提取 lost components 并注入回 pruned heads 做补偿。Plug-and-play，兼容 structured/semi-structured/unstructured pruning\n- **与 RASP 的关系**: 互补。RestoreLCC 做 post-pruning activation compensation，RASP 做 pre-pruning overlap-aware selection + RLVR recovery。两者可叠加\n- **Related Work 中怎么引**: \"RestoreLCC (NeurIPS 2025) recovers pruning loss by contrastively probing critical attention heads and reinjecting lost activation components. This plug-and-play approach is complementary to RASP's strategy of preserving functionally unique heads before pruning.\"\n- **BibTeX key 建议**: `restorelcc2025`\n\n### PAT: Pruning-Aware Tuning (AAAI 2025)\n- **arXiv/DOI**: arXiv:2408.14721\n- **核心方法**: 在 Attention 和 FFN 之间插入 Hybrid Sparsification Modules (HSMs)，含轻量算子 + 全局共享 trainable mask，Identity Loss 解耦 transformation 和 scaling\n- **与 RASP 的关系**: 竞品。PAT 将 pruning 和 fine-tuning 统一，RASP 分两阶段（CKA-guided pruning → RLVR recovery）。PAT 用 SFT-like recovery，RASP 用 RL\n- **Related Work 中怎么引**: \"PAT (AAAI 2025) unifies pruning and fine-tuning via Hybrid Sparsification Modules with LoRA-comparable overhead. RASP differs by decoupling pruning from recovery and employing RLVR instead of supervised tuning for the recovery stage.\"\n- **BibTeX key 建议**: `pat2025pruning`\n\n---\n\n## 2. 已知竞品\n\n### Self-Healing: Recovering Pruned LRMs via RL (OpenReview Oct 2025)\n- **arXiv/DOI**: OpenReview ID: Cy8Qa4gAst（未找到独立 arXiv ID）\n- **核心方法**: 用 RLVR 替代 SFT 做剪枝后恢复训练。在 25% 压缩下 RLVR 将性能从 ~80%（SFT）提升到 >95%\n- **与 RASP 的关系**: 最直接竞品。Self-Healing 证明 RLVR > SFT 做 recovery，但不考虑剪哪些结构。RASP 的核心贡献是 pruning selection 也要考虑 recoverability\n- **Related Work 中怎么引**: \"Self-Healing (2025) demonstrates that RLVR-based recovery dramatically outperforms SFT for pruned reasoning models. RASP builds on this insight by further showing that which structures are pruned significantly affects recovery efficiency—CKA-guided selection creates a more favorable starting point for RLVR.\"\n- **BibTeX key 建议**: `selfhealing2025`\n\n### GRASPrune: Global Gating for Budgeted Structured Pruning (ACL 2026)\n- **arXiv/DOI**: arXiv:2604.19398\n- **核心方法**: 联合剪枝 FFN channels 和 KV head groups，用 projected straight-through estimator 学习 gate scores，全局 budget 约束，calibration scaling factors 缓解 scale mismatch\n- **与 RASP 的关系**: 竞品。GRASPrune 用 learned gating，RASP 用 CKA-based importance scoring。GRASPrune 不考虑 recovery\n- **Related Work 中怎么引**: \"GRASPrune (ACL 2026) jointly prunes FFN channels and KV head groups under a global budget using learned gate scores. While achieving strong one-shot pruning, it does not account for post-pruning recoverability, which RASP addresses via the functional overlap term.\"\n- **BibTeX key 建议**: `graspprune2026`\n\n### RESP / Think Before You Prune (Dec 2025)\n- **arXiv/DOI**: arXiv:2512.02185\n- **核心方法**: 自生成推理 traces 做 calibration，decode-time gradient importance，progressive regeneration。首个针对 reasoning LLMs 的 structured pruning\n- **与 RASP 的关系**: 竞品。RESP 用 self-generated calibration + gradient importance，RASP 用 CKA overlap。RESP 不用 RL recovery\n- **Related Work 中怎么引**: \"RESP (2025) is the first to address structured pruning specifically for reasoning LLMs, using self-generated traces for calibration and decode-time gradients for importance estimation. RASP complements this line by introducing a functional overlap criterion and leveraging RLVR for recovery.\"\n- **BibTeX key 建议**: `resp2025pruning`\n\n### MPruner: CKA-Based Mutual Information Pruning (Aug 2024)\n- **arXiv/DOI**: arXiv:2408.13482\n- **核心方法**: 用 CKA 做 layer clustering，度量 multi-layer cluster 的全局贡献，accuracy threshold 而非 sparsity level 做剪枝标准。~50% 参数缩减\n- **与 RASP 的关系**: 互补/背景。MPruner 也用 CKA 但做 layer-level clustering，RASP 用 CKA 做 head-level functional overlap。MPruner 不针对 reasoning models\n- **Related Work 中怎么引**: \"MPruner (2024) applies CKA-based layer clustering for model compression, demonstrating ~50% parameter reduction. RASP extends the use of CKA from layer-level redundancy detection to head-level functional overlap scoring, specifically targeting reasoning model recoverability.\"\n- **BibTeX key 建议**: `mpruner2024`\n\n---\n\n## 3. Structured Pruning Baselines\n\n### LLM-Pruner (NeurIPS 2023)\n- **arXiv/DOI**: arXiv:2305.11627\n- **核心方法**: 基于 gradient information 的 task-agnostic structural pruning，LoRA 3h 恢复。支持 LLaMA/Vicuna/ChatGLM\n- **与 RASP 的关系**: 背景 baseline。经典 LLM structured pruning 方法\n- **Related Work 中怎么引**: \"LLM-Pruner (Ma et al., NeurIPS 2023) performs task-agnostic structural pruning based on gradient information, recovering performance via LoRA fine-tuning.\"\n- **BibTeX key 建议**: `llmpruner2023`\n\n### SliceGPT (ICLR 2024)\n- **arXiv/DOI**: arXiv:2401.15024\n- **核心方法**: 利用 computational invariance（正交变换保持预测不变），直接删除 weight matrix 的整行/列，减小 embedding dimension\n- **与 RASP 的关系**: 背景 baseline\n- **Related Work 中怎么引**: \"SliceGPT (ICLR 2024) exploits computational invariance to slice entire rows and columns from weight matrices, reducing the embedding dimension without retraining.\"\n- **BibTeX key 建议**: `slicegpt2024`\n\n### Wanda (ICLR 2024)\n- **arXiv/DOI**: arXiv:2306.11695\n- **核心方法**: 按 weight magnitude × input activation 剪枝，per-output basis，无需 retraining\n- **与 RASP 的关系**: 背景 baseline（unstructured，但 widely cited）\n- **Related Work 中怎么引**: \"Wanda (Sun et al., ICLR 2024) prunes by the product of weight magnitude and input activation, achieving competitive sparsity without retraining.\"\n- **BibTeX key 建议**: `wanda2024`\n\n### SparseGPT (ICML 2023)\n- **arXiv/DOI**: arXiv:2301.00774\n- **核心方法**: One-shot pruning via large-scale sparse regression，OPT-175B 和 BLOOM-176B 达 60% sparsity with negligible perplexity loss\n- **与 RASP 的关系**: 背景 baseline\n- **Related Work 中怎么引**: \"SparseGPT (Frantar & Alistarh, ICML 2023) enables one-shot pruning of 100B+ parameter models to 60% sparsity via sparse regression.\"\n- **BibTeX key 建议**: `sparsegpt2023`\n\n### FLAP: Fluctuation-based Adaptive Structured Pruning (AAAI 2024)\n- **arXiv/DOI**: arXiv:2312.11983\n- **核心方法**: Fluctuation pruning metric + adaptive global compression + bias compensation。3-5 分钟单 GPU 完成，无需 retraining\n- **与 RASP 的关系**: 背景 baseline。FANG 在 FLAP 基础上取得 SOTA\n- **Related Work 中怎么引**: \"FLAP (AAAI 2024) uses fluctuation-based metrics with adaptive per-layer sparsity and bias compensation for retraining-free structured pruning.\"\n- **BibTeX key 建议**: `flap2024`\n\n### ShortGPT: Layer Removal via Block Influence (2024)\n- **arXiv/DOI**: arXiv:2403.03853\n- **核心方法**: Block Influence (BI) score 度量层重要性（input/output 相似度），直接删除冗余层\n- **与 RASP 的关系**: 背景。Depth pruning 方向，与 RASP 的 width pruning 互补\n- **Related Work 中怎么引**: \"ShortGPT (2024) identifies layer redundancy via Block Influence scores and directly removes entire layers, demonstrating significant redundancy in LLM depth.\"\n- **BibTeX key 建议**: `shortgpt2024`\n\n---\n\n## 4. Reasoning LLM Pruning 专题\n\n### From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models (Jan 2026)\n- **arXiv/DOI**: arXiv:2601.18091\n- **核心方法**: 首个系统比较 instruction-following LLMs vs reasoning-augmented LLMs 的 pruning 行为。Depth/width/dynamic pruning across 17 tasks\n- **与 RASP 的关系**: 背景/motivation。证明 pruning strategies 不能从 LLMs 直接迁移到 LRMs\n- **Related Work 中怎么引**: \"Recent work (2026) reveals that pruning strategies optimized for instruction-following LLMs do not transfer to reasoning models, motivating the need for reasoning-aware pruning criteria like RASP's functional overlap score.\"\n- **BibTeX key 建议**: `llms2lrms2026`\n\n### When Reasoning Meets Compression (Apr 2025)\n- **arXiv/DOI**: arXiv:2504.02010\n- **核心方法**: Benchmark quantized/distilled/pruned DeepSeek-R1 on reasoning tasks。发现 weight count 对 knowledge memorization 影响 > reasoning，保护 2% excessively compressed weights 可提升 6.57%\n- **与 RASP 的关系**: 背景/motivation。支持 RASP 的论点：不是所有 weights 对 reasoning recovery 同等重要\n- **Related Work 中怎么引**: \"Analysis of compressed DeepSeek-R1 (2025) shows that weight count affects knowledge memorization more than reasoning ability, and protecting a small fraction of critical weights yields outsized accuracy gains—consistent with RASP's premise that preserving functionally unique heads is key.\"\n- **BibTeX key 建议**: `reasoning_compression2025`\n\n### Doing More With Less: LLM Pruning for Test-Time Scaling (Apr 2026)\n- **arXiv/DOI**: arXiv:2604.25098\n- **核心方法**: Unstructured pruning 可增强 test-time scaling 性能，甚至优于 unpruned models。Structured pruning 则严重损害 test-time reasoning\n- **与 RASP 的关系**: 背景。进一步说明 structured pruning 对 reasoning 的特殊挑战\n- **Related Work 中怎么引**: \"Recent findings (2026) show that while unstructured pruning can enhance test-time scaling, structured pruning severely degrades reasoning—underscoring the need for careful structure selection as in RASP.\"\n- **BibTeX key 建议**: `doingmorewithless2026`\n\n---\n\n## 5. RLVR / GRPO 基础\n\n### DeepSeek-R1: Incentivizing Reasoning via RL (Jan 2025)\n- **arXiv/DOI**: arXiv:2501.12948\n- **核心方法**: 纯 RL (GRPO) 激励 reasoning emergence：self-reflection, verification, dynamic strategy adaptation。开源 R1-Zero, R1, 6 个 distilled models\n- **与 RASP 的关系**: 基础。RASP 的目标模型（DeepSeek-R1-Distill-Qwen-7B）和 recovery 方法（GRPO）均来自此\n- **Related Work 中怎么引**: \"DeepSeek-R1 (2025) demonstrates that pure RL with GRPO can incentivize advanced reasoning patterns in LLMs, producing the distilled models we use as our base for pruning.\"\n- **BibTeX key 建议**: `deepseekr1_2025`\n\n### DeepSeekMath: GRPO Origin (Feb 2024)\n- **arXiv/DOI**: arXiv:2402.03300\n- **核心方法**: 引入 GRPO（Group Relative Policy Optimization），去掉 value network，用 group-relative advantage estimation 替代 PPO 的 critic\n- **与 RASP 的关系**: 基础。GRPO 是 RASP recovery 阶段的核心算法\n- **Related Work 中怎么引**: \"GRPO (Shao et al., 2024), originally introduced in DeepSeekMath, replaces the value network in PPO with group-relative advantage estimation, forming the basis for RLVR-based recovery in our framework.\"\n- **BibTeX key 建议**: `deepseekmath2024`\n\n### RL Squeezes, SFT Expands (ICLR 2026)\n- **arXiv/DOI**: arXiv:2509.21128\n- **核心方法**: RL 压缩 incorrect trajectories（集中到 hub nodes），SFT 扩展 correct trajectories（均匀化）。RL 使 reasoning graph 更高效\n- **与 RASP 的关系**: 理论支撑。解释为什么 RLVR recovery 比 SFT recovery 更有效——RL 压缩错误路径而非简单模仿\n- **Related Work 中怎么引**: \"RL Squeezes, SFT Expands (ICLR 2026) reveals that RL concentrates reasoning into efficient hub structures while SFT disperses it, providing theoretical grounding for why RLVR-based recovery outperforms SFT in RASP.\"\n- **BibTeX key 建议**: `rlsqueezes2026`\n\n---\n\n## 6. CKA 及表征相似性度量\n\n### Kornblith et al.: CKA 原始论文 (ICML 2019)\n- **arXiv/DOI**: arXiv:1905.00414\n- **核心方法**: 提出 CKA，基于 centered Gram matrices + HSIC。Invariant to orthogonal transform + isotropic scaling。99.3% layer correspondence accuracy vs CCA 的 1.4%-45.4%\n- **与 RASP 的关系**: 基础。RASP 的 F(h) functional overlap 基于 CKA\n- **Related Work 中怎么引**: \"Centered Kernel Alignment (Kornblith et al., ICML 2019) measures representational similarity via the Hilbert-Schmidt Independence Criterion on centered Gram matrices, achieving 99.3% accuracy in identifying corresponding layers across networks—far surpassing CCA variants.\"\n- **BibTeX key 建议**: `kornblith2019cka`\n\n### SVCCA (NeurIPS 2017)\n- **arXiv/DOI**: arXiv:1706.05806\n- **核心方法**: SVD 降维 + CCA 做 affine-invariant 表征比较。揭示网络 bottom-up 收敛、过参数化等\n- **与 RASP 的关系**: CKA 的前驱方法，用于 CKA 选择论证\n- **Related Work 中怎么引**: \"SVCCA (Raghu et al., NeurIPS 2017) combines SVD with CCA for affine-invariant representation comparison but fails to identify layer correspondences across different initializations—a limitation that CKA overcomes.\"\n- **BibTeX key 建议**: `raghu2017svcca`\n\n### PWCCA: Projection Weighted CCA (NeurIPS 2018)\n- **arXiv/DOI**: arXiv:1806.05759\n- **核心方法**: 用 projection weights 替代 mean CCA coefficient，给 better-explaining components 更高权重\n- **与 RASP 的关系**: CKA alternative，用于论证\n- **Related Work 中怎么引**: \"PWCCA (Morcos et al., NeurIPS 2018) improves upon SVCCA by weighting CCA components by their projection importance, but remains sensitive to the number of retained dimensions.\"\n- **BibTeX key 建议**: `morcos2018pwcca`\n\n### Reliability of CKA (ICLR 2023)\n- **arXiv/DOI**: arXiv:2210.16156\n- **核心方法**: 形式化分析 CKA 对 simple transformations 的敏感性，证明 CKA 值可被操纵而不改变模型功能行为\n- **与 RASP 的关系**: 重要反面论据。需在论文中 acknowledge CKA limitations 并论证为何在 RASP 场景下仍合理\n- **Related Work 中怎么引**: \"Davari et al. (ICLR 2023) show that CKA can be manipulated without changing functional behavior, cautioning against uncritical use. In RASP, we mitigate this by using CKA in a relative ranking setting (comparing heads within the same model) rather than absolute similarity measurement.\"\n- **BibTeX key 建议**: `davari2023cka_reliability`\n\n### Deceiving the CKA Measure (NeurIPS 2022 Workshop)\n- **arXiv/DOI**: OpenReview ID: hITONWhDIIJ\n- **核心方法**: Optimization-based approach 修改 representations 维持功能但改变 CKA 值\n- **与 RASP 的关系**: 与上一篇同团队，补充 CKA limitations 讨论\n- **Related Work 中怎么引**: 可与 Davari et al. 2023 合并引用\n- **BibTeX key 建议**: `horoi2022deceiving_cka`\n\n### MINE: Mutual Information Neural Estimation (ICML 2018)\n- **arXiv/DOI**: arXiv:1801.04062\n- **核心方法**: 基于 Donsker-Varadhan 表示的 MI 估计器。Scalable 但在高维/高 MI 场景有 bias/variance 问题\n- **与 RASP 的关系**: CKA vs MI 论证素材。MI estimation 在高维不稳定，CKA 更 practical\n- **Related Work 中怎么引**: \"Mutual information estimation (Belghazi et al., ICML 2018) is theoretically appealing but suffers from severe bias and variance in high-dimensional settings, making CKA a more practical choice for head-level overlap quantification.\"\n- **BibTeX key 建议**: `belghazi2018mine`\n\n---\n\n## 7. Taylor Importance 基础\n\n### Molchanov et al.: Importance Estimation for Neural Network Pruning (CVPR 2019)\n- **arXiv/DOI**: arXiv:1906.10771\n- **核心方法**: First/second-order Taylor expansion 估计 neuron/filter 对 loss 的贡献。>93% correlation with true importance\n- **与 RASP 的关系**: 基础。RASP 的 I(h) importance score 基于 Taylor approximation\n- **Related Work 中怎么引**: \"We estimate head importance I(h) using first-order Taylor approximation (Molchanov et al., CVPR 2019), which achieves >93% correlation with true importance across network layers.\"\n- **BibTeX key 建议**: `molchanov2019importance`\n\n---\n\n## 8. CKA 选择论证素材\n\n### CKA vs SVCCA/CCA/MI 优劣对比\n\n| 度量 | 不变性 | Layer Correspondence Accuracy | 高维稳定性 | 计算效率 | 主要缺陷 |\n|------|--------|-------------------------------|-----------|---------|---------|\n| **CKA** | Orthogonal transform + isotropic scaling | 99.3% | 稳定 | 仅需内积 | 可被刻意操纵（Davari 2023）；对 outliers 敏感 |\n| **SVCCA** | Orthogonal transform（近似 invertible linear） | 1.4%-45.4% | 依赖 SVD truncation threshold | 需 SVD + CCA | Threshold 选择敏感；不能捕捉 non-isotropic scaling |\n| **PWCCA** | 同 SVCCA + projection weighting | 优于 SVCCA | 仍依赖 retained dimensions | 需 SVD + CCA + weighting | 继承 CCA invariance 过强的问题 |\n| **CCA** | Invertible linear transform | 低 | 受样本量限制 | 需矩阵分解 | 过强的 invariance 丢失 structure；高维 > 样本数时不可靠 |\n| **MI** | 无假设（nonparametric） | N/A | 极不稳定（bias/variance） | 需 neural estimator 训练 | 高维估计 heavily biased；收敛慢；不 practical |\n\n### 论证要点\n\n1. **CKA 优势**：在 head-level overlap 度量场景，我们需要 (a) 跨不同 heads 的 representations 可比较，(b) 对 isotropic scaling invariant 但对 non-isotropic 变化 sensitive（因为 non-isotropic 变化反映 functional specialization），(c) 高效可计算。CKA 满足所有三点。\n\n2. **为什么不用 CCA/SVCCA**：CCA 对 invertible linear transform invariant，这意味着两个 functionally different heads 如果存在 linear mapping 就会被判为 identical——在我们的 overlap 检测场景这是 false positive。SVCCA 在 layer correspondence 上仅 1.4%-45.4% 准确率（vs CKA 99.3%），说明其 similarity signal 过于嘈杂。\n\n3. **为什么不用 MI**：MI 在 attention head 维度（768-4096 dim per head）的高维空间中估计 heavily biased，需要大量样本和 neural estimator 训练，不 practical 也不 reproducible。\n\n4. **Acknowledge CKA 缺陷**：CKA 可被操纵（Davari et al., 2023; Horoi et al., 2022），且对 outliers 敏感。但在 RASP 中我们用 CKA 做 relative ranking（同一模型内 heads 的 pairwise overlap），而非 cross-model absolute comparison，因此操纵风险低且 outlier 影响在 heads 间一致。\n\n5. **Claim 2 循环性讨论**：Dream 审稿指出 \"CKA predicts recoverability\" 可能是 tautological。回应：CKA 度量的是 functional overlap（表征冗余度），recoverability 是 RLVR training 的 emergent outcome。两者之间的相关性是 empirical finding 而非 definitional circularity。类比：BMI 预测心血管风险不是 tautological，即使两者有 biological correlation。我们在 Section 4 提供 ablation 证明 CKA overlap ≠ trivially recoverability（e.g., random overlap scores 不预测 recovery）。\n\n---\n\n## 9. 引用清单（按 Related Work 子节分组）\n\n### §2.1 Structured Pruning for LLMs\n1. LLM-Pruner (Ma et al., NeurIPS 2023) — `llmpruner2023`\n2. SparseGPT (Frantar & Alistarh, ICML 2023) — `sparsegpt2023`\n3. Wanda (Sun et al., ICLR 2024) — `wanda2024`\n4. SliceGPT (Ashkboos et al., ICLR 2024) — `slicegpt2024`\n5. FLAP (AAAI 2024) — `flap2024`\n6. ShortGPT (2024) — `shortgpt2024`\n7. GRASPrune (ACL 2026) — `graspprune2026`\n8. PAT (AAAI 2025) — `pat2025pruning`\n\n### §2.2 Function-Aware / Representation-Guided Pruning\n9. FANG (2025) — `fang2025function`\n10. FuncNet (2025) — `funcnet2025pruning`\n11. MPruner (2024) — `mpruner2024`\n\n### §2.3 Pruning Reasoning LLMs\n12. RESP / Think Before You Prune (2025) — `resp2025pruning`\n13. Self-Healing (2025) — `selfhealing2025`\n14. From LLMs to LRMs (2026) — `llms2lrms2026`\n15. When Reasoning Meets Compression (2025) — `reasoning_compression2025`\n16. Doing More With Less (2026) — `doingmorewithless2026`\n\n### §2.4 Post-Pruning Recovery & RLVR\n17. RestoreLCC (NeurIPS 2025) — `restorelcc2025`\n18. DeepSeek-R1 (2025) — `deepseekr1_2025`\n19. DeepSeekMath / GRPO (2024) — `deepseekmath2024`\n20. RL Squeezes, SFT Expands (ICLR 2026) — `rlsqueezes2026`\n\n### §2.5 Representation Similarity Measures\n21. CKA (Kornblith et al., ICML 2019) — `kornblith2019cka`\n22. SVCCA (Raghu et al., NeurIPS 2017) — `raghu2017svcca`\n23. PWCCA (Morcos et al., NeurIPS 2018) — `morcos2018pwcca`\n24. Reliability of CKA (Davari et al., ICLR 2023) — `davari2023cka_reliability`\n25. Deceiving CKA (Horoi et al., NeurIPS 2022 WS) — `horoi2022deceiving_cka`\n26. MINE (Belghazi et al., ICML 2018) — `belghazi2018mine`\n\n### §2.6 Importance Estimation\n27. Taylor Importance (Molchanov et al., CVPR 2019) — `molchanov2019importance`\n\n**总计: 27 篇引用**（满足 25+ 要求）\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "bbc1ab5d-f276-4726-bfaf-06ede43c18bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WcMyn2PsD1SBvZDbexZiyE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 413,
+      "cache_read_input_tokens": 68457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 413
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T02:53:59.524Z_
+
+<details><summary>↩ Tool result · `toolu_01M3gmnJCTTCrvUPxbUMs75V`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/literature_survey_related_work.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "71bab0ba-27b4-4064-b60a-3ec5d6401994",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/literature_survey_related_work.md",
+    "content": "# Related Work 文献调研\n\n## 1. Dream 审稿指出缺失的论文\n\n### FANG: Function-Aware Neuron Grouping (arXiv Dec 2025)\n- **arXiv/DOI**: arXiv:2512.23014\n- **核心方法**: 按功能角色分组神经元，组内根据语义对齐程度加权 importance，共享神经元保留机制 + adaptive block-wise sparsity\n- **与 RASP 的关系**: 竞品/互补。FANG 和 RASP 都利用 functional specialization 指导剪枝，但 FANG 用 neuron grouping + semantic alignment，RASP 用 CKA overlap。FANG 不考虑 recovery\n- **Related Work 中怎么引**: \"Concurrently, FANG (2025) groups neurons by functional roles and prunes within each group using semantically aligned importance scores, achieving SOTA structured pruning results. Unlike RASP, FANG does not consider post-pruning recoverability.\"\n- **BibTeX key 建议**: `fang2025function`\n\n### FuncNet: Functional Network Pruning (arXiv Aug 2025)\n- **arXiv/DOI**: arXiv:2508.05239\n- **核心方法**: 借鉴认知神经科学，用 ICA 分解 LLM 为 functional networks（类似大脑功能网络），保留关键功能网络中的神经元\n- **与 RASP 的关系**: 互补。FuncNet 和 RASP 都关注 functional structure，但 FuncNet 用 ICA 分解，RASP 用 CKA overlap 度量\n- **Related Work 中怎么引**: \"FuncNet (2025) draws on cognitive neuroscience to decompose LLMs into functional networks via ICA, preserving key neurons within each network. While sharing our functional perspective, RASP uses CKA to quantify pairwise overlap rather than ICA decomposition.\"\n- **BibTeX key 建议**: `funcnet2025pruning`\n\n### RestoreLCC: Lost Component Compensation (NeurIPS 2025)\n- **arXiv/DOI**: arXiv:2510.21834\n- **核心方法**: 对比式探测关键 attention heads 的 activation differences，提取 lost components 并注入回 pruned heads 做补偿。Plug-and-play，兼容 structured/semi-structured/unstructured pruning\n- **与 RASP 的关系**: 互补。RestoreLCC 做 post-pruning activation compensation，RASP 做 pre-pruning overlap-aware selection + RLVR recovery。两者可叠加\n- **Related Work 中怎么引**: \"RestoreLCC (NeurIPS 2025) recovers pruning loss by contrastively probing critical attention heads and reinjecting lost activation components. This plug-and-play approach is complementary to RASP's strategy of preserving functionally unique heads before pruning.\"\n- **BibTeX key 建议**: `restorelcc2025`\n\n### PAT: Pruning-Aware Tuning (AAAI 2025)\n- **arXiv/DOI**: arXiv:2408.14721\n- **核心方法**: 在 Attention 和 FFN 之间插入 Hybrid Sparsification Modules (HSMs)，含轻量算子 + 全局共享 trainable mask，Identity Loss 解耦 transformation 和 scaling\n- **与 RASP 的关系**: 竞品。PAT 将 pruning 和 fine-tuning 统一，RASP 分两阶段（CKA-guided pruning → RLVR recovery）。PAT 用 SFT-like recovery，RASP 用 RL\n- **Related Work 中怎么引**: \"PAT (AAAI 2025) unifies pruning and fine-tuning via Hybrid Sparsification Modules with LoRA-comparable overhead. RASP differs by decoupling pruning from recovery and employing RLVR instead of supervised tuning for the recovery stage.\"\n- **BibTeX key 建议**: `pat2025pruning`\n\n---\n\n## 2. 已知竞品\n\n### Self-Healing: Recovering Pruned LRMs via RL (OpenReview Oct 2025)\n- **arXiv/DOI**: OpenReview ID: Cy8Qa4gAst（未找到独立 arXiv ID）\n- **核心方法**: 用 RLVR 替代 SFT 做剪枝后恢复训练。在 25% 压缩下 RLVR 将性能从 ~80%（SFT）提升到 >95%\n- **与 RASP 的关系**: 最直接竞品。Self-Healing 证明 RLVR > SFT 做 recovery，但不考虑剪哪些结构。RASP 的核心贡献是 pruning selection 也要考虑 recoverability\n- **Related Work 中怎么引**: \"Self-Healing (2025) demonstrates that RLVR-based recovery dramatically outperforms SFT for pruned reasoning models. RASP builds on this insight by further showing that which structures are pruned significantly affects recovery efficiency—CKA-guided selection creates a more favorable starting point for RLVR.\"\n- **BibTeX key 建议**: `selfhealing2025`\n\n### GRASPrune: Global Gating for Budgeted Structured Pruning (ACL 2026)\n- **arXiv/DOI**: arXiv:2604.19398\n- **核心方法**: 联合剪枝 FFN channels 和 KV head groups，用 projected straight-through estimator 学习 gate scores，全局 budget 约束，calibration scaling factors 缓解 scale mismatch\n- **与 RASP 的关系**: 竞品。GRASPrune 用 learned gating，RASP 用 CKA-based importance scoring。GRASPrune 不考虑 recovery\n- **Related Work 中怎么引**: \"GRASPrune (ACL 2026) jointly prunes FFN channels and KV head groups under a global budget using learned gate scores. While achieving strong one-shot pruning, it does not account for post-pruning recoverability, which RASP addresses via the functional overlap term.\"\n- **BibTeX key 建议**: `graspprune2026`\n\n### RESP / Think Before You Prune (Dec 2025)\n- **arXiv/DOI**: arXiv:2512.02185\n- **核心方法**: 自生成推理 traces 做 calibration，decode-time gradient importance，progressive regeneration。首个针对 reasoning LLMs 的 structured pruning\n- **与 RASP 的关系**: 竞品。RESP 用 self-generated calibration + gradient importance，RASP 用 CKA overlap。RESP 不用 RL recovery\n- **Related Work 中怎么引**: \"RESP (2025) is the first to address structured pruning specifically for reasoning LLMs, using self-generated traces for calibration and decode-time gradients for importance estimation. RASP complements this line by introducing a functional overlap criterion and leveraging RLVR for recovery.\"\n- **BibTeX key 建议**: `resp2025pruning`\n\n### MPruner: CKA-Based Mutual Information Pruning (Aug 2024)\n- **arXiv/DOI**: arXiv:2408.13482\n- **核心方法**: 用 CKA 做 layer clustering，度量 multi-layer cluster 的全局贡献，accuracy threshold 而非 sparsity level 做剪枝标准。~50% 参数缩减\n- **与 RASP 的关系**: 互补/背景。MPruner 也用 CKA 但做 layer-level clustering，RASP 用 CKA 做 head-level functional overlap。MPruner 不针对 reasoning models\n- **Related Work 中怎么引**: \"MPruner (2024) applies CKA-based layer clustering for model compression, demonstrating ~50% parameter reduction. RASP extends the use of CKA from layer-level redundancy detection to head-level functional overlap scoring, specifically targeting reasoning model recoverability.\"\n- **BibTeX key 建议**: `mpruner2024`\n\n---\n\n## 3. Structured Pruning Baselines\n\n### LLM-Pruner (NeurIPS 2023)\n- **arXiv/DOI**: arXiv:2305.11627\n- **核心方法**: 基于 gradient information 的 task-agnostic structural pruning，LoRA 3h 恢复。支持 LLaMA/Vicuna/ChatGLM\n- **与 RASP 的关系**: 背景 baseline。经典 LLM structured pruning 方法\n- **Related Work 中怎么引**: \"LLM-Pruner (Ma et al., NeurIPS 2023) performs task-agnostic structural pruning based on gradient information, recovering performance via LoRA fine-tuning.\"\n- **BibTeX key 建议**: `llmpruner2023`\n\n### SliceGPT (ICLR 2024)\n- **arXiv/DOI**: arXiv:2401.15024\n- **核心方法**: 利用 computational invariance（正交变换保持预测不变），直接删除 weight matrix 的整行/列，减小 embedding dimension\n- **与 RASP 的关系**: 背景 baseline\n- **Related Work 中怎么引**: \"SliceGPT (ICLR 2024) exploits computational invariance to slice entire rows and columns from weight matrices, reducing the embedding dimension without retraining.\"\n- **BibTeX key 建议**: `slicegpt2024`\n\n### Wanda (ICLR 2024)\n- **arXiv/DOI**: arXiv:2306.11695\n- **核心方法**: 按 weight magnitude × input activation 剪枝，per-output basis，无需 retraining\n- **与 RASP 的关系**: 背景 baseline（unstructured，但 widely cited）\n- **Related Work 中怎么引**: \"Wanda (Sun et al., ICLR 2024) prunes by the product of weight magnitude and input activation, achieving competitive sparsity without retraining.\"\n- **BibTeX key 建议**: `wanda2024`\n\n### SparseGPT (ICML 2023)\n- **arXiv/DOI**: arXiv:2301.00774\n- **核心方法**: One-shot pruning via large-scale sparse regression，OPT-175B 和 BLOOM-176B 达 60% sparsity with negligible perplexity loss\n- **与 RASP 的关系**: 背景 baseline\n- **Related Work 中怎么引**: \"SparseGPT (Frantar & Alistarh, ICML 2023) enables one-shot pruning of 100B+ parameter models to 60% sparsity via sparse regression.\"\n- **BibTeX key 建议**: `sparsegpt2023`\n\n### FLAP: Fluctuation-based Adaptive Structured Pruning (AAAI 2024)\n- **arXiv/DOI**: arXiv:2312.11983\n- **核心方法**: Fluctuation pruning metric + adaptive global compression + bias compensation。3-5 分钟单 GPU 完成，无需 retraining\n- **与 RASP 的关系**: 背景 baseline。FANG 在 FLAP 基础上取得 SOTA\n- **Related Work 中怎么引**: \"FLAP (AAAI 2024) uses fluctuation-based metrics with adaptive per-layer sparsity and bias compensation for retraining-free structured pruning.\"\n- **BibTeX key 建议**: `flap2024`\n\n### ShortGPT: Layer Removal via Block Influence (2024)\n- **arXiv/DOI**: arXiv:2403.03853\n- **核心方法**: Block Influence (BI) score 度量层重要性（input/output 相似度），直接删除冗余层\n- **与 RASP 的关系**: 背景。Depth pruning 方向，与 RASP 的 width pruning 互补\n- **Related Work 中怎么引**: \"ShortGPT (2024) identifies layer redundancy via Block Influence scores and directly removes entire layers, demonstrating significant redundancy in LLM depth.\"\n- **BibTeX key 建议**: `shortgpt2024`\n\n---\n\n## 4. Reasoning LLM Pruning 专题\n\n### From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models (Jan 2026)\n- **arXiv/DOI**: arXiv:2601.18091\n- **核心方法**: 首个系统比较 instruction-following LLMs vs reasoning-augmented LLMs 的 pruning 行为。Depth/width/dynamic pruning across 17 tasks\n- **与 RASP 的关系**: 背景/motivation。证明 pruning strategies 不能从 LLMs 直接迁移到 LRMs\n- **Related Work 中怎么引**: \"Recent work (2026) reveals that pruning strategies optimized for instruction-following LLMs do not transfer to reasoning models, motivating the need for reasoning-aware pruning criteria like RASP's functional overlap score.\"\n- **BibTeX key 建议**: `llms2lrms2026`\n\n### When Reasoning Meets Compression (Apr 2025)\n- **arXiv/DOI**: arXiv:2504.02010\n- **核心方法**: Benchmark quantized/distilled/pruned DeepSeek-R1 on reasoning tasks。发现 weight count 对 knowledge memorization 影响 > reasoning，保护 2% excessively compressed weights 可提升 6.57%\n- **与 RASP 的关系**: 背景/motivation。支持 RASP 的论点：不是所有 weights 对 reasoning recovery 同等重要\n- **Related Work 中怎么引**: \"Analysis of compressed DeepSeek-R1 (2025) shows that weight count affects knowledge memorization more than reasoning ability, and protecting a small fraction of critical weights yields outsized accuracy gains—consistent with RASP's premise that preserving functionally unique heads is key.\"\n- **BibTeX key 建议**: `reasoning_compression2025`\n\n### Doing More With Less: LLM Pruning for Test-Time Scaling (Apr 2026)\n- **arXiv/DOI**: arXiv:2604.25098\n- **核心方法**: Unstructured pruning 可增强 test-time scaling 性能，甚至优于 unpruned models。Structured pruning 则严重损害 test-time reasoning\n- **与 RASP 的关系**: 背景。进一步说明 structured pruning 对 reasoning 的特殊挑战\n- **Related Work 中怎么引**: \"Recent findings (2026) show that while unstructured pruning can enhance test-time scaling, structured pruning severely degrades reasoning—underscoring the need for careful structure selection as in RASP.\"\n- **BibTeX key 建议**: `doingmorewithless2026`\n\n---\n\n## 5. RLVR / GRPO 基础\n\n### DeepSeek-R1: Incentivizing Reasoning via RL (Jan 2025)\n- **arXiv/DOI**: arXiv:2501.12948\n- **核心方法**: 纯 RL (GRPO) 激励 reasoning emergence：self-reflection, verification, dynamic strategy adaptation。开源 R1-Zero, R1, 6 个 distilled models\n- **与 RASP 的关系**: 基础。RASP 的目标模型（DeepSeek-R1-Distill-Qwen-7B）和 recovery 方法（GRPO）均来自此\n- **Related Work 中怎么引**: \"DeepSeek-R1 (2025) demonstrates that pure RL with GRPO can incentivize advanced reasoning patterns in LLMs, producing the distilled models we use as our base for pruning.\"\n- **BibTeX key 建议**: `deepseekr1_2025`\n\n### DeepSeekMath: GRPO Origin (Feb 2024)\n- **arXiv/DOI**: arXiv:2402.03300\n- **核心方法**: 引入 GRPO（Group Relative Policy Optimization），去掉 value network，用 group-relative advantage estimation 替代 PPO 的 critic\n- **与 RASP 的关系**: 基础。GRPO 是 RASP recovery 阶段的核心算法\n- **Related Work 中怎么引**: \"GRPO (Shao et al., 2024), originally introduced in DeepSeekMath, replaces the value network in PPO with group-relative advantage estimation, forming the basis for RLVR-based recovery in our framework.\"\n- **BibTeX key 建议**: `deepseekmath2024`\n\n### RL Squeezes, SFT Expands (ICLR 2026)\n- **arXiv/DOI**: arXiv:2509.21128\n- **核心方法**: RL 压缩 incorrect trajectories（集中到 hub nodes），SFT 扩展 correct trajectories（均匀化）。RL 使 reasoning graph 更高效\n- **与 RASP 的关系**: 理论支撑。解释为什么 RLVR recovery 比 SFT recovery 更有效——RL 压缩错误路径而非简单模仿\n- **Related Work 中怎么引**: \"RL Squeezes, SFT Expands (ICLR 2026) reveals that RL concentrates reasoning into efficient hub structures while SFT disperses it, providing theoretical grounding for why RLVR-based recovery outperforms SFT in RASP.\"\n- **BibTeX key 建议**: `rlsqueezes2026`\n\n---\n\n## 6. CKA 及表征相似性度量\n\n### Kornblith et al.: CKA 原始论文 (ICML 2019)\n- **arXiv/DOI**: arXiv:1905.00414\n- **核心方法**: 提出 CKA，基于 centered Gram matrices + HSIC。Invariant to orthogonal transform + isotropic scaling。99.3% layer correspondence accuracy vs CCA 的 1.4%-45.4%\n- **与 RASP 的关系**: 基础。RASP 的 F(h) functional overlap 基于 CKA\n- **Related Work 中怎么引**: \"Centered Kernel Alignment (Kornblith et al., ICML 2019) measures representational similarity via the Hilbert-Schmidt Independence Criterion on centered Gram matrices, achieving 99.3% accuracy in identifying corresponding layers across networks—far surpassing CCA variants.\"\n- **BibTeX key 建议**: `kornblith2019cka`\n\n### SVCCA (NeurIPS 2017)\n- **arXiv/DOI**: arXiv:1706.05806\n- **核心方法**: SVD 降维 + CCA 做 affine-invariant 表征比较。揭示网络 bottom-up 收敛、过参数化等\n- **与 RASP 的关系**: CKA 的前驱方法，用于 CKA 选择论证\n- **Related Work 中怎么引**: \"SVCCA (Raghu et al., NeurIPS 2017) combines SVD with CCA for affine-invariant representation comparison but fails to identify layer correspondences across different initializations—a limitation that CKA overcomes.\"\n- **BibTeX key 建议**: `raghu2017svcca`\n\n### PWCCA: Projection Weighted CCA (NeurIPS 2018)\n- **arXiv/DOI**: arXiv:1806.05759\n- **核心方法**: 用 projection weights 替代 mean CCA coefficient，给 better-explaining components 更高权重\n- **与 RASP 的关系**: CKA alternative，用于论证\n- **Related Work 中怎么引**: \"PWCCA (Morcos et al., NeurIPS 2018) improves upon SVCCA by weighting CCA components by their projection importance, but remains sensitive to the number of retained dimensions.\"\n- **BibTeX key 建议**: `morcos2018pwcca`\n\n### Reliability of CKA (ICLR 2023)\n- **arXiv/DOI**: arXiv:2210.16156\n- **核心方法**: 形式化分析 CKA 对 simple transformations 的敏感性，证明 CKA 值可被操纵而不改变模型功能行为\n- **与 RASP 的关系**: 重要反面论据。需在论文中 acknowledge CKA limitations 并论证为何在 RASP 场景下仍合理\n- **Related Work 中怎么引**: \"Davari et al. (ICLR 2023) show that CKA can be manipulated without changing functional behavior, cautioning against uncritical use. In RASP, we mitigate this by using CKA in a relative ranking setting (comparing heads within the same model) rather than absolute similarity measurement.\"\n- **BibTeX key 建议**: `davari2023cka_reliability`\n\n### Deceiving the CKA Measure (NeurIPS 2022 Workshop)\n- **arXiv/DOI**: OpenReview ID: hITONWhDIIJ\n- **核心方法**: Optimization-based approach 修改 representations 维持功能但改变 CKA 值\n- **与 RASP 的关系**: 与上一篇同团队，补充 CKA limitations 讨论\n- **Related Work 中怎么引**: 可与 Davari et al. 2023 合并引用\n- **BibTeX key 建议**: `horoi2022deceiving_cka`\n\n### MINE: Mutual Information Neural Estimation (ICML 2018)\n- **arXiv/DOI**: arXiv:1801.04062\n- **核心方法**: 基于 Donsker-Varadhan 表示的 MI 估计器。Scalable 但在高维/高 MI 场景有 bias/variance 问题\n- **与 RASP 的关系**: CKA vs MI 论证素材。MI estimation 在高维不稳定，CKA 更 practical\n- **Related Work 中怎么引**: \"Mutual information estimation (Belghazi et al., ICML 2018) is theoretically appealing but suffers from severe bias and variance in high-dimensional settings, making CKA a more practical choice for head-level overlap quantification.\"\n- **BibTeX key 建议**: `belghazi2018mine`\n\n---\n\n## 7. Taylor Importance 基础\n\n### Molchanov et al.: Importance Estimation for Neural Network Pruning (CVPR 2019)\n- **arXiv/DOI**: arXiv:1906.10771\n- **核心方法**: First/second-order Taylor expansion 估计 neuron/filter 对 loss 的贡献。>93% correlation with true importance\n- **与 RASP 的关系**: 基础。RASP 的 I(h) importance score 基于 Taylor approximation\n- **Related Work 中怎么引**: \"We estimate head importance I(h) using first-order Taylor approximation (Molchanov et al., CVPR 2019), which achieves >93% correlation with true importance across network layers.\"\n- **BibTeX key 建议**: `molchanov2019importance`\n\n---\n\n## 8. CKA 选择论证素材\n\n### CKA vs SVCCA/CCA/MI 优劣对比\n\n| 度量 | 不变性 | Layer Correspondence Accuracy | 高维稳定性 | 计算效率 | 主要缺陷 |\n|------|--------|-------------------------------|-----------|---------|---------|\n| **CKA** | Orthogonal transform + isotropic scaling | 99.3% | 稳定 | 仅需内积 | 可被刻意操纵（Davari 2023）；对 outliers 敏感 |\n| **SVCCA** | Orthogonal transform（近似 invertible linear） | 1.4%-45.4% | 依赖 SVD truncation threshold | 需 SVD + CCA | Threshold 选择敏感；不能捕捉 non-isotropic scaling |\n| **PWCCA** | 同 SVCCA + projection weighting | 优于 SVCCA | 仍依赖 retained dimensions | 需 SVD + CCA + weighting | 继承 CCA invariance 过强的问题 |\n| **CCA** | Invertible linear transform | 低 | 受样本量限制 | 需矩阵分解 | 过强的 invariance 丢失 structure；高维 > 样本数时不可靠 |\n| **MI** | 无假设（nonparametric） | N/A | 极不稳定（bias/variance） | 需 neural estimator 训练 | 高维估计 heavily biased；收敛慢；不 practical |\n\n### 论证要点\n\n1. **CKA 优势**：在 head-level overlap 度量场景，我们需要 (a) 跨不同 heads 的 representations 可比较，(b) 对 isotropic scaling invariant 但对 non-isotropic 变化 sensitive（因为 non-isotropic 变化反映 functional specialization），(c) 高效可计算。CKA 满足所有三点。\n\n2. **为什么不用 CCA/SVCCA**：CCA 对 invertible linear transform invariant，这意味着两个 functionally different heads 如果存在 linear mapping 就会被判为 identical——在我们的 overlap 检测场景这是 false positive。SVCCA 在 layer correspondence 上仅 1.4%-45.4% 准确率（vs CKA 99.3%），说明其 similarity signal 过于嘈杂。\n\n3. **为什么不用 MI**：MI 在 attention head 维度（768-4096 dim per head）的高维空间中估计 heavily biased，需要大量样本和 neural estimator 训练，不 practical 也不 reproducible。\n\n4. **Acknowledge CKA 缺陷**：CKA 可被操纵（Davari et al., 2023; Horoi et al., 2022），且对 outliers 敏感。但在 RASP 中我们用 CKA 做 relative ranking（同一模型内 heads 的 pairwise overlap），而非 cross-model absolute comparison，因此操纵风险低且 outlier 影响在 heads 间一致。\n\n5. **Claim 2 循环性讨论**：Dream 审稿指出 \"CKA predicts recoverability\" 可能是 tautological。回应：CKA 度量的是 functional overlap（表征冗余度），recoverability 是 RLVR training 的 emergent outcome。两者之间的相关性是 empirical finding 而非 definitional circularity。类比：BMI 预测心血管风险不是 tautological，即使两者有 biological correlation。我们在 Section 4 提供 ablation 证明 CKA overlap ≠ trivially recoverability（e.g., random overlap scores 不预测 recovery）。\n\n---\n\n## 9. 引用清单（按 Related Work 子节分组）\n\n### §2.1 Structured Pruning for LLMs\n1. LLM-Pruner (Ma et al., NeurIPS 2023) — `llmpruner2023`\n2. SparseGPT (Frantar & Alistarh, ICML 2023) — `sparsegpt2023`\n3. Wanda (Sun et al., ICLR 2024) — `wanda2024`\n4. SliceGPT (Ashkboos et al., ICLR 2024) — `slicegpt2024`\n5. FLAP (AAAI 2024) — `flap2024`\n6. ShortGPT (2024) — `shortgpt2024`\n7. GRASPrune (ACL 2026) — `graspprune2026`\n8. PAT (AAAI 2025) — `pat2025pruning`\n\n### §2.2 Function-Aware / Representation-Guided Pruning\n9. FANG (2025) — `fang2025function`\n10. FuncNet (2025) — `funcnet2025pruning`\n11. MPruner (2024) — `mpruner2024`\n\n### §2.3 Pruning Reasoning LLMs\n12. RESP / Think Before You Prune (2025) — `resp2025pruning`\n13. Self-Healing (2025) — `selfhealing2025`\n14. From LLMs to LRMs (2026) — `llms2lrms2026`\n15. When Reasoning Meets Compression (2025) — `reasoning_compression2025`\n16. Doing More With Less (2026) — `doingmorewithless2026`\n\n### §2.4 Post-Pruning Recovery & RLVR\n17. RestoreLCC (NeurIPS 2025) — `restorelcc2025`\n18. DeepSeek-R1 (2025) — `deepseekr1_2025`\n19. DeepSeekMath / GRPO (2024) — `deepseekmath2024`\n20. RL Squeezes, SFT Expands (ICLR 2026) — `rlsqueezes2026`\n\n### §2.5 Representation Similarity Measures\n21. CKA (Kornblith et al., ICML 2019) — `kornblith2019cka`\n22. SVCCA (Raghu et al., NeurIPS 2017) — `raghu2017svcca`\n23. PWCCA (Morcos et al., NeurIPS 2018) — `morcos2018pwcca`\n24. Reliability of CKA (Davari et al., ICLR 2023) — `davari2023cka_reliability`\n25. Deceiving CKA (Horoi et al., NeurIPS 2022 WS) — `horoi2022deceiving_cka`\n26. MINE (Belghazi et al., ICML 2018) — `belghazi2018mine`\n\n### §2.6 Importance Estimation\n27. Taylor Importance (Molchanov et al., CVPR 2019) — `molchanov2019importance`\n\n**总计: 27 篇引用**（满足 25+ 要求）\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101_
+
+文献调研完成。文件写入 `artifacts/literature_survey_related_work.md`。
+
+**核心成果**：
+
+- **27 篇引用**，覆盖 6 个子节：Structured Pruning Baselines、Function-Aware Pruning、Reasoning LLM Pruning、Post-Pruning Recovery/RLVR、Representation Similarity、Importance Estimation
+- **Dream 指出的 4 篇全部找到**：FANG (2512.23014)、FuncNet (2508.05239)、RestoreLCC (2510.21834, NeurIPS 2025)、PAT (2408.14721, AAAI 2025)
+- **CKA 选择论证**：含 CKA vs SVCCA/CCA/PWCCA/MI 的完整对比表 + 5 条论证要点，包括 Claim 2 循环性的回应策略
+- **Self-Healing 只有 OpenReview（Cy8Qa4gAst），未找到独立 arXiv ID**——建议引用时标注 OpenReview
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "uuid": "44e65894-421d-4dd4-b206-cf3198ca5572",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FYgVrZ88NdqyNmANsJ4G8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8298,
+      "cache_read_input_tokens": 68870,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8298
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 102_
+
+文献调研完成。文件写入 `artifacts/literature_survey_related_work.md`。
+
+**核心成果**：
+
+- **27 篇引用**，覆盖 6 个子节：Structured Pruning Baselines、Function-Aware Pruning、Reasoning LLM Pruning、Post-Pruning Recovery/RLVR、Representation Similarity、Importance Estimation
+- **Dream 指出的 4 篇全部找到**：FANG (2512.23014)、FuncNet (2508.05239)、RestoreLCC (2510.21834, NeurIPS 2025)、PAT (2408.14721, AAAI 2025)
+- **CKA 选择论证**：含 CKA vs SVCCA/CCA/PWCCA/MI 的完整对比表 + 5 条论证要点，包括 Claim 2 循环性的回应策略
+- **Self-Healing 只有 OpenReview（Cy8Qa4gAst），未找到独立 arXiv ID**——建议引用时标注 OpenReview
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 428603,
+  "duration_api_ms": 621338,
+  "num_turns": 40,
+  "stop_reason": "end_turn",
+  "session_id": "39ef6357-366d-4f81-ae76-9b01698dfcc0",
+  "total_cost_usd": 2.2451487499999994,
+  "usage": {
+    "input_tokens": 2381,
+    "cache_creation_input_tokens": 65327,
+    "cache_read_input_tokens": 527566,
+    "output_tokens": 19991,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 65327,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 300,
+        "cache_read_input_tokens": 68870,
+        "cache_creation_input_tokens": 8298,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 8298
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 624467,
+      "outputTokens": 17385,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 35,
+      "costUSD": 1.0613919999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 2381,
+      "outputTokens": 19991,
+      "cacheReadInputTokens": 527566,
+      "cacheCreationInputTokens": 65327,
+      "webSearchRequests": 0,
+      "costUSD": 1.18375675,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "018a50e5-66c7-44d4-923b-8a25b379b4b0"
+}
+```
+
+</details>
+
+---

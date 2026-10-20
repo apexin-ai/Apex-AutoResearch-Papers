@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_humaneval_grpo_standard_20_fair_2048_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:05:14.343Z",
+    "updated_at": "2026-05-19T07:05:30.844Z",
+    "hypothesis": "GRPO stage2 with standard 20% fair pruning recovers meaningful code generation ability on HumanEval, demonstrating that the fair pruning strategy preserves code-critical layers better than CKA-only pruning."
+  },
+  "timestamp": "2026-05-19T07:05:31.247506+00:00",
+  "trigger": "update_registry"
+}

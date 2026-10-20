@@ -1,0 +1,17 @@
+{
+  "exp_id": "grpo_cka_only_15_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:58:03.218Z",
+    "updated_at": "2026-05-20T12:05:33.964Z",
+    "hypothesis": "CKA-only 15% GRPO restart (resume from checkpoint-20). Original pipeline_cka_only_15 failed at checkpoint-20 due to disk full. Now disk has 185G available. W-C6 cross-sparsity validation: if CKA-only > Standard holds at 15%, strengthens the claim.",
+    "parent": "pipeline_cka_only_15",
+    "notes": "checkpoint-20 from original pipeline_cka_only_15 is corrupted (safetensors incomplete metadata, disk-full damage). Starting fresh from sft_cka_only_15. New output_dir: grpo_cka_only_15_v2. Director requested --save_only_model but script doesn't support it."
+  },
+  "timestamp": "2026-05-20T12:05:34.486700+00:00",
+  "trigger": "update_registry"
+}

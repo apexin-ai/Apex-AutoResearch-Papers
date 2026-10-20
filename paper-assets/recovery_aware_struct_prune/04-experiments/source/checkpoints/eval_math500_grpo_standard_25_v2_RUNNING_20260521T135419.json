@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_math500_grpo_standard_25_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:53:43.695Z",
+    "updated_at": "2026-05-21T13:54:18.720Z",
+    "hypothesis": "Standard 25% GRPO model MATH-500 @2048 accuracy, expected near-zero due to reward collapse. Re-run with correct max_new_tokens=2048 for consistency with 20% data.",
+    "parent": "eval_math500_grpo_standard_25",
+    "spec": {
+      "command": "nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/recovery_aware_struct_prune/src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/checkpoint-100 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2 --seed 42 --max_new_tokens 2048' > /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/eval_math500_grpo_standard_25_v2.log 2>&1 &",
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "pid": 99426,
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B Standard 25% GRPO checkpoint-100",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/checkpoint-100",
+      "seed": 42,
+      "checkpoint_source": "grpo_standard_25_westb",
+      "eval_data": "MATH-500",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/eval_math500_grpo_standard_25_v2.log"
+    }
+  },
+  "timestamp": "2026-05-21T13:54:19.281588+00:00",
+  "trigger": "update_registry"
+}

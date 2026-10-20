@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_20_seed456_full",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:27:05.741Z",
+    "updated_at": "2026-05-20T10:27:42.044Z",
+    "hypothesis": "GSM8K N=1319 full eval on Standard GRPO seed=456. N=200 quick eval showed 66.50% (133/200), exceeding CKA-only's 64.37%. Seed=42 full eval: 59.44% (784/1319). Full eval to determine if seed456's high accuracy holds or is small-sample noise (N=200 95% CI ≈ ±6.5pp).",
+    "parent": "grpo_standard_20_seed456"
+  },
+  "timestamp": "2026-05-20T10:27:42.523248+00:00",
+  "trigger": "update_registry"
+}

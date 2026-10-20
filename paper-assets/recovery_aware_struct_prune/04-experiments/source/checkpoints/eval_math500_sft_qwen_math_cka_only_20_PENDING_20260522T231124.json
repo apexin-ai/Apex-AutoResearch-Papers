@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:11:09.017Z",
+    "updated_at": "2026-05-22T23:11:23.518Z",
+    "hypothesis": "Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch.",
+    "parent": "sft_qwen_math_cka_only_20"
+  },
+  "timestamp": "2026-05-22T23:11:24.222163+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_postprune_rasp_30",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:22:00Z",
+    "updated_at": "2026-05-17T19:38:55.561Z",
+    "hypothesis": "RASP 30% post-prune GSM8K accuracy (N=200). At 20% RASP post-prune was 29%, at 25% was 21%. 30% should be lower. Establishes degradation curve for multi-sparsity analysis.",
+    "spec": {
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "44265",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 200,
+      "model_name": "pruned_rasp_30",
+      "seed": 42,
+      "checkpoint_source": "pruned_rasp_30",
+      "eval_data": "GSM8K (200 samples, greedy)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T19:38:53.459Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T19:38:55.561Z"
+  },
+  "timestamp": "2026-05-17T19:38:55.843405+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1836 @@
+# verify grasp eval json
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_verify_grasp-eval-json_20260515T163844.log`
+- **Structured JSON:** [`a0cee354fbce9c4047ee.json`](../../sessions/a0/a0cee354fbce9c4047ee.json)
+
+## Before a recorded user message
+
+39 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c437e664-4fb9-4264-91cf-6850f838183c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778874600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "cd3d8d2e-2fb8-4aab-a621-3bc1da4e2a16",
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH to westd-11672 and check GraSP eval JSON files and eval chain status. Let me use the MCP tools to do this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "ac962923-7883-4b38-bf34-846e460643ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0136R6MbAnagVhQwW4jGuthS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11726,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11726
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SGhx52En6WPXHoKKiCiz2f`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "86af9131-4047-42c1-a9db-8da511127990",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0136R6MbAnagVhQwW4jGuthS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11726,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11726
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T16:38:56.617Z_
+
+<details><summary>↩ Tool result · `toolu_01SGhx52En6WPXHoKKiCiz2f`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "55ff9f4a-f5c1-410f-94b9-2c0e9f587db6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016UqgXvvpoeCCesRAhuwX1A`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls -la /root/recovery_aware_struct_prune/results/*grasp* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "c11ae8a1-8c34-4391-b700-81cb1da81225",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SuojFVTWqHJz8wCZAowbta",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 23567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 479
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T16:39:00.104Z_
+
+<details><summary>↩ Tool result · `toolu_016UqgXvvpoeCCesRAhuwX1A`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "4f447717-4ccd-41fa-9454-f01f2483526f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xfq3sSsb5khbkdit3P1iYK`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "tmux list-sessions 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "286c160e-43d2-4233-b1ed-692e716e2155",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SuojFVTWqHJz8wCZAowbta",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 23567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 479
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T16:39:00.563Z_
+
+<details><summary>↩ Tool result · `toolu_01Xfq3sSsb5khbkdit3P1iYK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "045ef3a3-869e-4a2f-a9aa-8b0f94108de9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F91Q9deTgNgNc2Nz9LZ3ZJ`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ps aux --no-headers -o pid,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "c780c971-9107-43a7-8118-3e7002719e79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SuojFVTWqHJz8wCZAowbta",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 23567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 479
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T16:39:02.296Z_
+
+<details><summary>↩ Tool result · `toolu_01F91Q9deTgNgNc2Nz9LZ3ZJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "c2e838da-0204-4f74-be85-f40393d6a5c5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+The `>` redirect is blocked in read-only mode. Let me adjust the commands.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "708c55df-a5ff-4458-b326-30b9bd37b9fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpdq3AYbWQNqxohmG1WDFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 24046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XC7D8JNx2eUq46Mea7f1K2`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls -la /root/recovery_aware_struct_prune/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "47a98257-9a1f-46f1-8654-47822a0f19de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpdq3AYbWQNqxohmG1WDFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 24046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T16:39:06.147Z_
+
+<details><summary>↩ Tool result · `toolu_01XC7D8JNx2eUq46Mea7f1K2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 776\\ndrwxr-xr-x  3 root root   4096 May 16 00:11 .\\ndrwxr-xr-x 12 root root   4096 May 15 20:39 ..\\ndrwxr-xr-x  2 root root   4096 May 15 17:19 alpha_ablation\\n-rw-r--r--  1 root root 122049 May 15 15:38 cka_scores.pt\\n-rw-r--r--  1 root root  80773 May 15 21:35 eval_alpha_4.0_greedy.json\\n-rw-r--r--  1 root root   9760 May 15 23:48 eval_grasp_n100.log\\n-rw-r--r--  1 root root  97954 May 15 23:48 eval_pruned_graspune_20_greedy.json\\n-rw-r--r--  1 root root  78838 May 15 22:50 eval_sft_alpha_0.0_n100.json\\n-rw-r--r--  1 root root   1343 May 16 00:09 eval_sft_alpha_0.5_n100.log\\n-rw-r--r--  1 root root  76662 May 15 23:22 eval_sft_alpha_1.0_n100.json\\n-rw-r--r--  1 root root  79479 May 16 00:07 eval_sft_alpha_2.0_n100.json\\n-rw-r--r--  1 root root   9433 May 16 00:07 eval_sft_alpha_2.0_n100.log\\n-rw-r--r--  1 root root  76188 May 16 00:11 eval_sft_grasp_20_n100.json\\n-rw-r--r--  1 root root   9533 May 16 00:11 eval_sft_grasp_20_n100.log\\n-rw-r--r--  1 root root  17703 May 15 15:37 importance_scores.pt\\n-rw-r--r--  1 root root  97513 May 15 19:58 reeval_pruned_rasp_20_definitive_n100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "d613d575-65db-4233-a167-d4afb131bbca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 776\\\\ndrwxr-xr-x  3 root root   4096 May 16 00:11 .\\\\ndrwxr-xr-x 12 root root   4096 May 15 20:39 ..\\\\ndrwxr-xr-x  2 root root   4096 May 15 17:19 alpha_ablation\\\\n-rw-r--r--  1 root root 122049 May 15 15:38 cka_scores.pt\\\\n-rw-r--r--  1 root root  80773 May 15 21:35 eval_alpha_4.0_greedy.json\\\\n-rw-r--r--  1 root root   9760 May 15 23:48 eval_grasp_n100.log\\\\n-rw-r--r--  1 root root  97954 May 15 23:48 eval_pruned_graspune_20_greedy.json\\\\n-rw-r--r--  1 root root  78838 May 15 22:50 eval_sft_alpha_0.0_n100.json\\\\n-rw-r--r--  1 root root   1343 May 16 00:09 eval_sft_alpha_0.5_n100.log\\\\n-rw-r--r--  1 root root  76662 May 15 23:22 eval_sft_alpha_1.0_n100.json\\\\n-rw-r--r--  1 root root  79479 May 16 00:07 eval_sft_alpha_2.0_n100.json\\\\n-rw-r--r--  1 root root   9433 May 16 00:07 eval_sft_alpha_2.0_n100.log\\\\n-rw-r--r--  1 root root  76188 May 16 00:11 eval_sft_grasp_20_n100.json\\\\n-rw-r--r--  1 root root   9533 May 16 00:11 eval_sft_grasp_20_n100.log\\\\n-rw-r--r--  1 root root  17703 May 15 15:37 importance_scores.pt\\\\n-rw-r--r--  1 root root  97513 May 15 19:58 reeval_pruned_rasp_20_definitive_n100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 776\\ndrwxr-xr-x  3 root root   4096 May 16 00:11 .\\ndrwxr-xr-x 12 root root   4096 May 15 20:39 ..\\ndrwxr-xr-x  2 root root   4096 May 15 17:19 alpha_ablation\\n-rw-r--r--  1 root root 122049 May 15 15:38 cka_scores.pt\\n-rw-r--r--  1 root root  80773 May 15 21:35 eval_alpha_4.0_greedy.json\\n-rw-r--r--  1 root root   9760 May 15 23:48 eval_grasp_n100.log\\n-rw-r--r--  1 root root  97954 May 15 23:48 eval_pruned_graspune_20_greedy.json\\n-rw-r--r--  1 root root  78838 May 15 22:50 eval_sft_alpha_0.0_n100.json\\n-rw-r--r--  1 root root   1343 May 16 00:09 eval_sft_alpha_0.5_n100.log\\n-rw-r--r--  1 root root  76662 May 15 23:22 eval_sft_alpha_1.0_n100.json\\n-rw-r--r--  1 root root  79479 May 16 00:07 eval_sft_alpha_2.0_n100.json\\n-rw-r--r--  1 root root   9433 May 16 00:07 eval_sft_alpha_2.0_n100.log\\n-rw-r--r--  1 root root  76188 May 16 00:11 eval_sft_grasp_20_n100.json\\n-rw-r--r--  1 root root   9533 May 16 00:11 eval_sft_grasp_20_n100.log\\n-rw-r--r--  1 root root  17703 May 15 15:37 importance_scores.pt\\n-rw-r--r--  1 root root  97513 May 15 19:58 reeval_pruned_rasp_20_definitive_n100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ds5TDHRqaTpoQ9YMckXLgT`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ps aux",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "f02d50a1-b087-42fc-ad87-c07ea9a5c48d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpdq3AYbWQNqxohmG1WDFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 24046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 751
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T16:39:06.685Z_
+
+<details><summary>↩ Tool result · `toolu_01Ds5TDHRqaTpoQ9YMckXLgT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  2996 ?        Ss   May15   0:00 bash /init/boot/boot.sh\\nroot       1194  2.6  0.0 723104 20092 ?        Sl   May15  16:50 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1206  0.0  0.0  15444  8696 ?        S    May15   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot       1210  0.0  0.0 2573556 19928 ?       Sl   May15   0:08 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1216  0.0  0.0 2574324 20156 ?       Sl   May15   0:27 proxy -c /init/proxy/proxy.ini\\nroot       1217  0.0  0.0 3327816 72680 ?       Sl   May15   0:29 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1219  0.1  0.0 6599364 102388 ?      Sl   May15   1:03 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1220  0.0  0.0 182300 92896 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1299  0.0  0.0 28341192 8804 ?       Sl   May15   0:34 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_4oh8wk_1/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_4oh8wk_1/startup_error\\nroot       1789  0.0  0.0  16692 10008 ?        Ss   May15   0:02 sshd: root@notty\\nroot      48126  0.8  0.0  16692 10760 ?        Ss   00:39   0:00 sshd: root@notty\\nroot      48143  0.0  0.0   7064  1556 ?        Rs   00:39   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "76ed43a9-ee00-4a3c-80af-05b99f0f23ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  2996 ?        Ss   May15   0:00 bash /init/boot/boot.sh\\\\nroot       1194  2.6  0.0 723104 20092 ?        Sl   May15  16:50 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1206  0.0  0.0  15444  8696 ?        S    May15   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot       1210  0.0  0.0 2573556 19928 ?       Sl   May15   0:08 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1216  0.0  0.0 2574324 20156 ?       Sl   May15   0:27 proxy -c /init/proxy/proxy.ini\\\\nroot       1217  0.0  0.0 3327816 72680 ?       Sl   May15   0:29 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1219  0.1  0.0 6599364 102388 ?      Sl   May15   1:03 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1220  0.0  0.0 182300 92896 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1299  0.0  0.0 28341192 8804 ?       Sl   May15   0:34 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_4oh8wk_1/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_4oh8wk_1/startup_error\\\\nroot       1789  0.0  0.0  16692 10008 ?        Ss   May15   0:02 sshd: root@notty\\\\nroot      48126  0.8  0.0  16692 10760 ?        Ss   00:39   0:00 sshd: root@notty\\\\nroot      48143  0.0  0.0   7064  1556 ?        Rs   00:39   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  2996 ?        Ss   May15   0:00 bash /init/boot/boot.sh\\nroot       1194  2.6  0.0 723104 20092 ?        Sl   May15  16:50 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1206  0.0  0.0  15444  8696 ?        S    May15   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot       1210  0.0  0.0 2573556 19928 ?       Sl   May15   0:08 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1216  0.0  0.0 2574324 20156 ?       Sl   May15   0:27 proxy -c /init/proxy/proxy.ini\\nroot       1217  0.0  0.0 3327816 72680 ?       Sl   May15   0:29 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1219  0.1  0.0 6599364 102388 ?      Sl   May15   1:03 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1220  0.0  0.0 182300 92896 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1299  0.0  0.0 28341192 8804 ?       Sl   May15   0:34 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_4oh8wk_1/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_4oh8wk_1/startup_error\\nroot       1789  0.0  0.0  16692 10008 ?        Ss   May15   0:02 sshd: root@notty\\nroot      48126  0.8  0.0  16692 10760 ?        Ss   00:39   0:00 sshd: root@notty\\nroot      48143  0.0  0.0   7064  1556 ?        Rs   00:39   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+两个 JSON 文件都存在。现在验证内容完整性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "db6afc40-1c98-42f9-9bcd-fa88d1724514",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8czFbm7aHv53kgCHsqFwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1790,
+      "cache_read_input_tokens": 24797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016ARd2MQcSoyYeAmDgPazQU`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "head -5 /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "7e6d3718-a0be-4ac5-b661-c78dbb2693c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8czFbm7aHv53kgCHsqFwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1790,
+      "cache_read_input_tokens": 24797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015cpF6F9q3Sny2dByYjt5n3`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "tail -5 /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "78f785dd-51df-474a-a096-2be8ab5c6349",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8czFbm7aHv53kgCHsqFwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1790,
+      "cache_read_input_tokens": 24797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:39:11.216Z_
+
+<details><summary>↩ Tool result · `toolu_016ARd2MQcSoyYeAmDgPazQU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.41,\\n  \\\"stderr\\\": 0.04918333050943175,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "974406e4-5967-433c-b070-581d48f77df5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.41,\\\\n  \\\\\\\"stderr\\\\\\\": 0.04918333050943175,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.41,\\n  \\\"stderr\\\": 0.04918333050943175,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T16:39:11.748Z_
+
+<details><summary>↩ Tool result · `toolu_015cpF6F9q3Sny2dByYjt5n3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"response_length\\\": 102,\\n      \\\"hit_eos\\\": true\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "468b6cd1-2ab1-4b19-b256-bc5167b4847e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"response_length\\\\\\\": 102,\\\\n      \\\\\\\"hit_eos\\\\\\\": true\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"response_length\\\": 102,\\n      \\\"hit_eos\\\": true\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01668or8cqw7hp4tQUxr41ji`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "head -5 /root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "b286441a-3cb8-4a97-b458-44efa9fa2c77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8czFbm7aHv53kgCHsqFwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1790,
+      "cache_read_input_tokens": 24797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T16:39:12.642Z_
+
+<details><summary>↩ Tool result · `toolu_01668or8cqw7hp4tQUxr41ji`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.07,\\n  \\\"stderr\\\": 0.02551470164434615,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "87399ff1-95ed-471d-a135-2df9075e7e1a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.07,\\\\n  \\\\\\\"stderr\\\\\\\": 0.02551470164434615,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.07,\\n  \\\"stderr\\\": 0.02551470164434615,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D1ry2iu9EvYdHCirhG3YZi`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "tail -5 /root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "6f2f2244-0578-403e-a7f5-ce64efd02424",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8czFbm7aHv53kgCHsqFwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1790,
+      "cache_read_input_tokens": 24797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T16:39:13.847Z_
+
+<details><summary>↩ Tool result · `toolu_01D1ry2iu9EvYdHCirhG3YZi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"response_length\\\": 4096,\\n      \\\"hit_eos\\\": false\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "1d2220e5-ebe3-41e6-9103-b8543f5ba039",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"response_length\\\\\\\": 4096,\\\\n      \\\\\\\"hit_eos\\\\\\\": false\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"response_length\\\": 4096,\\n      \\\"hit_eos\\\": false\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MhMDwfqnKmBWMLzf1dFGFH`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "wc -l /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "97ab8642-99cf-4364-a244-93a7e275b389",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8czFbm7aHv53kgCHsqFwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1790,
+      "cache_read_input_tokens": 24797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EUjxeRz3rz7xKMW9ihLhG9`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "wc -l /root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "e60d6c2a-0794-4413-8ffc-602060021e87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8czFbm7aHv53kgCHsqFwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1790,
+      "cache_read_input_tokens": 24797,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T16:39:14.707Z_
+
+<details><summary>↩ Tool result · `toolu_01MhMDwfqnKmBWMLzf1dFGFH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"919 /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "9f5b16b4-0557-4f9a-bd37-3e368e68b045",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"919 /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"919 /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T16:39:15.232Z_
+
+<details><summary>↩ Tool result · `toolu_01EUjxeRz3rz7xKMW9ihLhG9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"919 /root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "04d74bf3-4bd0-4245-aacd-c8f23bf2d9da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"919 /root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"919 /root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Now let me extract the key metrics with python -c.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "b939bf49-8278-4d5e-a4d0-465eeaa7654a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QV2YAhy46dEo61vMtYWaoL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1772,
+      "cache_read_input_tokens": 26587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1772
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019gnXv1J8196FwtZf24SDHo`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "python3 -c \"import json; d=json.load(open('/root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.json')); print(f'accuracy={d[\\\"accuracy\\\"]}, n_correct={d.get(\\\"n_correct\\\")}, n_total={d.get(\\\"n_total\\\")}, keys={list(d.keys())}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "b8966358-f85c-4c6e-ab27-e1a22f70bb58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QV2YAhy46dEo61vMtYWaoL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1772,
+      "cache_read_input_tokens": 26587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1772
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T16:39:20.895Z_
+
+<details><summary>↩ Tool result · `toolu_019gnXv1J8196FwtZf24SDHo`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "f4a60e24-ac2c-4feb-b238-0e8084e4d01f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016Nz5DPtZWVzCt2hzCStiNX`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "python3 -c \"import json; d=json.load(open('/root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json')); print(f'accuracy={d[\\\"accuracy\\\"]}, n_correct={d.get(\\\"n_correct\\\")}, n_total={d.get(\\\"n_total\\\")}, keys={list(d.keys())}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "11774c22-2908-486f-a7b4-7328d8b60c9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QV2YAhy46dEo61vMtYWaoL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1772,
+      "cache_read_input_tokens": 26587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1772
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T16:39:22.262Z_
+
+<details><summary>↩ Tool result · `toolu_016Nz5DPtZWVzCt2hzCStiNX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "f626c54e-c761-43a3-9465-500007ae0ad9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018BGBphKjLjNaN7uhQ746XJ`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "cat /root/recovery_aware_struct_prune/results/eval_sft_grasp_20_n100.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "71382a30-f993-4760-b233-43b13e2df379",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QV2YAhy46dEo61vMtYWaoL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1772,
+      "cache_read_input_tokens": 26587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1772
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T16:39:23.122Z_
+
+<details><summary>↩ Tool result · `toolu_018BGBphKjLjNaN7uhQ746XJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 23:48:21,078 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\n2026-05-15 23:48:21,671 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\n2026-05-15 23:48:21,671 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\n2026-05-15 23:49:49,135 [INFO] Loading GSM8K test set...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\n2026-05-15 23:49:59,366 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\nRetrying in 1s [Retry 1/5].\\n2026-05-15 23:49:59,366 [WARNING] Retrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\n2026-05-15 23:50:00,368 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 22:32:43 2026).\\n2026-05-15 23:50:00,370 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 22:32:43 2026).\\n2026-05-15 23:50:00,381 [INFO] Evaluating on 100 test samples\\n2026-05-15 23:50:00,382 [INFO] Generation config: do_sample=False, temperature=0.0\\n\\rEvaluating:   0%|          | 0/100 [00:00<?, ?it/s]\\rEvaluating:   1%|          | 1/100 [00:02<04:03,  2.46s/it]\\rEvaluating:   2%|▏         | 2/100 [08:20<8:00:06, 293.94s/it]\\rEvaluating:   3%|▎         | 3/100 [08:21<4:19:18, 160.40s/it]\\rEvaluating:   4%|▍         | 4/100 [08:24<2:36:45, 97.98s/it] \\rEvaluating:   5%|▌         | 5/100 [08:28<1:41:28, 64.08s/it]\\rEvaluating:   6%|▌         | 6/100 [08:30<1:07:34, 43.13s/it]\\rEvaluating:   7%|▋         | 7/100 [08:34<46:58, 30.30s/it]  \\rEvaluating:   8%|▊         | 8/100 [08:42<35:35, 23.21s/it]\\rEvaluating:   9%|▉         | 9/100 [08:43<24:45, 16.32s/it]\\rEvaluating:  10%|█         | 10/100 [08:49<19:25, 12.95s/it]\\rEvaluating:  11%|█         | 11/100 [09:00<18:24, 12.41s/it]\\rEvaluating:  12%|█▏        | 12/100 [09:01<13:15,  9.04s/it]\\rEvaluating:  13%|█▎        | 13/100 [09:08<11:57,  8.25s/it]\\rEvaluating:  14%|█▍        | 14/100 [09:09<08:45,  6.11s/it]\\rEvaluating:  15%|█▌        | 15/100 [09:12<07:13,  5.10s/it]\\rEvaluating:  16%|█▌        | 16/100 [09:13<05:26,  3.88s/it]\\rEvaluating:  17%|█▋        | 17/100 [09:15<04:51,  3.52s/it]\\rEvaluating:  18%|█▊        | 18/100 [09:17<03:53,  2.85s/it]\\rEvaluating:  19%|█▉        | 19/100 [09:18<03:07,  2.31s/it]\\rEvaluating:  20%|██        | 20/100 [09:19<02:53,  2.17s/it]\\rEvaluating:  21%|██        | 21/100 [09:21<02:39,  2.02s/it]\\rEvaluating:  22%|██▏       | 22/100 [09:23<02:33,  1.97s/it]\\rEvaluating:  23%|██▎       | 23/100 [09:25<02:44,  2.14s/it]\\rEvaluating:  24%|██▍       | 24/100 [09:27<02:24,  1.90s/it]\\rEvaluating:  25%|██▌       | 25/100 [09:28<02:00,  1.60s/it]\\rEvaluating:  26%|██▌       | 26/100 [09:32<02:49,  2.29s/it]\\rEvaluating:  27%|██▋       | 27/100 [09:36<03:22,  2.77s/it]\\rEvaluating:  28%|██▊       | 28/100 [17:40<2:56:50, 147.37s/it]\\rEvaluating:  29%|██▉       | 29/100 [17:44<2:03:18, 104.20s/it]\\rEvaluating:  30%|███       | 30/100 [17:45<1:25:32, 73.32s/it] \\rEvaluating:  31%|███       | 31/100 [17:47<59:34, 51.80s/it]  \\rEvaluating:  32%|███▏      | 32/100 [17:49<41:49, 36.91s/it]\\rEvaluating:  33%|███▎      | 33/100 [17:50<29:25, 26.36s/it]\\rEvaluating:  34%|███▍      | 34/100 [17:53<20:59, 19.08s/it]\\rEvaluating:  35%|███▌      | 35/100 [17:56<15:26, 14.25s/it]\\rEvaluating:  36%|███▌      | 36/100 [18:00<11:59, 11.24s/it]\\rEvaluating:  37%|███▋      | 37/100 [18:03<09:16,  8.83s/it]\\rEvaluati\\n\\n... [截断: 输出过长，省略 434 字符] ...\\n\\n%|████▌     | 45/100 [18:31<03:41,  4.03s/it]\\rEvaluating:  46%|████▌     | 46/100 [18:34<03:28,  3.86s/it]\\rEvaluating:  47%|████▋     | 47/100 [18:37<03:05,  3.50s/it]\\rEvaluating:  48%|████▊     | 48/100 [18:38<02:25,  2.79s/it]\\rEvaluating:  49%|████▉     | 49/100 [18:41<02:27,  2.89s/it]2026-05-16 00:08:52,336 [INFO] Progress: 50/100, acc=0.3800, eos_rate=96.00%, avg_len=309\\n\\rEvaluating:  50%|█████     | 50/100 [18:51<04:15,  5.10s/it]\\rEvaluating:  51%|█████     | 51/100 [18:54<03:37,  4.44s/it]\\rEvaluating:  52%|█████▏    | 52/100 [18:57<03:04,  3.85s/it]\\rEvaluating:  53%|█████▎    | 53/100 [18:59<02:35,  3.32s/it]\\rEvaluating:  54%|█████▍    | 54/100 [19:02<02:27,  3.21s/it]\\rEvaluating:  55%|█████▌    | 55/100 [19:03<02:00,  2.68s/it]\\rEvaluating:  56%|█████▌    | 56/100 [19:06<01:54,  2.59s/it]\\rEvaluating:  57%|█████▋    | 57/100 [19:08<01:43,  2.40s/it]\\rEvaluating:  58%|█████▊    | 58/100 [19:09<01:33,  2.22s/it]\\rEvaluating:  59%|█████▉    | 59/100 [19:14<02:01,  2.97s/it]\\rEvaluating:  60%|██████    | 60/100 [19:16<01:39,  2.48s/it]\\rEvaluating:  61%|██████    | 61/100 [19:19<01:49,  2.82s/it]\\rEvaluating:  62%|█████��▏   | 62/100 [19:21<01:37,  2.57s/it]\\rEvaluating:  63%|██████▎   | 63/100 [19:23<01:22,  2.23s/it]\\rEvaluating:  64%|██████▍   | 64/100 [19:25<01:27,  2.44s/it]\\rEvaluating:  65%|██████▌   | 65/100 [19:26<01:09,  1.98s/it]\\rEvaluating:  66%|██████▌   | 66/100 [19:27<00:56,  1.66s/it]\\rEvaluating:  67%|██████▋   | 67/100 [19:29<00:55,  1.70s/it]\\rEvaluating:  68%|██████▊   | 68/100 [19:30<00:50,  1.58s/it]\\rEvaluating:  69%|██████▉   | 69/100 [19:32<00:47,  1.52s/it]\\rEvaluating:  70%|███████   | 70/100 [19:34<00:49,  1.66s/it]\\rEvaluating:  71%|███████   | 71/100 [19:37<01:00,  2.07s/it]\\rEvaluating:  72%|███████▏  | 72/100 [19:39<00:57,  2.06s/it]\\rEvaluating:  73%|███████▎  | 73/100 [19:41<01:00,  2.24s/it]\\rEvaluating:  74%|███████▍  | 74/100 [19:44<01:00,  2.34s/it]\\rEvaluating:  75%|███████▌  | 75/100 [19:45<00:49,  1.99s/it]\\rEvaluating:  76%|███████▌  | 76/100 [19:48<00:53,  2.21s/it]\\rEvaluating:  77%|███████▋  | 77/100 [19:50<00:50,  2.22s/it]\\rEvaluating:  78%|███████▊  | 78/100 [19:54<00:56,  2.56s/it]\\rEvaluating:  79%|███████▉  | 79/100 [19:57<01:02,  2.96s/it]\\rEvaluating:  80%|████████  | 80/100 [19:59<00:52,  2.61s/it]\\rEvaluating:  81%|████████  | 81/100 [20:01<00:45,  2.40s/it]\\rEvaluating:  82%|████████▏ | 82/100 [20:04<00:47,  2.64s/it]\\rEvaluating:  83%|████████▎ | 83/100 [20:11<01:03,  3.76s/it]\\rEvaluating:  84%|████████▍ | 84/100 [20:13<00:54,  3.40s/it]\\rEvaluating:  85%|████████▌ | 85/100 [20:14<00:40,  2.67s/it]\\rEvaluating:  86%|████████▌ | 86/100 [20:16<00:31,  2.27s/it]\\rEvaluating:  87%|████████▋ | 87/100 [20:22<00:45,  3.52s/it]\\rEvaluating:  88%|███████��▊ | 88/100 [20:29<00:53,  4.43s/it]\\rEvaluating:  89%|████████▉ | 89/100 [20:33<00:49,  4.54s/it]\\rEvaluating:  90%|█████████ | 90/100 [20:37<00:42,  4.24s/it]\\rEvaluating:  91%|█████████ | 91/100 [20:42<00:41,  4.57s/it]\\rEvaluating:  92%|█████████▏| 92/100 [20:45<00:31,  3.90s/it]\\rEvaluating:  93%|█████████▎| 93/100 [20:51<00:32,  4.67s/it]\\rEvaluating:  94%|█████████▍| 94/100 [20:54<00:24,  4.09s/it]\\rEvaluating:  95%|█████████▌| 95/100 [20:58<00:20,  4.05s/it]\\rEvaluating:  96%|█████████▌| 96/100 [21:00<00:13,  3.46s/it]\\rEvaluating:  97%|█████████▋| 97/100 [21:02<00:09,  3.13s/it]\\rEvaluating:  98%|█████████▊| 98/100 [21:06<00:06,  3.26s/it]\\rEvaluating:  99%|█████████▉| 99/100 [21:08<00:02,  2.90s/it]2026-05-16 00:11:10,340 [INFO] Progress: 100/100, acc=0.4100, eos_rate=98.00%, avg_len=226\\n\\rEvaluating: 100%|██████████| 100/100 [21:09<00:00,  2.53s/it]\\rEvaluating: 100%|██████████| 100/100 [21:09<00:00, 12.70s/it]\\n2026-05-16 00:11:10,341 [INFO] GSM8K Accuracy: 0.4100 ± 0.0492 (41/100)\\n2026-05-16 00:11:10,341 [INFO] EOS Stats: {\\n  \\\"natural_eos\\\": 98,\\n  \\\"truncated\\\": 2,\\n  \\\"eos_rate\\\": 0.98,\\n  \\\"avg_response_length\\\": 225.78,\\n  \\\"max_response_length\\\": 4096,\\n  \\\"min_response_length\\\": 57\\n}\\n2026-05-16 00:11:10,342 [INFO] Results saved to results/eval_sft_grasp_20_n100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "d908fdfa-e807-4b0c-ba9b-44a674a4a348",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 23:48:21,078 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\\\n2026-05-15 23:48:21,671 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\\\n2026-05-15 23:48:21,671 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\\\n2026-05-15 23:49:49,135 [INFO] Loading GSM8K test set...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\n2026-05-15 23:49:59,366 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-15 23:49:59,366 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\n2026-05-15 23:50:00,368 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 22:32:43 2026).\\\\n2026-05-15 23:50:00,370 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 22:32:43 2026).\\\\n2026-05-15 23:50:00,381 [INFO] Evaluating on 100 test samples\\\\n2026-05-15 23:50:00,382 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/100 [00:00<?, ?it/s]\\\\rEvaluating:   1%|          | 1/100 [00:02<04:03,  2.46s/it]\\\\rEvaluating:   2%|▏         | 2/100 [08:20<8:00:06, 293.94s/it]\\\\rEvaluating:   3%|▎         | 3/100 [08:21<4:19:18, 160.40s/it]\\\\rEvaluating:   4%|▍         | 4/100 [08:24<2:36:45, 97.98s/it] \\\\rEvaluating:   5%|▌         | 5/100 [08:28<1:41:28, 64.08s/it]\\\\rEvaluating:   6%|▌         | 6/100 [08:30<1:07:34, 43.13s/it]\\\\rEvaluating:   7%|▋         | 7/100 [08:34<46:58, 30.30s/it]  \\\\rEvaluating:   8%|▊         | 8/100 [08:42<35:35, 23.21s/it]\\\\rEvaluating:   9%|▉         | 9/100 [08:43<24:45, 16.32s/it]\\\\rEvaluating:  10%|█         | 10/100 [08:49<19:25, 12.95s/it]\\\\rEvaluating:  11%|█         | 11/100 [09:00<18:24, 12.41s/it]\\\\rEvaluating:  12%|█▏        | 12/100 [09:01<13:15,  9.04s/it]\\\\rEvaluating:  13%|█▎        | 13/100 [09:08<11:57,  8.25s/it]\\\\rEvaluating:  14%|█▍        | 14/100 [09:09<08:45,  6.11s/it]\\\\rEvaluating:  15%|█▌        | 15/100 [09:12<07:13,  5.10s/it]\\\\rEvaluating:  16%|█▌        | 16/100 [09:13<05:26,  3.88s/it]\\\\rEvaluating:  17%|█▋        | 17/100 [09:15<04:51,  3.52s/it]\\\\rEvaluating:  18%|█▊        | 18/100 [09:17<03:53,  2.85s/it]\\\\rEvaluating:  19%|█▉        | 19/100 [09:18<03:07,  2.31s/it]\\\\rEvaluating:  20%|██        | 20/100 [09:19<02:53,  2.17s/it]\\\\rEvaluating:  21%|██        | 21/100 [09:21<02:39,  2.02s/it]\\\\rEvaluating:  22%|██▏       | 22/100 [09:23<02:33,  1.97s/it]\\\\rEvaluating:  23%|██▎       | 23/100 [09:25<02:44,  2.14s/it]\\\\rEvaluating:  24%|██▍       | 24/100 [09:27<02:24,  1.90s/it]\\\\rEvaluating:  25%|██▌       | 25/100 [09:28<02:00,  1.60s/it]\\\\rEvaluating:  26%|██▌       | 26/100 [09:32<02:49,  2.29s/it]\\\\rEvaluating:  27%|██▋       | 27/100 [09:36<03:22,  2.77s/it]\\\\rEvaluating:  28%|██▊       | 28/100 [17:40<2:56:50, 147.37s/it]\\\\rEvaluating:  29%|██▉       | 29/100 [17:44<2:03:18, 104.20s/it]\\\\rEvaluating:  30%|███       | 30/100 [17:45<1:25:32, 73.32s/it] \\\\rEvaluating:  31%|███       | 31/100 [17:47<59:34, 51.80s/it]  \\\\rEvaluating:  32%|███▏      | 32/100 [17:49<41:49, 36.91s/it]\\\\rEvaluating:  33%|███▎      | 33/100 [17:50<29:25, 26.36s/it]\\\\rEvaluating:  34%|███▍      | 34/100 [17:53<20:59, 19.08s/it]\\\\rEvaluating:  35%|███▌      | 35/100 [17:56<15:26, 14.25s/it]\\\\rEvaluating:  36%|███▌      | 36/100 [18:00<11:59, 11.24s/it]\\\\rEvaluating:  37%|███▋      | 37/100 [18:03<09:16,  8.83s/it]\\\\rEvaluati\\\\n\\\\n... [截断: 输出过长，省略 434 字符] ...\\\\n\\\\n%|████▌     | 45/100 [18:31<03:41,  4.03s/it]\\\\rEvaluating:  46%|████▌     | 46/100 [18:34<03:28,  3.86s/it]\\\\rEvaluating:  47%|████▋     | 47/100 [18:37<03:05,  3.50s/it]\\\\rEvaluating:  48%|████▊     | 48/100 [18:38<02:25,  2.79s/it]\\\\rEvaluating:  49%|████▉     | 49/100 [18:41<02:27,  2.89s/it]2026-05-16 00:08:52,336 [INFO] Progress: 50/100, acc=0.3800, eos_rate=96.00%, avg_len=309\\\\n\\\\rEvaluating:  50%|█████     | 50/100 [18:51<04:15,  5.10s/it]\\\\rEvaluating:  51%|█████     | 51/100 [18:54<03:37,  4.44s/it]\\\\rEvaluating:  52%|█████▏    | 52/100 [18:57<03:04,  3.85s/it]\\\\rEvaluating:  53%|█████▎    | 53/100 [18:59<02:35,  3.32s/it]\\\\rEvaluating:  54%|█████▍    | 54/100 [19:02<02:27,  3.21s/it]\\\\rEvaluating:  55%|█████▌    | 55/100 [19:03<02:00,  2.68s/it]\\\\rEvaluating:  56%|█████▌    | 56/100 [19:06<01:54,  2.59s/it]\\\\rEvaluating:  57%|█████▋    | 57/100 [19:08<01:43,  2.40s/it]\\\\rEvaluating:  58%|█████▊    | 58/100 [19:09<01:33,  2.22s/it]\\\\rEvaluating:  59%|█████▉    | 59/100 [19:14<02:01,  2.97s/it]\\\\rEvaluating:  60%|██████    | 60/100 [19:16<01:39,  2.48s/it]\\\\rEvaluating:  61%|██████    | 61/100 [19:19<01:49,  2.82s/it]\\\\rEvaluating:  62%|█████��▏   | 62/100 [19:21<01:37,  2.57s/it]\\\\rEvaluating:  63%|██████▎   | 63/100 [19:23<01:22,  2.23s/it]\\\\rEvaluating:  64%|██████▍   | 64/100 [19:25<01:27,  2.44s/it]\\\\rEvaluating:  65%|██████▌   | 65/100 [19:26<01:09,  1.98s/it]\\\\rEvaluating:  66%|██████▌   | 66/100 [19:27<00:56,  1.66s/it]\\\\rEvaluating:  67%|██████▋   | 67/100 [19:29<00:55,  1.70s/it]\\\\rEvaluating:  68%|██████▊   | 68/100 [19:30<00:50,  1.58s/it]\\\\rEvaluating:  69%|██████▉   | 69/100 [19:32<00:47,  1.52s/it]\\\\rEvaluating:  70%|███████   | 70/100 [19:34<00:49,  1.66s/it]\\\\rEvaluating:  71%|███████   | 71/100 [19:37<01:00,  2.07s/it]\\\\rEvaluating:  72%|███████▏  | 72/100 [19:39<00:57,  2.06s/it]\\\\rEvaluating:  73%|███████▎  | 73/100 [19:41<01:00,  2.24s/it]\\\\rEvaluating:  74%|███████▍  | 74/100 [19:44<01:00,  2.34s/it]\\\\rEvaluating:  75%|███████▌  | 75/100 [19:45<00:49,  1.99s/it]\\\\rEvaluating:  76%|███████▌  | 76/100 [19:48<00:53,  2.21s/it]\\\\rEvaluating:  77%|███████▋  | 77/100 [19:50<00:50,  2.22s/it]\\\\rEvaluating:  78%|███████▊  | 78/100 [19:54<00:56,  2.56s/it]\\\\rEvaluating:  79%|███████▉  | 79/100 [19:57<01:02,  2.96s/it]\\\\rEvaluating:  80%|████████  | 80/100 [19:59<00:52,  2.61s/it]\\\\rEvaluating:  81%|████████  | 81/100 [20:01<00:45,  2.40s/it]\\\\rEvaluating:  82%|████████▏ | 82/100 [20:04<00:47,  2.64s/it]\\\\rEvaluating:  83%|████████▎ | 83/100 [20:11<01:03,  3.76s/it]\\\\rEvaluating:  84%|████████▍ | 84/100 [20:13<00:54,  3.40s/it]\\\\rEvaluating:  85%|████████▌ | 85/100 [20:14<00:40,  2.67s/it]\\\\rEvaluating:  86%|████████▌ | 86/100 [20:16<00:31,  2.27s/it]\\\\rEvaluating:  87%|████████▋ | 87/100 [20:22<00:45,  3.52s/it]\\\\rEvaluating:  88%|███████��▊ | 88/100 [20:29<00:53,  4.43s/it]\\\\rEvaluating:  89%|████████▉ | 89/100 [20:33<00:49,  4.54s/it]\\\\rEvaluating:  90%|█████████ | 90/100 [20:37<00:42,  4.24s/it]\\\\rEvaluating:  91%|█████████ | 91/100 [20:42<00:41,  4.57s/it]\\\\rEvaluating:  92%|█████████▏| 92/100 [20:45<00:31,  3.90s/it]\\\\rEvaluating:  93%|█████████▎| 93/100 [20:51<00:32,  4.67s/it]\\\\rEvaluating:  94%|█████████▍| 94/100 [20:54<00:24,  4.09s/it]\\\\rEvaluating:  95%|█████████▌| 95/100 [20:58<00:20,  4.05s/it]\\\\rEvaluating:  96%|█████████▌| 96/100 [21:00<00:13,  3.46s/it]\\\\rEvaluating:  97%|█████████▋| 97/100 [21:02<00:09,  3.13s/it]\\\\rEvaluating:  98%|█████████▊| 98/100 [21:06<00:06,  3.26s/it]\\\\rEvaluating:  99%|█████████▉| 99/100 [21:08<00:02,  2.90s/it]2026-05-16 00:11:10,340 [INFO] Progress: 100/100, acc=0.4100, eos_rate=98.00%, avg_len=226\\\\n\\\\rEvaluating: 100%|██████████| 100/100 [21:09<00:00,  2.53s/it]\\\\rEvaluating: 100%|██████████| 100/100 [21:09<00:00, 12.70s/it]\\\\n2026-05-16 00:11:10,341 [INFO] GSM8K Accuracy: 0.4100 ± 0.0492 (41/100)\\\\n2026-05-16 00:11:10,341 [INFO] EOS Stats: {\\\\n  \\\\\\\"natural_eos\\\\\\\": 98,\\\\n  \\\\\\\"truncated\\\\\\\": 2,\\\\n  \\\\\\\"eos_rate\\\\\\\": 0.98,\\\\n  \\\\\\\"avg_response_length\\\\\\\": 225.78,\\\\n  \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n  \\\\\\\"min_response_length\\\\\\\": 57\\\\n}\\\\n2026-05-16 00:11:10,342 [INFO] Results saved to results/eval_sft_grasp_20_n100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 23:48:21,078 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20\\n2026-05-15 23:48:21,671 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\n2026-05-15 23:48:21,671 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\n2026-05-15 23:49:49,135 [INFO] Loading GSM8K test set...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\n2026-05-15 23:49:59,366 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\nRetrying in 1s [Retry 1/5].\\n2026-05-15 23:49:59,366 [WARNING] Retrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\n2026-05-15 23:50:00,368 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 22:32:43 2026).\\n2026-05-15 23:50:00,370 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 22:32:43 2026).\\n2026-05-15 23:50:00,381 [INFO] Evaluating on 100 test samples\\n2026-05-15 23:50:00,382 [INFO] Generation config: do_sample=False, temperature=0.0\\n\\rEvaluating:   0%|          | 0/100 [00:00<?, ?it/s]\\rEvaluating:   1%|          | 1/100 [00:02<04:03,  2.46s/it]\\rEvaluating:   2%|▏         | 2/100 [08:20<8:00:06, 293.94s/it]\\rEvaluating:   3%|▎         | 3/100 [08:21<4:19:18, 160.40s/it]\\rEvaluating:   4%|▍         | 4/100 [08:24<2:36:45, 97.98s/it] \\rEvaluating:   5%|▌         | 5/100 [08:28<1:41:28, 64.08s/it]\\rEvaluating:   6%|▌         | 6/100 [08:30<1:07:34, 43.13s/it]\\rEvaluating:   7%|▋         | 7/100 [08:34<46:58, 30.30s/it]  \\rEvaluating:   8%|▊         | 8/100 [08:42<35:35, 23.21s/it]\\rEvaluating:   9%|▉         | 9/100 [08:43<24:45, 16.32s/it]\\rEvaluating:  10%|█         | 10/100 [08:49<19:25, 12.95s/it]\\rEvaluating:  11%|█         | 11/100 [09:00<18:24, 12.41s/it]\\rEvaluating:  12%|█▏        | 12/100 [09:01<13:15,  9.04s/it]\\rEvaluating:  13%|█▎        | 13/100 [09:08<11:57,  8.25s/it]\\rEvaluating:  14%|█▍        | 14/100 [09:09<08:45,  6.11s/it]\\rEvaluating:  15%|█▌        | 15/100 [09:12<07:13,  5.10s/it]\\rEvaluating:  16%|█▌        | 16/100 [09:13<05:26,  3.88s/it]\\rEvaluating:  17%|█▋        | 17/100 [09:15<04:51,  3.52s/it]\\rEvaluating:  18%|█▊        | 18/100 [09:17<03:53,  2.85s/it]\\rEvaluating:  19%|█▉        | 19/100 [09:18<03:07,  2.31s/it]\\rEvaluating:  20%|██        | 20/100 [09:19<02:53,  2.17s/it]\\rEvaluating:  21%|██        | 21/100 [09:21<02:39,  2.02s/it]\\rEvaluating:  22%|██▏       | 22/100 [09:23<02:33,  1.97s/it]\\rEvaluating:  23%|██▎       | 23/100 [09:25<02:44,  2.14s/it]\\rEvaluating:  24%|██▍       | 24/100 [09:27<02:24,  1.90s/it]\\rEvaluating:  25%|██▌       | 25/100 [09:28<02:00,  1.60s/it]\\rEvaluating:  26%|██▌       | 26/100 [09:32<02:49,  2.29s/it]\\rEvaluating:  27%|██▋       | 27/100 [09:36<03:22,  2.77s/it]\\rEvaluating:  28%|██▊       | 28/100 [17:40<2:56:50, 147.37s/it]\\rEvaluating:  29%|██▉       | 29/100 [17:44<2:03:18, 104.20s/it]\\rEvaluating:  30%|███       | 30/100 [17:45<1:25:32, 73.32s/it] \\rEvaluating:  31%|███       | 31/100 [17:47<59:34, 51.80s/it]  \\rEvaluating:  32%|███▏      | 32/100 [17:49<41:49, 36.91s/it]\\rEvaluating:  33%|███▎      | 33/100 [17:50<29:25, 26.36s/it]\\rEvaluating:  34%|███▍      | 34/100 [17:53<20:59, 19.08s/it]\\rEvaluating:  35%|███▌      | 35/100 [17:56<15:26, 14.25s/it]\\rEvaluating:  36%|███▌      | 36/100 [18:00<11:59, 11.24s/it]\\rEvaluating:  37%|███▋      | 37/100 [18:03<09:16,  8.83s/it]\\rEvaluati\\n\\n... [截断: 输出过长，省略 434 字符] ...\\n\\n%|████▌     | 45/100 [18:31<03:41,  4.03s/it]\\rEvaluating:  46%|████▌     | 46/100 [18:34<03:28,  3.86s/it]\\rEvaluating:  47%|████▋     | 47/100 [18:37<03:05,  3.50s/it]\\rEvaluating:  48%|████▊     | 48/100 [18:38<02:25,  2.79s/it]\\rEvaluating:  49%|████▉     | 49/100 [18:41<02:27,  2.89s/it]2026-05-16 00:08:52,336 [INFO] Progress: 50/100, acc=0.3800, eos_rate=96.00%, avg_len=309\\n\\rEvaluating:  50%|█████     | 50/100 [18:51<04:15,  5.10s/it]\\rEvaluating:  51%|█████     | 51/100 [18:54<03:37,  4.44s/it]\\rEvaluating:  52%|█████▏    | 52/100 [18:57<03:04,  3.85s/it]\\rEvaluating:  53%|█████▎    | 53/100 [18:59<02:35,  3.32s/it]\\rEvaluating:  54%|█████▍    | 54/100 [19:02<02:27,  3.21s/it]\\rEvaluating:  55%|█████▌    | 55/100 [19:03<02:00,  2.68s/it]\\rEvaluating:  56%|█████▌    | 56/100 [19:06<01:54,  2.59s/it]\\rEvaluating:  57%|█████▋    | 57/100 [19:08<01:43,  2.40s/it]\\rEvaluating:  58%|█████▊    | 58/100 [19:09<01:33,  2.22s/it]\\rEvaluating:  59%|█████▉    | 59/100 [19:14<02:01,  2.97s/it]\\rEvaluating:  60%|██████    | 60/100 [19:16<01:39,  2.48s/it]\\rEvaluating:  61%|██████    | 61/100 [19:19<01:49,  2.82s/it]\\rEvaluating:  62%|█████��▏   | 62/100 [19:21<01:37,  2.57s/it]\\rEvaluating:  63%|██████▎   | 63/100 [19:23<01:22,  2.23s/it]\\rEvaluating:  64%|██████▍   | 64/100 [19:25<01:27,  2.44s/it]\\rEvaluating:  65%|██████▌   | 65/100 [19:26<01:09,  1.98s/it]\\rEvaluating:  66%|██████▌   | 66/100 [19:27<00:56,  1.66s/it]\\rEvaluating:  67%|██████▋   | 67/100 [19:29<00:55,  1.70s/it]\\rEvaluating:  68%|██████▊   | 68/100 [19:30<00:50,  1.58s/it]\\rEvaluating:  69%|██████▉   | 69/100 [19:32<00:47,  1.52s/it]\\rEvaluating:  70%|███████   | 70/100 [19:34<00:49,  1.66s/it]\\rEvaluating:  71%|███████   | 71/100 [19:37<01:00,  2.07s/it]\\rEvaluating:  72%|███████▏  | 72/100 [19:39<00:57,  2.06s/it]\\rEvaluating:  73%|███████▎  | 73/100 [19:41<01:00,  2.24s/it]\\rEvaluating:  74%|███████▍  | 74/100 [19:44<01:00,  2.34s/it]\\rEvaluating:  75%|███████▌  | 75/100 [19:45<00:49,  1.99s/it]\\rEvaluating:  76%|███████▌  | 76/100 [19:48<00:53,  2.21s/it]\\rEvaluating:  77%|███████▋  | 77/100 [19:50<00:50,  2.22s/it]\\rEvaluating:  78%|███████▊  | 78/100 [19:54<00:56,  2.56s/it]\\rEvaluating:  79%|███████▉  | 79/100 [19:57<01:02,  2.96s/it]\\rEvaluating:  80%|████████  | 80/100 [19:59<00:52,  2.61s/it]\\rEvaluating:  81%|████████  | 81/100 [20:01<00:45,  2.40s/it]\\rEvaluating:  82%|████████▏ | 82/100 [20:04<00:47,  2.64s/it]\\rEvaluating:  83%|████████▎ | 83/100 [20:11<01:03,  3.76s/it]\\rEvaluating:  84%|████████▍ | 84/100 [20:13<00:54,  3.40s/it]\\rEvaluating:  85%|████████▌ | 85/100 [20:14<00:40,  2.67s/it]\\rEvaluating:  86%|████████▌ | 86/100 [20:16<00:31,  2.27s/it]\\rEvaluating:  87%|████████▋ | 87/100 [20:22<00:45,  3.52s/it]\\rEvaluating:  88%|███████��▊ | 88/100 [20:29<00:53,  4.43s/it]\\rEvaluating:  89%|████████▉ | 89/100 [20:33<00:49,  4.54s/it]\\rEvaluating:  90%|█████████ | 90/100 [20:37<00:42,  4.24s/it]\\rEvaluating:  91%|█████████ | 91/100 [20:42<00:41,  4.57s/it]\\rEvaluating:  92%|█████████▏| 92/100 [20:45<00:31,  3.90s/it]\\rEvaluating:  93%|█████████▎| 93/100 [20:51<00:32,  4.67s/it]\\rEvaluating:  94%|█████████▍| 94/100 [20:54<00:24,  4.09s/it]\\rEvaluating:  95%|█████████▌| 95/100 [20:58<00:20,  4.05s/it]\\rEvaluating:  96%|█████████▌| 96/100 [21:00<00:13,  3.46s/it]\\rEvaluating:  97%|█████████▋| 97/100 [21:02<00:09,  3.13s/it]\\rEvaluating:  98%|█████████▊| 98/100 [21:06<00:06,  3.26s/it]\\rEvaluating:  99%|█████████▉| 99/100 [21:08<00:02,  2.90s/it]2026-05-16 00:11:10,340 [INFO] Progress: 100/100, acc=0.4100, eos_rate=98.00%, avg_len=226\\n\\rEvaluating: 100%|██████████| 100/100 [21:09<00:00,  2.53s/it]\\rEvaluating: 100%|██████████| 100/100 [21:09<00:00, 12.70s/it]\\n2026-05-16 00:11:10,341 [INFO] GSM8K Accuracy: 0.4100 ± 0.0492 (41/100)\\n2026-05-16 00:11:10,341 [INFO] EOS Stats: {\\n  \\\"natural_eos\\\": 98,\\n  \\\"truncated\\\": 2,\\n  \\\"eos_rate\\\": 0.98,\\n  \\\"avg_response_length\\\": 225.78,\\n  \\\"max_response_length\\\": 4096,\\n  \\\"min_response_length\\\": 57\\n}\\n2026-05-16 00:11:10,342 [INFO] Results saved to results/eval_sft_grasp_20_n100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+## 结果
+
+### 1. JSON 文件完整性
+
+| 文件 | 路径 | 大小 | accuracy | n_total | 完整 |
+|------|------|------|----------|---------|------|
+| **GraSP post-SFT** | `results/eval_sft_grasp_20_n100.json` | 76KB, 919行 | **0.41** (41/100) | 100 | ✓ JSON 头尾闭合，含 per-example results |
+| **GraSP pre-SFT** | `results/eval_pruned_graspune_20_greedy.json` | 98KB, 919行 | **0.07** (7/100) | 100 | ✓ JSON 头尾闭合，含 per-example results |
+
+两个 JSON 均有 `accuracy`, `stderr`, `model_path`, per-example results，结构完整。
+
+### 2. Eval 链状态
+
+**无活跃 eval 进程。** `ps aux` 无 eval/python 训练进程，无 tmux session。所有 eval 任务已完成。
+
+当前 `results/` 目录下已完成的 eval：
+- `eval_sft_alpha_0.0_n100.json` — α=0.0 post-SFT
+- `eval_sft_alpha_1.0_n100.json` — α=1.0 post-SFT
+- `eval_sft_alpha_2.0_n100.json` — α=2.0 post-SFT
+- `eval_alpha_4.0_greedy.json` — α=4.0
+- `eval_sft_grasp_20_n100.json` — GraSP post-SFT (**0.41**)
+- `eval_pruned_graspune_20_greedy.json` — GraSP pre-SFT (**0.07**)
+- `reeval_pruned_rasp_20_definitive_n100.json` — RASP re-eval
+
+`eval_sft_alpha_0.5_n100.log` 存在（1.3KB）但无对应 JSON，可能未完成或被中断。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "uuid": "33b48192-43b6-4a6b-968f-d91dd2d2fa08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZX3zNQyNEASs4fqKrF4Gv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5501,
+      "cache_read_input_tokens": 28359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5501
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 39_
+
+## 结果
+
+### 1. JSON 文件完整性
+
+| 文件 | 路径 | 大小 | accuracy | n_total | 完整 |
+|------|------|------|----------|---------|------|
+| **GraSP post-SFT** | `results/eval_sft_grasp_20_n100.json` | 76KB, 919行 | **0.41** (41/100) | 100 | ✓ JSON 头尾闭合，含 per-example results |
+| **GraSP pre-SFT** | `results/eval_pruned_graspune_20_greedy.json` | 98KB, 919行 | **0.07** (7/100) | 100 | ✓ JSON 头尾闭合，含 per-example results |
+
+两个 JSON 均有 `accuracy`, `stderr`, `model_path`, per-example results，结构完整。
+
+### 2. Eval 链状态
+
+**无活跃 eval 进程。** `ps aux` 无 eval/python 训练进程，无 tmux session。所有 eval 任务已完成。
+
+当前 `results/` 目录下已完成的 eval：
+- `eval_sft_alpha_0.0_n100.json` — α=0.0 post-SFT
+- `eval_sft_alpha_1.0_n100.json` — α=1.0 post-SFT
+- `eval_sft_alpha_2.0_n100.json` — α=2.0 post-SFT
+- `eval_alpha_4.0_greedy.json` — α=4.0
+- `eval_sft_grasp_20_n100.json` — GraSP post-SFT (**0.41**)
+- `eval_pruned_graspune_20_greedy.json` — GraSP pre-SFT (**0.07**)
+- `reeval_pruned_rasp_20_definitive_n100.json` — RASP re-eval
+
+`eval_sft_alpha_0.5_n100.log` 存在（1.3KB）但无对应 JSON，可能未完成或被中断。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 43091,
+  "duration_api_ms": 42762,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "e1185c19-3b42-40b3-8240-60d65ebf63db",
+  "total_cost_usd": 0.27175325,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 22019,
+    "cache_read_input_tokens": 139197,
+    "output_tokens": 2512,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22019,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 581,
+        "cache_read_input_tokens": 28359,
+        "cache_creation_input_tokens": 5501,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5501
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1571,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001686,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2512,
+      "cacheReadInputTokens": 139197,
+      "cacheCreationInputTokens": 22019,
+      "webSearchRequests": 0,
+      "costUSD": 0.27006725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c111ad32-6574-4852-9f64-bec9c8f88da8"
+}
+```
+
+</details>
+
+---

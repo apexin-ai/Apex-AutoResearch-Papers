@@ -1,0 +1,57 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_25_fixed",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T04:29:12.262Z",
+    "updated_at": "2026-05-24T09:55:16.231Z",
+    "hypothesis": "SFT CKA-only 25% model MATH-500 accuracy with fixed eval script (expression extraction + space normalization bug fix). Dose-response table data point.",
+    "server": "westd-32935",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32935",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-24T05:56:36.697Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_25 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_25_fixed.json --seed 42 --dtype bfloat16\"",
+      "code_commit": "39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c",
+      "finished_at": "2026-05-24T09:53:08.981Z",
+      "training_hours": 3.94
+    },
+    "spec": {
+      "checkpoint_source": "sft_cka_only_25",
+      "eval_data": "MATH-500",
+      "model_name": "sft_cka_only_25",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "seed": 42
+    },
+    "pid": "193854",
+    "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_25_fixed.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T09:53:21.068116+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.188,
+      "n_correct": 94,
+      "n_total": 500,
+      "stderr": 0.0175,
+      "truncation_rate": 0.256,
+      "avg_response_length": 705.718
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_25_fixed.json",
+    "completed_at": "2026-05-24T09:55:16.231Z"
+  },
+  "timestamp": "2026-05-24T09:55:16.972377+00:00",
+  "trigger": "update_registry"
+}

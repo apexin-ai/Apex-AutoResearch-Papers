@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0afcdfc59ab66ef5c296",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec cpu prune batch",
+  "task_key": "worker_exec_cpu_prune_batch_20260517T042820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_cpu_prune_batch_20260517T042820_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "5eb029d38550c4d538ef031ed02da1f4064ead17edfeeb50e9ddba3e290791e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "磁盘空间不够跑全部 5 个 prune。有两个可清理的 checkpoint：\n- `grpo_stage2_rasp_20_v9/checkpoint-10` = 27GB（最终模型已保存）\n- `grpo_stage2_standard_20_v8/checkpoint-50` = 12GB\n\n删除这两个可释放 39GB（总可用 67GB），足够跑所有 prune。这两个 checkpoint 是训练中间状态，对应的最终模型已保存在父目录。是否可以删除？\n\n如果不想删 checkpoint，磁盘只够跑 1-2 个 prune。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-cpu-prune-batch.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_20_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:45:21.526Z",
+    "updated_at": "2026-05-22T20:45:33.729Z",
+    "hypothesis": "CKA-only 20% SFT MATH-500 eval @2048 on westd (migrated from westb for speed). Dose-response endpoint control: CKA-only is the best-performing pruning method (GSM8K 64.37%). MATH-500 result establishes upper bound for cross-benchmark dose-response curve.",
+    "parent": "eval_math500_sft_cka_only_20_westb"
+  },
+  "timestamp": "2026-05-22T20:45:34.345595+00:00",
+  "trigger": "update_registry"
+}

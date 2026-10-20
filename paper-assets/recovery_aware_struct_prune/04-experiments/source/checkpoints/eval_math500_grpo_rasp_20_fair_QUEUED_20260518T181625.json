@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_math500_grpo_rasp_20_fair",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:16:25.616Z",
+    "updated_at": "2026-05-18T18:16:25.616Z"
+  },
+  "timestamp": "2026-05-18T18:16:25.965029+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "sft_rasp_20_westd_retrain",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:59:51.103Z",
+    "updated_at": "2026-05-15T18:36:33.103Z",
+    "hypothesis": "RASP SFT retrain on westd for cross-server reproducibility + full N=1319 eval. Same params as westb (2 epochs, lr=2e-5, batch=1, grad_accum=8, seed=42). Expected: ~57% post-SFT (matching westb). Parent: reeval_postprune_definitive.",
+    "notes": "RASP SFT retrain 启动 on westd cuda:0. PID 48946, tmux session sft_rasp_westd. 参数: epochs=2, lr=2e-5, bs=1, grad_accum=8, max_seq_len=2048, seed=42. Output: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd. 预计 ~35-40min。完成后先 N=100 快速验证 (~57% expected)，再 N=1319 full eval。",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --gpu 0 --epochs 2 --lr 2e-5 --batch_size 1 --grad_accum 8 --seed 42",
+      "server": "westd-11672",
+      "data_path": "gsm8k train",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (RASP pruned 20%)",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd",
+    "log_path": "tmux session sft_rasp_westd (no separate log file)",
+    "completed_at": "2026-05-15T18:36:33.103Z"
+  },
+  "timestamp": "2026-05-15T18:36:33.185360+00:00",
+  "trigger": "update_registry"
+}

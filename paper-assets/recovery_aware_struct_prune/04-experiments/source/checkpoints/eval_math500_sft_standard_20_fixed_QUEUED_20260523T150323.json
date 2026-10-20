@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_math500_sft_standard_20_fixed",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:42:20.750Z",
+    "updated_at": "2026-05-23T15:03:22.165Z",
+    "hypothesis": "SFT Standard 20% MATH-500 with fixed eval script. Replaces OLD v2 (25.8%) and buggy NEW v3 (23.4%) with consistent scoring."
+  },
+  "timestamp": "2026-05-23T15:03:23.321846+00:00",
+  "trigger": "update_registry"
+}

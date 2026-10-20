@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_mbpp_grpo_standard_20_v4",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T21:01:23.058Z",
+    "updated_at": "2026-05-20T01:46:50.516Z",
+    "hypothesis": "GRPO Standard 20% pruned model should achieve ~13% pass@1 on MBPP, consistent with prior v1 partial results at 335/374 tasks",
+    "parent": "eval_mbpp_grpo_standard_20_v3",
+    "spec": {
+      "server": "westd-29022",
+      "gpu": "cuda:2",
+      "command": "python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json",
+      "data_path": "mbpp",
+      "data_count": 374,
+      "model_name": "grpo_stage2_standard_20_fair",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair",
+      "eval_data": "mbpp_sanitized_374"
+    },
+    "metrics": {
+      "pass_at_1": 0.131,
+      "n_correct": 49,
+      "n_total": 374,
+      "stderr": 0.01745,
+      "avg_response_length": 1058.7,
+      "median_response_length": 726
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T01:46:50.952969+00:00",
+  "trigger": "update_registry"
+}

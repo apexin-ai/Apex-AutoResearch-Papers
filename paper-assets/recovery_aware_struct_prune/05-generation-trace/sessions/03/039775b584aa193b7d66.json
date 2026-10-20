@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "039775b584aa193b7d66",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code scoring ablation random",
+  "task_key": "worker_code_scoring_ablation_random_20260517T085145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scoring_ablation_random_20260517T085145_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "0b5dbd723f045e19bdbdbc6be611de3a1ef16636e49f112c5add1e074cab616f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`exit 0` inserted at line 54, before the RANDOM section. When gradient finishes on cuda:0, the script will exit cleanly without trying random/cka_only.\n\n**结果：**\n\n| GPU | tmux session | Methods | Status |\n|-----|-------------|---------|--------|\n| cuda:0 | `scoring_ablation_v2` | gradient only (steps 2-4) | SFT running (PID 694917) |\n| cuda:1 | `scoring_ablation_random` | random → cka_only (各4步) | random prune 进行中 (PID 695525) |\n\n- `run_remaining_ablation.sh` 已在 gradient 后插入 `exit 0`，不会再跑 random/cka_only\n- `run_random_cka_ablation.sh` random 完成后自动继续 cka_only\n- 日志：`/root/autodl-tmp/recovery_aware_struct_prune/results/random_cka_ablation_log.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scoring-ablation-random.md"
+}

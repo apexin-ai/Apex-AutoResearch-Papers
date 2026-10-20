@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1572cd769fa4207a5258",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval gsm8k sft qwen standard 20",
+  "task_key": "worker_diagnose_eval_gsm8k_sft_qwen_standard_20_20260520T154435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gsm8k_sft_qwen_standard_20_20260520T154435_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "c7493fa8ad5076a05357bcd3c0e4f734a0ccf8b075918e4598e988be455cf313"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验没有失败。** Log 末尾明确显示 `EXIT_CODE=0`，不是 143。\n\n### 结果摘要\n\n| 实验 | 状态 | Accuracy | Correct/Total | EOS Rate | Avg Len |\n|------|------|----------|---------------|----------|---------|\n| Standard 20% SFT | **完成** | **0.2100 ± 0.0288** | 42/200 | 36.5% | 1639 |\n| CKA-only 20% SFT | **完成** | **0.5150 ± 0.0353** | 103/200 | 27.0% | 1536 |\n\n### 关键发现\n\n- **Standard eval** 跑完了全部 200/200 sample，JSON 文件已写入（189KB，完整包含 200 个 example）\n- 两个实验的 EXIT_CODE 都是 0，SIGTERM 信号可能在进程退出后被发送（或者是监控系统在进程正常退出后发的清理信号）\n- CKA-only 23:34 结束，Standard 23:41 结束，差 7 分钟——符合预期（Standard 生成更长的 response）\n\n### 值得注意的质量信号\n\n- Standard SFT 20% accuracy **仅 21%**，远低于 CKA-only 的 51.5%（差距 ~30pp）\n- Standard 的 truncated rate 更高（63.5% vs 73%），avg_response_length 也更长，说明模型倾向于生成冗长、不收敛的回答\n- 第一个 example 中模型在给出正确答案后继续生成了重复内容（`assistant` token 后又重复推理），这是 SFT 质量问题而非 eval 问题\n\n**不需要重跑。** 数据完整，可直接用于对比分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-gsm8k-sft-qwen-standard-20.md"
+}

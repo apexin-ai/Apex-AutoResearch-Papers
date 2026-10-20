@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_gsm8k_sft_alpha3p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:24:58.696Z",
+    "updated_at": "2026-05-22T12:36:12.915Z",
+    "hypothesis": "α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.",
+    "parent": "grpo_rasp_alpha3p0_20",
+    "spec": {
+      "server": "westd-32935",
+      "gpu": "cuda:2",
+      "command": "eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "data_path": "openai/gsm8k (test split)",
+      "data_count": 1319,
+      "checkpoint_source": "sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)",
+      "eval_data": "gsm8k test 1319",
+      "pid": "37024"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T12:34:57.027Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T12:35:05.634Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T12:35:15.663664+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.6414,
+      "correct": 846,
+      "total": 1319
+    }
+  },
+  "timestamp": "2026-05-22T12:36:13.734228+00:00",
+  "trigger": "update_registry"
+}

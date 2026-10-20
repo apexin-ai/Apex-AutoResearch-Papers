@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_gsm8k_grpo_random_20_seed123",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:22:20.913Z",
+    "updated_at": "2026-05-22T14:38:26.432Z",
+    "hypothesis": "MF2 multi-seed validation: Random 20% GRPO seed123 GSM8K eval (N=1319, greedy, max_new_tokens=2048). Paired with eval_gsm8k_grpo_random_20 (seed42, 50.57%). If seed123 result within ±2pp of seed42, C1 decoupling claim is robust across random seeds.",
+    "parent": "grpo_random_20_seed123",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123/checkpoint-100 --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_random_20_seed123.json",
+      "server": "westd-32935",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (grpo_random_20_seed123)",
+      "seed": 42,
+      "checkpoint_source": "grpo_random_20_seed123",
+      "eval_data": "gsm8k test (N=1319, greedy, max_new_tokens=2048)"
+    },
+    "notes": "⚠️ 结果作废：v1 GRPO 训练用了 batch_size=1（seed42/seed456 都是 batch_size=2），100步只看了一半数据，结果不可比。v2 重训已启动 (grpo_random_20_seed123_v2)。当前 eval 让它跑完（不浪费 GPU），但结果不用于 MF2 论文。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T14:38:26.432Z"
+  },
+  "timestamp": "2026-05-22T14:38:27.038239+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+\begin{table}[h]
+\centering
+\small
+\caption{Out-of-distribution evaluation on MATH-500 ($N{=}500$, greedy decoding, \texttt{max\_new\_tokens=2048}). The recovery capacity spectrum persists across sparsity levels. Reward-accuracy decoupling holds across all completed SFT/GRPO pairs ($|\Delta| \leq 1.2$\,pp).}
+\label{tab:math500}
+\begin{tabular}{@{}llc@{}}
+\toprule
+Method & Recovery & MATH-500\,(\%) \\
+\midrule
+Dense & -- & 53.0 \\
+\midrule
+\multicolumn{3}{l}{\textit{20\% sparsity}} \\
+CKA-only & SFT & 26.8 \\
+CKA-only & GRPO & 26.6 \\
+\midrule
+Standard & SFT & 25.8 \\
+\rasp{} & SFT & 22.6 \\
+\midrule
+\multicolumn{3}{l}{\textit{25\% sparsity}} \\
+CKA-only & SFT & 19.2 \\
+CKA-only & GRPO & 18.4 \\
+\midrule
+Standard & SFT & 14.0 \\
+Standard & GRPO & 12.8 \\
+\bottomrule
+\multicolumn{3}{p{0.85\columnwidth}}{\footnotesize Over half of Dense model responses are truncated at 2048 tokens, depressing absolute accuracy (73.6\% at 4096 tokens vs 53.0\% at 2048). All pruned models are evaluated under the same constraint for fair comparison. 20\% SFT/GRPO pairs incomplete due to evaluation failures; available checkpoints reported.}
+\end{tabular}
+\end{table}

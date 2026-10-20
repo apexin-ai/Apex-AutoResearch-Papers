@@ -1,0 +1,20 @@
+{
+  "exp_id": "eval_math500_unpruned",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:23:49.923Z",
+    "updated_at": "2026-05-17T11:34:06.116Z",
+    "hypothesis": "MATH-500 baseline: unpruned DeepSeek-R1-Distill-Qwen-7B accuracy on MATH-500. Establishes dense model ceiling for cross-benchmark generalization comparison with pruned+recovered models.",
+    "reproduce": {
+      "finished_at": "2026-05-17T11:34:03.905Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T11:34:06.575582+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,33 @@
+{
+  "exp_id": "pipeline_cka_only_15",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:09:53.762Z",
+    "updated_at": "2026-05-20T05:11:07.530Z",
+    "hypothesis": "CKA-only pruning at 15% sparsity full pipeline (prune→SFT→GRPO 100 steps→GSM8K eval N=1319). Lower sparsity should yield higher recovery than 20%. CKA-only preserves layer diversity, predicting stronger GRPO recovery vs Standard at same sparsity.",
+    "notes": "SFT complete: train_loss=0.6309, final_loss=0.4918, mean_token_accuracy=0.8698, runtime=1741s. Model saved to /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_15/",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 WANDB_MODE=offline python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_15 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_15 --max_steps 100 --max_completion_length 1024 --save_steps 10 --gpu 2 --run_name grpo_cka_only_15",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "204464",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_cka_only_15.log",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B-CKA-only-15pct-SFT",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_15",
+      "backend": "tmux",
+      "tmux_session": "grpo_cka15",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T05:11:08.066030+00:00",
+  "trigger": "update_registry"
+}

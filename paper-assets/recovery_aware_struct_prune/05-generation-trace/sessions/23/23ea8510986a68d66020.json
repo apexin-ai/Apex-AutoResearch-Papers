@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23ea8510986a68d66020",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka only 15 seed456 eval",
+  "task_key": "worker_ssh_harvest_cka_only_15_seed456_eval_20260520T230232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka_only_15_seed456_eval_20260520T230232_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "c37b75ad289309772c8408438a9c50d88e969e05b1205d88d5fe59f868b8efb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程**仍在运行**，未退出。PID 285821 状态 `Rl+`，CPU 108%。\n\n当前进度：761/1319（58%），最近一次 checkpoint 报告（750/1319）acc=0.7253，eos_rate=99.07%。\n\n第 761 条的 109.98s/it 是 GPU 争用导致的短暂慢速（当前 4 个 eval 同时跑在 cuda:0-3 上），不是崩溃。\n\n按 ~2.5s/it 平均速度估算，剩余 558 条约需 ~23 分钟完成。暂不更新 registry 和删除 cron。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka-only-15-seed456-eval.md"
+}

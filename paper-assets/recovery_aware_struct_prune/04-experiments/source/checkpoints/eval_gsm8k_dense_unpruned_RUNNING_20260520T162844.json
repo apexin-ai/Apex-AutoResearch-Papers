@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_gsm8k_dense_unpruned",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:28:28.020Z",
+    "updated_at": "2026-05-20T16:28:43.239Z",
+    "hypothesis": "GSM8K N=1319 eval on dense unpruned DeepSeek-R1-Distill-Qwen-7B. Ceiling reference for paper — all pruned models should be compared against this baseline to show accuracy retention rate.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/eval_gsm8k.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_dense_unpruned_n1319.json",
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "pid": 32154,
+      "data_path": "gsm8k/test",
+      "data_count": 1319,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (dense, unpruned)",
+      "seed": 42,
+      "eval_data": "gsm8k:test:1319",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_dense_unpruned.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_dense_unpruned_n1319.json"
+    }
+  },
+  "timestamp": "2026-05-20T16:28:44.575471+00:00",
+  "trigger": "update_registry"
+}

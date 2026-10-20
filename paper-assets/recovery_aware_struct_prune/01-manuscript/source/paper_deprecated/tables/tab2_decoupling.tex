@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\small
+\caption{GRPO responsiveness on GSM8K ($N{=}1{,}319$, greedy decoding). All pruned models use the controlled v5 GRPO configuration (identical hyperparameters including \texttt{reward\_desert\_patience}{$=$}50), evaluated at step 100. CKA-only and Standard report mean $\pm$ std over 3 GRPO seeds; \rasp{} uses a single seed. Best in \textbf{bold}, second-best \underline{underlined}.}
+\label{tab:decoupling}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Model & SFT Acc.\,(\%) & GRPO Acc.\,(\%) & $\Delta$\,(pp) & Peak Rew. \\
+\midrule
+Unpruned & \textbf{81.27} & \textbf{81.27} & $\phantom{-}$0.00 & \textbf{0.669} \\
+CKA-only 20\% & \underline{63.91} & \underline{64.39{\scriptsize$\pm$0.19}} & $+$0.48 & \underline{0.354} \\
+Standard 20\% & 59.29 & 59.84{\scriptsize$\pm$0.38} & $+$0.55 & 0.081 \\
+\rasp{} 20\% & 61.49 & 60.88 & $-$0.61 & 0.061 \\
+Random 20\%$^\ddagger$ & -- & -- & -- & 0.190 \\
+\midrule
+ShortGPT 20\%$^\dagger$ & 44.73 & 43.37 & $-$1.36 & -- \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^\dagger$Depth pruning baseline~\citep{shortgpt2024}; removes entire layers.} \\
+\multicolumn{5}{l}{\footnotesize $^\ddagger$Accuracy not evaluated; checkpoint not preserved.}
+\end{tabular}
+\end{table}

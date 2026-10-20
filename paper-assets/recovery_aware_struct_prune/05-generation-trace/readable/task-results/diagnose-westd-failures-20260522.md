@@ -1,0 +1,44 @@
+# diagnose westd failures 20260522
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_westd_failures_20260522_20260522T110710_result.json`
+- **Structured JSON:** [`9533dae99539711ca30a.json`](../../sessions/95/9533dae99539711ca30a.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 诊断结果
+
+三个实验**均无真正失败**，全部是监控系统误判：
+
+### 1. pipeline_depth_first_20 — 仍在运行
+- 标记 failed，但实际 PID 40073 正在 GPU 3 上运行 Phase 4 (eval_gsm8k)，15772 MiB / 98% util
+- Phase 2 (SFT) ✅ → Phase 3 (GRPO) ✅ → Phase 4 进行中 → Phase 5 待执行
+- GRPO 模型已保存到 `grpo_depth_first_20`，WandB run ID: immasi23
+
+### 2. eval_math500_grpo_standard_20_fair_2048_v2 — 已正常完成
+- **MATH-500 Acc = 0.2640 ± 0.0197 (132/500)**
+- 结果已保存: `results/eval_math500_grpo_standard_20_fair_2048_v2.json`
+- 运行 ~7h11min，网络不可达但成功 fallback 到本地缓存
+
+### 3. grpo_random_20_seed123 — 已正常完成
+- GRPO v4 训练完成于 19:02:13 CST
+- 模型已保存: `grpo_random_20_seed123`，WandB run ID: 1silchcm
+- GPU 2 当前被后续 eval_gsm8k.py 占用
+
+这与之前 `eval_gsm8k_grpo_alpha4_20_v3` 的误判模式一致——监控系统对长 pipeline 和正常完成的 eval 实验判断不准。
+
+---

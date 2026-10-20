@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fadcd5295a51608fae0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westd completed evals",
+  "task_key": "worker_ssh_check_westd_completed_evals_20260522T142520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_completed_evals_20260522T142520_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "faa77fc2d5936c6f0d73c6dd15ad51ff3181b5c8840b7107aada309dc99ab2ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都仍在运行中。汇报如下：\n\n## 状态汇总\n\n### 1. α=3.0 GRPO eval (PID 43755)\n- **状态**: 运行中，88%（1163/1319），已跑 2h26m\n- **当前 acc**: **63.04%**（1150 样本时）\n- **预估剩余**: ~12 分钟（156 样本 × ~3s/it）\n- GPU: cuda:0\n\n### 2. seed123 eval (PID 46229)\n- **状态**: 运行中，95%（1249/1319），已跑 1h43m\n- **当前 acc**: **52.00%**（1200 样本时）\n- **预估剩余**: ~4 分钟（70 样本 × ~2.5s/it）\n- GPU: cuda:2\n\n### 3. GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 99% | 29.6/97.9 GB |\n| 1 | 91% | 12.6/97.9 GB |\n| 2 | 99% | 26.2/97.9 GB |\n| 3 | 94% | 12.7/97.9 GB |\n\n### 4. 新启动的实验\n已有两个新 eval 在跑：\n- **depth-first GRPO eval** (PID 51986) — cuda:3，刚启动 ~2min\n- **depth-first SFT eval** (PID 52151) — cuda:1，刚启动 ~2min\n\nseed123 预计 ~4 分钟内完成，α=3.0 预计 ~12 分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-completed-evals.md"
+}

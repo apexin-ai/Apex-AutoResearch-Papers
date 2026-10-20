@@ -1,0 +1,54 @@
+{
+  "exp_id": "eval_pass_k8_standard_20_grpo_qwen_math_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:54:25.214Z",
+    "updated_at": "2026-05-16T23:22:51.568Z",
+    "hypothesis": "Qwen2.5-Math-7B Standard 20% post-GRPO pass@k=8 (N=200, T=0.7, seed=42). C1 diversity 对照：frac_zero=0.85 collapse 模型的 sampling diversity。重跑 v1（僵尸进程被 kill）。Parent: grpo_standard_qwen_math_v3.",
+    "parent": "grpo_standard_qwen_math_v3",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --pass_k 8 --num_samples_per_prompt 8 --temperature 0.7 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math_v2.json",
+      "server": "westd-11672",
+      "data_path": "gsm8k test split",
+      "data_count": 200,
+      "model_name": "Qwen2.5-Math-7B-Standard-20%-post-GRPO",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math",
+      "eval_data": "gsm8k test (200 samples)",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_pass_k8_standard_20_v2.log",
+      "metrics": {
+        "pass_at_k": 0.91,
+        "k": 8,
+        "n_problems": 200,
+        "stderr": 0.0202,
+        "eos_rate": 0.999375,
+        "avg_response_length": 129.995,
+        "natural_eos": 1599,
+        "truncated": 1,
+        "temperature": 0.7
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T23:21:48.638Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T23:21:50.021Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T23:21:53.898541+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T23:22:51.966689+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04d9c87ab6cc21dc9203",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit alpha1p0 math500 westb",
+  "task_key": "worker_ssh_submit_alpha1p0_math500_westb_20260522T205113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_alpha1p0_math500_westb_20260522T205113_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "e79db0d3d9f08e6ff47fbd6c3eff779689c8d6d9a423b90ab78383232ceecbb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**MODEL_NOT_FOUND**\n\nwestb-23072 上没有 α=1.0 RASP SFT 7B 模型。现有 SFT 模型：\n\n| 路径 | 说明 |\n|------|------|\n| `sft_rasp_20_1p5b` | α=1.0 但是 1.5B |\n| `sft_rasp_alpha3p0_20` | α=3.0 |\n| `sft_rasp_rlvr_20` | RASP+RLVR |\n\n该模型在 **westd-32935** 上存在：`/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd`。\n\n另外 westb GPU:0 状态异常（100% util / 0 MiB，无进程），可能需要 `nvidia-smi --gpu-reset -i 0`。\n\n需要我把模型从 westd 拷到 westb 吗？或者改在 westd 上跑这个 eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-alpha1p0-math500-westb.md"
+}

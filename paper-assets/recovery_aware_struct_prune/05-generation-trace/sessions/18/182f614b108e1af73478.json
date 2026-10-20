@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "182f614b108e1af73478",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 grpo standard 20 fair 2048 v3b",
+  "task_key": "worker_diagnose_eval_math500_grpo_standard_20_fair_2048_v3b_20260523T143304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_grpo_standard_20_fair_2048_v3b_20260523T143304_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "af185af77ecfb25832acc11c6554b57b006565fe6e2d8813675c09f80a95bdd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 失败原因：GPU 2 异常挂起\n\n进程在第 15/500 题（~8分钟）时被静默杀死（无 Python traceback = 收到 SIGKILL），日志文件仅 10 行，无任何错误信息。\n\n**关键证据 — GPU 2 状态异常：**\n```\nGPU 2: 0MiB memory / 100% GPU-Util / 无关联进程\n```\nGPU-Util 100% 但显存为 0 且无进程，这是典型的 **GPU hang/fault 状态**（可能是 Xid 错误）。进程被驱动层强制终止。\n\n### 排除项\n| 检查项 | 状态 |\n|--------|------|\n| 系统内存 | ~1TB 总量，570GB 空闲 — 非 OOM |\n| 磁盘空间 | `/root/autodl-tmp` 131GB 可用 — 充足 |\n| 模型路径 | 存在，model.safetensors 12GB ✓ |\n| 输出文件 | 不存在，无部分结果 |\n| GPU 显存 | 97GB，12GB 模型应绑绑有余 |\n\n### 重试建议\n\n1. **GPU 2 需要重置**才能恢复正常。执行 `nvidia-smi -r` 或重启实例。\n2. **更快的替代方案**：改用空闲 GPU 重试。当前 GPU 1 和 GPU 3 均空闲（0% util, 0MiB）。将 `CUDA_VISIBLE_DEVICES=2` 改为 `CUDA_VISIBLE_DEVICES=1` 或 `CUDA_VISIBLE_DEVICES=3` 即可直接重试，无需修改其他参数。\n3. 命令本身无问题，不需要改参数或清理磁盘。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-grpo-standard-20-fair-2048-v3b.md"
+}

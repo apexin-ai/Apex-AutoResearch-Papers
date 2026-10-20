@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_math500_sft_rasp_alpha0p5_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:20:44.460Z",
+    "updated_at": "2026-05-22T22:18:43.350Z",
+    "hypothesis": "α=0.5 SFT MATH-500 eval @2048. Cross-benchmark dose-response validation: GSM8K shows α=0.5 SFT=60.73%. If MATH-500 also shows α=0.5 < α=2.0, inverted-U generalizes beyond GSM8K (strengthens MF4 + N1).",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_alpha0p5_20.log"
+    },
+    "metrics": {
+      "accuracy": 0.254,
+      "correct": 127,
+      "total": 500,
+      "truncated": 220,
+      "stderr": 0.0195
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T22:18:43.350Z"
+  },
+  "timestamp": "2026-05-22T22:18:44.002167+00:00",
+  "trigger": "update_registry"
+}

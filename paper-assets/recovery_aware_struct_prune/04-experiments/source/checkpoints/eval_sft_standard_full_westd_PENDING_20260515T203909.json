@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_sft_standard_full_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:36:01.803Z",
+    "updated_at": "2026-05-15T20:39:09.188Z",
+    "hypothesis": "plan_001 (Claim 1): Standard SFT full GSM8K eval (N=1319, greedy, seed=42) on westd. N=100 results: westb 64%, westd 63% (cross-server consistent). Full eval for statistical significance. Parent: sft_standard_20_westd_retrain."
+  },
+  "timestamp": "2026-05-15T20:39:09.305964+00:00",
+  "trigger": "update_registry"
+}

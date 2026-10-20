@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:58:32.492Z",
+    "updated_at": "2026-05-21T11:42:04.178Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-21T02:58:40.587Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T02:58:45.343074+00:00"
+        }
+      ]
+    },
+    "notes": "幽灵实验：在 PREPARING 状态下被 cron 检测为无进程（8秒内），从未实际通过 submit_training_job 提交。Worker 提交时序竞争导致。v2 已由 worker_ssh_westb_standard_25_grpo 重新提交并监控。",
+    "hypothesis": "Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500"
+  },
+  "timestamp": "2026-05-21T11:42:05.173950+00:00",
+  "trigger": "update_registry"
+}

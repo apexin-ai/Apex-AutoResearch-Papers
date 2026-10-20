@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_humaneval_grpo_standard_20_fair_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:59:46.295Z",
+    "updated_at": "2026-05-19T06:37:03.898Z",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048.json'",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "72393",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_standard_20_fair_2048.log",
+      "submitted_at": "2026-05-19T05:59:45.777Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "model_name": "grpo_standard_20_fair",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_fair",
+      "eval_data": "HumanEval"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T06:34:04.851Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T06:34:09.437389+00:00"
+        }
+      ]
+    },
+    "hypothesis": "HumanEval pass@1 for GRPO Standard 20% (fair model) with max_new_tokens=2048. Previous eval used non-fair checkpoint (grpo_stage2_standard_20_v8, pass@1=10.37%). Fair model trained with same setup as CKA-only/RASP for unbiased comparison. Compare with SFT Standard @2048 (11.59%) and other pruning methods to verify recovery gradient on code generation."
+  },
+  "timestamp": "2026-05-19T06:37:04.292788+00:00",
+  "trigger": "update_registry"
+}

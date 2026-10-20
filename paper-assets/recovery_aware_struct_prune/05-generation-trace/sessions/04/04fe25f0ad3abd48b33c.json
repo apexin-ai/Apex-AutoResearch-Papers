@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04fe25f0ad3abd48b33c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check running westb",
+  "task_key": "worker_ops_check-running-westb_20260516T051743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-running-westb_20260516T051743_result.json",
+    "occurrence": 1,
+    "bytes": 382,
+    "sha256": "b6b4cc04cedc5eca184897f52007f0a219230e00d34046d7f1f9612ced9aa3da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**总结**：`eval_grpo_rasp_v9_step10` 在 westb-23072 cuda:0 正常运行，249/1319 (19%)，当前 acc=68.0%，预计约 40 分钟后完成。状态保持 RUNNING。\n\n另外注意 registry 中还有 2 个 RUNNING 实验在 westd-11672 上（`eval_grpo_unpruned_v2_step90` 和 `eval_grpo_unpruned_v2_step100`），如需检查可告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-running-westb.md"
+}

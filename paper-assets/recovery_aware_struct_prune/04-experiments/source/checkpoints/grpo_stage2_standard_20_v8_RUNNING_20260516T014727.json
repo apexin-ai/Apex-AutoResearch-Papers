@@ -1,0 +1,55 @@
+{
+  "exp_id": "grpo_stage2_standard_20_v8",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:32:39.107Z",
+    "updated_at": "2026-05-16T01:47:26.914Z",
+    "hypothesis": "D031: GRPO v8 Standard (negative control) — v7 disk crash fix + GPU mapping fix. HF cache redirected to data disk, CUDA_VISIBLE_DEVICES=1 + --gpu 0. 8-bit AdamW, max_completion_length=1024, identical params to RASP v8. Parent: sft_standard_20_retrain.",
+    "parent": "sft_standard_20_retrain",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_total_limit 3 --save_steps 50 --reward_desert_patience 50 --run_name grpo_stage2_standard_20_v8",
+      "server": "westb-23072",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "sft_standard_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20",
+      "eval_data": "gsm8k"
+    },
+    "notes": "Step 60 COLLAPSE confirmed: grad_norm 2.094→0.013 (断崖), output 退化为 \"#### 12\" 重复。Step 40 是 peak (reward 0.096), step 50 回落, step 60 collapse。Checkpoint-50 是最后可用恢复点。三模型全 collapse: RASP (step ~10) < Standard (step ~60) < Unpruned (step ~80)。GRPO v8 config 本身导致所有模型最终 collapse，差异仅在 collapse 时间线。GPU 实际在 cuda:0 (非 cuda:1)。",
+    "wandb_run_id": "q34vz8j2",
+    "metrics": {
+      "step": 60,
+      "reward_mean": 0.0406,
+      "grad_norm": 0.01282,
+      "frac_zero_std": 0.525,
+      "entropy": 0.148,
+      "mean_length": 724,
+      "status": "COLLAPSING",
+      "step_40_peak": {
+        "reward": 0.096,
+        "frac_zero_std": 0.45,
+        "grad_norm": 3.45
+      },
+      "step_50": {
+        "reward": 0.037,
+        "frac_zero_std": 0.6,
+        "grad_norm": 2.09
+      },
+      "step_60": {
+        "reward": 0.041,
+        "frac_zero_std": 0.525,
+        "grad_norm": 0.013
+      },
+      "collapse_signal": "grad_norm cliff: 2.094 → 0.013 (step 50→60), output degenerate repeats",
+      "checkpoint_50_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T01:47:27.050193+00:00",
+  "trigger": "update_registry"
+}

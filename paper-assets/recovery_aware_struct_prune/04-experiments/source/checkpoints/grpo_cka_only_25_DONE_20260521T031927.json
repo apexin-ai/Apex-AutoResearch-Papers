@@ -1,0 +1,35 @@
+{
+  "exp_id": "grpo_cka_only_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:49:22.258Z",
+    "updated_at": "2026-05-21T03:19:26.772Z",
+    "hypothesis": "CKA-only 25% GRPO training (v5 fair config, 100 steps, lr=1e-6, beta=0.01, T=0.4, seed=42). Cross-sparsity comparison: Standard 25%=51.1%, RASP 25%=53.15%. Tests if CKA-guided pruning advantage holds at 25%.",
+    "parent": "sft_cka_only_25",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25 --max_steps 100 --save_steps 100 --seed 42",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "310542",
+      "data_path": "gsm8k",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B-pruned-cka_only-25pct-SFT",
+      "seed": 42
+    },
+    "notes": "W&B run: mirgxi5b. 磁盘清理后 66GB free。",
+    "reproduce": {
+      "finished_at": "2026-05-21T03:19:23.002Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T03:19:26.772Z"
+  },
+  "timestamp": "2026-05-21T03:19:27.328707+00:00",
+  "trigger": "update_registry"
+}

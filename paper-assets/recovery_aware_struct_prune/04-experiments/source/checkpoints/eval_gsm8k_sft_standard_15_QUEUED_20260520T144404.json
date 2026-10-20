@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_sft_standard_15",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:23:49.568Z",
+    "updated_at": "2026-05-20T14:44:04.048Z",
+    "hypothesis": "GSM8K N=1319 eval on Standard 15% SFT checkpoint (pre-GRPO). Establishes SFT baseline accuracy for Standard 15% sparsity. Paired with eval_gsm8k_grpo_standard_15_v2 to measure GRPO recovery delta. Compare with SFT CKA-only 15% to quantify pruning method effect at SFT stage.",
+    "parent": "pipeline_standard_15"
+  },
+  "timestamp": "2026-05-20T14:44:04.555939+00:00",
+  "trigger": "update_registry"
+}

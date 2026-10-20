@@ -1,0 +1,2143 @@
+# cron hook eval humaneval grpo rasp 20 2048
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 70
+- **Recorded user turns:** 1
+- **Tool calls:** 34
+- **Original source:** `logs/chats/cron_hook_eval_humaneval_grpo_rasp_20_2048.jsonl`
+- **Structured JSON:** [`b55badee86ec6f084ad7.json`](../../sessions/b5/b55badee86ec6f084ad7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+70 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T23:00:41.745371+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #18。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 仅允许 westb-23072 cuda:0/1, westd-11672 cuda:0/1/2/3（约束 C001）
+- westd-11672 有 4 张 GPU 分配给本项目；westb-23072 有 2 张
+- GRPO checkpoint 路径：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9`（RASP）和 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8`（Standard）——这两个是核心 checkpoint，严禁删除
+- D051 决策：MATH-500 GRPO 对比不可用于 C3 论证（配置不公平），不要在这个方向上继续投入
+- D050：RASP-RLVR 降级为 ablation（negative result）
+- DDL: EMNLP 2026 ARR May 25 提交（距今 ~8 天）
+
+### 2. 🖥️ 基础设施快照
+- **westd-11672**: 4×GPU (~95GB each), 工作目录 `/root/recovery_aware_struct_prune`, Python: `/root/miniconda3/bin/python`, conda base env
+  - 模型: `/root/autodl-tmp/recovery_aware_struct_prune/` 下各 checkpoint
+  - 磁盘: 系统盘 817G/879G 可用, /autodl-pub 5.3T/7.3T 可用
+- **westb-23072**: 2×GPU (~98GB each), 同结构目录
+  - 磁盘: 系统盘 396G/439G 可用, /autodl-pub 7T/14T 可用
+- **活跃进程** (reconcile_crons 确认):
+  - `eval_math500_grpo_standard_20` PID=14556 (westd-11672, RUNNING)
+  - `grpo_random_20` PID=719679 (RUNNING, 服务器未确认)
+  - `eval_humaneval_grpo_standard_20_2048` PID=27194 (RUNNING, 服务器未确认)
+
+### 3. 📊 当前状态
+**刚发生**: `eval_humaneval_grpo_rasp_20_2048` 以 EXIT_CODE=129 (SIGHUP) 失败。已派 Worker `worker_diagnose_eval_humaneval_grpo_rasp_20_2048_20260517T162616` 去读日志诊断，尚未回调。
+
+**Registry 快照** (163 实验): RUNNING 1 + ALLOCATED 2 + ANALYZING 1 + PREPARING 19 + DONE 140 (90 success, 14 negative, 25 failed, 11 killed)
+
+**关键 RUNNING/ALLOCATED**:
+- `eval_math500_grpo_standard_20` — C1 cross-benchmark 验证 (MATH-500 accuracy Standard GRPO vs SFT)
+- `eval_humaneval_grpo_standard_20_2048` — HumanEval 4-way matrix 的 GRPO Standard 条目
+- `grpo_random_20` — Random pruning GRPO collapse 行为（关键：决定 CKA narrative）
+
+**等待中**:
+- Worker 诊断回调（eval_humaneval_grpo_rasp_20_2048 失败原因）
+- 上述 3 个 RUNNING 实验的 cron 完成回调
+- Paper Agent Step 2 (Plot Generation) 进行中
+
+### 4. 📋 待办（条件触发式）
+- Worker 诊断回调到 → 根据根因决定是否重跑 eval_humaneval_grpo_rasp_20_2048（大概率 OOM 或 SIGHUP，加 `--batch_size 1` 或限制 token 长度重跑）
+- `eval_math500_grpo_standard_20` 完成 → 对比 sft_standard_20 MATH-500 结果，验证 C1 cross-benchmark
+- `grpo_random_20` 完成 → collapse 时间线对比：≈step10(=RASP) 则所有剪枝伤 RL；≈step60(=Standard) 则 CKA-aware 特别伤 RL；stable 则 CKA narrative 需重构
+- `eval_humaneval_grpo_standard_20_2048` 完成 → 与已有 unpruned(28.66%) / SFT RASP(10.37%) 对比
+- 上述 eval 全部完成 → 25% GRPO 可以启动（westb 2卡 或 westd 空闲卡）
+- Qwen2.5-Math-7B RASP pruning 完成 → 启动 SFT (westd 空闲卡)
+
+### 5. 🎯 战略上下文
+**核心 narrative (D044/D045 pivot 后)**:
+- C1: GRPO reward-accuracy universal decoupling（pruned models: reward ↑ but accuracy flat/drops）
+- C2: Pruning adds training collapse（RASP permanent step~10, Standard transient step~60, Unpruned none）
+- C3: Functional redundancy plays opposite roles under SFT vs RLVR recovery
+
+**易错点**:
+1. 不要把 MATH-500 GRPO 结果用于 C3 论证（D051 已裁定配置不公平——GRPO 生成超长链导致 timeout，不是方法问题）
+2. HumanEval 512-token 结果已作废（truncation artifact），只用 2048-token 版本
+3. `grpo_random_20` 的结果决定 C2 的 narrative 强度——如果 Random collapse ≈ RASP，则不是 CKA-specific 而是 all-pruning-hurts-RL；如果 ≈ Standard，则 CKA-aware scoring 特别伤 RL exploration（更有说服力的 story）
+4. Paper writing 与实验并行——Paper Agent 先用 20% 数据写主体，后续 patch 25%/Qwen 数据
+5. sft_cka_only_20 刚成功，结果尚未分析（下一个 session 需要查 metrics 并更新 report）
+
+## 项目硬约束 (memory.md 节选)
+
+## 决策约束
+
+### D053: CKA-only GRPO 最稳定 (provisional)
+CKA-only 剪枝的 GRPO 训练最稳定，逆转了原始 hypothesis（预测它最快 collapse）。Redundancy-Stability Tradeoff: 保留冗余结构 = GRPO 更稳定。
+
+### D052: C3 降级为 observation
+C2 collapse gradient 升为主力 contribution。
+
+### D051: MATH-500 GRPO 对比不可用于 C3
+配置不公平（GRPO max_new_tokens 远大于 SFT 实际使用量），partial results 仅作 supplementary evidence。
+
+### D044: 核心叙事 pivot
+从 "RASP enables better RL recovery" pivot 为 "universal decoupling"。Reward 涨但 accuracy 不跟是 universal 现象（unpruned 也是），不是 pruning-specific。
+
+### D049: 维持 C1 双现象
+不采纳 "pruning disables GRPO" 叙事。C1 = collapse + decoupling 双现象。
+
+### D050: RASP-RLVR 降级为 ablation
+Negative result，不是 core contribution。
+
+## 可查的历史
+前 58 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T23:00:57.134683+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T23:00:57.235486+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T23:01:02.359209+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T23:01:02.863657+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_humaneval_sft_standard_20_2048_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:26:20.102Z\", \"updated_at\": \"2026-05-17T19:00:55.481Z\", \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) and GRPO variants. v1 was killed due to GPU conflict, this is the resubmission on cuda:0.\", \"parent\": \"eval_humaneval_sft_standard_20_2048\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"36724\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\", \"submitted_at\": \"2026-05-17T16:26:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"HumanEval\", \"data_count\": 164, \"model_name\": \"sft_standard_20_westd\", \"seed\": 42, \"checkpoint_source\": \"sft_standard_20_westd\", \"eval_data\": \"HumanEval (164 problems, max_new_tokens=2048)\"}, \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.1159, \"correct\": 19, \"total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1850.7, \"median_response_length\": 2048}}, \"grpo_cka_only_20\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:51:16.212Z\", \"updated_at\": \"2026-05-17T14:53:25.670Z\", \"hypothesis\": \"CKA-only 去除了最多冗余结构 (post-prune 38.5% 最高 = 损伤最小) → 但 backup paths 最少 → 预测 GRPO collapse 比 RASP 更快 (< step 10)。如果确认，这是 Redundancy-Stability Tradeoff 的直接证据：post-prune 最优的方法 = GRPO 最不稳定。\"
+…[truncated 2596 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-17T23:01:03.315898+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ALLOCATED'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ALLOCATED'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T23:01:03.316383+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T23:01:03.773342+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0486}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 457
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T23:01:03.824439+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T23:01:04.077019+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T23:01:23.519537+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 6, \"results\": [{\"exp_id\": \"eval_math500_grpo_standard_20\", \"success\": true, \"actions\": [\"Job still running (pid=14556)\"]}, {\"exp_id\": \"grpo_random_20\", \"success\": true, \"actions\": [\"Job still running (pid=719679)\"]}, {\"exp_id\": \"grpo_cka_only_20\", \"success\": true, \"actions\": [\"Job still running (pid=725227)\"]}, {\"exp_id\": \"eval_math500_grpo_rasp_20_v3\", \"success\": true, \"actions\": [\"Job still running (pid=31706)\"]}, {\"exp_id\": \"eval_sft_cka_only_20_n1319\", \"success\": true, \"actions\": [\"Job still running (pid=49475)\"]}, {\"exp_id\": \"eval_postprune_cka_only_30\", \"success\": true, \"actions\": [\"Job still running (pid=59403)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 20203
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T23:01:23.547094+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-17T21:57:04Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 174 个实验 — DONE 148, PREPARING 20, RUNNING 6\\n**DONE 分布**: failed 26, killed 12, negative 14, success 96\\n\\n### GPU 占用\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-11672:cuda:0, westd-11672:cuda:1, westd-11672:cuda:2, westd-11672:cuda:3\\n- **实际运行**: 6 张 — westd-11672:cuda:3(eval_math500_grpo_rasp_20_v3), westd-11672:cuda:1(eval_math500_grpo_standard_20), westd-11672:cuda:0(eval_postprune_standard_30), westd-11672:cuda:0(eval_sft_cka_only_20_n1319), westb-23072:cuda:0(grpo_cka_only_20), westb-23072:cuda:1(grpo_random_20)\\n- **空闲（分配了没跑）**: westd-11672:cuda:2\\n\\n### 💾 磁盘余量\\n- **westb-23072**:\\n  - `/autodl-pub`: 7.0T/14T 可用（已用 51%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\n- **westd-11672**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval_math500_grpo_rasp_20_v3` | westd-11672 | cuda:3 | 31706 | `…ecovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log` |\\n| `eval_math500_grpo_standard_20` | westd-11672 | cuda:1 | 14556 | `—` |\\n| `eval_postprune_standard_30` | westd-11672 | cuda:0 | 47667 | `…/recovery_aware_struct_prune/eval_postprune_standard_30.log` |\\n| `eval_sft_cka_only_20_n1319` | westd-11672 | cuda:0 | 49475 | `…/recovery_aware_struct_prune/eval_sft_cka_only_20_n1319.log` |\\n| `grpo_cka_only_20` | westb-23072 | cuda:0 | 725227 | `~/runs/recovery_aware_struct_prune/grpo_cka_only_20.log` |\\n| `grpo_random_20` | westb-23072 | cuda:1 | 719679 | `~/runs/recovery_awar
+…[truncated 7053 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 19722
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T23:01:23.555029+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-16 08:05 UTC | 更新原因: D044/D045 narrative pivot complete, 25% expansion in progress, ROADMAP 16h stale refresh\\n\\n> 核心方向详见 paper_framing.md | 实验计划详见 experiment_plan.yaml\\n\\n## 核心方向\\n**Redundancy-Stability Tradeoff**: GRPO alignment fundamentally fails on structurally pruned reasoning models — reward improves but accuracy never follows (universal decoupling). Pruning adds training collapse whose severity diagnoses structural damage type. Functional redundancy plays opposite roles under SFT vs RLVR recovery.\\n\\n## 目标会议\\nEMNLP 2026 ARR May 25 提交（距今 ~9 天）\\n\\n## 当前阶段\\n**Research Phase — Scope Expansion** (D044/D045 后)\\n- Core 20% data: ✅ ALL COMPLETE (3 claims fully supported)\\n- 25% sparsity expansion: SFT 完成, eval 进行中/刚完成, GRPO 待启动\\n- Qwen2.5-Math-7B (Phase 2): importance+CKA scores 已算, RASP pruning 进行中\\n- Paper writing: Paper Agent Step 2 (Plot Generation) 进行中\\n\\n## 核心证据 (20% sparsity, N=1319)\\n| 实验 | 结果 | Claim |\\n|------|------|-------|\\n| Unpruned SFT → GRPO step-100 | 81.27% → 81.27% (Δ=0.00, reward 0→0.661) | C1: Universal decoupling |\\n| RASP GRPO v9 collapse | Permanent step ~10, peak reward 0.039, frac_zero_std→0.95 | C2: Collapse gradient |\\n| Standard GRPO v8 collapse | Transient dip step ~60, recovery step ~90 | C2: Collapse gradient |\\n| Unpruned GRPO v2 | 100 steps stable, no collapse, reward 0.661 | C2: Pruning-specificity |\\n| RASP SFT vs Standard SFT | 61.49% vs 59.29% (Δ=+2.2pp, p=0.25) | C3: SFT marginal advantage |\\n| RASP step-10 eval | 61.87% (collapse onset ≠ accuracy loss) | Bidirectional decoupling |\\n\\n## Scope Expansion 进度\\n### Phase 1: 25% Sparsity (intensify collapse)\\n- [x] pruned_rasp_25 + pruned_standard_25\\n- [x] sft_rasp_25 + sft_standard_25\\n- [ ] eval_sft_standard_25 
+…[truncated 2944 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 19478
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T23:02:13.650200+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['status', 'conclusion', 'metrics', 'spec', 'updated_at']",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['status', 'conclusion', 'metrics', 'spec', 'updated_at']",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T23:02:14.102422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_humaneval_sft_standard_20_2048_v2\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-17T19:00:55.481Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"36724\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\", \"submitted_at\": \"2026-05-17T16:26:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"HumanEval\", \"data_count\": 164, \"model_name\": \"sft_standard_20_westd\", \"seed\": 42, \"checkpoint_source\": \"sft_standard_20_westd\", \"eval_data\": \"HumanEval (164 problems, max_new_tokens=2048)\"}, \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.1159, \"correct\": 19, \"total\": 164, \"max_new_tokens\": 2048, \"avg_response_length\": 1850.7, \"median_response_length\": 2048}}, \"grpo_cka_only_20\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-17T14:53:25.670Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_steps 99999 --reward_desert_patience 50 --run_name grpo_cka_only_20\\\"\", \"server\": \"westb-23072\", \"gpu\": [\
+…[truncated 1539 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T23:02:14.102887+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T23:02:14.203505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.063}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T23:02:14.655287+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at']",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at']",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T23:02:14.757679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_humaneval_sft_standard_20_2048\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T14:48:39.395Z\", \"conclusion\": \"killed\"}, \"eval_gradient_postsft_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T11:01:35.341Z\", \"metrics\": {\"accuracy\": 0.615, \"stderr\": 0.0344, \"n_correct\": 123, \"n_total\": 200, \"eos_rate\": 0.995, \"avg_len\": 167.5}, \"conclusion\": \"success\"}, \"eval_postprune_25\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T11:00:53.658Z\", \"conclusion\": \"success\", \"metrics\": {\"rasp_25_accuracy\": 0.21, \"rasp_25_stderr\": 0.0407, \"rasp_25_n_correct\": 21, \"rasp_25_n_total\": 100, \"rasp_25_eos_rate\": 0.56, \"rasp_25_avg_len\": 2033, \"standard_25_accuracy\": 0.16, \"standard_25_stderr\": 0.0367, \"standard_25_n_correct\": 16, \"standard_25_n_total\": 100, \"standard_25_eos_rate\": 0.23, \"standard_25_avg_len\": 3241}}, \"scoring_ablation_batch_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:39:44.226Z\", \"conclusion\": \"killed\"}, \"eval_sft_rasp_rlvr_20_qwen_math\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:38:08.756Z\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.73, \"stderr\": 0.0314, \"n_correct\": 146, \"n_total\": 200, \"eos_rate\": 1, \"avg_len\": 127}}, \"sft_standard_20_westd_retrain\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:49:52.964Z\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.6403, \"mean_token_accuracy\": 0.8258, \"avg_train_loss\": 0.7577, \"train_runtime_sec\": 1679, \"epochs\": 2, \"total_steps\": 1870}}, \"eval_sft_standard_20_westd_n100\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:57:20.320Z\", \"metrics\": {\"accuracy\": 0.63, \"stderr\": 0.048, \"n_correct\": 63, \"n_total\": 100, \"eos_rate\": 0.97, \"avg_len\": 260.57}, \"conclusion\": \"success\"}, \"eval_sft_rasp_20_westd_n100\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-15T1
+…[truncated 1154 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T23:02:27.741113+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T23:02:27.791709+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T23:02:33.072057+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_math500_grpo_standard_20'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_math500_grpo_standard_20'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T23:02:33.574358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0432}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T23:02:33.574781+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'grpo_random_20'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'grpo_random_20'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T23:02:34.076896+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0399}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T23:02:34.077324+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_sft_cka_only_20_n1319'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_sft_cka_only_20_n1319'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T23:02:34.579443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0419}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T23:02:34.579852+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_postprune_cka_only_30'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_postprune_cka_only_30'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T23:02:35.031921+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0414}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T23:02:35.483777+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_postprune_standard_30'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_postprune_standard_30'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T23:02:35.835463+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0393}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T23:02:35.886142+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T23:02:35.937410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T23:03:02.158662+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['status', 'conclusion', 'metrics', 'spec']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['status', 'conclusion', 'metrics', 'spec']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T23:03:02.711534+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_sft_cka_only_20_n1319\": {\"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"sft_cka_only_20\", \"command\": \"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json\", \"data_count\": 1319, \"data_path\": \"openai/gsm8k\", \"eval_data\": \"GSM8K (1319 samples, greedy)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_sft_cka_only_20_n1319.log\", \"model_name\": \"sft_cka_only_20\", \"pid\": \"49475\", \"seed\": 42, \"server\": \"westd-11672\", \"submitted_at\": \"2026-05-17T19:17:43.358Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"RUNNING\"}, \"eval_postprune_standard_30\": {\"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"pruned_standard_30\", \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json\\\"\", \"data_count\": 200, \"data_path\": \"openai/gsm8k\", \"eval_data\": \"GSM8K (N=200, post-prune accuracy eval)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_postprune_standard_30.log\", \"model_name\": \"pruned_standard_30\", \"pid\": \"47667\", \"seed\": 42, \"server\": \"westd-11672\", \"submitted_at\": \"2026-05-17T19:09:42.413Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"RUNNING\"}, \"eval_math500_grpo_standard_20\": {\"spec\": {\"gpu\": [\"cuda:1\"], \"pid\": \"14556\", \"server\": \"westd-11672\"}, \"status\": \"RUNNING\"}, \"grpo_cka_only_20\": {\"spec\": {\"account\": \"root\", \"backend\": 
+…[truncated 2833 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-17T23:03:51.646542+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "status": "done",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "status": "done",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T23:03:52.149831+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_fix_tokenizer_cka_only_30_20260517T215823\", \"task_type\": \"ops:fix_tokenizer_cka_only_30\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T21:58:24.120372+00:00\", \"ended_at\": \"2026-05-17T22:00:03.618466+00:00\"}, {\"worker_id\": \"worker_fix_eval_postprune_cka_only_30_20260517T215905\", \"task_type\": \"fix:eval_postprune_cka_only_30\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T21:59:05.237519+00:00\", \"ended_at\": \"2026-05-17T22:01:03.836786+00:00\"}, {\"worker_id\": \"worker_ops_urgent_full_status_check_westb_20260517T225419\", \"task_type\": \"ops:urgent_full_status_check_westb\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T22:54:19.713109+00:00\", \"ended_at\": \"2026-05-17T22:56:13.950665+00:00\"}, {\"worker_id\": \"worker_ops_urgent_full_status_check_westd_20260517T225429\", \"task_type\": \"ops:urgent_full_status_check_westd\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T22:54:29.912591+00:00\", \"ended_at\": \"2026-05-17T22:55:43.856011+00:00\"}, {\"worker_id\": \"worker_ops_westd_cleanup_and_prep_math500_20260517T225849\", \"task_type\": \"ops:westd_cleanup_and_prep_math500\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"done\", \"started_at\": \"2026-05-17T22:58:49.974697+00:00\", \"ended_at\": \"2026-05-17T22:59:52.331869+00:00\"}], \"count\": 5}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-17T23:03:52.300823+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at']",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at']",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T23:03:52.752592+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_postprune_cka_only_30\": {\"conclusion\": \"failed\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T22:00:33.735Z\"}, \"prune_cka_only_30\": {\"conclusion\": \"success\", \"metrics\": {\"actual_sparsity\": 0.2892, \"attn_heads_pruned\": \"0\", \"method\": \"dummy_ones_importance + rasp_alpha1 = pure CKA-only\", \"mlp_groups_pruned\": \"303/784\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T21:42:06.467Z\"}, \"eval_postprune_rasp_30\": {\"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0, \"avg_response_length\": 3984.31, \"eos_rate\": 0.03, \"n_correct\": 0, \"n_total\": 200, \"natural_eos\": 6, \"truncated_rate\": 0.97}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T21:39:43.149Z\"}, \"eval_sft_cka_only_20_full_v2\": {\"conclusion\": \"killed\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T19:37:21.325Z\"}, \"eval_humaneval_sft_standard_20_2048_v2\": {\"conclusion\": \"success\", \"metrics\": {\"avg_response_length\": 1850.7, \"correct\": 19, \"max_new_tokens\": 2048, \"median_response_length\": 2048, \"pass_at_1\": 0.1159, \"total\": 164}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T19:09:18.456Z\"}, \"eval_sft_cka_only_20_full\": {\"conclusion\": \"failed\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T19:04:34.857Z\"}, \"eval_humaneval_grpo_standard_20_2048\": {\"conclusion\": \"success\", \"metrics\": {\"avg_response_length\": 1843, \"correct\": 17, \"max_new_tokens\": 2048, \"median_response_length\": 2048, \"pass_at_1\": 0.1037, \"total\": 164}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T18:16:11.481Z\"}, \"grpo_rasp_25\": {\"conclusion\": \"success\", \"metrics\": {\"note\": \"Restored from previous_failure — cron false positive, experiment actually completed 100/100 steps successfully\", \"step_100\": {\"entropy\": 0.04262, \"frac_reward_zero_std\": 0.875, \"grad_norm\": 0.05371, \"kl\": 0.0007035, \"loss\": 0.01275, \"reward\": 0.009375, \
+…[truncated 2557 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T23:05:46.457194+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T23:05:46.568423+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_852c6818.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Read",
+  "elapsed_ms": 111
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T23:05:51.130973+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T23:05:51.131352+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-17T23:05:53.688583+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource*skill*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource*skill*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T23:05:53.739214+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-17T23:05:56.919583+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-17T23:05:56.991515+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Glob",
+  "elapsed_ms": 71
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-17T23:06:01.731699+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_17/skills/global/ 2>/dev/null | head -20 || echo \"DIR NOT FOUND\"",
+  "description": "List global skills directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_17/skills/global/ 2>/dev/null | head -20 || echo \"DIR NOT FOUND\"",
+    "description": "List global skills directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T23:06:02.001179+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Bash",
+  "elapsed_ms": 269
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-17T23:06:04.835863+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu -name \"resource-saturation*\" -type f 2>/dev/null | head -5",
+  "description": "Find resource-saturation skill file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu -name \"resource-saturation*\" -type f 2>/dev/null | head -5",
+    "description": "Find resource-saturation skill file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-17T23:06:05.137321+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Bash",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-17T23:06:08.118429+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T23:06:08.169160+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-17T23:07:03.946999+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__submit_training_job",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__submit_training_job",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T23:07:03.947404+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-17T23:07:09.370198+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-17T23:07:09.924656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westb-23072\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"westd-11672\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-11672\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"westd-11672\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"westd-11672\", \"gpu_id\": \"cuda:3\"}], \"actually_running_gpus\": [{\"server\": \"westd-11672\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"eval_math500_grpo_rasp_20_v3\"}, {\"server\": \"westd-11672\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"eval_math500_grpo_standard_20\"}, {\"server\": \"westd-11672\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"eval_postprune_standard_30\"}, {\"server\": \"westd-11672\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"eval_sft_cka_only_20_n1319\"}, {\"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"grpo_cka_only_20\"}, {\"server\": \"westb-23072\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"grpo_random_20\"}], \"allocated_but_idle\": [{\"server\": \"westd-11672\", \"gpu_id\": \"cuda:2\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"eval_math500_grpo_rasp_20_v3\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"eval_math500_grpo_standard_20\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"eval_postprune_standard_30\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"eval_sft_cka_only_20_n1319\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"grpo_cka_only_20\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"grpo_random_20\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 6 张, 实际跑 6 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 554
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-17T23:07:10.125859+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'conclusion': 'success'}",
+  "fields": "['status', 'conclusion', 'metrics', 'spec']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'conclusion': 'success'}",
+    "fields": "['status', 'conclusion', 'metrics', 'spec']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-17T23:07:10.578125+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"prune_cka_only_30\": {\"conclusion\": \"success\", \"metrics\": {\"actual_sparsity\": 0.2892, \"attn_heads_pruned\": \"0\", \"method\": \"dummy_ones_importance + rasp_alpha1 = pure CKA-only\", \"mlp_groups_pruned\": \"303/784\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=\\\"\\\" python src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode rasp --sparsity 0.30 --alpha 1.0 --dtype bfloat16 --importance_path results/importance_scores_dummy_ones.pt --cka_path results/cka_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30\", \"data_count\": 0, \"data_path\": \"importance_scores_dummy_ones.pt + cka_scores.pt\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"server\": \"westd-11672\"}, \"status\": \"DONE\"}, \"eval_postprune_rasp_30\": {\"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0, \"avg_response_length\": 3984.31, \"eos_rate\": 0.03, \"n_correct\": 0, \"n_total\": 200, \"natural_eos\": 6, \"truncated_rate\": 0.97}, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_30.json\", \"checkpoint_source\": \"pruned_rasp_30\", \"data_count\": 200, \"data_path\": \"openai/gsm8k\", \"eval_data\": \"GSM8K (200 samples, greedy)\", \"gpu\": [\"cuda:2\"], \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_postprune_rasp_30.log\", \"model_name\": \"pruned_rasp_30\", \"pid\": \"43911\", \"seed\": 42, \"server\": \"westd-11672\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\"}, \"eval_humaneval_sft_standard_20_2048_v2\": {\"conclusion\": \"success\", \"metrics\": {\"avg_response_length\": 1850.7, \"correct\": 19, \"max_new_tokens\": 2048, \"median_response_length\": 2048, \"pass_at_1\": 0.1159, \"total\": 164}, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/r
+…[truncated 2587 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-17T23:08:30.239433+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ops:fill_cuda2_math500_eval",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务：在 westd-11672 cuda:2 上提交 MATH-500 eval\n\n### 背景\nwestd-11672 cuda:2 当前空闲，需要立即填充。项目当前有 2 个 MATH-500 GRPO eval 在跑（cuda:1 跑 Standard, cuda:3 跑 RASP）。需要再提交一个 MATH-500 eval。\n\n### 步骤\n1. SSH 到 westd-11672，检查已有 MATH-500 结果：\n   ```\n   ls /root/autodl-tmp/recovery_aware_struct_prune/results/math500*.json\n   ```\n   确认哪些 model variants 已有 MATH-500 结果，哪些缺失。\n\n2. 检查以下 checkpoint 是否存在（按优先级）：\n   - `/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/` — unpruned GRPO（最高优先级，验证 C1 跨 benchmark）\n   - `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd` — SFT Standard 20%\n   - `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20` 或类似路径 — SFT RASP 20%\n\n3. 选择一个尚无 MATH-500 结果且 checkpoint 存在的模型，用 `submit_training_job` 提交 eval。\n\n   提交命令模板：\n   ```\n   bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path &lt;CHECKPOINT_PATH> --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_&lt;variant>.json\"\n   ```\n   \n   server=westd-11672, gpu_ids=[\"cuda:2\"], project=recovery_aware_struct_prune\n   \n   exp_id 命名：eval_math500_&lt;variant>（如 eval_math500_grpo_unpruned 或 eval_math500_sft_standard_20）\n\n4. 提交前先用 `update_registry` 创建实验条目（status=PREPARING → RUNNING 交给 submit_training_job 自动处理）。\n   \n   hypothesis 示例（根据选择的模型调整）：\n   - unpruned GRPO: \"MATH-500 accuracy for unpruned GRPO v2. If ≈ 73.6% (pre-GRPO baseline), confirms C1 decoupling on harder benchmark. If higher, GRPO genuinely helps unpruned reasoning.\"\n   - SFT Standard: \"MATH-500 accuracy for SFT Standard 20%. Cross-benchmark validation: if similar recovery rate as GSM8K (59.29%), SFT generalization holds.\"\n\n5. 汇报你提交了什么、exp_id 是什么。\n\n### 环境\n- Python: `/root/miniconda3/bin/python`\n- 代码: `/root/recovery_aware_struct_prune/`\n- Checkpoint 基路径: `/root/autodl-tmp/recovery_aware_struct_prune/`\n",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:fill_cuda2_math500_eval",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务：在 westd-11672 cuda:2 上提交 MATH-500 eval\n\n### 背景\nwestd-11672 cuda:2 当前空闲，需要立即填充。项目当前有 2 个 MATH-500 GRPO eval 在跑（cuda:1 跑 Standard, cuda:3 跑 RASP）。需要再提交一个 MATH-500 eval。\n\n### 步骤\n1. SSH 到 westd-11672，检查已有 MATH-500 结果：\n   ```\n   ls /root/autodl-tmp/recovery_aware_struct_prune/results/math500*.json\n   ```\n   确认哪些 model variants 已有 MATH-500 结果，哪些缺失。\n\n2. 检查以下 checkpoint 是否存在（按优先级）：\n   - `/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/` — unpruned GRPO（最高优先级，验证 C1 跨 benchmark）\n   - `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd` — SFT Standard 20%\n   - `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20` 或类似路径 — SFT RASP 20%\n\n3. 选择一个尚无 MATH-500 结果且 checkpoint 存在的模型，用 `submit_training_job` 提交 eval。\n\n   提交命令模板：\n   ```\n   bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path &lt;CHECKPOINT_PATH> --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_&lt;variant>.json\"\n   ```\n   \n   server=westd-11672, gpu_ids=[\"cuda:2\"], project=recovery_aware_struct_prune\n   \n   exp_id 命名：eval_math500_&lt;variant>（如 eval_math500_grpo_unpruned 或 eval_math500_sft_standard_20）\n\n4. 提交前先用 `update_registry` 创建实验条目（status=PREPARING → RUNNING 交给 submit_training_job 自动处理）。\n   \n   hypothesis 示例（根据选择的模型调整）：\n   - unpruned GRPO: \"MATH-500 accuracy for unpruned GRPO v2. If ≈ 73.6% (pre-GRPO baseline), confirms C1 decoupling on harder benchmark. If higher, GRPO genuinely helps unpruned reasoning.\"\n   - SFT Standard: \"MATH-500 accuracy for SFT Standard 20%. Cross-benchmark validation: if similar recovery rate as GSM8K (59.29%), SFT generalization holds.\"\n\n5. 汇报你提交了什么、exp_id 是什么。\n\n### 环境\n- Python: `/root/miniconda3/bin/python`\n- 代码: `/root/recovery_aware_struct_prune/`\n- Checkpoint 基路径: `/root/autodl-tmp/recovery_aware_struct_prune/`\n",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T23:08:39.832106+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_fill_cuda2_math500_eval_20260517T230830\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ops_fill_cuda2_math500_eval_20260517T230830.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_fill_cuda2_math500_eval_20260517T230830 started. Use get_worker_status('worker_ops_fill_cuda2_math500_eval_20260517T230830') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 9592
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-17T23:08:39.983107+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ops:check_cka_only_30_retry",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务：检查 eval_postprune_cka_only_30 重试状态\n\n### 背景\neval_postprune_cka_only_30 在之前的 session 中失败 (EXIT_CODE=1)。两个 Worker 尝试修复：\n- worker_ops_fix_tokenizer_cka_only_30 (修复 tokenizer)\n- worker_fix_eval_postprune_cka_only_30 (修复 eval)\n\nCron reconcile 显示 PID=59403 仍在运行，但 registry 显示 DONE/failed。需要确认真实状态。\n\n### 步骤\n1. SSH 到 westd-11672，检查 PID 59403 是否存活：\n   ```\n   ps aux | grep 59403\n   ```\n\n2. 如果存活，检查它在做什么：\n   ```\n   cat /proc/59403/cmdline 2>/dev/null | tr '\\0' ' '\n   ```\n\n3. 查看 eval_postprune_cka_only_30 的日志尾部：\n   ```\n   tail -50 ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log\n   ```\n\n4. 检查是否有新的 result 文件：\n   ```\n   ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30*.json\n   ```\n\n5. 检查 pruned_cka_only_30 模型目录是否完整：\n   ```\n   ls /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30/\n   ```\n\n6. 汇报：\n   - PID 59403 是否存活？是原始进程还是新进程？\n   - 日志中最后在做什么？\n   - 是否有结果文件产出？\n   - 如果已完成，读取结果并报告 metrics\n   - 如果仍在运行，报告进度\n   - 如果失败了，报告错误原因\n\n### 环境\n- Python: `/root/miniconda3/bin/python`\n- 服务器: westd-11672\n",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:check_cka_only_30_retry",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务：检查 eval_postprune_cka_only_30 重试状态\n\n### 背景\neval_postprune_cka_only_30 在之前的 session 中失败 (EXIT_CODE=1)。两个 Worker 尝试修复：\n- worker_ops_fix_tokenizer_cka_only_30 (修复 tokenizer)\n- worker_fix_eval_postprune_cka_only_30 (修复 eval)\n\nCron reconcile 显示 PID=59403 仍在运行，但 registry 显示 DONE/failed。需要确认真实状态。\n\n### 步骤\n1. SSH 到 westd-11672，检查 PID 59403 是否存活：\n   ```\n   ps aux | grep 59403\n   ```\n\n2. 如果存活，检查它在做什么：\n   ```\n   cat /proc/59403/cmdline 2>/dev/null | tr '\\0' ' '\n   ```\n\n3. 查看 eval_postprune_cka_only_30 的日志尾部：\n   ```\n   tail -50 ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log\n   ```\n\n4. 检查是否有新的 result 文件：\n   ```\n   ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30*.json\n   ```\n\n5. 检查 pruned_cka_only_30 模型目录是否完整：\n   ```\n   ls /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30/\n   ```\n\n6. 汇报：\n   - PID 59403 是否存活？是原始进程还是新进程？\n   - 日志中最后在做什么？\n   - 是否有结果文件产出？\n   - 如果已完成，读取结果并报告 metrics\n   - 如果仍在运行，报告进度\n   - 如果失败了，报告错误原因\n\n### 环境\n- Python: `/root/miniconda3/bin/python`\n- 服务器: westd-11672\n",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-17T23:08:42.500705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_cka_only_30_retry_20260517T230840\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ops_check_cka_only_30_retry_20260517T230840.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_cka_only_30_retry_20260517T230840 started. Use get_worker_status('worker_ops_check_cka_only_30_retry_20260517T230840') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2517
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-17T23:09:43.551496+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 6/6 分配, 5/6 在跑 (westd cuda:2 空闲, 正在填充) | Worker 2 (GPU 1 / CPU 1) | 磁盘: westd 817G/879G, westb 396G/439G\n\n## Loop #18 状态汇报\n\n### 当前 6 个 RUNNING 实验\n| exp_id | server:gpu | 用途 |\n|--------|-----------|------|\n| eval_math500_grpo_standard_20 | westd:cuda1 | C1 cross-benchmark |\n| eval_math500_grpo_rasp_20_v3 | westd:cuda3 | C1 cross-benchmark |\n| eval_sft_cka_only_20_n1319 | westd:cuda0 | CKA-only SFT full eval |\n| eval_postprune_standard_30 | westd:cuda0 | 30% sparsity degradation |\n| grpo_cka_only_20 | westb:cuda0 | C2 collapse gradient (关键) |\n| grpo_random_20 | westb:cuda1 | C2 collapse gradient (关键) |\n\n已派 Worker 在 westd cuda:2 上提交 MATH-500 eval（正在确认最优 checkpoint 选择）。\n\n### 新完成的关键结果\n\n**1. HumanEval@2048 矩阵完整 (20% sparsity)**\n| Model | pass@1 | correct/164 |\n|-------|--------|------------|\n| Unpruned | **45.12%** | 74 |\n| GRPO RASP 20% | **14.63%** | 24 |\n| SFT Standard 20% | **11.59%** | 19 |\n| SFT RASP 20% | **10.37%** | 17 |\n| GRPO Standard 20% | **10.37%** | 17 |\n\nC1 在 HumanEval 上的体现：\n- GRPO Standard (10.37%) = SFT RASP (10.37%)，GRPO 对 Standard pruning 无帮助 → decoupling\n- GRPO RASP (14.63%) 是 pruned 最高，但仍比 unpruned 低 30pp → pruning 对 code generation 损伤巨大\n- 所有 pruned models median_response_length = 2048（全部 truncating），说明 pruning 破坏了模型的终止能力\n\n**2. 30% sparsity: RASP post-prune cliff**\n- RASP 30% post-prune: **0% accuracy** (0/200), 97% truncated, avg_len=3984\n- 对比 RASP 25% post-prune: 21%, RASP 20%: 29%\n- 存在 25%→30% 的 cliff，30% 时模型完全丧失推理能力\n\n**3. grpo_rasp_25 完成 (100/100 steps)**\n- frac_reward_zero_std = 0.875, reward = 0.009, entropy = 0.043\n- 与 RASP 20% 类似（frac_zero_std=0.95, reward=0.039）— 都 collapse\n- 确认 RASP pruning 下 GRPO collapse 在 20% 和 25% 都发生\n\n**4. prune_cka_only_30 成功**\n- 28.92% 实际 sparsity, 303/784 MLP groups pruned\n- eval_postprune_cka_only_30 之前 EXIT_CODE=1 失败，Worker 已修复 tokenizer 并重试中\n\n### 待回调\n- grpo_cka_only_20 + grpo_random_20 → 决定 C2 narrative（D053/D054 验证）\n- eval_math500_grpo_standard_20 + eval_math500_grpo_rasp_20_v3 → MATH-500 cross-benchmark data\n- eval_sft_cka_only_20_n1319 → CKA-only SFT 完整 accuracy（N=200 pilot = 64%）\n\n### 实验计划反思\nHumanEval 数据确认 pruning 对 code generation 的毁灭性影响（-30pp vs unpruned）。这个 cross-benchmark 数据可以补充 C1 narrative：decoupling 不只在 math reasoning 上出现，在 code generation 上同样成立。但 HumanEval 结果中 GRPO RASP 的 14.63% 值得注意——它是 pruned 中最高的，暗示 GRPO 对 RASP 模型的 code 能力有微弱正向影响（尽管 reward-accuracy decoupling 在 GSM8K 上成立）。\n\n当前最关键的等待是 grpo_random_20 和 grpo_cka_only_20 的完成，这直接决定 C2 collapse gradient story。",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 6/6 分配, 5/6 在跑 (westd cuda:2 空闲, 正在填充) | Worker 2 (GPU 1 / CPU 1) | 磁盘: westd 817G/879G, westb 396G/439G\n\n## Loop #18 状态汇报\n\n### 当前 6 个 RUNNING 实验\n| exp_id | server:gpu | 用途 |\n|--------|-----------|------|\n| eval_math500_grpo_standard_20 | westd:cuda1 | C1 cross-benchmark |\n| eval_math500_grpo_rasp_20_v3 | westd:cuda3 | C1 cross-benchmark |\n| eval_sft_cka_only_20_n1319 | westd:cuda0 | CKA-only SFT full eval |\n| eval_postprune_standard_30 | westd:cuda0 | 30% sparsity degradation |\n| grpo_cka_only_20 | westb:cuda0 | C2 collapse gradient (关键) |\n| grpo_random_20 | westb:cuda1 | C2 collapse gradient (关键) |\n\n已派 Worker 在 westd cuda:2 上提交 MATH-500 eval（正在确认最优 checkpoint 选择）。\n\n### 新完成的关键结果\n\n**1. HumanEval@2048 矩阵完整 (20% sparsity)**\n| Model | pass@1 | correct/164 |\n|-------|--------|------------|\n| Unpruned | **45.12%** | 74 |\n| GRPO RASP 20% | **14.63%** | 24 |\n| SFT Standard 20% | **11.59%** | 19 |\n| SFT RASP 20% | **10.37%** | 17 |\n| GRPO Standard 20% | **10.37%** | 17 |\n\nC1 在 HumanEval 上的体现：\n- GRPO Standard (10.37%) = SFT RASP (10.37%)，GRPO 对 Standard pruning 无帮助 → decoupling\n- GRPO RASP (14.63%) 是 pruned 最高，但仍比 unpruned 低 30pp → pruning 对 code generation 损伤巨大\n- 所有 pruned models median_response_length = 2048（全部 truncating），说明 pruning 破坏了模型的终止能力\n\n**2. 30% sparsity: RASP post-prune cliff**\n- RASP 30% post-prune: **0% accuracy** (0/200), 97% truncated, avg_len=3984\n- 对比 RASP 25% post-prune: 21%, RASP 20%: 29%\n- 存在 25%→30% 的 cliff，30% 时模型完全丧失推理能力\n\n**3. grpo_rasp_25 完成 (100/100 steps)**\n- frac_reward_zero_std = 0.875, reward = 0.009, entropy = 0.043\n- 与 RASP 20% 类似（frac_zero_std=0.95, reward=0.039）— 都 collapse\n- 确认 RASP pruning 下 GRPO collapse 在 20% 和 25% 都发生\n\n**4. prune_cka_only_30 成功**\n- 28.92% 实际 sparsity, 303/784 MLP groups pruned\n- eval_postprune_cka_only_30 之前 EXIT_CODE=1 失败，Worker 已修复 tokenizer 并重试中\n\n### 待回调\n- grpo_cka_only_20 + grpo_random_20 → 决定 C2 narrative（D053/D054 验证）\n- eval_math500_grpo_standard_20 + eval_math500_grpo_rasp_20_v3 → MATH-500 cross-benchmark data\n- eval_sft_cka_only_20_n1319 → CKA-only SFT 完整 accuracy（N=200 pilot = 64%）\n\n### 实验计划反思\nHumanEval 数据确认 pruning 对 code generation 的毁灭性影响（-30pp vs unpruned）。这个 cross-benchmark 数据可以补充 C1 narrative：decoupling 不只在 math reasoning 上出现，在 code generation 上同样成立。但 HumanEval 结果中 GRPO RASP 的 14.63% 值得注意——它是 pruned 中最高的，暗示 GRPO 对 RASP 模型的 code 能力有微弱正向影响（尽管 reward-accuracy decoupling 在 GSM8K 上成立）。\n\n当前最关键的等待是 grpo_random_20 和 grpo_cka_only_20 的完成，这直接决定 C2 collapse gradient story。",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T23:09:44.705865+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1154
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-17T23:09:54.824121+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-17T23:09:54.824562+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"content\": \"# Project Memory — recovery_aware_struct_prune\\n\\n## 基础设施经验\\n\\n### tokenizer 同步问题 (2026-05-17)\\nSFT 模型在 server A 训练后，server B 上 eval 会失败（AutoTokenizer 找不到 tokenizer 文件）。原因：HF Trainer save_pretrained 可能不保存 tokenizer，或 rsync 时遗漏。修复：从基础模型复制 tokenizer_config.json, tokenizer.json, special_tokens_map.json 等文件到 SFT checkpoint 目录。\\n\\n### GRPO 模型 MATH-500 eval 超时 (2026-05-17)\\nGRPO 模型在 MATH-500 上生成极长推理链 (~112s/problem vs SFT ~25s)，6h timeout 仅完成 193/500 题。v3 已去除 timeout 限制。D051 裁定 MATH-500 GRPO 对比不可用于 C3 论证（GRPO 和 SFT 的 max_new_tokens 配置不公平）。\\n\\n### eval_humaneval EXIT_CODE=129 (2026-05-17)\\nEXIT_CODE=129 = SIGHUP (128+1)，进程已完成全部评测并保存结果后 SSH 断连。结果有效，不需重跑。\\n\\n### sft_cka_only_20 跨服务器传输 (2026-05-17)\\nsft_cka_only_20 模型只存在于 westb-23072。通过 EC2 跳板中转 rsync 成功传输到 westd。磁盘清理后 westd 有 312GB 可用。\\n\\n### CKA-only pruning 实现方式 (2026-05-17)\\nprune.py 没有 cka_only mode。用 dummy importance (全1) + `--mode rasp --alpha 1` 实现：score = 1 × (1-F(h)) = 纯 CKA-only scoring。CKA-only 只剪 MLP（303/784 groups），0 attn heads（CKA overlap 在 attn 不够高）。\\n\\n## 关键实验发现\\n\\n### HumanEval@2048 超加性交互效应 (2026-05-17)\\nRASP 单独不帮 HumanEval（SFT RASP 10.37% < SFT Standard 11.59%），GRPO 单独不帮（GRPO Standard 10.37%），但 RASP+GRPO = 14.63% 是最优。这是超加性交互，不是独立主效应。意味着 C1 应从\\\"独立主效应\\\"改为\\\"RASP 保留了 GRPO 可以利用的结构\\\"。代码生成对剪枝极度敏感（67-77% 相对下降 vs GSM8K 25-35%）。N=164 下剪枝模型间差异未达统计显著性。\\n\\n### Collapse dynamics step 70 更新 (2026-05-17)\\nCKA-only: reward 上升 0.25→0.31, frac_zero_std 下降 0.20→0.125（训练在改善）。Random: reward 缓慢 0.16→0.19, frac_zero_std 停滞 0.30-0.35（效率低但未 collapse）。排序确认：CKA-only >> Random >> Standard(borderline) >> RASP(collapsed)。D053 hypothesis 持续被验证。\\n\\n### 30% sparsity post-prune (2026-05-17)\\nStandard 30%: acc=3.0% @ 139/200（基本丧失推理能力，avg_len=3753 跑满 max_tokens）。RASP 30%: 预期 0%（eval 进行中）。CKA-only 30%: eval 进行中。\\n\\n### MATH-500 GRPO 中间结果 (202
+…[truncated 1090 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-17T23:10:20.909474+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md",
+  "content": "# Project Memory — recovery_aware_struct_prune\n\n## 基础设施经验\n\n### tokenizer 同步问题 (2026-05-17)\nSFT 模型在 server A 训练后，server B 上 eval 会失败（AutoTokenizer 找不到 tokenizer 文件）。原因：HF Trainer save_pretrained 可能不保存 tokenizer，或 rsync 时遗漏。修复：从基础模型复制 tokenizer_config.json, tokenizer.json, special_tokens_map.json 等文件到 SFT checkpoint 目录。\n\n### GRPO 模型 MATH-500 eval 超时 (2026-05-17)\nGRPO 模型在 MATH-500 上生成极长推理链 (~112s/problem vs SFT ~25s)，6h timeout 仅完成 193/500 题。v3 已去除 timeout 限制。D051 裁定 MATH-500 GRPO 对比不可用于 C3 论证（GRPO 和 SFT 的 max_new_tokens 配置不公平）。\n\n### eval_humaneval EXIT_CODE=129 (2026-05-17)\nEXIT_CODE=129 = SIGHUP (128+1)，进程已完成全部评测并保存结果后 SSH 断连。结果有效，不需重跑。\n\n### sft_cka_only_20 跨服务器传输 (2026-05-17)\nsft_cka_only_20 模型只存在于 westb-23072。通过 EC2 跳板中转 rsync 成功传输到 westd。磁盘清理后 westd 有 312GB 可用。\n\n### CKA-only pruning 实现方式 (2026-05-17)\nprune.py 没有 cka_only mode。用 dummy importance (全1) + `--mode rasp --alpha 1` 实现：score = 1 × (1-F(h)) = 纯 CKA-only scoring。CKA-only 只剪 MLP（303/784 groups），0 attn heads（CKA overlap 在 attn 不够高）。\n\n## 关键实验发现\n\n### HumanEval@2048 超加性交互效应 (2026-05-17)\nRASP 单独不帮 HumanEval（SFT RASP 10.37% < SFT Standard 11.59%），GRPO 单独不帮（GRPO Standard 10.37%），但 RASP+GRPO = 14.63% 是最优。这是超加性交互，不是独立主效应。意味着 C1 应从\"独立主效应\"改为\"RASP 保留了 GRPO 可以利用的结构\"。代码生成对剪枝极度敏感（67-77% 相对下降 vs GSM8K 25-35%）。N=164 下剪枝模型间差异未达统计显著性。\n\n### 30% sparsity cliff (2026-05-17 confirmed)\nRASP 30% post-prune: **0% accuracy** (0/200), 97% truncated, avg_len=3984。Standard 30%: 3.0% @ 139/200。存在 25%→30% 的 hard cliff：模型完全丧失推理能力。对比 20%(RASP 29%, Standard 17.5%) 和 25%(RASP 21%, Standard 16%)，降解曲线在 30% 断崖。CKA-only 30% (28.92% actual sparsity) eval 重试中。\n\n### GRPO collapse 在 25% 同样发生 (2026-05-17)\ngrpo_rasp_25: 100/100 steps, frac_reward_zero_std=0.875, reward=0.009, entropy=0.043。与 RASP 20% 类似（frac_zero_std=0.95, reward=0.039）。确认 RASP pruning 下 GRPO collapse 在 20% 和 25% 都发生，不随 sparsity 增加而显著恶化（已经 collapse 了）。\n\n### Collapse dynamics step 70 更新 (2026-05-17)\nCKA-only: reward 上升 0.25→0.31, frac_zero_std 下降 0.20→0.125（训练在改善）。Random: reward 缓慢 0.16→0.19, frac_zero_std 停滞 0.30-0.35（效率低但未 collapse）。排序确认：CKA-only >> Random >> Standard(borderline) >> RASP(collapsed)。D053 hypothesis 持续被验证。\n\n### MATH-500 GRPO 中间结果 (2026-05-17)\ngrpo_standard_20: 28.33% @ 309/500。grpo_rasp_20: 28.00% @ 256/500。两者接近收敛，暗示 GRPO 后在 MATH-500 上无 pruning method 差异。\n\n### CKA-only SFT N=1319 中间结果 (2026-05-17)\n63.0% @ 1037/1319，与 N=200 pilot (64%) 一致。确认 SFT equalization：RASP 61.49%, Standard 59.29%, CKA-only ~63%。\n\n## 决策约束\n\n### D055: C1 收窄为 in-distribution decoupling (2026-05-17)\nC1 从 \"universal decoupling\" 收窄为 in-distribution decoupling。MATH-500 等 cross-benchmark 数据用于界定边界。\n\n### D054: C2 升级为 recovery capacity hierarchy (2026-05-17)\nC2 从 \"collapse gradient\" 升级为 \"recovery capacity hierarchy\"。\n\n### D053: CKA-only GRPO 最稳定 (provisional)\nCKA-only 剪枝的 GRPO 训练最稳定，逆转了原始 hypothesis（预测它最快 collapse）。Redundancy-Stability Tradeoff: 保留冗余结构 = GRPO 更稳定。\n\n### D052: C3 降级为 observation\nC2 collapse gradient 升为主力 contribution。\n\n### D051: MATH-500 GRPO 对比不可用于 C3\n配置不公平（GRPO max_new_tokens 远大于 SFT 实际使用量），partial results 仅作 supplementary evidence。\n\n### D044: 核心叙事 pivot\n从 \"RASP enables better RL recovery\" pivot 为 \"universal decoupling\"。Reward 涨但 accuracy 不跟是 universal 现象（unpruned 也是），不是 pruning-specific。\n\n### D049: 维持 C1 双现象\n不采纳 \"pruning disables GRPO\" 叙事。C1 = collapse + decoupling 双现象。\n\n### D050: RASP-RLVR 降级为 ablation\nNegative result，不是 core contribution。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md",
+    "content": "# Project Memory — recovery_aware_struct_prune\n\n## 基础设施经验\n\n### tokenizer 同步问题 (2026-05-17)\nSFT 模型在 server A 训练后，server B 上 eval 会失败（AutoTokenizer 找不到 tokenizer 文件）。原因：HF Trainer save_pretrained 可能不保存 tokenizer，或 rsync 时遗漏。修复：从基础模型复制 tokenizer_config.json, tokenizer.json, special_tokens_map.json 等文件到 SFT checkpoint 目录。\n\n### GRPO 模型 MATH-500 eval 超时 (2026-05-17)\nGRPO 模型在 MATH-500 上生成极长推理链 (~112s/problem vs SFT ~25s)，6h timeout 仅完成 193/500 题。v3 已去除 timeout 限制。D051 裁定 MATH-500 GRPO 对比不可用于 C3 论证（GRPO 和 SFT 的 max_new_tokens 配置不公平）。\n\n### eval_humaneval EXIT_CODE=129 (2026-05-17)\nEXIT_CODE=129 = SIGHUP (128+1)，进程已完成全部评测并保存结果后 SSH 断连。结果有效，不需重跑。\n\n### sft_cka_only_20 跨服务器传输 (2026-05-17)\nsft_cka_only_20 模型只存在于 westb-23072。通过 EC2 跳板中转 rsync 成功传输到 westd。磁盘清理后 westd 有 312GB 可用。\n\n### CKA-only pruning 实现方式 (2026-05-17)\nprune.py 没有 cka_only mode。用 dummy importance (全1) + `--mode rasp --alpha 1` 实现：score = 1 × (1-F(h)) = 纯 CKA-only scoring。CKA-only 只剪 MLP（303/784 groups），0 attn heads（CKA overlap 在 attn 不够高）。\n\n## 关键实验发现\n\n### HumanEval@2048 超加性交互效应 (2026-05-17)\nRASP 单独不帮 HumanEval（SFT RASP 10.37% < SFT Standard 11.59%），GRPO 单独不帮（GRPO Standard 10.37%），但 RASP+GRPO = 14.63% 是最优。这是超加性交互，不是独立主效应。意味着 C1 应从\"独立主效应\"改为\"RASP 保留了 GRPO 可以利用的结构\"。代码生成对剪枝极度敏感（67-77% 相对下降 vs GSM8K 25-35%）。N=164 下剪枝模型间差异未达统计显著性。\n\n### 30% sparsity cliff (2026-05-17 confirmed)\nRASP 30% post-prune: **0% accuracy** (0/200), 97% truncated, avg_len=3984。Standard 30%: 3.0% @ 139/200。存在 25%→30% 的 hard cliff：模型完全丧失推理能力。对比 20%(RASP 29%, Standard 17.5%) 和 25%(RASP 21%, Standard 16%)，降解曲线在 30% 断崖。CKA-only 30% (28.92% actual sparsity) eval 重试中。\n\n### GRPO collapse 在 25% 同样发生 (2026-05-17)\ngrpo_rasp_25: 100/100 steps, frac_reward_zero_std=0.875, reward=0.009, entropy=0.043。与 RASP 20% 类似（frac_zero_std=0.95, reward=0.039）。确认 RASP pruning 下 GRPO collapse 在 20% 和 25% 都发生，不随 sparsity 增加而显著恶化（已经 collapse 了）。\n\n### Collapse dynamics step 70 更新 (2026-05-17)\nCKA-only: reward 上升 0.25→0.31, frac_zero_std 下降 0.20→0.125（训练在改善）。Random: reward 缓慢 0.16→0.19, frac_zero_std 停滞 0.30-0.35（效率低但未 collapse）。排序确认：CKA-only >> Random >> Standard(borderline) >> RASP(collapsed)。D053 hypothesis 持续被验证。\n\n### MATH-500 GRPO 中间结果 (2026-05-17)\ngrpo_standard_20: 28.33% @ 309/500。grpo_rasp_20: 28.00% @ 256/500。两者接近收敛，暗示 GRPO 后在 MATH-500 上无 pruning method 差异。\n\n### CKA-only SFT N=1319 中间结果 (2026-05-17)\n63.0% @ 1037/1319，与 N=200 pilot (64%) 一致。确认 SFT equalization：RASP 61.49%, Standard 59.29%, CKA-only ~63%。\n\n## 决策约束\n\n### D055: C1 收窄为 in-distribution decoupling (2026-05-17)\nC1 从 \"universal decoupling\" 收窄为 in-distribution decoupling。MATH-500 等 cross-benchmark 数据用于界定边界。\n\n### D054: C2 升级为 recovery capacity hierarchy (2026-05-17)\nC2 从 \"collapse gradient\" 升级为 \"recovery capacity hierarchy\"。\n\n### D053: CKA-only GRPO 最稳定 (provisional)\nCKA-only 剪枝的 GRPO 训练最稳定，逆转了原始 hypothesis（预测它最快 collapse）。Redundancy-Stability Tradeoff: 保留冗余结构 = GRPO 更稳定。\n\n### D052: C3 降级为 observation\nC2 collapse gradient 升为主力 contribution。\n\n### D051: MATH-500 GRPO 对比不可用于 C3\n配置不公平（GRPO max_new_tokens 远大于 SFT 实际使用量），partial results 仅作 supplementary evidence。\n\n### D044: 核心叙事 pivot\n从 \"RASP enables better RL recovery\" pivot 为 \"universal decoupling\"。Reward 涨但 accuracy 不跟是 universal 现象（unpruned 也是），不是 pruning-specific。\n\n### D049: 维持 C1 双现象\n不采纳 \"pruning disables GRPO\" 叙事。C1 = collapse + decoupling 双现象。\n\n### D050: RASP-RLVR 降级为 ablation\nNegative result，不是 core contribution。\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-17T23:10:20.960290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-17T23:11:06.530877+00:00_
+
+Session-start 初始化完成。状态总结：
+
+**已完成动作**：
+1. Registry 同步 — 确认 6 RUNNING 实验
+2. Crons reconcile — 所有 6 进程存活
+3. 识别 westd cuda:2 空闲 + Worker 池为 0 的双重违规
+4. 派出 Worker A (GPU): 填充 cuda:2 的 MATH-500 eval
+5. 派出 Worker B (CPU): 诊断 eval_postprune_cka_only_30 重试
+6. 向 Director 汇报（含 HumanEval@2048 完整矩阵、30% cliff、grpo_rasp_25 collapse）
+7. 更新 memory.md（30% cliff confirmed、D054/D055 新决策记录）
+
+**等待中**：
+- 2 个 Worker 回调
+- grpo_cka_only_20 / grpo_random_20 完成回调（决定 C2 narrative）
+- eval_math500_grpo_standard_20 / eval_math500_grpo_rasp_20_v3 完成回调
+- eval_sft_cka_only_20_n1319 完成回调
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_humaneval_grpo_rasp_20_2048"
+}
+```
+
+</details>
+
+---

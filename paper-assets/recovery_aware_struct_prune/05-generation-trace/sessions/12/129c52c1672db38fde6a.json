@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "129c52c1672db38fde6a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code synthetic depth scores 20260522",
+  "task_key": "worker_code_synthetic_depth_scores_20260522_20260522T051326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_synthetic_depth_scores_20260522_20260522T051326_result.json",
+    "occurrence": 1,
+    "bytes": 1113,
+    "sha256": "6d6540f3efe3f70896aaaa0b524f6fd7105fcca7707f55916fa5f17cb835d362"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。全部信息汇总如下：\n\n---\n\n```\n== 原始 importance scores 格式 ==\n文件: importance_scores_qwen_math_7b.pt\nKeys: [attn_importance, mlp_importance]\nattn_importance: dict{0..27} → tensor shape=[4], per-layer GQA group scores\nmlp_importance: dict{0..27} → tensor shape=[28], per-layer MLP group scores\n\n== 合成 scores 设计 ==\nLayer 0-9  (early): score = 1.0    → 保留\nLayer 10-17 (mid):  score = 0.5    → 视剪枝比例决定\nLayer 18-27 (late): score = 0.001  → 优先剪枝\n\n== 生成验证 ==\nsynthetic_depth_scores.pt: OK (westd-32935:/root/autodl-tmp/recovery_aware_struct_prune/)\n  attn: 28 layers × shape=[4], range=[0.001, 1.0]\n  mlp:  28 layers × shape=[28], range=[0.001, 1.0]\n\n== prune 命令模板 (westd-32935) ==\npython src/prune.py \\\n  --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n  --importance_path /root/autodl-tmp/recovery_aware_struct_prune/synthetic_depth_scores.pt \\\n  --mode standard \\\n  --sparsity 0.2 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_depth_first_20\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-synthetic-depth-scores-20260522.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_25_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:54:51.945Z",
+    "updated_at": "2026-05-21T13:55:17.500Z",
+    "hypothesis": "CKA-only 25% SFT model MATH-500 @2048 accuracy establishes pre-GRPO baseline, re-run with correct max_new_tokens=2048 for consistency",
+    "parent": "eval_math500_sft_cka_only_25"
+  },
+  "timestamp": "2026-05-21T13:55:18.031428+00:00",
+  "trigger": "update_registry"
+}

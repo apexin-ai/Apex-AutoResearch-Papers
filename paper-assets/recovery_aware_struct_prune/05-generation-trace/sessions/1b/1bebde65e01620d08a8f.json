@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bebde65e01620d08a8f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_17_1779044656.md",
+  "task_key": "loop_17_1779044656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779044656.md",
+    "occurrence": 1,
+    "bytes": 4274,
+    "sha256": "dd5ca913eb0ec89ae425fafa804c08852ef6bceb22ee617491278c2bfdbd1481"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-17T19:04:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1，westd-11672 cuda:0/1/2/3（共 6 张）\n- GPU 编号脚本内始终从 0 开始（框架自动映射物理 GPU）\n- D051：MATH-500 GRPO RASP vs Standard 对比不可用于 C3 论证（配置不公平），不要重跑 eval_math500_grpo_rasp_20\n- D044：核心叙事已 pivot 为 \"universal decoupling\"（reward 涨但 accuracy 不跟），不是 \"RASP enables better RL recovery\"\n- D049：不采纳 \"pruning disables GRPO\" 叙事，维持 C1 (collapse + decoupling 双现象)\n- D050：RASP-RLVR 降级为 ablation (negative result)\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**：工作目录 /root/recovery_aware_struct_prune，模型/数据 /root/autodl-tmp/recovery_aware_struct_prune/\n- **westd-11672**：同上路径结构\n- Python：`source /root/miniconda3/bin/activate`（两台服务器均如此）\n- 关键模型路径：\n  - 未剪枝：/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\n  - RASP SFT：/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd\n  - Standard SFT：/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\n  - GRPO RASP v9：/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9\n  - GRPO Standard v8：/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8\n  - CKA-only SFT：/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\n- 活跃 cron（reconcile 确认）：\n  - eval_math500_grpo_standard_20 (pid=14556, westd)\n  - grpo_random_20 (pid=719679)\n  - eval_humaneval_grpo_standard_20_2048 (pid=27194, westd)\n  - eval_humaneval_grpo_rasp_20_2048 (pid=28131, westd cuda:0)\n\n### 3. 📊 当前状态\n刚处理 eval_math500_grpo_rasp_20_v2 失败回调（timeout 6h，GRPO 生成极长链 ~112s/problem）。已更新 registry notes、发飞书卡片、更新 memory.md、向 Director 汇报。\n\n**RUNNING 实验**（registry 确认）：\n- eval_humaneval_grpo_rasp_20_2048：westd cuda:0，HumanEval@2048 GRPO RASP\n- eval_math500_grpo_standard_20：westd，MATH-500 GRPO Standard（C1 cross-benchmark）\n\n**Cron 额外跟踪**（registry 可能未同步为 RUNNING）：\n- grpo_random_20：CKA narrative 关键实验（collapse 行为对比）\n- eval_humaneval_grpo_standard_20_2048：HumanEval@2048 Standard\n\n**已向 Director 汇报**：资源严重空闲（6 张分配仅 1 张确认在跑），等 Director 指示优先级。Worker 池 = 0。\n\n### 4. 📋 待办\n- Director 回复优先级 → 立即派 Worker 铺满空闲 GPU（25% GRPO / Qwen Math / scoring ablation）\n- eval_math500_grpo_standard_20 完成 → 与 SFT Standard MATH-500 对比验证 C1 cross-benchmark；如果也 timeout → 记录为 GRPO 通病，不重跑\n- grpo_random_20 完成 → 关键分叉：collapse ≈ RASP (step~10) 说明所有结构剪枝伤 RL；collapse ≈ Standard (step~60) 说明 CKA-aware 特别伤 RL；stable 则 CKA narrative 需重构\n- eval_humaneval_grpo_rasp_20_2048 + eval_humaneval_grpo_standard_20_2048 完成 → 补全 HumanEval@2048 4-way 矩阵\n- eval_sft_cka_only_20 已完成 SFT（64.0% GSM8K N=200），待 N=1319 full eval 确认\n- sft_cka_only_20 完成后 → 启动 eval_sft_cka_only_20 (N=1319) 正式评估\n\n### 5. 🎯 战略上下文\n- **DDL：EMNLP 2026 ARR May 25（~8 天）**\n- **三个 Core Claims**：\n  - C1: Universal decoupling — GRPO reward 涨但 accuracy 不跟（unpruned 也是）\n  - C2: Collapse gradient — 剪枝模型 GRPO 训练 collapse，RASP 最快(step~10) > Standard(step~60) > Unpruned(无)\n  - C3: SFT marginal advantage — RASP SFT 略优于 Standard SFT（61.49% vs 59.29%, p=0.25）\n- **20% sparsity core data 全部完成**，当前在做 scope expansion：25% sparsity + Qwen2.5-Math-7B cross-model\n- **最易判断错的事**：\n  1. 不要把 C1 理解为 \"GRPO 对剪枝模型无用\"——unpruned 也 decouple，这是 universal 现象\n  2. grpo_random_20 结果会决定 C2 的 narrative 强度——如果 random collapse 时间与 RASP 接近，说明 CKA scoring 不是 collapse 的主因\n  3. GRPO eval 超时是通病（已记录 memory.md），不要盲目重跑 MATH-500 eval\n  4. Paper Agent Step 2 (Plot Generation) 进行中，与实验并行推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779044656.md"
+}

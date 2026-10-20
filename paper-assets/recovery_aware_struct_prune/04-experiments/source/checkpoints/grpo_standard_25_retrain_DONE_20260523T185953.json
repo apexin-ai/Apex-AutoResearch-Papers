@@ -1,0 +1,49 @@
+{
+  "exp_id": "grpo_standard_25_retrain",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T17:52:21.325Z",
+    "updated_at": "2026-05-23T18:59:52.748Z",
+    "hypothesis": "Retrain GRPO Standard 25% from sft_standard_25_retrain (100 steps, seed 42). Old grpo_standard_25 checkpoint on defunct westd-11672. Critical path: tab_math500 25% sparsity row requires this + subsequent MATH-500 fixed eval.",
+    "parent": "sft_standard_25_retrain",
+    "server": "westd-32935",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32935",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-23T18:38:30.440Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_retrain --max_steps 100 --save_steps 100 --seed 42\"",
+      "code_commit": "39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c",
+      "finished_at": "2026-05-23T18:59:47.631Z",
+      "training_hours": 0.35
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_retrain --max_steps 100 --save_steps 100 --seed 42\"",
+      "server": "westd-32935",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "154808",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_25_retrain.log",
+      "submitted_at": "2026-05-23T18:38:34.366Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1278.4,
+      "gpu_hours": 0.36
+    },
+    "pid": "154808",
+    "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_25_retrain.log",
+    "conclusion": "failed",
+    "notes": "Killed: used default max_completion_length=512, need 1024 to match Standard GRPO params. Replaced by grpo_standard_25_retrain_v2.",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-23T18:59:52.748Z"
+  },
+  "timestamp": "2026-05-23T18:59:53.432785+00:00",
+  "trigger": "update_registry"
+}

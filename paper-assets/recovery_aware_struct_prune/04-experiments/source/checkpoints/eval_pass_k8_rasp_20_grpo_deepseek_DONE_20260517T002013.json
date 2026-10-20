@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_pass_k8_rasp_20_grpo_deepseek",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:27:01.192Z",
+    "updated_at": "2026-05-17T00:20:13.578Z",
+    "hypothesis": "DeepSeek-R1-Distill-Qwen-7B RASP 20% post-GRPO pass@k=8 (N=200, T=0.7, seed=42). C1 diversity 验证：RASP collapse 模型的 sampling diversity。构建 pass@k 2×2 矩阵。Parent: grpo_stage2_rasp_20_v9.",
+    "parent": "grpo_stage2_rasp_20_v9",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python eval_pass_k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --k 8 --temperature 0.7 --max_samples 200 --seed 42 --max_new_tokens 4096 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_deepseek.json",
+      "server": "westd-11672",
+      "gpu": "cuda:0",
+      "pid": "61473",
+      "data_path": "gsm8k_test",
+      "data_count": 200,
+      "model_name": "grpo_stage2_rasp_20_v9",
+      "seed": 42,
+      "checkpoint_source": "grpo_stage2_rasp_20_v9",
+      "eval_data": "gsm8k_test",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_deepseek.log"
+    },
+    "notes": "参数修正：原 PID 60022/60027 用了 eval_gsm8k.py --voting + max_new_tokens=512（与 Standard 不一致），已 kill 并用 eval_pass_k.py + max_new_tokens=4096 重跑（PID 61473）。现与 Standard eval 完全对齐。",
+    "reproduce": {
+      "finished_at": "2026-05-17T00:20:12.488Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T00:20:11.075Z"
+  },
+  "timestamp": "2026-05-17T00:20:13.779585+00:00",
+  "trigger": "update_registry"
+}

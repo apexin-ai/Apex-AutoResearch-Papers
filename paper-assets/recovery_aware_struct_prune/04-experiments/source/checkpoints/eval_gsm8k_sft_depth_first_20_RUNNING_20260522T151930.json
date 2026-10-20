@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_gsm8k_sft_depth_first_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:20:43.950Z",
+    "updated_at": "2026-05-22T15:19:30.273Z",
+    "hypothesis": "MF5 depth-first SFT GSM8K eval. Establishes SFT baseline for depth-first pruning method, paired with GRPO eval to check C1 decoupling for this baseline method.",
+    "parent": "pipeline_depth_first_20",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/eval_gsm8k.py --model_path sft_depth_first_20 --output_path results/eval_gsm8k_sft_depth_first_20.json --seed 42 --dtype bfloat16",
+      "server": "westd-32935",
+      "gpu": "cuda:2",
+      "pid": "54882",
+      "data_path": "openai/gsm8k (test split)",
+      "data_count": 1319,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (sft_depth_first_20)",
+      "seed": 42,
+      "checkpoint_source": "sft_depth_first_20",
+      "eval_data": "gsm8k test 1319",
+      "log_path": "/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_depth_first_20.log",
+      "note": "Early-stopped by Director at ~60-88 samples. Interim accuracy ~10%@50 (SFT). Conclusive: depth-first 20% SFT dramatically worse than CKA-only 64%. MF5 claim validated — CKA-only advantage is NOT simply removing deep layers.",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T15:19:30.922136+00:00",
+  "trigger": "update_registry"
+}

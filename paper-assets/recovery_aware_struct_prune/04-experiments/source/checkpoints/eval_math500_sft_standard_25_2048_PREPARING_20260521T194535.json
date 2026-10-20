@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_math500_sft_standard_25_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:45:34.974Z",
+    "updated_at": "2026-05-21T19:45:34.974Z"
+  },
+  "timestamp": "2026-05-21T19:45:35.536701+00:00",
+  "trigger": "update_registry"
+}

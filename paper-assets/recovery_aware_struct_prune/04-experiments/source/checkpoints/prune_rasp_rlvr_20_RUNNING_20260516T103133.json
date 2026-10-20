@@ -1,0 +1,24 @@
+{
+  "exp_id": "prune_rasp_rlvr_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:50:39.656Z",
+    "updated_at": "2026-05-16T10:31:33.536Z",
+    "hypothesis": "RASP-RLVR 20% pruning: score = importance * cka^alpha. 反转 CKA scoring——剪掉功能独特的结构（低 CKA overlap），保留冗余结构（高 overlap），使 RLVR 更容易通过冗余路径恢复能力。对比 RASP (1-cka)^alpha 和 Standard (importance only)。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode rasp-rlvr --sparsity 0.20 --alpha 1.0 --dtype bfloat16 --importance_path results/importance_scores.pt --cka_path results/cka_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20",
+      "server": "westb-23072",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "data_path": "results/importance_scores.pt + results/cka_scores.pt",
+      "data_count": 0,
+      "seed": 42
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T10:31:33.671915+00:00",
+  "trigger": "update_registry"
+}

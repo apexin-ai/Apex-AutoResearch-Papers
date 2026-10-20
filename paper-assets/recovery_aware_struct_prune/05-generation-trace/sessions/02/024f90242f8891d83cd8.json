@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "024f90242f8891d83cd8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo cka only 20 extended 300",
+  "task_key": "worker_diagnose_grpo_cka_only_20_extended_300_20260518T220207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_cka_only_20_extended_300_20260518T220207_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "069dd8df941d3c636872f262661263da1383081d25c175263f260819113a17fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n**结论：grpo_cka_only_20_extended_300 训练成功，registry 标记正确。**\n\n关键发现：\n- **300/300 步完成**，模型已保存，W&B run 状态 `finished`\n- **EXIT_CODE=129 是假阳性** — SIGHUP 发生在训练完成、模型保存、W&B finalize 全部结束之后，来自 tmux/wrapper 清理信号\n- **指标与 registry 完全一致**：peak_reward=0.4444 @ step 280，final_reward=0.3075 @ step 300\n- **Reward 轨迹**：0.22-0.44 范围内持续振荡，无 collapse。与 Standard extended 的 reward collapse (0.102→0.056) 形成鲜明对比，确认 CKA-only 的结构优势在长训练中持续\n- **进程已完全退出**，无残留\n\n报告已追加到 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-cka-only-20-extended-300.md"
+}

@@ -1,0 +1,124 @@
+\section{Method: Recovery-Aware Structured Pruning}
+\label{sec:method}
+
+We propose \textbf{Recovery-Aware Structured Pruning (RASP)}, a three-stage framework that optimizes structural pruning decisions for post-RLVR recoverability rather than immediate accuracy preservation.
+The core insight is that structures with high functional overlap---those whose computations are redundant with other retained structures---are more recoverable under RLVR, because reinforcement learning can redistribute their function through global exploration~\citep{rlsqueezes2026}.
+
+\subsection{Preliminaries and Notation}
+\label{sec:prelim}
+
+\paragraph{Structured pruning.}
+Given a pretrained transformer $\mathcal{M}$ with $L$ layers, structured pruning removes entire computational units---attention heads or MLP channels---to reduce model size while maintaining hardware-friendly dense computation.
+We denote the set of prunable structures as $\mathcal{H} = \{h_1, h_2, \ldots, h_N\}$.
+
+\paragraph{Grouped Query Attention (GQA).}
+In GQA architectures~\citep{ainslie2023gqa}, $n_Q$ query heads share $n_{KV}$ key-value heads, with each KV head serving a group of $G = n_Q / n_{KV}$ query heads.
+For DeepSeek-R1-Distill-Qwen-7B ($n_Q{=}28$, $n_{KV}{=}4$), $G = 7$, yielding 4 GQA groups per layer.
+We treat each GQA group (7 Q heads + 1 KV head) as a single prunable unit, since removing a KV head necessitates removing all associated Q heads.
+
+\paragraph{RLVR recovery.}
+Reinforcement Learning with Verifiable Rewards (RLVR) recovers pruned model capabilities using outcome-based rewards from tasks with verifiable answers.
+We use Group Relative Policy Optimization (GRPO;~\citealp{shao2024grpo}) as the recovery algorithm, following~\citet{selfhealing2025}.
+
+\subsection{Stage 1: Reasoning-Trace Structural Analysis}
+\label{sec:stage1}
+
+RASP computes two complementary scores per structure: \emph{importance} $I(h)$ capturing the structure's contribution to reasoning, and \emph{functional overlap} $F(h)$ measuring the degree to which its function is recoverable from other structures.
+
+\paragraph{Self-calibrated reasoning traces.}
+Following~\citet{resp2025}, we generate chain-of-thought reasoning traces from the model's own distribution rather than using external calibration data.
+Given a calibration set of reasoning problems $\mathcal{D}_\text{cal}$, we sample traces $\{(x_j, \hat{y}_j)\}_{j=1}^{M}$ where $\hat{y}_j \sim p_\mathcal{M}(\cdot \mid x_j)$.
+This ensures importance scores reflect the model's actual reasoning pathways.
+
+\paragraph{Structural importance.}
+For each structure $h$, we compute importance $I(h)$ via first-order Taylor expansion on the reasoning trace loss:
+\begin{equation}
+    I(h) = \left| \sum_{(x,\hat{y}) \in \mathcal{D}_\text{cal}} \mathbf{a}_h(x, \hat{y})^\top \frac{\partial \mathcal{L}(x, \hat{y})}{\partial \mathbf{a}_h} \right|,
+    \label{eq:importance}
+\end{equation}
+where $\mathbf{a}_h$ denotes the activation of structure $h$ and $\mathcal{L}$ is the language modeling loss over the reasoning trace.
+For a GQA group $g$ containing Q heads $\{q_1, \ldots, q_G\}$ and KV head $k$, we aggregate: $I(g) = \sum_{i=1}^{G} I(q_i) + I(k)$.
+
+\paragraph{Functional overlap via CKA.}
+We measure functional overlap using linear Centered Kernel Alignment (CKA;~\citealp{kornblith2019cka}), which quantifies similarity between two sets of representations invariant to invertible linear transformations.
+Given activation matrices $\mathbf{X}, \mathbf{Y} \in \mathbb{R}^{n \times d}$ collected over $n$ calibration examples, linear CKA is:
+\begin{equation}
+    \text{CKA}(\mathbf{X}, \mathbf{Y}) = \frac{\text{HSIC}(\mathbf{X}, \mathbf{Y})}{\sqrt{\text{HSIC}(\mathbf{X}, \mathbf{X}) \cdot \text{HSIC}(\mathbf{Y}, \mathbf{Y})}},
+    \label{eq:cka}
+\end{equation}
+where $\text{HSIC}(\mathbf{X}, \mathbf{Y}) = \frac{1}{(n-1)^2} \operatorname{tr}(\mathbf{K} \mathbf{H} \mathbf{L} \mathbf{H})$, with $\mathbf{K} = \mathbf{X}\mathbf{X}^\top$, $\mathbf{L} = \mathbf{Y}\mathbf{Y}^\top$, and $\mathbf{H} = \mathbf{I}_n - \frac{1}{n}\mathbf{1}\mathbf{1}^\top$.
+
+For a GQA group $g_i$ in layer $\ell$, we form its representation by concatenating its constituent Q head activations: $\mathbf{X}_{g_i} = [\mathbf{a}_{q_1}; \ldots; \mathbf{a}_{q_G}] \in \mathbb{R}^{n \times Gd_h}$.
+The functional overlap of $g_i$ is the mean pairwise CKA with other groups in the same layer:
+\begin{equation}
+    F(g_i) = \frac{1}{|\mathcal{G}_\ell| - 1} \sum_{\substack{g_j \in \mathcal{G}_\ell \\ j \neq i}} \text{CKA}(\mathbf{X}_{g_i}, \mathbf{X}_{g_j}),
+    \label{eq:overlap}
+\end{equation}
+where $\mathcal{G}_\ell$ is the set of GQA groups in layer $\ell$.
+Unlike prior work that uses inter-layer CKA to identify globally redundant layers for depth pruning~\citep{mpruner2024,lachance2024cka}, RASP uses \emph{intra-layer} CKA between individual GQA groups to predict per-structure recoverability---a fundamentally different granularity and objective.
+
+\subsection{Stage 2: Recovery-Aware Scoring}
+\label{sec:stage2}
+
+The recovery-aware score combines importance and functional overlap:
+\begin{equation}
+    S(h) = I(h) \times \big(1 - F(h)\big)^\alpha,
+    \label{eq:score}
+\end{equation}
+where $\alpha > 0$ controls the strength of the recoverability penalty.
+Structures with the lowest $S(h)$ are pruned up to the target sparsity ratio.
+
+The scoring captures three regimes:
+\begin{itemize}[nosep,leftmargin=*]
+    \item \textbf{High $I$, low $F$} (irreplaceable scaffolding): No other structure can assume its function. High $S$ $\rightarrow$ \emph{protected}.
+    \item \textbf{High $I$, high $F$} (redundant but important): RLVR can redistribute its function via global exploration. Low $S$ $\rightarrow$ \emph{pruned preferentially}.
+    \item \textbf{Low $I$} (unimportant): Pruned regardless of overlap.
+\end{itemize}
+
+The key distinction from standard pruning---which ranks solely by $I(h)$---is that RASP additionally down-weights protection of structures whose function overlaps with retained structures.
+This is motivated by the finding that RLVR recovers through global exploration and path compression~\citep{rlsqueezes2026}, making high-overlap structures more amenable to functional redistribution than unique structures of equivalent importance.
+
+Attention GQA groups and MLP channel groups are scored jointly and ranked in a unified list, enabling cross-component pruning decisions.
+Algorithm~\ref{alg:rasp} summarizes the complete pipeline.
+
+\subsection{Stage 3: RLVR Recovery}
+\label{sec:stage3}
+
+After pruning, we apply GRPO-based RLVR on mathematical reasoning data (GSM8K and MATH training sets) to recover the pruned model's reasoning ability.
+The reward is binary: $r = 1$ if the model's final answer matches the ground truth, $r = 0$ otherwise.
+
+We choose RLVR over SFT for recovery based on their fundamentally different training dynamics.
+\citet{rlsqueezes2026} show that RLVR \emph{compresses} incorrect reasoning trajectories while SFT \emph{expands} correct ones.
+For a pruned model, RLVR can globally explore and redistribute functionality across remaining structures, while SFT is limited to imitating fixed trajectories through a reduced architecture.
+Structures with high functional overlap $F(h)$ are precisely those whose function can be absorbed by similar retained structures through RLVR's global optimization---the theoretical basis for RASP's scoring criterion.
+
+\begin{algorithm}[t]
+\caption{Recovery-Aware Structured Pruning (RASP)}
+\label{alg:rasp}
+\SetAlgoLined
+\KwIn{Model $\mathcal{M}$, calibration problems $\mathcal{D}_\text{cal}$, target sparsity $s$, overlap weight $\alpha$, recovery data $\mathcal{D}_\text{rec}$}
+\KwOut{Pruned and recovered model $\mathcal{M}'$}
+\BlankLine
+\tcc{Stage 1: Reasoning-Trace Structural Analysis}
+Sample reasoning traces $\{(x_j, \hat{y}_j)\} \sim p_\mathcal{M}(\cdot \mid \mathcal{D}_\text{cal})$\;
+\ForEach{structure $h \in \mathcal{H}$}{
+    Compute importance $I(h)$ via Eq.~\eqref{eq:importance}\;
+    Collect activations $\mathbf{X}_h$ over calibration traces\;
+}
+\ForEach{layer $\ell = 1, \ldots, L$}{
+    \ForEach{group $g_i \in \mathcal{G}_\ell$}{
+        $F(g_i) \gets \frac{1}{|\mathcal{G}_\ell|-1} \sum_{j \neq i} \text{CKA}(\mathbf{X}_{g_i}, \mathbf{X}_{g_j})$\;
+    }
+}
+\BlankLine
+\tcc{Stage 2: Recovery-Aware Scoring}
+\ForEach{structure $h \in \mathcal{H}$}{
+    $S(h) \gets I(h) \times (1 - F(h))^\alpha$\;
+}
+$\mathcal{P} \gets \text{structures with lowest } S(h) \text{ s.t. } \sum_{h \in \mathcal{P}} \text{params}(h) \ge s \cdot |\theta|$\;
+$\mathcal{M}_\text{pruned} \gets \text{Remove}(\mathcal{M}, \mathcal{P})$\;
+\BlankLine
+\tcc{Stage 3: RLVR Recovery}
+$\mathcal{M}' \gets \text{GRPO}(\mathcal{M}_\text{pruned}, \mathcal{D}_\text{rec})$\;
+\Return{$\mathcal{M}'$}
+\end{algorithm}

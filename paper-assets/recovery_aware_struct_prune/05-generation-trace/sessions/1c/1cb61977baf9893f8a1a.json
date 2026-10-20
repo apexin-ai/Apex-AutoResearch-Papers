@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cb61977baf9893f8a1a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check eval 2step verify",
+  "task_key": "worker_check_eval_2step_verify_20260520T133524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_2step_verify_20260520T133524_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "85bc9a4e0c92b0087c4802e7b92dae4902b40d911f555cd939106019741544c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29022 GPU 状态\n\n| GPU | Util% | Memory | PID | 任务 |\n|-----|-------|--------|-----|------|\n| 0 | 90% | 12825 MiB | 252604 | `eval_gsm8k` grpo_cka_only_20_seed456 |\n| 1 | 93% | 13371 MiB | 252919 | `eval_gsm8k` grpo_cka_only_15_v2 |\n| 2 | 99% | 29157 MiB | 226966 | `eval_gsm8k` grpo_standard_20_seed123 |\n| 3 | 0% | 0 MiB | — | 空闲 |\n\n## eval 进程状态\n\n**eval_gsm8k_grpo_cka_only_20_seed456_full** (cuda:0)\n- PID 252604 存活：✅\n- 日志写入：✅\n- 进度：25/1319 (1.9%)，~2-3s/it，启动于 21:31\n\n**eval_gsm8k_grpo_cka_only_15_v2** (cuda:1)\n- PID 252919 存活：✅\n- 日志写入：✅\n- 进度：5/1319 (0.4%)，~2.7s/it，启动于 21:32\n\n两个 eval 均已成功启动并在正常推理中。按当前速度预估各需 ~1 小时完成。cuda:2 上还有一个 grpo_standard_20_seed123 的 eval 在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-2step-verify.md"
+}

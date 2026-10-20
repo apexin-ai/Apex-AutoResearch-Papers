@@ -1,0 +1,9 @@
+Structured MLP channel pruning of reasoning Large Language Models (LLMs) is typically followed by Reinforcement Learning with Verifiable Rewards (RLVR) to recover reasoning ability.
+The standard pipeline treats the pruning decision as independent of the downstream RL alignment stage.
+We demonstrate that this independence assumption breaks down: recovery capacity is shaped at pruning time, not during subsequent fine-tuning.
+Through a controlled comparison of four structural pruning criteria under identical Group Relative Policy Optimization (GRPO) training on DeepSeek-R1-Distill-Qwen-7B, we observe a recovery capacity spectrum: CKA-only pruning achieves active learning (peak reward 0.354), Random stagnates (0.190), Standard exhibits borderline collapse (0.081), and RASP collapses permanently (0.061).
+We observe that preserved representational diversity correlates with recovery capacity: CKA-only produces the lowest dense fidelity ($\mu{=}0.62$ diagonal CKA) yet recovers best, while importance-based methods cluster near $\mu{=}0.90$ and collapse (Welch's $t$-test, $p{<}0.001$).
+Reward-accuracy decoupling is sparsity-dependent: at 15\% sparsity, GRPO amplifies the CKA-only advantage from 5.69\,pp (SFT) to 7.20\,pp (3-seed GRPO; $p{<}0.001$), while at 20--25\% GRPO cannot improve upon SFT baselines ($|\Delta| < 1$\,pp across all methods).
+This motivates reward trajectory, not accuracy, as the appropriate diagnostic for pruned model quality.
+Cross-scale (1.5B) and cross-architecture (Qwen2.5-Math-7B) experiments provide initial evidence for generality.
+Our results demonstrate that pruning criterion selection is an important factor in post-pruning RL trainability, and that CKA-based redundancy scoring consistently outperforms gradient importance for RL-intended compression.

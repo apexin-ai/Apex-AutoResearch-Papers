@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_grpo_cka_only_20_2048_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:07:09.002Z",
+    "updated_at": "2026-05-23T05:07:46.093Z",
+    "hypothesis": "GRPO CKA-only 20% MATH-500 @2048 rerun with NEW eval script. Previous 29.2% (eval_math500_grpo_cka_only_20_2048) used OLD answer extraction. SFT CKA-only = 26.8% (NEW). Rerun ensures consistent C1 |Δ| comparison.",
+    "parent": "eval_math500_grpo_cka_only_20_2048"
+  },
+  "timestamp": "2026-05-23T05:07:46.746304+00:00",
+  "trigger": "update_registry"
+}

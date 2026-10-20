@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e553f01cf42e03b44b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix grpo unpruned pid conflict",
+  "task_key": "worker_ops_fix-grpo-unpruned-pid-conflict_20260516T021740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-grpo-unpruned-pid-conflict_20260516T021740_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "d370714477aa219671b2c709f741221d5d80ea0728e9f61448aa900c816c3566"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "wandb summary 还没写入（训练刚 resume 不久）。从日志看进度已到 step 25/100 并在保存 checkpoint-25。\n\n## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| **PID 75381（原进程）** | 已死，无需处理 |\n| **PID 77647/77652（fix Worker 启动）** | 存活，是**唯一**的 grpo_unpruned_v2 训练进程 |\n| **PID 冲突** | **不存在**——75381 已自然退出，77647 是其替代进程，从 checkpoint-20 resume |\n| **GPU 占用** | cuda:1 → PID 77652 占 91016 MiB；cuda:0 → PID 74134（eval_gsm8k.py）占 17654 MiB |\n| **当前 step** | 25/100，正在写 checkpoint-25 |\n| **Checkpoints** | checkpoint-20, checkpoint-25 已存在 |\n| **磁盘** | /root/autodl-tmp 250G 用 173G，剩余 78G（70%），充足 |\n| **wandb** | run ID `hwucjf2n`，summary 尚未生成（刚启动 3 分钟） |\n\n**结论：无需 kill 任何进程。** 77647 就是当前正确运行的训练任务，不是重复进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-grpo-unpruned-pid-conflict.md"
+}

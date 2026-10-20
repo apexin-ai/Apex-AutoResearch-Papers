@@ -1,0 +1,11 @@
+paper_key: "opsd_2026"
+title: "OPSD: One-shot Post-RL Structured Distillation"
+venue: "arXiv May 2026"
+full_text_available: false
+research:
+  baselines: [all-rollout OPSD, correct-only OPSD, incorrect-only OPSD, split-direction OPSD, all-rollout JSD, signal reinjection OPSD, extended training OPSD]
+  metrics: [{name: "accuracy delta %", direction: "higher_better"}, {name: "mean response length", direction: "lower_better"}, {name: "epistemic marker density", direction: "lower_better"}]
+  datasets: [{name: "MATH500", size: "standard"}, {name: "AIME24", size: "standard"}, {name: "AIME25", size: "standard"}]
+  ablation_dimensions: [rollout selection, distillation objective, training duration]
+  training_recipe: {}
+  method_family: "on-policy self-distillation / post-RL reasoning compression"

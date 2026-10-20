@@ -1,0 +1,57 @@
+{
+  "exp_id": "grpo_standard_20_extended_300_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:53:41.781Z",
+    "updated_at": "2026-05-18T14:47:49.037Z",
+    "hypothesis": "Extended GRPO Standard 7B from step 110 to 300 (resumed after disk-full crash at step 120). Tests whether longer GRPO training changes the recovery capacity gradient. save_steps=50, save_total_limit=3 to prevent disk issues.",
+    "parent": "grpo_standard_20_extended_300",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/checkpoint-110 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --loss_type dapo --learning_rate 1e-6 --max_steps 300 --save_steps 50 --save_total_limit 3 --resume_from_checkpoint /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/checkpoint-110'",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "6346",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (Standard 20% pruned, SFT recovered, GRPO extended v2)",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "seed": 42,
+      "wandb_run_id": "44cjdoiy",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/checkpoint-110",
+      "eval_data": "openai/gsm8k (GRPO RL training)",
+      "hyperparams": {
+        "beta": 0.01,
+        "temperature": 0.4,
+        "repetition_penalty": 1.15,
+        "format_reward_weight": 0.1,
+        "loss_type": "dapo",
+        "lr": 1e-06,
+        "max_steps": 300,
+        "save_steps": 50,
+        "save_total_limit": 3,
+        "resume_from_step": 111
+      }
+    },
+    "metrics": {
+      "reward_mean_step300": 0.0562,
+      "loss_step300": 0.0367,
+      "frac_reward_zero_std_step300": 0.525,
+      "kl_step300": 0.00306,
+      "entropy_step300": 0.157,
+      "lr_step300": 3.33e-09,
+      "runtime_min": 48,
+      "reward_decline_after_step260": true
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/checkpoint-300",
+    "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_20_extended_300_v2.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T14:47:49.037Z"
+  },
+  "timestamp": "2026-05-18T14:47:49.374903+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,8 @@
+model_path: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870
+mode: greedy
+accuracy: 0.5830
+stderr: 0.01358
+n_correct: 769
+n_total: 1319
+eos_rate: 0.9803
+avg_response_length: 227.7

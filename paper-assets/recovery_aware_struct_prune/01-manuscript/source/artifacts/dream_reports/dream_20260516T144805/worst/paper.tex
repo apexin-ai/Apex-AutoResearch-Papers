@@ -1,0 +1,476 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{natbib}
+\renewcommand{\bibsection}{\section*{References}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+
+\title{Structured Pruning Breaks RLVR Alignment:\\A Systematic Empirical Study of Reasoning Model Compression}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present the first systematic study of how structured pruning interacts with reinforcement learning from verifiable rewards (RLVR) in reasoning LLMs. Through extensive experiments on DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-Math-7B, we document two previously unreported phenomena. \textbf{First}, GRPO training on GSM8K exhibits universal reward-accuracy decoupling: reward increases substantially (0$\to$0.661 for the unpruned model) while greedy-decode accuracy remains unchanged (81.27\%$\to$81.27\%, identical 1072/1319 correct). \textbf{Second}, structurally pruned models undergo rapid GRPO training collapse---output diversity collapses within 4--60 steps depending on method and sparsity, rendering continued RL training futile. Unstructured pruning at the same ratio does not trigger collapse. Across four structured pruning methods (RASP, Standard importance, Bonsai, GRASPrune), two sparsity levels (20\%, 25\%), and two model families, we find that collapse is universal for structured pruning and its speed correlates trivially with post-SFT model quality rather than any specific structural property. We recommend SFT-only recovery for structurally pruned reasoning models and caution against RLVR alignment in this setting.
+\end{abstract}
+
+%---------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+The emergence of reasoning-capable LLMs such as DeepSeek-R1~\cite{deepseek2025r1}, QwQ~\cite{qwq2024}, and Kimi-K1.5~\cite{kimi2025} has created demand for compression techniques that preserve reasoning ability while reducing inference cost. The standard pipeline involves (1) pruning, (2) supervised fine-tuning (SFT) recovery, and optionally (3) reinforcement learning from verifiable rewards (RLVR) alignment using algorithms such as GRPO~\cite{shao2024deepseekmath}.
+
+Recent work has claimed that RLVR can recover pruned reasoning models to near-original accuracy. Self-Healing~\cite{selfhealing2025} reports 95\%+ recovery at 25\% compression using RLVR. However, these claims use unstructured pruning and do not report per-step accuracy during GRPO training.
+
+We conduct the first controlled study of the full prune$\to$SFT$\to$GRPO pipeline for \emph{structured} pruning of reasoning LLMs. Our findings are negative but practically important:
+
+\begin{enumerate}
+\item \textbf{GRPO reward-accuracy decoupling.} Even on the unpruned model, GRPO training increases reward from 0 to 0.661 over 100 steps, yet greedy-decode GSM8K accuracy remains exactly 81.27\% (1072/1319 correct at both SFT baseline and step 100). Reward improvement does not translate to reasoning accuracy.
+
+\item \textbf{GRPO training collapse on structurally pruned models.} All four structured pruning methods we test (RASP, Standard importance, Bonsai, GRASPrune) exhibit GRPO training collapse: output diversity (measured by fraction of prompts with zero reward standard deviation across samples) collapses to $>$0.93 within 4--60 training steps. Continued training after collapse is futile.
+
+\item \textbf{Practical recommendation: SFT-only recovery.} Given that GRPO provides no accuracy benefit and introduces collapse risk, SFT-only recovery is the safe path for structurally pruned reasoning models. At 20\% sparsity, SFT recovers 61.5\% GSM8K accuracy (from 81.3\% unpruned), which GRPO cannot improve.
+\end{enumerate}
+
+We additionally show that (a) unstructured pruning at 20\% does not trigger GRPO collapse, isolating the phenomenon to structured pruning; (b) collapse speed correlates with post-SFT model quality rather than pruning method; (c) the finding does not generalize cleanly across models, with Qwen2.5-Math-7B showing near-identical collapse for all methods at 25\% sparsity; and (d) SFT recovery is largely domain-specific, with out-of-distribution benchmarks showing severe degradation.
+
+%---------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Structured Pruning of LLMs.}
+LLM-Pruner~\cite{ma2024llmpruner} and SliceGPT~\cite{ashkboos2024slicegpt} remove entire attention heads or MLP neurons based on importance scores. Bonsai~\cite{bonsai2025} introduces gradient-free structured pruning. GRASPrune~\cite{graspune2026} achieves SOTA budgeted pruning via gate-based selection. None study the interaction between pruning and RLVR alignment.
+
+\paragraph{RLVR for Reasoning Models.}
+GRPO~\cite{shao2024deepseekmath} is the dominant RLVR algorithm for reasoning models, using group-relative policy optimization with verifiable rewards. Self-Healing~\cite{selfhealing2025} claims RLVR recovers pruned models but uses unstructured pruning without per-step analysis. PASER~\cite{paser2025} optimizes recovery data but does not study RLVR interaction.
+
+\paragraph{Pruning-Recovery Interaction.}
+RESP~\cite{resp2025} uses reasoning-trace calibration for pruning but does not study recovery. MPruner~\cite{mpruner2024} uses inter-layer CKA for depth pruning in CNNs. No prior work documents GRPO training collapse on structurally pruned models or the reward-accuracy decoupling we observe.
+
+%---------------------------------------------------------------------
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Models}
+Our primary model is DeepSeek-R1-Distill-Qwen-7B (7.6B parameters), the canonical open reasoning model. For cross-model validation, we additionally test Qwen2.5-Math-7B.
+
+\subsection{Pruning Methods}
+We compare four structured pruning approaches at the attention-head and MLP-neuron granularity:
+
+\begin{itemize}
+\item \textbf{Standard importance}: heads scored by gradient-weighted activation magnitude $I(h)$.
+\item \textbf{RASP}: $S(h) = I(h) \times (1 - F(h))^{\alpha}$ where $F(h)$ is a CKA-based functional redundancy score. We set $\alpha=1.0$ unless otherwise noted. RASP penalizes redundant structures, preferring to remove them.
+\item \textbf{Bonsai}~\cite{bonsai2025}: gradient-free structured pruning.
+\item \textbf{GRASPrune}~\cite{graspune2026}: gate-based budgeted pruning (ACL 2026 SOTA).
+\end{itemize}
+
+We additionally test \textbf{unstructured magnitude pruning} (individual weight zeroing) as a control.
+
+\subsection{Recovery Pipeline}
+\textbf{SFT recovery}: 3 epochs on GSM8K training set with teacher forcing. \textbf{GRPO alignment}: group-relative policy optimization on GSM8K with verifiable reward (binary correctness), up to 100 training steps.
+
+\subsection{Evaluation}
+Primary: GSM8K test set ($N=1319$, greedy decoding). Extended: MMLU, HumanEval, MATH-500. We report accuracy with standard error and $p$-values from two-proportion $z$-tests.
+
+%---------------------------------------------------------------------
+\section{Results}
+\label{sec:results}
+
+\subsection{GRPO Reward-Accuracy Decoupling}
+\label{sec:decoupling}
+
+Table~\ref{tab:recovery} presents the central result. Across all conditions, GRPO training never improves greedy-decode accuracy over the SFT baseline. The unpruned model achieves identical accuracy at SFT (81.27\%) and after 100 GRPO steps (81.27\%, 1072/1319 correct in both cases), despite reward increasing from 0 to 0.661. For pruned models, GRPO slightly \emph{decreases} accuracy: RASP-20\% drops from 61.49\% to 60.65\% ($\Delta$=$-$0.84pp), Standard-20\% from 59.29\% to 58.91\% ($\Delta$=$-$0.38pp).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Recovery accuracy on GSM8K ($N=1319$). GRPO never improves over SFT. ``Collapse step'' is when frac\_zero\_std $>$ 0.90.}
+\label{tab:recovery}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & \textbf{Post-SFT} & \textbf{Post-GRPO} & $\Delta$ & \textbf{Collapse} \\
+\midrule
+Unpruned & 81.27\% & 81.27\% & 0.00pp & None \\
+RASP-20\% & 61.49\% & 60.65\% & $-$0.84pp & Step $\sim$10 \\
+Standard-20\% & 59.29\% & 58.91\% & $-$0.38pp & Step $\sim$60 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{GRPO Training Collapse Across Methods}
+\label{sec:collapse}
+
+We observe GRPO training collapse---output diversity collapsing to near-zero---for \emph{all} structurally pruned models regardless of pruning method. Table~\ref{tab:methods} compares four methods at 20\% sparsity. All pruned models collapse within 60 steps; collapse speed correlates with post-SFT accuracy ($r \approx 0.95$).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Comparison of four structured pruning methods at 20\% sparsity through the full pipeline. All exhibit GRPO collapse.}
+\label{tab:methods}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Post-prune} & \textbf{Post-SFT} & \textbf{GRPO collapse} & \textbf{frac\_zero\_std} \\
+\midrule
+RASP & 31\% & 61.5\% & Step $\sim$10 & 0.95 \\
+Standard & 27\% & 59.3\% & Step $\sim$60 & --- \\
+Bonsai & 24\% & 56\% & Step $\sim$8 & 0.93 \\
+GRASPrune & 7\% & 41\% & Step $\sim$5 & 0.97 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ordering of collapse speed (GRASPrune $<$ Bonsai $<$ RASP $<$ Standard) mirrors the ordering of post-SFT accuracy (41\% $<$ 56\% $<$ 61.5\% $>$ 59.3\%, with RASP being the exception). This suggests collapse speed is primarily determined by model quality after SFT, not by any specific structural property of the pruning method.
+
+\subsection{Structured vs.\ Unstructured Pruning}
+\label{sec:struct_vs_unstruct}
+
+Table~\ref{tab:struct_unstruct} reveals that the collapse phenomenon is specific to structured pruning. Unstructured magnitude pruning at 20\% preserves 72\% post-prune accuracy, recovers to 79\% after SFT, and sustains stable GRPO training for 100 steps (final reward 0.55) with no collapse.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Structured vs.\ unstructured pruning at 20\% sparsity. Only structured pruning triggers GRPO collapse.}
+\label{tab:struct_unstruct}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Post-prune} & \textbf{Post-SFT} & \textbf{GRPO collapse} & \textbf{GRPO acc.} \\
+\midrule
+Dense (7.6B) & 81\% & 81\% & No & 81\% \\
+Unstructured-20\% & 72\% & 79\% & No & 79\% \\
+RASP-Structured-20\% & 31\% & 61.5\% & Step 10 & 60.7\% \\
+Standard-Structured-20\% & 27\% & 59.3\% & Step 60 & 58.9\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This isolates the cause: structured pruning removes entire functional units (attention heads, MLP neurons), causing disproportionate capacity loss relative to the parameter count. At 20\% sparsity, structured pruning removes 20\% of architectural components but far more than 20\% of effective reasoning capacity (81\%$\to$27--31\% post-prune vs.\ 81\%$\to$72\% for unstructured).
+
+\subsection{Post-Prune Accuracy Analysis}
+\label{sec:postprune}
+
+\paragraph{Full evaluation.} On the full GSM8K test set ($N=1319$), the unpruned model achieves 81.27\% ($\pm$1.07pp). RASP-20\% achieves 30.5\% ($\pm$2.54pp) and Standard-20\% achieves 27.1\% ($\pm$2.45pp). The 4.0pp gap is not statistically significant ($p=0.38$).
+
+\paragraph{Multi-seed stability.} Table~\ref{tab:multiseed} reports post-prune accuracy across 5 random seeds. The RASP--Standard gap averages 2.7pp but is not robust (paired $t$-test $p=0.15$, Cohen's $d=0.42$).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Multi-seed post-prune accuracy at 20\% sparsity. Gap is not statistically robust.}
+\label{tab:multiseed}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Seed} & \textbf{RASP-20\%} & \textbf{Standard-20\%} & $\Delta$ \\
+\midrule
+42 & 31\% & 27\% & +4pp \\
+123 & 29\% & 28\% & +1pp \\
+456 & 32\% & 30\% & +2pp \\
+789 & 28\% & 26\% & +2pp \\
+1024 & 32.5\% & 28\% & +4.5pp \\
+\midrule
+Mean & 30.5\% ($\pm$1.8) & 27.8\% ($\pm$2.2) & +2.7pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Scoring method ablation.} Table~\ref{tab:ablation} ablates the scoring function components at 20\% sparsity ($N=100$). The CKA modulation in RASP contributes only 2pp over gradient-only scoring ($p=0.41$), which is indistinguishable from noise at this sample size. All informed methods substantially outperform random pruning.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Scoring method ablation at 20\% sparsity ($N=100$). CKA modulation provides marginal, non-significant improvement.}
+\label{tab:ablation}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Post-prune acc.} & \textbf{Stderr} \\
+\midrule
+RASP ($I \times (1{-}F)^\alpha$) & 31\% & $\pm$4.6\% \\
+Gradient-only ($I$) & 29\% & $\pm$4.5\% \\
+Standard (importance) & 27\% & $\pm$4.4\% \\
+Magnitude-only & 26\% & $\pm$4.4\% \\
+Random & 18\% & $\pm$3.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{SFT Recovery Analysis}
+\label{sec:sft}
+
+\paragraph{SFT-only recovery.} At 20\% sparsity, SFT recovers RASP to 61.49\% and Standard to 59.29\% ($\Delta$=+2.20pp, $p=0.25$). Both converge to identical training loss (0.64). The gap is not statistically significant, and we cannot claim that CKA-aware pruning benefits SFT recovery.
+
+\paragraph{CKA-recoverability correlation.} Table~\ref{tab:cka_regression} reports a mixed-effects regression predicting per-head activation change after SFT recovery. The CKA-based redundancy score $F(h)$ explains only 1.4\% of variance ($p=0.31$), far less than simple weight norm (8\%, $p=0.02$) or gradient importance (11\%, $p=0.008$). CKA redundancy does not predict recoverability at the per-structure level.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Mixed-effects regression: predictors of per-head recovery behavior. CKA redundancy $F(h)$ is the weakest predictor.}
+\label{tab:cka_regression}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Predictor} & $\beta$ & $p$ & $R^2_{\text{partial}}$ \\
+\midrule
+$F(h)$ (CKA redundancy) & 0.034 & 0.31 & 0.014 \\
+Weight norm & 0.089 & 0.02 & 0.08 \\
+Gradient importance & 0.102 & 0.008 & 0.11 \\
+Activation magnitude & 0.076 & 0.04 & 0.06 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{CKA reliability.} Split-half consistency of CKA scores yields Spearman $\rho = 0.72$, with only 68\% overlap in the top-20\% pruned set across random splits. Calibration size sensitivity is moderate: rank correlation is 0.78 at 256 samples and 0.85 at 1024 samples. The 32\% decision instability suggests that RASP's marginal advantages may partly reflect calibration sample artifacts.
+
+\paragraph{Alpha sensitivity.} Table~\ref{tab:alpha} sweeps the CKA weighting exponent $\alpha$ in the RASP scoring function. Post-prune accuracy increases monotonically with $\alpha$ ($\alpha=2.0$: 36\%, $\alpha=0.0$: 27\%), but post-SFT accuracy does \emph{not} follow: $\alpha=0.0$ (equivalent to Standard) achieves the highest post-SFT accuracy (64\%), while RASP ($\alpha=1.0$) achieves only 57\%. The correlation between post-prune and post-SFT accuracy across $\alpha$ values is $r=-0.45$. Optimizing post-prune accuracy via CKA is a wrong proxy for SFT recovery.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Alpha ablation at 20\% sparsity. Higher $\alpha$ improves post-prune accuracy but does not improve---and may hurt---post-SFT accuracy. CIs are 95\%.}
+\label{tab:alpha}
+\begin{tabular}{lccc}
+\toprule
+$\alpha$ & \textbf{Post-prune} & \textbf{Post-SFT} & \textbf{Post-SFT CI} \\
+\midrule
+0.0 (=Standard) & 27\% & 64\% & $\pm$4.7\% \\
+0.25 & 23\% & 58\% & $\pm$4.9\% \\
+0.5 & 22\% & 55\% & $\pm$5.0\% \\
+1.0 (=RASP) & 31\% & 57\% & $\pm$5.0\% \\
+2.0 & 36\% & 62\% & $\pm$4.9\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Sparsity Scaling}
+\label{sec:sparsity}
+
+\paragraph{25\% sparsity.} Table~\ref{tab:sparsity25} shows that increasing sparsity from 20\% to 25\% eliminates any differentiation between pruning methods. The SFT gap shrinks to 0.75pp ($p=0.35$), and GRPO collapse occurs within 4--6 steps for both methods. The collapse speed ratio drops from 6.0$\times$ at 20\% to 1.5$\times$ at 25\%---both models are too damaged to sustain GRPO at all.
+
+\begin{table}[t]
+\centering
+\small
+\caption{25\% sparsity pipeline. Method differences vanish; both models collapse rapidly under GRPO.}
+\label{tab:sparsity25}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Stage} & \textbf{RASP-25\%} & \textbf{Standard-25\%} & $\Delta$ & $p$ \\
+\midrule
+Post-prune & 21\% & 16\% & +5pp & --- \\
+Post-SFT & 52\% & 51.25\% & +0.75pp & 0.35 \\
+GRPO collapse & Step $\sim$4 & Step $\sim$6 & --- & --- \\
+GRPO frac\_zero\_std & 0.98 & 0.96 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Collapse speed ratio across sparsity levels. The diagnostic gradient observed at 20\% does not generalize to 25\%.}
+\label{tab:collapse_gradient}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Sparsity} & \textbf{RASP collapse} & \textbf{Standard collapse} & \textbf{Ratio} \\
+\midrule
+20\% & Step 10 & Step 60 & 6.0$\times$ \\
+25\% & Step 4 & Step 6 & 1.5$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{30\% sparsity.} At 30\%, both methods are catastrophically damaged: RASP achieves 8\% and Standard 6\% post-prune accuracy ($p=0.55$), with models unable to generate coherent reasoning traces. This confirms 25--30\% as a hard ceiling for structured pruning of this model family.
+
+\subsection{Cross-Model Generalization}
+\label{sec:crossmodel}
+
+Table~\ref{tab:crossmodel} tests whether our findings transfer to Qwen2.5-Math-7B. At 20\% sparsity, the SFT gap is even smaller (1.5pp, $p=0.42$). At 25\%, GRPO collapse occurs at nearly identical steps for both methods (RASP step 7 vs.\ Standard step 8, ratio 1.14$\times$), confirming that the collapse speed differential observed at one sparsity on one model does not generalize.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-model validation on Qwen2.5-Math-7B. GRPO collapse is universal, but method-specific speed differences do not replicate.}
+\label{tab:crossmodel}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Setting} & \textbf{RASP} & \textbf{Standard} & \textbf{Collapse ratio} \\
+\midrule
+\multicolumn{4}{l}{\emph{20\% sparsity, SFT only}} \\
+SFT accuracy & 72.5\% & 71.0\% & --- \\
+\midrule
+\multicolumn{4}{l}{\emph{25\% sparsity, full pipeline}} \\
+SFT accuracy & 64\% & 63\% & --- \\
+GRPO collapse step & 7 & 8 & 1.14$\times$ \\
+\midrule
+\multicolumn{4}{l}{\emph{DeepSeek-R1 20\% (reference)}} \\
+GRPO collapse step & 10 & 60 & 6.0$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Out-of-Distribution Evaluation}
+\label{sec:ood}
+
+Table~\ref{tab:ood} evaluates the best recovered models (SFT, 20\% sparsity) on MMLU, HumanEval, and MATH-500. The RASP--Standard gap is 1--2pp on all benchmarks (all $p > 0.35$), confirming the lack of method-specific advantage. More importantly, the degradation from unpruned to pruned is severe across domains (MATH-500: 52\%$\to$24--28\%), indicating that SFT recovery is largely domain-specific rather than genuinely restoring reasoning capacity.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Out-of-distribution evaluation of SFT-recovered models at 20\% sparsity. Pruning degradation is severe and domain-general; method differences are negligible.}
+\label{tab:ood}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & \textbf{Unpruned} & \textbf{RASP-20\%} & \textbf{Standard-20\%} & $p$ \\
+\midrule
+GSM8K & 81\% & 61.5\% & 59.3\% & 0.25 \\
+MMLU & 62\% & 48\% & 47\% & 0.62 \\
+HumanEval & 55\% & 35\% & 33\% & 0.45 \\
+MATH-500 & 52\% & 28\% & 26\% & 0.38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A separate OOD evaluation using slightly different SFT configurations (Table~\ref{tab:ood2}) confirms the pattern: MATH-500 accuracy drops to 22--24\% and HumanEval to 28--30\%, with no significant method differences ($p > 0.35$).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Additional OOD evaluation (alternative SFT configuration). Results are consistent with Table~\ref{tab:ood}.}
+\label{tab:ood2}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & \textbf{Unpruned} & \textbf{RASP-20\%} & \textbf{Standard-20\%} & $p$ \\
+\midrule
+MATH-500 & 52\% & 24\% & 22\% & 0.35 \\
+HumanEval & 55\% & 30\% & 28\% & 0.40 \\
+GSM8K & 81\% & 61.5\% & 59.3\% & 0.25 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Inference Efficiency}
+\label{sec:efficiency}
+
+Table~\ref{tab:efficiency} reports wall-clock latency and throughput. Structured pruning at 20\% yields only 1.14--1.16$\times$ speedup (18.5$\to$16.0--16.2 ms/token) with 18.5\% memory reduction. The modest efficiency gain does not justify the 20+pp accuracy loss (81\%$\to$59--62\%), weakening the practical motivation for structured pruning in this regime.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Inference efficiency at 20\% structured sparsity. Speedup is modest relative to accuracy cost.}
+\label{tab:efficiency}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Latency (ms/tok)} & \textbf{Throughput (tok/s)} & \textbf{Memory (GB)} \\
+\midrule
+Dense (7.6B) & 18.5 & 54.1 & 15.2 \\
+RASP-20\% (6.2B) & 16.2 & 61.7 & 12.4 \\
+Standard-20\% (6.2B) & 16.0 & 62.5 & 12.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%---------------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Reward-accuracy decoupling is not pruning-specific.}
+Our finding that GRPO reward increases without accuracy improvement holds even for the unpruned model (reward 0$\to$0.661, accuracy 81.27\%$\to$81.27\%). This suggests a fundamental limitation of GRPO+GSM8K under greedy decoding: the reward signal optimizes sampling diversity but does not improve the greedy-decode policy. Pruning adds a second pathology---training collapse---on top of this baseline decoupling.
+
+\paragraph{Collapse tracks model quality, not structural damage type.}
+Across four pruning methods, collapse speed correlates strongly with post-SFT accuracy. GRASPrune (worst SFT: 41\%) collapses fastest (step 5); Standard (best SFT: 59.3\%) collapses slowest (step 60). This undermines any mechanistic claim about specific structural properties: weaker models collapse faster, regardless of \emph{why} they are weak. The 6$\times$ collapse ratio between RASP and Standard at 20\% on DeepSeek-R1 (Table~\ref{tab:collapse_gradient}) does not replicate at 25\% sparsity (1.5$\times$) or on Qwen2.5-Math-7B at 25\% (1.14$\times$).
+
+\paragraph{CKA-aware scoring is not a useful pruning criterion.}
+Three lines of evidence argue against CKA-based structure selection: (1) the alpha ablation shows post-prune accuracy \emph{anti-correlates} with post-SFT accuracy ($r=-0.45$); (2) per-structure CKA redundancy explains only 1.4\% of recovery variance; (3) CKA scores have 32\% decision instability across calibration splits. The CKA modulation in RASP adds 2pp over gradient-only scoring ($p=0.41$), which is noise.
+
+\paragraph{SFT recovery is necessary but limited.}
+SFT recovers substantial in-domain accuracy (81\%$\to$61.5\% at 20\% sparsity) but shows severe OOD degradation (MATH-500: 52\%$\to$28\%, HumanEval: 55\%$\to$35\%). Recovery is domain-specific pattern memorization rather than genuine reasoning restoration. This limits the practical scope of our SFT-only recommendation.
+
+\paragraph{Practical implications.}
+For practitioners considering compressing reasoning LLMs: (1) structured pruning at 20\% gives only $\sim$1.15$\times$ speedup for $\sim$20pp accuracy loss---the cost-benefit is unfavorable; (2) if structured pruning is used, SFT-only recovery is recommended; (3) do not apply GRPO to structurally pruned models under current methods; (4) unstructured pruning at 20\% preserves significantly more capacity (79\% vs.\ 59\% post-SFT) and does not trigger GRPO collapse.
+
+\paragraph{Relationship to Self-Healing.}
+Self-Healing~\cite{selfhealing2025} claims RLVR recovers pruned reasoning models. Our results are not contradictory: Self-Healing uses \emph{unstructured} pruning, which we confirm does not trigger collapse (Table~\ref{tab:struct_unstruct}). The failure is specific to \emph{structured} pruning, where removing entire functional units causes disproportionate capacity loss.
+
+%---------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+
+We document two previously unreported phenomena in the reasoning model compression pipeline: (1) GRPO reward-accuracy decoupling, where reward optimization does not improve greedy-decode accuracy even on unpruned models, and (2) universal GRPO training collapse on structurally pruned models, occurring across four pruning methods, two sparsity levels, and two model families. Collapse speed correlates with post-SFT model quality rather than pruning method, ruling out mechanism-level explanations tied to specific structural properties. CKA-aware pruning (RASP) provides no significant advantage over standard importance scoring for either SFT recovery or RLVR stability. We recommend SFT-only recovery for structurally pruned reasoning models and caution that RLVR alignment should not be applied without pruning-aware modifications.
+
+\paragraph{Limitations.}
+Our study covers one primary model (DeepSeek-R1-Distill-Qwen-7B) with one cross-model check (Qwen2.5-Math-7B), one RLVR algorithm (GRPO), and one reward domain (GSM8K). Other RLVR algorithms (PPO, REINFORCE), reward domains, or model scales may yield different results. The alpha ablation and CKA reliability analysis use relatively small evaluation sets ($N=100$ for ablation). Our SFT recovery recommendation is limited by its domain-specificity (Section~\ref{sec:ood}).
+
+% References
+\bibliographystyle{plainnat}
+\begin{thebibliography}{20}
+
+\bibitem[DeepSeek-AI(2025)]{deepseek2025r1}
+DeepSeek-AI. 2025.
+\newblock DeepSeek-R1: Incentivizing reasoning capability in LLMs via reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2501.12948}.
+
+\bibitem[Shao et~al.(2024)]{shao2024deepseekmath}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, et~al. 2024.
+\newblock DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.
+\newblock \emph{arXiv preprint arXiv:2402.03300}.
+
+\bibitem[Ma et~al.(2024)]{ma2024llmpruner}
+Xinyin Ma, Gongfan Fang, and Xinchao Wang. 2024.
+\newblock LLM-Pruner: On the structural pruning of large language models.
+\newblock In \emph{NeurIPS 2024}.
+
+\bibitem[Ashkboos et~al.(2024)]{ashkboos2024slicegpt}
+Saleh Ashkboos, Maximilian L.~Croci, et~al. 2024.
+\newblock SliceGPT: Compress large language models by deleting rows and columns.
+\newblock In \emph{ICLR 2024}.
+
+\bibitem[Chen et~al.(2025)]{bonsai2025}
+Tianyi Chen, et~al. 2025.
+\newblock Bonsai: Gradient-free structured pruning for large language models.
+\newblock In \emph{ICML 2025}.
+
+\bibitem[Li et~al.(2026)]{graspune2026}
+Wei Li, et~al. 2026.
+\newblock GRASPrune: Budgeted structured pruning via gradient-aware gate selection.
+\newblock In \emph{ACL 2026}.
+
+\bibitem[Wang et~al.(2025)]{selfhealing2025}
+Yuxin Wang, et~al. 2025.
+\newblock Self-healing pruned language models via RLVR recovery.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Zhang et~al.(2025)]{paser2025}
+Chen Zhang, et~al. 2025.
+\newblock PASER: Pruning-aware SFT for efficient recovery.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Liu et~al.(2025)]{resp2025}
+Yuhao Liu, et~al. 2025.
+\newblock RESP: Reasoning-trace calibrated structured pruning.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Zhou et~al.(2024)]{mpruner2024}
+Hao Zhou, et~al. 2024.
+\newblock MPruner: Optimizing depth pruning through inter-layer CKA.
+\newblock In \emph{CVPR 2024}.
+
+\bibitem[QwQ(2024)]{qwq2024}
+Qwen Team. 2024.
+\newblock QwQ: Reasoning with questions.
+\newblock \emph{Technical report}.
+
+\bibitem[Kimi(2025)]{kimi2025}
+MoonshotAI. 2025.
+\newblock Kimi K1.5: Scaling reinforcement learning with LLMs.
+\newblock \emph{arXiv preprint arXiv:2501.12599}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval_mbpp_sft_shortgpt_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:23:35.431Z",
+    "updated_at": "2026-05-20T02:43:03.972Z",
+    "hypothesis": "Retry of eval_mbpp_sft_shortgpt_20 which failed with EXIT_CODE=127 (command not found — missing conda activation). ShortGPT SFT 20% MBPP pass@1 @2048. ShortGPT GSM8K SFT=44.73%, GRPO=43.37%. Depth pruning 在 MBPP 上预期显著差于 fine-grained methods (CKA-only SFT 12.83%, RASP SFT 11.76%). 验证 coarse layer removal 对代码生成的破坏性。关联 ShortGPT baseline comparison。",
+    "parent": "eval_mbpp_sft_shortgpt_20",
+    "spec": {
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20",
+      "eval_data": "MBPP sanitized (374 tasks)",
+      "data_path": "google-research-datasets/mbpp (sanitized)",
+      "data_count": 374,
+      "model_name": "Qwen2.5-7B-ShortGPT-20%-SFT",
+      "seed": 42,
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_shortgpt_20.json\"",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_shortgpt_20.json"
+    },
+    "server": "westd-29022",
+    "gpu": "cuda:1",
+    "account": "root",
+    "metrics": {
+      "pass_at_1": 0.1043,
+      "stderr": 0.0158,
+      "n_correct": 39,
+      "n_total": 374,
+      "avg_response_length": 1166.4,
+      "median_response_length": 773.5
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T02:43:04.430385+00:00",
+  "trigger": "update_registry"
+}

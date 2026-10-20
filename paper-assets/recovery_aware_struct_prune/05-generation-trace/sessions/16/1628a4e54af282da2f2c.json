@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1628a4e54af282da2f2c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis bootstrap ci reward gap",
+  "task_key": "worker_analysis_bootstrap_ci_reward_gap_20260519T030900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_reward_gap_20260519T030900_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "3714320711c8b7ee6ed00ac0d9b8b4f0d8a7af51020ffad3acc3a68c58cd8c29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| Pair | Mean Gap | 95% CI | n | Sig? |\n|---|---|---|---|---|\n| CKA-only vs Random | +0.114 | [0.088, 0.145] | 9 | **YES** |\n| CKA-only vs Standard | +0.235 | [0.200, 0.272] | 10 | **YES** |\n| CKA-only vs RASP | +0.254 | [0.229, 0.281] | 10 | **YES** |\n| Random vs Standard | +0.115 | [0.096, 0.134] | 9 | **YES** |\n| Random vs RASP | +0.131 | [0.122, 0.141] | 9 | **YES** |\n| Standard vs RASP | +0.019 | [-0.000, 0.036] | 10 | NO |\n\n方法均值：CKA-only 0.2845 > Random 0.1642 > Standard 0.0494 > RASP 0.0306\n\n5/6 pair 显著，唯一不显著的是 Standard vs RASP（两者均 collapsed，CI 下界刚好碰到 0）。\n\n数据来源说明：每 10 步记录一次 reward mean，CKA-only/Standard/RASP 各 10 个点（steps 10-100），Random 9 个点（训练在 step 97 超时终止）。\n\n文件已保存至本地 `artifacts/bootstrap_ci_results.json` 和 `artifacts/bootstrap_ci_plot.png`，远端脚本在 `/root/recovery_aware_struct_prune/src/bootstrap_ci_analysis.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci-reward-gap.md"
+}

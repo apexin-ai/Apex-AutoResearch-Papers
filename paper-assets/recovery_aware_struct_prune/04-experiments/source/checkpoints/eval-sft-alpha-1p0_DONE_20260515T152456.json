@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval-sft-alpha-1p0",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:51:22.694Z",
+    "updated_at": "2026-05-15T15:24:56.027Z",
+    "spec": {
+      "command": "python eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --n_samples 100",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "42530",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval-sft-alpha-1p0.log",
+      "submitted_at": "2026-05-15T14:51:22.611Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 100,
+      "model_name": "Qwen2.5-7B pruned alpha=1.0 post-SFT",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0",
+      "eval_data": "gsm8k_test_n100",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0",
+      "wall_clock_seconds": 2013.4,
+      "gpu_hours": 0.56
+    },
+    "notes": "α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。",
+    "reproduce": {
+      "finished_at": "2026-05-15T15:22:49.510Z"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T15:24:56.027Z"
+  },
+  "timestamp": "2026-05-15T15:24:56.105586+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "inference_speedup_plan016",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:58:10.584Z",
+    "updated_at": "2026-05-16T20:58:19.874Z",
+    "hypothesis": "Inference speedup benchmark: Dense vs RASP 20% vs Standard 20%. 测量 wall-clock latency, tokens/s, memory_peak. 50 GSM8K prompts, batch_size=1, greedy, max_new_tokens=512. Plan_016."
+  },
+  "timestamp": "2026-05-16T20:58:20.063515+00:00",
+  "trigger": "update_registry"
+}

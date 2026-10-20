@@ -1,0 +1,14 @@
+{
+  "exp_id": "sft_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:43:50.320Z",
+    "updated_at": "2026-05-17T13:43:50.320Z"
+  },
+  "timestamp": "2026-05-17T13:43:50.590107+00:00",
+  "trigger": "update_registry"
+}

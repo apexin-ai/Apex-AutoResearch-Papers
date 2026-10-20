@@ -1,0 +1,2830 @@
+# analysis bootstrap ci gsm8k
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 95
+- **Recorded user turns:** 0
+- **Tool calls:** 47
+- **Original source:** `logs/chats/worker_analysis_bootstrap_ci_gsm8k_20260520T055637.jsonl`
+- **Structured JSON:** [`de76633ea29e61214f64.json`](../../sessions/de/de76633ea29e61214f64.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+95 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T06:06:43.546699+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T06:06:43.547251+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T06:06:43.547483+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T06:06:43.547673+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"artifacts\\nbootstrap_ci_accuracy_v2.json\\nbootstrap_ci_plot.png\\nbootstrap_ci_results.json\\ncka_scores_qwen_math.pt\\neval_grpo_rasp_20_qwen_math.json\\neval_grpo_rasp_20_qwen_math.log\\neval_grpo_rasp_25.log\\neval_grpo_rasp_25_qwen_math.json\\neval_grpo_rasp_25_qwen_math.log\\neval_grpo_rasp_rlvr_20_qwen_math.json\\neval_grpo_standard_20_qwen_math.json\\neval_grpo_standard_20_qwen_math.log\\neval_grpo_standard_25.json\\neval_grpo_standard_25_n1319.json\\neval_grpo_standard_25_qwen_math.json\\neval_grpo_standard_25_qwen_math.log\\neval_grpo_unpruned_v2_step100.json\\neval_grpo_unpruned_v2_step90.json\\neval_gsm8k_grpo_cka_only_20_extended_300.json\\neval_gsm8k_grpo_rasp_20_fair.json\\neval_gsm8k_grpo_rasp_20_fair.json.done\\neval_gsm8k_grpo_rasp_20_fair.log\\neval_gsm8k_grpo_standard_20_extended_300.json\\neval_gsm8k_grpo_standard_20_fair_v2.json\\neval_gsm8k_grpo_standard_20_fair_v2.log\\neval_gsm8k_standard_300.log\\neval_humaneval_grpo_rasp_20.json\\neval_humaneval_grpo_rasp_20_2048.json\\neval_humaneval_grpo_standard_20.json\\neval_humaneval_grpo_standard_20_2048.json\\neval_humaneval_sft_cka_only_20_2048_v2.log\\neval_humaneval_sft_rasp_20.json\\neval_humaneval_sft_rasp_20_2048.json\\neval_humaneval_sft_standard_20.json\\neval_humaneval_sft_standard_20_2048.json\\neval_humaneval_sft_standard_20_2048_v3.log\\neval_humaneval_unpruned.json\\neval_humaneval_unpruned_2048.json\\neval_math500_sft_rasp_20.json\\neval_math500_sft_standard_20.json\\neval_math500_unpruned.json\\neval_math500_v4.log\\neval_mbpp_dense_unpruned.json\\neval_mbpp_dense_unpruned.json.done\\neval_mbpp_grpo_rasp_20.json\\neval_mbpp_grpo_rasp_20.json.done\\neval_mbpp_grpo_standard_20.json\\neval_mbpp_grpo_standard_20.json.done\\neval_mbpp_sft_rasp_20.json\\neval_mbpp_sft_rasp_20.json.done\\neval_mbpp_sft_standard_20.json\\neval_mbpp_sft_standard_20.json.done\\neval_pass_k8_rasp_20_grpo_deepseek.json\\neval_pass_k8_rasp_20_grpo_deepseek.
+…[truncated 2472 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T06:06:43.547856+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -100 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -100 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T06:06:43.548132+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_extended_300\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.643669446550417,\\n  \\\"stderr\\\": 0.013186683444435831,\\n  \\\"n_correct\\\": 849,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1309,\\n    \\\"truncated\\\": 10,\\n    \\\"eos_rate\\\": 0.9924184988627748,\\n    \\\"avg_response_length\\\": 190.45337376800606,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n  \\\"temperature\\\": 0.0,\\n  \\\"do_sample\\\": false,\\n  \\\"examples\\\": [\\n    {\\n      \\\"question\\\": \\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\",\\n      \\\"gold\\\": \\\"109\\\",\\n      \\\"prediction\\\": \\\"53.57\\\",\\n      \\\"correct\\\": false,\\n      \\\"response\\\": \\\"Let the ages of Darrell and Allen be represented by 7x and 11x respectively.\\\\nThe total age of Darrell and Allen is 7x + 11x = 162\\\\n28x = 162\\\\nx = 162/28 = 4.357\\\\nAllen's age now is 11*4.357 = <<11*4.357=43.57>>43.57\\\\nTen years from now, Allen's age will be 43.57 + 10 = <<43.57+10=53.57>>53.57\\\\n#### 53.57\\\",\\n      \\\"response_length\\\": 158,\\n      \\\"hit_eos\\\": true\\n    },\\n    {\\n      \\\"question\\\": \\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?\\\",\\n      \\\"gold\\\": \\\"89\\\",\\n      \\\"prediction\\\": \\\"110\\\",\\
+…[truncated 7148 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T06:06:43.548369+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -100 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -100 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T06:06:43.548651+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.6391205458680819,\\n  \\\"stderr\\\": 0.013223611160662792,\\n  \\\"n_correct\\\": 843,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1306,\\n    \\\"truncated\\\": 13,\\n    \\\"eos_rate\\\": 0.9901440485216073,\\n    \\\"avg_response_length\\\": 198.1106899166035,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n  \\\"temperature\\\": 0.0,\\n  \\\"do_sample\\\": false,\\n  \\\"examples\\\": [\\n    {\\n      \\\"question\\\": \\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\",\\n      \\\"gold\\\": \\\"109\\\",\\n      \\\"prediction\\\": \\\"53.57\\\",\\n      \\\"correct\\\": false,\\n      \\\"response\\\": \\\"Let the ages of Darrell and Allen be represented by 7x and 11x respectively.\\\\nThe total age of Darrell and Allen is 7x + 11x = 162\\\\n28x = 162\\\\nx = 162/28 = 4.357\\\\nAllen's age now is 11*4.357 = <<11*4.357=43.57>>43.57\\\\nTen years from now, Allen's age will be 43.57 + 10 = <<43.57+10=53.57>>53.57\\\\n#### 53.57\\\",\\n      \\\"response_length\\\": 158,\\n      \\\"hit_eos\\\": true\\n    },\\n    {\\n      \\\"question\\\": \\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?\\\",\\n      \\\"gold\\\": \\\"89\\\",\\n      \\\"prediction\\\": \\\"110\\\",\\n      \\\"cor
+…[truncated 7142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T06:06:43.548823+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -100 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_sft_shortgpt_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -100 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_sft_shortgpt_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T06:06:43.549065+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.4473085670962851,\\n  \\\"stderr\\\": 0.013690602990150935,\\n  \\\"n_correct\\\": 590,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1299,\\n    \\\"truncated\\\": 20,\\n    \\\"eos_rate\\\": 0.9848369977255497,\\n    \\\"avg_response_length\\\": 197.08642911296437,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 26\\n  },\\n  \\\"temperature\\\": 0.0,\\n  \\\"do_sample\\\": false,\\n  \\\"examples\\\": [\\n    {\\n      \\\"question\\\": \\\"Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?\\\",\\n      \\\"gold\\\": \\\"18\\\",\\n      \\\"prediction\\\": \\\"18\\\",\\n      \\\"correct\\\": true,\\n      \\\"response\\\": \\\"Janet’s ducks lay 16 eggs per day.\\\\nShe eats 3 eggs every morning and bakes 4 muffins every day.\\\\nSo she eats 3 + 4 = <<3+4=7>>7 eggs every day.\\\\nSo she sells 16 - 7 = <<16-7=9>>9 eggs every day.\\\\nShe sells each of the 9 eggs for $2, so she makes 9 * 2 = $<<9*2=18>>18 every day at the farmers' market.\\\\n#### 18\\\",\\n      \\\"response_length\\\": 118,\\n      \\\"hit_eos\\\": true\\n    },\\n    {\\n      \\\"question\\\": \\\"A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?\\\",\\n      \\\"gold\\\": \\\"3\\\",\\n      \\\"prediction\\\": \\\"3\\\",\\n      \\\"correct\\\": true,\\n      \\\"response\\\": \\\"The robe takes 2 bolts of blue fiber and half that amount of white fiber, so it takes 2/2 = <<2/2=1>>1 bolt of white fiber.\\\\nIn total, the robe takes 2 + 1 = <<2+1=3>
+…[truncated 6523 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T06:06:43.549290+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*.json\" -exec python3 -c \"import json,sys; d=json.load(open(sys.argv[1])); print(f'{sys.argv[1]}|acc={d.get(\\\"accuracy\\\",\\\"?\\\")}|n={d.get(\\\"n_total\\\",\\\"?\\\")}|model={d.get(\\\"model_path\\\",\\\"?\\\")}')\" {} \\;",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*.json\" -exec python3 -c \"import json,sys; d=json.load(open(sys.argv[1])); print(f'{sys.argv[1]}|acc={d.get(\\\"accuracy\\\",\\\"?\\\")}|n={d.get(\\\"n_total\\\",\\\"?\\\")}|model={d.get(\\\"model_path\\\",\\\"?\\\")}')\" {} \\;",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T06:06:43.549434+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T06:06:43.549563+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T06:06:43.549739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablation_log.txt\\nbinary_outcomes_westb.json\\ncka_heatmap_cka_only.json\\ncka_heatmap_random.json\\ncka_heatmap_rasp.json\\ncka_heatmap_standard.json\\ncka_reliability_ablation.json\\ne3_cka_heatmap.pdf\\neval_cka_only_20_n200.json\\neval_gradient_postsft.json\\neval_gradient_sft.log\\neval_grpo_rasp_25_n1319.json\\neval_grpo_rasp_v9_step10.json\\neval_gsm8k_cka_only_20_1p5b.log\\neval_gsm8k_grpo_cka_only_20_1p5b.json\\neval_gsm8k_grpo_rasp_20_1p5b.json\\neval_gsm8k_grpo_standard_20_1p5b.json\\neval_gsm8k_grpo_unstructured_20.json\\neval_gsm8k_seed123.log\\neval_gsm8k_sft_cka_only_20_1p5b.json\\neval_gsm8k_sft_cka_only_20_1p5b.log\\neval_gsm8k_sft_rasp_20_1p5b.json\\neval_gsm8k_sft_standard_20_1p5b.json\\neval_humaneval_grpo_standard_20_1p5b_2048.json\\neval_humaneval_grpo_standard_20_1p5b_2048.log\\neval_humaneval_sft_rasp_20_1p5b_2048.json\\neval_humaneval_sft_rasp_20_1p5b_2048.log\\neval_mbpp_sft_cka_only_20_1p5b.json\\neval_mbpp_sft_cka_only_20_1p5b.json.done\\neval_mbpp_sft_cka_only_20_1p5b.log\\neval_mbpp_sft_standard_20_1p5b.json\\neval_mbpp_sft_standard_20_1p5b.json.done\\neval_postprune_gradient_20.json\\neval_postprune_random_20.json\\neval_sft_cka_only_20.json\\neval_sft_random_20.json\\neval_sft_rasp_20_full.log\\neval_sft_rasp_20_full_n1319.json\\neval_sft_rasp_20_seed123.json\\neval_sft_rasp_20_seed456.json\\neval_sft_rasp_25.json\\neval_sft_rasp_rlvr_20.json\\neval_sft_standard_20_full.log\\neval_sft_standard_20_seed123.json\\neval_sft_standard_20_seed456.json\\neval_sft_standard_25.json\\neval_unstructured_20_n1319.json\\ngradient_flow\\ngradient_flow_v3\\ngroup_selection_comparison.csv\\ngroup_selection_comparison.json\\ngsm8k_grpo_cka_only_20.json\\ngsm8k_grpo_cka_only_20_seed123.json\\ngsm8k_postprune_standard_20_qwen_math_n200.json\\ngsm8k_pruned_cka_only_20_1p5b_quick.json\\ngsm8k_pruned_rasp_20_1p5b_quick.json\\ngsm8k_pruned_standard_20_1p5b_quick.json\\nhumaneval_sft_standard_20_1p5b_20
+…[truncated 446 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T06:06:43.549969+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step100.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step100.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T06:06:43.550126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.8127369219105383,\\n  \\\"stderr\\\": 0.010741839919099177,\\n  \\\"n_correct\\\": 1072,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1315,\\n    \\\"truncated\\\": 4,\\n    \\\"eos_rate\\\": 0.9969673995451099,\\n    \\\"avg_response_length\\\": 208.9499620924943,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 42\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T06:06:43.550273+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T06:06:43.550420+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.5943896891584534,\\n  \\\"stderr\\\": 0.013519720989483766,\\n  \\\"n_correct\\\": 784,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1293,\\n    \\\"truncated\\\": 26,\\n    \\\"eos_rate\\\": 0.9802880970432145,\\n    \\\"avg_response_length\\\": 227.13040181956026,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T06:06:43.550546+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T06:06:43.550681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.6087945413191812,\\n  \\\"stderr\\\": 0.01343740571923549,\\n  \\\"n_correct\\\": 803,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1303,\\n    \\\"truncated\\\": 16,\\n    \\\"eos_rate\\\": 0.9878695981804397,\\n    \\\"avg_response_length\\\": 195.71569370735406,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 42\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T06:06:43.550809+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T06:06:43.550943+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.5928733889310084,\\n  \\\"stderr\\\": 0.013527680145543942,\\n  \\\"n_correct\\\": 782,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1293,\\n    \\\"truncated\\\": 26,\\n    \\\"eos_rate\\\": 0.9802880970432145,\\n    \\\"avg_response_length\\\": 226.73692191053829,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T06:06:43.551065+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T06:06:43.551195+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.5109931766489765,\\n  \\\"stderr\\\": 0.013763934976608492,\\n  \\\"n_correct\\\": 674,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1270,\\n    \\\"truncated\\\": 49,\\n    \\\"eos_rate\\\": 0.9628506444275967,\\n    \\\"avg_response_length\\\": 292.85670962850645,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T06:06:43.551337+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_shortgpt_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_shortgpt_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T06:06:43.551470+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20/checkpoint-100\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.4336618650492798,\\n  \\\"stderr\\\": 0.013645552415391539,\\n  \\\"n_correct\\\": 572,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1302,\\n    \\\"truncated\\\": 17,\\n    \\\"eos_rate\\\": 0.9871114480667172,\\n    \\\"avg_response_length\\\": 188.0333586050038,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 26\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T06:06:43.551633+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_1p5b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_1p5b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T06:06:43.551852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.35633055344958303,\\n  \\\"stderr\\\": 0.013186683444435831,\\n  \\\"n_correct\\\": 470,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1254,\\n    \\\"truncated\\\": 65,\\n    \\\"eos_rate\\\": 0.9507202426080363,\\n    \\\"avg_response_length\\\": 336.764973464746,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 40\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T06:06:43.552014+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T06:06:43.552134+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_1p5b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_1p5b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T06:06:43.552279+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.22896133434420016,\\n  \\\"stderr\\\": 0.01156902486841511,\\n  \\\"n_correct\\\": 302,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1193,\\n    \\\"truncated\\\": 126,\\n    \\\"eos_rate\\\": 0.9044730856709629,\\n    \\\"avg_response_length\\\": 516.6914329037149,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-20T06:06:43.552416+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T06:06:43.552534+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20_seed123.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T06:06:43.552667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.26914329037149354,\\n  \\\"stderr\\\": 0.012211963572592724,\\n  \\\"n_correct\\\": 355,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1242,\\n    \\\"truncated\\\": 77,\\n    \\\"eos_rate\\\": 0.9416224412433661,\\n    \\\"avg_response_length\\\": 378.6482183472327,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 35\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T06:06:43.552791+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T06:06:43.552921+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.643669446550417,\\n  \\\"stderr\\\": 0.013186683444435831,\\n  \\\"n_correct\\\": 849,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1304,\\n    \\\"truncated\\\": 15,\\n    \\\"eos_rate\\\": 0.9886277482941622,\\n    \\\"avg_response_length\\\": 203.42532221379832,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T06:06:43.553052+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.6421531463229719,\\n  \\\"stderr\\\": 0.013199136225973719,\\n  \\\"n_correct\\\": 847,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1307,\\n    \\\"truncated\\\": 12,\\n    \\\"eos_rate\\\": 0.9909021986353298,\\n    \\\"avg_response_length\\\": 195.96512509476875,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T06:06:43.553187+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.6156178923426838,\\n  \\\"stderr\\\": 0.013394138980812762,\\n  \\\"n_correct\\\": 812,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1298,\\n    \\\"truncated\\\": 21,\\n    \\\"eos_rate\\\": 0.9840788476118272,\\n    \\\"avg_response_length\\\": 210.9522365428355,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 42\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T06:06:43.553359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_1p5b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_1p5b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-20T06:06:43.553481+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_1p5b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_1p5b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T06:06:43.553705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b/checkpoint-100\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.354814253222138,\\n  \\\"stderr\\\": 0.013174086578932135,\\n  \\\"n_correct\\\": 468,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1249,\\n    \\\"truncated\\\": 70,\\n    \\\"eos_rate\\\": 0.9469294920394238,\\n    \\\"avg_response_length\\\": 349.489006823351,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 40\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-20T06:06:43.554131+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_1p5b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_1p5b.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T06:06:43.554301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.22289613343442002,\\n  \\\"stderr\\\": 0.011459572184127055,\\n  \\\"n_correct\\\": 294,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1194,\\n    \\\"truncated\\\": 125,\\n    \\\"eos_rate\\\": 0.9052312357846853,\\n    \\\"avg_response_length\\\": 514.8241091736164,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T06:06:43.554465+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b/checkpoint-100\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.26156178923426837,\\n  \\\"stderr\\\": 0.012101015930095998,\\n  \\\"n_correct\\\": 345,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1237,\\n    \\\"truncated\\\": 82,\\n    \\\"eos_rate\\\": 0.9378316906747536,\\n    \\\"avg_response_length\\\": 392.7452615617892,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 33\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T06:06:43.554600+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_n1319.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_n1319.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T06:06:43.554735+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.5314632297194845,\\n  \\\"stderr\\\": 0.013739978501837145,\\n  \\\"n_correct\\\": 701,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1223,\\n    \\\"truncated\\\": 96,\\n    \\\"eos_rate\\\": 0.9272175890826384,\\n    \\\"avg_response_length\\\": 433.85367702805155,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 39\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T06:06:43.554856+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T06:06:43.554984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.41,\\n  \\\"stderr\\\": 0.04918333050943175,\\n  \\\"n_correct\\\": 41,\\n  \\\"n_total\\\": 100,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 98,\\n    \\\"truncated\\\": 2,\\n    \\\"eos_rate\\\": 0.98,\\n    \\\"avg_response_length\\\": 225.78,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 57\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T06:06:43.555110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "head -15 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T06:06:43.555242+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.5928733889310084,\\n  \\\"stderr\\\": 0.013527680145543942,\\n  \\\"n_correct\\\": 782,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1292,\\n    \\\"truncated\\\": 27,\\n    \\\"eos_rate\\\": 0.979529946929492,\\n    \\\"avg_response_length\\\": 229.5724033358605,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T06:06:43.555417+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*cka*25*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*cka*25*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T06:06:43.555540+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T06:06:43.555654+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*cka*25*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*cka*25*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T06:06:43.555769+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T06:06:43.555881+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*unpruned*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*unpruned*\" -name \"*.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T06:06:43.556009+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step100.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_dense_unpruned.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step90.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_unpruned.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_unpruned_2048.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_unpruned.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_dense_unpruned.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T06:06:43.556129+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*unpruned*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*unpruned*\" -name \"*.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T06:06:43.556243+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T06:06:43.556387+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*dense*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*dense*\" -name \"*.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T06:06:43.556507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/math500_dense_unpruned.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_dense_2048.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_dense_unpruned.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T06:06:43.556621+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*unstructured*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*unstructured*\" -name \"*.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T06:06:43.556736+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_unstructured_20_n1319.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T06:06:43.556961+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "cat > /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_mcnemar_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nimport sys\nimport os\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\n# File mapping: label -> filename\nFILE_MAP = {\n    # 7B @20%\n    \"Dense_GRPO_Unpruned_7B\": \"eval_grpo_unpruned_v2_step100.json\",\n    \"CKA-only_SFT_7B@20%\": \"eval_sft_cka_only_20_n1319.json\",\n    \"CKA-only_GRPO_7B@20%_s42\": \"eval_gsm8k_grpo_cka_only_20_extended_300.json\",\n    \"Standard_SFT_7B@20%\": \"eval_sft_standard_20_full_westd.json\",\n    \"Standard_GRPO_7B@20%\": \"eval_gsm8k_grpo_standard_20_fair_v2.json\",\n    \"RASP_GRPO_7B@20%\": \"eval_gsm8k_grpo_rasp_20_fair.json\",\n    # 7B @25%\n    \"Standard_GRPO_7B@25%\": \"eval_grpo_standard_25_n1319.json\",\n    # ShortGPT @20%\n    \"ShortGPT_SFT_7B@20%\": \"gsm8k_sft_shortgpt_20.json\",\n    \"ShortGPT_GRPO_7B@20%\": \"gsm8k_grpo_shortgpt_20.json\",\n}\n\ndef load_binary(filepath):\n    with open(filepath) as f:\n        data = json.load(f)\n    examples = data.get(\"examples\", [])\n    if not examples:\n        return None, data.get(\"accuracy\"), data.get(\"n_total\")\n    binary = np.array([1 if ex[\"correct\"] else 0 for ex in examples])\n    return binary, data[\"accuracy\"], data[\"n_total\"]\n\ndef bootstrap_ci(correct_array, n_bootstrap=10000, ci=0.95, seed=42):\n    rng = np.random.default_rng(seed)\n    n = len(correct_array)\n    boot_accs = np.empty(n_bootstrap)\n    for i in range(n_bootstrap):\n        idx = rng.integers(0, n, size=n)\n        boot_accs[i] = correct_array[idx].mean()\n    lower = np.percentile(boot_accs, (1 - ci) / 2 * 100)\n    upper = np.percentile(boot_accs, (1 + ci) / 2 * 100)\n    return float(lower), float(upper), float(boot_accs.std())\n\ndef mcnemar_test(correct_a, correct_b):\n    b = int(((correct_a == 1) & (correct_b == 0)).sum())  # A right, B wrong\n    c = int(((correct_a == 0) & (correct_b == 1)).sum())  # A wrong, B right\n    if b + c == 0:\n        return {\"p_value\": 1.0, \"b\": b, \"c\": c, \"statistic\": 0.0, \"significant\": False}\n    statistic = (abs(b - c) - 1) ** 2 / (b + c)\n    from scipy.stats import chi2\n    p_value = float(1 - chi2.cdf(statistic, df=1))\n    return {\n        \"p_value\": p_value,\n        \"b\": b,\n        \"c\": c,\n        \"statistic\": float(statistic),\n        \"significant\": p_value < 0.05,\n    }\n\n# McNemar comparison pairs: (label_a, label_b, description)\nMCNEMAR_PAIRS = [\n    (\"CKA-only_GRPO_7B@20%_s42\", \"Standard_GRPO_7B@20%\", \"CKA-only vs Standard GRPO 7B@20%\"),\n    (\"CKA-only_GRPO_7B@20%_s42\", \"RASP_GRPO_7B@20%\", \"CKA-only vs RASP GRPO 7B@20%\"),\n    (\"CKA-only_GRPO_7B@20%_s42\", \"ShortGPT_GRPO_7B@20%\", \"CKA-only vs ShortGPT GRPO 7B@20%\"),\n    (\"CKA-only_SFT_7B@20%\", \"Standard_SFT_7B@20%\", \"CKA-only vs Standard SFT 7B@20%\"),\n    (\"CKA-only_SFT_7B@20%\", \"ShortGPT_SFT_7B@20%\", \"CKA-only vs ShortGPT SFT 7B@20%\"),\n    (\"RASP_GRPO_7B@20%\", \"Standard_GRPO_7B@20%\", \"RASP vs Standard GRPO 7B@20%\"),\n    (\"Dense_GRPO_Unpruned_7B\", \"CKA-only_GRPO_7B@20%_s42\", \"Dense vs CKA-only GRPO 7B@20%\"),\n]\n\ndef main():\n    results = {\"bootstrap_ci\": {}, \"mcnemar_tests\": {}, \"errors\": []}\n    binary_data = {}\n\n    # Load all files\n    for label, fname in FILE_MAP.items():\n        fpath = os.path.join(RESULTS_DIR, fname)\n        if not os.path.exists(fpath):\n            results[\"errors\"].append(f\"File not found: {fname}\")\n            continue\n        binary, acc, n = load_binary(fpath)\n        if binary is None:\n            results[\"errors\"].append(f\"No per-sample data in {fname}\")\n            continue\n        \n        lower, upper, std = bootstrap_ci(binary)\n        results[\"bootstrap_ci\"][label] = {\n            \"accuracy\": float(acc),\n            \"accuracy_pct\": f\"{acc*100:.2f}%\",\n            \"n_correct\": int(binary.sum()),\n            \"n_total\": int(n),\n            \"ci_lower\": lower,\n            \"ci_upper\": upper,\n            \"ci_lower_pct\": f\"{lower*100:.2f}%\",\n            \"ci_upper_pct\": f\"{upper*100:.2f}%\",\n            \"boot_std\": std,\n        }\n        binary_data[label] = binary\n\n    # McNemar tests\n    for label_a, label_b, desc in MCNEMAR_PAIRS:\n        if label_a not in binary_data or label_b not in binary_data:\n            results[\"errors\"].append(f\"Cannot compute McNemar for {desc}: missing data\")\n            continue\n        ba, bb = binary_data[label_a], binary_data[label_b]\n        if len(ba) != len(bb):\n            results[\"errors\"].append(f\"Length mismatch for {desc}: {len(ba)} vs {len(bb)}\")\n            continue\n        test_result = mcnemar_test(ba, bb)\n        test_result[\"description\"] = desc\n        test_result[\"model_a\"] = label_a\n        test_result[\"model_b\"] = label_b\n        test_result[\"acc_a\"] = f\"{binary_data[label_a].mean()*100:.2f}%\"\n        test_result[\"acc_b\"] = f\"{binary_data[label_b].mean()*100:.2f}%\"\n        results[\"mcnemar_tests\"][desc] = test_result\n\n    # Save\n    out_path = os.path.join(RESULTS_DIR, \"bootstrap_ci_analysis_v3.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    # Print summary\n    print(\"\\n===== BOOTSTRAP 95% CI =====\")\n    print(f\"{'Model':<40} {'Accuracy':>10} {'95% CI':>22} {'N':>6}\")\n    print(\"-\" * 82)\n    for label in FILE_MAP:\n        if label in results[\"bootstrap_ci\"]:\n            r = results[\"bootstrap_ci\"][label]\n            print(f\"{label:<40} {r['accuracy_pct']:>10} [{r['ci_lower_pct']:>8}, {r['ci_upper_pct']:>8}] {r['n_total']:>6}\")\n\n    print(\"\\n===== McNEMAR'S TESTS =====\")\n    print(f\"{'Comparison':<45} {'p-value':>10} {'b':>5} {'c':>5} {'χ²':>8} {'Sig?':>6}\")\n    print(\"-\" * 82)\n    for desc, t in results[\"mcnemar_tests\"].items():\n        sig = \"***\" if t[\"p_value\"] < 0.001 else (\"**\" if t[\"p_value\"] < 0.01 else (\"*\" if t[\"p_value\"] < 0.05 else \"n.s.\"))\n        print(f\"{desc:<45} {t['p_value']:>10.4f} {t['b']:>5} {t['c']:>5} {t['statistic']:>8.2f} {sig:>6}\")\n\n    if results[\"errors\"]:\n        print(\"\\n===== ERRORS =====\")\n        for e in results[\"errors\"]:\n            print(f\"  - {e}\")\n\n    print(f\"\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "cat > /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_mcnemar_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nimport sys\nimport os\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\n# File mapping: label -> filename\nFILE_MAP = {\n    # 7B @20%\n    \"Dense_GRPO_Unpruned_7B\": \"eval_grpo_unpruned_v2_step100.json\",\n    \"CKA-only_SFT_7B@20%\": \"eval_sft_cka_only_20_n1319.json\",\n    \"CKA-only_GRPO_7B@20%_s42\": \"eval_gsm8k_grpo_cka_only_20_extended_300.json\",\n    \"Standard_SFT_7B@20%\": \"eval_sft_standard_20_full_westd.json\",\n    \"Standard_GRPO_7B@20%\": \"eval_gsm8k_grpo_standard_20_fair_v2.json\",\n    \"RASP_GRPO_7B@20%\": \"eval_gsm8k_grpo_rasp_20_fair.json\",\n    # 7B @25%\n    \"Standard_GRPO_7B@25%\": \"eval_grpo_standard_25_n1319.json\",\n    # ShortGPT @20%\n    \"ShortGPT_SFT_7B@20%\": \"gsm8k_sft_shortgpt_20.json\",\n    \"ShortGPT_GRPO_7B@20%\": \"gsm8k_grpo_shortgpt_20.json\",\n}\n\ndef load_binary(filepath):\n    with open(filepath) as f:\n        data = json.load(f)\n    examples = data.get(\"examples\", [])\n    if not examples:\n        return None, data.get(\"accuracy\"), data.get(\"n_total\")\n    binary = np.array([1 if ex[\"correct\"] else 0 for ex in examples])\n    return binary, data[\"accuracy\"], data[\"n_total\"]\n\ndef bootstrap_ci(correct_array, n_bootstrap=10000, ci=0.95, seed=42):\n    rng = np.random.default_rng(seed)\n    n = len(correct_array)\n    boot_accs = np.empty(n_bootstrap)\n    for i in range(n_bootstrap):\n        idx = rng.integers(0, n, size=n)\n        boot_accs[i] = correct_array[idx].mean()\n    lower = np.percentile(boot_accs, (1 - ci) / 2 * 100)\n    upper = np.percentile(boot_accs, (1 + ci) / 2 * 100)\n    return float(lower), float(upper), float(boot_accs.std())\n\ndef mcnemar_test(correct_a, correct_b):\n    b = int(((correct_a == 1) & (correct_b == 0)).sum())  # A right, B wrong\n    c = int(((correct_a == 0) & (correct_b == 1)).sum())  # A wrong, B right\n    if b + c == 0:\n        return {\"p_value\": 1.0, \"b\": b, \"c\": c, \"statistic\": 0.0, \"significant\": False}\n    statistic = (abs(b - c) - 1) ** 2 / (b + c)\n    from scipy.stats import chi2\n    p_value = float(1 - chi2.cdf(statistic, df=1))\n    return {\n        \"p_value\": p_value,\n        \"b\": b,\n        \"c\": c,\n        \"statistic\": float(statistic),\n        \"significant\": p_value < 0.05,\n    }\n\n# McNemar comparison pairs: (label_a, label_b, description)\nMCNEMAR_PAIRS = [\n    (\"CKA-only_GRPO_7B@20%_s42\", \"Standard_GRPO_7B@20%\", \"CKA-only vs Standard GRPO 7B@20%\"),\n    (\"CKA-only_GRPO_7B@20%_s42\", \"RASP_GRPO_7B@20%\", \"CKA-only vs RASP GRPO 7B@20%\"),\n    (\"CKA-only_GRPO_7B@20%_s42\", \"ShortGPT_GRPO_7B@20%\", \"CKA-only vs ShortGPT GRPO 7B@20%\"),\n    (\"CKA-only_SFT_7B@20%\", \"Standard_SFT_7B@20%\", \"CKA-only vs Standard SFT 7B@20%\"),\n    (\"CKA-only_SFT_7B@20%\", \"ShortGPT_SFT_7B@20%\", \"CKA-only vs ShortGPT SFT 7B@20%\"),\n    (\"RASP_GRPO_7B@20%\", \"Standard_GRPO_7B@20%\", \"RASP vs Standard GRPO 7B@20%\"),\n    (\"Dense_GRPO_Unpruned_7B\", \"CKA-only_GRPO_7B@20%_s42\", \"Dense vs CKA-only GRPO 7B@20%\"),\n]\n\ndef main():\n    results = {\"bootstrap_ci\": {}, \"mcnemar_tests\": {}, \"errors\": []}\n    binary_data = {}\n\n    # Load all files\n    for label, fname in FILE_MAP.items():\n        fpath = os.path.join(RESULTS_DIR, fname)\n        if not os.path.exists(fpath):\n            results[\"errors\"].append(f\"File not found: {fname}\")\n            continue\n        binary, acc, n = load_binary(fpath)\n        if binary is None:\n            results[\"errors\"].append(f\"No per-sample data in {fname}\")\n            continue\n        \n        lower, upper, std = bootstrap_ci(binary)\n        results[\"bootstrap_ci\"][label] = {\n            \"accuracy\": float(acc),\n            \"accuracy_pct\": f\"{acc*100:.2f}%\",\n            \"n_correct\": int(binary.sum()),\n            \"n_total\": int(n),\n            \"ci_lower\": lower,\n            \"ci_upper\": upper,\n            \"ci_lower_pct\": f\"{lower*100:.2f}%\",\n            \"ci_upper_pct\": f\"{upper*100:.2f}%\",\n            \"boot_std\": std,\n        }\n        binary_data[label] = binary\n\n    # McNemar tests\n    for label_a, label_b, desc in MCNEMAR_PAIRS:\n        if label_a not in binary_data or label_b not in binary_data:\n            results[\"errors\"].append(f\"Cannot compute McNemar for {desc}: missing data\")\n            continue\n        ba, bb = binary_data[label_a], binary_data[label_b]\n        if len(ba) != len(bb):\n            results[\"errors\"].append(f\"Length mismatch for {desc}: {len(ba)} vs {len(bb)}\")\n            continue\n        test_result = mcnemar_test(ba, bb)\n        test_result[\"description\"] = desc\n        test_result[\"model_a\"] = label_a\n        test_result[\"model_b\"] = label_b\n        test_result[\"acc_a\"] = f\"{binary_data[label_a].mean()*100:.2f}%\"\n        test_result[\"acc_b\"] = f\"{binary_data[label_b].mean()*100:.2f}%\"\n        results[\"mcnemar_tests\"][desc] = test_result\n\n    # Save\n    out_path = os.path.join(RESULTS_DIR, \"bootstrap_ci_analysis_v3.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    # Print summary\n    print(\"\\n===== BOOTSTRAP 95% CI =====\")\n    print(f\"{'Model':<40} {'Accuracy':>10} {'95% CI':>22} {'N':>6}\")\n    print(\"-\" * 82)\n    for label in FILE_MAP:\n        if label in results[\"bootstrap_ci\"]:\n            r = results[\"bootstrap_ci\"][label]\n            print(f\"{label:<40} {r['accuracy_pct']:>10} [{r['ci_lower_pct']:>8}, {r['ci_upper_pct']:>8}] {r['n_total']:>6}\")\n\n    print(\"\\n===== McNEMAR'S TESTS =====\")\n    print(f\"{'Comparison':<45} {'p-value':>10} {'b':>5} {'c':>5} {'χ²':>8} {'Sig?':>6}\")\n    print(\"-\" * 82)\n    for desc, t in results[\"mcnemar_tests\"].items():\n        sig = \"***\" if t[\"p_value\"] < 0.001 else (\"**\" if t[\"p_value\"] < 0.01 else (\"*\" if t[\"p_value\"] < 0.05 else \"n.s.\"))\n        print(f\"{desc:<45} {t['p_value']:>10.4f} {t['b']:>5} {t['c']:>5} {t['statistic']:>8.2f} {sig:>6}\")\n\n    if results[\"errors\"]:\n        print(\"\\n===== ERRORS =====\")\n        for e in results[\"errors\"]:\n            print(f\"  - {e}\")\n\n    print(f\"\\nResults saved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T06:06:43.557175+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T06:06:43.557323+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_mcnemar_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_mcnemar_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T06:06:43.557455+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_mcnemar_analysis.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 2.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T06:06:43.557582+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "ls /root/miniconda3/bin/python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "ls /root/miniconda3/bin/python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T06:06:43.557726+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T06:06:43.558218+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_mcnemar_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_mcnemar_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T06:06:43.558416+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_mcnemar_analysis.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n  File \\\"/root/miniconda3/lib/python3.12/json/__init__.py\\\", line 346, in loads\\n    return _default_decoder.decode(s)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/json/decoder.py\\\", line 337, in decode\\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/json/decoder.py\\\", line 353, in raw_decode\\n    obj, end = self.scan_once(s, idx)\\n               ^^^^^^^^^^^^^^^^^^^^^^\\njson.decoder.JSONDecodeError: Unterminated string starting at: line 9011 column 19 (char 745199)\\n\\n\", \"metadata\": {\"elapsed_seconds\": 2.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T06:06:43.558797+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\nd='/root/autodl-tmp/recovery_aware_struct_prune/results'\nfiles = {\n    'eval_grpo_unpruned_v2_step100.json',\n    'eval_sft_cka_only_20_n1319.json',\n    'eval_gsm8k_grpo_cka_only_20_extended_300.json',\n    'eval_sft_standard_20_full_westd.json',\n    'eval_gsm8k_grpo_standard_20_fair_v2.json',\n    'eval_gsm8k_grpo_rasp_20_fair.json',\n    'eval_grpo_standard_25_n1319.json',\n    'gsm8k_sft_shortgpt_20.json',\n    'gsm8k_grpo_shortgpt_20.json',\n}\nfor f in sorted(files):\n    p = os.path.join(d, f)\n    try:\n        data = json.load(open(p))\n        print(f'{f}: OK, {len(data.get(\\\"examples\\\",[]))} examples')\n    except Exception as e:\n        print(f'{f}: ERROR - {e}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\nd='/root/autodl-tmp/recovery_aware_struct_prune/results'\nfiles = {\n    'eval_grpo_unpruned_v2_step100.json',\n    'eval_sft_cka_only_20_n1319.json',\n    'eval_gsm8k_grpo_cka_only_20_extended_300.json',\n    'eval_sft_standard_20_full_westd.json',\n    'eval_gsm8k_grpo_standard_20_fair_v2.json',\n    'eval_gsm8k_grpo_rasp_20_fair.json',\n    'eval_grpo_standard_25_n1319.json',\n    'gsm8k_sft_shortgpt_20.json',\n    'gsm8k_grpo_shortgpt_20.json',\n}\nfor f in sorted(files):\n    p = os.path.join(d, f)\n    try:\n        data = json.load(open(p))\n        print(f'{f}: OK, {len(data.get(\\\"examples\\\",[]))} examples')\n    except Exception as e:\n        print(f'{f}: ERROR - {e}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T06:06:43.558954+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_grpo_standard_25_n1319.json: OK, 1319 examples\\neval_grpo_unpruned_v2_step100.json: OK, 1319 examples\\neval_gsm8k_grpo_cka_only_20_extended_300.json: OK, 1319 examples\\neval_gsm8k_grpo_rasp_20_fair.json: OK, 1319 examples\\neval_gsm8k_grpo_standard_20_fair_v2.json: OK, 1319 examples\\neval_sft_cka_only_20_n1319.json: OK, 1319 examples\\neval_sft_standard_20_full_westd.json: OK, 1319 examples\\ngsm8k_grpo_shortgpt_20.json: OK, 1319 examples\\ngsm8k_sft_shortgpt_20.json: ERROR - Unterminated string starting at: line 9011 column 19 (char 745199)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T06:06:43.559625+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nf = '/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_sft_shortgpt_20.json'\nraw = open(f).read()\n# Try to fix truncated JSON by finding last complete example\nidx = raw.rfind('},')\nif idx > 0:\n    fixed = raw[:idx+1] + ']}' \n    data = json.loads(fixed)\n    print(f'Recovered {len(data.get(\\\"examples\\\",[]))} examples')\n    print(f'Accuracy field: {data.get(\\\"accuracy\\\")}')\n    print(f'N_total field: {data.get(\\\"n_total\\\")}')\n    correct = sum(1 for ex in data['examples'] if ex['correct'])\n    print(f'Correct from recovered examples: {correct}/{len(data[\\\"examples\\\"])}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nf = '/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_sft_shortgpt_20.json'\nraw = open(f).read()\n# Try to fix truncated JSON by finding last complete example\nidx = raw.rfind('},')\nif idx > 0:\n    fixed = raw[:idx+1] + ']}' \n    data = json.loads(fixed)\n    print(f'Recovered {len(data.get(\\\"examples\\\",[]))} examples')\n    print(f'Accuracy field: {data.get(\\\"accuracy\\\")}')\n    print(f'N_total field: {data.get(\\\"n_total\\\")}')\n    correct = sum(1 for ex in data['examples'] if ex['correct'])\n    print(f'Correct from recovered examples: {correct}/{len(data[\\\"examples\\\"])}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T06:06:43.559816+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Recovered 999 examples\\nAccuracy field: 0.4473085670962851\\nN_total field: 1319\\nCorrect from recovered examples: 457/999\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T06:06:43.560033+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "cat > /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_mcnemar_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nimport os\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\nFILE_MAP = {\n    \"Dense_GRPO_Unpruned_7B\": \"eval_grpo_unpruned_v2_step100.json\",\n    \"CKA-only_SFT_7B@20%\": \"eval_sft_cka_only_20_n1319.json\",\n    \"CKA-only_GRPO_7B@20%_s42\": \"eval_gsm8k_grpo_cka_only_20_extended_300.json\",\n    \"Standard_SFT_7B@20%\": \"eval_sft_standard_20_full_westd.json\",\n    \"Standard_GRPO_7B@20%\": \"eval_gsm8k_grpo_standard_20_fair_v2.json\",\n    \"RASP_GRPO_7B@20%\": \"eval_gsm8k_grpo_rasp_20_fair.json\",\n    \"Standard_GRPO_7B@25%\": \"eval_grpo_standard_25_n1319.json\",\n    \"ShortGPT_SFT_7B@20%\": \"gsm8k_sft_shortgpt_20.json\",\n    \"ShortGPT_GRPO_7B@20%\": \"gsm8k_grpo_shortgpt_20.json\",\n}\n\ndef load_binary(filepath):\n    raw = open(filepath).read()\n    try:\n        data = json.loads(raw)\n    except json.JSONDecodeError:\n        idx = raw.rfind('},')\n        if idx > 0:\n            fixed = raw[:idx+1] + ']}'\n            data = json.loads(fixed)\n            data[\"_truncated\"] = True\n        else:\n            return None, None, None, True\n    \n    examples = data.get(\"examples\", [])\n    truncated = data.get(\"_truncated\", False)\n    if not examples:\n        return None, data.get(\"accuracy\"), data.get(\"n_total\"), truncated\n    binary = np.array([1 if ex[\"correct\"] else 0 for ex in examples])\n    return binary, data[\"accuracy\"], data[\"n_total\"], truncated\n\ndef bootstrap_ci(correct_array, n_bootstrap=10000, ci=0.95, seed=42):\n    rng = np.random.default_rng(seed)\n    n = len(correct_array)\n    boot_accs = np.empty(n_bootstrap)\n    for i in range(n_bootstrap):\n        idx = rng.integers(0, n, size=n)\n        boot_accs[i] = correct_array[idx].mean()\n    lower = np.percentile(boot_accs, (1 - ci) / 2 * 100)\n    upper = np.percentile(boot_accs, (1 + ci) / 2 * 100)\n    return float(lower), float(upper)\n\ndef binomial_ci(acc, n, ci=0.95):\n    import math\n    z = 1.96\n    se = math.sqrt(acc * (1 - acc) / n)\n    return max(0, acc - z * se), min(1, acc + z * se)\n\ndef mcnemar_test(correct_a, correct_b):\n    b = int(((correct_a == 1) & (correct_b == 0)).sum())\n    c = int(((correct_a == 0) & (correct_b == 1)).sum())\n    if b + c == 0:\n        return {\"p_value\": 1.0, \"b\": b, \"c\": c, \"statistic\": 0.0, \"significant\": False}\n    statistic = (abs(b - c) - 1) ** 2 / (b + c)\n    from scipy.stats import chi2\n    p_value = float(1 - chi2.cdf(statistic, df=1))\n    return {\"p_value\": p_value, \"b\": b, \"c\": c, \"statistic\": float(statistic), \"significant\": p_value < 0.05}\n\nMCNEMAR_PAIRS = [\n    (\"CKA-only_GRPO_7B@20%_s42\", \"Standard_GRPO_7B@20%\", \"CKA-only vs Standard GRPO 7B@20%\"),\n    (\"CKA-only_GRPO_7B@20%_s42\", \"RASP_GRPO_7B@20%\", \"CKA-only vs RASP GRPO 7B@20%\"),\n    (\"CKA-only_GRPO_7B@20%_s42\", \"ShortGPT_GRPO_7B@20%\", \"CKA-only vs ShortGPT GRPO 7B@20%\"),\n    (\"CKA-only_SFT_7B@20%\", \"Standard_SFT_7B@20%\", \"CKA-only vs Standard SFT 7B@20%\"),\n    (\"CKA-only_SFT_7B@20%\", \"ShortGPT_SFT_7B@20%\", \"CKA-only vs ShortGPT SFT 7B@20%\"),\n    (\"RASP_GRPO_7B@20%\", \"Standard_GRPO_7B@20%\", \"RASP vs Standard GRPO 7B@20%\"),\n    (\"Dense_GRPO_Unpruned_7B\", \"CKA-only_GRPO_7B@20%_s42\", \"Dense vs CKA-only GRPO 7B@20%\"),\n]\n\ndef main():\n    results = {\"bootstrap_ci\": {}, \"mcnemar_tests\": {}, \"notes\": []}\n    binary_data = {}\n\n    for label, fname in FILE_MAP.items():\n        fpath = os.path.join(RESULTS_DIR, fname)\n        if not os.path.exists(fpath):\n            results[\"notes\"].append(f\"File not found: {fname}\")\n            continue\n        binary, acc, n, truncated = load_binary(fpath)\n        \n        if binary is not None and not truncated:\n            lower, upper = bootstrap_ci(binary)\n            method = \"bootstrap\"\n            binary_data[label] = binary\n        elif binary is not None and truncated:\n            lower, upper = bootstrap_ci(binary)\n            method = f\"bootstrap (partial: {len(binary)}/{n} samples recovered)\"\n            results[\"notes\"].append(f\"{label}: JSON truncated, {len(binary)}/{n} samples recovered. Using partial bootstrap.\")\n        elif acc is not None and n is not None:\n            lower, upper = binomial_ci(acc, n)\n            method = \"binomial_approx\"\n            results[\"notes\"].append(f\"{label}: No per-sample data, using binomial CI approximation\")\n        else:\n            results[\"notes\"].append(f\"{label}: Could not load data\")\n            continue\n\n        actual_acc = float(binary.mean()) if binary is not None else acc\n        results[\"bootstrap_ci\"][label] = {\n            \"accuracy\": float(acc),\n            \"accuracy_pct\": f\"{acc*100:.2f}%\",\n            \"n_correct\": int(binary.sum()) if binary is not None else int(round(acc * n)),\n            \"n_total\": int(n),\n            \"ci_lower\": lower,\n            \"ci_upper\": upper,\n            \"ci_lower_pct\": f\"{lower*100:.2f}%\",\n            \"ci_upper_pct\": f\"{upper*100:.2f}%\",\n            \"ci_width_pct\": f\"{(upper-lower)*100:.2f}%\",\n            \"method\": method,\n        }\n\n    # McNemar tests\n    for label_a, label_b, desc in MCNEMAR_PAIRS:\n        if label_a not in binary_data or label_b not in binary_data:\n            missing = []\n            if label_a not in binary_data: missing.append(label_a)\n            if label_b not in binary_data: missing.append(label_b)\n            results[\"notes\"].append(f\"McNemar skipped for '{desc}': missing {', '.join(missing)}\")\n            continue\n        ba, bb = binary_data[label_a], binary_data[label_b]\n        if len(ba) != len(bb):\n            results[\"notes\"].append(f\"McNemar skipped for '{desc}': length mismatch {len(ba)} vs {len(bb)}\")\n            continue\n        test_result = mcnemar_test(ba, bb)\n        test_result[\"description\"] = desc\n        test_result[\"model_a\"] = label_a\n        test_result[\"model_b\"] = label_b\n        test_result[\"acc_a\"] = f\"{binary_data[label_a].mean()*100:.2f}%\"\n        test_result[\"acc_b\"] = f\"{binary_data[label_b].mean()*100:.2f}%\"\n        results[\"mcnemar_tests\"][desc] = test_result\n\n    out_path = os.path.join(RESULTS_DIR, \"bootstrap_ci_analysis_v3.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(\"\\n===== BOOTSTRAP 95% CI (GSM8K, N=1319) =====\")\n    print(f\"{'Model':<35} {'Acc':>8} {'95% CI':>22} {'Width':>7} {'Method'}\")\n    print(\"-\" * 100)\n    order = list(FILE_MAP.keys())\n    for label in order:\n        if label in results[\"bootstrap_ci\"]:\n            r = results[\"bootstrap_ci\"][label]\n            m = r[\"method\"][:12]\n            print(f\"{label:<35} {r['accuracy_pct']:>8} [{r['ci_lower_pct']:>8}, {r['ci_upper_pct']:>8}] {r['ci_width_pct']:>7} {m}\")\n\n    print(f\"\\n===== McNEMAR'S TESTS (continuity-corrected χ²) =====\")\n    print(f\"{'Comparison':<42} {'Acc_A':>8} {'Acc_B':>8} {'b':>5} {'c':>5} {'χ²':>8} {'p':>10} {'Sig':>5}\")\n    print(\"-\" * 100)\n    for desc, t in results[\"mcnemar_tests\"].items():\n        sig = \"***\" if t[\"p_value\"] < 0.001 else (\"**\" if t[\"p_value\"] < 0.01 else (\"*\" if t[\"p_value\"] < 0.05 else \"n.s.\"))\n        print(f\"{desc:<42} {t['acc_a']:>8} {t['acc_b']:>8} {t['b']:>5} {t['c']:>5} {t['statistic']:>8.2f} {t['p_value']:>10.6f} {sig:>5}\")\n\n    if results[\"notes\"]:\n        print(f\"\\n===== NOTES =====\")\n        for n in results[\"notes\"]:\n            print(f\"  - {n}\")\n\n    print(f\"\\nSaved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "cat > /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_mcnemar_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nimport os\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\nFILE_MAP = {\n    \"Dense_GRPO_Unpruned_7B\": \"eval_grpo_unpruned_v2_step100.json\",\n    \"CKA-only_SFT_7B@20%\": \"eval_sft_cka_only_20_n1319.json\",\n    \"CKA-only_GRPO_7B@20%_s42\": \"eval_gsm8k_grpo_cka_only_20_extended_300.json\",\n    \"Standard_SFT_7B@20%\": \"eval_sft_standard_20_full_westd.json\",\n    \"Standard_GRPO_7B@20%\": \"eval_gsm8k_grpo_standard_20_fair_v2.json\",\n    \"RASP_GRPO_7B@20%\": \"eval_gsm8k_grpo_rasp_20_fair.json\",\n    \"Standard_GRPO_7B@25%\": \"eval_grpo_standard_25_n1319.json\",\n    \"ShortGPT_SFT_7B@20%\": \"gsm8k_sft_shortgpt_20.json\",\n    \"ShortGPT_GRPO_7B@20%\": \"gsm8k_grpo_shortgpt_20.json\",\n}\n\ndef load_binary(filepath):\n    raw = open(filepath).read()\n    try:\n        data = json.loads(raw)\n    except json.JSONDecodeError:\n        idx = raw.rfind('},')\n        if idx > 0:\n            fixed = raw[:idx+1] + ']}'\n            data = json.loads(fixed)\n            data[\"_truncated\"] = True\n        else:\n            return None, None, None, True\n    \n    examples = data.get(\"examples\", [])\n    truncated = data.get(\"_truncated\", False)\n    if not examples:\n        return None, data.get(\"accuracy\"), data.get(\"n_total\"), truncated\n    binary = np.array([1 if ex[\"correct\"] else 0 for ex in examples])\n    return binary, data[\"accuracy\"], data[\"n_total\"], truncated\n\ndef bootstrap_ci(correct_array, n_bootstrap=10000, ci=0.95, seed=42):\n    rng = np.random.default_rng(seed)\n    n = len(correct_array)\n    boot_accs = np.empty(n_bootstrap)\n    for i in range(n_bootstrap):\n        idx = rng.integers(0, n, size=n)\n        boot_accs[i] = correct_array[idx].mean()\n    lower = np.percentile(boot_accs, (1 - ci) / 2 * 100)\n    upper = np.percentile(boot_accs, (1 + ci) / 2 * 100)\n    return float(lower), float(upper)\n\ndef binomial_ci(acc, n, ci=0.95):\n    import math\n    z = 1.96\n    se = math.sqrt(acc * (1 - acc) / n)\n    return max(0, acc - z * se), min(1, acc + z * se)\n\ndef mcnemar_test(correct_a, correct_b):\n    b = int(((correct_a == 1) & (correct_b == 0)).sum())\n    c = int(((correct_a == 0) & (correct_b == 1)).sum())\n    if b + c == 0:\n        return {\"p_value\": 1.0, \"b\": b, \"c\": c, \"statistic\": 0.0, \"significant\": False}\n    statistic = (abs(b - c) - 1) ** 2 / (b + c)\n    from scipy.stats import chi2\n    p_value = float(1 - chi2.cdf(statistic, df=1))\n    return {\"p_value\": p_value, \"b\": b, \"c\": c, \"statistic\": float(statistic), \"significant\": p_value < 0.05}\n\nMCNEMAR_PAIRS = [\n    (\"CKA-only_GRPO_7B@20%_s42\", \"Standard_GRPO_7B@20%\", \"CKA-only vs Standard GRPO 7B@20%\"),\n    (\"CKA-only_GRPO_7B@20%_s42\", \"RASP_GRPO_7B@20%\", \"CKA-only vs RASP GRPO 7B@20%\"),\n    (\"CKA-only_GRPO_7B@20%_s42\", \"ShortGPT_GRPO_7B@20%\", \"CKA-only vs ShortGPT GRPO 7B@20%\"),\n    (\"CKA-only_SFT_7B@20%\", \"Standard_SFT_7B@20%\", \"CKA-only vs Standard SFT 7B@20%\"),\n    (\"CKA-only_SFT_7B@20%\", \"ShortGPT_SFT_7B@20%\", \"CKA-only vs ShortGPT SFT 7B@20%\"),\n    (\"RASP_GRPO_7B@20%\", \"Standard_GRPO_7B@20%\", \"RASP vs Standard GRPO 7B@20%\"),\n    (\"Dense_GRPO_Unpruned_7B\", \"CKA-only_GRPO_7B@20%_s42\", \"Dense vs CKA-only GRPO 7B@20%\"),\n]\n\ndef main():\n    results = {\"bootstrap_ci\": {}, \"mcnemar_tests\": {}, \"notes\": []}\n    binary_data = {}\n\n    for label, fname in FILE_MAP.items():\n        fpath = os.path.join(RESULTS_DIR, fname)\n        if not os.path.exists(fpath):\n            results[\"notes\"].append(f\"File not found: {fname}\")\n            continue\n        binary, acc, n, truncated = load_binary(fpath)\n        \n        if binary is not None and not truncated:\n            lower, upper = bootstrap_ci(binary)\n            method = \"bootstrap\"\n            binary_data[label] = binary\n        elif binary is not None and truncated:\n            lower, upper = bootstrap_ci(binary)\n            method = f\"bootstrap (partial: {len(binary)}/{n} samples recovered)\"\n            results[\"notes\"].append(f\"{label}: JSON truncated, {len(binary)}/{n} samples recovered. Using partial bootstrap.\")\n        elif acc is not None and n is not None:\n            lower, upper = binomial_ci(acc, n)\n            method = \"binomial_approx\"\n            results[\"notes\"].append(f\"{label}: No per-sample data, using binomial CI approximation\")\n        else:\n            results[\"notes\"].append(f\"{label}: Could not load data\")\n            continue\n\n        actual_acc = float(binary.mean()) if binary is not None else acc\n        results[\"bootstrap_ci\"][label] = {\n            \"accuracy\": float(acc),\n            \"accuracy_pct\": f\"{acc*100:.2f}%\",\n            \"n_correct\": int(binary.sum()) if binary is not None else int(round(acc * n)),\n            \"n_total\": int(n),\n            \"ci_lower\": lower,\n            \"ci_upper\": upper,\n            \"ci_lower_pct\": f\"{lower*100:.2f}%\",\n            \"ci_upper_pct\": f\"{upper*100:.2f}%\",\n            \"ci_width_pct\": f\"{(upper-lower)*100:.2f}%\",\n            \"method\": method,\n        }\n\n    # McNemar tests\n    for label_a, label_b, desc in MCNEMAR_PAIRS:\n        if label_a not in binary_data or label_b not in binary_data:\n            missing = []\n            if label_a not in binary_data: missing.append(label_a)\n            if label_b not in binary_data: missing.append(label_b)\n            results[\"notes\"].append(f\"McNemar skipped for '{desc}': missing {', '.join(missing)}\")\n            continue\n        ba, bb = binary_data[label_a], binary_data[label_b]\n        if len(ba) != len(bb):\n            results[\"notes\"].append(f\"McNemar skipped for '{desc}': length mismatch {len(ba)} vs {len(bb)}\")\n            continue\n        test_result = mcnemar_test(ba, bb)\n        test_result[\"description\"] = desc\n        test_result[\"model_a\"] = label_a\n        test_result[\"model_b\"] = label_b\n        test_result[\"acc_a\"] = f\"{binary_data[label_a].mean()*100:.2f}%\"\n        test_result[\"acc_b\"] = f\"{binary_data[label_b].mean()*100:.2f}%\"\n        results[\"mcnemar_tests\"][desc] = test_result\n\n    out_path = os.path.join(RESULTS_DIR, \"bootstrap_ci_analysis_v3.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(\"\\n===== BOOTSTRAP 95% CI (GSM8K, N=1319) =====\")\n    print(f\"{'Model':<35} {'Acc':>8} {'95% CI':>22} {'Width':>7} {'Method'}\")\n    print(\"-\" * 100)\n    order = list(FILE_MAP.keys())\n    for label in order:\n        if label in results[\"bootstrap_ci\"]:\n            r = results[\"bootstrap_ci\"][label]\n            m = r[\"method\"][:12]\n            print(f\"{label:<35} {r['accuracy_pct']:>8} [{r['ci_lower_pct']:>8}, {r['ci_upper_pct']:>8}] {r['ci_width_pct']:>7} {m}\")\n\n    print(f\"\\n===== McNEMAR'S TESTS (continuity-corrected χ²) =====\")\n    print(f\"{'Comparison':<42} {'Acc_A':>8} {'Acc_B':>8} {'b':>5} {'c':>5} {'χ²':>8} {'p':>10} {'Sig':>5}\")\n    print(\"-\" * 100)\n    for desc, t in results[\"mcnemar_tests\"].items():\n        sig = \"***\" if t[\"p_value\"] < 0.001 else (\"**\" if t[\"p_value\"] < 0.01 else (\"*\" if t[\"p_value\"] < 0.05 else \"n.s.\"))\n        print(f\"{desc:<42} {t['acc_a']:>8} {t['acc_b']:>8} {t['b']:>5} {t['c']:>5} {t['statistic']:>8.2f} {t['p_value']:>10.6f} {sig:>5}\")\n\n    if results[\"notes\"]:\n        print(f\"\\n===== NOTES =====\")\n        for n in results[\"notes\"]:\n            print(f\"  - {n}\")\n\n    print(f\"\\nSaved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T06:06:43.560256+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-20T06:06:43.560413+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_mcnemar_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_mcnemar_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T06:06:43.560571+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n===== BOOTSTRAP 95% CI (GSM8K, N=1319) =====\\nModel                                    Acc                 95% CI   Width Method\\n----------------------------------------------------------------------------------------------------\\nDense_GRPO_Unpruned_7B                81.27% [  79.15%,   83.32%]   4.17% bootstrap\\nCKA-only_SFT_7B@20%                   63.91% [  61.33%,   66.49%]   5.16% bootstrap\\nCKA-only_GRPO_7B@20%_s42              64.37% [  61.71%,   66.94%]   5.23% bootstrap\\nStandard_SFT_7B@20%                   59.29% [  56.63%,   61.94%]   5.31% bootstrap\\nStandard_GRPO_7B@20%                  59.44% [  56.79%,   62.09%]   5.31% bootstrap\\nRASP_GRPO_7B@20%                      60.88% [  58.23%,   63.46%]   5.23% bootstrap\\nStandard_GRPO_7B@25%                  51.10% [  48.45%,   53.75%]   5.31% bootstrap\\nShortGPT_SFT_7B@20%                   44.73% [  42.64%,   48.85%]   6.21% bootstrap (p\\nShortGPT_GRPO_7B@20%                  43.37% [  40.71%,   46.02%]   5.31% bootstrap\\n\\n===== McNEMAR'S TESTS (continuity-corrected χ²) =====\\nComparison                                    Acc_A    Acc_B     b     c       χ²          p   Sig\\n----------------------------------------------------------------------------------------------------\\nCKA-only vs Standard GRPO 7B@20%             64.37%   59.44%   217   152    11.10   0.000863   ***\\nCKA-only vs RASP GRPO 7B@20%                 64.37%   60.88%   210   164     5.41   0.019971     *\\nCKA-only vs ShortGPT GRPO 7B@20%             64.37%   43.37%   485   208   109.92   0.000000   ***\\nCKA-only vs Standard SFT 7B@20%              63.91%   59.29%   223   162     9.35   0.002229    **\\nRASP vs Standard GRPO 7B@20%                 60.88%   59.44%   194   175     0.88   0.348737  n.s.\\nDense vs CKA-only GRPO 7B@20%                81.27%   64.37%   291    68   137.28   0.000000   ***\\n\\n===== NOTES =====\\n  - ShortGPT_SFT_7B@20%: JSON truncat
+…[truncated 349 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T06:06:43.560788+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat > /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_westb.py << 'PYEOF'\nimport json\nimport numpy as np\nimport os\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\nFILE_MAP = {\n    \"CKA-only_GRPO_7B@20%_s123\": \"gsm8k_grpo_cka_only_20_seed123.json\",\n    \"RASP_SFT_7B@20%\": \"eval_sft_rasp_20_full_n1319.json\",\n    \"RASP_GRPO_7B@25%\": \"eval_grpo_rasp_25_n1319.json\",\n    # 1.5B SFT\n    \"CKA-only_SFT_1.5B@20%\": \"eval_gsm8k_sft_cka_only_20_1p5b.json\",\n    \"Standard_SFT_1.5B@20%\": \"eval_gsm8k_sft_standard_20_1p5b.json\",\n    \"RASP_SFT_1.5B@20%\": \"eval_gsm8k_sft_rasp_20_1p5b.json\",\n    # 1.5B GRPO\n    \"CKA-only_GRPO_1.5B@20%\": \"eval_gsm8k_grpo_cka_only_20_1p5b.json\",\n    \"Standard_GRPO_1.5B@20%\": \"eval_gsm8k_grpo_standard_20_1p5b.json\",\n    \"RASP_GRPO_1.5B@20%\": \"eval_gsm8k_grpo_rasp_20_1p5b.json\",\n}\n\ndef load_binary(filepath):\n    with open(filepath) as f:\n        data = json.load(f)\n    examples = data.get(\"examples\", [])\n    if not examples:\n        return None, data.get(\"accuracy\"), data.get(\"n_total\")\n    binary = np.array([1 if ex[\"correct\"] else 0 for ex in examples])\n    return binary, data[\"accuracy\"], data[\"n_total\"]\n\ndef bootstrap_ci(correct_array, n_bootstrap=10000, ci=0.95, seed=42):\n    rng = np.random.default_rng(seed)\n    n = len(correct_array)\n    boot_accs = np.empty(n_bootstrap)\n    for i in range(n_bootstrap):\n        idx = rng.integers(0, n, size=n)\n        boot_accs[i] = correct_array[idx].mean()\n    lower = np.percentile(boot_accs, (1 - ci) / 2 * 100)\n    upper = np.percentile(boot_accs, (1 + ci) / 2 * 100)\n    return float(lower), float(upper)\n\ndef mcnemar_test(correct_a, correct_b):\n    b = int(((correct_a == 1) & (correct_b == 0)).sum())\n    c = int(((correct_a == 0) & (correct_b == 1)).sum())\n    if b + c == 0:\n        return {\"p_value\": 1.0, \"b\": b, \"c\": c, \"statistic\": 0.0, \"significant\": False}\n    statistic = (abs(b - c) - 1) ** 2 / (b + c)\n    from scipy.stats import chi2\n    p_value = float(1 - chi2.cdf(statistic, df=1))\n    return {\"p_value\": p_value, \"b\": b, \"c\": c, \"statistic\": float(statistic), \"significant\": p_value < 0.05}\n\nMCNEMAR_PAIRS_WESTB = [\n    (\"CKA-only_SFT_1.5B@20%\", \"Standard_SFT_1.5B@20%\", \"CKA-only vs Standard SFT 1.5B@20%\"),\n    (\"CKA-only_SFT_1.5B@20%\", \"RASP_SFT_1.5B@20%\", \"CKA-only vs RASP SFT 1.5B@20%\"),\n    (\"CKA-only_GRPO_1.5B@20%\", \"Standard_GRPO_1.5B@20%\", \"CKA-only vs Standard GRPO 1.5B@20%\"),\n    (\"CKA-only_GRPO_1.5B@20%\", \"RASP_GRPO_1.5B@20%\", \"CKA-only vs RASP GRPO 1.5B@20%\"),\n]\n\ndef main():\n    results = {\"bootstrap_ci\": {}, \"mcnemar_tests\": {}, \"notes\": []}\n    binary_data = {}\n\n    for label, fname in FILE_MAP.items():\n        fpath = os.path.join(RESULTS_DIR, fname)\n        if not os.path.exists(fpath):\n            results[\"notes\"].append(f\"File not found: {fname}\")\n            continue\n        binary, acc, n = load_binary(fpath)\n        if binary is None:\n            results[\"notes\"].append(f\"{label}: No per-sample data\")\n            continue\n        lower, upper = bootstrap_ci(binary)\n        binary_data[label] = binary\n        results[\"bootstrap_ci\"][label] = {\n            \"accuracy\": float(acc),\n            \"accuracy_pct\": f\"{acc*100:.2f}%\",\n            \"n_correct\": int(binary.sum()),\n            \"n_total\": int(n),\n            \"ci_lower\": lower,\n            \"ci_upper\": upper,\n            \"ci_lower_pct\": f\"{lower*100:.2f}%\",\n            \"ci_upper_pct\": f\"{upper*100:.2f}%\",\n            \"ci_width_pct\": f\"{(upper-lower)*100:.2f}%\",\n        }\n\n    for label_a, label_b, desc in MCNEMAR_PAIRS_WESTB:\n        if label_a not in binary_data or label_b not in binary_data:\n            continue\n        ba, bb = binary_data[label_a], binary_data[label_b]\n        if len(ba) != len(bb):\n            continue\n        test_result = mcnemar_test(ba, bb)\n        test_result[\"description\"] = desc\n        test_result[\"model_a\"] = label_a\n        test_result[\"model_b\"] = label_b\n        test_result[\"acc_a\"] = f\"{binary_data[label_a].mean()*100:.2f}%\"\n        test_result[\"acc_b\"] = f\"{binary_data[label_b].mean()*100:.2f}%\"\n        results[\"mcnemar_tests\"][desc] = test_result\n\n    out_path = os.path.join(RESULTS_DIR, \"bootstrap_ci_westb_v3.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(\"\\n===== BOOTSTRAP 95% CI (westb-23072) =====\")\n    print(f\"{'Model':<35} {'Acc':>8} {'95% CI':>22} {'Width':>7}\")\n    print(\"-\" * 80)\n    for label in FILE_MAP:\n        if label in results[\"bootstrap_ci\"]:\n            r = results[\"bootstrap_ci\"][label]\n            print(f\"{label:<35} {r['accuracy_pct']:>8} [{r['ci_lower_pct']:>8}, {r['ci_upper_pct']:>8}] {r['ci_width_pct']:>7}\")\n\n    if results[\"mcnemar_tests\"]:\n        print(f\"\\n===== McNEMAR'S TESTS (westb-23072) =====\")\n        print(f\"{'Comparison':<42} {'Acc_A':>8} {'Acc_B':>8} {'b':>5} {'c':>5} {'χ²':>8} {'p':>10} {'Sig':>5}\")\n        print(\"-\" * 95)\n        for desc, t in results[\"mcnemar_tests\"].items():\n            sig = \"***\" if t[\"p_value\"] < 0.001 else (\"**\" if t[\"p_value\"] < 0.01 else (\"*\" if t[\"p_value\"] < 0.05 else \"n.s.\"))\n            print(f\"{desc:<42} {t['acc_a']:>8} {t['acc_b']:>8} {t['b']:>5} {t['c']:>5} {t['statistic']:>8.2f} {t['p_value']:>10.6f} {sig:>5}\")\n\n    print(f\"\\nSaved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_westb.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "cat > /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_westb.py << 'PYEOF'\nimport json\nimport numpy as np\nimport os\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\nFILE_MAP = {\n    \"CKA-only_GRPO_7B@20%_s123\": \"gsm8k_grpo_cka_only_20_seed123.json\",\n    \"RASP_SFT_7B@20%\": \"eval_sft_rasp_20_full_n1319.json\",\n    \"RASP_GRPO_7B@25%\": \"eval_grpo_rasp_25_n1319.json\",\n    # 1.5B SFT\n    \"CKA-only_SFT_1.5B@20%\": \"eval_gsm8k_sft_cka_only_20_1p5b.json\",\n    \"Standard_SFT_1.5B@20%\": \"eval_gsm8k_sft_standard_20_1p5b.json\",\n    \"RASP_SFT_1.5B@20%\": \"eval_gsm8k_sft_rasp_20_1p5b.json\",\n    # 1.5B GRPO\n    \"CKA-only_GRPO_1.5B@20%\": \"eval_gsm8k_grpo_cka_only_20_1p5b.json\",\n    \"Standard_GRPO_1.5B@20%\": \"eval_gsm8k_grpo_standard_20_1p5b.json\",\n    \"RASP_GRPO_1.5B@20%\": \"eval_gsm8k_grpo_rasp_20_1p5b.json\",\n}\n\ndef load_binary(filepath):\n    with open(filepath) as f:\n        data = json.load(f)\n    examples = data.get(\"examples\", [])\n    if not examples:\n        return None, data.get(\"accuracy\"), data.get(\"n_total\")\n    binary = np.array([1 if ex[\"correct\"] else 0 for ex in examples])\n    return binary, data[\"accuracy\"], data[\"n_total\"]\n\ndef bootstrap_ci(correct_array, n_bootstrap=10000, ci=0.95, seed=42):\n    rng = np.random.default_rng(seed)\n    n = len(correct_array)\n    boot_accs = np.empty(n_bootstrap)\n    for i in range(n_bootstrap):\n        idx = rng.integers(0, n, size=n)\n        boot_accs[i] = correct_array[idx].mean()\n    lower = np.percentile(boot_accs, (1 - ci) / 2 * 100)\n    upper = np.percentile(boot_accs, (1 + ci) / 2 * 100)\n    return float(lower), float(upper)\n\ndef mcnemar_test(correct_a, correct_b):\n    b = int(((correct_a == 1) & (correct_b == 0)).sum())\n    c = int(((correct_a == 0) & (correct_b == 1)).sum())\n    if b + c == 0:\n        return {\"p_value\": 1.0, \"b\": b, \"c\": c, \"statistic\": 0.0, \"significant\": False}\n    statistic = (abs(b - c) - 1) ** 2 / (b + c)\n    from scipy.stats import chi2\n    p_value = float(1 - chi2.cdf(statistic, df=1))\n    return {\"p_value\": p_value, \"b\": b, \"c\": c, \"statistic\": float(statistic), \"significant\": p_value < 0.05}\n\nMCNEMAR_PAIRS_WESTB = [\n    (\"CKA-only_SFT_1.5B@20%\", \"Standard_SFT_1.5B@20%\", \"CKA-only vs Standard SFT 1.5B@20%\"),\n    (\"CKA-only_SFT_1.5B@20%\", \"RASP_SFT_1.5B@20%\", \"CKA-only vs RASP SFT 1.5B@20%\"),\n    (\"CKA-only_GRPO_1.5B@20%\", \"Standard_GRPO_1.5B@20%\", \"CKA-only vs Standard GRPO 1.5B@20%\"),\n    (\"CKA-only_GRPO_1.5B@20%\", \"RASP_GRPO_1.5B@20%\", \"CKA-only vs RASP GRPO 1.5B@20%\"),\n]\n\ndef main():\n    results = {\"bootstrap_ci\": {}, \"mcnemar_tests\": {}, \"notes\": []}\n    binary_data = {}\n\n    for label, fname in FILE_MAP.items():\n        fpath = os.path.join(RESULTS_DIR, fname)\n        if not os.path.exists(fpath):\n            results[\"notes\"].append(f\"File not found: {fname}\")\n            continue\n        binary, acc, n = load_binary(fpath)\n        if binary is None:\n            results[\"notes\"].append(f\"{label}: No per-sample data\")\n            continue\n        lower, upper = bootstrap_ci(binary)\n        binary_data[label] = binary\n        results[\"bootstrap_ci\"][label] = {\n            \"accuracy\": float(acc),\n            \"accuracy_pct\": f\"{acc*100:.2f}%\",\n            \"n_correct\": int(binary.sum()),\n            \"n_total\": int(n),\n            \"ci_lower\": lower,\n            \"ci_upper\": upper,\n            \"ci_lower_pct\": f\"{lower*100:.2f}%\",\n            \"ci_upper_pct\": f\"{upper*100:.2f}%\",\n            \"ci_width_pct\": f\"{(upper-lower)*100:.2f}%\",\n        }\n\n    for label_a, label_b, desc in MCNEMAR_PAIRS_WESTB:\n        if label_a not in binary_data or label_b not in binary_data:\n            continue\n        ba, bb = binary_data[label_a], binary_data[label_b]\n        if len(ba) != len(bb):\n            continue\n        test_result = mcnemar_test(ba, bb)\n        test_result[\"description\"] = desc\n        test_result[\"model_a\"] = label_a\n        test_result[\"model_b\"] = label_b\n        test_result[\"acc_a\"] = f\"{binary_data[label_a].mean()*100:.2f}%\"\n        test_result[\"acc_b\"] = f\"{binary_data[label_b].mean()*100:.2f}%\"\n        results[\"mcnemar_tests\"][desc] = test_result\n\n    out_path = os.path.join(RESULTS_DIR, \"bootstrap_ci_westb_v3.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(\"\\n===== BOOTSTRAP 95% CI (westb-23072) =====\")\n    print(f\"{'Model':<35} {'Acc':>8} {'95% CI':>22} {'Width':>7}\")\n    print(\"-\" * 80)\n    for label in FILE_MAP:\n        if label in results[\"bootstrap_ci\"]:\n            r = results[\"bootstrap_ci\"][label]\n            print(f\"{label:<35} {r['accuracy_pct']:>8} [{r['ci_lower_pct']:>8}, {r['ci_upper_pct']:>8}] {r['ci_width_pct']:>7}\")\n\n    if results[\"mcnemar_tests\"]:\n        print(f\"\\n===== McNEMAR'S TESTS (westb-23072) =====\")\n        print(f\"{'Comparison':<42} {'Acc_A':>8} {'Acc_B':>8} {'b':>5} {'c':>5} {'χ²':>8} {'p':>10} {'Sig':>5}\")\n        print(\"-\" * 95)\n        for desc, t in results[\"mcnemar_tests\"].items():\n            sig = \"***\" if t[\"p_value\"] < 0.001 else (\"**\" if t[\"p_value\"] < 0.01 else (\"*\" if t[\"p_value\"] < 0.05 else \"n.s.\"))\n            print(f\"{desc:<42} {t['acc_a']:>8} {t['acc_b']:>8} {t['b']:>5} {t['c']:>5} {t['statistic']:>8.2f} {t['p_value']:>10.6f} {sig:>5}\")\n\n    print(f\"\\nSaved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune/results && python3 bootstrap_westb.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T06:06:43.561005+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n===== BOOTSTRAP 95% CI (westb-23072) =====\\nModel                                    Acc                 95% CI   Width\\n--------------------------------------------------------------------------------\\nCKA-only_GRPO_7B@20%_s123             64.22% [  61.64%,   66.72%]   5.08%\\nRASP_SFT_7B@20%                       61.56% [  58.91%,   64.14%]   5.23%\\nRASP_GRPO_7B@25%                      53.15% [  50.49%,   55.88%]   5.38%\\nCKA-only_SFT_1.5B@20%                 35.63% [  33.06%,   38.21%]   5.16%\\nStandard_SFT_1.5B@20%                 22.90% [  20.70%,   25.09%]   4.40%\\nRASP_SFT_1.5B@20%                     26.91% [  24.56%,   29.34%]   4.78%\\nCKA-only_GRPO_1.5B@20%                35.48% [  32.90%,   37.98%]   5.08%\\nStandard_GRPO_1.5B@20%                22.29% [  20.09%,   24.49%]   4.40%\\nRASP_GRPO_1.5B@20%                    26.16% [  23.81%,   28.51%]   4.70%\\n\\n===== McNEMAR'S TESTS (westb-23072) =====\\nComparison                                    Acc_A    Acc_B     b     c       χ²          p   Sig\\n-----------------------------------------------------------------------------------------------\\nCKA-only vs Standard SFT 1.5B@20%            35.63%   22.90%   283   115    70.07   0.000000   ***\\nCKA-only vs RASP SFT 1.5B@20%                35.63%   26.91%   243   128    35.03   0.000000   ***\\nCKA-only vs Standard GRPO 1.5B@20%           35.48%   22.29%   285   111    75.58   0.000000   ***\\nCKA-only vs RASP GRPO 1.5B@20%               35.48%   26.16%   250   127    39.48   0.000000   ***\\n\\nSaved to /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_westb_v3.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T06:06:43.561198+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\n# Load both analysis results\nwith open(f\"{RESULTS_DIR}/bootstrap_ci_analysis_v3.json\") as f:\n    westd = json.load(f)\nwith open(f\"{RESULTS_DIR}/bootstrap_ci_westb_v3.json\") as f:\n    westb = json.load(f)\n\n# Combine\ncombined = {\n    \"analysis\": \"GSM8K Bootstrap CI + McNemar's Test\",\n    \"date\": \"2026-05-20\",\n    \"n_samples\": 1319,\n    \"bootstrap_params\": {\"n_bootstrap\": 10000, \"ci_level\": 0.95, \"seed\": 42},\n    \"mcnemar_params\": {\"correction\": \"continuity (Edwards)\", \"df\": 1},\n    \"bootstrap_ci\": {},\n    \"mcnemar_tests\": {},\n    \"notes\": [],\n}\n\n# Merge bootstrap CI\nfor d in [westd, westb]:\n    for k, v in d[\"bootstrap_ci\"].items():\n        combined[\"bootstrap_ci\"][k] = v\n    for k, v in d[\"mcnemar_tests\"].items():\n        combined[\"mcnemar_tests\"][k] = v\n    combined[\"notes\"].extend(d.get(\"notes\", []))\n\n# Add missing info note\ncombined[\"notes\"].append(\"CKA-only_GRPO_7B@25%: file not found on either server\")\ncombined[\"notes\"].append(\"ShortGPT_SFT McNemar skipped: truncated JSON (999/1319 samples)\")\n\nout = f\"{RESULTS_DIR}/bootstrap_ci_analysis_combined.json\"\nwith open(out, \"w\") as f:\n    json.dump(combined, f, indent=2)\nprint(f\"Combined artifact saved to {out}\")\nprint(f\"Total models: {len(combined['bootstrap_ci'])}\")\nprint(f\"Total McNemar tests: {len(combined['mcnemar_tests'])}\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\n# Load both analysis results\nwith open(f\"{RESULTS_DIR}/bootstrap_ci_analysis_v3.json\") as f:\n    westd = json.load(f)\nwith open(f\"{RESULTS_DIR}/bootstrap_ci_westb_v3.json\") as f:\n    westb = json.load(f)\n\n# Combine\ncombined = {\n    \"analysis\": \"GSM8K Bootstrap CI + McNemar's Test\",\n    \"date\": \"2026-05-20\",\n    \"n_samples\": 1319,\n    \"bootstrap_params\": {\"n_bootstrap\": 10000, \"ci_level\": 0.95, \"seed\": 42},\n    \"mcnemar_params\": {\"correction\": \"continuity (Edwards)\", \"df\": 1},\n    \"bootstrap_ci\": {},\n    \"mcnemar_tests\": {},\n    \"notes\": [],\n}\n\n# Merge bootstrap CI\nfor d in [westd, westb]:\n    for k, v in d[\"bootstrap_ci\"].items():\n        combined[\"bootstrap_ci\"][k] = v\n    for k, v in d[\"mcnemar_tests\"].items():\n        combined[\"mcnemar_tests\"][k] = v\n    combined[\"notes\"].extend(d.get(\"notes\", []))\n\n# Add missing info note\ncombined[\"notes\"].append(\"CKA-only_GRPO_7B@25%: file not found on either server\")\ncombined[\"notes\"].append(\"ShortGPT_SFT McNemar skipped: truncated JSON (999/1319 samples)\")\n\nout = f\"{RESULTS_DIR}/bootstrap_ci_analysis_combined.json\"\nwith open(out, \"w\") as f:\n    json.dump(combined, f, indent=2)\nprint(f\"Combined artifact saved to {out}\")\nprint(f\"Total models: {len(combined['bootstrap_ci'])}\")\nprint(f\"Total McNemar tests: {len(combined['mcnemar_tests'])}\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T06:06:43.561410+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\'PYEOF\\\\'\\\\nimport json\\\\n\\\\nRESULTS_DIR = \\\"/root/autodl-tmp/recovery_aware_struct_prune/results\\\"\\\\n\\\\n# Load both analysis results\\\\nwith open(f\\\"{RESULTS_DIR}/bootstrap_ci_analysis_v3.json\\\") as f:\\\\n    westd = json.load(f)\\\\nwith open(f\\\"{RESULTS_DIR}/bootstrap_ci_westb_v3.json\\\") as f:\\\\n    westb = json.load(f)\\\\n\\\\n# Combine\\\\ncombined = {\\\\n    \\\"analysis\\\": \\\"GSM8K Bootstrap CI + McNemar\\\\'s Test\\\",\\\\n    \\\"date\\\": \\\"2026-05-20\\\",\\\\n    \\\"n_samples\\\": 1319,\\\\n    \\\"bootstrap_params\\\": {\\\"n_bootstrap\\\": 10000, \\\"ci_level\\\": 0.95, \\\"seed\\\": 42},\\\\n    \\\"mcnemar_params\\\": {\\\"correction\\\": \\\"continuity (Edwards)\\\", \\\"df\\\": 1},\\\\n    \\\"bootstrap_ci\\\": {},\\\\n    \\\"mcnemar_tests\\\": {},\\\\n    \\\"notes\\\": [],\\\\n}\\\\n\\\\n# Merge bootstrap CI\\\\nfor d in [westd, westb]:\\\\n    for k, v in d[\\\"bootstrap_ci\\\"].items():\\\\n        combined[\\\"bootstrap_ci\\\"][k] = v\\\\n    for k, v in d[\\\"mcnemar_tests\\\"].items():\\\\n        combined[\\\"mcnemar_tests\\\"][k] = v\\\\n    combined[\\\"notes\\\"].extend(d.get(\\\"notes\\\", []))\\\\n\\\\n# Add missing info note\\\\ncombined[\\\"notes\\\"].append(\\\"CKA-only_GRPO_7B@25%: file not found on either server\\\")\\\\ncombined[\\\"notes\\\"].append(\\\"ShortGPT_SFT McNemar skipped: truncated JSON (999/1319 samples)\\\")\\\\n\\\\nout = f\\\"{RESULTS_DIR}/bootstrap_ci_analysis_combined.json\\\"\\\\nwith open(out, \\\"w\\\") as f:\\\\n    json.dump(combined, f, indent=2)\\\\nprint(f\\\"Combined artifact saved to {out}\\\")\\\\nprint(f\\\"Total models: {len(combined[\\\\'bootstrap_ci\\\\'])}\\\")\\\\nprint(f\\\"Total McNemar tests: {len(combined[\\\\'mcnemar_tests\\\\'])}\\\")\\\\nPYEOF'\\n\\nExit cod
+…[truncated 315 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T06:06:43.561617+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\nwith open(f\"{RESULTS_DIR}/bootstrap_ci_analysis_v3.json\") as f:\n    westd = json.load(f)\n\n# Manually add westb results (from the analysis output)\nwestb_ci = {\n    \"CKA-only_GRPO_7B@20%_s123\": {\n        \"accuracy\": 0.6421531463229719, \"accuracy_pct\": \"64.22%\",\n        \"n_correct\": 847, \"n_total\": 1319,\n        \"ci_lower\": 0.6164, \"ci_upper\": 0.6672,\n        \"ci_lower_pct\": \"61.64%\", \"ci_upper_pct\": \"66.72%\", \"ci_width_pct\": \"5.08%\",\n    },\n    \"RASP_SFT_7B@20%\": {\n        \"accuracy\": 0.6156178923426838, \"accuracy_pct\": \"61.56%\",\n        \"n_correct\": 812, \"n_total\": 1319,\n        \"ci_lower\": 0.5891, \"ci_upper\": 0.6414,\n        \"ci_lower_pct\": \"58.91%\", \"ci_upper_pct\": \"64.14%\", \"ci_width_pct\": \"5.23%\",\n    },\n    \"RASP_GRPO_7B@25%\": {\n        \"accuracy\": 0.5314632297194845, \"accuracy_pct\": \"53.15%\",\n        \"n_correct\": 701, \"n_total\": 1319,\n        \"ci_lower\": 0.5049, \"ci_upper\": 0.5588,\n        \"ci_lower_pct\": \"50.49%\", \"ci_upper_pct\": \"55.88%\", \"ci_width_pct\": \"5.38%\",\n    },\n    \"CKA-only_SFT_1.5B@20%\": {\n        \"accuracy\": 0.35633055344958303, \"accuracy_pct\": \"35.63%\",\n        \"n_correct\": 470, \"n_total\": 1319,\n        \"ci_lower\": 0.3306, \"ci_upper\": 0.3821,\n        \"ci_lower_pct\": \"33.06%\", \"ci_upper_pct\": \"38.21%\", \"ci_width_pct\": \"5.16%\",\n    },\n    \"Standard_SFT_1.5B@20%\": {\n        \"accuracy\": 0.22896133434420016, \"accuracy_pct\": \"22.90%\",\n        \"n_correct\": 302, \"n_total\": 1319,\n        \"ci_lower\": 0.2070, \"ci_upper\": 0.2509,\n        \"ci_lower_pct\": \"20.70%\", \"ci_upper_pct\": \"25.09%\", \"ci_width_pct\": \"4.40%\",\n    },\n    \"RASP_SFT_1.5B@20%\": {\n        \"accuracy\": 0.26914329037149354, \"accuracy_pct\": \"26.91%\",\n        \"n_correct\": 355, \"n_total\": 1319,\n        \"ci_lower\": 0.2456, \"ci_upper\": 0.2934,\n        \"ci_lower_pct\": \"24.56%\", \"ci_upper_pct\": \"29.34%\", \"ci_width_pct\": \"4.78%\",\n    },\n    \"CKA-only_GRPO_1.5B@20%\": {\n        \"accuracy\": 0.354814253222138, \"accuracy_pct\": \"35.48%\",\n        \"n_correct\": 468, \"n_total\": 1319,\n        \"ci_lower\": 0.3290, \"ci_upper\": 0.3798,\n        \"ci_lower_pct\": \"32.90%\", \"ci_upper_pct\": \"37.98%\", \"ci_width_pct\": \"5.08%\",\n    },\n    \"Standard_GRPO_1.5B@20%\": {\n        \"accuracy\": 0.22289613343442002, \"accuracy_pct\": \"22.29%\",\n        \"n_correct\": 294, \"n_total\": 1319,\n        \"ci_lower\": 0.2009, \"ci_upper\": 0.2449,\n        \"ci_lower_pct\": \"20.09%\", \"ci_upper_pct\": \"24.49%\", \"ci_width_pct\": \"4.40%\",\n    },\n    \"RASP_GRPO_1.5B@20%\": {\n        \"accuracy\": 0.26156178923426837, \"accuracy_pct\": \"26.16%\",\n        \"n_correct\": 345, \"n_total\": 1319,\n        \"ci_lower\": 0.2381, \"ci_upper\": 0.2851,\n        \"ci_lower_pct\": \"23.81%\", \"ci_upper_pct\": \"28.51%\", \"ci_width_pct\": \"4.70%\",\n    },\n}\n\nwestb_mcnemar = {\n    \"CKA-only vs Standard SFT 1.5B@20%\": {\n        \"p_value\": 0.0, \"b\": 283, \"c\": 115, \"statistic\": 70.07, \"significant\": True,\n        \"model_a\": \"CKA-only_SFT_1.5B@20%\", \"model_b\": \"Standard_SFT_1.5B@20%\",\n        \"acc_a\": \"35.63%\", \"acc_b\": \"22.90%\",\n    },\n    \"CKA-only vs RASP SFT 1.5B@20%\": {\n        \"p_value\": 0.0, \"b\": 243, \"c\": 128, \"statistic\": 35.03, \"significant\": True,\n        \"model_a\": \"CKA-only_SFT_1.5B@20%\", \"model_b\": \"RASP_SFT_1.5B@20%\",\n        \"acc_a\": \"35.63%\", \"acc_b\": \"26.91%\",\n    },\n    \"CKA-only vs Standard GRPO 1.5B@20%\": {\n        \"p_value\": 0.0, \"b\": 285, \"c\": 111, \"statistic\": 75.58, \"significant\": True,\n        \"model_a\": \"CKA-only_GRPO_1.5B@20%\", \"model_b\": \"Standard_GRPO_1.5B@20%\",\n        \"acc_a\": \"35.48%\", \"acc_b\": \"22.29%\",\n    },\n    \"CKA-only vs RASP GRPO 1.5B@20%\": {\n        \"p_value\": 0.0, \"b\": 250, \"c\": 127, \"statistic\": 39.48, \"significant\": True,\n        \"model_a\": \"CKA-only_GRPO_1.5B@20%\", \"model_b\": \"RASP_GRPO_1.5B@20%\",\n        \"acc_a\": \"35.48%\", \"acc_b\": \"26.16%\",\n    },\n}\n\ncombined = {\n    \"analysis\": \"GSM8K Bootstrap CI + McNemar Test\",\n    \"date\": \"2026-05-20\",\n    \"dataset\": \"GSM8K test set\",\n    \"n_samples\": 1319,\n    \"bootstrap_params\": {\"n_bootstrap\": 10000, \"ci_level\": 0.95, \"seed\": 42},\n    \"mcnemar_params\": {\"correction\": \"continuity (Edwards)\", \"df\": 1, \"threshold\": 0.05},\n    \"bootstrap_ci\": {},\n    \"mcnemar_tests\": {},\n    \"notes\": [],\n}\n\ncombined[\"bootstrap_ci\"].update(westd[\"bootstrap_ci\"])\ncombined[\"bootstrap_ci\"].update(westb_ci)\ncombined[\"mcnemar_tests\"].update(westd[\"mcnemar_tests\"])\ncombined[\"mcnemar_tests\"].update(westb_mcnemar)\ncombined[\"notes\"] = [\n    \"CKA-only_GRPO_7B@25%: file not found on either server\",\n    \"ShortGPT_SFT_7B@20%: JSON truncated, 999/1319 samples recovered (bootstrap on partial data)\",\n    \"ShortGPT SFT McNemar skipped due to truncated JSON\",\n    \"All models evaluated on identical 1319 GSM8K test samples (greedy decoding)\",\n    \"McNemar test uses continuity-corrected chi-squared with 1 df\",\n]\n\nout = f\"{RESULTS_DIR}/bootstrap_ci_analysis_combined.json\"\nwith open(out, \"w\") as f:\n    json.dump(combined, f, indent=2)\nprint(f\"Saved to {out}\")\nprint(f\"Models: {len(combined['bootstrap_ci'])}, McNemar tests: {len(combined['mcnemar_tests'])}\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nRESULTS_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\nwith open(f\"{RESULTS_DIR}/bootstrap_ci_analysis_v3.json\") as f:\n    westd = json.load(f)\n\n# Manually add westb results (from the analysis output)\nwestb_ci = {\n    \"CKA-only_GRPO_7B@20%_s123\": {\n        \"accuracy\": 0.6421531463229719, \"accuracy_pct\": \"64.22%\",\n        \"n_correct\": 847, \"n_total\": 1319,\n        \"ci_lower\": 0.6164, \"ci_upper\": 0.6672,\n        \"ci_lower_pct\": \"61.64%\", \"ci_upper_pct\": \"66.72%\", \"ci_width_pct\": \"5.08%\",\n    },\n    \"RASP_SFT_7B@20%\": {\n        \"accuracy\": 0.6156178923426838, \"accuracy_pct\": \"61.56%\",\n        \"n_correct\": 812, \"n_total\": 1319,\n        \"ci_lower\": 0.5891, \"ci_upper\": 0.6414,\n        \"ci_lower_pct\": \"58.91%\", \"ci_upper_pct\": \"64.14%\", \"ci_width_pct\": \"5.23%\",\n    },\n    \"RASP_GRPO_7B@25%\": {\n        \"accuracy\": 0.5314632297194845, \"accuracy_pct\": \"53.15%\",\n        \"n_correct\": 701, \"n_total\": 1319,\n        \"ci_lower\": 0.5049, \"ci_upper\": 0.5588,\n        \"ci_lower_pct\": \"50.49%\", \"ci_upper_pct\": \"55.88%\", \"ci_width_pct\": \"5.38%\",\n    },\n    \"CKA-only_SFT_1.5B@20%\": {\n        \"accuracy\": 0.35633055344958303, \"accuracy_pct\": \"35.63%\",\n        \"n_correct\": 470, \"n_total\": 1319,\n        \"ci_lower\": 0.3306, \"ci_upper\": 0.3821,\n        \"ci_lower_pct\": \"33.06%\", \"ci_upper_pct\": \"38.21%\", \"ci_width_pct\": \"5.16%\",\n    },\n    \"Standard_SFT_1.5B@20%\": {\n        \"accuracy\": 0.22896133434420016, \"accuracy_pct\": \"22.90%\",\n        \"n_correct\": 302, \"n_total\": 1319,\n        \"ci_lower\": 0.2070, \"ci_upper\": 0.2509,\n        \"ci_lower_pct\": \"20.70%\", \"ci_upper_pct\": \"25.09%\", \"ci_width_pct\": \"4.40%\",\n    },\n    \"RASP_SFT_1.5B@20%\": {\n        \"accuracy\": 0.26914329037149354, \"accuracy_pct\": \"26.91%\",\n        \"n_correct\": 355, \"n_total\": 1319,\n        \"ci_lower\": 0.2456, \"ci_upper\": 0.2934,\n        \"ci_lower_pct\": \"24.56%\", \"ci_upper_pct\": \"29.34%\", \"ci_width_pct\": \"4.78%\",\n    },\n    \"CKA-only_GRPO_1.5B@20%\": {\n        \"accuracy\": 0.354814253222138, \"accuracy_pct\": \"35.48%\",\n        \"n_correct\": 468, \"n_total\": 1319,\n        \"ci_lower\": 0.3290, \"ci_upper\": 0.3798,\n        \"ci_lower_pct\": \"32.90%\", \"ci_upper_pct\": \"37.98%\", \"ci_width_pct\": \"5.08%\",\n    },\n    \"Standard_GRPO_1.5B@20%\": {\n        \"accuracy\": 0.22289613343442002, \"accuracy_pct\": \"22.29%\",\n        \"n_correct\": 294, \"n_total\": 1319,\n        \"ci_lower\": 0.2009, \"ci_upper\": 0.2449,\n        \"ci_lower_pct\": \"20.09%\", \"ci_upper_pct\": \"24.49%\", \"ci_width_pct\": \"4.40%\",\n    },\n    \"RASP_GRPO_1.5B@20%\": {\n        \"accuracy\": 0.26156178923426837, \"accuracy_pct\": \"26.16%\",\n        \"n_correct\": 345, \"n_total\": 1319,\n        \"ci_lower\": 0.2381, \"ci_upper\": 0.2851,\n        \"ci_lower_pct\": \"23.81%\", \"ci_upper_pct\": \"28.51%\", \"ci_width_pct\": \"4.70%\",\n    },\n}\n\nwestb_mcnemar = {\n    \"CKA-only vs Standard SFT 1.5B@20%\": {\n        \"p_value\": 0.0, \"b\": 283, \"c\": 115, \"statistic\": 70.07, \"significant\": True,\n        \"model_a\": \"CKA-only_SFT_1.5B@20%\", \"model_b\": \"Standard_SFT_1.5B@20%\",\n        \"acc_a\": \"35.63%\", \"acc_b\": \"22.90%\",\n    },\n    \"CKA-only vs RASP SFT 1.5B@20%\": {\n        \"p_value\": 0.0, \"b\": 243, \"c\": 128, \"statistic\": 35.03, \"significant\": True,\n        \"model_a\": \"CKA-only_SFT_1.5B@20%\", \"model_b\": \"RASP_SFT_1.5B@20%\",\n        \"acc_a\": \"35.63%\", \"acc_b\": \"26.91%\",\n    },\n    \"CKA-only vs Standard GRPO 1.5B@20%\": {\n        \"p_value\": 0.0, \"b\": 285, \"c\": 111, \"statistic\": 75.58, \"significant\": True,\n        \"model_a\": \"CKA-only_GRPO_1.5B@20%\", \"model_b\": \"Standard_GRPO_1.5B@20%\",\n        \"acc_a\": \"35.48%\", \"acc_b\": \"22.29%\",\n    },\n    \"CKA-only vs RASP GRPO 1.5B@20%\": {\n        \"p_value\": 0.0, \"b\": 250, \"c\": 127, \"statistic\": 39.48, \"significant\": True,\n        \"model_a\": \"CKA-only_GRPO_1.5B@20%\", \"model_b\": \"RASP_GRPO_1.5B@20%\",\n        \"acc_a\": \"35.48%\", \"acc_b\": \"26.16%\",\n    },\n}\n\ncombined = {\n    \"analysis\": \"GSM8K Bootstrap CI + McNemar Test\",\n    \"date\": \"2026-05-20\",\n    \"dataset\": \"GSM8K test set\",\n    \"n_samples\": 1319,\n    \"bootstrap_params\": {\"n_bootstrap\": 10000, \"ci_level\": 0.95, \"seed\": 42},\n    \"mcnemar_params\": {\"correction\": \"continuity (Edwards)\", \"df\": 1, \"threshold\": 0.05},\n    \"bootstrap_ci\": {},\n    \"mcnemar_tests\": {},\n    \"notes\": [],\n}\n\ncombined[\"bootstrap_ci\"].update(westd[\"bootstrap_ci\"])\ncombined[\"bootstrap_ci\"].update(westb_ci)\ncombined[\"mcnemar_tests\"].update(westd[\"mcnemar_tests\"])\ncombined[\"mcnemar_tests\"].update(westb_mcnemar)\ncombined[\"notes\"] = [\n    \"CKA-only_GRPO_7B@25%: file not found on either server\",\n    \"ShortGPT_SFT_7B@20%: JSON truncated, 999/1319 samples recovered (bootstrap on partial data)\",\n    \"ShortGPT SFT McNemar skipped due to truncated JSON\",\n    \"All models evaluated on identical 1319 GSM8K test samples (greedy decoding)\",\n    \"McNemar test uses continuity-corrected chi-squared with 1 df\",\n]\n\nout = f\"{RESULTS_DIR}/bootstrap_ci_analysis_combined.json\"\nwith open(out, \"w\") as f:\n    json.dump(combined, f, indent=2)\nprint(f\"Saved to {out}\")\nprint(f\"Models: {len(combined['bootstrap_ci'])}, McNemar tests: {len(combined['mcnemar_tests'])}\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T06:06:43.561837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json\\nModels: 18, McNemar tests: 10\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T06:06:43.561988+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "GSM8K Bootstrap CI + McNemar Analysis",
+  "type": "data",
+  "description": "95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests with continuity correction. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%. CKA-only significantly outperforms Standard/RASP/ShortGPT across all tested pairs.",
+  "project": "recovery_aware_struct_prune",
+  "source_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json",
+  "tags": "['statistics', 'gsm8k', 'bootstrap', 'mcnemar', 'significance']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "GSM8K Bootstrap CI + McNemar Analysis",
+    "type": "data",
+    "description": "95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests with continuity correction. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%. CKA-only significantly outperforms Standard/RASP/ShortGPT across all tested pairs.",
+    "project": "recovery_aware_struct_prune",
+    "source_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json",
+    "tags": "['statistics', 'gsm8k', 'bootstrap', 'mcnemar', 'significance']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T06:06:43.562123+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T06:06:43.562283+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T06:06:43.562643+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"GSM8K Bootstrap CI + McNemar Test\\\",\\n  \\\"date\\\": \\\"2026-05-20\\\",\\n  \\\"dataset\\\": \\\"GSM8K test set\\\",\\n  \\\"n_samples\\\": 1319,\\n  \\\"bootstrap_params\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"ci_level\\\": 0.95,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"mcnemar_params\\\": {\\n    \\\"correction\\\": \\\"continuity (Edwards)\\\",\\n    \\\"df\\\": 1,\\n    \\\"threshold\\\": 0.05\\n  },\\n  \\\"bootstrap_ci\\\": {\\n    \\\"Dense_GRPO_Unpruned_7B\\\": {\\n      \\\"accuracy\\\": 0.8127369219105383,\\n      \\\"accuracy_pct\\\": \\\"81.27%\\\",\\n      \\\"n_correct\\\": 1072,\\n      \\\"n_total\\\": 1319,\\n      \\\"ci_lower\\\": 0.7915087187263078,\\n      \\\"ci_upper\\\": 0.8332069749810462,\\n      \\\"ci_lower_pct\\\": \\\"79.15%\\\",\\n      \\\"ci_upper_pct\\\": \\\"83.32%\\\",\\n      \\\"ci_width_pct\\\": \\\"4.17%\\\",\\n      \\\"method\\\": \\\"bootstrap\\\"\\n    },\\n    \\\"CKA-only_SFT_7B@20%\\\": {\\n      \\\"accuracy\\\": 0.6391205458680819,\\n      \\\"accuracy_pct\\\": \\\"63.91%\\\",\\n      \\\"n_correct\\\": 843,\\n      \\\"n_total\\\": 1319,\\n      \\\"ci_lower\\\": 0.6133434420015162,\\n      \\\"ci_upper\\\": 0.6648976497346475,\\n      \\\"ci_lower_pct\\\": \\\"61.33%\\\",\\n      \\\"ci_upper_pct\\\": \\\"66.49%\\\",\\n      \\\"ci_width_pct\\\": \\\"5.16%\\\",\\n      \\\"method\\\": \\\"bootstrap\\\"\\n    },\\n    \\\"CKA-only_GRPO_7B@20%_s42\\\": {\\n      \\\"accuracy\\\": 0.643669446550417,\\n      \\\"accuracy_pct\\\": \\\"64.37%\\\",\\n      \\\"n_correct\\\": 849,\\n      \\\"n_total\\\": 1319,\\n      \\\"ci_lower\\\": 0.6171341925701289,\\n      \\\"ci_upper\\\": 0.6694465504169825,\\n      \\\"ci_lower_pct\\\": \\\"61.71%\\\",\\n      \\\"ci_upper_pct\\\": \\\"66.94%\\\",\\n      \\\"ci_width_pct\\\": \\\"5.23%\\\",\\n      \\\"method\\\": \\\"bootstrap\\\"\\n    },\\n    \\\"Standard_SFT_7B@20%\\\": {\\n    
+…[truncated 8863 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T06:06:43.562846+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "GSM8K Bootstrap CI + McNemar Analysis",
+  "type": "data",
+  "description": "95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%. CKA-only significantly outperforms Standard/RASP/ShortGPT across all tested pairs (p<0.05).",
+  "project": "recovery_aware_struct_prune",
+  "content_filename": "bootstrap_ci_analysis_combined.json",
+  "tags": "['statistics', 'gsm8k', 'bootstrap', 'mcnemar', 'significance']",
+  "content": "{\n  \"analysis\": \"GSM8K Bootstrap CI + McNemar Test\",\n  \"date\": \"2026-05-20\",\n  \"dataset\": \"GSM8K test set\",\n  \"n_samples\": 1319,\n  \"bootstrap_params\": {\"n_bootstrap\": 10000, \"ci_level\": 0.95, \"seed\": 42},\n  \"mcnemar_params\": {\"correction\": \"continuity (Edwards)\", \"df\": 1, \"threshold\": 0.05},\n  \"bootstrap_ci\": {\n    \"Dense_GRPO_Unpruned_7B\": {\"accuracy\": 0.8127, \"accuracy_pct\": \"81.27%\", \"n_correct\": 1072, \"n_total\": 1319, \"ci_lower_pct\": \"79.15%\", \"ci_upper_pct\": \"83.32%\", \"ci_width_pct\": \"4.17%\"},\n    \"CKA-only_SFT_7B@20%\": {\"accuracy\": 0.6391, \"accuracy_pct\": \"63.91%\", \"n_correct\": 843, \"n_total\": 1319, \"ci_lower_pct\": \"61.33%\", \"ci_upper_pct\": \"66.49%\", \"ci_width_pct\": \"5.16%\"},\n    \"CKA-only_GRPO_7B@20%_s42\": {\"accuracy\": 0.6437, \"accuracy_pct\": \"64.37%\", \"n_correct\": 849, \"n_total\": 1319, \"ci_lower_pct\": \"61.71%\", \"ci_upper_pct\": \"66.94%\", \"ci_width_pct\": \"5.23%\"},\n    \"CKA-only_GRPO_7B@20%_s123\": {\"accuracy\": 0.6422, \"accuracy_pct\": \"64.22%\", \"n_correct\": 847, \"n_total\": 1319, \"ci_lower_pct\": \"61.64%\", \"ci_upper_pct\": \"66.72%\", \"ci_width_pct\": \"5.08%\"},\n    \"Standard_SFT_7B@20%\": {\"accuracy\": 0.5929, \"accuracy_pct\": \"59.29%\", \"n_correct\": 782, \"n_total\": 1319, \"ci_lower_pct\": \"56.63%\", \"ci_upper_pct\": \"61.94%\", \"ci_width_pct\": \"5.31%\"},\n    \"Standard_GRPO_7B@20%\": {\"accuracy\": 0.5944, \"accuracy_pct\": \"59.44%\", \"n_correct\": 784, \"n_total\": 1319, \"ci_lower_pct\": \"56.79%\", \"ci_upper_pct\": \"62.09%\", \"ci_width_pct\": \"5.31%\"},\n    \"RASP_SFT_7B@20%\": {\"accuracy\": 0.6156, \"accuracy_pct\": \"61.56%\", \"n_correct\": 812, \"n_total\": 1319, \"ci_lower_pct\": \"58.91%\", \"ci_upper_pct\": \"64.14%\", \"ci_width_pct\": \"5.23%\"},\n    \"RASP_GRPO_7B@20%\": {\"accuracy\": 0.6088, \"accuracy_pct\": \"60.88%\", \"n_correct\": 803, \"n_total\": 1319, \"ci_lower_pct\": \"58.23%\", \"ci_upper_pct\": \"63.46%\", \"ci_width_pct\": \"5.23%\"},\n    \"Standard_GRPO_7B@25%\": {\"accuracy\": 0.5110, \"accuracy_pct\": \"51.10%\", \"n_correct\": 674, \"n_total\": 1319, \"ci_lower_pct\": \"48.45%\", \"ci_upper_pct\": \"53.75%\", \"ci_width_pct\": \"5.31%\"},\n    \"RASP_GRPO_7B@25%\": {\"accuracy\": 0.5315, \"accuracy_pct\": \"53.15%\", \"n_correct\": 701, \"n_total\": 1319, \"ci_lower_pct\": \"50.49%\", \"ci_upper_pct\": \"55.88%\", \"ci_width_pct\": \"5.38%\"},\n    \"ShortGPT_SFT_7B@20%\": {\"accuracy\": 0.4473, \"accuracy_pct\": \"44.73%\", \"n_correct\": 590, \"n_total\": 1319, \"ci_lower_pct\": \"42.64%\", \"ci_upper_pct\": \"48.85%\", \"ci_width_pct\": \"6.21%\", \"note\": \"partial bootstrap (999/1319)\"},\n    \"ShortGPT_GRPO_7B@20%\": {\"accuracy\": 0.4337, \"accuracy_pct\": \"43.37%\", \"n_correct\": 572, \"n_total\": 1319, \"ci_lower_pct\": \"40.71%\", \"ci_upper_pct\": \"46.02%\", \"ci_width_pct\": \"5.31%\"},\n    \"CKA-only_SFT_1.5B@20%\": {\"accuracy\": 0.3563, \"accuracy_pct\": \"35.63%\", \"n_correct\": 470, \"n_total\": 1319, \"ci_lower_pct\": \"33.06%\", \"ci_upper_pct\": \"38.21%\", \"ci_width_pct\": \"5.16%\"},\n    \"Standard_SFT_1.5B@20%\": {\"accuracy\": 0.2290, \"accuracy_pct\": \"22.90%\", \"n_correct\": 302, \"n_total\": 1319, \"ci_lower_pct\": \"20.70%\", \"ci_upper_pct\": \"25.09%\", \"ci_width_pct\": \"4.40%\"},\n    \"RASP_SFT_1.5B@20%\": {\"accuracy\": 0.2691, \"accuracy_pct\": \"26.91%\", \"n_correct\": 355, \"n_total\": 1319, \"ci_lower_pct\": \"24.56%\", \"ci_upper_pct\": \"29.34%\", \"ci_width_pct\": \"4.78%\"},\n    \"CKA-only_GRPO_1.5B@20%\": {\"accuracy\": 0.3548, \"accuracy_pct\": \"35.48%\", \"n_correct\": 468, \"n_total\": 1319, \"ci_lower_pct\": \"32.90%\", \"ci_upper_pct\": \"37.98%\", \"ci_width_pct\": \"5.08%\"},\n    \"Standard_GRPO_1.5B@20%\": {\"accuracy\": 0.2229, \"accuracy_pct\": \"22.29%\", \"n_correct\": 294, \"n_total\": 1319, \"ci_lower_pct\": \"20.09%\", \"ci_upper_pct\": \"24.49%\", \"ci_width_pct\": \"4.40%\"},\n    \"RASP_GRPO_1.5B@20%\": {\"accuracy\": 0.2616, \"accuracy_pct\": \"26.16%\", \"n_correct\": 345, \"n_total\": 1319, \"ci_lower_pct\": \"23.81%\", \"ci_upper_pct\": \"28.51%\", \"ci_width_pct\": \"4.70%\"}\n  },\n  \"mcnemar_tests\": {\n    \"CKA-only vs Standard GRPO 7B@20%\": {\"acc_a\": \"64.37%\", \"acc_b\": \"59.44%\", \"b\": 217, \"c\": 152, \"statistic\": 11.10, \"p_value\": 0.000863, \"significant\": true},\n    \"CKA-only vs RASP GRPO 7B@20%\": {\"acc_a\": \"64.37%\", \"acc_b\": \"60.88%\", \"b\": 210, \"c\": 164, \"statistic\": 5.41, \"p_value\": 0.019971, \"significant\": true},\n    \"CKA-only vs ShortGPT GRPO 7B@20%\": {\"acc_a\": \"64.37%\", \"acc_b\": \"43.37%\", \"b\": 485, \"c\": 208, \"statistic\": 109.92, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs Standard SFT 7B@20%\": {\"acc_a\": \"63.91%\", \"acc_b\": \"59.29%\", \"b\": 223, \"c\": 162, \"statistic\": 9.35, \"p_value\": 0.002229, \"significant\": true},\n    \"RASP vs Standard GRPO 7B@20%\": {\"acc_a\": \"60.88%\", \"acc_b\": \"59.44%\", \"b\": 194, \"c\": 175, \"statistic\": 0.88, \"p_value\": 0.348737, \"significant\": false},\n    \"Dense vs CKA-only GRPO 7B@20%\": {\"acc_a\": \"81.27%\", \"acc_b\": \"64.37%\", \"b\": 291, \"c\": 68, \"statistic\": 137.28, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs Standard SFT 1.5B@20%\": {\"acc_a\": \"35.63%\", \"acc_b\": \"22.90%\", \"b\": 283, \"c\": 115, \"statistic\": 70.07, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs RASP SFT 1.5B@20%\": {\"acc_a\": \"35.63%\", \"acc_b\": \"26.91%\", \"b\": 243, \"c\": 128, \"statistic\": 35.03, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs Standard GRPO 1.5B@20%\": {\"acc_a\": \"35.48%\", \"acc_b\": \"22.29%\", \"b\": 285, \"c\": 111, \"statistic\": 75.58, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs RASP GRPO 1.5B@20%\": {\"acc_a\": \"35.48%\", \"acc_b\": \"26.16%\", \"b\": 250, \"c\": 127, \"statistic\": 39.48, \"p_value\": 0.0, \"significant\": true}\n  },\n  \"notes\": [\n    \"CKA-only_GRPO_7B@25%: file not found on either server\",\n    \"ShortGPT_SFT_7B@20%: JSON truncated, 999/1319 samples recovered\",\n    \"All models evaluated on identical 1319 GSM8K test samples (greedy decoding)\",\n    \"McNemar uses continuity-corrected chi-squared with 1 df\"\n  ]\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "GSM8K Bootstrap CI + McNemar Analysis",
+    "type": "data",
+    "description": "95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%. CKA-only significantly outperforms Standard/RASP/ShortGPT across all tested pairs (p<0.05).",
+    "project": "recovery_aware_struct_prune",
+    "content_filename": "bootstrap_ci_analysis_combined.json",
+    "tags": "['statistics', 'gsm8k', 'bootstrap', 'mcnemar', 'significance']",
+    "content": "{\n  \"analysis\": \"GSM8K Bootstrap CI + McNemar Test\",\n  \"date\": \"2026-05-20\",\n  \"dataset\": \"GSM8K test set\",\n  \"n_samples\": 1319,\n  \"bootstrap_params\": {\"n_bootstrap\": 10000, \"ci_level\": 0.95, \"seed\": 42},\n  \"mcnemar_params\": {\"correction\": \"continuity (Edwards)\", \"df\": 1, \"threshold\": 0.05},\n  \"bootstrap_ci\": {\n    \"Dense_GRPO_Unpruned_7B\": {\"accuracy\": 0.8127, \"accuracy_pct\": \"81.27%\", \"n_correct\": 1072, \"n_total\": 1319, \"ci_lower_pct\": \"79.15%\", \"ci_upper_pct\": \"83.32%\", \"ci_width_pct\": \"4.17%\"},\n    \"CKA-only_SFT_7B@20%\": {\"accuracy\": 0.6391, \"accuracy_pct\": \"63.91%\", \"n_correct\": 843, \"n_total\": 1319, \"ci_lower_pct\": \"61.33%\", \"ci_upper_pct\": \"66.49%\", \"ci_width_pct\": \"5.16%\"},\n    \"CKA-only_GRPO_7B@20%_s42\": {\"accuracy\": 0.6437, \"accuracy_pct\": \"64.37%\", \"n_correct\": 849, \"n_total\": 1319, \"ci_lower_pct\": \"61.71%\", \"ci_upper_pct\": \"66.94%\", \"ci_width_pct\": \"5.23%\"},\n    \"CKA-only_GRPO_7B@20%_s123\": {\"accuracy\": 0.6422, \"accuracy_pct\": \"64.22%\", \"n_correct\": 847, \"n_total\": 1319, \"ci_lower_pct\": \"61.64%\", \"ci_upper_pct\": \"66.72%\", \"ci_width_pct\": \"5.08%\"},\n    \"Standard_SFT_7B@20%\": {\"accuracy\": 0.5929, \"accuracy_pct\": \"59.29%\", \"n_correct\": 782, \"n_total\": 1319, \"ci_lower_pct\": \"56.63%\", \"ci_upper_pct\": \"61.94%\", \"ci_width_pct\": \"5.31%\"},\n    \"Standard_GRPO_7B@20%\": {\"accuracy\": 0.5944, \"accuracy_pct\": \"59.44%\", \"n_correct\": 784, \"n_total\": 1319, \"ci_lower_pct\": \"56.79%\", \"ci_upper_pct\": \"62.09%\", \"ci_width_pct\": \"5.31%\"},\n    \"RASP_SFT_7B@20%\": {\"accuracy\": 0.6156, \"accuracy_pct\": \"61.56%\", \"n_correct\": 812, \"n_total\": 1319, \"ci_lower_pct\": \"58.91%\", \"ci_upper_pct\": \"64.14%\", \"ci_width_pct\": \"5.23%\"},\n    \"RASP_GRPO_7B@20%\": {\"accuracy\": 0.6088, \"accuracy_pct\": \"60.88%\", \"n_correct\": 803, \"n_total\": 1319, \"ci_lower_pct\": \"58.23%\", \"ci_upper_pct\": \"63.46%\", \"ci_width_pct\": \"5.23%\"},\n    \"Standard_GRPO_7B@25%\": {\"accuracy\": 0.5110, \"accuracy_pct\": \"51.10%\", \"n_correct\": 674, \"n_total\": 1319, \"ci_lower_pct\": \"48.45%\", \"ci_upper_pct\": \"53.75%\", \"ci_width_pct\": \"5.31%\"},\n    \"RASP_GRPO_7B@25%\": {\"accuracy\": 0.5315, \"accuracy_pct\": \"53.15%\", \"n_correct\": 701, \"n_total\": 1319, \"ci_lower_pct\": \"50.49%\", \"ci_upper_pct\": \"55.88%\", \"ci_width_pct\": \"5.38%\"},\n    \"ShortGPT_SFT_7B@20%\": {\"accuracy\": 0.4473, \"accuracy_pct\": \"44.73%\", \"n_correct\": 590, \"n_total\": 1319, \"ci_lower_pct\": \"42.64%\", \"ci_upper_pct\": \"48.85%\", \"ci_width_pct\": \"6.21%\", \"note\": \"partial bootstrap (999/1319)\"},\n    \"ShortGPT_GRPO_7B@20%\": {\"accuracy\": 0.4337, \"accuracy_pct\": \"43.37%\", \"n_correct\": 572, \"n_total\": 1319, \"ci_lower_pct\": \"40.71%\", \"ci_upper_pct\": \"46.02%\", \"ci_width_pct\": \"5.31%\"},\n    \"CKA-only_SFT_1.5B@20%\": {\"accuracy\": 0.3563, \"accuracy_pct\": \"35.63%\", \"n_correct\": 470, \"n_total\": 1319, \"ci_lower_pct\": \"33.06%\", \"ci_upper_pct\": \"38.21%\", \"ci_width_pct\": \"5.16%\"},\n    \"Standard_SFT_1.5B@20%\": {\"accuracy\": 0.2290, \"accuracy_pct\": \"22.90%\", \"n_correct\": 302, \"n_total\": 1319, \"ci_lower_pct\": \"20.70%\", \"ci_upper_pct\": \"25.09%\", \"ci_width_pct\": \"4.40%\"},\n    \"RASP_SFT_1.5B@20%\": {\"accuracy\": 0.2691, \"accuracy_pct\": \"26.91%\", \"n_correct\": 355, \"n_total\": 1319, \"ci_lower_pct\": \"24.56%\", \"ci_upper_pct\": \"29.34%\", \"ci_width_pct\": \"4.78%\"},\n    \"CKA-only_GRPO_1.5B@20%\": {\"accuracy\": 0.3548, \"accuracy_pct\": \"35.48%\", \"n_correct\": 468, \"n_total\": 1319, \"ci_lower_pct\": \"32.90%\", \"ci_upper_pct\": \"37.98%\", \"ci_width_pct\": \"5.08%\"},\n    \"Standard_GRPO_1.5B@20%\": {\"accuracy\": 0.2229, \"accuracy_pct\": \"22.29%\", \"n_correct\": 294, \"n_total\": 1319, \"ci_lower_pct\": \"20.09%\", \"ci_upper_pct\": \"24.49%\", \"ci_width_pct\": \"4.40%\"},\n    \"RASP_GRPO_1.5B@20%\": {\"accuracy\": 0.2616, \"accuracy_pct\": \"26.16%\", \"n_correct\": 345, \"n_total\": 1319, \"ci_lower_pct\": \"23.81%\", \"ci_upper_pct\": \"28.51%\", \"ci_width_pct\": \"4.70%\"}\n  },\n  \"mcnemar_tests\": {\n    \"CKA-only vs Standard GRPO 7B@20%\": {\"acc_a\": \"64.37%\", \"acc_b\": \"59.44%\", \"b\": 217, \"c\": 152, \"statistic\": 11.10, \"p_value\": 0.000863, \"significant\": true},\n    \"CKA-only vs RASP GRPO 7B@20%\": {\"acc_a\": \"64.37%\", \"acc_b\": \"60.88%\", \"b\": 210, \"c\": 164, \"statistic\": 5.41, \"p_value\": 0.019971, \"significant\": true},\n    \"CKA-only vs ShortGPT GRPO 7B@20%\": {\"acc_a\": \"64.37%\", \"acc_b\": \"43.37%\", \"b\": 485, \"c\": 208, \"statistic\": 109.92, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs Standard SFT 7B@20%\": {\"acc_a\": \"63.91%\", \"acc_b\": \"59.29%\", \"b\": 223, \"c\": 162, \"statistic\": 9.35, \"p_value\": 0.002229, \"significant\": true},\n    \"RASP vs Standard GRPO 7B@20%\": {\"acc_a\": \"60.88%\", \"acc_b\": \"59.44%\", \"b\": 194, \"c\": 175, \"statistic\": 0.88, \"p_value\": 0.348737, \"significant\": false},\n    \"Dense vs CKA-only GRPO 7B@20%\": {\"acc_a\": \"81.27%\", \"acc_b\": \"64.37%\", \"b\": 291, \"c\": 68, \"statistic\": 137.28, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs Standard SFT 1.5B@20%\": {\"acc_a\": \"35.63%\", \"acc_b\": \"22.90%\", \"b\": 283, \"c\": 115, \"statistic\": 70.07, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs RASP SFT 1.5B@20%\": {\"acc_a\": \"35.63%\", \"acc_b\": \"26.91%\", \"b\": 243, \"c\": 128, \"statistic\": 35.03, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs Standard GRPO 1.5B@20%\": {\"acc_a\": \"35.48%\", \"acc_b\": \"22.29%\", \"b\": 285, \"c\": 111, \"statistic\": 75.58, \"p_value\": 0.0, \"significant\": true},\n    \"CKA-only vs RASP GRPO 1.5B@20%\": {\"acc_a\": \"35.48%\", \"acc_b\": \"26.16%\", \"b\": 250, \"c\": 127, \"statistic\": 39.48, \"p_value\": 0.0, \"significant\": true}\n  },\n  \"notes\": [\n    \"CKA-only_GRPO_7B@25%: file not found on either server\",\n    \"ShortGPT_SFT_7B@20%: JSON truncated, 999/1319 samples recovered\",\n    \"All models evaluated on identical 1319 GSM8K test samples (greedy decoding)\",\n    \"McNemar uses continuity-corrected chi-squared with 1 df\"\n  ]\n}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T06:06:43.563035+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'analysis': 'GSM8K Boots...chi-squared with 1 df']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-20T06:06:43.563198+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "GSM8K Bootstrap CI + McNemar Analysis",
+  "type": "data",
+  "description": "95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%. CKA-only significantly outperforms Standard/RASP/ShortGPT across all tested pairs (p less than 0.05).",
+  "project": "recovery_aware_struct_prune",
+  "content_filename": "bootstrap_ci_analysis_combined.json",
+  "tags": "['statistics', 'gsm8k', 'bootstrap', 'mcnemar', 'significance']",
+  "content": "{\"analysis\":\"GSM8K Bootstrap CI + McNemar Test\",\"date\":\"2026-05-20\",\"dataset\":\"GSM8K test set\",\"n_samples\":1319,\"bootstrap_params\":{\"n_bootstrap\":10000,\"ci_level\":0.95,\"seed\":42},\"mcnemar_params\":{\"correction\":\"continuity (Edwards)\",\"df\":1,\"threshold\":0.05},\"bootstrap_ci\":{\"Dense_GRPO_Unpruned_7B\":{\"accuracy\":0.8127,\"accuracy_pct\":\"81.27%\",\"n_correct\":1072,\"n_total\":1319,\"ci_lower_pct\":\"79.15%\",\"ci_upper_pct\":\"83.32%\",\"ci_width_pct\":\"4.17%\"},\"CKA-only_SFT_7B@20%\":{\"accuracy\":0.6391,\"accuracy_pct\":\"63.91%\",\"n_correct\":843,\"n_total\":1319,\"ci_lower_pct\":\"61.33%\",\"ci_upper_pct\":\"66.49%\",\"ci_width_pct\":\"5.16%\"},\"CKA-only_GRPO_7B@20%_s42\":{\"accuracy\":0.6437,\"accuracy_pct\":\"64.37%\",\"n_correct\":849,\"n_total\":1319,\"ci_lower_pct\":\"61.71%\",\"ci_upper_pct\":\"66.94%\",\"ci_width_pct\":\"5.23%\"},\"CKA-only_GRPO_7B@20%_s123\":{\"accuracy\":0.6422,\"accuracy_pct\":\"64.22%\",\"n_correct\":847,\"n_total\":1319,\"ci_lower_pct\":\"61.64%\",\"ci_upper_pct\":\"66.72%\",\"ci_width_pct\":\"5.08%\"},\"Standard_SFT_7B@20%\":{\"accuracy\":0.5929,\"accuracy_pct\":\"59.29%\",\"n_correct\":782,\"n_total\":1319,\"ci_lower_pct\":\"56.63%\",\"ci_upper_pct\":\"61.94%\",\"ci_width_pct\":\"5.31%\"},\"Standard_GRPO_7B@20%\":{\"accuracy\":0.5944,\"accuracy_pct\":\"59.44%\",\"n_correct\":784,\"n_total\":1319,\"ci_lower_pct\":\"56.79%\",\"ci_upper_pct\":\"62.09%\",\"ci_width_pct\":\"5.31%\"},\"RASP_SFT_7B@20%\":{\"accuracy\":0.6156,\"accuracy_pct\":\"61.56%\",\"n_correct\":812,\"n_total\":1319,\"ci_lower_pct\":\"58.91%\",\"ci_upper_pct\":\"64.14%\",\"ci_width_pct\":\"5.23%\"},\"RASP_GRPO_7B@20%\":{\"accuracy\":0.6088,\"accuracy_pct\":\"60.88%\",\"n_correct\":803,\"n_total\":1319,\"ci_lower_pct\":\"58.23%\",\"ci_upper_pct\":\"63.46%\",\"ci_width_pct\":\"5.23%\"},\"Standard_GRPO_7B@25%\":{\"accuracy\":0.5110,\"accuracy_pct\":\"51.10%\",\"n_correct\":674,\"n_total\":1319,\"ci_lower_pct\":\"48.45%\",\"ci_upper_pct\":\"53.75%\",\"ci_width_pct\":\"5.31%\"},\"RASP_GRPO_7B@25%\":{\"accuracy\":0.5315,\"accuracy_pct\":\"53.15%\",\"n_correct\":701,\"n_total\":1319,\"ci_lower_pct\":\"50.49%\",\"ci_upper_pct\":\"55.88%\",\"ci_width_pct\":\"5.38%\"},\"ShortGPT_SFT_7B@20%\":{\"accuracy\":0.4473,\"accuracy_pct\":\"44.73%\",\"n_correct\":590,\"n_total\":1319,\"ci_lower_pct\":\"42.64%\",\"ci_upper_pct\":\"48.85%\",\"ci_width_pct\":\"6.21%\",\"note\":\"partial bootstrap 999/1319\"},\"ShortGPT_GRPO_7B@20%\":{\"accuracy\":0.4337,\"accuracy_pct\":\"43.37%\",\"n_correct\":572,\"n_total\":1319,\"ci_lower_pct\":\"40.71%\",\"ci_upper_pct\":\"46.02%\",\"ci_width_pct\":\"5.31%\"},\"CKA-only_SFT_1.5B@20%\":{\"accuracy\":0.3563,\"accuracy_pct\":\"35.63%\",\"n_correct\":470,\"n_total\":1319,\"ci_lower_pct\":\"33.06%\",\"ci_upper_pct\":\"38.21%\",\"ci_width_pct\":\"5.16%\"},\"Standard_SFT_1.5B@20%\":{\"accuracy\":0.2290,\"accuracy_pct\":\"22.90%\",\"n_correct\":302,\"n_total\":1319,\"ci_lower_pct\":\"20.70%\",\"ci_upper_pct\":\"25.09%\",\"ci_width_pct\":\"4.40%\"},\"RASP_SFT_1.5B@20%\":{\"accuracy\":0.2691,\"accuracy_pct\":\"26.91%\",\"n_correct\":355,\"n_total\":1319,\"ci_lower_pct\":\"24.56%\",\"ci_upper_pct\":\"29.34%\",\"ci_width_pct\":\"4.78%\"},\"CKA-only_GRPO_1.5B@20%\":{\"accuracy\":0.3548,\"accuracy_pct\":\"35.48%\",\"n_correct\":468,\"n_total\":1319,\"ci_lower_pct\":\"32.90%\",\"ci_upper_pct\":\"37.98%\",\"ci_width_pct\":\"5.08%\"},\"Standard_GRPO_1.5B@20%\":{\"accuracy\":0.2229,\"accuracy_pct\":\"22.29%\",\"n_correct\":294,\"n_total\":1319,\"ci_lower_pct\":\"20.09%\",\"ci_upper_pct\":\"24.49%\",\"ci_width_pct\":\"4.40%\"},\"RASP_GRPO_1.5B@20%\":{\"accuracy\":0.2616,\"accuracy_pct\":\"26.16%\",\"n_correct\":345,\"n_total\":1319,\"ci_lower_pct\":\"23.81%\",\"ci_upper_pct\":\"28.51%\",\"ci_width_pct\":\"4.70%\"}},\"mcnemar_tests\":{\"CKA-only vs Standard GRPO 7B@20%\":{\"acc_a\":\"64.37%\",\"acc_b\":\"59.44%\",\"b\":217,\"c\":152,\"statistic\":11.10,\"p_value\":0.000863,\"significant\":true},\"CKA-only vs RASP GRPO 7B@20%\":{\"acc_a\":\"64.37%\",\"acc_b\":\"60.88%\",\"b\":210,\"c\":164,\"statistic\":5.41,\"p_value\":0.019971,\"significant\":true},\"CKA-only vs ShortGPT GRPO 7B@20%\":{\"acc_a\":\"64.37%\",\"acc_b\":\"43.37%\",\"b\":485,\"c\":208,\"statistic\":109.92,\"p_value\":0.0,\"significant\":true},\"CKA-only vs Standard SFT 7B@20%\":{\"acc_a\":\"63.91%\",\"acc_b\":\"59.29%\",\"b\":223,\"c\":162,\"statistic\":9.35,\"p_value\":0.002229,\"significant\":true},\"RASP vs Standard GRPO 7B@20%\":{\"acc_a\":\"60.88%\",\"acc_b\":\"59.44%\",\"b\":194,\"c\":175,\"statistic\":0.88,\"p_value\":0.348737,\"significant\":false},\"Dense vs CKA-only GRPO 7B@20%\":{\"acc_a\":\"81.27%\",\"acc_b\":\"64.37%\",\"b\":291,\"c\":68,\"statistic\":137.28,\"p_value\":0.0,\"significant\":true},\"CKA-only vs Standard SFT 1.5B@20%\":{\"acc_a\":\"35.63%\",\"acc_b\":\"22.90%\",\"b\":283,\"c\":115,\"statistic\":70.07,\"p_value\":0.0,\"significant\":true},\"CKA-only vs RASP SFT 1.5B@20%\":{\"acc_a\":\"35.63%\",\"acc_b\":\"26.91%\",\"b\":243,\"c\":128,\"statistic\":35.03,\"p_value\":0.0,\"significant\":true},\"CKA-only vs Standard GRPO 1.5B@20%\":{\"acc_a\":\"35.48%\",\"acc_b\":\"22.29%\",\"b\":285,\"c\":111,\"statistic\":75.58,\"p_value\":0.0,\"significant\":true},\"CKA-only vs RASP GRPO 1.5B@20%\":{\"acc_a\":\"35.48%\",\"acc_b\":\"26.16%\",\"b\":250,\"c\":127,\"statistic\":39.48,\"p_value\":0.0,\"significant\":true}},\"notes\":[\"CKA-only_GRPO_7B@25% file not found on either server\",\"ShortGPT_SFT_7B@20% JSON truncated 999/1319 samples recovered\",\"All models evaluated on identical 1319 GSM8K test samples greedy decoding\",\"McNemar uses continuity-corrected chi-squared with 1 df\"]}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "GSM8K Bootstrap CI + McNemar Analysis",
+    "type": "data",
+    "description": "95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%. CKA-only significantly outperforms Standard/RASP/ShortGPT across all tested pairs (p less than 0.05).",
+    "project": "recovery_aware_struct_prune",
+    "content_filename": "bootstrap_ci_analysis_combined.json",
+    "tags": "['statistics', 'gsm8k', 'bootstrap', 'mcnemar', 'significance']",
+    "content": "{\"analysis\":\"GSM8K Bootstrap CI + McNemar Test\",\"date\":\"2026-05-20\",\"dataset\":\"GSM8K test set\",\"n_samples\":1319,\"bootstrap_params\":{\"n_bootstrap\":10000,\"ci_level\":0.95,\"seed\":42},\"mcnemar_params\":{\"correction\":\"continuity (Edwards)\",\"df\":1,\"threshold\":0.05},\"bootstrap_ci\":{\"Dense_GRPO_Unpruned_7B\":{\"accuracy\":0.8127,\"accuracy_pct\":\"81.27%\",\"n_correct\":1072,\"n_total\":1319,\"ci_lower_pct\":\"79.15%\",\"ci_upper_pct\":\"83.32%\",\"ci_width_pct\":\"4.17%\"},\"CKA-only_SFT_7B@20%\":{\"accuracy\":0.6391,\"accuracy_pct\":\"63.91%\",\"n_correct\":843,\"n_total\":1319,\"ci_lower_pct\":\"61.33%\",\"ci_upper_pct\":\"66.49%\",\"ci_width_pct\":\"5.16%\"},\"CKA-only_GRPO_7B@20%_s42\":{\"accuracy\":0.6437,\"accuracy_pct\":\"64.37%\",\"n_correct\":849,\"n_total\":1319,\"ci_lower_pct\":\"61.71%\",\"ci_upper_pct\":\"66.94%\",\"ci_width_pct\":\"5.23%\"},\"CKA-only_GRPO_7B@20%_s123\":{\"accuracy\":0.6422,\"accuracy_pct\":\"64.22%\",\"n_correct\":847,\"n_total\":1319,\"ci_lower_pct\":\"61.64%\",\"ci_upper_pct\":\"66.72%\",\"ci_width_pct\":\"5.08%\"},\"Standard_SFT_7B@20%\":{\"accuracy\":0.5929,\"accuracy_pct\":\"59.29%\",\"n_correct\":782,\"n_total\":1319,\"ci_lower_pct\":\"56.63%\",\"ci_upper_pct\":\"61.94%\",\"ci_width_pct\":\"5.31%\"},\"Standard_GRPO_7B@20%\":{\"accuracy\":0.5944,\"accuracy_pct\":\"59.44%\",\"n_correct\":784,\"n_total\":1319,\"ci_lower_pct\":\"56.79%\",\"ci_upper_pct\":\"62.09%\",\"ci_width_pct\":\"5.31%\"},\"RASP_SFT_7B@20%\":{\"accuracy\":0.6156,\"accuracy_pct\":\"61.56%\",\"n_correct\":812,\"n_total\":1319,\"ci_lower_pct\":\"58.91%\",\"ci_upper_pct\":\"64.14%\",\"ci_width_pct\":\"5.23%\"},\"RASP_GRPO_7B@20%\":{\"accuracy\":0.6088,\"accuracy_pct\":\"60.88%\",\"n_correct\":803,\"n_total\":1319,\"ci_lower_pct\":\"58.23%\",\"ci_upper_pct\":\"63.46%\",\"ci_width_pct\":\"5.23%\"},\"Standard_GRPO_7B@25%\":{\"accuracy\":0.5110,\"accuracy_pct\":\"51.10%\",\"n_correct\":674,\"n_total\":1319,\"ci_lower_pct\":\"48.45%\",\"ci_upper_pct\":\"53.75%\",\"ci_width_pct\":\"5.31%\"},\"RASP_GRPO_7B@25%\":{\"accuracy\":0.5315,\"accuracy_pct\":\"53.15%\",\"n_correct\":701,\"n_total\":1319,\"ci_lower_pct\":\"50.49%\",\"ci_upper_pct\":\"55.88%\",\"ci_width_pct\":\"5.38%\"},\"ShortGPT_SFT_7B@20%\":{\"accuracy\":0.4473,\"accuracy_pct\":\"44.73%\",\"n_correct\":590,\"n_total\":1319,\"ci_lower_pct\":\"42.64%\",\"ci_upper_pct\":\"48.85%\",\"ci_width_pct\":\"6.21%\",\"note\":\"partial bootstrap 999/1319\"},\"ShortGPT_GRPO_7B@20%\":{\"accuracy\":0.4337,\"accuracy_pct\":\"43.37%\",\"n_correct\":572,\"n_total\":1319,\"ci_lower_pct\":\"40.71%\",\"ci_upper_pct\":\"46.02%\",\"ci_width_pct\":\"5.31%\"},\"CKA-only_SFT_1.5B@20%\":{\"accuracy\":0.3563,\"accuracy_pct\":\"35.63%\",\"n_correct\":470,\"n_total\":1319,\"ci_lower_pct\":\"33.06%\",\"ci_upper_pct\":\"38.21%\",\"ci_width_pct\":\"5.16%\"},\"Standard_SFT_1.5B@20%\":{\"accuracy\":0.2290,\"accuracy_pct\":\"22.90%\",\"n_correct\":302,\"n_total\":1319,\"ci_lower_pct\":\"20.70%\",\"ci_upper_pct\":\"25.09%\",\"ci_width_pct\":\"4.40%\"},\"RASP_SFT_1.5B@20%\":{\"accuracy\":0.2691,\"accuracy_pct\":\"26.91%\",\"n_correct\":355,\"n_total\":1319,\"ci_lower_pct\":\"24.56%\",\"ci_upper_pct\":\"29.34%\",\"ci_width_pct\":\"4.78%\"},\"CKA-only_GRPO_1.5B@20%\":{\"accuracy\":0.3548,\"accuracy_pct\":\"35.48%\",\"n_correct\":468,\"n_total\":1319,\"ci_lower_pct\":\"32.90%\",\"ci_upper_pct\":\"37.98%\",\"ci_width_pct\":\"5.08%\"},\"Standard_GRPO_1.5B@20%\":{\"accuracy\":0.2229,\"accuracy_pct\":\"22.29%\",\"n_correct\":294,\"n_total\":1319,\"ci_lower_pct\":\"20.09%\",\"ci_upper_pct\":\"24.49%\",\"ci_width_pct\":\"4.40%\"},\"RASP_GRPO_1.5B@20%\":{\"accuracy\":0.2616,\"accuracy_pct\":\"26.16%\",\"n_correct\":345,\"n_total\":1319,\"ci_lower_pct\":\"23.81%\",\"ci_upper_pct\":\"28.51%\",\"ci_width_pct\":\"4.70%\"}},\"mcnemar_tests\":{\"CKA-only vs Standard GRPO 7B@20%\":{\"acc_a\":\"64.37%\",\"acc_b\":\"59.44%\",\"b\":217,\"c\":152,\"statistic\":11.10,\"p_value\":0.000863,\"significant\":true},\"CKA-only vs RASP GRPO 7B@20%\":{\"acc_a\":\"64.37%\",\"acc_b\":\"60.88%\",\"b\":210,\"c\":164,\"statistic\":5.41,\"p_value\":0.019971,\"significant\":true},\"CKA-only vs ShortGPT GRPO 7B@20%\":{\"acc_a\":\"64.37%\",\"acc_b\":\"43.37%\",\"b\":485,\"c\":208,\"statistic\":109.92,\"p_value\":0.0,\"significant\":true},\"CKA-only vs Standard SFT 7B@20%\":{\"acc_a\":\"63.91%\",\"acc_b\":\"59.29%\",\"b\":223,\"c\":162,\"statistic\":9.35,\"p_value\":0.002229,\"significant\":true},\"RASP vs Standard GRPO 7B@20%\":{\"acc_a\":\"60.88%\",\"acc_b\":\"59.44%\",\"b\":194,\"c\":175,\"statistic\":0.88,\"p_value\":0.348737,\"significant\":false},\"Dense vs CKA-only GRPO 7B@20%\":{\"acc_a\":\"81.27%\",\"acc_b\":\"64.37%\",\"b\":291,\"c\":68,\"statistic\":137.28,\"p_value\":0.0,\"significant\":true},\"CKA-only vs Standard SFT 1.5B@20%\":{\"acc_a\":\"35.63%\",\"acc_b\":\"22.90%\",\"b\":283,\"c\":115,\"statistic\":70.07,\"p_value\":0.0,\"significant\":true},\"CKA-only vs RASP SFT 1.5B@20%\":{\"acc_a\":\"35.63%\",\"acc_b\":\"26.91%\",\"b\":243,\"c\":128,\"statistic\":35.03,\"p_value\":0.0,\"significant\":true},\"CKA-only vs Standard GRPO 1.5B@20%\":{\"acc_a\":\"35.48%\",\"acc_b\":\"22.29%\",\"b\":285,\"c\":111,\"statistic\":75.58,\"p_value\":0.0,\"significant\":true},\"CKA-only vs RASP GRPO 1.5B@20%\":{\"acc_a\":\"35.48%\",\"acc_b\":\"26.16%\",\"b\":250,\"c\":127,\"statistic\":39.48,\"p_value\":0.0,\"significant\":true}},\"notes\":[\"CKA-only_GRPO_7B@25% file not found on either server\",\"ShortGPT_SFT_7B@20% JSON truncated 999/1319 samples recovered\",\"All models evaluated on identical 1319 GSM8K test samples greedy decoding\",\"McNemar uses continuity-corrected chi-squared with 1 df\"]}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T06:06:43.563452+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'analysis': 'GSM8K Boots...chi-squared with 1 df']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-20T06:06:43.563617+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "GSM8K Bootstrap CI + McNemar Analysis",
+  "type": "data",
+  "description": "95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%.",
+  "project": "recovery_aware_struct_prune",
+  "content_filename": "bootstrap_ci_analysis_combined.json",
+  "tags": "['statistics', 'gsm8k', 'bootstrap', 'mcnemar', 'significance']",
+  "content": "See full JSON at westd-29022:/root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json\n\n=== BOOTSTRAP 95% CI (GSM8K, N=1319) ===\n\nModel                                Acc       95% CI              Width\n-----------------------------------------------------------------------\n7B @20% sparsity:\nDense_GRPO_Unpruned_7B             81.27%  [79.15%, 83.32%]      4.17%\nCKA-only_SFT_7B@20%               63.91%  [61.33%, 66.49%]      5.16%\nCKA-only_GRPO_7B@20% (s42)        64.37%  [61.71%, 66.94%]      5.23%\nCKA-only_GRPO_7B@20% (s123)       64.22%  [61.64%, 66.72%]      5.08%\nStandard_SFT_7B@20%               59.29%  [56.63%, 61.94%]      5.31%\nStandard_GRPO_7B@20%              59.44%  [56.79%, 62.09%]      5.31%\nRASP_SFT_7B@20%                   61.56%  [58.91%, 64.14%]      5.23%\nRASP_GRPO_7B@20%                  60.88%  [58.23%, 63.46%]      5.23%\n\n7B @25% sparsity:\nStandard_GRPO_7B@25%              51.10%  [48.45%, 53.75%]      5.31%\nRASP_GRPO_7B@25%                  53.15%  [50.49%, 55.88%]      5.38%\n\nShortGPT @20%:\nShortGPT_SFT_7B@20%              44.73%  [42.64%, 48.85%]*     6.21%\nShortGPT_GRPO_7B@20%             43.37%  [40.71%, 46.02%]      5.31%\n\n1.5B @20% sparsity:\nCKA-only_SFT_1.5B@20%            35.63%  [33.06%, 38.21%]      5.16%\nCKA-only_GRPO_1.5B@20%           35.48%  [32.90%, 37.98%]      5.08%\nRASP_SFT_1.5B@20%                26.91%  [24.56%, 29.34%]      4.78%\nRASP_GRPO_1.5B@20%               26.16%  [23.81%, 28.51%]      4.70%\nStandard_SFT_1.5B@20%            22.90%  [20.70%, 25.09%]      4.40%\nStandard_GRPO_1.5B@20%           22.29%  [20.09%, 24.49%]      4.40%\n\n* ShortGPT SFT: partial bootstrap (999/1319 samples recovered from truncated JSON)\n\n=== McNEMAR'S TESTS (continuity-corrected chi2, df=1) ===\n\nComparison                              Acc_A   Acc_B    b     c     X2        p      Sig\n-----------------------------------------------------------------------------------------\n7B @20% GRPO:\nCKA-only vs Standard                   64.37%  59.44%  217   152   11.10   0.0009   ***\nCKA-only vs RASP                       64.37%  60.88%  210   164    5.41   0.0200     *\nCKA-only vs ShortGPT                   64.37%  43.37%  485   208  109.92   <0.001   ***\nRASP vs Standard                       60.88%  59.44%  194   175    0.88   0.3487   n.s.\nDense vs CKA-only                      81.27%  64.37%  291    68  137.28   <0.001   ***\n\n7B @20% SFT:\nCKA-only vs Standard                   63.91%  59.29%  223   162    9.35   0.0022    **\n\n1.5B @20% SFT:\nCKA-only vs Standard                   35.63%  22.90%  283   115   70.07   <0.001   ***\nCKA-only vs RASP                       35.63%  26.91%  243   128   35.03   <0.001   ***\n\n1.5B @20% GRPO:\nCKA-only vs Standard                   35.48%  22.29%  285   111   75.58   <0.001   ***\nCKA-only vs RASP                       35.48%  26.16%  250   127   39.48   <0.001   ***\n\nb = A correct and B wrong, c = A wrong and B correct\n*** p<0.001, ** p<0.01, * p<0.05, n.s. not significant\n\nNotes:\n- CKA-only GRPO 7B@25% file not found\n- CKA-only vs Standard GRPO 25% comparison not available\n- All evals: greedy decoding, same 1319 GSM8K test samples"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "GSM8K Bootstrap CI + McNemar Analysis",
+    "type": "data",
+    "description": "95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%.",
+    "project": "recovery_aware_struct_prune",
+    "content_filename": "bootstrap_ci_analysis_combined.json",
+    "tags": "['statistics', 'gsm8k', 'bootstrap', 'mcnemar', 'significance']",
+    "content": "See full JSON at westd-29022:/root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json\n\n=== BOOTSTRAP 95% CI (GSM8K, N=1319) ===\n\nModel                                Acc       95% CI              Width\n-----------------------------------------------------------------------\n7B @20% sparsity:\nDense_GRPO_Unpruned_7B             81.27%  [79.15%, 83.32%]      4.17%\nCKA-only_SFT_7B@20%               63.91%  [61.33%, 66.49%]      5.16%\nCKA-only_GRPO_7B@20% (s42)        64.37%  [61.71%, 66.94%]      5.23%\nCKA-only_GRPO_7B@20% (s123)       64.22%  [61.64%, 66.72%]      5.08%\nStandard_SFT_7B@20%               59.29%  [56.63%, 61.94%]      5.31%\nStandard_GRPO_7B@20%              59.44%  [56.79%, 62.09%]      5.31%\nRASP_SFT_7B@20%                   61.56%  [58.91%, 64.14%]      5.23%\nRASP_GRPO_7B@20%                  60.88%  [58.23%, 63.46%]      5.23%\n\n7B @25% sparsity:\nStandard_GRPO_7B@25%              51.10%  [48.45%, 53.75%]      5.31%\nRASP_GRPO_7B@25%                  53.15%  [50.49%, 55.88%]      5.38%\n\nShortGPT @20%:\nShortGPT_SFT_7B@20%              44.73%  [42.64%, 48.85%]*     6.21%\nShortGPT_GRPO_7B@20%             43.37%  [40.71%, 46.02%]      5.31%\n\n1.5B @20% sparsity:\nCKA-only_SFT_1.5B@20%            35.63%  [33.06%, 38.21%]      5.16%\nCKA-only_GRPO_1.5B@20%           35.48%  [32.90%, 37.98%]      5.08%\nRASP_SFT_1.5B@20%                26.91%  [24.56%, 29.34%]      4.78%\nRASP_GRPO_1.5B@20%               26.16%  [23.81%, 28.51%]      4.70%\nStandard_SFT_1.5B@20%            22.90%  [20.70%, 25.09%]      4.40%\nStandard_GRPO_1.5B@20%           22.29%  [20.09%, 24.49%]      4.40%\n\n* ShortGPT SFT: partial bootstrap (999/1319 samples recovered from truncated JSON)\n\n=== McNEMAR'S TESTS (continuity-corrected chi2, df=1) ===\n\nComparison                              Acc_A   Acc_B    b     c     X2        p      Sig\n-----------------------------------------------------------------------------------------\n7B @20% GRPO:\nCKA-only vs Standard                   64.37%  59.44%  217   152   11.10   0.0009   ***\nCKA-only vs RASP                       64.37%  60.88%  210   164    5.41   0.0200     *\nCKA-only vs ShortGPT                   64.37%  43.37%  485   208  109.92   <0.001   ***\nRASP vs Standard                       60.88%  59.44%  194   175    0.88   0.3487   n.s.\nDense vs CKA-only                      81.27%  64.37%  291    68  137.28   <0.001   ***\n\n7B @20% SFT:\nCKA-only vs Standard                   63.91%  59.29%  223   162    9.35   0.0022    **\n\n1.5B @20% SFT:\nCKA-only vs Standard                   35.63%  22.90%  283   115   70.07   <0.001   ***\nCKA-only vs RASP                       35.63%  26.91%  243   128   35.03   <0.001   ***\n\n1.5B @20% GRPO:\nCKA-only vs Standard                   35.48%  22.29%  285   111   75.58   <0.001   ***\nCKA-only vs RASP                       35.48%  26.16%  250   127   39.48   <0.001   ***\n\nb = A correct and B wrong, c = A wrong and B correct\n*** p<0.001, ** p<0.01, * p<0.05, n.s. not significant\n\nNotes:\n- CKA-only GRPO 7B@25% file not found\n- CKA-only vs Standard GRPO 25% comparison not available\n- All evals: greedy decoding, same 1319 GSM8K test samples"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-20T06:06:43.563792+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_5e4fb8\", \"name\": \"GSM8K Bootstrap CI + McNemar Analysis\", \"type\": \"data\", \"description\": \"95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise McNemar tests. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%.\", \"path\": \"projects/recovery_aware_struct_prune/artifacts/_project/data/bootstrap_ci_analysis_combined.json\", \"url\": null, \"project\": \"recovery_aware_struct_prune\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T06:06:31.186256+00:00\", \"tags\": [\"statistics\", \"gsm8k\", \"bootstrap\", \"mcnemar\", \"significance\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-20T06:06:43.563963+00:00_
+
+Artifact registered (`art_20260520_5e4fb8`). 结果汇总：
+
+### Bootstrap 95% CI（18 个模型）
+
+**7B @20%** — CKA-only GRPO 最高：64.37% [61.71, 66.94]，两个 seed 一致（s123=64.22%）。Standard GRPO 59.44%，RASP GRPO 60.88%，ShortGPT GRPO 43.37%。
+
+**7B @25%** — Standard GRPO 51.10%，RASP GRPO 53.15%。CKA-only GRPO 25% 文件缺失。
+
+**1.5B @20%** — CKA-only 远超其他：SFT 35.63% vs Standard 22.90% / RASP 26.91%。
+
+### McNemar's Test（10 对比较）
+
+| 比较 | p-value | 显著性 |
+|------|---------|--------|
+| CKA-only vs Standard GRPO 7B@20% | 0.0009 | *** |
+| CKA-only vs RASP GRPO 7B@20% | 0.0200 | * |
+| CKA-only vs ShortGPT GRPO 7B@20% | <0.001 | *** |
+| CKA-only vs Standard SFT 7B@20% | 0.0022 | ** |
+| RASP vs Standard GRPO 7B@20% | 0.3487 | n.s. |
+| Dense vs CKA-only GRPO 7B@20% | <0.001 | *** |
+| 1.5B 全部 4 组 CKA-only vs others | <0.001 | *** |
+
+关键发现：CKA-only 在所有比较中显著优于 Standard/RASP/ShortGPT（p<0.05）。RASP vs Standard 差异不显著（p=0.35）。缺失 CKA-only GRPO 7B@25% 文件，无法完成该组对比。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637"
+}
+```
+
+</details>
+
+---

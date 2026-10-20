@@ -1,0 +1,68 @@
+# code westb full status check
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_westb-full-status-check_20260515T100139_result.json`
+- **Structured JSON:** [`1adad711ac27ba93354f.json`](../../sessions/1a/1adad711ac27ba93354f.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+汇总如下：
+
+---
+
+### 1. GRPO v5 (PID 498474, cuda:0) — **运行中**
+
+- **进程存活**: 已运行 28 分钟
+- **当前进度**: step 11/250 (4%), 已运行 ~21 分钟训练时间
+- **每步耗时**: ~112-118 秒/step（约 2 min/step，比预期 7-10 min 快很多）
+- **Step 10 metrics（首次 log）**:
+  - **reward = 0.01438** (> 0, 正值但很小)
+  - **grad_norm = 2.609** (> 0, 正常)
+  - loss = 0.004951
+  - kl = 0.001289
+  - completions/clipped_ratio = 0.9437（94% 被截断）
+  - frac_reward_zero_std = 0.95（95% batch reward 无方差）
+  - completions/mean_length = 497（接近 max_completion_length=512 上限）
+
+⚠️ **注意**: clipped_ratio 94% + mean_length 497/512 说明几乎所有 completion 都打到了长度上限。frac_reward_zero_std=0.95 说明绝大多数 batch 的 reward 全是 0（没有对比信号）。reward 虽然 > 0 但非常微弱。
+
+### 2. sft_standard_20 eval (PID 507411, cuda:1) — **运行中**
+
+- **进程存活**: 已运行 2 分 19 秒
+- **结果文件**: 尚未生成
+- **日志**: 模型已加载（检测到 Non-uniform MLP），GSM8K 数据集已加载，正在推理中
+- 注意：服务器上有 **两个 eval 进程** (PID 507234 + 507418)，都在跑同一个评估
+
+### 3. CPU re-eval (tmux sessions)
+
+- tmux 命令在 read-only 模式下被阻止，无法直接查看
+- 从 ps 输出可见 `grpo_stage2_rasp_20_v3` 的 tmux session 仍然存在（PID 233481），但其子进程已结束（无对应 python 进程）
+
+### 4. GPU 使用情况
+
+| GPU | 利用率 | 显存使用 |
+|-----|--------|----------|
+| cuda:0 | **100%** | 65,187 / 97,887 MiB (67%) |
+| cuda:1 | **0%** | 24,990 / 97,887 MiB (26%) |
+
+cuda:1 利用率 0% 但占了 25GB 显存 — eval 进程已加载模型但可能在 CPU 上做 tokenization 或等待中。
+
+### 5. Definitive re-eval (PID 505715) — **已结束**
+
+进程不存在。
+
+---

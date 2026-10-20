@@ -1,0 +1,35 @@
+{
+  "exp_id": "grpo_stage2_rasp_20_v5",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:33:29.974Z",
+    "updated_at": "2026-05-15T09:35:17.273Z",
+    "spec": {
+      "command": "bash -c \"... python src/train_grpo_v5.py --max_completion_length 512 ...\"",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "498474",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_stage2_rasp_20_v5.log",
+      "submitted_at": "2026-05-15T09:33:29.863Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 1000,
+      "model_name": "sft_rasp_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20",
+      "eval_data": "gsm8k"
+    },
+    "hypothesis": "D025: GRPO v5 — v4 speed fix. max_completion_length 2048→512 (4x faster generation). All other params same as v4: beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True, monkey-patch ref_model. Expected ~7-10 min/step (vs v4 29min/step).",
+    "parent": "sft_rasp_20"
+  },
+  "timestamp": "2026-05-15T09:35:17.326453+00:00",
+  "trigger": "update_registry"
+}

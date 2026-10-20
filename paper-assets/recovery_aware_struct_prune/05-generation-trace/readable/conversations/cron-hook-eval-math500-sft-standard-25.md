@@ -1,0 +1,1914 @@
+# cron hook eval math500 sft standard 25
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 60
+- **Recorded user turns:** 1
+- **Tool calls:** 29
+- **Original source:** `logs/chats/cron_hook_eval_math500_sft_standard_25.jsonl`
+- **Structured JSON:** [`c730ad96952a231a8bfb.json`](../../sessions/c7/c730ad96952a231a8bfb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+60 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T19:19:09.700949+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #21。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westb-23072 cuda:0/1, westd-29022 cuda:0/1/2/3。超出必须 push back Director
+- westb 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv
+- westd 同理用 conda（aml-train 镜像）
+- eval 脚本统一用 N=1319 样本（GSM8K）或 N=500（MATH-500），论文数据全部基于此口径
+- `eval_math500_sft_standard_25` 是幽灵实验（PREPARING 状态被 cron 误判），不要尝试修复其状态机——v2 才是真实实验
+- 30% sparsity 已证实 collapse（CKA-only 1.6%, Standard 2.8%），不要再跑 30% 实验
+
+### 2. 🖥️ 基础设施快照
+- **westb-23072**：工作目录 `/root/recovery_aware_struct_prune`，数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`
+  - Python: `/root/miniconda3/bin/python`
+  - 模型路径: `/root/autodl-tmp/recovery_aware_struct_prune/` 下 sft_standard_25/, pruned_standard_25/, grpo_standard_25/ 等
+  - 磁盘: 根分区 393G/439G(6%), 数据盘 7.4T/14T(48%)
+- **westd-29022**：同结构，数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`
+  - 磁盘: 根分区 816G/879G(3%), 数据盘 5.3T/7.3T(24%)
+- **活跃进程**：
+  - `grpo_cka_only_25` PID=310542 westd-29022:cuda:2（cron 监控中）
+  - `eval_math500_sft_standard_25_v2` PID=62714 westb-23072（cron 监控中）
+- **Workers 运行中**：
+  - `worker_ssh_random_20_pipeline` — Random 20% pruning baseline pipeline（D095 补强）
+  - `worker_ssh_westb_standard_25_grpo` — westb Standard 25% GRPO + eval pipeline
+
+### 3. 📊 当前状态
+我刚处理 `eval_math500_sft_standard_25` 的重复 cron 失败回调——已确认是幽灵实验，v2 在跑，Director 已收到汇报。
+
+**RUNNING**: grpo_cka_only_25 (westd:cuda:2, CKA-only 25% GRPO 训练)
+**PREPARING**: ~30 个实验条目（大部分是待提交的 eval/pipeline 任务）
+**关键等待**:
+- grpo_cka_only_25 完成 → eval GSM8K/MATH-500/HumanEval pipeline（25% CKA-only 的关键数据点）
+- eval_math500_sft_standard_25_v2 完成 → Standard 25% SFT MATH-500 数据点
+- 2 个 Worker 回调待处理（random_20_pipeline, westb_standard_25_grpo）
+
+**资源警告**: 6 GPU 分配但仅 1 张在跑。Workers 正在提交任务填充空闲 GPU，但需要在 Worker 回调后确认是否全部饱和。
+
+### 4. 📋 待办（条件触发式）
+- grpo_cka_only_25 cron 回调(success) → spawn worker 跑 eval_gsm8k + eval_math500 + eval_humaneval（三个 benchmark，CKA-only 25%）→ 这是 ROADMAP 25% 行的核心数据点
+- grpo_cka_only_25 cron 回调(failed) → 诊断 + 重提交，25% CKA-only GRPO 是 D093 cross-sparsity 必做项
+- eval_math500_sft_standard_25_v2 完成 → 更新 ROADMAP 25% SFT 行
+- worker_ssh_random_20_pipeline 完成 → 检查 Random 20% pruning 是否成功，这是 D095 W7 修复（Random accuracy 脚注）
+- worker_ssh_westb_standard_25_grpo 完成 → 检查 westb 上 Standard 25% GRPO 是否已提交 + eval pipeline 是否铺开
+- 所有 25% 数据收齐 → 更新论文 Table（cross-sparsity: 15%/20%/25% 三个点），向 Director 汇报 D093 完成度
+- 5 张 GPU 空闲持续 → Worker 回调后若仍空闲，立即铺 PREPARING 队列中的 eval 任务
+
+### 5. 🎯 战略上下文
+- **投稿目标**: EMNLP 2026 Main (ARR May 25)，**~4 天**。Round 1→2.5, Round 2→3.0, 目标≥4.0
+- **核心结论**: CKA-only pruning >> Standard importance-based pruning 在 GRPO recovery。15% Δ=+7.20pp (p<0.001), 20% Δ=+4.55pp (p=0.0009)
+- **当前补强**: D093 要求 25% 作为第 3 个 sparsity point（cross-sparsity curve），D095 要求 Random baseline + RASP 2nd seed
+- **易错点**:
+  - Standard 25% GRPO 已有结果 51.10%（单种子），CKA-only 25% 是 TBD——grpo_cka_only_25 的结果决定 25% 行的 Δ
+  - `eval_math500_sft_standard_25` (无 v2) 是幽灵实验，不要诊断/重提交它
+  - 论文已提交 Round 3 验证审稿，W6-W8 是 camera-ready 级修复（RASP/Random 脚注、超参表、orphan bib），这些需要 D095 实验数据才能填
+  - 决策链: D083(30% collapse) → D084(20% 3-seed) → D085(Qwen-Math) → D088(15% SFT) → D092(15% 3-seed) → D093(25% pipeline) → D094(Round 2 修复) → D095(补强)
+
+## 项目硬约束 (memory.md 节选)
+
+## 诊断时 GPU 状态
+
+| GPU | 显存 | 进程 |
+|-----|------|------|
+| 0 | 16333/97887 MiB | eval_math500_grpo_cka_only_25_v2 |
+| 1 | 0 MiB (空闲) | — |
+| 2 | 16333/97887 MiB | eval_math500_sft_cka_only_25_v2 |
+| 3 | 28911/97887 MiB | eval_gsm8k_sft_standard_25 (运行 5.5h) |
+
+## 进程与 GPU 状态
+
+- pipeline_alpha4_0 进程已退出（EXIT_CODE=1），无残留进程
+- GPU 0: 空闲（0 MiB），可用于重跑
+- GPU 1: eval_math500_grpo_random_20_v2 (PID 382472, 17360 MiB)
+- GPU 2: 空闲（0 MiB）
+- GPU 3: eval_math500_sft_random_20 (PID 385685, 16040 MiB)
+
+## 可查的历史
+前 70 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T19:19:21.934658+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T19:19:21.985247+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T19:19:25.214593+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T19:19:25.265224+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T19:19:25.767533+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T19:19:26.021417+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T19:19:26.172612+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_math500_sft_standard_25\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:58:32.492Z\", \"updated_at\": \"2026-05-21T15:20:30.245Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"reproduce\": {\"finished_at\": \"2026-05-21T02:58:40.587Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T02:58:45.343074+00:00\"}]}, \"notes\": \"v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。\", \"hypothesis\": \"Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500\", \"metrics\": {\"math500_accuracy\": 0.13, \"correct\": 65, \"n_total\": 500}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42\", \"server\": \"westb-23072\", \"gpu\": \"cuda:1\", \"model_name\": \"sft_standard_25/checkpoint-1870\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\", \"eval_data\": \"MATH-500\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}}, \"eval_math500_sft_random_20\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:43:53.119Z\", \"updated_at\": \"2026-05-21T14:46:41.557Z\", \"hypothesis\": \"Random 20% SFT model MATH-500 @2048 accuracy establishes pre-GRPO baseline for random pruning, enabling SFT→GRPO recovery delta comparison with importance-based methods (CKA-only, Standard) at 20% sparsity on MATH-500\", \"parent\": \"eval_gsm8k_sft_random_
+…[truncated 3585 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 958
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T19:19:39.671311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"eval_math500_grpo_standard_25_v2\", \"success\": true, \"actions\": [\"Job still running (pid=99426)\"]}, {\"exp_id\": \"eval_math500_grpo_random_20_v2\", \"success\": true, \"actions\": [\"Job still running (pid=382470)\"]}, {\"exp_id\": \"eval_math500_sft_random_20\", \"success\": true, \"actions\": [\"Job still running (pid=385685)\"]}, {\"exp_id\": \"grpo_alpha4_20\", \"success\": true, \"actions\": [\"Skipped (created 83s ago < interval 300s)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 14406
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T19:19:39.671892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-21 15:23 UTC | 更新原因: Fix: 20% MATH-500 data confirmed complete by Reviewer; SFT Standard 25% re-running on westb:1; 6/6 GPU\\n\\n## 核心方向\\nPruning criterion shapes post-RLVR recovery capacity. CKA-only >> Standard >> Random >> RASP. 详见 paper_framing.md.\\n\\n## 当前阶段: MATH-500 @2048 全线重跑（6/6 GPU 满载）+ Round 4 审稿待审批\\n\\n### 核心数据全景（GSM8K N=1319）\\n\\n| Sparsity | Method | SFT | GRPO | Δ(GRPO-SFT) | Seeds |\\n|----------|--------|-----|------|-------------|-------|\\n| 15% | CKA-only | — | 72.76% ± 0.57pp | — | 3 |\\n| 15% | Standard | — | 65.56% ± 0.50pp | — | 3 |\\n| 15% | Δ(CKA-Std) | — | **+7.20pp (p<0.001)** | — | — |\\n| 20% | CKA-only | 64.37% | 64.39% ± 0.19pp | +0.02pp | 3 |\\n| 20% | Standard | 59.29% | 59.84% ± 0.38pp | +0.55pp | 3 |\\n| 20% | Random | 51.25% | 50.57% | -0.68pp | 1 |\\n| 20% | Δ(CKA-Std) | — | **+4.55pp (p=0.0009)** | — | — |\\n| 25% | CKA-only | 60.12% | 59.59% | -0.53pp | 1 |\\n| 25% | Standard | 50.87% | 51.86% | +0.99pp | 1 |\\n| 25% | Δ(CKA-Std) | — | **+7.73pp** | — | — |\\n\\n### MATH-500 @2048 数据\\n\\n**20% 已完整**（Reviewer 确认 registry）：\\n\\n| Method | SFT | GRPO | Δ |\\n|--------|-----|------|---|\\n| CKA-only | 29.0% | 29.2% | +0.2pp |\\n| Standard | 25.8% | 26.4% | +0.6pp |\\n| RASP | 22.6% | 24.0% | +1.4pp |\\n| Random | RUNNING | RUNNING | — |\\n\\n排序与 GSM8K 一致：CKA-only >> Standard >> RASP。C1 decoupling 跨 benchmark 成立。\\n\\n**25% + Random 20% RUNNING**：\\n\\n| exp_id | Method | Server:GPU | Status |\\n|--------|--------|------------|--------|\\n| eval_math500_grpo_cka_only_25_v2 | CKA-only GRPO 25% | westd:0 | RUNNING |\\n| eval_math500_grpo_random_20_v2 | Random GRPO 20% | westd:1 | RUNNING |\\n| eval_math500_sft_cka_only_25_v2 | CKA-only SFT 25% | westd:2 | RUNNING |\\n| eval_math500_sft_rand
+…[truncated 2411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 13904
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T19:19:39.723591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_math500_sft_standard_25 | Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500 | — | — | — |\\n| eval_math500_sft_random_20 | Random 20% SFT model MATH-500 @2048 accuracy establishes pre-GRPO baseline for random pruning, enabling SFT→GRPO recovery delta comparison with importance-based methods (CKA-only, Standard) at 20% sparsity on MATH-500 | — | — | — |\\n| eval_math500_grpo_random_20_v2 | Random 20% GRPO model MATH-500 @2048 accuracy for cross-method comparison with CKA-only and Standard at 20% sparsity | — | — | — |\\n\\n## 待处理\\n- grpo_alpha4_20（准备中）\\n- sft_alpha4_20_v2: α=4.0 SFT recovery with save_only_model=True to prevent disk overflow. Pruning successful (19.09% sparsity). Testing if higher α mitigates RASP collapse after full SFT→GRPO→eval pipeline.（准备中）\\n- sft_qwen_math_cka_only_20: Qwen2.5-Math-7B CKA-only 20% pruned model SFT recovery. Post-prune accuracy 1.00% (2/200, near zero). CKA-only removes most redundant structures, causing severe initial damage. SFT recovery should be significant if model capacity is preserved. Tests whether CKA-only's 'remove redundancy, preserve capacity' principle transfers to Qwen-Math.（准备中）\\n- rci_formalization_plan036: RCI 形式化：CKA diversity score (1 - mean diagonal CKA) 与 GRPO recovery capacity 的 rank correlation。如果 ρ > 0.9，CKA diversity 可 zero-cost 预测 RL recovery。E3 heatmap 数据 + registry recovery metrics。Plan_036, C2 mechanism。（准备中）\\n- eval_mbpp_grpo_rasp_20_v2（准备中）\\n- eval_mbpp_grpo_standard_20_v2: Retry of eval_mbpp_grpo_standard_20 which timed out at 335/374 (89.6%). Same setup: Standard
+…[truncated 5893 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 13702
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T19:20:04.385609+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['status', 'conclusion', 'metrics', 'spec', 'updated_at', 'notes']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['status', 'conclusion', 'metrics', 'spec', 'updated_at', 'notes']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T19:20:04.890607+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__send_progress",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__send_progress",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T19:20:05.242380+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_math500_sft_standard_25\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-21T15:20:30.245Z\", \"conclusion\": \"success\", \"notes\": \"v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。\", \"metrics\": {\"math500_accuracy\": 0.13, \"correct\": 65, \"n_total\": 500}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42\", \"server\": \"westb-23072\", \"gpu\": \"cuda:1\", \"model_name\": \"sft_standard_25/checkpoint-1870\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\", \"eval_data\": \"MATH-500\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}}, \"eval_math500_sft_random_20\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-21T14:46:41.557Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/results.json --max_new_tokens 2048 --seed 42\", \"server\": \"westd-29022\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"model_name\": \"sft_random_20\", \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20\", \"seed\": 42, \"checkpoint_source\": \"sft_random_20\", \"eval_data\": \"MATH-500\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/eval.log\"}}, \"eval_math500_grpo_random_20_v2\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-21T14:00:15.635Z\", \"spec\": {\"command\": \"nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activat
+…[truncated 2170 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 856
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T19:20:05.244788+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "ToolSearch",
+  "elapsed_ms": 354
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T19:20:16.784887+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_math500_grpo_cka_only_25_v2'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_math500_grpo_cka_only_25_v2'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T19:20:17.688522+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7928}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 903
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T19:20:17.688892+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_math500_sft_cka_only_25_v2'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_math500_sft_cka_only_25_v2'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T19:20:18.742052+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7767}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1053
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T19:20:18.892877+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'grpo_alpha4_20'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'grpo_alpha4_20'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T19:20:18.893334+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T19:20:19.761948+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8342}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 869
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T19:20:19.862802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 969
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T19:20:31.261021+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": "20",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "limit": "20",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T19:20:32.165788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"grpo_alpha4_20\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-21T18:59:45.699Z\"}, \"sft_alpha4_20_v2\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-21T18:54:53.481Z\"}, \"pipeline_alpha4_0_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T18:29:56.477Z\", \"conclusion\": \"failed\"}, \"sft_alpha4_20_manual\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T18:25:39.695Z\", \"conclusion\": \"failed\"}, \"pipeline_alpha4_0\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T17:58:52.344Z\", \"conclusion\": \"failed\"}, \"eval_math500_grpo_cka_only_25_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T17:33:50.709Z\", \"conclusion\": \"success\", \"metrics\": {\"math500_accuracy\": 0.184, \"math500_stderr\": 0.0173, \"correct\": 92, \"n_total\": 500}}, \"eval_math500_sft_cka_only_25_v2\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T17:29:14.940Z\", \"conclusion\": \"success\", \"metrics\": {\"math500_accuracy\": 0.192, \"correct\": 96, \"n_total\": 500, \"std_err\": 0.0176}}, \"eval_math500_sft_standard_25\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-21T15:20:30.245Z\", \"conclusion\": \"success\", \"metrics\": {\"math500_accuracy\": 0.13, \"correct\": 65, \"n_total\": 500}}, \"eval_math500_sft_random_20\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-21T14:46:41.557Z\"}, \"eval_gsm8k_sft_standard_25\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T14:40:37.092Z\", \"metrics\": {\"gsm8k_accuracy\": 0.5087, \"stderr\": 0.0138, \"correct\": 671, \"n_total\": 1319, \"eos_rate\": 0.953, \"avg_response_length\": 333.15}, \"conclusion\": \"success\"}, \"eval_math500_grpo_cka_only_20_v3\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T14:03:27.746Z\", \"conclusion\": \"killed\"}, \"eval_math500_grpo_standard_25\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-21T14:03:25.448Z\", \"conclusion\": \"killed\"}, \"eval_math500_grpo_random
+…[truncated 1438 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 904
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T19:20:32.166290+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T19:20:32.166555+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T19:21:41.636421+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_math500_sft_standard_25",
+    "field": "status",
+    "value": "DONE",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T19:21:42.741178+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.7514}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1104
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T19:21:43.142682+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T19:21:43.394482+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_3d531333.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Read",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-21T19:21:51.424063+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "field": "spec",
+  "value": "merge",
+  "project": "recovery_aware_struct_prune",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json', 'log_path': '/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/eval.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_math500_sft_standard_25",
+    "field": "spec",
+    "value": "merge",
+    "project": "recovery_aware_struct_prune",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json', 'log_path': '/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/eval.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T19:21:51.574945+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T19:21:52.830898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_standard_25\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:58:32.492Z\", \"updated_at\": \"2026-05-21T19:21:52.200Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"reproduce\": {\"finished_at\": \"2026-05-21T02:58:40.587Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T02:58:45.343074+00:00\"}]}, \"notes\": \"v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。\", \"hypothesis\": \"Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500\", \"metrics\": {\"math500_accuracy\": 0.13, \"correct\": 65, \"n_total\": 500}, \"spec\": \"merge\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4225}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1406
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T19:21:52.885645+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Glob",
+  "elapsed_ms": 1310
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-21T19:21:57.941395+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T19:21:57.941720+00:00_
+
+&lt;tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_3d531333.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T19:21:58.779537+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_math500_sft_standard_25",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T19:22:00.758058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_standard_25\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:58:32.492Z\", \"updated_at\": \"2026-05-21T19:22:00.108Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"reproduce\": {\"finished_at\": \"2026-05-21T02:58:40.587Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T02:58:45.343074+00:00\"}]}, \"notes\": \"v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。\", \"hypothesis\": \"Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500\", \"metrics\": {\"math500_accuracy\": 0.13, \"correct\": 65, \"n_total\": 500}, \"spec\": \"merge\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0808}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1978
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-21T19:22:04.181433+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "field": "log_path",
+  "value": "/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/eval.log",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_math500_sft_standard_25",
+    "field": "log_path",
+    "value": "/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/eval.log",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T19:22:04.644661+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/agent-ml-research/skills/global"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu/agent-ml-research/skills/global"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T19:22:05.864346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_standard_25\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:58:32.492Z\", \"updated_at\": \"2026-05-21T19:22:05.284Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"reproduce\": {\"finished_at\": \"2026-05-21T02:58:40.587Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T02:58:45.343074+00:00\"}]}, \"notes\": \"v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。\", \"hypothesis\": \"Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500\", \"metrics\": {\"math500_accuracy\": 0.13, \"correct\": 65, \"n_total\": 500}, \"spec\": \"merge\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/eval.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6964}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1682
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T19:22:05.864873+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md
+/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md
+/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dataset-discovery.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-reviewer-synthesis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/data-snapshot.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-key.skill.md
+/home/ubuntu/agent-ml-research/skills/global/distill-session.skill.md
+/home/ubuntu/agent-ml-research/skills/global/elastic-gpu.skill.md
+/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md
+/home/ubuntu/agent-ml-research/skills/global/first-project-entry.skill.md
+/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-generation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-proposal.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-cloud-rental.skill.md
+/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-claude-pool.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md
+/home/ubuntu/agent-ml-research/skills/global/novelty-check.skill.md
+/home/ubuntu/agent-ml-research/skills/global/narrative-animation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/mvp-validation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-datagen-done.skill.md
+/home/ubuntu/agent-ml-research/skills/global/negative-framing-review.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-pending.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-worker-done.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+/h
+…[truncated 3935 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Glob",
+  "elapsed_ms": 1220
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-21T19:22:09.678750+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_math500_sft_standard_25",
+    "field": "status",
+    "value": "DONE",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T19:22:09.830490+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T19:22:10.484637+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"'str' object is not a mapping\", \"metadata\": {\"elapsed_seconds\": 0.7725}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 805
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T19:22:10.484990+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "Read",
+  "elapsed_ms": 654
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-21T19:22:24.391188+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "field": "spec",
+  "value": "{'command': 'CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42', 'server': 'westb-23072', 'gpu': 'cuda:1', 'model_name': 'sft_standard_25/checkpoint-1870', 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870', 'eval_data': 'MATH-500', 'data_path': 'MATH-500', 'data_count': 500, 'seed': 42}",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_math500_sft_standard_25",
+    "field": "spec",
+    "value": "{'command': 'CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42', 'server': 'westb-23072', 'gpu': 'cuda:1', 'model_name': 'sft_standard_25/checkpoint-1870', 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870', 'eval_data': 'MATH-500', 'data_path': 'MATH-500', 'data_count': 500, 'seed': 42}",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T19:22:25.747102+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_standard_25\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:58:32.492Z\", \"updated_at\": \"2026-05-21T19:22:25.181Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"reproduce\": {\"finished_at\": \"2026-05-21T02:58:40.587Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T02:58:45.343074+00:00\"}]}, \"notes\": \"v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。\", \"hypothesis\": \"Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500\", \"metrics\": {\"math500_accuracy\": 0.13, \"correct\": 65, \"n_total\": 500}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42\", \"server\": \"westb-23072\", \"gpu\": \"cuda:1\", \"model_name\": \"sft_standard_25/checkpoint-1870\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\", \"eval_data\": \"MATH-500\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/eval.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3712}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1355
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-21T19:22:28.657680+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_math500_sft_standard_25",
+    "field": "status",
+    "value": "DONE",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T19:22:31.070823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_standard_25\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:58:32.492Z\", \"updated_at\": \"2026-05-21T19:22:29.444Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"reproduce\": {\"finished_at\": \"2026-05-21T02:58:40.587Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T02:58:45.343074+00:00\"}]}, \"notes\": \"v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。\", \"hypothesis\": \"Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500\", \"metrics\": {\"math500_accuracy\": 0.13, \"correct\": 65, \"n_total\": 500}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42\", \"server\": \"westb-23072\", \"gpu\": \"cuda:1\", \"model_name\": \"sft_standard_25/checkpoint-1870\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\", \"eval_data\": \"MATH-500\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/eval.log\", \"completed_at\": \"2026-05-21T19:22:29.444Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.379}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2413
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-21T19:24:14.677279+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 6/6 分配 | 实际在跑 3/6 (westb:0, westd:1, westd:3) | 空闲: westb:1, westd:0, westd:2 | Worker 池 0 → 正在修复 | 磁盘: westb 6%用/westd 24%用\n\n## CKA-only 25% MATH-500 完成\n\n两个 eval 已完成（westd:0/2 释放）：\n\n| Method | SFT | GRPO | Δ(GRPO-SFT) |\n|--------|-----|------|-------------|\n| CKA-only 25% | 19.2% | 18.4% | -0.8pp |\n| Standard 25% | 13.0% | running (westb:0) | — |\n\n**CKA-Std gap (SFT)**: +6.2pp — 与 GSM8K 25% 的 +9.25pp gap 方向一致。MATH-500 进一步验证 C1 decoupling 跨 benchmark 成立。\n\n## 仍在运行\n- eval_math500_grpo_standard_25_v2 (westb:0) — Standard 25% GRPO，完成后可算完整 25% MATH-500 delta\n- eval_math500_grpo_random_20_v2 (westd:1) — Random 20% GRPO\n- eval_math500_sft_random_20 (westd:3) — Random 20% SFT\n\n## 3 GPU 空闲，提议\n\nwestb:1, westd:0, westd:2 现空闲。建议填充 **15% MATH-500 evals**（CKA-only GRPO + Standard GRPO + 其中一个 SFT baseline），补全 cross-sparsity MATH-500 数据（目前有 20%+25%，加 15% 后三个 sparsity 点齐全）。\n\n或者 Director 有其他优先任务？请指示。",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 6/6 分配 | 实际在跑 3/6 (westb:0, westd:1, westd:3) | 空闲: westb:1, westd:0, westd:2 | Worker 池 0 → 正在修复 | 磁盘: westb 6%用/westd 24%用\n\n## CKA-only 25% MATH-500 完成\n\n两个 eval 已完成（westd:0/2 释放）：\n\n| Method | SFT | GRPO | Δ(GRPO-SFT) |\n|--------|-----|------|-------------|\n| CKA-only 25% | 19.2% | 18.4% | -0.8pp |\n| Standard 25% | 13.0% | running (westb:0) | — |\n\n**CKA-Std gap (SFT)**: +6.2pp — 与 GSM8K 25% 的 +9.25pp gap 方向一致。MATH-500 进一步验证 C1 decoupling 跨 benchmark 成立。\n\n## 仍在运行\n- eval_math500_grpo_standard_25_v2 (westb:0) — Standard 25% GRPO，完成后可算完整 25% MATH-500 delta\n- eval_math500_grpo_random_20_v2 (westd:1) — Random 20% GRPO\n- eval_math500_sft_random_20 (westd:3) — Random 20% SFT\n\n## 3 GPU 空闲，提议\n\nwestb:1, westd:0, westd:2 现空闲。建议填充 **15% MATH-500 evals**（CKA-only GRPO + Standard GRPO + 其中一个 SFT baseline），补全 cross-sparsity MATH-500 数据（目前有 20%+25%，加 15% 后三个 sparsity 点齐全）。\n\n或者 Director 有其他优先任务？请指示。",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T19:24:26.566826+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 11889
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-21T19:24:26.768711+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ssh:check_15pct_checkpoints",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务：检查 15% pruning checkpoints 可用性\n\n在 westd-29022 和 westb-23072 上检查 15% sparsity 的模型 checkpoint 是否存在，为后续 MATH-500 eval 做准备。\n\n### 服务器信息\n- **westd-29022**: 数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n- **westb-23072**: 数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n- 两台都用 conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 检查内容\n\n用 ssh_read_only 在两台服务器上执行：\n\n```bash\n# 查找所有 15% 相关的 checkpoint 目录\nls -la /root/autodl-tmp/recovery_aware_struct_prune/ | grep -i \"15\"\nls -la /root/autodl-tmp/recovery_aware_struct_prune/ | grep -i \"cka_only_15\\|standard_15\"\n\n# 检查具体路径是否存在\nfor d in grpo_cka_only_15 grpo_standard_15 sft_cka_only_15 sft_standard_15; do\n  echo \"=== $d ===\"\n  ls -la /root/autodl-tmp/recovery_aware_struct_prune/$d/ 2>/dev/null || echo \"NOT FOUND\"\ndone\n\n# 也检查带 checkpoint- 子目录的\nfind /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 2 -name \"checkpoint-*\" -path \"*15*\" 2>/dev/null\n\n# 检查 eval_math500 脚本是否存在\nls -la /root/recovery_aware_struct_prune/src/eval_math500.py 2>/dev/null || echo \"eval script NOT FOUND\"\n```\n\n### 产出\n汇总报告：\n1. 每个 15% checkpoint 的完整路径、文件大小、是否完整\n2. 在哪台服务器上\n3. eval_math500.py 脚本位置\n4. 如果发现 checkpoint，给出可以直接用的 eval 命令模板（参考格式：`CUDA_VISIBLE_DEVICES=X python src/eval_math500.py --model_path &lt;path> --output_path /root/runs/recovery_aware_struct_prune/eval_math500_&lt;name>/results.json --max_new_tokens 2048 --seed 42`）",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ssh:check_15pct_checkpoints",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务：检查 15% pruning checkpoints 可用性\n\n在 westd-29022 和 westb-23072 上检查 15% sparsity 的模型 checkpoint 是否存在，为后续 MATH-500 eval 做准备。\n\n### 服务器信息\n- **westd-29022**: 数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n- **westb-23072**: 数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n- 两台都用 conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 检查内容\n\n用 ssh_read_only 在两台服务器上执行：\n\n```bash\n# 查找所有 15% 相关的 checkpoint 目录\nls -la /root/autodl-tmp/recovery_aware_struct_prune/ | grep -i \"15\"\nls -la /root/autodl-tmp/recovery_aware_struct_prune/ | grep -i \"cka_only_15\\|standard_15\"\n\n# 检查具体路径是否存在\nfor d in grpo_cka_only_15 grpo_standard_15 sft_cka_only_15 sft_standard_15; do\n  echo \"=== $d ===\"\n  ls -la /root/autodl-tmp/recovery_aware_struct_prune/$d/ 2>/dev/null || echo \"NOT FOUND\"\ndone\n\n# 也检查带 checkpoint- 子目录的\nfind /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 2 -name \"checkpoint-*\" -path \"*15*\" 2>/dev/null\n\n# 检查 eval_math500 脚本是否存在\nls -la /root/recovery_aware_struct_prune/src/eval_math500.py 2>/dev/null || echo \"eval script NOT FOUND\"\n```\n\n### 产出\n汇总报告：\n1. 每个 15% checkpoint 的完整路径、文件大小、是否完整\n2. 在哪台服务器上\n3. eval_math500.py 脚本位置\n4. 如果发现 checkpoint，给出可以直接用的 eval 命令模板（参考格式：`CUDA_VISIBLE_DEVICES=X python src/eval_math500.py --model_path &lt;path> --output_path /root/runs/recovery_aware_struct_prune/eval_math500_&lt;name>/results.json --max_new_tokens 2048 --seed 42`）",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T19:24:30.497823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_check_15pct_checkpoints_20260521T192427\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ssh_check_15pct_checkpoints_20260521T192427.log\", \"setup_data\": {}, \"message\": \"Worker worker_ssh_check_15pct_checkpoints_20260521T192427 started. Use get_worker_status('worker_ssh_check_15pct_checkpoints_20260521T192427') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3729
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-21T19:24:47.016319+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T19:24:47.016719+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-21T19:24:58.365676+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ssh:check_running_eval_progress",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务：检查 3 个运行中 MATH-500 eval 的进度\n\n检查以下 3 个 eval 实验的当前进度（完成百分比、预估剩余时间）。\n\n### 实验列表\n\n1. **eval_math500_grpo_standard_25_v2** — westb-23072, PID=99426, cuda:0\n   - Log: `/root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/eval_math500_grpo_standard_25_v2.log`\n\n2. **eval_math500_grpo_random_20_v2** — westd-29022, PID=382470, cuda:1\n   - Log: `/root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20_v2/eval_math500_grpo_random_20_v2.log`\n\n3. **eval_math500_sft_random_20** — westd-29022, PID=385685, cuda:3\n   - Log: `/root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/eval.log`\n\n### 检查方法\n\n用 ssh_read_only 在对应服务器上执行：\n\n```bash\n# 检查进程是否存活\nps -p &lt;PID> -o pid,etime,cmd 2>/dev/null || echo \"PROCESS DEAD\"\n\n# 读取日志尾部看进度（通常有 X/500 格式的进度信息）\ntail -20 &lt;log_path>\n\n# 如果日志中有进度指示，计算完成率\ngrep -c \"正确\\|correct\\|Correct\\|result\" &lt;log_path> 2>/dev/null || echo \"NO PROGRESS INDICATOR\"\n\n# 检查输出目录是否有结果文件\nls -la /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/ 2>/dev/null\nls -la /root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20_v2/ 2>/dev/null  \nls -la /root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/ 2>/dev/null\n\n# GPU 使用情况\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader\n```\n\n### 产出\n每个实验的：\n1. 进程状态（活/死）\n2. 进度（X/500 样本）\n3. 预估完成时间\n4. 如果进程已死，报告 exit code 和最后日志\n\n两台服务器信息：\n- westb-23072: conda env, `/root/miniconda3/bin/python`\n- westd-29022: conda env, `/root/miniconda3/bin/python`",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ssh:check_running_eval_progress",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务：检查 3 个运行中 MATH-500 eval 的进度\n\n检查以下 3 个 eval 实验的当前进度（完成百分比、预估剩余时间）。\n\n### 实验列表\n\n1. **eval_math500_grpo_standard_25_v2** — westb-23072, PID=99426, cuda:0\n   - Log: `/root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/eval_math500_grpo_standard_25_v2.log`\n\n2. **eval_math500_grpo_random_20_v2** — westd-29022, PID=382470, cuda:1\n   - Log: `/root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20_v2/eval_math500_grpo_random_20_v2.log`\n\n3. **eval_math500_sft_random_20** — westd-29022, PID=385685, cuda:3\n   - Log: `/root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/eval.log`\n\n### 检查方法\n\n用 ssh_read_only 在对应服务器上执行：\n\n```bash\n# 检查进程是否存活\nps -p &lt;PID> -o pid,etime,cmd 2>/dev/null || echo \"PROCESS DEAD\"\n\n# 读取日志尾部看进度（通常有 X/500 格式的进度信息）\ntail -20 &lt;log_path>\n\n# 如果日志中有进度指示，计算完成率\ngrep -c \"正确\\|correct\\|Correct\\|result\" &lt;log_path> 2>/dev/null || echo \"NO PROGRESS INDICATOR\"\n\n# 检查输出目录是否有结果文件\nls -la /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/ 2>/dev/null\nls -la /root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20_v2/ 2>/dev/null  \nls -la /root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/ 2>/dev/null\n\n# GPU 使用情况\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader\n```\n\n### 产出\n每个实验的：\n1. 进程状态（活/死）\n2. 进度（X/500 样本）\n3. 预估完成时间\n4. 如果进程已死，报告 exit code 和最后日志\n\n两台服务器信息：\n- westb-23072: conda env, `/root/miniconda3/bin/python`\n- westd-29022: conda env, `/root/miniconda3/bin/python`",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T19:25:01.241807+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_check_running_eval_progress_20260521T192458\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ssh_check_running_eval_progress_20260521T192458.log\", \"setup_data\": {}, \"message\": \"Worker worker_ssh_check_running_eval_progress_20260521T192458 started. Use get_worker_status('worker_ssh_check_running_eval_progress_20260521T192458') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_math500_sft_standard_25",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2876
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-21T19:25:34.165807+00:00_
+
+Session-start 初始化完成。当前状态汇总：
+
+**实际运行中 (3/6 GPU):**
+| exp_id | 服务器:GPU | 内容 |
+|--------|-----------|------|
+| eval_math500_grpo_standard_25_v2 | westb:0 | Standard 25% GRPO MATH-500 |
+| eval_math500_grpo_random_20_v2 | westd:1 | Random 20% GRPO MATH-500 |
+| eval_math500_sft_random_20 | westd:3 | Random 20% SFT MATH-500 |
+
+**已完成的新数据 (25% MATH-500):**
+| Method | SFT | GRPO | Δ |
+|--------|-----|------|---|
+| CKA-only | 19.2% | 18.4% | -0.8pp |
+| Standard | 13.0% | running | — |
+
+CKA-Std gap (SFT) = +6.2pp，跨 benchmark 一致。
+
+**已修复:** eval_math500_sft_standard_25 从 RUNNING(conclusion=success) → DONE
+
+**空闲 GPU:** westb:1, westd:0, westd:2（3张）
+
+**Worker 池:** 2
+- Worker 1: 检查 15% checkpoint 可用性（为填充空闲 GPU 做准备）
+- Worker 2: 检查 3 个运行中 eval 进度
+
+**等待中:**
+- Director 回复（已提议空闲 GPU 跑 15% MATH-500 evals）
+- 2 个 Worker 回调
+- 3 个 eval cron 回调
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_math500_sft_standard_25"
+}
+```
+
+</details>
+
+---

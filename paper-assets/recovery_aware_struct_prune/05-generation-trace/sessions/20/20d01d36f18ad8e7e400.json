@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20d01d36f18ad8e7e400",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops kill sft standard 25 westd dup",
+  "task_key": "worker_ops_kill_sft_standard_25_westd_dup_20260516T070223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_sft_standard_25_westd_dup_20260516T070223_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "2c28a4691a6c545d6afbfceb4651bc398af5943531e1895812bc463d4f563615"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-11672 上没有 sft_standard_25 / sft_recovery 的重复进程。当前运行的是：\n\n- **eval_sft_rasp_25**（PID 92690）：在 cuda:0 上跑 `eval_gsm8k.py`，评估 sft_rasp_25 模型，已运行约 44 分钟，GPU 利用率 98%。\n- **cuda:1**：空闲，0MB 显存占用。\n\nsft_standard_25 的重复副本看起来已经不存在了（可能已自行退出或被之前 kill 掉了）。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-sft-standard-25-westd-dup.md"
+}

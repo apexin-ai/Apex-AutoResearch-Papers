@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_mbpp_sft_standard_20_clean",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T21:20:59.505Z",
+    "updated_at": "2026-05-19T22:22:08.364Z",
+    "hypothesis": "MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 前4次被杀（exit code 143/124/129），排查确认为 submit_training_job 的 timeout wrapper 和 SIGHUP。清理 exit 文件后用全新 session 名 mbpp_sft_std_clean 重跑，绕过旧 session 名匹配。预期 ~12.8%。关联 C2。",
+    "parent": "eval_mbpp_sft_standard_20_v3",
+    "spec": {
+      "command": "python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "MBPP",
+      "data_count": 374,
+      "model_name": "sft_standard_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20",
+      "eval_data": "MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)",
+      "pid": 141113,
+      "tmux_session": "mbpp_sft_std_clean",
+      "log_path": "N/A",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T22:22:08.364Z"
+  },
+  "timestamp": "2026-05-19T22:22:08.834064+00:00",
+  "trigger": "update_registry"
+}

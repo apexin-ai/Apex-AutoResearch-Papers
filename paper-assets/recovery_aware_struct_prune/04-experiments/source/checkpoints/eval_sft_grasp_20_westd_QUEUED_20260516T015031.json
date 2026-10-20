@@ -1,0 +1,17 @@
+{
+  "exp_id": "eval_sft_grasp_20_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:22:44.271Z",
+    "updated_at": "2026-05-16T01:50:31.043Z",
+    "hypothesis": "GraSP post-SFT eval (N=100, greedy). Three-way comparison final piece: Standard 64%, RASP 57%, GraSP ?%. Tests whether GraSP pruning criterion affects SFT recovery potential. GraSP pre-SFT was ~8%, SFT training completed (loss=0.5857, token_acc=0.8392).",
+    "parent": "sft_grasp_20_westd",
+    "notes": "排队中。等 grasp_baseline_westd (pre-SFT eval N=100) 完成后在 westd cuda:0 启动。Command: python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --max_samples 100 --max_new_tokens 4096 --output_path results/eval_sft_graspune_20_greedy.json --seed 42"
+  },
+  "timestamp": "2026-05-16T01:50:31.212600+00:00",
+  "trigger": "update_registry"
+}

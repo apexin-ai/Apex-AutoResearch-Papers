@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_math500_grpo_rasp_20_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-17T14:44:46.855Z",
+    "hypothesis": "MATH-500 accuracy for grpo_rasp_20 (grpo_stage2_rasp_20_v9). v2 timeout at 193/500 (EXIT_CODE=124, 6h limit). v3 without timeout wrapper. If GRPO RASP outperforms SFT RASP on MATH-500, GRPO adds reasoning. If not, reinforces C1 decoupling.",
+    "parent": "eval_math500_grpo_rasp_20_v2",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "grpo_stage2_rasp_20_v9",
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\"",
+      "data_count": 500,
+      "data_path": "MATH-500",
+      "eval_data": "MATH-500 (500 problems, max_new_tokens=4096, no timeout)",
+      "gpu": [
+        "cuda:3"
+      ],
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log",
+      "model_name": "grpo_stage2_rasp_20_v9",
+      "pid": "31706",
+      "seed": 42,
+      "server": "westd-11672",
+      "submitted_at": "2026-05-17T14:47:00Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 52321.3,
+      "gpu_hours": 14.53
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-18T05:19:01.331Z",
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 11672 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T05:19:01.331Z"
+  },
+  "timestamp": "2026-05-18T05:19:01.726160+00:00",
+  "trigger": "update_registry"
+}

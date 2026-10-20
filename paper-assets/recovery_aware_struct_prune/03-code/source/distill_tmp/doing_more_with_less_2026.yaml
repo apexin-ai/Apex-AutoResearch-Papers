@@ -1,0 +1,11 @@
+paper_key: "doing_more_with_less_2026"
+title: "Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling"
+venue: "arXiv Apr 2026"
+full_text_available: false
+research:
+  baselines: [Wanda, Magnitude Pruning, ShortGPT, OWL, LayerIF, Uniform allocation]
+  metrics: [{name: "accuracy across thinking token budgets", direction: "higher_better"}]
+  datasets: [{name: "MATH500", size: "standard"}, {name: "AIME24", size: "standard"}, {name: "AMC23", size: "standard"}, {name: "GPQA-Diamond", size: "standard"}]
+  ablation_dimensions: [sparsity allocation, token budget (512-8192)]
+  training_recipe: {}
+  method_family: "unstructured pruning for test-time scaling"

@@ -1,0 +1,630 @@
+# cron hook eval gsm8k grpo cka only 25 v2
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/cron_hook_eval_gsm8k_grpo_cka_only_25_v2.jsonl`
+- **Structured JSON:** [`dbbb18b2e514fd40cf9a.json`](../../sessions/db/dbbb18b2e514fd40cf9a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+19 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T21:10:33.034429+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #21。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- **westd-29022 网络离线**——所有命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，否则 HF datasets HEAD 请求直接崩溃（已因此失败 5+ 次）
+- **westd 数据盘 99% 满**（/root/autodl-tmp 仅剩 ~9.7GB）——pipeline_alpha4_0 已因磁盘满写 safetensors 失败。**任何新 checkpoint 写入前必须先清理**。损坏的 `/root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20`（9.7GB 部分写入）待删除。大规模清理需 Director 批准
+- GPU 白名单：westd cuda:0-3, westb cuda:0-1（共 6 卡）
+- **EMNLP 2026 ARR 截稿 May 25（~3.5 天）**——所有实验和论文修复必须在此之前完成
+- RASP 模型路径在 westb 是 `sft_rasp_20_1p5b`（不是 `sft_rasp_20`），westd 类似
+
+### 2. 🖥️ 基础设施快照
+- **westd-29022**: 4× RTX PRO 6000 (97GB each), 工作目录 `/root/recovery_aware_struct_prune`, 数据 `/root/autodl-tmp/recovery_aware_struct_prune`
+- **westb-23072**: 2× RTX PRO 6000, 同路径结构
+- Python: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- 活跃进程:
+
+| exp_id | Server:GPU | PID | 说明 |
+|--------|------------|-----|------|
+| eval_gsm8k_grpo_alpha4_20 | westd:0 | 412988 | α=4.0 GSM8K, ~30min ETA |
+| eval_math500_grpo_random_20_v2 | westd:1 | 382470 | Random GRPO MATH-500, 56% |
+| eval_math500_grpo_alpha4_20 | westd:2 | 412817 | α=4.0 MATH-500, ~8-10h |
+| eval_math500_sft_random_20 | westd:3 | 385685 | Random SFT MATH-500, 47% |
+| eval_math500_grpo_standard_25_v2 | westb:0 | 99426 | Standard 25% GRPO MATH-500, 64% |
+
+- westb:1 应该在跑 eval_math500_sft_standard_25（ROADMAP 标记 running），但 **不在 cron 监控中**，需要核实是否还活着
+- Cron 活跃: 上述 5 个实验均有 cron 监控
+- Worker 池: **0**（全部已完成退出）
+
+### 3. 📊 当前状态
+**刚做完**: 上一轮 session 提交了 α=4.0 的 GSM8K 和 MATH-500 eval（westd:0 和 westd:2），6/6 GPU 满载。Round 5 (3.0/5) D098 审稿修复 Paper Agent 大部分已完成，待 α=4.0 数据和 MATH-500 全表 patch。
+
+**正在等待**:
+- eval_gsm8k_grpo_alpha4_20 结果（最紧急，ETA ~30min from last ROADMAP update at 19:32 UTC）
+- 4 个 MATH-500 @2048 eval 完成（今晚内）
+- westb:1 的 eval_math500_sft_standard_25 状态确认
+
+**PREPARING 队列**: 33 个实验，但大部分被磁盘空间和 GPU 占用阻塞。关键阻塞项: sft_alpha4_20_v2（需 westd 磁盘清理后才能跑 pipeline）。
+
+### 4. 📋 待办（条件触发式）
+- **eval_gsm8k_grpo_alpha4_20 cron 回调到达** → 读结果。如果 ~55-64% → α=4.0 避免 RASP collapse，确认 α 依赖性，patch 论文 RASP 段落（"α tuning mitigates collapse"）。如果 near-zero → RASP collapse 是结构性的，α 无法挽救，patch 论文为更强 negative claim
+- **MATH-500 eval 全部完成** → 汇总全 cross-benchmark 表（20% 四方法 + 25% 双方法 + 15% 双方法），Paper Agent patch Table 3
+- **westb:1 确认** → 如果 eval_math500_sft_standard_25 已死，需重启（加 --max_new_tokens 2048）
+- **westd 磁盘清理** → 删除 pruned_alpha4_20（损坏）+ Director 批准后清理旧 checkpoint → 解锁 sft_alpha4_20_v2 pipeline
+- **Round 5 D098 修复全部完成** → 触发 Round 6 审稿
+
+### 5. 🎯 战略上下文
+- **核心 narrative**: Pruning criterion shapes post-RLVR recovery capacity。CKA-only >> Standard >> Random >> RASP。CKA functional overlap 作为 pruning signal 保留了 RL recovery 所需的结构多样性
+- **决策链关键节点**: D090 确定 3-seed mean（非 2-seed）; D096 25% 数据定调为"补强覆盖不升级 claim"; D097 kill 全部 @4096 改用 @2048; D098 Round 5 action matrix
+- **α=4.0 是最后一个关键消融**——grpo_alpha4_20 reward 轨迹已确认 active learning（0.146→0.256），与 α=1.0 collapse（0.008）形成对比。GSM8K 结果决定这个数据点在论文中的叙述角度
+- **易踩的坑**: (1) westd 所有命令忘加 HF_OFFLINE 标志 (2) westd 磁盘满导致写入失败 (3) RASP 模型路径是 `sft_rasp_20_1p5b` 不是 `sft_rasp_20` (4) eval_math500 @2048 单题可能跑 300+ 秒，必须加 --max_new_tokens 2048 (5) 不要把不同 sparsity 的结果直接对比
+
+## 项目硬约束 (memory.md 节选)
+
+## 诊断时 GPU 状态
+
+| GPU | 显存 | 进程 |
+|-----|------|------|
+| 0 | 16333/97887 MiB | eval_math500_grpo_cka_only_25_v2 |
+| 1 | 0 MiB (空闲) | — |
+| 2 | 16333/97887 MiB | eval_math500_sft_cka_only_25_v2 |
+| 3 | 28911/97887 MiB | eval_gsm8k_sft_standard_25 (运行 5.5h) |
+
+## 进程与 GPU 状态
+
+- pipeline_alpha4_0 进程已退出（EXIT_CODE=1），无残留进程
+- GPU 0: 空闲（0 MiB），可用于重跑
+- GPU 1: eval_math500_grpo_random_20_v2 (PID 382472, 17360 MiB)
+- GPU 2: 空闲（0 MiB）
+- GPU 3: eval_math500_sft_random_20 (PID 385685, 16040 MiB)
+
+## 可查的历史
+前 72 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T21:10:45.205885+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T21:10:45.256679+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T21:10:49.422083+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T21:10:49.472713+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T21:10:49.774188+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T21:10:50.125765+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T21:10:50.327806+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_math500_grpo_alpha4_20\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:27:35.287Z\", \"updated_at\": \"2026-05-21T19:45:27.239Z\", \"hypothesis\": \"α=4.0 GRPO MATH-500 @2048 accuracy for cross-benchmark validation of RASP collapse hypothesis.\", \"parent\": \"grpo_alpha4_20\", \"spec\": {\"command\": \"bash -c \\\"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100 --max_new_tokens 2048\\\"\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:2\"], \"pid\": \"412817\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_grpo_alpha4_20.log\", \"submitted_at\": \"2026-05-21T19:27:59.903Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"model_name\": \"grpo_alpha4_20 checkpoint-100\", \"seed\": 42, \"checkpoint_source\": \"grpo_alpha4_20\", \"eval_data\": \"MATH-500\"}}, \"eval_gsm8k_grpo_alpha4_20\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:27:31.038Z\", \"updated_at\": \"2026-05-21T19:45:24.755Z\", \"hypothesis\": \"α=4.0 GRPO GSM8K accuracy (N=1319). If comparable to CKA-only/Standard GRPO (~60-64%), proves α=4.0 avoids RASP collapse. If near-zero like α=1.0 RASP, confirms collapse is structural.\", \"parent\": \"grpo_alpha4_20\", \"spec\": {\"command\": \"bash -c \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100 --n_samples 1319\\\"\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:0\"], \"pid\": \"412988\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha4_20.log\", \"submitted_at\": \"2026-05-21T19:28:24.342Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"gsm8k\", \"data_count\": 1319, \"model_name\": \"grpo_alpha
+…[truncated 4138 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 905
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T21:11:06.223228+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 5, \"results\": [{\"exp_id\": \"eval_math500_grpo_standard_25_v2\", \"success\": true, \"actions\": [\"Job still running (pid=99426)\"]}, {\"exp_id\": \"eval_math500_grpo_random_20_v2\", \"success\": true, \"actions\": [\"Job still running (pid=382470)\"]}, {\"exp_id\": \"eval_math500_sft_random_20\", \"success\": true, \"actions\": [\"Job still running (pid=385685)\"]}, {\"exp_id\": \"eval_gsm8k_grpo_alpha4_20\", \"success\": true, \"actions\": [\"Job still running (pid=412988)\"]}, {\"exp_id\": \"eval_math500_grpo_alpha4_20\", \"success\": true, \"actions\": [\"Job still running (pid=412817)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 16750
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T21:11:06.223889+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_math500_grpo_alpha4_20 | α=4.0 GRPO MATH-500 @2048 accuracy for cross-benchmark validation of RASP collapse hypothesis. | — | — | — |\\n| eval_gsm8k_grpo_alpha4_20 | α=4.0 GRPO GSM8K accuracy (N=1319). If comparable to CKA-only/Standard GRPO (~60-64%), proves α=4.0 avoids RASP collapse. If near-zero like α=1.0 RASP, confirms collapse is structural. | — | — | — |\\n| eval_math500_sft_random_20 | Random 20% SFT model MATH-500 @2048 accuracy establishes pre-GRPO baseline for random pruning, enabling SFT→GRPO recovery delta comparison with importance-based methods (CKA-only, Standard) at 20% sparsity on MATH-500 | — | — | — |\\n\\n## 待处理\\n- eval_math500_sft_cka_only_20_v6（准备中）\\n- eval_math500_sft_standard_25_2048（准备中）\\n- sft_alpha4_20_v2: α=4.0 SFT recovery with save_only_model=True to prevent disk overflow. Pruning successful (19.09% sparsity). Testing if higher α mitigates RASP collapse after full SFT→GRPO→eval pipeline.（准备中）\\n- eval_math500_sft_cka_only_15: CKA-only 15% SFT model MATH-500 @2048 accuracy establishes pre-GRPO baseline at 15% sparsity for cross-benchmark validation (complement GSM8K data), enabling cross-sparsity trend analysis on MATH-500（准备中）\\n- sft_qwen_math_cka_only_20: Qwen2.5-Math-7B CKA-only 20% pruned model SFT recovery. Post-prune accuracy 1.00% (2/200, near zero). CKA-only removes most redundant structures, causing severe initial damage. SFT recovery should be significant if model capacity is preserved. Tests whether CKA-only's 'remove redundancy, preserve capacity' principle transfers to Qwen-Math.（准备中）\\n- rci_formalization_plan036: RCI 形式化：CKA diversity score (1 - mean diagonal CKA) 与 GRPO recovery capacity 的 
+…[truncated 6024 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 16449
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T21:11:06.275660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-21 19:32 UTC | 更新原因: α=4.0 eval submitted, 6/6 GPU full; GSM8K result ETA ~30min\\n\\n## 核心方向\\nPruning criterion shapes post-RLVR recovery capacity. CKA-only >> Standard >> Random >> RASP. 详见 paper_framing.md.\\n\\n## 当前阶段: α=4.0 GSM8K eval ~30min 出结果 + MATH-500 @2048 收尾 + Round 5 D098 写作修复中\\n\\n### 核心数据全景（GSM8K N=1319）\\n\\n| Sparsity | Method | SFT | GRPO | Δ(GRPO-SFT) | Seeds |\\n|----------|--------|-----|------|-------------|-------|\\n| 15% | CKA-only | — | 72.76% ± 0.57pp | — | 3 |\\n| 15% | Standard | — | 65.56% ± 0.50pp | — | 3 |\\n| 15% | Δ(CKA-Std) | — | **+7.20pp (p<0.001)** | — | — |\\n| 20% | CKA-only | 64.37% | 64.39% ± 0.19pp | +0.02pp | 3 |\\n| 20% | Standard | 59.29% | 59.84% ± 0.38pp | +0.55pp | 3 |\\n| 20% | Random | 51.25% | 50.57% | -0.68pp | 1 |\\n| 20% | RASP(α=1.0) | 55.19% | 54.43% | -0.76pp | 1 |\\n| 20% | Δ(CKA-Std) | — | **+4.55pp (p=0.0009)** | — | — |\\n| 25% | CKA-only | 60.12% | 59.59% | -0.53pp | 1 |\\n| 25% | Standard | 50.87% | 51.86% | +0.99pp | 1 |\\n| 25% | Δ(CKA-Std) | — | **+7.73pp** | — | — |\\n\\n### α=4.0 RASP 消融（W4 关键实验）✅ GRPO 完成\\n\\n- grpo_alpha4_20 reward 轨迹：0.146→0.208→0.256→0.198（active learning）\\n- 对比 α=1.0: 0.008（collapse）→ **α 依赖性确认**\\n- eval_gsm8k_grpo_alpha4_20: westd:0, PID 412988, **~30min 出结果**\\n- eval_math500_grpo_alpha4_20: westd:2, PID 412817, ~8-10h\\n\\n### MATH-500 @2048 进度\\n\\n**20% 已完整**（CKA-only / Standard / RASP）：CKA>Standard>RASP，与 GSM8K 一致。\\n\\n| exp_id | Method | Server:GPU | 进度 |\\n|--------|--------|------------|------|\\n| eval_math500_grpo_random_20_v2 | Random GRPO 20% | westd:1 | 56% |\\n| eval_math500_sft_random_20 | Random SFT 20% | westd:3 | 47% |\\n| eval_math500_grpo_standard_25_v2 | Standard GRPO 25% | westb:0 | 64% |\\n| eval_math500_sft_st
+…[truncated 2322 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 16149
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T21:11:23.780391+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_math500_sft_standard_25'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_math500_sft_standard_25'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T21:11:24.733745+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7947}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 953
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T21:11:24.834466+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T21:11:27.443874+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 2609
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T21:11:47.975900+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "check:eval_gsm8k_alpha4_progress",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务\n检查 westd-29022 上 eval_gsm8k_grpo_alpha4_20 实验的进度和所有 MATH-500 eval 进度。\n\n## 环境\n- 服务器: westd-29022\n- Python: `/root/miniconda3/bin/python`\n- **硬约束**: 所有命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`（网络离线）\n- 工作目录: `/root/recovery_aware_struct_prune`\n\n## 具体步骤\n\n### 1. 检查 eval_gsm8k_grpo_alpha4_20 (westd:0, PID 412988)\n```bash\n# 检查进程是否还活着\nps -p 412988 -o pid,etime,args 2>/dev/null || echo \"PROCESS_DEAD\"\n\n# 检查日志最后几行\ntail -30 ~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha4_20.log\n```\n\n如果进程已结束，读取完整结果：\n- 查看 log 中的 accuracy 数字\n- 查找 results.json（通常在 output_path 或 log 同级目录）\n\n### 2. 检查其他 westd eval 进度\n```bash\n# eval_math500_grpo_random_20_v2 (westd:1, PID 382470)\nps -p 382470 -o pid,etime,args 2>/dev/null || echo \"DEAD\"\ntail -5 /root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20_v2/eval_math500_grpo_random_20_v2.log\n\n# eval_math500_grpo_alpha4_20 (westd:2, PID 412817)\nps -p 412817 -o pid,etime,args 2>/dev/null || echo \"DEAD\"\ntail -5 ~/runs/recovery_aware_struct_prune/eval_math500_grpo_alpha4_20.log\n\n# eval_math500_sft_random_20 (westd:3, PID 385685)\nps -p 385685 -o pid,etime,args 2>/dev/null || echo \"DEAD\"\ntail -5 /root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/eval.log\n```\n\n### 3. 检查磁盘状态\n```bash\ndf -h /root/autodl-tmp\n```\n\n## 产出\n汇总报告：每个实验的 PID 状态（alive/dead）、进度百分比、如果已完成则报告 accuracy。磁盘剩余空间。",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "check:eval_gsm8k_alpha4_progress",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务\n检查 westd-29022 上 eval_gsm8k_grpo_alpha4_20 实验的进度和所有 MATH-500 eval 进度。\n\n## 环境\n- 服务器: westd-29022\n- Python: `/root/miniconda3/bin/python`\n- **硬约束**: 所有命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`（网络离线）\n- 工作目录: `/root/recovery_aware_struct_prune`\n\n## 具体步骤\n\n### 1. 检查 eval_gsm8k_grpo_alpha4_20 (westd:0, PID 412988)\n```bash\n# 检查进程是否还活着\nps -p 412988 -o pid,etime,args 2>/dev/null || echo \"PROCESS_DEAD\"\n\n# 检查日志最后几行\ntail -30 ~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha4_20.log\n```\n\n如果进程已结束，读取完整结果：\n- 查看 log 中的 accuracy 数字\n- 查找 results.json（通常在 output_path 或 log 同级目录）\n\n### 2. 检查其他 westd eval 进度\n```bash\n# eval_math500_grpo_random_20_v2 (westd:1, PID 382470)\nps -p 382470 -o pid,etime,args 2>/dev/null || echo \"DEAD\"\ntail -5 /root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20_v2/eval_math500_grpo_random_20_v2.log\n\n# eval_math500_grpo_alpha4_20 (westd:2, PID 412817)\nps -p 412817 -o pid,etime,args 2>/dev/null || echo \"DEAD\"\ntail -5 ~/runs/recovery_aware_struct_prune/eval_math500_grpo_alpha4_20.log\n\n# eval_math500_sft_random_20 (westd:3, PID 385685)\nps -p 385685 -o pid,etime,args 2>/dev/null || echo \"DEAD\"\ntail -5 /root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/eval.log\n```\n\n### 3. 检查磁盘状态\n```bash\ndf -h /root/autodl-tmp\n```\n\n## 产出\n汇总报告：每个实验的 PID 状态（alive/dead）、进度百分比、如果已完成则报告 accuracy。磁盘剩余空间。",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T21:11:57.867932+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_eval_gsm8k_alpha4_progress_20260521T211148\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_check_eval_gsm8k_alpha4_progress_20260521T211148.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_eval_gsm8k_alpha4_progress_20260521T211148 started. Use get_worker_status('worker_check_eval_gsm8k_alpha4_progress_20260521T211148') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 9892
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T21:11:57.968843+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "check:westb_status",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务\n检查 westb-23072 上所有实验进度，特别是 eval_math500_sft_standard_25（应在 westb:1 上运行但未被监控）。\n\n## 环境\n- 服务器: westb-23072\n- Python: `/root/miniconda3/bin/python`\n- 工作目录: `/root/recovery_aware_struct_prune`\n\n## 具体步骤\n\n### 1. 检查 GPU 状态\n```bash\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n```\n\n### 2. 检查 eval_math500_grpo_standard_25_v2 (westb:0, PID 99426)\n```bash\nps -p 99426 -o pid,etime,args 2>/dev/null || echo \"PROCESS_DEAD\"\ntail -10 /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/eval_math500_grpo_standard_25_v2.log\n```\n\n### 3. 检查 westb:1 是否有 eval_math500_sft_standard_25 进程\n```bash\n# 查找所有 python 进程\nps aux | grep -E \"eval_math500|eval_gsm8k|python.*eval\" | grep -v grep\n\n# 查看 westb:1 上的 GPU 进程\nnvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader\n\n# 查找可能的日志\nls -la /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25* 2>/dev/null || echo \"NO_LOG_DIR\"\nfind /root/runs/recovery_aware_struct_prune -name \"*sft_standard_25*\" -type f 2>/dev/null | head -5\n```\n\n### 4. 如果 eval_math500_sft_standard_25 不在运行\n检查是否有历史结果或需要重新提交：\n```bash\n# 检查是否有之前的输出\nfind /root/runs/recovery_aware_struct_prune -name \"*standard_25*\" -type f 2>/dev/null\n# 检查模型是否存在\nls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25* 2>/dev/null || echo \"NO_MODEL\"\nls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25_westb* 2>/dev/null || echo \"NO_MODEL_WESTB\"\n```\n\n## 产出\n汇总：westb GPU 使用、各实验 PID 状态、eval_math500_sft_standard_25 是否在跑。如果不在跑，报告模型路径是否存在以便重新提交。",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "check:westb_status",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务\n检查 westb-23072 上所有实验进度，特别是 eval_math500_sft_standard_25（应在 westb:1 上运行但未被监控）。\n\n## 环境\n- 服务器: westb-23072\n- Python: `/root/miniconda3/bin/python`\n- 工作目录: `/root/recovery_aware_struct_prune`\n\n## 具体步骤\n\n### 1. 检查 GPU 状态\n```bash\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n```\n\n### 2. 检查 eval_math500_grpo_standard_25_v2 (westb:0, PID 99426)\n```bash\nps -p 99426 -o pid,etime,args 2>/dev/null || echo \"PROCESS_DEAD\"\ntail -10 /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/eval_math500_grpo_standard_25_v2.log\n```\n\n### 3. 检查 westb:1 是否有 eval_math500_sft_standard_25 进程\n```bash\n# 查找所有 python 进程\nps aux | grep -E \"eval_math500|eval_gsm8k|python.*eval\" | grep -v grep\n\n# 查看 westb:1 上的 GPU 进程\nnvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader\n\n# 查找可能的日志\nls -la /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25* 2>/dev/null || echo \"NO_LOG_DIR\"\nfind /root/runs/recovery_aware_struct_prune -name \"*sft_standard_25*\" -type f 2>/dev/null | head -5\n```\n\n### 4. 如果 eval_math500_sft_standard_25 不在运行\n检查是否有历史结果或需要重新提交：\n```bash\n# 检查是否有之前的输出\nfind /root/runs/recovery_aware_struct_prune -name \"*standard_25*\" -type f 2>/dev/null\n# 检查模型是否存在\nls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25* 2>/dev/null || echo \"NO_MODEL\"\nls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25_westb* 2>/dev/null || echo \"NO_MODEL_WESTB\"\n```\n\n## 产出\n汇总：westb GPU 使用、各实验 PID 状态、eval_math500_sft_standard_25 是否在跑。如果不在跑，报告模型路径是否存在以便重新提交。",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-21T21:30:33.239766+00:00_
+
+eval_math500_sft_standard_25 不在 registry 中。需要核实 westb:1 上是否有进程在跑。同时 eval_gsm8k_grpo_alpha4_20 已超过 30min ETA，可能已完成。
+
+派两个 Worker 并行检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_gsm8k_grpo_cka_only_25_v2"
+}
+```
+
+</details>
+
+---

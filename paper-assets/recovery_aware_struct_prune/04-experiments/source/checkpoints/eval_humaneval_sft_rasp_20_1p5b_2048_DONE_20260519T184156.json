@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval_humaneval_sft_rasp_20_1p5b_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T11:35:50.597Z",
+    "updated_at": "2026-05-19T18:41:55.593Z",
+    "hypothesis": "1.5B SFT RASP HumanEval pass@1 @2048. Cross-scale validation. 7B GRPO RASP: 10.98%. RASP pruning expected between Standard and CKA-only on code generation at 1.5B scale.",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-19T17:41:24.131Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_1p5b_2048.json --seed 42",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "909411",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b",
+      "eval_data": "HumanEval",
+      "model_name": "Qwen2.5-1.5B-pruned-rasp-20-SFT",
+      "metrics": {
+        "pass_at_1": 0,
+        "stderr": 0,
+        "n_passed": 0,
+        "n_total": 164
+      },
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_1p5b_2048.json",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_humaneval_sft_rasp_20_1p5b_2048.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T18:41:56.029312+00:00",
+  "trigger": "update_registry"
+}

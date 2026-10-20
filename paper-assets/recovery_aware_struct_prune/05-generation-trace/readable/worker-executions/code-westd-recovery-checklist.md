@@ -1,0 +1,773 @@
+# code westd recovery checklist
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_code_westd_recovery_checklist_20260518T064046.log`
+- **Structured JSON:** [`73d1865139bbfd5e5315.json`](../../sessions/73/73d1865139bbfd5e5315.json)
+
+## Before a recorded user message
+
+14 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "096f6a7f-4ad1-4c6c-9c88-d794cf3686a8",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779099600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "94cdb0f0-e6b7-4ccd-9fb0-d7e62af380d5",
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to create a checklist document for recovering experiments after a server outage. This is a documentation task - no SSH needed. Let me write the file and register it.
+
+Let me first check the artifacts directory exists, then write the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "18f6ef9f-9e9f-4812-b755-a29fd7112c09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVirxvNr2dH2fEi3yKkGo9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13520,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13520
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CaXPHXUC3P4cXXkoHCG1BT`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "e795f92e-def8-41e2-bed3-5b316b6ca0db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVirxvNr2dH2fEi3yKkGo9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13520,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13520
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T06:41:00.414Z_
+
+<details><summary>↩ Tool result · `toolu_01CaXPHXUC3P4cXXkoHCG1BT`</summary>
+
+```text
+_project
+alpha_ablation_diff_report.md
+analysis_grpo_standard_25_qwen_math.md
+analysis_recent_results_20260517.md
+collapse_dynamics_comparison.md
+collapse_dynamics_step50_update.md
+collapse_onset_timing.json
+correlation_analysis.py
+diag_eval_math500_grpo_timeout.md
+diag_eval_math500_unpruned.md
+diagnose_eval_grpo_standard_25.md
+diagnose_eval_pass_k8_v2.md
+diagnosis_inference_v2.md
+dream_reports
+eval_humaneval_grpo_standard_20_2048
+eval_humaneval_sft_standard_20_2048_v2
+eval_pass_k8_rasp_20_grpo_deepseek
+eval_pass_k8_standard_20_grpo_qwen_math_v2
+eval_sft_rasp_rlvr_20
+evidence_table.md
+figure_plan.md
+figures
+grpo_cka_only_20_full_metrics.md
+grpo_collapse_dynamics_analysis.md
+grpo_qwen_math_v3
+grpo_random_20_early_analysis.md
+grpo_random_20_full_metrics.md
+grpo_rasp_20_4096_status.md
+grpo_rasp_25
+grpo_standard_20_fair_early_metrics.md
+grpo_standard_25_qwen_math
+humaneval_2048_matrix
+literature_notes.md
+literature_review_cka_rl_stability.md
+literature_survey_related_work.md
+manifest.yaml
+mvp_progress_20260514.md
+mvp_v2_analysis.md
+paper_results_tables.md
+plot_cka_figures.py
+plot_fig1_pipeline.py
+related_work_notes.md
+run_alpha_verify_512.sh
+scoring_diff_investigation.md
+sft_rasp_20_westd_retrain
+statistical_summary.md
+tables
+verification_report_postprune_eval.md
+westb_disk_cleanup_20260515.md
+westb_disk_report.md
+westb_grpo_complete_metrics.md
+westb_progress_check_143700.md
+westd_diagnostic_20260518.md
+westd_gpu_report.md
+westd_status_check_143700.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "f1d288ef-dc1c-46ce-8b27-1e2c365a22bf",
+  "tool_use_result": {
+    "stdout": "_project\nalpha_ablation_diff_report.md\nanalysis_grpo_standard_25_qwen_math.md\nanalysis_recent_results_20260517.md\ncollapse_dynamics_comparison.md\ncollapse_dynamics_step50_update.md\ncollapse_onset_timing.json\ncorrelation_analysis.py\ndiag_eval_math500_grpo_timeout.md\ndiag_eval_math500_unpruned.md\ndiagnose_eval_grpo_standard_25.md\ndiagnose_eval_pass_k8_v2.md\ndiagnosis_inference_v2.md\ndream_reports\neval_humaneval_grpo_standard_20_2048\neval_humaneval_sft_standard_20_2048_v2\neval_pass_k8_rasp_20_grpo_deepseek\neval_pass_k8_standard_20_grpo_qwen_math_v2\neval_sft_rasp_rlvr_20\nevidence_table.md\nfigure_plan.md\nfigures\ngrpo_cka_only_20_full_metrics.md\ngrpo_collapse_dynamics_analysis.md\ngrpo_qwen_math_v3\ngrpo_random_20_early_analysis.md\ngrpo_random_20_full_metrics.md\ngrpo_rasp_20_4096_status.md\ngrpo_rasp_25\ngrpo_standard_20_fair_early_metrics.md\ngrpo_standard_25_qwen_math\nhumaneval_2048_matrix\nliterature_notes.md\nliterature_review_cka_rl_stability.md\nliterature_survey_related_work.md\nmanifest.yaml\nmvp_progress_20260514.md\nmvp_v2_analysis.md\npaper_results_tables.md\nplot_cka_figures.py\nplot_fig1_pipeline.py\nrelated_work_notes.md\nrun_alpha_verify_512.sh\nscoring_diff_investigation.md\nsft_rasp_20_westd_retrain\nstatistical_summary.md\ntables\nverification_report_postprune_eval.md\nwestb_disk_cleanup_20260515.md\nwestb_disk_report.md\nwestb_grpo_complete_metrics.md\nwestb_progress_check_143700.md\nwestd_diagnostic_20260518.md\nwestd_gpu_report.md\nwestd_status_check_143700.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011m5BLWQgVwM5MxJN8Lqjd6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "7a62a58a-067c-4360-886f-3c8bb8d71cee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AVirxvNr2dH2fEi3yKkGo9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13520,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13520
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T06:41:00.666Z_
+
+<details><summary>↩ Tool result · `toolu_011m5BLWQgVwM5MxJN8Lqjd6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "9c8730ce-74c7-428f-b3fc-11ae20446366",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01H2tmdykYfadjs5dRk4i1hZ`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/westd_recovery_checklist.md",
+  "content": "# westd-11672 宕机恢复 Checklist\n\n**创建时间**: 2026-05-18\n**背景**: westd-11672 SSH 端口关闭，4 个 MATH-500 eval + 1 个 GSM8K eval 状态未知。恢复后按本文档顺序执行。\n\n## 宕机前实验状态快照\n\n| 实验 | GPU | 进度 | 最后已知 acc | 状态 |\n|------|-----|------|-------------|------|\n| eval_math500_grpo_unpruned | cuda:2 | 500/500 | 69.0% | **已完成** |\n| eval_math500_grpo_standard_20 | cuda:1 | 438/500 | 28.3%@300 | 接近完成 |\n| eval_math500_grpo_rasp_20_v3 | cuda:3 | 422/500 | 25.0%@400 | 接近完成 |\n| eval_math500_sft_cka_only_20_v2 | cuda:0 | 101/500 | 39.0%@100 | 早期阶段 |\n| eval_gsm8k_grpo_cka_only_20 | cuda:2 | 未知 | 未知 | 刚启动即宕机 |\n\n---\n\n## Step 1: 检查服务器状态\n\n```bash\n# 确认 SSH 恢复\nssh westd-11672 \"hostname && nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\"\n\n# 检查是否有残留进程\nssh westd-11672 \"ps aux | grep -E 'python|eval_math|eval_gsm' | grep -v grep\"\n```\n\n---\n\n## Step 2: 检查结果文件（可能宕机前已完成）\n\n```bash\n# === eval_math500_grpo_unpruned (已确认完成，验证结果文件存在) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\n\n# === eval_math500_grpo_standard_20 (438/500, 可能已完成) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\ntail -20 ~/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log\n\n# === eval_math500_grpo_rasp_20_v3 (422/500, 可能已完成) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\ntail -20 ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log\n\n# === eval_math500_sft_cka_only_20_v2 (101/500, 大概率中断) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v2.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\ntail -20 ~/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20_v2.log\n\n# === eval_gsm8k_grpo_cka_only_20 (刚启动，大概率中断) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\ntail -20 /tmp/eval_gsm8k_grpo_cka_only_20.log\n```\n\n---\n\n## Step 3: 读取已完成实验的结果\n\n```python\nimport json, glob\n\nresult_dir = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\ntargets = [\n    \"math500_grpo_unpruned\",\n    \"math500_grpo_standard_20\",\n    \"math500_grpo_rasp_20_v3\",\n    \"math500_sft_cka_only_20_v2\",\n    \"gsm8k_grpo_cka_only_20\",\n]\n\nfor name in targets:\n    path = f\"{result_dir}/{name}.json\"\n    try:\n        with open(path) as f:\n            data = json.load(f)\n        # 尝试常见 key\n        acc = data.get(\"accuracy\") or data.get(\"acc\") or data.get(\"score\") or data.get(\"exact_match\")\n        total = data.get(\"total\") or data.get(\"num_samples\") or data.get(\"n\")\n        print(f\"[DONE] {name}: accuracy={acc}, total={total}\")\n    except FileNotFoundError:\n        print(f\"[MISS] {name}: no result file\")\n    except Exception as e:\n        print(f\"[ERR]  {name}: {e}\")\n```\n\n---\n\n## Step 4: 重提交中断的实验\n\n**优先级**: standard_20 > rasp_20_v3 > sft_cka_only_20_v2 > gsm8k_grpo_cka_only_20\n\n先检查 eval 脚本是否支持 resume：\n```bash\ngrep -n \"resume\\|skip\\|exist\\|already\" /root/recovery_aware_struct_prune/scripts/eval_math500.py | head -20\n```\n\n### 4a. eval_math500_grpo_standard_20 (如未完成)\n\n```python\n# submit_training_job 格式\n# GPU: cuda:1 | 预计时间: ~10 min (仅剩 62/500 samples)\n# 如果支持 resume，脚本会自动跳过已完成 samples\nsubmit_training_job(\n    server=\"westd-11672\",\n    account=\"root\",\n    job_name=\"eval_math500_grpo_standard_20\",\n    gpu_id=1,\n    command=\"cd /root/recovery_aware_struct_prune && python scripts/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/grpo_standard_20 --output /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20.json\",\n    log_file=\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log\"\n)\n```\n\n### 4b. eval_math500_grpo_rasp_20_v3 (如未完成)\n\n```python\n# GPU: cuda:3 | 预计时间: ~12 min (仅剩 78/500 samples)\nsubmit_training_job(\n    server=\"westd-11672\",\n    account=\"root\",\n    job_name=\"eval_math500_grpo_rasp_20_v3\",\n    gpu_id=3,\n    command=\"cd /root/recovery_aware_struct_prune && python scripts/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/grpo_rasp_20_v3 --output /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\",\n    log_file=\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log\"\n)\n```\n\n### 4c. eval_math500_sft_cka_only_20_v2 (大概率需要重跑)\n\n```python\n# GPU: cuda:0 | 预计时间: ~35-40 min (399/500 samples 需要跑，或全部 500 如不支持 resume)\nsubmit_training_job(\n    server=\"westd-11672\",\n    account=\"root\",\n    job_name=\"eval_math500_sft_cka_only_20_v2\",\n    gpu_id=0,\n    command=\"cd /root/recovery_aware_struct_prune && python scripts/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/sft_cka_only_20_v2 --output /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v2.json\",\n    log_file=\"~/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20_v2.log\"\n)\n```\n\n### 4d. eval_gsm8k_grpo_cka_only_20 (最低优先级)\n\n```python\n# GPU: cuda:2 | 预计时间: ~50-60 min (GSM8K 1319 samples, 需从头跑)\n# 注意: 这个实验 log 在 /tmp，宕机后可能丢失\nsubmit_training_job(\n    server=\"westd-11672\",\n    account=\"root\",\n    job_name=\"eval_gsm8k_grpo_cka_only_20\",\n    gpu_id=2,\n    command=\"cd /root/recovery_aware_struct_prune && python scripts/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/grpo_cka_only_20 --output /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json\",\n    log_file=\"~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_cka_only_20.log\"\n)\n```\n\n---\n\n## Step 5: GPU 分配方案\n\n| GPU | 实验 | 优先级 | 备注 |\n|-----|------|--------|------|\n| cuda:0 | eval_math500_sft_cka_only_20_v2 | P3 | 重跑，耗时最长 |\n| cuda:1 | eval_math500_grpo_standard_20 | P1 | 可能已完成，检查后决定 |\n| cuda:2 | eval_gsm8k_grpo_cka_only_20 | P4 | 从头跑，unpruned 已完成释放此 GPU |\n| cuda:3 | eval_math500_grpo_rasp_20_v3 | P2 | 可能已完成，检查后决定 |\n\n**GPU 释放后的复用**:\n- cuda:1 完成 standard_20 后 → 空闲，可接新任务\n- cuda:3 完成 rasp_20_v3 后 → 空闲，可接新任务\n- cuda:0 和 cuda:2 预计耗时较长\n\n---\n\n## 注意事项\n\n1. **先检查后提交**: Step 2 中 standard_20 和 rasp_20_v3 宕机前已接近完成，有可能在宕机前写入了结果文件\n2. **/tmp 日志丢失**: eval_gsm8k_grpo_cka_only_20 的 log 写在 /tmp，宕机重启后可能被清理。重提交时改用 ~/runs/ 路径\n3. **磁盘空间**: 提交前检查数据盘空间 `df -h /root/autodl-tmp`\n4. **结果汇总**: 所有 eval 完成后，汇总到 analysis_recent_results 更新实验对比表\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "18713b69-be36-4093-90ac-40b8381ebafe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBRJU1fqAzQwxY76euAtUe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1500,
+      "cache_read_input_tokens": 25361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1500
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T06:41:39.029Z_
+
+<details><summary>↩ Tool result · `toolu_01H2tmdykYfadjs5dRk4i1hZ`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/westd_recovery_checklist.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "2f2b7b62-2444-4d1c-8df9-a171cd7dbcd7",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/westd_recovery_checklist.md",
+    "content": "# westd-11672 宕机恢复 Checklist\n\n**创建时间**: 2026-05-18\n**背景**: westd-11672 SSH 端口关闭，4 个 MATH-500 eval + 1 个 GSM8K eval 状态未知。恢复后按本文档顺序执行。\n\n## 宕机前实验状态快照\n\n| 实验 | GPU | 进度 | 最后已知 acc | 状态 |\n|------|-----|------|-------------|------|\n| eval_math500_grpo_unpruned | cuda:2 | 500/500 | 69.0% | **已完成** |\n| eval_math500_grpo_standard_20 | cuda:1 | 438/500 | 28.3%@300 | 接近完成 |\n| eval_math500_grpo_rasp_20_v3 | cuda:3 | 422/500 | 25.0%@400 | 接近完成 |\n| eval_math500_sft_cka_only_20_v2 | cuda:0 | 101/500 | 39.0%@100 | 早期阶段 |\n| eval_gsm8k_grpo_cka_only_20 | cuda:2 | 未知 | 未知 | 刚启动即宕机 |\n\n---\n\n## Step 1: 检查服务器状态\n\n```bash\n# 确认 SSH 恢复\nssh westd-11672 \"hostname && nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\"\n\n# 检查是否有残留进程\nssh westd-11672 \"ps aux | grep -E 'python|eval_math|eval_gsm' | grep -v grep\"\n```\n\n---\n\n## Step 2: 检查结果文件（可能宕机前已完成）\n\n```bash\n# === eval_math500_grpo_unpruned (已确认完成，验证结果文件存在) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\n\n# === eval_math500_grpo_standard_20 (438/500, 可能已完成) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\ntail -20 ~/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log\n\n# === eval_math500_grpo_rasp_20_v3 (422/500, 可能已完成) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\ntail -20 ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log\n\n# === eval_math500_sft_cka_only_20_v2 (101/500, 大概率中断) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v2.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\ntail -20 ~/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20_v2.log\n\n# === eval_gsm8k_grpo_cka_only_20 (刚启动，大概率中断) ===\ncat /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json 2>/dev/null && echo \"COMPLETE\" || echo \"NO RESULT FILE\"\ntail -20 /tmp/eval_gsm8k_grpo_cka_only_20.log\n```\n\n---\n\n## Step 3: 读取已完成实验的结果\n\n```python\nimport json, glob\n\nresult_dir = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\ntargets = [\n    \"math500_grpo_unpruned\",\n    \"math500_grpo_standard_20\",\n    \"math500_grpo_rasp_20_v3\",\n    \"math500_sft_cka_only_20_v2\",\n    \"gsm8k_grpo_cka_only_20\",\n]\n\nfor name in targets:\n    path = f\"{result_dir}/{name}.json\"\n    try:\n        with open(path) as f:\n            data = json.load(f)\n        # 尝试常见 key\n        acc = data.get(\"accuracy\") or data.get(\"acc\") or data.get(\"score\") or data.get(\"exact_match\")\n        total = data.get(\"total\") or data.get(\"num_samples\") or data.get(\"n\")\n        print(f\"[DONE] {name}: accuracy={acc}, total={total}\")\n    except FileNotFoundError:\n        print(f\"[MISS] {name}: no result file\")\n    except Exception as e:\n        print(f\"[ERR]  {name}: {e}\")\n```\n\n---\n\n## Step 4: 重提交中断的实验\n\n**优先级**: standard_20 > rasp_20_v3 > sft_cka_only_20_v2 > gsm8k_grpo_cka_only_20\n\n先检查 eval 脚本是否支持 resume：\n```bash\ngrep -n \"resume\\|skip\\|exist\\|already\" /root/recovery_aware_struct_prune/scripts/eval_math500.py | head -20\n```\n\n### 4a. eval_math500_grpo_standard_20 (如未完成)\n\n```python\n# submit_training_job 格式\n# GPU: cuda:1 | 预计时间: ~10 min (仅剩 62/500 samples)\n# 如果支持 resume，脚本会自动跳过已完成 samples\nsubmit_training_job(\n    server=\"westd-11672\",\n    account=\"root\",\n    job_name=\"eval_math500_grpo_standard_20\",\n    gpu_id=1,\n    command=\"cd /root/recovery_aware_struct_prune && python scripts/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/grpo_standard_20 --output /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20.json\",\n    log_file=\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log\"\n)\n```\n\n### 4b. eval_math500_grpo_rasp_20_v3 (如未完成)\n\n```python\n# GPU: cuda:3 | 预计时间: ~12 min (仅剩 78/500 samples)\nsubmit_training_job(\n    server=\"westd-11672\",\n    account=\"root\",\n    job_name=\"eval_math500_grpo_rasp_20_v3\",\n    gpu_id=3,\n    command=\"cd /root/recovery_aware_struct_prune && python scripts/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/grpo_rasp_20_v3 --output /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\",\n    log_file=\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log\"\n)\n```\n\n### 4c. eval_math500_sft_cka_only_20_v2 (大概率需要重跑)\n\n```python\n# GPU: cuda:0 | 预计时间: ~35-40 min (399/500 samples 需要跑，或全部 500 如不支持 resume)\nsubmit_training_job(\n    server=\"westd-11672\",\n    account=\"root\",\n    job_name=\"eval_math500_sft_cka_only_20_v2\",\n    gpu_id=0,\n    command=\"cd /root/recovery_aware_struct_prune && python scripts/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/sft_cka_only_20_v2 --output /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v2.json\",\n    log_file=\"~/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20_v2.log\"\n)\n```\n\n### 4d. eval_gsm8k_grpo_cka_only_20 (最低优先级)\n\n```python\n# GPU: cuda:2 | 预计时间: ~50-60 min (GSM8K 1319 samples, 需从头跑)\n# 注意: 这个实验 log 在 /tmp，宕机后可能丢失\nsubmit_training_job(\n    server=\"westd-11672\",\n    account=\"root\",\n    job_name=\"eval_gsm8k_grpo_cka_only_20\",\n    gpu_id=2,\n    command=\"cd /root/recovery_aware_struct_prune && python scripts/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/grpo_cka_only_20 --output /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json\",\n    log_file=\"~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_cka_only_20.log\"\n)\n```\n\n---\n\n## Step 5: GPU 分配方案\n\n| GPU | 实验 | 优先级 | 备注 |\n|-----|------|--------|------|\n| cuda:0 | eval_math500_sft_cka_only_20_v2 | P3 | 重跑，耗时最长 |\n| cuda:1 | eval_math500_grpo_standard_20 | P1 | 可能已完成，检查后决定 |\n| cuda:2 | eval_gsm8k_grpo_cka_only_20 | P4 | 从头跑，unpruned 已完成释放此 GPU |\n| cuda:3 | eval_math500_grpo_rasp_20_v3 | P2 | 可能已完成，检查后决定 |\n\n**GPU 释放后的复用**:\n- cuda:1 完成 standard_20 后 → 空闲，可接新任务\n- cuda:3 完成 rasp_20_v3 后 → 空闲，可接新任务\n- cuda:0 和 cuda:2 预计耗时较长\n\n---\n\n## 注意事项\n\n1. **先检查后提交**: Step 2 中 standard_20 和 rasp_20_v3 宕机前已接近完成，有可能在宕机前写入了结果文件\n2. **/tmp 日志丢失**: eval_gsm8k_grpo_cka_only_20 的 log 写在 /tmp，宕机重启后可能被清理。重提交时改用 ~/runs/ 路径\n3. **磁盘空间**: 提交前检查数据盘空间 `df -h /root/autodl-tmp`\n4. **结果汇总**: 所有 eval 完成后，汇总到 analysis_recent_results 更新实验对比表\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01CobThqmoYxxTjnsH2tMT55`</summary>
+
+```json
+{
+  "name": "westd_recovery_checklist",
+  "type": "report",
+  "description": "westd-11672 宕机恢复 checklist: 5 个 eval 实验的检查命令、结果读取、重提交命令和 GPU 分配方案",
+  "project": "recovery_aware_struct_prune",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/westd_recovery_checklist.md",
+  "tags": [
+    "westd-11672",
+    "recovery",
+    "eval",
+    "checklist"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "c9581b9c-3791-4b97-8c9c-35060db03e3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4TWKqHK4qewLcE1CDiEEE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3304,
+      "cache_read_input_tokens": 26861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3304
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T06:41:43.873Z_
+
+<details><summary>↩ Tool result · `toolu_01CobThqmoYxxTjnsH2tMT55`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_b2e09d\", \"name\": \"westd_recovery_checklist\", \"type\": \"report\", \"description\": \"westd-11672 宕机恢复 checklist: 5 个 eval 实验的检查命令、结果读取、重提交命令和 GPU 分配方案\", \"path\": \"projects/recovery_aware_struct_prune/artifacts/_project/report/westd_recovery_checklist.md\", \"url\": null, \"project\": \"recovery_aware_struct_prune\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T06:41:43.733492+00:00\", \"tags\": [\"westd-11672\", \"recovery\", \"eval\", \"checklist\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "22385cd0-ab1d-4a5c-b79c-f1436a287dd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_b2e09d\\\", \\\"name\\\": \\\"westd_recovery_checklist\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"westd-11672 宕机恢复 checklist: 5 个 eval 实验的检查命令、结果读取、重提交命令和 GPU 分配方案\\\", \\\"path\\\": \\\"projects/recovery_aware_struct_prune/artifacts/_project/report/westd_recovery_checklist.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T06:41:43.733492+00:00\\\", \\\"tags\\\": [\\\"westd-11672\\\", \\\"recovery\\\", \\\"eval\\\", \\\"checklist\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_b2e09d\", \"name\": \"westd_recovery_checklist\", \"type\": \"report\", \"description\": \"westd-11672 宕机恢复 checklist: 5 个 eval 实验的检查命令、结果读取、重提交命令和 GPU 分配方案\", \"path\": \"projects/recovery_aware_struct_prune/artifacts/_project/report/westd_recovery_checklist.md\", \"url\": null, \"project\": \"recovery_aware_struct_prune\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T06:41:43.733492+00:00\", \"tags\": [\"westd-11672\", \"recovery\", \"eval\", \"checklist\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+已写入 `artifacts/westd_recovery_checklist.md` 并注册。
+
+文档包含 5 个步骤：
+1. **服务器状态检查** — SSH 连通性 + GPU 状态 + 残留进程
+2. **结果文件检查** — 5 个实验逐一 cat 结果 JSON + tail log，standard_20 和 rasp_20_v3 宕机前接近完成，有可能已写入结果
+3. **结果读取** — Python 脚本批量解析已完成实验的 accuracy
+4. **中断实验重提交** — 4 个 submit_training_job 命令，按优先级 standard > rasp > sft_cka_only > gsm8k 排序，标注预计耗时
+5. **GPU 分配** — 4 张卡各跑一个，cuda:1/3 可能很快释放
+
+关键提醒：gsm8k 的 log 在 /tmp，重启后可能丢失，重提交时需改路径到 ~/runs/。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "uuid": "3b018a9a-b753-47c1-a270-ea18d1eab01c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yckadtrNacL7Xaxtp6SZE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 574,
+      "cache_read_input_tokens": 30165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 574
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 14_
+
+已写入 `artifacts/westd_recovery_checklist.md` 并注册。
+
+文档包含 5 个步骤：
+1. **服务器状态检查** — SSH 连通性 + GPU 状态 + 残留进程
+2. **结果文件检查** — 5 个实验逐一 cat 结果 JSON + tail log，standard_20 和 rasp_20_v3 宕机前接近完成，有可能已写入结果
+3. **结果读取** — Python 脚本批量解析已完成实验的 accuracy
+4. **中断实验重提交** — 4 个 submit_training_job 命令，按优先级 standard > rasp > sft_cka_only > gsm8k 排序，标注预计耗时
+5. **GPU 分配** — 4 张卡各跑一个，cuda:1/3 可能很快释放
+
+关键提醒：gsm8k 的 log 在 /tmp，重启后可能丢失，重提交时需改路径到 ~/runs/。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 56536,
+  "duration_api_ms": 57684,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "6eb1a8b5-57bc-45d6-88aa-ae1956d01f7d",
+  "total_cost_usd": 0.2686445,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 18898,
+    "cache_read_input_tokens": 94228,
+    "output_tokens": 4048,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 18898,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 297,
+        "cache_read_input_tokens": 30165,
+        "cache_creation_input_tokens": 574,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 574
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2083,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0021780000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 4048,
+      "cacheReadInputTokens": 94228,
+      "cacheCreationInputTokens": 18898,
+      "webSearchRequests": 0,
+      "costUSD": 0.2664665,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3581c549-fe94-43e9-a5f8-e492e94d7b2b"
+}
+```
+
+</details>
+
+---

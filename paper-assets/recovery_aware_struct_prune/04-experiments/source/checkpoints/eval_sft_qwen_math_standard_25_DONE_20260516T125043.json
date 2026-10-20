@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_sft_qwen_math_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:04:49.969Z",
+    "updated_at": "2026-05-16T12:50:43.619Z",
+    "hypothesis": "Qwen2.5-Math-7B Standard 25% post-SFT GSM8K eval (N=200, greedy, seed=42). Control for eval_sft_qwen_math_rasp_25。对比 20% 结果 (Standard 71.0%)。Parent: sft_qwen_math_standard_25.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_25 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_qwen_math_standard_25.json",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "6215",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_sft_qwen_math_standard_25.log",
+      "submitted_at": "2026-05-16T12:05:12.481Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 200,
+      "model_name": "Qwen2.5-Math-7B-Standard-25%-SFT",
+      "seed": 42,
+      "gpu_id": "cuda:3",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_25/",
+      "eval_data": "gsm8k_test",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_25",
+      "wall_clock_seconds": 2731.1,
+      "gpu_hours": 0.76
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 63,
+      "correct": 126,
+      "total": 200,
+      "eos_rate": 1
+    },
+    "completed_at": "2026-05-16T12:50:43.619Z"
+  },
+  "timestamp": "2026-05-16T12:50:43.770015+00:00",
+  "trigger": "update_registry"
+}

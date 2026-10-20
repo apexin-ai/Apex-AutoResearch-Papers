@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0768f9623805cce01faf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check humaneval 2048 results",
+  "task_key": "worker_ops_check_humaneval_2048_results_20260517T133805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_humaneval_2048_results_20260517T133805_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "024f4f8bacf688dfef53a30bf3012ef0cf005e35410fe1f60a56c488cd80b6d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. eval_humaneval_sft_rasp_20_2048 — **已完成**\n| 指标 | 值 |\n|------|-----|\n| Pass@1 | **10.37%** (17/164) |\n| Stderr | 0.0238 |\n| Median response length | 2048 (大量被截断) |\n\n大量 SyntaxError 和推理文本泄漏到代码中，说明 sft_rasp_20 模型代码生成能力严重退化。\n\n### 2. eval_humaneval_unpruned_2048 — **仍在运行**\n- PID 23707 仍存活，当前进度 **140/164 (85%)**\n- 最新 Pass@1: **46.43%** (at 140 problems)\n- 预计约 10-12 分钟完成\n\n### 3. GPU 状态 (westd-11672)\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|----------|--------|------|\n| cuda:0 | 17667 MiB | 91% | unpruned eval 运行中 |\n| cuda:1 | 31527 MiB | 99% | 占用中 |\n| **cuda:2** | **0 MiB** | **0%** | **空闲** |\n| cuda:3 | 31527 MiB | 99% | 占用中 |\n\n空闲 GPU：**cuda:2**。unpruned 评估预计很快完成后 cuda:0 也将释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-humaneval-2048-results.md"
+}

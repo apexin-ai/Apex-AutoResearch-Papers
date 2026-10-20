@@ -1,0 +1,15 @@
+{
+  "exp_id": "sft_alpha4_0_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:38:41.395Z",
+    "updated_at": "2026-05-15T12:38:55.909Z",
+    "hypothesis": "D027: α=4.0 pruned model SFT recovery on westd. α=4.0 gave highest post-prune accuracy (40%), testing if SFT recovery further amplifies the advantage. Same SFT params as other α variants (2 epochs, lr=2e-5, batch=1, grad_accum=8)."
+  },
+  "timestamp": "2026-05-15T12:38:55.961192+00:00",
+  "trigger": "update_registry"
+}

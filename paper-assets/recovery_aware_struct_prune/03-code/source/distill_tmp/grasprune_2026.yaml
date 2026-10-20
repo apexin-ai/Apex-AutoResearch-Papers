@@ -1,0 +1,92 @@
+paper_key: "grasprune_2026"
+title: "GRASPrune: Global Gating-based Structural Pruning for LLMs"
+venue: "ACL 2026 Main"
+full_text_available: true
+
+research:
+  baselines: [LLM-Pruner, SliceGPT, FLAP]
+  metrics:
+    - {name: "WikiText-2 perplexity", direction: "lower_better"}
+    - {name: "PTB perplexity", direction: "lower_better"}
+    - {name: "C4 perplexity", direction: "lower_better"}
+    - {name: "zero-shot accuracy (ARC-C, ARC-E, HellaSwag, PIQA, WinoGrande)", direction: "higher_better"}
+  datasets:
+    - {name: "WikiText-2", size: "512 sequences x 512 tokens calibration"}
+    - {name: "PTB", size: "standard"}
+    - {name: "C4", size: "standard"}
+    - {name: "ARC-Challenge/Easy, HellaSwag, PIQA, WinoGrande", size: "standard zero-shot"}
+  ablation_dimensions: [ranking criterion (probability vs cost-normalized), scaling stage, cost ratio sensitivity]
+  training_recipe: {optimizer: "AdamW", lr: "1e-2", hardware: "single A100 80GB, ~6 min", epochs: 4, batch_size: 1, precision: "bfloat16"}
+  method_family: "differentiable gate-based structured pruning"
+
+positioning:
+  core_claim: "The core problem is not the lack of another saliency metric, but the mismatch between how scores are learned and how the final mask is selected—enforcing budget feasibility within the optimization loop rather than post-hoc"
+  key_results: "LLaMA-2-7B at 50% retention: 12.18 WikiText-2 PPL, 0.465 avg zero-shot; ~6 min on single A100"
+  limitations: ["No evaluation on instruction-following, dialogue safety, code, or multilingual tasks", "Budget proxy is parameter-count, not directly hardware-optimal", "Not validated at larger scales"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Model quality degrades non-linearly with pruning budget tightness, indicating uniform sparsity proves insufficient"
+  tension: "Three shortcomings: separate FFN/KV criteria, hardcoded layer budgets, decoupled score learning from budget enforcement"
+  key_insight: "Enforce budget feasibility at every training step via projected STE, not as post-hoc constraint"
+  argument_chain: "problem (non-linear degradation) → diagnosis (three shortcomings) → solution (global budgeted gating with projected STE) → validation (SOTA at multiple compression ratios)"
+  contribution_framing: "Three bullet contributions: (1) single global formulation, (2) projected STE training, (3) dense checkpoint via scaling calibration"
+  intro_structure: "~5 paragraphs: motivation → existing shortcomings → core insight → contribution bullets → paper outline"
+  notable_technique: "Using the non-linearity of degradation as opening hook; framing as architectural mismatch rather than metric quality"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "motivation"
+    description: "WikiText-2 perplexity of LLaMA-2-7B under different retention ratios showing non-linear quality degradation"
+    narrative_role: "Establishes the motivation that uniform sparsity is insufficient"
+    design_elements: ["single curve with marked degradation points", "clean axis labels"]
+    visual_style: "Line plot with clear non-linear knee point, minimal decoration"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "End-to-end throughput at varying batch sizes"
+      how_gain_highlighted: "Multiple curves showing GRASPrune consistently above baselines"
+      design_note: "Practical deployment metric (throughput) alongside academic metrics"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Global retention ratios of FFN vs KV head groups"
+      how_gain_highlighted: "Side-by-side bars showing balanced allocation"
+      design_note: "Illustrates the learned allocation rather than prescribed"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      dimensions_varied: ["layer index", "global sparsity target"]
+      design_note: "Layer-wise retention as heatmap reveals mid-depth aggressive pruning pattern"
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      dimensions_varied: ["probability-based vs cost-normalized ranking"]
+      design_note: "Visual comparison of budget allocation strategies"
+  figure_narrative_role: "Fig1 (motivation: non-linearity) → Fig2 (method overview) → Fig3 (throughput result) → Fig4-5 (learned allocation analysis) → Fig6 (ablation: ranking)"
+
+tables:
+  table_count: 11
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "retention ratios × metrics (PPL + zero-shot)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 3
+    design_note: "Compact table with multiple retention ratios as sub-rows per method"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["ranking criterion"]
+      variation_style: "full_numbers"
+      design_note: "Direct comparison of two ranking strategies with all metrics"
+    - table_id: "Table 5"
+      what_varied: ["scaling stage on/off"]
+      variation_style: "full_numbers"
+      design_note: "Shows scaling matters more at aggressive compression"
+  supplementary_tables:
+    in_appendix: true
+    content: "Cost ratio sensitivity (Table 11), additional model results"
+    reason: "Sensitivity analysis and generalization results too detailed for main text"

@@ -1,0 +1,10 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Whether RLVR outperforms SFT for recovering pruned reasoning models appears to depend on how the model was pruned.
+Under diversity-preserving pruning at 20--25\% MLP sparsity on Qwen2.5-family models, the two paradigms produce near-identical accuracy (mean $|\Delta| {=} 0.54$\,pp for the four main criteria on GSM8K at 20\%; max $1.8$\,pp across benchmarks and $\alpha$ variants), yet the pruning criterion creates a 4.4$\times$ peak reward gap.
+At 20\% sparsity, SFT warmup recovers the bulk of accuracy (from $<$2\% post-prune to 51--64\%); GRPO exposes structural capacity differences but contributes minimal additional accuracy, a pattern that persists at 300 steps (Appendix~\ref{sec:appendix_extended}).
+The non-monotonic $\alpha$ dose-response argues against a layer-distribution confound.
+A practical implication is that GRPO reward trajectories and $f_0$ diagnostics can serve as probes for evaluating pruning quality, surfacing structural deficiencies that accuracy alone would miss.
+Rather than running full RL recovery to estimate final accuracy (which our results show remains constant across criteria), a short GRPO probe of ${\sim}$100 steps suffices to diagnose whether a pruned model retains the structural diversity needed for downstream RL fine-tuning or task-specific RL alignment.
+We discuss broader implications in Appendix~\ref{sec:appendix_discussion}.

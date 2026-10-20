@@ -1,0 +1,41 @@
+{
+  "exp_id": "grpo_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:11:33.478Z",
+    "updated_at": "2026-05-14T17:37:57.677Z",
+    "spec": {
+      "command": "bash src/run_grpo_v4.sh standard 20 1",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "221901",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_20.log",
+      "submitted_at": "2026-05-14T17:11:33.467Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "GSM8K train (8792 samples)",
+      "data_count": 8792,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (pruned Standard 20%)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pruned_standard_20",
+      "model_path": "/root/autodl-tmp/pruned_standard_20",
+      "output_dir": "/root/autodl-tmp/recovered_standard_20",
+      "gpu_model": "RTX PRO 6000 Blackwell 94GB",
+      "wall_clock_seconds": 1584.2,
+      "gpu_hours": 0.44
+    },
+    "hypothesis": "Baseline: Standard importance-only pruned model (20% sparsity, post-prune 1% GSM8K) recovery via GRPO RLVR. Expected to recover less than RASP counterpart due to non-optimal structure selection.",
+    "parent": "mvp_rasp_pipeline_v4",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T17:37:57.677Z"
+  },
+  "timestamp": "2026-05-14T17:37:57.693480+00:00",
+  "trigger": "update_registry"
+}

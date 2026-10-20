@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval-sft-alpha-1p0",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:51:22.694Z",
+    "updated_at": "2026-05-15T15:24:33.852Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --max_samples 100 --max_new_tokens 4096 --output_path results/eval_sft_alpha_1.0_n100.json\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "42530",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval-sft-alpha-1p0.log",
+      "submitted_at": "2026-05-15T14:51:22.611Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。",
+    "reproduce": {
+      "finished_at": "2026-05-15T15:22:49.510Z"
+    }
+  },
+  "timestamp": "2026-05-15T15:24:33.920176+00:00",
+  "trigger": "update_registry"
+}

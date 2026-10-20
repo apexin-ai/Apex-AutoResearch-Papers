@@ -1,0 +1,2698 @@
+# harvest alpha pipelines westd
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 91
+- **Recorded user turns:** 0
+- **Tool calls:** 45
+- **Original source:** `logs/chats/worker_harvest_alpha_pipelines_westd_20260522T084914.jsonl`
+- **Structured JSON:** [`33efc3a0a1f7f3ec588c.json`](../../sessions/33/33efc3a0a1f7f3ec588c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+91 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T08:52:49.688599+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T08:52:49.688943+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T08:52:49.689185+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T08:52:49.689375+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ps aux | grep -E 'python.*(train_grpo|eval_gsm8k|eval_math500|sft_recovery)' | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ps aux | grep -E 'python.*(train_grpo|eval_gsm8k|eval_math500|sft_recovery)' | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T08:52:49.689522+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 19251 MiB, 98 %\\n1, 17651 MiB, 95 %\\n2, 7257 MiB, 5 %\\n3, 12765 MiB, 93 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T08:52:49.689651+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T08:52:49.689774+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls -lt /tmp/alpha0p5_*.log /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5*.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls -lt /tmp/alpha0p5_*.log /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5*.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T08:52:49.689899+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T08:52:49.690018+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls -lt /tmp/alpha2p0_*.log /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0*.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls -lt /tmp/alpha2p0_*.log /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0*.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T08:52:49.690142+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T08:52:49.690257+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*alpha0p5*' -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*alpha0p5*' -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T08:52:49.690418+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha0p5_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha0p5_20.json.done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T08:52:49.690540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*alpha2p0*' -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*alpha2p0*' -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T08:52:49.690660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json.done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T08:52:49.690792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha0p5_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha0p5_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-22T08:52:49.690908+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T08:52:49.691162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20/checkpoint-100\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.6118271417740713,\\n  \\\"stderr\\\": 0.013418518044364319,\\n  \\\"n_correct\\\": 807,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1310,\\n    \\\"truncated\\\": 9,\\n    \\\"eos_rate\\\": 0.9931766489764974,\\n    \\\"avg_response_length\\\": 155.85974222896132,\\n    \\\"max_response_length\\\": 2048,\\n    \\\"min_response_length\\\": 36\\n  },\\n  \\\"temperature\\\": 0.0,\\n  \\\"do_sample\\\": false,\\n  \\\"examples\\\": [\\n    {\\n      \\\"question\\\": \\\"Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?\\\",\\n      \\\"gold\\\": \\\"18\\\",\\n      \\\"prediction\\\": \\\"18\\\",\\n      \\\"correct\\\": true,\\n      \\\"response\\\": \\\"Janet's ducks lay 16 eggs per day.\\\\nShe eats 3 eggs for breakfast every morning and bakes muffins with 4 eggs every day, for a total of 3 + 4 = <<3+4=7>>7 eggs per day.\\\\nShe sells the remaining 16 - 7 = <<16-7=9>>9 eggs per day at the farmers' market.\\\\nShe makes 9 * 2 = $<<9*2=18>>18 per day at the farmers' market.\\\\n#### 18\\\",\\n      \\\"response_length\\\": 116,\\n      \\\"hit_eos\\\": true\\n    },\\n    {\\n      \\\"question\\\": \\\"A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?\\\",\\n      \\\"gold\\\": \\\"3\\\",\\n      \\\"prediction\\\": \\\"3\\\",\\n      \\\"correct\\\": true,\\n      \\\"response\\\": \\\"The rope takes 2 bolts of blue fiber and 2/2 = <<2/2=1>>1 bolt of white fiber.\\\\nSo in total, it takes 2+1 = <<2+1=3>>3 bolts of fiber.\
+…[truncated 7373 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-22T08:52:49.691352+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha0p5_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha0p5_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T08:52:49.691611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha2p0_20/checkpoint-100\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.6611068991660348,\\n  \\\"stderr\\\": 0.013033012467619523,\\n  \\\"n_correct\\\": 872,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1305,\\n    \\\"truncated\\\": 14,\\n    \\\"eos_rate\\\": 0.9893858984078847,\\n    \\\"avg_response_length\\\": 179.30098559514784,\\n    \\\"max_response_length\\\": 2048,\\n    \\\"min_response_length\\\": 39\\n  },\\n  \\\"temperature\\\": 0.0,\\n  \\\"do_sample\\\": false,\\n  \\\"examples\\\": [\\n    {\\n      \\\"question\\\": \\\"Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?\\\",\\n      \\\"gold\\\": \\\"18\\\",\\n      \\\"prediction\\\": \\\"18\\\",\\n      \\\"correct\\\": true,\\n      \\\"response\\\": \\\"Janet’s ducks lay 16 eggs per day and she eats 3 for breakfast, so she has 16-3 = <<16-3=13>>13 eggs left.\\\\nShe bakes muffins for her friends every day with 4 eggs, so she has 13-4 = <<13-4=9>>9 eggs left to sell at the farmers' market.\\\\nShe sells the remaining 9 eggs at $2 per egg, so she makes 9*2 = $<<9*2=18>>18 at the farmers' market.\\\\n#### 18\\\",\\n      \\\"response_length\\\": 128,\\n      \\\"hit_eos\\\": true\\n    },\\n    {\\n      \\\"question\\\": \\\"A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?\\\",\\n      \\\"gold\\\": \\\"3\\\",\\n      \\\"prediction\\\": \\\"3\\\",\\n      \\\"correct\\\": true,\\n      \\\"response\\\": \\\"First, find the number of white fiber bolts by dividing the number of blue fiber bolts by 2: 2 / 2 = <<2/2=1>>1\\\\n
+…[truncated 7283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T08:52:49.691778+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T08:52:49.691912+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha0p5_20.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T08:52:49.692037+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T08:52:49.692158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /tmp -name 'alpha*' -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /tmp -name 'alpha*' -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T08:52:49.692298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/alpha_ablation_phaseA.log\\n/tmp/alpha_ablation_phaseB.log\\n/tmp/alpha0p5_grpo.log\\n/tmp/alpha2p0_grpo.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T08:52:49.692426+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T08:52:49.692557+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12032096\\ndrwxr-xr-x  4 root root        4096 May 22 15:22 .\\ndrwxr-xr-x 44 root root        4096 May 22 16:47 ..\\n-rw-r--r--  1 root root        2102 May 22 15:21 README.md\\n-rw-r--r--  1 root root        2246 May 22 15:22 chat_template.jinja\\ndrwxr-xr-x  2 root root        4096 May 22 15:22 checkpoint-100\\ndrwxr-xr-x  2 root root        4096 May 22 15:21 completions\\n-rw-r--r--  1 root root        1732 May 22 15:22 config.json\\n-rw-r--r--  1 root root         240 May 22 15:22 generation_config.json\\n-rw-r--r--  1 root root 12309394504 May 22 15:22 model.safetensors\\n-rw-r--r--  1 root root    11421907 May 22 15:22 tokenizer.json\\n-rw-r--r--  1 root root         419 May 22 15:22 tokenizer_config.json\\n-rw-r--r--  1 root root        7313 May 22 15:22 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T08:52:49.692681+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha2p0_20/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha2p0_20/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T08:52:49.692825+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12046292\\ndrwxr-xr-x  4 root root        4096 May 22 15:22 .\\ndrwxr-xr-x 44 root root        4096 May 22 16:47 ..\\n-rw-r--r--  1 root root        2102 May 22 15:21 README.md\\n-rw-r--r--  1 root root        2246 May 22 15:22 chat_template.jinja\\ndrwxr-xr-x  2 root root        4096 May 22 15:22 checkpoint-100\\ndrwxr-xr-x  2 root root        4096 May 22 15:21 completions\\n-rw-r--r--  1 root root        1733 May 22 15:22 config.json\\n-rw-r--r--  1 root root         240 May 22 15:22 generation_config.json\\n-rw-r--r--  1 root root 12323931256 May 22 15:22 model.safetensors\\n-rw-r--r--  1 root root    11421907 May 22 15:22 tokenizer.json\\n-rw-r--r--  1 root root         419 May 22 15:22 tokenizer_config.json\\n-rw-r--r--  1 root root        7313 May 22 15:22 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T08:52:49.692951+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T08:52:49.693071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chat_template.jinja\\nconfig.json\\ngeneration_config.json\\nmodel.safetensors\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T08:52:49.693247+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T08:52:49.693389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chat_template.jinja\\nconfig.json\\ngeneration_config.json\\nmodel.safetensors\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T08:52:49.693506+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root/recovery_aware_struct_prune/logs -name 'pipeline_alpha*' -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root/recovery_aware_struct_prune/logs -name 'pipeline_alpha*' -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T08:52:49.693623+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log\\n/root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T08:52:49.693773+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -80 /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -80 /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T08:52:49.693950+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"│ │ years, Ron will be four │ 43/(<<5*4+1=20>>20)    │           │           │ │\\n│ │ times as old as         │ years.                 │           │           │ │\\n│ │ Maurice. If Ron's age   │ #### Step-by-step      │           │           │ │\\n│ │ now is 43, how old is   │ Solution:              │           │           │ │\\n│ │ Maurice now?            │ Step 1. Let’s denote   │           │           │ │\\n│ │                         │ the number of years    │           │           │ │\\n│ │ Answer:                 │ after which Ron will   │           │           │ │\\n│ │                         │ be four times as old   │           │           │ │\\n│ │                         │ as Maurice with R = 43 │           │           │ │\\n│ │                         │ and M being M’s age    │           │           │ │\\n│ │                         │ later.                 │           │           │ │\\n│ │                         │ R = 43 + 5 year = 48   │           │           │ │\\n│ │                         │ years                  │           │           │ │\\n│ │                         │ M = M + 5 year = 56    │           │           │ │\\n│ │                         │ years                  │           │           │ │\\n│ │                         │ So, when R reaches 48, │           │           │ │\\n│ │                         │ M becomes 56.          │           │           │ │\\n│ │                         │ Thus, M = 56 - 5 = 51  │           │           │ │\\n│ │                         │ years.                 │           │           │ │\\n│ │                         │ #### Final Answer      │           │           │ │\\n│ │                         │ Maurice’s age now = 43 │           │           │ │\\n│ │                         │ / ((5*4)+1)*5) *5 = 43 │           │           │ │\\n│ │                         │ / (<<(5*4)+1=21>>21)   │           │           │ │\\n│ │                         │ years
+…[truncated 4993 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T08:52:49.694095+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -80 /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -80 /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-22T08:52:49.694214+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -80 /tmp/alpha0p5_grpo.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -80 /tmp/alpha0p5_grpo.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-22T08:52:49.694408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"│ │                         │ 43 + 5 = 48 years old, │           │           │ │\\n│ │                         │ then we know that in   │           │           │ │\\n│ │                         │ five years he will be  │           │           │ │\\n│ │                         │ 48 years old (43 + 5 = │           │           │ │\\n│ │                         │ 48). But we also know  │           │           │ │\\n│ │                         │ that in this time, Ron │           │           │ │\\n│ │                         │ will be four times as  │           │           │ │\\n│ │                         │ old as Maurice. So     │           │           │ │\\n│ │                         │ when it comes to the   │           │           │ │\\n│ │                         │ age of Maurice in five │           │           │ │\\n│ │                         │ years, it will be 48 / │           │           │ │\\n│ │                         │ 4 = <<48/4=16>>16      │           │           │ │\\n│ │                         │ years old.             │           │           │ │\\n│ │                         │ So Maurice’s age at    │           │           │ │\\n│ │                         │ present time must be   │           │           │ │\\n│ │                         │ 16 - 5 = <<16-5=11>>11 │           │           │ │\\n│ │                         │ years old because we   │           │           │ │\\n│ │                         │ subtract those five    │           │           │ │\\n│ │                         │ years from his age at  │           │           │ │\\n│ │                         │ present time to get    │           │           │ │\\n│ │                         │ his age now.           │           │           │ │\\n│ │                         │ #### 11                │           │           │ │\\n│ │                         │ We can write an        │           │           │ │\\n│ │                         │ equat
+…[truncated 5005 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T08:52:49.694659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"│ │                         │ of (.90/54) legs. So   │           │           │ │\\n│ │                         │ this means each chair  │           │           │ │\\n│ │                         │ has .90/54 =           │           │           │ │\\n│ │                         │ 0.1666666666666666666… │           │           │ │\\n│ └─────────────────────────┴────────────────────────┴───────────┴───────────┘ │\\n╰──────────────────────────────────────────────────────────────────────────────╯\\n\\r100%|██████████| 100/100 [18:07<00:00, 10.88s/it]\\n2026-05-22 15:22:24,760 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]wandb: WARNING Artifact \\\"run-0fh1firj-completions\\\" already exists with the same content. No new version will be created.\\n\\rWriting model shards: 100%|██████████| 1/1 [00:32<00:00, 32.04s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:32<00:00, 32.04s/it]\\n2026-05-22 15:22:57,227 [INFO] GRPO v4 recovery training complete.\\n\\u001b[1;34mwandb\\u001b[0m: \\n\\u001b[1;34mwandb\\u001b[0m: 🚀 View run \\u001b[33mgrpo_sft_rasp_alpha0p5_20\\u001b[0m at: \\u001b[34mhttps://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/0fh1firj\\u001b[0m\\n\\u001b[1;34mwandb\\u001b[0m: Find logs at: \\u001b[1;35mwandb/run-20260522_150414-0fh1firj/logs\\u001b[0m\\n2026-05-22 15:23:05,488 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20/checkpoint-100\\n2026-05-22 15:23:06,132 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-22 15:24:40,418 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=3)\\n2026-05-22 15:24:40,419 [INFO] Loading GSM8K test set...\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\n2026-05-22 
+…[truncated 6509 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T08:52:49.694829+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -80 /tmp/alpha2p0_grpo.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -80 /tmp/alpha2p0_grpo.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T08:52:49.695052+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"│ │                         │ <<20*3=60>>60 legs     │           │           │ │\\n│ │                         │ For 20 chairs, there   │           │           │ │\\n│ │                         │ will be 60*3 =         │           │           │ │\\n│ │                         │ <<60*3=180>>180 legs   │           │           │ │\\n│ │                         │ So in all, there will  │           │           │ │\\n│ │                         │ be 180+180 =           │           │           │ │\\n│ │                         │ <<180+180=360>>360     │           │           │ │\\n│ │                         │ legs                   │           │           │ │\\n│ │                         │ #### Answer            │           │           │ │\\n│ │                         │ The total number of    │           │           │ │\\n│ │                         │ legs is \\\\boxed{360}    │           │           │ │\\n│ └─────────────────────────┴────────────────────────┴───────────┴───────────┘ │\\n╰──────────────────────────────────────────────────────────────────────────────╯\\n\\r100%|██████████| 100/100 [17:57<00:00, 10.77s/it]\\n2026-05-22 15:22:02,836 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha2p0_20\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]wandb: WARNING Artifact \\\"run-2b2x9kmb-completions\\\" already exists with the same content. No new version will be created.\\n\\rWriting model shards: 100%|██████████| 1/1 [00:31<00:00, 31.07s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:31<00:00, 31.07s/it]\\n2026-05-22 15:22:34,315 [INFO] GRPO v4 recovery training complete.\\n\\u001b[1;34mwandb\\u001b[0m: \\n\\u001b[1;34mwandb\\u001b[0m: 🚀 View run \\u001b[33mgrpo_sft_rasp_alpha2p0_20\\u001b[0m at: \\u001b[34mhttps://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/2b2x9kmb\\u001b[0m\\n\\u001b[1;34mwandb\\u001b[0m: Find logs at: \\u001b[1;35
+…[truncated 6529 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T08:52:49.695220+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*sft*alpha*' -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*sft*alpha*' -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T08:52:49.695376+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/logs/sft_alpha4_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T08:52:49.695500+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*eval*sft*' -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*eval*sft*' -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T08:52:49.695655+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_sft_shortgpt_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_sft_standard_20.log\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp_20_sft_qwen_math.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json.done\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20_2048.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json.done\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_n1319.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_n1319.json.done\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_15_n1319.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_15_n1319.json.done\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_n1319.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_n1319.json.done\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_cka_only_20_2048_v2.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_rasp_20.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048_v3.log\\n/root/aut
+…[truncated 2925 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T08:52:49.695840+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "wc -l /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "wc -l /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-22T08:52:49.695974+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "wc -l /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "wc -l /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-22T08:52:49.696101+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2074 /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T08:52:49.696221+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1558 /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T08:52:49.696361+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -c \"INFO\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -c \"INFO\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T08:52:49.696486+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"108\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T08:52:49.696600+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep \"Results saved\\|Accuracy\\|Sentinel\\|SFT eval\\|Loading model\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep \"Results saved\\|Accuracy\\|Sentinel\\|SFT eval\\|Loading model\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T08:52:49.696719+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T08:52:49.696834+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep \"Results saved\\|Accuracy\\|Sentinel\\|SFT eval\\|Loading model\" /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep \"Results saved\\|Accuracy\\|Sentinel\\|SFT eval\\|Loading model\" /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T08:52:49.696949+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T08:52:49.697067+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 1 -name '*alpha*' -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 1 -name '*alpha*' -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T08:52:49.697207+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_alpha0p5_20\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_alpha2p0_20\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha2p0_20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T08:52:49.697358+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -E \"Results saved|Accuracy|Sentinel|Loading model|complete\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -E \"Results saved|Accuracy|Sentinel|Loading model|complete\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T08:52:49.697478+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T08:52:49.697591+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -E \"Results saved|Accuracy|Sentinel|Loading model|complete\" /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -E \"Results saved|Accuracy|Sentinel|Loading model|complete\" /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T08:52:49.697703+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T08:52:49.697827+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -e \"Results saved\" -e \"Accuracy\" -e \"Sentinel\" -e \"Loading model\" -e \"complete\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -e \"Results saved\" -e \"Accuracy\" -e \"Sentinel\" -e \"Loading model\" -e \"complete\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T08:52:49.697955+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 14:07:12,380 [INFO] Loading model from /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\n2026-05-22 14:40:35,218 [INFO] SFT recovery complete.\\n│ │ last one is twice that  │ completed because it’s │           │           │ │\\n│ │                         │ minutes to complete    │           │           │ │\\n│ │                         │ minutes to complete    │           │           │ │\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-22T08:52:49.698087+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -e \"Results saved\" -e \"Accuracy\" -e \"Sentinel\" -e \"Loading model\" -e \"complete\" /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -e \"Results saved\" -e \"Accuracy\" -e \"Sentinel\" -e \"Loading model\" -e \"complete\" /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T08:52:49.698208+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 14:07:43,727 [INFO] Loading model from /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\n2026-05-22 14:40:43,248 [INFO] SFT recovery complete.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T08:52:49.698407+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -e \"sft_rasp\" -e \"GSM8K Accuracy\" -e \"Results saved\" -e \"Sentinel\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -e \"sft_rasp\" -e \"GSM8K Accuracy\" -e \"Results saved\" -e \"Sentinel\" /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T08:52:49.698546+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 14:40:15,328 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\n2026-05-22 14:40:42,804 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\n2026-05-22 14:43:36,644 [INFO] Loading pruned ref_model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\nwandb: Syncing run grpo_sft_rasp_alpha0p5_20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-22T08:52:49.698667+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -e \"sft_rasp\" -e \"GSM8K Accuracy\" -e \"Results saved\" -e \"Sentinel\" /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -e \"sft_rasp\" -e \"GSM8K Accuracy\" -e \"Results saved\" -e \"Sentinel\" /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T08:52:49.698791+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 14:40:25,116 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\n2026-05-22 14:40:50,054 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\n2026-05-22 14:43:42,207 [INFO] Loading pruned ref_model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\nwandb: Syncing run grpo_sft_rasp_alpha2p0_20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-22T08:52:49.698913+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -20 /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -20 /root/recovery_aware_struct_prune/logs/pipeline_alpha0p5_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T08:52:49.699173+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"│ │                         │ #### Final Answer      │           │           │ │\\n│ │                         │ Maurice’s age now =    │           │           │ │\\n│ │                         │ .97 years.             │           │           │ │\\n│ │                         │ #### Final Answer      │           │           │ │\\n│ │                         │ Maurice’s age now =    │           │           │ │\\n│ │                         │ .97 years.             │           │           │ │\\n│ │                         │ #### Final Answer      │           │           │ │\\n│ │                         │ Maurice’s age now =    │           │           │ │\\n│ │                         │ .97 years.             │           │           │ │\\n│ │                         │ #### Final Answer      │           │           │ │\\n│ │                         │ Maurice���s age now =    │           │           │ │\\n│ │                         │ .97 years.             │           │           │ │\\n│ │                         │ #### Final Answer      │           │           │ │\\n│ │                         │ Maurice’s age now =    │           │           │ │\\n│ │                         │ .97 years.             │           │           │ │\\n│ │                         │ #### Final Answer      │           │           │ │\\n│ │                         │ Maurice’s age          │           │           │ │\\n│ └─────────────────────────┴────────────────────────┴───────────┴───────────┘ │\\n╰────────────────────────────────────────────���─────────────────────────────────╯\\n\\r  0%|          | 11/5604 [02:20<21:25:47, 13.79s/it]\\r  0%|          | 12/5604 [02:33<20:40:31, 13.31s/it]\\r  0%|          | 13/5604 [02:45<20:17:55, 13.07s/it]\\r  0%|          | 14/5604 [02:57<19:52:41, 12.80s/it]\\r  0%|          | 15/5604 [03:09<19:36:01, 12.63s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_sec
+…[truncated 16 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-22T08:52:49.699399+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -20 /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -20 /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T08:52:49.699560+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"│ │                         │ old Maurice is now, we │           │           │ │\\n│ │                         │ just need to make sure │           │           │ │\\n│ │                         │ that the process we've │           │           │ │\\n│ │                         │ used doesn't include   │           │           │ │\\n│ │                         │ any other values or    │           │           │ │\\n│ │                         │ factors. Since all of  │           │           │ │\\n│ │                         │ the equations point    │           │           │ │\\n│ │                         │ towards M = 16 being a │           │           │ │\\n│ │                         │ valid solution without │           │           │ │\\n│ │                         │ any problems, we know  │           │           │ │\\n│ │                         │ that this is the       │           │           │ │\\n│ │                         │ correct answer.        │           │           │ │\\n│ │                         │ #### 16                │           │           │ │\\n│ │                         │ We also know that      │           │           │ │\\n│ │                         │ there could            │           │           │ │\\n│ │                         │ potentially be some    │           │           │ │\\n│ │                         │ other values           │           │           │ │\\n│ └─────────────────────────┴────────────────────────┴───────────┴───────────┘ │\\n╰────────────────────────────────────────────────���─────────────────────────────╯\\n\\r  0%|          | 11/5604 [02:21<21:19:56, 13.73s/it]\\r  0%|          | 12/5604 [02:34<20:41:34, 13.32s/it]\\r  0%|          | 13/5604 [02:46<20:16:36, 13.06s/it]\\r  0%|          | 14/5604 [02:59<20:03:34, 12.92s/it]\\r  0%|          | 15/5604 [03:11<19:48:37, 12.76s/it]Terminated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"
+…[truncated 27 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-22T08:52:49.699754+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -5 /tmp/alpha_ablation_phaseA.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -5 /tmp/alpha_ablation_phaseA.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-22T08:52:49.699885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "tail -5 /tmp/alpha_ablation_phaseB.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "tail -5 /tmp/alpha_ablation_phaseB.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-22T08:52:49.700007+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep \"GSM8K Accuracy\" /tmp/alpha0p5_grpo.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep \"GSM8K Accuracy\" /tmp/alpha0p5_grpo.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T08:52:49.700139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 03:19:36,264 [INFO] ==================================================\\n2026-05-17 03:19:36,264 [INFO] Saving pruned model to /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_2.0\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\rWriting model shards: 100%|██████████| 1/1 [00:10<00:00, 10.69s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:10<00:00, 10.69s/it]\\n2026-05-17 03:19:47,035 [INFO] Done.\\nPHASE_A_COMPLETE Sun May 17 03:19:48 CST 2026\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-22T08:52:49.700288+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep \"GSM8K Accuracy\" /tmp/alpha2p0_grpo.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep \"GSM8K Accuracy\" /tmp/alpha2p0_grpo.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-22T08:52:49.700425+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"max_response_length\\\": 4096,\\n  \\\"min_response_length\\\": 44\\n}\\n2026-05-17 07:43:47,049 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json\\nPHASE_B_COMPLETE Sun May 17 07:43:47 CST 2026\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-22T08:52:49.700546+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -e \"sft_rasp_alpha\" -e \"eval_gsm8k_sft\" /tmp/alpha0p5_grpo.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -e \"sft_rasp_alpha\" -e \"eval_gsm8k_sft\" /tmp/alpha0p5_grpo.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-22T08:52:49.700669+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 16:32:50,618 [INFO] GSM8K Accuracy: 0.6118 ± 0.0134 (807/1319)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-22T08:52:49.700792+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 16:47:47,913 [INFO] GSM8K Accuracy: 0.6611 ± 0.0130 (872/1319)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-22T08:52:49.700909+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep -e \"sft_rasp_alpha\" -e \"eval_gsm8k_sft\" /tmp/alpha2p0_grpo.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep -e \"sft_rasp_alpha\" -e \"eval_gsm8k_sft\" /tmp/alpha2p0_grpo.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-22T08:52:49.701043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 15:00:58,467 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\n2026-05-22 15:02:31,761 [INFO] Loading pruned ref_model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\nwandb: Syncing run grpo_sft_rasp_alpha0p5_20\\n\\u001b[1;34mwandb\\u001b[0m: 🚀 View run \\u001b[33mgrpo_sft_rasp_alpha0p5_20\\u001b[0m at: \\u001b[34mhttps://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/0fh1firj\\u001b[0m\\n2026-05-22 16:32:57,363 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-22T08:52:49.701227+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 15:00:53,493 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\n2026-05-22 15:02:23,853 [INFO] Loading pruned ref_model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\nwandb: Syncing run grpo_sft_rasp_alpha2p0_20\\n\\u001b[1;34mwandb\\u001b[0m: 🚀 View run \\u001b[33mgrpo_sft_rasp_alpha2p0_20\\u001b[0m at: \\u001b[34mhttps://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/2b2x9kmb\\u001b[0m\\n2026-05-22 16:47:51,813 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-22T08:52:49.701423+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep \"Progress\" /tmp/alpha0p5_grpo.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep \"Progress\" /tmp/alpha0p5_grpo.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-22T08:52:49.701548+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32935",
+  "command": "grep \"Progress\" /tmp/alpha2p0_grpo.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32935",
+    "command": "grep \"Progress\" /tmp/alpha2p0_grpo.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-22T08:52:49.701741+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\rEvaluating:   0%|          | 1/1319 [00:02<54:03,  2.46s/it]\\rEvaluating:   0%|          | 2/1319 [00:03<32:59,  1.50s/it]\\rEvaluating:   0%|          | 3/1319 [00:06<54:53,  2.50s/it]\\rEvaluating:   0%|          | 4/1319 [00:08<43:09,  1.97s/it]\\rEvaluating:   0%|          | 5/1319 [00:11<52:46,  2.41s/it]\\rEvaluating:   0%|          | 6/1319 [00:13<49:50,  2.28s/it]\\rEvaluating:   1%|          | 7/1319 [00:15<46:25,  2.12s/it]\\rEvaluating:   1%|          | 8/1319 [00:17<46:44,  2.14s/it]\\rEvaluating:   1%|          | 9/1319 [00:20<55:59,  2.56s/it]\\rEvaluating:   1%|          | 10/1319 [00:23<55:42,  2.55s/it]\\rEvaluating:   1%|          | 11/1319 [00:26<58:31,  2.68s/it]\\rEvaluating:   1%|          | 12/1319 [00:28<56:54,  2.61s/it]\\rEvaluating:   1%|          | 13/1319 [00:29<46:49,  2.15s/it]\\rEvaluating:   1%|          | 14/1319 [00:34<1:01:58,  2.85s/it]\\rEvaluating:   1%|          | 15/1319 [00:37<1:01:14,  2.82s/it]\\rEvaluating:   1%|          | 16/1319 [00:42<1:17:51,  3.59s/it]\\rEvaluating:   1%|▏         | 17/1319 [00:43<1:00:53,  2.81s/it]\\rEvaluating:   1%|▏         | 18/1319 [00:49<1:20:33,  3.72s/it]\\rEvaluating:   1%|▏         | 19/1319 [00:52<1:18:37,  3.63s/it]\\rEvaluating:   2%|▏         | 20/1319 [00:55<1:15:28,  3.49s/it]\\rEvaluating:   2%|▏         | 21/1319 [01:00<1:24:28,  3.90s/it]\\rEvaluating:   2%|▏         | 22/1319 [01:02<1:10:22,  3.26s/it]\\rEvaluating:   2%|▏         | 23/1319 [01:03<58:16,  2.70s/it]  \\rEvaluating:   2%|▏         | 24/1319 [01:04<45:43,  2.12s/it]\\rEvaluating:   2%|▏         | 25/1319 [01:06<42:33,  1.97s/it]\\rEvaluating:   2%|▏         | 26/1319 [01:09<49:43,  2.31s/it]\\rEvaluating:   2%|▏         | 27/1319 [01:11<51:05,  2.37s/it]\\rEvaluating:   2%|▏         | 28/1319 [01:14<49:29,  2.30s/it]\\rEvaluating:   2%|▏         | 29/1319 [01:15<41:30,  1.93s/it]\\rEvaluating:   2%|▏ 
+…[truncated 6454 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-22T08:52:49.701967+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\rEvaluating:   0%|          | 1/1319 [00:02<1:01:37,  2.81s/it]\\rEvaluating:   0%|          | 2/1319 [00:03<40:41,  1.85s/it]  \\rEvaluating:   0%|          | 3/1319 [00:07<56:26,  2.57s/it]\\rEvaluating:   0%|          | 4/1319 [00:08<47:19,  2.16s/it]\\rEvaluating:   0%|          | 5/1319 [00:12<57:46,  2.64s/it]\\rEvaluating:   0%|          | 6/1319 [00:16<1:06:53,  3.06s/it]\\rEvaluating:   1%|          | 7/1319 [00:22<1:28:09,  4.03s/it]\\rEvaluating:   1%|          | 8/1319 [00:25<1:21:07,  3.71s/it]\\rEvaluating:   1%|          | 9/1319 [00:30<1:30:04,  4.13s/it]\\rEvaluating:   1%|          | 10/1319 [00:33<1:21:44,  3.75s/it]\\rEvaluating:   1%|          | 11/1319 [00:35<1:09:37,  3.19s/it]\\rEvaluating:   1%|          | 12/1319 [00:39<1:16:54,  3.53s/it]\\rEvaluating:   1%|          | 13/1319 [00:41<1:04:57,  2.98s/it]\\rEvaluating:   1%|          | 14/1319 [00:43<59:01,  2.71s/it]  \\rEvaluating:   1%|          | 15/1319 [00:45<57:09,  2.63s/it]\\rEvaluating:   1%|          | 16/1319 [00:47<51:39,  2.38s/it]\\rEvaluating:   1%|▏         | 17/1319 [00:49<49:10,  2.27s/it]\\rEvaluating:   1%|▏         | 18/1319 [00:53<1:02:21,  2.88s/it]\\rEvaluating:   1%|▏         | 19/1319 [00:57<1:06:59,  3.09s/it]\\rEvaluating:   2%|▏         | 20/1319 [01:01<1:15:48,  3.50s/it]\\rEvaluating:   2%|▏         | 21/1319 [01:06<1:23:28,  3.86s/it]\\rEvaluating:   2%|▏         | 22/1319 [01:07<1:06:52,  3.09s/it]\\rEvaluating:   2%|▏         | 23/1319 [01:10<1:03:54,  2.96s/it]\\rEvaluating:   2%|▏         | 24/1319 [01:11<51:26,  2.38s/it]  \\rEvaluating:   2%|▏         | 25/1319 [01:13<46:27,  2.15s/it]\\rEvaluating:   2%|▏         | 26/1319 [01:16<52:01,  2.41s/it]\\rEvaluating:   2%|▏         | 27/1319 [01:20<1:03:46,  2.96s/it]\\rEvaluating:   2%|▏         | 28/1319 [01:22<57:39,  2.68s/it]  \\rEvaluating:   2%|▏         | 29/1319 [01:23<46:37,  2.17s/it]\\
+…[truncated 6448 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-22T08:52:49.702196+00:00_
+
+全部数据收集完毕。
+
+```
+== GPU 状态 ==
+GPU 0: 19251 MiB, 98% util (非 α 管线任务)
+GPU 1: 17651 MiB, 95% util (非 α 管线任务)
+GPU 2: 7257 MiB,  5% util  ← α=2.0 SFT eval 刚启动
+GPU 3: 12765 MiB, 93% util ← α=0.5 SFT eval 进行中
+
+== α=0.5 (GPU 3, CUDA_VISIBLE_DEVICES=3) ==
+GRPO训练: ✅ 完成 (100/100 steps, 15:22:57)
+GRPO eval: ✅ 完成 accuracy=61.18% (807/1319), 16:32:50完成
+SFT eval:  🔄 进行中 ~350/1319 (~27%), running acc=62.57%, 预计~17:30完成
+  └─ SFT模型加载自 sft_rasp_alpha0p5_20, 16:32:57启动
+C1 Δ = GRPO - SFT = 待SFT eval完成
+
+== α=2.0 (GPU 2, CUDA_VISIBLE_DEVICES=2) ==
+GRPO训练: ✅ 完成 (100/100 steps, 15:22:34)
+GRPO eval: ✅ 完成 accuracy=66.11% (872/1319), 16:47:47完成
+SFT eval:  🔄 进行中 ~7/1319 (<1%), 刚启动 16:49:32, 预计~18:10完成
+  └─ SFT模型加载自 sft_rasp_alpha2p0_20
+
+== Checkpoint 存在性 ==
+grpo_rasp_alpha0p5_20: ✅ 存在 (model.safetensors 12.3GB + checkpoint-100/)
+grpo_rasp_alpha2p0_20: ✅ 存在 (model.safetensors 12.3GB + checkpoint-100/)
+sft_rasp_alpha0p5_20:  ✅ 存在
+sft_rasp_alpha2p0_20:  ✅ 存在
+
+== 已落盘结果文件 ==
+eval_gsm8k_grpo_alpha0p5_20.json ✅ (.done sentinel存在)
+eval_gsm8k_grpo_alpha2p0_20.json ✅ (.done sentinel存在)
+eval_gsm8k_sft_alpha0p5_20.json  ❌ 未生成（eval进行中）
+eval_gsm8k_sft_alpha2p0_20.json  ❌ 未生成（eval进行中）
+
+== wandb ==
+α=0.5 GRPO: grpo_sft_rasp_alpha0p5_20 (run 0fh1firj)
+α=2.0 GRPO: grpo_sft_rasp_alpha2p0_20 (run 2b2x9kmb)
+```
+
+两个 α 管线的 GRPO 阶段全部完成，SFT eval 正在自动跑。α=0.5 SFT eval 约 30 分钟后完成，α=2.0 约 80 分钟后完成。GPU 0/1 在跑非 α 管线任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_harvest_alpha_pipelines_westd_20260522T084914"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0495462787e5ea71736e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd redeploy 4gpu v2",
+  "task_key": "worker_ops_westd_redeploy_4gpu_v2_20260516T111715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_redeploy_4gpu_v2_20260516T111715_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "d5a842966921a3b6ddeebcb59e6db7034865df2925b4169e086ba0de3e57da0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个任务运行正常。\n\n---\n\n## 产出汇总\n\n| GPU | 任务 | PID | 模型路径 | 状态 |\n|-----|------|-----|----------|------|\n| cuda:0 | RASP 20% eval N=200 | 1911→1917 | `sft_qwen_math_rasp_20` | ~44/200 推进中, ~2.5s/it |\n| cuda:1 | Standard 20% eval N=200 | 2008→2013 | `sft_qwen_math_standard_20` | 运行中 |\n| cuda:2 | RASP 25% SFT | 2525→2530 | `pruned_rasp_25_qwen_math` | 34/1870 训练中, ~1.1it/s |\n| cuda:3 | Standard 25% SFT | 2621 | `pruned_standard_25_qwen_math` | 1/1870 训练中 |\n\n**GPU 内存占用**: 0→12.7GB, 1→12.7GB, 2→11.8GB, 3→11.8GB\n\n**EOS 修复内容** (eval_gsm8k.py):\n- 两处 `gen_kwargs` 均添加 `eos_token_id=[151643, 151645]`（Qwen 的 `<|im_end|>` + `<|endoftext|>`）\n- 两处 `hit_eos` 检查改为 `generated[-1].item() in (151643, 151645)`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-redeploy-4gpu-v2.md"
+}

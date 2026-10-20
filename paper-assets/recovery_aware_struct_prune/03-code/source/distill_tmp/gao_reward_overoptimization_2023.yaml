@@ -1,0 +1,11 @@
+paper_key: "gao_reward_overoptimization_2023"
+title: "Scaling Laws for Reward Model Overoptimization"
+venue: "ICML 2023"
+full_text_available: false
+research:
+  baselines: [PPO RL optimization, Best-of-n sampling]
+  metrics: [{name: "gold reward model score", direction: "higher_better"}, {name: "KL divergence from base policy", direction: "lower_better"}]
+  datasets: [{name: "WebGPT/summarization-style tasks", size: "synthetic with gold RM"}]
+  ablation_dimensions: [optimization method, RM size, KL budget]
+  training_recipe: {}
+  method_family: "RLHF reward model scaling analysis"

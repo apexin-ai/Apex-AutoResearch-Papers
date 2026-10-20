@@ -1,0 +1,11 @@
+paper_key: "gprune_llm_2026"
+title: "GPrune-LLM: Generalization-Aware Structured Pruning for Large Language Models"
+venue: "arXiv Mar 2026"
+full_text_available: false
+research:
+  baselines: [LLM-Pruner, Wanda-sp, FLAP]
+  metrics: [{name: "perplexity (WikiText2, PTB)", direction: "lower_better"}, {name: "zero-shot accuracy (7 tasks)", direction: "higher_better"}, {name: "MME/MMBench/MMMU/ScienceQA", direction: "higher_better"}, {name: "throughput (tokens/s)", direction: "higher_better"}]
+  datasets: [{name: "WikiText2", size: "standard"}, {name: "PTB", size: "standard"}, {name: "BoolQ/PIQA/HellaSwag/WinoGrande/ARC-e/ARC-c/OBQA", size: "standard"}, {name: "MME/MMBench/MMMU/ScienceQA", size: "multimodal"}, {name: "C4", size: "calibration"}]
+  ablation_dimensions: [neuron partitioning, adaptive metric selection, module-wise sparsity]
+  training_recipe: {}
+  method_family: "generalization-aware structured pruning"

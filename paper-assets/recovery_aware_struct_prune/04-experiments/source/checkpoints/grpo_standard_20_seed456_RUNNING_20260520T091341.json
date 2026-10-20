@@ -1,0 +1,48 @@
+{
+  "exp_id": "grpo_standard_20_seed456",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:22:10.493Z",
+    "updated_at": "2026-05-20T09:13:41.070Z",
+    "hypothesis": "Multi-seed validation (seed=456) of Standard 20% GRPO. v5 fair config (100 steps, beta=0.01, loss_type=dapo, temperature=0.4). Seed=42 baseline: 59.44% GSM8K. Third seed point to establish Standard method's recovery variance.",
+    "parent": "grpo_stage2_standard_20_fair",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 WANDB_MODE=offline python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed456 --max_steps 100 --save_steps 100 --gpu 0 --seed 456\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "211798",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_20_seed456.log",
+      "submitted_at": "2026-05-20T06:22:19.535Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B-Standard-20%-SFT",
+      "seed": 456,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed456",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20",
+      "eval_data": "GSM8K train (7473 samples, GRPO RLVR training)"
+    },
+    "metrics": {
+      "steps_completed": 100,
+      "runtime_sec": 2745,
+      "peak_reward": 0.0844,
+      "peak_reward_step": 90,
+      "final_reward": 0.06,
+      "final_frac_zero_std": 0.65,
+      "seed": 456,
+      "wandb_run": "wg0iv4oi",
+      "wandb_mode": "offline"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T09:13:41.542788+00:00",
+  "trigger": "update_registry"
+}

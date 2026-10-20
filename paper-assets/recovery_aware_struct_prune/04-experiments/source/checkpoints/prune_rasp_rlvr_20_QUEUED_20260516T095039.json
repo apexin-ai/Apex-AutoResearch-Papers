@@ -1,0 +1,14 @@
+{
+  "exp_id": "prune_rasp_rlvr_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:50:39.656Z",
+    "updated_at": "2026-05-16T09:50:39.656Z"
+  },
+  "timestamp": "2026-05-16T09:50:39.811716+00:00",
+  "trigger": "update_registry"
+}

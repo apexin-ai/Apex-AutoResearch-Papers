@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e44548245c89dfa1a42",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh dual eval v4 v3 nohup bash",
+  "task_key": "worker_ssh_dual_eval_v4_v3_nohup_bash_20260521T045527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dual_eval_v4_v3_nohup_bash_20260521T045527_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "54528ebf463f4a32e34ff2e46f1ae45bb421ca7f7e755b3bf5d5a3a190b2719c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个评估任务均已启动并正常运行：\n\n| 任务 | PID | GPU | 状态 |\n|------|-----|-----|------|\n| grpo_cka_only_25 eval | 323174 | cuda:0 (91%, 24414 MiB) | 模型已加载，MLP non-uniform [8128, 18944] |\n| grpo_random_20 eval | 323244 | cuda:1 (0%→加载中, 12335 MiB) | 模型已加载，MLP [11508, 17592] + attn non-uniform |\n\nGPU 2/3 空闲，无冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dual-eval-v4-v3-nohup-bash.md"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_gsm8k_sft_standard_15",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:23:49.568Z",
+    "updated_at": "2026-05-20T14:44:14.222Z",
+    "hypothesis": "GSM8K N=1319 eval on Standard 15% SFT checkpoint (pre-GRPO). Establishes SFT baseline accuracy for Standard 15% sparsity. Paired with eval_gsm8k_grpo_standard_15_v2 to measure GRPO recovery delta. Compare with SFT CKA-only 15% to quantify pruning method effect at SFT stage.",
+    "parent": "pipeline_standard_15",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_15 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_15_n1319.json",
+      "server": "westd-29022",
+      "gpu": "cuda:2",
+      "pid": 256743,
+      "data_path": "gsm8k/test",
+      "data_count": 1319,
+      "model_name": "sft_standard_15 (Qwen2.5-7B, 15% standard sparsity, SFT only)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_15",
+      "eval_data": "gsm8k:test:1319",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_15.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_15_n1319.json"
+    }
+  },
+  "timestamp": "2026-05-20T14:44:14.717643+00:00",
+  "trigger": "update_registry"
+}

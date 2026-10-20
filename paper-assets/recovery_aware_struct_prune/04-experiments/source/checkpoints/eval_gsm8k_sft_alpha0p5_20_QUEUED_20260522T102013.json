@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_sft_alpha0p5_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:19:48.133Z",
+    "updated_at": "2026-05-22T10:20:13.038Z",
+    "hypothesis": "α=0.5 SFT GSM8K eval for C1 decoupling. Paired with α=0.5 GRPO (61.18%). Δ(GRPO-SFT) tests whether GRPO benefit is universal ±2pp across α values.",
+    "parent": "pipeline_alpha0p5_20"
+  },
+  "timestamp": "2026-05-22T10:20:13.644055+00:00",
+  "trigger": "update_registry"
+}

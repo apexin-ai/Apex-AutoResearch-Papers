@@ -1,0 +1,928 @@
+# code full eval script
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 18
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_code_full-eval-script_20260515T022654.log`
+- **Structured JSON:** [`ad97fed6a3b8e10c6152.json`](../../sessions/ad/ad97fed6a3b8e10c6152.json)
+
+## Before a recorded user message
+
+18 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "76135c87-242f-4996-995b-b5066c3d0f13",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778819400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "6bdd2cfb-8a6b-4677-a140-2d3631be3258",
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the current eval_gsm8k.py to understand its structure and whether it supports per-sample output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "4a0f1f64-393e-4819-b8fa-468e833ba7b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012H49EA7gk24Lu7nk6HpC12",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12027,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12027
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01P8x2eidTSGyKsEQfqQtqPQ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "69c81750-570f-4554-bf00-ed08e7f5a00c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012H49EA7gk24Lu7nk6HpC12",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12027,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12027
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T02:27:08.772Z_
+
+<details><summary>↩ Tool result · `toolu_01P8x2eidTSGyKsEQfqQtqPQ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "48a4de7c-34c6-4fb6-8582-50407ebaa5e9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the current eval_gsm8k.py file on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "535977d2-ae8e-42ad-a7bd-07ba5ff7a1a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMcQB5azmbyr7fWvMoHVr4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 23868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RZjCgbRrGY7v7JgZjNgYGJ`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "a9f2e6e9-8ecb-41ee-bef6-285733eb442d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMcQB5azmbyr7fWvMoHVr4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 23868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T02:27:16.447Z_
+
+<details><summary>↩ Tool result · `toolu_01RZjCgbRrGY7v7JgZjNgYGJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGSM8K Test Set Evaluation.\\n\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\nand comparing extracted numeric answers against gold answers.\\n\\nInput:  model path\\nOutput: accuracy printed to stdout + saved to results JSON\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random\\nimport re\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom transformers import AutoTokenizer\\nfrom model_utils import load_pruned_model\\nfrom tqdm import tqdm\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef _extract_boxed(text: str) -> str | None:\\n    \\\"\\\"\\\"Extract content from \\\\\\\\boxed{...} with balanced brace matching.\\\"\\\"\\\"\\n    idx = text.rfind(\\\"\\\\\\\\boxed{\\\")\\n    if idx == -1:\\n        return None\\n    depth = 0\\n    start = idx + len(\\\"\\\\\\\\boxed{\\\")\\n    for i in range(start, len(text)):\\n        if text[i] == \\\"{\\\":\\n            depth += 1\\n        elif text[i] == \\\"}\\\":\\n            if depth == 0:\\n                return text[start:i]\\n            depth -= 1\\n    return None\\n\\n\\ndef _clean_latex_number(s: str) -> str:\\n    \\\"\\\"\\\"Strip LaTeX formatting to get a plain number.\\\"\\\"\\\"\\n    s = re.sub(r\\\"\\\\\\\\text\\\\{[^}]*\\\\}\\\", \\\"\\\", s)\\n    s = re.sub(r\\\"\\\\\\\\(mathrm|mathbf|textbf)\\\\{([^}]*)\\\\}\\\", r\\\"\\\\2\\\", s)\\n    s = s.replace(\\\"\\\\\\\\!\\\", \\\"\\\").replace(\\\"\\\\\\\\,\\\", \\\"\\\").replace(\\\"\\\\\\\\;\\\", \\\"\\\")\\n    s = s.replace(\\\"\\\\\\\\$\\\", \\\"\\\").replace(\\\"$\\\", \\\"\\\").replace(\\\"\\\\\\\\%\\\", \\\"\\\").replace(\\\"%\\\", \\\"\\\")\\n    s = re.sub(r\\\"\\\\\\\\[a-zA-Z]+\\\", \\\"\\\", s)\\n    s = s.replace(\\\",\\\", \\\"\\\").replace(\\\" \\\", \\\"\\\").replace(\\\"\\\\\\\\\\\", \\\"\\\")\\n    return s.strip()\\n\\n\\ndef extract_answer(text: str) -> str | None:\\n    \\\"\\\"\\\"Extract numeric answer from model output.\\\"\\\"\\\"\\n    clean = re.sub(r\\\"&lt;think>.*?&lt;/think>\\\", \\\"\\\", text, flags=re.DOTALL)\\n    if not clean.strip():\\n        clean = text\\n\\n    boxed = _extract_boxed(clean)\\n    if boxed is not None:\\n        return _clean_latex_number(boxed)\\n\\n    hash_match = re.findall(r\\\"####\\\\s*(.+)\\\", clean)\\n    if hash_match:\\n        return hash_match[-1].strip().replace(\\\",\\\", \\\"\\\")\\n\\n    numbers = re.findall(r\\\"-?\\\\d+(?:,\\\\d{3})*(?:\\\\.\\\\d+)?\\\", clean)\\n    if numbers:\\n        return numbers[-1].replace(\\\",\\\", \\\"\\\")\\n    return None\\n\\n\\ndef normalize_answer(ans: str) -> str | None:\\n    ans = ans.strip().replace(\\\",\\\", \\\"\\\").replace(\\\" \\\", \\\"\\\")\\n    if not ans:\\n        return None\\n    try:\\n        val = float(ans)\\n        if not math.isfinite(val):\\n            return None\\n        if val == int(val):\\n            return str(int(val))\\n        return str(val)\\n    except (ValueError, OverflowError):\\n        return ans\\n\\n\\ndef extract_gold_answer(answer_text: str) -> str:\\n    match = re.search(r\\\"####\\\\s*(.+)\\\", answer_text)\\n    if match:\\n        result = normalize_answer(match.group(1))\\n        return result if result is not None else match.group(1).strip()\\n    return answer_text.strip()\\n\\n\\ndef evaluate(model, tokenizer, dataset, max_new_tokens: int = 4096,\\n             batch_size: int = 1, temperature: float = 0.0, do_sample: bool = False):\\n    \\\"\\\"\\\"Run evaluation and return accuracy + per-example results + EOS stats.\\\"\\\"\\\"\\n    model.eval()\\n    device = next(model.parameters()).device\\n    eos_token_id = tokenizer.eos_token_id\\n\\n    correct = 0\\n    total = 0\\n    results = []\\n    n_natural_eos = 0\\n    n_truncated = 0\\n    response_lengths = []\\n\\n    gen_kwargs = dict(\\n        max_new_tokens=max_new_tokens,\\n        pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\n    )\\n    if do_sample:\\n        gen_kwargs[\\\"do_sample\\\"] = True\\n        gen_kwargs[\\\"temperature\\\"] = temperature\\n        gen_kwargs[\\\"top_p\\\"] = 0.95\\n    else:\\n        gen_kwargs[\\\"do_sample\\\"] = False\\n        gen_kwargs[\\\"temperature\\\"] = 0.0\\n\\n    logger.info(f\\\"Generation config: do_sample={do_sample}, temperature={temperature if do_sample else 0.0}\\\")\\n\\n    for i in tqdm(range(0, len(dataset), batch_size), desc=\\\"Evaluating\\\"):\\n        batch = dataset[i : i +\\n\\n... [截断: 输出过长，省略 1333 字符] ...\\n\\nis_correct:\\n                correct += 1\\n            total += 1\\n\\n            results.append({\\n                \\\"question\\\": q,\\n                \\\"gold\\\": gold,\\n                \\\"prediction\\\": pred,\\n                \\\"correct\\\": is_correct,\\n                \\\"response\\\": response[:500],\\n                \\\"response_length\\\": gen_len,\\n                \\\"hit_eos\\\": hit_eos,\\n            })\\n\\n            if total % 50 == 0:\\n                logger.info(\\n                    f\\\"Progress: {total}/{len(dataset)}, acc={correct/total:.4f}, \\\"\\n                    f\\\"eos_rate={n_natural_eos/total:.2%}, avg_len={np.mean(response_lengths):.0f}\\\"\\n                )\\n\\n    accuracy = correct / total if total > 0 else 0.0\\n    eos_stats = {\\n        \\\"natural_eos\\\": n_natural_eos,\\n        \\\"truncated\\\": n_truncated,\\n        \\\"eos_rate\\\": n_natural_eos / total if total > 0 else 0.0,\\n        \\\"avg_response_length\\\": float(np.mean(response_lengths)) if response_lengths else 0.0,\\n        \\\"max_response_length\\\": int(np.max(response_lengths)) if response_lengths else 0,\\n        \\\"min_response_length\\\": int(np.min(response_lengths)) if response_lengths else 0,\\n    }\\n    return accuracy, correct, total, results, eos_stats\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Evaluate model on GSM8K test set\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to model\\\")\\n    parser.add_argument(\\\"--output_path\\\", type=str, default=None, help=\\\"Output JSON path for results\\\")\\n    parser.add_argument(\\\"--max_new_tokens\\\", type=int, default=4096)\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Limit test samples (None=all)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--dtype\\\", type=str, default=\\\"bfloat16\\\", choices=[\\\"float16\\\", \\\"bfloat16\\\", \\\"float32\\\"])\\n    parser.add_argument(\\\"--temperature\\\", type=float, default=0.0, help=\\\"Sampling temperature (0=greedy)\\\")\\n    parser.add_argument(\\\"--do_sample\\\", action=\\\"store_true\\\", help=\\\"Enable sampling mode\\\")\\n    args = parser.parse_args()\\n\\n    set_seed(args.seed)\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    dtype_map = {\\\"float16\\\": torch.float16, \\\"bfloat16\\\": torch.bfloat16, \\\"float32\\\": torch.float32}\\n    torch_dtype = dtype_map[args.dtype]\\n\\n    model = load_pruned_model(args.model_path, device_map=\\\"auto\\\", torch_dtype=torch_dtype)\\n\\n    logger.info(\\\"Loading GSM8K test set...\\\")\\n    dataset = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"test\\\")\\n    if args.max_samples is not None:\\n        dataset = dataset.shuffle(seed=args.seed).select(range(min(args.max_samples, len(dataset))))\\n    logger.info(f\\\"Evaluating on {len(dataset)} test samples\\\")\\n\\n    accuracy, n_correct, n_total, results, eos_stats = evaluate(\\n        model, tokenizer, dataset,\\n        max_new_tokens=args.max_new_tokens,\\n        temperature=args.temperature,\\n        do_sample=args.do_sample,\\n    )\\n\\n    logger.info(f\\\"GSM8K Accuracy: {accuracy:.4f} ({n_correct}/{n_total})\\\")\\n    logger.info(f\\\"EOS Stats: {json.dumps(eos_stats, indent=2)}\\\")\\n\\n    if args.output_path is None:\\n        model_name = os.path.basename(args.model_path.rstrip(\\\"/\\\"))\\n        mode = \\\"sampling\\\" if args.do_sample else \\\"greedy\\\"\\n        args.output_path = f\\\"results/eval_{model_name}_{mode}.json\\\"\\n\\n    os.makedirs(os.path.dirname(args.output_path) or \\\".\\\", exist_ok=True)\\n    output = {\\n        \\\"model_path\\\": args.model_path,\\n        \\\"accuracy\\\": accuracy,\\n        \\\"n_correct\\\": n_correct,\\n        \\\"n_total\\\": n_total,\\n        \\\"temperature\\\": args.temperature if args.do_sample else 0.0,\\n        \\\"do_sample\\\": args.do_sample,\\n        \\\"eos_stats\\\": eos_stats,\\n        \\\"examples\\\": results,\\n    }\\n    with open(args.output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n    logger.info(f\\\"Results saved to {args.output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "f6c2507b-a379-43b6-8ecd-2a16920b25eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nGSM8K Test Set Evaluation.\\\\n\\\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\\\nand comparing extracted numeric answers against gold answers.\\\\n\\\\nInput:  model path\\\\nOutput: accuracy printed to stdout + saved to results JSON\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport logging\\\\nimport os\\\\nimport random\\\\nimport re\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef _extract_boxed(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract content from \\\\\\\\\\\\\\\\boxed{...} with balanced brace matching.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idx = text.rfind(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    if idx == -1:\\\\n        return None\\\\n    depth = 0\\\\n    start = idx + len(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    for i in range(start, len(text)):\\\\n        if text[i] == \\\\\\\"{\\\\\\\":\\\\n            depth += 1\\\\n        elif text[i] == \\\\\\\"}\\\\\\\":\\\\n            if depth == 0:\\\\n                return text[start:i]\\\\n            depth -= 1\\\\n    return None\\\\n\\\\n\\\\ndef _clean_latex_number(s: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip LaTeX formatting to get a plain number.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\text\\\\\\\\{[^}]*\\\\\\\\}\\\\\\\", \\\\\\\"\\\\\\\", s)\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\(mathrm|mathbf|textbf)\\\\\\\\{([^}]*)\\\\\\\\}\\\\\\\", r\\\\\\\"\\\\\\\\2\\\\\\\", s)\\\\n    s = s.replace(\\\\\\\"\\\\\\\\\\\\\\\\!\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\,\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\;\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    s = s.replace(\\\\\\\"\\\\\\\\\\\\\\\\$\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"$\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\%\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"%\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\[a-zA-Z]+\\\\\\\", \\\\\\\"\\\\\\\", s)\\\\n    s = s.replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return s.strip()\\\\n\\\\n\\\\ndef extract_answer(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract numeric answer from model output.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    clean = re.sub(r\\\\\\\"&lt;think>.*?&lt;/think>\\\\\\\", \\\\\\\"\\\\\\\", text, flags=re.DOTALL)\\\\n    if not clean.strip():\\\\n        clean = text\\\\n\\\\n    boxed = _extract_boxed(clean)\\\\n    if boxed is not None:\\\\n        return _clean_latex_number(boxed)\\\\n\\\\n    hash_match = re.findall(r\\\\\\\"####\\\\\\\\s*(.+)\\\\\\\", clean)\\\\n    if hash_match:\\\\n        return hash_match[-1].strip().replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\\n    numbers = re.findall(r\\\\\\\"-?\\\\\\\\d+(?:,\\\\\\\\d{3})*(?:\\\\\\\\.\\\\\\\\d+)?\\\\\\\", clean)\\\\n    if numbers:\\\\n        return numbers[-1].replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef normalize_answer(ans: str) -> str | None:\\\\n    ans = ans.strip().replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\" \\\\\\\", \\\\\\\"\\\\\\\")\\\\n    if not ans:\\\\n        return None\\\\n    try:\\\\n        val = float(ans)\\\\n        if not math.isfinite(val):\\\\n            return None\\\\n        if val == int(val):\\\\n            return str(int(val))\\\\n        return str(val)\\\\n    except (ValueError, OverflowError):\\\\n        return ans\\\\n\\\\n\\\\ndef extract_gold_answer(answer_text: str) -> str:\\\\n    match = re.search(r\\\\\\\"####\\\\\\\\s*(.+)\\\\\\\", answer_text)\\\\n    if match:\\\\n        result = normalize_answer(match.group(1))\\\\n        return result if result is not None else match.group(1).strip()\\\\n    return answer_text.strip()\\\\n\\\\n\\\\ndef evaluate(model, tokenizer, dataset, max_new_tokens: int = 4096,\\\\n             batch_size: int = 1, temperature: float = 0.0, do_sample: bool = False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run evaluation and return accuracy + per-example results + EOS stats.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model.eval()\\\\n    device = next(model.parameters()).device\\\\n    eos_token_id = tokenizer.eos_token_id\\\\n\\\\n    correct = 0\\\\n    total = 0\\\\n    results = []\\\\n    n_natural_eos = 0\\\\n    n_truncated = 0\\\\n    response_lengths = []\\\\n\\\\n    gen_kwargs = dict(\\\\n        max_new_tokens=max_new_tokens,\\\\n        pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\\\n    )\\\\n    if do_sample:\\\\n        gen_kwargs[\\\\\\\"do_sample\\\\\\\"] = True\\\\n        gen_kwargs[\\\\\\\"temperature\\\\\\\"] = temperature\\\\n        gen_kwargs[\\\\\\\"top_p\\\\\\\"] = 0.95\\\\n    else:\\\\n        gen_kwargs[\\\\\\\"do_sample\\\\\\\"] = False\\\\n        gen_kwargs[\\\\\\\"temperature\\\\\\\"] = 0.0\\\\n\\\\n    logger.info(f\\\\\\\"Generation config: do_sample={do_sample}, temperature={temperature if do_sample else 0.0}\\\\\\\")\\\\n\\\\n    for i in tqdm(range(0, len(dataset), batch_size), desc=\\\\\\\"Evaluating\\\\\\\"):\\\\n        batch = dataset[i : i +\\\\n\\\\n... [截断: 输出过长，省略 1333 字符] ...\\\\n\\\\nis_correct:\\\\n                correct += 1\\\\n            total += 1\\\\n\\\\n            results.append({\\\\n                \\\\\\\"question\\\\\\\": q,\\\\n                \\\\\\\"gold\\\\\\\": gold,\\\\n                \\\\\\\"prediction\\\\\\\": pred,\\\\n                \\\\\\\"correct\\\\\\\": is_correct,\\\\n                \\\\\\\"response\\\\\\\": response[:500],\\\\n                \\\\\\\"response_length\\\\\\\": gen_len,\\\\n                \\\\\\\"hit_eos\\\\\\\": hit_eos,\\\\n            })\\\\n\\\\n            if total % 50 == 0:\\\\n                logger.info(\\\\n                    f\\\\\\\"Progress: {total}/{len(dataset)}, acc={correct/total:.4f}, \\\\\\\"\\\\n                    f\\\\\\\"eos_rate={n_natural_eos/total:.2%}, avg_len={np.mean(response_lengths):.0f}\\\\\\\"\\\\n                )\\\\n\\\\n    accuracy = correct / total if total > 0 else 0.0\\\\n    eos_stats = {\\\\n        \\\\\\\"natural_eos\\\\\\\": n_natural_eos,\\\\n        \\\\\\\"truncated\\\\\\\": n_truncated,\\\\n        \\\\\\\"eos_rate\\\\\\\": n_natural_eos / total if total > 0 else 0.0,\\\\n        \\\\\\\"avg_response_length\\\\\\\": float(np.mean(response_lengths)) if response_lengths else 0.0,\\\\n        \\\\\\\"max_response_length\\\\\\\": int(np.max(response_lengths)) if response_lengths else 0,\\\\n        \\\\\\\"min_response_length\\\\\\\": int(np.min(response_lengths)) if response_lengths else 0,\\\\n    }\\\\n    return accuracy, correct, total, results, eos_stats\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Evaluate model on GSM8K test set\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to model\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_path\\\\\\\", type=str, default=None, help=\\\\\\\"Output JSON path for results\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=4096)\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Limit test samples (None=all)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--dtype\\\\\\\", type=str, default=\\\\\\\"bfloat16\\\\\\\", choices=[\\\\\\\"float16\\\\\\\", \\\\\\\"bfloat16\\\\\\\", \\\\\\\"float32\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.0, help=\\\\\\\"Sampling temperature (0=greedy)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--do_sample\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Enable sampling mode\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    set_seed(args.seed)\\\\n\\\\n    logger.info(f\\\\\\\"Loading model from {args.model_path}\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    dtype_map = {\\\\\\\"float16\\\\\\\": torch.float16, \\\\\\\"bfloat16\\\\\\\": torch.bfloat16, \\\\\\\"float32\\\\\\\": torch.float32}\\\\n    torch_dtype = dtype_map[args.dtype]\\\\n\\\\n    model = load_pruned_model(args.model_path, device_map=\\\\\\\"auto\\\\\\\", torch_dtype=torch_dtype)\\\\n\\\\n    logger.info(\\\\\\\"Loading GSM8K test set...\\\\\\\")\\\\n    dataset = load_dataset(\\\\\\\"openai/gsm8k\\\\\\\", \\\\\\\"main\\\\\\\", split=\\\\\\\"test\\\\\\\")\\\\n    if args.max_samples is not None:\\\\n        dataset = dataset.shuffle(seed=args.seed).select(range(min(args.max_samples, len(dataset))))\\\\n    logger.info(f\\\\\\\"Evaluating on {len(dataset)} test samples\\\\\\\")\\\\n\\\\n    accuracy, n_correct, n_total, results, eos_stats = evaluate(\\\\n        model, tokenizer, dataset,\\\\n        max_new_tokens=args.max_new_tokens,\\\\n        temperature=args.temperature,\\\\n        do_sample=args.do_sample,\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"GSM8K Accuracy: {accuracy:.4f} ({n_correct}/{n_total})\\\\\\\")\\\\n    logger.info(f\\\\\\\"EOS Stats: {json.dumps(eos_stats, indent=2)}\\\\\\\")\\\\n\\\\n    if args.output_path is None:\\\\n        model_name = os.path.basename(args.model_path.rstrip(\\\\\\\"/\\\\\\\"))\\\\n        mode = \\\\\\\"sampling\\\\\\\" if args.do_sample else \\\\\\\"greedy\\\\\\\"\\\\n        args.output_path = f\\\\\\\"results/eval_{model_name}_{mode}.json\\\\\\\"\\\\n\\\\n    os.makedirs(os.path.dirname(args.output_path) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    output = {\\\\n        \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n        \\\\\\\"accuracy\\\\\\\": accuracy,\\\\n        \\\\\\\"n_correct\\\\\\\": n_correct,\\\\n        \\\\\\\"n_total\\\\\\\": n_total,\\\\n        \\\\\\\"temperature\\\\\\\": args.temperature if args.do_sample else 0.0,\\\\n        \\\\\\\"do_sample\\\\\\\": args.do_sample,\\\\n        \\\\\\\"eos_stats\\\\\\\": eos_stats,\\\\n        \\\\\\\"examples\\\\\\\": results,\\\\n    }\\\\n    with open(args.output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\\\n    logger.info(f\\\\\\\"Results saved to {args.output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGSM8K Test Set Evaluation.\\n\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\nand comparing extracted numeric answers against gold answers.\\n\\nInput:  model path\\nOutput: accuracy printed to stdout + saved to results JSON\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random\\nimport re\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom transformers import AutoTokenizer\\nfrom model_utils import load_pruned_model\\nfrom tqdm import tqdm\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef _extract_boxed(text: str) -> str | None:\\n    \\\"\\\"\\\"Extract content from \\\\\\\\boxed{...} with balanced brace matching.\\\"\\\"\\\"\\n    idx = text.rfind(\\\"\\\\\\\\boxed{\\\")\\n    if idx == -1:\\n        return None\\n    depth = 0\\n    start = idx + len(\\\"\\\\\\\\boxed{\\\")\\n    for i in range(start, len(text)):\\n        if text[i] == \\\"{\\\":\\n            depth += 1\\n        elif text[i] == \\\"}\\\":\\n            if depth == 0:\\n                return text[start:i]\\n            depth -= 1\\n    return None\\n\\n\\ndef _clean_latex_number(s: str) -> str:\\n    \\\"\\\"\\\"Strip LaTeX formatting to get a plain number.\\\"\\\"\\\"\\n    s = re.sub(r\\\"\\\\\\\\text\\\\{[^}]*\\\\}\\\", \\\"\\\", s)\\n    s = re.sub(r\\\"\\\\\\\\(mathrm|mathbf|textbf)\\\\{([^}]*)\\\\}\\\", r\\\"\\\\2\\\", s)\\n    s = s.replace(\\\"\\\\\\\\!\\\", \\\"\\\").replace(\\\"\\\\\\\\,\\\", \\\"\\\").replace(\\\"\\\\\\\\;\\\", \\\"\\\")\\n    s = s.replace(\\\"\\\\\\\\$\\\", \\\"\\\").replace(\\\"$\\\", \\\"\\\").replace(\\\"\\\\\\\\%\\\", \\\"\\\").replace(\\\"%\\\", \\\"\\\")\\n    s = re.sub(r\\\"\\\\\\\\[a-zA-Z]+\\\", \\\"\\\", s)\\n    s = s.replace(\\\",\\\", \\\"\\\").replace(\\\" \\\", \\\"\\\").replace(\\\"\\\\\\\\\\\", \\\"\\\")\\n    return s.strip()\\n\\n\\ndef extract_answer(text: str) -> str | None:\\n    \\\"\\\"\\\"Extract numeric answer from model output.\\\"\\\"\\\"\\n    clean = re.sub(r\\\"&lt;think>.*?&lt;/think>\\\", \\\"\\\", text, flags=re.DOTALL)\\n    if not clean.strip():\\n        clean = text\\n\\n    boxed = _extract_boxed(clean)\\n    if boxed is not None:\\n        return _clean_latex_number(boxed)\\n\\n    hash_match = re.findall(r\\\"####\\\\s*(.+)\\\", clean)\\n    if hash_match:\\n        return hash_match[-1].strip().replace(\\\",\\\", \\\"\\\")\\n\\n    numbers = re.findall(r\\\"-?\\\\d+(?:,\\\\d{3})*(?:\\\\.\\\\d+)?\\\", clean)\\n    if numbers:\\n        return numbers[-1].replace(\\\",\\\", \\\"\\\")\\n    return None\\n\\n\\ndef normalize_answer(ans: str) -> str | None:\\n    ans = ans.strip().replace(\\\",\\\", \\\"\\\").replace(\\\" \\\", \\\"\\\")\\n    if not ans:\\n        return None\\n    try:\\n        val = float(ans)\\n        if not math.isfinite(val):\\n            return None\\n        if val == int(val):\\n            return str(int(val))\\n        return str(val)\\n    except (ValueError, OverflowError):\\n        return ans\\n\\n\\ndef extract_gold_answer(answer_text: str) -> str:\\n    match = re.search(r\\\"####\\\\s*(.+)\\\", answer_text)\\n    if match:\\n        result = normalize_answer(match.group(1))\\n        return result if result is not None else match.group(1).strip()\\n    return answer_text.strip()\\n\\n\\ndef evaluate(model, tokenizer, dataset, max_new_tokens: int = 4096,\\n             batch_size: int = 1, temperature: float = 0.0, do_sample: bool = False):\\n    \\\"\\\"\\\"Run evaluation and return accuracy + per-example results + EOS stats.\\\"\\\"\\\"\\n    model.eval()\\n    device = next(model.parameters()).device\\n    eos_token_id = tokenizer.eos_token_id\\n\\n    correct = 0\\n    total = 0\\n    results = []\\n    n_natural_eos = 0\\n    n_truncated = 0\\n    response_lengths = []\\n\\n    gen_kwargs = dict(\\n        max_new_tokens=max_new_tokens,\\n        pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\n    )\\n    if do_sample:\\n        gen_kwargs[\\\"do_sample\\\"] = True\\n        gen_kwargs[\\\"temperature\\\"] = temperature\\n        gen_kwargs[\\\"top_p\\\"] = 0.95\\n    else:\\n        gen_kwargs[\\\"do_sample\\\"] = False\\n        gen_kwargs[\\\"temperature\\\"] = 0.0\\n\\n    logger.info(f\\\"Generation config: do_sample={do_sample}, temperature={temperature if do_sample else 0.0}\\\")\\n\\n    for i in tqdm(range(0, len(dataset), batch_size), desc=\\\"Evaluating\\\"):\\n        batch = dataset[i : i +\\n\\n... [截断: 输出过长，省略 1333 字符] ...\\n\\nis_correct:\\n                correct += 1\\n            total += 1\\n\\n            results.append({\\n                \\\"question\\\": q,\\n                \\\"gold\\\": gold,\\n                \\\"prediction\\\": pred,\\n                \\\"correct\\\": is_correct,\\n                \\\"response\\\": response[:500],\\n                \\\"response_length\\\": gen_len,\\n                \\\"hit_eos\\\": hit_eos,\\n            })\\n\\n            if total % 50 == 0:\\n                logger.info(\\n                    f\\\"Progress: {total}/{len(dataset)}, acc={correct/total:.4f}, \\\"\\n                    f\\\"eos_rate={n_natural_eos/total:.2%}, avg_len={np.mean(response_lengths):.0f}\\\"\\n                )\\n\\n    accuracy = correct / total if total > 0 else 0.0\\n    eos_stats = {\\n        \\\"natural_eos\\\": n_natural_eos,\\n        \\\"truncated\\\": n_truncated,\\n        \\\"eos_rate\\\": n_natural_eos / total if total > 0 else 0.0,\\n        \\\"avg_response_length\\\": float(np.mean(response_lengths)) if response_lengths else 0.0,\\n        \\\"max_response_length\\\": int(np.max(response_lengths)) if response_lengths else 0,\\n        \\\"min_response_length\\\": int(np.min(response_lengths)) if response_lengths else 0,\\n    }\\n    return accuracy, correct, total, results, eos_stats\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Evaluate model on GSM8K test set\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to model\\\")\\n    parser.add_argument(\\\"--output_path\\\", type=str, default=None, help=\\\"Output JSON path for results\\\")\\n    parser.add_argument(\\\"--max_new_tokens\\\", type=int, default=4096)\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Limit test samples (None=all)\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--dtype\\\", type=str, default=\\\"bfloat16\\\", choices=[\\\"float16\\\", \\\"bfloat16\\\", \\\"float32\\\"])\\n    parser.add_argument(\\\"--temperature\\\", type=float, default=0.0, help=\\\"Sampling temperature (0=greedy)\\\")\\n    parser.add_argument(\\\"--do_sample\\\", action=\\\"store_true\\\", help=\\\"Enable sampling mode\\\")\\n    args = parser.parse_args()\\n\\n    set_seed(args.seed)\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    dtype_map = {\\\"float16\\\": torch.float16, \\\"bfloat16\\\": torch.bfloat16, \\\"float32\\\": torch.float32}\\n    torch_dtype = dtype_map[args.dtype]\\n\\n    model = load_pruned_model(args.model_path, device_map=\\\"auto\\\", torch_dtype=torch_dtype)\\n\\n    logger.info(\\\"Loading GSM8K test set...\\\")\\n    dataset = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"test\\\")\\n    if args.max_samples is not None:\\n        dataset = dataset.shuffle(seed=args.seed).select(range(min(args.max_samples, len(dataset))))\\n    logger.info(f\\\"Evaluating on {len(dataset)} test samples\\\")\\n\\n    accuracy, n_correct, n_total, results, eos_stats = evaluate(\\n        model, tokenizer, dataset,\\n        max_new_tokens=args.max_new_tokens,\\n        temperature=args.temperature,\\n        do_sample=args.do_sample,\\n    )\\n\\n    logger.info(f\\\"GSM8K Accuracy: {accuracy:.4f} ({n_correct}/{n_total})\\\")\\n    logger.info(f\\\"EOS Stats: {json.dumps(eos_stats, indent=2)}\\\")\\n\\n    if args.output_path is None:\\n        model_name = os.path.basename(args.model_path.rstrip(\\\"/\\\"))\\n        mode = \\\"sampling\\\" if args.do_sample else \\\"greedy\\\"\\n        args.output_path = f\\\"results/eval_{model_name}_{mode}.json\\\"\\n\\n    os.makedirs(os.path.dirname(args.output_path) or \\\".\\\", exist_ok=True)\\n    output = {\\n        \\\"model_path\\\": args.model_path,\\n        \\\"accuracy\\\": accuracy,\\n        \\\"n_correct\\\": n_correct,\\n        \\\"n_total\\\": n_total,\\n        \\\"temperature\\\": args.temperature if args.do_sample else 0.0,\\n        \\\"do_sample\\\": args.do_sample,\\n        \\\"eos_stats\\\": eos_stats,\\n        \\\"examples\\\": results,\\n    }\\n    with open(args.output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n    logger.info(f\\\"Results saved to {args.output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+eval_gsm8k.py 已经支持 per-sample 输出（包含 question, gold, prediction, correct, response_length, hit_eos）。不需要修改。
+
+现在创建 `run_full_eval.sh`：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "0a9ce40a-f046-423f-8940-1c36f65b6e9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GnrJsesDfBEoppvHVNczNe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3636,
+      "cache_read_input_tokens": 24582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3636
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YYa3oHr4BdGW1BnBB4hE9L`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat > /root/recovery_aware_struct_prune/src/run_full_eval.sh << 'EOF'\n#!/bin/bash\n# =============================================================================\n# Full GSM8K Evaluation (N=1319, greedy)\n#\n# Usage:\n#   Phase 1 (baseline + pruned + SFT models):\n#     bash run_full_eval.sh phase1\n#\n#   Phase 2 (GRPO models, after training completes):\n#     bash run_full_eval.sh phase2\n#\n#   All phases:\n#     bash run_full_eval.sh all\n#\n# GPU allocation: GPU0 and GPU1 run in parallel.\n# Results: /root/autodl-tmp/recovery_aware_struct_prune/eval_results/full/\n# =============================================================================\n\nset -euo pipefail\n\n# === Environment ===\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/recovery_aware_struct_prune/src\n\nEVAL_DIR=\"/root/autodl-tmp/recovery_aware_struct_prune/eval_results/full\"\nmkdir -p \"$EVAL_DIR\"\n\n# === Model Paths ===\nBASELINE=\"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\"\nPRUNED_RASP_20=\"/root/autodl-tmp/pruned_rasp_20\"\nSFT_RASP_20=\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\"\nSFT_STANDARD_20=\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\"\n\n# Phase 2 paths (update after GRPO completes)\nGRPO_RASP_20=\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20\"\nGRPO_STANDARD_20=\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20\"\n\n# === Helper ===\nrun_eval() {\n    local gpu=$1\n    local model_path=$2\n    local model_name=$3\n\n    local output=\"${EVAL_DIR}/eval_full_${model_name}_greedy.json\"\n\n    if [ -f \"$output\" ]; then\n        echo \"[SKIP] $model_name already evaluated: $output\"\n        return 0\n    fi\n\n    echo \"[START] GPU${gpu} | ${model_name} | $(date '+%H:%M:%S')\"\n    CUDA_VISIBLE_DEVICES=$gpu python eval_gsm8k.py \\\n        --model_path \"$model_path\" \\\n        --output_path \"$output\" \\\n        --max_new_tokens 4096 \\\n        --dtype bfloat16 2>&1 | tail -5\n\n    echo \"[DONE] ${model_name} | $(date '+%H:%M:%S')\"\n    # Print summary\n    python -c \"\nimport json\nwith open('$output') as f:\n    d = json.load(f)\nprint(f\\\"  => {d['n_correct']}/{d['n_total']} = {d['accuracy']:.4f}, eos_rate={d['eos_stats']['eos_rate']:.2%}, avg_len={d['eos_stats']['avg_response_length']:.0f}\\\")\n\"\n}\n\n# === Phase 1: baseline + pruned + SFT ===\nrun_phase1() {\n    echo \"========== Phase 1: Baseline + Pruned + SFT ==========\"\n    echo \"Start: $(date)\"\n\n    # GPU0: baseline, then sft_rasp_20\n    (\n        run_eval 0 \"$BASELINE\" \"baseline_unpruned\"\n        run_eval 0 \"$SFT_RASP_20\" \"sft_rasp_20\"\n    ) &\n    local pid0=$!\n\n    # GPU1: pruned_rasp_20, then sft_standard_20\n    (\n        run_eval 1 \"$PRUNED_RASP_20\" \"pruned_rasp_20\"\n        run_eval 1 \"$SFT_STANDARD_20\" \"sft_standard_20\"\n    ) &\n    local pid1=$!\n\n    wait $pid0 $pid1\n    echo \"========== Phase 1 Complete: $(date) ==========\"\n}\n\n# === Phase 2: GRPO models ===\nrun_phase2() {\n    echo \"========== Phase 2: GRPO Models ==========\"\n    echo \"Start: $(date)\"\n\n    # Verify paths exist\n    for p in \"$GRPO_RASP_20\" \"$GRPO_STANDARD_20\"; do\n        if [ ! -d \"$p\" ]; then\n            echo \"[ERROR] Model not found: $p\"\n            echo \"  Update the path variable in this script after GRPO completes.\"\n            exit 1\n        fi\n    done\n\n    # GPU0: grpo_rasp_20\n    run_eval 0 \"$GRPO_RASP_20\" \"grpo_rasp_20\" &\n    local pid0=$!\n\n    # GPU1: grpo_standard_20\n    run_eval 1 \"$GRPO_STANDARD_20\" \"grpo_standard_20\" &\n    local pid1=$!\n\n    wait $pid0 $pid1\n    echo \"========== Phase 2 Complete: $(date) ==========\"\n}\n\n# === Main ===\nPHASE=\"${1:-all}\"\n\ncase \"$PHASE\" in\n    phase1) run_phase1 ;;\n    phase2) run_phase2 ;;\n    all)    run_phase1; run_phase2 ;;\n    *)      echo \"Usage: $0 {phase1|phase2|all}\"; exit 1 ;;\nesac\n\necho \"\"\necho \"=== All Results ===\"\nls -lh \"$EVAL_DIR\"/eval_full_*_greedy.json 2>/dev/null || echo \"No results yet.\"\nEOF\nchmod +x /root/recovery_aware_struct_prune/src/run_full_eval.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "9c040d12-5842-4b6a-91d5-f247ba1a0462",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GnrJsesDfBEoppvHVNczNe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3636,
+      "cache_read_input_tokens": 24582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3636
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T02:27:43.191Z_
+
+<details><summary>↩ Tool result · `toolu_01YYa3oHr4BdGW1BnBB4hE9L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "c5c89dc9-b2c2-49ec-ad24-2790e2bad40e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TK8jydo317vzXZphcksiLG`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "bash -n /root/recovery_aware_struct_prune/src/run_full_eval.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "9d2ccae1-bbd9-46d0-8b14-ca71a1b35ff1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fxJYpmnuxbVmwDNpHzf3b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1758,
+      "cache_read_input_tokens": 28218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1758
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T02:27:46.401Z_
+
+<details><summary>↩ Tool result · `toolu_01TK8jydo317vzXZphcksiLG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "fe8f1d78-cc83-48ec-aa5f-6ebdef0d874b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BEk3WDT1Jow8DJvWyU6MvE`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "bash -n /root/recovery_aware_struct_prune/src/run_full_eval.sh && echo \"SYNTAX_OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "5013a3e9-119e-46be-b074-249423ed5371",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1x2rrUCMsCuQvDUoxF3M8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 216,
+      "cache_read_input_tokens": 29976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 216
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T02:28:00.828Z_
+
+<details><summary>↩ Tool result · `toolu_01BEk3WDT1Jow8DJvWyU6MvE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "e3e502f1-221a-4b05-a244-e06acec7e8d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+语法验证通过。
+
+**产出总结**：
+
+**eval_gsm8k.py** — 无需修改，已支持 per-sample 输出（每个样本保存 question, gold, prediction, correct, response, response_length, hit_eos 到 JSON 的 `examples` 数组）。
+
+**`/root/recovery_aware_struct_prune/src/run_full_eval.sh`** — 已创建，功能：
+
+| 命令 | 作用 |
+|------|------|
+| `bash run_full_eval.sh phase1` | 跑 baseline + pruned_rasp_20 + sft_rasp_20 + sft_standard_20 |
+| `bash run_full_eval.sh phase2` | 跑 grpo_rasp_20 + grpo_standard_20 |
+| `bash run_full_eval.sh all` | 全部 |
+
+**GPU 分配**：
+- Phase 1: GPU0 → baseline + sft_rasp_20, GPU1 → pruned_rasp_20 + sft_standard_20（并行）
+- Phase 2: GPU0 → grpo_rasp_20, GPU1 → grpo_standard_20（并行）
+
+**跳重机制**：已评估的模型（输出文件已存在）自动跳过。
+
+**预估运行时间**（7B 模型, 1319 样本, greedy, max_new_tokens=4096）：
+- 每个模型约 40-60 分钟（取决于平均生成长度）
+- Phase 1: ~60 分钟（两组并行，每组 2 个模型串行）
+- Phase 2: ~40 分钟（两个模型并行）
+- 总计: ~1.5-2 小时
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "uuid": "8435ffee-a9cf-4f20-9142-5d2adf10f167",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5rnYYtVdzKMCm3WT7BHmd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 210,
+      "cache_read_input_tokens": 30192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 210
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 18_
+
+语法验证通过。
+
+**产出总结**：
+
+**eval_gsm8k.py** — 无需修改，已支持 per-sample 输出（每个样本保存 question, gold, prediction, correct, response, response_length, hit_eos 到 JSON 的 `examples` 数组）。
+
+**`/root/recovery_aware_struct_prune/src/run_full_eval.sh`** — 已创建，功能：
+
+| 命令 | 作用 |
+|------|------|
+| `bash run_full_eval.sh phase1` | 跑 baseline + pruned_rasp_20 + sft_rasp_20 + sft_standard_20 |
+| `bash run_full_eval.sh phase2` | 跑 grpo_rasp_20 + grpo_standard_20 |
+| `bash run_full_eval.sh all` | 全部 |
+
+**GPU 分配**：
+- Phase 1: GPU0 → baseline + sft_rasp_20, GPU1 → pruned_rasp_20 + sft_standard_20（并行）
+- Phase 2: GPU0 → grpo_rasp_20, GPU1 → grpo_standard_20（并行）
+
+**跳重机制**：已评估的模型（输出文件已存在）自动跳过。
+
+**预估运行时间**（7B 模型, 1319 样本, greedy, max_new_tokens=4096）：
+- 每个模型约 40-60 分钟（取决于平均生成长度）
+- Phase 1: ~60 分钟（两组并行，每组 2 个模型串行）
+- Phase 2: ~40 分钟（两个模型并行）
+- 总计: ~1.5-2 小时
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 66852,
+  "duration_api_ms": 61863,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "c4b4c848-70c3-4b0f-9263-053012c7a9f4",
+  "total_cost_usd": 0.26044475,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 18561,
+    "cache_read_input_tokens": 148677,
+    "output_tokens": 2723,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 18561,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 482,
+        "cache_read_input_tokens": 30192,
+        "cache_creation_input_tokens": 210,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 210
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1865,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0019749999999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2723,
+      "cacheReadInputTokens": 148677,
+      "cacheCreationInputTokens": 18561,
+      "webSearchRequests": 0,
+      "costUSD": 0.25846975,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "37217442-299d-4cd3-b6ab-f42ca65fd442"
+}
+```
+
+</details>
+
+---

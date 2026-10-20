@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_sft_rasp_qwen_math_n200",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:15:07.028Z",
+    "updated_at": "2026-05-16T11:32:23.931Z",
+    "hypothesis": "Qwen2.5-Math-7B RASP 20% post-SFT GSM8K eval (N=200, greedy, seed=42). EOS fixed (eos_token_id=[151643,151645]). Cross-model validation. Parent: sft_rasp_20_qwen_math.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_qwen_math.json",
+      "server": "westd-11672",
+      "model_name": "Qwen2.5-Math-7B-RASP-20%-SFT",
+      "data_path": "openai/gsm8k",
+      "data_count": 200,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20",
+      "eval_data": "gsm8k_test",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_qwen_math.json",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/eval_rasp_n200.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 0.725,
+      "correct": 145,
+      "n_total": 200,
+      "stderr": 0.0316,
+      "avg_len": 121.8,
+      "eos_rate": 1
+    },
+    "completed_at": "2026-05-16T11:32:23.931Z"
+  },
+  "timestamp": "2026-05-16T11:32:24.073903+00:00",
+  "trigger": "update_registry"
+}

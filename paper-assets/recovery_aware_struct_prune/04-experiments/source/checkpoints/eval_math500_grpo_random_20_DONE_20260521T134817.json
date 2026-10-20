@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval_math500_grpo_random_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:23:18.853Z",
+    "updated_at": "2026-05-21T13:48:16.606Z",
+    "hypothesis": "Random 20% GRPO model MATH-500 accuracy provides cross-benchmark validation at 20% sparsity, complementing GSM8K results (50.57%) for the cross-sparsity table",
+    "parent": "eval_gsm8k_grpo_random_20_v2",
+    "spec": {
+      "command": "nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python /root/recovery_aware_struct_prune/src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/checkpoint-100 --output_dir /root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20 --n_samples 500 --seed 42 --temperature 0' > /root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20.log 2>&1 &",
+      "server": "westd-29022",
+      "gpu": "cuda:1",
+      "pid": 359173,
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B Random 20% GRPO checkpoint-100",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/checkpoint-100",
+      "seed": 42,
+      "checkpoint_source": "grpo_random_20",
+      "eval_data": "MATH-500",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T13:39:34.056Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T13:39:38.081Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T13:39:48.830693+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T13:48:17.158418+00:00",
+  "trigger": "update_registry"
+}

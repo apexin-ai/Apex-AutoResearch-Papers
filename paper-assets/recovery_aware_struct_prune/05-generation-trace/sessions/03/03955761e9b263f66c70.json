@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03955761e9b263f66c70",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec fix westd multiseed",
+  "task_key": "worker_exec_fix_westd_multiseed_20260517T045654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_fix_westd_multiseed_20260517T045654_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "083e5cab697764fd3e15182791cb74eb2b4b2f08d606c48064c35d5cbfa8b9d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 eval 全部正常运行。模型正在 CPU 内存加载中（每个进程 ~14-17GB RSS），还没移到 GPU。这是正常行为——pruned model 文件大，CPU 加载完才会 `.to(device)`。\n\n## 结果\n\n4 个 multi-seed eval job 已修复并成功启动：\n\n| tmux session | GPU | 模型 | seed | PID |\n|---|---|---|---|---|\n| `eval_sft_rasp_20_seed123` | cuda:0 | sft_rasp_20_westd | 123 | 75158 |\n| `eval_sft_standard_20_seed123` | cuda:1 | sft_standard_20_westd | 123 | 75234 |\n| `eval_sft_rasp_20_seed456` | cuda:2 | sft_rasp_20_westd | 456 | 75308 |\n| `eval_sft_standard_20_seed456` | cuda:3 | sft_standard_20_westd | 456 | 75384 |\n\n**修复的问题：**\n- 脚本路径：`src/eval_gsm8k.py`（从 `src/` 子目录执行）\n- 模型路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_{rasp,standard}_20_westd`\n- 参数确认：`--max_samples 200` 正确\n\n所有进程 CPU 占用率 ~500%+ 且内存 ~14GB，正处于模型加载阶段，即将转入 GPU 推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-fix-westd-multiseed.md"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "sft_alpha4_0_westd_retry",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:46:36.918Z",
+    "updated_at": "2026-05-15T13:47:43.037Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python -u src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation/alpha_4.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_4.0 --gpu 0 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --logging_steps 10 --seed 42 --save_strategy no --overwrite_output_dir\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "37013",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_alpha4_0_westd_retry.log",
+      "submitted_at": "2026-05-15T13:42:03.641Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "D027: α=4.0 pruned model SFT recovery on westd (retry #3). α=4.0 gave highest post-prune accuracy (40%). Fix: CUDA_VISIBLE_DEVICES=1 + --gpu 0 (prevent GPU 0 collision with GraSP) + --save_strategy no (prevent checkpoint serialization crash). Same SFT params: 2 epochs, lr=2e-5, batch=1, grad_accum=8.",
+    "parent": "alpha_ablation_westd_cal256",
+    "notes": "前置 Worker 因轮询耗尽上下文而终止。训练本身通过 nohup 在 westd-11672 GPU 1 上继续运行 (PID 33615)。已修复磁盘问题（释放 93GB, 添加 save_total_limit=1）。Worker 终止时 step 524/1870, loss ~0.8-0.9。训练应在 Worker 终止后 ~20 min 内完成。新 Worker 接力监控。"
+  },
+  "timestamp": "2026-05-15T13:47:43.135441+00:00",
+  "trigger": "update_registry"
+}

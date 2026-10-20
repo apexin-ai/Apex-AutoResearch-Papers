@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_20_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:39:24.314Z",
+    "updated_at": "2026-05-18T13:39:29.559Z",
+    "hypothesis": "CKA-only 20% post-SFT MATH-500 accuracy. C1 validation: compare with GRPO CKA-only MATH-500 to test if GRPO genuinely helps CKA-only on harder benchmark. If post-GRPO > post-SFT on MATH-500, CKA-only is unique in benefiting from GRPO (unlike Standard/RASP decoupling).",
+    "parent": "sft_cka_only_20"
+  },
+  "timestamp": "2026-05-18T13:39:29.892900+00:00",
+  "trigger": "update_registry"
+}

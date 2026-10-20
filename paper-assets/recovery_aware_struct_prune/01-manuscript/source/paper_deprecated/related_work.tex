@@ -1,0 +1,25 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Structured pruning of LLMs.}
+LLM-Pruner~\citep{llmpruner2023} introduced dependency-aware structural pruning for transformers; Bonsai~\citep{bonsai2025} achieves competitive results using only forward passes; GRASPrune~\citep{graspprune2026} advances the state of the art with global gating that jointly prunes FFN channels and KV head groups.
+ShortGPT~\citep{shortgpt2024}, SliceGPT~\citep{slicegpt2024}, and LaCo~\citep{yang2024laco} target depth pruning, while Wanda~\citep{wanda2024} addresses unstructured sparsity; \citet{doingmore2026} revisit the structured-vs-unstructured trade-off under test-time scaling.
+\citet{shrestha2026layerpruninglimits} show that layer pruning causes severe degradation on generative reasoning even when classification performance is preserved.
+For reasoning models, RESP~\citep{resp2025} uses gradient-based importance on self-generated reasoning traces, RAC~\citep{rac2025} reconstructs chain-of-thought during pruning, SSGR~\citep{ssgr2025} uses self-generated calibration data, and \citet{llms2lrms2026} find width pruning more robust than depth pruning for reasoning but do not study RLVR recovery.
+A parallel line recognizes that functional structure should guide pruning: FANG~\citep{fang_2025} groups FFN neurons by activation clusters, FuncNet~\citep{funcnet_2025} decomposes LLMs via ICA, and MPruner~\citep{mpruner2024} uses inter-layer CKA~\citep{kornblith2019cka} for depth pruning in CNNs.
+Our work uses \emph{intra-layer} CKA between individual structures at a finer granularity, optimizing for RL recovery capacity rather than immediate accuracy preservation.
+
+\paragraph{Pruning-aware recovery.}
+\citet{selfhealing2025} demonstrate that RLVR restores pruned reasoning models to near-original accuracy, significantly outperforming SFT, but test only one pruning method without studying whether the pruning criterion affects recovery.
+$P^2$ Law~\citep{p2law2025} establishes scaling laws for post-training loss after pruning.
+PASER~\citep{paser2025} optimizes recovery data selection, PAT~\citep{pat2025} jointly considers pruning and fine-tuning objectives, RestoreLCC~\citep{restorelcc_2025} contrastively probes critical attention heads for post-hoc compensation, \citet{boiling_frog_2026} adopt iterative prune-tune loops for gradual compression, and OPSD~\citep{opsd2026} compresses reasoning models \emph{after} RLVR (the reverse of our pipeline).
+ARRoL~\citep{xu2026arrol} prunes rollouts during RLVR generation for training efficiency, complementary to our focus on which model structures to prune before training.
+These approaches optimize complementary axes (data, training, compensation, schedule); our work isolates which \emph{pruning criterion} enables RL-based recovery.
+The Lottery Ticket Hypothesis~\citep{frankle2019lth} asks which subnetworks train effectively from random initialization; our recovery capacity spectrum extends this to \emph{paradigm-conditioned trainability}, where the optimal subnetwork depends on the recovery paradigm (RLVR vs.\ SFT).
+
+\paragraph{RLVR training dynamics.}
+\citet{rlsqueezes2026} show that RLVR \emph{compresses} incorrect reasoning trajectories via global exploration, while SFT \emph{expands} correct ones via local imitation.
+This asymmetry motivates our finding: gradient importance scoring protects structures that RL would compress, while removing the diverse representations RL exploration requires.
+RL training instability has been studied in the RLHF context: \citet{gao2023overoptimization} characterize reward overoptimization, \citet{dong2025rlplus} document repetitive output collapse during extended RL training, and \citet{shah2025comedy} analyze compounding bias from reward estimation.
+\citet{mukherjee2025rlsubnetworks} show that RL fine-tuning updates only 5--30\% of parameters, raising the question of whether pruning criteria interact with this active subnetwork.
+Our work connects this instability literature to structural pruning, showing that the pruning criterion shapes susceptibility to RL collapse.

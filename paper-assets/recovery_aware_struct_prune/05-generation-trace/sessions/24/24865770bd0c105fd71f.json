@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24865770bd0c105fd71f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d023 reeval check and rasp",
+  "task_key": "worker_code_d023-reeval-check-and-rasp_20260515T110130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d023-reeval-check-and-rasp_20260515T110130_result.json",
+    "occurrence": 1,
+    "bytes": 1841,
+    "sha256": "e559b4ea2f83b2123f34717ab4818fbcb17444e34abcdcdfa34018a29617dee1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排队脚本正常运行，在等 PID 509954 完成。以下是完整汇报：\n\n---\n\n## 任务 A: pruned_standard_20 re-eval 状态\n\n- **状态**: 运行中，PID 509954，cuda:1\n- **进度**: **63/100** (63%)\n- **中间准确率**: 50-sample checkpoint 为 **28%**，eos_rate=68%，avg_len=1594\n- **输出文件**: `results/reeval_pruned_standard_20.json`（尚未生成，运行完才写）\n- **预计剩余**: ~12-15 分钟（37 samples，平均 ~20s/it）\n\n## 任务 B: sft_standard_20 eval 状态\n\n- **状态**: ✅ 已完成\n- **准确率**: **64%** (64/100)\n- **EOS rate**: 99%（99/100 natural EOS，仅 1 truncated）\n- **平均 response 长度**: 182.48 tokens\n- **结果文件**: `/root/autodl-tmp/recovery_aware_struct_prune/eval_sft_standard_20_n100.json`\n\n## 任务 C: pruned_rasp_20 re-eval\n\n- **cuda:1 状态**: 被 pruned_standard_20 eval 占用（13003 MiB）\n- **已排队**: 创建了自动等待脚本（PID 512434），监听 PID 509954 退出后立即启动：\n  ```\n  CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py \\\n    --model_path /root/autodl-tmp/pruned_rasp_20 \\\n    --max_samples 100 --max_new_tokens 4096 \\\n    --output_path results/reeval_pruned_rasp_20_n100.json\n  ```\n- **日志**: `/tmp/reeval_rasp_20_n100.log`\n- **注意**: 之前的 `reeval_rasp_20_gpu0.json` 只有 n=20 且 max_new_tokens=512（40% acc, eos_rate=65%），不可靠。这次用 n=100 + max_new_tokens=4096 重新验证 29% 数字。\n\n## 任务 D: GRPO v5 进度\n\n- **进度**: **42/250** (17%)\n- **速度**: ~111s/it\n- **GPU**: cuda:0，PID 498479，65187 MiB / 97887 MiB\n- **ETA**: 剩余 208 steps × 111s ≈ **~6.4 小时**\n- **观察**: 日志显示模型在做退化的逐步计数推理（\"Step 1: magnets = 8, Step 2: magnets = 9...\"），reward 信号可能有问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d023-reeval-check-and-rasp.md"
+}

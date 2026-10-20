@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_20_westb",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:27:25.380Z",
+    "updated_at": "2026-05-22T20:44:28.366Z",
+    "hypothesis": "CKA-only 20% SFT MATH-500 eval @2048 on westb. Dose-response endpoint control: CKA-only is the best-performing pruning method (GSM8K 64.37%). MATH-500 result establishes upper bound for cross-benchmark comparison with α dose-response curve.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 nohup python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_westb.json --seed 42 --dtype bfloat16 --max_new_tokens 2048",
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "pid": "234500",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (sft_cka_only_20)",
+      "seed": 42,
+      "checkpoint_source": "sft_cka_only_20",
+      "eval_data": "MATH-500 (N=500, max_new_tokens=2048)",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_westb.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T20:24:19.623Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T20:24:24.398Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T20:24:31.931557+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: 进程 PID 234500 在 255/500 (51%) 处死亡，日志无 Traceback/OOM/CUDA error。命令已含 --max_new_tokens 2048。疑似外部 kill 或 OOM (SIGKILL 无 log)。使用了 nohup 而非 submit_training_job。需 SSH 深查 dmesg/syslog。| 已有成果: 无结果文件 | 建议: 查明死因后用 submit_training_job 重提交"
+  },
+  "timestamp": "2026-05-22T20:44:28.979402+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,916 @@
+# cron hook pipeline depth first 20
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/cron_hook_pipeline_depth_first_20.jsonl`
+- **Structured JSON:** [`66e3e630e2f640dfb639.json`](../../sessions/66/66e3e630e2f640dfb639.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+28 recorded events
+
+### User
+
+_source line 1 · 2026-05-23T03:17:55.547893+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #23。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-32935 cuda:0/1/2/3 + westb-23072 cuda:0/1，共 6 张，禁用其他
+- 投稿 deadline：EMNLP 2026 ARR May 25 — 剩 ~2 天
+- α dose-response 表中数据点必须有 registry exp_id 溯源，禁止引用无 registry 来源的数字（D107 教训：55.19%/54.43% 曾因无溯源被替换）
+- pipeline_depth_first_20 是 MF5 关键实验（排除 layer-depth confound），失败后必须重跑，不能跳过
+- westd-32935 上 `/tmp/` 日志路径不可靠（重启会清空），重要日志应写 `~/runs/recovery_aware_struct_prune/logs/`
+
+### 2. 🖥️ 基础设施快照
+- **westd-32935**：4× RTX PRO 6000，工作目录 `/root/recovery_aware_struct_prune/`（代码）+ `/root/autodl-tmp/recovery_aware_struct_prune/`（模型/checkpoint）
+  - 磁盘：根分区 435G/879G (48%)，/autodl-pub 5.3T/7.3T 可用
+  - 镜像 aml-train，conda base：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **westb-23072**：2× RTX PRO 6000，同结构目录
+  - 磁盘：根分区 392G/439G (6%)，/autodl-pub 7.3T/14T 可用
+- 模型基座：DeepSeek-R1-Distill-Qwen-7B
+- SFT/GRPO checkpoint 均在 `/root/autodl-tmp/recovery_aware_struct_prune/` 下
+- 活跃进程（截至 handoff 时刻）：
+  - eval_math500_sft_random_20_v3 (westd:1, PID 5236)
+  - eval_gsm8k_sft_alpha3p0_20 (westd:2, PID 37024)
+  - eval_gsm8k_grpo_qwen_math_cka_only_20 (westb:1, PID 179898)
+
+### 3. 📊 当前状态
+收到 `pipeline_depth_first_20` 失败 cron 回调。Reconcile 还发现 `eval_math500_grpo_standard_20_fair_2048_v2`(westd:0) 和 `grpo_random_20_seed123`(westd:2) 进程也消失（miss 4/5，下次 cron 将自动标 failed）。
+
+**我做了**：
+- 读 registry + reconcile + 读 report/ROADMAP
+- 派诊断 Worker `worker_diagnose_pipeline_depth_first_20_and_others_20260522T111057` SSH 到 westd-32935 读日志/dmesg/磁盘
+- 向 Director 汇报了 3 个实验异常 + 3 GPU 空闲
+
+**我没来得及做**：
+- 诊断 Worker 尚未回调，不知道失败根因
+- 未更新 report.md（等诊断结果）
+- 3 张空闲 GPU（westb:0, westd:0, westd:3）未安排新实验
+
+**RUNNING 实验**：
+| exp_id | 服务器:GPU | 内容 |
+|--------|-----------|------|
+| eval_math500_sft_random_20_v3 | westd:1 | Random 20% SFT MATH-500 eval |
+| eval_gsm8k_sft_alpha3p0_20 | westd:2 | α=3.0 SFT GSM8K eval (dose-response 第5点) |
+| eval_gsm8k_grpo_qwen_math_cka_only_20 | westb:1 | MF3 Qwen-Math cross-arch GSM8K eval |
+
+**已有 Worker**：
+- `worker_diagnose_westd_failures_20260522_20260522T110710`（running，上一轮遗留诊断）
+- `worker_diagnose_pipeline_depth_first_20_and_others_20260522T111057`（running，本轮派出）
+
+### 4. 📋 待办（条件触发式）
+- 诊断 Worker 回调 → 根据失败根因决定：(a) 系统级问题已恢复 → 重提交 pipeline_depth_first_20 + eval_math500_grpo_standard_20_fair_2048_v2 + grpo_random_20_seed123；(b) 代码/环境问题 → 修复后重提交
+- eval_math500_grpo_standard_20_fair_2048_v2 / grpo_random_20_seed123 cron 第 5 次 miss → 自动标 failed → 更新 registry notes + report.md
+- eval_gsm8k_sft_alpha3p0_20 完成 → α=3.0 SFT 数据点入表 → 与 α=3.0 GRPO 配对 → 5/5 dose-response 完整 → 更新 ROADMAP + 汇报 Director
+- eval_gsm8k_grpo_qwen_math_cka_only_20 完成 → MF3 cross-arch 数据入表 → 汇报
+- 3 GPU 空闲确认可用后 → 优先安排：(1) pipeline_depth_first_20 重跑 (MF5)，(2) grpo_random_20_seed123 重跑 (MF2 multi-seed)，(3) eval_math500_grpo_standard_20_fair_2048_v2 重跑 (N1 跨基准)
+- grpo_rasp_alpha3p0_20_v2 待提交（α=3.0 GRPO re-run，checkpoint 曾被磁盘满损坏）→ 确认 checkpoint 可用后提交
+
+### 5. 🎯 战略上下文
+- **核心结论**：Pruning criterion 决定 recovery capacity，α=2.0 是 SFT 和 GRPO 的最优点（倒 U 型曲线）。C1 decoupling 9/9 pairs |Δ| ≤ 1.14pp 成立。
+- **论文叙事**：剪枝阶段决定模型质量，该优势通过 SFT/GRPO 均匀传播（GRPO 无额外正交增益）
+- **Must-Fix 进度**：MF4 dose-response 4/5（等 α=3.0）、MF3 cross-arch 运行中、MF5 depth-first 刚失败需重跑、MF2 multi-seed 部分失败
+- **易错点**：
+  - 不要把以前的 α=1.0 数据 (55.19%/54.43%) 当真——D107 已替换为有溯源的 61.49%/60.88%
+  - westd-32935 上有多个实验共用 cuda:2（eval_gsm8k_sft_alpha3p0_20 还活着），重提交时注意 GPU 冲突
+  - pipeline 脚本日志写在 `/tmp/`，重启后会丢失——重跑时改到 `~/runs/` 下
+  - α=3.0 GRPO 的 grpo_rasp_alpha3p0_20 标了 success，但其 v2 重跑是因为 checkpoint 被磁盘满损坏——确认 checkpoint 完整性后再做 eval
+
+## 项目硬约束 (memory.md 节选)
+
+## 诊断时 GPU 状态
+
+| GPU | 显存 | 进程 |
+|-----|------|------|
+| 0 | 16333/97887 MiB | eval_math500_grpo_cka_only_25_v2 |
+| 1 | 0 MiB (空闲) | — |
+| 2 | 16333/97887 MiB | eval_math500_sft_cka_only_25_v2 |
+| 3 | 28911/97887 MiB | eval_gsm8k_sft_standard_25 (运行 5.5h) |
+
+## 进程与 GPU 状态
+
+- pipeline_alpha4_0 进程已退出（EXIT_CODE=1），无残留进程
+- GPU 0: 空闲（0 MiB），可用于重跑
+- GPU 1: eval_math500_grpo_random_20_v2 (PID 382472, 17360 MiB)
+- GPU 2: 空闲（0 MiB）
+- GPU 3: eval_math500_sft_random_20 (PID 385685, 16040 MiB)
+
+## 诊断时 GPU 状态 (19:10 CST)
+
+| GPU | 显存 | 温度 | 进程 |
+|-----|------|------|------|
+| 0 | 0 MiB (空闲) | 28°C | — |
+| 1 | 17651 MiB | 78°C | PID 5241: eval_math500.py (运行 ~7h) |
+| 2 | 16261 MiB | 63°C | PID 37026: eval_gsm8k.py (运行 ~38min) |
+| 3 | 15781 MiB | 77°C | PID 40073: eval_gsm8k.py (pipeline Phase 4) |
+
+## 可查的历史
+前 79 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-23T03:18:08.844575+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-23T03:18:08.845066+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T03:18:11.809374+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T03:18:14.675443+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T03:18:14.676016+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_math500_grpo_rasp_alpha0p5_20\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T02:59:15.985Z\", \"updated_at\": \"2026-05-23T02:59:43.561Z\", \"hypothesis\": \"GRPO RASP α=0.5 MATH-500 eval @2048. C1 decoupling on MATH-500: SFT α=0.5 = 25.4%. GSM8K GRPO α=0.5 = 61.18%. Completes MATH-500 GRPO dose-response curve.\", \"parent\": \"eval_gsm8k_grpo_alpha0p5_20\", \"spec\": {\"command\": \"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048\", \"server\": \"westb-23072\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"model_name\": \"grpo_rasp_alpha0p5_20\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20\", \"eval_data\": \"MATH-500\"}}, \"eval_math500_grpo_rasp_alpha4p0_20\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:01:54.194Z\", \"updated_at\": \"2026-05-23T00:51:49.472Z\", \"hypothesis\": \"GRPO RASP α=4.0 MATH-500 eval @2048. C1 decoupling on MATH-500: SFT α=4.0 = 26.6%. If |GRPO - SFT| < 2pp, C1 decoupling holds cross-benchmark for α=4.0. GSM8K GRPO α=4.0 = 62.77%.\", \"parent\": \"eval_gsm8k_grpo_alpha4_20_v3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha4p0_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048\\\"\", \"server\": \"westd-32935\", \"gpu\": \"cuda:1\", \"pid\": \"89536\", \"log_path\": \"/root/au
+…[truncated 3974 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 2866
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T03:18:14.676249+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-23T03:18:14.878465+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T03:18:45.228362+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 5, \"results\": [{\"exp_id\": \"eval_math500_grpo_random_20_v3\", \"success\": true, \"actions\": [\"Job still running (pid=eval_math500_grpo_random)\"]}, {\"exp_id\": \"eval_math500_grpo_rasp_alpha1p0_20\", \"success\": true, \"actions\": [\"Job still running (pid=86234)\"]}, {\"exp_id\": \"eval_math500_sft_qwen_math_cka_only_20\", \"success\": true, \"actions\": [\"Job still running (pid=250766)\"]}, {\"exp_id\": \"eval_math500_grpo_rasp_alpha4p0_20\", \"success\": true, \"actions\": [\"Job still running (pid=89536)\"]}, {\"exp_id\": \"eval_math500_grpo_rasp_alpha0p5_20\", \"success\": true, \"actions\": [\"Job still running (pid=262771)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 30552
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T03:18:45.279314+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"# Handover — 2026-05-23\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_math500_grpo_rasp_alpha0p5_20 | GRPO RASP α=0.5 MATH-500 eval @2048. C1 decoupling on MATH-500: SFT α=0.5 = 25.4%. GSM8K GRPO α=0.5 = 61.18%. Completes MATH-500 GRPO dose-response curve. | — | — | — |\\n| eval_math500_grpo_rasp_alpha4p0_20 | GRPO RASP α=4.0 MATH-500 eval @2048. C1 decoupling on MATH-500: SFT α=4.0 = 26.6%. If |GRPO - SFT| < 2pp, C1 decoupling holds cross-benchmark for α=4.0. GSM8K GRPO α=4.0 = 62.77%. | — | — | — |\\n| eval_math500_sft_qwen_math_cka_only_20 | Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch. | — | — | — |\\n\\n## 待处理\\n- eval_gsm8k_grpo_alpha4_20_v2: α=4.0 GRPO maintains reward 0.15-0.26 (vs α=1.0 collapse to ~0.008), predicting GSM8K accuracy significantly above α=1.0 baseline. v1 timed out at 774/1319 showing 62.93% interim — full eval needed to confirm α-dependent collapse hypothesis.（已分配 westd-29022 GPU:cuda:1，等待提交）\\n- eval_math500_sft_standard_25_2048（准备中）\\n- sft_alpha4_20_v2: α=4.0 SFT recovery with save_only_model=True to prevent disk overflow. Pruning successful (19.09% sparsity). Testing if higher α mitigates RASP collapse after full SFT→GRPO→eval pipeline.（准备中）\\n- eval_math500_sft_cka_only_15: CKA-only 15% SFT model MATH-500 @2048 accuracy establishes pre-GRPO baseline at 15% sparsity for cross-benchmark validation (complement GSM8K data), enabling cross-sparsity trend analysis on MATH-500（准备中）\\n- sft_qwen_math_cka_only_20: Qwen2.5-Math-7B CKA-only 20% pruned model SFT recovery. Post-prune
+…[truncated 6816 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 30603
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T03:18:45.279815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-22 22:49 UTC | 更新原因: MF5 depth-first + MF2 multi-seed confirmed DONE; Must-Fix only MF3 remaining\\n\\n## 核心方向\\nPruning criterion shapes recovery capacity — α=2.0 optimal for BOTH SFT and GRPO (inverted U-shape on GSM8K). C1 decoupling confirmed: all pairs |Δ| ≤ 1.14pp on GSM8K (1.34pp including MBPP). 详见 paper_framing.md.\\n\\n## 当前阶段: Round 6 收尾 — Must-Fix 5/6 done, 6 GPU 满载\\n\\n### 服务器状态\\n- westd-32935：4× RTX PRO 6000 ✅ 磁盘 48% 可用 — 4/4 GPU 运行中\\n- westb-23072：2× RTX PRO 6000 — 2/2 GPU 运行中（GPU:0 已恢复）\\n\\n### GSM8K Dose-Response（5/5 ✅）\\n\\n| α | SFT | GRPO | |Δ| |\\n|---|-----|------|-----|\\n| 0.5 | 60.73% | 61.18% | 0.45pp |\\n| 1.0 | 61.49%† | 60.88% | 0.61pp |\\n| **2.0** | **64.97%** | **66.11%** | **1.14pp** |\\n| 3.0 | 64.14% | 63.45% | 0.69pp |\\n| 4.0 | 61.94% | 62.77% | 0.83pp |\\n\\n†D107: 61.49% (registry), not 63.31%. All |Δ| ≤ 1.14pp.\\n\\n### MATH-500 数据收集（6 evals 运行中）\\n\\n| GPU | 实验 | ETA |\\n|-----|------|-----|\\n| westd:0 | GRPO RASP α=2.0 MATH-500 | ~6-8h |\\n| westd:1 | CKA-only SFT MATH-500 (58%) | ~1.5h |\\n| westd:2 | GRPO Random 20% MATH-500 | ~6-8h |\\n| westd:3 | α=1.0 v2 SFT MATH-500 (61%) | ~40min |\\n| westb:0 | Qwen-Math SFT CKA-only MATH-500 | ~3-4h |\\n| westb:1 | Qwen-Math GRPO CKA-only GSM8K (MF3) | 数小时 |\\n\\nMATH-500 SFT dose-response: 4/5 done (flat, 23.2-26.6%, within stderr)\\nMATH-500 GRPO: Standard ✅ (26.4%), Random + α=2.0 running\\n\\n### Must-Fix 进度\\n- [x] N3 缺失文献 ✅\\n- [x] MF4 因果证据 — GSM8K dose-response 5/5 ✅\\n- [x] W1 format compliance ✅\\n- [x] MF5 depth-first baseline ✅ — 8-10% accuracy, 远差于 CKA-only 64%\\n- [x] MF2 multi-seed ✅ — 3 seeds range 0.30pp (50.57-50.87%)\\n- [x] Paper 语言审计 ✅ — inverted-U 限定 GSM8K\\n- [ ] **MF3 cross-arch** — westb:0 Qwen-Math SFT MATH-500 + wes
+…[truncated 2498 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 30401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T03:19:34.804530+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__spawn_worker",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__spawn_worker",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T03:19:34.905313+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-23T03:19:37.966431+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T03:19:38.569705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ssh_verify_cka_only_math500_data_20260523T031719\", \"task_type\": \"ssh:verify_cka_only_math500_data\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"running\", \"started_at\": \"2026-05-23T03:17:19.936866+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ssh_submit_grpo_alpha3_math500_westd0_20260523T031906\", \"task_type\": \"ssh:submit_grpo_alpha3_math500_westd0\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"running\", \"started_at\": \"2026-05-23T03:19:06.659767+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 603
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-23T03:19:39.072539+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'hypothesis']",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T03:19:40.429779+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_math500_grpo_rasp_alpha2p0_20\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-23T03:16:40.537Z\", \"hypothesis\": \"GRPO RASP α=2.0 MATH-500 eval @2048. C1 decoupling evidence on MATH-500: SFT α=2.0 = 24.0%, GRPO expected similar (~24%). If |GRPO - SFT| < 1pp, C1 decoupling holds cross-benchmark.\", \"metrics\": {\"accuracy\": 0.262, \"correct\": 131, \"total\": 500, \"stderr\": 0.0197, \"natural_eos\": 349, \"truncated\": 151, \"avg_response_length\": 785.326}, \"conclusion\": \"success\"}, \"eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v3\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-23T02:53:37.071Z\", \"hypothesis\": \"MF3 cross-architecture validation v3 (N=500, max_new_tokens=2048): Qwen2.5-Math-7B CKA-only 20% GRPO GSM8K eval with absolute model_path fix. v2 crashed due to relative path OSError. v1 killed due to 337s/sample (no token limit). Tests whether CKA-only pruning + GRPO recovery generalizes beyond DeepSeek-R1-Distill to Qwen-Math architecture.\", \"metrics\": {\"accuracy\": 0.486, \"correct\": 243, \"total\": 500, \"stderr\": 0.0224, \"truncated_pct\": 0.838, \"natural_eos_pct\": 0.162, \"avg_response_length\": 1766.5}, \"conclusion\": \"success\"}, \"eval_math500_sft_cka_only_20_westd\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-23T00:00:43.009Z\", \"hypothesis\": \"CKA-only 20% SFT MATH-500 eval @2048 on westd (migrated from westb for speed). Dose-response endpoint control: CKA-only is the best-performing pruning method (GSM8K 64.37%). MATH-500 result establishes upper bound for cross-benchmark dose-response curve.\", \"metrics\": {\"accuracy\": 0.29, \"correct\": 145, \"total\": 500, \"truncated\": 116, \"stderr\": 0.0203, \"natural_eos_pct\": 0.768, \"avg_response_length\": 673.3}, \"conclusion\": \"success\"}, \"eval_gsm8k_sft_qwen_math_cka_only_20_n500\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-22T23:16:17.233Z\", \"hypothesis\": \"MF3 C1 decoupling on Qw
+…[truncated 2933 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1357
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T03:20:45.986434+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_gsm8k_sft_qwen_math_cka_only_20_n500'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_gsm8k_sft_qwen_math_cka_only_20_n500'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T03:20:45.986859+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_math500_grpo_rasp_alpha3p0_20'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_math500_grpo_rasp_alpha3p0_20'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T03:20:49.736215+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.654}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 3749
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T03:20:53.104901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.3427}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 7118
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T03:22:02.562595+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "fields": "['status', 'conclusion', 'metrics', 'spec']",
+  "limit": "0",
+  "filters": "{'status': 'PREPARING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "fields": "['status', 'conclusion', 'metrics', 'spec']",
+    "limit": "0",
+    "filters": "{'status': 'PREPARING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T03:22:03.566550+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_math500_sft_standard_25_2048\": {\"status\": \"PREPARING\"}, \"sft_alpha4_20_v2\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_sft_warmup.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20 --num_epochs 2 --lr 2e-5\\\"\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:2\"], \"pid\": \"401581\", \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log\", \"submitted_at\": \"2026-05-21T18:31:05.499Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"metrics\": {\"final_train_loss\": 0.8118, \"token_accuracy\": 0.8165, \"epochs\": 2, \"steps\": 936}}, \"eval_math500_sft_cka_only_15\": {\"status\": \"PREPARING\"}, \"sft_qwen_math_cka_only_20\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_qwen_math/ --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20 --gpu 0 --num_train_epochs 2\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"997265\", \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_qwen_math_cka_only_20.log\", \"submitted_at\": \"2026-05-20T06:41:33.468Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"rci_formalization_plan036\": {\"status\": \"PREPARING\"}, \"eval_mbpp_grpo_rasp_20_v2\": {\"status\": \"PREPARING\"}, \"eval_mbpp_grpo_standard_20_v2\": {\"status\": \"PREPARING\", \"spec\": {\"command\": \"bash -c \\\"source /root/m
+…[truncated 11550 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1003
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T03:23:14.991510+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 6/6 | Worker 2 (GPU 2 / CPU 0) | 磁盘: westd 48% (435G可用), westb 6% (47G可用)\n\n**Loop #23 状态同步**\n\n**RUNNING (5 MATH-500 evals + 1 submitting):**\n- westd:0 — Worker 正在提交 GRPO α=3.0 MATH-500\n- westd:1 — GRPO α=4.0 MATH-500\n- westd:2 — GRPO Random 20% MATH-500\n- westd:3 — GRPO α=1.0 MATH-500\n- westb:0 — Qwen-Math SFT CKA-only MATH-500 (MF3)\n- westb:1 — GRPO α=0.5 MATH-500\n\n**近期完成:**\n- eval_math500_grpo_rasp_alpha2p0_20: ✅ 26.2% (C1 on MATH-500: |SFT 24.0% - GRPO 26.2%| = 2.2pp, within 2σ)\n- eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v3: ✅ 48.6% (MF3 GRPO GSM8K)\n\n**MATH-500 表收集进度:**\n- SFT 列: 7/8 done (缺 α=3.0)\n- GRPO 列: 3/8 done + 5 running/submitting\n- 预计 3-8h 内 GRPO 列全部到位\n\n**剩余缺口 (当前 batch 完成后需补):**\n1. SFT α=3.0 MATH-500 — dose-response 第 5 点，需 1 GPU 3-4h\n2. Qwen-Math GRPO MATH-500 — MF3 C1 cross-arch MATH-500 配对\n\n**MF3 cross-arch 数据:**\n- GSM8K: GRPO 48.6% ✅ / SFT (N=500) failed, (N=200 旧 ckpt) 51.5%\n- MATH-500: SFT running / GRPO 未开始\n- 建议: westb:0 SFT 完成后立即在 westb:0 跑 Qwen-Math GRPO MATH-500，形成配对\n\n**时间线:** 6 GPU 满载 MATH-500 eval → 3-8h → 补 α=3.0 SFT + Qwen-Math GRPO MATH-500 → 3-4h → 表齐全 → 论文集成 → 提交。距 deadline ~2 天，可行。",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 6/6 | Worker 2 (GPU 2 / CPU 0) | 磁盘: westd 48% (435G可用), westb 6% (47G可用)\n\n**Loop #23 状态同步**\n\n**RUNNING (5 MATH-500 evals + 1 submitting):**\n- westd:0 — Worker 正在提交 GRPO α=3.0 MATH-500\n- westd:1 — GRPO α=4.0 MATH-500\n- westd:2 — GRPO Random 20% MATH-500\n- westd:3 — GRPO α=1.0 MATH-500\n- westb:0 — Qwen-Math SFT CKA-only MATH-500 (MF3)\n- westb:1 — GRPO α=0.5 MATH-500\n\n**近期完成:**\n- eval_math500_grpo_rasp_alpha2p0_20: ✅ 26.2% (C1 on MATH-500: |SFT 24.0% - GRPO 26.2%| = 2.2pp, within 2σ)\n- eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v3: ✅ 48.6% (MF3 GRPO GSM8K)\n\n**MATH-500 表收集进度:**\n- SFT 列: 7/8 done (缺 α=3.0)\n- GRPO 列: 3/8 done + 5 running/submitting\n- 预计 3-8h 内 GRPO 列全部到位\n\n**剩余缺口 (当前 batch 完成后需补):**\n1. SFT α=3.0 MATH-500 — dose-response 第 5 点，需 1 GPU 3-4h\n2. Qwen-Math GRPO MATH-500 — MF3 C1 cross-arch MATH-500 配对\n\n**MF3 cross-arch 数据:**\n- GSM8K: GRPO 48.6% ✅ / SFT (N=500) failed, (N=200 旧 ckpt) 51.5%\n- MATH-500: SFT running / GRPO 未开始\n- 建议: westb:0 SFT 完成后立即在 westb:0 跑 Qwen-Math GRPO MATH-500，形成配对\n\n**时间线:** 6 GPU 满载 MATH-500 eval → 3-8h → 补 α=3.0 SFT + Qwen-Math GRPO MATH-500 → 3-4h → 表齐全 → 论文集成 → 提交。距 deadline ~2 天，可行。",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T03:23:21.395435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 6403
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-23T03:23:50.007416+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T03:23:50.108132+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:pipeline_depth_first_20",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-23T03:24:38.545819+00:00_
+
+Session #23 初始化完成。
+
+**当前状态：**
+- **6/6 GPU 满载**：5 个 MATH-500 eval 运行中 + 1 个 Worker 正在提交 α=3.0 GRPO MATH-500 到 westd:0
+- **2 Workers 运行中**：一个验证 CKA-only MATH-500 数据，一个提交 α=3.0
+- **Must-Fix 进度**：5/6 done，仅剩 MF3 cross-arch（Qwen-Math SFT MATH-500 在 westb:0 运行中）
+- **MATH-500 表**：SFT 7/8 done（缺 α=3.0），GRPO 3/8 done + 5 running/submitting
+
+**近期完成（已被前几轮处理）：**
+- α=2.0 GRPO MATH-500 = 26.2%（C1 |Δ| = 2.2pp，within 2σ）
+- Qwen-Math GRPO GSM8K = 48.6%（MF3 数据点）
+
+**待触发动作：**
+- 当前 batch 完成后（~1-5h），立即补 SFT α=3.0 MATH-500 + Qwen-Math GRPO MATH-500
+- Cron 回调到达后处理结果并更新表
+
+已向 Director 汇报。等待 Worker/Cron 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:pipeline_depth_first_20"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07b4cc4db110cb1c5b3a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "debug eval humaneval grpo rasp 20 2048",
+  "task_key": "worker_debug_eval_humaneval_grpo_rasp_20_2048_20260517T174415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_eval_humaneval_grpo_rasp_20_2048_20260517T174415_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "a14d153522f86b6198fe7839307091bd31d73dd5967dfa31d9a6fdbd9e9db43b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验已成功完成，无需重试。**\n\n| 项目 | 详情 |\n|------|------|\n| 真实退出原因 | SIGHUP (信号1, EXIT_CODE=128+1=129)，SSH 会话在 2.5h 运行后断开 |\n| 评测完成度 | 164/164 (100%) |\n| pass@1 | **0.1463 ± 0.0276 (24/164)** |\n| 结果文件 | `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_rasp_20_2048.json` (60KB, 完整) |\n\n不是 OOM，不是 GPU 问题。结果文件完整有效，可直接使用。报告已写入 `memory.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-eval-humaneval-grpo-rasp-20-2048.md"
+}

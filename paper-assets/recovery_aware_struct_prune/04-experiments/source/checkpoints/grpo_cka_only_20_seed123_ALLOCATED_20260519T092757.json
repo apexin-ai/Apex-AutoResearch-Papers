@@ -1,0 +1,15 @@
+{
+  "exp_id": "grpo_cka_only_20_seed123",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T09:27:11.294Z",
+    "updated_at": "2026-05-19T09:27:56.787Z",
+    "hypothesis": "Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K."
+  },
+  "timestamp": "2026-05-19T09:27:57.191410+00:00",
+  "trigger": "update_registry"
+}

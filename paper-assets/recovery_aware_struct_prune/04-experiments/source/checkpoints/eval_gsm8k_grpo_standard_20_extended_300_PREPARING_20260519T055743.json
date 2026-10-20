@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_20_extended_300",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:57:41.667Z",
+    "updated_at": "2026-05-19T05:57:42.670Z",
+    "metrics": {
+      "accuracy": 0.5929,
+      "n_correct": 782,
+      "n_total": 1319,
+      "eos_rate": 0.9795,
+      "avg_response_length": 229.57,
+      "stderr": 0.01353
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T05:57:43.065204+00:00",
+  "trigger": "update_registry"
+}

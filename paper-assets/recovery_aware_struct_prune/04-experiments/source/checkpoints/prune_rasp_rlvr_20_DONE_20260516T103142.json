@@ -1,0 +1,35 @@
+{
+  "exp_id": "prune_rasp_rlvr_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:50:39.656Z",
+    "updated_at": "2026-05-16T10:31:42.144Z",
+    "hypothesis": "RASP-RLVR 20% pruning: score = importance * cka^alpha. 反转 CKA scoring——剪掉功能独特的结构（低 CKA overlap），保留冗余结构（高 overlap），使 RLVR 更容易通过冗余路径恢复能力。对比 RASP (1-cka)^alpha 和 Standard (importance only)。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode rasp-rlvr --sparsity 0.20 --alpha 1.0 --dtype bfloat16 --importance_path results/importance_scores.pt --cka_path results/cka_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20",
+      "server": "westb-23072",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "data_path": "results/importance_scores.pt + results/cka_scores.pt",
+      "data_count": 0,
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/",
+      "log_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_code_rasp_rlvr_prune_20260516T095028.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "actual_sparsity": 0.1909,
+      "target_sparsity": 0.2,
+      "mlp_groups_pruned": "200/784",
+      "attn_gqa_groups_pruned": "0/112",
+      "params_after": "6.16B",
+      "group_selection_diff_vs_rasp": "RASP重剪前6层+后段(19,23-25,27)保中间; RLVR重剪前6层+中后段(16-26)保Layer6-7,27"
+    },
+    "completed_at": "2026-05-16T10:31:42.144Z"
+  },
+  "timestamp": "2026-05-16T10:31:42.386563+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,980 @@
+# ops check sft qwen rasp 25 exit
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_ops_check_sft_qwen_rasp_25_exit_20260516T120219.log`
+- **Structured JSON:** [`fda1636d47e7ebb8e959.json`](../../sessions/fd/fda1636d47e7ebb8e959.json)
+
+## Before a recorded user message
+
+20 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6c9168f8-7c83-41be-899d-f717a148bce7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778946600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "96898567-7f3a-4a80-80e7-29d5b8a7a296",
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the training result for sft_qwen_math_rasp_25 on westd-11672.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "3f25b38b-1f37-4799-a245-7e8e745030ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFH5pGB7271gqZ1A9Dqjox",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11653,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11653
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ASMVBbtc5rqxvDKdSKXCny`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "d48d87bd-21e3-4a1b-b6c5-98db15fecc62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFH5pGB7271gqZ1A9Dqjox",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11653,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11653
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T12:02:33.625Z_
+
+<details><summary>↩ Tool result · `toolu_01ASMVBbtc5rqxvDKdSKXCny`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "ca1ded85-5a60-4690-b070-08e9d4629e43",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0116CairsSM5tpjAfnMK34TJ`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "tail -50 /root/runs/recovery_aware_struct_prune/sft_qwen_math_rasp_25.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "f667dad7-ac4e-4a14-9c59-2d2e5648ab3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01814mhy5vuYxBoH7VFwnCRq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 453,
+      "cache_read_input_tokens": 23494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 453
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GGykUyo9U47Dr5rXhoWEpA`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "a8946807-4e04-442f-b14b-cc09b99b8038",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01814mhy5vuYxBoH7VFwnCRq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 453,
+      "cache_read_input_tokens": 23494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 453
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T12:02:38.406Z_
+
+<details><summary>↩ Tool result · `toolu_0116CairsSM5tpjAfnMK34TJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/recovery_aware_struct_prune/sft_qwen_math_rasp_25.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "d7eb3a68-d100-4e0b-85bf-0546ec7356fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/runs/recovery_aware_struct_prune/sft_qwen_math_rasp_25.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/recovery_aware_struct_prune/sft_qwen_math_rasp_25.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T12:02:38.920Z_
+
+<details><summary>↩ Tool result · `toolu_01GGykUyo9U47Dr5rXhoWEpA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 11308088\\ndrwxr-xr-x  2 root root        4096 May 16 19:51 .\\ndrwxr-xr-x 27 root root        4096 May 16 19:41 ..\\n-rw-r--r--  1 root root        2513 May 16 19:51 chat_template.jinja\\n-rw-r--r--  1 root root        1727 May 16 19:51 config.json\\n-rw-r--r--  1 root root         214 May 16 19:51 generation_config.json\\n-rw-r--r--  1 root root 11568022544 May 16 19:51 model.safetensors\\n-rw-r--r--  1 root root    11421892 May 16 19:51 tokenizer.json\\n-rw-r--r--  1 root root         696 May 16 19:51 tokenizer_config.json\\n-rw-r--r--  1 root root        5777 May 16 19:51 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "99c07cff-906e-4ac3-b4bc-9502a8a521f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11308088\\\\ndrwxr-xr-x  2 root root        4096 May 16 19:51 .\\\\ndrwxr-xr-x 27 root root        4096 May 16 19:41 ..\\\\n-rw-r--r--  1 root root        2513 May 16 19:51 chat_template.jinja\\\\n-rw-r--r--  1 root root        1727 May 16 19:51 config.json\\\\n-rw-r--r--  1 root root         214 May 16 19:51 generation_config.json\\\\n-rw-r--r--  1 root root 11568022544 May 16 19:51 model.safetensors\\\\n-rw-r--r--  1 root root    11421892 May 16 19:51 tokenizer.json\\\\n-rw-r--r--  1 root root         696 May 16 19:51 tokenizer_config.json\\\\n-rw-r--r--  1 root root        5777 May 16 19:51 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 11308088\\ndrwxr-xr-x  2 root root        4096 May 16 19:51 .\\ndrwxr-xr-x 27 root root        4096 May 16 19:41 ..\\n-rw-r--r--  1 root root        2513 May 16 19:51 chat_template.jinja\\n-rw-r--r--  1 root root        1727 May 16 19:51 config.json\\n-rw-r--r--  1 root root         214 May 16 19:51 generation_config.json\\n-rw-r--r--  1 root root 11568022544 May 16 19:51 model.safetensors\\n-rw-r--r--  1 root root    11421892 May 16 19:51 tokenizer.json\\n-rw-r--r--  1 root root         696 May 16 19:51 tokenizer_config.json\\n-rw-r--r--  1 root root        5777 May 16 19:51 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The first log path doesn't exist. Let me check the alternative log path and also look for trainer_state.json in checkpoints.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "be7e3997-eea5-4282-82e6-df0ebdb04ce6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EFCm7YJMy8q5Gnmoy4PWk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 23947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+输出目录有完整模型文件（model.safetensors 10.8GB + config + tokenizer）。日志路径不对，检查备选路径和 checkpoints。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "8f9aee95-f828-463a-b196-c435d5211220",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EFCm7YJMy8q5Gnmoy4PWk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 23947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y3b2SV5BADcfbw3HKbhYAY`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "tail -50 /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "1106ce4b-ba40-4bd8-89c4-b62609380c7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EFCm7YJMy8q5Gnmoy4PWk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 23947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T12:02:44.846Z_
+
+<details><summary>↩ Tool result · `toolu_01Y3b2SV5BADcfbw3HKbhYAY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'loss': '0.484', 'grad_norm': '3.344', 'learning_rate': '2.621e-06', 'entropy': '0.5118', 'num_tokens': '2.415e+06', 'mean_token_accuracy': '0.8695', 'epoch': '1.53'}\\n{'loss': '0.4859', 'grad_norm': '4.219', 'learning_rate': '2.509e-06', 'entropy': '0.4966', 'num_tokens': '2.433e+06', 'mean_token_accuracy': '0.8721', 'epoch': '1.541'}\\n\\r 78%|███████▊  | 1450/1870 [21:19<06:15,  1.12it/s]\\r 78%|███████▊  | 1451/1870 [21:20<06:10,  1.13it/s]\\r 78%|███████▊  | 1452/1870 [21:21<06:05,  1.14it/s]\\r 78%|███████▊  | 1453/1870 [21:22<06:02,  1.15it/s]\\r 78%|███████▊  | 1454/1870 [21:23<06:18,  1.10it/s]\\r 78%|███████▊  | 1455/1870 [21:23<06:13,  1.11it/s]\\r 78%|███████▊  | 1456/1870 [21:24<06:09,  1.12it/s]\\r 78%|███████▊  | 1457/1870 [21:25<06:04,  1.13it/s]\\r 78%|███████▊  | 1458/1870 [21:26<06:01,  1.14it/s]\\r 78%|███████▊  | 1459/1870 [21:27<06:18,  1.09it/s]\\r 78%|███████▊  | 1460/1870 [21:28<06:10,  1.11it/s]\\r                                                   \\r\\r 78%|███████▊  | 1460/1870 [21:28<06:10,  1.11it/s]\\r 78%|███████▊  | 1461/1870 [21:29<06:05,  1.12it/s]\\r 78%|███████▊  | 1462/1870 [21:30<06:02,  1.13it/s]\\r 78%|███████▊  | 1463/1870 [21:31<05:57,  1.14it/s]\\r 78%|███████▊  | 1464/1870 [21:31<05:53,  1.15it/s]\\r 78%|███████▊  | 1465/1870 [21:32<06:05,  1.11it/s]\\r 78%|███████▊  | 1466/1870 [21:33<06:01,  1.12it/s]\\r 78%|███████▊  | 1467/1870 [21:34<06:01,  1.12it/s]\\r 79%|███████▊  | 1468/1870 [21:35<05:53,  1.14it/s]\\r 79%|███████▊  | 1469/1870 [21:36<05:48,  1.15it/s]\\r 79%|███████▊  | 1470/1870 [21:37<06:07,  1.09it/s]\\r                                                   \\r\\r 79%|███████▊  | 1470/1870 [21:37<06:07,  1.09it/s]\\r 79%|███████▊  | 1471/1870 [21:38<06:00,  1.11it/s]\\r 79%|███████▊  | 1472/1870 [21:39<05:53,  1.12it/s]\\r 79%|███████▉  | 1473/1870 [21:39<05:47,  1.14it/s]\\r 79%|███████▉  | 1474/1870 [21:40<05:43,  1.15it/s]\\r 79%|███████▉  | 1475/1870 [21:41<05:40,  1.16it/s]\\r 79%|███████▉  | 1476/1870 [21:42<06:02,  1.09it/s]\\r 79%|███████▉  | 1477/1870 [21:43<05:57,  1.10it/s]\\r 79%|███████▉  | 1478/1870 [21:44<05:54,  1.11it/s]\\r 79%|███████▉  | 1479/1870 [21:45<05:52,  1.11it/s]\\r 79%|███████▉  | 1480/1870 [21:46<05:52,  1.11it/s]\\r                                                   \\r\\r 79%|███████▉  | 1480/1870 [21:46<05:52,  1.11it/s]\\r 79%|███████▉  | 1481/1870 [21:47<06:01,  1.08it/s]\\r 79%|███████▉  | 1482/1870 [21:48<05:53,  1.10it/s]\\r 79%|███████▉  | 1483/1870 [21:48<05:47,  1.11it/s]\\r 79%|███████▉  | 1484/1870 [21:49<05:40,  1.13it/s]\\r 79%|███████▉  | 1485/1870 [21:50<05:39,  1.13it/s]\\r 79%|███████▉  | 1486/1870 [21:51<05:35,  1.15it/s]\\r 80%|███████▉  | 1487/1870 [21:52<05:49,  1.10it/s]\\r 80%|███████▉  | 1488/1870 [21:53<05:40,  1.12it/s]\\r 80%|███████▉  | 1489/1870 [21:54<05:37,  1.13it/s]\\r 80%|███████▉  | 1490/1870 [21:55<05:35,  1.13it/s]\\r                                                   \\r\\r 80%|███████▉  | 1490/1870 [21:55<05:35,  1.13it/s]\\r 80%|███████▉  | 1491/1870 [21:56<05:32,  1.14it/s]\\r 80%|███████▉  | 1492/1870 [21:56<05:40,  1.11it/s]\\r 80%|███████▉  | 1493/1870 [21:57<05:35,  1.12it/s]\\r 80%|███████▉  | 1494/1870 [21:58<05:27,  1.15it/s]\\r 80%|███████▉  | 1495/1870 [21:59<05:23,  1.16it/s]\\r 80%|████████  | 1496/1870 [22:00<05:21,  1.16it/s]\\r 80%|████████  | 1497/1870 [22:01<05:21,  1.16it/s]\\r 80%|████████  | 1498/1870 [22:02<05:32,  1.12it/s]\\r 80%|████████  | 1499/1870 [22:03<05:28,  1.13it/s]\\r 80%|████████  | 1500/1870 [22:03<05:20,  1.15it/s]\\r                                                   \\r\\r 80%|████████  | 1500/1870 [22:03<05:20,  1.15it/s]\\r 80%|████████  | 1501/1870 [22:04<05:17,  1.16it/s]\\r 80%|████████  | 1502/1870 [22:05<05:14,  1.17it/s]\\r 80%|████████  | 1503/1870 [22:06<05:13,  1.17it/s]\\r 80%|████████  | 1504/1870 [22:07<05:28,  1.11it/s]\\r 80%|████████  | 1505/1870 [22:08<05:21,  1.13it/s]\\r 81%|████████  | 1506/1870 [22:09<05:17,  1.15it/s]\\r 81%|████████  | 1507/1870 [22:09<05:15,  1.15it/s]\\r 81%|████████  | 1508/1870 [22:10<05:11,  1.16it/s]\\r 81%|████████  | 1509/1870 [22:11<05:09,  1.17it/s]\\r 81%|████████  |\\n\\n... [截断: 输出过长，省略 26589 字符] ...\\n\\n '2.804e+06', 'mean_token_accuracy': '0.8715', 'epoch': '1.776'}\\n{'loss': '0.4688', 'grad_norm': '4.438', 'learning_rate': '5.647e-07', 'entropy': '0.4971', 'num_tokens': '2.822e+06', 'mean_token_accuracy': '0.8731', 'epoch': '1.787'}\\n{'loss': '0.5253', 'grad_norm': '4.188', 'learning_rate': '5.104e-07', 'entropy': '0.5274', 'num_tokens': '2.839e+06', 'mean_token_accuracy': '0.8597', 'epoch': '1.798'}\\n{'loss': '0.4716', 'grad_norm': '3.766', 'learning_rate': '4.588e-07', 'entropy': '0.5009', 'num_tokens': '2.856e+06', 'mean_token_accuracy': '0.8724', 'epoch': '1.808'}\\n{'loss': '0.4512', 'grad_norm': '3.594', 'learning_rate': '4.098e-07', 'entropy': '0.4733', 'num_tokens': '2.873e+06', 'mean_token_accuracy': '0.8781', 'epoch': '1.819'}\\n{'loss': '0.489', 'grad_norm': '4.219', 'learning_rate': '3.636e-07', 'entropy': '0.5157', 'num_tokens': '2.89e+06', 'mean_token_accuracy': '0.8679', 'epoch': '1.83'}\\n{'loss': '0.4997', 'grad_norm': '3.781', 'learning_rate': '3.2e-07', 'entropy': '0.5093', 'num_tokens': '2.908e+06', 'mean_token_accuracy': '0.8694', 'epoch': '1.84'}\\n{'loss': '0.46', 'grad_norm': '3.594', 'learning_rate': '2.792e-07', 'entropy': '0.4833', 'num_tokens': '2.924e+06', 'mean_token_accuracy': '0.8755', 'epoch': '1.851'}\\n{'loss': '0.4749', 'grad_norm': '3.859', 'learning_rate': '2.412e-07', 'entropy': '0.4941', 'num_tokens': '2.94e+06', 'mean_token_accuracy': '0.871', 'epoch': '1.862'}\\n{'loss': '0.5049', 'grad_norm': '4.594', 'learning_rate': '2.059e-07', 'entropy': '0.5257', 'num_tokens': '2.957e+06', 'mean_token_accuracy': '0.8665', 'epoch': '1.872'}\\n{'loss': '0.5098', 'grad_norm': '3.859', 'learning_rate': '1.734e-07', 'entropy': '0.5128', 'num_tokens': '2.973e+06', 'mean_token_accuracy': '0.8664', 'epoch': '1.883'}\\n{'loss': '0.5222', 'grad_norm': '4.312', 'learning_rate': '1.436e-07', 'entropy': '0.5291', 'num_tokens': '2.99e+06', 'mean_token_accuracy': '0.8598', 'epoch': '1.894'}\\n{'loss': '0.5063', 'grad_norm': '3.688', 'learning_rate': '1.166e-07', 'entropy': '0.5176', 'num_tokens': '3.009e+06', 'mean_token_accuracy': '0.8633', 'epoch': '1.905'}\\n{'loss': '0.4902', 'grad_norm': '3.547', 'learning_rate': '9.245e-08', 'entropy': '0.4974', 'num_tokens': '3.026e+06', 'mean_token_accuracy': '0.8717', 'epoch': '1.915'}\\n{'loss': '0.4826', 'grad_norm': '3.625', 'learning_rate': '7.105e-08', 'entropy': '0.499', 'num_tokens': '3.043e+06', 'mean_token_accuracy': '0.871', 'epoch': '1.926'}\\n{'loss': '0.4696', 'grad_norm': '3.641', 'learning_rate': '5.246e-08', 'entropy': '0.4891', 'num_tokens': '3.062e+06', 'mean_token_accuracy': '0.8773', 'epoch': '1.937'}\\n{'loss': '0.4908', 'grad_norm': '4.031', 'learning_rate': '3.668e-08', 'entropy': '0.5075', 'num_tokens': '3.079e+06', 'mean_token_accuracy': '0.8668', 'epoch': '1.947'}\\n{'loss': '0.4787', 'grad_norm': '3.531', 'learning_rate': '2.371e-08', 'entropy': '0.4932', 'num_tokens': '3.096e+06', 'mean_token_accuracy': '0.87', 'epoch': '1.958'}\\n{'loss': '0.4551', 'grad_norm': '3.734', 'learning_rate': '1.356e-08', 'entropy': '0.4856', 'num_tokens': '3.112e+06', 'mean_token_accuracy': '0.8749', 'epoch': '1.969'}\\n{'loss': '0.4825', 'grad_norm': '3.516', 'learning_rate': '6.223e-09', 'entropy': '0.5041', 'num_tokens': '3.129e+06', 'mean_token_accuracy': '0.8715', 'epoch': '1.98'}\\n{'loss': '0.4845', 'grad_norm': '3.859', 'learning_rate': '1.707e-09', 'entropy': '0.5154', 'num_tokens': '3.146e+06', 'mean_token_accuracy': '0.8694', 'epoch': '1.99'}\\n{'loss': '0.4784', 'grad_norm': '7.812', 'learning_rate': '1.411e-11', 'entropy': '0.5177', 'num_tokens': '3.16e+06', 'mean_token_accuracy': '0.8673', 'epoch': '2'}\\n{'train_runtime': '1652', 'train_samples_per_second': '9.046', 'train_steps_per_second': '1.132', 'train_loss': '0.6062', 'epoch': '2'}\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.02s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.02s/it]\\n2026-05-16 19:51:59,162 [INFO] SFT recovery complete.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "07197b2b-62ae-4b4e-9714-be46408c40e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': '0.484', 'grad_norm': '3.344', 'learning_rate': '2.621e-06', 'entropy': '0.5118', 'num_tokens': '2.415e+06', 'mean_token_accuracy': '0.8695', 'epoch': '1.53'}\\\\n{'loss': '0.4859', 'grad_norm': '4.219', 'learning_rate': '2.509e-06', 'entropy': '0.4966', 'num_tokens': '2.433e+06', 'mean_token_accuracy': '0.8721', 'epoch': '1.541'}\\\\n\\\\r 78%|███████▊  | 1450/1870 [21:19<06:15,  1.12it/s]\\\\r 78%|███████▊  | 1451/1870 [21:20<06:10,  1.13it/s]\\\\r 78%|███████▊  | 1452/1870 [21:21<06:05,  1.14it/s]\\\\r 78%|███████▊  | 1453/1870 [21:22<06:02,  1.15it/s]\\\\r 78%|███████▊  | 1454/1870 [21:23<06:18,  1.10it/s]\\\\r 78%|███████▊  | 1455/1870 [21:23<06:13,  1.11it/s]\\\\r 78%|███████▊  | 1456/1870 [21:24<06:09,  1.12it/s]\\\\r 78%|███████▊  | 1457/1870 [21:25<06:04,  1.13it/s]\\\\r 78%|███████▊  | 1458/1870 [21:26<06:01,  1.14it/s]\\\\r 78%|███████▊  | 1459/1870 [21:27<06:18,  1.09it/s]\\\\r 78%|███████▊  | 1460/1870 [21:28<06:10,  1.11it/s]\\\\r                                                   \\\\r\\\\r 78%|███████▊  | 1460/1870 [21:28<06:10,  1.11it/s]\\\\r 78%|███████▊  | 1461/1870 [21:29<06:05,  1.12it/s]\\\\r 78%|███████▊  | 1462/1870 [21:30<06:02,  1.13it/s]\\\\r 78%|███████▊  | 1463/1870 [21:31<05:57,  1.14it/s]\\\\r 78%|███████▊  | 1464/1870 [21:31<05:53,  1.15it/s]\\\\r 78%|███████▊  | 1465/1870 [21:32<06:05,  1.11it/s]\\\\r 78%|███████▊  | 1466/1870 [21:33<06:01,  1.12it/s]\\\\r 78%|███████▊  | 1467/1870 [21:34<06:01,  1.12it/s]\\\\r 79%|███████▊  | 1468/1870 [21:35<05:53,  1.14it/s]\\\\r 79%|███████▊  | 1469/1870 [21:36<05:48,  1.15it/s]\\\\r 79%|███████▊  | 1470/1870 [21:37<06:07,  1.09it/s]\\\\r                                                   \\\\r\\\\r 79%|███████▊  | 1470/1870 [21:37<06:07,  1.09it/s]\\\\r 79%|███████▊  | 1471/1870 [21:38<06:00,  1.11it/s]\\\\r 79%|███████▊  | 1472/1870 [21:39<05:53,  1.12it/s]\\\\r 79%|███████▉  | 1473/1870 [21:39<05:47,  1.14it/s]\\\\r 79%|███████▉  | 1474/1870 [21:40<05:43,  1.15it/s]\\\\r 79%|███████▉  | 1475/1870 [21:41<05:40,  1.16it/s]\\\\r 79%|███████▉  | 1476/1870 [21:42<06:02,  1.09it/s]\\\\r 79%|███████▉  | 1477/1870 [21:43<05:57,  1.10it/s]\\\\r 79%|███████▉  | 1478/1870 [21:44<05:54,  1.11it/s]\\\\r 79%|███████▉  | 1479/1870 [21:45<05:52,  1.11it/s]\\\\r 79%|███████▉  | 1480/1870 [21:46<05:52,  1.11it/s]\\\\r                                                   \\\\r\\\\r 79%|███████▉  | 1480/1870 [21:46<05:52,  1.11it/s]\\\\r 79%|███████▉  | 1481/1870 [21:47<06:01,  1.08it/s]\\\\r 79%|███████▉  | 1482/1870 [21:48<05:53,  1.10it/s]\\\\r 79%|███████▉  | 1483/1870 [21:48<05:47,  1.11it/s]\\\\r 79%|███████▉  | 1484/1870 [21:49<05:40,  1.13it/s]\\\\r 79%|███████▉  | 1485/1870 [21:50<05:39,  1.13it/s]\\\\r 79%|███████▉  | 1486/1870 [21:51<05:35,  1.15it/s]\\\\r 80%|███████▉  | 1487/1870 [21:52<05:49,  1.10it/s]\\\\r 80%|███████▉  | 1488/1870 [21:53<05:40,  1.12it/s]\\\\r 80%|███████▉  | 1489/1870 [21:54<05:37,  1.13it/s]\\\\r 80%|███████▉  | 1490/1870 [21:55<05:35,  1.13it/s]\\\\r                                                   \\\\r\\\\r 80%|███████▉  | 1490/1870 [21:55<05:35,  1.13it/s]\\\\r 80%|███████▉  | 1491/1870 [21:56<05:32,  1.14it/s]\\\\r 80%|███████▉  | 1492/1870 [21:56<05:40,  1.11it/s]\\\\r 80%|███████▉  | 1493/1870 [21:57<05:35,  1.12it/s]\\\\r 80%|███████▉  | 1494/1870 [21:58<05:27,  1.15it/s]\\\\r 80%|███████▉  | 1495/1870 [21:59<05:23,  1.16it/s]\\\\r 80%|████████  | 1496/1870 [22:00<05:21,  1.16it/s]\\\\r 80%|████████  | 1497/1870 [22:01<05:21,  1.16it/s]\\\\r 80%|████████  | 1498/1870 [22:02<05:32,  1.12it/s]\\\\r 80%|████████  | 1499/1870 [22:03<05:28,  1.13it/s]\\\\r 80%|████████  | 1500/1870 [22:03<05:20,  1.15it/s]\\\\r                                                   \\\\r\\\\r 80%|████████  | 1500/1870 [22:03<05:20,  1.15it/s]\\\\r 80%|████████  | 1501/1870 [22:04<05:17,  1.16it/s]\\\\r 80%|████████  | 1502/1870 [22:05<05:14,  1.17it/s]\\\\r 80%|████████  | 1503/1870 [22:06<05:13,  1.17it/s]\\\\r 80%|████████  | 1504/1870 [22:07<05:28,  1.11it/s]\\\\r 80%|████████  | 1505/1870 [22:08<05:21,  1.13it/s]\\\\r 81%|████████  | 1506/1870 [22:09<05:17,  1.15it/s]\\\\r 81%|████████  | 1507/1870 [22:09<05:15,  1.15it/s]\\\\r 81%|████████  | 1508/1870 [22:10<05:11,  1.16it/s]\\\\r 81%|████████  | 1509/1870 [22:11<05:09,  1.17it/s]\\\\r 81%|████████  |\\\\n\\\\n... [截断: 输出过长，省略 26589 字符] ...\\\\n\\\\n '2.804e+06', 'mean_token_accuracy': '0.8715', 'epoch': '1.776'}\\\\n{'loss': '0.4688', 'grad_norm': '4.438', 'learning_rate': '5.647e-07', 'entropy': '0.4971', 'num_tokens': '2.822e+06', 'mean_token_accuracy': '0.8731', 'epoch': '1.787'}\\\\n{'loss': '0.5253', 'grad_norm': '4.188', 'learning_rate': '5.104e-07', 'entropy': '0.5274', 'num_tokens': '2.839e+06', 'mean_token_accuracy': '0.8597', 'epoch': '1.798'}\\\\n{'loss': '0.4716', 'grad_norm': '3.766', 'learning_rate': '4.588e-07', 'entropy': '0.5009', 'num_tokens': '2.856e+06', 'mean_token_accuracy': '0.8724', 'epoch': '1.808'}\\\\n{'loss': '0.4512', 'grad_norm': '3.594', 'learning_rate': '4.098e-07', 'entropy': '0.4733', 'num_tokens': '2.873e+06', 'mean_token_accuracy': '0.8781', 'epoch': '1.819'}\\\\n{'loss': '0.489', 'grad_norm': '4.219', 'learning_rate': '3.636e-07', 'entropy': '0.5157', 'num_tokens': '2.89e+06', 'mean_token_accuracy': '0.8679', 'epoch': '1.83'}\\\\n{'loss': '0.4997', 'grad_norm': '3.781', 'learning_rate': '3.2e-07', 'entropy': '0.5093', 'num_tokens': '2.908e+06', 'mean_token_accuracy': '0.8694', 'epoch': '1.84'}\\\\n{'loss': '0.46', 'grad_norm': '3.594', 'learning_rate': '2.792e-07', 'entropy': '0.4833', 'num_tokens': '2.924e+06', 'mean_token_accuracy': '0.8755', 'epoch': '1.851'}\\\\n{'loss': '0.4749', 'grad_norm': '3.859', 'learning_rate': '2.412e-07', 'entropy': '0.4941', 'num_tokens': '2.94e+06', 'mean_token_accuracy': '0.871', 'epoch': '1.862'}\\\\n{'loss': '0.5049', 'grad_norm': '4.594', 'learning_rate': '2.059e-07', 'entropy': '0.5257', 'num_tokens': '2.957e+06', 'mean_token_accuracy': '0.8665', 'epoch': '1.872'}\\\\n{'loss': '0.5098', 'grad_norm': '3.859', 'learning_rate': '1.734e-07', 'entropy': '0.5128', 'num_tokens': '2.973e+06', 'mean_token_accuracy': '0.8664', 'epoch': '1.883'}\\\\n{'loss': '0.5222', 'grad_norm': '4.312', 'learning_rate': '1.436e-07', 'entropy': '0.5291', 'num_tokens': '2.99e+06', 'mean_token_accuracy': '0.8598', 'epoch': '1.894'}\\\\n{'loss': '0.5063', 'grad_norm': '3.688', 'learning_rate': '1.166e-07', 'entropy': '0.5176', 'num_tokens': '3.009e+06', 'mean_token_accuracy': '0.8633', 'epoch': '1.905'}\\\\n{'loss': '0.4902', 'grad_norm': '3.547', 'learning_rate': '9.245e-08', 'entropy': '0.4974', 'num_tokens': '3.026e+06', 'mean_token_accuracy': '0.8717', 'epoch': '1.915'}\\\\n{'loss': '0.4826', 'grad_norm': '3.625', 'learning_rate': '7.105e-08', 'entropy': '0.499', 'num_tokens': '3.043e+06', 'mean_token_accuracy': '0.871', 'epoch': '1.926'}\\\\n{'loss': '0.4696', 'grad_norm': '3.641', 'learning_rate': '5.246e-08', 'entropy': '0.4891', 'num_tokens': '3.062e+06', 'mean_token_accuracy': '0.8773', 'epoch': '1.937'}\\\\n{'loss': '0.4908', 'grad_norm': '4.031', 'learning_rate': '3.668e-08', 'entropy': '0.5075', 'num_tokens': '3.079e+06', 'mean_token_accuracy': '0.8668', 'epoch': '1.947'}\\\\n{'loss': '0.4787', 'grad_norm': '3.531', 'learning_rate': '2.371e-08', 'entropy': '0.4932', 'num_tokens': '3.096e+06', 'mean_token_accuracy': '0.87', 'epoch': '1.958'}\\\\n{'loss': '0.4551', 'grad_norm': '3.734', 'learning_rate': '1.356e-08', 'entropy': '0.4856', 'num_tokens': '3.112e+06', 'mean_token_accuracy': '0.8749', 'epoch': '1.969'}\\\\n{'loss': '0.4825', 'grad_norm': '3.516', 'learning_rate': '6.223e-09', 'entropy': '0.5041', 'num_tokens': '3.129e+06', 'mean_token_accuracy': '0.8715', 'epoch': '1.98'}\\\\n{'loss': '0.4845', 'grad_norm': '3.859', 'learning_rate': '1.707e-09', 'entropy': '0.5154', 'num_tokens': '3.146e+06', 'mean_token_accuracy': '0.8694', 'epoch': '1.99'}\\\\n{'loss': '0.4784', 'grad_norm': '7.812', 'learning_rate': '1.411e-11', 'entropy': '0.5177', 'num_tokens': '3.16e+06', 'mean_token_accuracy': '0.8673', 'epoch': '2'}\\\\n{'train_runtime': '1652', 'train_samples_per_second': '9.046', 'train_steps_per_second': '1.132', 'train_loss': '0.6062', 'epoch': '2'}\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.02s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.02s/it]\\\\n2026-05-16 19:51:59,162 [INFO] SFT recovery complete.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{'loss': '0.484', 'grad_norm': '3.344', 'learning_rate': '2.621e-06', 'entropy': '0.5118', 'num_tokens': '2.415e+06', 'mean_token_accuracy': '0.8695', 'epoch': '1.53'}\\n{'loss': '0.4859', 'grad_norm': '4.219', 'learning_rate': '2.509e-06', 'entropy': '0.4966', 'num_tokens': '2.433e+06', 'mean_token_accuracy': '0.8721', 'epoch': '1.541'}\\n\\r 78%|███████▊  | 1450/1870 [21:19<06:15,  1.12it/s]\\r 78%|███████▊  | 1451/1870 [21:20<06:10,  1.13it/s]\\r 78%|███████▊  | 1452/1870 [21:21<06:05,  1.14it/s]\\r 78%|███████▊  | 1453/1870 [21:22<06:02,  1.15it/s]\\r 78%|███████▊  | 1454/1870 [21:23<06:18,  1.10it/s]\\r 78%|███████▊  | 1455/1870 [21:23<06:13,  1.11it/s]\\r 78%|███████▊  | 1456/1870 [21:24<06:09,  1.12it/s]\\r 78%|███████▊  | 1457/1870 [21:25<06:04,  1.13it/s]\\r 78%|███████▊  | 1458/1870 [21:26<06:01,  1.14it/s]\\r 78%|███████▊  | 1459/1870 [21:27<06:18,  1.09it/s]\\r 78%|███████▊  | 1460/1870 [21:28<06:10,  1.11it/s]\\r                                                   \\r\\r 78%|███████▊  | 1460/1870 [21:28<06:10,  1.11it/s]\\r 78%|███████▊  | 1461/1870 [21:29<06:05,  1.12it/s]\\r 78%|███████▊  | 1462/1870 [21:30<06:02,  1.13it/s]\\r 78%|███████▊  | 1463/1870 [21:31<05:57,  1.14it/s]\\r 78%|███████▊  | 1464/1870 [21:31<05:53,  1.15it/s]\\r 78%|███████▊  | 1465/1870 [21:32<06:05,  1.11it/s]\\r 78%|███████▊  | 1466/1870 [21:33<06:01,  1.12it/s]\\r 78%|███████▊  | 1467/1870 [21:34<06:01,  1.12it/s]\\r 79%|███████▊  | 1468/1870 [21:35<05:53,  1.14it/s]\\r 79%|███████▊  | 1469/1870 [21:36<05:48,  1.15it/s]\\r 79%|███████▊  | 1470/1870 [21:37<06:07,  1.09it/s]\\r                                                   \\r\\r 79%|███████▊  | 1470/1870 [21:37<06:07,  1.09it/s]\\r 79%|███████▊  | 1471/1870 [21:38<06:00,  1.11it/s]\\r 79%|███████▊  | 1472/1870 [21:39<05:53,  1.12it/s]\\r 79%|███████▉  | 1473/1870 [21:39<05:47,  1.14it/s]\\r 79%|███████▉  | 1474/1870 [21:40<05:43,  1.15it/s]\\r 79%|███████▉  | 1475/1870 [21:41<05:40,  1.16it/s]\\r 79%|███████▉  | 1476/1870 [21:42<06:02,  1.09it/s]\\r 79%|███████▉  | 1477/1870 [21:43<05:57,  1.10it/s]\\r 79%|███████▉  | 1478/1870 [21:44<05:54,  1.11it/s]\\r 79%|███████▉  | 1479/1870 [21:45<05:52,  1.11it/s]\\r 79%|███████▉  | 1480/1870 [21:46<05:52,  1.11it/s]\\r                                                   \\r\\r 79%|███████▉  | 1480/1870 [21:46<05:52,  1.11it/s]\\r 79%|███████▉  | 1481/1870 [21:47<06:01,  1.08it/s]\\r 79%|███████▉  | 1482/1870 [21:48<05:53,  1.10it/s]\\r 79%|███████▉  | 1483/1870 [21:48<05:47,  1.11it/s]\\r 79%|███████▉  | 1484/1870 [21:49<05:40,  1.13it/s]\\r 79%|███████▉  | 1485/1870 [21:50<05:39,  1.13it/s]\\r 79%|███████▉  | 1486/1870 [21:51<05:35,  1.15it/s]\\r 80%|███████▉  | 1487/1870 [21:52<05:49,  1.10it/s]\\r 80%|███████▉  | 1488/1870 [21:53<05:40,  1.12it/s]\\r 80%|███████▉  | 1489/1870 [21:54<05:37,  1.13it/s]\\r 80%|███████▉  | 1490/1870 [21:55<05:35,  1.13it/s]\\r                                                   \\r\\r 80%|███████▉  | 1490/1870 [21:55<05:35,  1.13it/s]\\r 80%|███████▉  | 1491/1870 [21:56<05:32,  1.14it/s]\\r 80%|███████▉  | 1492/1870 [21:56<05:40,  1.11it/s]\\r 80%|███████▉  | 1493/1870 [21:57<05:35,  1.12it/s]\\r 80%|███████▉  | 1494/1870 [21:58<05:27,  1.15it/s]\\r 80%|███████▉  | 1495/1870 [21:59<05:23,  1.16it/s]\\r 80%|████████  | 1496/1870 [22:00<05:21,  1.16it/s]\\r 80%|████████  | 1497/1870 [22:01<05:21,  1.16it/s]\\r 80%|████████  | 1498/1870 [22:02<05:32,  1.12it/s]\\r 80%|████████  | 1499/1870 [22:03<05:28,  1.13it/s]\\r 80%|████████  | 1500/1870 [22:03<05:20,  1.15it/s]\\r                                                   \\r\\r 80%|████████  | 1500/1870 [22:03<05:20,  1.15it/s]\\r 80%|████████  | 1501/1870 [22:04<05:17,  1.16it/s]\\r 80%|████████  | 1502/1870 [22:05<05:14,  1.17it/s]\\r 80%|████████  | 1503/1870 [22:06<05:13,  1.17it/s]\\r 80%|████████  | 1504/1870 [22:07<05:28,  1.11it/s]\\r 80%|████████  | 1505/1870 [22:08<05:21,  1.13it/s]\\r 81%|████████  | 1506/1870 [22:09<05:17,  1.15it/s]\\r 81%|████████  | 1507/1870 [22:09<05:15,  1.15it/s]\\r 81%|████████  | 1508/1870 [22:10<05:11,  1.16it/s]\\r 81%|████████  | 1509/1870 [22:11<05:09,  1.17it/s]\\r 81%|████████  |\\n\\n... [截断: 输出过长，省略 26589 字符] ...\\n\\n '2.804e+06', 'mean_token_accuracy': '0.8715', 'epoch': '1.776'}\\n{'loss': '0.4688', 'grad_norm': '4.438', 'learning_rate': '5.647e-07', 'entropy': '0.4971', 'num_tokens': '2.822e+06', 'mean_token_accuracy': '0.8731', 'epoch': '1.787'}\\n{'loss': '0.5253', 'grad_norm': '4.188', 'learning_rate': '5.104e-07', 'entropy': '0.5274', 'num_tokens': '2.839e+06', 'mean_token_accuracy': '0.8597', 'epoch': '1.798'}\\n{'loss': '0.4716', 'grad_norm': '3.766', 'learning_rate': '4.588e-07', 'entropy': '0.5009', 'num_tokens': '2.856e+06', 'mean_token_accuracy': '0.8724', 'epoch': '1.808'}\\n{'loss': '0.4512', 'grad_norm': '3.594', 'learning_rate': '4.098e-07', 'entropy': '0.4733', 'num_tokens': '2.873e+06', 'mean_token_accuracy': '0.8781', 'epoch': '1.819'}\\n{'loss': '0.489', 'grad_norm': '4.219', 'learning_rate': '3.636e-07', 'entropy': '0.5157', 'num_tokens': '2.89e+06', 'mean_token_accuracy': '0.8679', 'epoch': '1.83'}\\n{'loss': '0.4997', 'grad_norm': '3.781', 'learning_rate': '3.2e-07', 'entropy': '0.5093', 'num_tokens': '2.908e+06', 'mean_token_accuracy': '0.8694', 'epoch': '1.84'}\\n{'loss': '0.46', 'grad_norm': '3.594', 'learning_rate': '2.792e-07', 'entropy': '0.4833', 'num_tokens': '2.924e+06', 'mean_token_accuracy': '0.8755', 'epoch': '1.851'}\\n{'loss': '0.4749', 'grad_norm': '3.859', 'learning_rate': '2.412e-07', 'entropy': '0.4941', 'num_tokens': '2.94e+06', 'mean_token_accuracy': '0.871', 'epoch': '1.862'}\\n{'loss': '0.5049', 'grad_norm': '4.594', 'learning_rate': '2.059e-07', 'entropy': '0.5257', 'num_tokens': '2.957e+06', 'mean_token_accuracy': '0.8665', 'epoch': '1.872'}\\n{'loss': '0.5098', 'grad_norm': '3.859', 'learning_rate': '1.734e-07', 'entropy': '0.5128', 'num_tokens': '2.973e+06', 'mean_token_accuracy': '0.8664', 'epoch': '1.883'}\\n{'loss': '0.5222', 'grad_norm': '4.312', 'learning_rate': '1.436e-07', 'entropy': '0.5291', 'num_tokens': '2.99e+06', 'mean_token_accuracy': '0.8598', 'epoch': '1.894'}\\n{'loss': '0.5063', 'grad_norm': '3.688', 'learning_rate': '1.166e-07', 'entropy': '0.5176', 'num_tokens': '3.009e+06', 'mean_token_accuracy': '0.8633', 'epoch': '1.905'}\\n{'loss': '0.4902', 'grad_norm': '3.547', 'learning_rate': '9.245e-08', 'entropy': '0.4974', 'num_tokens': '3.026e+06', 'mean_token_accuracy': '0.8717', 'epoch': '1.915'}\\n{'loss': '0.4826', 'grad_norm': '3.625', 'learning_rate': '7.105e-08', 'entropy': '0.499', 'num_tokens': '3.043e+06', 'mean_token_accuracy': '0.871', 'epoch': '1.926'}\\n{'loss': '0.4696', 'grad_norm': '3.641', 'learning_rate': '5.246e-08', 'entropy': '0.4891', 'num_tokens': '3.062e+06', 'mean_token_accuracy': '0.8773', 'epoch': '1.937'}\\n{'loss': '0.4908', 'grad_norm': '4.031', 'learning_rate': '3.668e-08', 'entropy': '0.5075', 'num_tokens': '3.079e+06', 'mean_token_accuracy': '0.8668', 'epoch': '1.947'}\\n{'loss': '0.4787', 'grad_norm': '3.531', 'learning_rate': '2.371e-08', 'entropy': '0.4932', 'num_tokens': '3.096e+06', 'mean_token_accuracy': '0.87', 'epoch': '1.958'}\\n{'loss': '0.4551', 'grad_norm': '3.734', 'learning_rate': '1.356e-08', 'entropy': '0.4856', 'num_tokens': '3.112e+06', 'mean_token_accuracy': '0.8749', 'epoch': '1.969'}\\n{'loss': '0.4825', 'grad_norm': '3.516', 'learning_rate': '6.223e-09', 'entropy': '0.5041', 'num_tokens': '3.129e+06', 'mean_token_accuracy': '0.8715', 'epoch': '1.98'}\\n{'loss': '0.4845', 'grad_norm': '3.859', 'learning_rate': '1.707e-09', 'entropy': '0.5154', 'num_tokens': '3.146e+06', 'mean_token_accuracy': '0.8694', 'epoch': '1.99'}\\n{'loss': '0.4784', 'grad_norm': '7.812', 'learning_rate': '1.411e-11', 'entropy': '0.5177', 'num_tokens': '3.16e+06', 'mean_token_accuracy': '0.8673', 'epoch': '2'}\\n{'train_runtime': '1652', 'train_samples_per_second': '9.046', 'train_steps_per_second': '1.132', 'train_loss': '0.6062', 'epoch': '2'}\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.02s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.02s/it]\\n2026-05-16 19:51:59,162 [INFO] SFT recovery complete.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K4fRi92Aur8Vi3WyKoPCQX`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25 -name \"trainer_state.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "8bf34a3f-33e4-4503-8ea9-d672bddb9844",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EFCm7YJMy8q5Gnmoy4PWk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 23947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T12:02:45.624Z_
+
+<details><summary>↩ Tool result · `toolu_01K4fRi92Aur8Vi3WyKoPCQX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "9d368dcc-a480-40aa-8069-3ffa1c0ca469",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FiAjCYnziHobm928mGqEvD`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "find /root -name \"sft_qwen_math_rasp_25*.log\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "74c7f06d-6f27-412f-b43f-f12116dafb74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EFCm7YJMy8q5Gnmoy4PWk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 23947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T12:02:46.363Z_
+
+<details><summary>↩ Tool result · `toolu_01FiAjCYnziHobm928mGqEvD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "1699c1e7-ed61-4cca-b534-2213c2e93a02",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+**训练成功完成。**
+
+### 结果摘要
+
+| 指标 | 值 |
+|------|-----|
+| 状态 | ✅ 正常完成（"SFT recovery complete."） |
+| final train_loss | **0.6062** |
+| final mean_token_accuracy | **0.8673**（最后一步）|
+| epoch | **2.0**（完整 2 epochs，1870/1870 steps） |
+| train_runtime | **1652s**（~27.5 分钟） |
+| throughput | 9.046 samples/s, 1.132 steps/s |
+| 模型输出路径 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25/` |
+
+模型文件完整：`model.safetensors`（10.8GB）+ config.json + tokenizer + generation_config。无 checkpoint 子目录（训练结束后仅保存最终模型）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "uuid": "4f9123e1-dc60-4214-8ac6-3c5887d4ed6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VA3kUSfBQNt6zVkszKbsRw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5280,
+      "cache_read_input_tokens": 24745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5280
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 20_
+
+**训练成功完成。**
+
+### 结果摘要
+
+| 指标 | 值 |
+|------|-----|
+| 状态 | ✅ 正常完成（"SFT recovery complete."） |
+| final train_loss | **0.6062** |
+| final mean_token_accuracy | **0.8673**（最后一步）|
+| epoch | **2.0**（完整 2 epochs，1870/1870 steps） |
+| train_runtime | **1652s**（~27.5 分钟） |
+| throughput | 9.046 samples/s, 1.132 steps/s |
+| 模型输出路径 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25/` |
+
+模型文件完整：`model.safetensors`（10.8GB）+ config.json + tokenizer + generation_config。无 checkpoint 子目录（训练结束后仅保存最终模型）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 27214,
+  "duration_api_ms": 26905,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "2675cedf-03ad-4d19-b30f-318cc1bafc0e",
+  "total_cost_usd": 0.1846015,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 18184,
+    "cache_read_input_tokens": 84027,
+    "output_tokens": 1091,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 18184,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 270,
+        "cache_read_input_tokens": 24745,
+        "cache_creation_input_tokens": 5280,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5280
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1498,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016229999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1091,
+      "cacheReadInputTokens": 84027,
+      "cacheCreationInputTokens": 18184,
+      "webSearchRequests": 0,
+      "costUSD": 0.1829785,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8a65b9b0-2c81-472b-9344-cac9249146da"
+}
+```
+
+</details>
+
+---

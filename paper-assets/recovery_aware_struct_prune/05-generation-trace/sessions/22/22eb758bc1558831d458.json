@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22eb758bc1558831d458",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops grpo rasp step30 kill",
+  "task_key": "worker_ops_grpo-rasp-step30-kill_20260515T174740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_grpo-rasp-step30-kill_20260515T174740_result.json",
+    "occurrence": 1,
+    "bytes": 275,
+    "sha256": "0e16c20d27cd1696824138b8a48690bfc4407250d79e11879ad48f20551fbf7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **PID 532861** 在跑，已 3h14m\n- **Step 20 已完成**，指标已确认 collapse：grad_norm=0.01086, frac_zero_std=0.9, reward=0.02563\n- **Step 30 预计 ~5 min 后到达**（每步 ~400s）\n\n3 分钟后自动回来检查 step 30。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-grpo-rasp-step30-kill.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_sft_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:09:04.809Z",
+    "updated_at": "2026-05-20T17:09:11.139Z",
+    "hypothesis": "GSM8K N=1319 eval on RASP 20% SFT checkpoint (pre-GRPO). Fills Table 2 SFT column for RASP method. Compare with CKA-only and Standard SFT baselines at same sparsity.",
+    "parent": "pipeline_rasp_20"
+  },
+  "timestamp": "2026-05-20T17:09:11.674863+00:00",
+  "trigger": "update_registry"
+}

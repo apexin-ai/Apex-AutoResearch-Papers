@@ -1,0 +1,1471 @@
+- id: art_20260514_40be48
+  name: model_utils.py
+  type: intermediate
+  description: 通用剪枝模型加载函数，处理非均匀 MLP 维度，eval/train/analysis 共用
+  path: projects/recovery_aware_struct_prune/artifacts/_project/intermediate/model_utils_info.txt
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:44:40.783508+00:00'
+  tags: []
+- id: art_20260514_rw_notes
+  name: related_work_notes.md
+  type: document
+  description: Related Work 素材笔记，按5个主题组织24篇文献，含可用claims和RASP定位narrative
+  path: projects/recovery_aware_struct_prune/artifacts/related_work_notes.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:00:00.000000+00:00'
+  tags:
+  - literature
+  - related-work
+  - writing
+- id: art_20260514_cb6d64
+  name: mvp_v2_analysis
+  type: report
+  description: MVP RASP Pipeline V2 实验结果分析：实验失败，Pipeline 遗漏 SFT warmup 导致 GRPO 无法在退化模型上学习，核心
+    Spearman ρ 未计算
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/mvp_v2_analysis.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:55:03.991083+00:00'
+  tags:
+  - mvp_v2
+  - experiment_analysis
+  - failed
+- id: art_20260515_f1390a
+  name: table1_postprune
+  type: paper
+  description: 'LaTeX table: Post-prune accuracy comparison (Baseline/Standard/RASP
+    20%). booktabs+siunitx.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/table1_postprune.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:41:32.173764+00:00'
+  tags:
+  - paper
+  - table
+  - latex
+- id: art_20260515_bfc818
+  name: table2_recovery
+  type: paper
+  description: 'LaTeX table: Recovery pipeline comparison (Post-Prune → +SFT → +GRPO).
+    booktabs+siunitx.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/table2_recovery.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:41:32.474369+00:00'
+  tags:
+  - paper
+  - table
+  - latex
+- id: art_20260515_a2d11a
+  name: table3_alpha
+  type: paper
+  description: 'LaTeX table: α ablation study results. booktabs+siunitx.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/table3_alpha.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:41:32.605738+00:00'
+  tags:
+  - paper
+  - table
+  - latex
+- id: art_20260515_28f67c
+  name: figure_plan
+  type: paper
+  description: 论文图表设计方案：6张图（3必需+3可选），含数据依赖和状态标注
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/figure_plan.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:44:24.072075+00:00'
+  tags:
+  - paper
+  - figure
+  - plan
+- id: art_20260515_33b76c
+  name: literature_notes
+  type: paper
+  description: 'Related work survey: 5篇核心对比文献+6篇补充，含BibTeX，WebSearch验证真实性'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/literature_notes.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:47:03.664032+00:00'
+  tags:
+  - paper
+  - literature
+  - related-work
+- id: art_20260515_0b7088
+  name: method_section_draft
+  type: paper
+  description: 'Method section LaTeX draft: 4 subsections (Preliminaries/Stage1-3),
+    Algorithm 1 (algpseudocode), per-layer capacity floor, two-stage recovery'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/method.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:58:10.196863+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+- id: art_20260515_063cda
+  name: literature_notes
+  type: paper
+  description: 'Related work survey: 5 core + 6 supplementary papers with BibTeX,
+    verified via WebSearch'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/literature_notes_063cda.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:58:43.220753+00:00'
+  tags:
+  - paper
+  - literature
+  - related-work
+- id: art_20260515_3d75d5
+  name: related_work_section
+  type: paper
+  description: 'Related Work LaTeX: 3 subsections, 21 citations verified, ~600 words.
+    Gap: no CKA-guided pruning for RLVR recovery.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/related_work_3d75d5.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T05:07:02.454350+00:00'
+  tags:
+  - paper
+  - related-work
+  - latex
+- id: art_20260515_4ad0ba
+  name: introduction_draft
+  type: paper
+  description: 'Introduction LaTeX: ~640 words, 13 citations, 3 GRPO TBD placeholders.
+    Redundancy Paradox framing, 20% sparsity data.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/introduction_4ad0ba.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T05:16:22.424187+00:00'
+  tags:
+  - paper
+  - introduction
+  - latex
+- id: art_20260515_d17ad4
+  name: experiments_setup_draft
+  type: paper
+  description: 'Experiments LaTeX: Setup/Pruning Config/Recovery Pipeline complete,
+    Results+Ablation as TBD placeholders.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/experiments.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T05:18:52.202749+00:00'
+  tags:
+  - paper
+  - experiments
+  - latex
+- id: art_20260515_2f7f7c
+  name: limitations_draft
+  type: paper
+  description: 'Limitations LaTeX: ~270 words, 4 items (single model, single benchmark,
+    no speedup, limited seeds).'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/limitations.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T05:23:05.362219+00:00'
+  tags:
+  - paper
+  - limitations
+  - latex
+- id: art_20260515_b91471
+  name: cka_per_layer_overlap
+  type: chart
+  description: Per-layer CKA overlap bar chart (MLP+Attention). MLP overlap 0.89-0.99,
+    Attention varies 0.53-0.86. Top-3 high overlap layers marked.
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/cka_per_layer_overlap_ref.txt
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:14:11.783560+00:00'
+  tags:
+  - paper
+  - figure
+  - cka
+- id: art_20260515_bf0346
+  name: cka_heatmap
+  type: chart
+  description: 'CKA heatmap 2x2: high vs low overlap layers, attention head pairwise
+    CKA. High-overlap layers show uniform similarity, low-overlap layers show head
+    differentiation.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/cka_heatmap_ref.txt
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:14:14.155602+00:00'
+  tags:
+  - paper
+  - figure
+  - cka
+- id: art_20260515_1c4351
+  name: fig1_rasp_pipeline
+  type: chart
+  description: 'RASP 三阶段 pipeline 概念图 (Figure 1): Structural Analysis → Recovery-Aware
+    Scoring → Two-Stage Recovery. 展示 Standard Pruning vs RASP 的关键对比，高 overlap 头被剪枝、低
+    overlap 唯一头被保护。'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig1_rasp_pipeline.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:27:44.906802+00:00'
+  tags:
+  - paper
+  - figure1
+  - pipeline
+  - concept-diagram
+- id: art_20260515_b55f43
+  name: plot_fig1_pipeline_script
+  type: intermediate
+  description: 生成 Figure 1 pipeline 概念图的 Python 脚本
+  path: projects/recovery_aware_struct_prune/artifacts/_project/intermediate/plot_fig1_pipeline.py
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:27:46.677904+00:00'
+  tags:
+  - script
+  - figure1
+- id: art_20260515_163398
+  name: alpha_verify_512_script
+  type: intermediate
+  description: Alpha verification script with calibration=512 for α=0.0 and α=4.0,
+    GSM8K N=500 eval, dual GPU parallel
+  path: projects/recovery_aware_struct_prune/artifacts/_project/intermediate/run_alpha_verify_512.sh
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T09:29:14.196779+00:00'
+  tags:
+  - alpha_ablation
+  - verification
+  - calibration_512
+- id: art_20260515_b83151
+  name: sft_rasp_20_westd training log
+  type: intermediate
+  description: SFT recovery training log on westd-11672 cuda:0, reproducing RASP 20%
+    pruned model SFT for full N=1319 eval
+  path: projects/recovery_aware_struct_prune/artifacts/sft_rasp_20_westd_retrain/intermediate/sft_rasp_20_westd_retrain_info.txt
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: sft_rasp_20_westd_retrain
+  skill: ''
+  created_at: '2026-05-15T17:00:39.354236+00:00'
+  tags: []
+- id: art_20260515_6dde45
+  name: Paper Results Tables
+  type: report
+  description: 'Structured tables for paper: Table 1 (post-prune accuracy), Table
+    2 (post-SFT recovery with N=1319 full eval), Table 3 (GRPO collapse timeline).
+    All data from registry.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/paper_results_tables.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:35:04.286575+00:00'
+  tags:
+  - paper
+  - tables
+  - results
+- id: art_20260515_b2ad62
+  name: Statistical Summary
+  type: report
+  description: 'Complete statistical analysis: all pairwise z-test p-values, 95% CIs,
+    significance annotations, power analysis notes. Core findings: GraSP vs Standard
+    p=0.001, RASP vs Standard p=0.248 (ns at N=1319).'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/statistical_summary.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:35:06.928768+00:00'
+  tags:
+  - paper
+  - statistics
+  - p-values
+  - confidence-intervals
+- id: art_20260516_02fd77
+  name: grpo_collapse_dynamics_analysis
+  type: report
+  description: 三模型 GRPO collapse dynamics 深度分析：RASP (entropy death, irreversible ≤step
+    10), Standard (transient grad cliff step 60, recovers by step 90), Unpruned (reward-mode
+    collapse ~step 80). 质性不同的失败模式强化 Claim 2。含 wandb 指标对比表。
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/grpo_collapse_dynamics_analysis.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:15:48.282037+00:00'
+  tags:
+  - grpo
+  - collapse
+  - dynamics
+  - three-model-comparison
+  - claim2
+- id: art_20260516_91398c
+  name: evidence_table
+  type: report
+  description: Structured evidence tables (Tables 1-5) for EMNLP 2026 paper with data
+    consistency audit against paper_framing.md and registry
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/evidence_table.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:26:56.370343+00:00'
+  tags:
+  - paper
+  - evidence
+  - data-audit
+  - emnlp2026
+- id: art_20260516_df529e
+  name: fig1_framework
+  type: chart
+  description: 'Figure 1: RASP framework overview — Standard vs Recovery-Aware pipeline
+    comparison, showing Redundancy-Stability Tradeoff (SFT +2.2pp vs GRPO 6× faster
+    collapse)'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig1_framework.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T08:10:20.300806+00:00'
+  tags:
+  - paper
+  - figure1
+  - introduction
+  - framework
+- id: art_20260516_ff2291
+  name: fig2_reward_accuracy
+  type: chart
+  description: 'Reward-Accuracy Decoupling. Left: GRPO reward curves (3 models). Right:
+    SFT vs GRPO accuracy bars. Data: grpo_unpruned_v2, grpo_stage2_standard_20_v8,
+    grpo_stage2_rasp_20_v9'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig2_reward_accuracy.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T08:29:27.191417+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+- id: art_20260516_137722
+  name: fig3_collapse_dynamics
+  type: chart
+  description: 'Collapse dynamics 2×2 subplot (reward, frac_zero_std, grad_norm, mean_terminated_length).
+    Data: grpo_unpruned_v2, grpo_stage2_standard_20_v8, grpo_stage2_rasp_20_v9'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig3_collapse_dynamics.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T08:31:56.911100+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+- id: art_20260516_bb3d28
+  name: group_selection_comparison
+  type: data
+  description: 'Per-layer MLP group retention for RASP vs RLVR vs Standard at 20%
+    sparsity. JSON+CSV format for paper figure. Key finding: RLVR≈Standard pattern,
+    only RASP is distinct (shifts pruning budget from shallow/final layers to mid-layers).'
+  path: null
+  url: westb-23072:/root/autodl-tmp/recovery_aware_struct_prune/results/group_selection_comparison.json
+  project: recovery_aware_struct_prune
+  exp_id: prune_rasp_rlvr_20
+  skill: ''
+  created_at: '2026-05-16T10:59:50.277883+00:00'
+  tags:
+  - paper-figure
+  - pruning-pattern
+  - rasp-rlvr
+- id: art_20260516_969535
+  name: analysis_grpo_standard_25_qwen_math
+  type: report
+  description: GRPO Standard 25% Qwen Math 实验分析：transient dip pattern (step 20-30
+    onset, step 40 recovery), frac_zero_std peak 0.425, 2x loss/KL spikes
+  path: projects/recovery_aware_struct_prune/artifacts/grpo_standard_25_qwen_math/report/analysis_grpo_standard_25_qwen_math.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: grpo_standard_25_qwen_math
+  skill: ''
+  created_at: '2026-05-16T15:45:28.763366+00:00'
+  tags:
+  - analysis
+  - grpo
+  - standard
+  - 25%
+  - qwen-math
+  - collapse-pattern
+- id: art_20260516_185c68
+  name: analysis_grpo_qwen_math_v3
+  type: report
+  description: GRPO v3 Qwen2.5-Math-7B 跨模型验证分析：RASP permanent collapse confirmed,
+    Standard recovery NOT reproduced
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/analysis_grpo_qwen_math_v3.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T15:49:34.192967+00:00'
+  tags:
+  - grpo
+  - qwen-math
+  - cross-model
+  - collapse
+- id: art_20260516_6e1d65
+  name: analysis_grpo_qwen_math_v3_pair
+  type: report
+  description: GRPO Qwen2.5-Math-7B v3 Standard vs RASP 20% collapse analysis with
+    cross-model comparison to Llama-3.2-3B
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/analysis_grpo_qwen_math_v3_pair.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T15:53:51.625096+00:00'
+  tags:
+  - grpo
+  - qwen-math
+  - collapse-analysis
+  - cross-model
+- id: art_20260516_b0a4c6
+  name: analysis_grpo_qwen_math_25
+  type: report
+  description: 'GRPO Qwen2.5-Math-7B 25% sparsity analysis: RASP vs Standard, comparison
+    with 20% and DeepSeek baselines. Key finding: 25% shows LESS collapse than 20%
+    (contradicts sparsity gradient hypothesis).'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/analysis_grpo_qwen_math_25.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T15:54:55.751824+00:00'
+  tags:
+  - grpo
+  - qwen-math
+  - 25pct
+  - cross-sparsity
+  - analysis
+- id: art_20260516_baffc3
+  name: diagnose_grpo_rasp_25
+  type: report
+  description: grpo_rasp_25 失败诊断报告：Cron 误判 (false positive)，实验实际 100/100 步成功完成
+  path: projects/recovery_aware_struct_prune/artifacts/grpo_rasp_25/report/diagnose_grpo_rasp_25.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: grpo_rasp_25
+  skill: ''
+  created_at: '2026-05-16T17:05:44.920553+00:00'
+  tags:
+  - diagnosis
+  - false-positive
+  - grpo
+- id: art_20260516_8d98a9
+  name: eval_sft_rasp_rlvr_20_results
+  type: data
+  description: 'GSM8K eval for RASP-RLVR 20% post-SFT. Accuracy 58.30% (769/1319).
+    Negative: below RASP SFT 61.49% and Standard SFT 59.29%.'
+  path: projects/recovery_aware_struct_prune/artifacts/eval_sft_rasp_rlvr_20/data/eval_sft_rasp_rlvr_20.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: eval_sft_rasp_rlvr_20
+  skill: ''
+  created_at: '2026-05-16T18:20:30.008551+00:00'
+  tags:
+  - eval
+  - gsm8k
+  - rasp
+  - rlvr
+  - negative
+- id: art_20260516_0b622a
+  name: diagnose_eval_pass_k8_v2
+  type: report
+  description: Diagnosis of eval_pass_k8_standard_20_grpo_qwen_math_v2 failure — false
+    positive, experiment actually succeeded with pass@8=0.91
+  path: projects/recovery_aware_struct_prune/artifacts/eval_pass_k8_standard_20_grpo_qwen_math_v2/report/diagnose_eval_pass_k8_v2.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: eval_pass_k8_standard_20_grpo_qwen_math_v2
+  skill: ''
+  created_at: '2026-05-16T23:24:25.615506+00:00'
+  tags:
+  - diagnosis
+  - false-positive
+  - eval
+- id: art_20260517_815ae0
+  name: collapse_onset_timing
+  type: data
+  description: 'COS (Collapse Onset Step) analysis for 8 GRPO runs: per-step frac_reward_zero_std,
+    grad_norm, reward with computed COS and collapse pattern classification'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/collapse_onset_timing.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T03:43:48.319311+00:00'
+  tags:
+  - cos
+  - collapse
+  - grpo
+  - frac_zero_std
+- id: art_20260517_f03b0d
+  name: eval_humaneval_sft_standard_20_2048_v2_analysis
+  type: report
+  description: HumanEval@2048 evaluation analysis for SFT Standard 20%. pass@1=11.59%,
+    19/164 correct. Includes 5-way comparison table and C1/C3 claim impact.
+  path: projects/recovery_aware_struct_prune/artifacts/eval_humaneval_sft_standard_20_2048_v2/report/eval_humaneval_sft_standard_20_2048_v2_analysis.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: eval_humaneval_sft_standard_20_2048_v2
+  skill: ''
+  created_at: '2026-05-17T17:46:38.593153+00:00'
+  tags:
+  - humaneval
+  - sft-standard
+  - evaluation
+  - 2048-tokens
+- id: art_20260517_580edd
+  name: method_draft_v1
+  type: paper
+  description: 'Method chapter draft: RASP scoring, two-stage recovery pipeline, collapse
+    diagnostic framework, experimental design'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/method.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T17:47:41.842965+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+- id: art_20260517_47e340
+  name: results_draft_v1
+  type: paper
+  description: 'Results chapter draft: C1 reward-accuracy decoupling, C2 collapse
+    gradient, C3 redundancy-stability tradeoff, alpha ablation'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/results.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T17:47:43.493957+00:00'
+  tags:
+  - paper
+  - results
+  - draft
+- id: art_20260517_8eb49e
+  name: eval_humaneval_grpo_standard_20_2048_analysis
+  type: report
+  description: HumanEval pass@1 analysis for GRPO Standard 20% pruned model with max_new_tokens=2048
+  path: projects/recovery_aware_struct_prune/artifacts/eval_humaneval_grpo_standard_20_2048/report/eval_humaneval_grpo_standard_20_2048_analysis.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: eval_humaneval_grpo_standard_20_2048
+  skill: ''
+  created_at: '2026-05-17T17:56:03.922629+00:00'
+  tags:
+  - humaneval
+  - grpo
+  - standard-pruning
+  - eval
+  - 2048-tokens
+- id: art_20260517_79570d
+  name: HumanEval@2048 Five-Way Comparison Matrix
+  type: report
+  description: 'Complete 5-model HumanEval@2048 comparison matrix with statistical
+    analysis, cross-benchmark (GSM8K) comparison, and paper claims impact assessment.
+    Key finding: GRPO+RASP achieves best pruned pass@1 (14.63%) with potential synergy
+    effect, but all pruned models show 67-77% relative degradation vs unpruned.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/humaneval_2048_complete_matrix.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T19:09:36.273399+00:00'
+  tags:
+  - humaneval
+  - evaluation
+  - comparison-matrix
+  - C1
+  - C2
+  - C3
+  - code-generation
+- id: art_20260517_c05a12
+  name: analysis_recent_results_20260517
+  type: report
+  description: 分析 grpo_rasp_25 collapse 模式、eval_postprune_cka_only_30 故障调查、30% sparsity
+    降级曲线 cliff 分析
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/analysis_recent_results_20260517.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T23:22:18.593609+00:00'
+  tags:
+  - collapse
+  - grpo
+  - sparsity-30
+  - degradation-curve
+- id: art_20260518_3a9c6a
+  name: fig2_reward_trajectories
+  type: chart
+  description: GRPO reward trajectories for 5 conditions (Unpruned, CKA-only, Random,
+    Standard fair, RASP fair) over 100 steps. Data from exp_012/exp_013/exp_017_fair/exp_018_fair/exp_grpo_unpruned.
+    CKA-only peak annotated at step 80 (0.342).
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig2_reward_trajectories.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T02:24:42.050725+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - C2_recovery_capacity
+- id: art_20260518_a2e3e4
+  name: fig3_collapse_dynamics
+  type: chart
+  description: '2x2 GRPO collapse diagnostics (frac_zero_std, grad_norm, reward, KL)
+    for 4 pruned methods. NOTE: subplot (c) reward uses preliminary data that needs
+    correction to match Director-approved values.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig3_collapse_dynamics_a2e3e4.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T02:41:59.028674+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - C2_collapse_diagnostics
+- id: art_20260518_d77222
+  name: fig2_reward_trajectories
+  type: chart
+  description: '1×2 subplot figure: (a) reward trajectory and (b) frac_zero_std for
+    4 pruning methods under GRPO v5 config. C2 headline figure for EMNLP 2026 paper.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig2_reward_trajectories.png
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T02:43:34.943933+00:00'
+  tags:
+  - figure
+  - C2
+  - GRPO
+  - reward
+  - frac_zero_std
+  - paper
+- id: art_20260518_586417
+  name: fig2_reward_trajectories
+  type: chart
+  description: 'Fig 2: GRPO reward trajectories for 5 pruning methods (CKA-only, Random,
+    Standard, RASP, Unpruned). Shows 4-way recovery capacity gradient. PDF+PNG.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig2_reward_trajectories_586417.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T02:44:07.666561+00:00'
+  tags:
+  - paper
+  - fig2
+  - C2
+  - reward_dynamics
+- id: art_20260518_ce621c
+  name: fig3_collapse_dynamics
+  type: chart
+  description: 'Fig 3: 4-panel collapse dynamics (frac_zero_std, grad_norm, reward,
+    KL) for 4 pruning methods under fair v5 config. Shows RASP permanent collapse,
+    Standard stagnation, CKA-only active recovery.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig3_collapse_dynamics_ce621c.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T02:47:31.238735+00:00'
+  tags:
+  - paper
+  - fig3
+  - C2
+  - collapse_dynamics
+- id: art_20260518_12b9c3
+  name: fig1_framework
+  type: chart
+  description: '4-method pruning comparison conceptual framework figure for EMNLP
+    2026 paper Introduction. Shows 3-row pipeline: Structural Analysis (Taylor + CKA)
+    → 4 Scoring Criteria (CKA-only, Random, Standard, RASP) → Identical Recovery →
+    Divergent Outcomes with recovery capacity gradient.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig1_framework_12b9c3.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T02:50:28.257997+00:00'
+  tags:
+  - figure
+  - paper
+  - framework
+  - introduction
+- id: art_20260518_1e3ff6
+  name: fig1_framework
+  type: chart
+  description: 'Fig 1: Framework overview — 3-row pipeline from pretrained LLM through
+    structural analysis (Taylor + CKA) to 4 scoring criteria to divergent recovery
+    outcomes. Shows recovery capacity spectrum.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig1_framework_1e3ff6.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:10:57.034567+00:00'
+  tags:
+  - paper
+  - fig1
+  - framework
+  - overview
+- id: art_20260518_593e12
+  name: fig1_framework
+  type: chart
+  description: 'Fig 1: Conceptual framework diagram showing 3-stage pipeline (Pruning
+    → SFT → GRPO) with 4 methods (CKA-only, Random, Standard, RASP) and their GRPO
+    outcomes (Active Learning → Stagnation → Borderline Collapse → Full Collapse).
+    Data source: registry exp_001-exp_004.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig1_framework_593e12.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T03:11:29.311791+00:00'
+  tags:
+  - paper
+  - fig1
+  - framework
+  - conceptual
+- id: art_20260518_fc9d6e
+  name: fig2_reward_trajectories
+  type: chart
+  description: 'Fig 2: 2-subplot reward trajectories and frac_zero_std for 4 pruning
+    methods under identical GRPO v5 config. CKA-only peak 0.342(s80), best frac_zero_std
+    0.125(s70). Data source: registry exp_001-exp_004.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig2_reward_trajectories_fc9d6e.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T03:11:33.126550+00:00'
+  tags:
+  - paper
+  - fig2
+  - reward
+  - trajectories
+- id: art_20260518_a60251
+  name: fig3_collapse_dynamics
+  type: chart
+  description: 'Fig 3: 2x2 collapse diagnostics (frac_zero_std, grad_norm, reward,
+    KL) for 4 methods. Shows RASP full collapse (frac_zero_std 0.85), Standard borderline,
+    CKA-only healthy. Data source: registry exp_001-exp_004.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig3_collapse_dynamics_a60251.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T03:11:35.988681+00:00'
+  tags:
+  - paper
+  - fig3
+  - collapse
+  - dynamics
+- id: art_20260518_30be2b
+  name: experiments_section_draft
+  type: paper
+  description: 'Experiments section (§4) full draft — 8 subsections: Setup, Recovery
+    Capacity Gradient, Reward-Accuracy Decoupling, SFT Gradient, Sparsity Cliff, Inference,
+    Ablation, Discussion. 5 table files (tab1-tab5).'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/experiments_30be2b.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:44:56.174978+00:00'
+  tags:
+  - paper
+  - experiments
+  - draft
+  - C1
+  - C2
+- id: art_20260518_b2e09d
+  name: westd_recovery_checklist
+  type: report
+  description: 'westd-11672 宕机恢复 checklist: 5 个 eval 实验的检查命令、结果读取、重提交命令和 GPU 分配方案'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/westd_recovery_checklist.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T06:41:43.733492+00:00'
+  tags:
+  - westd-11672
+  - recovery
+  - eval
+  - checklist
+- id: art_20260518_1fe0aa
+  name: bootstrap_ci_reward_trajectories
+  type: data
+  description: Bootstrap CI analysis (10K parametric resamples) on pairwise reward
+    gaps across 4 GRPO methods (CKA-only, Standard, RASP, Random) over 100-step trajectories.
+    All 6 pairwise comparisons significant at 95% CI, robust to n_eff sensitivity.
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/bootstrap_ci_reward_trajectories.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T10:19:53.794823+00:00'
+  tags:
+  - E5
+  - bootstrap
+  - reward_trajectory
+  - confidence_interval
+  - GRPO
+- id: art_20260518_d58b8d
+  name: E3 CKA Heatmap - CKA Only Pruning
+  type: data
+  description: CKA similarity matrix (28x28) between DeepSeek-R1-Distill-Qwen-7B and
+    pruned_cka_only_20 model, 50 samples
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/cka_heatmap_cka_only.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:31:27.719064+00:00'
+  tags:
+  - e3
+  - cka
+  - heatmap
+  - pruning
+- id: art_20260518_fe31e2
+  name: E3 CKA Heatmap - Standard Pruning
+  type: data
+  description: CKA similarity matrix (28x28) between DeepSeek-R1-Distill-Qwen-7B and
+    pruned_standard_20 model, 50 samples
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/cka_heatmap_standard.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:31:29.565485+00:00'
+  tags:
+  - e3
+  - cka
+  - heatmap
+  - pruning
+- id: art_20260518_5d68ac
+  name: E3 CKA Heatmap - Random Pruning
+  type: data
+  description: CKA similarity matrix (28x28) between DeepSeek-R1-Distill-Qwen-7B and
+    pruned_random_20 model, 50 samples
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/cka_heatmap_random.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:31:30.978909+00:00'
+  tags:
+  - e3
+  - cka
+  - heatmap
+  - pruning
+- id: art_20260518_f99a3e
+  name: E3 CKA Heatmap - RASP Pruning
+  type: data
+  description: CKA similarity matrix (28x28) between DeepSeek-R1-Distill-Qwen-7B and
+    pruned_rasp_20 model, 50 samples
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/cka_heatmap_rasp.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:31:32.882931+00:00'
+  tags:
+  - e3
+  - cka
+  - heatmap
+  - pruning
+- id: art_20260518_b53c49
+  name: E3 CKA Heatmap Figure
+  type: chart
+  description: Combined CKA heatmap visualization comparing 4 pruning strategies (standard,
+    random, cka_only, rasp) against DeepSeek-R1-Distill-Qwen-7B
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/e3_cka_heatmap.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:31:35.383101+00:00'
+  tags:
+  - e3
+  - cka
+  - heatmap
+  - figure
+  - pruning
+- id: art_20260519_3ccaef
+  name: inference_bench_clean_v2_analysis
+  type: report
+  description: 'Inference speed benchmark: Dense vs CKA-only 20% vs Standard 20% pruned
+    (clean, isolated GPU)'
+  path: projects/recovery_aware_struct_prune/artifacts/inference_bench_clean_v2/report/inference_bench_clean_v2_analysis.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: inference_bench_clean_v2
+  skill: ''
+  created_at: '2026-05-19T01:58:03.368877+00:00'
+  tags:
+  - inference
+  - benchmark
+  - speedup
+  - pruning
+- id: art_20260519_601092
+  name: bootstrap_ci_reward_gap
+  type: data
+  description: 'E5 Bootstrap CI analysis: 4-method pairwise reward gap significance.
+    5/6 pairs significant (p<0.05). CKA-only >> Random >> Standard ≈ RASP. N=10000
+    bootstrap resamples.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/bootstrap_ci_results.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:32:39.123061+00:00'
+  tags:
+  - E5
+  - bootstrap
+  - statistical_significance
+  - reward_gap
+- id: art_20260519_e4db71
+  name: bootstrap_ci_plot
+  type: chart
+  description: 'Bootstrap CI visualization: pairwise reward gap distributions with
+    95% CI bands. Shows CKA-only clearly separated from all others.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/bootstrap_ci_plot.png
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:32:41.010593+00:00'
+  tags:
+  - E5
+  - bootstrap
+  - figure
+- id: art_20260519_86fe6d
+  name: eval_gsm8k_grpo_cka_only_20_extended_300_analysis
+  type: report
+  description: GSM8K evaluation analysis for CKA-only 20% pruned model after 300-step
+    GRPO training
+  path: projects/recovery_aware_struct_prune/artifacts/eval_gsm8k_grpo_cka_only_20_extended_300/report/analysis.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: eval_gsm8k_grpo_cka_only_20_extended_300
+  skill: ''
+  created_at: '2026-05-19T03:48:51.147199+00:00'
+  tags: []
+- id: art_20260519_9dca30
+  name: bootstrap_ci_accuracy_v2
+  type: data
+  description: Corrected bootstrap CI analysis using per-example binary outcomes (N=1319,
+    i.i.d.). CKA-only vs Standard significant at p=0.002 (7B) and p less than 0.001
+    (1.5B). GRPO vs SFT same-method differences non-significant. Replaces invalidated
+    reward-based bootstrap.
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/bootstrap_ci_accuracy_v2.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T04:18:03.330526+00:00'
+  tags:
+  - statistics
+  - C1
+  - C2
+  - paper-ready
+- id: art_20260519_04604c
+  name: 'HumanEval Case Study: GRPO CKA-only vs GRPO RASP fair'
+  type: report
+  description: Detailed case study comparing HumanEval outputs between GRPO CKA-only
+    (33/164, 20.12%) and GRPO RASP fair (18/164, 10.98%). Analyzes failure patterns
+    (reasoning-as-code, logic errors, max length), per-category examples, and implications
+    for pruning method comparison.
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/humaneval_case_study.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:06:58.213522+00:00'
+  tags:
+  - humaneval
+  - case-study
+  - grpo
+  - cka-only
+  - rasp
+  - analysis
+- id: art_20260519_26eadf
+  name: HumanEval Overlap Analysis
+  type: report
+  description: Pairwise overlap analysis of 4 HumanEval evaluations (GRPO Standard,
+    GRPO RASP, SFT CKA-only, GRPO CKA-only) including overlap matrix, superset analysis,
+    and SFT->GRPO transition analysis
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/humaneval_overlap_analysis.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:25:03.017371+00:00'
+  tags:
+  - humaneval
+  - overlap
+  - evaluation
+  - D072
+- id: art_20260519_e60976
+  name: gradient_flow_comparison_chart
+  type: chart
+  description: 'Per-layer gradient L2 norm bar chart (attn + MLP, log scale) comparing
+    CKA-only vs Standard pruned models. 20 steps on GSM8K. Remote: westb-23072:/root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow/gradient_flow_comparison.{pdf,png}'
+  path: projects/recovery_aware_struct_prune/artifacts/gradient_flow_analysis/chart/gradient_flow_artifacts_manifest.txt
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: gradient_flow_analysis
+  skill: ''
+  created_at: '2026-05-19T14:45:39.250094+00:00'
+  tags:
+  - gradient_flow
+  - mechanism
+  - paper_figure
+- id: art_20260519_228d06
+  name: gradient_flow_v3_results
+  type: data
+  description: 'Gradient flow v3: 3-way comparison (CKA-only vs Standard vs RASP,
+    200 samples) with Wilcoxon tests and bootstrap CIs. CKA-only ~2.9x Standard, ~2.0x
+    RASP, 55-56/56 layers significant at p<0.05.'
+  path: projects/recovery_aware_struct_prune/artifacts/gradient_flow_v3/data/gradient_flow_v3_summary.txt
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: gradient_flow_v3
+  skill: ''
+  created_at: '2026-05-19T15:19:25.136794+00:00'
+  tags:
+  - gradient_flow
+  - statistical_test
+  - wilcoxon
+  - bootstrap
+- id: art_20260519_289060
+  name: gradient_flow_v3_allpairs_results
+  type: data
+  description: 'All-pairs Wilcoxon + bootstrap CI for gradient flow v3. CKA-only vs
+    Standard: 55/56 sig (ratio 2.89x). CKA-only vs RASP: 56/56 sig (ratio 2.26x).
+    Standard vs RASP: 45/56 sig (ratio 1.28x). Full data on westb-23072:/root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow_v3/'
+  path: projects/recovery_aware_struct_prune/artifacts/gradient_flow_v3/data/gradient_flow_v3_allpairs_summary.txt
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: gradient_flow_v3
+  skill: ''
+  created_at: '2026-05-19T16:39:42.202705+00:00'
+  tags:
+  - gradient_flow
+  - wilcoxon
+  - rasp_vs_standard
+  - mechanism_analysis
+- id: art_20260520_7f9772
+  name: rci_diversity_correlation
+  type: data
+  description: 'RCI formalization: CKA diversity score vs GRPO recovery capacity Spearman
+    rank correlation for 4 pruning methods. rho=1.0 GSM8K accuracy (optimization-based,
+    n=3), rho=0.2 peak_reward (all 4).'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/rci_diversity_correlation.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T02:52:51.448585+00:00'
+  tags:
+  - plan_036
+  - rci
+  - cka_diversity
+  - spearman
+  - correlation
+- id: art_20260520_5e4fb8
+  name: GSM8K Bootstrap CI + McNemar Analysis
+  type: data
+  description: 95% bootstrap CI (10K resamples) for 18 GSM8K eval models + 10 pairwise
+    McNemar tests. Covers 7B@20%, 7B@25%, 1.5B@20%, ShortGPT@20%.
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/bootstrap_ci_analysis_combined.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T06:06:31.186256+00:00'
+  tags:
+  - statistics
+  - gsm8k
+  - bootstrap
+  - mcnemar
+  - significance
+- id: art_20260520_cd0fdf
+  name: seed_eval_report
+  type: report
+  description: GRPO Standard 20% multi-seed (42/123/456) GSM8K eval results and consistency
+    analysis
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/seed_eval_report.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T09:49:41.717227+00:00'
+  tags:
+  - gsm8k
+  - grpo
+  - multi-seed
+  - standard-20
+- id: art_20260520_61f187
+  name: westb_sft_fix_report
+  type: report
+  description: westb-23072 Qwen-Math SFT OOM诊断与修复报告：CUDA_VISIBLE_DEVICES映射错误导致两个SFT挤到同一GPU
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/westb_sft_fix_report.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T09:51:12.746602+00:00'
+  tags:
+  - sft
+  - qwen-math
+  - debug
+  - westb-23072
+- id: art_20260520_2dc9ff
+  name: westb_sft_fix_report
+  type: report
+  description: westb-23072 Qwen-Math SFT OOM诊断与修复报告：sft_recovery.py --gpu flag覆写CUDA_VISIBLE_DEVICES导致GPU映射失败
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/westb_sft_fix_report_2dc9ff.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T09:52:50.748136+00:00'
+  tags:
+  - sft
+  - qwen-math
+  - debug
+  - westb-23072
+  - root-cause
+- id: art_20260521_1a7e30
+  name: cka_heatmap_15pct
+  type: chart
+  description: '15% sparsity CKA similarity heatmap: Dense vs CKA-only (diag μ=0.610)
+    and Dense vs Standard (diag μ=0.896)'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/cka_heatmap_15pct.png
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:54:05.138858+00:00'
+  tags:
+  - cka
+  - heatmap
+  - 15pct
+  - e3
+- id: art_20260521_399075
+  name: cka_heatmap_cka_only_15
+  type: data
+  description: '28x28 CKA similarity matrix: Dense vs CKA-only pruned 15% (SFT recovered).
+    n_samples=50, diagonal mean=0.6104'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/cka_heatmap_cka_only_15.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:54:08.033434+00:00'
+  tags:
+  - cka
+  - 15pct
+  - cka_only
+- id: art_20260521_8b8b03
+  name: cka_heatmap_standard_15
+  type: data
+  description: '28x28 CKA similarity matrix: Dense vs Standard pruned 15% (SFT recovered).
+    n_samples=50, diagonal mean=0.8958'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/cka_heatmap_standard_15.json
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:54:09.351982+00:00'
+  tags:
+  - cka
+  - 15pct
+  - standard
+- id: art_20260521_fb1c38
+  name: cka_heatmap_15pct
+  type: chart
+  description: CKA similarity heatmap for 15% sparsity. CKA-only diagonal mean=0.6104,
+    Standard=0.8958. Confirms diversity preservation at 15%.
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/cka_heatmap_15pct_results.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T02:05:04.999029+00:00'
+  tags:
+  - cka
+  - heatmap
+  - 15pct
+  - diversity
+- id: art_20260521_043ed5
+  name: grpo_rasp_20_seed456
+  type: intermediate
+  description: 'RASP 20% GRPO seed456 (v5 fair config, 100 steps). 2nd seed validation
+    of RASP collapse. seed42 showed 53.15% post-GRPO (collapse from 64.37% CKA-only).
+    SFT base: sft_rasp_20_westd.'
+  path: projects/recovery_aware_struct_prune/artifacts/grpo_rasp_20_seed456/intermediate/grpo_rasp_20_seed456.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: grpo_rasp_20_seed456
+  skill: ''
+  created_at: '2026-05-21T03:00:35.700952+00:00'
+  tags:
+  - grpo
+  - rasp
+  - 20pct
+  - seed456
+  - multi-seed
+  - collapse-validation
+- id: art_20260521_bc2152
+  name: structure_overlap_cka_vs_standard_20
+  type: data
+  description: 'Per-layer MLP pruning comparison between CKA-only 20% and Standard
+    20%: Jaccard overlap bounds, regional distribution, unique pruning decisions.
+    For Q4 reviewer response and paper Table/Figure.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/structure_overlap_cka_vs_standard_20.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:12:13.635935+00:00'
+  tags:
+  - overlap
+  - Q4
+  - rebuttal
+  - pruning-mask
+  - cka-only
+  - standard
+- id: art_20260521_598c93
+  name: MATH-500 @2048 Cross-Method Comparison Table
+  type: report
+  description: Complete MATH-500 @2048 evaluation table covering all sparsity×method×stage
+    combinations, with missing cell inventory and GSM8K cross-benchmark comparison.
+    Generated 2026-05-21.
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/math500_2048_full_table.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T20:17:46.104183+00:00'
+  tags:
+  - math500
+  - evaluation
+  - cross-method
+  - table
+- id: art_20260522_6ed822
+  name: w1_format_compliance_analysis
+  type: report
+  description: W1 Format Compliance 分析：EOS rate / avg response length / boxed rate
+    for all methods (7B 20%, 7B 15%, 1.5B 20%)
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/w1_format_compliance.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T11:59:32.485416+00:00'
+  tags:
+  - W1
+  - format_compliance
+  - reviewer_concern
+  - paper
+- id: art_20260523_1168bf
+  name: data_provenance_audit
+  type: report
+  description: 论文数据溯源表：每个实验数值 → registry exp_id → 服务器结果路径，含 eval 脚本版本、seed 信息、数值一致性校验
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/data_provenance_audit.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:03:02.519614+00:00'
+  tags:
+  - provenance
+  - audit
+  - paper
+- id: art_20260523_47f70b
+  name: data_provenance_audit
+  type: report
+  description: 论文数据溯源表：每个论文数值 → registry exp_id → 结果文件路径，含 eval 脚本版本和 seed 标注
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/data_provenance_audit_47f70b.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:04:22.699948+00:00'
+  tags:
+  - audit
+  - provenance
+  - paper
+- id: art_20260523_e1938a
+  name: update_math500_table.py
+  type: data
+  description: Script to generate tab_math500.tex and summary.json from registry.yaml
+    or local JSON files. Supports --source registry/json, cross-validation, and auto
+    bold-best formatting.
+  path: projects/recovery_aware_struct_prune/artifacts/_project/data/update_math500_table.py
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T20:47:17.134522+00:00'
+  tags:
+  - math500
+  - table
+  - latex
+  - eval
+- id: art_20260523_dad8ce
+  name: tab_math500_partial_v1
+  type: paper
+  description: 'MATH-500 results table (partial: 7/21 cells filled with fixed eval
+    results). Auto-updates via update_math500_table.py --source registry.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/tab_math500.tex
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T23:50:02.825542+00:00'
+  tags:
+  - math500
+  - table
+  - partial
+- id: art_20260524_c437cf
+  name: fig1_framework_v2_paperbanana
+  type: chart
+  description: 'PaperBanana-generated method overview figure (fig1_framework) for
+    EMNLP 2026 paper. 5-tier flow: Pretrained LLM → Structural Analysis → 4 Pruning
+    Criteria → Identical Recovery → 4 Outcomes + Recovery Capacity gradient bar. 2752×1536,
+    300 DPI.'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig1_framework_v2.png
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T13:12:53.492236+00:00'
+  tags:
+  - figure
+  - paper
+  - framework
+  - paperbanana
+- id: art_20260524_11b1f0
+  name: fig2_method_framework
+  type: chart
+  description: RASP pruning comparison framework overview (PaperBanana generated,
+    3-panel + recovery spectrum strip)
+  path: projects/recovery_aware_struct_prune/artifacts/_project/chart/fig2_method_framework.png
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T17:03:52.698240+00:00'
+  tags:
+  - figure
+  - framework
+  - paperbanana
+  - method
+- id: art_20260525_c9f9dd
+  name: paper_v9_related_work_trimmed
+  type: paper
+  description: 'v9: Related Work压缩+Method diagnostics扩充+Experiments mechanistic分析扩充，正文8页'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/main.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T16:53:17.484462+00:00'
+  tags:
+  - v9
+  - emnlp2026
+  - related-work-trim
+- id: art_20260525_8ed33f
+  name: paper_v10_rlvr_citations
+  type: paper
+  description: 'v10: Related Work第三段补充4篇RLVR/GRPO dynamics引用，全部WebSearch验证真实，正文8页'
+  path: projects/recovery_aware_struct_prune/artifacts/_project/paper/main_8ed33f.pdf
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T17:09:39.666598+00:00'
+  tags:
+  - v10
+  - emnlp2026
+  - citations
+- id: art_20260525_7984c8
+  name: audit_paper_numbers
+  type: report
+  description: 论文全文数字提取与内部一致性审计：覆盖10个tex文件、8个表格、9个figure脚本，识别1个HIGH级（fig1_dose_response与Table
+    3数据不一致）、2个MEDIUM级（20%/25.5%术语；MATH-500 α范围~8pp vs 实际6.2pp）、6个LOW级问题；验证39项派生计算（36正确，3有问题）。
+  path: projects/recovery_aware_struct_prune/artifacts/_project/report/audit_paper_numbers.md
+  url: null
+  project: recovery_aware_struct_prune
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T19:55:53.402073+00:00'
+  tags:
+  - audit
+  - paper
+  - numbers
+  - consistency

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "008b22cae1028f83ec04",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "figure paperbanana fig1 framework fix",
+  "task_key": "worker_figure_paperbanana_fig1_framework_fix_20260524T131719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_paperbanana_fig1_framework_fix_20260524T131719_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "5dd079098a5e366c03f6ecfd8d816f63294835f8a15f1e27de94e6376e08ab99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改确认：**\n- \"85% max-len\" → \"≥92% max-len\"（RASP / Immediate Collapse 框）✓\n- \"grad vanishing\" → \"reward collapse\"（Standard / Collapse 框）✓\n\n**生成详情：**\n- PaperBanana 1 轮即通过 VLM Critic（\"publication-ready\"），未需额外迭代\n- 布局、配色、公式、箭头等与上一版一致，仅目标文字变更\n\n**产出文件：**\n- PNG: `artifacts/figures/fig1_framework_v2.png`\n- PDF: `artifacts/figures/fig1_framework_v2.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-paperbanana-fig1-framework-fix.md"
+}

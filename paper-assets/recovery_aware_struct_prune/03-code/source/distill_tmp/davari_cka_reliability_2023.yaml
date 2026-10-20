@@ -1,0 +1,11 @@
+paper_key: "davari_cka_reliability_2023"
+title: "Reliability of CKA as a Similarity Measure in Deep Learning"
+venue: "ICLR 2023"
+full_text_available: false
+research:
+  baselines: [CKA (linear), CKA (RBF kernel)]
+  metrics: [{name: "CKA similarity", direction: "context_dependent"}, {name: "sensitivity to transformations", direction: "context_dependent"}]
+  datasets: [{name: "vision benchmarks", size: "standard"}]
+  ablation_dimensions: [outlier sensitivity, manipulation without functional change]
+  training_recipe: {}
+  method_family: "CKA reliability analysis"

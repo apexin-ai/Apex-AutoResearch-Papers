@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_math500_grpo_rasp_alpha1p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:02:44.335Z",
+    "updated_at": "2026-05-23T04:41:46.892Z",
+    "hypothesis": "GRPO RASP α=1.0 MATH-500 eval @2048. C1 decoupling on MATH-500: SFT α=1.0 = 21.2%. If |GRPO - SFT| < 2pp, C1 decoupling holds cross-benchmark for α=1.0.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048\"",
+      "server": "westd-32935",
+      "gpu": "cuda:3",
+      "pid": "86243",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20.log",
+      "submitted_at": "2026-05-22T23:05:13.364Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (grpo_stage2_rasp_20_fair / α=1.0)",
+      "seed": 42,
+      "checkpoint_source": "grpo_stage2_rasp_20_fair",
+      "eval_data": "MATH-500 (N=500, max_new_tokens=2048)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T04:41:44.783Z"
+    }
+  },
+  "timestamp": "2026-05-23T04:41:48.361247+00:00",
+  "trigger": "update_registry"
+}

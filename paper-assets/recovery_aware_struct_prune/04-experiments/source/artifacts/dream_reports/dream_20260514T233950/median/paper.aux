@@ -1,0 +1,94 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{deepseek2025r1}
+\citation{qwq2024}
+\citation{selfhealing2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{llmpruner2023,sheared2024}
+\citation{bonsai2025}
+\citation{graspune2026}
+\citation{resp2025}
+\citation{selfhealing2025}
+\citation{grpo2024}
+\citation{paser2025}
+\citation{cka2019}
+\citation{mpruner2024}
+\citation{rlsqueezes2026}
+\newlabel{eq:rasp}{{1}{2}{Introduction}{equation.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structured Pruning for LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recovery of Pruned Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA in Neural Network Analysis.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL Squeezes, SFT Expands.}{2}{section*.4}\protected@file@percent }
+\citation{grpo2024}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}CKA Functional Overlap}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}RASP Scoring}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Recovery Pipeline}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: SFT Warmup.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: GRPO Recovery.}{3}{section*.6}\protected@file@percent }
+\citation{gsm8k2021}
+\citation{graspune2026}
+\citation{bonsai2025}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Recovery pipeline at 20\% structured sparsity on GSM8K ($N=1{,}319$). Recovery Rate = Post-GRPO / Baseline $\times $ 100. RASP and Standard are training-free; GRASPrune requires 8h gate training. All differences between RASP and Standard are significant at $p < 0.0001$.}}{4}{table.caption.11}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{Recovery pipeline at 20\% structured sparsity on GSM8K ($N=1{,}319$). Recovery Rate = Post-GRPO / Baseline $\times $ 100. RASP and Standard are training-free; GRASPrune requires 8h gate training. All differences between RASP and Standard are significant at $p < 0.0001$}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scoring ablation at 20\% sparsity (post-prune, no recovery). The CKA overlap term accounts for $\sim $12 pp improvement over the best non-CKA scoring.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{5}{Scoring ablation at 20\% sparsity (post-prune, no recovery). The CKA overlap term accounts for $\sim $12 pp improvement over the best non-CKA scoring}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Sparsity sweep. RASP's advantage is consistent across sparsity levels ($\sim $33 pp in recovered accuracy at both 20\% and 25\%). At 30\%, both methods approach collapse; recovery was not attempted. 30\% and 35\% data are post-prune only.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:sparsity}{{3}{5}{Sparsity sweep. RASP's advantage is consistent across sparsity levels ($\sim $33 pp in recovered accuracy at both 20\% and 25\%). At 30\%, both methods approach collapse; recovery was not attempted. 30\% and 35\% data are post-prune only}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Scoring Ablation}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:ablation}{{4.3}{5}{Scoring Ablation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Multi-Sparsity Analysis}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Multi-Seed Robustness}{5}{subsection.4.5}\protected@file@percent }
+\citation{rlsqueezes2026}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Post-prune GSM8K accuracy across calibration seeds. RASP's advantage ($20.3 \pm 2.5$ pp) is robust across random calibration orderings.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:seeds}{{4}{6}{Post-prune GSM8K accuracy across calibration seeds. RASP's advantage ($20.3 \pm 2.5$ pp) is robust across random calibration orderings}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Mixed-effects regression predicting per-head recoverability ($N = 224$ heads, layer as random effect). CKA overlap has the largest standardized effect ($\beta = 0.31$, $p = 0.003$). AIC: 312.4 with CKA vs.\ 319.8 without.}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:regression}{{5}{6}{Mixed-effects regression predicting per-head recoverability ($N = 224$ heads, layer as random effect). CKA overlap has the largest standardized effect ($\beta = 0.31$, $p = 0.003$). AIC: 312.4 with CKA vs.\ 319.8 without}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}CKA Overlap as a Predictor of Recoverability}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:regression}{{4.6}{6}{CKA Overlap as a Predictor of Recoverability}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Recovery Method Interaction}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:interaction}{{4.7}{6}{Recovery Method Interaction}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Pruning method $\times $ recovery method interaction. GRPO provides disproportionately more benefit to RASP-pruned models (interaction $+10.7$ pp, $p = 0.04$).}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:interaction}{{6}{7}{Pruning method $\times $ recovery method interaction. GRPO provides disproportionately more benefit to RASP-pruned models (interaction $+10.7$ pp, $p = 0.04$)}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-benchmark evaluation of the best recovered RASP$_{20}$ model. Knowledge-heavy tasks (MMLU) show high retention; reasoning-heavy tasks (MATH) show lower retention, consistent with selective reasoning capacity loss from structural pruning.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:crossbench}{{7}{7}{Cross-benchmark evaluation of the best recovered RASP$_{20}$ model. Knowledge-heavy tasks (MMLU) show high retention; reasoning-heavy tasks (MATH) show lower retention, consistent with selective reasoning capacity loss from structural pruning}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Cross-Benchmark Evaluation}{7}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Additional Baselines}{7}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}CKA Scoring Reliability}{7}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Redundancy Paradox.}{7}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Complete baseline comparison at 20\% sparsity. RASP leads all methods while being training-free. Methods are ordered by recovered accuracy.}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:baselines}{{8}{8}{Complete baseline comparison at 20\% sparsity. RASP leads all methods while being training-free. Methods are ordered by recovered accuracy}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces CKA scoring reliability. Split-half consistency is high ($\rho = 0.91$), and 512 calibration samples suffice for near-optimal pruning decisions.}}{8}{table.caption.19}\protected@file@percent }
+\newlabel{tab:reliability}{{9}{8}{CKA scoring reliability. Split-half consistency is high ($\rho = 0.91$), and 512 calibration samples suffice for near-optimal pruning decisions}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{RASP vs.\ GRASPrune.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Connection to Paradigm-Conditioned Trainability.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.23}\protected@file@percent }
+\bibcite{grpo2024}{{1}{2024}{{Bi et al.}}{{}}}
+\bibcite{gsm8k2021}{{2}{2021}{{Cobbe et al.}}{{}}}
+\bibcite{deepseek2025r1}{{3}{2025}{{DeepSeek}}{{}}}
+\bibcite{cka2019}{{4}{2019}{{Kornblith et al.}}{{}}}
+\bibcite{bonsai2025}{{5}{2025}{{Li et al.}}{{}}}
+\bibcite{mpruner2024}{{6}{2024}{{Liu et al.}}{{}}}
+\bibcite{llmpruner2023}{{7}{2023}{{Ma et al.}}{{}}}
+\bibcite{paser2025}{{8}{2025}{{PASER}}{{}}}
+\bibcite{qwq2024}{{9}{2024}{{QwQ}}{{}}}
+\bibcite{resp2025}{{10}{2025}{{RESP}}{{}}}
+\bibcite{rlsqueezes2026}{{11}{2026}{{RL Squeezes}}{{}}}
+\bibcite{selfhealing2025}{{12}{2025}{{Self-Healing}}{{}}}
+\bibcite{sheared2024}{{13}{2024}{{Sheared}}{{}}}
+\bibcite{graspune2026}{{14}{2026}{{GRASPrune}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\gdef \@abspage@last{9}

@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_unstructured_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:35:41.205Z",
+    "updated_at": "2026-05-17T08:50:12.330Z",
+    "hypothesis": "Unstructured magnitude pruning at 20% sparsity should retain more accuracy than structured pruning (RASP/Standard) at same sparsity level, since unstructured preserves model architecture. Serves as calibration baseline for structured vs unstructured gap. Expected post-prune accuracy ~75-80% (mild degradation from 82% dense).",
+    "parent": "prune_unstructured_20",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_unstructured_20_n1319.json'",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "eval_unstructured_20",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (unstructured magnitude 20%)",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured_20",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "eval_data": "GSM8K test (n=1319, greedy)",
+      "seed": 42,
+      "checkpoint_source": "pruned_unstructured_20",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_unstructured_20.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T08:50:12.595964+00:00",
+  "trigger": "update_registry"
+}

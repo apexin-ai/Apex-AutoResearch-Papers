@@ -1,0 +1,31 @@
+{
+  "exp_id": "scoring_ablation_batch",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:49:20.963Z",
+    "updated_at": "2026-05-17T05:40:09.233Z",
+    "spec": {
+      "command": "cd /root/recovery_aware_struct_prune && bash src/run_scoring_ablation.sh 0",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "676366",
+      "log_path": "~/runs/recovery_aware_struct_prune/scoring_ablation_batch.log",
+      "submitted_at": "2026-05-17T04:49:20.668Z",
+      "restarted_at": "2026-05-17T04:55:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "fix_applied": "model_utils.py line 31-32: per_layer_num_heads→per_layer_num_attention_heads, per_layer_num_kv_heads→per_layer_num_key_value_heads"
+    },
+    "hypothesis": "Scoring ablation: CKA-aware scoring (RASP) preserves more post-prune accuracy than magnitude-only, gradient-only, random, or CKA-only scoring at 20% sparsity. Isolates CKA's contribution to the composite RASP score S(h)=I(h)×(1-F(h))^α.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-17T05:40:09.485362+00:00",
+  "trigger": "update_registry"
+}

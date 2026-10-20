@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f0ab32294d5a48a7974",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb gpu0 reset",
+  "task_key": "worker_ssh_westb_gpu0_reset_20260522T205341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_gpu0_reset_20260522T205341_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "fbc3451015666fa1ec33df97d05c755e3d60a43fff0e3c1fc9afe45358197739"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU:0 reset: FAILED (nvidia-smi --gpu-reset -i 0 返回 \"Not Supported\"，该 GPU 硬件/驱动不支持在线 reset)\nGPU:1 MF3 status: OK (PID 220343, eval_gsm8k.py, 运行 5h45m, 16538 MiB, 状态 Rl)\nPost-reset GPU state: 未变化\n  GPU:0: 100% util, 0 MiB, 无进程 (异常持续)\n  GPU:1: 99% util, 16547 MiB, PID 220343 (正常)\n```\n\nGPU:0 的 `nvidia-smi --gpu-reset` 在这台机器上不被支持（所有 PCIe 地址的 GPU 均返回 \"Not Supported\"）。这是 AutoDL 虚拟化/驱动层的限制，非权限问题。\n\n要恢复 GPU:0，可能需要**重启实例**（但会中断 GPU:1 上的 eval 任务）或**联系 AutoDL 客服**请求 GPU 级别 reset。建议等 GPU:1 的 eval_gsm8k.py 跑完后再重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-gpu0-reset.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b6dd9703b0f6534b1de",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec westd submit and check",
+  "task_key": "worker_exec_westd_submit_and_check_20260522T003711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_westd_submit_and_check_20260522T003711_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "01728ff520c476fedd37b7b2c5bbe8b8900f2ba3eec84b7678ca97ef3f8d9a0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**WESTD_UNREACHABLE**\n\nwestd-29022 端口 29022 连接被拒，无法执行任何任务。可能实例已重启导致端口变更，建议去 AutoDL 控制台确认新端口并更新 `~/.ssh/config`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-westd-submit-and-check.md"
+}

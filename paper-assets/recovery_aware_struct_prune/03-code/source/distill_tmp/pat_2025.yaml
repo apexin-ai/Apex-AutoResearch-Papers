@@ -1,0 +1,76 @@
+paper_key: "pat_2025"
+title: "PAT: Pruning-Aware Tuning for Large Language Models"
+venue: "AAAI 2025"
+full_text_available: true
+
+research:
+  baselines: [LoRA-64, LLM-Pruner, SliceGPT, Wanda]
+  metrics:
+    - {name: "zero-shot accuracy (14 benchmarks)", direction: "higher_better"}
+    - {name: "inference speedup", direction: "higher_better"}
+    - {name: "VRAM usage", direction: "lower_better"}
+  datasets:
+    - {name: "ARC-C/E, BoolQ, COPA, HellaSwag, MMLU, MultiRC, OpenBookQA, PIQA, RTE, SIQA, WIC, WinoGrande, WSC", size: "14 zero-shot benchmarks"}
+    - {name: "downstream tasks: ARC, SuperGLUE, OpenBookQA, PIQA, SIQA, MMLU, WinoGrande", size: "task-specific fine-tuning"}
+  ablation_dimensions: [trainable vs frozen mask, identity loss impact, pruning ratio, model architecture]
+  training_recipe: {optimizer: "AdamW (implied)", lr: "N/A", hardware: "A100-80GB", epochs: "standard PEFT"}
+  method_family: "simultaneous pruning and fine-tuning (pruning-aware training)"
+
+positioning:
+  core_claim: "Simultaneous structural pruning and fine-tuning via Hybrid Sparsification Modules achieves better accuracy-efficiency tradeoff than sequential prune-then-finetune, analogous to QAT vs PTQ"
+  key_results: "Llama2-7B at 25% pruning: 60.02% zero-shot (outperforms LoRA-64 by 1.26%), 1.33x speedup"
+  limitations: ["Model-specific feasibility varies—Gemma less robust than Llama2 at high ratios", "Limited to 30% pruning ratio exploration"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "LLMs need efficiency; existing pruning causes accuracy loss"
+  tension: "Pre/post-training pruning treats compression and adaptation as separate problems"
+  key_insight: "Borrow the QAT-vs-PTQ analogy from quantization: integrate pruning into the training loop itself"
+  argument_chain: "problem (sequential approach is suboptimal) → analogy (QAT outperforms PTQ) → solution (PAT: prune during tuning) → validation (outperforms LoRA while being smaller)"
+  contribution_framing: "3 contributions: (1) PAT paradigm, (2) HSM with HIO + Identity Loss, (3) unified sparsification mask"
+  intro_structure: "~5 paragraphs: LLM cost problem → pruning limitations → PEFT connection → PAT proposal → contributions"
+  notable_technique: "QAT/PTQ analogy creates immediate intuition for the approach; positioning against LoRA as baseline rather than just pruning methods"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "PAT pipeline showing HSM insertion between Attention and FFN blocks with mask learning"
+    narrative_role: "Explains the architectural integration of pruning into fine-tuning"
+    design_elements: ["transformer block diagram", "HSM module detail", "mask visualization"]
+    visual_style: "Standard architecture diagram with highlighted novel components"
+  result_figures:
+    - figure_id: "Main result tables"
+      viz_type: "N/A (tables)"
+      what_compared: "PAT vs LoRA-64 vs pruning baselines across models and ratios"
+      how_gain_highlighted: "Shows PAT can outperform unpruned LoRA at moderate pruning"
+      design_note: "Emphasis on the surprising result that pruned+tuned beats unpruned+tuned"
+  ablation_figures:
+    - figure_id: "ablation tables"
+      viz_type: "N/A (tables)"
+      dimensions_varied: ["trainable vs frozen mask", "identity loss on/off"]
+      design_note: "Each ablation isolates one component's contribution"
+  figure_narrative_role: "Method overview → Zero-shot results → Efficiency metrics → Ablation → Downstream tasks"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "models × pruning ratios × accuracy"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 4
+    design_note: "Cross-model comparison showing where PAT outperforms unpruned LoRA—the paper's key selling point"
+  ablation_tables:
+    - table_id: "Ablation Table"
+      what_varied: ["mask trainability", "identity loss"]
+      variation_style: "full_numbers"
+      design_note: "Clean isolation of each component"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-task breakdown, additional model results"
+    reason: "14 benchmarks too many for main text detail"

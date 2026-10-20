@@ -1,0 +1,93 @@
+
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:exp_setup}
+
+\paragraph{Base model.}
+We evaluate \rasp{} on DeepSeek-R1-Distill-Qwen-7B~\citep{deepseek2025r1}, a 7B-parameter reasoning model built on the Qwen2.5 architecture~\citep{qwen2.5} with 28 transformer layers.
+The model uses Grouped Query Attention (GQA;~\citealp{ainslie2023gqa}) with 28 query heads and 4 key-value heads per layer (group size $G{=}7$), and an MLP intermediate dimension of 18{,}944.
+As a reasoning-distilled model whose chain-of-thought capabilities originate from reinforcement learning, it provides a direct testbed for studying how structural pruning interacts with RLVR-based recovery.
+
+\paragraph{Evaluation.}
+We evaluate on GSM8K~\citep{cobbe2021gsm8k}, a benchmark of 1{,}319 grade-school math problems requiring multi-step arithmetic reasoning.
+We report exact-match accuracy: the final numerical answer is extracted from the model's generation and compared against the ground truth.
+For rapid iteration during development, we use a fixed 100-problem subset ($N{=}100$); final results use the full test set ($N{=}1{,}319$).
+We define recovery $\Delta$ as the accuracy gain from post-prune to post-recovery, capturing how much reasoning ability the recovery pipeline restores independent of initial pruning damage.
+
+\paragraph{Hardware.}
+All experiments run on a single node with 2$\times$ NVIDIA RTX PRO 6000 GPUs (94\,GB VRAM each).
+The two pruning variants (Standard and \rasp{}) are trained in parallel on separate GPUs to ensure identical wall-clock conditions.
+
+\subsection{Pruning Configuration}
+\label{sec:pruning_config}
+
+\paragraph{Sparsity and granularity.}
+We apply 20\% structured sparsity, removing entire attention GQA groups (each comprising 1 KV head and 7 query heads) and MLP channel groups jointly.
+The MLP intermediate dimension (18{,}944) is partitioned into 28 equal-sized groups of 676 channels each.
+Structures are scored and ranked in a unified list across both component types, enabling cross-component pruning decisions: a total of 395{,}232 parameters are removed under both Standard and \rasp{} configurations, ensuring matched parameter budgets.
+
+\paragraph{Importance scoring.}
+For each structure $h$, we compute Taylor-expansion importance $I(h)$ (Eq.~\ref{eq:importance}) using activations and gradients collected on 128 randomly sampled chain-of-thought examples from the GSM8K training set.
+For GQA groups, we aggregate importance across the constituent query heads and KV head (Section~\ref{sec:stage1}).
+
+\paragraph{CKA-based functional overlap.}
+We compute intra-layer linear CKA (Eq.~\ref{eq:cka}) between all pairs of GQA groups and between all pairs of MLP channel groups within each layer, using the same 128 calibration examples.
+The functional overlap $F(h)$ for each structure is the mean pairwise CKA with its within-layer peers (Eq.~\ref{eq:overlap}).
+
+\paragraph{Recovery-aware scoring.}
+The final pruning score $S(h) = I(h) \times (1 - F(h))^\alpha$ (Eq.~\ref{eq:score}) combines importance and functional overlap with $\alpha{=}1.0$.
+Structures with the lowest $S(h)$ are pruned first, subject to the per-layer capacity floor.
+
+\paragraph{Per-layer capacity floor.}
+To prevent representational collapse in individual layers, we enforce that each layer retains at least 40\% of its MLP channel groups (${\ge}12$ of 28 groups per layer).
+During structure selection, candidates whose removal would violate this constraint are skipped in favor of the next lowest-scoring structure.
+This constraint is necessary because unconstrained global ranking at 20\% sparsity concentrates pruning in layers with uniformly high functional overlap, collapsing those layers' capacity.
+
+\paragraph{Baseline: Standard importance-only pruning.}
+As the primary baseline, we apply the same Taylor-expansion importance scoring and global ranking but without the CKA overlap penalty ($\alpha{=}0$ in Eq.~\ref{eq:score}), following LLM-Pruner~\citep{llmpruner2023}.
+The same per-layer capacity floor and sparsity target are applied, ensuring that the only difference between Standard and \rasp{} is the head selection criterion.
+
+\subsection{Recovery Pipeline}
+\label{sec:recovery_pipeline}
+
+After pruning, we apply a two-stage recovery pipeline (Section~\ref{sec:stage3}) consisting of SFT warmup followed by GRPO-based RLVR.
+
+\paragraph{Stage 3a: SFT warmup.}
+Structured pruning destroys the model's ability to generate EOS tokens, causing unterminated repetitive outputs that prevent GRPO from computing rewards.
+We restore generation competence with a brief SFT phase on 75 chain-of-thought examples (approximately 1\% of the GSM8K training set), trained for 2 epochs (1{,}870 gradient steps) with teacher forcing.
+This stage is intentionally minimal: its sole purpose is to restore EOS generation and basic format compliance, not to recover reasoning ability.
+
+\paragraph{Stage 3b: GRPO recovery.}
+With generation competence restored, we apply GRPO~\citep{shao2024grpo} on GSM8K training problems to recover reasoning ability.
+The reward is binary: $r{=}1$ if the extracted final answer matches the ground truth, $r{=}0$ otherwise.
+We use the following configuration: learning rate $1{\times}10^{-6}$, maximum completion length 1{,}024 tokens, 1{,}000 training samples, 1 epoch, KL penalty coefficient $\beta{=}0$, sampling temperature 0.7, and DAPO-style clipped loss.
+Setting $\beta{=}0$ removes the KL divergence penalty against the reference policy, allowing the pruned model to freely explore new reasoning paths unconstrained by its pre-pruning behavior---a deliberate choice for post-pruning recovery where the reference policy's reasoning trajectories may no longer be achievable through the reduced architecture.
+
+\subsection{Results}
+\label{sec:results}
+
+% [TBD: Results after GRPO completion]
+%
+% Planned content:
+% - Table 1 (\ref{tab:postprune}): Post-prune accuracy comparison
+%   Known: RASP 29% vs Standard 1% (N=100, p<0.0001)
+% - Table 2 (\ref{tab:recovery}): Full recovery pipeline comparison
+%   Known: Post-SFT RASP 57% vs Standard 64% (N=100)
+%   Pending: Post-GRPO accuracy for both configurations
+% - Analysis of recovery Delta and whether RASP's post-prune advantage
+%   translates to superior post-GRPO performance
+% - Statistical significance testing (Fisher's exact test, N=1319)
+
+\subsection{Ablation Studies}
+\label{sec:ablation}
+
+% [TBD: Ablation results after GRPO completion]
+%
+% Planned ablations:
+% - Table 3 (\ref{tab:alpha}): Effect of CKA balancing coefficient alpha
+%   at 20% sparsity (alpha in {0.0, 0.5, 1.0, 2.0, 4.0})
+%   alpha=0.0 reduces to Standard importance-only pruning
+% - Per-layer capacity floor sensitivity
+% - CKA calibration set size (64, 128, 256, 512 samples)

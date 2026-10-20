@@ -1,0 +1,15 @@
+{
+  "exp_id": "E_MATH500_SFT_QWEN_CKA",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T22:25:31.683Z",
+    "updated_at": "2026-05-22T22:25:38.916Z",
+    "hypothesis": "CKA-guided pruned Qwen2.5-Math-7B after SFT recovery retains competitive MATH-500 performance, validating cross-architecture generalization of the CKA pruning criterion beyond Qwen2.5-Coder."
+  },
+  "timestamp": "2026-05-22T22:25:39.579116+00:00",
+  "trigger": "update_registry"
+}

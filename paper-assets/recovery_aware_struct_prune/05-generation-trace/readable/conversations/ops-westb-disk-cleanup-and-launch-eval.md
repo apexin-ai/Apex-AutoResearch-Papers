@@ -1,0 +1,1336 @@
+# ops westb disk cleanup and launch eval
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409.jsonl`
+- **Structured JSON:** [`bc9023bba96c6f41b3f6.json`](../../sessions/bc/bc9023bba96c6f41b3f6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T04:47:14.621011+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T04:47:14.621528+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T04:47:14.621807+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "du -h --max-depth=2 /root/autodl-tmp/recovery_aware_struct_prune/ | sort -rh | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "du -h --max-depth=2 /root/autodl-tmp/recovery_aware_struct_prune/ | sort -rh | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T04:47:14.622026+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T04:47:14.622214+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "df -h /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "df -h /root/autodl-tmp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T04:47:14.622432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  250G  1.3M 100% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T04:47:14.622659+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "du -h --max-depth=2 /root/autodl-tmp/recovery_aware_struct_prune/ | sort -rh | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "du -h --max-depth=2 /root/autodl-tmp/recovery_aware_struct_prune/ | sort -rh | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T04:47:14.622894+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"235G\\t/root/autodl-tmp/recovery_aware_struct_prune/\\n24G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100\\n24G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20\\n15G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_gradient_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_random_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20\\n11G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\\n11G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25\\n11G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25\\n11G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\\n11G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25\\n11G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\n3.4G\\t/root/autodl-tmp/recovery_aware_struct_prune/models/DeepSeek-R1-Distill-Qwen-1.5B\\n3.4G\\t/root/autodl-tmp/recovery_aware_struct_prune/models\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_
+…[truncated 353 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T04:47:14.623187+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -lh /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -lh /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T04:47:14.623409+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -lh /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/ | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -lh /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/ | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T04:47:14.623610+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 24G\\n-rw-r--r-- 1 root root 2.2K May 19 12:30 chat_template.jinja\\n-rw-r--r-- 1 root root 1.4K May 19 12:29 config.json\\n-rw-r--r-- 1 root root  216 May 19 12:29 generation_config.json\\n-rw-r--r-- 1 root root  15G May 19 12:30 model.safetensors\\n-rw-r--r-- 1 root root 9.5G May 19 12:31 optimizer.pt\\n-rw-r--r-- 1 root root  11M May 19 12:30 tokenizer.json\\n-rw-r--r-- 1 root root  420 May 19 12:30 tokenizer_config.json\\n-rw-r--r-- 1 root root 7.2K May 19 12:30 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T04:47:14.623758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12K\\n-rw-r--r-- 1 root root 2.1K May 19 12:29 README.md\\ndrwxr-xr-x 2 root root 4.0K May 19 12:30 checkpoint-100\\ndrwxr-xr-x 2 root root 4.0K May 19 12:29 completions\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T04:47:14.623922+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name \"__pycache__\" -type d 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name \"__pycache__\" -type d 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T04:47:14.624056+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T04:47:14.624188+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name \"*.cache\" -o -name \".cache\" -type d 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name \"*.cache\" -o -name \".cache\" -type d 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T04:47:14.624366+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -lh /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/completions/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -lh /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/completions/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T04:47:14.624512+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T04:47:14.624643+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 284K\\n-rw-r--r-- 1 root root 22K May 19 11:48 completions_00010.parquet\\n-rw-r--r-- 1 root root 23K May 19 11:53 completions_00020.parquet\\n-rw-r--r-- 1 root root 37K May 19 11:57 completions_00030.parquet\\n-rw-r--r-- 1 root root 27K May 19 12:02 completions_00040.parquet\\n-rw-r--r-- 1 root root 20K May 19 12:07 completions_00050.parquet\\n-rw-r--r-- 1 root root 31K May 19 12:11 completions_00060.parquet\\n-rw-r--r-- 1 root root 17K May 19 12:16 completions_00070.parquet\\n-rw-r--r-- 1 root root 28K May 19 12:20 completions_00080.parquet\\n-rw-r--r-- 1 root root 34K May 19 12:25 completions_00090.parquet\\n-rw-r--r-- 1 root root 30K May 19 12:29 completions_00100.parquet\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T04:47:14.624804+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "rm /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100/optimizer.pt /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100/training_args.bin",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "rm /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100/optimizer.pt /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100/training_args.bin",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T04:47:14.624931+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T04:47:14.625054+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "df -h /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "df -h /root/autodl-tmp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T04:47:14.625237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  241G  9.5G  97% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T04:47:14.625452+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -l /root/recovery_aware_struct_prune/src/eval_gsm8k.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -l /root/recovery_aware_struct_prune/src/eval_gsm8k.py 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T04:47:14.625595+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 14862 May 16 12:57 /root/recovery_aware_struct_prune/src/eval_gsm8k.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T04:47:14.625832+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cd /root/recovery_aware_struct_prune && nohup bash -c \"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log 2>&1 &",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "cd /root/recovery_aware_struct_prune && nohup bash -c \"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log 2>&1 &",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T04:47:14.625986+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/recovery_aware_struct_prune && nohup bash -c \\\"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json\\\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log 2>&1 &'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T04:47:14.626161+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps aux | grep eval_gsm8k | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ps aux | grep eval_gsm8k | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T04:47:14.626327+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T04:47:14.626494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     680597  0.0  0.0   7088  4124 ?        Ss   May17   0:04 tmux new-session -d -s eval_unstructured_20 bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_unstructured_20_n1319.json 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_unstructured_20.log; echo EXIT_CODE=$? >> /root/runs/recovery_aware_struct_prune/eval_unstructured_20.log'\\nroot     865249  0.0  0.0   4364  1776 ?        S    12:45   0:00 bash -c cd /root/recovery_aware_struct_prune && nohup bash -c \\\"source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json\\\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log 2>&1 &\\nroot     865250  139  0.1 47745392 1971636 ?    Rl   12:45   0:53 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T04:47:14.626641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 3125 May 19 12:46 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T04:47:14.626783+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "nvidia-smi | grep -E \"MiB|%\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "nvidia-smi | grep -E \"MiB|%\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T04:47:14.626905+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -20 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tail -20 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_unstructured_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T04:47:14.627032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"| N/A   56C    P0            319W /  600W |   17699MiB /  97887MiB |     83%      Default |\\n| N/A   83C    P0            603W /  600W |   67949MiB /  97887MiB |    100%      Default |\\n|    0   N/A  N/A          865250      C   python                                17690MiB |\\n|    1   N/A  N/A          857962      C   python                                67940MiB |\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T04:47:14.627200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 12:45:47,317 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/339 [00:00<01:06,  5.08it/s]\\rLoading weights:   1%|          | 2/339 [00:00<01:11,  4.73it/s]\\rLoading weights:   4%|▍         | 14/339 [00:00<00:09, 34.40it/s]\\rLoading weights:   8%|▊         | 28/339 [00:00<00:06, 51.78it/s]\\rLoading weights:  12%|█▏        | 41/339 [00:00<00:04, 70.13it/s]\\rLoading weights:  16%|█▌        | 53/339 [00:00<00:03, 76.28it/s]\\rLoading weights:  19%|█▉        | 64/339 [00:01<00:03, 84.23it/s]\\rLoading weights:  22%|██▏       | 76/339 [00:01<00:03, 86.64it/s]\\rLoading weights:  26%|██▌       | 88/339 [00:01<00:02, 88.55it/s]\\rLoading weights:  29%|██▉       | 98/339 [00:01<00:02, 91.37it/s]\\rLoading weights:  32%|███▏      | 108/339 [00:01<00:02, 84.84it/s]\\rLoading weights:  35%|███▍      | 117/339 [00:01<00:02, 82.68it/s]\\rLoading weights:  37%|███▋      | 126/339 [00:01<00:02, 79.37it/s]\\rLoading weights:  41%|████      | 138/339 [00:01<00:02, 83.98it/s]\\rLoading weights:  44%|████▍     | 150/339 [00:02<00:02, 84.74it/s]\\rLoading weights:  48%|████▊     | 162/339 [00:02<00:02, 85.02it/s]\\rLoading weights:  51%|█████▏    | 174/339 [00:02<00:01, 85.18it/s]\\rLoading weights:  55%|█████▍    | 186/339 [00:02<00:01, 85.28it/s]\\rLoading weights:  58%|█████▊    | 198/339 [00:02<00:01, 85.29it/s]\\rLoading weights:  62%|██████▏   | 209/339 [00:02<00:01, 83.23it/s]\\rLoading weights:  65%|██████▌   | 222/339 [00:02<00:01, 86.22it/s]\\rLoading weights:  69%|██████▊   | 233/339 [00:03<00:01, 91.26it/s]\\rLoading weights:  72%|███████▏  | 244/339 [00:03<00:01, 86.90it/s]\\rLoading weights:  76%|███████▌  | 256/339 [00:03<00:00, 86.69it/s]\\rLoading weights:  79%|███████▉  | 268/
+…[truncated 1047 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T04:47:14.627404+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_grpo_unstructured_20",
+  "field": "hypothesis",
+  "value": "GSM8K accuracy for GRPO-recovered unstructured 20% pruned model. Pre-GRPO baseline was 87.87%. Compare with structured GRPO results (CKA-only 64.37%, Standard 58.91%, RASP 56.71%) to quantify structured vs unstructured recovery dynamics.",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_grpo_unstructured_20",
+    "field": "hypothesis",
+    "value": "GSM8K accuracy for GRPO-recovered unstructured 20% pruned model. Pre-GRPO baseline was 87.87%. Compare with structured GRPO results (CKA-only 64.37%, Standard 58.91%, RASP 56.71%) to quantify structured vs unstructured recovery dynamics.",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T04:47:14.627548+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_grpo_unstructured_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:46:38.286Z\", \"updated_at\": \"2026-05-19T04:46:38.286Z\", \"hypothesis\": \"GSM8K accuracy for GRPO-recovered unstructured 20% pruned model. Pre-GRPO baseline was 87.87%. Compare with structured GRPO results (CKA-only 64.37%, Standard 58.91%, RASP 56.71%) to quantify structured vs unstructured recovery dynamics.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9334}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T04:47:14.627674+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_grpo_unstructured_20",
+  "field": "parent",
+  "value": "grpo_unstructured_20",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_grpo_unstructured_20",
+    "field": "parent",
+    "value": "grpo_unstructured_20",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T04:47:14.627803+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_grpo_unstructured_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:46:38.286Z\", \"updated_at\": \"2026-05-19T04:46:42.470Z\", \"hypothesis\": \"GSM8K accuracy for GRPO-recovered unstructured 20% pruned model. Pre-GRPO baseline was 87.87%. Compare with structured GRPO results (CKA-only 64.37%, Standard 58.91%, RASP 56.71%) to quantify structured vs unstructured recovery dynamics.\", \"parent\": \"grpo_unstructured_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9417}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T04:47:14.627937+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_grpo_unstructured_20",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recovery_aware_struct_prune",
+  "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json', 'server': 'westb-23072', 'data_path': 'gsm8k test set', 'data_count': 1319, 'model_name': 'grpo_unstructured_20/checkpoint-100', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100', 'eval_data': 'gsm8k_test'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_grpo_unstructured_20",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "recovery_aware_struct_prune",
+    "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json', 'server': 'westb-23072', 'data_path': 'gsm8k test set', 'data_count': 1319, 'model_name': 'grpo_unstructured_20/checkpoint-100', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100', 'eval_data': 'gsm8k_test'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T04:47:14.628086+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.9233}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T04:47:14.628221+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_grpo_unstructured_20",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_grpo_unstructured_20",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T04:47:14.628375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_grpo_unstructured_20\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:46:38.286Z\", \"updated_at\": \"2026-05-19T04:46:53.988Z\", \"hypothesis\": \"GSM8K accuracy for GRPO-recovered unstructured 20% pruned model. Pre-GRPO baseline was 87.87%. Compare with structured GRPO results (CKA-only 64.37%, Standard 58.91%, RASP 56.71%) to quantify structured vs unstructured recovery dynamics.\", \"parent\": \"grpo_unstructured_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7193}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T04:47:14.628514+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_grpo_unstructured_20",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recovery_aware_struct_prune",
+  "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json', 'server': 'westb-23072', 'data_path': 'gsm8k test set', 'data_count': 1319, 'model_name': 'grpo_unstructured_20/checkpoint-100', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100', 'eval_data': 'gsm8k_test'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_grpo_unstructured_20",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "recovery_aware_struct_prune",
+    "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json', 'server': 'westb-23072', 'data_path': 'gsm8k test set', 'data_count': 1319, 'model_name': 'grpo_unstructured_20/checkpoint-100', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100', 'eval_data': 'gsm8k_test'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T04:47:14.628671+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_grpo_unstructured_20\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:46:38.286Z\", \"updated_at\": \"2026-05-19T04:47:00.991Z\", \"hypothesis\": \"GSM8K accuracy for GRPO-recovered unstructured 20% pruned model. Pre-GRPO baseline was 87.87%. Compare with structured GRPO results (CKA-only 64.37%, Standard 58.91%, RASP 56.71%) to quantify structured vs unstructured recovery dynamics.\", \"parent\": \"grpo_unstructured_20\", \"spec\": {\"command\": \"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json\", \"server\": \"westb-23072\", \"data_path\": \"gsm8k test set\", \"data_count\": 1319, \"model_name\": \"grpo_unstructured_20/checkpoint-100\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100\", \"eval_data\": \"gsm8k_test\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7707}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-19T04:47:14.628885+00:00_
+
+全部完成。
+
+**汇总：**
+- 清理了 `optimizer.pt` (9.5G) + `training_args.bin`，数据盘从 100% 降至 97% (9.5G 可用)
+- GSM8K eval 已在 westb-23072 cuda:0 上运行 (PID 865250)，~11s/样本，预计约 4 小时完成
+- Registry 条目 `eval_gsm8k_grpo_unstructured_20` 已创建，状态 RUNNING，parent=grpo_unstructured_20
+- GPU 1 上还有一个之前的 eval_unstructured_20 在运行（PID 857962, 67.9G 显存, 100% 利用率）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409"
+}
+```
+
+</details>
+
+---

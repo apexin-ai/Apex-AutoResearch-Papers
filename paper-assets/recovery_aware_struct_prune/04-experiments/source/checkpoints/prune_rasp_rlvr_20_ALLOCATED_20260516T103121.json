@@ -1,0 +1,15 @@
+{
+  "exp_id": "prune_rasp_rlvr_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:50:39.656Z",
+    "updated_at": "2026-05-16T10:31:21.764Z",
+    "hypothesis": "RASP-RLVR 20% pruning: score = importance * cka^alpha. 反转 CKA scoring——剪掉功能独特的结构（低 CKA overlap），保留冗余结构（高 overlap），使 RLVR 更容易通过冗余路径恢复能力。对比 RASP (1-cka)^alpha 和 Standard (importance only)。"
+  },
+  "timestamp": "2026-05-16T10:31:21.899978+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "033e707725bd78ef967b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d017 health check",
+  "task_key": "worker_code_d017_health_check_20260515T033520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d017_health_check_20260515T033520_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "a6f497f236d70bf7f838da320f07ce24652c81d1c1aa805871b24e88cc6fcf49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度总结：\n- **PID 274151** (RASP) 和 **PID 274234** (Standard) 均存活\n- **W&B run IDs**: RASP=`e16rbclf`, Standard=`9dp4gvnn`\n- **Registry** 已更新 wandb_run_id\n- 训练于 11:35 UTC 启动，尚未到达 step 10（logging_steps=10），等待 ~4 分钟后轮询"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d017-health-check.md"
+}

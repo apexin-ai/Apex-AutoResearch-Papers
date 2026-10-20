@@ -1,0 +1,16 @@
+{
+  "exp_id": "sft_standard_20_westd_retrain",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:05:52.927Z",
+    "updated_at": "2026-05-15T17:12:22.264Z",
+    "hypothesis": "Standard SFT retrain on westd for cross-server reproducibility + full N=1319 eval. Same params as westb (2 epochs, lr=2e-5, batch=1, grad_accum=8, seed=42). Expected: ~64% post-SFT (matching westb). Parent: reeval_postprune_definitive.",
+    "notes": "Standard SFT retrain 启动 on westd cuda:1. PID 49645. 参数: epochs=2, lr=2e-5, bs=1, grad_accum=8, max_seq_len=2048, seed=42. Output: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd. 模型加载中。预计 ~35-40min。完成后先 N=100 快速验证 (~64% expected)，再 N=1319 full eval。"
+  },
+  "timestamp": "2026-05-15T17:12:22.340544+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_grpo_random_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:47:26.216Z",
+    "updated_at": "2026-05-21T04:47:51.996Z",
+    "hypothesis": "Random 20% GRPO后GSM8K评估。Random pruning reward=0.189（最低），验证无结构保留的pruning在GRPO后数学推理能力。填补Table 2数据。",
+    "parent": "grpo_random_20"
+  },
+  "timestamp": "2026-05-21T04:47:52.627925+00:00",
+  "trigger": "update_registry"
+}

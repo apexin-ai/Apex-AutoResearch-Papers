@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1964b531e1018b8c7b54",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ssh cka only 25 pruning and sft",
+  "task_key": "worker_ssh_cka_only_25_pruning_and_sft_20260521T014335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cka_only_25_pruning_and_sft_20260521T014335.log",
+    "occurrence": 1,
+    "bytes": 677095,
+    "sha256": "c41e75d64ea7ba8770fc3f29515c970b3ebcc1fa35e4dcc31601ce5eb8c1a5de"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "1964b531e1018b8c7b54-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1964b531e1018b8c7b54-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-cka-only-25-pruning-and-sft.md"
+}

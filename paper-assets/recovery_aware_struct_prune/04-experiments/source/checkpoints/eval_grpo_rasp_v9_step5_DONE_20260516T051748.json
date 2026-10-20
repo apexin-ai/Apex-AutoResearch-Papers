@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_grpo_rasp_v9_step5",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:55:35.424Z",
+    "updated_at": "2026-05-16T05:17:47.734Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9/checkpoint-5",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_grpo_rasp_v9_step5.log"
+    },
+    "hypothesis": "RASP GRPO v9 step-5 checkpoint GSM8K eval (N=1319, greedy, seed=42). Step 5 是 RASP collapse 前最后可能的 pre-collapse checkpoint（v9 collapse onset ≤step 10, logging_steps=10 无法判断 step 5 状态）。与 Standard step-50 eval (58.91%) 对比，量化 RASP GRPO 短暂训练的效果。Parent: grpo_stage2_rasp_20_v9.",
+    "parent": "grpo_stage2_rasp_20_v9",
+    "reproduce": {
+      "finished_at": "2026-05-16T04:41:37.201Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T04:41:38.932275+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 60.65,
+      "total": 1319,
+      "seed": 42
+    },
+    "completed_at": "2026-05-16T05:17:47.734Z"
+  },
+  "timestamp": "2026-05-16T05:17:48.020400+00:00",
+  "trigger": "update_registry"
+}

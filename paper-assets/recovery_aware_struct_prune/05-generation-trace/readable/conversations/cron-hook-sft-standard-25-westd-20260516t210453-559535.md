@@ -1,0 +1,799 @@
+# cron hook sft standard 25 westd 20260516T210453 559535
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 2
+- **Tool calls:** 10
+- **Original source:** `logs/chats/archive/cron_hook_sft_standard_25_westd_20260516T210453_559535.jsonl`
+- **Structured JSON:** [`b14da1aa4f4532e78c2c.json`](../../sessions/b1/b14da1aa4f4532e78c2c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+22 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T16:47:06.053686+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: sft_standard_25_westd
+- project: recovery_aware_struct_prune
+- server: westd-11672
+- log_path: ~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sft_standard_25_westd",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T16:47:17.340320+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T16:47:17.340663+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T16:47:20.302408+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T16:47:20.804472+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T16:47:21.258467+00:00_
+
+Error: result (74,464 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-67c651bf/387a5118-9881-4052-9cdf-d094fb2241a8/tool-results/mcp-agent-ml-research-read_registry-1778950040948.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-67c651bf/387a5118-9881-4052-9cdf-d094fb2241a8/tool-results/mcp-agent-ml-research-read_registry-1778950040948.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 956
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T16:47:21.258930+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T16:47:21.259166+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T16:47:33.107403+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"eval_sft_rasp_25\", \"success\": true, \"actions\": [\"Job still running (pid=602990)\"]}, {\"exp_id\": \"eval_sft_rasp_rlvr_20\", \"success\": true, \"actions\": [\"Job still running (pid=625453)\"]}, {\"exp_id\": \"grpo_rasp_25\", \"success\": true, \"actions\": [\"Job still running (pid=21408)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 12302
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T16:47:33.158231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-16T16:47:04Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 110 个实验 — DONE 92, PREPARING 11, RUNNING 7\\n**DONE 分布**: failed 13, killed 10, negative 13, success 56\\n\\n### GPU 占用\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-11672:cuda:0, westd-11672:cuda:1, westd-11672:cuda:2, westd-11672:cuda:3\\n- **实际运行**: 7 张 — westb-23072:cuda:0(eval_sft_rasp_25), westd-11672:cuda:0(grpo_rasp_25), westb-23072:cuda:1(eval_sft_rasp_rlvr_20), westd-11672:cuda:1(eval_grpo_standard_25_qwen_math), westd-11672:cuda:1(eval_pass_k8_unpruned_qwen_math), westd-11672:cuda:2(eval_pass_k8_rasp_20_sft_qwen_math), westd-11672:cuda:3(eval_pass_k8_rasp_20_grpo_qwen_math)\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval_sft_rasp_25` | westb-23072 | cuda:0 | 602990 | `~/runs/recovery_aware_struct_prune/eval_sft_rasp_25.log` |\\n| `grpo_rasp_25` | westd-11672 | cuda:0 | 21408 | `~/runs/recovery_aware_struct_prune/grpo_rasp_25.log` |\\n| `eval_sft_rasp_rlvr_20` | westb-23072 | cuda:1 | 625453 | `~/runs/recovery_aware_struct_prune/eval_sft_rasp_rlvr_20.log` |\\n| `eval_grpo_standard_25_qwen_math` | westd-11672 | cuda:1 | ? | `—` |\\n| `eval_pass_k8_unpruned_qwen_math` | westd-11672 | cuda:1 | ? | `—` |\\n| `eval_pass_k8_rasp_20_sft_qwen_math` | westd-11672 | cuda:2 | ? | `—` |\\n| `eval_pass_k8_rasp_20_grpo_qwen_math` | westd-11672 | cuda:3 | ? | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `sft_standard_25_westd` [failed] — 2026-05-16T16:47:03 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `eval_grpo_rasp_25_qwen_math` [success] — 2026-05-16T16:31:03\\n- `eval_grpo_standard_20_qwen_math` [success] — 2026-05-16T16:31:01\\n- `eval_grpo_rasp_20
+…[truncated 3825 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 11899
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T16:47:33.158743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-16 08:05 UTC | 更新原因: D044/D045 narrative pivot complete, 25% expansion in progress, ROADMAP 16h stale refresh\\n\\n> 核心方向详见 paper_framing.md | 实验计划详见 experiment_plan.yaml\\n\\n## 核心方向\\n**Redundancy-Stability Tradeoff**: GRPO alignment fundamentally fails on structurally pruned reasoning models — reward improves but accuracy never follows (universal decoupling). Pruning adds training collapse whose severity diagnoses structural damage type. Functional redundancy plays opposite roles under SFT vs RLVR recovery.\\n\\n## 目标会议\\nEMNLP 2026 ARR May 25 提交（距今 ~9 天）\\n\\n## 当前阶段\\n**Research Phase — Scope Expansion** (D044/D045 后)\\n- Core 20% data: ✅ ALL COMPLETE (3 claims fully supported)\\n- 25% sparsity expansion: SFT 完成, eval 进行中/刚完成, GRPO 待启动\\n- Qwen2.5-Math-7B (Phase 2): importance+CKA scores 已算, RASP pruning 进行中\\n- Paper writing: Paper Agent Step 2 (Plot Generation) 进行中\\n\\n## 核心证据 (20% sparsity, N=1319)\\n| 实验 | 结果 | Claim |\\n|------|------|-------|\\n| Unpruned SFT → GRPO step-100 | 81.27% → 81.27% (Δ=0.00, reward 0→0.661) | C1: Universal decoupling |\\n| RASP GRPO v9 collapse | Permanent step ~10, peak reward 0.039, frac_zero_std→0.95 | C2: Collapse gradient |\\n| Standard GRPO v8 collapse | Transient dip step ~60, recovery step ~90 | C2: Collapse gradient |\\n| Unpruned GRPO v2 | 100 steps stable, no collapse, reward 0.661 | C2: Pruning-specificity |\\n| RASP SFT vs Standard SFT | 61.49% vs 59.29% (Δ=+2.2pp, p=0.25) | C3: SFT marginal advantage |\\n| RASP step-10 eval | 61.87% (collapse onset ≠ accuracy loss) | Bidirectional decoupling |\\n\\n## Scope Expansion 进度\\n### Phase 1: 25% Sparsity (intensify collapse)\\n- [x] pruned_rasp_25 + pruned_standard_25\\n- [x] sft_rasp_25 + sft_standard_25\\n- [ ] eval_sft_standard_25 
+…[truncated 2855 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 11899
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T16:47:36.621154+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'exp_id': 'sft_standard_25_westd'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'exp_id': 'sft_standard_25_westd'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T16:47:36.872432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2512}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T16:47:48.984059+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+  "fields": "['*']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+    "fields": "['*']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T16:47:49.288659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"sft_standard_25_westd\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:52:30.818Z\", \"updated_at\": \"2026-05-16T16:47:03.556Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:1\"], \"pid\": \"21488\", \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log\", \"submitted_at\": \"2026-05-16T15:52:30.596Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (Standard 25% pruned)\", \"seed\": 42, \"wall_clock_seconds\": 3273.0, \"gpu_hours\": 0.91}, \"reproduce\": {\"finished_at\": \"2026-05-16T16:47:02.031Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T16:47:03.556Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T16:47:05.612374+00:00\"}]}}, \"eval_sft_standard_20_full\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:21:33.865Z\", \"updated_at\": \"2026-05-16T05:35:33.677Z\", \"hypothesis\": \"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides statistical significance for RASP vs Standard comparison. Parent: sft_standard_20_retrain.\", \"notes\": \"Replaced by eval_sft_standard_20_n1319 (tmux session conflict). See new exp for r
+…[truncated 6269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 304
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T16:48:00.302629+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T16:48:00.353652+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_67c651bf.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T16:48:01.709200+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T16:48:01.709656+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T16:48:26.740595+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:sft_standard_25_westd",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务：诊断实验 sft_standard_25_westd 失败原因\n\n### 背景\n实验 `sft_standard_25_westd` 在 westd-11672 cuda:1 上运行约 54 分钟后进程反复退出（cron 检测到 process dead 5 次，无 W&B metrics，auto-resolved as failed）。\n\n### 训练命令\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\"\n```\n\n### 你需要做的\n1. SSH 到 westd-11672，读取日志文件：`~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log`（读最后 200 行即可看到错误）\n2. 检查是否有 OOM、磁盘满、GPU 冲突、CUDA 错误等\n3. 检查 `df -h /root/autodl-tmp/` 和 `df -h /` 看磁盘状态\n4. 检查 `nvidia-smi` 看当前 GPU 状态（cuda:1 是否被其他进程占用）\n5. 检查 `--gpu 1` 参数是否正确（submit_training_job 注入了 CUDA_VISIBLE_DEVICES=1，脚本内应该用 --gpu 0）\n6. 如果日志为空或不存在，检查 tmux 日志：`ls ~/runs/recovery_aware_struct_prune/sft_standard_25_westd*`\n\n### 产出\n在回复中总结：\n- 根因（一句话）\n- 错误消息（关键行）\n- 修复建议（重试时需要改什么）\n- 磁盘/GPU 当前状态",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:sft_standard_25_westd",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务：诊断实验 sft_standard_25_westd 失败原因\n\n### 背景\n实验 `sft_standard_25_westd` 在 westd-11672 cuda:1 上运行约 54 分钟后进程反复退出（cron 检测到 process dead 5 次，无 W&B metrics，auto-resolved as failed）。\n\n### 训练命令\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\"\n```\n\n### 你需要做的\n1. SSH 到 westd-11672，读取日志文件：`~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log`（读最后 200 行即可看到错误）\n2. 检查是否有 OOM、磁盘满、GPU 冲突、CUDA 错误等\n3. 检查 `df -h /root/autodl-tmp/` 和 `df -h /` 看磁盘状态\n4. 检查 `nvidia-smi` 看当前 GPU 状态（cuda:1 是否被其他进程占用）\n5. 检查 `--gpu 1` 参数是否正确（submit_training_job 注入了 CUDA_VISIBLE_DEVICES=1，脚本内应该用 --gpu 0）\n6. 如果日志为空或不存在，检查 tmux 日志：`ls ~/runs/recovery_aware_struct_prune/sft_standard_25_westd*`\n\n### 产出\n在回复中总结：\n- 根因（一句话）\n- 错误消息（关键行）\n- 修复建议（重试时需要改什么）\n- 磁盘/GPU 当前状态",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T16:48:29.453860+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_sft_standard_25_westd_20260516T164827\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_diagnose_sft_standard_25_westd_20260516T164827.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_sft_standard_25_westd_20260516T164827 started. Use get_worker_status('worker_diagnose_sft_standard_25_westd_20260516T164827') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_standard_25_westd",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2713
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-16T16:48:36.221543+00:00_
+
+Worker 已派出诊断日志。等待回调后更新 registry 并汇报 Director。
+
+注意到几个可疑点：
+1. 命令用了 `--gpu 1`，但 `submit_training_job` 已注入 `CUDA_VISIBLE_DEVICES=1`，导致脚本内应该用 `--gpu 0`（GPU 映射错误）
+2. westd-11672 cuda:1 当前有多个 eval 任务在跑，可能与此 SFT 实验存在时间冲突
+3. 运行了 54 分钟说明不是立即崩溃，可能是训练中途 OOM 或磁盘满
+
+Worker 完成后我会更新 failure_reason 并向 Director 汇报修复方案。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sft_standard_25_westd"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 23 · 2026-05-16T21:04:04.886946+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sft_standard_25_westd",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-16T21:04:53.549946+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1/2/3（共 6 张）
+- submit_training_job 注入 CUDA_VISIBLE_DEVICES 映射，脚本内 `--gpu` 始终从 0 开始
+- sft_standard_25_westd 用了 `--gpu 1` 但 CUDA_VISIBLE_DEVICES=1 → 实际访问不到设备，这是本次失败的疑似根因，重试时改 `--gpu 0`
+- Qwen Math calibration=256（不同于 westb 的 512），论文加 footnote 不重跑（D046）
+- 磁盘：根分区小，模型/数据/cache 全部放 `/root/autodl-tmp/`，HF_HOME/HF_DATASETS_CACHE 必须重定向
+
+### 2. 🖥️ 基础设施快照
+- **westb-23072**: 2× ~98GB GPU | conda base `/root/miniconda3/bin/python` | 工作目录 `/root/recovery_aware_struct_prune` | 模型/数据 `/root/autodl-tmp/recovery_aware_struct_prune/`
+- **westd-11672**: 4× ~95GB GPU | 同上 conda base | 同上路径结构
+- W&B project: recovery_aware_struct_prune（多个 run_id 散落在 registry）
+- HF_HOME: `/root/autodl-tmp/.hf_cache`
+- 活跃进程（reconcile 确认）:
+  - eval_sft_rasp_25: westb-23072 cuda:0, PID 602990
+  - eval_sft_rasp_rlvr_20: westb-23072 cuda:1, PID 625453
+  - grpo_rasp_25: westd-11672 cuda:0, PID 21408
+  - eval_grpo_standard_25_qwen_math / eval_pass_k8_unpruned_qwen_math: westd-11672 cuda:1（无 PID/cron，可能是手动提交）
+  - eval_pass_k8_rasp_20_sft_qwen_math: westd-11672 cuda:2
+  - eval_pass_k8_rasp_20_grpo_qwen_math: westd-11672 cuda:3
+
+### 3. 📊 当前状态
+**刚发生**：sft_standard_25_westd 失败（process dead 5×, no W&B/sentinel）。已派 Worker `worker_diagnose_sft_standard_25_westd_20260516T164827` SSH 查日志诊断根因，**尚未回调**。
+
+**RUNNING (7)**:
+- eval_sft_rasp_25 — 25% RASP post-SFT GSM8K eval
+- eval_sft_rasp_rlvr_20 — RLVR 20% eval
+- grpo_rasp_25 — 25% RASP GRPO recovery（关键实验，验证 25% collapse 比 20% 更快）
+- 4× Qwen Math pass@k8 evals（westd cuda:1/2/3）
+
+**PREPARING (11)**: grpo_standard_25, eval_postprune_25, eval_sft_standard_20_n1319, eval_sft_grasp_20, eval_sft_alpha_0p5, eval_sft_rasp_20_full, grpo_standard_20_v8, grpo_rasp_20_v8, alpha_ablation_westd_cal256, grpo_stage2_standard_20_v5, grpo_stage2_rasp_20_v5（后两个是旧 v5 遗留）
+
+**等待中**：
+- Worker diagnose 回调 → 确定 sft_standard_25_westd 失败根因 → 修复重试
+- grpo_rasp_25 完成回调 → 核心 25% collapse 数据点
+- 4× Qwen Math eval 回调 → 填充 cross-model validation 数据
+
+### 4. 📋 待办（条件触发式）
+- Worker diagnose 回调到达 → 根据诊断结果修复命令（大概率 `--gpu 1` → `--gpu 0`）→ 重新提交 sft_standard_25_westd
+- grpo_rasp_25 完成 → 对比 20% collapse timeline（RASP step~10 vs 25% 预期更早）→ 更新 paper_framing.md C2 证据
+- eval_sft_rasp_25 完成 → 对比 sft_standard_25（一旦重跑成功）→ 25% 下 RASP vs Standard SFT gap
+- sft_standard_25 重跑成功 → 立即提交 grpo_standard_25（cuda:1 空出后）→ 25% Standard GRPO negative control
+- 4× Qwen Math eval 全部完成 → 汇总 cross-model 表格 → 更新 ROADMAP Phase 2 进度
+- DDL 倒计时 9 天 → 25% GRPO + Qwen Math 必须并行，不能串行
+
+### 5. 🎯 战略上下文
+- **核心 narrative (D044/D045 pivot 后)**: GRPO alignment fundamentally fails on structurally pruned models — reward improves but accuracy never follows (universal decoupling). 不再是 "RASP enables better GRPO recovery"，而是 "所有剪枝模型 GRPO 都 collapse，RASP 的差异体现在 collapse 时间线和 SFT 恢复"
+- **三大 Claims**: C1=Universal decoupling (unpruned reward↑ accuracy→), C2=Collapse gradient (RASP earliest → Standard later → Unpruned stable), C3=Functional redundancy plays opposite roles under SFT vs RLVR
+- **D048**: C3 reframe 为 "RASP enables better GRPO recovery" 但这与 D044 有微妙冲突——实际上 RASP GRPO 也 collapse，只是时间线不同。下一个"你"注意不要把 C3 说成 "RASP GRPO works"
+- **易错点**：
+  - `--gpu` 参数：submit_training_job 已注入 CUDA_VISIBLE_DEVICES，脚本内必须 `--gpu 0`
+  - westd cuda:1 当前有多个 eval 在跑，sft_standard_25 重试要等 eval 完成或确认不冲突
+  - report.md 里"资源状态"显示"空闲"但实际有 7 个实验在跑——report 的资源段不可信，以 reconcile_crons 和 nvidia-smi 为准
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sft_standard_25_westd"
+}
+```
+
+</details>
+
+---

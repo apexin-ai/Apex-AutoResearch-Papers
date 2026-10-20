@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_gsm8k_grpo_cka_only_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:35:29.923Z",
+    "updated_at": "2026-05-18T16:35:29.923Z"
+  },
+  "timestamp": "2026-05-18T16:35:30.267850+00:00",
+  "trigger": "update_registry"
+}

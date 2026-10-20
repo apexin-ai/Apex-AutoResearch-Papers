@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_sft_standard_20_full",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:21:33.865Z",
+    "updated_at": "2026-05-16T05:22:18.569Z",
+    "hypothesis": "Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides statistical significance for RASP vs Standard comparison. Parent: sft_standard_20_retrain.",
+    "notes": "Replaced by eval_sft_standard_20_n1319 (tmux session conflict). See new exp for results."
+  },
+  "timestamp": "2026-05-16T05:22:18.742735+00:00",
+  "trigger": "update_registry"
+}

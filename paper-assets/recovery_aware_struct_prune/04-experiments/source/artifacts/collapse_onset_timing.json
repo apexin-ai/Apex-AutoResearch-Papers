@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "metric_name": "train/frac_reward_zero_std",
+    "cos_threshold": 0.85,
+    "cos_definition": "First training step where frac_reward_zero_std >= 0.85",
+    "wandb_entity": "xiaoyucorynne-",
+    "wandb_project": "recovery_aware_struct_prune",
+    "extracted_at": "2026-05-17"
+  },
+  "runs": {
+    "grpo_stage2_rasp_20_v8": {
+      "run_id": "0wz7xpd5",
+      "model": "DeepSeek-R1-Qwen-7B",
+      "method": "RASP",
+      "sparsity": "20%",
+      "state": "crashed",
+      "history": [
+        {"global_step": 10, "frac_reward_zero_std": 0.9, "grad_norm": 0.013427734375, "reward": 0.00875},
+        {"global_step": 20, "frac_reward_zero_std": 0.9, "grad_norm": 0.0108642578125, "reward": 0.025625}
+      ],
+      "cos": 10,
+      "peak_frac_zero_std": 0.9,
+      "final_frac_zero_std": 0.9,
+      "pattern": "persistent_homogeneity"
+    },
+    "grpo_stage2_standard_20_v8": {
+      "run_id": "q34vz8j2",
+      "model": "DeepSeek-R1-Qwen-7B",
+      "method": "Standard",
+      "sparsity": "20%",
+      "state": "crashed",
+      "history": [
+        {"global_step": 10, "frac_reward_zero_std": 0.5, "grad_norm": 2.90625, "reward": 0.0575},
+        {"global_step": 20, "frac_reward_zero_std": 0.675, "grad_norm": 1.5859375, "reward": 0.06125},
+        {"global_step": 30, "frac_reward_zero_std": 0.525, "grad_norm": 2.28125, "reward": 0.065},
+        {"global_step": 40, "frac_reward_zero_std": 0.45, "grad_norm": 3.453125, "reward": 0.095625},
+        {"global_step": 50, "frac_reward_zero_std": 0.6, "grad_norm": 2.09375, "reward": 0.036875},
+        {"global_step": 60, "frac_reward_zero_std": 0.525, "grad_norm": 0.0128173828125, "reward": 0.040625},
+        {"global_step": 70, "frac_reward_zero_std": 0.5, "grad_norm": 2.8125, "reward": 0.08125},
+        {"global_step": 80, "frac_reward_zero_std": 0.55, "grad_norm": 2.3125, "reward": 0.045},
+        {"global_step": 90, "frac_reward_zero_std": 0.475, "grad_norm": 2.140625, "reward": 0.065}
+      ],
+      "cos": "never",
+      "peak_frac_zero_std": 0.675,
+      "final_frac_zero_std": 0.475,
+      "pattern": "no_collapse"
+    },
+    "grpo_rasp_25": {
+      "run_id": "bc4ojqie",
+      "model": "DeepSeek-R1-Qwen-7B",
+      "method": "RASP",
+      "sparsity": "25%",
+      "state": "finished",
+      "history": [
+        {"global_step": 10, "frac_reward_zero_std": 0.925, "grad_norm": 1.2578125, "reward": 0.001875},
+        {"global_step": 20, "frac_reward_zero_std": 0.925, "grad_norm": 0.03173828125, "reward": 0.0075},
+        {"global_step": 30, "frac_reward_zero_std": 0.875, "grad_norm": 0.9375, "reward": 0.020625},
+        {"global_step": 40, "frac_reward_zero_std": 0.925, "grad_norm": 1.125, "reward": 0.0025},
+        {"global_step": 50, "frac_reward_zero_std": 0.875, "grad_norm": 0.8203125, "reward": 0.01},
+        {"global_step": 60, "frac_reward_zero_std": 0.925, "grad_norm": 0.023681640625, "reward": 0.0025},
+        {"global_step": 70, "frac_reward_zero_std": 0.85, "grad_norm": 0.84375, "reward": 0.015},
+        {"global_step": 80, "frac_reward_zero_std": 0.925, "grad_norm": 0.052490234375, "reward": 0.001875},
+        {"global_step": 90, "frac_reward_zero_std": 0.85, "grad_norm": 1.6328125, "reward": 0.010625},
+        {"global_step": 100, "frac_reward_zero_std": 0.875, "grad_norm": 0.0537109375, "reward": 0.009375}
+      ],
+      "cos": 10,
+      "peak_frac_zero_std": 0.925,
+      "final_frac_zero_std": 0.875,
+      "pattern": "persistent_homogeneity"
+    },
+    "grpo_standard_25": {
+      "run_id": "6fclw4ro",
+      "model": "DeepSeek-R1-Qwen-7B",
+      "method": "Standard",
+      "sparsity": "25%",
+      "state": "finished",
+      "history": [
+        {"global_step": 10, "frac_reward_zero_std": 0.825, "grad_norm": 0.7890625, "reward": 0.03875},
+        {"global_step": 20, "frac_reward_zero_std": 0.825, "grad_norm": 0.051513671875, "reward": 0.021875},
+        {"global_step": 30, "frac_reward_zero_std": 0.875, "grad_norm": 0.072265625, "reward": 0.00875},
+        {"global_step": 40, "frac_reward_zero_std": 0.875, "grad_norm": 0.040283203125, "reward": 0.033125},
+        {"global_step": 50, "frac_reward_zero_std": 0.875, "grad_norm": 0.0205078125, "reward": 0.02125},
+        {"global_step": 60, "frac_reward_zero_std": 0.875, "grad_norm": 0.0255126953125, "reward": 0.020625},
+        {"global_step": 70, "frac_reward_zero_std": 0.925, "grad_norm": 0.98046875, "reward": 0.0075},
+        {"global_step": 80, "frac_reward_zero_std": 0.925, "grad_norm": 1.078125, "reward": 0.008125},
+        {"global_step": 90, "frac_reward_zero_std": 0.9, "grad_norm": 0.025634765625, "reward": 0.020625},
+        {"global_step": 100, "frac_reward_zero_std": 0.925, "grad_norm": 0.048583984375, "reward": 0.0075}
+      ],
+      "cos": 30,
+      "peak_frac_zero_std": 0.925,
+      "final_frac_zero_std": 0.925,
+      "pattern": "permanent_collapse"
+    },
+    "grpo_rasp_qwen_math_v3": {
+      "run_id": "yyg9ty4u",
+      "model": "Qwen2.5-Math-7B",
+      "method": "RASP",
+      "sparsity": "20%",
+      "state": "finished",
+      "history": [
+        {"global_step": 10, "frac_reward_zero_std": 0.65, "grad_norm": 0.734375, "reward": 0.049375},
+        {"global_step": 20, "frac_reward_zero_std": 0.625, "grad_norm": 1.9140625, "reward": 0.0825},
+        {"global_step": 30, "frac_reward_zero_std": 0.55, "grad_norm": 6.90625, "reward": 0.059375},
+        {"global_step": 40, "frac_reward_zero_std": 0.575, "grad_norm": 1.8671875, "reward": 0.101875},
+        {"global_step": 50, "frac_reward_zero_std": 0.675, "grad_norm": 2.921875, "reward": 0.06875},
+        {"global_step": 60, "frac_reward_zero_std": 0.575, "grad_norm": 3.265625, "reward": 0.070625},
+        {"global_step": 70, "frac_reward_zero_std": 0.575, "grad_norm": 4.8125, "reward": 0.090625},
+        {"global_step": 80, "frac_reward_zero_std": 0.7, "grad_norm": 14.875, "reward": 0.055625},
+        {"global_step": 90, "frac_reward_zero_std": 0.575, "grad_norm": 5.71875, "reward": 0.0475},
+        {"global_step": 100, "frac_reward_zero_std": 0.675, "grad_norm": 1.6171875, "reward": 0.06125}
+      ],
+      "cos": "never",
+      "peak_frac_zero_std": 0.7,
+      "final_frac_zero_std": 0.675,
+      "pattern": "no_collapse"
+    },
+    "grpo_standard_qwen_math_v3": {
+      "run_id": "5n2snh48",
+      "model": "Qwen2.5-Math-7B",
+      "method": "Standard",
+      "sparsity": "20%",
+      "state": "finished",
+      "history": [
+        {"global_step": 10, "frac_reward_zero_std": 0.75, "grad_norm": 10.5, "reward": 0.063125},
+        {"global_step": 20, "frac_reward_zero_std": 0.85, "grad_norm": 1.8671875, "reward": 0.044375},
+        {"global_step": 30, "frac_reward_zero_std": 0.9, "grad_norm": 0.193359375, "reward": 0.03125},
+        {"global_step": 40, "frac_reward_zero_std": 0.875, "grad_norm": 0.294921875, "reward": 0.03875},
+        {"global_step": 50, "frac_reward_zero_std": 0.825, "grad_norm": 0.2197265625, "reward": 0.0325},
+        {"global_step": 60, "frac_reward_zero_std": 0.825, "grad_norm": 172.0, "reward": 0.0325},
+        {"global_step": 70, "frac_reward_zero_std": 0.825, "grad_norm": 0.26171875, "reward": 0.045},
+        {"global_step": 80, "frac_reward_zero_std": 0.75, "grad_norm": 130.0, "reward": 0.069375},
+        {"global_step": 90, "frac_reward_zero_std": 0.825, "grad_norm": 0.1474609375, "reward": 0.038125},
+        {"global_step": 100, "frac_reward_zero_std": 0.85, "grad_norm": 0.3984375, "reward": 0.044375}
+      ],
+      "cos": 20,
+      "peak_frac_zero_std": 0.9,
+      "final_frac_zero_std": 0.85,
+      "pattern": "transient_dip"
+    },
+    "grpo_rasp_25_qwen_math": {
+      "run_id": "3vjjzi13",
+      "model": "Qwen2.5-Math-7B",
+      "method": "RASP",
+      "sparsity": "25%",
+      "state": "finished",
+      "history": [
+        {"global_step": 10, "frac_reward_zero_std": 0.575, "grad_norm": 0.287109375, "reward": 0.111875},
+        {"global_step": 20, "frac_reward_zero_std": 0.25, "grad_norm": 0.88671875, "reward": 0.203125},
+        {"global_step": 30, "frac_reward_zero_std": 0.55, "grad_norm": 4.3125, "reward": 0.125},
+        {"global_step": 40, "frac_reward_zero_std": 0.375, "grad_norm": 1.3671875, "reward": 0.18375},
+        {"global_step": 50, "frac_reward_zero_std": 0.3, "grad_norm": 2.5, "reward": 0.176875},
+        {"global_step": 60, "frac_reward_zero_std": 0.35, "grad_norm": 2.671875, "reward": 0.1825},
+        {"global_step": 70, "frac_reward_zero_std": 0.375, "grad_norm": 1.7265625, "reward": 0.199375},
+        {"global_step": 80, "frac_reward_zero_std": 0.4, "grad_norm": 2.328125, "reward": 0.225},
+        {"global_step": 90, "frac_reward_zero_std": 0.375, "grad_norm": 1.4140625, "reward": 0.11125},
+        {"global_step": 100, "frac_reward_zero_std": 0.35, "grad_norm": 1.9921875, "reward": 0.205625}
+      ],
+      "cos": "never",
+      "peak_frac_zero_std": 0.575,
+      "final_frac_zero_std": 0.35,
+      "pattern": "no_collapse"
+    },
+    "grpo_standard_25_qwen_math": {
+      "run_id": "16vqw4e6",
+      "model": "Qwen2.5-Math-7B",
+      "method": "Standard",
+      "sparsity": "25%",
+      "state": "finished",
+      "history": [
+        {"global_step": 10, "frac_reward_zero_std": 0.375, "grad_norm": 3.21875, "reward": 0.200625},
+        {"global_step": 20, "frac_reward_zero_std": 0.4, "grad_norm": 3.328125, "reward": 0.1625},
+        {"global_step": 30, "frac_reward_zero_std": 0.425, "grad_norm": 3.578125, "reward": 0.10625},
+        {"global_step": 40, "frac_reward_zero_std": 0.3, "grad_norm": 3.71875, "reward": 0.210625},
+        {"global_step": 50, "frac_reward_zero_std": 0.325, "grad_norm": 3.671875, "reward": 0.159375},
+        {"global_step": 60, "frac_reward_zero_std": 0.35, "grad_norm": 3.390625, "reward": 0.208125},
+        {"global_step": 70, "frac_reward_zero_std": 0.375, "grad_norm": 2.03125, "reward": 0.19},
+        {"global_step": 80, "frac_reward_zero_std": 0.275, "grad_norm": 2.71875, "reward": 0.208750},
+        {"global_step": 90, "frac_reward_zero_std": 0.225, "grad_norm": 23.0, "reward": 0.174375},
+        {"global_step": 100, "frac_reward_zero_std": 0.325, "grad_norm": 4.78125, "reward": 0.181875}
+      ],
+      "cos": "never",
+      "peak_frac_zero_std": 0.425,
+      "final_frac_zero_std": 0.325,
+      "pattern": "no_collapse"
+    }
+  },
+  "summary": {
+    "table": "| Model | Method | Sparsity | COS | Peak frac_zero_std | Final frac_zero_std | Pattern |\n|-------|--------|----------|-----|--------------------|--------------------|----------|\n| DeepSeek-R1-Qwen-7B | RASP | 20% | 10 | 0.900 | 0.900 | persistent_homogeneity |\n| DeepSeek-R1-Qwen-7B | Standard | 20% | never | 0.675 | 0.475 | no_collapse |\n| DeepSeek-R1-Qwen-7B | RASP | 25% | 10 | 0.925 | 0.875 | persistent_homogeneity |\n| DeepSeek-R1-Qwen-7B | Standard | 25% | 30 | 0.925 | 0.925 | permanent_collapse |\n| Qwen2.5-Math-7B | RASP | 20% | never | 0.700 | 0.675 | no_collapse |\n| Qwen2.5-Math-7B | Standard | 20% | 20 | 0.900 | 0.850 | transient_dip |\n| Qwen2.5-Math-7B | RASP | 25% | never | 0.575 | 0.350 | no_collapse |\n| Qwen2.5-Math-7B | Standard | 25% | never | 0.425 | 0.325 | no_collapse |",
+    "key_findings": [
+      "RASP-pruned DeepSeek models show persistent_homogeneity: frac_zero_std >= 0.85 from step 1, indicating the pruned model cannot generate diverse rewards from the start",
+      "Standard-pruned DeepSeek 20% is the only DeepSeek run that avoids collapse entirely (peak 0.675)",
+      "Standard-pruned DeepSeek 25% collapses permanently at step 30",
+      "Qwen2.5-Math models are more collapse-resistant: RASP 20% peaks at 0.7, RASP 25% peaks at only 0.575",
+      "Standard-pruned Qwen2.5-Math 20% shows transient collapse (COS=20) but partially recovers",
+      "Standard-pruned Qwen2.5-Math 25% never collapses (peak 0.425), suggesting Standard pruning preserves diversity better on this model at higher sparsity"
+    ]
+  }
+}

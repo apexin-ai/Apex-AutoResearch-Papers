@@ -1,0 +1,31 @@
+{
+  "exp_id": "grpo_rasp_rlvr_20_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:37:40.324Z",
+    "updated_at": "2026-05-16T19:38:11.386Z",
+    "hypothesis": "Qwen2.5-Math-7B RASP-RLVR 20% post-GRPO (100 steps). RLVR 剪枝后 SFT→GRPO 全管线。对比 grpo_rasp_qwen_math_v3 (regular RASP, reward=0.061) 和 grpo_standard_qwen_math_v3 (Standard, reward=0.044)。D050 ablation: RLVR 是否在 Qwen Math 上提供额外 GRPO 恢复能力。Parent: sft_rasp_rlvr_20_qwen_math.",
+    "parent": "sft_rasp_rlvr_20_qwen_math",
+    "conclusion": "success",
+    "metrics": {
+      "reward_final": 0.09,
+      "kl_final": 0.00581,
+      "clipped_ratio": 0.54,
+      "total_steps": 100,
+      "wall_clock_min": 45.5,
+      "wandb_run_id": "clzm2cy4",
+      "kl_spike_step70": 5756.85,
+      "kl_spike_recovery": "immediate",
+      "comparison_vs_rasp_20": "RLVR reward 0.090 > RASP 0.061 (+48%)",
+      "comparison_vs_standard_20": "RLVR reward 0.090 >> Standard 0.044 (+105%)"
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math/",
+    "log_path": "/root/runs/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math.log"
+  },
+  "timestamp": "2026-05-16T19:38:11.571318+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d98e65949498861e9e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix gqa group pruning",
+  "task_key": "worker_fix_gqa-group-pruning_20260514T050654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gqa-group-pruning_20260514T050654_result.json",
+    "occurrence": 1,
+    "bytes": 212,
+    "sha256": "84784b41d8e0db70c19da47476ea6f5003632a4d2c182a1c685c89e6791df7c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. All 4 files deployed, validated with `--help`, and dry-run tested with n_samples=4 on the server. Forward passes succeed for both standard and RASP modes. Temp files cleaned up."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gqa-group-pruning.md"
+}

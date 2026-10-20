@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_gsm8k_sft_qwen_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:32:11.084Z",
+    "updated_at": "2026-05-20T11:32:59.341Z",
+    "hypothesis": "GSM8K N=200 eval of Qwen2.5-Math-7B CKA-only 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 1.00% (near zero). CKA-only preserves layer diversity but causes severe initial damage. Fair comparison with Standard at same training point (epoch 1.0, step 935). If CKA-only SFT recovers above Standard, validates recovery-aware principle on Qwen-Math.",
+    "parent": "sft_qwen_math_cka_only_20",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935 --max_samples 200 --seed 42 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_qwen_cka_only_20.json",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "18038",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_cka_only_20.log",
+      "submitted_at": "2026-05-20T11:32:13Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "gsm8k/test",
+      "data_count": 200,
+      "model_name": "Qwen2.5-Math-7B-CKA-only-20%-SFT-ep1",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935",
+      "eval_data": "gsm8k-test-N200"
+    }
+  },
+  "timestamp": "2026-05-20T11:32:59.832517+00:00",
+  "trigger": "update_registry"
+}

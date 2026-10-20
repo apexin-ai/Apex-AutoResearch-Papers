@@ -1,0 +1,1145 @@
+# cron hook mvp rasp pipeline v2
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/cron_hook_mvp_rasp_pipeline_v2.jsonl`
+- **Structured JSON:** [`a828bf355761935cc010.json`](../../sessions/a8/a828bf355761935cc010.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+36 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T02:44:01.751172+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #7。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 **仅 cuda:0, cuda:1**（C001 约束，westb-23072 上）。绝不使用其他 GPU。
+- 服务器仅 **westb-23072**，account=root。
+- 模型基础是 **DeepSeek-R1-Distill-Qwen-7B**，distilled 模型对剪枝极度敏感——35% sparsity 已证实摧毁模型，仅 20% 可行。
+- SFT warmup 是 GRPO 前的**必要步骤**——剪枝后模型 sampling 模式退化（无 EOS），直接上 GRPO 零梯度。不要跳过 SFT 直接跑 GRPO。
+- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，**没有 .venv**。
+- EMNLP 2026 ARR May 25 提交，距今 **10 天**。
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westb-23072, 2× RTX PRO 6000 Blackwell 94GB
+- **工作目录**: `/root/recovery_aware_struct_prune`（代码）
+- **Python**: `/root/miniconda3/bin/python`（conda base）
+- **模型路径**:
+  - 原始: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`
+  - Pruned RASP 20%: `/root/autodl-tmp/pruned_rasp_20`（post-prune 29% GSM8K）
+  - Pruned Standard 20%: `/root/autodl-tmp/pruned_standard_20`（post-prune 1% GSM8K）
+  - SFT RASP: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20`
+  - SFT Standard: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20`
+  - GRPO Stage 2 output: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20` 和 `grpo_stage2_standard_20`
+- **活跃进程**:
+  - `grpo_stage2_rasp_20`: PID 263888, tmux session, cuda:0, cron 监控中
+  - `grpo_stage2_standard_20`: PID 263966, tmux session, cuda:1, cron 监控中
+- **W&B**: 项目内，历史 run IDs: ou02s4k4 (standard), sz9264sx (rasp), ccx0jr0z (rasp 4096)
+- **日志**: `~/runs/recovery_aware_struct_prune/` 下各实验 log
+
+### 3. 📊 当前状态
+**两个 GRPO Stage 2 实验正在双卡并行运行**——这是项目的**决定性实验**：
+- `grpo_stage2_rasp_20` (cuda:0): SFT-warmed RASP 模型 GRPO 恢复，起点 57% sampling accuracy
+- `grpo_stage2_standard_20` (cuda:1): SFT-warmed Standard 模型 GRPO 恢复（负对照），起点 64% sampling accuracy
+
+Cron 监控两个实验均 active（reconcile 确认 PID 存活）。无 running Worker。
+
+**已完成实验链**:
+1. mvp_rasp_pipeline → v2 → v3 → v4: 迭代修复 GQA 约束、per-layer floor、sparsity 调优
+2. D009 (1024 truncation) → D010 (4096 确认 sampling 退化) → D013 (SFT warmup) → D015 (GRPO Stage 2)
+3. SFT 结果: RASP 57% vs Standard 64%（Standard 反超，但 SFT 是 pattern matching 非真正推理恢复）
+
+**Dream 分析 (D016) 已完成**: Best=Weak Accept (4/6)，三档一致结构性问题: α ablation 缺失(Critical)、single model、no inference speedup、multi-seed。新增 plan_015/016/017。
+
+### 4. 📋 待办（条件触发式）
+- **GRPO Stage 2 完成回调到达** → 按 ROADMAP contingency 表判断:
+  - RASP >> Standard (>10pp): 全面推进 plan_001-017，优先 plan_015 (α ablation, P0)
+  - RASP > Standard (5-10pp): 优先 plan_001 (full eval) + plan_006 (multi-seed) + plan_015 (α ablation)
+  - RASP ≈ Standard (<5pp): 转 training dynamics 分析 + 试 25% sparsity
+  - Standard > RASP: **核心假设失败**，走 red-section Framing 调整提案
+- **GRPO 完成后立即** → 派 Worker 跑 GRASPrune baseline (plan_005，代码调研已完成见 memory.md)
+- **α ablation (plan_015)** → GRPO 完成后 P0 优先级，α∈{0.5, 1.0, 2.0} 三组，可双卡并行 2+1
+- **Inference speedup (plan_016)** → 简单测量，1h GPU 时间
+- **Unstructured baseline (plan_017)** → ~15h GPU
+
+### 5. 🎯 战略上下文
+**核心假设**: CKA functional overlap F(h) 预测 RLVR recoverability。RASP scoring S(h)=I(h)×(1-F(h))^α 让 GRPO 恢复效果显著优于 importance-only pruning。
+
+**决策链**: D007(kill 270h runs) → D008(改 MVP 标准) → D009(1024 truncation 伪阴性) → D010(4096 确认 sampling 退化) → D013(SFT warmup 方案) → D014(MVP PASS: 29% vs 1%) → D015(SFT Standard>RASP 不改方向，GRPO 是决定性实验) → D016(Dream 分析)
+
+**最容易判断错的事**:
+1. SFT 阶段 Standard 64% > RASP 57% **不代表 Standard 更好**。SFT 是 teacher forcing pattern matching，GRPO 才测试真正的推理恢复能力。不要因为 SFT 数字被 Standard 领先而动摇 story。
+2. Post-prune accuracy (RASP 29% vs Standard 1%) 是在 N=100 greedy 上测的，full GSM8K eval 还没做（plan_001）。
+3. GRASPrune 调研报告在 memory.md 里，集成方案已就绪，但**还没在服务器上 clone/跑**——等 GRPO 完成释放 GPU 再执行。
+4. 两模型 20% sparsity 下 MLP 总参数量完全相同（395,232），差异纯粹来自分布策略（Scenario B）。这是排除"RASP 只是剪得少"替代解释的关键证据，汇报时务必提及。
+
+## 可查的历史
+前 6 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T02:44:15.162435+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T02:44:15.213383+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T02:44:19.028586+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T02:44:19.543073+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T02:44:19.543957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"sft_standard_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:37:34.863Z\", \"updated_at\": \"2026-05-15T01:13:31.529Z\", \"hypothesis\": \"D013 Stage 1: SFT warmup on Standard-pruned model (20%, 1% GSM8K) as negative control. Expected: SFT partially recovers format but reasoning remains limited.\", \"conclusion\": \"success\", \"notes\": \"SFT warmup SUCCESS (负对照). EOS恢复100% (3/3测试). Loss 1.70→0.64, token_accuracy 83%. 但推理准确率有限(2/3, 12+15算成41), 说明standard pruning破坏了关键推理结构, SFT只恢复了格式+EOS, 无法完全恢复数学推理. 平均生成49 tokens, 无重复循环. 训练37min, 1870 steps. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\", \"metrics\": {\"train_loss_final\": 0.64, \"train_loss_initial\": 1.7, \"token_accuracy\": 0.83, \"eos_rate_greedy_100\": 0.99, \"eos_rate_sampling_5\": 1, \"greedy_accuracy_100\": 0.64, \"avg_gen_length\": 176.3, \"total_steps\": 1870, \"train_time_min\": 37}}, \"sft_rasp_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:37:33.162Z\", \"updated_at\": \"2026-05-15T01:13:30.181Z\", \"hypothesis\": \"D013 Stage 1: SFT warmup on RASP-pruned model (20%, 29% GSM8K) to restore EOS generation ability before GRPO Stage 2.\", \"conclusion\": \"success\", \"notes\": \"SFT warmup SUCCESS. EOS恢复100% (5/5测试). Loss 1.86→0.64, token_accuracy 83%. 平均生成77 tokens, 无重复循环, 遵循GSM8K格式. 训练时间37min, 1870 steps (2 epochs). Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/\", \"metrics\": {\"train_loss_final\": 0.64, \"train_loss_initial\": 1.86, \"token_accuracy\": 0.83, \"eos_rate_greedy_100\": 0.99, \"eos_rate_sampling_5\": 1, \"greedy_accuracy_100\": 0.57, \"avg_gen_length\": 179.8, \"total_steps\": 1870, \"train_time_min\": 37}}, \"grpo_stage2_standard_20\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T01:11:12.341Z\", \"updated_at\": \"2026-05-15T01:12:20.169Z\", \"hypothesis\": \"GRPO Stage 2 negative control: SFT-warmed Standard-pruned model GRPO recovery. P
+…[truncated 9035 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 515
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T02:44:19.948489+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T02:44:19.948974+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T02:44:25.177932+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"grpo_stage2_rasp_20\", \"success\": true, \"actions\": [\"Job still running (pid=263888)\"]}, {\"exp_id\": \"grpo_stage2_standard_20\", \"success\": true, \"actions\": [\"Job still running (pid=263966)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5634
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T02:44:25.179654+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| grpo_stage2_standard_20 | GRPO Stage 2 negative control: SFT-warmed Standard-pruned model GRPO recovery. Post-SFT accuracy 64% (sampling), EOS restored. Expected: GRPO improvement smaller than RASP counterpart, confirming standard pruning removes structures less amenable to RLVR recovery. | — | — | — |\\n| grpo_stage2_rasp_20 | GRPO Stage 2 (plan_003): SFT-warmed RASP-pruned model recovers reasoning via RLVR. Post-SFT accuracy 57% (sampling), EOS restored. If GRPO pushes RASP significantly above Standard, confirms CKA-aware pruning preserves RLVR-recoverable structures. | — | — | — |\\n\\n## 待处理\\n- mvp_rasp_pipeline_v4: CKA functional overlap F(h) predicts structured pruning recoverability under RLVR. RASP scoring S(h)=I(h)×(1-F(h))^α selects structures whose removal is more recoverable via GRPO RLVR than standard importance-only pruning. V4: Dual sparsity probe (20% + 25%) to find viable operating point where pruned models retain >5% accuracy, then GRPO recovery comparison.（准备中）\\n\\n## 近期结论\\n- **sft_standard_20** (success): D013 Stage 1: SFT warmup on Standard-pruned model (20%, 1% GSM8K) as negative control. Expected: SFT partially recovers format but reasoning remains limited.\\n- **sft_rasp_20** (success): D013 Stage 1: SFT warmup on RASP-pruned model (20%, 29% GSM8K) to restore EOS generation ability before GRPO Stage 2.\\n- **grpo_rasp_20_4096** (failed): D010: RASP-pruned model (20% sparsity, post-prune 29% GSM8K) GRPO recovery with max_completion_length=4096 (fix D009 truncation). Core MVP experiment — if recovery succeeds, RASP structure selection enables RLVR recovery that standard pruning cannot. ← 基于 mvp_rasp_pipeline_v4\\n\\n## 趋
+…[truncated 463 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 5231
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T02:44:25.230477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-15 01:57 UTC | 更新原因: Dream dream_20260514T233950 分析完成 + 新增 plan_015-017 + 扩展 plan_006\\n\\n## 核心方向\\nRecovery-Aware Structured Pruning (RASP)：CKA functional overlap 指导结构化剪枝，在 matched sparsity 下比 importance-only 剪枝显著更好地保留推理能力（**Redundancy Paradox**）。详见 paper_framing.md。\\n\\n## 目标会议\\nEMNLP 2026 ARR May 25 提交（距今 10 天）\\n\\n## 当前阶段\\n**Research Phase** — GRPO Stage 2 决定性实验进行中（D015）。Dream 分析完成（D016）。\\n\\n## 核心证据\\n- Post-prune GSM8K (N=100): RASP 29% vs Standard 1% (p<0.0001, matched 20% sparsity)\\n- Post-SFT GSM8K (N=100): RASP 57% vs Standard 64%（Standard 反超 7pp，SFT 偏好 Standard）\\n- GRPO Stage 2 双卡并行运行中——**决定性实验**\\n\\n## Dream 分析 (D016, dream_20260514T233950)\\n- Best=Weak Accept (4/6), Median=Weak Reject (3/6), Worst=Weak Reject (3/6)\\n- **三档一致结构性问题**：α ablation 缺失(Critical)、single model、no inference speedup、multi-seed 不足(3→5+)、scope overclaim\\n- **两档一致**：missing related work(FANG/FuncNet)、CKA justification、unstructured baseline、per-layer floor confound\\n- **数据依赖(等GRPO)**：RASP vs GRASPrune ranking、CKA predictivity\\n- 新增 plan_015(α ablation P0), plan_016(inference speedup P1), plan_017(unstructured baseline P1)\\n\\n## Claims & 实验覆盖\\n| Claim | P0 实验 | 状态 |\\n|-------|---------|------|\\n| C1: CKA-aware pruning preserves reasoning | plan_001-006, plan_015 | ⏳ GRPO Stage 2 运行中 |\\n| C2: F(h) predicts recoverability | plan_007-008, plan_014-015 | 待 GRPO 完成 |\\n| C3: Recovery method conditions pruning order | plan_009 | SFT 证据已有，待 GRPO 确认反转 |\\n\\n## 近期任务\\n- [ ] GRPO Stage 2 双卡运行中 → plan_003（cuda:0 RASP, cuda:1 Standard）\\n- [ ] GRASPrune 代码准备（Agent 进行中，不占 GPU）→ plan_005 前置\\n- [ ] Full GSM8K eval 脚本准备（Agent 进行中）→ plan_001 前置\\n- [ ] **[Dream 行动] α ablation plan_015 — GRPO 完成后立即执行(P0)**\\n- [ ] **[Dream 行动] Inference speedup 
+…[truncated 3057 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 5281
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T02:44:52.450474+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T02:44:52.501375+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_6cf2d1b8.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T02:44:55.514391+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T02:44:55.514938+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T02:44:58.326173+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T02:44:58.527703+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T02:45:01.396393+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T02:45:01.497589+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T02:45:07.296787+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__load_project_config",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__load_project_config",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T02:45:07.297288+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T02:45:10.318343+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T02:45:10.569830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westb-23072\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [{\"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"grpo_stage2_rasp_20\"}, {\"server\": \"westb-23072\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"grpo_stage2_standard_20\"}], \"allocated_but_idle\": [], \"running_experiments\": [{\"exp_id\": \"grpo_stage2_rasp_20\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"grpo_stage2_standard_20\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 2 张, 实际跑 2 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T02:45:10.570148+00:00_
+
+called mcp__agent-ml-research__get_gpu_health
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_gpu_health</summary>
+
+```json
+{
+  "server": "westb-23072"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__get_gpu_health",
+  "tool_args": {
+    "server": "westb-23072"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T02:45:10.621241+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"servers\": {\"westb-23072\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__get_gpu_health",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T02:45:31.269243+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T02:45:31.722315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"content\": \"# GRASPrune 调研报告 — Phase 2 P1 Baseline 实现方案\\n\\n> 调研日期: 2026-05-14\\n> 目标: 将 GRASPrune 作为 Phase 2 P1 的额外 baseline pruning method\\n\\n---\\n\\n## 1. GRASPrune 概述\\n\\n**论文**: GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\\n**会议**: ACL 2026 Main Conference\\n**arXiv**: 2604.19398\\n**代码**: https://github.com/ZiY-Wang/GRASPrune\\n**作者**: Ziyang Wang, Jiangfeng Xiao, Chuan Xiao, Ruoxiang Li, Rui Mao, Jianbin Qin\\n\\nGRASPrune 是一个 post-training structured pruning 框架，对 decoder-only LLM 做 FFN channel 和 attention KV group 的联合剪枝。核心特点：\\n- **Global gating**: 所有层的 FFN channel 和 KV group 共享一个全局 budget\\n- **Projected STE**: 每个 training step 都投影到 budget-feasible 的 hard mask\\n- **Rescale compensation**: 剪枝后学习 scaling factor 补偿 scale mismatch\\n- 支持 LLaMA 和 **Qwen** 架构（直接兼容我们的 DeepSeek-R1-Distill-Qwen-7B）\\n\\n---\\n\\n## 2. 核心算法\\n\\n### 2.1 问题形式化\\n\\n将 structured pruning 建模为 budget-constrained binary optimization：\\n\\n$$\\\\min_{z \\\\in \\\\{0,1\\\\}^{|S|}} \\\\mathcal{L}(\\\\theta; z) \\\\quad \\\\text{s.t.} \\\\quad \\\\sum_{i \\\\in S} c_i z_i \\\\leq B$$\\n\\n其中：\\n- $S$ = 所有可剪枝 structural unit 的集合（FFN channels + KV groups across all layers）\\n- $z_i \\\\in \\\\{0,1\\\\}$: unit $i$ 的保留标志\\n- $c_i$: unit $i$ 的参数代价\\n- $B = \\\\rho \\\\sum_{i \\\\in S} c_i$: 全局 budget，$\\\\rho$ = keep_ratio\\n\\n### 2.2 代价模型 (Cost Model)\\n\\n**FFN channel**: $c_i = 1$（归一化单位代价）\\n\\n**KV group (attention)**: \\n$$\\\\alpha = \\\\frac{(2G + 2) d_h}{3}$$\\n\\n其中 $G = H / H^{kv}$（query-to-KV head ratio），$d_h$ = head_dim。\\n\\n对于 DeepSeek-R1-Distill-Qwen-7B：\\n- $H = 28$, $H^{kv} = 4$, $G = 7$, $d_h = 128$\\n- $\\\\alpha = (2 \\\\times 7 + 2) \\\\times 128 / 3 = 16 \\\\times 128 / 3 \\\\approx 682.67$\\n\\n### 2.3 Gate Parameterization\\n\\n为每个 structural unit 引入可学习 scalar gate $s_i$：\\n- *
+…[truncated 16057 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T02:45:31.923281+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T02:45:31.974113+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md\", \"content\": \"# Paper Framing — recovery_aware_struct_prune\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 submission)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight (Redundancy Paradox)\\nTraditional structured pruning removes \\\"redundant\\\" structures (high functional overlap with others) to minimize immediate accuracy loss. We show this logic inverts for RLVR recovery: structures with high functional overlap are precisely the most RLVR-recoverable, because RLVR's global exploration can redistribute their function across retained structures. This creates a **Redundancy Paradox** — what's safe to prune for immediate accuracy is different from what's safe to prune for post-recovery accuracy.\\n\\nRASP exploits this by protecting structures that are both important AND functionally unique (low CKA overlap = irreplaceable reasoning scaffolding), while allowing removal of structures whose function can be recovered through RLVR's path compression mechanism (\\\"RL Squeezes, SFT Expands\\\", ICLR 2026).\\n\\n## Core Claims (3)\\n\\n1. **CKA-aware pruning preserves reasoning ability**: At matched sparsity and parameter count, RASP preserves significantly more post-prune reasoning accuracy than importance-only pruning (MVP evidence: 29% vs 1% GSM8K at 20% sparsity, p<0.0001), and this gap enables qualitatively different recovery outcomes (RASP-pruned models can be recovered via RLVR; standard-pruned models cannot).\\n\\n2. **Functional overlap predicts per-structure recoverability**: Per-structure CKA functional overlap F(h) is a stronger predictor of post-recovery accuracy restoration than standard importance metrics alone. Validated via mixed-effects regression (layer as random effect) on N=224+ attention heads, controlling for weight norm, gradient importan
+…[truncated 5103 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T02:46:26.602283+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:grpo_stage2_prep_batch",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务：GRPO Stage 2 完成后的代码前置准备（3 合 1）\n\n在 westb-23072 服务器上完成以下三项代码准备工作（都不需要 GPU，纯代码/环境准备）。\n\n### 环境\n- 服务器: westb-23072, account=root\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: `/root/recovery_aware_struct_prune`\n- 模型路径: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n- Python: `/root/miniconda3/bin/python`\n\n### Task 1: α ablation 代码准备 (plan_015, P0 最高优先级)\n\n**背景**: RASP scoring 公式 S(h) = I(h) × (1-F(h))^α，当前只跑了 α=1.0。需要对 α∈{0.5, 1.0, 2.0} 做 ablation。Dream 分析标记为 Critical。\n\n**步骤**:\n1. SSH 读取 `/root/recovery_aware_struct_prune/src/prune.py`，找到 α 参数的定义位置\n2. 确认 α 可以通过命令行参数传入（如 --alpha）。如果不能，添加命令行参数支持\n3. 写一个 shell script `scripts/run_alpha_ablation.sh`，包含 3 组 pruning 命令（α=0.5, 1.0, 2.0），每组产出到不同目录（如 `/root/autodl-tmp/pruned_rasp_20_alpha05`）\n4. 每组 pruning 后的 SFT + GRPO 命令也准备好（可参考现有 GRPO Stage 2 的配置）\n5. Dry-run 验证：用 `python src/prune.py --help` 确认参数解析正确\n\n**注意**: 不要实际运行 pruning（会占 GPU），只准备代码和脚本。\n\n### Task 2: Full GSM8K eval 脚本准备 (plan_001)\n\n**背景**: 当前 eval 只跑了 N=100 samples，需要 full GSM8K test set (1319 题) 评估。\n\n**步骤**:\n1. 读取现有 eval 脚本（可能在 `src/eval_gsm8k.py` 或 `scripts/` 下）\n2. 确认可以通过参数控制 sample 数量，确保支持跑 full test set\n3. 写 `scripts/run_full_eval.sh`，对以下 checkpoints 做 full eval:\n   - Baseline: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n   - Pruned RASP 20%: `/root/autodl-tmp/pruned_rasp_20`\n   - Pruned Standard 20%: `/root/autodl-tmp/pruned_standard_20`\n   - SFT RASP: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20`\n   - SFT Standard: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20`\n   - GRPO RASP: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20` (等完成后加)\n   - GRPO Standard: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20` (等完成后加)\n4. 确保 eval 输出 JSON 格式，方便后续分析\n5. Dry-run: 跑 1-2 个 sample 验证脚本能正常工作（用 CPU 或很短的推理）\n\n### Task 3: GRASPrune 环境准备 (plan_005)\n\n**背景**: GRASPrune 是 ACL 2026 的 structured pruning baseline，代码在 https://github.com/ZiY-Wang/GRASPrune。需要在服务器上 clone 并验证环境。\n\n**步骤**:\n1. `cd /root && git clone https://github.com/ZiY-Wang/GRASPrune.git`\n2. `cd GRASPrune && pip install -r requirements.txt`（如果有的话）\n3. 读 README 和代码，确认运行命令格式\n4. 验证能正确 import（`python -c \"import ...\"`）\n5. 检查是否原生支持 Qwen 架构，确认 `--model-family qwen` 参数\n6. **不要运行 pruning**（占 GPU），只验证环境就绪\n7. 准备运行脚本 `scripts/run_graspune.sh`，参数:\n   - `--model-id /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n   - `--model-family qwen`\n   - `--keep-ratio 0.8` (对应 20% sparsity，与我们一致)\n   - `--device cuda:0` (GPU 可用时)\n   - output 到 `/root/autodl-tmp/pruned_graspune_20/`\n\n### 产出\n完成后在项目文件中记录：\n1. α ablation 脚本路径和参数\n2. Full eval 脚本路径\n3. GRASPrune 环境状态\n4. 任何发现的问题或 blocker",
+  "tool_groups": "['ssh', 'knowledge']",
+  "context": "服务器 westb-23072, 2× RTX PRO 6000 94GB。conda 环境（无 .venv）。GPU 当前被 GRPO Stage 2 占满，不要启动任何 GPU 任务。只做代码/环境准备。模型在 /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B (Qwen2.5 架构, GQA: 28 Q heads / 4 KV heads)。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:grpo_stage2_prep_batch",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务：GRPO Stage 2 完成后的代码前置准备（3 合 1）\n\n在 westb-23072 服务器上完成以下三项代码准备工作（都不需要 GPU，纯代码/环境准备）。\n\n### 环境\n- 服务器: westb-23072, account=root\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: `/root/recovery_aware_struct_prune`\n- 模型路径: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n- Python: `/root/miniconda3/bin/python`\n\n### Task 1: α ablation 代码准备 (plan_015, P0 最高优先级)\n\n**背景**: RASP scoring 公式 S(h) = I(h) × (1-F(h))^α，当前只跑了 α=1.0。需要对 α∈{0.5, 1.0, 2.0} 做 ablation。Dream 分析标记为 Critical。\n\n**步骤**:\n1. SSH 读取 `/root/recovery_aware_struct_prune/src/prune.py`，找到 α 参数的定义位置\n2. 确认 α 可以通过命令行参数传入（如 --alpha）。如果不能，添加命令行参数支持\n3. 写一个 shell script `scripts/run_alpha_ablation.sh`，包含 3 组 pruning 命令（α=0.5, 1.0, 2.0），每组产出到不同目录（如 `/root/autodl-tmp/pruned_rasp_20_alpha05`）\n4. 每组 pruning 后的 SFT + GRPO 命令也准备好（可参考现有 GRPO Stage 2 的配置）\n5. Dry-run 验证：用 `python src/prune.py --help` 确认参数解析正确\n\n**注意**: 不要实际运行 pruning（会占 GPU），只准备代码和脚本。\n\n### Task 2: Full GSM8K eval 脚本准备 (plan_001)\n\n**背景**: 当前 eval 只跑了 N=100 samples，需要 full GSM8K test set (1319 题) 评估。\n\n**步骤**:\n1. 读取现有 eval 脚本（可能在 `src/eval_gsm8k.py` 或 `scripts/` 下）\n2. 确认可以通过参数控制 sample 数量，确保支持跑 full test set\n3. 写 `scripts/run_full_eval.sh`，对以下 checkpoints 做 full eval:\n   - Baseline: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n   - Pruned RASP 20%: `/root/autodl-tmp/pruned_rasp_20`\n   - Pruned Standard 20%: `/root/autodl-tmp/pruned_standard_20`\n   - SFT RASP: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20`\n   - SFT Standard: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20`\n   - GRPO RASP: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20` (等完成后加)\n   - GRPO Standard: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20` (等完成后加)\n4. 确保 eval 输出 JSON 格式，方便后续分析\n5. Dry-run: 跑 1-2 个 sample 验证脚本能正常工作（用 CPU 或很短的推理）\n\n### Task 3: GRASPrune 环境准备 (plan_005)\n\n**背景**: GRASPrune 是 ACL 2026 的 structured pruning baseline，代码在 https://github.com/ZiY-Wang/GRASPrune。需要在服务器上 clone 并验证环境。\n\n**步骤**:\n1. `cd /root && git clone https://github.com/ZiY-Wang/GRASPrune.git`\n2. `cd GRASPrune && pip install -r requirements.txt`（如果有的话）\n3. 读 README 和代码，确认运行命令格式\n4. 验证能正确 import（`python -c \"import ...\"`）\n5. 检查是否原生支持 Qwen 架构，确认 `--model-family qwen` 参数\n6. **不要运行 pruning**（占 GPU），只验证环境就绪\n7. 准备运行脚本 `scripts/run_graspune.sh`，参数:\n   - `--model-id /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n   - `--model-family qwen`\n   - `--keep-ratio 0.8` (对应 20% sparsity，与我们一致)\n   - `--device cuda:0` (GPU 可用时)\n   - output 到 `/root/autodl-tmp/pruned_graspune_20/`\n\n### 产出\n完成后在项目文件中记录：\n1. α ablation 脚本路径和参数\n2. Full eval 脚本路径\n3. GRASPrune 环境状态\n4. 任何发现的问题或 blocker",
+    "tool_groups": "['ssh', 'knowledge']",
+    "context": "服务器 westb-23072, 2× RTX PRO 6000 94GB。conda 环境（无 .venv）。GPU 当前被 GRPO Stage 2 占满，不要启动任何 GPU 任务。只做代码/环境准备。模型在 /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B (Qwen2.5 架构, GQA: 28 Q heads / 4 KV heads)。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T02:46:51.763628+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_grpo_stage2_prep_batch_20260515T024627\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_code_grpo_stage2_prep_batch_20260515T024627.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_grpo_stage2_prep_batch_20260515T024627 started. Use get_worker_status('worker_code_grpo_stage2_prep_batch_20260515T024627') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 25161
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T02:46:54.014524+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "research:paper-related-work",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "## 任务：Related Work 文献调研 + 论文引用扩展\n\n### 背景\nRASP (Recovery-Aware Structured Pruning) 项目，目标 EMNLP 2026 ARR May 25 提交（距今 10 天）。\nDream 分析（模拟审稿）指出 references 不足，需要扩展到 25+，特别要引用 FANG、FuncNet、RestoreLCC、PAT。\n\n### 核心方法\nRASP: S(h) = I(h) × (1-F(h))^α\n- I(h): importance score (Taylor approximation)\n- F(h): CKA functional overlap（head h 与其他 heads 的表征相似性）\n- α: 控制 overlap 惩罚力度\n- 目标: 保留 functionally unique reasoning scaffolding，让 RLVR (GRPO) 恢复更有效\n\n### 调研任务\n\n#### 1. 必须找到并总结的论文（Dream 审稿指出缺失）\n- **FANG** (arXiv 2512.23014, Dec 2025): Function-Aware Neuron Grouping for structured pruning\n- **FuncNet** (arXiv 2508.05239, Aug 2025): ICA 分解 LLM 功能网络再剪枝\n- **RestoreLCC** (arXiv 2510.21834, NeurIPS 2025): Activation compensation 恢复剪枝损失\n- **PAT**: 搜索这个名字 + pruning + LLM，可能是 Pruning-Aware Training\n\n#### 2. 需要补充的文献类别（确保每类至少 2-3 篇）\na. **CKA 在模型分析中的应用**: CKA (Centered Kernel Alignment) 用于神经网络表征对比的相关工作\nb. **Reasoning LLM pruning**: DeepSeek-R1, QwQ 等推理模型的压缩/剪枝\nc. **RLVR for recovery**: Self-Healing (2025), RL Squeezes SFT Expands (ICLR 2026) 等\nd. **Structured pruning methods for LLMs**: LLM-Pruner, SliceGPT, Wanda, SparseGPT 等\ne. **CKA vs alternatives**: SVCCA, CCA, MI — Dream 要求论证 CKA 选择合理性\n\n#### 3. Dream 审稿特别要求\n- 论证 CKA vs SVCCA/CCA/MI 的选择理由（需要找到相关比较论文）\n- Claim 2 潜在循环性讨论（CKA 预测 recoverability 是否 tautological）\n\n### 产出格式\n\n在项目文件 `literature_survey_related_work.md` 中输出：\n\n```markdown\n# Related Work 文献调研\n\n## 1. 每篇论文条目\n### [Paper Name] (Venue Year)\n- **arXiv/DOI**: ...\n- **核心方法**: 一句话\n- **与 RASP 的关系**: 竞品/互补/背景\n- **Related Work 中怎么引**: 建议写法（1-2 句）\n- **BibTeX key 建议**: ...\n\n## 2. CKA 选择论证素材\n- CKA vs SVCCA/CCA/MI 的优劣对比\n- 支持 CKA 选择的论文引用\n\n## 3. 引用清单（按 Related Work 子节分组）\n```\n\n### 注意\n- 用 WebSearch 搜索论文，不要凭记忆编造引用\n- 每篇论文都要确认 arXiv ID 或会议年份\n- 如果搜不到某篇，明确标记\"未找到\"",
+  "tool_groups": "['knowledge']",
+  "tools": "['WebSearch']",
+  "context": "RASP 项目，EMNLP 2026 ARR May 25 提交。核心创新: CKA functional overlap 指导 structured pruning，让 RLVR (GRPO) 恢复更有效。模型: DeepSeek-R1-Distill-Qwen-7B。已知竞品: Self-Healing (2025), GRASPrune (ACL 2026), RESP (Dec 2025), MPruner (2024)。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:paper-related-work",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "## 任务：Related Work 文献调研 + 论文引用扩展\n\n### 背景\nRASP (Recovery-Aware Structured Pruning) 项目，目标 EMNLP 2026 ARR May 25 提交（距今 10 天）。\nDream 分析（模拟审稿）指出 references 不足，需要扩展到 25+，特别要引用 FANG、FuncNet、RestoreLCC、PAT。\n\n### 核心方法\nRASP: S(h) = I(h) × (1-F(h))^α\n- I(h): importance score (Taylor approximation)\n- F(h): CKA functional overlap（head h 与其他 heads 的表征相似性）\n- α: 控制 overlap 惩罚力度\n- 目标: 保留 functionally unique reasoning scaffolding，让 RLVR (GRPO) 恢复更有效\n\n### 调研任务\n\n#### 1. 必须找到并总结的论文（Dream 审稿指出缺失）\n- **FANG** (arXiv 2512.23014, Dec 2025): Function-Aware Neuron Grouping for structured pruning\n- **FuncNet** (arXiv 2508.05239, Aug 2025): ICA 分解 LLM 功能网络再剪枝\n- **RestoreLCC** (arXiv 2510.21834, NeurIPS 2025): Activation compensation 恢复剪枝损失\n- **PAT**: 搜索这个名字 + pruning + LLM，可能是 Pruning-Aware Training\n\n#### 2. 需要补充的文献类别（确保每类至少 2-3 篇）\na. **CKA 在模型分析中的应用**: CKA (Centered Kernel Alignment) 用于神经网络表征对比的相关工作\nb. **Reasoning LLM pruning**: DeepSeek-R1, QwQ 等推理模型的压缩/剪枝\nc. **RLVR for recovery**: Self-Healing (2025), RL Squeezes SFT Expands (ICLR 2026) 等\nd. **Structured pruning methods for LLMs**: LLM-Pruner, SliceGPT, Wanda, SparseGPT 等\ne. **CKA vs alternatives**: SVCCA, CCA, MI — Dream 要求论证 CKA 选择合理性\n\n#### 3. Dream 审稿特别要求\n- 论证 CKA vs SVCCA/CCA/MI 的选择理由（需要找到相关比较论文）\n- Claim 2 潜在循环性讨论（CKA 预测 recoverability 是否 tautological）\n\n### 产出格式\n\n在项目文件 `literature_survey_related_work.md` 中输出：\n\n```markdown\n# Related Work 文献调研\n\n## 1. 每篇论文条目\n### [Paper Name] (Venue Year)\n- **arXiv/DOI**: ...\n- **核心方法**: 一句话\n- **与 RASP 的关系**: 竞品/互补/背景\n- **Related Work 中怎么引**: 建议写法（1-2 句）\n- **BibTeX key 建议**: ...\n\n## 2. CKA 选择论证素材\n- CKA vs SVCCA/CCA/MI 的优劣对比\n- 支持 CKA 选择的论文引用\n\n## 3. 引用清单（按 Related Work 子节分组）\n```\n\n### 注意\n- 用 WebSearch 搜索论文，不要凭记忆编造引用\n- 每篇论文都要确认 arXiv ID 或会议年份\n- 如果搜不到某篇，明确标记\"未找到\"",
+    "tool_groups": "['knowledge']",
+    "tools": "['WebSearch']",
+    "context": "RASP 项目，EMNLP 2026 ARR May 25 提交。核心创新: CKA functional overlap 指导 structured pruning，让 RLVR (GRPO) 恢复更有效。模型: DeepSeek-R1-Distill-Qwen-7B。已知竞品: Self-Healing (2025), GRASPrune (ACL 2026), RESP (Dec 2025), MPruner (2024)。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T02:46:56.278756+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_paper-related-work_20260515T024654\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_research_paper-related-work_20260515T024654.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_paper-related-work_20260515T024654 started. Use get_worker_status('worker_research_paper-related-work_20260515T024654') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2264
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T02:47:19.497377+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 2 (GPU 0 / CPU 2)\n\n## Loop #7 Session Start 状态汇报\n\n### 运行中实验（决定性实验）\n- **grpo_stage2_rasp_20** (cuda:0, PID 263888): SFT-warmed RASP 模型 GRPO 恢复，起点 57% sampling accuracy。Cron 监控正常。\n- **grpo_stage2_standard_20** (cuda:1, PID 263966): SFT-warmed Standard 模型 GRPO 恢复（负对照），起点 64% sampling accuracy。Cron 监控正常。\n\n### 并行 CPU Worker（GRPO 跑完时即刻可用）\n1. **code:grpo_stage2_prep_batch** — 3 合 1 代码前置准备:\n   - α ablation 脚本（α∈{0.5, 1.0, 2.0}，Dream P0 Critical）\n   - Full GSM8K eval 脚本（1319 题，覆盖所有 checkpoint）\n   - GRASPrune 环境 clone + 验证（plan_005 baseline）\n2. **research:paper-related-work** — 文献调研扩展到 25+ 引用，补 FANG/FuncNet/RestoreLCC/PAT + CKA 论证素材\n\n### GRPO 完成后行动计划（按 contingency 表）\n等待 GRPO Stage 2 回调，按结果分叉：\n- RASP >> Standard (>10pp): 全面推进 plan_001-017\n- RASP > Standard (5-10pp): 优先 plan_001 + plan_006 + plan_015\n- RASP ≈ Standard (<5pp): 转 training dynamics 分析\n- Standard > RASP: red-section Framing 调整提案\n\n### 时间线\nEMNLP ARR May 25 距今 10 天。GRPO 完成后立即进入 full eval + α ablation + GRASPrune baseline 并行阶段，预计代码已就绪可即刻启动。",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 2 (GPU 0 / CPU 2)\n\n## Loop #7 Session Start 状态汇报\n\n### 运行中实验（决定性实验）\n- **grpo_stage2_rasp_20** (cuda:0, PID 263888): SFT-warmed RASP 模型 GRPO 恢复，起点 57% sampling accuracy。Cron 监控正常。\n- **grpo_stage2_standard_20** (cuda:1, PID 263966): SFT-warmed Standard 模型 GRPO 恢复（负对照），起点 64% sampling accuracy。Cron 监控正常。\n\n### 并行 CPU Worker（GRPO 跑完时即刻可用）\n1. **code:grpo_stage2_prep_batch** — 3 合 1 代码前置准备:\n   - α ablation 脚本（α∈{0.5, 1.0, 2.0}，Dream P0 Critical）\n   - Full GSM8K eval 脚本（1319 题，覆盖所有 checkpoint）\n   - GRASPrune 环境 clone + 验证（plan_005 baseline）\n2. **research:paper-related-work** — 文献调研扩展到 25+ 引用，补 FANG/FuncNet/RestoreLCC/PAT + CKA 论证素材\n\n### GRPO 完成后行动计划（按 contingency 表）\n等待 GRPO Stage 2 回调，按结果分叉：\n- RASP >> Standard (>10pp): 全面推进 plan_001-017\n- RASP > Standard (5-10pp): 优先 plan_001 + plan_006 + plan_015\n- RASP ≈ Standard (<5pp): 转 training dynamics 分析\n- Standard > RASP: red-section Framing 调整提案\n\n### 时间线\nEMNLP ARR May 25 距今 10 天。GRPO 完成后立即进入 full eval + α ablation + GRASPrune baseline 并行阶段，预计代码已就绪可即刻启动。",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T02:47:23.584107+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_rasp_pipeline_v2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4086
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-15T02:47:34.144095+00:00_
+
+Session-start 初始化完成。
+
+**当前状态**:
+- GPU 2/2 满负载：GRPO Stage 2 双卡并行（RASP cuda:0 / Standard cuda:1），cron 监控 PID 存活
+- Worker 池 2/2：代码前置准备（α ablation + full eval + GRASPrune 环境）+ 文献调研
+- 已向 Director 汇报
+
+等待 GRPO Stage 2 完成回调或 Worker 完成回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_rasp_pipeline_v2"
+}
+```
+
+</details>
+
+---

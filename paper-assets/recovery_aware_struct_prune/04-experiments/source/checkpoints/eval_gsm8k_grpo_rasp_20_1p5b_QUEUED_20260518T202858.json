@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_grpo_rasp_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:59:22.921Z",
+    "updated_at": "2026-05-18T20:28:57.882Z",
+    "hypothesis": "1.5B RASP post-GRPO GSM8K accuracy (N=1319). Cross-model generalization: 7B RASP GRPO collapsed (reward 0.01), but 1.5B RASP showed reward=0.099 without collapse. If 1.5B RASP GSM8K is lower than CKA-only but not catastrophically low, confirms scale-dependent recovery dynamics. Completes 3-method 1.5B GSM8K comparison.",
+    "parent": "grpo_rasp_20_1p5b"
+  },
+  "timestamp": "2026-05-18T20:28:58.210925+00:00",
+  "trigger": "update_registry"
+}

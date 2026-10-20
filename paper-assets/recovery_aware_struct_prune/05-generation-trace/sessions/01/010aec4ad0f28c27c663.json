@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "010aec4ad0f28c27c663",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4866,
+    "sha256": "dc7c4d01f540fbf1c665084423457dcf8e1b3618d842f377ff0681eb95dc68d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T02:44:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅 cuda:0, cuda:1**（C001 约束，westb-23072 上）。绝不使用其他 GPU。\n- 服务器仅 **westb-23072**，account=root。\n- 模型基础是 **DeepSeek-R1-Distill-Qwen-7B**，distilled 模型对剪枝极度敏感——35% sparsity 已证实摧毁模型，仅 20% 可行。\n- SFT warmup 是 GRPO 前的**必要步骤**——剪枝后模型 sampling 模式退化（无 EOS），直接上 GRPO 零梯度。不要跳过 SFT 直接跑 GRPO。\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，**没有 .venv**。\n- EMNLP 2026 ARR May 25 提交，距今 **10 天**。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westb-23072, 2× RTX PRO 6000 Blackwell 94GB\n- **工作目录**: `/root/recovery_aware_struct_prune`（代码）\n- **Python**: `/root/miniconda3/bin/python`（conda base）\n- **模型路径**:\n  - 原始: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n  - Pruned RASP 20%: `/root/autodl-tmp/pruned_rasp_20`（post-prune 29% GSM8K）\n  - Pruned Standard 20%: `/root/autodl-tmp/pruned_standard_20`（post-prune 1% GSM8K）\n  - SFT RASP: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20`\n  - SFT Standard: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20`\n  - GRPO Stage 2 output: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20` 和 `grpo_stage2_standard_20`\n- **活跃进程**:\n  - `grpo_stage2_rasp_20`: PID 263888, tmux session, cuda:0, cron 监控中\n  - `grpo_stage2_standard_20`: PID 263966, tmux session, cuda:1, cron 监控中\n- **W&B**: 项目内，历史 run IDs: ou02s4k4 (standard), sz9264sx (rasp), ccx0jr0z (rasp 4096)\n- **日志**: `~/runs/recovery_aware_struct_prune/` 下各实验 log\n\n### 3. 📊 当前状态\n**两个 GRPO Stage 2 实验正在双卡并行运行**——这是项目的**决定性实验**：\n- `grpo_stage2_rasp_20` (cuda:0): SFT-warmed RASP 模型 GRPO 恢复，起点 57% sampling accuracy\n- `grpo_stage2_standard_20` (cuda:1): SFT-warmed Standard 模型 GRPO 恢复（负对照），起点 64% sampling accuracy\n\nCron 监控两个实验均 active（reconcile 确认 PID 存活）。无 running Worker。\n\n**已完成实验链**:\n1. mvp_rasp_pipeline → v2 → v3 → v4: 迭代修复 GQA 约束、per-layer floor、sparsity 调优\n2. D009 (1024 truncation) → D010 (4096 确认 sampling 退化) → D013 (SFT warmup) → D015 (GRPO Stage 2)\n3. SFT 结果: RASP 57% vs Standard 64%（Standard 反超，但 SFT 是 pattern matching 非真正推理恢复）\n\n**Dream 分析 (D016) 已完成**: Best=Weak Accept (4/6)，三档一致结构性问题: α ablation 缺失(Critical)、single model、no inference speedup、multi-seed。新增 plan_015/016/017。\n\n### 4. 📋 待办（条件触发式）\n- **GRPO Stage 2 完成回调到达** → 按 ROADMAP contingency 表判断:\n  - RASP >> Standard (>10pp): 全面推进 plan_001-017，优先 plan_015 (α ablation, P0)\n  - RASP > Standard (5-10pp): 优先 plan_001 (full eval) + plan_006 (multi-seed) + plan_015 (α ablation)\n  - RASP ≈ Standard (<5pp): 转 training dynamics 分析 + 试 25% sparsity\n  - Standard > RASP: **核心假设失败**，走 red-section Framing 调整提案\n- **GRPO 完成后立即** → 派 Worker 跑 GRASPrune baseline (plan_005，代码调研已完成见 memory.md)\n- **α ablation (plan_015)** → GRPO 完成后 P0 优先级，α∈{0.5, 1.0, 2.0} 三组，可双卡并行 2+1\n- **Inference speedup (plan_016)** → 简单测量，1h GPU 时间\n- **Unstructured baseline (plan_017)** → ~15h GPU\n\n### 5. 🎯 战略上下文\n**核心假设**: CKA functional overlap F(h) 预测 RLVR recoverability。RASP scoring S(h)=I(h)×(1-F(h))^α 让 GRPO 恢复效果显著优于 importance-only pruning。\n\n**决策链**: D007(kill 270h runs) → D008(改 MVP 标准) → D009(1024 truncation 伪阴性) → D010(4096 确认 sampling 退化) → D013(SFT warmup 方案) → D014(MVP PASS: 29% vs 1%) → D015(SFT Standard>RASP 不改方向，GRPO 是决定性实验) → D016(Dream 分析)\n\n**最容易判断错的事**:\n1. SFT 阶段 Standard 64% > RASP 57% **不代表 Standard 更好**。SFT 是 teacher forcing pattern matching，GRPO 才测试真正的推理恢复能力。不要因为 SFT 数字被 Standard 领先而动摇 story。\n2. Post-prune accuracy (RASP 29% vs Standard 1%) 是在 N=100 greedy 上测的，full GSM8K eval 还没做（plan_001）。\n3. GRASPrune 调研报告在 memory.md 里，集成方案已就绪，但**还没在服务器上 clone/跑**——等 GRPO 完成释放 GPU 再执行。\n4. 两模型 20% sparsity 下 MLP 总参数量完全相同（395,232），差异纯粹来自分布策略（Scenario B）。这是排除\"RASP 只是剪得少\"替代解释的关键证据，汇报时务必提及。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-2.md"
+}

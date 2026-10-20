@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13c74e80410f0bf320a0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix standard mbpp resubmit",
+  "task_key": "worker_fix_standard_mbpp_resubmit_20260519T222254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_standard_mbpp_resubmit_20260519T222254_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "a63fb0f35eca985e08e3008adba9d23043ef817051b7077c744a46adfb3a7219"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 v4 eval 都**正在运行中**，无需重新提交。\n\n## 当前状态\n\n| Session | GPU | 进度 | Pass@1 | 状态 |\n|---------|-----|------|--------|------|\n| `eval_mbpp_sft_standard_20_v4` | cuda:0 (98% util, 17277 MiB) | 85/374 (23%) | 0.1750 | **运行中** |\n| `eval_mbpp_grpo_standard_20_v4` | cuda:2 (97% util, 17019 MiB) | 108/374 (29%) | 0.1100 | **运行中** |\n\n## 关键细节\n\n- **MBPP 数据集缓存**: `/root/autodl-tmp/.hf_cache/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c`\n- GRPO v4 最初在线下载了数据集（网络当时可用），现在 SFT v4 使用了离线缓存\n- 两个 eval 都已正确设置 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`\n- 第三个 session `cka_stability` 也在运行（GPU 1 和 3 空闲，该 session 可能使用其他资源）\n\n**不需要重新提交。两个 v4 eval 都在正常跑，预计还需 2-4 小时完成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-standard-mbpp-resubmit.md"
+}

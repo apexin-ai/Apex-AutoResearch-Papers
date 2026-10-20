@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "1e9f949f652bb159a456",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "audit collect data sources",
+  "task_key": "worker_audit_collect-data-sources_20260525T194454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_collect-data-sources_20260525T194454.jsonl",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "5d39cded09c409fddac87f8532806e00dba06bcb32962c20f437cfb0693be1e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T19:45:04.347153+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 12am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_collect-data-sources_20260525T194454"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/audit-collect-data-sources.md"
+}

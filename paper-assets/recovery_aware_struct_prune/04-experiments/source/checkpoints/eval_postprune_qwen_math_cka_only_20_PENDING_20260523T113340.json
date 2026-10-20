@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_postprune_qwen_math_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:33:19.445Z",
+    "updated_at": "2026-05-23T11:33:39.581Z",
+    "hypothesis": "Qwen2.5-Math-7B CKA-only 20% post-prune GSM8K accuracy. Tests whether CKA-only pruning generalizes from DeepSeek-R1 to Qwen-Math. Low post-prune accuracy expected; key comparison is CKA-only vs Standard post-prune."
+  },
+  "timestamp": "2026-05-23T11:33:40.251019+00:00",
+  "trigger": "update_registry"
+}

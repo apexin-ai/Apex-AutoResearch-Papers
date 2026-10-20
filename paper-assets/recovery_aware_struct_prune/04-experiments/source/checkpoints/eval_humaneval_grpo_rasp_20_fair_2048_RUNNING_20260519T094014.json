@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_humaneval_grpo_rasp_20_fair_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:38:59.146Z",
+    "updated_at": "2026-05-19T09:40:14.323Z",
+    "hypothesis": "HumanEval pass@1 for GRPO RASP 20% (fair model) with max_new_tokens=2048. Fair model trained with same setup as Standard/CKA-only for unbiased comparison on code generation.",
+    "parent": "grpo_stage2_rasp_20_fair",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "model_name": "grpo_stage2_rasp_20_fair",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair",
+      "eval_data": "HumanEval",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T09:40:10.950Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T09:40:14.724836+00:00",
+  "trigger": "update_registry"
+}

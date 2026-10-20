@@ -1,0 +1,61 @@
+{
+  "exp_id": "eval_gsm8k_grpo_cka_only_20_extended_300",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:42:30.325Z",
+    "updated_at": "2026-05-19T03:49:12.498Z",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_extended_300 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "56972",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_cka_only_20_extended_300.log",
+      "submitted_at": "2026-05-19T01:42:29.803Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "model_name": "grpo_cka_only_20_extended_300",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_extended_300",
+      "eval_data": "gsm8k",
+      "wall_clock_seconds": 7602.7,
+      "gpu_hours": 2.11
+    },
+    "hypothesis": "Extended GRPO training (300 steps vs 100 steps) on CKA-only 20% pruned model will further improve GSM8K in-distribution accuracy beyond the 64.37% achieved at 100 steps",
+    "parent": "grpo_cka_only_20_extended_300",
+    "reproduce": {
+      "finished_at": "2026-05-19T03:46:34.558Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T03:46:40.104131+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gsm8k_accuracy": 0.6437,
+      "correct": 849,
+      "total": 1319,
+      "stderr": 0.0132,
+      "eos_rate": 0.9924,
+      "avg_response_length": 190.45
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_extended_300",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json",
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T03:49:12.498Z"
+  },
+  "timestamp": "2026-05-19T03:49:12.853021+00:00",
+  "trigger": "update_registry"
+}

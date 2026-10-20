@@ -1,0 +1,16 @@
+{
+  "exp_id": "grpo_unpruned_baseline",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:29:03.104Z",
+    "updated_at": "2026-05-15T18:35:55.797Z",
+    "hypothesis": "D032: Unpruned baseline GRPO — 证明 GRPO 本身在未剪枝 DeepSeek-R1-Distill-Qwen-7B 上有效。如果 RASP/Standard 剪枝模型 collapse 而 unpruned 不 collapse，证明 collapse 是剪枝导致的，不是 GRPO 方法问题。Reviewer 关键缺失证据。参数与 v8 完全一致。",
+    "notes": "PREPARING: 脚本就绪 (westb run_grpo_unpruned.sh)，正在下载 base model via ModelScope (~5-15min). 计划 westb cuda:0，RASP v8 kill (~18:03 UTC) 后立即启动。"
+  },
+  "timestamp": "2026-05-15T18:35:55.903881+00:00",
+  "trigger": "update_registry"
+}

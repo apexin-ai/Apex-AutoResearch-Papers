@@ -1,0 +1,1 @@
+Remote: westb-23072:/root/recovery_aware_struct_prune/results/figures/cka_heatmap.pdf

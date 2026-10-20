@@ -1,0 +1,89 @@
+paper_key: "bonsai_2025"
+title: "Bonsai: Gradient-Free Structured Pruning for LLMs (Everybody Prune Now)"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines: [LLM-Pruner, LoRAPrune, Sheared LLaMA, FLAP, SliceGPT, Wanda 2:4]
+  metrics:
+    - {name: "WikiText-2 perplexity", direction: "lower_better"}
+    - {name: "C4 perplexity", direction: "lower_better"}
+    - {name: "zero-shot accuracy (BoolQ, HellaSwag, WinoGrande, ARC-e, ARC-c)", direction: "higher_better"}
+    - {name: "inference speedup", direction: "higher_better"}
+    - {name: "GPU memory", direction: "lower_better"}
+  datasets:
+    - {name: "WikiText-2", size: "32 samples calibration"}
+    - {name: "C4", size: "30K sequences"}
+    - {name: "GSM8K", size: "standard"}
+    - {name: "MMLU", size: "standard"}
+    - {name: "TruthfulQA", size: "standard"}
+  ablation_dimensions: [perturbation + regression components, sample count, post-pruning adaptation, prior selection]
+  training_recipe: {optimizer: "N/A (forward-only)", lr: "N/A", hardware: "single A6000 48GB (minimal: 20GB)", runtime: "15min-4hr"}
+  method_family: "gradient-free perturbative structured pruning"
+
+positioning:
+  core_claim: "Gradient-free forward-pass-only pruning can match or exceed gradient-based methods while requiring 2-3x less memory, democratizing LLM compression for commodity hardware"
+  key_results: "LLaMA-2-7B 50% sparsity: 8.89 PPL (with PPA), 1.58x speedup; runs on 20GB GPU vs 80-640GB for baselines"
+  limitations: ["4hr runtime vs 1hr for FLAP", "Task-agnostic approach underperforms on specialized tasks initially", "No intermediate fine-tuning during iterative pruning"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Memory barrier: gradient-based pruning needs 80-640GB, locking out most practitioners"
+  tension: "Backpropagation is the bottleneck—can we prune without it entirely?"
+  key_insight: "Formulating importance as underdetermined regression with informative priors enables forward-pass-only pruning"
+  argument_chain: "problem (memory barrier) → insight (forward-only regression) → method (Bonsai) → validation (SOTA on commodity hardware)"
+  contribution_framing: "5 contributions: forward-only pruning, perturbative regression, informative priors, global decisions, PPA enablement"
+  intro_structure: "~4 paragraphs: accessibility motivation → method innovation → practical impact → contributions"
+  notable_technique: "Democratization framing—positioning the method as enabling broader access rather than just better numbers"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "motivation"
+    description: "Memory comparison across pruning methods"
+    narrative_role: "Establishes the accessibility gap that motivates the work"
+    design_elements: ["bar chart comparing memory requirements", "commodity hardware threshold line"]
+    visual_style: "Clean comparison bars with clear memory threshold annotation"
+  result_figures:
+    - figure_id: "Table 3-6"
+      viz_type: "N/A (tables)"
+      what_compared: "Bonsai vs gradient-based and forward-only baselines across models and sparsity levels"
+      how_gain_highlighted: "Bold best results"
+      design_note: "Separate tables for different comparison contexts (semi-structured, gradient-based, forward-only)"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      dimensions_varied: ["perturbation only", "regression only", "both"]
+      design_note: "Component ablation showing both are essential"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["prior type (Wanda, activation, FLAP)"]
+      design_note: "Shows Wanda prior is consistently best"
+  figure_narrative_role: "Memory motivation → Method overview → Ablation (components, priors) → Sample efficiency"
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods"
+    col_axis: "model × metrics (PPL + speedup)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 5
+    design_note: "Multiple comparison contexts in separate tables rather than one monolithic table"
+  ablation_tables:
+    - table_id: "Table 7"
+      what_varied: ["number of forward-pass samples"]
+      variation_style: "full_numbers"
+      design_note: "Shows sample efficiency curve with NaN at 50 samples as lower bound"
+    - table_id: "Table 8"
+      what_varied: ["PPA configuration (none, fine-tune, distillation)"]
+      variation_style: "full_numbers"
+      design_note: "Progressive improvement from no PPA to full distillation"
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended results across more models and sparsity ratios"
+    reason: "Main text focuses on key comparison points; appendix provides completeness"

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_mbpp_grpo_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:41:07.213Z",
+    "updated_at": "2026-05-19T14:41:19.116Z",
+    "hypothesis": "GRPO CKA-only 20% achieves highest MBPP pass@1 among pruned methods, consistent with its HumanEval advantage (20.12% vs Standard 10.98%). CKA-based pruning preserves code generation capability breadth across multiple benchmarks."
+  },
+  "timestamp": "2026-05-19T14:41:19.529180+00:00",
+  "trigger": "update_registry"
+}

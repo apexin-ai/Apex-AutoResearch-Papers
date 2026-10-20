@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "122478bd788b550a21ad",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval sft westd failures",
+  "task_key": "worker_diagnose_eval_sft_westd_failures_20260515T190528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_sft_westd_failures_20260515T190528_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "44a380300fb91afba3c29ca04e4321d7a14f6131d4514c26ea8e69da63966a0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断结果\n\n### 1. 失败根因\n\n两个实验的错误完全相同：\n\n```\npython: can't open file '/root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py': [Errno 2] No such file or directory\n```\n\n**根因：实验启动时代码尚未同步到数据盘路径。** 实验在 `01:35` 从 `/root/autodl-tmp/recovery_aware_struct_prune/` 目录启动，但 `src/eval_gsm8k.py` 直到 `03:03` 才出现在该路径下。脚本**从未执行**，日志文件各仅 2 行，瞬间失败。\n\n### 2. 结果文件\n\n不存在。两个 JSON 结果文件均未生成（eval 根本没跑起来）。\n\n### 3. 修复建议\n\n重新提交实验前确认代码已同步到工作目录：\n- 确保 `cd /root/autodl-tmp/recovery_aware_struct_prune && ls src/eval_gsm8k.py` 存在后再启动\n- 或将实验的工作目录改为根分区的 `/root/recovery_aware_struct_prune/`（代码在那里，时间戳 `May 15 11:53`），同时 `--output_path` 和 `--model_path` 用绝对路径指向数据盘\n\n另外注意：实验 2 的 `--output_path` 写错了，用的是 `eval_sft_rasp_20_westd_n100.json`（和实验 1 相同），应该是 `eval_sft_standard_20_westd_n100.json`，重跑时需修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-sft-westd-failures.md"
+}

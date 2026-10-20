@@ -1,0 +1,29 @@
+{
+  "exp_id": "floor_ablation_0p5_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:17:27.612Z",
+    "updated_at": "2026-05-23T09:18:19.808Z",
+    "hypothesis": "Floor ratio ablation: raising the MLP floor from 0.4 to 0.5 constrains pruning to be more conservative. If floor=0.5 improves GSM8K accuracy over floor=0.4, it suggests CKA-only criterion benefits from a higher minimum layer size. Maps the sensitivity curve of floor parameter on recovery quality.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 bash scripts/run_floor_ablation.sh 0.5 3\"",
+      "server": "westd-32935",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "118436",
+      "log_path": "~/runs/recovery_aware_struct_prune/floor_ablation_0p5_cka_only_20.log",
+      "submitted_at": "2026-05-23T08:58:26.197Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T09:18:20.485327+00:00",
+  "trigger": "update_registry"
+}

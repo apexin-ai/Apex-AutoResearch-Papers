@@ -1,0 +1,60 @@
+paper_key: "self_healing_2025"
+title: "Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning"
+venue: "ICLR 2026"
+full_text_available: false
+
+research:
+  baselines: [SFT-based recovery, unpruned LRM baseline]
+  metrics:
+    - {name: "math reasoning accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "math reasoning benchmarks (likely MATH/GSM8K)", size: "N/A"}
+  ablation_dimensions: [recovery method (RLVR vs SFT), compression ratio]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "post-pruning recovery via reinforcement learning"
+
+positioning:
+  core_claim: "RLVR-based recovery training is fundamentally superior to SFT-based imitation for recovering pruned reasoning models, because SFT merely imitates reasoning trajectories while RLVR enables genuine reasoning recovery"
+  key_results: "At 25% compression, RLVR achieves >95% accuracy vs ~80% with SFT, approaching unpruned model performance"
+  limitations: ["Full text unavailable for detailed limitation extraction"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LRMs achieve breakthroughs in reasoning but are too large for deployment; pruning degrades reasoning disproportionately"
+  tension: "Existing recovery methods merely imitate reasoning trajectories, creating a performance bottleneck"
+  key_insight: "RLVR enables the pruned model to recover genuine reasoning ability rather than surface-level imitation"
+  argument_chain: "problem (pruned LRM loses reasoning) → observation (SFT imitates but doesn't recover) → insight (RLVR recovers genuine reasoning) → validation (>95% at 25% compression)"
+  contribution_framing: "N/A (full text unavailable)"
+  intro_structure: "N/A"
+  notable_technique: "Framing the gap between imitation and genuine reasoning recovery"
+
+figures:
+  figure_count: "N/A"
+  figure1:
+    type: "N/A"
+    description: "N/A"
+    narrative_role: "N/A"
+    design_elements: []
+    visual_style: "N/A"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: "N/A"
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: "N/A"
+    design_note: "N/A"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: "N/A"
+    content: "N/A"
+    reason: "N/A"

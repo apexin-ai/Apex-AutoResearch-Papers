@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "121118656881d40afd92",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8.md",
+    "occurrence": 1,
+    "bytes": 5303,
+    "sha256": "f133ff791a4320d4f120095d443f8abd8dad2d6d41e8ba8f7d65f39a781826fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T14:34:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1 + westd-11672 cuda:0/1，共 4 卡，无例外（C001+C003）\n- 大文件只写 `/root/autodl-tmp/recovery_aware_struct_prune/`，根分区 ~30GB 极易满（C002）。HF cache 必须设 `HF_HOME=/root/autodl-tmp/.hf_cache` + `HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets`（v7 双卡崩溃教训）\n- GRPO 训练 GPU 参数始终 `--gpu 0`，物理卡通过 `CUDA_VISIBLE_DEVICES` 映射（v7 bug：`--gpu 1` 导致访问不存在的设备）\n- submit_training_job 的 command 必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，两台服务器均用 conda 不是 venv\n- EMNLP 2026 ARR deadline 2026-05-25，距今 10 天。GRPO 是唯一核心实验路径，失败 = 项目需根本性 pivot\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× RTX PRO 6000 Blackwell ~98GB | 工作目录 `/root/recovery_aware_struct_prune` | 数据盘 `/root/autodl-tmp/` (250GB, ~110GB free) | Python `/root/miniconda3/bin/python` (conda base)\n- **westd-11672**: 2× RTX PRO 6000 ~95GB | 同上目录结构 | 磁盘空间充足\n- 模型路径: `/root/autodl-tmp/pruned_rasp_20`, `/root/autodl-tmp/pruned_standard_20`, `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20`, `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20`\n- GraSP 模型: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20/`\n- α ablation checkpoints: `/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_{0.0,0.5,1.0,2.0,4.0}`\n- CKA 分数缓存: `results/cka_scores.pt`\n- 活跃进程: 无确认 RUNNING 实验（v7 双卡已崩溃，v8 正由 Worker 启动中）\n- Cron: 0 个活跃（reconcile 确认）\n\n### 3. 📊 当前状态\n**刚做完**: GRPO v7 双组崩溃（D032: 根分区磁盘满 + GPU 映射 bug），已派 worker_ops_westb-v8-launch 启动 v8（修复 HF cache 重定向 + GPU 映射）。sft-alpha-1p0 成功完成（loss=0.64, token_acc=0.83）。\n\n**Registry 摘要** (33 experiments: 6 success / 5 negative / 10 failed / 12 killed+preparing):\n- westb cuda:0/1: 等待 GRPO v8 RASP + Standard 启动（Worker 正在操作）\n- westd cuda:0: grasp_baseline_westd (PREPARING) — GraSP N=100 eval 应该已提交，可能需要确认状态\n- westd cuda:1: eval-sft-alpha-0p0 (PREPARING) — α=0.0 SFT eval 已提交\n\n**活跃 Worker (4)**:\n1. `worker_code_alpha0-sft-eval-and-queue` — α=0.0 post-SFT eval + 排队后续 α\n2. `worker_ops_westb-v7-fix` — 可能已过时（v7 已确认失败）\n3. `worker_status_westb_grpo_v7_check` — 同上，v7 状态检查\n4. `worker_ops_westb-v8-launch` — **关键**: 正在 westb 启动 GRPO v8 双卡\n\n**等待中**: 4 个 Worker 回调。v8 launch Worker 最关键——回调后需确认双卡 RUNNING + 注册 cron 监控。\n\n### 4. 📋 待办（条件触发式）\n- worker_ops_westb-v8-launch 回调 → 确认 v8 双卡 PID 存活 → update_registry(status=RUNNING, spec) → 注册 cron 监控 → 汇报 Director\n- v8 如果再次 OOM/崩溃 → 考虑 ref_model CPU offload 或 LoRA-only GRPO（不要再加 8-bit 以外的 optimizer hack）\n- GRPO v8 完成（ETA ~21h, ~5/16 12:00 UTC）→ spawn worker eval 两模型 (N=100, greedy) → 判定 |RASP-Standard|: >15pp/5-15pp/<5pp → 按 ROADMAP contingency table 行动\n- eval-sft-alpha-0p0 完成 → 记录 α=0.0 post-SFT accuracy → 与 α=0.5(待跑)/1.0(57%)/4.0(62%)/Standard(64%) 对比\n- grasp_baseline_westd eval 完成 → 确认 GraSP N=100 准确率（50 样本 checkpoint: 8%）→ 接着跑 sft_grasp_20_westd SFT → eval\n- GraSP SFT eval 完成 → 三方对比: Standard 64% vs RASP 57% vs GraSP ?% (post-SFT)\n- α=0.5 和 α=2.0 的 SFT 尚未跑 → westd cuda:1 空闲时逐个排队\n- GRPO v8 结果出来 + 所有 α SFT eval 完成 → 向 Director 汇报完整数据表 + narrative 建议\n\n### 5. 🎯 战略上下文\n**核心结论链**: D027 摧毁了 post-prune 29x advantage claim（实际 4pp, p=0.54）。D029 确认 SFT 阶段 Standard > RASP (64% vs 57%)。整个论文 narrative 现在 100% 押注 GRPO recovery 阶段 RASP > Standard。如果 GRPO v8 也失败（技术层面）或 RASP ≈ Standard（假设层面），项目需要根本性 pivot。\n\n**最容易判断错的事**:\n1. **不要信 registry 里 PREPARING 的 PID**——v7 崩溃后 westb 进程已死，PREPARING 实验的 PID 可能是僵尸。必须 SSH 确认。\n2. **westb 磁盘可能还是紧张**——v8 Worker 应该已设 HF cache 到数据盘，但 verify 磁盘空间 (`df -h /`) 是启动后第一件事。\n3. **GRPO v1-v7 已失败 7 次**，v8 的修复点是 HF cache + GPU 映射，但 OOM 根因（8-bit optimizer 在 ~95GB 卡上跑 ref_model + train_model）尚未从根本解决——v6 在 step 9 OOM，v7 的 8-bit optimizer 理论上够但没跑到那一步就磁盘满了。v8 是第一次真正验证 8-bit optimizer 能否跑完。\n4. **α ablation 数据不完整**——只有 α=0.0/1.0/4.0 跑了 SFT，α=0.5/2.0 还缺。完整 α-recovery 曲线需要全部 5 点。\n5. **GraSP 是安全牌**——无论 GRPO 结果如何，RASP >> GraSP (3.6x) 已成立，可以用于 gradient-based baseline 对比。但单靠 GraSP 不够撑 paper。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-2.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_sft_qwen_math_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:04:49.969Z",
+    "updated_at": "2026-05-16T12:04:49.969Z"
+  },
+  "timestamp": "2026-05-16T12:04:50.123479+00:00",
+  "trigger": "update_registry"
+}

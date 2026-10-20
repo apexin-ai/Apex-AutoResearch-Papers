@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f61da64814c0f4ff74d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops locate standard fair and fix humaneval",
+  "task_key": "worker_ops_locate_standard_fair_and_fix_humaneval_20260519T063646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_locate_standard_fair_and_fix_humaneval_20260519T063646_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "06f5dc60ec56b2e5334a1ce5a228a0c7adc9166dda5fa85d768b117c647d3d77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**崩溃原因**：路径错误。eval 用了 `grpo_standard_20_fair`，实际目录名是 `grpo_stage2_standard_20_fair`（两台服务器均无 `grpo_standard_20_fair`）。\n\n**Checkpoint 位置**（均在 westd-29022）：\n- Standard fair: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/` (12.3GB)\n- RASP fair: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair/` (12.3GB)\n\n**已启动的 eval**（westd-29022）：\n| Experiment | GPU | tmux session |\n|---|---|---|\n| `eval_humaneval_grpo_rasp_20_fair_2048` | cuda:3 | `eval_humaneval_rasp_fair` |\n| `eval_humaneval_grpo_standard_20_fair_2048_v2` | cuda:2 | `eval_humaneval_standard_fair` |\n\n**Registry 更新**：\n- `eval_humaneval_grpo_standard_20_fair_2048` → DONE / failed（路径错误）\n- 两个新 eval 已注册为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-locate-standard-fair-and-fix-humaneval.md"
+}

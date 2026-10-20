@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00f0c11f532888ff3378",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix grpo standard v3 dead resubmit",
+  "task_key": "worker_fix_grpo_standard_v3_dead_resubmit_20260519T205839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_grpo_standard_v3_dead_resubmit_20260519T205839_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "9d62596aa940c4015e38882d426eb3c4f787ab596732b62671a42bdc884b3f7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**死因**: v3 在 `load_dataset(\"mbpp\")` 时崩溃 — `RuntimeError: Cannot send a request, as the client has been closed.`，AutoDL 网络未启用代理导致 HF Hub HTTP 客户端断开。\n\n**修复**: v4 启动前加 `source /etc/network_turbo` + SSL 证书环境变量 (`REQUESTS_CA_BUNDLE`, `SSL_CERT_FILE`) + `HF_HUB_DISABLE_XET=1`。\n\n**v4 状态**:\n- PID: **139816**\n- tmux session: `eval_mbpp_grpo_standard_20_v4`\n- GPU: cuda:2 (12497 MiB)\n- 数据集加载成功 (374 problems)，推理已开始 (MBPP: 0%)\n- Registry: RUNNING\n- Cron 监控: 每 8 分钟检查，job `0438fd58`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-grpo-standard-v3-dead-resubmit.md"
+}

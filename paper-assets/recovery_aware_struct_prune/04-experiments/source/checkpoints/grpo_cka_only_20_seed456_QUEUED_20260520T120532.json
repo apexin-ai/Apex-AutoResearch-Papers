@@ -1,0 +1,16 @@
+{
+  "exp_id": "grpo_cka_only_20_seed456",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:36:13.866Z",
+    "updated_at": "2026-05-20T12:05:31.670Z",
+    "hypothesis": "Multi-seed validation (seed=456) of CKA-only 20% GRPO training. v5 fair config (100 steps, beta=0.01, loss_type=dapo, temperature=0.4). Seed=42: 64.37%, seed=123: 64.22%. Third seed point to establish CKA-only method's recovery consistency and enable 3-seed parity comparison with Standard (3 seeds: 59.44%, pending, pending). P0 审稿硬需求 W-C4.",
+    "parent": "grpo_cka_only_20"
+  },
+  "timestamp": "2026-05-20T12:05:32.139661+00:00",
+  "trigger": "update_registry"
+}

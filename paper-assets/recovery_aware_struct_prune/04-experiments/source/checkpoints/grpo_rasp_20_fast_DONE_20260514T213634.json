@@ -1,0 +1,41 @@
+{
+  "exp_id": "grpo_rasp_20_fast",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:38:53.540Z",
+    "updated_at": "2026-05-14T21:36:34.231Z",
+    "spec": {
+      "model_name": "pruned_rasp_20",
+      "model_path": "/root/autodl-tmp/pruned_rasp_20",
+      "output_dir": "/root/autodl-tmp/recovered_rasp_20",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "gsm8k",
+      "data_count": 2000,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pruned_rasp_20",
+      "hyperparams": {
+        "max_completion_length": 1024,
+        "num_train_epochs": 1,
+        "max_train_samples": 2000,
+        "reward_desert_patience": 50
+      },
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/train_grpo.py --model_path /root/autodl-tmp/pruned_rasp_20 --output_dir /root/autodl-tmp/recovered_rasp_20 --gpu 0 --max_completion_length 1024 --num_train_epochs 1 --max_samples 2000 --learning_rate 1e-6 --save_total_limit 2 --save_steps 200 --reward_desert_patience 50",
+      "checkpoint_path": "/root/autodl-tmp/recovered_rasp_20",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_rasp_20_fast.log"
+    },
+    "hypothesis": "RASP-pruned model (20% sparsity, post-prune 29% GSM8K) recovers under GRPO RLVR with fast config (1024 tokens, 1 epoch, 2000 samples). Expected: reward > 0, meaningful recovery within 500 steps.",
+    "parent": "mvp_rasp_pipeline_v4",
+    "notes": "Training completed 500/500 steps (3h32m). NEGATIVE: zero effective learning — reward stayed ~0.006-0.019 throughout, grad_norm=0, loss=0. All completions clipped at max_length=1024, 0 natural terminations (mean_terminated_length=0). frac_reward_zero_std≈0.975-1.0. Despite RASP model having 29% GSM8K post-prune, GRPO still failed to produce learning signal. wandb: sz9264sx. Checkpoint: /root/autodl-tmp/recovered_rasp_20/. Still needs formal GSM8K eval on full test set (1319 samples) to confirm.",
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T21:36:30.634Z"
+  },
+  "timestamp": "2026-05-14T21:36:34.285169+00:00",
+  "trigger": "update_registry"
+}

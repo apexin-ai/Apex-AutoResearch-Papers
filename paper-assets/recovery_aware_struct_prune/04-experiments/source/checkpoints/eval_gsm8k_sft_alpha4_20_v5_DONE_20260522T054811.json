@@ -1,0 +1,46 @@
+{
+  "exp_id": "eval_gsm8k_sft_alpha4_20_v5",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:49:50.201Z",
+    "updated_at": "2026-05-22T05:48:10.700Z",
+    "hypothesis": "α=4.0 SFT GSM8K N=1319 full eval @2048. D100 critical for C1 decoupling universality. v4 lost to westd-29022 outage. Re-run on westd-32935.",
+    "parent": "eval_gsm8k_sft_alpha4_20_v4",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20 --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json",
+      "server": "westd-32935",
+      "gpu": [
+        "cuda:2"
+      ],
+      "data_path": "GSM8K",
+      "data_count": 1319,
+      "model_name": "sft_alpha4_20",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20",
+      "seed": 42,
+      "checkpoint_source": "sft_alpha4_20",
+      "eval_data": "GSM8K",
+      "log_path": "/root/recovery_aware_struct_prune/logs/eval_gsm8k_sft_alpha4_20_v5.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T05:47:27.370Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T05:47:34.101Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T05:47:41.693855+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T05:48:11.841934+00:00",
+  "trigger": "update_registry"
+}

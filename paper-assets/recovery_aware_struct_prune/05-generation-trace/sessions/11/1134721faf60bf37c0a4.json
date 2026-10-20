@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1134721faf60bf37c0a4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_8_1778866770.md",
+  "task_key": "loop_8_1778866770",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778866770.md",
+    "occurrence": 1,
+    "bytes": 4892,
+    "sha256": "1a84fe4c687a498bfee592ec92c2d93477d5cf47d9afd15844510090114b4617"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T17:01:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` 和 `cuda:1`，适用服务器 westb-23072 和 westd-11672，共 4 张卡\n- westb 工作目录 `/root/recovery_aware_struct_prune`，westd 同路径\n- `submit_training_job` 的命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不能假设 .venv 存在\n- GRPO v8 是整个项目唯一剩余的核心假设验证路径——**不要 kill 它**，除非 Director 明确指示\n- α=0.5 checkpoint 已损坏，Director 已决定不重跑，不要再尝试\n- sft_standard_20 原始 checkpoint 已被磁盘清理删除（81GB），正在重训中\n- westb 磁盘曾多次爆满（v7 就是因此崩溃），HF cache 必须指向数据盘 `/root/autodl-tmp/` 或 `/root/.cache` 迁移后的位置\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× ~98GB GPU | Python: `/root/miniconda3/bin/python` | conda base\n  - cuda:0: GRPO v8 RASP (PID 532861, tmux, W&B `0wz7xpd5`)\n  - cuda:1: GRPO v8 Standard (PID 534667, tmux, W&B `q34vz8j2`)\n  - Cron 监控: 两个实验均有 active cron（reconcile 确认 still running）\n  - 磁盘: 清理后 65% 使用率，可用 ~88GB\n- **westd-11672**: 2× ~95GB GPU | Python: `/root/miniconda3/bin/python` | conda base\n  - cuda:0: GraSP baseline SFT (PID 38120, `grasp_baseline_westd`)\n  - cuda:1: 刚完成 α=2.0 SFT+eval，现有 2 个 worker 在重训 SFT（rasp + standard retrain）\n  - 磁盘: 释放 93GB 后空间充足\n- **代码关键路径**: `prune.py --alpha`, `sft_recovery.py`, `src/grpo_train.py`, `eval_gsm8k.py`\n- **CKA 缓存**: `results/cka_scores.pt`\n- **GRASPrune**: `/root/GRASPrune/`（不要 pip install -r requirements.txt）\n- **活跃 Worker**: 3 个 running — `worker_status_westb_grpo_v7_check`, `worker_train_westd-sft-rasp-retrain`, `worker_train_westd-sft-standard-retrain`\n\n### 3. 📊 当前状态\n**刚完成**: α ablation 全部 SFT+eval（α=0.0/1.0/2.0/4.0），GraSP post-SFT eval (41%)，D034 确认 GraSP 41% 为论文核心 finding。\n\n**RUNNING 实验**:\n| exp_id | 服务器 | GPU | 说明 |\n|--------|--------|-----|------|\n| grpo_stage2_rasp_20_v8 | westb | cuda:0 | GRPO RASP，~21h，ETA ~5/16 11:30 UTC |\n| grpo_stage2_standard_20_v8 | westb | cuda:1 | GRPO Standard（负对照），同 ETA |\n| grasp_baseline_westd | westd | cuda:0 | GraSP SFT 训练中 |\n\n**PREPARING 实验（等前置完成）**: eval_sft_grasp_20_westd, eval_sft_alpha_0p5(已跳过), eval_sft_standard_20_full, eval_sft_rasp_20_full, grpo_standard_20_v8, grpo_rasp_20_v8 等\n\n**等待中**: 2 个 westd Worker 正在重训 SFT checkpoint（rasp + standard），完成后可跑 full eval (N=1319)\n\n### 4. 📋 待办（条件触发式）\n- **GRPO v8 cron 回调到达** → spawn Worker 跑 eval（N=100, greedy）两个模型 → 按 ROADMAP contingency 表判定: >15pp 全面推进 / 5-15pp 加固 / <5pp pivot\n- **grasp_baseline_westd 完成** → spawn Worker 跑 `eval_sft_grasp_20_westd`（N=100），补齐三方对比最后一块\n- **westd SFT retrain workers 完成** → 立即提交 eval_sft_standard_20_full 和 eval_sft_rasp_20_full（N=1319, greedy, seed=42），获得统计显著性\n- **GRPO v8 step 5 (~启动后1h) 和 step 20 (~4h)** → 检查 W&B reward/grad_norm 早期信号，如果 collapse 迹象（reward=0, grad_norm=0）立即报告 Director\n- **全部 GRPO eval 完成** → 更新 report.md + paper_framing.md + 向 Director 汇报带 contingency 判定\n- **GRPO RASP > Standard** → 立即铺 plan_015 (α ablation GRPO) + plan_001 (full eval) + plan_016 (speedup benchmark)\n- **GRPO RASP ≈ Standard (<5pp)** → 产出 Framing 调整提案（red-section），**不要默默跑下一个实验**\n\n### 5. 🎯 战略上下文\n**DDL**: EMNLP 2026 ARR May 25，距今 10 天。GRPO 结果 ~5/16 出，留 ~9 天写作+补实验。\n\n**核心证据链（当前状态）**:\n- Post-prune claim 已崩塌：RASP 31% vs Standard 27%（p=0.54，不显著）→ D027\n- Post-SFT: Standard 64% > RASP 57%（CKA-aware 在 SFT 下反而更差）→ D029\n- GraSP 41% 远劣于 Standard/RASP → 唯一确定成立的 claim\n- **整个论文 story 完全押注在 GRPO recovery 阶段差异上**\n\n**最容易判断错的事**:\n1. **不要把 post-prune 4pp 差异当作显著结果引用**——p=0.54，已被 D027 推翻\n2. **SFT 阶段 Standard > RASP 不是 bug**——D029 确认，\"Paradoxical recovery\" 是已知现象（memory.md 有分析）\n3. **GRPO v1-v7 全部因工程问题失败**（截断/collapse/OOM/磁盘满），不是方法论失败——v8 是第一次参数+基础设施都正确的运行\n4. **α ablation 在 SFT 下无显著趋势**（62/62/64，α=1.0 的 57% 可能是 outlier）——不要过度解读 α 在 SFT 阶段的效果\n5. westb 磁盘是定时炸弹（v7 因此崩溃），大操作前先 `df -h` 检查\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778866770.md"
+}

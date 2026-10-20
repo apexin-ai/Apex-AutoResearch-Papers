@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_humaneval_sft_cka_only_20_1p5b_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:32:47.965Z",
+    "updated_at": "2026-05-19T13:24:58.101Z",
+    "hypothesis": "1.5B SFT CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B SFT CKA-only result: failed (pass@1=0). Testing whether 1.5B scale shows different pattern, as SFT alone may not activate code generation capability regardless of pruning criterion.",
+    "spec": {
+      "command": "python src/eval_humaneval.py --model_path /root/autodl-tmp/models/sft_cka_only_20_1p5b --max_tokens 2048",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "95940",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_humaneval_sft_cka_only_20_1p5b_2048.log",
+      "submitted_at": "2026-05-19T11:45:57.991Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "sft_cka_only_20_1p5b",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "seed": 42,
+      "checkpoint_source": "sft_cka_only_20_1p5b"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:24:56.587Z"
+    }
+  },
+  "timestamp": "2026-05-19T13:24:58.863490+00:00",
+  "trigger": "update_registry"
+}

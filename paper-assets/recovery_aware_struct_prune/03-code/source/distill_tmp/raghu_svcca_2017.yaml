@@ -1,0 +1,11 @@
+paper_key: "raghu_svcca_2017"
+title: "SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability"
+venue: "NeurIPS 2017"
+full_text_available: false
+research:
+  baselines: [CCA, direct neuron comparison]
+  metrics: [{name: "canonical correlation", direction: "higher_better"}, {name: "intrinsic dimensionality", direction: "context_dependent"}]
+  datasets: [{name: "CIFAR-10", size: "standard"}, {name: "ImageNet", size: "standard"}]
+  ablation_dimensions: [SVD truncation, learning dynamics]
+  training_recipe: {}
+  method_family: "representation similarity analysis (SVD + CCA)"

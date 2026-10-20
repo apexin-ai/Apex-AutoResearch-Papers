@@ -1,0 +1,15 @@
+{
+  "exp_id": "prune_rasp_20_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:01:57.095Z",
+    "updated_at": "2026-05-16T08:03:55.769Z",
+    "hypothesis": "Qwen2.5-Math-7B RASP 20% structured pruning. Scope expansion Phase 2: 验证 RASP 在第二个模型上的有效性（CKA-guided pruning preserves reasoning across model families）。使用已计算的 importance_scores_qwen_math.pt + cka_scores_qwen_math.pt。"
+  },
+  "timestamp": "2026-05-16T08:03:55.912152+00:00",
+  "trigger": "update_registry"
+}

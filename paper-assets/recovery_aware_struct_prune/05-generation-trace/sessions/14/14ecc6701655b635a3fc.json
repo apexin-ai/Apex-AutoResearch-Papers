@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14ecc6701655b635a3fc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure fig3 collapse dynamics",
+  "task_key": "worker_paper_figure_fig3_collapse_dynamics_20260518T023102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_collapse_dynamics_20260518T023102_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "5b0d4217b29d5d3e62cbcfff8b6a038eba5efb57806a6c12892d0ebc609098a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated. All 4 subplots render correctly with v5 data:\n\n- **(a)** CKA-only's 0.125 minimum annotated; collapse threshold at 0.85 with RASP crossing it\n- **(b)** Standard's gradient collapse to 0.017 at step 60 annotated; RASP flat near zero throughout\n- **(c)** CKA-only peak at 0.342 annotated; clear separation from other methods\n- **(d)** KL divergence shows Random highest (~0.004), CKA-only stable low (~0.0015), RASP/Standard near-zero\n\nOutput files:\n- PDF: `figures/paper/fig3_collapse_dynamics.pdf` (34 KB)\n- PNG: `figures/paper/fig3_collapse_dynamics.png` (406 KB)\n- Script: `figures/paper/gen_fig3_collapse_dynamics.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-collapse-dynamics.md"
+}

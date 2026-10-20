@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_15_seed123_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:00:14.007Z",
+    "updated_at": "2026-05-21T00:57:58.499Z",
+    "hypothesis": "GSM8K N=1319 eval on Standard 15% GRPO seed123 (v3 checkpoint on data disk). Fixed: HF_HOME pointing to data disk cache, removed HF_DATASETS_OFFLINE.",
+    "parent": "grpo_standard_15_seed123_v3",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_15_seed123_v3/checkpoint-100 --max_samples 1319 --seed 42",
+      "server": "westd-29022",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B-pruned-standard-15pct-grpo-seed123",
+      "seed": 42,
+      "checkpoint_source": "grpo_standard_15_seed123_v3",
+      "eval_data": "gsm8k_test_n1319"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 0.6513,
+      "accuracy_se": 0.0131,
+      "n_correct": 859,
+      "n_total": 1319,
+      "eos_rate": 0.9932,
+      "avg_response_length": 183.25
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_15_seed123_n1319.json",
+    "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_standard_15_seed123_v3.log",
+    "completed_at": "2026-05-21T00:57:58.499Z"
+  },
+  "timestamp": "2026-05-21T00:57:59.075960+00:00",
+  "trigger": "update_registry"
+}

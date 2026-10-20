@@ -1,0 +1,2983 @@
+# ops check sft unpruned and alpha
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/workers/worker_ops_check-sft-unpruned-and-alpha_20260516T001645.log`
+- **Structured JSON:** [`4daed20e895ca1dee82c.json`](../../sessions/4d/4daed20e895ca1dee82c.json)
+
+## Before a recorded user message
+
+63 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a19eff49-dff6-4ac8-9896-1a0c1d7d548a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778908200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "11ba7744-49f2-419b-80ec-2a86e7365f91",
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the status of both experiments on the two servers. I'll start by checking Part A on westd-11672 and Part B on westb-23072.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "8c928819-df42-4e40-8feb-91e1ff81c89a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JtFgky6hrSNBvFy6TzRUD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12260,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12260
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BcZ2cTkU21fAwvW6uJ4Zpi`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "24f1ba2c-a92f-4cc0-ae20-192a515ed5c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JtFgky6hrSNBvFy6TzRUD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12260,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12260
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T00:16:59.493Z_
+
+<details><summary>↩ Tool result · `toolu_01BcZ2cTkU21fAwvW6uJ4Zpi`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "4d07336e-2cf0-4309-a32f-7bc4d47fc0d5",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check both servers in parallel - Part A on westd-11672 and Part B on westb-23072.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "4f95b1fb-0098-4574-b873-4dcdd6f483f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ci7KtY1hN8c3dyQc86KqGf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 24101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1130
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SEqVbf2DUBCS1JBtQh57ri`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ps -p 67546 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "343e9dbb-0752-4666-a550-fadfa18c1a99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ci7KtY1hN8c3dyQc86KqGf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 24101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1130
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T00:17:03.872Z_
+
+<details><summary>↩ Tool result · `toolu_01SEqVbf2DUBCS1JBtQh57ri`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "96c12b24-14ec-4220-a8be-b752f6af62dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MEisTXwyg7cBjSwWpqN2pk`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/recovery_aware_struct_prune/results/*alpha*cal512* /root/recovery_aware_struct_prune/results/*alpha*greedy* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "70f3c1c9-96bc-4ad4-9af2-3842d2b43fce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ci7KtY1hN8c3dyQc86KqGf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 24101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1130
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T00:17:05.344Z_
+
+<details><summary>↩ Tool result · `toolu_01MEisTXwyg7cBjSwWpqN2pk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "a3594b0e-c16f-4641-a19f-fefc76442bd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UsgCtifeCb6U4rEXdA9kaa`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps aux | grep -E \"prune|eval_gsm8k\" | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "4f1cc3e3-c1cf-467b-8a61-a89533027460",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ci7KtY1hN8c3dyQc86KqGf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 24101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1130
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T00:17:05.575Z_
+
+<details><summary>↩ Tool result · `toolu_01UsgCtifeCb6U4rEXdA9kaa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "d6789706-b50a-45be-8f79-38dd7742181d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Shell metacharacters blocked. Let me use ssh_execute for these checks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "de258f70-9ec5-45b5-bfd5-ad89e1877cd7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C57d4HJ9AzHkiypEWFzffD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 25231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01R6SGtBXiaGoyjWBAdP7YiJ`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ps -p 67546 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "d3485ca5-46ad-47e8-b2d3-ef53e655adc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C57d4HJ9AzHkiypEWFzffD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 25231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QFUjLMBayPBds5Rx1QyMvz`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/recovery_aware_struct_prune/results/*alpha*cal512* /root/recovery_aware_struct_prune/results/*alpha*greedy* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "d81409c5-13fa-4524-825d-19602efbeacd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C57d4HJ9AzHkiypEWFzffD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 25231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PrvAWxJJAXdnKw5jvirGAb`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps aux | grep -E \"prune|eval_gsm8k\" | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "3d5b5392-ea1f-47c2-adc2-9aa5df66e588",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C57d4HJ9AzHkiypEWFzffD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 25231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T00:17:11.084Z_
+
+<details><summary>↩ Tool result · `toolu_01R6SGtBXiaGoyjWBAdP7YiJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "d3a65dc7-253f-465d-a3a4-4e6d4c8178d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T00:17:12.594Z_
+
+<details><summary>↩ Tool result · `toolu_01QFUjLMBayPBds5Rx1QyMvz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'ls -la /root/recovery_aware_struct_prune/results/*alpha*cal512* /root/recovery_aware_struct_prune/results/*alpha*greedy* 2>/dev/null'\\n\\nExit code: 2\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "68955989-022f-4de8-ba30-7e7c7f6aac79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'ls -la /root/recovery_aware_struct_prune/results/*alpha*cal512* /root/recovery_aware_struct_prune/results/*alpha*greedy* 2>/dev/null'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'ls -la /root/recovery_aware_struct_prune/results/*alpha*cal512* /root/recovery_aware_struct_prune/results/*alpha*greedy* 2>/dev/null'\\n\\nExit code: 2\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T00:17:14.292Z_
+
+<details><summary>↩ Tool result · `toolu_01PrvAWxJJAXdnKw5jvirGAb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     534662  0.0  0.0   4364  2028 ?        S    May15   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && export HF_HOME=/root/autodl-tmp/.hf_cache && CUDA_VISIBLE_DEVICES=1 nohup python3 src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_total_limit 3 --save_steps 50 --reward_desert_patience 50 --run_name grpo_stage2_standard_20_v8 > /tmp/grpo_standard_v8.log 2>&1 & echo \\\"Standard v8 PID: $!\\\"\\nroot     534667  103  0.2 132740292 2767996 ?   Rl   May15 594:30 python3 src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_total_limit 3 --save_steps 50 --reward_desert_patience 50 --run_name grpo_stage2_standard_20_v8\\nroot     561742  0.0  0.0   6112  3936 ?        Ss   06:43   0:00 tmux new-session -d -s auto_v9_launcher bash /root/recovery_aware_struct_prune/auto_launch_grpo_v9.sh > /tmp/auto_launch_grpo_v9.log 2>&1\\nroot     566659  0.0  0.0   4364  3276 pts/1    Ss+  08:04   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 30 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_stage2_rasp_20_v9 2>&1 | tee /tmp/grpo_rasp_v9.log\\nroot     566666  268  0.2 132768392 3039328 pts/1 Rl+ 08:04  34:49 /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 30 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_stage2_rasp_20_v9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "60e57281-764c-4e2b-8aa5-abf3d500604d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     534662  0.0  0.0   4364  2028 ?        S    May15   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && export HF_HOME=/root/autodl-tmp/.hf_cache && CUDA_VISIBLE_DEVICES=1 nohup python3 src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_total_limit 3 --save_steps 50 --reward_desert_patience 50 --run_name grpo_stage2_standard_20_v8 > /tmp/grpo_standard_v8.log 2>&1 & echo \\\\\\\"Standard v8 PID: $!\\\\\\\"\\\\nroot     534667  103  0.2 132740292 2767996 ?   Rl   May15 594:30 python3 src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_total_limit 3 --save_steps 50 --reward_desert_patience 50 --run_name grpo_stage2_standard_20_v8\\\\nroot     561742  0.0  0.0   6112  3936 ?        Ss   06:43   0:00 tmux new-session -d -s auto_v9_launcher bash /root/recovery_aware_struct_prune/auto_launch_grpo_v9.sh > /tmp/auto_launch_grpo_v9.log 2>&1\\\\nroot     566659  0.0  0.0   4364  3276 pts/1    Ss+  08:04   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 30 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_stage2_rasp_20_v9 2>&1 | tee /tmp/grpo_rasp_v9.log\\\\nroot     566666  268  0.2 132768392 3039328 pts/1 Rl+ 08:04  34:49 /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 30 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_stage2_rasp_20_v9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     534662  0.0  0.0   4364  2028 ?        S    May15   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && export HF_HOME=/root/autodl-tmp/.hf_cache && CUDA_VISIBLE_DEVICES=1 nohup python3 src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_total_limit 3 --save_steps 50 --reward_desert_patience 50 --run_name grpo_stage2_standard_20_v8 > /tmp/grpo_standard_v8.log 2>&1 & echo \\\"Standard v8 PID: $!\\\"\\nroot     534667  103  0.2 132740292 2767996 ?   Rl   May15 594:30 python3 src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_total_limit 3 --save_steps 50 --reward_desert_patience 50 --run_name grpo_stage2_standard_20_v8\\nroot     561742  0.0  0.0   6112  3936 ?        Ss   06:43   0:00 tmux new-session -d -s auto_v9_launcher bash /root/recovery_aware_struct_prune/auto_launch_grpo_v9.sh > /tmp/auto_launch_grpo_v9.log 2>&1\\nroot     566659  0.0  0.0   4364  3276 pts/1    Ss+  08:04   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 30 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_stage2_rasp_20_v9 2>&1 | tee /tmp/grpo_rasp_v9.log\\nroot     566666  268  0.2 132768392 3039328 pts/1 Rl+ 08:04  34:49 /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 30 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_stage2_rasp_20_v9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+Part A: SFT training DONE. Part B: I see GRPO v8 on cuda:1 and v9 auto-launcher already started GRPO v9 on cuda:0. No alpha sweep results found as files. Let me get more details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "4324f8f2-d2ab-47b1-8d04-f853a31b7f7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHQcFevShgFk42dRefBajP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2114,
+      "cache_read_input_tokens": 26008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2114
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017F2c3cuWgrLBcZhvy8ZRAi`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "tail -30 /tmp/sft_unpruned.log 2>/dev/null || tmux capture-pane -t sft_unpruned -p 2>/dev/null | tail -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "4e5dbdc2-e93e-4fa4-be98-7767297b8267",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHQcFevShgFk42dRefBajP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2114,
+      "cache_read_input_tokens": 26008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2114
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T00:17:21.030Z_
+
+<details><summary>↩ Tool result · `toolu_017F2c3cuWgrLBcZhvy8ZRAi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 87%|████████▋ | 1620/1870 [27:34<04:09,  1.00it/s]\\r 87%|████████▋ | 1621/1870 [27:35<04:17,  1.03s/it]\\r 87%|████████▋ | 1622/1870 [27:36<04:11,  1.01s/it]\\r 87%|████████▋ | 1623/1870 [27:37<04:07,  1.00s/it]\\r 87%|████████▋ | 1624/1870 [27:38<04:06,  1.00s/it]\\r 87%|████████▋ | 1625/1870 [27:39<04:04,  1.00it/s]\\r 87%|████████▋ | 1626/1870 [27:40<04:13,  1.04s/it]\\r 87%|████████▋ | 1627/1870 [27:41<04:09,  1.03s/it]\\r 87%|████████▋ | 1628/1870 [27:42<04:07,  1.02s/it]\\r 87%|████████▋ | 1629/1870 [27:43<04:03,  1.01s/it]\\r 87%|████████▋ | 1630/1870 [27:44<04:00,  1.00s/it]\\r                                                   \\r{'loss': '0.3065', 'grad_norm': '2.609', 'learning_rate': '8.085e-07', 'entropy': '0.3491', 'num_tokens': '2.416e+06', 'mean_token_accuracy': '0.9156', 'epoch': '1.744'}\\n\\r 87%|���███████▋ | 1630/1870 [27:45<04:00,  1.00s/it]\\r 87%|████████▋ | 1631/1870 [27:45<03:59,  1.00s/it]\\r 87%|████████▋ | 1632/1870 [27:47<04:03,  1.02s/it]\\r 87%|████████▋ | 1633/1870 [27:48<04:03,  1.03s/it]\\r 87%|████████▋ | 1634/1870 [27:49<03:59,  1.01s/it]\\r 87%|████████▋ | 1635/1870 [27:50<03:56,  1.00s/it]\\r 87%|████████▋ | 1636/1870 [27:50<03:52,  1.01it/s]\\r 88%|████████▊ | 1637/1870 [27:52<03:56,  1.02s/it]\\r 88%|████████▊ | 1638/1870 [27:53<03:51,  1.00it/s]\\r 88%|████████▊ | 1639/1870 [27:54<03:51,  1.00s/it]\\r 88%|████████▊ | 1640/1870 [27:55<03:50,  1.00s/it]\\r                                                   \\r{'loss': '0.3487', 'grad_norm': '2.734', 'learning_rate': '7.436e-07', 'entropy': '0.3735', 'num_tokens': '2.431e+06', 'mean_token_accuracy': '0.9058', 'epoch': '1.755'}\\n\\r 88%|██��█████▊ | 1640/1870 [27:55<03:50,  1.00s/it]\\r 88%|████████▊ | 1641/1870 [27:56<03:48,  1.00it/s]\\r 88%|████████▊ | 1642/1870 [27:56<03:45,  1.01it/s]\\r 88%|████████▊ | 1643/1870 [27:58<03:52,  1.02s/it]\\r 88%|████████▊ | 1644/1870 [27:59<03:49,  1.01s/it]\\r 88%|████████▊ | 1645/1870 [28:00<03:47,  1.01s/it]\\r 88%|████████▊ | 1646/1870 [28:01<03:44,  1.00s/it]\\r 88%|████████▊ | 1647/1870 [28:02<03:40,  1.01it/s]\\r 88%|████████▊ | 1648/1870 [28:03<03:47,  1.02s/it]\\r 88%|████████▊ | 1649/1870 [28:04<03:43,  1.01s/it]\\r 88%|████████▊ | 1650/1870 [28:05<03:40,  1.00s/it]\\r                                                   \\r{'loss': '0.3175', 'grad_norm': '2.75', 'learning_rate': '6.814e-07', 'entropy': '0.3462', 'num_tokens': '2.445e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.765'}\\n\\r 88%|█████���██▊ | 1650/1870 [28:05<03:40,  1.00s/it]\\r 88%|████████▊ | 1651/1870 [28:06<03:36,  1.01it/s]\\r 88%|████████▊ | 1652/1870 [28:07<03:34,  1.02it/s]\\r 88%|████████▊ | 1653/1870 [28:08<03:34,  1.01it/s]\\r 88%|████████▊ | 1654/1870 [28:09<03:43,  1.03s/it]\\r 89%|████████▊ | 1655/1870 [28:10<03:42,  1.03s/it]\\r 89%|████████▊ | 1656/1870 [28:11<03:37,  1.02s/it]\\r 89%|████████▊ | 1657/1870 [28:12<03:33,  1.00s/it]\\r 89%|████████▊ | 1658/1870 [28:13<03:31,  1.00it/s]\\r 89%|████████▊ | 1659/1870 [28:14<03:36,  1.03s/it]\\r 89%|████████▉ | 1660/1870 [28:15<03:32,  1.01s/it]\\r                                                   \\r{'loss': '0.3195', 'grad_norm': '2.922', 'learning_rate': '6.217e-07', 'entropy': '0.3438', 'num_tokens': '2.459e+06', 'mean_token_accuracy': '0.9152', 'epoch': '1.776'}\\n\\r 89%|███████��▉ | 1660/1870 [28:15<03:32,  1.01s/it]\\r 89%|████████▉ | 1661/1870 [28:16<03:28,  1.00it/s]\\r 89%|████████▉ | 1662/1870 [28:17<03:28,  1.00s/it]\\r 89%|████████▉ | 1663/1870 [28:18<03:29,  1.01s/it]\\r 89%|████████▉ | 1664/1870 [28:19<03:27,  1.01s/it]\\r 89%|████████▉ | 1665/1870 [28:20<03:35,  1.05s/it]\\r 89%|████████▉ | 1666/1870 [28:21<03:32,  1.04s/it]\\r 89%|████████▉ | 1667/1870 [28:22<03:27,  1.02s/it]\\r 89%|████████▉ | 1668/1870 [28:23<03:25,  1.02s/it]\\r 89%|████████▉ | 1669/1870 [28:24<03:24,  1.02s/it]\\r 89%|████████▉ | 1670/1870 [28:25<03:26,  1.03s/it]\\r                                                   \\r{'loss': '0.3259', 'grad_norm': '3.422', 'learning_rate': '5.647e-07', 'entropy': '0.3441', 'num_tokens': '2.474e+06', 'mean_token_accuracy': '0.916', 'epoch': '1.787'}\\n\\r 89%|████████▉ | 167\\n\\n... [截断: 输出过长，省略 12579 字符] ...\\n\\n71e-08', 'entropy': '0.3524', 'num_tokens': '2.715e+06', 'mean_token_accuracy': '0.9126', 'epoch': '1.958'}\\n\\r 98%|█████████▊| 1830/1870 [31:08<00:40,  1.01s/it]\\r 98%|█████████▊| 1831/1870 [31:09<00:39,  1.01s/it]\\r 98%|█████████▊| 1832/1870 [31:10<00:39,  1.04s/it]\\r 98%|█████████▊| 1833/1870 [31:11<00:37,  1.02s/it]\\r 98%|█████████▊| 1834/1870 [31:12<00:36,  1.00s/it]\\r 98%|█████████▊| 1835/1870 [31:13<00:34,  1.00it/s]\\r 98%|█████████▊| 1836/1870 [31:14<00:33,  1.00it/s]\\r 98%|█████████▊| 1837/1870 [31:15<00:33,  1.03s/it]\\r 98%|█████████▊| 1838/1870 [31:16<00:32,  1.02s/it]\\r 98%|█████████▊| 1839/1870 [31:17<00:31,  1.00s/it]\\r 98%|█████████▊| 1840/1870 [31:18<00:29,  1.00it/s]\\r                                                   \\r{'loss': '0.3071', 'grad_norm': '2.641', 'learning_rate': '1.356e-08', 'entropy': '0.3465', 'num_tokens': '2.729e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.969'}\\n\\r 98%|█████████▊| 1840/1870 [31:18<00:29,  1.00it/s]\\r 98%|█████████▊| 1841/1870 [31:19<00:28,  1.02it/s]\\r 99%|█████████▊| 1842/1870 [31:20<00:27,  1.01it/s]\\r 99%|█████████▊| 1843/1870 [31:21<00:27,  1.02s/it]\\r 99%|█████████▊| 1844/1870 [31:22<00:26,  1.02s/it]\\r 99%|█████████▊| 1845/1870 [31:23<00:25,  1.00s/it]\\r 99%|█████████▊| 1846/1870 [31:24<00:24,  1.01s/it]\\r 99%|█████████▉| 1847/1870 [31:25<00:23,  1.01s/it]\\r 99%|█████████▉| 1848/1870 [31:26<00:22,  1.03s/it]\\r 99%|█████████▉| 1849/1870 [31:27<00:21,  1.03s/it]\\r 99%|█████████▉| 1850/1870 [31:28<00:20,  1.03s/it]\\r                                                   \\r{'loss': '0.3127', 'grad_norm': '2.734', 'learning_rate': '6.223e-09', 'entropy': '0.3483', 'num_tokens': '2.744e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.98'}\\n\\r 99%|█████████▉| 1850/1870 [31:28<00:20,  1.03s/it]\\r 99%|█████████▉| 1851/1870 [31:29<00:19,  1.03s/it]\\r 99%|█████████▉| 1852/1870 [31:30<00:18,  1.02s/it]\\r 99%|█████████▉| 1853/1870 [31:31<00:16,  1.00it/s]\\r 99%|█████████▉| 1854/1870 [31:32<00:16,  1.05s/it]\\r 99%|█████████▉| 1855/1870 [31:33<00:15,  1.05s/it]\\r 99%|█████████▉| 1856/1870 [31:34<00:14,  1.03s/it]\\r 99%|█████████▉| 1857/1870 [31:35<00:13,  1.01s/it]\\r 99%|█████████▉| 1858/1870 [31:36<00:12,  1.00s/it]\\r 99%|█████████▉| 1859/1870 [31:37<00:10,  1.01it/s]\\r 99%|█████████▉| 1860/1870 [31:38<00:10,  1.03s/it]\\r                                                   \\r{'loss': '0.3332', 'grad_norm': '3.094', 'learning_rate': '1.707e-09', 'entropy': '0.3676', 'num_tokens': '2.759e+06', 'mean_token_accuracy': '0.908', 'epoch': '1.99'}\\n\\r 99%|█████████▉| 1860/1870 [31:38<00:10,  1.03s/it]\\r100%|█████████▉| 1861/1870 [31:39<00:09,  1.01s/it]\\r100%|█████████▉| 1862/1870 [31:40<00:08,  1.00s/it]\\r100%|█████████▉| 1863/1870 [31:41<00:07,  1.00s/it]\\r100%|█████████▉| 1864/1870 [31:42<00:05,  1.01it/s]\\r100%|█████████▉| 1865/1870 [31:43<00:04,  1.01it/s]\\r100%|█████████▉| 1866/1870 [31:44<00:04,  1.03s/it]\\r100%|█████████▉| 1867/1870 [31:45<00:03,  1.02s/it]\\r100%|█████████▉| 1868/1870 [31:46<00:02,  1.00s/it]\\r100%|█████████▉| 1869/1870 [31:47<00:00,  1.00it/s]\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\r                                                   \\r{'loss': '0.3321', 'grad_norm': '5.875', 'learning_rate': '1.411e-11', 'entropy': '0.3675', 'num_tokens': '2.772e+06', 'mean_token_accuracy': '0.909', 'epoch': '2'}\\n\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\r                                                   \\r{'train_runtime': '1908', 'train_samples_per_second': '7.833', 'train_steps_per_second': '0.98', 'train_loss': '0.4253', 'epoch': '2'}\\n\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\r100%|██████████| 1870/1870 [31:47<00:00,  1.02s/it]\\n2026-05-16 07:09:56,963 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\rWriting model shards: 100%|██████████| 1/1 [00:18<00:00, 18.97s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:18<00:00, 18.97s/it]\\n2026-05-16 07:10:16,081 [INFO] SFT recovery complete.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "a637a86b-dc83-465b-9ec9-fd3454b742ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 87%|████████▋ | 1620/1870 [27:34<04:09,  1.00it/s]\\\\r 87%|████████▋ | 1621/1870 [27:35<04:17,  1.03s/it]\\\\r 87%|████████▋ | 1622/1870 [27:36<04:11,  1.01s/it]\\\\r 87%|████████▋ | 1623/1870 [27:37<04:07,  1.00s/it]\\\\r 87%|████████▋ | 1624/1870 [27:38<04:06,  1.00s/it]\\\\r 87%|████████▋ | 1625/1870 [27:39<04:04,  1.00it/s]\\\\r 87%|████████▋ | 1626/1870 [27:40<04:13,  1.04s/it]\\\\r 87%|████████▋ | 1627/1870 [27:41<04:09,  1.03s/it]\\\\r 87%|████████▋ | 1628/1870 [27:42<04:07,  1.02s/it]\\\\r 87%|████████▋ | 1629/1870 [27:43<04:03,  1.01s/it]\\\\r 87%|████████▋ | 1630/1870 [27:44<04:00,  1.00s/it]\\\\r                                                   \\\\r{'loss': '0.3065', 'grad_norm': '2.609', 'learning_rate': '8.085e-07', 'entropy': '0.3491', 'num_tokens': '2.416e+06', 'mean_token_accuracy': '0.9156', 'epoch': '1.744'}\\\\n\\\\r 87%|���███████▋ | 1630/1870 [27:45<04:00,  1.00s/it]\\\\r 87%|████████▋ | 1631/1870 [27:45<03:59,  1.00s/it]\\\\r 87%|████████▋ | 1632/1870 [27:47<04:03,  1.02s/it]\\\\r 87%|████████▋ | 1633/1870 [27:48<04:03,  1.03s/it]\\\\r 87%|████████▋ | 1634/1870 [27:49<03:59,  1.01s/it]\\\\r 87%|████████▋ | 1635/1870 [27:50<03:56,  1.00s/it]\\\\r 87%|████████▋ | 1636/1870 [27:50<03:52,  1.01it/s]\\\\r 88%|████████▊ | 1637/1870 [27:52<03:56,  1.02s/it]\\\\r 88%|████████▊ | 1638/1870 [27:53<03:51,  1.00it/s]\\\\r 88%|████████▊ | 1639/1870 [27:54<03:51,  1.00s/it]\\\\r 88%|████████▊ | 1640/1870 [27:55<03:50,  1.00s/it]\\\\r                                                   \\\\r{'loss': '0.3487', 'grad_norm': '2.734', 'learning_rate': '7.436e-07', 'entropy': '0.3735', 'num_tokens': '2.431e+06', 'mean_token_accuracy': '0.9058', 'epoch': '1.755'}\\\\n\\\\r 88%|██��█████▊ | 1640/1870 [27:55<03:50,  1.00s/it]\\\\r 88%|████████▊ | 1641/1870 [27:56<03:48,  1.00it/s]\\\\r 88%|████████▊ | 1642/1870 [27:56<03:45,  1.01it/s]\\\\r 88%|████████▊ | 1643/1870 [27:58<03:52,  1.02s/it]\\\\r 88%|████████▊ | 1644/1870 [27:59<03:49,  1.01s/it]\\\\r 88%|████████▊ | 1645/1870 [28:00<03:47,  1.01s/it]\\\\r 88%|████████▊ | 1646/1870 [28:01<03:44,  1.00s/it]\\\\r 88%|████████▊ | 1647/1870 [28:02<03:40,  1.01it/s]\\\\r 88%|████████▊ | 1648/1870 [28:03<03:47,  1.02s/it]\\\\r 88%|████████▊ | 1649/1870 [28:04<03:43,  1.01s/it]\\\\r 88%|████████▊ | 1650/1870 [28:05<03:40,  1.00s/it]\\\\r                                                   \\\\r{'loss': '0.3175', 'grad_norm': '2.75', 'learning_rate': '6.814e-07', 'entropy': '0.3462', 'num_tokens': '2.445e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.765'}\\\\n\\\\r 88%|█████���██▊ | 1650/1870 [28:05<03:40,  1.00s/it]\\\\r 88%|████████▊ | 1651/1870 [28:06<03:36,  1.01it/s]\\\\r 88%|████████▊ | 1652/1870 [28:07<03:34,  1.02it/s]\\\\r 88%|████████▊ | 1653/1870 [28:08<03:34,  1.01it/s]\\\\r 88%|████████▊ | 1654/1870 [28:09<03:43,  1.03s/it]\\\\r 89%|████████▊ | 1655/1870 [28:10<03:42,  1.03s/it]\\\\r 89%|████████▊ | 1656/1870 [28:11<03:37,  1.02s/it]\\\\r 89%|████████▊ | 1657/1870 [28:12<03:33,  1.00s/it]\\\\r 89%|████████▊ | 1658/1870 [28:13<03:31,  1.00it/s]\\\\r 89%|████████▊ | 1659/1870 [28:14<03:36,  1.03s/it]\\\\r 89%|████████▉ | 1660/1870 [28:15<03:32,  1.01s/it]\\\\r                                                   \\\\r{'loss': '0.3195', 'grad_norm': '2.922', 'learning_rate': '6.217e-07', 'entropy': '0.3438', 'num_tokens': '2.459e+06', 'mean_token_accuracy': '0.9152', 'epoch': '1.776'}\\\\n\\\\r 89%|███████��▉ | 1660/1870 [28:15<03:32,  1.01s/it]\\\\r 89%|████████▉ | 1661/1870 [28:16<03:28,  1.00it/s]\\\\r 89%|████████▉ | 1662/1870 [28:17<03:28,  1.00s/it]\\\\r 89%|████████▉ | 1663/1870 [28:18<03:29,  1.01s/it]\\\\r 89%|████████▉ | 1664/1870 [28:19<03:27,  1.01s/it]\\\\r 89%|████████▉ | 1665/1870 [28:20<03:35,  1.05s/it]\\\\r 89%|████████▉ | 1666/1870 [28:21<03:32,  1.04s/it]\\\\r 89%|████████▉ | 1667/1870 [28:22<03:27,  1.02s/it]\\\\r 89%|████████▉ | 1668/1870 [28:23<03:25,  1.02s/it]\\\\r 89%|████████▉ | 1669/1870 [28:24<03:24,  1.02s/it]\\\\r 89%|████████▉ | 1670/1870 [28:25<03:26,  1.03s/it]\\\\r                                                   \\\\r{'loss': '0.3259', 'grad_norm': '3.422', 'learning_rate': '5.647e-07', 'entropy': '0.3441', 'num_tokens': '2.474e+06', 'mean_token_accuracy': '0.916', 'epoch': '1.787'}\\\\n\\\\r 89%|████████▉ | 167\\\\n\\\\n... [截断: 输出过长，省略 12579 字符] ...\\\\n\\\\n71e-08', 'entropy': '0.3524', 'num_tokens': '2.715e+06', 'mean_token_accuracy': '0.9126', 'epoch': '1.958'}\\\\n\\\\r 98%|█████████▊| 1830/1870 [31:08<00:40,  1.01s/it]\\\\r 98%|█████████▊| 1831/1870 [31:09<00:39,  1.01s/it]\\\\r 98%|█████████▊| 1832/1870 [31:10<00:39,  1.04s/it]\\\\r 98%|█████████▊| 1833/1870 [31:11<00:37,  1.02s/it]\\\\r 98%|█████████▊| 1834/1870 [31:12<00:36,  1.00s/it]\\\\r 98%|█████████▊| 1835/1870 [31:13<00:34,  1.00it/s]\\\\r 98%|█████████▊| 1836/1870 [31:14<00:33,  1.00it/s]\\\\r 98%|█████████▊| 1837/1870 [31:15<00:33,  1.03s/it]\\\\r 98%|█████████▊| 1838/1870 [31:16<00:32,  1.02s/it]\\\\r 98%|█████████▊| 1839/1870 [31:17<00:31,  1.00s/it]\\\\r 98%|█████████▊| 1840/1870 [31:18<00:29,  1.00it/s]\\\\r                                                   \\\\r{'loss': '0.3071', 'grad_norm': '2.641', 'learning_rate': '1.356e-08', 'entropy': '0.3465', 'num_tokens': '2.729e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.969'}\\\\n\\\\r 98%|█████████▊| 1840/1870 [31:18<00:29,  1.00it/s]\\\\r 98%|█████████▊| 1841/1870 [31:19<00:28,  1.02it/s]\\\\r 99%|█████████▊| 1842/1870 [31:20<00:27,  1.01it/s]\\\\r 99%|█████████▊| 1843/1870 [31:21<00:27,  1.02s/it]\\\\r 99%|█████████▊| 1844/1870 [31:22<00:26,  1.02s/it]\\\\r 99%|█████████▊| 1845/1870 [31:23<00:25,  1.00s/it]\\\\r 99%|█████████▊| 1846/1870 [31:24<00:24,  1.01s/it]\\\\r 99%|█████████▉| 1847/1870 [31:25<00:23,  1.01s/it]\\\\r 99%|█████████▉| 1848/1870 [31:26<00:22,  1.03s/it]\\\\r 99%|█████████▉| 1849/1870 [31:27<00:21,  1.03s/it]\\\\r 99%|█████████▉| 1850/1870 [31:28<00:20,  1.03s/it]\\\\r                                                   \\\\r{'loss': '0.3127', 'grad_norm': '2.734', 'learning_rate': '6.223e-09', 'entropy': '0.3483', 'num_tokens': '2.744e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.98'}\\\\n\\\\r 99%|█████████▉| 1850/1870 [31:28<00:20,  1.03s/it]\\\\r 99%|█████████▉| 1851/1870 [31:29<00:19,  1.03s/it]\\\\r 99%|█████████▉| 1852/1870 [31:30<00:18,  1.02s/it]\\\\r 99%|█████████▉| 1853/1870 [31:31<00:16,  1.00it/s]\\\\r 99%|█████████▉| 1854/1870 [31:32<00:16,  1.05s/it]\\\\r 99%|█████████▉| 1855/1870 [31:33<00:15,  1.05s/it]\\\\r 99%|█████████▉| 1856/1870 [31:34<00:14,  1.03s/it]\\\\r 99%|█████████▉| 1857/1870 [31:35<00:13,  1.01s/it]\\\\r 99%|█████████▉| 1858/1870 [31:36<00:12,  1.00s/it]\\\\r 99%|█████████▉| 1859/1870 [31:37<00:10,  1.01it/s]\\\\r 99%|█████████▉| 1860/1870 [31:38<00:10,  1.03s/it]\\\\r                                                   \\\\r{'loss': '0.3332', 'grad_norm': '3.094', 'learning_rate': '1.707e-09', 'entropy': '0.3676', 'num_tokens': '2.759e+06', 'mean_token_accuracy': '0.908', 'epoch': '1.99'}\\\\n\\\\r 99%|█████████▉| 1860/1870 [31:38<00:10,  1.03s/it]\\\\r100%|█████████▉| 1861/1870 [31:39<00:09,  1.01s/it]\\\\r100%|█████████▉| 1862/1870 [31:40<00:08,  1.00s/it]\\\\r100%|█████████▉| 1863/1870 [31:41<00:07,  1.00s/it]\\\\r100%|█████████▉| 1864/1870 [31:42<00:05,  1.01it/s]\\\\r100%|█████████▉| 1865/1870 [31:43<00:04,  1.01it/s]\\\\r100%|█████████▉| 1866/1870 [31:44<00:04,  1.03s/it]\\\\r100%|█████████▉| 1867/1870 [31:45<00:03,  1.02s/it]\\\\r100%|█████████▉| 1868/1870 [31:46<00:02,  1.00s/it]\\\\r100%|█████████▉| 1869/1870 [31:47<00:00,  1.00it/s]\\\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\\\r                                                   \\\\r{'loss': '0.3321', 'grad_norm': '5.875', 'learning_rate': '1.411e-11', 'entropy': '0.3675', 'num_tokens': '2.772e+06', 'mean_token_accuracy': '0.909', 'epoch': '2'}\\\\n\\\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\\\r                                                   \\\\r{'train_runtime': '1908', 'train_samples_per_second': '7.833', 'train_steps_per_second': '0.98', 'train_loss': '0.4253', 'epoch': '2'}\\\\n\\\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\\\r100%|██████████| 1870/1870 [31:47<00:00,  1.02s/it]\\\\n2026-05-16 07:09:56,963 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:18<00:00, 18.97s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:18<00:00, 18.97s/it]\\\\n2026-05-16 07:10:16,081 [INFO] SFT recovery complete.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 87%|████████▋ | 1620/1870 [27:34<04:09,  1.00it/s]\\r 87%|████████▋ | 1621/1870 [27:35<04:17,  1.03s/it]\\r 87%|████████▋ | 1622/1870 [27:36<04:11,  1.01s/it]\\r 87%|████████▋ | 1623/1870 [27:37<04:07,  1.00s/it]\\r 87%|████████▋ | 1624/1870 [27:38<04:06,  1.00s/it]\\r 87%|████████▋ | 1625/1870 [27:39<04:04,  1.00it/s]\\r 87%|████████▋ | 1626/1870 [27:40<04:13,  1.04s/it]\\r 87%|████████▋ | 1627/1870 [27:41<04:09,  1.03s/it]\\r 87%|████████▋ | 1628/1870 [27:42<04:07,  1.02s/it]\\r 87%|████████▋ | 1629/1870 [27:43<04:03,  1.01s/it]\\r 87%|████████▋ | 1630/1870 [27:44<04:00,  1.00s/it]\\r                                                   \\r{'loss': '0.3065', 'grad_norm': '2.609', 'learning_rate': '8.085e-07', 'entropy': '0.3491', 'num_tokens': '2.416e+06', 'mean_token_accuracy': '0.9156', 'epoch': '1.744'}\\n\\r 87%|���███████▋ | 1630/1870 [27:45<04:00,  1.00s/it]\\r 87%|████████▋ | 1631/1870 [27:45<03:59,  1.00s/it]\\r 87%|████████▋ | 1632/1870 [27:47<04:03,  1.02s/it]\\r 87%|████████▋ | 1633/1870 [27:48<04:03,  1.03s/it]\\r 87%|████████▋ | 1634/1870 [27:49<03:59,  1.01s/it]\\r 87%|████████▋ | 1635/1870 [27:50<03:56,  1.00s/it]\\r 87%|████████▋ | 1636/1870 [27:50<03:52,  1.01it/s]\\r 88%|████████▊ | 1637/1870 [27:52<03:56,  1.02s/it]\\r 88%|████████▊ | 1638/1870 [27:53<03:51,  1.00it/s]\\r 88%|████████▊ | 1639/1870 [27:54<03:51,  1.00s/it]\\r 88%|████████▊ | 1640/1870 [27:55<03:50,  1.00s/it]\\r                                                   \\r{'loss': '0.3487', 'grad_norm': '2.734', 'learning_rate': '7.436e-07', 'entropy': '0.3735', 'num_tokens': '2.431e+06', 'mean_token_accuracy': '0.9058', 'epoch': '1.755'}\\n\\r 88%|██��█████▊ | 1640/1870 [27:55<03:50,  1.00s/it]\\r 88%|████████▊ | 1641/1870 [27:56<03:48,  1.00it/s]\\r 88%|████████▊ | 1642/1870 [27:56<03:45,  1.01it/s]\\r 88%|████████▊ | 1643/1870 [27:58<03:52,  1.02s/it]\\r 88%|████████▊ | 1644/1870 [27:59<03:49,  1.01s/it]\\r 88%|████████▊ | 1645/1870 [28:00<03:47,  1.01s/it]\\r 88%|████████▊ | 1646/1870 [28:01<03:44,  1.00s/it]\\r 88%|████████▊ | 1647/1870 [28:02<03:40,  1.01it/s]\\r 88%|████████▊ | 1648/1870 [28:03<03:47,  1.02s/it]\\r 88%|████████▊ | 1649/1870 [28:04<03:43,  1.01s/it]\\r 88%|████████▊ | 1650/1870 [28:05<03:40,  1.00s/it]\\r                                                   \\r{'loss': '0.3175', 'grad_norm': '2.75', 'learning_rate': '6.814e-07', 'entropy': '0.3462', 'num_tokens': '2.445e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.765'}\\n\\r 88%|█████���██▊ | 1650/1870 [28:05<03:40,  1.00s/it]\\r 88%|████████▊ | 1651/1870 [28:06<03:36,  1.01it/s]\\r 88%|████████▊ | 1652/1870 [28:07<03:34,  1.02it/s]\\r 88%|████████▊ | 1653/1870 [28:08<03:34,  1.01it/s]\\r 88%|████████▊ | 1654/1870 [28:09<03:43,  1.03s/it]\\r 89%|████████▊ | 1655/1870 [28:10<03:42,  1.03s/it]\\r 89%|████████▊ | 1656/1870 [28:11<03:37,  1.02s/it]\\r 89%|████████▊ | 1657/1870 [28:12<03:33,  1.00s/it]\\r 89%|████████▊ | 1658/1870 [28:13<03:31,  1.00it/s]\\r 89%|████████▊ | 1659/1870 [28:14<03:36,  1.03s/it]\\r 89%|████████▉ | 1660/1870 [28:15<03:32,  1.01s/it]\\r                                                   \\r{'loss': '0.3195', 'grad_norm': '2.922', 'learning_rate': '6.217e-07', 'entropy': '0.3438', 'num_tokens': '2.459e+06', 'mean_token_accuracy': '0.9152', 'epoch': '1.776'}\\n\\r 89%|███████��▉ | 1660/1870 [28:15<03:32,  1.01s/it]\\r 89%|████████▉ | 1661/1870 [28:16<03:28,  1.00it/s]\\r 89%|████████▉ | 1662/1870 [28:17<03:28,  1.00s/it]\\r 89%|████████▉ | 1663/1870 [28:18<03:29,  1.01s/it]\\r 89%|████████▉ | 1664/1870 [28:19<03:27,  1.01s/it]\\r 89%|████████▉ | 1665/1870 [28:20<03:35,  1.05s/it]\\r 89%|████████▉ | 1666/1870 [28:21<03:32,  1.04s/it]\\r 89%|████████▉ | 1667/1870 [28:22<03:27,  1.02s/it]\\r 89%|████████▉ | 1668/1870 [28:23<03:25,  1.02s/it]\\r 89%|████████▉ | 1669/1870 [28:24<03:24,  1.02s/it]\\r 89%|████████▉ | 1670/1870 [28:25<03:26,  1.03s/it]\\r                                                   \\r{'loss': '0.3259', 'grad_norm': '3.422', 'learning_rate': '5.647e-07', 'entropy': '0.3441', 'num_tokens': '2.474e+06', 'mean_token_accuracy': '0.916', 'epoch': '1.787'}\\n\\r 89%|████████▉ | 167\\n\\n... [截断: 输出过长，省略 12579 字符] ...\\n\\n71e-08', 'entropy': '0.3524', 'num_tokens': '2.715e+06', 'mean_token_accuracy': '0.9126', 'epoch': '1.958'}\\n\\r 98%|█████████▊| 1830/1870 [31:08<00:40,  1.01s/it]\\r 98%|█████████▊| 1831/1870 [31:09<00:39,  1.01s/it]\\r 98%|█████████▊| 1832/1870 [31:10<00:39,  1.04s/it]\\r 98%|█████████▊| 1833/1870 [31:11<00:37,  1.02s/it]\\r 98%|█████████▊| 1834/1870 [31:12<00:36,  1.00s/it]\\r 98%|█████████▊| 1835/1870 [31:13<00:34,  1.00it/s]\\r 98%|█████████▊| 1836/1870 [31:14<00:33,  1.00it/s]\\r 98%|█████████▊| 1837/1870 [31:15<00:33,  1.03s/it]\\r 98%|█████████▊| 1838/1870 [31:16<00:32,  1.02s/it]\\r 98%|█████████▊| 1839/1870 [31:17<00:31,  1.00s/it]\\r 98%|█████████▊| 1840/1870 [31:18<00:29,  1.00it/s]\\r                                                   \\r{'loss': '0.3071', 'grad_norm': '2.641', 'learning_rate': '1.356e-08', 'entropy': '0.3465', 'num_tokens': '2.729e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.969'}\\n\\r 98%|█████████▊| 1840/1870 [31:18<00:29,  1.00it/s]\\r 98%|█████████▊| 1841/1870 [31:19<00:28,  1.02it/s]\\r 99%|█████████▊| 1842/1870 [31:20<00:27,  1.01it/s]\\r 99%|█████████▊| 1843/1870 [31:21<00:27,  1.02s/it]\\r 99%|█████████▊| 1844/1870 [31:22<00:26,  1.02s/it]\\r 99%|█████████▊| 1845/1870 [31:23<00:25,  1.00s/it]\\r 99%|█████████▊| 1846/1870 [31:24<00:24,  1.01s/it]\\r 99%|█████████▉| 1847/1870 [31:25<00:23,  1.01s/it]\\r 99%|█████████▉| 1848/1870 [31:26<00:22,  1.03s/it]\\r 99%|█████████▉| 1849/1870 [31:27<00:21,  1.03s/it]\\r 99%|█████████▉| 1850/1870 [31:28<00:20,  1.03s/it]\\r                                                   \\r{'loss': '0.3127', 'grad_norm': '2.734', 'learning_rate': '6.223e-09', 'entropy': '0.3483', 'num_tokens': '2.744e+06', 'mean_token_accuracy': '0.9165', 'epoch': '1.98'}\\n\\r 99%|█████████▉| 1850/1870 [31:28<00:20,  1.03s/it]\\r 99%|█████████▉| 1851/1870 [31:29<00:19,  1.03s/it]\\r 99%|█████████▉| 1852/1870 [31:30<00:18,  1.02s/it]\\r 99%|█████████▉| 1853/1870 [31:31<00:16,  1.00it/s]\\r 99%|█████████▉| 1854/1870 [31:32<00:16,  1.05s/it]\\r 99%|█████████▉| 1855/1870 [31:33<00:15,  1.05s/it]\\r 99%|█████████▉| 1856/1870 [31:34<00:14,  1.03s/it]\\r 99%|█████████▉| 1857/1870 [31:35<00:13,  1.01s/it]\\r 99%|█████████▉| 1858/1870 [31:36<00:12,  1.00s/it]\\r 99%|█████████▉| 1859/1870 [31:37<00:10,  1.01it/s]\\r 99%|█████████▉| 1860/1870 [31:38<00:10,  1.03s/it]\\r                                                   \\r{'loss': '0.3332', 'grad_norm': '3.094', 'learning_rate': '1.707e-09', 'entropy': '0.3676', 'num_tokens': '2.759e+06', 'mean_token_accuracy': '0.908', 'epoch': '1.99'}\\n\\r 99%|█████████▉| 1860/1870 [31:38<00:10,  1.03s/it]\\r100%|█████████▉| 1861/1870 [31:39<00:09,  1.01s/it]\\r100%|█████████▉| 1862/1870 [31:40<00:08,  1.00s/it]\\r100%|█████████▉| 1863/1870 [31:41<00:07,  1.00s/it]\\r100%|█████████▉| 1864/1870 [31:42<00:05,  1.01it/s]\\r100%|█████████▉| 1865/1870 [31:43<00:04,  1.01it/s]\\r100%|█████████▉| 1866/1870 [31:44<00:04,  1.03s/it]\\r100%|█████████▉| 1867/1870 [31:45<00:03,  1.02s/it]\\r100%|█████████▉| 1868/1870 [31:46<00:02,  1.00s/it]\\r100%|█████████▉| 1869/1870 [31:47<00:00,  1.00it/s]\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\r                                                   \\r{'loss': '0.3321', 'grad_norm': '5.875', 'learning_rate': '1.411e-11', 'entropy': '0.3675', 'num_tokens': '2.772e+06', 'mean_token_accuracy': '0.909', 'epoch': '2'}\\n\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\r                                                   \\r{'train_runtime': '1908', 'train_samples_per_second': '7.833', 'train_steps_per_second': '0.98', 'train_loss': '0.4253', 'epoch': '2'}\\n\\r100%|██████████| 1870/1870 [31:47<00:00,  1.32it/s]\\r100%|██████████| 1870/1870 [31:47<00:00,  1.02s/it]\\n2026-05-16 07:09:56,963 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\rWriting model shards: 100%|██████████| 1/1 [00:18<00:00, 18.97s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:18<00:00, 18.97s/it]\\n2026-05-16 07:10:16,081 [INFO] SFT recovery complete.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017PAeqnAFPdUnoMhSRmrPhV`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "60de2420-13c6-48a3-a240-312976e24939",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHQcFevShgFk42dRefBajP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2114,
+      "cache_read_input_tokens": 26008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2114
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T00:17:22.431Z_
+
+<details><summary>↩ Tool result · `toolu_017PAeqnAFPdUnoMhSRmrPhV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 14885480\\ndrwxr-xr-x  2 root root        4096 May 16 07:10 .\\ndrwxr-xr-x 14 root root        4096 May 16 06:30 ..\\n-rw-r--r--  1 root root        2246 May 16 07:10 chat_template.jinja\\n-rw-r--r--  1 root root        1396 May 16 07:09 config.json\\n-rw-r--r--  1 root root         216 May 16 07:09 generation_config.json\\n-rw-r--r--  1 root root 15231272152 May 16 07:10 model.safetensors\\n-rw-r--r--  1 root root    11421907 May 16 07:10 tokenizer.json\\n-rw-r--r--  1 root root         419 May 16 07:10 tokenizer_config.json\\n-rw-r--r--  1 root root        5777 May 16 07:10 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "6e6936b6-b557-4f11-8e58-3524cfbed3ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 14885480\\\\ndrwxr-xr-x  2 root root        4096 May 16 07:10 .\\\\ndrwxr-xr-x 14 root root        4096 May 16 06:30 ..\\\\n-rw-r--r--  1 root root        2246 May 16 07:10 chat_template.jinja\\\\n-rw-r--r--  1 root root        1396 May 16 07:09 config.json\\\\n-rw-r--r--  1 root root         216 May 16 07:09 generation_config.json\\\\n-rw-r--r--  1 root root 15231272152 May 16 07:10 model.safetensors\\\\n-rw-r--r--  1 root root    11421907 May 16 07:10 tokenizer.json\\\\n-rw-r--r--  1 root root         419 May 16 07:10 tokenizer_config.json\\\\n-rw-r--r--  1 root root        5777 May 16 07:10 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 14885480\\ndrwxr-xr-x  2 root root        4096 May 16 07:10 .\\ndrwxr-xr-x 14 root root        4096 May 16 06:30 ..\\n-rw-r--r--  1 root root        2246 May 16 07:10 chat_template.jinja\\n-rw-r--r--  1 root root        1396 May 16 07:09 config.json\\n-rw-r--r--  1 root root         216 May 16 07:09 generation_config.json\\n-rw-r--r--  1 root root 15231272152 May 16 07:10 model.safetensors\\n-rw-r--r--  1 root root    11421907 May 16 07:10 tokenizer.json\\n-rw-r--r--  1 root root         419 May 16 07:10 tokenizer_config.json\\n-rw-r--r--  1 root root        5777 May 16 07:10 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014QjWQqVpdGtcgfKJs6DbKm`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/recovery_aware_struct_prune/results/ | grep -i alpha",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "19bfd9e5-820c-4db4-ae61-0afaf6830128",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHQcFevShgFk42dRefBajP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2114,
+      "cache_read_input_tokens": 26008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2114
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T00:17:23.735Z_
+
+<details><summary>↩ Tool result · `toolu_014QjWQqVpdGtcgfKJs6DbKm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r--  1 root root   93268 May 16 05:26 eval_pruned_alpha_0.0_westb.json\\n-rw-r--r--  1 root root   97169 May 16 06:22 eval_pruned_alpha_0.25_westb.json\\n-rw-r--r--  1 root root   97355 May 16 06:51 eval_pruned_alpha_0.5_westb.json\\n-rw-r--r--  1 root root   98501 May 16 07:11 eval_pruned_alpha_1.0_westb.json\\n-rw-r--r--  1 root root   97064 May 16 08:01 eval_pruned_alpha_2.0_westb.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "fab6698d-dbe8-43f1-bfb0-479c4125ad33",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r--  1 root root   93268 May 16 05:26 eval_pruned_alpha_0.0_westb.json\\\\n-rw-r--r--  1 root root   97169 May 16 06:22 eval_pruned_alpha_0.25_westb.json\\\\n-rw-r--r--  1 root root   97355 May 16 06:51 eval_pruned_alpha_0.5_westb.json\\\\n-rw-r--r--  1 root root   98501 May 16 07:11 eval_pruned_alpha_1.0_westb.json\\\\n-rw-r--r--  1 root root   97064 May 16 08:01 eval_pruned_alpha_2.0_westb.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r--  1 root root   93268 May 16 05:26 eval_pruned_alpha_0.0_westb.json\\n-rw-r--r--  1 root root   97169 May 16 06:22 eval_pruned_alpha_0.25_westb.json\\n-rw-r--r--  1 root root   97355 May 16 06:51 eval_pruned_alpha_0.5_westb.json\\n-rw-r--r--  1 root root   98501 May 16 07:11 eval_pruned_alpha_1.0_westb.json\\n-rw-r--r--  1 root root   97064 May 16 08:01 eval_pruned_alpha_2.0_westb.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011k2TnTEehp3GHY9YESjAy7`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -20 /tmp/auto_launch_grpo_v9.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "ca4dd52a-6bb8-48f0-a582-daadb537ddc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHQcFevShgFk42dRefBajP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2114,
+      "cache_read_input_tokens": 26008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2114
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016mctcgtHrkmd6sYpnHkYRH`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -20 /tmp/grpo_rasp_v9.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "a4b8976d-9568-48f9-b952-d34b41c1b6db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHQcFevShgFk42dRefBajP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2114,
+      "cache_read_input_tokens": 26008,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2114
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T00:17:24.785Z_
+
+<details><summary>↩ Tool result · `toolu_011k2TnTEehp3GHY9YESjAy7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[Sat May 16 07:59:46 CST 2026] Sweep still running (3/4 results). Sleeping 120s...\\n[Sat May 16 08:01:46 CST 2026] Sweep still running (3/4 results). Sleeping 120s...\\n[Sat May 16 08:03:46 CST 2026] Alpha sweep process gone.\\n[Sat May 16 08:04:16 CST 2026] GPU 0 memory: 0 MiB\\n[Sat May 16 08:04:16 CST 2026] GPU 0 free. Cleaning old GRPO dirs...\\n[Sat May 16 08:04:16 CST 2026] Disk after cleanup:\\nFilesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G   74G  177G  30% /root/autodl-tmp\\n[Sat May 16 08:04:16 CST 2026] Launching GRPO RASP v9 on cuda:0...\\n[Sat May 16 08:05:16 CST 2026] Verifying GRPO v9 launch...\\nTMUX_SESSION=grpo_rasp_v9 OK\\n\\n===== ALPHA SWEEP RESULTS =====\\neval_pruned_alpha_0.0_westb.json: accuracy=0.27, eos_rate=?, avg_len=?\\neval_pruned_alpha_0.25_westb.json: accuracy=0.23, eos_rate=?, avg_len=?\\neval_pruned_alpha_0.5_westb.json: accuracy=0.22, eos_rate=?, avg_len=?\\neval_pruned_alpha_1.0_westb.json: accuracy=0.31, eos_rate=?, avg_len=?\\neval_pruned_alpha_2.0_westb.json: accuracy=0.36, eos_rate=?, avg_len=?\\n\\n[Sat May 16 08:05:16 CST 2026] auto_launch_grpo_v9.sh DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "5e3cce27-020e-4e82-bbfe-acecb3259407",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Sat May 16 07:59:46 CST 2026] Sweep still running (3/4 results). Sleeping 120s...\\\\n[Sat May 16 08:01:46 CST 2026] Sweep still running (3/4 results). Sleeping 120s...\\\\n[Sat May 16 08:03:46 CST 2026] Alpha sweep process gone.\\\\n[Sat May 16 08:04:16 CST 2026] GPU 0 memory: 0 MiB\\\\n[Sat May 16 08:04:16 CST 2026] GPU 0 free. Cleaning old GRPO dirs...\\\\n[Sat May 16 08:04:16 CST 2026] Disk after cleanup:\\\\nFilesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G   74G  177G  30% /root/autodl-tmp\\\\n[Sat May 16 08:04:16 CST 2026] Launching GRPO RASP v9 on cuda:0...\\\\n[Sat May 16 08:05:16 CST 2026] Verifying GRPO v9 launch...\\\\nTMUX_SESSION=grpo_rasp_v9 OK\\\\n\\\\n===== ALPHA SWEEP RESULTS =====\\\\neval_pruned_alpha_0.0_westb.json: accuracy=0.27, eos_rate=?, avg_len=?\\\\neval_pruned_alpha_0.25_westb.json: accuracy=0.23, eos_rate=?, avg_len=?\\\\neval_pruned_alpha_0.5_westb.json: accuracy=0.22, eos_rate=?, avg_len=?\\\\neval_pruned_alpha_1.0_westb.json: accuracy=0.31, eos_rate=?, avg_len=?\\\\neval_pruned_alpha_2.0_westb.json: accuracy=0.36, eos_rate=?, avg_len=?\\\\n\\\\n[Sat May 16 08:05:16 CST 2026] auto_launch_grpo_v9.sh DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[Sat May 16 07:59:46 CST 2026] Sweep still running (3/4 results). Sleeping 120s...\\n[Sat May 16 08:01:46 CST 2026] Sweep still running (3/4 results). Sleeping 120s...\\n[Sat May 16 08:03:46 CST 2026] Alpha sweep process gone.\\n[Sat May 16 08:04:16 CST 2026] GPU 0 memory: 0 MiB\\n[Sat May 16 08:04:16 CST 2026] GPU 0 free. Cleaning old GRPO dirs...\\n[Sat May 16 08:04:16 CST 2026] Disk after cleanup:\\nFilesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G   74G  177G  30% /root/autodl-tmp\\n[Sat May 16 08:04:16 CST 2026] Launching GRPO RASP v9 on cuda:0...\\n[Sat May 16 08:05:16 CST 2026] Verifying GRPO v9 launch...\\nTMUX_SESSION=grpo_rasp_v9 OK\\n\\n===== ALPHA SWEEP RESULTS =====\\neval_pruned_alpha_0.0_westb.json: accuracy=0.27, eos_rate=?, avg_len=?\\neval_pruned_alpha_0.25_westb.json: accuracy=0.23, eos_rate=?, avg_len=?\\neval_pruned_alpha_0.5_westb.json: accuracy=0.22, eos_rate=?, avg_len=?\\neval_pruned_alpha_1.0_westb.json: accuracy=0.31, eos_rate=?, avg_len=?\\neval_pruned_alpha_2.0_westb.json: accuracy=0.36, eos_rate=?, avg_len=?\\n\\n[Sat May 16 08:05:16 CST 2026] auto_launch_grpo_v9.sh DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T00:17:25.693Z_
+
+<details><summary>↩ Tool result · `toolu_016mctcgtHrkmd6sYpnHkYRH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 08:07:43,202 [INFO] Starting GRPO v4 training (GPU 0)...\\n2026-05-16 08:07:43,202 [INFO] Output: /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9\\n2026-05-16 08:07:43,202 [INFO] beta=0.01, loss_type=dapo, format_reward=0.1\\n2026-05-16 08:07:43,202 [INFO] temperature=0.4, repetition_penalty=1.15\\n2026-05-16 08:07:43,202 [INFO] Reward desert patience: 50 log events\\n2026-05-16 08:07:43,202 [INFO] ref_model loaded via monkey-patched create_model_from_path (pruned-model aware)\\n2026-05-16 08:07:43,202 [INFO] optimizer: adamw_bnb_8bit\\nwandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /root/.netrc.\\nwandb: Currently logged in as: xiaoyucorynne (xiaoyucorynne-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin\\nwandb: setting up run mrikafz3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: Run data is saved locally in /root/wandb/run-20260516_080744-mrikafz3\\nwandb: Run `wandb offline` to turn off syncing.\\nwandb: Syncing run grpo_stage2_rasp_20_v9\\nwandb: ⭐️ View project at https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune\\nwandb: 🚀 View run at https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/mrikafz3\\nwandb: Detected [openai] in use.\\nwandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.\\nwandb: For more information, check out the docs at: https://weave-docs.wandb.ai\\n\\r  0%|          | 0/30 [00:00<?, ?it/s]\\r  3%|▎         | 1/30 [06:50<3:18:32, 410.79s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "80332f2d-3d53-418f-b632-09aa0538d331",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 08:07:43,202 [INFO] Starting GRPO v4 training (GPU 0)...\\\\n2026-05-16 08:07:43,202 [INFO] Output: /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9\\\\n2026-05-16 08:07:43,202 [INFO] beta=0.01, loss_type=dapo, format_reward=0.1\\\\n2026-05-16 08:07:43,202 [INFO] temperature=0.4, repetition_penalty=1.15\\\\n2026-05-16 08:07:43,202 [INFO] Reward desert patience: 50 log events\\\\n2026-05-16 08:07:43,202 [INFO] ref_model loaded via monkey-patched create_model_from_path (pruned-model aware)\\\\n2026-05-16 08:07:43,202 [INFO] optimizer: adamw_bnb_8bit\\\\nwandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /root/.netrc.\\\\nwandb: Currently logged in as: xiaoyucorynne (xiaoyucorynne-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin\\\\nwandb: setting up run mrikafz3\\\\nwandb: Tracking run with wandb version 0.26.0\\\\nwandb: Run data is saved locally in /root/wandb/run-20260516_080744-mrikafz3\\\\nwandb: Run `wandb offline` to turn off syncing.\\\\nwandb: Syncing run grpo_stage2_rasp_20_v9\\\\nwandb: ⭐️ View project at https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune\\\\nwandb: 🚀 View run at https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/mrikafz3\\\\nwandb: Detected [openai] in use.\\\\nwandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.\\\\nwandb: For more information, check out the docs at: https://weave-docs.wandb.ai\\\\n\\\\r  0%|          | 0/30 [00:00<?, ?it/s]\\\\r  3%|▎         | 1/30 [06:50<3:18:32, 410.79s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 08:07:43,202 [INFO] Starting GRPO v4 training (GPU 0)...\\n2026-05-16 08:07:43,202 [INFO] Output: /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9\\n2026-05-16 08:07:43,202 [INFO] beta=0.01, loss_type=dapo, format_reward=0.1\\n2026-05-16 08:07:43,202 [INFO] temperature=0.4, repetition_penalty=1.15\\n2026-05-16 08:07:43,202 [INFO] Reward desert patience: 50 log events\\n2026-05-16 08:07:43,202 [INFO] ref_model loaded via monkey-patched create_model_from_path (pruned-model aware)\\n2026-05-16 08:07:43,202 [INFO] optimizer: adamw_bnb_8bit\\nwandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /root/.netrc.\\nwandb: Currently logged in as: xiaoyucorynne (xiaoyucorynne-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin\\nwandb: setting up run mrikafz3\\nwandb: Tracking run with wandb version 0.26.0\\nwandb: Run data is saved locally in /root/wandb/run-20260516_080744-mrikafz3\\nwandb: Run `wandb offline` to turn off syncing.\\nwandb: Syncing run grpo_stage2_rasp_20_v9\\nwandb: ⭐️ View project at https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune\\nwandb: 🚀 View run at https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/mrikafz3\\nwandb: Detected [openai] in use.\\nwandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.\\nwandb: For more information, check out the docs at: https://weave-docs.wandb.ai\\n\\r  0%|          | 0/30 [00:00<?, ?it/s]\\r  3%|▎         | 1/30 [06:50<3:18:32, 410.79s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Both experiments confirmed. Let me get the full alpha sweep results with more detail, and start the N=100 eval on westd.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "bab9cd06-89c4-455d-bfa4-9b087d62533e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyijptDSdVmJFFBmLirr2C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7790,
+      "cache_read_input_tokens": 28122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Eud8Mk6rk93dX1W9pet7P5`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\nresults_dir = '/root/recovery_aware_struct_prune/results'\nfor alpha in ['0.0', '0.25', '0.5', '1.0', '2.0']:\n    f = os.path.join(results_dir, f'eval_pruned_alpha_{alpha}_westb.json')\n    if os.path.exists(f):\n        d = json.load(open(f))\n        print(f'alpha={alpha}: accuracy={d.get(\\\"accuracy\\\",\\\"?\\\")}, n={d.get(\\\"total\\\",\\\"?\\\")}, eos_rate={d.get(\\\"eos_rate\\\",\\\"?\\\")}, avg_len={d.get(\\\"avg_completion_length\\\",\\\"?\\\")}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "5e419a61-7041-41c1-ae7c-308d0be5f892",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyijptDSdVmJFFBmLirr2C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7790,
+      "cache_read_input_tokens": 28122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T00:17:35.214Z_
+
+<details><summary>↩ Tool result · `toolu_01Eud8Mk6rk93dX1W9pet7P5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha=0.0: accuracy=0.27, n=?, eos_rate=?, avg_len=?\\nalpha=0.25: accuracy=0.23, n=?, eos_rate=?, avg_len=?\\nalpha=0.5: accuracy=0.22, n=?, eos_rate=?, avg_len=?\\nalpha=1.0: accuracy=0.31, n=?, eos_rate=?, avg_len=?\\nalpha=2.0: accuracy=0.36, n=?, eos_rate=?, avg_len=?\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "f223a38a-26ea-4d8b-a60a-d84075129434",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha=0.0: accuracy=0.27, n=?, eos_rate=?, avg_len=?\\\\nalpha=0.25: accuracy=0.23, n=?, eos_rate=?, avg_len=?\\\\nalpha=0.5: accuracy=0.22, n=?, eos_rate=?, avg_len=?\\\\nalpha=1.0: accuracy=0.31, n=?, eos_rate=?, avg_len=?\\\\nalpha=2.0: accuracy=0.36, n=?, eos_rate=?, avg_len=?\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"alpha=0.0: accuracy=0.27, n=?, eos_rate=?, avg_len=?\\nalpha=0.25: accuracy=0.23, n=?, eos_rate=?, avg_len=?\\nalpha=0.5: accuracy=0.22, n=?, eos_rate=?, avg_len=?\\nalpha=1.0: accuracy=0.31, n=?, eos_rate=?, avg_len=?\\nalpha=2.0: accuracy=0.36, n=?, eos_rate=?, avg_len=?\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BCH4ZcJaBMPYDPEwNRM1vV`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls /root/recovery_aware_struct_prune/src/eval_gsm8k.py && head -50 /root/recovery_aware_struct_prune/src/eval_gsm8k.py | grep -E \"argparse|add_argument|gpu|device|CUDA\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "6dd0758b-47fd-498d-8e82-0677a50fdd69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyijptDSdVmJFFBmLirr2C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7790,
+      "cache_read_input_tokens": 28122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7790
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T00:17:36.506Z_
+
+<details><summary>↩ Tool result · `toolu_01BCH4ZcJaBMPYDPEwNRM1vV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\nimport argparse\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "69ec505b-df11-4087-886c-87364bb543c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\nimport argparse\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\nimport argparse\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Let me check the eval script args more fully, and also get the detailed alpha results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "0e72bf8d-76f6-41ea-bf36-cb0ea1bf767b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRFDpZogVBahp1m8PDpGnY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 35912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 867
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SYKBSDPgygwxiw815uJrxh`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "grep -n \"add_argument\\|gpu\\|device\\|CUDA\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "b5bced83-65e2-4274-b69a-410d0e35c330",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRFDpZogVBahp1m8PDpGnY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 35912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 867
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T00:17:42.110Z_
+
+<details><summary>↩ Tool result · `toolu_01SYKBSDPgygwxiw815uJrxh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"124:    device = next(model.parameters()).device\\n156:            inputs = tokenizer(prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048).to(device)\\n218:    device = next(model.parameters()).device\\n245:        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048).to(device)\\n318:    parser.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to model\\\")\\n319:    parser.add_argument(\\\"--output_path\\\", type=str, default=None, help=\\\"Output JSON path for results\\\")\\n320:    parser.add_argument(\\\"--max_new_tokens\\\", type=int, default=4096)\\n321:    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Limit test samples (None=all)\\\")\\n322:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n323:    parser.add_argument(\\\"--dtype\\\", type=str, default=\\\"bfloat16\\\", choices=[\\\"float16\\\", \\\"bfloat16\\\", \\\"float32\\\"])\\n324:    parser.add_argument(\\\"--temperature\\\", type=float, default=0.0, help=\\\"Sampling temperature (0=greedy)\\\")\\n325:    parser.add_argument(\\\"--do_sample\\\", action=\\\"store_true\\\", help=\\\"Enable sampling mode\\\")\\n326:    parser.add_argument(\\\"--voting\\\", action=\\\"store_true\\\", help=\\\"Enable majority voting (self-consistency)\\\")\\n327:    parser.add_argument(\\\"--num_samples_per_question\\\", type=int, default=8, help=\\\"K samples per question for voting\\\")\\n328:    parser.add_argument(\\\"--voting_temperature\\\", type=float, default=0.7, help=\\\"Temperature for voting samples\\\")\\n329:    parser.add_argument(\\\"--voting_top_p\\\", type=float, default=0.95, help=\\\"Top-p for voting samples\\\")\\n342:    model = load_pruned_model(args.model_path, device_map=\\\"auto\\\", torch_dtype=torch_dtype)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "2b28541c-df51-484a-a5fd-1f0b5559bf12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"124:    device = next(model.parameters()).device\\\\n156:            inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=2048).to(device)\\\\n218:    device = next(model.parameters()).device\\\\n245:        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=2048).to(device)\\\\n318:    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to model\\\\\\\")\\\\n319:    parser.add_argument(\\\\\\\"--output_path\\\\\\\", type=str, default=None, help=\\\\\\\"Output JSON path for results\\\\\\\")\\\\n320:    parser.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=4096)\\\\n321:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Limit test samples (None=all)\\\\\\\")\\\\n322:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n323:    parser.add_argument(\\\\\\\"--dtype\\\\\\\", type=str, default=\\\\\\\"bfloat16\\\\\\\", choices=[\\\\\\\"float16\\\\\\\", \\\\\\\"bfloat16\\\\\\\", \\\\\\\"float32\\\\\\\"])\\\\n324:    parser.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.0, help=\\\\\\\"Sampling temperature (0=greedy)\\\\\\\")\\\\n325:    parser.add_argument(\\\\\\\"--do_sample\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Enable sampling mode\\\\\\\")\\\\n326:    parser.add_argument(\\\\\\\"--voting\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Enable majority voting (self-consistency)\\\\\\\")\\\\n327:    parser.add_argument(\\\\\\\"--num_samples_per_question\\\\\\\", type=int, default=8, help=\\\\\\\"K samples per question for voting\\\\\\\")\\\\n328:    parser.add_argument(\\\\\\\"--voting_temperature\\\\\\\", type=float, default=0.7, help=\\\\\\\"Temperature for voting samples\\\\\\\")\\\\n329:    parser.add_argument(\\\\\\\"--voting_top_p\\\\\\\", type=float, default=0.95, help=\\\\\\\"Top-p for voting samples\\\\\\\")\\\\n342:    model = load_pruned_model(args.model_path, device_map=\\\\\\\"auto\\\\\\\", torch_dtype=torch_dtype)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"124:    device = next(model.parameters()).device\\n156:            inputs = tokenizer(prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048).to(device)\\n218:    device = next(model.parameters()).device\\n245:        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048).to(device)\\n318:    parser.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to model\\\")\\n319:    parser.add_argument(\\\"--output_path\\\", type=str, default=None, help=\\\"Output JSON path for results\\\")\\n320:    parser.add_argument(\\\"--max_new_tokens\\\", type=int, default=4096)\\n321:    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Limit test samples (None=all)\\\")\\n322:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n323:    parser.add_argument(\\\"--dtype\\\", type=str, default=\\\"bfloat16\\\", choices=[\\\"float16\\\", \\\"bfloat16\\\", \\\"float32\\\"])\\n324:    parser.add_argument(\\\"--temperature\\\", type=float, default=0.0, help=\\\"Sampling temperature (0=greedy)\\\")\\n325:    parser.add_argument(\\\"--do_sample\\\", action=\\\"store_true\\\", help=\\\"Enable sampling mode\\\")\\n326:    parser.add_argument(\\\"--voting\\\", action=\\\"store_true\\\", help=\\\"Enable majority voting (self-consistency)\\\")\\n327:    parser.add_argument(\\\"--num_samples_per_question\\\", type=int, default=8, help=\\\"K samples per question for voting\\\")\\n328:    parser.add_argument(\\\"--voting_temperature\\\", type=float, default=0.7, help=\\\"Temperature for voting samples\\\")\\n329:    parser.add_argument(\\\"--voting_top_p\\\", type=float, default=0.95, help=\\\"Top-p for voting samples\\\")\\n342:    model = load_pruned_model(args.model_path, device_map=\\\"auto\\\", torch_dtype=torch_dtype)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01336ryofNMPoBV7B82bZH8z`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\nresults_dir = '/root/recovery_aware_struct_prune/results'\nfor alpha in ['0.0', '0.25', '0.5', '1.0', '2.0']:\n    f = os.path.join(results_dir, f'eval_pruned_alpha_{alpha}_westb.json')\n    if os.path.exists(f):\n        d = json.load(open(f))\n        keys = list(d.keys())\n        print(f'alpha={alpha}: keys={keys[:15]}')\n        print(f'  accuracy={d.get(\\\"accuracy\\\")}, correct={d.get(\\\"correct\\\")}, total={d.get(\\\"total\\\")}, num_samples={d.get(\\\"num_samples\\\")}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "1ff06579-ef48-4175-8389-3f7d588d69a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRFDpZogVBahp1m8PDpGnY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 35912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 867
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T00:17:45.025Z_
+
+<details><summary>↩ Tool result · `toolu_01336ryofNMPoBV7B82bZH8z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha=0.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.27, correct=None, total=None, num_samples=None\\nalpha=0.25: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.23, correct=None, total=None, num_samples=None\\nalpha=0.5: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.22, correct=None, total=None, num_samples=None\\nalpha=1.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.31, correct=None, total=None, num_samples=None\\nalpha=2.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.36, correct=None, total=None, num_samples=None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "a1d0dba6-e54c-4375-8eb9-58779724535a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha=0.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\n  accuracy=0.27, correct=None, total=None, num_samples=None\\\\nalpha=0.25: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\n  accuracy=0.23, correct=None, total=None, num_samples=None\\\\nalpha=0.5: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\n  accuracy=0.22, correct=None, total=None, num_samples=None\\\\nalpha=1.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\n  accuracy=0.31, correct=None, total=None, num_samples=None\\\\nalpha=2.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\n  accuracy=0.36, correct=None, total=None, num_samples=None\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"alpha=0.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.27, correct=None, total=None, num_samples=None\\nalpha=0.25: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.23, correct=None, total=None, num_samples=None\\nalpha=0.5: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.22, correct=None, total=None, num_samples=None\\nalpha=1.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.31, correct=None, total=None, num_samples=None\\nalpha=2.0: keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n  accuracy=0.36, correct=None, total=None, num_samples=None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Good. The eval script uses `device_map="auto"` with no `--gpu` argument — `CUDA_VISIBLE_DEVICES` is the correct approach. Let me get n_correct/n_total from the alpha results and launch the N=100 eval on westd.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "e66977e1-917b-4548-9d52-299576c5e552",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MRkgqpsU5ZpZkiM6NE2CTd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1707,
+      "cache_read_input_tokens": 36779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1707
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EkhyxE6QyvhPQYjMW15dNk`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\nresults_dir = '/root/recovery_aware_struct_prune/results'\nfor alpha in ['0.0', '0.25', '0.5', '1.0', '2.0']:\n    f = os.path.join(results_dir, f'eval_pruned_alpha_{alpha}_westb.json')\n    d = json.load(open(f))\n    print(f'alpha={alpha}: accuracy={d[\\\"accuracy\\\"]}, n_correct={d[\\\"n_correct\\\"]}, n_total={d[\\\"n_total\\\"]}, stderr={d.get(\\\"stderr\\\",\\\"?\\\")}, eos={d.get(\\\"eos_stats\\\",{})}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "4e244144-aef9-4ed4-8db0-22353a9b5eb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MRkgqpsU5ZpZkiM6NE2CTd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1707,
+      "cache_read_input_tokens": 36779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1707
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T00:17:52.581Z_
+
+<details><summary>↩ Tool result · `toolu_01EkhyxE6QyvhPQYjMW15dNk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha=0.0: accuracy=0.27, n_correct=27, n_total=100, stderr=0.044395945760846225, eos={'natural_eos': 80, 'truncated': 20, 'eos_rate': 0.8, 'avg_response_length': 1191.67, 'max_response_length': 4096, 'min_response_length': 177}\\nalpha=0.25: accuracy=0.23, n_correct=23, n_total=100, stderr=0.042083250825001625, eos={'natural_eos': 63, 'truncated': 37, 'eos_rate': 0.63, 'avg_response_length': 1834.13, 'max_response_length': 4096, 'min_response_length': 210}\\nalpha=0.5: accuracy=0.22, n_correct=22, n_total=100, stderr=0.04142463035441596, eos={'natural_eos': 81, 'truncated': 19, 'eos_rate': 0.81, 'avg_response_length': 1141.44, 'max_response_length': 4096, 'min_response_length': 162}\\nalpha=1.0: accuracy=0.31, n_correct=31, n_total=100, stderr=0.04624932431938871, eos={'natural_eos': 92, 'truncated': 8, 'eos_rate': 0.92, 'avg_response_length': 733.41, 'max_response_length': 4096, 'min_response_length': 144}\\nalpha=2.0: accuracy=0.36, n_correct=36, n_total=100, stderr=0.048, eos={'natural_eos': 59, 'truncated': 41, 'eos_rate': 0.59, 'avg_response_length': 2130.11, 'max_response_length': 4096, 'min_response_length': 243}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "aa94d88e-580e-4dde-aadf-c2d35fbcbbd1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha=0.0: accuracy=0.27, n_correct=27, n_total=100, stderr=0.044395945760846225, eos={'natural_eos': 80, 'truncated': 20, 'eos_rate': 0.8, 'avg_response_length': 1191.67, 'max_response_length': 4096, 'min_response_length': 177}\\\\nalpha=0.25: accuracy=0.23, n_correct=23, n_total=100, stderr=0.042083250825001625, eos={'natural_eos': 63, 'truncated': 37, 'eos_rate': 0.63, 'avg_response_length': 1834.13, 'max_response_length': 4096, 'min_response_length': 210}\\\\nalpha=0.5: accuracy=0.22, n_correct=22, n_total=100, stderr=0.04142463035441596, eos={'natural_eos': 81, 'truncated': 19, 'eos_rate': 0.81, 'avg_response_length': 1141.44, 'max_response_length': 4096, 'min_response_length': 162}\\\\nalpha=1.0: accuracy=0.31, n_correct=31, n_total=100, stderr=0.04624932431938871, eos={'natural_eos': 92, 'truncated': 8, 'eos_rate': 0.92, 'avg_response_length': 733.41, 'max_response_length': 4096, 'min_response_length': 144}\\\\nalpha=2.0: accuracy=0.36, n_correct=36, n_total=100, stderr=0.048, eos={'natural_eos': 59, 'truncated': 41, 'eos_rate': 0.59, 'avg_response_length': 2130.11, 'max_response_length': 4096, 'min_response_length': 243}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"alpha=0.0: accuracy=0.27, n_correct=27, n_total=100, stderr=0.044395945760846225, eos={'natural_eos': 80, 'truncated': 20, 'eos_rate': 0.8, 'avg_response_length': 1191.67, 'max_response_length': 4096, 'min_response_length': 177}\\nalpha=0.25: accuracy=0.23, n_correct=23, n_total=100, stderr=0.042083250825001625, eos={'natural_eos': 63, 'truncated': 37, 'eos_rate': 0.63, 'avg_response_length': 1834.13, 'max_response_length': 4096, 'min_response_length': 210}\\nalpha=0.5: accuracy=0.22, n_correct=22, n_total=100, stderr=0.04142463035441596, eos={'natural_eos': 81, 'truncated': 19, 'eos_rate': 0.81, 'avg_response_length': 1141.44, 'max_response_length': 4096, 'min_response_length': 162}\\nalpha=1.0: accuracy=0.31, n_correct=31, n_total=100, stderr=0.04624932431938871, eos={'natural_eos': 92, 'truncated': 8, 'eos_rate': 0.92, 'avg_response_length': 733.41, 'max_response_length': 4096, 'min_response_length': 144}\\nalpha=2.0: accuracy=0.36, n_correct=36, n_total=100, stderr=0.048, eos={'natural_eos': 59, 'truncated': 41, 'eos_rate': 0.59, 'avg_response_length': 2130.11, 'max_response_length': 4096, 'min_response_length': 243}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01R6kYTcGevPuoVWfS4CXXs9`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/recovery_aware_struct_prune/results && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 nohup /root/miniconda3/bin/python -u /root/recovery_aware_struct_prune/src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path /root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json > /tmp/eval_sft_unpruned_n100.log 2>&1 & echo \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "cb5ab983-76de-4eb3-8ebb-0da6357aa3b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MRkgqpsU5ZpZkiM6NE2CTd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1707,
+      "cache_read_input_tokens": 36779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1707
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T00:18:25.371Z_
+
+<details><summary>↩ Tool result · `toolu_01R6kYTcGevPuoVWfS4CXXs9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/recovery_aware_struct_prune/results && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 nohup /root/miniconda3/bin/python -u /root/recovery_aware_struct_prune/src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path /root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json > /tmp/eval_sft_unpruned_n100.log 2>&1 & echo \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 71116\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "01f69ec2-a59a-453a-bfdb-d04e3e70cc12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/recovery_aware_struct_prune/results && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 nohup /root/miniconda3/bin/python -u /root/recovery_aware_struct_prune/src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path /root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json > /tmp/eval_sft_unpruned_n100.log 2>&1 & echo \\\\\\\"PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID: 71116\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/recovery_aware_struct_prune/results && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 nohup /root/miniconda3/bin/python -u /root/recovery_aware_struct_prune/src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path /root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json > /tmp/eval_sft_unpruned_n100.log 2>&1 & echo \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 71116\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+Eval launched (PID 71116) on westd cuda:1. The timeout is just the SSH wrapper — the process is running in background via nohup. Let me verify it's alive and update the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "5f0cf7c7-dff0-4928-897c-531dc95fb459",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K14a4ZnP1TnkFugdMTheY5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1632,
+      "cache_read_input_tokens": 38486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1632
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AknCzAEQLWz73Wy7YcEfDH`</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ps -p 71116 -o pid,comm= 2>/dev/null && echo \"RUNNING\" || echo \"GONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "95d9c6d3-be79-4e3c-b0e1-6f6f378933b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K14a4ZnP1TnkFugdMTheY5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1632,
+      "cache_read_input_tokens": 38486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1632
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NbTdxN45TJbj1tWke94wLf`</summary>
+
+```json
+{
+  "exp_id": "sft_unpruned_baseline",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "69ae6b76-d1d8-48ae-aee8-d80e0fe213bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K14a4ZnP1TnkFugdMTheY5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1632,
+      "cache_read_input_tokens": 38486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1632
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T00:18:32.312Z_
+
+<details><summary>↩ Tool result · `toolu_01AknCzAEQLWz73Wy7YcEfDH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID \\n 71116 bash\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "9f4128a2-46fe-4345-8b18-880089b35c4c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID \\\\n 71116 bash\\\\nRUNNING\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID \\n 71116 bash\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T00:18:32.444Z_
+
+<details><summary>↩ Tool result · `toolu_01NbTdxN45TJbj1tWke94wLf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1246}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "ee4a6c6c-984c-4beb-b727-cabf23a3ec8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1246}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1246}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Ago4iLYWsQNTrYTYEov2eJ`</summary>
+
+```json
+{
+  "exp_id": "alpha_ablation_sweep",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "58155b2a-5947-4a1d-96bc-e337e33cfa4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K14a4ZnP1TnkFugdMTheY5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1632,
+      "cache_read_input_tokens": 38486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1632
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T00:18:33.139Z_
+
+<details><summary>↩ Tool result · `toolu_01Ago4iLYWsQNTrYTYEov2eJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"alpha_ablation_sweep\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:15:39.765Z\", \"updated_at\": \"2026-05-16T00:18:32.836Z\", \"hypothesis\": \"plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity.\", \"spec\": {\"command\": \"bash run_alpha_sweep_fix.sh\", \"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\", \"pid\": 556867, \"data_path\": \"openai/gsm8k\", \"data_count\": 100, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"log_path\": \"/tmp/alpha_sweep_fix.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/\", \"notes\": \"Alpha ablation: 0.25, 0.5, 1.0, 2.0. Partial results: alpha=0.0 acc=0.27 eos=0.80, alpha=0.25 acc=0.23 eos=0.63. Currently running alpha=0.5 eval.\", \"calibration_samples\": 512, \"sparsity\": 0.2, \"alphas\": [0, 0.25, 0.5, 1, 2]}, \"log_path\": \"/tmp/alpha_sweep_fix.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/\", \"metrics\": {\"alpha_0p0_accuracy\": 0.27, \"alpha_0p0_eos_rate\": 0.8, \"alpha_0p0_avg_len\": 1192, \"alpha_0p25_accuracy\": 0.23, \"alpha_0p25_eos_rate\": 0.63, \"alpha_0p25_avg_len\": 1834, \"alpha_0p5_accuracy\": 0.22, \"alpha_0p5_eos_rate\": 0.81, \"alpha_0p5_avg_len\": 1141, \"alpha_1p0_accuracy\": 0.31, \"alpha_1p0_eos_rate\": 0.92, \"alpha_1p0_avg_len\": 733, \"alpha_2p0_accuracy\": 0.36, \"alpha_2p0_eos_rate\": 0.59, \"alpha_2p0_avg_len\": 2130}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T00:14:46.464Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4598}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "1d5fadaf-774f-428b-8e7d-786c0828d615",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_ablation_sweep\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:15:39.765Z\\\", \\\"updated_at\\\": \\\"2026-05-16T00:18:32.836Z\\\", \\\"hypothesis\\\": \\\"plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_alpha_sweep_fix.sh\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"pid\\\": 556867, \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/tmp/alpha_sweep_fix.log\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/\\\", \\\"notes\\\": \\\"Alpha ablation: 0.25, 0.5, 1.0, 2.0. Partial results: alpha=0.0 acc=0.27 eos=0.80, alpha=0.25 acc=0.23 eos=0.63. Currently running alpha=0.5 eval.\\\", \\\"calibration_samples\\\": 512, \\\"sparsity\\\": 0.2, \\\"alphas\\\": [0, 0.25, 0.5, 1, 2]}, \\\"log_path\\\": \\\"/tmp/alpha_sweep_fix.log\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/\\\", \\\"metrics\\\": {\\\"alpha_0p0_accuracy\\\": 0.27, \\\"alpha_0p0_eos_rate\\\": 0.8, \\\"alpha_0p0_avg_len\\\": 1192, \\\"alpha_0p25_accuracy\\\": 0.23, \\\"alpha_0p25_eos_rate\\\": 0.63, \\\"alpha_0p25_avg_len\\\": 1834, \\\"alpha_0p5_accuracy\\\": 0.22, \\\"alpha_0p5_eos_rate\\\": 0.81, \\\"alpha_0p5_avg_len\\\": 1141, \\\"alpha_1p0_accuracy\\\": 0.31, \\\"alpha_1p0_eos_rate\\\": 0.92, \\\"alpha_1p0_avg_len\\\": 733, \\\"alpha_2p0_accuracy\\\": 0.36, \\\"alpha_2p0_eos_rate\\\": 0.59, \\\"alpha_2p0_avg_len\\\": 2130}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T00:14:46.464Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4598}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"alpha_ablation_sweep\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:15:39.765Z\", \"updated_at\": \"2026-05-16T00:18:32.836Z\", \"hypothesis\": \"plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity.\", \"spec\": {\"command\": \"bash run_alpha_sweep_fix.sh\", \"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\", \"pid\": 556867, \"data_path\": \"openai/gsm8k\", \"data_count\": 100, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"log_path\": \"/tmp/alpha_sweep_fix.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/\", \"notes\": \"Alpha ablation: 0.25, 0.5, 1.0, 2.0. Partial results: alpha=0.0 acc=0.27 eos=0.80, alpha=0.25 acc=0.23 eos=0.63. Currently running alpha=0.5 eval.\", \"calibration_samples\": 512, \"sparsity\": 0.2, \"alphas\": [0, 0.25, 0.5, 1, 2]}, \"log_path\": \"/tmp/alpha_sweep_fix.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/\", \"metrics\": {\"alpha_0p0_accuracy\": 0.27, \"alpha_0p0_eos_rate\": 0.8, \"alpha_0p0_avg_len\": 1192, \"alpha_0p25_accuracy\": 0.23, \"alpha_0p25_eos_rate\": 0.63, \"alpha_0p25_avg_len\": 1834, \"alpha_0p5_accuracy\": 0.22, \"alpha_0p5_eos_rate\": 0.81, \"alpha_0p5_avg_len\": 1141, \"alpha_1p0_accuracy\": 0.31, \"alpha_1p0_eos_rate\": 0.92, \"alpha_1p0_avg_len\": 733, \"alpha_2p0_accuracy\": 0.36, \"alpha_2p0_eos_rate\": 0.59, \"alpha_2p0_avg_len\": 2130}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T00:14:46.464Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4598}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BYvPsc4a5gnrjvKBJvTjZN`</summary>
+
+```json
+{
+  "exp_id": "sft_unpruned_baseline",
+  "field": "conclusion",
+  "value": "success",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "f6eada22-8a14-4b66-b575-fc9308741f46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rww4ktottd7xrSPee9yxA5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1716,
+      "cache_read_input_tokens": 40118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1716
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T00:18:37.640Z_
+
+<details><summary>↩ Tool result · `toolu_01BYvPsc4a5gnrjvKBJvTjZN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_unpruned_baseline\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:07:43.929Z\", \"updated_at\": \"2026-05-16T00:18:37.512Z\", \"hypothesis\": \"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k train\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (unpruned)\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\", \"log_path\": \"/tmp/sft_unpruned.log\", \"checkpoint_source\": \"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\", \"gpu_id\": \"cuda:1\", \"pid\": 67546, \"tmux_session\": \"sft_unpruned\", \"estimated_time_minutes\": 33, \"total_steps\": 1870, \"hyperparams\": {\"epochs\": 2, \"lr\": 2e-05, \"batch_size\": 1, \"gradient_accumulation_steps\": 8, \"max_seq_length\": 2048, \"save_strategy\": \"no\", \"seed\": 42}}, \"notes\": \"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2511}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "5493b8df-04f0-4b01-80c5-b16216de185d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_unpruned_baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:07:43.929Z\\\", \\\"updated_at\\\": \\\"2026-05-16T00:18:37.512Z\\\", \\\"hypothesis\\\": \\\"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k train\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (unpruned)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"log_path\\\": \\\"/tmp/sft_unpruned.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"pid\\\": 67546, \\\"tmux_session\\\": \\\"sft_unpruned\\\", \\\"estimated_time_minutes\\\": 33, \\\"total_steps\\\": 1870, \\\"hyperparams\\\": {\\\"epochs\\\": 2, \\\"lr\\\": 2e-05, \\\"batch_size\\\": 1, \\\"gradient_accumulation_steps\\\": 8, \\\"max_seq_length\\\": 2048, \\\"save_strategy\\\": \\\"no\\\", \\\"seed\\\": 42}}, \\\"notes\\\": \\\"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2511}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_unpruned_baseline\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:07:43.929Z\", \"updated_at\": \"2026-05-16T00:18:37.512Z\", \"hypothesis\": \"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k train\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (unpruned)\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\", \"log_path\": \"/tmp/sft_unpruned.log\", \"checkpoint_source\": \"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\", \"gpu_id\": \"cuda:1\", \"pid\": 67546, \"tmux_session\": \"sft_unpruned\", \"estimated_time_minutes\": 33, \"total_steps\": 1870, \"hyperparams\": {\"epochs\": 2, \"lr\": 2e-05, \"batch_size\": 1, \"gradient_accumulation_steps\": 8, \"max_seq_length\": 2048, \"save_strategy\": \"no\", \"seed\": 42}}, \"notes\": \"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2511}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BA6t5bciuwgaZTmAq3jEmB`</summary>
+
+```json
+{
+  "exp_id": "sft_unpruned_baseline",
+  "field": "metrics",
+  "value": {
+    "final_loss": 0.3321,
+    "final_token_accuracy": 0.909,
+    "train_loss_avg": 0.4253,
+    "train_runtime_sec": 1908,
+    "total_steps": 1870,
+    "epochs": 2,
+    "train_samples_per_second": 7.833
+  },
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "a70e7238-0f30-43ac-be91-fe6d30b23aca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rww4ktottd7xrSPee9yxA5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1716,
+      "cache_read_input_tokens": 40118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1716
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T00:18:39.796Z_
+
+<details><summary>↩ Tool result · `toolu_01BA6t5bciuwgaZTmAq3jEmB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_unpruned_baseline\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:07:43.929Z\", \"updated_at\": \"2026-05-16T00:18:39.696Z\", \"hypothesis\": \"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k train\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (unpruned)\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\", \"log_path\": \"/tmp/sft_unpruned.log\", \"checkpoint_source\": \"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\", \"gpu_id\": \"cuda:1\", \"pid\": 67546, \"tmux_session\": \"sft_unpruned\", \"estimated_time_minutes\": 33, \"total_steps\": 1870, \"hyperparams\": {\"epochs\": 2, \"lr\": 2e-05, \"batch_size\": 1, \"gradient_accumulation_steps\": 8, \"max_seq_length\": 2048, \"save_strategy\": \"no\", \"seed\": 42}}, \"notes\": \"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.3321, \"final_token_accuracy\": 0.909, \"train_loss_avg\": 0.4253, \"train_runtime_sec\": 1908, \"total_steps\": 1870, \"epochs\": 2, \"train_samples_per_second\": 7.833}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2556}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "ba2cd514-f3de-42e6-8206-75b84c77b551",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_unpruned_baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:07:43.929Z\\\", \\\"updated_at\\\": \\\"2026-05-16T00:18:39.696Z\\\", \\\"hypothesis\\\": \\\"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k train\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (unpruned)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"log_path\\\": \\\"/tmp/sft_unpruned.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"pid\\\": 67546, \\\"tmux_session\\\": \\\"sft_unpruned\\\", \\\"estimated_time_minutes\\\": 33, \\\"total_steps\\\": 1870, \\\"hyperparams\\\": {\\\"epochs\\\": 2, \\\"lr\\\": 2e-05, \\\"batch_size\\\": 1, \\\"gradient_accumulation_steps\\\": 8, \\\"max_seq_length\\\": 2048, \\\"save_strategy\\\": \\\"no\\\", \\\"seed\\\": 42}}, \\\"notes\\\": \\\"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.3321, \\\"final_token_accuracy\\\": 0.909, \\\"train_loss_avg\\\": 0.4253, \\\"train_runtime_sec\\\": 1908, \\\"total_steps\\\": 1870, \\\"epochs\\\": 2, \\\"train_samples_per_second\\\": 7.833}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2556}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_unpruned_baseline\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:07:43.929Z\", \"updated_at\": \"2026-05-16T00:18:39.696Z\", \"hypothesis\": \"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k train\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (unpruned)\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\", \"log_path\": \"/tmp/sft_unpruned.log\", \"checkpoint_source\": \"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\", \"gpu_id\": \"cuda:1\", \"pid\": 67546, \"tmux_session\": \"sft_unpruned\", \"estimated_time_minutes\": 33, \"total_steps\": 1870, \"hyperparams\": {\"epochs\": 2, \"lr\": 2e-05, \"batch_size\": 1, \"gradient_accumulation_steps\": 8, \"max_seq_length\": 2048, \"save_strategy\": \"no\", \"seed\": 42}}, \"notes\": \"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.3321, \"final_token_accuracy\": 0.909, \"train_loss_avg\": 0.4253, \"train_runtime_sec\": 1908, \"total_steps\": 1870, \"epochs\": 2, \"train_samples_per_second\": 7.833}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2556}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CnnsN5q617GZZaWvUtAq2z`</summary>
+
+```json
+{
+  "exp_id": "sft_unpruned_baseline",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "6991bb6e-9fed-445c-bcc9-8260680416ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UALzPCgrZoWoXJnFA9BAY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2304,
+      "cache_read_input_tokens": 41834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2304
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T00:18:44.390Z_
+
+<details><summary>↩ Tool result · `toolu_01CnnsN5q617GZZaWvUtAq2z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_unpruned_baseline\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:07:43.929Z\", \"updated_at\": \"2026-05-16T00:18:44.096Z\", \"hypothesis\": \"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k train\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (unpruned)\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\", \"log_path\": \"/tmp/sft_unpruned.log\", \"checkpoint_source\": \"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\", \"gpu_id\": \"cuda:1\", \"pid\": 67546, \"tmux_session\": \"sft_unpruned\", \"estimated_time_minutes\": 33, \"total_steps\": 1870, \"hyperparams\": {\"epochs\": 2, \"lr\": 2e-05, \"batch_size\": 1, \"gradient_accumulation_steps\": 8, \"max_seq_length\": 2048, \"save_strategy\": \"no\", \"seed\": 42}}, \"notes\": \"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.3321, \"final_token_accuracy\": 0.909, \"train_loss_avg\": 0.4253, \"train_runtime_sec\": 1908, \"total_steps\": 1870, \"epochs\": 2, \"train_samples_per_second\": 7.833}, \"completed_at\": \"2026-05-16T00:18:44.096Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4187}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "7bb0e504-b517-493e-b628-02c328cd69ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_unpruned_baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:07:43.929Z\\\", \\\"updated_at\\\": \\\"2026-05-16T00:18:44.096Z\\\", \\\"hypothesis\\\": \\\"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k train\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (unpruned)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"log_path\\\": \\\"/tmp/sft_unpruned.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"pid\\\": 67546, \\\"tmux_session\\\": \\\"sft_unpruned\\\", \\\"estimated_time_minutes\\\": 33, \\\"total_steps\\\": 1870, \\\"hyperparams\\\": {\\\"epochs\\\": 2, \\\"lr\\\": 2e-05, \\\"batch_size\\\": 1, \\\"gradient_accumulation_steps\\\": 8, \\\"max_seq_length\\\": 2048, \\\"save_strategy\\\": \\\"no\\\", \\\"seed\\\": 42}}, \\\"notes\\\": \\\"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.3321, \\\"final_token_accuracy\\\": 0.909, \\\"train_loss_avg\\\": 0.4253, \\\"train_runtime_sec\\\": 1908, \\\"total_steps\\\": 1870, \\\"epochs\\\": 2, \\\"train_samples_per_second\\\": 7.833}, \\\"completed_at\\\": \\\"2026-05-16T00:18:44.096Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4187}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_unpruned_baseline\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:07:43.929Z\", \"updated_at\": \"2026-05-16T00:18:44.096Z\", \"hypothesis\": \"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/sft_recovery.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 --save_strategy no --run_name sft_unpruned_baseline_v2\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k train\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (unpruned)\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\", \"log_path\": \"/tmp/sft_unpruned.log\", \"checkpoint_source\": \"/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B\", \"gpu_id\": \"cuda:1\", \"pid\": 67546, \"tmux_session\": \"sft_unpruned\", \"estimated_time_minutes\": 33, \"total_steps\": 1870, \"hyperparams\": {\"epochs\": 2, \"lr\": 2e-05, \"batch_size\": 1, \"gradient_accumulation_steps\": 8, \"max_seq_length\": 2048, \"save_strategy\": \"no\", \"seed\": 42}}, \"notes\": \"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.3321, \"final_token_accuracy\": 0.909, \"train_loss_avg\": 0.4253, \"train_runtime_sec\": 1908, \"total_steps\": 1870, \"epochs\": 2, \"train_samples_per_second\": 7.833}, \"completed_at\": \"2026-05-16T00:18:44.096Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4187}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01XhDvGG7Mcmv9hGk2Z4s888`</summary>
+
+```json
+{
+  "exp_id": "alpha_ablation_sweep",
+  "field": "metrics",
+  "value": {
+    "alpha_0.0": {
+      "accuracy": 0.27,
+      "n_correct": 27,
+      "n_total": 100,
+      "eos_rate": 0.8,
+      "avg_len": 1192
+    },
+    "alpha_0.25": {
+      "accuracy": 0.23,
+      "n_correct": 23,
+      "n_total": 100,
+      "eos_rate": 0.63,
+      "avg_len": 1834
+    },
+    "alpha_0.5": {
+      "accuracy": 0.22,
+      "n_correct": 22,
+      "n_total": 100,
+      "eos_rate": 0.81,
+      "avg_len": 1141
+    },
+    "alpha_1.0": {
+      "accuracy": 0.31,
+      "n_correct": 31,
+      "n_total": 100,
+      "eos_rate": 0.92,
+      "avg_len": 733
+    },
+    "alpha_2.0": {
+      "accuracy": 0.36,
+      "n_correct": 36,
+      "n_total": 100,
+      "eos_rate": 0.59,
+      "avg_len": 2130
+    }
+  },
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "3a6e27b8-a1ef-458f-96bd-bec5f0eda936",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UALzPCgrZoWoXJnFA9BAY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2304,
+      "cache_read_input_tokens": 41834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2304
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T00:18:46.882Z_
+
+<details><summary>↩ Tool result · `toolu_01XhDvGG7Mcmv9hGk2Z4s888`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"alpha_ablation_sweep\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:15:39.765Z\", \"updated_at\": \"2026-05-16T00:18:46.780Z\", \"hypothesis\": \"plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity.\", \"spec\": {\"command\": \"bash run_alpha_sweep_fix.sh\", \"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\", \"pid\": 556867, \"data_path\": \"openai/gsm8k\", \"data_count\": 100, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"log_path\": \"/tmp/alpha_sweep_fix.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/\", \"notes\": \"Alpha ablation: 0.25, 0.5, 1.0, 2.0. Partial results: alpha=0.0 acc=0.27 eos=0.80, alpha=0.25 acc=0.23 eos=0.63. Currently running alpha=0.5 eval.\", \"calibration_samples\": 512, \"sparsity\": 0.2, \"alphas\": [0, 0.25, 0.5, 1, 2]}, \"log_path\": \"/tmp/alpha_sweep_fix.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/\", \"metrics\": {\"alpha_0.0\": {\"accuracy\": 0.27, \"n_correct\": 27, \"n_total\": 100, \"eos_rate\": 0.8, \"avg_len\": 1192}, \"alpha_0.25\": {\"accuracy\": 0.23, \"n_correct\": 23, \"n_total\": 100, \"eos_rate\": 0.63, \"avg_len\": 1834}, \"alpha_0.5\": {\"accuracy\": 0.22, \"n_correct\": 22, \"n_total\": 100, \"eos_rate\": 0.81, \"avg_len\": 1141}, \"alpha_1.0\": {\"accuracy\": 0.31, \"n_correct\": 31, \"n_total\": 100, \"eos_rate\": 0.92, \"avg_len\": 733}, \"alpha_2.0\": {\"accuracy\": 0.36, \"n_correct\": 36, \"n_total\": 100, \"eos_rate\": 0.59, \"avg_len\": 2130}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T00:14:46.464Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2283}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "7dca63fc-0b62-4a81-a64d-e3c6c1d65fa7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_ablation_sweep\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:15:39.765Z\\\", \\\"updated_at\\\": \\\"2026-05-16T00:18:46.780Z\\\", \\\"hypothesis\\\": \\\"plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_alpha_sweep_fix.sh\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"pid\\\": 556867, \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/tmp/alpha_sweep_fix.log\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/\\\", \\\"notes\\\": \\\"Alpha ablation: 0.25, 0.5, 1.0, 2.0. Partial results: alpha=0.0 acc=0.27 eos=0.80, alpha=0.25 acc=0.23 eos=0.63. Currently running alpha=0.5 eval.\\\", \\\"calibration_samples\\\": 512, \\\"sparsity\\\": 0.2, \\\"alphas\\\": [0, 0.25, 0.5, 1, 2]}, \\\"log_path\\\": \\\"/tmp/alpha_sweep_fix.log\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/\\\", \\\"metrics\\\": {\\\"alpha_0.0\\\": {\\\"accuracy\\\": 0.27, \\\"n_correct\\\": 27, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.8, \\\"avg_len\\\": 1192}, \\\"alpha_0.25\\\": {\\\"accuracy\\\": 0.23, \\\"n_correct\\\": 23, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.63, \\\"avg_len\\\": 1834}, \\\"alpha_0.5\\\": {\\\"accuracy\\\": 0.22, \\\"n_correct\\\": 22, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.81, \\\"avg_len\\\": 1141}, \\\"alpha_1.0\\\": {\\\"accuracy\\\": 0.31, \\\"n_correct\\\": 31, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.92, \\\"avg_len\\\": 733}, \\\"alpha_2.0\\\": {\\\"accuracy\\\": 0.36, \\\"n_correct\\\": 36, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.59, \\\"avg_len\\\": 2130}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T00:14:46.464Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2283}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"alpha_ablation_sweep\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:15:39.765Z\", \"updated_at\": \"2026-05-16T00:18:46.780Z\", \"hypothesis\": \"plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity.\", \"spec\": {\"command\": \"bash run_alpha_sweep_fix.sh\", \"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\", \"pid\": 556867, \"data_path\": \"openai/gsm8k\", \"data_count\": 100, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"log_path\": \"/tmp/alpha_sweep_fix.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/\", \"notes\": \"Alpha ablation: 0.25, 0.5, 1.0, 2.0. Partial results: alpha=0.0 acc=0.27 eos=0.80, alpha=0.25 acc=0.23 eos=0.63. Currently running alpha=0.5 eval.\", \"calibration_samples\": 512, \"sparsity\": 0.2, \"alphas\": [0, 0.25, 0.5, 1, 2]}, \"log_path\": \"/tmp/alpha_sweep_fix.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/\", \"metrics\": {\"alpha_0.0\": {\"accuracy\": 0.27, \"n_correct\": 27, \"n_total\": 100, \"eos_rate\": 0.8, \"avg_len\": 1192}, \"alpha_0.25\": {\"accuracy\": 0.23, \"n_correct\": 23, \"n_total\": 100, \"eos_rate\": 0.63, \"avg_len\": 1834}, \"alpha_0.5\": {\"accuracy\": 0.22, \"n_correct\": 22, \"n_total\": 100, \"eos_rate\": 0.81, \"avg_len\": 1141}, \"alpha_1.0\": {\"accuracy\": 0.31, \"n_correct\": 31, \"n_total\": 100, \"eos_rate\": 0.92, \"avg_len\": 733}, \"alpha_2.0\": {\"accuracy\": 0.36, \"n_correct\": 36, \"n_total\": 100, \"eos_rate\": 0.59, \"avg_len\": 2130}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T00:14:46.464Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2283}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Registry updated. Here's the summary:
+
+## Part A: sft_unpruned_baseline (westd cuda:1)
+**Status: DONE** ✓
+
+| Metric | Value |
+|--------|-------|
+| Final loss | 0.3321 |
+| Final token_accuracy | 0.909 |
+| Avg train loss | 0.4253 |
+| Total steps | 1870/1870 (2 epochs) |
+| Runtime | 31m48s (1908s) |
+| Checkpoint | 14.2GB @ `/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/` |
+
+**N=100 eval launched** → PID 71116 on westd cuda:1 (running, ~15-20min to complete)
+
+## Part B: α sweep + v9 (westb cuda:0)
+**α sweep: DONE** ✓ — All 5 alphas complete (cal=512, sparsity=20%, N=100 greedy):
+
+| α | Accuracy | EOS rate | Avg length |
+|---|----------|----------|------------|
+| 0.0 | **27%** | 0.80 | 1192 |
+| 0.25 | **23%** | 0.63 | 1834 |
+| 0.5 | **22%** | 0.81 | 1141 |
+| 1.0 | **31%** | 0.92 | 733 |
+| 2.0 | **36%** | 0.59 | 2130 |
+
+Pattern: non-monotonic, α=2.0 best (36%), α=0.5 worst (22%). Higher α → stronger CKA penalty → better reasoning retention at this sparsity. α=1.0 has best EOS discipline (0.92).
+
+**GRPO RASP v9: RUNNING** — Auto-launcher triggered successfully at 08:04 UTC.
+- PID 566666, wandb run `mrikafz3` (`grpo_stage2_rasp_20_v9`)
+- Config: 30 steps, lr=1e-6, dapo loss, temp=0.4
+- Progress: step 1/30 (~7min/step → ETA ~3.5h from launch, ~11:30 UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "uuid": "1a8c8aab-448c-40bb-ae3f-dde4916ec213",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hwqhr52YUS9rDB19u6w4M8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2599,
+      "cache_read_input_tokens": 44138,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2599
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 63_
+
+Registry updated. Here's the summary:
+
+## Part A: sft_unpruned_baseline (westd cuda:1)
+**Status: DONE** ✓
+
+| Metric | Value |
+|--------|-------|
+| Final loss | 0.3321 |
+| Final token_accuracy | 0.909 |
+| Avg train loss | 0.4253 |
+| Total steps | 1870/1870 (2 epochs) |
+| Runtime | 31m48s (1908s) |
+| Checkpoint | 14.2GB @ `/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/` |
+
+**N=100 eval launched** → PID 71116 on westd cuda:1 (running, ~15-20min to complete)
+
+## Part B: α sweep + v9 (westb cuda:0)
+**α sweep: DONE** ✓ — All 5 alphas complete (cal=512, sparsity=20%, N=100 greedy):
+
+| α | Accuracy | EOS rate | Avg length |
+|---|----------|----------|------------|
+| 0.0 | **27%** | 0.80 | 1192 |
+| 0.25 | **23%** | 0.63 | 1834 |
+| 0.5 | **22%** | 0.81 | 1141 |
+| 1.0 | **31%** | 0.92 | 733 |
+| 2.0 | **36%** | 0.59 | 2130 |
+
+Pattern: non-monotonic, α=2.0 best (36%), α=0.5 worst (22%). Higher α → stronger CKA penalty → better reasoning retention at this sparsity. α=1.0 has best EOS discipline (0.92).
+
+**GRPO RASP v9: RUNNING** — Auto-launcher triggered successfully at 08:04 UTC.
+- PID 566666, wandb run `mrikafz3` (`grpo_stage2_rasp_20_v9`)
+- Config: 30 steps, lr=1e-6, dapo loss, temp=0.4
+- Progress: step 1/30 (~7min/step → ETA ~3.5h from launch, ~11:30 UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 130752,
+  "duration_api_ms": 94707,
+  "num_turns": 26,
+  "stop_reason": "end_turn",
+  "session_id": "fb900a1c-7322-4af9-8475-52f5f20edaec",
+  "total_cost_usd": 0.5215399999999999,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 34896,
+    "cache_read_input_tokens": 352570,
+    "output_tokens": 4998,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 34896,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 579,
+        "cache_read_input_tokens": 44138,
+        "cache_creation_input_tokens": 2599,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2599
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2065,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002135,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 4998,
+      "cacheReadInputTokens": 352570,
+      "cacheCreationInputTokens": 34896,
+      "webSearchRequests": 0,
+      "costUSD": 0.5194049999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "a7401121-2e7e-4fbd-a9d7-bc825b19c230"
+}
+```
+
+</details>
+
+---

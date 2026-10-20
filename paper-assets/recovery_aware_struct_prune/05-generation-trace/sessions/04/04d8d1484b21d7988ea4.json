@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "04d8d1484b21d7988ea4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops scp and eval pass k8 rasp deepseek",
+  "task_key": "worker_ops_scp-and-eval-pass-k8-rasp-deepseek_20260516T232326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-and-eval-pass-k8-rasp-deepseek_20260516T232326.log",
+    "occurrence": 1,
+    "bytes": 996381,
+    "sha256": "3405e6822ed90069df1cc638f2b184fd38fb76c4ee32f38d799fdb0a5419864c"
+  },
+  "statistics": {
+    "messages": 804,
+    "user_turns": 0,
+    "tool_calls": 324,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 150,
+      "record": 3,
+      "tool_call": 324,
+      "tool_result": 324,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 804,
+      "chunks": [
+        {
+          "path": "04d8d1484b21d7988ea4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "04d8d1484b21d7988ea4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "04d8d1484b21d7988ea4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "04d8d1484b21d7988ea4-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "04d8d1484b21d7988ea4-part-0005.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-scp-and-eval-pass-k8-rasp-deepseek.md"
+}

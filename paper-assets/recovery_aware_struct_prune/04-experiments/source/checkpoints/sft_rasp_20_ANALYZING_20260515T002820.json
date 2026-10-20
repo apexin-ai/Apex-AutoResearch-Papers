@@ -1,0 +1,35 @@
+{
+  "exp_id": "sft_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:37:33.162Z",
+    "updated_at": "2026-05-15T00:28:20.474Z",
+    "spec": {
+      "command": "python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --num_train_epochs 2 --learning_rate 2e-5",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "249577",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_rasp_20.log",
+      "submitted_at": "2026-05-14T23:47:23.413Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "pruned_rasp_20",
+      "seed": 42
+    },
+    "hypothesis": "D013 Stage 1: SFT warmup on RASP-pruned model (20%, 29% GSM8K) to restore EOS generation ability before GRPO Stage 2.",
+    "reproduce": {
+      "finished_at": "2026-05-15T00:28:20.429Z"
+    }
+  },
+  "timestamp": "2026-05-15T00:28:20.497050+00:00",
+  "trigger": "update_registry"
+}

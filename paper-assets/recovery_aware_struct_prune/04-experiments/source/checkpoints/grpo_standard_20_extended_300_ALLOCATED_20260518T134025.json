@@ -1,0 +1,16 @@
+{
+  "exp_id": "grpo_standard_20_extended_300",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:40:13.842Z",
+    "updated_at": "2026-05-18T13:40:25.067Z",
+    "hypothesis": "Extended GRPO Standard 7B from step 100 to 300. Tests whether longer GRPO training changes the recovery capacity gradient — does Standard eventually catch up to CKA-only, or does the gap persist/widen? If gap widens, confirms CKA-guided pruning creates a structural advantage that more training cannot compensate.",
+    "parent": "grpo_standard_20_fair"
+  },
+  "timestamp": "2026-05-18T13:40:25.392161+00:00",
+  "trigger": "update_registry"
+}

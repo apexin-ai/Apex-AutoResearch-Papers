@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0864bf56385f4b0dd8d3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval pass k8 standard 20 grpo qwen math v2",
+  "task_key": "worker_diagnose_eval_pass_k8_standard_20_grpo_qwen_math_v2_20260516T232326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_pass_k8_standard_20_grpo_qwen_math_v2_20260516T232326_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "dd6af5461d33af71835123b309279e8160ecf1d7746387b484c38563c3183f6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**这是一个监控误报，实验实际已成功完成。**\n\n| 项目 | 详情 |\n|------|------|\n| 根本原因 | 监控系统 false positive：eval 脚本正常退出后未写 sentinel 文件、未接 W&B，监控轮询时发现进程已死，5 次后判定为 failed |\n| 实际结果 | GSM8K pass@8 = **0.9100 ± 0.0202** |\n| 结果文件 | `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math_v2.json` ✓ |\n| 运行时间 | 05:54 ~ 07:05（约 1h11m），200 题全部完成 |\n\n无需重跑。如要避免未来类似误报，可在 eval 脚本末尾加 sentinel 文件写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-pass-k8-standard-20-grpo-qwen-math-v2.md"
+}

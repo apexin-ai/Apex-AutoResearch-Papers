@@ -1,0 +1,14 @@
+{
+  "exp_id": "grpo_rasp_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:42:43.989Z",
+    "updated_at": "2026-05-16T08:42:43.989Z"
+  },
+  "timestamp": "2026-05-16T08:42:44.120914+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20f263c39dba5a756adf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval pass k8 standard 20 grpo deepseek",
+  "task_key": "worker_eval_pass_k8_standard_20_grpo_deepseek_20260516T232453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pass_k8_standard_20_grpo_deepseek_20260516T232453_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "7155f7c7beaf8746d61ad12ed56cedaa23fb42636d96fc1f1c1fb93c1fef1489"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认：\n- **PID 60349** 运行中 (Rl 状态, elapsed 3:18)\n- **cuda:2** 占用 12982MiB\n- 评估参数：200 problems × 8 samples, T=0.7, seed=42, max_new_tokens=4096\n- Registry: `eval_pass_k8_standard_20_grpo_deepseek` → RUNNING\n- 日志：`/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_standard_20_grpo_deepseek.log`\n- 输出：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_deepseek.json`\n\n与 cuda:0 上的 RASP pass@k 评估互不冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pass-k8-standard-20-grpo-deepseek.md"
+}

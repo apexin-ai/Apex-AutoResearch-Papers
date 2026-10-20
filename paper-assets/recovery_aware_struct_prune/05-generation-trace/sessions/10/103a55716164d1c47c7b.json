@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "103a55716164d1c47c7b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose alpha4 pipeline v2 sft",
+  "task_key": "worker_diagnose_alpha4_pipeline_v2_sft_20260521T180459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_alpha4_pipeline_v2_sft_20260521T180459_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "42167875ad9d3ad61f69c64d1405ea00e680602de3240a3ffc32bbe70f644993"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动，模型加载中。\n\n---\n\n**诊断结果**：pipeline_alpha4_0_v2 的 SFT 步骤因 TRL API 不兼容而失败——脚本传了 `max_seq_length` 给 `SFTConfig`，但当前 TRL 版本的参数名是 `max_length`。Pruning 步骤本身成功完成（19.09% sparsity，模型 12GB 完整）。\n\n**修复**：`train_sft_warmup.py` 第 94 行 `max_seq_length` → `max_length`。\n\n**SFT 提交结果**：\n- exp_id: `sft_alpha4_20_manual`\n- PID: `399511`\n- server: `westd-29022`, GPU: `cuda:2`\n- command: `python src/train_sft_warmup.py --model_path .../pruned_alpha4_20 --output_dir .../sft_alpha4_20 --num_epochs 2 --lr 2e-5`\n- log: `~/runs/recovery_aware_struct_prune/sft_alpha4_20_manual.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-alpha4-pipeline-v2-sft.md"
+}

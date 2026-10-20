@@ -1,0 +1,127 @@
+\section{Method}
+\label{sec:method}
+
+We design a controlled comparison framework to isolate the effect of pruning criterion on post-RLVR recovery capacity.
+The framework consists of three components: (1) shared structural analysis that computes importance and functional overlap scores for all prunable structures, (2) four scoring criteria that combine these scores differently to select structures for removal, and (3) an identical two-stage recovery pipeline applied to all pruned models.
+By varying only the scoring criterion while holding all other factors constant, we can attribute differences in GRPO training dynamics directly to the pruning decision.
+
+\subsection{Preliminaries and Notation}
+\label{sec:prelim}
+
+\paragraph{Structured pruning.}
+Given a pretrained transformer $\mathcal{M}$ with $L$ layers, structured pruning removes entire computational units (attention heads or MLP channels) to reduce model size while maintaining hardware-friendly dense computation.
+We denote the set of prunable structures as $\mathcal{H} = \{h_1, h_2, \ldots, h_N\}$.
+
+\paragraph{Grouped Query Attention (GQA).}
+In GQA architectures~\citep{ainslie2023gqa}, $n_Q$ query heads share $n_{KV}$ key-value heads, with each KV head serving a group of $G = n_Q / n_{KV}$ query heads.
+For DeepSeek-R1-Distill-Qwen-7B ($n_Q{=}28$, $n_{KV}{=}4$), $G = 7$, yielding 4 GQA groups per layer.
+We treat each GQA group (7 Q heads + 1 KV head) as a single prunable unit, since removing a KV head necessitates removing all associated Q heads.
+
+\paragraph{RLVR and GRPO.}
+Reinforcement Learning with Verifiable Rewards (RLVR) recovers pruned model capabilities using outcome-based rewards from tasks with verifiable answers.
+We use Group Relative Policy Optimization (GRPO;~\citealp{shao2024grpo}) as the recovery algorithm.
+
+\subsection{Structural Analysis}
+\label{sec:structural_analysis}
+
+All four pruning criteria share a common structural analysis stage that computes two scores per structure: \emph{importance} $I(h)$ capturing the structure's contribution to reasoning, and \emph{functional overlap} $F(h)$ measuring representational redundancy with other structures in the same layer.
+
+\paragraph{Calibration data.}
+We compute importance and overlap scores on chain-of-thought reasoning data from GSM8K~\citep{cobbe2021gsm8k} training examples.
+Given a calibration set $\mathcal{D}_\text{cal} = \{(x_j, y_j)\}_{j=1}^{M}$, we compute activations and gradients on the concatenated sequences $(x_j, y_j)$.
+
+\paragraph{Structural importance.}
+For each structure $h$, we compute importance $I(h)$ via first-order Taylor expansion on the reasoning trace loss:
+\begin{equation}
+    I(h) = \left| \sum_{(x,y) \in \mathcal{D}_\text{cal}} \mathbf{a}_h(x, y)^\top \frac{\partial \mathcal{L}(x, y)}{\partial \mathbf{a}_h} \right|,
+    \label{eq:importance}
+\end{equation}
+where $\mathbf{a}_h$ denotes the activation of structure $h$ and $\mathcal{L}$ is the language modeling loss over the reasoning trace.
+For a GQA group $g$ containing Q heads $\{q_1, \ldots, q_G\}$ and KV head $k$, we aggregate: $I(g) = \sum_{i=1}^{G} I(q_i) + I(k)$.
+
+\paragraph{Functional overlap via CKA.}
+We measure functional overlap using linear Centered Kernel Alignment (CKA;~\citealp{kornblith2019cka}), which quantifies similarity between two sets of representations invariant to invertible linear transformations.
+Given activation matrices $\mathbf{X}, \mathbf{Y} \in \mathbb{R}^{n \times d}$ collected over $n$ calibration examples, linear CKA is:
+\begin{equation}
+    \text{CKA}(\mathbf{X}, \mathbf{Y}) = \frac{\text{HSIC}(\mathbf{X}, \mathbf{Y})}{\sqrt{\text{HSIC}(\mathbf{X}, \mathbf{X}) \cdot \text{HSIC}(\mathbf{Y}, \mathbf{Y})}},
+    \label{eq:cka}
+\end{equation}
+where $\text{HSIC}(\mathbf{X}, \mathbf{Y}) = \frac{1}{(n-1)^2} \operatorname{tr}(\mathbf{K} \mathbf{H} \mathbf{L} \mathbf{H})$, with $\mathbf{K} = \mathbf{X}\mathbf{X}^\top$, $\mathbf{L} = \mathbf{Y}\mathbf{Y}^\top$, and $\mathbf{H} = \mathbf{I}_n - \frac{1}{n}\mathbf{1}\mathbf{1}^\top$.
+
+For a GQA group $g_i$ in layer $\ell$, we form its representation by concatenating its constituent Q head activations: $\mathbf{X}_{g_i} = [\mathbf{a}_{q_1}; \ldots; \mathbf{a}_{q_G}] \in \mathbb{R}^{n \times Gd_h}$.
+The functional overlap of $g_i$ is the mean pairwise CKA with other groups in the same layer:
+\begin{equation}
+    F(g_i) = \frac{1}{|\mathcal{G}_\ell| - 1} \sum_{\substack{g_j \in \mathcal{G}_\ell \\ j \neq i}} \text{CKA}(\mathbf{X}_{g_i}, \mathbf{X}_{g_j}).
+    \label{eq:overlap}
+\end{equation}
+We apply the same intra-layer CKA overlap to MLP channel groups, partitioning each MLP intermediate dimension into equal-sized groups.
+Unlike prior work that uses inter-layer CKA to identify globally redundant layers for depth pruning~\citep{mpruner2024,lachance2022cka}, we use \emph{intra-layer} CKA between individual structures to measure per-structure functional redundancy.
+Computing all pairwise CKA scores adds negligible overhead: with at most 28 structures per layer and 28 layers, the total number of CKA evaluations is $O(L \cdot k^2)$ where $k \le 28$, completing in under 2 minutes on a single GPU.
+
+\paragraph{CKA reliability.}
+Our intra-layer use of linear CKA between structures of identical dimensionality avoids the kernel width and layer width sensitivities identified by \citet{davari2023cka,klabunde_similarity_survey_2023}; empirically, structure rankings are stable across calibration sizes (Spearman $\rho \geq 0.964$; Appendix~\ref{sec:appendix_cka_stability}).
+
+\subsection{Pruning Scoring Criteria}
+\label{sec:scoring}
+
+We compare four scoring criteria that combine importance $I(h)$ and functional overlap $F(h)$ in different ways.
+All four methods use the same per-layer capacity floor (${\ge}$40\% of MLP groups per layer must be retained, chosen to prevent any single layer from becoming a throughput bottleneck) and global ranking procedure: structures are sorted by score, and the lowest-scoring structures are pruned up to the target sparsity ratio, skipping any candidate whose removal would violate the layer floor.
+
+\paragraph{Standard (importance-only).}
+Following LLM-Pruner~\citep{llmpruner2023}, structures are ranked solely by importance:
+\begin{equation}
+    S_\text{std}(h) = I(h).
+    \label{eq:standard}
+\end{equation}
+This is the industry-standard criterion that retains gradient-important structures and removes ``unimportant'' ones.
+
+\paragraph{RASP (recovery-aware composite).}
+The recovery-aware score combines importance and functional overlap:
+\begin{equation}
+    S_\text{rasp}(h) = I(h) \times \big(1 - F(h)\big)^\alpha,
+    \label{eq:score}
+\end{equation}
+where $\alpha \ge 0$ controls the strength of the overlap penalty ($\alpha{=}0$ reduces to Standard).
+Structures with high importance \emph{and} low overlap receive the highest scores and are retained; structures with high overlap are penalized and pruned preferentially, regardless of their importance.
+
+\paragraph{CKA-only (overlap-only).}
+CKA-only scoring ignores gradient importance entirely, ranking structures by functional overlap alone.
+Structures with the highest mean pairwise CKA similarity to other structures in their layer are removed first:
+\begin{equation}
+    S_\text{cka}(h) = 1 - F(h).
+    \label{eq:cka_only}
+\end{equation}
+This criterion preserves all representationally unique structures regardless of their gradient importance, removing only those whose function is redundant with retained structures.
+$S_\text{cka}$ corresponds to the limit $\alpha \to \infty$ in Eq.~\ref{eq:score}.
+
+\paragraph{Random.}
+Structures are selected uniformly at random for removal, subject to the per-layer capacity floor.
+This baseline controls for the effect of any informed scoring criterion.
+
+The four criteria span a spectrum from pure gradient importance (Standard) to pure representational diversity preservation (CKA-only), with RASP as a weighted interpolation and Random as an uninformed control.
+The key distinction is that CKA-only protects \emph{functionally unique} structures regardless of gradient contribution: structures deemed ``unimportant'' by gradient metrics may provide non-redundant computational pathways essential for RL exploration~\citep{rlsqueezes2026}.
+
+\subsection{Two-Stage Recovery}
+\label{sec:recovery}
+
+After pruning, all four models undergo an identical two-stage recovery pipeline. Any differences in GRPO training dynamics are therefore attributable to the pruning criterion alone.
+
+\paragraph{Stage 1: SFT warmup.}
+Structured pruning disrupts the model's ability to generate end-of-sequence (EOS) tokens: in sampling mode, pruned models produce repetitive outputs without termination.
+Since GRPO computes rewards only from completed generations, this EOS collapse makes direct RLVR recovery impossible.
+We restore generation competence through a short SFT phase on chain-of-thought reasoning demonstrations with teacher forcing.
+This stage is intentionally brief: its purpose is to restore the minimal capabilities (EOS generation, format compliance) needed for GRPO, not to recover full reasoning ability.
+
+\paragraph{Stage 2: GRPO alignment.}
+With generation competence restored, we apply GRPO on mathematical reasoning problems with binary reward ($r{=}1$ if the final answer matches the ground truth, $r{=}0$ otherwise).
+RLVR is preferred over extended SFT for reasoning recovery because of their fundamentally different training dynamics: \citet{rlsqueezes2026} show that RLVR \emph{compresses} incorrect reasoning trajectories while SFT \emph{expands} correct ones.
+For a pruned model, RLVR can globally explore and redistribute functionality across remaining structures, while SFT is limited to imitating fixed trajectories through a reduced architecture.
+The GRPO configuration (learning rate, KL coefficient, sampling temperature, loss formulation) is held constant across all four pruned models (Section~\ref{sec:exp_setup}).
+
+\subsection{Recovery Capacity Diagnostics}
+\label{sec:diagnostics}
+
+We define \textbf{recovery capacity} as the model's ability to benefit from post-pruning recovery training, operationalized in our GRPO experiments as peak mean reward over the training horizon (Table~\ref{tab:recovery_gradient}).
+We track four diagnostic measures---mean reward, zero-variance batch fraction ($f_0$), gradient norm, and KL divergence---to distinguish \emph{active learning} (rising reward, low $f_0$), \emph{stagnation} (flat reward), and \emph{collapse} (declining reward, high $f_0$, vanishing gradients).
+
+The complete pruning comparison procedure is given in Algorithm~\ref{alg:rasp} (Appendix~\ref{sec:appendix_algo}).

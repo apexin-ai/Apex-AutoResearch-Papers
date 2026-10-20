@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Reward-accuracy decoupling on GSM8K ($N{=}1{,}319$) at 20\% sparsity. $\pm$: multi-seed std. Best in \textbf{bold}.}
+\label{tab:decoupling}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Method & SFT\,(\%) & GRPO\,(\%) & $\Delta$\,(pp) & Peak Rew. \\
+\midrule
+Unpruned & \textbf{81.27} & \textbf{81.27} & $\phantom{-}$0.00 & \textbf{0.669} \\
+\rasp{} ($\alpha{=}2.0$) & 64.97 & 66.11 & $+$1.14 & -- \\
+CKA-only & 63.91 & 64.39{\scriptsize$\pm$0.19} & $+$0.48 & 0.354 \\
+Standard & 59.29 & 59.84{\scriptsize$\pm$0.38} & $+$0.55 & 0.081 \\
+\rasp{} ($\alpha{=}1.0$) & 61.49 & 60.88 & $-$0.61 & 0.061 \\
+Random & 51.25 & 50.72{\scriptsize$\pm$0.15} & $-$0.53 & 0.190 \\
+\midrule
+ShortGPT & 44.73 & 43.37 & $-$1.36 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "gradient_flow_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:03:16.535Z",
+    "updated_at": "2026-05-19T15:18:53.781Z",
+    "hypothesis": "CKA-only pruned models exhibit significantly stronger gradient signals (per-layer L2 norm) compared to Standard and RASP, with statistical significance (Wilcoxon p<0.05). This gradient magnitude difference is consistent with CKA-only's superior GRPO recovery capacity.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/gradient_flow_analysis.py --model_paths pruned_cka_only_20 pruned_standard_20 pruned_rasp_20 --model_names CKA-only Standard RASP --n_steps 200 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow_v3 --seed 42",
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "pid": "901553",
+      "data_path": "openai/gsm8k train split",
+      "data_count": 200,
+      "model_name": "pruned_cka_only_20 + pruned_standard_20 + pruned_rasp_20",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow_v3/",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/logs/gradient_flow_v3.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T15:18:53.782Z"
+  },
+  "timestamp": "2026-05-19T15:18:54.179589+00:00",
+  "trigger": "update_registry"
+}

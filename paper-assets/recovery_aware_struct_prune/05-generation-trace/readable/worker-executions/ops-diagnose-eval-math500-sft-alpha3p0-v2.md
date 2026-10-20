@@ -1,0 +1,1562 @@
+# ops diagnose eval math500 sft alpha3p0 v2
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_ops_diagnose_eval_math500_sft_alpha3p0_v2_20260524T132743.log`
+- **Structured JSON:** [`0a28f4f4959534ab3417.json`](../../sessions/0a/0a28f4f4959534ab3417.json)
+
+## Before a recorded user message
+
+34 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "88f7c423-e86b-4e73-b4b0-fcecf54e2412",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779753600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.92,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "207962fb-cc7c-4832-ba23-a99292e97085",
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me diagnose the eval job. I'll start by loading the necessary tools and checking the logs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "c3d0b0d5-cfa9-4b76-8616-dc2979e1de56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAMEAEW9EUnrFupLsLWFSZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12590,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12590
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015HGvyTAQfVvqXouoyydLTH`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "8cfd2372-a261-4205-bbd7-6f5a27653528",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAMEAEW9EUnrFupLsLWFSZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12590,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12590
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T13:28:00.012Z_
+
+<details><summary>↩ Tool result · `toolu_015HGvyTAQfVvqXouoyydLTH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "d6f33c43-a1e6-4a1d-b03f-1fd2fe75e397",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779753600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.92,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "4317644f-b7f1-4158-a97e-c4e1086b103d",
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976"
+}
+```
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016QtFuqVEsL9vyQoAAPSYt8`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -50 /root/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "7e27fd1a-81ca-4d0b-9b2b-edf9626f5f36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5wSS8hGsatFNTwwW1ouS5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 24431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 953
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018uf8Sq7tc9xcAkTPDeiqJj`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "9133c429-6ecd-4fd0-8292-cefd6f007c36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5wSS8hGsatFNTwwW1ouS5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 24431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 953
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779753600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.92,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "3aa7fe4d-c9e5-4524-b6c5-276ae6c625c4",
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976"
+}
+```
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T13:28:07.593Z_
+
+<details><summary>↩ Tool result · `toolu_016QtFuqVEsL9vyQoAAPSYt8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 17:08:24,699 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\n2026-05-24 17:08:25,387 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-24 17:10:05,383 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=0)\\n2026-05-24 17:10:05,384 [INFO] Loading MATH-500 dataset...\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\n2026-05-24 17:10:05,386 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-24 17:10:05,386 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-24 17:10:05,415 [INFO] Loaded 500 problems\\n2026-05-24 17:10:05,415 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [00:03<25:19,  3.05s/it]\\rMATH-500 eval:   0%|          | 2/500 [01:41<8:10:54, 59.14s/it]\\rMATH-500 eval:   1%|          | 3/500 [03:15<10:22:25, 75.14s/it]\\rMATH-500 eval:   1%|          | 4/500 [03:17<6:21:52, 46.19s/it] \\rMATH-500 eval:   1%|          | 5/500 [03:22<4:19:47, 31.49s/it]\\rMATH-500 eval:   1%|          | 6/500 [03:25<2:57:16, 21.53s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [03:28<2:07:53, 15.56s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [03:33<1:40:20, 12.24s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [03:35<1:14:08,  9.06s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [03:45<1:16:35,  9.38s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [03:47<57:46,  7.09s/it]  \\rMATH-500 eval:   2%|▏         | 12/500 [05:22<4:35:09, 33.83s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [05:27<3:23:44, 25.10s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [05:29<2:26:42, 18.11s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [07:07<5:42:02, 42.31s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [07:13<4:11:04, 31.13s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [07:15<3:00:13, 22.39s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [09:00<6:20:15, 47.33s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [10:41<8:28:43, 63.46s/it]\\rMATH-500 eval:   4%|▍         | 20/500 [12:15<9:41:24, 72.68s/it]\\rMATH-500 eval:   4%|▍         | 21/500 [13:47<10:25:59, 78.41s/it]\\rMATH-500 eval:   4%|▍         | 22/500 [15:20<10:59:25, 82.77s/it]\\rMATH-500 eval:   5%|▍         | 23/500 [15:26<7:54:04, 59.63s/it] \\rMATH-500 eval:   5%|▍         | 24/500 [15:28<5:37:53, 42.59s/it]\\rMATH-500 eval:   5%|▌         | 25/500 [15:31<4:01:47, 30.54s/it]\\rMATH-500 eval:   5%|▌         | 26/500 [17:07<6:36:59, 50.25s/it]\\rMATH-500 eval:   5%|▌         | 27/500 [18:42<8:20:47, 63.53s/it]\\rMATH-500 eval:   6%|▌         | 28/500 [18:46<6:00:17, 45.80s/it]\\rMATH-500 eval:   6%|▌         | 29/500 [18:49<4:18:25, 32.92s/it]\\rMATH-500 eval:   6%|▌         | 30/500 [18:51<3:05:26, 23.67s/it]\\rMATH-500 eval:   6%|▌         | 31/500 [18:53<2:14:01, 17.15s/it]\\rMATH-500 eval:   6%|▋         | 32/500 [18:54<1:36:52, 12.42s/it]\\rMATH-500 eval:   7%|▋         | 33/500 [18:57<1:13:24,  9.43s/it]\\rMATH-500 eval:   7%|▋         | 34/500 [19:01<1:01:10,  7.88s/it]\\rMATH-500 eval:   7%|▋         | 35/500 [20:34<4:19:31, 33.49s/it]\\rMATH-500 eval:   7%|▋         | 36/500 [20:36<3:05:03, 23.93s/it]\\rMATH-500 eval:   7%|▋         | 37/500 [20:39<2:16:50, 17.73s/it]\\rMATH-500 eval:   8%|▊         | 38/500 [20:41<1:38:57, 12.85s/it]\\rMATH-500 eval:   8%|▊         | 39/500 [20:42<1:11:33,  9.31s/it]\\rMATH-500 eval:   8%|▊         | 40/500 [22:15<4:23:31, 34.37s/it]\\rMATH-500 eval:   8%|▊         |\\n\\n... [截断: 输出过长，省略 27636 字符] ...\\n\\n47/500 [3:48:30<40:40, 46.04s/it]\\rMATH-500 eval:  90%|████████▉ | 448/500 [3:48:31<28:20, 32.70s/it]\\rMATH-500 eval:  90%|████████▉ | 449/500 [3:48:35<20:18, 23.89s/it]\\rMATH-500 eval:  90%|█████████ | 450/500 [3:48:37<14:27, 17.36s/it]\\rMATH-500 eval:  90%|█████████ | 451/500 [3:48:46<12:10, 14.91s/it]\\rMATH-500 eval:  90%|█████████ | 452/500 [3:48:48<08:44, 10.93s/it]\\rMATH-500 eval:  91%|█████████ | 453/500 [3:48:51<06:54,  8.82s/it]\\rMATH-500 eval:  91%|█████████ | 454/500 [3:48:55<05:38,  7.36s/it]\\rMATH-500 eval:  91%|█████████ | 455/500 [3:50:35<26:15, 35.01s/it]\\rMATH-500 eval:  91%|█████████ | 456/500 [3:50:38<18:31, 25.27s/it]\\rMATH-500 eval:  91%|█████████▏| 457/500 [3:50:47<14:42, 20.53s/it]\\rMATH-500 eval:  92%|█████████▏| 458/500 [3:50:48<10:14, 14.62s/it]\\rMATH-500 eval:  92%|█████████▏| 459/500 [3:50:50<07:32, 11.03s/it]\\rMATH-500 eval:  92%|█████████▏| 460/500 [3:51:01<07:15, 10.89s/it]\\rMATH-500 eval:  92%|█████████▏| 461/500 [3:51:03<05:22,  8.26s/it]\\rMATH-500 eval:  92%|█████████▏| 462/500 [3:51:06<04:16,  6.75s/it]\\rMATH-500 eval:  93%|█████████▎| 463/500 [3:51:11<03:42,  6.01s/it]\\rMATH-500 eval:  93%|█████████▎| 464/500 [3:51:12<02:44,  4.57s/it]\\rMATH-500 eval:  93%|█████████▎| 465/500 [3:51:16<02:30,  4.31s/it]\\rMATH-500 eval:  93%|█████████▎| 466/500 [3:52:49<17:31, 30.93s/it]\\rMATH-500 eval:  93%|█████████▎| 467/500 [3:54:26<27:55, 50.76s/it]\\rMATH-500 eval:  94%|█████████��| 468/500 [3:54:29<19:26, 36.46s/it]\\rMATH-500 eval:  94%|█████████▍| 469/500 [3:54:31<13:28, 26.08s/it]\\rMATH-500 eval:  94%|█████████▍| 470/500 [3:54:32<09:19, 18.64s/it]\\rMATH-500 eval:  94%|█████████▍| 471/500 [3:56:07<20:02, 41.48s/it]\\rMATH-500 eval:  94%|█████████▍| 472/500 [3:56:11<14:05, 30.20s/it]\\rMATH-500 eval:  95%|█████████▍| 473/500 [3:56:13<09:51, 21.90s/it]\\rMATH-500 eval:  95%|█████████▍| 474/500 [3:56:19<07:23, 17.07s/it]\\rMATH-500 eval:  95%|█████████▌| 475/500 [3:56:29<06:13, 14.93s/it]\\rMATH-500 eval:  95%|█████████▌| 476/500 [3:58:11<16:27, 41.14s/it]\\rMATH-500 eval:  95%|█████████▌| 477/500 [3:58:13<11:17, 29.45s/it]\\rMATH-500 eval:  96%|█████████▌| 478/500 [3:58:15<07:43, 21.05s/it]\\rMATH-500 eval:  96%|█████████▌| 479/500 [3:59:51<15:17, 43.69s/it]\\rMATH-500 eval:  96%|█████████▌| 480/500 [4:01:26<19:39, 58.95s/it]\\rMATH-500 eval:  96%|█████████▌| 481/500 [4:03:01<22:07, 69.88s/it]\\rMATH-500 eval:  96%|█████████▋| 482/500 [4:03:04<14:52, 49.61s/it]\\rMATH-500 eval:  97%|█████████▋| 483/500 [4:03:10<10:25, 36.80s/it]\\rMATH-500 eval:  97%|█████████▋| 484/500 [4:04:45<14:25, 54.11s/it]\\rMATH-500 eval:  97%|█████████▋| 485/500 [4:06:18<16:29, 65.95s/it]\\rMATH-500 eval:  97%|█████████▋| 486/500 [4:08:03<18:06, 77.63s/it]\\rMATH-500 eval:  97%|█████████▋| 487/500 [4:08:06<11:57, 55.23s/it]\\rMATH-500 eval:  98%|█████████▊| 488/500 [4:08:09<07:51, 39.31s/it]\\rMATH-500 eval:  98%|█████████▊| 489/500 [4:08:11<05:09, 28.11s/it]\\rMATH-500 eval:  98%|█████████▊| 490/500 [4:09:46<08:02, 48.28s/it]\\rMATH-500 eval:  98%|█████████���| 491/500 [4:09:50<05:15, 35.10s/it]\\rMATH-500 eval:  98%|█████████▊| 492/500 [4:09:53<03:22, 25.37s/it]\\rMATH-500 eval:  99%|█████████▊| 493/500 [4:09:55<02:08, 18.30s/it]\\rMATH-500 eval:  99%|█████████▉| 494/500 [4:09:58<01:23, 13.85s/it]\\rMATH-500 eval:  99%|█████████▉| 495/500 [4:11:34<03:12, 38.49s/it]\\rMATH-500 eval:  99%|█████████▉| 496/500 [4:11:42<01:56, 29.18s/it]\\rMATH-500 eval:  99%|█████████▉| 497/500 [4:11:47<01:06, 22.02s/it]\\rMATH-500 eval: 100%|█████████▉| 498/500 [4:13:21<01:27, 43.77s/it]\\rMATH-500 eval: 100%|█████████▉| 499/500 [4:14:56<00:59, 59.15s/it]\\rMATH-500 eval: 100%|██████████| 500/500 [4:16:32<00:00, 69.96s/it]\\rMATH-500 eval: 100%|██████████| 500/500 [4:16:32<00:00, 30.78s/it]\\n2026-05-24 21:26:37,546 [INFO] MATH-500 Accuracy: 0.2360 +/- 0.0190 (118/500)\\n2026-05-24 21:26:37,546 [INFO] EOS Stats: {\\n  \\\"natural_eos\\\": 356,\\n  \\\"truncated\\\": 144,\\n  \\\"avg_response_length\\\": 744.432\\n}\\n2026-05-24 21:26:37,550 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "6a1ca158-a535-4708-9be2-2e4127c31796",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 17:08:24,699 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\\n2026-05-24 17:08:25,387 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-24 17:10:05,383 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=0)\\\\n2026-05-24 17:10:05,384 [INFO] Loading MATH-500 dataset...\\\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\n2026-05-24 17:10:05,386 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\\\n2026-05-24 17:10:05,386 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\\\n2026-05-24 17:10:05,415 [INFO] Loaded 500 problems\\\\n2026-05-24 17:10:05,415 [INFO] Evaluating on 500 problems\\\\n\\\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\\\rMATH-500 eval:   0%|          | 1/500 [00:03<25:19,  3.05s/it]\\\\rMATH-500 eval:   0%|          | 2/500 [01:41<8:10:54, 59.14s/it]\\\\rMATH-500 eval:   1%|          | 3/500 [03:15<10:22:25, 75.14s/it]\\\\rMATH-500 eval:   1%|          | 4/500 [03:17<6:21:52, 46.19s/it] \\\\rMATH-500 eval:   1%|          | 5/500 [03:22<4:19:47, 31.49s/it]\\\\rMATH-500 eval:   1%|          | 6/500 [03:25<2:57:16, 21.53s/it]\\\\rMATH-500 eval:   1%|▏         | 7/500 [03:28<2:07:53, 15.56s/it]\\\\rMATH-500 eval:   2%|▏         | 8/500 [03:33<1:40:20, 12.24s/it]\\\\rMATH-500 eval:   2%|▏         | 9/500 [03:35<1:14:08,  9.06s/it]\\\\rMATH-500 eval:   2%|▏         | 10/500 [03:45<1:16:35,  9.38s/it]\\\\rMATH-500 eval:   2%|▏         | 11/500 [03:47<57:46,  7.09s/it]  \\\\rMATH-500 eval:   2%|▏         | 12/500 [05:22<4:35:09, 33.83s/it]\\\\rMATH-500 eval:   3%|▎         | 13/500 [05:27<3:23:44, 25.10s/it]\\\\rMATH-500 eval:   3%|▎         | 14/500 [05:29<2:26:42, 18.11s/it]\\\\rMATH-500 eval:   3%|▎         | 15/500 [07:07<5:42:02, 42.31s/it]\\\\rMATH-500 eval:   3%|▎         | 16/500 [07:13<4:11:04, 31.13s/it]\\\\rMATH-500 eval:   3%|▎         | 17/500 [07:15<3:00:13, 22.39s/it]\\\\rMATH-500 eval:   4%|▎         | 18/500 [09:00<6:20:15, 47.33s/it]\\\\rMATH-500 eval:   4%|▍         | 19/500 [10:41<8:28:43, 63.46s/it]\\\\rMATH-500 eval:   4%|▍         | 20/500 [12:15<9:41:24, 72.68s/it]\\\\rMATH-500 eval:   4%|▍         | 21/500 [13:47<10:25:59, 78.41s/it]\\\\rMATH-500 eval:   4%|▍         | 22/500 [15:20<10:59:25, 82.77s/it]\\\\rMATH-500 eval:   5%|▍         | 23/500 [15:26<7:54:04, 59.63s/it] \\\\rMATH-500 eval:   5%|▍         | 24/500 [15:28<5:37:53, 42.59s/it]\\\\rMATH-500 eval:   5%|▌         | 25/500 [15:31<4:01:47, 30.54s/it]\\\\rMATH-500 eval:   5%|▌         | 26/500 [17:07<6:36:59, 50.25s/it]\\\\rMATH-500 eval:   5%|▌         | 27/500 [18:42<8:20:47, 63.53s/it]\\\\rMATH-500 eval:   6%|▌         | 28/500 [18:46<6:00:17, 45.80s/it]\\\\rMATH-500 eval:   6%|▌         | 29/500 [18:49<4:18:25, 32.92s/it]\\\\rMATH-500 eval:   6%|▌         | 30/500 [18:51<3:05:26, 23.67s/it]\\\\rMATH-500 eval:   6%|▌         | 31/500 [18:53<2:14:01, 17.15s/it]\\\\rMATH-500 eval:   6%|▋         | 32/500 [18:54<1:36:52, 12.42s/it]\\\\rMATH-500 eval:   7%|▋         | 33/500 [18:57<1:13:24,  9.43s/it]\\\\rMATH-500 eval:   7%|▋         | 34/500 [19:01<1:01:10,  7.88s/it]\\\\rMATH-500 eval:   7%|▋         | 35/500 [20:34<4:19:31, 33.49s/it]\\\\rMATH-500 eval:   7%|▋         | 36/500 [20:36<3:05:03, 23.93s/it]\\\\rMATH-500 eval:   7%|▋         | 37/500 [20:39<2:16:50, 17.73s/it]\\\\rMATH-500 eval:   8%|▊         | 38/500 [20:41<1:38:57, 12.85s/it]\\\\rMATH-500 eval:   8%|▊         | 39/500 [20:42<1:11:33,  9.31s/it]\\\\rMATH-500 eval:   8%|▊         | 40/500 [22:15<4:23:31, 34.37s/it]\\\\rMATH-500 eval:   8%|▊         |\\\\n\\\\n... [截断: 输出过长，省略 27636 字符] ...\\\\n\\\\n47/500 [3:48:30<40:40, 46.04s/it]\\\\rMATH-500 eval:  90%|████████▉ | 448/500 [3:48:31<28:20, 32.70s/it]\\\\rMATH-500 eval:  90%|████████▉ | 449/500 [3:48:35<20:18, 23.89s/it]\\\\rMATH-500 eval:  90%|█████████ | 450/500 [3:48:37<14:27, 17.36s/it]\\\\rMATH-500 eval:  90%|█████████ | 451/500 [3:48:46<12:10, 14.91s/it]\\\\rMATH-500 eval:  90%|█████████ | 452/500 [3:48:48<08:44, 10.93s/it]\\\\rMATH-500 eval:  91%|█████████ | 453/500 [3:48:51<06:54,  8.82s/it]\\\\rMATH-500 eval:  91%|█████████ | 454/500 [3:48:55<05:38,  7.36s/it]\\\\rMATH-500 eval:  91%|█████████ | 455/500 [3:50:35<26:15, 35.01s/it]\\\\rMATH-500 eval:  91%|█████████ | 456/500 [3:50:38<18:31, 25.27s/it]\\\\rMATH-500 eval:  91%|█████████▏| 457/500 [3:50:47<14:42, 20.53s/it]\\\\rMATH-500 eval:  92%|█████████▏| 458/500 [3:50:48<10:14, 14.62s/it]\\\\rMATH-500 eval:  92%|█████████▏| 459/500 [3:50:50<07:32, 11.03s/it]\\\\rMATH-500 eval:  92%|█████████▏| 460/500 [3:51:01<07:15, 10.89s/it]\\\\rMATH-500 eval:  92%|█████████▏| 461/500 [3:51:03<05:22,  8.26s/it]\\\\rMATH-500 eval:  92%|█████████▏| 462/500 [3:51:06<04:16,  6.75s/it]\\\\rMATH-500 eval:  93%|█████████▎| 463/500 [3:51:11<03:42,  6.01s/it]\\\\rMATH-500 eval:  93%|█████████▎| 464/500 [3:51:12<02:44,  4.57s/it]\\\\rMATH-500 eval:  93%|█████████▎| 465/500 [3:51:16<02:30,  4.31s/it]\\\\rMATH-500 eval:  93%|█████████▎| 466/500 [3:52:49<17:31, 30.93s/it]\\\\rMATH-500 eval:  93%|█████████▎| 467/500 [3:54:26<27:55, 50.76s/it]\\\\rMATH-500 eval:  94%|█████████��| 468/500 [3:54:29<19:26, 36.46s/it]\\\\rMATH-500 eval:  94%|█████████▍| 469/500 [3:54:31<13:28, 26.08s/it]\\\\rMATH-500 eval:  94%|█████████▍| 470/500 [3:54:32<09:19, 18.64s/it]\\\\rMATH-500 eval:  94%|█████████▍| 471/500 [3:56:07<20:02, 41.48s/it]\\\\rMATH-500 eval:  94%|█████████▍| 472/500 [3:56:11<14:05, 30.20s/it]\\\\rMATH-500 eval:  95%|█████████▍| 473/500 [3:56:13<09:51, 21.90s/it]\\\\rMATH-500 eval:  95%|█████████▍| 474/500 [3:56:19<07:23, 17.07s/it]\\\\rMATH-500 eval:  95%|█████████▌| 475/500 [3:56:29<06:13, 14.93s/it]\\\\rMATH-500 eval:  95%|█████████▌| 476/500 [3:58:11<16:27, 41.14s/it]\\\\rMATH-500 eval:  95%|█████████▌| 477/500 [3:58:13<11:17, 29.45s/it]\\\\rMATH-500 eval:  96%|█████████▌| 478/500 [3:58:15<07:43, 21.05s/it]\\\\rMATH-500 eval:  96%|█████████▌| 479/500 [3:59:51<15:17, 43.69s/it]\\\\rMATH-500 eval:  96%|█████████▌| 480/500 [4:01:26<19:39, 58.95s/it]\\\\rMATH-500 eval:  96%|█████████▌| 481/500 [4:03:01<22:07, 69.88s/it]\\\\rMATH-500 eval:  96%|█████████▋| 482/500 [4:03:04<14:52, 49.61s/it]\\\\rMATH-500 eval:  97%|█████████▋| 483/500 [4:03:10<10:25, 36.80s/it]\\\\rMATH-500 eval:  97%|█████████▋| 484/500 [4:04:45<14:25, 54.11s/it]\\\\rMATH-500 eval:  97%|█████████▋| 485/500 [4:06:18<16:29, 65.95s/it]\\\\rMATH-500 eval:  97%|█████████▋| 486/500 [4:08:03<18:06, 77.63s/it]\\\\rMATH-500 eval:  97%|█████████▋| 487/500 [4:08:06<11:57, 55.23s/it]\\\\rMATH-500 eval:  98%|█████████▊| 488/500 [4:08:09<07:51, 39.31s/it]\\\\rMATH-500 eval:  98%|█████████▊| 489/500 [4:08:11<05:09, 28.11s/it]\\\\rMATH-500 eval:  98%|█████████▊| 490/500 [4:09:46<08:02, 48.28s/it]\\\\rMATH-500 eval:  98%|█████████���| 491/500 [4:09:50<05:15, 35.10s/it]\\\\rMATH-500 eval:  98%|█████████▊| 492/500 [4:09:53<03:22, 25.37s/it]\\\\rMATH-500 eval:  99%|█████████▊| 493/500 [4:09:55<02:08, 18.30s/it]\\\\rMATH-500 eval:  99%|█████████▉| 494/500 [4:09:58<01:23, 13.85s/it]\\\\rMATH-500 eval:  99%|█████████▉| 495/500 [4:11:34<03:12, 38.49s/it]\\\\rMATH-500 eval:  99%|█████████▉| 496/500 [4:11:42<01:56, 29.18s/it]\\\\rMATH-500 eval:  99%|█████████▉| 497/500 [4:11:47<01:06, 22.02s/it]\\\\rMATH-500 eval: 100%|█████████▉| 498/500 [4:13:21<01:27, 43.77s/it]\\\\rMATH-500 eval: 100%|█████████▉| 499/500 [4:14:56<00:59, 59.15s/it]\\\\rMATH-500 eval: 100%|██████████| 500/500 [4:16:32<00:00, 69.96s/it]\\\\rMATH-500 eval: 100%|██████████| 500/500 [4:16:32<00:00, 30.78s/it]\\\\n2026-05-24 21:26:37,546 [INFO] MATH-500 Accuracy: 0.2360 +/- 0.0190 (118/500)\\\\n2026-05-24 21:26:37,546 [INFO] EOS Stats: {\\\\n  \\\\\\\"natural_eos\\\\\\\": 356,\\\\n  \\\\\\\"truncated\\\\\\\": 144,\\\\n  \\\\\\\"avg_response_length\\\\\\\": 744.432\\\\n}\\\\n2026-05-24 21:26:37,550 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 17:08:24,699 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\n2026-05-24 17:08:25,387 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-24 17:10:05,383 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=0)\\n2026-05-24 17:10:05,384 [INFO] Loading MATH-500 dataset...\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\n2026-05-24 17:10:05,386 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-24 17:10:05,386 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-24 17:10:05,415 [INFO] Loaded 500 problems\\n2026-05-24 17:10:05,415 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [00:03<25:19,  3.05s/it]\\rMATH-500 eval:   0%|          | 2/500 [01:41<8:10:54, 59.14s/it]\\rMATH-500 eval:   1%|          | 3/500 [03:15<10:22:25, 75.14s/it]\\rMATH-500 eval:   1%|          | 4/500 [03:17<6:21:52, 46.19s/it] \\rMATH-500 eval:   1%|          | 5/500 [03:22<4:19:47, 31.49s/it]\\rMATH-500 eval:   1%|          | 6/500 [03:25<2:57:16, 21.53s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [03:28<2:07:53, 15.56s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [03:33<1:40:20, 12.24s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [03:35<1:14:08,  9.06s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [03:45<1:16:35,  9.38s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [03:47<57:46,  7.09s/it]  \\rMATH-500 eval:   2%|▏         | 12/500 [05:22<4:35:09, 33.83s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [05:27<3:23:44, 25.10s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [05:29<2:26:42, 18.11s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [07:07<5:42:02, 42.31s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [07:13<4:11:04, 31.13s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [07:15<3:00:13, 22.39s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [09:00<6:20:15, 47.33s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [10:41<8:28:43, 63.46s/it]\\rMATH-500 eval:   4%|▍         | 20/500 [12:15<9:41:24, 72.68s/it]\\rMATH-500 eval:   4%|▍         | 21/500 [13:47<10:25:59, 78.41s/it]\\rMATH-500 eval:   4%|▍         | 22/500 [15:20<10:59:25, 82.77s/it]\\rMATH-500 eval:   5%|▍         | 23/500 [15:26<7:54:04, 59.63s/it] \\rMATH-500 eval:   5%|▍         | 24/500 [15:28<5:37:53, 42.59s/it]\\rMATH-500 eval:   5%|▌         | 25/500 [15:31<4:01:47, 30.54s/it]\\rMATH-500 eval:   5%|▌         | 26/500 [17:07<6:36:59, 50.25s/it]\\rMATH-500 eval:   5%|▌         | 27/500 [18:42<8:20:47, 63.53s/it]\\rMATH-500 eval:   6%|▌         | 28/500 [18:46<6:00:17, 45.80s/it]\\rMATH-500 eval:   6%|▌         | 29/500 [18:49<4:18:25, 32.92s/it]\\rMATH-500 eval:   6%|▌         | 30/500 [18:51<3:05:26, 23.67s/it]\\rMATH-500 eval:   6%|▌         | 31/500 [18:53<2:14:01, 17.15s/it]\\rMATH-500 eval:   6%|▋         | 32/500 [18:54<1:36:52, 12.42s/it]\\rMATH-500 eval:   7%|▋         | 33/500 [18:57<1:13:24,  9.43s/it]\\rMATH-500 eval:   7%|▋         | 34/500 [19:01<1:01:10,  7.88s/it]\\rMATH-500 eval:   7%|▋         | 35/500 [20:34<4:19:31, 33.49s/it]\\rMATH-500 eval:   7%|▋         | 36/500 [20:36<3:05:03, 23.93s/it]\\rMATH-500 eval:   7%|▋         | 37/500 [20:39<2:16:50, 17.73s/it]\\rMATH-500 eval:   8%|▊         | 38/500 [20:41<1:38:57, 12.85s/it]\\rMATH-500 eval:   8%|▊         | 39/500 [20:42<1:11:33,  9.31s/it]\\rMATH-500 eval:   8%|▊         | 40/500 [22:15<4:23:31, 34.37s/it]\\rMATH-500 eval:   8%|▊         |\\n\\n... [截断: 输出过长，省略 27636 字符] ...\\n\\n47/500 [3:48:30<40:40, 46.04s/it]\\rMATH-500 eval:  90%|████████▉ | 448/500 [3:48:31<28:20, 32.70s/it]\\rMATH-500 eval:  90%|████████▉ | 449/500 [3:48:35<20:18, 23.89s/it]\\rMATH-500 eval:  90%|█████████ | 450/500 [3:48:37<14:27, 17.36s/it]\\rMATH-500 eval:  90%|█████████ | 451/500 [3:48:46<12:10, 14.91s/it]\\rMATH-500 eval:  90%|█████████ | 452/500 [3:48:48<08:44, 10.93s/it]\\rMATH-500 eval:  91%|█████████ | 453/500 [3:48:51<06:54,  8.82s/it]\\rMATH-500 eval:  91%|█████████ | 454/500 [3:48:55<05:38,  7.36s/it]\\rMATH-500 eval:  91%|█████████ | 455/500 [3:50:35<26:15, 35.01s/it]\\rMATH-500 eval:  91%|█████████ | 456/500 [3:50:38<18:31, 25.27s/it]\\rMATH-500 eval:  91%|█████████▏| 457/500 [3:50:47<14:42, 20.53s/it]\\rMATH-500 eval:  92%|█████████▏| 458/500 [3:50:48<10:14, 14.62s/it]\\rMATH-500 eval:  92%|█████████▏| 459/500 [3:50:50<07:32, 11.03s/it]\\rMATH-500 eval:  92%|█████████▏| 460/500 [3:51:01<07:15, 10.89s/it]\\rMATH-500 eval:  92%|█████████▏| 461/500 [3:51:03<05:22,  8.26s/it]\\rMATH-500 eval:  92%|█████████▏| 462/500 [3:51:06<04:16,  6.75s/it]\\rMATH-500 eval:  93%|█████████▎| 463/500 [3:51:11<03:42,  6.01s/it]\\rMATH-500 eval:  93%|█████████▎| 464/500 [3:51:12<02:44,  4.57s/it]\\rMATH-500 eval:  93%|█████████▎| 465/500 [3:51:16<02:30,  4.31s/it]\\rMATH-500 eval:  93%|█████████▎| 466/500 [3:52:49<17:31, 30.93s/it]\\rMATH-500 eval:  93%|█████████▎| 467/500 [3:54:26<27:55, 50.76s/it]\\rMATH-500 eval:  94%|█████████��| 468/500 [3:54:29<19:26, 36.46s/it]\\rMATH-500 eval:  94%|█████████▍| 469/500 [3:54:31<13:28, 26.08s/it]\\rMATH-500 eval:  94%|█████████▍| 470/500 [3:54:32<09:19, 18.64s/it]\\rMATH-500 eval:  94%|█████████▍| 471/500 [3:56:07<20:02, 41.48s/it]\\rMATH-500 eval:  94%|█████████▍| 472/500 [3:56:11<14:05, 30.20s/it]\\rMATH-500 eval:  95%|█████████▍| 473/500 [3:56:13<09:51, 21.90s/it]\\rMATH-500 eval:  95%|█████████▍| 474/500 [3:56:19<07:23, 17.07s/it]\\rMATH-500 eval:  95%|█████████▌| 475/500 [3:56:29<06:13, 14.93s/it]\\rMATH-500 eval:  95%|█████████▌| 476/500 [3:58:11<16:27, 41.14s/it]\\rMATH-500 eval:  95%|█████████▌| 477/500 [3:58:13<11:17, 29.45s/it]\\rMATH-500 eval:  96%|█████████▌| 478/500 [3:58:15<07:43, 21.05s/it]\\rMATH-500 eval:  96%|█████████▌| 479/500 [3:59:51<15:17, 43.69s/it]\\rMATH-500 eval:  96%|█████████▌| 480/500 [4:01:26<19:39, 58.95s/it]\\rMATH-500 eval:  96%|█████████▌| 481/500 [4:03:01<22:07, 69.88s/it]\\rMATH-500 eval:  96%|█████████▋| 482/500 [4:03:04<14:52, 49.61s/it]\\rMATH-500 eval:  97%|█████████▋| 483/500 [4:03:10<10:25, 36.80s/it]\\rMATH-500 eval:  97%|█████████▋| 484/500 [4:04:45<14:25, 54.11s/it]\\rMATH-500 eval:  97%|█████████▋| 485/500 [4:06:18<16:29, 65.95s/it]\\rMATH-500 eval:  97%|█████████▋| 486/500 [4:08:03<18:06, 77.63s/it]\\rMATH-500 eval:  97%|█████████▋| 487/500 [4:08:06<11:57, 55.23s/it]\\rMATH-500 eval:  98%|█████████▊| 488/500 [4:08:09<07:51, 39.31s/it]\\rMATH-500 eval:  98%|█████████▊| 489/500 [4:08:11<05:09, 28.11s/it]\\rMATH-500 eval:  98%|█████████▊| 490/500 [4:09:46<08:02, 48.28s/it]\\rMATH-500 eval:  98%|█████████���| 491/500 [4:09:50<05:15, 35.10s/it]\\rMATH-500 eval:  98%|█████████▊| 492/500 [4:09:53<03:22, 25.37s/it]\\rMATH-500 eval:  99%|█████████▊| 493/500 [4:09:55<02:08, 18.30s/it]\\rMATH-500 eval:  99%|█████████▉| 494/500 [4:09:58<01:23, 13.85s/it]\\rMATH-500 eval:  99%|█████████▉| 495/500 [4:11:34<03:12, 38.49s/it]\\rMATH-500 eval:  99%|█████████▉| 496/500 [4:11:42<01:56, 29.18s/it]\\rMATH-500 eval:  99%|█████████▉| 497/500 [4:11:47<01:06, 22.02s/it]\\rMATH-500 eval: 100%|█████████▉| 498/500 [4:13:21<01:27, 43.77s/it]\\rMATH-500 eval: 100%|█████████▉| 499/500 [4:14:56<00:59, 59.15s/it]\\rMATH-500 eval: 100%|██████████| 500/500 [4:16:32<00:00, 69.96s/it]\\rMATH-500 eval: 100%|██████████| 500/500 [4:16:32<00:00, 30.78s/it]\\n2026-05-24 21:26:37,546 [INFO] MATH-500 Accuracy: 0.2360 +/- 0.0190 (118/500)\\n2026-05-24 21:26:37,546 [INFO] EOS Stats: {\\n  \\\"natural_eos\\\": 356,\\n  \\\"truncated\\\": 144,\\n  \\\"avg_response_length\\\": 744.432\\n}\\n2026-05-24 21:26:37,550 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T13:28:08.983Z_
+
+<details><summary>↩ Tool result · `toolu_018uf8Sq7tc9xcAkTPDeiqJj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 147352 May 24 21:26 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "930fa008-22e9-4ede-a45a-41d0f3559195",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 147352 May 24 21:26 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 147352 May 24 21:26 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The eval completed successfully. Key results:
+- MATH-500 Accuracy: 0.2360 ± 0.0190 (118/500)
+- EOS Stats: natural_eos: 356, truncated: 144, avg_response_length: 744.432
+- Results saved to the expected JSON file
+- Total eval time: ~4h16m
+
+Now I need to:
+1. Update registry with success
+2. Delete the cron
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "09f40c49-5f96-46ae-942c-76d37065edb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLgCz5t5Hp8VxG2BPny5Dr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5391,
+      "cache_read_input_tokens": 25384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Eval 成功完成。Accuracy: **23.60%** (118/500)。
+
+更新 registry 并清除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "a8468979-58cb-49a9-ae7c-7dce8064314d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLgCz5t5Hp8VxG2BPny5Dr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5391,
+      "cache_read_input_tokens": 25384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017SgTNbJXiA7XhCCyjzDoHt`</summary>
+
+```json
+{
+  "query": "select:CronDelete",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "31c1fc9c-0653-4f31-89fa-d6c0fec20f60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLgCz5t5Hp8VxG2BPny5Dr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5391,
+      "cache_read_input_tokens": 25384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5391
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T13:28:15.199Z_
+
+<details><summary>↩ Tool result · `toolu_017SgTNbJXiA7XhCCyjzDoHt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "c3e48a6e-9506-4328-a991-f44d9e67196c",
+  "tool_use_result": {
+    "matches": [
+      "CronDelete"
+    ],
+    "query": "select:CronDelete",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AsqfrMQDnB9UMg6gd2pDSD`</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_rasp_alpha3p0_20_fixed_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "c10a3d5c-25d9-464f-a08d-e8651fb87a56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1zXvff8SqBL98LicFwQ5H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 372,
+      "cache_read_input_tokens": 30775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 372
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T13:28:19.971Z_
+
+<details><summary>↩ Tool result · `toolu_01AsqfrMQDnB9UMg6gd2pDSD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.9405}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "69a1452b-7c36-4097-a21e-ce8440c8761d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9405}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.9405}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016iw9E1atGrrTzUBU4Qmy67`</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_rasp_alpha3p0_20_fixed_v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "09e04232-4172-43b2-b6e1-01b169b19c17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015A2abVEhVe86rEoHZA3dXw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 216,
+      "cache_read_input_tokens": 31147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 216
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T13:28:27.108Z_
+
+<details><summary>↩ Tool result · `toolu_016iw9E1atGrrTzUBU4Qmy67`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T09:07:56.362Z\", \"updated_at\": \"2026-05-24T13:28:26.372Z\", \"hypothesis\": \"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"370519\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"sft_rasp_alpha3p0_20\", \"eval_data\": \"MATH-500\", \"model_name\": \"sft_rasp_alpha3p0_20\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7253}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "d92e8720-52f3-4eb7-8170-e2ffdf487aab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T09:07:56.362Z\\\", \\\"updated_at\\\": \\\"2026-05-24T13:28:26.372Z\\\", \\\"hypothesis\\\": \\\"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"370519\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"model_name\\\": \\\"sft_rasp_alpha3p0_20\\\", \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7253}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T09:07:56.362Z\", \"updated_at\": \"2026-05-24T13:28:26.372Z\", \"hypothesis\": \"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"370519\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"sft_rasp_alpha3p0_20\", \"eval_data\": \"MATH-500\", \"model_name\": \"sft_rasp_alpha3p0_20\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7253}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Lmqrjm1nh1pZsSrEyf91FN`</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_rasp_alpha3p0_20_fixed_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "d6030960-7592-428c-b083-53337e03dc8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Rs3YnFJYdMCrEQ8T2wUhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 31363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — CronDelete · `toolu_01JeMbTmtKNTyfgKRSFTDp62`</summary>
+
+```json
+{
+  "id": "eval_math500_sft_rasp_alpha3p0_20_fixed_v2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "1384e4da-f0c7-42d2-b57d-a74221ca3420",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Rs3YnFJYdMCrEQ8T2wUhA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 31363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 742
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T13:28:30.788Z_
+
+<details><summary>↩ Tool result · `toolu_01Lmqrjm1nh1pZsSrEyf91FN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 1.0155}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "34d329f4-a1cf-4513-9c4e-6be5660bebe4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0155}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 1.0155}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T13:28:30.790Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01JeMbTmtKNTyfgKRSFTDp62`</summary>
+
+```text
+&lt;tool_use_error>No scheduled job with id 'eval_math500_sft_rasp_alpha3p0_20_fixed_v2'&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "6601dc2e-1b92-4f0f-b80f-26eb32bc8757",
+  "tool_use_result": "Error: No scheduled job with id 'eval_math500_sft_rasp_alpha3p0_20_fixed_v2'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DTeyQVvNaVSyZsk78h1WkW`</summary>
+
+```json
+{
+  "query": "select:CronList",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "93f6edea-e505-4013-8b5d-e9fd185d689c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vd4QUGwKCaHkHHVChoe7Ds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 380,
+      "cache_read_input_tokens": 32105,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 380
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T13:28:32.890Z_
+
+<details><summary>↩ Tool result · `toolu_01DTeyQVvNaVSyZsk78h1WkW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronList"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "14bffefe-4807-4855-b313-5fad3f66f40f",
+  "tool_use_result": {
+    "matches": [
+      "CronList"
+    ],
+    "query": "select:CronList",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PFjkYsFKCSxfMRypb8tGq2`</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_rasp_alpha3p0_20_fixed_v2",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "63f89ae4-456b-4ed6-a7e7-e1c6c863b1e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vd4QUGwKCaHkHHVChoe7Ds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 380,
+      "cache_read_input_tokens": 32105,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 380
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T13:28:36.176Z_
+
+<details><summary>↩ Tool result · `toolu_01PFjkYsFKCSxfMRypb8tGq2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T09:07:56.362Z\", \"updated_at\": \"2026-05-24T13:28:35.341Z\", \"hypothesis\": \"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"370519\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"sft_rasp_alpha3p0_20\", \"eval_data\": \"MATH-500\", \"model_name\": \"sft_rasp_alpha3p0_20\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9647}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "72d6688d-2cb5-4997-8683-c35d58749e39",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T09:07:56.362Z\\\", \\\"updated_at\\\": \\\"2026-05-24T13:28:35.341Z\\\", \\\"hypothesis\\\": \\\"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"370519\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"model_name\\\": \\\"sft_rasp_alpha3p0_20\\\", \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9647}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T09:07:56.362Z\", \"updated_at\": \"2026-05-24T13:28:35.341Z\", \"hypothesis\": \"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"370519\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"sft_rasp_alpha3p0_20\", \"eval_data\": \"MATH-500\", \"model_name\": \"sft_rasp_alpha3p0_20\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9647}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011EGn9TRYdLbSWfLsqpyr1h`</summary>
+
+```json
+{
+  "exp_id": "eval_math500_sft_rasp_alpha3p0_20_fixed_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "26746e8b-d57a-438c-be19-d29ad9c4a02b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K21ZzgEr5vDxvYUgVXq3aB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1136,
+      "cache_read_input_tokens": 32485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1136
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — CronList · `toolu_01FYZBcfkRev34b2zLX5hVzD`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "17249e45-cb0f-481a-8caa-1c485e31ab2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K21ZzgEr5vDxvYUgVXq3aB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1136,
+      "cache_read_input_tokens": 32485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1136
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-24T13:28:43.291Z_
+
+<details><summary>↩ Tool result · `toolu_011EGn9TRYdLbSWfLsqpyr1h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T09:07:56.362Z\", \"updated_at\": \"2026-05-24T13:28:41.011Z\", \"hypothesis\": \"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"370519\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"sft_rasp_alpha3p0_20\", \"eval_data\": \"MATH-500\", \"model_name\": \"sft_rasp_alpha3p0_20\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\", \"completed_at\": \"2026-05-24T13:28:41.011Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.3044}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "a5d181a7-f912-4aec-9239-4e8ee0a82eb8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T09:07:56.362Z\\\", \\\"updated_at\\\": \\\"2026-05-24T13:28:41.011Z\\\", \\\"hypothesis\\\": \\\"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"370519\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"model_name\\\": \\\"sft_rasp_alpha3p0_20\\\", \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\\\", \\\"completed_at\\\": \\\"2026-05-24T13:28:41.011Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3044}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_math500_sft_rasp_alpha3p0_20_fixed_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T09:07:56.362Z\", \"updated_at\": \"2026-05-24T13:28:41.011Z\", \"hypothesis\": \"SFT RASP α=3.0 20% model MATH-500 accuracy with fixed eval script. Dose-response curve data point for high-alpha regime. Resubmit after v1 hung.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json --seed 42 --dtype bfloat16\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"370519\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"sft_rasp_alpha3p0_20\", \"eval_data\": \"MATH-500\", \"model_name\": \"sft_rasp_alpha3p0_20\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"seed\": 42}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20_fixed.json\", \"completed_at\": \"2026-05-24T13:28:41.011Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.3044}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T13:28:43.294Z_
+
+<details><summary>↩ Tool result · `toolu_01FYZBcfkRev34b2zLX5hVzD`</summary>
+
+```text
+No scheduled jobs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "c70261a6-b5f2-4178-ba79-7ec06b68a87a",
+  "tool_use_result": {
+    "jobs": []
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+Registry 已更新为 DONE/success，cron 已无活跃任务（已被之前的触发自动清除）。
+
+**结果**: `eval_math500_sft_rasp_alpha3p0_20_fixed_v2` 成功完成。
+- **MATH-500 Accuracy: 23.60% (118/500)**, 95% CI ±1.90%
+- EOS: 356 natural, 144 truncated, avg response length 744.4 tokens
+- 耗时 ~4h17m
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "uuid": "6eb37c0e-d540-4dca-9e14-23dfd37a14e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01733RyJVvqdsucXBiZYzivW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 33621,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 34_
+
+Registry 已更新为 DONE/success，cron 已无活跃任务（已被之前的触发自动清除）。
+
+**结果**: `eval_math500_sft_rasp_alpha3p0_20_fixed_v2` 成功完成。
+- **MATH-500 Accuracy: 23.60% (118/500)**, 95% CI ±1.90%
+- EOS: 356 natural, 144 truncated, avg response length 744.4 tokens
+- 耗时 ~4h17m
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 56801,
+  "duration_api_ms": 45581,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "ec570749-8cd4-4b59-ac58-2a5730b1e976",
+  "total_cost_usd": 0.31212225000000005,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 22681,
+    "cache_read_input_tokens": 253152,
+    "output_tokens": 1682,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22681,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 143,
+        "cache_read_input_tokens": 33621,
+        "cache_creation_input_tokens": 901,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 901
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1565,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00166,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 1682,
+      "cacheReadInputTokens": 253152,
+      "cacheCreationInputTokens": 22681,
+      "webSearchRequests": 0,
+      "costUSD": 0.31046225000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "faa0b65f-f6a2-462a-a960-640a2a905baa"
+}
+```
+
+</details>
+
+---

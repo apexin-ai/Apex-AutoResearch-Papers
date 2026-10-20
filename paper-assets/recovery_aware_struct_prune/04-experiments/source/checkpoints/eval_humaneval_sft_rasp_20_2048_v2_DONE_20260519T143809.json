@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_humaneval_sft_rasp_20_2048_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:18:20.664Z",
+    "updated_at": "2026-05-19T14:38:08.967Z",
+    "hypothesis": "SFT RASP 20% HumanEval v2 (方法论对齐 v3 Standard)。v1 结果 10.37% (17/164) 有 truncation 问题。用最新 eval script 重跑以确保公平对比。Compare with SFT Standard v3 (~16%) and SFT CKA-only (20.12%).",
+    "parent": "eval_humaneval_sft_rasp_20_2048",
+    "spec": {
+      "server": "westd-29022",
+      "gpu": "cuda:1",
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_rasp_20_2048_v2.json",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "model_name": "sft_rasp_20_westd",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd",
+      "eval_data": "HumanEval",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_rasp_20_2048_v2.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_rasp_20_2048_v2.json",
+      "pid": "107932"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pass_at_1": 0.1037,
+      "stderr": 0.0238,
+      "n_correct": 17,
+      "n_total": 164,
+      "avg_response_length": 1253.7,
+      "median_response_length": 2048
+    },
+    "completed_at": "2026-05-19T14:36:48.406Z"
+  },
+  "timestamp": "2026-05-19T14:38:09.387163+00:00",
+  "trigger": "update_registry"
+}

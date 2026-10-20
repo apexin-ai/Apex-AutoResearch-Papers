@@ -1,0 +1,69 @@
+{
+  "exp_id": "grpo_standard_qwen_math_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:49:42.896Z",
+    "updated_at": "2026-05-16T15:50:15.072Z",
+    "spec": {
+      "command": "GRPO v4 Standard 20% sparsity v3 100 steps",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "16892",
+      "log_path": "/root/runs/recovery_aware_struct_prune/grpo_standard_qwen_math_v3.log",
+      "submitted_at": "2026-05-16T14:49:42.407Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "Qwen2.5-Math-7B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math",
+      "wandb_run_id": "5n2snh48",
+      "wall_clock_seconds": 3632.7,
+      "gpu_hours": 1.01
+    },
+    "hypothesis": "Qwen2.5-Math-7B Standard 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C2: Standard collapse gradient. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_standard_20.",
+    "reproduce": {
+      "finished_at": "2026-05-16T15:43:42.910Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T15:43:46.610010+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "reward_final": 0.044,
+      "reward_std_final": 0.1458,
+      "frac_zero_std_final": 0.85,
+      "completion_length_final": 921,
+      "kl_final": 0.005193,
+      "loss_final": -0.01208,
+      "reward_peak": 0.069,
+      "frac_zero_std_min": 0.75,
+      "frac_zero_std_max": 0.9,
+      "clipped_ratio_final": 0.856,
+      "collapse_pattern": "permanent_collapse",
+      "collapse_onset": "step1",
+      "recovery": false,
+      "total_steps": 100,
+      "max_steps_reached": true
+    },
+    "wandb_run_id": "5n2snh48",
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math/",
+    "completed_at": "2026-05-16T15:50:15.072Z"
+  },
+  "timestamp": "2026-05-16T15:50:15.354465+00:00",
+  "trigger": "update_registry"
+}

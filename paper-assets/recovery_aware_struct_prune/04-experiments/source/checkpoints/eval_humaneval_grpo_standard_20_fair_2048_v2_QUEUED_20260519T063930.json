@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_humaneval_grpo_standard_20_fair_2048_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:39:01.302Z",
+    "updated_at": "2026-05-19T06:39:30.234Z",
+    "hypothesis": "HumanEval pass@1 for GRPO Standard 20% (fair model) with max_new_tokens=2048. Retry of v1 which failed due to wrong path (grpo_standard_20_fair vs grpo_stage2_standard_20_fair). Fair comparison with CKA-only/RASP.",
+    "parent": "eval_humaneval_grpo_standard_20_fair_2048"
+  },
+  "timestamp": "2026-05-19T06:39:30.944717+00:00",
+  "trigger": "update_registry"
+}

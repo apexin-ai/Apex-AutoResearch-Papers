@@ -1,0 +1,43 @@
+{
+  "exp_id": "grpo_unpruned_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:45:10.586Z",
+    "updated_at": "2026-05-16T01:58:25.249Z",
+    "hypothesis": "D043+ Unpruned GRPO v2 (D041 fix) — 修复 v1 设计缺陷（无 SFT 步骤）。使用 sft_unpruned_baseline checkpoint (84% N=100, loss=0.332) → GRPO，与 v8 完全相同参数 (8-bit AdamW, max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, lr=1e-6, max_steps=100, save_steps=5)。三模型 collapse dynamics 最后一块拼图：RASP ~step10, Standard ~step60, Unpruned ?。如果 Unpruned collapse 显著晚于 pruned models → 确立 pruning-specificity (Claim 1/2)。如果 Unpruned 也快速 collapse → GRPO 方法本身问题，需重新 frame。Parent: sft_unpruned_baseline.",
+    "parent": "sft_unpruned_baseline",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && export CUDA_VISIBLE_DEVICES=1 && export WANDB_PROJECT=recovery_aware_struct_prune && cd /root/recovery_aware_struct_prune && /root/miniconda3/bin/python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/ --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_steps 5 --save_total_limit 10 --run_name grpo_unpruned_v2\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "75376",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_unpruned_v2.log",
+      "submitted_at": "2026-05-16T01:48:36.860Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-11672",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-11672",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-16T01:47:46.093Z",
+      "finished_at": "2026-05-16T01:58:24.755Z",
+      "training_hours": 0.18
+    },
+    "wandb_run_id": "nhsx0bt2",
+    "notes": "PID 75381 on westd cuda:1 (first attempt PID 74579 failed due to missing wandb credentials, restarted). VRAM 44836 MiB. tmux session: grpo_unpruned_v2. output_dir: /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2. Disk cleaned to 141GB free before launch. Config: beta=0.01, loss=dapo, lr=1e-6, temp=0.4, rep_pen=1.15, format_reward=0.1, max_steps=100, save_steps=5, save_total_limit=10.",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T01:58:25.357066+00:00",
+  "trigger": "update_registry"
+}

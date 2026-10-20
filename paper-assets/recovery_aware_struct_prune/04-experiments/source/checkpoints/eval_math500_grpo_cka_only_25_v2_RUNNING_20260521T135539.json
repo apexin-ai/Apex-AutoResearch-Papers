@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_math500_grpo_cka_only_25_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:54:50.310Z",
+    "updated_at": "2026-05-21T13:55:38.864Z",
+    "hypothesis": "CKA-only 25% GRPO model MATH-500 @2048 accuracy for cross-benchmark validation, re-run with correct max_new_tokens=2048 for consistency with 20% data",
+    "parent": "eval_math500_grpo_cka_only_25",
+    "spec": {
+      "command": "nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/recovery_aware_struct_prune/src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_25_v2 --seed 42 --max_new_tokens 2048' > /root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_25_v2/eval_math500_grpo_cka_only_25_v2.log 2>&1 &",
+      "server": "westd-29022",
+      "gpu": "cuda:0",
+      "pid": 379999,
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B CKA-only 25% GRPO",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25",
+      "seed": 42,
+      "checkpoint_source": "grpo_cka_only_25",
+      "eval_data": "MATH-500",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_25_v2/eval_math500_grpo_cka_only_25_v2.log"
+    }
+  },
+  "timestamp": "2026-05-21T13:55:39.405951+00:00",
+  "trigger": "update_registry"
+}

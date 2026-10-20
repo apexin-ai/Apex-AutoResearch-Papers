@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_20_seed456_full",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:27:05.741Z",
+    "updated_at": "2026-05-20T13:38:33.955Z",
+    "hypothesis": "GSM8K N=1319 full eval on Standard GRPO seed=456. N=200 quick eval showed 66.50% (133/200), exceeding CKA-only's 64.37%. Seed=42 full eval: 59.44% (784/1319). Full eval to determine if seed456's high accuracy holds or is small-sample noise (N=200 95% CI ≈ ±6.5pp).",
+    "parent": "grpo_standard_20_seed456",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed456 --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed456_n1319.json",
+      "server": "westd-29022",
+      "gpu": "cuda:3",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "model_name": "grpo_standard_20_seed456",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed456",
+      "eval_data": "GSM8K test (N=1319)"
+    },
+    "metrics": {
+      "accuracy": 0.602,
+      "n_correct": 794,
+      "n_total": 1319,
+      "stderr": 0.01348,
+      "eos_rate": 0.9856
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T13:38:34.565490+00:00",
+  "trigger": "update_registry"
+}

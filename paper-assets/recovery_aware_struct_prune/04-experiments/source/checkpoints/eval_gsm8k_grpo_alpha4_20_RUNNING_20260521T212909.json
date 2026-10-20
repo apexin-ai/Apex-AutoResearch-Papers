@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_gsm8k_grpo_alpha4_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:27:31.038Z",
+    "updated_at": "2026-05-21T21:29:09.294Z",
+    "hypothesis": "α=4.0 GRPO GSM8K accuracy (N=1319). If comparable to CKA-only/Standard GRPO (~60-64%), proves α=4.0 avoids RASP collapse. If near-zero like α=1.0 RASP, confirms collapse is structural.",
+    "parent": "grpo_alpha4_20",
+    "spec": {
+      "command": "bash -c \"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100 --n_samples 1319\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "412988",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha4_20.log",
+      "submitted_at": "2026-05-21T19:28:24.342Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "model_name": "grpo_alpha4_20 checkpoint-100",
+      "seed": 42,
+      "checkpoint_source": "grpo_alpha4_20",
+      "eval_data": "gsm8k"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T21:29:05.975Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T21:29:09.861477+00:00",
+  "trigger": "update_registry"
+}

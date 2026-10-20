@@ -1,0 +1,46 @@
+{
+  "exp_id": "grpo_rasp_20_4096",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:43:12.378Z",
+    "updated_at": "2026-05-14T23:34:15.379Z",
+    "hypothesis": "D010: RASP-pruned model (20% sparsity, post-prune 29% GSM8K) GRPO recovery with max_completion_length=4096 (fix D009 truncation). Core MVP experiment — if recovery succeeds, RASP structure selection enables RLVR recovery that standard pruning cannot.",
+    "parent": "mvp_rasp_pipeline_v4",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/train_grpo.py --model_path /root/autodl-tmp/pruned_rasp_20 --output_dir /root/autodl-tmp/recovered_rasp_20_4096 --gpu 0 --max_completion_length 4096 --num_train_epochs 1 --max_samples 2000 --learning_rate 1e-6 --save_total_limit 2 --save_steps 200 --reward_desert_patience 50",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "244606",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_rasp_20_4096.log",
+      "submitted_at": "2026-05-14T22:57:45.983Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "pruned_rasp_20",
+      "model_path": "/root/autodl-tmp/pruned_rasp_20",
+      "output_dir": "/root/autodl-tmp/recovered_rasp_20_4096",
+      "data_path": "gsm8k",
+      "data_count": 2000,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pruned_rasp_20",
+      "eval_data": "gsm8k",
+      "hyperparams": {
+        "max_completion_length": 4096,
+        "num_train_epochs": 1,
+        "max_train_samples": 2000,
+        "reward_desert_patience": 50,
+        "learning_rate": 1e-06,
+        "save_steps": 200
+      }
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T23:34:15.432633+00:00",
+  "trigger": "update_registry"
+}

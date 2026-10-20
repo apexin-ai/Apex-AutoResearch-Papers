@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03b61ceb68557ed6ab8a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research pruning rl stability literature",
+  "task_key": "worker_research_pruning-rl-stability-literature_20260515T185938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_pruning-rl-stability-literature_20260515T185938_result.json",
+    "occurrence": 1,
+    "bytes": 1734,
+    "sha256": "618bbbfdb9464e03699651d90b89258a43616ebb52129515e0b2a5bffa17c8cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `memory.md`。以下是核心结论：\n\n---\n\n## 搜索结果总结\n\n### 1. 是否有直接先例（pruning → RL collapse）\n\n**没有。** 这是文献空白。现有工作分布在两个不相交的方向：\n- GRPO/RL 本身的 instability 研究（GSPO, DVP）—— 不涉及 pruning\n- Pruning → recovery 研究 —— 只考察 SFT/perplexity，不涉及后续 RL 阶段\n- Sparsity helps RL 研究（ICML 2024/2025）—— 方向相反，发现 sparsity **有利于** RL\n\n**\"structured pruning → GRPO collapse，且不同 pruning strategy 有不同 RL stability\"在文献中完全没有。**\n\n### 2. \"Pruning for Plasticity\" Framing 新颖性\n\n**中高。** \"Pruning plasticity\"术语已存在（NeurIPS 2021），\"sparsity → plasticity in RL\"有扎实支撑（ICML 2024/2025）。但组合为 **\"pruning strategy determines LLM's RL plasticity\"** 是新的，特别是 RASP vs Standard 的差异行为。\n\n### 3. Top 3 推荐引用\n\n| # | 论文 | 理由 |\n|---|------|------|\n| 1 | **Obando-Ceron et al. (ICML 2024)** \"In value-based deep RL, a pruned network is a good network\" | 建立 pruning → plasticity → RL 因果链 |\n| 2 | **Ma et al. (ICML 2025 Oral)** \"Network Sparsity Unlocks the Scaling Potential of Deep RL\" | sparsity helps RL 的最强证据；我们补充 nuance |\n| 3 | **Zheng et al. (2025)** \"GSPO\" | 解释 GRPO collapse 算法根因；我们 show pruned models 更 susceptible |\n\n共发现 14 篇相关论文，详细分析已保存。最关键的 insight：现有文献一致发现 sparsity **有利于** RL plasticity，但没有人区分过 pruning **strategy** 的影响 —— 这正是 RASP 的贡献空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pruning-rl-stability-literature.md"
+}

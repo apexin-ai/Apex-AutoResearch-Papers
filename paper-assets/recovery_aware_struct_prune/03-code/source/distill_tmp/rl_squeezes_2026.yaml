@@ -1,0 +1,83 @@
+paper_key: "rl_squeezes_2026"
+title: "RL Squeezes, SFT Expands: Different Mechanisms in Post-Training"
+venue: "ICLR 2026 Poster"
+full_text_available: true
+
+research:
+  baselines: [base models (post-pretraining), SFT-only, RL-only, SFT+RL]
+  metrics:
+    - {name: "Pass@k (k=1,4,16,64)", direction: "higher_better"}
+    - {name: "chrF similarity", direction: "context_dependent"}
+    - {name: "graph topology metrics (modularity, centralization, efficiency)", direction: "context_dependent"}
+    - {name: "exponential decay rate β", direction: "context_dependent"}
+  datasets:
+    - {name: "AIME24", size: "math competition"}
+    - {name: "AIME25", size: "math competition"}
+    - {name: "AMC23", size: "math competition"}
+  ablation_dimensions: [training method (base/SFT/RL/SFT+RL), model scale (1.5B/7B/14B), trajectory vs step level analysis]
+  training_recipe: {optimizer: "N/A (analysis paper)", lr: "N/A", hardware: "N/A", sampling: "T=0.6, top_p=0.95, 256 samples/problem, 16K max tokens"}
+  method_family: "mechanistic analysis of post-training methods"
+
+positioning:
+  core_claim: "RL and SFT operate through complementary mechanisms: RL compresses incorrect trajectories (squeezing), SFT expands correct trajectories (expanding); this explains why SFT→RL is the optimal training sequence"
+  key_results: "RL concentrates reasoning into ~2.5x fewer hub nodes; SFT distributes across ~3x more nodes; SFT+RL achieves best Pass@1"
+  limitations: ["Focus limited to verifiable mathematical domains", "No distribution shift analysis", "Dataset composition effects unexplored"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "SFT then RL is the standard recipe, but why does this order work?"
+  tension: "Both methods improve reasoning, but through what mechanism?"
+  key_insight: "RL squeezes (compresses incorrect paths), SFT expands (adds correct paths)—complementary, not redundant"
+  argument_chain: "question (why SFT→RL?) → trajectory analysis (compress vs expand) → step-level graph analysis (hub vs distributed) → topology confirmation → conclusion (complementary mechanisms)"
+  contribution_framing: "3 contributions: trajectory analysis, step-level graph analysis, global topology analysis"
+  intro_structure: "~4 paragraphs: SFT+RL success → mechanism question → analysis approach → contributions"
+  notable_technique: "Metaphorical framing (squeeze/expand) that creates memorable mental model; graph analysis brings rigor to what could be hand-wavy"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "teaser_result"
+    description: "Overview showing RL squeezing and SFT expanding reasoning trajectories"
+    narrative_role: "Immediately communicates the core finding visually"
+    design_elements: ["trajectory distribution visualization", "squeeze/expand metaphor", "before/after comparison"]
+    visual_style: "Conceptual diagram with trajectory space visualization"
+  result_figures:
+    - figure_id: "trajectory cluster figures"
+      viz_type: "scatter"
+      what_compared: "Correct vs incorrect trajectory clusters across training methods"
+      how_gain_highlighted: "Color-coded clusters showing compression/expansion"
+      design_note: "Visual evidence of the squeeze/expand mechanism"
+    - figure_id: "graph topology figures"
+      viz_type: "heatmap"
+      what_compared: "Graph topology metrics across models and training methods"
+      how_gain_highlighted: "Clear patterns in modularity, centralization"
+      design_note: "Quantitative backing for qualitative claims"
+  ablation_figures:
+    - figure_id: "decay rate figures"
+      viz_type: "line_plot"
+      dimensions_varied: ["training method", "model scale"]
+      design_note: "β values showing consistent squeeze pattern across scales"
+  figure_narrative_role: "Teaser (squeeze/expand) → Trajectory clusters → Decay rates → Graph topology → Graphlet analysis"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Pass@k table"
+    row_axis: "models × training methods"
+    col_axis: "k values × datasets"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "256 samples per problem"
+    num_baselines: 4
+    design_note: "Pass@k at multiple k values reveals the mechanism: base models dominate at high k, RL dominates at k=1"
+  ablation_tables:
+    - table_id: "topology metrics"
+      what_varied: ["8 graph topology metrics"]
+      variation_style: "full_numbers"
+      design_note: "Comprehensive topology characterization"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-model detailed results, embedding analysis"
+    reason: "Main text focuses on the mechanism story; appendix provides statistical detail"

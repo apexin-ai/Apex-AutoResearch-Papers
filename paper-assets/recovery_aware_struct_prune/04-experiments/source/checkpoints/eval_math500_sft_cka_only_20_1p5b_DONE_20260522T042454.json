@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:30:44.919Z",
+    "updated_at": "2026-05-22T04:24:53.356Z",
+    "hypothesis": "Cross-scale (1.5B) CKA-only 20% SFT MATH-500 @2048 provides cross-scale generalization evidence. If CKA-guided pruning maintains relative advantage at 1.5B, it validates importance metric transfers across model sizes.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_1p5b.json --max_new_tokens 2048 --seed 42",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "140458",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "sft_cka_only_20_1p5b",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b",
+      "seed": 42,
+      "checkpoint_source": "sft_cka_only_20_1p5b",
+      "eval_data": "MATH-500",
+      "log_path": "/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_1p5b.log"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b",
+    "completed_at": "2026-05-22T04:24:53.356Z"
+  },
+  "timestamp": "2026-05-22T04:24:54.515577+00:00",
+  "trigger": "update_registry"
+}

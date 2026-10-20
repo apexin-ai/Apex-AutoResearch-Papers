@@ -1,0 +1,31 @@
+{
+  "exp_id": "grpo_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "created_at": "2026-05-17T14:51:36.653Z",
+    "hypothesis": "CKA-only pruning removes highest functional overlap first (post-prune 38.5% = least damage). Predicts GRPO collapse faster than RASP due to fewer backup paths. If confirmed, this is direct evidence of Redundancy-Stability Tradeoff: post-prune optimal = GRPO least stable.",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20 --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_steps 99999 --reward_desert_patience 50 --run_name grpo_cka_only_20\"",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_cka_only_20.log",
+      "pid": "725227",
+      "server": "westb-23072",
+      "submitted_at": "2026-05-17T14:51:36.270Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-18T02:15:30.908Z",
+    "reproduce": {
+      "finished_at": "2026-05-18T02:15:28.764Z"
+    }
+  },
+  "timestamp": "2026-05-18T02:15:31.888620+00:00",
+  "trigger": "update_registry"
+}

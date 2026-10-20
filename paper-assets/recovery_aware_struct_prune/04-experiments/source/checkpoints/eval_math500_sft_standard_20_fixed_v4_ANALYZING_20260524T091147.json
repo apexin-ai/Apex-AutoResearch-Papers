@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_math500_sft_standard_20_fixed_v4",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T01:53:15.480Z",
+    "updated_at": "2026-05-24T09:11:47.043Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_fixed_v4.json --seed 42 --dtype bfloat16\"",
+      "server": "westd-32935",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "182199",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_sft_standard_20_fixed_v4.log",
+      "submitted_at": "2026-05-24T01:53:14.379Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20",
+      "eval_data": "MATH-500",
+      "model_name": "sft_standard_20",
+      "seed": 42,
+      "data_path": "MATH-500",
+      "data_count": 500
+    },
+    "hypothesis": "SFT Standard 20% MATH-500 with fixed eval script. C1 hard dependency — core paper data point. v4 on westd-32935 GPU 3.",
+    "parent": "eval_math500_grpo_cka_only_25_fixed",
+    "reproduce": {
+      "finished_at": "2026-05-24T09:11:45.235Z"
+    }
+  },
+  "timestamp": "2026-05-24T09:11:47.920219+00:00",
+  "trigger": "update_registry"
+}

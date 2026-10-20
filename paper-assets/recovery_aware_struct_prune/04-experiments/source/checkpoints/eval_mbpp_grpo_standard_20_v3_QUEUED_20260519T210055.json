@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_mbpp_grpo_standard_20_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T21:00:40.293Z",
+    "updated_at": "2026-05-19T21:00:54.677Z",
+    "conclusion": "failed",
+    "failure_reason": "RuntimeError: Cannot send a request, as the client has been closed. datasets.load_dataset(\"mbpp\") HTTP client died due to AutoDL network issues."
+  },
+  "timestamp": "2026-05-19T21:00:55.098917+00:00",
+  "trigger": "update_registry"
+}

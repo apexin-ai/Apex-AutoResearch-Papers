@@ -1,0 +1,4734 @@
+# audit paper data integrity — Part 3 of 3
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+[← Part 2](part-002.md) · [Transcript overview](../audit-paper-data-integrity.md) · [Structured JSON](../../../sessions/e3/e375ea866c97eaa4a427.json)
+
+## Round 3
+
+### Tool call
+
+_source line 362_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0169ifYsnacMS7bYdayqKXRj`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# grpo_stage2_rasp_20_v8 has reward_mean=0.026 -- close to 0.031 but not matching\n# grpo_stage2_rasp_20_v9 has trajectory: steps [10,20,30] rewards [0.015, 0.039, 0.021]\n# mean of [0.015, 0.039, 0.021] = 0.025 -- not 0.031\n\n# Maybe RASP Mean Rew is from grpo_rasp_qwen_math_v3? reward_final=0.061, reward_min=0.048\n# Those are different experiments.\n\n# Let me check what 0.031 could be in RASP context\n# grpo_rasp_20_fair: trend='stagnation_then_collapse'\n# If wandb trajectory had 10 points similar to standard, what would the mean be?\n# The paper footnote says RASP is single seed, so it's from grpo_rasp_20_fair\n\n# Since we can't reconstruct the trajectory mean without WandB data, this is unverifiable from registry\n\n# Let me also double-check Table 1 Standard Min f0\n# grpo_standard_20_fair: frac_zero_std_trajectory = [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55]\n# min of trajectory = 0.5 -> table says 0.500 MATCH (perfect)\ntraj_f0 = [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55]\nprint(f'Standard Min f0: {min(traj_f0)}')\n\n# Check if Standard Mean Rew matches: mean of [0.051,0.056,0.067,0.081,0.019,0.043,0.047,0.046,0.031,0.054]\ntraj_rew = [0.051, 0.056, 0.067, 0.081, 0.019, 0.043, 0.047, 0.046, 0.031, 0.054]\nprint(f'Standard Mean Rew: {sum(traj_rew)/len(traj_rew):.3f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "16c32e95-445b-487d-ae50-90a76107a602",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014Qz5ntB4USpdmvmgkhFakE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 66309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 920,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 363 · 2026-05-23T19:29:20.750Z_
+
+<details><summary>↩ Tool result · `toolu_0169ifYsnacMS7bYdayqKXRj`</summary>
+
+```text
+Standard Min f0: 0.5
+Standard Mean Rew: 0.050
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "1ab95469-c400-4948-b0aa-1f75e586a46b"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 364_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a2ba75704a7abac53",
+  "tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "description": "Running Final check for Standard Qwen EOS 36.5% source",
+  "usage": {
+    "total_tokens": 101024,
+    "tool_uses": 35,
+    "duration_ms": 530628
+  },
+  "last_tool_name": "Bash",
+  "uuid": "01551eaa-18ab-478b-bf61-a388e7b813a3",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 365_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013w1RNMUvtBta1dSfDJex3k`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\nexps = json.loads(outer['result'])['data']['experiments']\n\n# Check for EOS data in Qwen-math standard SFT via different experiments or conclusions\nprint(\"Qwen-math standard SFT post-training EOS details:\")\nfor k in sorted(exps.keys()):\n    if 'qwen' in k and 'standard' in k and 'sft' in k:\n        v = exps[k]\n        concl = v.get('conclusion', '')\n        notes = v.get('notes', '') or ''\n        m = v.get('metrics', {})\n        if 'eos' in str(m).lower() or 'eos' in notes.lower() or 'eos' in concl.lower():\n            print(f\"\\n{k}:\")\n            print(f\"  metrics={m}\")\n            print(f\"  notes={notes[:200]}\")\n            print(f\"  conclusion={concl[:200]}\")\n\n# Also check if there's an EOS eval in conclusion string\nprint(\"\\n\\nChecking all Qwen-math experiments for 36.5 EOS:\")\nfor k, v in exps.items():\n    if 'qwen' in k.lower() or 'qwen_math' in k.lower():\n        text = json.dumps(v)\n        if '36.5' in text or '0.365' in text:\n            print(f\"  {k}: FOUND 36.5\")\n\n# Check the conclusion text for eval_gsm8k_sft_qwen_standard_20\n# has failure_reason = SIGTERM, but conclusion = success with 42/200\n# The EOS 36.5 might be from a different experiment not in registry\n\n# Final summary: Standard EOS=36.5% has no registry source\nprint(\"\\n\\nStandard EOS=36.5% -> ⚠️ NO REGISTRY SOURCE FOUND\")\nprint(\"The eval_gsm8k_sft_qwen_standard_20 has no eos_rate field\")\nprint(\"This value may come from a log file or offline computation not recorded in registry\")\n\nEOF\n",
+  "description": "Final check for Standard Qwen EOS 36.5% source"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "0409662d-a3ff-4789-807c-ca719f92e22f",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014gi41uMKnBt4nvwhjfisuw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1429,
+      "cache_read_input_tokens": 98207,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1429,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 366 · 2026-05-23T19:29:37.485Z_
+
+<details><summary>↩ Tool result · `toolu_013w1RNMUvtBta1dSfDJex3k`</summary>
+
+```text
+Qwen-math standard SFT post-training EOS details:
+
+eval_sft_qwen_math_standard_25:
+  metrics={'accuracy': 63, 'correct': 126, 'eos_rate': 1, 'total': 200}
+  notes=
+  conclusion=success
+
+eval_sft_standard_qwen_math_n200:
+  metrics={'accuracy': 0.71, 'avg_len': 127.7, 'correct': 142, 'eos_rate': 1, 'n_total': 200, 'stderr': 0.0321}
+  notes=
+  conclusion=success
+
+
+Checking all Qwen-math experiments for 36.5 EOS:
+  grpo_standard_25_qwen_math: FOUND 36.5
+
+
+Standard EOS=36.5% -> ⚠️ NO REGISTRY SOURCE FOUND
+The eval_gsm8k_sft_qwen_standard_20 has no eos_rate field
+This value may come from a log file or offline computation not recorded in registry
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "22ab71db-8133-4fd4-a55f-7efb23b07262"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 367_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a2ba75704a7abac53",
+  "tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "description": "Running Check grpo_standard_25_qwen_math for EOS 36.5% context",
+  "usage": {
+    "total_tokens": 102083,
+    "tool_uses": 36,
+    "duration_ms": 538000
+  },
+  "last_tool_name": "Bash",
+  "uuid": "7e13ca0a-18d8-41e7-94f6-020d1d9cd0de",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 368_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LEBWg1L8pzXny7LknRdfbp`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\nexps = json.loads(outer['result'])['data']['experiments']\n\n# grpo_standard_25_qwen_math found - check it\nv = exps['grpo_standard_25_qwen_math']\nprint(f\"grpo_standard_25_qwen_math full:\")\nfor k in v:\n    if k not in ['spec']:\n        print(f\"  {k}: {v[k]}\")\n\n# Look at the E2 extended grpo standard 7b experiment\nv = exps['E2_grpo_standard_7b_extended_300']\nprint(f\"\\nE2_grpo_standard_7b_extended_300:\")\nfor k in v:\n    if k not in ['spec']:\n        print(f\"  {k}: {str(v[k])[:200]}\")\n\nEOF\n",
+  "description": "Check grpo_standard_25_qwen_math for EOS 36.5% context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "e78805c9-ca2f-4331-8e2e-1a3d8801e148",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QRx6h4dYVRyqaYLHaYB1Bs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 995,
+      "cache_read_input_tokens": 99636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 995,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 369 · 2026-05-23T19:29:44.865Z_
+
+<details><summary>↩ Tool result · `toolu_01LEBWg1L8pzXny7LknRdfbp`</summary>
+
+```text
+grpo_standard_25_qwen_math full:
+  checkpoint_path: /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math
+  completed_at: 2026-05-16T15:45:46.005Z
+  conclusion: negative
+  created_at: 2026-05-16T12:51:12.657Z
+  extra: {'hook_events': [{'action': 'agent', 'event': 'on_complete', 'ts': '2026-05-16T15:40:34.585285+00:00'}]}
+  hypothesis: Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.
+  log_path: ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log
+  metrics: {'clipped_ratio_final': 0.338, 'collapse_onset': 'step20_first_kl_spike', 'collapse_pattern': 'kl_explosion_transient_no_reward_collapse', 'comparison_vs_20pct': '25pct_better_than_20pct', 'completion_length_final': 527, 'entropy_final': 0.238, 'frac_0std_improvement_vs_20pct': '0.850->0.325', 'frac_zero_std_final': 0.325, 'frac_zero_std_max': 0.425, 'frac_zero_std_min': 0.225, 'frac_zero_std_trend': 'improving', 'kl_final': 0.2983, 'kl_spike_count': 3, 'kl_spike_recovery': 'always_within_10_steps', 'kl_spike_step20': 56.08, 'kl_spike_step40': 7913000000000000, 'kl_spike_step80': 4096000, 'loss_final': 0.1651, 'loss_spike_step40': 369500000000000, 'loss_spike_step80': 220300, 'max_steps_reached': True, 'recovery': True, 'reward_final': 0.1819, 'reward_min': 0.106, 'reward_peak': 0.211, 'reward_ratio_vs_20pct': 4.1, 'reward_std_final': 0.3673, 'total_steps': 100}
+  notes: NEGATIVE for sparsity gradient: 25% Standard shows NO reward collapse (frac_zero_std 0.225-0.425, reward 0.11-0.21) vs 20% Standard permanent collapse (frac_zero_std 0.75-0.90, reward 0.03-0.07). New failure mode: 3 catastrophic KL explosions (steps 20/40/80, peak 7.9e15) with self-recovery each time — DAPO clipping prevents reward collapse despite astronomical KL divergence. Contradicts C3. See artifacts/analysis_grpo_qwen_math_25.md.
+  parent: sft_qwen_math_standard_25
+  reproduce: {'finished_at': '2026-05-16T15:40:31.419Z'}
+  retry_count: 0
+  status: DONE
+  updated_at: 2026-05-17T03:34:36.509Z
+  wandb_run_id: 16vqw4e6
+
+E2_grpo_standard_7b_extended_300:
+  status: PREPARING
+  retry_count: 0
+  created_at: 2026-05-18T13:02:30.174Z
+  updated_at: 2026-05-18T13:02:30.174Z
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "e1d4e377-58a8-4b03-851c-7a7362bcb1ec"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 370_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a2ba75704a7abac53",
+  "tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "description": "Running Final investigation of Standard EOS 36.5% origin",
+  "usage": {
+    "total_tokens": 103576,
+    "tool_uses": 37,
+    "duration_ms": 553439
+  },
+  "last_tool_name": "Bash",
+  "uuid": "dececf27-b3c6-40f8-a4ca-d86810b6f485",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 371_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UiqjDji8WTi7v2T9NT4EWM`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\nexps = json.loads(outer['result'])['data']['experiments']\n\n# grpo_standard_25_qwen_math has frac_zero_std_final: 0.325 -> 32.5%, not 36.5%\n# This is not EOS rate for Standard 20% SFT Qwen cross-arch table\n\n# The table says Standard 20% EOS=36.5 (post-SFT EOS rate, Qwen cross-arch table)\n# eval_gsm8k_sft_qwen_standard_20 -> SIGTERM but saved metrics {gsm8k_accuracy: 0.21, correct: 42, total: 200}\n# No EOS data there\n\n# Let me look at what sft_standard_20_qwen_math conclusion contains\nprint(\"sft_standard_20_qwen_math full experiment:\")\nv = exps['sft_standard_20_qwen_math']\nfor k in v:\n    if k not in ['spec']:\n        val = v[k]\n        if isinstance(val, str) and len(val) > 300:\n            val = val[:300] + \"...\"\n        print(f\"  {k}: {val}\")\n\n# Check if there's another eval experiment\nprint(\"\\nAll experiments with sft standard qwen:\")\nfor k in sorted(exps.keys()):\n    if 'standard' in k and ('qwen' in k or 'qwen_math' in k) and k not in ['sft_qwen_math_standard_20','sft_qwen_math_standard_20_v2', 'sft_standard_20_qwen_math']:\n        v = exps[k]\n        m = v.get('metrics', {})\n        if m:\n            print(f\"  {k}: {m}\")\n\nEOF\n",
+  "description": "Final investigation of Standard EOS 36.5% origin"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "248466b8-e046-43d4-94d7-565d68212f92",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DS1vAT6bMkiasV8QEvgDXi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 100631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1454,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 372 · 2026-05-23T19:30:00.372Z_
+
+<details><summary>↩ Tool result · `toolu_01UiqjDji8WTi7v2T9NT4EWM`</summary>
+
+```text
+sft_standard_20_qwen_math full experiment:
+  completed_at: 2026-05-16T10:10:19.019Z
+  conclusion: success
+  created_at: 2026-05-16T08:11:00.051Z
+  hypothesis: Qwen2.5-Math-7B Standard 20% pruned SFT recovery. 验证 RASP 方法在第二个模型族上的 SFT 恢复效果。
+  retry_count: 0
+  status: DONE
+  updated_at: 2026-05-16T10:10:19.019Z
+
+All experiments with sft standard qwen:
+  eval_grpo_standard_20_qwen_math: {'accuracy': 0.705, 'n_samples': 200, 'seed': 42}
+  eval_grpo_standard_25_qwen_math: {'accuracy': 0.635, 'n_samples': 200, 'seed': 42}
+  eval_gsm8k_sft_qwen_standard_20: {'gsm8k_accuracy': 0.21, 'correct': 42, 'total': 200}
+  eval_postprune_qwen_math_standard_20: {'accuracy': 0.185, 'n_correct': 37, 'n_total': 200, 'stderr': 0.02746, 'eos_rate': 0.69, 'avg_response_length': 506.83, 'note': 'Qwen-Math Standard 20% post-prune = 18.5%. Significantly better than CKA-only (1.0%) at post-prune stage.'}
+  eval_sft_qwen_math_standard_25: {'accuracy': 63, 'correct': 126, 'eos_rate': 1, 'total': 200}
+  eval_sft_standard_qwen_math_n200: {'accuracy': 0.71, 'avg_len': 127.7, 'correct': 142, 'eos_rate': 1, 'n_total': 200, 'stderr': 0.0321}
+  grpo_standard_25_qwen_math: {'clipped_ratio_final': 0.338, 'collapse_onset': 'step20_first_kl_spike', 'collapse_pattern': 'kl_explosion_transient_no_reward_collapse', 'comparison_vs_20pct': '25pct_better_than_20pct', 'completion_length_final': 527, 'entropy_final': 0.238, 'frac_0std_improvement_vs_20pct': '0.850->0.325', 'frac_zero_std_final': 0.325, 'frac_zero_std_max': 0.425, 'frac_zero_std_min': 0.225, 'frac_zero_std_trend': 'improving', 'kl_final': 0.2983, 'kl_spike_count': 3, 'kl_spike_recovery': 'always_within_10_steps', 'kl_spike_step20': 56.08, 'kl_spike_step40': 7913000000000000, 'kl_spike_step80': 4096000, 'loss_final': 0.1651, 'loss_spike_step40': 369500000000000, 'loss_spike_step80': 220300, 'max_steps_reached': True, 'recovery': True, 'reward_final': 0.1819, 'reward_min': 0.106, 'reward_peak': 0.211, 'reward_ratio_vs_20pct': 4.1, 'reward_std_final': 0.3673, 'total_steps': 100}
+  grpo_standard_qwen_math_v3: {'clipped_ratio_final': 0.856, 'collapse_onset': 'step1', 'collapse_pattern': 'persistent_reward_homogeneity', 'cross_model_match': False, 'entropy_mean': 0.187, 'frac_zero_std_final': 0.85, 'frac_zero_std_max': 0.9, 'frac_zero_std_min': 0.75, 'grad_norm_max': 172, 'kl_final': 0.005, 'llama_pattern': 'transient_dip_recovery', 'recovery': False, 'reward_final': 0.044, 'reward_min': 0.031, 'reward_peak': 0.069, 'reward_std_final': 0.1458, 'total_steps': 100}
+  prune_standard_20_qwen_math: {'attn_groups_pruned': 0, 'mlp_groups_pruned': 202, 'model_keys': 339, 'original_params': 7615616512, 'pruned_params': 6147409408, 'sparsity_actual': 0.1928, 'sparsity_target': 0.2}
+  prune_standard_25_qwen_math: {'actual_sparsity': 0.2396, 'attn_gqa_groups_pruned': '0/112', 'mlp_groups_pruned': '251/784', 'target_sparsity': 0.25}
+  sft_qwen_math_standard_25: {'epochs': 2, 'final_loss': 0.6122, 'mean_token_accuracy': 0.8607, 'throughput_samples_per_sec': 8.973, 'total_steps': 1870, 'train_runtime_sec': 1666}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "dfa77e67-360e-4a26-b0b5-56ebdbe9b78f"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 373_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aecb4123bb8ee6c7e",
+  "tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "description": "Running python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.c…",
+  "usage": {
+    "total_tokens": 70999,
+    "tool_uses": 52,
+    "duration_ms": 580404
+  },
+  "last_tool_name": "Bash",
+  "uuid": "937f1365-ba1c-45c6-b5fc-8ff39360d54e",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 374_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01T1AYtCHaEFWSjwnpTb4jwo`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509_17/projects/recovery_aware_struct_prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = json.load(f)\n\" 2>&1 || echo 'wrong path'\n\n# Let me check for the 'sft-alpha-1p0' experiment (note the dash notation)\npython3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Check 'sft-alpha-1p0' experiment\nfor eid in ['sft-alpha-1p0', 'eval-sft-alpha-0p0', 'eval-sft-alpha-1p0']:\n    e = exps.get(eid, {})\n    print(f'{eid}: {e.get(\\\"metrics\\\")}')\n    print(f'  notes: {str(e.get(\\\"notes\\\",\\\"\\\"))[:200]}')\n\n# Also check Standard GRPO: we said table says 59.84%, \n# We found: mean of [59.44, 59.89, 60.20] = 59.84%\n# Let me verify which 3 experiments these correspond to\n# grpo_standard_20_fair: peak=0.081, eval -> 59.44% from eval_gsm8k_grpo_standard_20_fair_v2\n# grpo_standard_20_seed123: peak=0.0619, eval -> 59.89% from eval_gsm8k_grpo_standard_20_seed123_full\n# grpo_standard_20_seed456: peak=0.0844, eval -> 60.20% from eval_gsm8k_grpo_standard_20_seed456_full\nprint()\nprint('Standard GRPO mean:', (59.44+59.89+60.20)/3)\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "18669568-a77f-4f74-b13c-c0e1e053e550",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_018MKn9soWWaYHppZ2bhrDg2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 67229,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 830,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 375 · 2026-05-23T19:30:00.887Z_
+
+<details><summary>↩ Tool result · `toolu_01T1AYtCHaEFWSjwnpTb4jwo`</summary>
+
+```text
+Traceback (most recent call last):
+  File "&lt;string>", line 4, in &lt;module>
+    with open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509_17/projects/recovery_aware_struct_prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509_17/projects/recovery_aware_struct_prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt'
+wrong path
+sft-alpha-1p0: {'post_prune_accuracy': 0.27, 'token_accuracy': 0.83, 'total_steps': 1870, 'train_loss_final': 0.64, 'train_time_min': 28}
+  notes: α=1.0 SFT 完成 (1870/1870 steps, 2 epochs, ~28min). loss=0.64, token_acc=0.83. Post-prune 27% → post-SFT 需 eval 确认 (预期 ~57% 与 sft_rasp_20 一致，因 α=1.0 = RASP default). Checkpoint: /root/autodl-tmp/recover
+eval-sft-alpha-0p0: {'accuracy': 0.64, 'avg_len': 257.9, 'eos_rate': 0.97, 'n_correct': 64, 'n_total': 100}
+  notes: 
+eval-sft-alpha-1p0: {'accuracy': 0.57, 'avg_len': 224.18, 'eos_rate': 0.98, 'n_correct': 57, 'n_total': 100, 'natural_eos': 98, 'stderr': 0.0495, 'truncated': 2}
+  notes: α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。
+
+Standard GRPO mean: 59.843333333333334
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "20da19b1-5cf0-4fbd-ae61-db5e44c624df"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 376_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aecb4123bb8ee6c7e",
+  "tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "description": "Running python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.c…",
+  "usage": {
+    "total_tokens": 72463,
+    "tool_uses": 53,
+    "duration_ms": 592469
+  },
+  "last_tool_name": "Bash",
+  "uuid": "7da5b71a-c2fd-4243-a5e1-16c6f8d51eac",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 377_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NXEASGu9hfanbWu6xxcwar`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Final comprehensive check: Random GRPO std notation\n# Table says 50.72%±0.15\n# v2=50.57%, seed456=50.87%: mean=50.72, but what std?\n# Standard python statistics.stdev([50.57, 50.87]) = 0.2121 (sample std)\n# Population std = 0.15 exactly\n# The table is inconsistent: Standard uses sample std (n=3, std=0.38), Random uses population std (n=2, std=0.15)\n# OR: they used sample std of 3 runs for Standard, but only 2 valid runs for Random\n\nimport statistics, math\nstd_std = statistics.stdev([59.44, 59.89, 60.20])  # Standard, n=3\nstd_rand_sample = statistics.stdev([50.57, 50.87])  # Random, n=2, sample\nstd_rand_pop = math.sqrt(((50.57-50.72)**2 + (50.87-50.72)**2)/2)  # population\nstd_cka_sample = statistics.stdev([64.37, 64.22, 64.59])\n\nprint(f'Standard n=3 sample std: {std_std:.2f}%')\nprint(f'CKA n=3 sample std: {std_cka_sample:.2f}%') \nprint(f'Random n=2 sample std: {std_rand_sample:.2f}%')\nprint(f'Random n=2 pop std: {std_rand_pop:.2f}%')\nprint()\nprint('Table shows: Standard=0.38, CKA=0.19, Random=0.15')\nprint('Sample std: Standard=0.38✓, CKA=0.19✓, Random=0.21✗ (table has 0.15)')\nprint('Pop std: Random=0.15✓ but inconsistent with sample for others')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "16b22752-9caa-40d0-b027-01088fa6772c",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01J5cmgMRXWdm1uWfsutX1gJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1424,
+      "cache_read_input_tokens": 68059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1424,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 378 · 2026-05-23T19:30:12.763Z_
+
+<details><summary>↩ Tool result · `toolu_01NXEASGu9hfanbWu6xxcwar`</summary>
+
+```text
+Standard n=3 sample std: 0.38%
+CKA n=3 sample std: 0.19%
+Random n=2 sample std: 0.21%
+Random n=2 pop std: 0.15%
+
+Table shows: Standard=0.38, CKA=0.19, Random=0.15
+Sample std: Standard=0.38✓, CKA=0.19✓, Random=0.21✗ (table has 0.15)
+Pop std: Random=0.15✓ but inconsistent with sample for others
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "9286a667-091a-4b67-bb41-c68b7df5e9d7"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 379_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aecb4123bb8ee6c7e",
+  "tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "description": "Running python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.c…",
+  "usage": {
+    "total_tokens": 73360,
+    "tool_uses": 54,
+    "duration_ms": 610261
+  },
+  "last_tool_name": "Bash",
+  "uuid": "a6ee3f86-efb1-4170-92d4-7575c3919f71",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 380_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0174tZsTm3fi5qLrdY9DMtAX`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Check if there's a third valid Random GRPO run giving [50.57, 50.72, 50.87]\n# seed123_v2 = 50.72%: could this be the third run?\n\nimport statistics, math\n# Three runs: [50.57, 50.72, 50.87]\nvals3 = [50.57, 50.72, 50.87]\nmean3 = sum(vals3)/3\nstd3_sample = statistics.stdev(vals3)\nstd3_pop = math.sqrt(sum((x-mean3)**2 for x in vals3)/3)\nprint(f'Random if 3 runs [v2, s123v2, s456]: mean={mean3:.2f}%, sample_std={std3_sample:.2f}%, pop_std={std3_pop:.2f}%')\n# mean=50.72, sample_std=0.15! And this is the SAMPLE std with n=3\n\n# Perfect match! The 3 runs are: v2=50.57%, seed123_v2=50.72%, seed456=50.87%\n# Note that seed123 (original) is INVALIDATED\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "dda54a72-c70a-487e-ae3c-8b44ed559c4a",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017nK5FunFjraZM3nmRVjAhx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 825,
+      "cache_read_input_tokens": 69483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 825,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 381 · 2026-05-23T19:30:30.488Z_
+
+<details><summary>↩ Tool result · `toolu_0174tZsTm3fi5qLrdY9DMtAX`</summary>
+
+```text
+Random if 3 runs [v2, s123v2, s456]: mean=50.72%, sample_std=0.15%, pop_std=0.12%
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "431f5f46-7438-4110-86c8-c03d37bcfceb"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 382_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aecb4123bb8ee6c7e",
+  "tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "description": "Running python3 -c \"\nimport json, statistics, math\n\n# We now…",
+  "usage": {
+    "total_tokens": 73941,
+    "tool_uses": 55,
+    "duration_ms": 617702
+  },
+  "last_tool_name": "Bash",
+  "uuid": "c0c948d3-d387-4ba3-8e80-f25dc084c94a",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 383_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015CrUHfhasT29Digbnr37kx`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json, statistics, math\n\n# We now have the definitive answer for Random: using sample std with 3 runs\n# v2=50.57, seed123_v2=50.72, seed456=50.87\n# mean=50.72, sample_std=0.15 -- MATCH TABLE 50.72%±0.15\n\n# Check seed123_v2 note (might be INVALIDATED too)\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\ne = exps.get('eval_gsm8k_grpo_random_20_seed123_v2', {})\nprint('seed123_v2 note:', e.get('notes'))\nprint('seed123_v2 metrics:', e.get('metrics'))\nprint()\n\n# Also check eval_gsm8k_grpo_random_20_v2\ne2 = exps.get('eval_gsm8k_grpo_random_20_v2', {})\nprint('v2 notes:', e2.get('notes'))\nprint('v2 metrics:', e2.get('metrics'))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "fb8f0449-b177-47f3-a24b-7aad8e32a5a7",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01U7Uxi1qpLUeXUoXc7xncXV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 533,
+      "cache_read_input_tokens": 70308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 533,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 384 · 2026-05-23T19:30:37.925Z_
+
+<details><summary>↩ Tool result · `toolu_015CrUHfhasT29Digbnr37kx`</summary>
+
+```text
+seed123_v2 note: None
+seed123_v2 metrics: {'accuracy': 0.5072, 'n_correct': 669, 'n_total': 1319, 'stderr': 0.01377, 'eos_rate': 0.9939, 'avg_response_length': 177.9}
+
+v2 notes: None
+v2 metrics: {'gsm8k_accuracy': 0.5057, 'gsm8k_stderr': 0.0138, 'correct': 667, 'total': 1319, 'eos_rate': 0.9954, 'avg_response_length': 173}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "86d862a3-5667-4e0f-80a2-61f94f5956e8"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 385_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a2ba75704a7abac53",
+  "tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "description": "Running Complete audit summary",
+  "usage": {
+    "total_tokens": 105684,
+    "tool_uses": 38,
+    "duration_ms": 613489
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8a26b596-4cdd-4b6c-a763-09083bbd21a3",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 386_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QcNn7hKSDVbbnxZ6weLphK`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json, math, statistics\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = f.read()\nouter = json.loads(raw)\nexps = json.loads(outer['result'])['data']['experiments']\n\n# CKA-only ratio computation check from gradient_flow_v3\nm = exps['gradient_flow_v3']['metrics']\ncka = m['cka_only_mean_grad_norm']\nrasp = m['rasp_mean_grad_norm']\nstd = m['standard_mean_grad_norm']\ncka_rasp = cka / rasp\ncka_std = cka / std\nrasp_std = rasp / std\nprint(f\"Gradient ratios from raw values:\")\nprint(f\"  CKA mean: {cka}\")\nprint(f\"  RASP mean: {rasp}\")\nprint(f\"  Standard mean: {std}\")\nprint(f\"  CKA/RASP = {cka_rasp:.2f} (Table: 2.26)\")\nprint(f\"  CKA/Std = {cka_std:.2f} (Table: 2.89)\")\nprint(f\"  RASP/Std = {rasp_std:.2f} (Table: 1.28)\")\n\n# Minor discrepancy: CKA/Standard = 0.3229/0.1118 = 2.889 ≈ 2.89 ✅\n# CKA/RASP = 0.3229/0.1431 = 2.258 ≈ 2.26 ✅\n# RASP/Standard = 0.1431/0.1118 = 1.280 ≈ 1.28 ✅\n\nprint(\"\\n\\n===== COMPLETE AUDIT SUMMARY =====\")\nprint()\nprint(\"1. tab_math500.tex\")\nprint(\"-\" * 50)\nprint(\"✅ Dense 53.0%\")\nprint(\"✅ CKA-only SFT 26.8% (registry: 26.8%)\")\nprint(\"✅ CKA-only GRPO 27.4% (registry: 27.4%, using eval_math500_grpo_cka_only_20_2048_v2)\")\nprint(\"⚠️  Standard SFT 23.4% — registry has MULTIPLE versions:\")\nprint(\"    - eval_math500_sft_standard_20 = 26.0% (old eval)\")\nprint(\"    - eval_math500_sft_standard_20_2048_v2 = 25.8%\")\nprint(\"    - eval_math500_sft_standard_20_2048_v3 = 23.4% ✅ (correct source)\")\nprint(\"    Table matches 2048_v3 but source experiment is ambiguous without explicit annotation\")\nprint(\"⚠️  Standard GRPO — table shows '--' (in progress); registry has 26.4% but eval was running\")\nprint(\"✅ RASP SFT 21.2% (registry: 21.2%)\")\nprint(\"✅ RASP GRPO 22.6% (registry: 22.6%)\")\nprint(\"✅ Random SFT 14.4%\")\nprint(\"✅ Random GRPO 13.4%\")\nprint(\"✅ All dose-response SFT values (alpha=0.5/2.0/3.0/4.0)\")\nprint(\"✅ All dose-response GRPO values\")\nprint(\"✅ 25% sparsity all 4 values\")\nprint(\"✅ All delta (Δ) arithmetic correct\")\nprint()\nprint(\"2. tab_mbpp.tex\")\nprint(\"-\" * 50)\nprint(\"✅ All 10 values match registry exactly\")\nprint(\"✅ All 4 delta computations correct\")\nprint()\nprint(\"3. tab5_cross_scale.tex\")\nprint(\"-\" * 50)\nprint(\"✅ 1.5B CKA-only Rew=0.238 (registry: 0.2375, rounds to 0.238)\")\nprint(\"✅ 1.5B CKA-only GSM8K=35.48%\")\nprint(\"✅ 1.5B Standard Rew=0.084 (registry: 0.0844, rounds to 0.084)\")\nprint(\"✅ 1.5B Standard GSM8K=22.29%\")\nprint(\"✅ 1.5B RASP Rew=0.099\")\nprint(\"✅ 1.5B RASP GSM8K=26.16%\")\nprint(\"✅ 7B CKA-only Peak Rew=0.354, GSM8K=64.39%\")\nprint(\"✅ 7B Standard Peak Rew=0.081, GSM8K=59.84%\")\nprint(\"✅ 7B RASP Peak Rew=0.061, GSM8K=60.88%\")\nprint(\"✅ 7B Random Peak Rew=0.190\")\nprint()\nprint(\"4. table4_sparsity_cliff.tex\")\nprint(\"-\" * 50)\nprint(\"✅ Standard 30%: Acc=4%, EOS=5.5%\")\nprint(\"✅ RASP 30%: Acc=0%, EOS=3.0%\")\nprint(\"✅ CKA-only 30%: Acc=1.6% (8/500)\")\nprint()\nprint(\"5. appendix.tex — Cross-sparsity table\")\nprint(\"-\" * 50)\nprint(\"✅ 15% CKA-only SFT=72.18%\")\nprint(\"✅ 15% CKA-only GRPO mean=72.76% (seeds: 73.09%, 73.09%, 72.10%)\")\nprint(\"✅ 15% CKA-only std=0.57%\")\nprint(\"✅ 15% Standard SFT=66.49%\")\nprint(\"✅ 15% Standard GRPO mean=65.56% (seeds: 66.11%, 65.13%, 65.43%)\")\nprint(\"✅ 15% Standard std=0.50%\")\nprint(\"✅ 25% CKA-only SFT=60.12%, GRPO=59.59%\")\nprint(\"✅ 25% Standard SFT=50.87%, GRPO=51.86%\")\nprint(\"✅ All 6 delta computations correct\")\nprint()\nprint(\"6. appendix.tex — Multi-seed table\")\nprint(\"-\" * 50)\nprint(\"✅ CKA-only seeds: 64.37% (42), 64.22% (123), 64.59% (456)\")\nprint(\"✅ CKA-only mean=64.39%, std=0.19pp\")\nprint(\"⚠️  Standard seeds used in table: 59.44% (42, fair_v2), 59.89% (123, full), 60.20% (456, full)\")\nprint(\"    Registry has seed123_full=59.89%, seed456_full=60.20%, but seed42 source is fair_v2=59.44%\")\nprint(\"    mean=59.84%, std=0.38% -> both ✅ (confirmed by range 59.44--60.20% in appendix text)\")\nprint(\"✅ RASP 60.88% (single seed)\")\nprint(\"✅ Random mean=50.72%, std=0.15pp (seeds: 50.57%, 50.72%, 50.87%)\")\nprint(\"✅ 15% seeds verified above\")\nprint()\nprint(\"7. appendix.tex — Floor ablation table\")\nprint(\"-\" * 50)\nprint(\"✅ Floor 0.3: 65.05%\")\nprint(\"✅ Floor 0.4: 64.37%\")\nprint(\"✅ Floor 0.5: 61.71%\")\nprint(\"✅ Floor 0.6: 62.02%\")\nprint(\"✅ All delta arithmetic correct\")\nprint()\nprint(\"8. appendix.tex — Cross-architecture table\")\nprint(\"-\" * 50)\nprint(\"✅ CKA-only post-prune=1.0%\")\nprint(\"✅ Standard post-prune=18.5%\")\nprint(\"✅ CKA-only post-SFT=51.50% (103/200)\")\nprint(\"✅ CKA-only ±3.53 = SE = sqrt(0.515*0.485/200) = 3.53% ✅\")\nprint(\"✅ Standard post-SFT=21.00% (42/200)\")\nprint(\"✅ Standard ±2.88 = SE = sqrt(0.21*0.79/200) = 2.88% ✅\")\nprint(\"   Note: table caption says 'mean ± std over multiple SFT runs' but these are\")\nprint(\"   binomial SEs, not run-to-run variability\")\nprint(\"✅ CKA-only EOS=27.0% (registry: 0.27)\")\nprint(\"⚠️  Standard EOS=36.5% — NO registry source found\")\nprint(\"    eval_gsm8k_sft_qwen_standard_20 has no eos_rate field\")\nprint()\nprint(\"9. appendix.tex — Gradient flow table\")\nprint(\"-\" * 50)\nprint(\"✅ CKA-only vs Standard ratio=2.89×, 55/56 sig layers\")\nprint(\"✅ CKA-only vs RASP ratio=2.26× (computed 0.3229/0.1431=2.26)\")\nprint(\"✅ RASP vs Standard ratio=1.28×, 45/56 sig layers\")\nprint(\"✅ 56/56 sig layers (CKA-only vs RASP)\")\nprint()\nprint(\"10. CKA stability table\")\nprint(\"-\" * 50)\nprint(\"✅ Spearman rho min=0.964\")\nprint(\"✅ Spearman rho mean=0.979\")\nprint()\nprint(\"11. Inference table\")\nprint(\"-\" * 50)\nprint(\"✅ Dense TPS=72.0 (registry: 72.02)\")\nprint(\"✅ Dense TTFT=20.1ms (registry: 20.05ms)\")\nprint(\"✅ Dense Per-token=13.9ms (registry: 13.89ms)\")\nprint(\"✅ CKA-only TPS=58.3 (registry: 58.28)\")\nprint(\"✅ CKA-only TTFT=16.4ms (registry: 16.35ms)\")\nprint(\"✅ CKA-only Per-token=16.7ms (registry: 16.73ms)\")\nprint(\"✅ Standard TPS=58.2 (registry: 58.25)\")\nprint(\"✅ Standard TTFT=16.4ms, Per-token=16.7ms (registry: 16.40ms, 16.71ms)\")\nprint(\"✅ Dense Params=7.62B, Pruned=6.16B\")\nprint()\nprint(\"===== ISSUES REQUIRING ATTENTION =====\")\nprint()\nprint(\"❌ NONE (no outright numerical errors found)\")\nprint()\nprint(\"⚠️  Items needing clarification:\")\nprint()\nprint(\"1. [tab_math500] Standard SFT=23.4%: correct value, but paper should cite source as\")\nprint(\"   eval_math500_sft_standard_20_2048_v3 explicitly. Earlier eval versions (26.0%, 25.8%)\")\nprint(\"   give different values — versioning ambiguity, not a numerical error.\")\nprint()\nprint(\"2. [tab_math500] Standard GRPO='--': registry has eval_math500_grpo_standard_20_fair_2048_v2\")\nprint(\"   giving 26.4%, but this eval was marked as in-progress (fixed eval script not finalized)\")\nprint(\"   at time of table writing. The '--' is intentional, not missing data.\")\nprint()\nprint(\"3. [cross-arch table] Standard EOS=36.5%: no registry entry with eos_rate for\")\nprint(\"   eval_gsm8k_sft_qwen_standard_20. Source unknown. Cannot verify or falsify.\")\nprint()\nprint(\"4. [cross-arch table] Caption says 'mean ± std over multiple SFT runs' but the ±3.53\")\nprint(\"   and ±2.88 values are binomial standard errors (SE = sqrt(p*(1-p)/n)), not\")\nprint(\"   run-to-run std. Caption phrasing is misleading but values are correct SE values.\")\nprint()\nprint(\"5. [multi-seed table] Standard 20% seed 42 uses eval_gsm8k_grpo_standard_20_fair_v2=59.44%\")\nprint(\"   rather than the 'extended_300' run (59.29%). The fair_v2 run is the correct seed 42\")\nprint(\"   because it uses the fair comparison setup, yielding the stated range 59.44--60.20%.\")\n\nEOF\n",
+  "description": "Complete audit summary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "0ab337ff-a667-4a7f-bc37-8aaa8bbafe02",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01KHHEWUDkrjpXCzUJc9iznz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2100,
+      "cache_read_input_tokens": 102085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2100,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 387_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aecb4123bb8ee6c7e",
+  "tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "description": "Running python3 -c \"\nimport json, statistics, math\n\nwith ope…",
+  "usage": {
+    "total_tokens": 74621,
+    "tool_uses": 56,
+    "duration_ms": 640258
+  },
+  "last_tool_name": "Bash",
+  "uuid": "3d82d133-e805-4136-8374-ca1e96abad05",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 388_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017zLtrzP4cTrVFx88JX6chj`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json, statistics, math\n\nwith open('/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Random 3 valid runs: v2=50.57%, seed123_v2=50.72%, seed456=50.87%\n# mean=50.72, sample_std=0.15 -- MATCH\n\n# Now let me do full verification of Table 1 remaining issue\n# CKA Min f0=0.125: Looking at grpo_cka_only_20 with final_frac_zero_std=0.2\n# This is the FINAL value, not the minimum over training\n# But the registry doesn't store min_frac_zero_std for grpo_cka_only_20\n# It might be that the minimum was observed during training at a different step\n\n# Let me check the extended 300 for a hint: final_frac_zero_std=0.275 at step 300\n# At step 100 (grpo_cka_only_20): final_frac_zero_std=0.2\n# The 'min f0' across all 3 CKA seeds might be the minimum observed\n# Given seeds: 0.2 (seed42), unknown (seed123, seed456)\n\n# Check if seed123 or seed456 have frac_zero_std metrics\ne123 = exps.get('grpo_cka_only_20_seed123', {})\ne456 = exps.get('grpo_cka_only_20_seed456', {})\nprint('seed123:', e123.get('metrics'))\nprint('seed456:', e456.get('metrics'))\n# seed456 only has final_loss, avg_train_loss, final_reward, final_kl\n# seed123 has train_loss, final_step_loss, final_reward, final_reward_std\n\n# None have min_frac_zero_std  \n# This strongly suggests CKA Min f0=0.125 is from WandB per-step trajectories not in registry\nprint()\nprint('CONCLUSION: CKA Min f0=0.125 has no registry source (WandB-only data)')\nprint('CONCLUSION: CKA Mean Rew=0.285 has no registry source (WandB trajectory mean not stored)')  \nprint('CONCLUSION: RASP Mean Rew=0.031 has no registry source (WandB trajectory mean not stored)')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "ada4e15a-31dd-4b58-9761-71cafe258f73",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013waH2xZZc6MFymCccuXELx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 70841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 612,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 389 · 2026-05-23T19:31:00.448Z_
+
+<details><summary>↩ Tool result · `toolu_01QcNn7hKSDVbbnxZ6weLphK`</summary>
+
+```text
+Gradient ratios from raw values:
+  CKA mean: 0.3229
+  RASP mean: 0.1431
+  Standard mean: 0.1118
+  CKA/RASP = 2.26 (Table: 2.26)
+  CKA/Std = 2.89 (Table: 2.89)
+  RASP/Std = 1.28 (Table: 1.28)
+
+
+===== COMPLETE AUDIT SUMMARY =====
+
+1. tab_math500.tex
+--------------------------------------------------
+✅ Dense 53.0%
+✅ CKA-only SFT 26.8% (registry: 26.8%)
+✅ CKA-only GRPO 27.4% (registry: 27.4%, using eval_math500_grpo_cka_only_20_2048_v2)
+⚠️  Standard SFT 23.4% — registry has MULTIPLE versions:
+    - eval_math500_sft_standard_20 = 26.0% (old eval)
+    - eval_math500_sft_standard_20_2048_v2 = 25.8%
+    - eval_math500_sft_standard_20_2048_v3 = 23.4% ✅ (correct source)
+    Table matches 2048_v3 but source experiment is ambiguous without explicit annotation
+⚠️  Standard GRPO — table shows '--' (in progress); registry has 26.4% but eval was running
+✅ RASP SFT 21.2% (registry: 21.2%)
+✅ RASP GRPO 22.6% (registry: 22.6%)
+✅ Random SFT 14.4%
+✅ Random GRPO 13.4%
+✅ All dose-response SFT values (alpha=0.5/2.0/3.0/4.0)
+✅ All dose-response GRPO values
+✅ 25% sparsity all 4 values
+✅ All delta (Δ) arithmetic correct
+
+2. tab_mbpp.tex
+--------------------------------------------------
+✅ All 10 values match registry exactly
+✅ All 4 delta computations correct
+
+3. tab5_cross_scale.tex
+--------------------------------------------------
+✅ 1.5B CKA-only Rew=0.238 (registry: 0.2375, rounds to 0.238)
+✅ 1.5B CKA-only GSM8K=35.48%
+✅ 1.5B Standard Rew=0.084 (registry: 0.0844, rounds to 0.084)
+✅ 1.5B Standard GSM8K=22.29%
+✅ 1.5B RASP Rew=0.099
+✅ 1.5B RASP GSM8K=26.16%
+✅ 7B CKA-only Peak Rew=0.354, GSM8K=64.39%
+✅ 7B Standard Peak Rew=0.081, GSM8K=59.84%
+✅ 7B RASP Peak Rew=0.061, GSM8K=60.88%
+✅ 7B Random Peak Rew=0.190
+
+4. table4_sparsity_cliff.tex
+--------------------------------------------------
+✅ Standard 30%: Acc=4%, EOS=5.5%
+✅ RASP 30%: Acc=0%, EOS=3.0%
+✅ CKA-only 30%: Acc=1.6% (8/500)
+
+5. appendix.tex — Cross-sparsity table
+--------------------------------------------------
+✅ 15% CKA-only SFT=72.18%
+✅ 15% CKA-only GRPO mean=72.76% (seeds: 73.09%, 73.09%, 72.10%)
+✅ 15% CKA-only std=0.57%
+✅ 15% Standard SFT=66.49%
+✅ 15% Standard GRPO mean=65.56% (seeds: 66.11%, 65.13%, 65.43%)
+✅ 15% Standard std=0.50%
+✅ 25% CKA-only SFT=60.12%, GRPO=59.59%
+✅ 25% Standard SFT=50.87%, GRPO=51.86%
+✅ All 6 delta computations correct
+
+6. appendix.tex — Multi-seed table
+--------------------------------------------------
+✅ CKA-only seeds: 64.37% (42), 64.22% (123), 64.59% (456)
+✅ CKA-only mean=64.39%, std=0.19pp
+⚠️  Standard seeds used in table: 59.44% (42, fair_v2), 59.89% (123, full), 60.20% (456, full)
+    Registry has seed123_full=59.89%, seed456_full=60.20%, but seed42 source is fair_v2=59.44%
+    mean=59.84%, std=0.38% -> both ✅ (confirmed by range 59.44--60.20% in appendix text)
+✅ RASP 60.88% (single seed)
+✅ Random mean=50.72%, std=0.15pp (seeds: 50.57%, 50.72%, 50.87%)
+✅ 15% seeds verified above
+
+7. appendix.tex — Floor ablation table
+--------------------------------------------------
+✅ Floor 0.3: 65.05%
+✅ Floor 0.4: 64.37%
+✅ Floor 0.5: 61.71%
+✅ Floor 0.6: 62.02%
+✅ All delta arithmetic correct
+
+8. appendix.tex — Cross-architecture table
+--------------------------------------------------
+✅ CKA-only post-prune=1.0%
+✅ Standard post-prune=18.5%
+✅ CKA-only post-SFT=51.50% (103/200)
+✅ CKA-only ±3.53 = SE = sqrt(0.515*0.485/200) = 3.53% ✅
+✅ Standard post-SFT=21.00% (42/200)
+✅ Standard ±2.88 = SE = sqrt(0.21*0.79/200) = 2.88% ✅
+   Note: table caption says 'mean ± std over multiple SFT runs' but these are
+   binomial SEs, not run-to-run variability
+✅ CKA-only EOS=27.0% (registry: 0.27)
+⚠️  Standard EOS=36.5% — NO registry source found
+    eval_gsm8k_sft_qwen_standard_20 has no eos_rate field
+
+9. appendix.tex — Gradient flow table
+--------------------------------------------------
+✅ CKA-only vs Standard ratio=2.89×, 55/56 sig layers
+✅ CKA-only vs RASP ratio=2.26× (computed 0.3229/0.1431=2.26)
+✅ RASP vs Standard ratio=1.28×, 45/56 sig layers
+✅ 56/56 sig layers (CKA-only vs RASP)
+
+10. CKA stability table
+--------------------------------------------------
+✅ Spearman rho min=0.964
+✅ Spearman rho mean=0.979
+
+11. Inference table
+--------------------------------------------------
+✅ Dense TPS=72.0 (registry: 72.02)
+✅ Dense TTFT=20.1ms (registry: 20.05ms)
+✅ Dense Per-token=13.9ms (registry: 13.89ms)
+✅ CKA-only TPS=58.3 (registry: 58.28)
+✅ CKA-only TTFT=16.4ms (registry: 16.35ms)
+✅ CKA-only Per-token=16.7ms (registry: 16.73ms)
+✅ Standard TPS=58.2 (registry: 58.25)
+✅ Standard TTFT=16.4ms, Per-token=16.7ms (registry: 16.40ms, 16.71ms)
+✅ Dense Params=7.62B, Pruned=6.16B
+
+===== ISSUES REQUIRING ATTENTION =====
+
+❌ NONE (no outright numerical errors found)
+
+⚠️  Items needing clarification:
+
+1. [tab_math500] Standard SFT=23.4%: correct value, but paper should cite source as
+   eval_math500_sft_standard_20_2048_v3 explicitly. Earlier eval versions (26.0%, 25.8%)
+   give different values — versioning ambiguity, not a numerical error.
+
+2. [tab_math500] Standard GRPO='--': registry has eval_math500_grpo_standard_20_fair_2048_v2
+   giving 26.4%, but this eval was marked as in-progress (fixed eval script not finalized)
+   at time of table writing. The '--' is intentional, not missing data.
+
+3. [cross-arch table] Standard EOS=36.5%: no registry entry with eos_rate for
+   eval_gsm8k_sft_qwen_standard_20. Source unknown. Cannot verify or falsify.
+
+4. [cross-arch table] Caption says 'mean ± std over multiple SFT runs' but the ±3.53
+   and ±2.88 values are binomial standard errors (SE = sqrt(p*(1-p)/n)), not
+   run-to-run std. Caption phrasing is misleading but values are correct SE values.
+
+5. [multi-seed table] Standard 20% seed 42 uses eval_gsm8k_grpo_standard_20_fair_v2=59.44%
+   rather than the 'extended_300' run (59.29%). The fair_v2 run is the correct seed 42
+   because it uses the fair comparison setup, yielding the stated range 59.44--60.20%.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "2256497c-664e-4d58-b767-5be08810c6aa"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 390 · 2026-05-23T19:31:00.528Z_
+
+<details><summary>↩ Tool result · `toolu_017zLtrzP4cTrVFx88JX6chj`</summary>
+
+```text
+seed123: {'train_loss': 0.1361, 'final_step_loss': 0.05054, 'final_reward': 0.2975, 'final_reward_std': 0.4097, 'train_steps': 100, 'train_runtime_hours': 11.63, 'wandb_run': 'j8kn0sqd'}
+seed456: {'final_loss': 0.0999, 'avg_train_loss': 0.0881, 'final_reward': 0.2925, 'final_kl': 0.0017, 'train_steps': 100, 'train_runtime_min': 21.8}
+
+CONCLUSION: CKA Min f0=0.125 has no registry source (WandB-only data)
+CONCLUSION: CKA Mean Rew=0.285 has no registry source (WandB trajectory mean not stored)
+CONCLUSION: RASP Mean Rew=0.031 has no registry source (WandB trajectory mean not stored)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "67d06c01-8dcd-4aa8-869d-18104643c44d"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 391_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "a2ba75704a7abac53",
+  "tool_use_id": "toolu_01SPqx3iyEfxXPqWxrEUQ5ct",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Audit remaining tables + appendix",
+  "usage": {
+    "total_tokens": 111716,
+    "tool_uses": 38,
+    "duration_ms": 640771
+  },
+  "uuid": "2d63a809-d851-4fef-bbed-a06a9dadb343",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 392 · 2026-05-23T19:31:27.543Z_
+
+<details><summary>↩ Tool result · `toolu_01SPqx3iyEfxXPqWxrEUQ5ct`</summary>
+
+```text
+## Audit Results
+
+No outright numerical errors were found. All delta computations are arithmetically correct. All std/mean computations from individual seed values check out. Here is the full verdict:
+
+---
+
+### ✅ Clean (match registry exactly)
+
+**tab_math500.tex:** Dense=53.0%, CKA-only SFT=26.8%, GRPO=27.4%, RASP SFT=21.2%, GRPO=22.6%, Random SFT=14.4%, GRPO=13.4%, all 8 dose-response values, all 4 values at 25% sparsity, all 9 Δ computations.
+
+**tab_mbpp.tex:** All 10 values and all 4 Δ computations.
+
+**tab5_cross_scale.tex:** All 10 values (1.5B rewards rounded correctly: 0.2375→0.238, 0.0844→0.084).
+
+**table4_sparsity_cliff.tex:** All 3 rows including EOS rates.
+
+**Cross-sparsity (appendix):** All 8 accuracy values, both std values, all 6 Δ computations.
+
+**Multi-seed (appendix):** CKA-only seeds 64.37%/64.22%/64.59% → mean=64.39%, std=0.19pp. Standard mean=59.84%, std=0.38pp (seeds: 59.44%/59.89%/60.20%, confirmed by appendix text's stated range). Random seeds 50.57%/50.72%/50.87% → mean=50.72%, std=0.15pp.
+
+**Floor ablation (appendix):** All 4 values and 3 Δ computations.
+
+**Gradient flow (appendix):** All 3 ratios (confirmed by computing from raw grad norms: 0.3229/0.1431/0.1118) and 3 sig-layer counts.
+
+**CKA stability:** rho min=0.964, mean=0.979.
+
+**Inference (appendix):** All 8 numeric values within rounding of registry.
+
+**Cross-architecture (appendix):** CKA-only post-prune=1.0%, post-SFT=51.50%; Standard post-prune=18.5%, post-SFT=21.00%; CKA-only EOS=27.0%. The ±3.53 and ±2.88 values are both binomial standard errors (SE = sqrt(p(1−p)/n)), numerically correct.
+
+---
+
+### ⚠️ Items needing attention (no wrong numbers, but ambiguity or missing source)
+
+1. **[tab_math500] Standard SFT=23.4%:** The correct value, but sourced from `eval_math500_sft_standard_20_2048_v3`. Two earlier eval versions in the registry give 26.0% and 25.8% respectively. The table is correct but the version provenance should be recorded.
+
+2. **[cross-arch table] Standard EOS=36.5%:** No registry experiment has an `eos_rate` field for the Standard Qwen2.5-Math-7B post-SFT eval (`eval_gsm8k_sft_qwen_standard_20` records only accuracy). This value cannot be verified or falsified from the registry. It likely came from a log file not captured in the registry.
+
+3. **[cross-arch table caption] "mean ± std over multiple SFT runs":** The ±3.53 and ±2.88 values are binomial SE (one-run proportions), not multi-run standard deviations. The caption wording is misleading, though the numbers themselves are correct.
+
+4. **[tab_math500] Standard GRPO='--':** This is intentional (eval script was being fixed at submission time). Registry has a completed result (26.4%) from `eval_math500_grpo_standard_20_fair_2048_v2`, so if the table is updated before camera-ready, that value is available.
+
+agentId: a2ba75704a7abac53 (use SendMessage with to: 'a2ba75704a7abac53' to continue this agent)
+&lt;usage>total_tokens: 111203
+tool_uses: 38
+duration_ms: 640772&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "ca6de0a5-1f4c-4dfa-a9d4-2ad22de9dadf",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "You are auditing a research paper's data integrity. You need to cross-reference numbers in several LaTeX tables against experiment registry data.\n\n## Registry data file\nThe full registry is at: `/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt`\n\nIt's a JSON file with structure: `{result: {data: {experiments: {exp_id: {...metrics, ...}}}}}`. Use python3 to parse and extract.\n\n## Tables to audit\n\n### MATH-500 table (tab_math500.tex)\nPath: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/tables/tab_math500.tex`\n\nValues: Dense=53.0%, CKA-only SFT=26.8%, Standard SFT=23.4%, RASP SFT=21.2%, Random SFT=14.4%, various GRPO and dose-response values. Also 25% sparsity values.\n\n### MBPP table (tab_mbpp.tex)  \nPath: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/tables/tab_mbpp.tex`\n\nValues: Dense GRPO=53.48%, CKA-only SFT=12.83%, GRPO=14.17%, Standard SFT=12.03%, GRPO=13.10%, RASP SFT=11.76%, GRPO=13.10%, ShortGPT SFT=10.43%, GRPO=14.44%\n\n### Cross-scale table (tab5_cross_scale.tex)\nPath: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/tables/tab5_cross_scale.tex`\n\nValues: 1.5B - CKA-only Rew=0.238, GSM8K=35.48%; Standard Rew=0.084, GSM8K=22.29%; RASP Rew=0.099, GSM8K=26.16%\n\n### Sparsity cliff table (table4_sparsity_cliff.tex)\nPath: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/tables/table4_sparsity_cliff.tex`\n\nValues: Standard 30%: Acc=4%, EOS=5.5%; RASP 30%: Acc=0%, EOS=3.0%; CKA-only 30%: Acc=1.6%\n\n### Cross-sparsity table (in appendix.tex)\nPath: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/appendix.tex`\n\nValues at 15%: CKA-only SFT=72.18%, GRPO=72.76%±0.57; Standard SFT=66.49%, GRPO=65.56%±0.50\nValues at 25%: CKA-only SFT=60.12%, GRPO=59.59%; Standard SFT=50.87%, GRPO=51.86%\n\n### Multi-seed table (in appendix.tex)\nCKA-only seeds: 64.37% (42), 64.22% (123), 64.59% (456), mean=64.39%, std=0.19\nStandard: mean=59.84%, std=0.38\n15%: CKA-only mean=72.76%, std=0.57; Standard mean=65.56%, std=0.50\n\n### Floor ablation table (in appendix.tex)\nFloor 0.3: GRPO=65.05%; Floor 0.4: GRPO=64.37%; Floor 0.5: GRPO=61.71%; Floor 0.6: GRPO=62.02%\n\n### Cross-architecture table (in appendix.tex)\nQwen2.5-Math-7B: CKA-only post-prune=1.0%, post-SFT=51.50%±3.53, EOS=27.0%; Standard post-prune=18.5%, post-SFT=21.00%±2.88, EOS=36.5%\n\n### Gradient flow table (in appendix.tex)\nCKA-only vs Standard ratio=2.89×, 55/56 sig layers; CKA-only vs RASP ratio=2.26×, 56/56; RASP vs Standard ratio=1.28×, 45/56\n\n### CKA stability table\nSpearman rho min=0.964, mean=0.979\n\n### Inference table (in appendix.tex)\nDense: TPS=72.0, TTFT=20.1ms, Per-token=13.9ms, Params=7.62B\nCKA-only 20%: TPS=58.3, TTFT=16.4ms, Per-token=16.7ms, Params=6.16B\nStandard 20%: TPS=58.2, TTFT=16.4ms, Per-token=16.7ms, Params=6.16B\n\n## Instructions\n1. Parse the registry JSON and search for matching experiments for each table\n2. For each value, try to find the source experiment and verify the number\n3. Check all Δ (delta) computations: GRPO% - SFT% should equal stated Δ\n4. Check std computations where individual seed values are given\n5. Report: ✅ match, ❌ mismatch + details, ⚠️ no registry source found\n\nFocus particularly on:\n- Delta computations (simple arithmetic that can be verified without registry)\n- Std computations from seed values  \n- Any discrepancies between table values and registry metrics",
+    "agentId": "a2ba75704a7abac53",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Audit Results\n\nNo outright numerical errors were found. All delta computations are arithmetically correct. All std/mean computations from individual seed values check out. Here is the full verdict:\n\n---\n\n### ✅ Clean (match registry exactly)\n\n**tab_math500.tex:** Dense=53.0%, CKA-only SFT=26.8%, GRPO=27.4%, RASP SFT=21.2%, GRPO=22.6%, Random SFT=14.4%, GRPO=13.4%, all 8 dose-response values, all 4 values at 25% sparsity, all 9 Δ computations.\n\n**tab_mbpp.tex:** All 10 values and all 4 Δ computations.\n\n**tab5_cross_scale.tex:** All 10 values (1.5B rewards rounded correctly: 0.2375→0.238, 0.0844→0.084).\n\n**table4_sparsity_cliff.tex:** All 3 rows including EOS rates.\n\n**Cross-sparsity (appendix):** All 8 accuracy values, both std values, all 6 Δ computations.\n\n**Multi-seed (appendix):** CKA-only seeds 64.37%/64.22%/64.59% → mean=64.39%, std=0.19pp. Standard mean=59.84%, std=0.38pp (seeds: 59.44%/59.89%/60.20%, confirmed by appendix text's stated range). Random seeds 50.57%/50.72%/50.87% → mean=50.72%, std=0.15pp.\n\n**Floor ablation (appendix):** All 4 values and 3 Δ computations.\n\n**Gradient flow (appendix):** All 3 ratios (confirmed by computing from raw grad norms: 0.3229/0.1431/0.1118) and 3 sig-layer counts.\n\n**CKA stability:** rho min=0.964, mean=0.979.\n\n**Inference (appendix):** All 8 numeric values within rounding of registry.\n\n**Cross-architecture (appendix):** CKA-only post-prune=1.0%, post-SFT=51.50%; Standard post-prune=18.5%, post-SFT=21.00%; CKA-only EOS=27.0%. The ±3.53 and ±2.88 values are both binomial standard errors (SE = sqrt(p(1−p)/n)), numerically correct.\n\n---\n\n### ⚠️ Items needing attention (no wrong numbers, but ambiguity or missing source)\n\n1. **[tab_math500] Standard SFT=23.4%:** The correct value, but sourced from `eval_math500_sft_standard_20_2048_v3`. Two earlier eval versions in the registry give 26.0% and 25.8% respectively. The table is correct but the version provenance should be recorded.\n\n2. **[cross-arch table] Standard EOS=36.5%:** No registry experiment has an `eos_rate` field for the Standard Qwen2.5-Math-7B post-SFT eval (`eval_gsm8k_sft_qwen_standard_20` records only accuracy). This value cannot be verified or falsified from the registry. It likely came from a log file not captured in the registry.\n\n3. **[cross-arch table caption] \"mean ± std over multiple SFT runs\":** The ±3.53 and ±2.88 values are binomial SE (one-run proportions), not multi-run standard deviations. The caption wording is misleading, though the numbers themselves are correct.\n\n4. **[tab_math500] Standard GRPO='--':** This is intentional (eval script was being fixed at submission time). Registry has a completed result (26.4%) from `eval_math500_grpo_standard_20_fair_2048_v2`, so if the table is updated before camera-ready, that value is available."
+      }
+    ],
+    "totalDurationMs": 640772,
+    "totalTokens": 111203,
+    "totalToolUseCount": 38,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6031,
+      "cache_read_input_tokens": 104185,
+      "output_tokens": 986,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6031
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 986,
+          "cache_read_input_tokens": 104185,
+          "cache_creation_input_tokens": 6031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6031,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 6,
+      "searchCount": 0,
+      "bashCount": 32,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 393_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "aecb4123bb8ee6c7e",
+  "tool_use_id": "toolu_017PFRkQsu8aDcnkdAfTPnx6",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Audit Tables 1-3 against registry",
+  "usage": {
+    "total_tokens": 75636,
+    "tool_uses": 56,
+    "duration_ms": 725439
+  },
+  "uuid": "3520e509-2d1a-45e9-b806-143270db2d10",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 394 · 2026-05-23T19:32:25.566Z_
+
+<details><summary>↩ Tool result · `toolu_017PFRkQsu8aDcnkdAfTPnx6`</summary>
+
+```text
+Here is the complete audit report:
+
+---
+
+## Data Integrity Audit Report
+
+### Table 1 (`tab1_recovery_gradient.tex`)
+
+| Row | Metric | Table Value | Registry Source | Status |
+|-----|--------|-------------|-----------------|--------|
+| CKA-only | Peak Rew | 0.354 | `grpo_cka_only_20_extended_300.reward_step100 = 0.354` | ✅ |
+| CKA-only | Mean Rew | 0.285 | No registry metric matches. The only 0.285 in the registry is `gradient_flow_analysis.cka_only_mlp_grad_mean` (a gradient norm, not a reward). The actual trajectory mean is not stored; likely sourced from WandB run data. | ⚠️ No registry source |
+| CKA-only | Min f0 | 0.125 | No value near 0.125 exists in any metric in the registry. `grpo_cka_only_20.final_frac_zero_std = 0.200` (not 0.125). Must come from WandB per-step trajectory. | ⚠️ No registry source |
+| Random | Peak Rew | 0.190 | `grpo_random_20.reward_peak = 0.19` | ✅ |
+| Random | Mean Rew | 0.164 | `grpo_random_20.reward_mean = 0.164` | ✅ |
+| Random | Min f0 | 0.300 | `grpo_random_20.frac_zero_std_range[0] = 0.3` | ✅ |
+| Standard | Peak Rew | 0.081 | `grpo_standard_20_fair.peak_reward = 0.081` | ✅ |
+| Standard | Mean Rew | 0.050 | `grpo_standard_20_fair.reward_trajectory` mean = 0.0495, rounds to 0.050 | ✅ |
+| Standard | Min f0 | 0.500 | `grpo_standard_20_fair.frac_zero_std_trajectory` min = 0.500 | ✅ |
+| RASP α=1.0 | Peak Rew | 0.061 | `grpo_rasp_20_fair.peak_reward = 0.061` | ✅ |
+| RASP α=1.0 | Mean Rew | 0.031 | No trajectory mean stored for `grpo_rasp_20_fair`. WandB-only data. | ⚠️ No registry source |
+| RASP α=1.0 | Min f0 | 0.675 | `grpo_rasp_20_fair.min_frac_zero_std = 0.675` | ✅ |
+
+**Summary for Table 1:** 9/12 values verified ✅; 3 values have no registry source (⚠️). The 3 unverifiable values (CKA Mean Rew, CKA Min f0, RASP Mean Rew) are trajectory-level statistics that require WandB access to verify. There are no confirmed mismatches (❌), but the numeric coincidence between `cka_only_mlp_grad_mean = 0.285` and `CKA Mean Rew = 0.285` is suspicious — one is a gradient norm, the other a claimed reward mean.
+
+---
+
+### Table 2 (`tab2_decoupling.tex`)
+
+All Δ columns are arithmetically correct (GRPO − SFT).
+
+| Row | Metric | Table Value | Registry Source | Status |
+|-----|--------|-------------|-----------------|--------|
+| Unpruned | SFT | 81.27% | `eval_sft_unpruned_full.accuracy = 81.27` | ✅ |
+| Unpruned | GRPO | 81.27% | `eval_grpo_unpruned_v2_step100.accuracy = 81.27` | ✅ |
+| Unpruned | Peak Rew | 0.669 | `grpo_unpruned_v2.peak_reward = 0.669` | ✅ |
+| CKA-only 20% | SFT | 63.91% | `eval_gsm8k_sft_cka_only_20.gsm8k_accuracy = 0.6391` | ✅ |
+| CKA-only 20% | GRPO 64.39%±0.19 | mean | 3-seed mean of `eval_gsm8k_grpo_cka_only_20_v2` (64.37%), `eval_gsm8k_grpo_cka_only_20_seed123` (64.22%), `eval_gsm8k_grpo_cka_only_20_seed456_full` (64.59%) → mean=64.39%, sample std=0.19% | ✅ |
+| CKA-only 20% | Δ | +0.48 | 64.39 − 63.91 = 0.48 | ✅ |
+| CKA-only 20% | Peak Rew | 0.354 | `grpo_cka_only_20_extended_300.reward_step100 = 0.354` | ✅ |
+| Standard 20% | SFT | 59.29% | `eval_sft_standard_20_n1319.accuracy = 0.5929` | ✅ |
+| Standard 20% | GRPO 59.84%±0.38 | 3-seed mean | `eval_gsm8k_grpo_standard_20_fair_v2` (59.44%), `eval_gsm8k_grpo_standard_20_seed123_full` (59.89%), `eval_gsm8k_grpo_standard_20_seed456_full` (60.20%) → mean=59.843%≈59.84%, sample std=0.38% | ✅ |
+| Standard 20% | Δ | +0.55 | 59.84 − 59.29 = 0.55 | ✅ |
+| Standard 20% | Peak Rew | 0.081 | `grpo_standard_20_fair.peak_reward = 0.081` | ✅ |
+| RASP α=1.0 20% | SFT | 61.49% | `eval_gsm8k_sft_rasp_20.gsm8k_accuracy = 0.6149` | ✅ |
+| RASP α=1.0 20% | GRPO | 60.88% | `eval_gsm8k_grpo_rasp_20_fair.accuracy = 0.6088` | ✅ |
+| RASP α=1.0 20% | Δ | −0.61 | 60.88 − 61.49 = −0.61 | ✅ |
+| RASP α=1.0 20% | Peak Rew | 0.061 | `grpo_rasp_20_fair.peak_reward = 0.061` | ✅ |
+| Random 20% | SFT | 51.25% | `eval_gsm8k_sft_random_20.gsm8k_accuracy = 0.5125` | ✅ |
+| Random 20% | GRPO 50.72%±0.15 | 3-seed mean | `eval_gsm8k_grpo_random_20_v2` (50.57%), `eval_gsm8k_grpo_random_20_seed123_v2` (50.72%), `eval_gsm8k_grpo_random_20_seed456` (50.87%) → mean=50.72%, sample std=0.15% | ✅ |
+| Random 20% | Δ | −0.53 | 50.72 − 51.25 = −0.53 | ✅ |
+| Random 20% | Peak Rew | 0.190 | `grpo_random_20.reward_peak = 0.19` | ✅ |
+| ShortGPT 20% | SFT | 44.73% | `eval_gsm8k_sft_shortgpt_20.gsm8k_accuracy = 44.73` | ✅ |
+| ShortGPT 20% | GRPO | 43.37% | `eval_gsm8k_grpo_shortgpt_20.gsm8k_accuracy = 43.37` | ✅ |
+| ShortGPT 20% | Δ | −1.36 | 43.37 − 44.73 = −1.36 | ✅ |
+
+**Summary for Table 2:** 22/22 values verified ✅. All Δ columns are arithmetically correct. Note: `eval_gsm8k_grpo_random_20_seed123` is INVALIDATED (batch_size=1 confound); the valid seed123 run is `eval_gsm8k_grpo_random_20_seed123_v2`.
+
+---
+
+### Table 3 (`table3_alpha.tex`)
+
+| Row | Metric | Table Value | Registry Source | Status |
+|-----|--------|-------------|-----------------|--------|
+| α=0.5 | SFT | 60.73% | `eval_gsm8k_sft_alpha0p5_20.gsm8k_accuracy = 0.6073` | ✅ |
+| α=0.5 | GRPO | 61.18% | `eval_gsm8k_grpo_alpha0p5_20.gsm8k_accuracy = 0.6118` | ✅ |
+| α=0.5 | Δ | +0.45 | 61.18 − 60.73 = 0.45 | ✅ |
+| α=1.0 | SFT | 61.49% | `eval_gsm8k_sft_rasp_20.gsm8k_accuracy = 0.6149` (same as Table 2) | ✅ |
+| α=1.0 | GRPO | 60.88% | `eval_gsm8k_grpo_rasp_20_fair.accuracy = 0.6088` (same as Table 2) | ✅ |
+| α=1.0 | Δ | −0.61 | 60.88 − 61.49 = −0.61 | ✅ |
+| α=2.0 | SFT | 64.97% | `eval_gsm8k_sft_alpha2p0_20.gsm8k_accuracy = 0.6497` | ✅ |
+| α=2.0 | GRPO | 66.11% | `eval_gsm8k_grpo_alpha2p0_20.gsm8k_accuracy = 0.6611` | ✅ |
+| α=2.0 | Δ | +1.14 | 66.11 − 64.97 = 1.14 | ✅ |
+| α=3.0 | SFT | 64.14% | `eval_gsm8k_sft_alpha3p0_20.gsm8k_accuracy = 0.6414` | ✅ |
+| α=3.0 | GRPO | 63.46% | `eval_gsm8k_grpo_alpha3p0_20`: 837/1319 = 63.4572%, rounds to 63.46%. Registry stores 0.6345 (truncated at 4 sig figs, causing apparent discrepancy) | ✅ |
+| α=3.0 | Δ | −0.68 | (837−846)/1319 × 100 = −0.682%, rounds to −0.68 | ✅ |
+| α=4.0 | SFT | 61.94% | `eval_gsm8k_sft_alpha4_20_v5.gsm8k_accuracy = 0.6194` | ✅ |
+| α=4.0 | GRPO | 62.77% | `eval_gsm8k_grpo_alpha4_20_v3.gsm8k_accuracy = 0.6277` | ✅ |
+| α=4.0 | Δ | +0.83 | 62.77 − 61.94 = 0.83 | ✅ |
+
+**Summary for Table 3:** 15/15 values verified ✅. All Δ columns are arithmetically correct. The registry stores α=3.0 GRPO as 0.6345 (truncated), but the raw count (837/1319 = 63.4572%) rounds correctly to 63.46% as stated in the table.
+
+---
+
+### Overall Summary
+
+- **Table 1:** 9/12 verified ✅; 3 unverifiable ⚠️ (WandB-only trajectory data); 0 mismatches ❌
+  - CKA-only Mean Rew=0.285: no registry source; coincidentally matches `gradient_flow_analysis.cka_only_mlp_grad_mean = 0.285` (a gradient norm metric) — worth flagging for manual WandB verification
+  - CKA-only Min f0=0.125: no registry source at all
+  - RASP α=1.0 Mean Rew=0.031: no registry source (trajectory not stored)
+- **Table 2:** 22/22 verified ✅; 0 unverifiable; 0 mismatches
+- **Table 3:** 15/15 verified ✅; 0 unverifiable; 0 mismatches
+
+**Critical flag:** The CKA-only Mean Rew=0.285 in Table 1 warrants manual WandB verification. The value 0.285 appears in the registry only as a gradient norm (`cka_only_mlp_grad_mean`), not as any reward statistic. If Table 1 was compiled from WandB trajectory averages, this should be independently checked to rule out a copy-paste error between the gradient analysis and the dynamics table.
+
+agentId: aecb4123bb8ee6c7e (use SendMessage with to: 'aecb4123bb8ee6c7e' to continue this agent)
+&lt;usage>total_tokens: 76058
+tool_uses: 56
+duration_ms: 725444&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "7b7f7b08-67d3-4595-8d2a-843e49576cde",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "You are auditing a research paper's data integrity. You need to cross-reference numbers in three LaTeX tables against experiment registry data.\n\n## Registry data file\nThe full registry is at: `/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt`\n\nIt's a JSON file with structure: `{result: {data: {experiments: {exp_id: {...metrics, ...}}}}}`. Use `python3` with `jq`-style queries to extract what you need.\n\n## Tables to audit\n\n### Table 1 (tab1_recovery_gradient.tex)\nLocated at: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/tables/tab1_recovery_gradient.tex`\n\nValues to verify:\n- CKA-only: Peak Rew=0.354, Mean Rew=0.285, Min f0=0.125\n- Random: Peak Rew=0.190, Mean Rew=0.164, Min f0=0.300\n- Standard: Peak Rew=0.081, Mean Rew=0.050, Min f0=0.500\n- RASP α=1.0: Peak Rew=0.061, Mean Rew=0.031, Min f0=0.675\n\nSearch the registry for experiments with exp_ids containing \"grpo_cka\", \"grpo_standard\", \"grpo_random\", \"grpo_rasp\" etc. Look for metrics with reward/f0 values.\n\n### Table 2 (tab2_decoupling.tex)\nLocated at: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/tables/tab2_decoupling.tex`\n\nValues to verify:\n- Unpruned: SFT=81.27%, GRPO=81.27%, Peak Rew=0.669\n- CKA-only 20%: SFT=63.91%, GRPO=64.39%±0.19, Δ=+0.48, Peak Rew=0.354\n- Standard 20%: SFT=59.29%, GRPO=59.84%±0.38, Δ=+0.55, Peak Rew=0.081\n- RASP α=1.0 20%: SFT=61.49%, GRPO=60.88%, Δ=-0.61, Peak Rew=0.061\n- Random 20%: SFT=51.25%, GRPO=50.72%±0.15, Δ=-0.53, Peak Rew=0.190\n- ShortGPT 20%: SFT=44.73%, GRPO=43.37%, Δ=-1.36\n\nSearch for experiments with eval/accuracy metrics on GSM8K N=1319.\n\n### Table 3 (table3_alpha.tex)\nLocated at: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/tables/table3_alpha.tex`\n\nValues to verify:\n- α=0.5: SFT=60.73%, GRPO=61.18%, Δ=+0.45\n- α=1.0: SFT=61.49%, GRPO=60.88%, Δ=-0.61\n- α=2.0: SFT=64.97%, GRPO=66.11%, Δ=+1.14\n- α=3.0: SFT=64.14%, GRPO=63.46%, Δ=-0.68\n- α=4.0: SFT=61.94%, GRPO=62.77%, Δ=+0.83\n\nSearch for experiments with \"alpha\" or \"dose\" in exp_id, or experiments related to different α values.\n\n## What to do\n\n1. Use python3 to parse the registry JSON and find all experiments with relevant metrics\n2. For each table cell, try to find the matching registry experiment and its metric value\n3. Verify Δ columns are computed correctly (GRPO - SFT)\n4. Report: which values match, which don't match, which have no registry source found\n\nFormat your output as a structured report with ✅ (match), ❌ (mismatch + details), or ⚠️ (no source found).",
+    "agentId": "aecb4123bb8ee6c7e",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is the complete audit report:\n\n---\n\n## Data Integrity Audit Report\n\n### Table 1 (`tab1_recovery_gradient.tex`)\n\n| Row | Metric | Table Value | Registry Source | Status |\n|-----|--------|-------------|-----------------|--------|\n| CKA-only | Peak Rew | 0.354 | `grpo_cka_only_20_extended_300.reward_step100 = 0.354` | ✅ |\n| CKA-only | Mean Rew | 0.285 | No registry metric matches. The only 0.285 in the registry is `gradient_flow_analysis.cka_only_mlp_grad_mean` (a gradient norm, not a reward). The actual trajectory mean is not stored; likely sourced from WandB run data. | ⚠️ No registry source |\n| CKA-only | Min f0 | 0.125 | No value near 0.125 exists in any metric in the registry. `grpo_cka_only_20.final_frac_zero_std = 0.200` (not 0.125). Must come from WandB per-step trajectory. | ⚠️ No registry source |\n| Random | Peak Rew | 0.190 | `grpo_random_20.reward_peak = 0.19` | ✅ |\n| Random | Mean Rew | 0.164 | `grpo_random_20.reward_mean = 0.164` | ✅ |\n| Random | Min f0 | 0.300 | `grpo_random_20.frac_zero_std_range[0] = 0.3` | ✅ |\n| Standard | Peak Rew | 0.081 | `grpo_standard_20_fair.peak_reward = 0.081` | ✅ |\n| Standard | Mean Rew | 0.050 | `grpo_standard_20_fair.reward_trajectory` mean = 0.0495, rounds to 0.050 | ✅ |\n| Standard | Min f0 | 0.500 | `grpo_standard_20_fair.frac_zero_std_trajectory` min = 0.500 | ✅ |\n| RASP α=1.0 | Peak Rew | 0.061 | `grpo_rasp_20_fair.peak_reward = 0.061` | ✅ |\n| RASP α=1.0 | Mean Rew | 0.031 | No trajectory mean stored for `grpo_rasp_20_fair`. WandB-only data. | ⚠️ No registry source |\n| RASP α=1.0 | Min f0 | 0.675 | `grpo_rasp_20_fair.min_frac_zero_std = 0.675` | ✅ |\n\n**Summary for Table 1:** 9/12 values verified ✅; 3 values have no registry source (⚠️). The 3 unverifiable values (CKA Mean Rew, CKA Min f0, RASP Mean Rew) are trajectory-level statistics that require WandB access to verify. There are no confirmed mismatches (❌), but the numeric coincidence between `cka_only_mlp_grad_mean = 0.285` and `CKA Mean Rew = 0.285` is suspicious — one is a gradient norm, the other a claimed reward mean.\n\n---\n\n### Table 2 (`tab2_decoupling.tex`)\n\nAll Δ columns are arithmetically correct (GRPO − SFT).\n\n| Row | Metric | Table Value | Registry Source | Status |\n|-----|--------|-------------|-----------------|--------|\n| Unpruned | SFT | 81.27% | `eval_sft_unpruned_full.accuracy = 81.27` | ✅ |\n| Unpruned | GRPO | 81.27% | `eval_grpo_unpruned_v2_step100.accuracy = 81.27` | ✅ |\n| Unpruned | Peak Rew | 0.669 | `grpo_unpruned_v2.peak_reward = 0.669` | ✅ |\n| CKA-only 20% | SFT | 63.91% | `eval_gsm8k_sft_cka_only_20.gsm8k_accuracy = 0.6391` | ✅ |\n| CKA-only 20% | GRPO 64.39%±0.19 | mean | 3-seed mean of `eval_gsm8k_grpo_cka_only_20_v2` (64.37%), `eval_gsm8k_grpo_cka_only_20_seed123` (64.22%), `eval_gsm8k_grpo_cka_only_20_seed456_full` (64.59%) → mean=64.39%, sample std=0.19% | ✅ |\n| CKA-only 20% | Δ | +0.48 | 64.39 − 63.91 = 0.48 | ✅ |\n| CKA-only 20% | Peak Rew | 0.354 | `grpo_cka_only_20_extended_300.reward_step100 = 0.354` | ✅ |\n| Standard 20% | SFT | 59.29% | `eval_sft_standard_20_n1319.accuracy = 0.5929` | ✅ |\n| Standard 20% | GRPO 59.84%±0.38 | 3-seed mean | `eval_gsm8k_grpo_standard_20_fair_v2` (59.44%), `eval_gsm8k_grpo_standard_20_seed123_full` (59.89%), `eval_gsm8k_grpo_standard_20_seed456_full` (60.20%) → mean=59.843%≈59.84%, sample std=0.38% | ✅ |\n| Standard 20% | Δ | +0.55 | 59.84 − 59.29 = 0.55 | ✅ |\n| Standard 20% | Peak Rew | 0.081 | `grpo_standard_20_fair.peak_reward = 0.081` | ✅ |\n| RASP α=1.0 20% | SFT | 61.49% | `eval_gsm8k_sft_rasp_20.gsm8k_accuracy = 0.6149` | ✅ |\n| RASP α=1.0 20% | GRPO | 60.88% | `eval_gsm8k_grpo_rasp_20_fair.accuracy = 0.6088` | ✅ |\n| RASP α=1.0 20% | Δ | −0.61 | 60.88 − 61.49 = −0.61 | ✅ |\n| RASP α=1.0 20% | Peak Rew | 0.061 | `grpo_rasp_20_fair.peak_reward = 0.061` | ✅ |\n| Random 20% | SFT | 51.25% | `eval_gsm8k_sft_random_20.gsm8k_accuracy = 0.5125` | ✅ |\n| Random 20% | GRPO 50.72%±0.15 | 3-seed mean | `eval_gsm8k_grpo_random_20_v2` (50.57%), `eval_gsm8k_grpo_random_20_seed123_v2` (50.72%), `eval_gsm8k_grpo_random_20_seed456` (50.87%) → mean=50.72%, sample std=0.15% | ✅ |\n| Random 20% | Δ | −0.53 | 50.72 − 51.25 = −0.53 | ✅ |\n| Random 20% | Peak Rew | 0.190 | `grpo_random_20.reward_peak = 0.19` | ✅ |\n| ShortGPT 20% | SFT | 44.73% | `eval_gsm8k_sft_shortgpt_20.gsm8k_accuracy = 44.73` | ✅ |\n| ShortGPT 20% | GRPO | 43.37% | `eval_gsm8k_grpo_shortgpt_20.gsm8k_accuracy = 43.37` | ✅ |\n| ShortGPT 20% | Δ | −1.36 | 43.37 − 44.73 = −1.36 | ✅ |\n\n**Summary for Table 2:** 22/22 values verified ✅. All Δ columns are arithmetically correct. Note: `eval_gsm8k_grpo_random_20_seed123` is INVALIDATED (batch_size=1 confound); the valid seed123 run is `eval_gsm8k_grpo_random_20_seed123_v2`.\n\n---\n\n### Table 3 (`table3_alpha.tex`)\n\n| Row | Metric | Table Value | Registry Source | Status |\n|-----|--------|-------------|-----------------|--------|\n| α=0.5 | SFT | 60.73% | `eval_gsm8k_sft_alpha0p5_20.gsm8k_accuracy = 0.6073` | ✅ |\n| α=0.5 | GRPO | 61.18% | `eval_gsm8k_grpo_alpha0p5_20.gsm8k_accuracy = 0.6118` | ✅ |\n| α=0.5 | Δ | +0.45 | 61.18 − 60.73 = 0.45 | ✅ |\n| α=1.0 | SFT | 61.49% | `eval_gsm8k_sft_rasp_20.gsm8k_accuracy = 0.6149` (same as Table 2) | ✅ |\n| α=1.0 | GRPO | 60.88% | `eval_gsm8k_grpo_rasp_20_fair.accuracy = 0.6088` (same as Table 2) | ✅ |\n| α=1.0 | Δ | −0.61 | 60.88 − 61.49 = −0.61 | ✅ |\n| α=2.0 | SFT | 64.97% | `eval_gsm8k_sft_alpha2p0_20.gsm8k_accuracy = 0.6497` | ✅ |\n| α=2.0 | GRPO | 66.11% | `eval_gsm8k_grpo_alpha2p0_20.gsm8k_accuracy = 0.6611` | ✅ |\n| α=2.0 | Δ | +1.14 | 66.11 − 64.97 = 1.14 | ✅ |\n| α=3.0 | SFT | 64.14% | `eval_gsm8k_sft_alpha3p0_20.gsm8k_accuracy = 0.6414` | ✅ |\n| α=3.0 | GRPO | 63.46% | `eval_gsm8k_grpo_alpha3p0_20`: 837/1319 = 63.4572%, rounds to 63.46%. Registry stores 0.6345 (truncated at 4 sig figs, causing apparent discrepancy) | ✅ |\n| α=3.0 | Δ | −0.68 | (837−846)/1319 × 100 = −0.682%, rounds to −0.68 | ✅ |\n| α=4.0 | SFT | 61.94% | `eval_gsm8k_sft_alpha4_20_v5.gsm8k_accuracy = 0.6194` | ✅ |\n| α=4.0 | GRPO | 62.77% | `eval_gsm8k_grpo_alpha4_20_v3.gsm8k_accuracy = 0.6277` | ✅ |\n| α=4.0 | Δ | +0.83 | 62.77 − 61.94 = 0.83 | ✅ |\n\n**Summary for Table 3:** 15/15 values verified ✅. All Δ columns are arithmetically correct. The registry stores α=3.0 GRPO as 0.6345 (truncated), but the raw count (837/1319 = 63.4572%) rounds correctly to 63.46% as stated in the table.\n\n---\n\n### Overall Summary\n\n- **Table 1:** 9/12 verified ✅; 3 unverifiable ⚠️ (WandB-only trajectory data); 0 mismatches ❌\n  - CKA-only Mean Rew=0.285: no registry source; coincidentally matches `gradient_flow_analysis.cka_only_mlp_grad_mean = 0.285` (a gradient norm metric) — worth flagging for manual WandB verification\n  - CKA-only Min f0=0.125: no registry source at all\n  - RASP α=1.0 Mean Rew=0.031: no registry source (trajectory not stored)\n- **Table 2:** 22/22 verified ✅; 0 unverifiable; 0 mismatches\n- **Table 3:** 15/15 verified ✅; 0 unverifiable; 0 mismatches\n\n**Critical flag:** The CKA-only Mean Rew=0.285 in Table 1 warrants manual WandB verification. The value 0.285 appears in the registry only as a gradient norm (`cka_only_mlp_grad_mean`), not as any reward statistic. If Table 1 was compiled from WandB trajectory averages, this should be independently checked to rule out a copy-paste error between the gradient analysis and the dynamics table."
+      }
+    ],
+    "totalDurationMs": 725444,
+    "totalTokens": 76058,
+    "totalToolUseCount": 56,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1014,
+      "cache_read_input_tokens": 71453,
+      "output_tokens": 3590,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1014
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3590,
+          "cache_read_input_tokens": 71453,
+          "cache_creation_input_tokens": 1014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1014,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 3,
+      "searchCount": 0,
+      "bashCount": 53,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 395_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! The three agents have completed their work. Let me now compile the findings and make the necessary fixes.
+
+Let me summarize the key findings:
+
+1. **Known issue (conclusion 4.62pp)**: Actually CORRECT. It refers to SFT gap (63.91-59.29=4.62pp), not GRPO gap (64.39-59.84=4.55pp).
+
+2. **ERROR: Appendix line 110** — GSM8K GRPO ordering in parenthetical is wrong. States CKA(64.39%) > Standard(59.84%) > RASP(60.88%) > Random(50.72%), but since RASP=60.88 > Standard=59.84, the ordering should be CKA > RASP > Standard > Random. 
+
+3. **POTENTIAL ERROR: Introduction line 25** — "only method with |Δ|>1pp" is unscoped (MBPP CKA-only has |Δ|=1.34pp), but reading more carefully intro says "the only method with |Δ| > 1pp (−1.36pp on GSM8K)" — this implicitly scopes to GSM8K. Maybe needs a scope qualifier.
+
+4. **DISCREPANCY: Fig 5 caption vs body** — Standard reward endpoint 0.056 vs 0.058.
+
+5. **⚠️ Various minor issues**
+
+Now I'm noticing some additional problems like inconsistent inequality operators and unverifiable metrics that only exist in the WandB logs. Let me focus on fixing the most critical error in the appendix around line 110, where the method ordering claim doesn't actually match the GSM8K numbers provided. The stated order is CKA > Standard > RASP > Random, but when I look at the actual percentages given for GSM8K, the ranking doesn't hold up correctly.
+
+Looking at the GSM8K GRPO means more carefully, I see that 60.88 is actually greater than 59.84, which means RASP outperforms Standard on that benchmark. So the correct GSM8K ordering should be CKA at 64.39, then RASP at 60.88, then Standard at 59.84, and Random at 50.72. This contradicts what the appendix claims about the ordering being preserved from GSM8K to MATH-500. The MATH-500 SFT results do show CKA > Standard > RASP > Random, but that's different from GSM8K where the middle two methods swap positions. The main text already acknowledges this swap happens, so I should correct the appendix to reflect the actual data and note that the middle-ranked methods change order between benchmarks rather than claiming the ordering is preserved. and RASP swap in both GSM8K settings, but MATH-500 SFT has them in the opposite order—so the claim about preservation is actually incorrect. The fix is to either correct the GSM8K values or acknowledge that the middle-ranked methods swap between datasets rather than staying consistent.
+
+The experiments.tex file already handles this correctly by noting the swap, so I need to update the appendix to match that acknowledgment. For the Fig 5 caption issue, I should verify which values are actually correct. The intro line about ShortGPT's depth pruning being the only method with over 1 percentage point difference on GSM8K is technically accurate since it's scoped to that dataset, though MBPP does have a similar magnitude change for CKA-only.
+
+Now I'll address the confirmed discrepancies—the extended training reward values show 0.054–0.058 in experiments.tex but the figure caption lists 0.054→0.056, so I need to reconcile which is the accurate range.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "e1d8bca1-0c71-4b35-ba35-684e57e899ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bdUSF8qWhTLoGaLjPi258",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4247,
+      "cache_creation_input_tokens": 8310,
+      "cache_read_input_tokens": 63148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8310
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 396_
+
+All three agents are done. Let me compile findings and make fixes. First, let me verify and fix the confirmed errors.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "0ef61c02-e45d-4c90-b5e4-058104c7e442",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bdUSF8qWhTLoGaLjPi258",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4247,
+      "cache_creation_input_tokens": 8310,
+      "cache_read_input_tokens": 63148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8310
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 397_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BcdaWeT4gk93Y6qVrUDF89`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/appendix.tex",
+  "offset": 108,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "e09f0da1-bc32-460b-96a1-b5ae6eed3060",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bdUSF8qWhTLoGaLjPi258",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4247,
+      "cache_creation_input_tokens": 8310,
+      "cache_read_input_tokens": 63148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8310
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 398 · 2026-05-23T19:33:06.527Z_
+
+<details><summary>↩ Tool result · `toolu_01BcdaWeT4gk93Y6qVrUDF89`</summary>
+
+```text
+108	\input{tables/tab_math500}
+109	
+110	The method ordering CKA-only (26.8\%) $>$ Standard (23.4\%) $>$ \rasp{} (21.2\%) $>$ Random (14.4\%) on MATH-500 SFT is preserved from GSM8K (64.39\% $>$ 59.84\% $>$ 60.88\% $>$ 50.72\%), confirming that the recovery capacity spectrum generalizes across benchmarks.
+111	The $\alpha$ dose-response effect is not statistically significant on MATH-500: SFT accuracy varies by ${\sim}$8\,pp across $\alpha$ values, but with stderr ${\approx}$2\,pp per point, attributable to high truncation rates at the 2048-token limit and floor effects at this difficulty level.
+112	The inverted-U pattern is validated on GSM8K (Table~\ref{tab:alpha}); MATH-500 does not resolve the dose-response shape.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "0dbd5092-7922-42df-b187-2952bcbd1223",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/appendix.tex",
+      "content": "\\input{tables/tab_math500}\n\nThe method ordering CKA-only (26.8\\%) $>$ Standard (23.4\\%) $>$ \\rasp{} (21.2\\%) $>$ Random (14.4\\%) on MATH-500 SFT is preserved from GSM8K (64.39\\% $>$ 59.84\\% $>$ 60.88\\% $>$ 50.72\\%), confirming that the recovery capacity spectrum generalizes across benchmarks.\nThe $\\alpha$ dose-response effect is not statistically significant on MATH-500: SFT accuracy varies by ${\\sim}$8\\,pp across $\\alpha$ values, but with stderr ${\\approx}$2\\,pp per point, attributable to high truncation rates at the 2048-token limit and floor effects at this difficulty level.\nThe inverted-U pattern is validated on GSM8K (Table~\\ref{tab:alpha}); MATH-500 does not resolve the dose-response shape.",
+      "numLines": 5,
+      "startLine": 108,
+      "totalLines": 316
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 399_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01McR1qahB2MhgkLD5TkGTR5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/experiments.tex",
+  "offset": 125,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "a7535e09-dbc5-4777-8be6-6e2339bde05d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bdUSF8qWhTLoGaLjPi258",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4247,
+      "cache_creation_input_tokens": 8310,
+      "cache_read_input_tokens": 63148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8310
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 400 · 2026-05-23T19:33:07.271Z_
+
+<details><summary>↩ Tool result · `toolu_01McR1qahB2MhgkLD5TkGTR5`</summary>
+
+```text
+125	    \centering
+126	    \includegraphics[width=\columnwidth]{figures/paper/fig5_extended_training.pdf}
+127	    \caption{Extended GRPO training (300 steps, 3$\times$ budget). (a)~Standard reward: zero net gain (0.054$\to$0.056); CKA-only sustains a 5.5$\times$ gap. (b)~Standard $f_0$ remains in the collapse zone ($>$0.5); CKA-only stays below 0.30.}
+128	    \label{fig:extended_training}
+129	\end{figure}
+130	
+131	\paragraph{Extended training cannot rescue collapse.}
+132	Extending GRPO from 100 to 300 steps (Figure~\ref{fig:extended_training}), Standard shows zero net improvement (reward 0.054--0.058, $f_0 > 0.5$ throughout), while CKA-only sustains a 5.5$\times$ gap (0.308 vs 0.056 at step 300). The gap is structural, not a matter of training budget.
+133	
+134	\paragraph{Cross-scale and cross-architecture generalization.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "8c1c2207-1c42-41f2-aa82-d4029a958ea7",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/experiments.tex",
+      "content": "    \\centering\n    \\includegraphics[width=\\columnwidth]{figures/paper/fig5_extended_training.pdf}\n    \\caption{Extended GRPO training (300 steps, 3$\\times$ budget). (a)~Standard reward: zero net gain (0.054$\\to$0.056); CKA-only sustains a 5.5$\\times$ gap. (b)~Standard $f_0$ remains in the collapse zone ($>$0.5); CKA-only stays below 0.30.}\n    \\label{fig:extended_training}\n\\end{figure}\n\n\\paragraph{Extended training cannot rescue collapse.}\nExtending GRPO from 100 to 300 steps (Figure~\\ref{fig:extended_training}), Standard shows zero net improvement (reward 0.054--0.058, $f_0 > 0.5$ throughout), while CKA-only sustains a 5.5$\\times$ gap (0.308 vs 0.056 at step 300). The gap is structural, not a matter of training budget.\n\n\\paragraph{Cross-scale and cross-architecture generalization.}",
+      "numLines": 10,
+      "startLine": 125,
+      "totalLines": 139
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 401_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the issues clearly:
+
+1. **Appendix line 110**: The GSM8K values listed are `64.39% > 59.84% > 60.88% > 50.72%`, which maps to CKA > Standard > RASP > Random. But since RASP(60.88) > Standard(59.84), the actual ordering is CKA > RASP > Standard > Random. The values are listed in wrong order and the ordering doesn't match MATH-500 either.
+
+Looking at the MATH-500 SFT order: CKA(26.8) > Standard(23.4) > RASP(21.2) > Random(14.4). 
+
+In GSM8K GRPO, the ranking shifts to CKA(64.39) > RASP(60.88) > Standard(59.84) > Random(50.72), so the middle methods swap positions between the two datasets. The experiments.tex file already notes this behavior, so I just need to correct the GSM8K values to their proper order and clarify that while the top and bottom rankings hold, the middle methods do indeed swap. I'm noticing the current text is getting too verbose with all the specific percentages and comparisons. Looking at what's already in the experiments.tex file, I see there's a cleaner version that captures the same point without as much clutter — the key insight is just that CKA ranks highest and Random lowest on MATH-500 SFT, with the middle methods swapping their relative positions compared to GSM8K. I should trim this down to match that more concise approach.
+
+For the Figure 5 caption discrepancy, the range notation "0.054--0.058" likely describes the full trajectory across all 300 steps, while the arrow notation "0.054→0.056" shows the start and end points specifically, so both could be accurate if Standard peaked at 0.058 somewhere in the middle before settling at 0.056.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "01fef8bd-5440-4c84-bd34-c3dfb4daada4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRC6Dg8jUWSwwfSvPFB7My",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6825,
+      "cache_read_input_tokens": 71458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6825
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 402_
+
+Now fixing the confirmed error in appendix.tex. The GSM8K ordering in parenthetical is factually wrong — RASP(60.88%) > Standard(59.84%) but they're listed as Standard > RASP. Also, the MATH-500 SFT order (Std > RASP) actually differs from GSM8K (RASP > Std), so "is preserved" is incorrect. The main text at experiments.tex:85 already correctly notes "middle-ranked methods swap positions."
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "51adf736-5fdc-4b57-8896-324d7837bde5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRC6Dg8jUWSwwfSvPFB7My",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6825,
+      "cache_read_input_tokens": 71458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6825
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 403_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01PUDwbs4KU2d1tNrYitZyAN`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/appendix.tex",
+  "old_string": "The method ordering CKA-only (26.8\\%) $>$ Standard (23.4\\%) $>$ \\rasp{} (21.2\\%) $>$ Random (14.4\\%) on MATH-500 SFT is preserved from GSM8K (64.39\\% $>$ 59.84\\% $>$ 60.88\\% $>$ 50.72\\%), confirming that the recovery capacity spectrum generalizes across benchmarks.",
+  "new_string": "The endpoint ordering on MATH-500 SFT (CKA-only 26.8\\% highest, Random 14.4\\% lowest) is preserved from GSM8K (CKA-only 64.39\\%, Random 50.72\\%; Table~\\ref{tab:decoupling}), though middle-ranked methods swap positions (Standard 23.4\\% $>$ \\rasp{} 21.2\\% on MATH-500 vs \\rasp{} 60.88\\% $>$ Standard 59.84\\% on GSM8K), consistent with the main-text observation (\\S\\ref{sec:ood})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "7f4aee28-3943-40c5-9b20-c28df2dfe024",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRC6Dg8jUWSwwfSvPFB7My",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6825,
+      "cache_read_input_tokens": 71458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6825
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 404 · 2026-05-23T19:33:35.846Z_
+
+<details><summary>↩ Tool result · `toolu_01PUDwbs4KU2d1tNrYitZyAN`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "6513a60d-d5b7-4484-a50d-dc94cd9fbc7d",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/appendix.tex",
+    "oldString": "The method ordering CKA-only (26.8\\%) $>$ Standard (23.4\\%) $>$ \\rasp{} (21.2\\%) $>$ Random (14.4\\%) on MATH-500 SFT is preserved from GSM8K (64.39\\% $>$ 59.84\\% $>$ 60.88\\% $>$ 50.72\\%), confirming that the recovery capacity spectrum generalizes across benchmarks.",
+    "newString": "The endpoint ordering on MATH-500 SFT (CKA-only 26.8\\% highest, Random 14.4\\% lowest) is preserved from GSM8K (CKA-only 64.39\\%, Random 50.72\\%; Table~\\ref{tab:decoupling}), though middle-ranked methods swap positions (Standard 23.4\\% $>$ \\rasp{} 21.2\\% on MATH-500 vs \\rasp{} 60.88\\% $>$ Standard 59.84\\% on GSM8K), consistent with the main-text observation (\\S\\ref{sec:ood}).",
+    "originalFile": "\\section{Training Details}\n\\label{sec:appendix_training}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Hyperparameter details for SFT warmup and GRPO recovery stages. All methods share the same GRPO configuration; Random uses the TRL default generation limit (marked with $^\\dagger$).}\n\\label{tab:hyperparams}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lll@{}}\n\\toprule\nParameter & SFT & GRPO \\\\\n\\midrule\nLearning rate & $2 \\times 10^{-5}$ & $1 \\times 10^{-6}$ \\\\\nBatch size & 1 & 1 \\\\\nGradient accumulation & 8 & 1 \\\\\nMax sequence length & 2{,}048 & -- \\\\\nMax new tokens & -- & 1{,}024\\,$^\\dagger$512 \\\\\nOptimizer & AdamW & AdamW \\\\\nEpochs / Steps & 2 epochs & 100 steps \\\\\nKL coefficient $\\beta$ & -- & 0.01 \\\\\nSampling temperature & -- & 0.4 \\\\\nNum generations per prompt & -- & 8 \\\\\nReward & -- & Binary (exact match) \\\\\nLoss formulation & Cross-entropy & DAPO-style clipped \\\\\n\\texttt{reward\\_desert\\_patience} & -- & 50 \\\\\n\\bottomrule\n\\multicolumn{3}{l}{\\footnotesize $^\\dagger$Random uses TRL default of 512 tokens; all other methods use 1{,}024.} \\\\\n\\end{tabular}}\n\\end{table}\n\n\\section{Algorithm}\n\\label{sec:appendix_algo}\n\n\\begin{algorithm}[h]\n\\caption{Controlled Pruning Comparison Framework}\n\\label{alg:rasp}\n\\begin{algorithmic}[1]\n\\Require Model $\\mathcal{M}$, calibration data $\\mathcal{D}_\\text{cal}$, target sparsity $s$, scoring criterion $\\mathcal{C} \\in \\{\\text{Std}, \\text{RASP}, \\text{CKA}, \\text{Rand}\\}$, layer floor $\\tau$\n\\Ensure Pruned and recovered model $\\mathcal{M}'$\n\\Statex \\textit{\\% Stage 1: Shared Structural Analysis}\n\\For{each structure $h \\in \\mathcal{H}$}\n    \\State Compute importance $I(h)$ via Eq.~\\eqref{eq:importance}\n    \\State Collect activations $\\mathbf{X}_h$ on $\\mathcal{D}_\\text{cal}$\n\\EndFor\n\\For{each layer $\\ell = 1, \\ldots, L$}\n    \\For{each structure $h_i$ in layer $\\ell$}\n        \\State $F(h_i) \\gets \\frac{1}{|\\mathcal{H}_\\ell|-1} \\sum_{j \\neq i} \\text{CKA}(\\mathbf{X}_{h_i}, \\mathbf{X}_{h_j})$\n    \\EndFor\n\\EndFor\n\\Statex \\textit{\\% Stage 2: Criterion-Specific Scoring}\n\\For{each structure $h \\in \\mathcal{H}$}\n    \\State $S(h) \\gets \\mathcal{C}(I(h), F(h))$ \\hfill $\\triangleright$ Eq.~\\ref{eq:standard}, \\ref{eq:score}, \\ref{eq:cka_only}, or random\n\\EndFor\n\\State Sort $\\mathcal{H}$ by $S(h)$ ascending; prune lowest up to $s$, subject to $\\tau$\n\\Statex \\textit{\\% Stage 3: Two-Stage Recovery}\n\\State $\\mathcal{M}_\\text{warm} \\gets \\text{SFT}(\\mathcal{M}_\\text{pruned}, \\mathcal{D}_\\text{sft})$ \\hfill $\\triangleright$ restore EOS \\& format\n\\State $\\mathcal{M}' \\gets \\text{GRPO}(\\mathcal{M}_\\text{warm}, \\mathcal{D}_\\text{rlvr})$ \\hfill $\\triangleright$ recover reasoning\n\\State \\Return $\\mathcal{M}'$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\section{Inference Efficiency}\n\\label{sec:appendix_inference}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Inference characteristics at 20\\% sparsity (single-GPU, no contention). Pruning reduces parameters by 19\\% and memory by ${\\sim}$28\\%, with TTFT improving 18\\%. Per-token throughput decreases 19\\% (0.81$\\times$) due to non-uniform layer widths from full-layer removal that current GPU kernels do not optimize.}\n\\label{tab:inference}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\nConfiguration & TPS\\,(tok/s) & TTFT\\,(ms) & Per-token\\,(ms) & Params\\,(B) \\\\\n\\midrule\nDense 7B & 72.0 & 20.1 & 13.9 & 7.62 \\\\\nCKA-only 20\\% & 58.3 & 16.4 & 16.7 & 6.16 \\\\\nStandard 20\\% & 58.2 & 16.4 & 16.7 & 6.16 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAll pruned models achieve ${\\sim}$28\\% memory reduction from structural parameter removal.\nTTFT (time to first token) improves by 18\\% (20.1$\\to$16.4\\,ms), reflecting faster prefill with fewer parameters.\nPer-token throughput decreases by 19\\% (72.0$\\to$58.3 tok/s, or 13.9$\\to$16.7\\,ms per token), consistent with non-uniform layer widths creating computational bottlenecks that current GPU kernels do not optimize away.\nCKA-only and Standard show identical throughput (58.3 vs 58.2 tok/s), confirming that the pruning criterion affects recovery capacity but not inference speed at matched sparsity.\n\n\\section{CKA Coefficient $\\alpha$ Ablation}\n\\label{sec:appendix_alpha}\n\n\\input{tables/table3_alpha}\n\nOn GSM8K, the dose-response curve across $\\alpha \\in \\{0.5, 1.0, 2.0, 3.0, 4.0\\}$ reveals an inverted-U pattern peaking at $\\alpha{=}2.0$ (SFT 64.97\\%, GRPO 66.11\\%, $\\Delta{=}{+}1.14$\\,pp; Table~\\ref{tab:alpha}).\nAt $\\alpha{=}0.5$, importance still dominates; recovery is low (SFT 60.73\\%, GRPO 61.18\\%).\nAt $\\alpha{=}1.0$ (\\rasp{}), GRPO collapses (peak reward 0.061, accuracy 60.88\\%, $\\Delta{=}{-}0.61$\\,pp).\n$\\alpha{=}3.0$ (SFT 64.14\\%, GRPO 63.46\\%, $\\Delta{=}{-}0.68$\\,pp) excludes a plateau hypothesis: accuracy drops 2.65\\,pp from the $\\alpha{=}2.0$ peak, confirming that the optimum is a true peak rather than a saturation regime.\nAt $\\alpha{=}4.0$, CKA overlap dominates; the model recovers to 62.77\\% GRPO accuracy (SFT 61.94\\%, $\\Delta{=}{+}0.83$\\,pp) with active GRPO learning (reward 0.146$\\to$0.256$\\to$0.198).\nReward-accuracy decoupling holds at every $\\alpha$ value: $|\\Delta| \\leq 1.14$\\,pp across all five points.\n\n\\section{Extended Training Dynamics}\n\\label{sec:appendix_extended}\n\nSee Figure~\\ref{fig:extended_training} in the main text for the 300-step extended training results.\n\n\\section{MATH-500 Out-of-Distribution Evaluation}\n\\label{sec:appendix_math500}\n\n\\input{tables/tab_math500}\n\nThe method ordering CKA-only (26.8\\%) $>$ Standard (23.4\\%) $>$ \\rasp{} (21.2\\%) $>$ Random (14.4\\%) on MATH-500 SFT is preserved from GSM8K (64.39\\% $>$ 59.84\\% $>$ 60.88\\% $>$ 50.72\\%), confirming that the recovery capacity spectrum generalizes across benchmarks.\nThe $\\alpha$ dose-response effect is not statistically significant on MATH-500: SFT accuracy varies by ${\\sim}$8\\,pp across $\\alpha$ values, but with stderr ${\\approx}$2\\,pp per point, attributable to high truncation rates at the 2048-token limit and floor effects at this difficulty level.\nThe inverted-U pattern is validated on GSM8K (Table~\\ref{tab:alpha}); MATH-500 does not resolve the dose-response shape.\n\n\\section{MBPP Code Generation}\n\\label{sec:appendix_mbpp}\n\n\\input{tables/tab_mbpp}\n\nMBPP GRPO deltas are uniformly slightly positive across all fine-grained methods (mean $+$1.25\\,pp), but none are statistically significant at this sample size ($N{=}374$; stderr ${\\approx}1.7$\\,pp).\nThis directional consistency may reflect a weak task-specific GRPO effect at the capability floor rather than a violation of reward-accuracy decoupling.\n\n\\section{CKA Scoring Stability}\n\\label{sec:appendix_cka_stability}\n\n\\input{tables/tab_cka_stability}\n\nCKA-based structure rankings are highly stable across calibration data volumes: Spearman $\\rho$ between rankings from 256, 512, and 1024 calibration samples ranges from 0.964 to 0.979, indicating that the scoring criterion is not sensitive to calibration set size.\n\n\\section{Gradient Signal Analysis}\n\\label{sec:appendix_gradient}\n\nWe compare per-layer gradient magnitudes during early GRPO training ($N{=}200$ GSM8K calibration samples) across three pruning criteria using paired Wilcoxon signed-rank tests.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Pairwise gradient magnitude ratios during GRPO training. Ratio: mean gradient magnitude of method A divided by method B across 56 parameter groups (28 layers $\\times$ 2 projections). Significant layers: count where paired Wilcoxon signed-rank $p{<}0.05$.}\n\\label{tab:gradient_flow}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nComparison & Gradient Ratio & Sig.\\ Layers \\\\\n\\midrule\nCKA-only vs Standard & 2.89$\\times$ & 55\\,/\\,56 \\\\\nCKA-only vs \\rasp{} & 2.26$\\times$ & 56\\,/\\,56 \\\\\n\\rasp{} vs Standard & 1.28$\\times$ & 45\\,/\\,56 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe gradient magnitude hierarchy (CKA-only $\\gg$ \\rasp{} $>$ Standard) mirrors the recovery capacity hierarchy (GSM8K: 64.39\\% $>$ 60.88\\% $>$ 59.84\\%), with bootstrap 95\\% CIs for all ratios excluding 1.0.\nThis is consistent with diversity preservation enabling stronger training signals during GRPO, though the evidence is correlational: an alternative explanation---that CKA-only retains more functional structure, producing higher initial loss and naturally larger gradients---cannot be ruled out.\n\n\\section{Seed Reproducibility}\n\\label{sec:appendix_seed}\n\nCKA-only GSM8K accuracy across 3 GRPO seeds: 64.37\\% (seed 42), 64.22\\% (seed 123), 64.59\\% (seed 456), yielding mean 64.39\\% $\\pm$ 0.19\\,pp.\nStandard: mean 59.84\\% $\\pm$ 0.38\\,pp across the same 3 seeds.\nSee Table~\\ref{tab:multiseed} for the full summary.\n\n\\section{Sparsity Cliff at 30\\%}\n\\label{sec:appendix_sparsity_cliff}\n\n\\input{tables/table4_sparsity_cliff}\n\nAll tested methods collapse at 30\\% sparsity: Standard retains 4\\% accuracy, CKA-only 1.6\\%, and \\rasp{} 0\\%.\nThis capacity threshold, independent of pruning criterion, validates 20\\% as the operating point and confirms that the recovery capacity spectrum reflects how methods allocate a limited pruning budget.\n\n\\section{Multi-Seed GRPO Results}\n\\label{sec:appendix_multiseed}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Multi-seed GRPO results on GSM8K ($N{=}1{,}319$). CKA-only, Standard, and Random each trained with 3 GRPO seeds (42, 123, 456); pruning calibration and SFT are identical across all runs within each sparsity level.}\n\\label{tab:multiseed}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\nSparsity & Method & Mean Acc.\\,(\\%) & Std\\,(pp) & Seeds \\\\\n\\midrule\n\\multirow{4}{*}{20\\%} & CKA-only & 64.39 & 0.19 & 3 \\\\\n & Standard & 59.84 & 0.38 & 3 \\\\\n & \\rasp{} & 60.88 & -- & 1 \\\\\n & Random & 50.72 & 0.15 & 3 \\\\\n\\midrule\n\\multirow{2}{*}{15\\%} & CKA-only & 72.76 & 0.57 & 3 \\\\\n & Standard & 65.56 & 0.50 & 3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt 20\\% sparsity, the 4.55\\,pp gap between CKA-only and Standard is robust across seeds, with non-overlapping ranges (CKA-only: 64.22--64.59\\%, Standard: 59.44--60.20\\%).\nStandard shows a wider observed range across seeds (0.76\\,pp vs 0.37\\,pp), consistent with borderline-collapse dynamics where small perturbations produce larger outcome variation.\nRandom (3 seeds: 50.57\\%, 50.72\\%, 50.87\\%; $\\sigma{=}0.15$\\,pp, observed range 0.30\\,pp) converges in a narrow band with SFT accuracy seed-independent at 51.25\\%.\nAll three seeds satisfy GRPO $\\leq$ SFT ($\\Delta{=}{-}0.68$, $-$0.53, $-$0.38\\,pp), confirming that reward-accuracy decoupling is reproducible across seeds even for stagnating methods.\nNote: Standard seed 42 was trained from a separately initialized SFT checkpoint (accuracy 59.21\\% vs.\\ 59.29\\% for seeds 123/456; $\\Delta = 0.08$\\,pp).\nAt 15\\% sparsity, the gap widens to 7.20\\,pp (72.76\\% vs 65.56\\%, $t{\\approx}16.4$, $p{<}0.001$), with non-overlapping ranges (CKA-only: 72.10--73.09\\%, Standard: 65.13--65.43\\%).\n\n\\section{Cross-Sparsity Validation}\n\\label{sec:appendix_cross_sparsity}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-sparsity validation on DeepSeek-R1-Distill-Qwen-7B. GSM8K accuracy ($N{=}1{,}319$) after SFT warmup and GRPO recovery. 15\\% and 20\\% GRPO values are mean over 3 seeds (see Tables~\\ref{tab:decoupling},~\\ref{tab:multiseed}). $^\\ddagger$Single seed. Mean $|\\Delta| \\leq 1$\\,pp across all conditions.}\n\\label{tab:cross_sparsity}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\nSparsity & Method & SFT\\,(\\%) & GRPO\\,(\\%) & $\\Delta$\\,(pp) \\\\\n\\midrule\n\\multirow{2}{*}{15\\%} & CKA-only & 72.18 & \\textbf{72.76{\\scriptsize$\\pm$0.57}} & $+$0.58 \\\\\n & Standard & 66.49 & 65.56{\\scriptsize$\\pm$0.50} & $-$0.93 \\\\\n\\midrule\n\\multirow{2}{*}{20\\%} & CKA-only & 63.91 & 64.39 & $+$0.48 \\\\\n & Standard & 59.29 & 59.84 & $+$0.55 \\\\\n\\midrule\n\\multirow{2}{*}{25\\%$^\\ddagger$} & CKA-only & 60.12 & 59.59 & $-$0.53 \\\\\n & Standard & 50.87 & 51.86 & $+$0.99 \\\\\n\\midrule\n30\\% & All & \\multicolumn{3}{c}{Collapse ($\\leq$4\\%; Table~\\ref{tab:sparsity_cliff})} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt 15\\% sparsity (3-seed mean), the CKA-only advantage widens to $+$7.20\\,pp (72.76\\% vs 65.56\\%), compared to $+$4.55\\,pp at 20\\%.\nCKA-only at 15\\% (72.76\\%) represents the highest mean accuracy across all experimental conditions, retaining 80.1\\% of original dense model performance (90.83\\%).\nAt 25\\% sparsity (single seed), Standard's SFT accuracy decline accelerates ($-$7.20\\,pp from 15\\%$\\to$20\\%, $-$8.42\\,pp from 20\\%$\\to$25\\%), while CKA-only's decline decelerates ($-$8.27\\,pp then $-$3.79\\,pp).\nReward-accuracy decoupling is preserved ($|\\Delta| \\leq 1$\\,pp for both methods) despite Standard's near-zero peak reward (0.008).\n\n\\section{Cross-Architecture Validation}\n\\label{sec:appendix_cross_arch}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-architecture validation on Qwen2.5-Math-7B~\\citep{qwen2.5} at 20\\% structured sparsity. Accuracy evaluated on GSM8K ($N{=}200$). Post-SFT reports mean $\\pm$ std over multiple SFT runs. EOS rate: fraction of generations that produce a valid end-of-sequence token.}\n\\label{tab:cross_arch}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nMethod & Post-Prune\\,(\\%) & Post-SFT\\,(\\%) & EOS Rate\\,(\\%) \\\\\n\\midrule\nCKA-only & 1.0 & \\textbf{51.50 $\\pm$ 3.53} & 27.0 \\\\\nStandard & 18.5 & 21.00 $\\pm$ 2.88 & 36.5 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nCKA-only pruning causes near-total initial damage on Qwen2.5-Math-7B (1.0\\% post-prune accuracy vs Standard's 18.5\\%), yet SFT recovers CKA-only to 51.50\\% while Standard remains at 21.00\\%.\nThis post-prune accuracy reversal provides strong evidence that recovery capacity is shaped by preserved network structure rather than starting accuracy.\nEOS rates remain below 40\\% for both methods, indicating that SFT warmup is less effective on this architecture; GRPO validation is deferred to future work.\\footnote{Preliminary GRPO evaluation yields 48.60\\% (243/500), but 83.8\\% of responses were truncated at 2048 tokens, precluding direct comparison with SFT results.}\n\n\\section{Structural Overlap Analysis}\n\\label{sec:appendix_overlap}\n\nCKA-only and Standard pruning produce markedly different removal patterns across the 28 layers of DeepSeek-R1-Distill-Qwen-7B at 20\\% sparsity.\nCKA-only concentrates pruning in early layers (L0--9 account for 72.5\\% of removed MLP groups), preserving nearly all structures in later layers (L16--27).\nStandard distributes removals more uniformly, pruning substantial numbers of groups in late layers (L16--18, L22, L25--26).\n\nThe methods share only partial overlap in which structures they remove.\n65 MLP groups are pruned exclusively by CKA-only (retained by Standard), concentrated in L6--9 and L27---structures that gradient importance scores as important but CKA identifies as redundant with neighboring groups.\nConversely, 46+ groups are pruned exclusively by Standard (retained by CKA-only), concentrated in L16--18, L22, and L25--26---structures that gradient importance scores as unimportant but CKA identifies as representationally unique.\n\nThis pattern is consistent with the layer-wise CKA similarity analysis (Figure~\\ref{fig:cka_heatmap}): CKA-only's aggressive early-layer pruning disrupts dense representations (low diagonal CKA, $\\mu{=}0.62$) but preserves diverse late-layer pathways, while Standard's uniform pruning maintains dense fidelity ($\\mu{=}0.90$) at the cost of removing unique computational pathways in later layers.\n\n\\section{KL Divergence During GRPO Training}\n\\label{sec:appendix_kl}\n\n\\begin{figure}[t]\n    \\centering\n    \\includegraphics[width=0.75\\columnwidth]{figures/paper/fig_appendix_kl.pdf}\n    \\caption{KL divergence between the policy and reference model during GRPO training. RASP maintains near-zero KL ($<$0.001), consistent with minimal policy movement during collapse. Random shows the highest KL (${\\sim}$0.004--0.005), indicating more policy exploration. CKA-only and Standard fall between these extremes.}\n    \\label{fig:kl_divergence}\n\\end{figure}\n\n\\section{Depth-First Pruning Baseline}\n\\label{sec:appendix_depth_first}\n\nAs a sanity check, we test whether CKA-only's advantage reflects mere layer-depth bias by constructing a depth-first baseline: synthetic importance scores force removal of late layers first (L18--27: 0.001, L10--17: 0.5, L0--9: 1.0), then standard pruning at 20\\% sparsity.\nBoth SFT (${\\sim}$10\\%) and GRPO (${\\sim}$8\\%) accuracy are near chance (early-stopped at $N{\\approx}50$--88 samples due to conclusive results), confirming that naive depth ordering cannot substitute for criterion-based structure selection.\nThis baseline operates at layer-level granularity (removing entire transformer blocks), unlike CKA-only/Standard/\\rasp{} which prune at MLP channel group level; the granularity difference limits direct comparison with our main results and precludes using this baseline as evidence for the recovery capacity spectrum.\n\n\\section{Per-Layer Capacity Floor Ablation}\n\\label{sec:appendix_floor}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Effect of per-layer capacity floor $\\tau$ on CKA-only pruning at 20\\% sparsity. GSM8K accuracy ($N{=}1{,}319$) after GRPO recovery (100 steps). Default $\\tau{=}0.4$.}\n\\label{tab:floor_ablation}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nFloor $\\tau$ & GRPO Acc.\\,(\\%) & $\\Delta$ vs $\\tau{=}0.4$\\,(pp) \\\\\n\\midrule\n0.3 & 65.05 & $+$0.68 \\\\\n0.4 (default) & 64.37 & --- \\\\\n0.5 & 61.71 & $-$2.66 \\\\\n0.6 & 62.02 & $-$2.35 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe per-layer capacity floor $\\tau$ sets the minimum fraction of MLP channel groups retained in each layer, preventing over-pruning of any single layer regardless of its importance score.\nWe ablate $\\tau \\in \\{0.3, 0.4, 0.5, 0.6\\}$ using CKA-only pruning at 20\\% sparsity.\nLowering $\\tau$ to 0.3 slightly improves accuracy ($+$0.68\\,pp), while raising it to 0.5 or 0.6 causes a notable drop ($-$2.66 and $-$2.35\\,pp respectively; the difference between 0.5 and 0.6 is not significant at 0.31\\,pp $\\ll$ stderr $\\approx$ 1.3\\,pp).\nOver-constraining per-layer retention hurts global pruning quality by forcing removal of important structures in unconstrained layers.\n\n\\section{Use of AI Assistants}\n\\label{sec:appendix_ai_assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant throughout this work. Specifically:\n\\begin{itemize}[nosep,leftmargin=*]\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections, polishing prose, and reformatting \\LaTeX{}.\n    \\item \\textbf{Literature:} summarizing related papers to inform the related-work section.\n\\end{itemize}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 107,
+        "oldLines": 7,
+        "newStart": 107,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\input{tables/tab_math500}",
+          " ",
+          "-The method ordering CKA-only (26.8\\%) $>$ Standard (23.4\\%) $>$ \\rasp{} (21.2\\%) $>$ Random (14.4\\%) on MATH-500 SFT is preserved from GSM8K (64.39\\% $>$ 59.84\\% $>$ 60.88\\% $>$ 50.72\\%), confirming that the recovery capacity spectrum generalizes across benchmarks.",
+          "+The endpoint ordering on MATH-500 SFT (CKA-only 26.8\\% highest, Random 14.4\\% lowest) is preserved from GSM8K (CKA-only 64.39\\%, Random 50.72\\%; Table~\\ref{tab:decoupling}), though middle-ranked methods swap positions (Standard 23.4\\% $>$ \\rasp{} 21.2\\% on MATH-500 vs \\rasp{} 60.88\\% $>$ Standard 59.84\\% on GSM8K), consistent with the main-text observation (\\S\\ref{sec:ood}).",
+          " The $\\alpha$ dose-response effect is not statistically significant on MATH-500: SFT accuracy varies by ${\\sim}$8\\,pp across $\\alpha$ values, but with stderr ${\\approx}$2\\,pp per point, attributable to high truncation rates at the 2048-token limit and floor effects at this difficulty level.",
+          " The inverted-U pattern is validated on GSM8K (Table~\\ref{tab:alpha}); MATH-500 does not resolve the dose-response shape.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 405_
+
+Now let me verify the figure data sources and update the todo list.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "1c99b1bb-6b18-40cc-9586-fb7e8f86c46b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cf6QGwdqryjBEEmemzSJTw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1924,
+      "cache_read_input_tokens": 78283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1924
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 406_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_011KAoNN828eKbbtrPZK5ZXj`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+      "status": "completed",
+      "activeForm": "Checking known critical issue in conclusion.tex"
+    },
+    {
+      "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+      "status": "completed",
+      "activeForm": "Auditing Abstract numbers"
+    },
+    {
+      "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+      "status": "completed",
+      "activeForm": "Auditing Table 1 values"
+    },
+    {
+      "content": "Audit Table 2 (tab2_decoupling) values against registry",
+      "status": "completed",
+      "activeForm": "Auditing Table 2 values"
+    },
+    {
+      "content": "Audit Table 3 (table3_alpha) dose-response values",
+      "status": "completed",
+      "activeForm": "Auditing Table 3 dose-response values"
+    },
+    {
+      "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+      "status": "completed",
+      "activeForm": "Auditing remaining tables"
+    },
+    {
+      "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+      "status": "completed",
+      "activeForm": "Auditing appendix tables"
+    },
+    {
+      "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+      "status": "completed",
+      "activeForm": "Auditing inline numbers"
+    },
+    {
+      "content": "Fix appendix line 110 GSM8K ordering error",
+      "status": "completed",
+      "activeForm": "Fixing appendix GSM8K ordering"
+    },
+    {
+      "content": "Check appendix vs main text consistency",
+      "status": "completed",
+      "activeForm": "Checking appendix vs main text consistency"
+    },
+    {
+      "content": "Verify figure data sources",
+      "status": "in_progress",
+      "activeForm": "Verifying figure data sources"
+    },
+    {
+      "content": "Compile final audit report",
+      "status": "pending",
+      "activeForm": "Compiling final audit report"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "9443e5c8-caf4-4507-b236-4a448cd2dfe9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cf6QGwdqryjBEEmemzSJTw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1924,
+      "cache_read_input_tokens": 78283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1924
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 407 · 2026-05-23T19:33:46.993Z_
+
+<details><summary>↩ Tool result · `toolu_011KAoNN828eKbbtrPZK5ZXj`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "10323d65-6656-4158-a3dd-fe9073af2267",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+        "status": "completed",
+        "activeForm": "Checking known critical issue in conclusion.tex"
+      },
+      {
+        "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+        "status": "in_progress",
+        "activeForm": "Auditing Abstract numbers"
+      },
+      {
+        "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+        "status": "pending",
+        "activeForm": "Auditing Table 1 values"
+      },
+      {
+        "content": "Audit Table 2 (tab2_decoupling) values against registry",
+        "status": "pending",
+        "activeForm": "Auditing Table 2 values"
+      },
+      {
+        "content": "Audit Table 3 (table3_alpha) dose-response values",
+        "status": "pending",
+        "activeForm": "Auditing Table 3 dose-response values"
+      },
+      {
+        "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+        "status": "pending",
+        "activeForm": "Auditing remaining tables"
+      },
+      {
+        "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+        "status": "pending",
+        "activeForm": "Auditing appendix tables"
+      },
+      {
+        "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+        "status": "pending",
+        "activeForm": "Auditing inline numbers"
+      },
+      {
+        "content": "Check appendix vs main text consistency",
+        "status": "pending",
+        "activeForm": "Checking appendix vs main text consistency"
+      },
+      {
+        "content": "Verify figure data sources",
+        "status": "pending",
+        "activeForm": "Verifying figure data sources"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+        "status": "completed",
+        "activeForm": "Checking known critical issue in conclusion.tex"
+      },
+      {
+        "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+        "status": "completed",
+        "activeForm": "Auditing Abstract numbers"
+      },
+      {
+        "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 1 values"
+      },
+      {
+        "content": "Audit Table 2 (tab2_decoupling) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 2 values"
+      },
+      {
+        "content": "Audit Table 3 (table3_alpha) dose-response values",
+        "status": "completed",
+        "activeForm": "Auditing Table 3 dose-response values"
+      },
+      {
+        "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+        "status": "completed",
+        "activeForm": "Auditing remaining tables"
+      },
+      {
+        "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+        "status": "completed",
+        "activeForm": "Auditing appendix tables"
+      },
+      {
+        "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+        "status": "completed",
+        "activeForm": "Auditing inline numbers"
+      },
+      {
+        "content": "Fix appendix line 110 GSM8K ordering error",
+        "status": "completed",
+        "activeForm": "Fixing appendix GSM8K ordering"
+      },
+      {
+        "content": "Check appendix vs main text consistency",
+        "status": "completed",
+        "activeForm": "Checking appendix vs main text consistency"
+      },
+      {
+        "content": "Verify figure data sources",
+        "status": "in_progress",
+        "activeForm": "Verifying figure data sources"
+      },
+      {
+        "content": "Compile final audit report",
+        "status": "pending",
+        "activeForm": "Compiling final audit report"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 408_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Hn3XnDRW2TsbtoXxEXsoBW`</summary>
+
+```json
+{
+  "pattern": "**/figures/paper/*.pdf",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "ec266801-16c9-4398-a52f-0e49de94cf5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5rGaSy6miHsTzPdCBMz6x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 80207,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 604
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 409 · 2026-05-23T19:33:50.253Z_
+
+<details><summary>↩ Tool result · `toolu_01Hn3XnDRW2TsbtoXxEXsoBW`</summary>
+
+```text
+figures/paper/fig2_reward_accuracy.pdf
+figures/paper/fig3_collapse_dynamics.pdf
+figures/paper/fig_appendix_kl.pdf
+paper_deprecated/figures/paper/fig3_collapse_dynamics.pdf
+paper_deprecated/figures/paper/fig_appendix_kl.pdf
+figures/paper/fig1_framework.pdf
+paper_deprecated/figures/paper/fig1_framework.pdf
+figures/paper/fig4_cka_heatmap.pdf
+paper_deprecated/figures/paper/fig4_cka_heatmap.pdf
+docs/paper/figures/paper/fig1_framework.pdf
+docs/paper/figures/paper/fig4_cka_heatmap.pdf
+docs/paper/figures/paper/fig_appendix_kl.pdf
+docs/figures/paper/fig1_framework.pdf
+docs/figures/paper/fig2_reward_trajectories.pdf
+docs/figures/paper/fig3_collapse_dynamics.pdf
+docs/figures/paper/fig4_cka_heatmap.pdf
+docs/figures/paper/fig_appendix_kl.pdf
+figures/paper/fig5_extended_training.pdf
+paper_deprecated/figures/paper/fig5_extended_training.pdf
+docs/figures/paper/fig5_extended_training.pdf
+figures/paper/fig2_reward_trajectories.pdf
+docs/paper/figures/paper/fig2_reward_trajectories.pdf
+paper_deprecated/figures/paper/fig2_reward_trajectories.pdf
+docs/figures/paper/fig1_dose_response.pdf
+docs/paper/figures/paper/fig_sft_grpo_scatter.pdf
+docs/paper/figures/paper/fig3_collapse_dynamics.pdf
+docs/paper/figures/paper/fig5_extended_training.pdf
+docs/paper/figures/paper/fig1_method_framework.pdf
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "1fd9f1c0-a965-46e1-a553-3e67a005c2ca",
+  "tool_use_result": {
+    "filenames": [
+      "figures/paper/fig2_reward_accuracy.pdf",
+      "figures/paper/fig3_collapse_dynamics.pdf",
+      "figures/paper/fig_appendix_kl.pdf",
+      "paper_deprecated/figures/paper/fig3_collapse_dynamics.pdf",
+      "paper_deprecated/figures/paper/fig_appendix_kl.pdf",
+      "figures/paper/fig1_framework.pdf",
+      "paper_deprecated/figures/paper/fig1_framework.pdf",
+      "figures/paper/fig4_cka_heatmap.pdf",
+      "paper_deprecated/figures/paper/fig4_cka_heatmap.pdf",
+      "docs/paper/figures/paper/fig1_framework.pdf",
+      "docs/paper/figures/paper/fig4_cka_heatmap.pdf",
+      "docs/paper/figures/paper/fig_appendix_kl.pdf",
+      "docs/figures/paper/fig1_framework.pdf",
+      "docs/figures/paper/fig2_reward_trajectories.pdf",
+      "docs/figures/paper/fig3_collapse_dynamics.pdf",
+      "docs/figures/paper/fig4_cka_heatmap.pdf",
+      "docs/figures/paper/fig_appendix_kl.pdf",
+      "figures/paper/fig5_extended_training.pdf",
+      "paper_deprecated/figures/paper/fig5_extended_training.pdf",
+      "docs/figures/paper/fig5_extended_training.pdf",
+      "figures/paper/fig2_reward_trajectories.pdf",
+      "docs/paper/figures/paper/fig2_reward_trajectories.pdf",
+      "paper_deprecated/figures/paper/fig2_reward_trajectories.pdf",
+      "docs/figures/paper/fig1_dose_response.pdf",
+      "docs/paper/figures/paper/fig_sft_grpo_scatter.pdf",
+      "docs/paper/figures/paper/fig3_collapse_dynamics.pdf",
+      "docs/paper/figures/paper/fig5_extended_training.pdf",
+      "docs/paper/figures/paper/fig1_method_framework.pdf"
+    ],
+    "durationMs": 22,
+    "numFiles": 28,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 410_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Eo4e5G4KRveDwEpiUrhBem`</summary>
+
+```json
+{
+  "pattern": "**/plot*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "ecd52d27-441d-488b-adfb-a401d6ed5fcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5rGaSy6miHsTzPdCBMz6x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 80207,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 604
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 411 · 2026-05-23T19:33:50.615Z_
+
+<details><summary>↩ Tool result · `toolu_01Eo4e5G4KRveDwEpiUrhBem`</summary>
+
+```text
+artifacts/plot_cka_figures.py
+artifacts/_project/intermediate/plot_fig1_pipeline.py
+artifacts/plot_fig1_pipeline.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "84d9c5f0-3a3e-43b5-b7c4-f016b374c654",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/plot_cka_figures.py",
+      "artifacts/_project/intermediate/plot_fig1_pipeline.py",
+      "artifacts/plot_fig1_pipeline.py"
+    ],
+    "durationMs": 33,
+    "numFiles": 3,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 412_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01KAQGnjL4Kw469W9LQfBh5K`</summary>
+
+```json
+{
+  "pattern": "**/fig*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "7e7ff160-12f3-410f-9451-e7b2a18caba2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5rGaSy6miHsTzPdCBMz6x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 80207,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 604
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 413 · 2026-05-23T19:33:51.220Z_
+
+<details><summary>↩ Tool result · `toolu_01KAQGnjL4Kw469W9LQfBh5K`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "44d83464-4e7f-4578-abf0-82a0696af68a",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 31,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 414_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01LJ8PtTVWqtsButnmJtC6uu`</summary>
+
+```json
+{
+  "pattern": "**/scripts/**plot*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "340b9cbe-fa82-4e12-9954-b44f017fa214",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J5fnT87EtFKjVPxnDKtrwc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 80811,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 415 · 2026-05-23T19:33:54.118Z_
+
+<details><summary>↩ Tool result · `toolu_01LJ8PtTVWqtsButnmJtC6uu`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "197a185b-2cbe-4405-a9c3-05dac67527cb",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 16,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 416_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_018iytiLE5YCtVwgBTp99onQ`</summary>
+
+```json
+{
+  "pattern": "**/generate_fig*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "fe7195d5-11e0-439c-8e1b-2e15b4c33798",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J5fnT87EtFKjVPxnDKtrwc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 80811,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 417 · 2026-05-23T19:33:54.936Z_
+
+<details><summary>↩ Tool result · `toolu_018iytiLE5YCtVwgBTp99onQ`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "0649f479-2c1e-410a-b896-469255749d5c",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 14,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 418_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_013dgZ1PBybKDcCuG33TCvaV`</summary>
+
+```json
+{
+  "pattern": "fig[1-5]|dose_response|reward_traj|collapse|cka_heatmap|extended_training|sft_grpo_scatter",
+  "glob": "*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "2d345efd-7eaa-43a2-a6ca-fa6da0a0078b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J5fnT87EtFKjVPxnDKtrwc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 80811,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 419 · 2026-05-23T19:33:56.766Z_
+
+<details><summary>↩ Tool result · `toolu_013dgZ1PBybKDcCuG33TCvaV`</summary>
+
+```text
+Found 7 files
+artifacts/bootstrap_ci_analysis.py
+artifacts/figures/gen_fig1_framework.py
+artifacts/figures/gen_fig3_collapse_dynamics.py
+artifacts/figures/gen_fig2_reward_trajectories.py
+artifacts/_project/intermediate/plot_fig1_pipeline.py
+artifacts/plot_fig1_pipeline.py
+artifacts/plot_cka_figures.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "7756c1ab-a2fc-4d0c-83ed-7138c3cc7d2d",
+  "tool_use_result": {
+    "mode": "files_with_matches",
+    "filenames": [
+      "artifacts/bootstrap_ci_analysis.py",
+      "artifacts/figures/gen_fig1_framework.py",
+      "artifacts/figures/gen_fig3_collapse_dynamics.py",
+      "artifacts/figures/gen_fig2_reward_trajectories.py",
+      "artifacts/_project/intermediate/plot_fig1_pipeline.py",
+      "artifacts/plot_fig1_pipeline.py",
+      "artifacts/plot_cka_figures.py"
+    ],
+    "numFiles": 7
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 420_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01XBfXARFggbBwew3RVA14Aq`</summary>
+
+```json
+{
+  "pattern": "artifacts/figures/gen_*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "ac31361c-b258-40bb-ba92-1eb6a831fd24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017QiXMYgtquEn23y6YhEBPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 537,
+      "cache_read_input_tokens": 81657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 537
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 421 · 2026-05-23T19:33:59.129Z_
+
+<details><summary>↩ Tool result · `toolu_01XBfXARFggbBwew3RVA14Aq`</summary>
+
+```text
+artifacts/figures/gen_fig2_reward_trajectories.py
+artifacts/figures/gen_fig3_collapse_dynamics.py
+artifacts/figures/gen_fig1_framework.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "5719ec52-422e-4e40-8ef6-31c9434b2352",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/figures/gen_fig2_reward_trajectories.py",
+      "artifacts/figures/gen_fig3_collapse_dynamics.py",
+      "artifacts/figures/gen_fig1_framework.py"
+    ],
+    "durationMs": 19,
+    "numFiles": 3,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 422_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KP6wVvuPiZHsRHFqdLbZ65`</summary>
+
+```json
+{
+  "command": "head -30 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/figures/gen_fig2_reward_trajectories.py && echo \"====\" && head -30 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/figures/gen_fig3_collapse_dynamics.py",
+  "description": "Check figure generation scripts for data sources"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "5012bb41-ee07-4adb-ae63-a29bd89d6b78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GWqJRN5wsMSt84poyYgsXs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 160,
+      "cache_read_input_tokens": 82194,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 160
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 423 · 2026-05-23T19:34:02.495Z_
+
+<details><summary>↩ Tool result · `toolu_01KP6wVvuPiZHsRHFqdLbZ65`</summary>
+
+```text
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+
+plt.rcParams.update({
+    'font.family': 'DejaVu Sans',
+    'font.size': 11,
+    'axes.titlesize': 13,
+    'axes.labelsize': 12,
+    'xtick.labelsize': 10,
+    'ytick.labelsize': 10,
+    'legend.fontsize': 9,
+    'figure.dpi': 300,
+    'savefig.dpi': 300,
+    'savefig.bbox': 'tight',
+    'savefig.pad_inches': 0.05,
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+})
+
+# All data verified from W&B or server logs (2026-05-18)
+methods = {
+    'Unpruned': {
+        'color': '#0072B2', 'ls': '-', 'lw': 1.5,
+        # W&B run hwucjf2n (steps 30-100 only; steps 10-20 not logged)
+        'steps':     [30, 40, 50, 60, 70, 80, 90, 100],
+        'reward':    [0.4250, 0.5381, 0.5894, 0.6469, 0.6031, 0.6694, 0.5644, 0.6612],
+        'frac_zero': [0.150, 0.275, 0.250, 0.125, 0.250, 0.150, 0.200, 0.250],
+    },
+====
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+
+plt.rcParams.update({
+    'font.family': 'DejaVu Sans',
+    'font.size': 11,
+    'axes.titlesize': 12,
+    'axes.titleweight': 'bold',
+    'axes.labelsize': 10,
+    'xtick.labelsize': 9,
+    'ytick.labelsize': 9,
+    'legend.fontsize': 9,
+    'figure.dpi': 300,
+    'savefig.dpi': 300,
+    'savefig.bbox': 'tight',
+    'savefig.pad_inches': 0.05,
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+})
+
+# All data verified from W&B or server logs (2026-05-18)
+methods = {
+    'CKA-only': {
+        # W&B run li451oi4
+        'steps': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        'frac_zero_std': [0.175, 0.200, 0.200, 0.350, 0.150, 0.200, 0.125, 0.250, 0.300, 0.200],
+        'grad_norm': [1.8906, 1.2500, 1.1016, 0.9844, 1.9766, 3.7500, 1.1641, 2.6719, 1.2188, 1.4141],
+        'reward': [0.2531, 0.2181, 0.2500, 0.2344, 0.3544, 0.2994, 0.3075, 0.3419, 0.2419, 0.3444],
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "00e5005f-151f-452d-bbd7-92ecd6213841",
+  "tool_use_result": {
+    "stdout": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n})\n\n# All data verified from W&B or server logs (2026-05-18)\nmethods = {\n    'Unpruned': {\n        'color': '#0072B2', 'ls': '-', 'lw': 1.5,\n        # W&B run hwucjf2n (steps 30-100 only; steps 10-20 not logged)\n        'steps':     [30, 40, 50, 60, 70, 80, 90, 100],\n        'reward':    [0.4250, 0.5381, 0.5894, 0.6469, 0.6031, 0.6694, 0.5644, 0.6612],\n        'frac_zero': [0.150, 0.275, 0.250, 0.125, 0.250, 0.150, 0.200, 0.250],\n    },\n====\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 12,\n    'axes.titleweight': 'bold',\n    'axes.labelsize': 10,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n})\n\n# All data verified from W&B or server logs (2026-05-18)\nmethods = {\n    'CKA-only': {\n        # W&B run li451oi4\n        'steps': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],\n        'frac_zero_std': [0.175, 0.200, 0.200, 0.350, 0.150, 0.200, 0.125, 0.250, 0.300, 0.200],\n        'grad_norm': [1.8906, 1.2500, 1.1016, 0.9844, 1.9766, 3.7500, 1.1641, 2.6719, 1.2188, 1.4141],\n        'reward': [0.2531, 0.2181, 0.2500, 0.2344, 0.3544, 0.2994, 0.3075, 0.3419, 0.2419, 0.3444],",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 424_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the figures are generated from hardcoded data verified from W&B. The fig2 data shows CKA-only peak reward in the trajectory. Let me check the specific values mentioned in the paper.
+
+From the gen_fig3 script, CKA-only reward data: steps 10-100, with peak at step 50 = 0.3544 which rounds to 0.354. Min f0 at step 70 = 0.125. These match Table 1 values.
+
+Let me also check the extended training data source for fig5 to verify the 0.056 vs 0.058 discrepancy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "5f49d874-3178-496c-815e-c9ddc280ed44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WZuZsie9WknJejFDpVJsmf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 82354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1091
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 425_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RgGGCodx2wmhP14YDqzLyK`</summary>
+
+```json
+{
+  "pattern": "fig5|extended|fig_dose|fig1_dose|sft_grpo_scatter",
+  "glob": "*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "a929c430-1ccc-4729-828e-bd800c1ff419",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WZuZsie9WknJejFDpVJsmf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 82354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1091
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 426 · 2026-05-23T19:34:10.039Z_
+
+<details><summary>↩ Tool result · `toolu_01RgGGCodx2wmhP14YDqzLyK`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "6b4c8d7c-c02c-4e89-b064-e9abbd49285b",
+  "tool_use_result": {
+    "mode": "files_with_matches",
+    "filenames": [],
+    "numFiles": 0
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 427_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_016nAkpSPVDtuKmJVEU8q94L`</summary>
+
+```json
+{
+  "pattern": "artifacts/**/*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "2a2c16de-76e9-4ab5-aa41-8cc3a421d519",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011k6Lh6iBBm8nerBgJCtpxs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 337,
+      "cache_read_input_tokens": 83445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 337
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 428 · 2026-05-23T19:34:15.965Z_
+
+<details><summary>↩ Tool result · `toolu_016nAkpSPVDtuKmJVEU8q94L`</summary>
+
+```text
+artifacts/correlation_analysis.py
+artifacts/plot_cka_figures.py
+artifacts/_project/intermediate/plot_fig1_pipeline.py
+artifacts/plot_fig1_pipeline.py
+artifacts/figures/gen_fig2_reward_trajectories.py
+artifacts/figures/gen_fig3_collapse_dynamics.py
+artifacts/figures/gen_fig1_framework.py
+artifacts/bootstrap_ci_analysis.py
+artifacts/prune_shortgpt.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "68ed6b58-3824-4d35-84c3-cb787bae6b9d",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/correlation_analysis.py",
+      "artifacts/plot_cka_figures.py",
+      "artifacts/_project/intermediate/plot_fig1_pipeline.py",
+      "artifacts/plot_fig1_pipeline.py",
+      "artifacts/figures/gen_fig2_reward_trajectories.py",
+      "artifacts/figures/gen_fig3_collapse_dynamics.py",
+      "artifacts/figures/gen_fig1_framework.py",
+      "artifacts/bootstrap_ci_analysis.py",
+      "artifacts/prune_shortgpt.py"
+    ],
+    "durationMs": 19,
+    "numFiles": 9,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 429_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no gen_fig5 script in the artifacts. Let me check the registry for extended training data to verify the 0.056 vs 0.058 discrepancy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "af74aa1a-124a-4667-be10-bf8424ccd14f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAGXiExFnTksEGBPS9vWov",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 83782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 430_
+
+No gen_fig5 script exists. Let me check the registry for extended training data to verify the fig5 caption discrepancy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "d4aa0be7-0284-44ab-9d7f-2d174302856f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAGXiExFnTksEGBPS9vWov",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 83782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 431_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XD1UKVNNo41WbGAMhiFGWC`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/66595c5f-540c-40a1-be7d-760cc6f28a1f/tool-results/mcp-agent-ml-research-read_registry-1779563832806.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result']) if isinstance(data['result'], str) else data['result']\nexps = result['data']['experiments']\n\n# Look for extended training experiments\nfor eid in sorted(exps.keys()):\n    if 'extend' in eid.lower() or '300' in eid:\n        exp = exps[eid]\n        metrics = exp.get('metrics', {})\n        print(f'=== {eid} === [{exp.get(\\\"status\\\",\\\"?\\\")}]')\n        if metrics:\n            print(f'  metrics: {json.dumps(metrics)[:500]}')\n        conclusion = str(exp.get('conclusion',''))[:200]\n        if conclusion:\n            print(f'  conclusion: {conclusion}')\n        hypothesis = str(exp.get('hypothesis',''))[:200]\n        if hypothesis:\n            print(f'  hypothesis: {hypothesis}')\n        print()\n\" 2>&1",
+  "description": "Find extended training experiment data",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "2f8a8a52-ea5f-470e-85e3-99b9a03ce2bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WAGXiExFnTksEGBPS9vWov",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 83782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 432 · 2026-05-23T19:34:28.462Z_
+
+<details><summary>↩ Tool result · `toolu_01XD1UKVNNo41WbGAMhiFGWC`</summary>
+
+```text
+=== E2_grpo_standard_7b_extended_300 === [PREPARING]
+
+=== e2_extended_grpo_resume === [PREPARING]
+
+=== eval_extended_math500_rasp_sft === [PREPARING]
+  hypothesis: RASP 20% post-SFT MATH-500 eval. C1 验证: GSM8K 上观察到的 reward-accuracy decoupling 在 MATH-500 上同样成立 (post-GRPO ≈ post-SFT accuracy). 同时验证 SFT 恢复的泛化性 (不只是 GSM8K pattern memorization).
+
+=== eval_gsm8k_grpo_cka_only_20_extended_300 === [DONE]
+  metrics: {"gsm8k_accuracy": 0.6437, "correct": 849, "total": 1319, "stderr": 0.0132, "eos_rate": 0.9924, "avg_response_length": 190.45}
+  conclusion: negative
+  hypothesis: Extended GRPO training (300 steps vs 100 steps) on CKA-only 20% pruned model will further improve GSM8K in-distribution accuracy beyond the 64.37% achieved at 100 steps
+
+=== eval_gsm8k_grpo_standard_20_extended_300 === [DONE]
+  metrics: {"accuracy": 0.5929, "n_correct": 782, "n_total": 1319, "eos_rate": 0.9795, "avg_response_length": 229.57, "stderr": 0.01353}
+  conclusion: negative
+  hypothesis: Standard pruning 20% with extended GRPO training (300 steps) will not recover GSM8K accuracy beyond the 100-step level (~52-53%), because the reward collapse observed during training prevents meaningf
+
+=== grpo_cka_only_20_extended_300 === [DONE]
+  metrics: {"final_reward": 0.3075, "peak_reward": 0.4444, "peak_reward_step": 280, "reward_step100": 0.354, "reward_step300": 0.3075, "train_loss_final": 0.0349, "global_step": 300, "runtime_seconds": 23004, "gpu_hours": 6.5, "final_frac_zero_std": 0.275, "reward_range": [0.22, 0.44], "pattern": "sustained oscillation, no collapse", "wandb_run_id": "z9f0z901"}
+  conclusion: success
+  hypothesis: Extended GRPO CKA-only 7B from step 100 to 300. Paired control for E2 Standard extended: if CKA-only continues improving while Standard enters reward desert, proves CKA-only's structural advantage per
+
+=== grpo_standard_20_extended_300 === [DONE]
+  conclusion: failed
+  hypothesis: Extended GRPO Standard 7B from step 100 to 300. Tests whether longer GRPO training changes the recovery capacity gradient — does Standard eventually catch up to CKA-only, or does the gap persist/widen
+
+=== grpo_standard_20_extended_300_v2 === [DONE]
+  metrics: {"reward_mean_step300": 0.0562, "loss_step300": 0.0367, "frac_reward_zero_std_step300": 0.525, "kl_step300": 0.00306, "entropy_step300": 0.157, "lr_step300": 3.33e-09, "runtime_min": 48, "reward_decline_after_step260": true}
+  conclusion: success
+  hypothesis: Extended GRPO Standard 7B from step 110 to 300 (resumed after disk-full crash at step 120). Tests whether longer GRPO training changes the recovery capacity gradient. save_steps=50, save_total_limit=3
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "12789b2f-9595-4b82-98e5-9039af60e919",
+  "tool_use_result": {
+    "stdout": "=== E2_grpo_standard_7b_extended_300 === [PREPARING]\n\n=== e2_extended_grpo_resume === [PREPARING]\n\n=== eval_extended_math500_rasp_sft === [PREPARING]\n  hypothesis: RASP 20% post-SFT MATH-500 eval. C1 验证: GSM8K 上观察到的 reward-accuracy decoupling 在 MATH-500 上同样成立 (post-GRPO ≈ post-SFT accuracy). 同时验证 SFT 恢复的泛化性 (不只是 GSM8K pattern memorization).\n\n=== eval_gsm8k_grpo_cka_only_20_extended_300 === [DONE]\n  metrics: {\"gsm8k_accuracy\": 0.6437, \"correct\": 849, \"total\": 1319, \"stderr\": 0.0132, \"eos_rate\": 0.9924, \"avg_response_length\": 190.45}\n  conclusion: negative\n  hypothesis: Extended GRPO training (300 steps vs 100 steps) on CKA-only 20% pruned model will further improve GSM8K in-distribution accuracy beyond the 64.37% achieved at 100 steps\n\n=== eval_gsm8k_grpo_standard_20_extended_300 === [DONE]\n  metrics: {\"accuracy\": 0.5929, \"n_correct\": 782, \"n_total\": 1319, \"eos_rate\": 0.9795, \"avg_response_length\": 229.57, \"stderr\": 0.01353}\n  conclusion: negative\n  hypothesis: Standard pruning 20% with extended GRPO training (300 steps) will not recover GSM8K accuracy beyond the 100-step level (~52-53%), because the reward collapse observed during training prevents meaningf\n\n=== grpo_cka_only_20_extended_300 === [DONE]\n  metrics: {\"final_reward\": 0.3075, \"peak_reward\": 0.4444, \"peak_reward_step\": 280, \"reward_step100\": 0.354, \"reward_step300\": 0.3075, \"train_loss_final\": 0.0349, \"global_step\": 300, \"runtime_seconds\": 23004, \"gpu_hours\": 6.5, \"final_frac_zero_std\": 0.275, \"reward_range\": [0.22, 0.44], \"pattern\": \"sustained oscillation, no collapse\", \"wandb_run_id\": \"z9f0z901\"}\n  conclusion: success\n  hypothesis: Extended GRPO CKA-only 7B from step 100 to 300. Paired control for E2 Standard extended: if CKA-only continues improving while Standard enters reward desert, proves CKA-only's structural advantage per\n\n=== grpo_standard_20_extended_300 === [DONE]\n  conclusion: failed\n  hypothesis: Extended GRPO Standard 7B from step 100 to 300. Tests whether longer GRPO training changes the recovery capacity gradient — does Standard eventually catch up to CKA-only, or does the gap persist/widen\n\n=== grpo_standard_20_extended_300_v2 === [DONE]\n  metrics: {\"reward_mean_step300\": 0.0562, \"loss_step300\": 0.0367, \"frac_reward_zero_std_step300\": 0.525, \"kl_step300\": 0.00306, \"entropy_step300\": 0.157, \"lr_step300\": 3.33e-09, \"runtime_min\": 48, \"reward_decline_after_step260\": true}\n  conclusion: success\n  hypothesis: Extended GRPO Standard 7B from step 110 to 300 (resumed after disk-full crash at step 120). Tests whether longer GRPO training changes the recovery capacity gradient. save_steps=50, save_total_limit=3",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 433_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can check the fig5 discrepancy. The registry data shows:
+- `grpo_standard_20_extended_300_v2.reward_mean_step300 = 0.0562` — this rounds to 0.056
+- `grpo_cka_only_20_extended_300.reward_step300 = 0.3075` — this rounds to 0.308
+
+The caption says "Standard reward: zero net gain (0.054→0.056)" and the body says "reward 0.054--0.058".
+
+The reward_mean at step 300 is 0.0562 ≈ 0.056. 
+
+So the caption's "0.054→0.056" represents the start-to-end trajectory, while "0.054--0.058" in the body text likely captures the full range of variation across the 300 steps, with the experiment showing reward decline after step 260. The range notation and endpoint description are measuring different things—one captures the full fluctuation while the other marks the trajectory endpoints—so there's no actual contradiction, just a clarity issue in how it's worded. Now I'll put together the final report and handle the remaining tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "2dc49fc7-9962-4e09-addf-bc3757ffeb15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Py4K9qnNM1hmtinNvRKgDA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1511,
+      "cache_read_input_tokens": 84379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1511
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 434_
+
+The fig5 discrepancy resolves: caption "0.054→0.056" is start→end, body "0.054--0.058" is the min-max range during training. Registry confirms Standard step 300 reward = 0.0562 ≈ 0.056, CKA-only step 300 = 0.3075 ≈ 0.308. Not an error, just different statistics described with similar notation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "994b1520-b297-4e4a-9335-01c0a9522d88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Py4K9qnNM1hmtinNvRKgDA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1511,
+      "cache_read_input_tokens": 84379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1511
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 435_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_013qMHX6mUudh714avumQqNt`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+      "status": "completed",
+      "activeForm": "Checking known critical issue in conclusion.tex"
+    },
+    {
+      "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+      "status": "completed",
+      "activeForm": "Auditing Abstract numbers"
+    },
+    {
+      "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+      "status": "completed",
+      "activeForm": "Auditing Table 1 values"
+    },
+    {
+      "content": "Audit Table 2 (tab2_decoupling) values against registry",
+      "status": "completed",
+      "activeForm": "Auditing Table 2 values"
+    },
+    {
+      "content": "Audit Table 3 (table3_alpha) dose-response values",
+      "status": "completed",
+      "activeForm": "Auditing Table 3 dose-response values"
+    },
+    {
+      "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+      "status": "completed",
+      "activeForm": "Auditing remaining tables"
+    },
+    {
+      "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+      "status": "completed",
+      "activeForm": "Auditing appendix tables"
+    },
+    {
+      "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+      "status": "completed",
+      "activeForm": "Auditing inline numbers"
+    },
+    {
+      "content": "Fix appendix line 110 GSM8K ordering error",
+      "status": "completed",
+      "activeForm": "Fixing appendix GSM8K ordering"
+    },
+    {
+      "content": "Check appendix vs main text consistency",
+      "status": "completed",
+      "activeForm": "Checking appendix vs main text consistency"
+    },
+    {
+      "content": "Verify figure data sources",
+      "status": "completed",
+      "activeForm": "Verifying figure data sources"
+    },
+    {
+      "content": "Compile final audit report",
+      "status": "in_progress",
+      "activeForm": "Compiling final audit report"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "43e99190-5e15-4e70-982a-12b99aefd921",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Py4K9qnNM1hmtinNvRKgDA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1511,
+      "cache_read_input_tokens": 84379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1511
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 436 · 2026-05-23T19:34:55.845Z_
+
+<details><summary>↩ Tool result · `toolu_013qMHX6mUudh714avumQqNt`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "b8ee2e87-6b5c-48e9-8cba-6faeed1db5f5",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+        "status": "completed",
+        "activeForm": "Checking known critical issue in conclusion.tex"
+      },
+      {
+        "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+        "status": "completed",
+        "activeForm": "Auditing Abstract numbers"
+      },
+      {
+        "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 1 values"
+      },
+      {
+        "content": "Audit Table 2 (tab2_decoupling) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 2 values"
+      },
+      {
+        "content": "Audit Table 3 (table3_alpha) dose-response values",
+        "status": "completed",
+        "activeForm": "Auditing Table 3 dose-response values"
+      },
+      {
+        "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+        "status": "completed",
+        "activeForm": "Auditing remaining tables"
+      },
+      {
+        "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+        "status": "completed",
+        "activeForm": "Auditing appendix tables"
+      },
+      {
+        "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+        "status": "completed",
+        "activeForm": "Auditing inline numbers"
+      },
+      {
+        "content": "Fix appendix line 110 GSM8K ordering error",
+        "status": "completed",
+        "activeForm": "Fixing appendix GSM8K ordering"
+      },
+      {
+        "content": "Check appendix vs main text consistency",
+        "status": "completed",
+        "activeForm": "Checking appendix vs main text consistency"
+      },
+      {
+        "content": "Verify figure data sources",
+        "status": "in_progress",
+        "activeForm": "Verifying figure data sources"
+      },
+      {
+        "content": "Compile final audit report",
+        "status": "pending",
+        "activeForm": "Compiling final audit report"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+        "status": "completed",
+        "activeForm": "Checking known critical issue in conclusion.tex"
+      },
+      {
+        "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+        "status": "completed",
+        "activeForm": "Auditing Abstract numbers"
+      },
+      {
+        "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 1 values"
+      },
+      {
+        "content": "Audit Table 2 (tab2_decoupling) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 2 values"
+      },
+      {
+        "content": "Audit Table 3 (table3_alpha) dose-response values",
+        "status": "completed",
+        "activeForm": "Auditing Table 3 dose-response values"
+      },
+      {
+        "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+        "status": "completed",
+        "activeForm": "Auditing remaining tables"
+      },
+      {
+        "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+        "status": "completed",
+        "activeForm": "Auditing appendix tables"
+      },
+      {
+        "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+        "status": "completed",
+        "activeForm": "Auditing inline numbers"
+      },
+      {
+        "content": "Fix appendix line 110 GSM8K ordering error",
+        "status": "completed",
+        "activeForm": "Fixing appendix GSM8K ordering"
+      },
+      {
+        "content": "Check appendix vs main text consistency",
+        "status": "completed",
+        "activeForm": "Checking appendix vs main text consistency"
+      },
+      {
+        "content": "Verify figure data sources",
+        "status": "completed",
+        "activeForm": "Verifying figure data sources"
+      },
+      {
+        "content": "Compile final audit report",
+        "status": "in_progress",
+        "activeForm": "Compiling final audit report"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 437_
+
+## 数据完整性审计报告
+
+### ✅ 通过（数值正确且可追溯）
+
+**Abstract**
+- "4.4×" — 0.354/0.081=4.37, 合理四舍五入 ✅
+- "α=2.0", "66.11%" — registry `eval_gsm8k_grpo_alpha2p0_20` accuracy=0.6611 ✅
+- "1.5B" — 指 DeepSeek-R1-Distill-Qwen-1.5B 交叉规模验证 ✅
+
+**Table 1 (tab1_recovery_gradient)** — 12 个 cell 中 9 个直接匹配 registry ✅；3 个来源于 WandB 轨迹数据（见下方⚠️）
+
+**Table 2 (tab2_decoupling)** — 全部 22 个 cell 匹配 registry ✅，所有 Δ 算术正确 ✅
+- CKA-only 3-seed: 64.37/64.22/64.59 → mean=64.39%, std=0.19pp ✅
+- Standard 3-seed: 59.44/59.89/60.20 → mean=59.84%, std=0.38pp ✅
+- Random 3-seed: 50.57/50.72/50.87 → mean=50.72%, std=0.15pp ✅
+
+**Table 3 (table3_alpha)** — 全部 15 个 cell 匹配 ✅，所有 Δ 算术正确 ✅
+
+**MATH-500 表** — 全部数值匹配 registry ✅
+
+**MBPP 表** — 全部数值匹配 registry ✅
+
+**Cross-scale 表** — 全部数值匹配（1.5B reward 四舍五入正确）✅
+
+**Sparsity cliff 表** — 全部匹配 ✅
+
+**Cross-sparsity 表 (appendix)** — 全部 8 个 accuracy 值、2 个 std、6 个 Δ 全部正确 ✅
+
+**Multi-seed 表 (appendix)** — 均值/标准差计算正确 ✅
+
+**Floor ablation 表 (appendix)** — 全部数值和 Δ 正确 ✅
+
+**Gradient flow 表 (appendix)** — 比率和显著层数匹配 ✅
+
+**CKA stability 表** — ρ min=0.964, mean=0.979 匹配 registry ✅
+
+**Inference 表 (appendix)** — 全部 8 个数值匹配 ✅
+
+**Cross-arch 表 (appendix)** — 全部数值匹配 ✅
+
+**关键 inline 数值**
+- mean |Δ|=0.54pp: (0.48+0.55+0.61+0.53)/4=0.5425→0.54 ✅
+- max 0.61pp ✅
+- 4.55pp GRPO gap: 64.39-59.84=4.55 ✅
+- 4.62pp SFT gap: 63.91-59.29=4.62 ✅
+- 5.8× CKA vs RASP: 0.354/0.061=5.80 ✅
+- 15% gaps: SFT 72.18-66.49=5.69, GRPO 72.76-65.56=7.20, differential 1.51 ✅
+- 5.5× extended gap: 0.308/0.056=5.50 ✅
+- 80.1% dense retention: 72.76/90.83=80.11% ✅
+- max 1.34pp (MBPP CKA-only Δ): 14.17-12.83=1.34 ✅
+- 2.89× gradient ratio, 2.65pp α=3.0 drop ✅
+
+---
+
+### ⚠️ 需关注（不确定或需决策）
+
+1. **Table 1: CKA-only Mean Rew=0.285 和 Min f₀=0.125; RASP Mean Rew=0.031** — registry 中无对应 metric，源于 WandB 轨迹数据。WandB 中 `cka_only_mlp_grad_mean=0.285` 与 Mean Rew 数值巧合一致，建议手动确认非 copy-paste 错误。
+
+2. **Fig 5 caption "0.054→0.056" vs body "0.054--0.058"** — caption 描述起止点，body 描述范围。语义不冲突（Standard reward 可能中途峰值达 0.058 后回落至 0.056），但表述容易引起歧义。
+
+3. **Introduction line 25**: "the only method with |Δ|>1pp (−1.36pp on GSM8K)" — MBPP 上 CKA-only |Δ|=1.34pp 也超过 1pp。句子括号内有 "on GSM8K" 限定，但主句 claim 未明确限定 benchmark scope。Reviewer 可能质疑。建议改为 "the only method with $|\Delta| > 1$\,pp on GSM8K"。
+
+4. **experiments.tex line 61**: "f₀ > 0.675" for RASP — Table 1 Min f₀=0.675 exactly，严格来说应为 "f₀ ≥ 0.675"。
+
+5. **Cross-arch 表 caption**: 写 "mean ± std over multiple SFT runs"，但 ±3.53/±2.88 是单次运行的二项式标准误（SE），并非多次运行的标准差。
+
+6. **tab_math500 Standard GRPO='--'**: registry 中已有完成结果 26.4% (`eval_math500_grpo_standard_20_fair_2048_v2`)，camera-ready 可补充。
+
+---
+
+### ❌ 错误（已修复）
+
+1. **appendix.tex line 110 — GSM8K 方法排序错误（已修复）**
+   - 原文: `(64.39\% > 59.84\% > 60.88\% > 50.72\%)`，暗示 Standard(59.84) > RASP(60.88)，但实际 RASP > Standard
+   - 原文声称 MATH-500 排序"从 GSM8K 保留"，但 Standard/RASP 在两个 benchmark 间互换
+   - **修复**: 改为准确描述 endpoint ordering preserved + middle-rank swap，与 experiments.tex §4.3 一致
+
+---
+
+### ❌ 原始已知问题分析
+
+**conclusion.tex "4.62pp" — 实际正确，无需修改。**
+用户提出的 "CKA-only SFT=64.39%, Standard SFT=59.84%" 是 GRPO 值（gap=4.55pp）。conclusion 句子语境是 "When only SFT is available"，对应 SFT accuracy：CKA-only=63.91%, Standard=59.29%, gap=63.91-59.29=4.62pp。数值正确。
+
+---
+
+### 修复记录
+
+| 文件 | 行 | 修改内容 |
+|------|------|---------|
+| `docs/paper/appendix.tex` | 110 | 修正 GSM8K 方法排序和 "preserved" 措辞为准确描述 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "d557e3a8-f058-491f-82dd-28d6605f9146",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HEx1gAJWkaEdgcVCFvkaA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1345,
+      "cache_read_input_tokens": 85890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1345
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 438_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01UJ8TKKd3kMY7KFwbpBqf8B`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+      "status": "completed",
+      "activeForm": "Checking known critical issue in conclusion.tex"
+    },
+    {
+      "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+      "status": "completed",
+      "activeForm": "Auditing Abstract numbers"
+    },
+    {
+      "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+      "status": "completed",
+      "activeForm": "Auditing Table 1 values"
+    },
+    {
+      "content": "Audit Table 2 (tab2_decoupling) values against registry",
+      "status": "completed",
+      "activeForm": "Auditing Table 2 values"
+    },
+    {
+      "content": "Audit Table 3 (table3_alpha) dose-response values",
+      "status": "completed",
+      "activeForm": "Auditing Table 3 dose-response values"
+    },
+    {
+      "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+      "status": "completed",
+      "activeForm": "Auditing remaining tables"
+    },
+    {
+      "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+      "status": "completed",
+      "activeForm": "Auditing appendix tables"
+    },
+    {
+      "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+      "status": "completed",
+      "activeForm": "Auditing inline numbers"
+    },
+    {
+      "content": "Fix appendix line 110 GSM8K ordering error",
+      "status": "completed",
+      "activeForm": "Fixing appendix GSM8K ordering"
+    },
+    {
+      "content": "Check appendix vs main text consistency",
+      "status": "completed",
+      "activeForm": "Checking appendix vs main text consistency"
+    },
+    {
+      "content": "Verify figure data sources",
+      "status": "completed",
+      "activeForm": "Verifying figure data sources"
+    },
+    {
+      "content": "Compile final audit report",
+      "status": "completed",
+      "activeForm": "Compiling final audit report"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "7bfa25c1-0997-43af-9944-b5b81c382de5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HEx1gAJWkaEdgcVCFvkaA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1345,
+      "cache_read_input_tokens": 85890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1345
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 439 · 2026-05-23T19:35:49.155Z_
+
+<details><summary>↩ Tool result · `toolu_01UJ8TKKd3kMY7KFwbpBqf8B`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "15158efe-e6a8-4942-b212-203c1574002a",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+        "status": "completed",
+        "activeForm": "Checking known critical issue in conclusion.tex"
+      },
+      {
+        "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+        "status": "completed",
+        "activeForm": "Auditing Abstract numbers"
+      },
+      {
+        "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 1 values"
+      },
+      {
+        "content": "Audit Table 2 (tab2_decoupling) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 2 values"
+      },
+      {
+        "content": "Audit Table 3 (table3_alpha) dose-response values",
+        "status": "completed",
+        "activeForm": "Auditing Table 3 dose-response values"
+      },
+      {
+        "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+        "status": "completed",
+        "activeForm": "Auditing remaining tables"
+      },
+      {
+        "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+        "status": "completed",
+        "activeForm": "Auditing appendix tables"
+      },
+      {
+        "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+        "status": "completed",
+        "activeForm": "Auditing inline numbers"
+      },
+      {
+        "content": "Fix appendix line 110 GSM8K ordering error",
+        "status": "completed",
+        "activeForm": "Fixing appendix GSM8K ordering"
+      },
+      {
+        "content": "Check appendix vs main text consistency",
+        "status": "completed",
+        "activeForm": "Checking appendix vs main text consistency"
+      },
+      {
+        "content": "Verify figure data sources",
+        "status": "completed",
+        "activeForm": "Verifying figure data sources"
+      },
+      {
+        "content": "Compile final audit report",
+        "status": "in_progress",
+        "activeForm": "Compiling final audit report"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Check known issue: conclusion.tex 4.62pp vs 4.55pp",
+        "status": "completed",
+        "activeForm": "Checking known critical issue in conclusion.tex"
+      },
+      {
+        "content": "Audit Abstract numbers (4.4×, α=2.0, 66.11%, 1.5B)",
+        "status": "completed",
+        "activeForm": "Auditing Abstract numbers"
+      },
+      {
+        "content": "Audit Table 1 (tab1_recovery_gradient) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 1 values"
+      },
+      {
+        "content": "Audit Table 2 (tab2_decoupling) values against registry",
+        "status": "completed",
+        "activeForm": "Auditing Table 2 values"
+      },
+      {
+        "content": "Audit Table 3 (table3_alpha) dose-response values",
+        "status": "completed",
+        "activeForm": "Auditing Table 3 dose-response values"
+      },
+      {
+        "content": "Audit MATH-500, MBPP, cross-sparsity, cross-scale, sparsity cliff tables",
+        "status": "completed",
+        "activeForm": "Auditing remaining tables"
+      },
+      {
+        "content": "Audit appendix tables (hyperparams, floor ablation, seed, gradient)",
+        "status": "completed",
+        "activeForm": "Auditing appendix tables"
+      },
+      {
+        "content": "Audit inline numbers in experiments.tex, introduction.tex, conclusion.tex",
+        "status": "completed",
+        "activeForm": "Auditing inline numbers"
+      },
+      {
+        "content": "Fix appendix line 110 GSM8K ordering error",
+        "status": "completed",
+        "activeForm": "Fixing appendix GSM8K ordering"
+      },
+      {
+        "content": "Check appendix vs main text consistency",
+        "status": "completed",
+        "activeForm": "Checking appendix vs main text consistency"
+      },
+      {
+        "content": "Verify figure data sources",
+        "status": "completed",
+        "activeForm": "Verifying figure data sources"
+      },
+      {
+        "content": "Compile final audit report",
+        "status": "completed",
+        "activeForm": "Compiling final audit report"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 440_
+
+审计完成。论文数据整体质量高——绝大多数数值可追溯到 registry 且算术正确。唯一需要修复的错误（appendix MATH-500 段落的 GSM8K 排序）已完成。conclusion.tex 的 4.62pp 经核实为正确（SFT gap，非 GRPO gap）。⚠️ 标注的 6 项建议 camera-ready 时关注。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "uuid": "62512d8f-45e8-4ccc-95b6-e693e3eb6554",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TApHvknXGEMYSRW5UftGwA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2649,
+      "cache_read_input_tokens": 87235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2649
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Task result
+
+_source line 441_
+
+审计完成。论文数据整体质量高——绝大多数数值可追溯到 registry 且算术正确。唯一需要修复的错误（appendix MATH-500 段落的 GSM8K 排序）已完成。conclusion.tex 的 4.62pp 经核实为正确（SFT gap，非 GRPO gap）。⚠️ 标注的 6 项建议 camera-ready 时关注。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 1136852,
+  "duration_api_ms": 2018329,
+  "num_turns": 49,
+  "stop_reason": "end_turn",
+  "session_id": "66595c5f-540c-40a1-be7d-760cc6f28a1f",
+  "total_cost_usd": 5.471052450000002,
+  "usage": {
+    "input_tokens": 4279,
+    "cache_creation_input_tokens": 78043,
+    "cache_read_input_tokens": 1706155,
+    "output_tokens": 22611,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 78043,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 128,
+        "cache_read_input_tokens": 87235,
+        "cache_creation_input_tokens": 2649,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2649
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2134,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002209,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4279,
+      "outputTokens": 22611,
+      "cacheReadInputTokens": 1706155,
+      "cacheCreationInputTokens": 78043,
+      "webSearchRequests": 0,
+      "costUSD": 1.9275162500000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 105,
+      "outputTokens": 79683,
+      "cacheReadInputTokens": 5156574,
+      "cacheCreationInputTokens": 213012,
+      "webSearchRequests": 0,
+      "costUSD": 3.541327199999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8c083508-a9ed-4fa7-8d45-18ffc07312fe"
+}
+```
+
+</details>
+
+---

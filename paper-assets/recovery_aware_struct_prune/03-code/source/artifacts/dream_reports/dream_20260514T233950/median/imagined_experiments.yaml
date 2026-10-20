@@ -1,0 +1,1035 @@
+tier: median
+narrative_guidance: 'Claim 1 survives with slightly softened numbers — RASP still
+  enables qualitatively better recovery than Standard, but the gap is "significant"
+  not "dramatic." GRASPrune being competitive forces careful framing: RASP is principled
+  and training-free while GRASPrune requires gate training; RASP advantage is in interpretability
+  and no-training scoring, not necessarily final numbers. Claim 2 downgrades from
+  "strong predictor" to "CKA overlap provides additional predictive signal for recoverability
+  beyond standard importance metrics" — still publishable but R² framing replaced
+  by β-coefficient and p-value emphasis. Claim 3 becomes "suggestive evidence that
+  recovery method conditions optimal pruning" — move from section-level claim to discussion-level
+  observation. Paper restructured: Claim 1 as main contribution, Claim 2 as analysis,
+  Claim 3 as discussion. EMNLP main viable with careful writing; Findings is a realistic
+  fallback.
+
+  '
+imagined_experiments:
+- name: Full GSM8K Evaluation (Baseline + RASP_20 + Standard_20)
+  plan_id: plan_001
+  description: 'Full 1319-sample GSM8K evaluation for the unpruned baseline, RASP-pruned
+    (20%), and Standard importance-pruned (20%) models. Replaces the N=100 pilot estimates
+    with publication-grade numbers and tight confidence intervals (±2.4pp vs ±9pp).
+
+    '
+  expected_results:
+    baseline_gsm8k_acc: 82.6
+    baseline_gsm8k_ci95:
+    - 80.5
+    - 84.7
+    rasp_20_post_prune_gsm8k_acc: 24.3
+    rasp_20_post_prune_gsm8k_ci95:
+    - 22.0
+    - 26.6
+    standard_20_post_prune_gsm8k_acc: 3.8
+    standard_20_post_prune_gsm8k_ci95:
+    - 2.8
+    - 4.8
+    rasp_vs_standard_gap_pp: 20.5
+    rasp_vs_standard_gap_p_value: <0.0001
+    n_samples: 1319
+  result_rationale: 'Baseline lands at ~83% — consistent with published DeepSeek-R1-Distill-Qwen-7B
+    benchmarks and the N=100 pilot. RASP post-prune drops from the pilot''s 29% to
+    ~24% on full eval: the N=100 estimate had wide CIs (±9pp), and regression to the
+    mean is expected when moving to the full test set. The core CKA-aware scoring
+    still preserves functionally unique attention heads that scaffold chain-of-thought
+    reasoning, so the model retains partial reasoning ability. Standard pruning lands
+    at ~4%: importance-only scoring removes heads with high CKA overlap (functionally
+    redundant but reasoning-critical), collapsing multi-step reasoning to near-random.
+    The gap shrinks from ~28pp (pilot) to ~20pp but remains qualitatively decisive
+    — RASP models can still produce partial reasoning chains while Standard models
+    output degenerate repetitions. Statistical significance is unaffected (p<0.0001)
+    because even the reduced gap is enormous relative to binomial CIs at N=1319.
+
+    '
+  tables:
+  - name: 'Table 1a: Post-Prune GSM8K Accuracy (Full Eval)'
+    columns:
+    - Method
+    - Sparsity
+    - GSM8K Acc (%)
+    - 95% CI
+    - vs Standard Δ
+    rows:
+    - - Baseline (unpruned)
+      - 0%
+      - 82.6
+      - '[80.5, 84.7]'
+      - —
+    - - Standard_20
+      - 20%
+      - 3.8
+      - '[2.8, 4.8]'
+      - —
+    - - RASP_20
+      - 20%
+      - 24.3
+      - '[22.0, 26.6]'
+      - +20.5***
+  figures_description:
+  - 'Bar chart comparing post-prune GSM8K accuracy across three conditions with error
+    bars (95% CI). Visually emphasizes the qualitative gap: RASP retains partial reasoning
+    while Standard collapses.'
+  analysis: 'The 20pp gap is smaller than the pilot''s 28pp but still qualitatively
+    decisive. The key observation is not the exact magnitude but the threshold effect:
+    RASP stays above the ~15% floor needed for SFT warmup to have learnable signal,
+    while Standard falls below it. This threshold argument is stronger than a pure
+    magnitude argument because it makes the gap functionally meaningful regardless
+    of exact numbers. Reframe the contribution around "RASP preserves recoverable
+    reasoning" rather than "RASP preserves X% more accuracy."
+
+    '
+- name: SFT Warmup Recovery (RASP_20 and Standard_20)
+  plan_id: plan_002
+  description: 'Teacher-forcing SFT on GSM8K training gold solutions to restore basic
+    generation ability (fix no-EOS problem) for both RASP_20 and Standard_20 pruned
+    models. Serves as prerequisite for GRPO and as the SFT-only recovery datapoint.
+
+    '
+  expected_results:
+    rasp_20_sft_gsm8k_acc: 41.2
+    rasp_20_sft_gsm8k_ci95:
+    - 38.5
+    - 43.9
+    standard_20_sft_gsm8k_acc: 17.4
+    standard_20_sft_gsm8k_ci95:
+    - 15.3
+    - 19.5
+    rasp_20_sft_loss_final: 0.42
+    standard_20_sft_loss_final: 0.68
+    rasp_20_sft_eos_fix_rate: 0.97
+    standard_20_sft_eos_fix_rate: 0.89
+    sft_epochs: 3
+    sft_lr: 2.0e-05
+    sft_data_size: 7473
+  result_rationale: 'SFT warmup teaches the model to produce well-formed outputs (fixing
+    no-EOS) and provides supervised signal to partially restore reasoning chains.
+    RASP_20 responds well to SFT (~41%) because the pruned model still has intact
+    reasoning scaffolding — CKA-aware pruning preserved functionally unique heads
+    that encode the multi-step chain-of-thought structure, so SFT can "re-activate"
+    these pathways via teacher forcing. However, SFT alone cannot fully recover because
+    it only teaches trajectory imitation, not the exploratory verification behavior
+    that GRPO provides — hence plateau around 41% (roughly half of baseline). Standard_20
+    shows limited SFT recovery (~17%): the model memorizes some solution templates
+    but cannot generalize because the underlying reasoning heads were removed. SFT
+    loss converges higher for Standard (0.68 vs 0.42) because the model architecture
+    lacks the capacity to represent the target distribution well. The gap (24pp) is
+    meaningful but the absolute level for Standard_20 (~17%) is enough that GRPO might
+    still find some signal — this is the median scenario where Standard recovery is
+    "incomplete but not zero."
+
+    '
+  tables:
+  - name: 'Table 1b: SFT Warmup Results'
+    columns:
+    - Method
+    - Post-Prune Acc (%)
+    - Post-SFT Acc (%)
+    - SFT Δ (pp)
+    - Final Train Loss
+    rows:
+    - - Standard_20
+      - 3.8
+      - 17.4
+      - 13.6
+      - 0.68
+    - - RASP_20
+      - 24.3
+      - 41.2
+      - 16.9
+      - 0.42
+  figures_description:
+  - Training loss curves for RASP_20 vs Standard_20 SFT warmup. RASP converges faster
+    and to a lower loss, indicating better architectural fit for the supervised target
+    distribution.
+  analysis: 'SFT warmup works for both models but with very different ceilings. RASP_20
+    SFT recovery of +17pp demonstrates that preserved reasoning scaffolding is learnable
+    under supervised signal. Standard_20 recovery of +14pp is mostly template memorization
+    — the model learns output formatting and simple arithmetic patterns but fails
+    on multi-step problems. This intermediate result is important: it shows SFT alone
+    is insufficient for either model, motivating the GRPO phase.
+
+    '
+- name: GRPO Recovery on SFT-Warmed Models
+  plan_id: plan_003
+  description: 'GRPO reinforcement learning recovery on SFT-warmed RASP_20 and Standard_20
+    models. Core MVP-completion experiment — demonstrate RASP enables RLVR recovery
+    while Standard recovery is limited.
+
+    '
+  expected_results:
+    rasp_20_sft_grpo_gsm8k_acc: 55.8
+    rasp_20_sft_grpo_gsm8k_ci95:
+    - 53.1
+    - 58.5
+    standard_20_sft_grpo_gsm8k_acc: 21.3
+    standard_20_sft_grpo_gsm8k_ci95:
+    - 19.1
+    - 23.5
+    rasp_20_recovery_rate_pct: 67.5
+    standard_20_recovery_rate_pct: 25.8
+    rasp_20_grpo_reward_mean_final: 0.58
+    standard_20_grpo_reward_mean_final: 0.24
+    rasp_20_grpo_steps: 2000
+    standard_20_grpo_steps: 2000
+    rasp_20_grpo_kl_final: 3.2
+    standard_20_grpo_kl_final: 5.8
+  result_rationale: 'GRPO adds ~15pp on top of SFT for RASP_20 (41→56%), reaching
+    ~68% recovery rate. This is "meaningful but incomplete" — consistent with the
+    median tier''s 50-70% recovery range. GRPO works because the preserved functionally-unique
+    heads provide the structural basis for RLVR''s exploration: the model can generate
+    diverse reasoning paths and the reward signal reinforces correct ones. However,
+    20% structural sparsity permanently removes capacity, so full recovery to baseline
+    (83%) is not achievable — the model hits a capacity ceiling where further GRPO
+    steps increase KL without improving accuracy. Standard_20 GRPO recovery is limited
+    (~17→21%, only +4pp from GRPO): the SFT-warmed model has some learnable signal,
+    so GRPO doesn''t completely fail, but the reward signal is too sparse (most generations
+    are wrong) for efficient RL optimization. High final KL (5.8 vs 3.2) indicates
+    the Standard model is being pushed far from its SFT initialization without finding
+    stable correct-reasoning modes. The 34pp gap in final recovered accuracy (56 vs
+    21) is the paper''s headline number — smaller than the best-case scenario but
+    still clearly "significant" and demonstrating qualitatively different recovery
+    outcomes.
+
+    '
+  tables:
+  - name: 'Table 1c: Full Recovery Pipeline Results'
+    columns:
+    - Method
+    - Post-Prune
+    - Post-SFT
+    - Post-SFT+GRPO
+    - Recovery Rate
+    rows:
+    - - Standard_20
+      - 3.8%
+      - 17.4%
+      - 21.3%
+      - 25.8%
+    - - RASP_20
+      - 24.3%
+      - 41.2%
+      - 55.8%
+      - 67.5%
+    - - Baseline
+      - 82.6%
+      - —
+      - —
+      - 100%
+  figures_description:
+  - GRPO training curves (reward mean vs steps) for RASP_20 and Standard_20. RASP
+    shows steady improvement with plateau at ~2000 steps; Standard shows early improvement
+    then flattening with high variance.
+  - Waterfall chart showing accuracy progression through pipeline stages (Post-Prune
+    → SFT → SFT+GRPO) for both methods. Visually emphasizes the compounding advantage
+    of RASP at each stage.
+  analysis: 'The core claim survives: RASP enables meaningful RLVR recovery (68% of
+    baseline) while Standard recovery is severely limited (26% of baseline). The gap
+    is "significant" rather than "dramatic" — Standard_20 is not completely unrecoverable
+    (it reaches 21%), so the framing should be "qualitatively different recovery outcomes"
+    rather than "recoverable vs unrecoverable." The recovery rate framing (68% vs
+    26%) is more robust than raw accuracy because it controls for baseline variation.
+    Key for paper: emphasize that RASP''s advantage compounds through the pipeline
+    — small post-prune advantage (20pp) becomes large recovered advantage (34pp) because
+    GRPO amplifies structural quality differences.
+
+    '
+- name: Full GSM8K Eval for Recovered Models
+  plan_id: plan_004
+  description: 'Full 1319-sample GSM8K evaluation on all recovered models to produce
+    final paper numbers with tight CIs.
+
+    '
+  expected_results:
+    rasp_20_sft_grpo_gsm8k_acc_full: 55.8
+    rasp_20_sft_grpo_gsm8k_ci95_full:
+    - 53.1
+    - 58.5
+    standard_20_sft_grpo_gsm8k_acc_full: 21.3
+    standard_20_sft_grpo_gsm8k_ci95_full:
+    - 19.1
+    - 23.5
+    graspune_20_sft_grpo_gsm8k_acc_full: 48.7
+    graspune_20_sft_grpo_gsm8k_ci95_full:
+    - 45.9
+    - 51.5
+    ci_width_pp: 2.7
+  result_rationale: 'Full eval confirms the GRPO recovery numbers with publication-quality
+    confidence intervals (±~2.7pp at N=1319). Numbers remain stable from intermediate
+    checkpoints because GRPO training has converged by this point. The tight CIs ensure
+    all pairwise comparisons are statistically significant: RASP vs Standard (34pp
+    gap, p<0.0001), RASP vs GRASPrune (7pp gap, p<0.01). This is the definitive Table
+    1 for the paper.
+
+    '
+  tables:
+  - name: 'Table 1 (Final): Complete Recovery Pipeline at 20% Structured Sparsity'
+    columns:
+    - Method
+    - Post-Prune (%)
+    - Post-SFT (%)
+    - Post-SFT+GRPO (%)
+    - Recovery Rate (%)
+    - Training Cost
+    rows:
+    - - Baseline
+      - '82.6'
+      - —
+      - —
+      - '100'
+      - —
+    - - Standard_20
+      - '3.8'
+      - '17.4'
+      - '21.3'
+      - '25.8'
+      - No pruning training
+    - - RASP_20
+      - '24.3'
+      - '41.2'
+      - '55.8'
+      - '67.5'
+      - No pruning training
+    - - GRASPrune_20
+      - '22.1'
+      - '38.5'
+      - '48.7'
+      - '58.9'
+      - Gate training required
+  figures_description:
+  - Final grouped bar chart for Table 1 with error bars. Three clusters (Post-Prune,
+    Post-SFT, Post-SFT+GRPO) each with three methods.
+  analysis: 'Table 1 is the paper''s central result. RASP leads all conditions but
+    GRASPrune is competitive — the gap (56% vs 49%) is significant (p<0.01) but not
+    large. Framing pivot: RASP''s advantage is being training-free and principled
+    (CKA-based interpretability) rather than dominating on final numbers. The "No
+    pruning training" column becomes a key selling point. Recovery rate framing (68%
+    vs 59% vs 26%) cleanly separates the three methods.
+
+    '
+- name: GRASPrune Baseline at 20% Sparsity
+  plan_id: plan_005
+  description: 'Reproduce GRASPrune (ACL 2026 SOTA) at 20% structured sparsity on
+    DeepSeek-R1-Distill-Qwen-7B. Full pipeline: gate training → pruning → eval → SFT
+    warmup → GRPO recovery. Primary external baseline.
+
+    '
+  expected_results:
+    graspune_20_post_prune_gsm8k_acc: 22.1
+    graspune_20_post_prune_gsm8k_ci95:
+    - 19.8
+    - 24.4
+    graspune_20_sft_gsm8k_acc: 38.5
+    graspune_20_sft_grpo_gsm8k_acc: 48.7
+    graspune_20_recovery_rate_pct: 58.9
+    graspune_gate_training_hours: 8
+    graspune_gate_training_epochs: 2
+    graspune_vs_rasp_post_prune_gap_pp: -2.2
+    graspune_vs_rasp_recovered_gap_pp: -7.1
+  result_rationale: 'GRASPrune achieves ~22% post-prune — close to RASP''s 24% — because
+    gate training learns a soft importance weighting that partially discovers CKA-equivalent
+    structure. The gates are trained with a reconstruction objective that implicitly
+    penalizes removing heads whose function cannot be redistributed, which is conceptually
+    related to CKA overlap. This makes GRASPrune a strong baseline that compresses
+    the RASP advantage. However, two gaps emerge: (1) Post-prune gap of ~2pp is small
+    and possibly not significant, meaning the post-prune story is about RASP matching
+    GRASPrune without gate training, not beating it. (2) Recovery gap widens to ~7pp
+    (49% vs 56%) because RASP''s explicit CKA-aware scoring produces a pruned architecture
+    more amenable to RLVR exploration — the preserved functionally-unique heads provide
+    cleaner reasoning scaffolding for GRPO than GRASPrune''s gate-optimized but not
+    recovery-optimized structure. The recovery gap is where RASP''s principled design
+    pays off, even if the training-free post-prune numbers are similar. Gate training
+    cost (8 GPU-hours) is a real disadvantage of GRASPrune that the paper should quantify.
+
+    '
+  tables:
+  - name: 'Table 2: GRASPrune Comparison'
+    columns:
+    - Method
+    - Pruning Training
+    - Post-Prune (%)
+    - Recovered (%)
+    - Recovery Rate (%)
+    rows:
+    - - Standard_20
+      - None
+      - 3.8
+      - 21.3
+      - 25.8
+    - - RASP_20
+      - None (CKA scoring)
+      - 24.3
+      - 55.8
+      - 67.5
+    - - GRASPrune_20
+      - 8h gate training
+      - 22.1
+      - 48.7
+      - 58.9
+  figures_description:
+  - Scatter plot of post-prune accuracy vs recovered accuracy for all three methods.
+    Shows that RASP and GRASPrune cluster together post-prune but diverge after recovery,
+    while Standard is an outlier in both dimensions.
+  analysis: 'GRASPrune''s competitiveness is the central tension of the median scenario.
+    The paper must address this honestly: RASP does not dramatically outperform GRASPrune
+    on final numbers. The value proposition shifts to: (1) RASP is training-free while
+    GRASPrune requires gate training — important for practical deployment. (2) RASP
+    provides interpretable per-head scores (CKA overlap) that explain WHY structures
+    are kept or removed — GRASPrune''s gates are black-box. (3) RASP''s recovery advantage
+    (7pp) suggests CKA-aware scoring captures recovery-relevant structure that gate
+    training only partially discovers. Frame as "RASP is principled and efficient;
+    GRASPrune is competitive but requires more compute and offers less insight."
+
+    '
+- name: Multi-Seed RASP_20 Post-Prune Eval
+  plan_id: plan_006
+  description: 'Evaluate RASP_20 post-prune accuracy with seeds 123 and 7 (in addition
+    to existing seed 42). Tests robustness of the ~24% post-prune result across random
+    calibration data orderings.
+
+    '
+  expected_results:
+    seed_42_gsm8k_acc: 24.3
+    seed_123_gsm8k_acc: 21.8
+    seed_7_gsm8k_acc: 26.1
+    multi_seed_mean: 24.1
+    multi_seed_std: 2.2
+    multi_seed_range:
+    - 21.8
+    - 26.1
+    standard_20_seed_42_acc: 3.8
+    rasp_vs_standard_gap_all_seeds_significant: true
+  result_rationale: 'Multi-seed variance is moderate (±2.2pp std, range 4.3pp) — consistent
+    with the median tier''s 3-6pp stddev expectation (actually on the lower end, which
+    is favorable). CKA scoring involves averaging over calibration batches, which
+    provides some natural variance reduction. Seed 42 was slightly above average (24.3
+    vs mean 24.1) but not an outlier — the N=100 pilot''s 29% was the real source
+    of overestimation, not seed selection. The gap vs Standard (20+ pp at every seed)
+    is robust, confirming this is not a lucky-seed artifact. The 4.3pp range across
+    seeds justifies reporting mean±std rather than single-seed results in the paper,
+    which strengthens credibility even though it slightly lowers the headline number.
+
+    '
+  tables:
+  - name: 'Table 3: Multi-Seed Robustness'
+    columns:
+    - Seed
+    - RASP_20 Acc (%)
+    - Standard_20 Acc (%)
+    - Gap (pp)
+    rows:
+    - - 42
+      - 24.3
+      - 3.8
+      - 20.5
+    - - 123
+      - 21.8
+      - 4.1
+      - 17.7
+    - - 7
+      - 26.1
+      - 3.5
+      - 22.6
+    - - Mean ± Std
+      - 24.1 ± 2.2
+      - 3.8 ± 0.3
+      - 20.3 ± 2.5
+  figures_description:
+  - Box plot or dot plot showing per-seed accuracy for RASP_20 and Standard_20 with
+    mean and range. Emphasizes that the gap is stable despite per-seed variation.
+  analysis: 'Multi-seed results confirm the core finding is robust. The paper should
+    report "24.1 ± 2.2%" rather than the seed-42 number. Standard_20 has very low
+    variance (±0.3pp) because it''s near floor — there''s little room for seed effects
+    when reasoning is collapsed. The consistent 18-23pp gap across seeds is the key
+    takeaway for reviewers concerned about cherry-picking.
+
+    '
+- name: Scoring Ablation at 20% Sparsity
+  plan_id: plan_007
+  description: 'Ablation study comparing RASP (CKA-aware), magnitude-only, gradient-only,
+    and random pruning at 20% sparsity. Isolates CKA''s contribution to pruning quality
+    beyond standard importance metrics.
+
+    '
+  expected_results:
+    rasp_gsm8k_acc: 24.3
+    magnitude_only_gsm8k_acc: 8.2
+    gradient_only_gsm8k_acc: 11.7
+    random_gsm8k_acc: 5.1
+    standard_combined_gsm8k_acc: 3.8
+    importance_only_no_cka_gsm8k_acc: 12.5
+  result_rationale: 'Random pruning (~5%) is near-floor, slightly above Standard because
+    Standard specifically targets the "most redundant" heads which happen to be critical
+    for reasoning — random avoids this adversarial selection. Magnitude-only (~8%)
+    does better than random because large-magnitude heads often correlate with functional
+    importance, but magnitude misses the CKA dimension. Gradient-only (~12%) performs
+    best among single-metric baselines because gradient importance captures task-relevant
+    sensitivity, partially overlapping with the "functional uniqueness" CKA measures.
+    Standard combined scoring (~4%) is worst among non-random methods because the
+    combined importance metric actively anti-correlates with recoverability — high-importance
+    by standard metrics means the head is doing work that''s already well-covered
+    by other heads (high CKA overlap). RASP (~24%) dominates because only the CKA
+    term identifies functionally unique heads. The gap between gradient-only (12%)
+    and RASP (24%) isolates CKA''s contribution at ~12pp. The importance-only-no-CKA
+    ablation (standard scoring formula but α=0) at ~12.5% confirms the CKA term is
+    load-bearing.
+
+    '
+  tables:
+  - name: 'Table 4: Scoring Ablation'
+    columns:
+    - Scoring Method
+    - Components
+    - GSM8K Post-Prune (%)
+    - Δ vs RASP
+    rows:
+    - - Random
+      - None
+      - 5.1
+      - -19.2
+    - - Magnitude-only
+      - '||W||₂'
+      - 8.2
+      - -16.1
+    - - Standard (importance-combined)
+      - '||W||₂ + ∇L'
+      - 3.8
+      - -20.5
+    - - Gradient-only
+      - ∇L
+      - 11.7
+      - -12.6
+    - - Importance-only (α=0)
+      - I(h) only
+      - 12.5
+      - -11.8
+    - - RASP
+      - I(h) × (1-F(h))^α
+      - 24.3
+      - —
+  figures_description:
+  - Bar chart showing post-prune GSM8K accuracy for each scoring method, ordered by
+    performance. Annotation showing the CKA contribution gap between importance-only
+    and full RASP.
+  analysis: 'The ablation cleanly shows CKA''s contribution: it accounts for ~12pp
+    improvement over the best non-CKA scoring (gradient-only or importance-only-no-CKA).
+    The surprising result is that Standard combined scoring is WORSE than individual
+    components — this supports the Redundancy Paradox narrative: combining importance
+    metrics without CKA correction creates an adversarial pruning order that specifically
+    targets recoverable structures. This is a strong data point for the paper''s framing.
+    The ablation table should appear in the main paper (not appendix) because it directly
+    supports Claim 1''s mechanism.
+
+    '
+- name: Per-Structure CKA-Recoverability Correlation
+  plan_id: plan_008
+  description: 'Mixed-effects regression analyzing whether per-head CKA functional
+    overlap F(h) predicts per-head recoverability (activation change after recovery).
+    Layer as random effect, controlling for weight norm, gradient importance, and
+    activation magnitude. N=224 attention heads.
+
+    '
+  expected_results:
+    cka_overlap_beta: 0.31
+    cka_overlap_p_value: 0.003
+    cka_overlap_partial_r2: 0.04
+    model_total_r2_marginal: 0.14
+    model_total_r2_conditional: 0.38
+    weight_norm_beta: 0.18
+    weight_norm_p: 0.04
+    gradient_importance_beta: 0.22
+    gradient_importance_p: 0.01
+    activation_magnitude_beta: 0.09
+    activation_magnitude_p: 0.18
+    layer_random_effect_variance: 0.12
+    n_heads: 224
+    aic_with_cka: 312.4
+    aic_without_cka: 319.8
+  result_rationale: 'The mixed-effects R² is modest (marginal 0.14, conditional 0.38)
+    — consistent with the median tier''s 0.08-0.20 range for the overall model. CKA
+    overlap''s partial R² is only 0.04 but its β-coefficient (0.31) is significant
+    (p=0.003), meaning CKA adds real predictive signal even after controlling for
+    standard importance metrics. The conditional R² (0.38) being much higher than
+    marginal (0.14) indicates substantial layer-level variation in recoverability
+    — some layers are inherently more recoverable regardless of per-head metrics,
+    which is expected because early/late layers have different functional roles. The
+    modest partial R² reflects that recoverability is a complex, multi-factor phenomenon
+    — CKA overlap is one important signal among many, not a dominant predictor. Gradient
+    importance (β=0.22, p=0.01) is also significant, suggesting that task-relevant
+    heads are more recoverable. Activation magnitude is not significant (p=0.18),
+    indicating that raw activation scale doesn''t predict recoverability once functional
+    overlap is controlled. AIC comparison (312 vs 320) shows CKA improves model fit
+    meaningfully. The framing should be "CKA overlap provides additional predictive
+    signal" (β and p emphasis) rather than "CKA explains X% of variance" (R² emphasis),
+    because the partial R² is modest but the effect is reliable.
+
+    '
+  tables:
+  - name: 'Table 5: Mixed-Effects Regression for Per-Head Recoverability'
+    columns:
+    - Predictor
+    - β (std)
+    - SE
+    - p-value
+    - Partial R²
+    rows:
+    - - CKA Overlap F(h)
+      - 0.31
+      - 0.1
+      - 0.003
+      - 0.04
+    - - Gradient Importance
+      - 0.22
+      - 0.09
+      - 0.01
+      - 0.03
+    - - Weight Norm
+      - 0.18
+      - 0.09
+      - 0.04
+      - 0.02
+    - - Activation Magnitude
+      - 0.09
+      - 0.07
+      - 0.18
+      - 0.01
+    - - Layer (random)
+      - —
+      - —
+      - —
+      - σ²=0.12
+    - - Model R² (marginal)
+      - —
+      - —
+      - —
+      - 0.14
+    - - Model R² (conditional)
+      - —
+      - —
+      - —
+      - 0.38
+  figures_description:
+  - Scatter plot of per-head CKA overlap vs recoverability (activation restoration
+    ratio), colored by layer. Regression line with confidence band. Shows positive
+    trend but substantial scatter.
+  - Forest plot showing β-coefficients with 95% CIs for all predictors. CKA overlap
+    and gradient importance are clearly significant; activation magnitude overlaps
+    zero.
+  analysis: 'Claim 2 survives but is substantially softened. The framing shifts from
+    "CKA overlap is a strong predictor of recoverability" to "CKA overlap provides
+    statistically significant additional predictive signal for per-head recoverability
+    beyond standard importance metrics (β=0.31, p=0.003)." This is still publishable
+    and interesting — it provides mechanistic support for why RASP works — but cannot
+    be a standalone paper claim. Position as the analytical/explanatory component
+    of the paper. The large layer random effect (conditional R² much higher than marginal)
+    suggests a follow-up: layer-aware pruning ratios could capture more of the recoverability
+    variance, but this is for future work.
+
+    '
+- name: SFT-Only Recovery Comparison
+  plan_id: plan_009
+  description: 'SFT-only recovery for RASP_20 and Standard_20 using same data budget
+    as SFT warmup phase. Tests whether recovery method (RLVR vs SFT) changes optimal
+    pruning order (Claim 3).
+
+    '
+  expected_results:
+    rasp_20_sft_only_gsm8k_acc: 41.2
+    standard_20_sft_only_gsm8k_acc: 17.4
+    rasp_sft_advantage_pp: 23.8
+    rasp_grpo_advantage_pp: 34.5
+    interaction_effect_pp: 10.7
+    interaction_p_value: 0.04
+    sft_favors_different_ranking: false
+    ranking_correlation_sft_vs_grpo: 0.82
+  result_rationale: 'SFT-only results are the same as plan_002''s SFT warmup numbers
+    (41% RASP, 17% Standard) since no additional GRPO phase is applied. The key analysis
+    is the interaction: RASP''s advantage is 24pp under SFT-only but grows to 35pp
+    under SFT+GRPO. This 11pp interaction suggests GRPO differentially benefits RASP-pruned
+    models — consistent with the "RL Squeezes" mechanism where RLVR explores and compresses
+    incorrect reasoning paths, which works better when the pruned model retains diverse
+    reasoning scaffolding (RASP''s preserved functionally-unique heads). However,
+    the interaction p-value (0.04) is only marginally significant — within the median
+    tier''s 0.01-0.10 range — meaning this is "suggestive" rather than "definitive"
+    evidence. The pruning ranking doesn''t actually change (RASP > Standard under
+    both methods), so Claim 3 in its strong form ("recovery method conditions optimal
+    pruning order") is not supported. The softened version — "RLVR amplifies the advantage
+    of CKA-aware pruning more than SFT does" — is supported by the interaction effect.
+
+    '
+  tables:
+  - name: 'Table 6: Recovery Method × Pruning Method Interaction'
+    columns:
+    - Pruning Method
+    - SFT-Only (%)
+    - SFT+GRPO (%)
+    - GRPO Δ (pp)
+    rows:
+    - - Standard_20
+      - 17.4
+      - 21.3
+      - 3.9
+    - - RASP_20
+      - 41.2
+      - 55.8
+      - 14.6
+    - - RASP Advantage
+      - +23.8pp
+      - +34.5pp
+      - 'Interaction: +10.7pp (p=0.04)'
+  figures_description:
+  - 'Interaction plot: X-axis = recovery method (SFT-only, SFT+GRPO), Y-axis = GSM8K
+    accuracy, two lines for RASP_20 and Standard_20. Non-parallel lines visualize
+    the interaction effect.'
+  analysis: 'Claim 3 is downgraded to a discussion-level observation. The interaction
+    is real (p=0.04) but not strong enough for a standalone claim, and the pruning
+    ranking doesn''t change — RASP is better under both recovery methods. The paper
+    should present this as "RLVR preferentially benefits CKA-aware pruning" in the
+    discussion section, connecting to the mechanistic argument that RLVR''s exploration
+    needs structurally diverse reasoning pathways. The "RL Squeezes, SFT Expands"
+    framing can be referenced but should not be overclaimed — the evidence is directional,
+    not definitive.
+
+    '
+- name: 25% Sparsity RASP + Standard
+  plan_id: plan_010
+  description: 'Full pipeline (prune → eval → SFT → GRPO) at 25% structured sparsity
+    for both RASP and Standard. Tests robustness across sparsity levels and probes
+    the sparsity-performance curve.
+
+    '
+  expected_results:
+    rasp_25_post_prune_gsm8k_acc: 15.2
+    standard_25_post_prune_gsm8k_acc: 1.2
+    rasp_25_sft_gsm8k_acc: 31.5
+    rasp_25_sft_grpo_gsm8k_acc: 42.3
+    standard_25_sft_grpo_gsm8k_acc: 9.8
+    rasp_25_recovery_rate_pct: 51.2
+    standard_25_recovery_rate_pct: 11.9
+    rasp_gap_vs_standard_25_recovered_pp: 32.5
+  result_rationale: 'At 25% sparsity, both methods degrade substantially from 20%.
+    RASP drops from 24→15% post-prune because the additional 5% sparsity crosses into
+    territory where some functionally-unique heads must be removed — there aren''t
+    enough redundant structures to absorb the full budget. Standard drops from 4→1%,
+    effectively at floor. The recovery story parallels 20% but at lower absolute levels:
+    RASP recovers to ~42% (51% recovery rate, down from 68% at 20%) while Standard
+    barely recovers to ~10% (12% recovery rate). The gap between RASP and Standard
+    (33pp recovered) is similar to 20% (35pp), suggesting the advantage is roughly
+    constant across sparsity levels rather than widening or narrowing — this supports
+    the claim that CKA-aware scoring provides a consistent structural advantage. The
+    25% results are important for showing the method isn''t a single-point result
+    and for mapping the Pareto frontier of sparsity vs recoverability. 51% recovery
+    rate at 25% is still practically useful and strengthens the paper.
+
+    '
+  tables:
+  - name: 'Table 7: Multi-Sparsity Results'
+    columns:
+    - Method
+    - Sparsity
+    - Post-Prune (%)
+    - Recovered (%)
+    - Recovery Rate (%)
+    rows:
+    - - Standard_20
+      - 20%
+      - 3.8
+      - 21.3
+      - 25.8
+    - - RASP_20
+      - 20%
+      - 24.3
+      - 55.8
+      - 67.5
+    - - Standard_25
+      - 25%
+      - 1.2
+      - 9.8
+      - 11.9
+    - - RASP_25
+      - 25%
+      - 15.2
+      - 42.3
+      - 51.2
+  figures_description:
+  - 'Line plot: X-axis = sparsity level, Y-axis = recovered GSM8K accuracy. Two lines
+    (RASP, Standard) showing degradation curves. RASP degrades gracefully while Standard
+    collapses rapidly.'
+  analysis: 'The multi-sparsity results reveal a key insight: RASP''s advantage is
+    roughly constant in absolute terms (~33pp at both 20% and 25%) but grows in relative
+    terms because Standard collapses faster. This supports the claim that CKA-aware
+    scoring identifies a fundamentally different set of structures, not just slightly
+    better importance scores. The 25% RASP result (42% recovered, 51% recovery rate)
+    is still practically meaningful and publishable. Consider adding this to Table
+    1 to create a comprehensive sparsity sweep.
+
+    '
+- name: 30% Sparsity Probe
+  plan_id: plan_011
+  description: 'Prune + eval only (no recovery) for RASP and Standard at 30% structured
+    sparsity. Maps the collapse threshold based on D005''s 35% negative result.
+
+    '
+  expected_results:
+    rasp_30_post_prune_gsm8k_acc: 6.3
+    standard_30_post_prune_gsm8k_acc: 0.5
+    rasp_30_generates_coherent_reasoning: false
+    rasp_30_format_correct_rate: 0.15
+  result_rationale: 'At 30% sparsity, RASP approaches collapse (~6%) — removing 30%
+    of attention heads means even CKA-aware scoring must remove some functionally-unique
+    heads, destroying reasoning chains. The model can still perform simple arithmetic
+    (explaining the residual 6%) but cannot chain multi-step reasoning. Standard at
+    30% is at floor (0.5%). This result, combined with the 35% collapse (D005), maps
+    the threshold: RASP maintains useful reasoning ability up to ~25% sparsity, with
+    30% as the transition zone. Including this probe in the paper provides the full
+    sparsity curve and prevents reviewers from asking "what about higher sparsity?"
+    — the answer is clearly "collapse for both methods, with RASP delaying it by ~5-10pp
+    of sparsity."
+
+    '
+  tables:
+  - name: 'Table 7 (extended): Full Sparsity Sweep (Post-Prune Only)'
+    columns:
+    - Sparsity
+    - RASP (%)
+    - Standard (%)
+    - Gap (pp)
+    rows:
+    - - 20%
+      - 24.3
+      - 3.8
+      - 20.5
+    - - 25%
+      - 15.2
+      - 1.2
+      - 14.0
+    - - 30%
+      - 6.3
+      - 0.5
+      - 5.8
+    - - 35% (D005)
+      - ~0
+      - ~0
+      - ~0
+  figures_description:
+  - Sparsity curve showing post-prune accuracy from 0% to 35% for both methods. S-shaped
+    decline with RASP curve shifted right by ~10pp of sparsity. Shaded region indicating
+    'recoverable zone' (>15% post-prune).
+  analysis: 'The sparsity curve tells a clean story: RASP shifts the collapse threshold
+    rightward by ~10pp of sparsity compared to Standard. Both methods eventually collapse
+    because structural pruning at high ratios necessarily removes critical reasoning
+    infrastructure. The "recoverable zone" (post-prune >15%) extends to ~25% for RASP
+    and only ~15% for Standard. This is a useful framing for practical deployment:
+    RASP extends the usable compression range by ~10pp.
+
+    '
+- name: Extended Evaluation on Best Recovered Config
+  plan_id: plan_012
+  description: 'MMLU, HumanEval, and MATH-500 evaluation on the best recovered RASP_20
+    model. Tests whether RASP recovery generalizes beyond GSM8K.
+
+    '
+  expected_results:
+    baseline_mmlu: 63.2
+    rasp_20_recovered_mmlu: 57.8
+    rasp_20_mmlu_retention_pct: 91.5
+    baseline_humaneval: 54.3
+    rasp_20_recovered_humaneval: 41.5
+    rasp_20_humaneval_retention_pct: 76.4
+    baseline_math500: 48.5
+    rasp_20_recovered_math500: 31.2
+    rasp_20_math500_retention_pct: 64.3
+  result_rationale: 'MMLU retention is high (~92%) because MMLU is primarily knowledge
+    recall, not multi-step reasoning — the pruned+recovered model retains most of
+    its factual knowledge since knowledge is distributed across many parameters, not
+    concentrated in specific attention heads. HumanEval retention (~76%) is moderate
+    because code generation requires some structured reasoning but is less sensitive
+    to chain-of-thought scaffolding than math. MATH-500 retention (~64%) is lower
+    because MATH requires deep multi-step reasoning similar to GSM8K but with harder
+    problems — the capacity ceiling from structural pruning is more binding on harder
+    problems. The pattern (knowledge > code > math reasoning) is consistent with the
+    hypothesis that RASP specifically preserves reasoning scaffolding — tasks that
+    depend less on scaffolding are less affected by pruning. This is a useful result
+    for the paper because it shows RASP recovery doesn''t catastrophically degrade
+    other capabilities while recovering reasoning.
+
+    '
+  tables:
+  - name: 'Table 8: Cross-Benchmark Evaluation (RASP_20 Best Recovered)'
+    columns:
+    - Benchmark
+    - Baseline (%)
+    - RASP_20 Recovered (%)
+    - Retention (%)
+    rows:
+    - - GSM8K
+      - 82.6
+      - 55.8
+      - 67.5
+    - - MMLU
+      - 63.2
+      - 57.8
+      - 91.5
+    - - HumanEval
+      - 54.3
+      - 41.5
+      - 76.4
+    - - MATH-500
+      - 48.5
+      - 31.2
+      - 64.3
+  figures_description:
+  - 'Radar/spider chart showing retention percentages across benchmarks. Demonstrates
+    asymmetric impact: knowledge tasks preserved well, reasoning tasks show the expected
+    pruning cost.'
+  analysis: 'The cross-benchmark results support the paper''s framing: RASP preserves
+    general capabilities (MMLU 92% retention) while partially recovering reasoning
+    ability (GSM8K 68%, MATH 64%). The differential retention across task types is
+    itself informative — it suggests structured pruning at 20% primarily affects multi-step
+    reasoning capacity, not factual knowledge or basic code generation. Include this
+    table in the paper to preempt the "GSM8K-only" reviewer concern.
+
+    '
+- name: Bonsai Baseline at 20% Sparsity
+  plan_id: plan_013
+  description: 'Reproduce Bonsai (ICML 2025) gradient-free structured pruning at 20%
+    sparsity. Lower priority baseline.
+
+    '
+  expected_results:
+    bonsai_20_post_prune_gsm8k_acc: 6.5
+    bonsai_20_sft_grpo_gsm8k_acc: 24.8
+    bonsai_20_recovery_rate_pct: 30.0
+  result_rationale: 'Bonsai uses gradient-free importance scoring which avoids the
+    computational cost of gradient computation but also misses gradient-based sensitivity
+    signals. Its post-prune accuracy (~7%) is similar to magnitude-only ablation results
+    because Bonsai relies on structural statistics rather than task-specific importance.
+    Recovery to ~25% puts it between Standard (21%) and GRASPrune (49%), which makes
+    it a useful intermediate baseline but not a threat to the RASP narrative. Bonsai''s
+    value in the paper is as a "no-gradient, no-CKA" reference point that confirms
+    the value of both task-aware scoring and CKA-aware scoring.
+
+    '
+  tables:
+  - name: 'Supplementary Table: Additional Baselines'
+    columns:
+    - Method
+    - Training
+    - Post-Prune (%)
+    - Recovered (%)
+    - Recovery Rate (%)
+    rows:
+    - - Random
+      - None
+      - 5.1
+      - —
+      - —
+    - - Bonsai
+      - None (gradient-free)
+      - 6.5
+      - 24.8
+      - 30.0
+    - - Standard
+      - None
+      - 3.8
+      - 21.3
+      - 25.8
+    - - GRASPrune
+      - Gate training
+      - 22.1
+      - 48.7
+      - 58.9
+    - - RASP
+      - None (CKA scoring)
+      - 24.3
+      - 55.8
+      - 67.5
+  figures_description:
+  - Extended bar chart including all baselines. Methods ordered by recovered accuracy.
+    Clear visual separation between CKA-aware methods (RASP, GRASPrune) and importance-only
+    methods.
+  analysis: 'Bonsai fills out the baseline landscape. The ordering (RASP > GRASPrune
+    > Bonsai > Standard ≈ Random for recovered accuracy) creates a clean narrative:
+    the more recovery-relevant information the scoring function uses, the better the
+    outcome. Bonsai can go in the appendix if space is tight.
+
+    '
+- name: CKA Reliability Analysis
+  plan_id: plan_014
+  description: 'Split-half consistency of CKA overlap scores and calibration size
+    sensitivity analysis. Tests whether CKA-based scoring is stable enough for reliable
+    pruning decisions.
+
+    '
+  expected_results:
+    split_half_spearman_rho: 0.91
+    split_half_p_value: <0.0001
+    calibration_256_vs_1024_rank_correlation: 0.87
+    calibration_512_vs_1024_rank_correlation: 0.94
+    calibration_256_gsm8k_acc: 22.8
+    calibration_512_gsm8k_acc: 23.6
+    calibration_1024_gsm8k_acc: 24.3
+  result_rationale: 'CKA overlap involves averaging pairwise similarity matrices over
+    calibration samples, which is a relatively stable estimator. Split-half consistency
+    (ρ=0.91) indicates that the per-head F(h) rankings are reproducible — different
+    random halves of the calibration data produce nearly the same head ordering. Calibration
+    size sensitivity shows diminishing returns: 512→1024 improves rank correlation
+    to 0.94 and accuracy by only 0.7pp, suggesting 512 samples are sufficient for
+    practical deployment. The 256-sample degradation (1.5pp accuracy loss, ρ=0.87)
+    is moderate — CKA scoring is usable but not optimal with very small calibration
+    sets. These reliability numbers are important for practical adoption: users need
+    to know they can trust the scoring without enormous calibration budgets. The high
+    split-half ρ also supports the statistical validity of the Claim 2 correlation
+    analysis (the predictor itself is reliable).
+
+    '
+  tables:
+  - name: 'Table 9: CKA Scoring Reliability'
+    columns:
+    - Analysis
+    - Metric
+    - Value
+    rows:
+    - - Split-Half Consistency
+      - Spearman ρ
+      - 0.91
+    - - Split-Half Consistency
+      - p-value
+      - <0.0001
+    - - 'Calibration: 256 samples'
+      - Rank ρ vs 1024
+      - 0.87
+    - - 'Calibration: 256 samples'
+      - GSM8K Acc (%)
+      - 22.8
+    - - 'Calibration: 512 samples'
+      - Rank ρ vs 1024
+      - 0.94
+    - - 'Calibration: 512 samples'
+      - GSM8K Acc (%)
+      - 23.6
+    - - 'Calibration: 1024 samples'
+      - Rank ρ vs 1024
+      - 1.00 (ref)
+    - - 'Calibration: 1024 samples'
+      - GSM8K Acc (%)
+      - 24.3
+  figures_description:
+  - Line plot of GSM8K accuracy vs calibration size (256, 512, 1024). Shows diminishing
+    returns with a knee at ~512.
+  - Heatmap showing per-head F(h) scores for split-half A vs split-half B. Strong
+    diagonal indicates high consistency.
+  analysis: CKA reliability is sufficient for the paper's claims. The split-half ρ
+    of 0.91 is strong, and the calibration sensitivity analysis provides practical
+    guidance (use ≥512 samples). Include this in the appendix as a methodological
+    robustness check. It preempts the reviewer concern "is CKA scoring stable?" with
+    a definitive yes.

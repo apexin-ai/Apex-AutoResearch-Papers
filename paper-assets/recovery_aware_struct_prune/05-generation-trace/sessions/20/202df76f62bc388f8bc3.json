@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "202df76f62bc388f8bc3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code gradient flow v2",
+  "task_key": "worker_code_gradient_flow_v2_20260519T143619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gradient_flow_v2_20260519T143619_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "9fa424fb92c6f27d5f6e3ff24d8a27156a1dd54e9c99d42671aff9f164275d3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**实验结果 — Gradient Flow Analysis (gradient_flow_analysis)**\n\n| 指标 | CKA-only | Standard | 比值 |\n|------|----------|----------|------|\n| Attn 梯度均值 | 0.3135 | 0.1316 | **2.38x** |\n| MLP 梯度均值 | 0.2850 | 0.1222 | **2.33x** |\n| Attn cross-layer CV | 1.2231 | 1.1363 | ~1.08x |\n| MLP cross-layer CV | 1.2424 | 1.1489 | ~1.08x |\n\n**核心发现**：CKA-only 剪枝模型的梯度幅度是 Standard 的 **~2.4 倍**，两种剪枝的 cross-layer CV（梯度平滑度）相近。这说明 CKA-only 的 GRPO 恢复优势来自**更强的梯度信号**（更大的学习信号），而非梯度分布更均匀。\n\n**产出文件**（westb-23072 上）：\n- `gradient_flow_stats.json` — 28 层 x 2 模型的完整统计\n- `gradient_flow_comparison.{pdf,png}` — per-layer gradient norm bar chart\n- `gradient_stability_comparison.{pdf,png}` — cross-layer CV 线图\n- 脚本：`/root/recovery_aware_struct_prune/src/gradient_flow_analysis.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gradient-flow-v2.md"
+}

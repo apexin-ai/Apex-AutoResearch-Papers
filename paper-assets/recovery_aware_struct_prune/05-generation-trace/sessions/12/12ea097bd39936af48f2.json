@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ea097bd39936af48f2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh alpha4p0 result submit alpha1p0 westd3",
+  "task_key": "worker_ssh_alpha4p0_result_submit_alpha1p0_westd3_20260522T211836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_alpha4p0_result_submit_alpha1p0_westd3_20260522T211836_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "d1be7ffd94b83bed890fff3e4d04268fe7946dd5a114ec5f4c919044ecadaf46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Python 进程 79030 正在运行，模型从磁盘加载到 CPU（非均匀 MLP 结构加载较慢），GPU 显存尚未分配。进程状态健康。\n\n```\n=== α=4.0 RESULT ===\naccuracy=0.266, correct=133, total=500, truncated=190, stderr=0.0198\n\n=== α=1.0 SUBMISSION ===\nStatus: SUCCESS\nPID: 79030 (python), 79021 (bash wrapper)\nGPU: westd:3\nLog: ~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha1p0_20_v2.log\nNote: 模型仍在 CPU 加载中（非均匀 MLP, intermediate_size range [8128, 18944]），预计几分钟后开始 GPU 推理\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-alpha4p0-result-submit-alpha1p0-westd3.md"
+}

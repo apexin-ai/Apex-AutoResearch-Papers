@@ -1,0 +1,69 @@
+
+\section{Experiments}
+
+\subsection{Models and Datasets}
+
+\paragraph{Base Model.}
+We use DeepSeek-R1-Distill-Qwen-7B~\citep{deepseek2025r1} as our base model, a 7B-parameter reasoning-distilled model built on the Qwen2.5 architecture~\citep{qwen2.5} with 28 transformer layers.
+The model employs Grouped Query Attention (GQA) with 28 query heads and 4 key-value groups per layer (group size $G{=}7$), and an intermediate FFN dimension of 18944.
+This model represents a compelling testbed for our study: as a reasoning-specialized model, its performance depends critically on chain-of-thought capabilities that are acquired through reinforcement learning, making the interaction between structural pruning and RL-based recovery particularly salient.
+
+\paragraph{Calibration Data.}
+We use 512 randomly sampled examples from the GSM8K training set~\citep{cobbe2021gsm8k} for all calibration-dependent operations, including importance scoring, CKA computation, and GRASPrune gate training.
+
+\paragraph{Evaluation Benchmarks.}
+Our primary evaluation benchmark is GSM8K~\citep{cobbe2021gsm8k} (1319 test problems), measuring grade-school mathematical reasoning with exact-match accuracy.
+\textbf{[Phase 2: We extend evaluation to MMLU~\citep{hendrycks2021mmlu} for broad knowledge, HumanEval~\citep{chen2021humaneval} for code generation, and LongBench~\citep{bai2024longbench} for long-context understanding.]}
+
+\subsection{Pruning Methods}
+
+We compare three structured pruning strategies at the granularity of GQA groups (each comprising one KV head and $G{=}7$ query heads) and MLP intermediate channels:
+
+\paragraph{Standard Importance-Only Pruning.}
+Following LLM-Pruner~\citep{llmpruner2023}, we compute Taylor-expansion-based importance scores $I(h) = \|w_h \cdot g_h\|_2$ for each structural group $h$, where $w_h$ and $g_h$ denote the weight and gradient vectors respectively. Groups are ranked globally by importance and the lowest-scoring groups are removed to meet the target sparsity.
+
+\paragraph{RASP (Ours).}
+Recovery-Aware Structured Pruning augments the importance score with a functional overlap penalty derived from Centered Kernel Alignment (CKA)~\citep{kornblith2019cka}.
+The recovery-aware score (Eq.~\eqref{eq:score}) is $S(h) = I(h) \times (1 - F(h))^\alpha$, where $F(h) \in [0,1]$ is the CKA-based functional overlap of group $h$ with its neighboring groups, and $\alpha{=}1.0$ controls the penalty strength.
+Intuitively, groups with high functional overlap ($F(h) \to 1$) are more likely to be compensated by remaining groups during recovery, so RASP deprioritizes their retention.
+The scoring and pruning remain one-shot with no iterative optimization.
+
+\paragraph{GRASPrune.}
+GRASPrune~\citep{graspprune2026} is a recent post-training structured pruning method that learns differentiable binary gates via a projected straight-through estimator (PSTE) under a global parameter budget constraint.
+It jointly prunes FFN channels and KV groups with learned gate scores optimized over 4 epochs, followed by a rescale compensation stage that learns multiplicative scaling factors to mitigate pruning-induced distribution shift.
+We use the official implementation with default hyperparameters.
+
+\paragraph{Sparsity Levels.}
+Our primary experiments use 35\% structural sparsity (keep ratio $\rho{=}0.65$).
+At this sparsity level, global importance ranking naturally concentrates pruning on MLP groups (attention GQA groups have uniformly higher importance), yielding \textbf{[TBD]} pruned MLP groups across 28 layers with all attention groups retained.
+\textbf{[Phase 2: We extend to 25\% and 45\% sparsity to study the interaction between pruning aggressiveness and recoverability.]}
+
+\subsection{Recovery Methods}
+
+\paragraph{GRPO (Primary).}
+We use Group Relative Policy Optimization (GRPO)~\citep{shao2024grpo} as the primary RLVR recovery method.
+GRPO generates $K$ candidate responses per problem and uses the group-relative advantage as the reward signal, avoiding the need for a separate reward model.
+Training is performed on the GSM8K training set with the following hyperparameters: learning rate \textbf{[TBD]}, $K{=}$\textbf{[TBD]} rollouts per prompt, KL coefficient $\beta{=}$\textbf{[TBD]}, batch size \textbf{[TBD]}, trained for \textbf{[TBD]} steps on 2$\times$ NVIDIA RTX PRO 6000 (96GB each).
+
+\textbf{[Phase 2: We additionally compare SFT recovery using the same GSM8K training data to isolate the effect of the RL-based recovery signal.]}
+
+\subsection{Evaluation Metrics}
+
+\paragraph{Task Accuracy.}
+We report exact-match accuracy on GSM8K, extracting the final numerical answer from model generations and comparing against ground truth.
+
+\paragraph{Recoverability.}
+We define the recoverability of a pruning configuration as:
+\begin{equation}
+\Delta_{\text{acc}} = \text{Acc}_{\text{post-recovery}} - \text{Acc}_{\text{post-prune}}
+\label{eq:recoverability}
+\end{equation}
+This measures how much accuracy a pruned model regains through RLVR recovery, capturing the ease of fine-tuning recovery independent of the initial pruning damage.
+
+\paragraph{Correlation Analysis.}
+To validate our core hypothesis that functional overlap predicts recoverability, we compute the Spearman rank correlation $\rho$ between per-group CKA overlap $F(h)$ and per-group contribution to recoverability.
+We measure structure-level recoverability using \emph{activation shift} as a proxy: for each pruned structure $g_p$, we identify its most CKA-similar retained structure $g_r$ and compute $1 - \cos(\mathbf{a}^{\text{pruned}}_{g_r}, \mathbf{a}^{\text{recovered}}_{g_r})$, measuring the degree to which RLVR redistributes the pruned structure's function to its nearest functional neighbor.
+This proxy is justified on two grounds: (i)~activation shift on the retained neighbor quantifies how much functional compensation occurs during recovery, which is positively correlated with model-level accuracy regain; and (ii)~unlike direct $\Delta_{\text{acc}}$ measurement, activation shift can be computed at individual structure granularity without requiring a full recovery training run for each candidate structure.
+A statistically significant positive correlation ($\rho \geq 0.4$, $p < 0.01$) supports the claim that RASP's overlap-aware scoring preferentially retains groups whose removal would be hardest to recover from.
+
+\textbf{[Phase 2: We additionally report perplexity on WikiText-2 and per-benchmark accuracy on MMLU, HumanEval, and LongBench.]}

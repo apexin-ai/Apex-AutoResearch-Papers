@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_sft_rasp_20_westd_n100_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:24:08.437Z",
+    "updated_at": "2026-05-15T19:24:48.287Z",
+    "spec": {
+      "command": "bash -c \"cd /root/recovery_aware_struct_prune && mkdir -p results && CUDA_VISIBLE_DEVICES=0 python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_samples 100 --max_new_tokens 4096 --output_path results/eval_sft_rasp_20_westd_n100.json --seed 42\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_sft_rasp_20_westd_n100_v2.log",
+      "submitted_at": "2026-05-15T19:24:08.325Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "N=100 quick validation of RASP SFT retrain on westd (v2 retry — fixed working directory from autodl-tmp to project root). Expected ~57% (matching westb). Cross-server reproducibility check. Parent: sft_rasp_20_westd_retrain."
+  },
+  "timestamp": "2026-05-15T19:24:48.384812+00:00",
+  "trigger": "update_registry"
+}

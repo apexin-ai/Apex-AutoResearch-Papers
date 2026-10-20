@@ -1,0 +1,1654 @@
+# survey westb full harvest
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_survey_westb_full_harvest_20260522T003605.log`
+- **Structured JSON:** [`a4f3f5beefaec0a115e4.json`](../../sessions/a4/a4f3f5beefaec0a115e4.json)
+
+## Before a recorded user message
+
+34 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d9926d13-d765-428e-90e3-fc0f9eb77b88",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779419400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5be44c51-0547-495e-a6bb-4c1ff31ce083",
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check GPU status on westb-23072 and harvest completed eval results. Let me execute the SSH commands to gather this information.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "331e7dba-248b-44d8-85ca-7a72f5884760",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnqKxvT3ScTQbygJyz8KHa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12617,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12617
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015qLoxQEx9XQH4TVFRkbVNk`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "515defc9-9816-49ed-8ed9-74167cf36ae6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnqKxvT3ScTQbygJyz8KHa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12617,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12617
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T00:36:21.671Z_
+
+<details><summary>↩ Tool result · `toolu_015qLoxQEx9XQH4TVFRkbVNk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "7133dea6-31e6-4104-9ed7-058c067d233f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the SSH commands to check GPU status and harvest eval results. I'll run multiple commands in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "45dc2689-4714-46ec-aac8-1ac1650690a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mYLY5z87Ek86mP6FeiiKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 24458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GGKV2a5HW9DaVPxa2s6FqL`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "b330f9b8-7382-4434-bc17-ebc26e84b303",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mYLY5z87Ek86mP6FeiiKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 24458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JfphG7wd9LdismkDgpJF7c`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "nvidia-smi --query-compute-apps=gpu_uuid,pid,process_name,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "b425c244-574e-4a32-b001-dd6b8c77a17d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mYLY5z87Ek86mP6FeiiKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 24458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014ZxMCHWkjn6XcgM9bEfqVd`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps aux --no-headers -o pid,command --sort=-start_time",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "d72f92e3-9822-4839-9320-b8c0dbdebb05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mYLY5z87Ek86mP6FeiiKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 24458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T00:36:27.748Z_
+
+<details><summary>↩ Tool result · `toolu_01GGKV2a5HW9DaVPxa2s6FqL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB, 0 %\\n1, 36244 MiB, 97887 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "4bc17133-1ef5-4e02-9e5e-678f080a48b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB, 0 %\\\\n1, 36244 MiB, 97887 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB, 0 %\\n1, 36244 MiB, 97887 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T00:36:28.737Z_
+
+<details><summary>↩ Tool result · `toolu_01JfphG7wd9LdismkDgpJF7c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GPU-7b195135-ddad-2206-ed75-0d99e677e086, 104592, python, 19186 MiB\\nGPU-7b195135-ddad-2206-ed75-0d99e677e086, 118095, python, 17044 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "12b7db74-b38a-42ab-8cbc-64bdcd95ad52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"GPU-7b195135-ddad-2206-ed75-0d99e677e086, 104592, python, 19186 MiB\\\\nGPU-7b195135-ddad-2206-ed75-0d99e677e086, 118095, python, 17044 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"GPU-7b195135-ddad-2206-ed75-0d99e677e086, 104592, python, 19186 MiB\\nGPU-7b195135-ddad-2206-ed75-0d99e677e086, 118095, python, 17044 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T00:36:30.297Z_
+
+<details><summary>↩ Tool result · `toolu_014ZxMCHWkjn6XcgM9bEfqVd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "3522e481-ff72-455c-98f0-4de62d9d7a69",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XegWsWiysG1LBExjbKoFNQ`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps -p 104592,118095 -o pid,etime,command",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "eafbf6e9-4928-4301-a6ea-e8132dece3b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QerDDuwn1tAHkKzfNqocPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 910
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LKhHwcwCMJ5Fhd8HsbKfHy`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/runs/recovery_aware_struct_prune/ -name \"*sft_standard_25*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "825665c2-4ddd-453f-8191-cd17b5e59359",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QerDDuwn1tAHkKzfNqocPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 910
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T00:36:34.845Z_
+
+<details><summary>↩ Tool result · `toolu_01XegWsWiysG1LBExjbKoFNQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n104592    09:16:30 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42\\n118095    05:03:10 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20/results.json --max_new_tokens 2048 --seed 42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "7cc8e565-187a-4b77-a78e-b444b8e8f8a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED COMMAND\\\\n104592    09:16:30 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42\\\\n118095    05:03:10 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20/results.json --max_new_tokens 2048 --seed 42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n104592    09:16:30 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42\\n118095    05:03:10 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20/results.json --max_new_tokens 2048 --seed 42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011k1TaDpS7k1cBNKc5fejoK`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/runs/recovery_aware_struct_prune/ -name \"*cka_only_20*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "03d04ae6-f943-4d7e-901d-ee7904aefab9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QerDDuwn1tAHkKzfNqocPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 910
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T00:36:35.744Z_
+
+<details><summary>↩ Tool result · `toolu_01LKhHwcwCMJ5Fhd8HsbKfHy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/recovery_aware_struct_prune/sft_standard_25.log\\n/root/runs/recovery_aware_struct_prune/sft_standard_25_retry.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "9fd15652-d860-41cb-a184-0e798bfe18da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/recovery_aware_struct_prune/sft_standard_25.log\\\\n/root/runs/recovery_aware_struct_prune/sft_standard_25_retry.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/recovery_aware_struct_prune/sft_standard_25.log\\n/root/runs/recovery_aware_struct_prune/sft_standard_25_retry.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T00:36:36.647Z_
+
+<details><summary>↩ Tool result · `toolu_011k1TaDpS7k1cBNKc5fejoK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/recovery_aware_struct_prune/sft_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_sft_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/grpo_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_cka_only_20_v2.log\\n/root/runs/recovery_aware_struct_prune/inference_bench_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/inference_bench_cka_only_20_clean.log\\n/root/runs/recovery_aware_struct_prune/sft_cka_only_20_1p5b.log\\n/root/runs/recovery_aware_struct_prune/grpo_cka_only_20_1p5b.log\\n/root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/sft_qwen_math_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_v2.log\\n/root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_20/eval_math500_grpo_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "df3881fc-9f73-41a0-9c80-dc4c8afb0675",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/recovery_aware_struct_prune/sft_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/eval_sft_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/grpo_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_cka_only_20_v2.log\\\\n/root/runs/recovery_aware_struct_prune/inference_bench_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/inference_bench_cka_only_20_clean.log\\\\n/root/runs/recovery_aware_struct_prune/sft_cka_only_20_1p5b.log\\\\n/root/runs/recovery_aware_struct_prune/grpo_cka_only_20_1p5b.log\\\\n/root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/sft_qwen_math_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_v2.log\\\\n/root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_20/eval_math500_grpo_cka_only_20.log\\\\n/root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/recovery_aware_struct_prune/sft_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_sft_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/grpo_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_cka_only_20_v2.log\\n/root/runs/recovery_aware_struct_prune/inference_bench_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/inference_bench_cka_only_20_clean.log\\n/root/runs/recovery_aware_struct_prune/sft_cka_only_20_1p5b.log\\n/root/runs/recovery_aware_struct_prune/grpo_cka_only_20_1p5b.log\\n/root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/sft_qwen_math_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_v2.log\\n/root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_20/eval_math500_grpo_cka_only_20.log\\n/root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+两个 eval 进程仍在运行。查看它们的实时进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "43c88682-963d-4739-be42-a3dabdfefca3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Li1FfuoXUaKq1RdMkkis3N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1399,
+      "cache_read_input_tokens": 25841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1399
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015T3szTewiRTptgLa5mPNMw`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "b4aeffa7-f929-4c16-b2f9-bce7d6ce83d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Li1FfuoXUaKq1RdMkkis3N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1399,
+      "cache_read_input_tokens": 25841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1399
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T00:36:42.369Z_
+
+<details><summary>↩ Tool result · `toolu_015T3szTewiRTptgLa5mPNMw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "e8b264e4-9772-469f-b758-a0d53cc34916",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012VZ7QKZL8iNoaYSi17J1u5`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "6cf83e4c-3655-4e15-822e-4d390b37c4e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Li1FfuoXUaKq1RdMkkis3N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1399,
+      "cache_read_input_tokens": 25841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1399
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0178seLzKQUijtmWpBCuCRor`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -30 /root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "a5e603b9-4efd-44de-aecf-9de039d34a30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Li1FfuoXUaKq1RdMkkis3N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1399,
+      "cache_read_input_tokens": 25841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1399
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T00:36:43.412Z_
+
+<details><summary>↩ Tool result · `toolu_012VZ7QKZL8iNoaYSi17J1u5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20/eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "1847c706-9879-48a0-89af-4fc29df4ea8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20/eval.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20/eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T00:36:44.454Z_
+
+<details><summary>↩ Tool result · `toolu_0178seLzKQUijtmWpBCuCRor`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 03:33:29,138 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\n2026-05-22 03:33:29,819 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-22 03:35:15,684 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=1)\\n2026-05-22 03:35:15,685 [INFO] Loading MATH-500 dataset...\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\n2026-05-22 03:35:15,686 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-22 03:35:15,687 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-22 03:35:15,707 [INFO] Loaded 500 problems\\n2026-05-22 03:35:15,707 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [00:03<32:19,  3.89s/it]\\rMATH-500 eval:   0%|          | 2/500 [03:37<17:35:59, 127.23s/it]\\rMATH-500 eval:   1%|          | 3/500 [07:02<22:29:40, 162.94s/it]\\rMATH-500 eval:   1%|          | 4/500 [07:07<13:51:08, 100.54s/it]\\rMATH-500 eval:   1%|          | 5/500 [07:23<9:36:15, 69.85s/it]  \\rMATH-500 eval:   1%|          | 6/500 [07:26<6:28:52, 47.23s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [07:33<4:39:08, 33.97s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [11:00<12:09:51, 89.01s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [11:05<8:34:03, 62.82s/it] \\rMATH-500 eval:   2%|▏         | 10/500 [14:45<15:10:28, 111.49s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [17:43<17:54:30, 131.84s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [21:10<20:58:05, 154.68s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [21:22<15:04:02, 111.38s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [21:26<10:40:49, 79.11s/it] \\rMATH-500 eval:   3%|▎         | 15/500 [21:33<7:41:58, 57.15s/it] \\rMATH-500 eval:   3%|▎         | 16/500 [21:50<6:03:53, 45.11s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [21:54<4:23:28, 32.73s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [25:42<12:13:54, 91.36s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [29:22<17:22:49, 130.08s/it]\\rMATH-500 eval:   4%|▍         | 20/500 [32:47<20:21:51, 152.73s/it]\\rMATH-500 eval:   4%|▍         | 21/500 [32:51<14:22:00, 107.98s/it]\\rMATH-500 eval:   4%|▍         | 22/500 [33:34<11:45:23, 88.54s/it] \\rMATH-500 eval:   5%|▍         | 23/500 [37:11<16:48:41, 126.88s/it]\\rMATH-500 eval:   5%|▍         | 24/500 [37:41<12:57:56, 98.06s/it] \\rMATH-500 eval:   5%|▌         | 25/500 [37:56<9:38:39, 73.09s/it] \\rMATH-500 eval:   5%|▌         | 26/500 [41:26<15:01:27, 114.11s/it]\\rMATH-500 eval:   5%|▌         | 27/500 [41:40<11:02:07, 83.99s/it] \\rMATH-500 eval:   6%|▌         | 28/500 [41:47<7:59:06, 60.90s/it] \\rMATH-500 eval:   6%|▌         | 29/500 [41:53<5:48:00, 44.33s/it]\\rMATH-500 eval:   6%|▌         | 30/500 [42:00<4:20:17, 33.23s/it]\\rMATH-500 eval:   6%|▌         | 31/500 [42:05<3:14:14, 24.85s/it]\\rMATH-500 eval:   6%|▋         | 32/500 [45:25<10:04:05, 77.45s/it]\\rMATH-500 eval:   7%|▋         | 33/500 [45:31<7:15:51, 56.00s/it] \\rMATH-500 eval:   7%|▋         | 34/500 [45:37<5:16:47, 40.79s/it]\\rMATH-500 eval:   7%|▋         | 35/500 [45:46<4:02:58, 31.35s/it]\\rMATH-500 eval:   7%|▋         | 36/500 [49:09<10:41:32, 82.96s/it]\\rMATH-500 eval:   7%|▋         | 37/500 [52:31<15:16:08, 118.72s/it]\\rMATH-500 eval:   8%|▊         | 38/500 [52:36<10:49:40, 84.37s/it] \\rMATH-500 eval:   8%|▊         | 39/500 [52:39<7:42:24, 60.18s/it] \\rMATH-500 eval:   8%|▊         | 40/500 [52:48<5:42:26, 44.67s/it]\\rMATH-500\\n\\n... [截断: 输出过长，省略 14744 字符] ...\\n\\n2:08:06, 31.25s/it]\\rMATH-500 eval:  51%|█████     | 255/500 [4:08:50<1:37:52, 23.97s/it]\\rMATH-500 eval:  51%|█████     | 256/500 [4:12:18<5:21:25, 79.04s/it]\\rMATH-500 eval:  51%|█████▏    | 257/500 [4:12:22<3:49:17, 56.62s/it]\\rMATH-500 eval:  52%|█████▏    | 258/500 [4:12:27<2:45:51, 41.12s/it]\\rMATH-500 eval:  52%|█████▏    | 259/500 [4:12:36<2:06:22, 31.46s/it]\\rMATH-500 eval:  52%|█████▏    | 260/500 [4:12:40<1:33:09, 23.29s/it]\\rMATH-500 eval:  52%|█████▏    | 261/500 [4:12:55<1:22:54, 20.81s/it]\\rMATH-500 eval:  52%|█████▏    | 262/500 [4:12:57<1:00:23, 15.23s/it]\\rMATH-500 eval:  53%|█████▎    | 263/500 [4:13:02<47:13, 11.95s/it]  \\rMATH-500 eval:  53%|████���▎    | 264/500 [4:13:07<39:00,  9.92s/it]\\rMATH-500 eval:  53%|█████▎    | 265/500 [4:13:16<37:43,  9.63s/it]\\rMATH-500 eval:  53%|█████▎    | 266/500 [4:13:19<30:25,  7.80s/it]\\rMATH-500 eval:  53%|█████▎    | 267/500 [4:13:24<26:17,  6.77s/it]\\rMATH-500 eval:  54%|█████▎    | 268/500 [4:13:35<31:15,  8.08s/it]\\rMATH-500 eval:  54%|█████▍    | 269/500 [4:13:39<26:36,  6.91s/it]\\rMATH-500 eval:  54%|█████▍    | 270/500 [4:13:42<22:18,  5.82s/it]\\rMATH-500 eval:  54%|█████▍    | 271/500 [4:13:50<24:53,  6.52s/it]\\rMATH-500 eval:  54%|█████▍    | 272/500 [4:13:58<25:45,  6.78s/it]\\rMATH-500 eval:  55%|█████▍    | 273/500 [4:14:02<22:56,  6.06s/it]\\rMATH-500 eval:  55%|█████▍    | 274/500 [4:14:08<22:05,  5.87s/it]\\rMATH-500 eval:  55%|█████▌    | 275/500 [4:14:13<21:43,  5.80s/it]\\rMATH-500 eval:  55%|█████▌    | 276/500 [4:14:17<19:19,  5.18s/it]\\rMATH-500 eval:  55%|█████▌    | 277/500 [4:14:27<24:41,  6.64s/it]\\rMATH-500 eval:  56%|█████▌    | 278/500 [4:14:29<19:45,  5.34s/it]\\rMATH-500 eval:  56%|█████▌    | 279/500 [4:14:33<18:22,  4.99s/it]\\rMATH-500 eval:  56%|█████▌    | 280/500 [4:14:43<22:49,  6.22s/it]\\rMATH-500 eval:  56%|█████▌    | 281/500 [4:14:47<20:33,  5.63s/it]\\rMATH-500 eval:  56%|█████▋    | 282/500 [4:14:54<21:53,  6.03s/it]\\rMATH-500 eval:  57%|█████▋    | 283/500 [4:15:03<25:36,  7.08s/it]\\rMATH-500 eval:  57%|█████▋    | 284/500 [4:15:08<22:49,  6.34s/it]\\rMATH-500 eval:  57%|█████▋    | 285/500 [4:18:35<3:59:01, 66.71s/it]\\rMATH-500 eval:  57%|█████▋    | 286/500 [4:22:17<6:43:57, 113.26s/it]\\rMATH-500 eval:  57%|█████▋    | 287/500 [4:25:46<8:23:49, 141.92s/it]\\rMATH-500 eval:  58%|█████▊    | 288/500 [4:25:56<6:01:40, 102.36s/it]\\rMATH-500 eval:  58%|█████▊    | 289/500 [4:27:13<5:33:25, 94.81s/it] \\rMATH-500 eval:  58%|█████▊    | 290/500 [4:30:39<7:27:40, 127.91s/it]\\rMATH-500 eval:  58%|█████▊    | 291/500 [4:34:01<8:43:57, 150.42s/it]\\rMATH-500 eval:  58%|█████▊    | 292/500 [4:34:07<6:10:49, 106.97s/it]\\rMATH-500 eval:  59%|█████▊    | 293/500 [4:37:45<8:03:30, 140.15s/it]\\rMATH-500 eval:  59%|█████▉    | 294/500 [4:41:09<9:07:07, 159.36s/it]\\rMATH-500 eval:  59%|█████▉    | 295/500 [4:41:18<6:30:32, 114.30s/it]\\rMATH-500 eval:  59%|█████▉    | 296/500 [4:44:51<8:09:43, 144.04s/it]\\rMATH-500 eval:  59%|█████▉    | 297/500 [4:45:27<6:17:10, 111.48s/it]\\rMATH-500 eval:  60%|█████▉    | 298/500 [4:45:36<4:32:18, 80.88s/it] \\rMATH-500 eval:  60%|█████▉    | 299/500 [4:49:21<6:55:03, 123.90s/it]\\rMATH-500 eval:  60%|██████    | 300/500 [4:49:28<4:56:15, 88.88s/it] \\rMATH-500 eval:  60%|██████    | 301/500 [4:49:32<3:30:43, 63.54s/it]\\rMATH-500 eval:  60%|██████    | 302/500 [4:49:49<2:43:01, 49.40s/it]\\rMATH-500 eval:  61%|██████    | 303/500 [4:50:02<2:06:54, 38.65s/it]\\rMATH-500 eval:  61%|██████    | 304/500 [4:50:21<1:46:39, 32.65s/it]\\rMATH-500 eval:  61%|██████    | 305/500 [4:50:29<1:21:52, 25.19s/it]\\rMATH-500 eval:  61%|██████    | 306/500 [4:53:53<4:14:46, 78.80s/it]\\rMATH-500 eval:  61%|██████▏   | 307/500 [4:57:18<6:16:03, 116.91s/it]\\rMATH-500 eval:  62%|██████▏   | 308/500 [4:57:26<4:29:28, 84.21s/it] \\rMATH-500 eval:  62%|██████▏   | 309/500 [4:57:40<3:20:18, 62.92s/it]\\rMATH-500 eval:  62%|██████▏   | 310/500 [5:01:02<5:31:42, 104.75s/it]\\rMATH-500 eval:  62%|██████▏   | 311/500 [5:01:08<3:56:30, 75.08s/it] \\rMATH-500 eval:  62%|██████▏   | 312/500 [5:01:23<2:58:44, 57.05s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "a3e3fc79-454f-4376-87a1-4534cac6a371",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 03:33:29,138 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-22 03:33:29,819 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-22 03:35:15,684 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=1)\\\\n2026-05-22 03:35:15,685 [INFO] Loading MATH-500 dataset...\\\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\n2026-05-22 03:35:15,686 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\\\n2026-05-22 03:35:15,687 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\\\n2026-05-22 03:35:15,707 [INFO] Loaded 500 problems\\\\n2026-05-22 03:35:15,707 [INFO] Evaluating on 500 problems\\\\n\\\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\\\rMATH-500 eval:   0%|          | 1/500 [00:03<32:19,  3.89s/it]\\\\rMATH-500 eval:   0%|          | 2/500 [03:37<17:35:59, 127.23s/it]\\\\rMATH-500 eval:   1%|          | 3/500 [07:02<22:29:40, 162.94s/it]\\\\rMATH-500 eval:   1%|          | 4/500 [07:07<13:51:08, 100.54s/it]\\\\rMATH-500 eval:   1%|          | 5/500 [07:23<9:36:15, 69.85s/it]  \\\\rMATH-500 eval:   1%|          | 6/500 [07:26<6:28:52, 47.23s/it]\\\\rMATH-500 eval:   1%|▏         | 7/500 [07:33<4:39:08, 33.97s/it]\\\\rMATH-500 eval:   2%|▏         | 8/500 [11:00<12:09:51, 89.01s/it]\\\\rMATH-500 eval:   2%|▏         | 9/500 [11:05<8:34:03, 62.82s/it] \\\\rMATH-500 eval:   2%|▏         | 10/500 [14:45<15:10:28, 111.49s/it]\\\\rMATH-500 eval:   2%|▏         | 11/500 [17:43<17:54:30, 131.84s/it]\\\\rMATH-500 eval:   2%|▏         | 12/500 [21:10<20:58:05, 154.68s/it]\\\\rMATH-500 eval:   3%|▎         | 13/500 [21:22<15:04:02, 111.38s/it]\\\\rMATH-500 eval:   3%|▎         | 14/500 [21:26<10:40:49, 79.11s/it] \\\\rMATH-500 eval:   3%|▎         | 15/500 [21:33<7:41:58, 57.15s/it] \\\\rMATH-500 eval:   3%|▎         | 16/500 [21:50<6:03:53, 45.11s/it]\\\\rMATH-500 eval:   3%|▎         | 17/500 [21:54<4:23:28, 32.73s/it]\\\\rMATH-500 eval:   4%|▎         | 18/500 [25:42<12:13:54, 91.36s/it]\\\\rMATH-500 eval:   4%|▍         | 19/500 [29:22<17:22:49, 130.08s/it]\\\\rMATH-500 eval:   4%|▍         | 20/500 [32:47<20:21:51, 152.73s/it]\\\\rMATH-500 eval:   4%|▍         | 21/500 [32:51<14:22:00, 107.98s/it]\\\\rMATH-500 eval:   4%|▍         | 22/500 [33:34<11:45:23, 88.54s/it] \\\\rMATH-500 eval:   5%|▍         | 23/500 [37:11<16:48:41, 126.88s/it]\\\\rMATH-500 eval:   5%|▍         | 24/500 [37:41<12:57:56, 98.06s/it] \\\\rMATH-500 eval:   5%|▌         | 25/500 [37:56<9:38:39, 73.09s/it] \\\\rMATH-500 eval:   5%|▌         | 26/500 [41:26<15:01:27, 114.11s/it]\\\\rMATH-500 eval:   5%|▌         | 27/500 [41:40<11:02:07, 83.99s/it] \\\\rMATH-500 eval:   6%|▌         | 28/500 [41:47<7:59:06, 60.90s/it] \\\\rMATH-500 eval:   6%|▌         | 29/500 [41:53<5:48:00, 44.33s/it]\\\\rMATH-500 eval:   6%|▌         | 30/500 [42:00<4:20:17, 33.23s/it]\\\\rMATH-500 eval:   6%|▌         | 31/500 [42:05<3:14:14, 24.85s/it]\\\\rMATH-500 eval:   6%|▋         | 32/500 [45:25<10:04:05, 77.45s/it]\\\\rMATH-500 eval:   7%|▋         | 33/500 [45:31<7:15:51, 56.00s/it] \\\\rMATH-500 eval:   7%|▋         | 34/500 [45:37<5:16:47, 40.79s/it]\\\\rMATH-500 eval:   7%|▋         | 35/500 [45:46<4:02:58, 31.35s/it]\\\\rMATH-500 eval:   7%|▋         | 36/500 [49:09<10:41:32, 82.96s/it]\\\\rMATH-500 eval:   7%|▋         | 37/500 [52:31<15:16:08, 118.72s/it]\\\\rMATH-500 eval:   8%|▊         | 38/500 [52:36<10:49:40, 84.37s/it] \\\\rMATH-500 eval:   8%|▊         | 39/500 [52:39<7:42:24, 60.18s/it] \\\\rMATH-500 eval:   8%|▊         | 40/500 [52:48<5:42:26, 44.67s/it]\\\\rMATH-500\\\\n\\\\n... [截断: 输出过长，省略 14744 字符] ...\\\\n\\\\n2:08:06, 31.25s/it]\\\\rMATH-500 eval:  51%|█████     | 255/500 [4:08:50<1:37:52, 23.97s/it]\\\\rMATH-500 eval:  51%|█████     | 256/500 [4:12:18<5:21:25, 79.04s/it]\\\\rMATH-500 eval:  51%|█████▏    | 257/500 [4:12:22<3:49:17, 56.62s/it]\\\\rMATH-500 eval:  52%|█████▏    | 258/500 [4:12:27<2:45:51, 41.12s/it]\\\\rMATH-500 eval:  52%|█████▏    | 259/500 [4:12:36<2:06:22, 31.46s/it]\\\\rMATH-500 eval:  52%|█████▏    | 260/500 [4:12:40<1:33:09, 23.29s/it]\\\\rMATH-500 eval:  52%|█████▏    | 261/500 [4:12:55<1:22:54, 20.81s/it]\\\\rMATH-500 eval:  52%|█████▏    | 262/500 [4:12:57<1:00:23, 15.23s/it]\\\\rMATH-500 eval:  53%|█████▎    | 263/500 [4:13:02<47:13, 11.95s/it]  \\\\rMATH-500 eval:  53%|████���▎    | 264/500 [4:13:07<39:00,  9.92s/it]\\\\rMATH-500 eval:  53%|█████▎    | 265/500 [4:13:16<37:43,  9.63s/it]\\\\rMATH-500 eval:  53%|█████▎    | 266/500 [4:13:19<30:25,  7.80s/it]\\\\rMATH-500 eval:  53%|█████▎    | 267/500 [4:13:24<26:17,  6.77s/it]\\\\rMATH-500 eval:  54%|█████▎    | 268/500 [4:13:35<31:15,  8.08s/it]\\\\rMATH-500 eval:  54%|█████▍    | 269/500 [4:13:39<26:36,  6.91s/it]\\\\rMATH-500 eval:  54%|█████▍    | 270/500 [4:13:42<22:18,  5.82s/it]\\\\rMATH-500 eval:  54%|█████▍    | 271/500 [4:13:50<24:53,  6.52s/it]\\\\rMATH-500 eval:  54%|█████▍    | 272/500 [4:13:58<25:45,  6.78s/it]\\\\rMATH-500 eval:  55%|█████▍    | 273/500 [4:14:02<22:56,  6.06s/it]\\\\rMATH-500 eval:  55%|█████▍    | 274/500 [4:14:08<22:05,  5.87s/it]\\\\rMATH-500 eval:  55%|█████▌    | 275/500 [4:14:13<21:43,  5.80s/it]\\\\rMATH-500 eval:  55%|█████▌    | 276/500 [4:14:17<19:19,  5.18s/it]\\\\rMATH-500 eval:  55%|█████▌    | 277/500 [4:14:27<24:41,  6.64s/it]\\\\rMATH-500 eval:  56%|█████▌    | 278/500 [4:14:29<19:45,  5.34s/it]\\\\rMATH-500 eval:  56%|█████▌    | 279/500 [4:14:33<18:22,  4.99s/it]\\\\rMATH-500 eval:  56%|█████▌    | 280/500 [4:14:43<22:49,  6.22s/it]\\\\rMATH-500 eval:  56%|█████▌    | 281/500 [4:14:47<20:33,  5.63s/it]\\\\rMATH-500 eval:  56%|█████▋    | 282/500 [4:14:54<21:53,  6.03s/it]\\\\rMATH-500 eval:  57%|█████▋    | 283/500 [4:15:03<25:36,  7.08s/it]\\\\rMATH-500 eval:  57%|█████▋    | 284/500 [4:15:08<22:49,  6.34s/it]\\\\rMATH-500 eval:  57%|█████▋    | 285/500 [4:18:35<3:59:01, 66.71s/it]\\\\rMATH-500 eval:  57%|█████▋    | 286/500 [4:22:17<6:43:57, 113.26s/it]\\\\rMATH-500 eval:  57%|█████▋    | 287/500 [4:25:46<8:23:49, 141.92s/it]\\\\rMATH-500 eval:  58%|█████▊    | 288/500 [4:25:56<6:01:40, 102.36s/it]\\\\rMATH-500 eval:  58%|█████▊    | 289/500 [4:27:13<5:33:25, 94.81s/it] \\\\rMATH-500 eval:  58%|█████▊    | 290/500 [4:30:39<7:27:40, 127.91s/it]\\\\rMATH-500 eval:  58%|█████▊    | 291/500 [4:34:01<8:43:57, 150.42s/it]\\\\rMATH-500 eval:  58%|█████▊    | 292/500 [4:34:07<6:10:49, 106.97s/it]\\\\rMATH-500 eval:  59%|█████▊    | 293/500 [4:37:45<8:03:30, 140.15s/it]\\\\rMATH-500 eval:  59%|█████▉    | 294/500 [4:41:09<9:07:07, 159.36s/it]\\\\rMATH-500 eval:  59%|█████▉    | 295/500 [4:41:18<6:30:32, 114.30s/it]\\\\rMATH-500 eval:  59%|█████▉    | 296/500 [4:44:51<8:09:43, 144.04s/it]\\\\rMATH-500 eval:  59%|█████▉    | 297/500 [4:45:27<6:17:10, 111.48s/it]\\\\rMATH-500 eval:  60%|█████▉    | 298/500 [4:45:36<4:32:18, 80.88s/it] \\\\rMATH-500 eval:  60%|█████▉    | 299/500 [4:49:21<6:55:03, 123.90s/it]\\\\rMATH-500 eval:  60%|██████    | 300/500 [4:49:28<4:56:15, 88.88s/it] \\\\rMATH-500 eval:  60%|██████    | 301/500 [4:49:32<3:30:43, 63.54s/it]\\\\rMATH-500 eval:  60%|██████    | 302/500 [4:49:49<2:43:01, 49.40s/it]\\\\rMATH-500 eval:  61%|██████    | 303/500 [4:50:02<2:06:54, 38.65s/it]\\\\rMATH-500 eval:  61%|██████    | 304/500 [4:50:21<1:46:39, 32.65s/it]\\\\rMATH-500 eval:  61%|██████    | 305/500 [4:50:29<1:21:52, 25.19s/it]\\\\rMATH-500 eval:  61%|██████    | 306/500 [4:53:53<4:14:46, 78.80s/it]\\\\rMATH-500 eval:  61%|██████▏   | 307/500 [4:57:18<6:16:03, 116.91s/it]\\\\rMATH-500 eval:  62%|██████▏   | 308/500 [4:57:26<4:29:28, 84.21s/it] \\\\rMATH-500 eval:  62%|██████▏   | 309/500 [4:57:40<3:20:18, 62.92s/it]\\\\rMATH-500 eval:  62%|██████▏   | 310/500 [5:01:02<5:31:42, 104.75s/it]\\\\rMATH-500 eval:  62%|██████▏   | 311/500 [5:01:08<3:56:30, 75.08s/it] \\\\rMATH-500 eval:  62%|██████▏   | 312/500 [5:01:23<2:58:44, 57.05s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 03:33:29,138 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\n2026-05-22 03:33:29,819 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-22 03:35:15,684 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=1)\\n2026-05-22 03:35:15,685 [INFO] Loading MATH-500 dataset...\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\n2026-05-22 03:35:15,686 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-22 03:35:15,687 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-22 03:35:15,707 [INFO] Loaded 500 problems\\n2026-05-22 03:35:15,707 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [00:03<32:19,  3.89s/it]\\rMATH-500 eval:   0%|          | 2/500 [03:37<17:35:59, 127.23s/it]\\rMATH-500 eval:   1%|          | 3/500 [07:02<22:29:40, 162.94s/it]\\rMATH-500 eval:   1%|          | 4/500 [07:07<13:51:08, 100.54s/it]\\rMATH-500 eval:   1%|          | 5/500 [07:23<9:36:15, 69.85s/it]  \\rMATH-500 eval:   1%|          | 6/500 [07:26<6:28:52, 47.23s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [07:33<4:39:08, 33.97s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [11:00<12:09:51, 89.01s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [11:05<8:34:03, 62.82s/it] \\rMATH-500 eval:   2%|▏         | 10/500 [14:45<15:10:28, 111.49s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [17:43<17:54:30, 131.84s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [21:10<20:58:05, 154.68s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [21:22<15:04:02, 111.38s/it]\\rMATH-500 eval:   3%|▎         | 14/500 [21:26<10:40:49, 79.11s/it] \\rMATH-500 eval:   3%|▎         | 15/500 [21:33<7:41:58, 57.15s/it] \\rMATH-500 eval:   3%|▎         | 16/500 [21:50<6:03:53, 45.11s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [21:54<4:23:28, 32.73s/it]\\rMATH-500 eval:   4%|▎         | 18/500 [25:42<12:13:54, 91.36s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [29:22<17:22:49, 130.08s/it]\\rMATH-500 eval:   4%|▍         | 20/500 [32:47<20:21:51, 152.73s/it]\\rMATH-500 eval:   4%|▍         | 21/500 [32:51<14:22:00, 107.98s/it]\\rMATH-500 eval:   4%|▍         | 22/500 [33:34<11:45:23, 88.54s/it] \\rMATH-500 eval:   5%|▍         | 23/500 [37:11<16:48:41, 126.88s/it]\\rMATH-500 eval:   5%|▍         | 24/500 [37:41<12:57:56, 98.06s/it] \\rMATH-500 eval:   5%|▌         | 25/500 [37:56<9:38:39, 73.09s/it] \\rMATH-500 eval:   5%|▌         | 26/500 [41:26<15:01:27, 114.11s/it]\\rMATH-500 eval:   5%|▌         | 27/500 [41:40<11:02:07, 83.99s/it] \\rMATH-500 eval:   6%|▌         | 28/500 [41:47<7:59:06, 60.90s/it] \\rMATH-500 eval:   6%|▌         | 29/500 [41:53<5:48:00, 44.33s/it]\\rMATH-500 eval:   6%|▌         | 30/500 [42:00<4:20:17, 33.23s/it]\\rMATH-500 eval:   6%|▌         | 31/500 [42:05<3:14:14, 24.85s/it]\\rMATH-500 eval:   6%|▋         | 32/500 [45:25<10:04:05, 77.45s/it]\\rMATH-500 eval:   7%|▋         | 33/500 [45:31<7:15:51, 56.00s/it] \\rMATH-500 eval:   7%|▋         | 34/500 [45:37<5:16:47, 40.79s/it]\\rMATH-500 eval:   7%|▋         | 35/500 [45:46<4:02:58, 31.35s/it]\\rMATH-500 eval:   7%|▋         | 36/500 [49:09<10:41:32, 82.96s/it]\\rMATH-500 eval:   7%|▋         | 37/500 [52:31<15:16:08, 118.72s/it]\\rMATH-500 eval:   8%|▊         | 38/500 [52:36<10:49:40, 84.37s/it] \\rMATH-500 eval:   8%|▊         | 39/500 [52:39<7:42:24, 60.18s/it] \\rMATH-500 eval:   8%|▊         | 40/500 [52:48<5:42:26, 44.67s/it]\\rMATH-500\\n\\n... [截断: 输出过长，省略 14744 字符] ...\\n\\n2:08:06, 31.25s/it]\\rMATH-500 eval:  51%|█████     | 255/500 [4:08:50<1:37:52, 23.97s/it]\\rMATH-500 eval:  51%|█████     | 256/500 [4:12:18<5:21:25, 79.04s/it]\\rMATH-500 eval:  51%|█████▏    | 257/500 [4:12:22<3:49:17, 56.62s/it]\\rMATH-500 eval:  52%|█████▏    | 258/500 [4:12:27<2:45:51, 41.12s/it]\\rMATH-500 eval:  52%|█████▏    | 259/500 [4:12:36<2:06:22, 31.46s/it]\\rMATH-500 eval:  52%|█████▏    | 260/500 [4:12:40<1:33:09, 23.29s/it]\\rMATH-500 eval:  52%|█████▏    | 261/500 [4:12:55<1:22:54, 20.81s/it]\\rMATH-500 eval:  52%|█████▏    | 262/500 [4:12:57<1:00:23, 15.23s/it]\\rMATH-500 eval:  53%|█████▎    | 263/500 [4:13:02<47:13, 11.95s/it]  \\rMATH-500 eval:  53%|████���▎    | 264/500 [4:13:07<39:00,  9.92s/it]\\rMATH-500 eval:  53%|█████▎    | 265/500 [4:13:16<37:43,  9.63s/it]\\rMATH-500 eval:  53%|█████▎    | 266/500 [4:13:19<30:25,  7.80s/it]\\rMATH-500 eval:  53%|█████▎    | 267/500 [4:13:24<26:17,  6.77s/it]\\rMATH-500 eval:  54%|█████▎    | 268/500 [4:13:35<31:15,  8.08s/it]\\rMATH-500 eval:  54%|█████▍    | 269/500 [4:13:39<26:36,  6.91s/it]\\rMATH-500 eval:  54%|█████▍    | 270/500 [4:13:42<22:18,  5.82s/it]\\rMATH-500 eval:  54%|█████▍    | 271/500 [4:13:50<24:53,  6.52s/it]\\rMATH-500 eval:  54%|█████▍    | 272/500 [4:13:58<25:45,  6.78s/it]\\rMATH-500 eval:  55%|█████▍    | 273/500 [4:14:02<22:56,  6.06s/it]\\rMATH-500 eval:  55%|█████▍    | 274/500 [4:14:08<22:05,  5.87s/it]\\rMATH-500 eval:  55%|█████▌    | 275/500 [4:14:13<21:43,  5.80s/it]\\rMATH-500 eval:  55%|█████▌    | 276/500 [4:14:17<19:19,  5.18s/it]\\rMATH-500 eval:  55%|█████▌    | 277/500 [4:14:27<24:41,  6.64s/it]\\rMATH-500 eval:  56%|█████▌    | 278/500 [4:14:29<19:45,  5.34s/it]\\rMATH-500 eval:  56%|█████▌    | 279/500 [4:14:33<18:22,  4.99s/it]\\rMATH-500 eval:  56%|█████▌    | 280/500 [4:14:43<22:49,  6.22s/it]\\rMATH-500 eval:  56%|█████▌    | 281/500 [4:14:47<20:33,  5.63s/it]\\rMATH-500 eval:  56%|█████▋    | 282/500 [4:14:54<21:53,  6.03s/it]\\rMATH-500 eval:  57%|█████▋    | 283/500 [4:15:03<25:36,  7.08s/it]\\rMATH-500 eval:  57%|█████▋    | 284/500 [4:15:08<22:49,  6.34s/it]\\rMATH-500 eval:  57%|█████▋    | 285/500 [4:18:35<3:59:01, 66.71s/it]\\rMATH-500 eval:  57%|█████▋    | 286/500 [4:22:17<6:43:57, 113.26s/it]\\rMATH-500 eval:  57%|█████▋    | 287/500 [4:25:46<8:23:49, 141.92s/it]\\rMATH-500 eval:  58%|█████▊    | 288/500 [4:25:56<6:01:40, 102.36s/it]\\rMATH-500 eval:  58%|█████▊    | 289/500 [4:27:13<5:33:25, 94.81s/it] \\rMATH-500 eval:  58%|█████▊    | 290/500 [4:30:39<7:27:40, 127.91s/it]\\rMATH-500 eval:  58%|█████▊    | 291/500 [4:34:01<8:43:57, 150.42s/it]\\rMATH-500 eval:  58%|█████▊    | 292/500 [4:34:07<6:10:49, 106.97s/it]\\rMATH-500 eval:  59%|█████▊    | 293/500 [4:37:45<8:03:30, 140.15s/it]\\rMATH-500 eval:  59%|█████▉    | 294/500 [4:41:09<9:07:07, 159.36s/it]\\rMATH-500 eval:  59%|█████▉    | 295/500 [4:41:18<6:30:32, 114.30s/it]\\rMATH-500 eval:  59%|█████▉    | 296/500 [4:44:51<8:09:43, 144.04s/it]\\rMATH-500 eval:  59%|█████▉    | 297/500 [4:45:27<6:17:10, 111.48s/it]\\rMATH-500 eval:  60%|█████▉    | 298/500 [4:45:36<4:32:18, 80.88s/it] \\rMATH-500 eval:  60%|█████▉    | 299/500 [4:49:21<6:55:03, 123.90s/it]\\rMATH-500 eval:  60%|██████    | 300/500 [4:49:28<4:56:15, 88.88s/it] \\rMATH-500 eval:  60%|██████    | 301/500 [4:49:32<3:30:43, 63.54s/it]\\rMATH-500 eval:  60%|██████    | 302/500 [4:49:49<2:43:01, 49.40s/it]\\rMATH-500 eval:  61%|██████    | 303/500 [4:50:02<2:06:54, 38.65s/it]\\rMATH-500 eval:  61%|██████    | 304/500 [4:50:21<1:46:39, 32.65s/it]\\rMATH-500 eval:  61%|██████    | 305/500 [4:50:29<1:21:52, 25.19s/it]\\rMATH-500 eval:  61%|██████    | 306/500 [4:53:53<4:14:46, 78.80s/it]\\rMATH-500 eval:  61%|██████▏   | 307/500 [4:57:18<6:16:03, 116.91s/it]\\rMATH-500 eval:  62%|██████▏   | 308/500 [4:57:26<4:29:28, 84.21s/it] \\rMATH-500 eval:  62%|██████▏   | 309/500 [4:57:40<3:20:18, 62.92s/it]\\rMATH-500 eval:  62%|██████▏   | 310/500 [5:01:02<5:31:42, 104.75s/it]\\rMATH-500 eval:  62%|██████▏   | 311/500 [5:01:08<3:56:30, 75.08s/it] \\rMATH-500 eval:  62%|██████▏   | 312/500 [5:01:23<2:58:44, 57.05s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RMQPXoSTm7PzUiGFmda6vE`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -30 /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "e17ce618-30fa-4da4-bae7-225ec291e981",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132jeTewTePnm4bqnpCEF5y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5750,
+      "cache_read_input_tokens": 27240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5750
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T00:36:50.952Z_
+
+<details><summary>↩ Tool result · `toolu_01RMQPXoSTm7PzUiGFmda6vE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 23:20:09,752 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\\n2026-05-21 23:20:10,626 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-21 23:21:55,414 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=1)\\n2026-05-21 23:21:55,415 [INFO] Loading MATH-500 dataset...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/MATH-500.py\\n2026-05-21 23:23:15,641 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/MATH-500.py\\nRetrying in 1s [Retry 1/5].\\n2026-05-21 23:23:15,641 [WARNING] Retrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub\\n2026-05-21 23:23:16,643 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-21 23:23:16,645 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-21 23:23:16,715 [INFO] Loaded 500 problems\\n2026-05-21 23:23:16,715 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [01:31<12:38:51, 91.25s/it]\\rMATH-500 eval:   0%|          | 2/500 [03:06<12:55:34, 93.44s/it]\\rMATH-500 eval:   1%|          | 3/500 [03:09<7:13:37, 52.35s/it] \\rMATH-500 eval:   1%|          | 4/500 [03:13<4:35:20, 33.31s/it]\\rMATH-500 eval:   1%|          | 5/500 [05:04<8:23:38, 61.05s/it]\\rMATH-500 eval:   1%|          | 6/500 [05:06<5:37:41, 41.02s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [06:35<7:46:34, 56.78s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [08:07<9:17:55, 68.04s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [08:12<6:34:27, 48.20s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [09:49<8:37:40, 63.39s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [11:19<9:41:49, 71.39s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [12:50<10:30:43, 77.55s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [12:54<7:27:00, 55.07s/it] \\rMATH-500 eval:   3%|▎         | 14/500 [14:32<9:13:03, 68.28s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [16:07<10:16:24, 76.26s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [17:46<11:10:31, 83.12s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [17:49<7:53:52, 58.87s/it] \\rMATH-500 eval:   4%|▎         | 18/500 [19:30<9:35:49, 71.68s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [19:34<6:52:08, 51.41s/it]\\rMATH-500 eval:   4%|▍         | 20/500 [21:05<8:25:07, 63.14s/it]\\rMATH-500 eval:   4%|▍         | 21/500 [21:06<5:54:48, 44.44s/it]\\rMATH-500 eval:   4%|▍         | 22/500 [22:35<7:41:47, 57.97s/it]\\rMATH-500 eval:   5%|▍         | 23/500 [24:11<9:10:53, 69.29s/it]\\rMATH-500 eval:   5%|▍         | 24/500 [25:40<9:57:46, 75.35s/it]\\rMATH-500 eval:   5%|▌         | 25/500 [27:15<10:41:17, 81.01s/it]\\rMATH-500 eval:   5%|▌         | 26/500 [28:47<11:07:57, 84.55s/it]\\rMATH-500 eval:   5%|▌         | 27/500 [30:18<11:21:53, 86.50s/it]\\rMATH-500 eval:   6%|▌         | 28/500 [30:22<8:05:12, 61.68s/it] \\rMATH-500 eval:   6%|▌         | 29/500 [31:52<9:10:20, 70.11s/it]\\rMATH-500 eval:   6%|▌         | 30/500 [31:55<6:30:45, 49.88s/it]\\rMATH-500 eval:   6%|▌         | 31/500 [33:24<8:01:29, 61.60s/it]\\rMATH-500 eval:   6%|▋         | 32/500 [33:26<5:40:53, 43.70s/it]\\rMATH-500 eval:   7%|▋         | 33/500 [33:29<4:05:07, 31.49s/it]\\rMATH-500 eval:   7%|▋         | 34/500 [33:30<2:55:42,\\n\\n... [截断: 输出过长，省略 20035 字符] ...\\n\\n58:17, 143.41s/it]\\rMATH-500 eval:  65%|██████▌   | 326/500 [7:06:28<4:54:55, 101.70s/it]\\rMATH-500 eval:  65%|██████▌   | 327/500 [7:09:43<6:13:43, 129.62s/it]\\rMATH-500 eval:  66%|██████▌   | 328/500 [7:13:03<7:11:36, 150.56s/it]\\rMATH-500 eval:  66%|██████▌   | 329/500 [7:16:29<7:56:31, 167.20s/it]\\rMATH-500 eval:  66%|██████▌   | 330/500 [7:16:32<5:34:41, 118.13s/it]\\rMATH-500 eval:  66%|██████▌   | 331/500 [7:19:45<6:35:49, 140.53s/it]\\rMATH-500 eval:  66%|██████▋   | 332/500 [7:22:59<7:18:34, 156.63s/it]\\rMATH-500 eval:  67%|██████▋   | 333/500 [7:26:13<7:47:03, 167.80s/it]\\rMATH-500 eval:  67%|██████▋   | 334/500 [7:29:37<8:14:39, 178.79s/it]\\rMATH-500 eval:  67%|██████▋   | 335/500 [7:32:51<8:23:37, 183.14s/it]\\rMATH-500 eval:  67%|██████▋   | 336/500 [7:36:08<8:32:32, 187.52s/it]\\rMATH-500 eval:  67%|██████▋   | 337/500 [7:36:14<6:00:53, 132.85s/it]\\rMATH-500 eval:  68%|██████▊   | 338/500 [7:36:17<4:13:57, 94.06s/it] \\rMATH-500 eval:  68%|██████▊   | 339/500 [7:39:28<5:30:16, 123.08s/it]\\rMATH-500 eval:  68%|██████▊   | 340/500 [7:42:44<6:26:26, 144.92s/it]\\rMATH-500 eval:  68%|██████▊   | 341/500 [7:46:06<7:09:04, 161.91s/it]\\rMATH-500 eval:  68%|██████▊   | 342/500 [7:49:15<7:28:23, 170.28s/it]\\rMATH-500 eval:  69%|██████▊   | 343/500 [7:52:27<7:42:02, 176.57s/it]\\rMATH-500 eval:  69%|██████▉   | 344/500 [7:52:29<5:23:04, 124.26s/it]\\rMATH-500 eval:  69%|██████▉   | 345/500 [7:53:04<4:11:35, 97.39s/it] \\rMATH-500 eval:  69%|██████▉   | 346/500 [7:53:09<2:59:10, 69.81s/it]\\rMATH-500 eval:  69%|██████▉   | 347/500 [7:53:13<2:07:35, 50.03s/it]\\rMATH-500 eval:  70%|██████▉   | 348/500 [7:53:22<1:35:23, 37.66s/it]\\rMATH-500 eval:  70%|██████▉   | 349/500 [7:56:32<3:29:46, 83.36s/it]\\rMATH-500 eval:  70%|███████   | 350/500 [7:56:34<2:27:54, 59.16s/it]\\rMATH-500 eval:  70%|███████   | 351/500 [7:56:41<1:47:26, 43.27s/it]\\rMATH-500 eval:  70%|███████   | 352/500 [8:00:00<3:42:16, 90.11s/it]\\rMATH-500 eval:  71%|███████   | 353/500 [8:03:37<5:13:45, 128.06s/it]\\rMATH-500 eval:  71%|███████   | 354/500 [8:06:51<6:00:14, 148.04s/it]\\rMATH-500 eval:  71%|███████   | 355/500 [8:10:00<6:27:03, 160.16s/it]\\rMATH-500 eval:  71%|███████   | 356/500 [8:13:14<6:48:57, 170.40s/it]\\rMATH-500 eval:  71%|███████▏  | 357/500 [8:16:27<7:02:03, 177.09s/it]\\rMATH-500 eval:  72%|███████▏  | 358/500 [8:16:32<4:57:16, 125.61s/it]\\rMATH-500 eval:  72%|███████▏  | 359/500 [8:19:49<5:45:06, 146.85s/it]\\rMATH-500 eval:  72%|███████▏  | 360/500 [8:23:08<6:19:45, 162.75s/it]\\rMATH-500 eval:  72%|███████▏  | 361/500 [8:26:40<6:51:19, 177.55s/it]\\rMATH-500 eval:  72%|███████▏  | 362/500 [8:29:55<6:59:49, 182.54s/it]\\rMATH-500 eval:  73%|███████▎  | 363/500 [8:29:57<4:53:13, 128.42s/it]\\rMATH-500 eval:  73%|███████▎  | 364/500 [8:29:58<3:24:49, 90.36s/it] \\rMATH-500 eval:  73%|███████▎  | 365/500 [8:33:17<4:36:38, 122.95s/it]\\rMATH-500 eval:  73%|███████▎  | 366/500 [8:36:34<5:23:59, 145.07s/it]\\rMATH-500 eval:  73%|███████▎  | 367/500 [8:39:50<5:55:15, 160.27s/it]\\rMATH-500 eval:  74%|███████���  | 368/500 [8:43:08<6:17:21, 171.53s/it]\\rMATH-500 eval:  74%|███████▍  | 369/500 [8:43:11<4:24:41, 121.23s/it]\\rMATH-500 eval:  74%|███████▍  | 370/500 [8:43:16<3:06:40, 86.16s/it] \\rMATH-500 eval:  74%|███████▍  | 371/500 [8:43:19<2:11:32, 61.18s/it]\\rMATH-500 eval:  74%|███████▍  | 372/500 [8:46:36<3:37:49, 102.11s/it]\\rMATH-500 eval:  75%|███████▍  | 373/500 [8:50:20<4:53:32, 138.68s/it]\\rMATH-500 eval:  75%|███████▍  | 374/500 [8:50:33<3:31:36, 100.77s/it]\\rMATH-500 eval:  75%|███████▌  | 375/500 [8:50:35<2:28:17, 71.18s/it] \\rMATH-500 eval:  75%|███████▌  | 376/500 [8:50:41<1:46:46, 51.66s/it]\\rMATH-500 eval:  75%|███████▌  | 377/500 [8:54:00<3:16:21, 95.78s/it]\\rMATH-500 eval:  76%|███████▌  | 378/500 [8:57:18<4:17:12, 126.50s/it]\\rMATH-500 eval:  76%|███████▌  | 379/500 [9:00:28<4:53:57, 145.77s/it]\\rMATH-500 eval:  76%|███████▌  | 380/500 [9:04:07<5:35:19, 167.66s/it]\\rMATH-500 eval:  76%|███████▌  | 381/500 [9:07:20<5:47:31, 175.22s/it]\\rMATH-500 eval:  76%|███████▋  | 382/500 [9:10:34<5:55:42, 180.87s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "4e7abe61-8e59-4219-89ec-d0ceca228aac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-21 23:20:09,752 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\\\\n2026-05-21 23:20:10,626 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-21 23:21:55,414 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=1)\\\\n2026-05-21 23:21:55,415 [INFO] Loading MATH-500 dataset...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/MATH-500.py\\\\n2026-05-21 23:23:15,641 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/MATH-500.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-21 23:23:15,641 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub\\\\n2026-05-21 23:23:16,643 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\\\n2026-05-21 23:23:16,645 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\\\n2026-05-21 23:23:16,715 [INFO] Loaded 500 problems\\\\n2026-05-21 23:23:16,715 [INFO] Evaluating on 500 problems\\\\n\\\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\\\rMATH-500 eval:   0%|          | 1/500 [01:31<12:38:51, 91.25s/it]\\\\rMATH-500 eval:   0%|          | 2/500 [03:06<12:55:34, 93.44s/it]\\\\rMATH-500 eval:   1%|          | 3/500 [03:09<7:13:37, 52.35s/it] \\\\rMATH-500 eval:   1%|          | 4/500 [03:13<4:35:20, 33.31s/it]\\\\rMATH-500 eval:   1%|          | 5/500 [05:04<8:23:38, 61.05s/it]\\\\rMATH-500 eval:   1%|          | 6/500 [05:06<5:37:41, 41.02s/it]\\\\rMATH-500 eval:   1%|▏         | 7/500 [06:35<7:46:34, 56.78s/it]\\\\rMATH-500 eval:   2%|▏         | 8/500 [08:07<9:17:55, 68.04s/it]\\\\rMATH-500 eval:   2%|▏         | 9/500 [08:12<6:34:27, 48.20s/it]\\\\rMATH-500 eval:   2%|▏         | 10/500 [09:49<8:37:40, 63.39s/it]\\\\rMATH-500 eval:   2%|▏         | 11/500 [11:19<9:41:49, 71.39s/it]\\\\rMATH-500 eval:   2%|▏         | 12/500 [12:50<10:30:43, 77.55s/it]\\\\rMATH-500 eval:   3%|▎         | 13/500 [12:54<7:27:00, 55.07s/it] \\\\rMATH-500 eval:   3%|▎         | 14/500 [14:32<9:13:03, 68.28s/it]\\\\rMATH-500 eval:   3%|▎         | 15/500 [16:07<10:16:24, 76.26s/it]\\\\rMATH-500 eval:   3%|▎         | 16/500 [17:46<11:10:31, 83.12s/it]\\\\rMATH-500 eval:   3%|▎         | 17/500 [17:49<7:53:52, 58.87s/it] \\\\rMATH-500 eval:   4%|▎         | 18/500 [19:30<9:35:49, 71.68s/it]\\\\rMATH-500 eval:   4%|▍         | 19/500 [19:34<6:52:08, 51.41s/it]\\\\rMATH-500 eval:   4%|▍         | 20/500 [21:05<8:25:07, 63.14s/it]\\\\rMATH-500 eval:   4%|▍         | 21/500 [21:06<5:54:48, 44.44s/it]\\\\rMATH-500 eval:   4%|▍         | 22/500 [22:35<7:41:47, 57.97s/it]\\\\rMATH-500 eval:   5%|▍         | 23/500 [24:11<9:10:53, 69.29s/it]\\\\rMATH-500 eval:   5%|▍         | 24/500 [25:40<9:57:46, 75.35s/it]\\\\rMATH-500 eval:   5%|▌         | 25/500 [27:15<10:41:17, 81.01s/it]\\\\rMATH-500 eval:   5%|▌         | 26/500 [28:47<11:07:57, 84.55s/it]\\\\rMATH-500 eval:   5%|▌         | 27/500 [30:18<11:21:53, 86.50s/it]\\\\rMATH-500 eval:   6%|▌         | 28/500 [30:22<8:05:12, 61.68s/it] \\\\rMATH-500 eval:   6%|▌         | 29/500 [31:52<9:10:20, 70.11s/it]\\\\rMATH-500 eval:   6%|▌         | 30/500 [31:55<6:30:45, 49.88s/it]\\\\rMATH-500 eval:   6%|▌         | 31/500 [33:24<8:01:29, 61.60s/it]\\\\rMATH-500 eval:   6%|▋         | 32/500 [33:26<5:40:53, 43.70s/it]\\\\rMATH-500 eval:   7%|▋         | 33/500 [33:29<4:05:07, 31.49s/it]\\\\rMATH-500 eval:   7%|▋         | 34/500 [33:30<2:55:42,\\\\n\\\\n... [截断: 输出过长，省略 20035 字符] ...\\\\n\\\\n58:17, 143.41s/it]\\\\rMATH-500 eval:  65%|██████▌   | 326/500 [7:06:28<4:54:55, 101.70s/it]\\\\rMATH-500 eval:  65%|██████▌   | 327/500 [7:09:43<6:13:43, 129.62s/it]\\\\rMATH-500 eval:  66%|██████▌   | 328/500 [7:13:03<7:11:36, 150.56s/it]\\\\rMATH-500 eval:  66%|██████▌   | 329/500 [7:16:29<7:56:31, 167.20s/it]\\\\rMATH-500 eval:  66%|██████▌   | 330/500 [7:16:32<5:34:41, 118.13s/it]\\\\rMATH-500 eval:  66%|██████▌   | 331/500 [7:19:45<6:35:49, 140.53s/it]\\\\rMATH-500 eval:  66%|██████▋   | 332/500 [7:22:59<7:18:34, 156.63s/it]\\\\rMATH-500 eval:  67%|██████▋   | 333/500 [7:26:13<7:47:03, 167.80s/it]\\\\rMATH-500 eval:  67%|██████▋   | 334/500 [7:29:37<8:14:39, 178.79s/it]\\\\rMATH-500 eval:  67%|██████▋   | 335/500 [7:32:51<8:23:37, 183.14s/it]\\\\rMATH-500 eval:  67%|██████▋   | 336/500 [7:36:08<8:32:32, 187.52s/it]\\\\rMATH-500 eval:  67%|██████▋   | 337/500 [7:36:14<6:00:53, 132.85s/it]\\\\rMATH-500 eval:  68%|██████▊   | 338/500 [7:36:17<4:13:57, 94.06s/it] \\\\rMATH-500 eval:  68%|██████▊   | 339/500 [7:39:28<5:30:16, 123.08s/it]\\\\rMATH-500 eval:  68%|██████▊   | 340/500 [7:42:44<6:26:26, 144.92s/it]\\\\rMATH-500 eval:  68%|██████▊   | 341/500 [7:46:06<7:09:04, 161.91s/it]\\\\rMATH-500 eval:  68%|██████▊   | 342/500 [7:49:15<7:28:23, 170.28s/it]\\\\rMATH-500 eval:  69%|██████▊   | 343/500 [7:52:27<7:42:02, 176.57s/it]\\\\rMATH-500 eval:  69%|██████▉   | 344/500 [7:52:29<5:23:04, 124.26s/it]\\\\rMATH-500 eval:  69%|██████▉   | 345/500 [7:53:04<4:11:35, 97.39s/it] \\\\rMATH-500 eval:  69%|██████▉   | 346/500 [7:53:09<2:59:10, 69.81s/it]\\\\rMATH-500 eval:  69%|██████▉   | 347/500 [7:53:13<2:07:35, 50.03s/it]\\\\rMATH-500 eval:  70%|██████▉   | 348/500 [7:53:22<1:35:23, 37.66s/it]\\\\rMATH-500 eval:  70%|██████▉   | 349/500 [7:56:32<3:29:46, 83.36s/it]\\\\rMATH-500 eval:  70%|███████   | 350/500 [7:56:34<2:27:54, 59.16s/it]\\\\rMATH-500 eval:  70%|███████   | 351/500 [7:56:41<1:47:26, 43.27s/it]\\\\rMATH-500 eval:  70%|███████   | 352/500 [8:00:00<3:42:16, 90.11s/it]\\\\rMATH-500 eval:  71%|███████   | 353/500 [8:03:37<5:13:45, 128.06s/it]\\\\rMATH-500 eval:  71%|███████   | 354/500 [8:06:51<6:00:14, 148.04s/it]\\\\rMATH-500 eval:  71%|███████   | 355/500 [8:10:00<6:27:03, 160.16s/it]\\\\rMATH-500 eval:  71%|███████   | 356/500 [8:13:14<6:48:57, 170.40s/it]\\\\rMATH-500 eval:  71%|███████▏  | 357/500 [8:16:27<7:02:03, 177.09s/it]\\\\rMATH-500 eval:  72%|███████▏  | 358/500 [8:16:32<4:57:16, 125.61s/it]\\\\rMATH-500 eval:  72%|███████▏  | 359/500 [8:19:49<5:45:06, 146.85s/it]\\\\rMATH-500 eval:  72%|███████▏  | 360/500 [8:23:08<6:19:45, 162.75s/it]\\\\rMATH-500 eval:  72%|███████▏  | 361/500 [8:26:40<6:51:19, 177.55s/it]\\\\rMATH-500 eval:  72%|███████▏  | 362/500 [8:29:55<6:59:49, 182.54s/it]\\\\rMATH-500 eval:  73%|███████▎  | 363/500 [8:29:57<4:53:13, 128.42s/it]\\\\rMATH-500 eval:  73%|███████▎  | 364/500 [8:29:58<3:24:49, 90.36s/it] \\\\rMATH-500 eval:  73%|███████▎  | 365/500 [8:33:17<4:36:38, 122.95s/it]\\\\rMATH-500 eval:  73%|███████▎  | 366/500 [8:36:34<5:23:59, 145.07s/it]\\\\rMATH-500 eval:  73%|███████▎  | 367/500 [8:39:50<5:55:15, 160.27s/it]\\\\rMATH-500 eval:  74%|███████���  | 368/500 [8:43:08<6:17:21, 171.53s/it]\\\\rMATH-500 eval:  74%|███████▍  | 369/500 [8:43:11<4:24:41, 121.23s/it]\\\\rMATH-500 eval:  74%|███████▍  | 370/500 [8:43:16<3:06:40, 86.16s/it] \\\\rMATH-500 eval:  74%|███████▍  | 371/500 [8:43:19<2:11:32, 61.18s/it]\\\\rMATH-500 eval:  74%|███████▍  | 372/500 [8:46:36<3:37:49, 102.11s/it]\\\\rMATH-500 eval:  75%|███████▍  | 373/500 [8:50:20<4:53:32, 138.68s/it]\\\\rMATH-500 eval:  75%|███████▍  | 374/500 [8:50:33<3:31:36, 100.77s/it]\\\\rMATH-500 eval:  75%|███████▌  | 375/500 [8:50:35<2:28:17, 71.18s/it] \\\\rMATH-500 eval:  75%|███████▌  | 376/500 [8:50:41<1:46:46, 51.66s/it]\\\\rMATH-500 eval:  75%|███████▌  | 377/500 [8:54:00<3:16:21, 95.78s/it]\\\\rMATH-500 eval:  76%|███████▌  | 378/500 [8:57:18<4:17:12, 126.50s/it]\\\\rMATH-500 eval:  76%|███████▌  | 379/500 [9:00:28<4:53:57, 145.77s/it]\\\\rMATH-500 eval:  76%|███████▌  | 380/500 [9:04:07<5:35:19, 167.66s/it]\\\\rMATH-500 eval:  76%|███████▌  | 381/500 [9:07:20<5:47:31, 175.22s/it]\\\\rMATH-500 eval:  76%|███████▋  | 382/500 [9:10:34<5:55:42, 180.87s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 23:20:09,752 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\\n2026-05-21 23:20:10,626 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-21 23:21:55,414 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=1)\\n2026-05-21 23:21:55,415 [INFO] Loading MATH-500 dataset...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/MATH-500.py\\n2026-05-21 23:23:15,641 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/MATH-500.py\\nRetrying in 1s [Retry 1/5].\\n2026-05-21 23:23:15,641 [WARNING] Retrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub\\n2026-05-21 23:23:16,643 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-21 23:23:16,645 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Sun May 17 12:28:31 2026).\\n2026-05-21 23:23:16,715 [INFO] Loaded 500 problems\\n2026-05-21 23:23:16,715 [INFO] Evaluating on 500 problems\\n\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\rMATH-500 eval:   0%|          | 1/500 [01:31<12:38:51, 91.25s/it]\\rMATH-500 eval:   0%|          | 2/500 [03:06<12:55:34, 93.44s/it]\\rMATH-500 eval:   1%|          | 3/500 [03:09<7:13:37, 52.35s/it] \\rMATH-500 eval:   1%|          | 4/500 [03:13<4:35:20, 33.31s/it]\\rMATH-500 eval:   1%|          | 5/500 [05:04<8:23:38, 61.05s/it]\\rMATH-500 eval:   1%|          | 6/500 [05:06<5:37:41, 41.02s/it]\\rMATH-500 eval:   1%|▏         | 7/500 [06:35<7:46:34, 56.78s/it]\\rMATH-500 eval:   2%|▏         | 8/500 [08:07<9:17:55, 68.04s/it]\\rMATH-500 eval:   2%|▏         | 9/500 [08:12<6:34:27, 48.20s/it]\\rMATH-500 eval:   2%|▏         | 10/500 [09:49<8:37:40, 63.39s/it]\\rMATH-500 eval:   2%|▏         | 11/500 [11:19<9:41:49, 71.39s/it]\\rMATH-500 eval:   2%|▏         | 12/500 [12:50<10:30:43, 77.55s/it]\\rMATH-500 eval:   3%|▎         | 13/500 [12:54<7:27:00, 55.07s/it] \\rMATH-500 eval:   3%|▎         | 14/500 [14:32<9:13:03, 68.28s/it]\\rMATH-500 eval:   3%|▎         | 15/500 [16:07<10:16:24, 76.26s/it]\\rMATH-500 eval:   3%|▎         | 16/500 [17:46<11:10:31, 83.12s/it]\\rMATH-500 eval:   3%|▎         | 17/500 [17:49<7:53:52, 58.87s/it] \\rMATH-500 eval:   4%|▎         | 18/500 [19:30<9:35:49, 71.68s/it]\\rMATH-500 eval:   4%|▍         | 19/500 [19:34<6:52:08, 51.41s/it]\\rMATH-500 eval:   4%|▍         | 20/500 [21:05<8:25:07, 63.14s/it]\\rMATH-500 eval:   4%|▍         | 21/500 [21:06<5:54:48, 44.44s/it]\\rMATH-500 eval:   4%|▍         | 22/500 [22:35<7:41:47, 57.97s/it]\\rMATH-500 eval:   5%|▍         | 23/500 [24:11<9:10:53, 69.29s/it]\\rMATH-500 eval:   5%|▍         | 24/500 [25:40<9:57:46, 75.35s/it]\\rMATH-500 eval:   5%|▌         | 25/500 [27:15<10:41:17, 81.01s/it]\\rMATH-500 eval:   5%|▌         | 26/500 [28:47<11:07:57, 84.55s/it]\\rMATH-500 eval:   5%|▌         | 27/500 [30:18<11:21:53, 86.50s/it]\\rMATH-500 eval:   6%|▌         | 28/500 [30:22<8:05:12, 61.68s/it] \\rMATH-500 eval:   6%|▌         | 29/500 [31:52<9:10:20, 70.11s/it]\\rMATH-500 eval:   6%|▌         | 30/500 [31:55<6:30:45, 49.88s/it]\\rMATH-500 eval:   6%|▌         | 31/500 [33:24<8:01:29, 61.60s/it]\\rMATH-500 eval:   6%|▋         | 32/500 [33:26<5:40:53, 43.70s/it]\\rMATH-500 eval:   7%|▋         | 33/500 [33:29<4:05:07, 31.49s/it]\\rMATH-500 eval:   7%|▋         | 34/500 [33:30<2:55:42,\\n\\n... [截断: 输出过长，省略 20035 字符] ...\\n\\n58:17, 143.41s/it]\\rMATH-500 eval:  65%|██████▌   | 326/500 [7:06:28<4:54:55, 101.70s/it]\\rMATH-500 eval:  65%|██████▌   | 327/500 [7:09:43<6:13:43, 129.62s/it]\\rMATH-500 eval:  66%|██████▌   | 328/500 [7:13:03<7:11:36, 150.56s/it]\\rMATH-500 eval:  66%|██████▌   | 329/500 [7:16:29<7:56:31, 167.20s/it]\\rMATH-500 eval:  66%|██████▌   | 330/500 [7:16:32<5:34:41, 118.13s/it]\\rMATH-500 eval:  66%|██████▌   | 331/500 [7:19:45<6:35:49, 140.53s/it]\\rMATH-500 eval:  66%|██████▋   | 332/500 [7:22:59<7:18:34, 156.63s/it]\\rMATH-500 eval:  67%|██████▋   | 333/500 [7:26:13<7:47:03, 167.80s/it]\\rMATH-500 eval:  67%|██████▋   | 334/500 [7:29:37<8:14:39, 178.79s/it]\\rMATH-500 eval:  67%|██████▋   | 335/500 [7:32:51<8:23:37, 183.14s/it]\\rMATH-500 eval:  67%|██████▋   | 336/500 [7:36:08<8:32:32, 187.52s/it]\\rMATH-500 eval:  67%|██████▋   | 337/500 [7:36:14<6:00:53, 132.85s/it]\\rMATH-500 eval:  68%|██████▊   | 338/500 [7:36:17<4:13:57, 94.06s/it] \\rMATH-500 eval:  68%|██████▊   | 339/500 [7:39:28<5:30:16, 123.08s/it]\\rMATH-500 eval:  68%|██████▊   | 340/500 [7:42:44<6:26:26, 144.92s/it]\\rMATH-500 eval:  68%|██████▊   | 341/500 [7:46:06<7:09:04, 161.91s/it]\\rMATH-500 eval:  68%|██████▊   | 342/500 [7:49:15<7:28:23, 170.28s/it]\\rMATH-500 eval:  69%|██████▊   | 343/500 [7:52:27<7:42:02, 176.57s/it]\\rMATH-500 eval:  69%|██████▉   | 344/500 [7:52:29<5:23:04, 124.26s/it]\\rMATH-500 eval:  69%|██████▉   | 345/500 [7:53:04<4:11:35, 97.39s/it] \\rMATH-500 eval:  69%|██████▉   | 346/500 [7:53:09<2:59:10, 69.81s/it]\\rMATH-500 eval:  69%|██████▉   | 347/500 [7:53:13<2:07:35, 50.03s/it]\\rMATH-500 eval:  70%|██████▉   | 348/500 [7:53:22<1:35:23, 37.66s/it]\\rMATH-500 eval:  70%|██████▉   | 349/500 [7:56:32<3:29:46, 83.36s/it]\\rMATH-500 eval:  70%|███████   | 350/500 [7:56:34<2:27:54, 59.16s/it]\\rMATH-500 eval:  70%|███████   | 351/500 [7:56:41<1:47:26, 43.27s/it]\\rMATH-500 eval:  70%|███████   | 352/500 [8:00:00<3:42:16, 90.11s/it]\\rMATH-500 eval:  71%|███████   | 353/500 [8:03:37<5:13:45, 128.06s/it]\\rMATH-500 eval:  71%|███████   | 354/500 [8:06:51<6:00:14, 148.04s/it]\\rMATH-500 eval:  71%|███████   | 355/500 [8:10:00<6:27:03, 160.16s/it]\\rMATH-500 eval:  71%|███████   | 356/500 [8:13:14<6:48:57, 170.40s/it]\\rMATH-500 eval:  71%|███████▏  | 357/500 [8:16:27<7:02:03, 177.09s/it]\\rMATH-500 eval:  72%|███████▏  | 358/500 [8:16:32<4:57:16, 125.61s/it]\\rMATH-500 eval:  72%|███████▏  | 359/500 [8:19:49<5:45:06, 146.85s/it]\\rMATH-500 eval:  72%|███████▏  | 360/500 [8:23:08<6:19:45, 162.75s/it]\\rMATH-500 eval:  72%|███████▏  | 361/500 [8:26:40<6:51:19, 177.55s/it]\\rMATH-500 eval:  72%|███████▏  | 362/500 [8:29:55<6:59:49, 182.54s/it]\\rMATH-500 eval:  73%|███████▎  | 363/500 [8:29:57<4:53:13, 128.42s/it]\\rMATH-500 eval:  73%|███████▎  | 364/500 [8:29:58<3:24:49, 90.36s/it] \\rMATH-500 eval:  73%|███████▎  | 365/500 [8:33:17<4:36:38, 122.95s/it]\\rMATH-500 eval:  73%|███████▎  | 366/500 [8:36:34<5:23:59, 145.07s/it]\\rMATH-500 eval:  73%|███████▎  | 367/500 [8:39:50<5:55:15, 160.27s/it]\\rMATH-500 eval:  74%|███████���  | 368/500 [8:43:08<6:17:21, 171.53s/it]\\rMATH-500 eval:  74%|███████▍  | 369/500 [8:43:11<4:24:41, 121.23s/it]\\rMATH-500 eval:  74%|███████▍  | 370/500 [8:43:16<3:06:40, 86.16s/it] \\rMATH-500 eval:  74%|███████▍  | 371/500 [8:43:19<2:11:32, 61.18s/it]\\rMATH-500 eval:  74%|███████▍  | 372/500 [8:46:36<3:37:49, 102.11s/it]\\rMATH-500 eval:  75%|███████▍  | 373/500 [8:50:20<4:53:32, 138.68s/it]\\rMATH-500 eval:  75%|███████▍  | 374/500 [8:50:33<3:31:36, 100.77s/it]\\rMATH-500 eval:  75%|███████▌  | 375/500 [8:50:35<2:28:17, 71.18s/it] \\rMATH-500 eval:  75%|███████▌  | 376/500 [8:50:41<1:46:46, 51.66s/it]\\rMATH-500 eval:  75%|███████▌  | 377/500 [8:54:00<3:16:21, 95.78s/it]\\rMATH-500 eval:  76%|███████▌  | 378/500 [8:57:18<4:17:12, 126.50s/it]\\rMATH-500 eval:  76%|███████▌  | 379/500 [9:00:28<4:53:57, 145.77s/it]\\rMATH-500 eval:  76%|███████▌  | 380/500 [9:04:07<5:35:19, 167.66s/it]\\rMATH-500 eval:  76%|███████▌  | 381/500 [9:07:20<5:47:31, 175.22s/it]\\rMATH-500 eval:  76%|███████▋  | 382/500 [9:10:34<5:55:42, 180.87s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AckQUHvBPPkcujQePFnxmT`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -lhd /root/autodl-tmp/recovery_aware_struct_prune/*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "f9a4d0b7-7b9e-4a74-8328-2fdb21bf04f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132jeTewTePnm4bqnpCEF5y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5750,
+      "cache_read_input_tokens": 27240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5750
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L6FK4GnBCDuy3RsQayxKmw`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "df -h /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "a1a19bf7-579c-4001-831c-9e21d46779be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132jeTewTePnm4bqnpCEF5y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5750,
+      "cache_read_input_tokens": 27240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5750
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T00:36:52.313Z_
+
+<details><summary>↩ Tool result · `toolu_01AckQUHvBPPkcujQePFnxmT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"drwxr-xr-x 2 root root   79 May 17 17:51 /root/autodl-tmp/recovery_aware_struct_prune/artifacts/\\ndrwxr-xr-x 3 root root   90 May 15 11:49 /root/autodl-tmp/recovery_aware_struct_prune/eval_results/\\ndrwxr-xr-x 2 root root  186 May 22 08:06 /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20_eval/\\ndrwxr-xr-x 4 root root 4.0K May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/\\ndrwxr-xr-x 4 root root  137 May 19 00:08 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b/\\ndrwxr-xr-x 3 root root 4.0K May 20 02:55 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/\\ndrwxr-xr-x 3 root root   33 May 17 21:44 /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/\\ndrwxr-xr-x 4 root root   80 May 19 00:09 /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b/\\ndrwxr-xr-x 3 root root 4.0K May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/\\ndrwxr-xr-x 4 root root   80 May 21 14:09 /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/\\ndrwxr-xr-x 2 root root 4.0K May 20 13:15 /root/autodl-tmp/recovery_aware_struct_prune/logs/\\ndrwxr-xr-x 3 root root   51 May 18 18:16 /root/autodl-tmp/recovery_aware_struct_prune/models/\\ndrwxr-xr-x 2 root root 4.0K May 17 19:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/\\ndrwxr-xr-x 2 root root 4.0K May 18 19:11 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 20 13:13 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_qwen_math/\\ndrwxr-xr-x 2 root root  186 May 15 17:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/\\ndrwxr-xr-x 2 root root 4.0K May 18 19:12 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 16 17:53 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/\\ndrwxr-xr-x 2 root root  186 May 15 17:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20/\\ndrwxr-xr-x 2 root root 4.0K May 18 19:11 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 20 13:14 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_qwen_math/\\ndrwxr-xr-x 2 root root 4.0K May 16 12:54 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/\\ndrwxr-xr-x 4 root root 4.0K May 21 19:16 /root/autodl-tmp/recovery_aware_struct_prune/results/\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/\\ndrwxr-xr-x 2 root root 4.0K May 18 20:04 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 20 17:37 /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b/\\ndrwxr-xr-x 3 root root   58 May 16 22:51 /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 20 18:08 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final/\\ndrwxr-xr-x 3 root root   58 May 16 17:04 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "bbd67cbc-bec7-4f0d-b058-a0ca7e0f1911",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"drwxr-xr-x 2 root root   79 May 17 17:51 /root/autodl-tmp/recovery_aware_struct_prune/artifacts/\\\\ndrwxr-xr-x 3 root root   90 May 15 11:49 /root/autodl-tmp/recovery_aware_struct_prune/eval_results/\\\\ndrwxr-xr-x 2 root root  186 May 22 08:06 /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20_eval/\\\\ndrwxr-xr-x 4 root root 4.0K May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/\\\\ndrwxr-xr-x 4 root root  137 May 19 00:08 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b/\\\\ndrwxr-xr-x 3 root root 4.0K May 20 02:55 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/\\\\ndrwxr-xr-x 3 root root   33 May 17 21:44 /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/\\\\ndrwxr-xr-x 4 root root   80 May 19 00:09 /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b/\\\\ndrwxr-xr-x 3 root root 4.0K May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/\\\\ndrwxr-xr-x 4 root root   80 May 21 14:09 /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/\\\\ndrwxr-xr-x 2 root root 4.0K May 20 13:15 /root/autodl-tmp/recovery_aware_struct_prune/logs/\\\\ndrwxr-xr-x 3 root root   51 May 18 18:16 /root/autodl-tmp/recovery_aware_struct_prune/models/\\\\ndrwxr-xr-x 2 root root 4.0K May 17 19:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/\\\\ndrwxr-xr-x 2 root root 4.0K May 18 19:11 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_1p5b/\\\\ndrwxr-xr-x 2 root root 4.0K May 20 13:13 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_qwen_math/\\\\ndrwxr-xr-x 2 root root  186 May 15 17:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/\\\\ndrwxr-xr-x 2 root root 4.0K May 18 19:12 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20_1p5b/\\\\ndrwxr-xr-x 2 root root 4.0K May 16 17:53 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/\\\\ndrwxr-xr-x 2 root root  186 May 15 17:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20/\\\\ndrwxr-xr-x 2 root root 4.0K May 18 19:11 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_1p5b/\\\\ndrwxr-xr-x 2 root root 4.0K May 20 13:14 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_qwen_math/\\\\ndrwxr-xr-x 2 root root 4.0K May 16 12:54 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/\\\\ndrwxr-xr-x 4 root root 4.0K May 21 19:16 /root/autodl-tmp/recovery_aware_struct_prune/results/\\\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/\\\\ndrwxr-xr-x 2 root root 4.0K May 18 20:04 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b/\\\\ndrwxr-xr-x 2 root root 4.0K May 20 17:37 /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/\\\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b/\\\\ndrwxr-xr-x 3 root root   58 May 16 22:51 /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/\\\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b/\\\\ndrwxr-xr-x 2 root root 4.0K May 20 18:08 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final/\\\\ndrwxr-xr-x 3 root root   58 May 16 17:04 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"drwxr-xr-x 2 root root   79 May 17 17:51 /root/autodl-tmp/recovery_aware_struct_prune/artifacts/\\ndrwxr-xr-x 3 root root   90 May 15 11:49 /root/autodl-tmp/recovery_aware_struct_prune/eval_results/\\ndrwxr-xr-x 2 root root  186 May 22 08:06 /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20_eval/\\ndrwxr-xr-x 4 root root 4.0K May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/\\ndrwxr-xr-x 4 root root  137 May 19 00:08 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b/\\ndrwxr-xr-x 3 root root 4.0K May 20 02:55 /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/\\ndrwxr-xr-x 3 root root   33 May 17 21:44 /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/\\ndrwxr-xr-x 4 root root   80 May 19 00:09 /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b/\\ndrwxr-xr-x 3 root root 4.0K May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/\\ndrwxr-xr-x 4 root root   80 May 21 14:09 /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/\\ndrwxr-xr-x 2 root root 4.0K May 20 13:15 /root/autodl-tmp/recovery_aware_struct_prune/logs/\\ndrwxr-xr-x 3 root root   51 May 18 18:16 /root/autodl-tmp/recovery_aware_struct_prune/models/\\ndrwxr-xr-x 2 root root 4.0K May 17 19:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/\\ndrwxr-xr-x 2 root root 4.0K May 18 19:11 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 20 13:13 /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_qwen_math/\\ndrwxr-xr-x 2 root root  186 May 15 17:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/\\ndrwxr-xr-x 2 root root 4.0K May 18 19:12 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 16 17:53 /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/\\ndrwxr-xr-x 2 root root  186 May 15 17:28 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20/\\ndrwxr-xr-x 2 root root 4.0K May 18 19:11 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 20 13:14 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_qwen_math/\\ndrwxr-xr-x 2 root root 4.0K May 16 12:54 /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/\\ndrwxr-xr-x 4 root root 4.0K May 21 19:16 /root/autodl-tmp/recovery_aware_struct_prune/results/\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/\\ndrwxr-xr-x 2 root root 4.0K May 18 20:04 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 20 17:37 /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b/\\ndrwxr-xr-x 3 root root   58 May 16 22:51 /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/\\ndrwxr-xr-x 2 root root  186 May 19 00:35 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b/\\ndrwxr-xr-x 2 root root 4.0K May 20 18:08 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final/\\ndrwxr-xr-x 3 root root   58 May 16 17:04 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T00:36:53.213Z_
+
+<details><summary>↩ Tool result · `toolu_01L6FK4GnBCDuy3RsQayxKmw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  217G   34G  87% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "8bf5eead-6022-4a18-9a92-68e39fecd387",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  217G   34G  87% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  217G   34G  87% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+## westb-23072 状态汇总
+
+### GPU 状态
+
+| GPU | 显存占用 | 利用率 | 状态 |
+|-----|---------|--------|------|
+| cuda:0 | 0 / 97887 MiB | 0% | **空闲** |
+| cuda:1 | 36244 / 97887 MiB | 100% | 占用（2 个 eval 进程） |
+
+### 运行中的 Eval
+
+| PID | 任务 | 运行时长 | 进度 | 预估剩余 |
+|-----|------|---------|------|----------|
+| 104592 | eval_math500_**sft_standard_25** (ckpt-1870) | 9h16m | **382/500 (76%)** | ~6h（~180s/it） |
+| 118095 | eval_math500_**sft_cka_only_20** (v6) | 5h03m | **312/500 (62%)** | ~5h（~57-100s/it） |
+
+两个 eval 都仍在运行，尚未产出 results.json。按当前速度预计还需 5-6 小时完成。
+
+### 磁盘
+
+`/root/autodl-tmp/`: **34GB 可用** (87% used, 217/250GB)
+
+### 本地 Checkpoint 列表（/root/autodl-tmp/recovery_aware_struct_prune/）
+
+**剪枝模型：**
+- pruned_cka_only_20, pruned_cka_only_20_1p5b, pruned_cka_only_20_qwen_math
+- pruned_rasp_20, pruned_rasp_20_1p5b, pruned_rasp_rlvr_20
+- pruned_standard_20, pruned_standard_20_1p5b, pruned_standard_20_qwen_math, pruned_standard_25
+
+**SFT 模型：**
+- sft_cka_only_20, sft_cka_only_20_1p5b, sft_qwen_math_cka_only_20_final
+- sft_rasp_20_1p5b, sft_rasp_rlvr_20
+- sft_standard_20_1p5b, sft_standard_20_qwen_math_final, sft_standard_25
+
+**GRPO 模型：**
+- grpo_cka_only_20, grpo_cka_only_20_1p5b, grpo_cka_only_20_seed123
+- grpo_random_20, grpo_rasp_20_1p5b, grpo_standard_20_1p5b, grpo_standard_25_westb
+
+---
+
+**结论：** cuda:0 完全空闲可安排新任务。cuda:1 上两个 MATH-500 eval 预计今晚（~UTC+8 凌晨）完成，无需干预。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "uuid": "d38f9255-614d-49e1-960e-6d395104a7e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUTfSjPRnZysEJkoB3jFuv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7222,
+      "cache_read_input_tokens": 32990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7222
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 34_
+
+## westb-23072 状态汇总
+
+### GPU 状态
+
+| GPU | 显存占用 | 利用率 | 状态 |
+|-----|---------|--------|------|
+| cuda:0 | 0 / 97887 MiB | 0% | **空闲** |
+| cuda:1 | 36244 / 97887 MiB | 100% | 占用（2 个 eval 进程） |
+
+### 运行中的 Eval
+
+| PID | 任务 | 运行时长 | 进度 | 预估剩余 |
+|-----|------|---------|------|----------|
+| 104592 | eval_math500_**sft_standard_25** (ckpt-1870) | 9h16m | **382/500 (76%)** | ~6h（~180s/it） |
+| 118095 | eval_math500_**sft_cka_only_20** (v6) | 5h03m | **312/500 (62%)** | ~5h（~57-100s/it） |
+
+两个 eval 都仍在运行，尚未产出 results.json。按当前速度预计还需 5-6 小时完成。
+
+### 磁盘
+
+`/root/autodl-tmp/`: **34GB 可用** (87% used, 217/250GB)
+
+### 本地 Checkpoint 列表（/root/autodl-tmp/recovery_aware_struct_prune/）
+
+**剪枝模型：**
+- pruned_cka_only_20, pruned_cka_only_20_1p5b, pruned_cka_only_20_qwen_math
+- pruned_rasp_20, pruned_rasp_20_1p5b, pruned_rasp_rlvr_20
+- pruned_standard_20, pruned_standard_20_1p5b, pruned_standard_20_qwen_math, pruned_standard_25
+
+**SFT 模型：**
+- sft_cka_only_20, sft_cka_only_20_1p5b, sft_qwen_math_cka_only_20_final
+- sft_rasp_20_1p5b, sft_rasp_rlvr_20
+- sft_standard_20_1p5b, sft_standard_20_qwen_math_final, sft_standard_25
+
+**GRPO 模型：**
+- grpo_cka_only_20, grpo_cka_only_20_1p5b, grpo_cka_only_20_seed123
+- grpo_random_20, grpo_rasp_20_1p5b, grpo_standard_20_1p5b, grpo_standard_25_westb
+
+---
+
+**结论：** cuda:0 完全空闲可安排新任务。cuda:1 上两个 MATH-500 eval 预计今晚（~UTC+8 凌晨）完成，无需干预。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 54107,
+  "duration_api_ms": 48108,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "d2448284-579b-4d4c-9b1d-4d21f22d5a74",
+  "total_cost_usd": 0.31252025000000005,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 28371,
+    "cache_read_input_tokens": 147301,
+    "output_tokens": 2381,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28371,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 787,
+        "cache_read_input_tokens": 32990,
+        "cache_creation_input_tokens": 7222,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 7222
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1891,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0019760000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2381,
+      "cacheReadInputTokens": 147301,
+      "cacheCreationInputTokens": 28371,
+      "webSearchRequests": 0,
+      "costUSD": 0.31054425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7434e534-fbf0-4b19-8db4-b04b080c63c2"
+}
+```
+
+</details>
+
+---

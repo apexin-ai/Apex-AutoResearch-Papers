@@ -1,0 +1,3 @@
+2026-05-15 00:12:55,038 INFO    core.tools.feishu  create_chat: name='审稿-recovery_aware_struct_prune' → chat_id=oc_40839c097b00df44480b45ab767f59cf
+2026-05-15 00:12:55,040 INFO    core.tools.dream  [dream] auto-created Group C for project=recovery_aware_struct_prune: oc_40839c097b00df44480b45ab767f59cf
+2026-05-15 00:12:55,197 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_17/config/mcp_config_dream_review_director.json

@@ -1,0 +1,11 @@
+paper_key: "p2_law_2025"
+title: "P2 Law: Scaling Law for Pruning Recovery Training"
+venue: "ACL 2025"
+full_text_available: false
+research:
+  baselines: [Depth Pruning, Width Pruning, SparseGPT 2:4]
+  metrics: [{name: "post-training loss", direction: "lower_better"}, {name: "R²", direction: "higher_better"}]
+  datasets: [{name: "SlimPajama", size: "pre/post-training"}, {name: "WikiText2", size: "eval"}]
+  ablation_dimensions: [model size, post-training tokens, pruning rate, pre-pruning loss]
+  training_recipe: {}
+  method_family: "scaling law for pruning recovery"

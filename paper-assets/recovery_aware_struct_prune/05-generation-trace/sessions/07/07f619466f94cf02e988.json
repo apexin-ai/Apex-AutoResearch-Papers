@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07f619466f94cf02e988",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh paper banana method figure",
+  "task_key": "worker_ssh_paper_banana_method_figure_20260523T154754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_paper_banana_method_figure_20260523T154754_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "b2b207116815d2f6bacb796b0f19c2e43e87b2c72fb6282b07af4fb8fcdae0af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报结果：\n\n### 结果\n\n1. **连通性测试**: `http://47.94.22.126/v1` 返回 200，可用。但该代理**仅支持 OpenAI 文本模型**（gpt-4o 等），不支持 `/images/generations` 端点和 image modality。\n\n2. **paperbanana 自定义 base_url**: 原生不支持。修改了两个 provider 源码（`openrouter.py` 和 `openrouter_imagen.py`）支持 `OPENROUTER_BASE_URL` 环境变量。同时修改了 `visualizer.py`，让 methodology 模式改用 VLM 生成 matplotlib 代码（而非调图片生成 API）。\n\n3. **生成结果**:\n   - PNG: `/root/recovery_aware_struct_prune/docs/paper/figures/paper/fig1_method_framework.png` (276KB, 4295×1745px, 300DPI, ~14.3×5.8 inches)\n   - PDF: `/root/recovery_aware_struct_prune/docs/paper/figures/paper/fig1_method_framework.pdf` (57KB)\n   - 生成脚本: `/root/recovery_aware_struct_prune/scripts/gen_fig1_framework.py`\n\n4. **说明**: 第一轮 paperbanana 自动生成的 matplotlib 代码质量差（文字重叠、布局粗糙），且 critic 因无法读取图片而误判 \"publication-ready\"。最终由手写 matplotlib 脚本生成，包含三阶段流程、公式、28 层剪枝可视化、SFT/GRPO 收敛、Recovery Capacity Spectrum 梯度条。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-paper-banana-method-figure.md"
+}

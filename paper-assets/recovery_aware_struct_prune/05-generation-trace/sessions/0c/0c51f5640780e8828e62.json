@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c51f5640780e8828e62",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb kill dup",
+  "task_key": "worker_ops_westb-kill-dup_20260515T144402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-kill-dup_20260515T144402_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "20e41000d4aec30ae26ac9dff7346bbb2d71b6869be381238e1f1e1c9e4b5c9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 534974 已 kill，但 PID 534667 也不在了——GPU 1 上现在**零进程**，只有 GPU 0 的 RASP v8（PID 532861）在跑。\n\n状态：\n- **GPU 0**: PID 532861 (RASP v8), 76.8GB/97.9GB, 99% util — 正常运行\n- **GPU 1**: 3MiB, 空闲 — 534667 和 534974 都已退出\n- Standard v8 日志显示刚开始加载 pruned model（`Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20`），说明 534667 可能因 534974 的 OOM 竞争已经崩了，或者两个进程绑定了同一个 PID group 被一起终止\n\nStandard v8 需要在 GPU 1 上重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-kill-dup.md"
+}

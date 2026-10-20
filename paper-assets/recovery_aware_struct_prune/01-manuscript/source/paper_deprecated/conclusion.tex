@@ -1,0 +1,10 @@
+\section{Discussion and Conclusion}
+\label{sec:conclusion}
+
+We present a controlled comparison demonstrating that the structural pruning criterion shapes post-RLVR recovery capacity.
+Under identical GRPO training, CKA-only pruning enables active learning (peak reward 4.4$\times$ Standard), while importance-based methods collapse; extended training to 300 steps confirms this gap is structural.
+We observe evidence consistent with representational diversity playing a role in recovery differences: CKA-only diverges most from the dense representation ($\mu{=}0.62$) yet recovers best, while collapsing methods preserve dense fidelity ($\mu{\geq}0.88$), though causal verification remains for future work.
+Reward-accuracy decoupling is sparsity-dependent: at 15\%, GRPO amplifies the CKA-only advantage (5.69\,pp$\to$7.20\,pp), while at 20--25\% GRPO cannot improve upon SFT baselines, motivating reward trajectory as the appropriate diagnostic.
+Cross-scale (1.5B) and cross-architecture (Qwen2.5-Math-7B) experiments provide initial evidence for generality.
+Recent work shows that RL fine-tuning updates only 5--30\% of parameters~\citep{mukherjee2025rlsubnetworks}; whether CKA-based pruning preferentially preserves structures within this active subnetwork is an open question that would provide a complementary mechanistic explanation.
+Code, pruning masks, and model checkpoints will be released upon acceptance.

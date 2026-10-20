@@ -1,0 +1,21 @@
+{
+  "exp_id": "prune_standard_25_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:00:13.880Z",
+    "updated_at": "2026-05-16T11:00:39.525Z",
+    "conclusion": "success",
+    "metrics": {
+      "actual_sparsity": 0.2396,
+      "target_sparsity": 0.25,
+      "mlp_groups_pruned": "251/784",
+      "attn_gqa_groups_pruned": "0/112"
+    }
+  },
+  "timestamp": "2026-05-16T11:00:39.686931+00:00",
+  "trigger": "update_registry"
+}

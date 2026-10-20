@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "18f795e3e90b56145c50",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "fix eval gsm8k answer extraction",
+  "task_key": "worker_fix_eval_gsm8k_answer_extraction_20260514T151759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_gsm8k_answer_extraction_20260514T151759.log",
+    "occurrence": 1,
+    "bytes": 671185,
+    "sha256": "aad837dab07493e067ed597b9ed6fb4272ee002b4dbc1feb21b8373966aed7b5"
+  },
+  "statistics": {
+    "messages": 368,
+    "user_turns": 0,
+    "tool_calls": 135,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 135,
+      "tool_result": 135
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 368,
+      "chunks": [
+        {
+          "path": "18f795e3e90b56145c50-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "18f795e3e90b56145c50-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "18f795e3e90b56145c50-part-0003.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-eval-gsm8k-answer-extraction.md"
+}

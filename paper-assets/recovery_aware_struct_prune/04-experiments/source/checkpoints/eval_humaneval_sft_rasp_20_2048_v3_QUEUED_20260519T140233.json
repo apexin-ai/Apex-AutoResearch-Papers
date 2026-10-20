@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_humaneval_sft_rasp_20_2048_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:59:19.821Z",
+    "updated_at": "2026-05-19T14:02:33.129Z",
+    "hypothesis": "7B SFT RASP 20% HumanEval pass@1 @2048 v3 retry. Completes SFT column of 7B HumanEval matrix. Compare with GRPO RASP 10.98% and SFT CKA-only 20.12%. v2 failed due to startup issue.",
+    "parent": "eval_humaneval_sft_rasp_20_2048",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_rasp_20_2048_v3.json\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "109506",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_humaneval_sft_rasp_20_2048_v3.log",
+      "submitted_at": "2026-05-19T13:59:31.485Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T14:02:33.542458+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "prune_eval_standard_30",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:08:24.071Z",
+    "updated_at": "2026-05-20T09:22:44.252Z",
+    "hypothesis": "Standard importance pruning at 30% sparsity post-prune GSM8K accuracy. Extends sparsity ladder (20%→25%→30%) to probe Standard degradation curve. No SFT/GRPO recovery, raw post-prune performance.",
+    "spec": {
+      "command": "python src/prune.py --mode standard --sparsity 0.30 + python src/eval_gsm8k.py",
+      "server": "westd-29022",
+      "gpu": "cuda:1",
+      "pid": 190349,
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/logs/prune_eval_standard_30.log",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "data_path": "gsm8k test",
+      "data_count": 1319,
+      "seed": 42
+    },
+    "notes": "Original run killed (PID 191519). Re-submitted in tmux eval_std30, PID 202006 on GPU cuda:1. Diagnostic confirms model on cuda:0 (CUDA_VISIBLE_DEVICES=1), 86% util. Speed ~30-48s/sample = ~15-17h ETA for N=1319.",
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T09:22:44.252Z"
+  },
+  "timestamp": "2026-05-20T09:22:44.708691+00:00",
+  "trigger": "update_registry"
+}

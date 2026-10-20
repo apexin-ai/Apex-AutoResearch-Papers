@@ -1,0 +1,73 @@
+dreams:
+  dream_20260514T233950:
+    dream_id: dream_20260514T233950
+    project: recovery_aware_struct_prune
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key uncertainties: (1) Will SFT warmup→GRPO recovery actually work for
+      RASP-pruned model? MVP only has post-prune evidence, recovery is untested. (2)
+      Is the 29% vs 1% gap specific to seed 42 or robust? (3) Will GRASPrune baseline
+      at 20% outperform RASP post-prune (it has rescale compensation)? (4) Can per-structure
+      CKA-recoverability correlation achieve meaningful R² given only 2 recovery methods
+      tested? Focus review on whether the Redundancy Paradox framing is convincing
+      and whether the experiment plan is sufficient for EMNLP main.'
+    what_if: []
+    pid: 485731
+    chat_id: oc_04e6cf8fe41be27a49d5657e80962f12
+    card_message_id: om_x100b6f519ab95ca0c275711a625e4b0
+    started_at: '2026-05-14T23:39:50+00:00'
+    updated_at: '2026-05-15T00:30:28+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 7c6409b55ad90972c6023913fc78a838240f2cb6dabad43991248775c1ba0a2f
+  dream_20260515T140651:
+    dream_id: dream_20260515T140651
+    project: recovery_aware_struct_prune
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 第三档全覆盖：假设所有 P0+P1+P2 实验都完成（包括 GRPO decisive、α ablation 全套、GraSP baseline+GRPO、multi-seed
+      5 seeds、unstructured baseline、inference speedup、full N=1319 eval、scoring ablation、CKA
+      correlation analysis、SFT-only comparison、30% sparsity probe、OOD eval on MATH-500/HumanEval）。评估这套完整实验在
+      EMNLP 2026 的投稿竞争力。
+    what_if: []
+    pid: 661318
+    chat_id: oc_04e6cf8fe41be27a49d5657e80962f12
+    card_message_id: om_x100b6f46c9116ca4c35577780adc86a
+    started_at: '2026-05-15T14:06:51+00:00'
+    updated_at: '2026-05-15T15:12:10+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 4f225ac28016c7879c9947fd54b7958185cd028be65083aec815d8b89abaa89c
+  dream_20260516T144805:
+    dream_id: dream_20260516T144805
+    project: recovery_aware_struct_prune
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 883896
+    chat_id: oc_04e6cf8fe41be27a49d5657e80962f12
+    card_message_id: om_x100b6fbc744da4acc43aa0c33d7c5a7
+    started_at: '2026-05-16T14:48:05+00:00'
+    updated_at: '2026-05-16T15:46:47+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 44efa6d1db8ac43fbe7f1a513fe4348dcb59a689c7b767c8e3185cdc46f366b3

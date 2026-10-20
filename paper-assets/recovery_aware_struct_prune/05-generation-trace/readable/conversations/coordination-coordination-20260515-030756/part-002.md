@@ -1,0 +1,165 @@
+# Project coordination (archived snapshot) — Part 2 of 2
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+[← Part 1](part-001.md) · [Transcript overview](../coordination-coordination-20260515-030756.md) · [Structured JSON](../../../sessions/73/7305099d574908a1f9b6.json)
+
+## Round 51
+
+### User
+
+_source line 523 · 2026-05-15T03:07:02.893842+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 524 · 2026-05-15T03:07:56.517789+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westb-23072 的 cuda:0 和 cuda:1，不能用其他设备
+- 模型/checkpoint 必须存 `/root/autodl-tmp/`（C002 磁盘约束），根分区只有 ~30GB
+- DeepSeek-R1-Distill-Qwen-7B 的 EOS token 是全角管道符 `<｜end▁of▁sentence｜>`（id=151643），不是普通 `<|end_of_sentence|>`
+- submit_training_job 的 command 必须用 `bash -c "..."` 包裹（tmux 用 sh 不是 bash，source/conda activate 裸写会 EXIT_CODE=127）
+- GRASPrune ≠ GraSP：`run_graspune.sh`（外部 baseline）vs `run_grasp_prune.sh`（项目自有 GraSP scoring），文件名差一个下划线，已踩坑一次
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westb-23072，2× RTX PRO 6000 Blackwell 98GB
+- 工作目录：`/root/recovery_aware_struct_prune/`（代码），`/root/autodl-tmp/`（模型/数据）
+- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型路径：
+  - 原始：`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`
+  - RASP pruned：`/root/autodl-tmp/pruned_rasp_20`
+  - Standard pruned：`/root/autodl-tmp/pruned_standard_20`
+  - SFT RASP：`/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/`
+  - SFT Standard：`/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/`
+  - GRPO RASP（训练中）：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20/`
+  - GRPO Standard（训练中）：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20/`
+  - GRASPrune repo：`/root/GRASPrune/`（已 clone，依赖已装）
+- W&B：服务器网络不可达，SFT 用 report_to=none，GRPO 的 run_name 已设但可能也连不上
+- 活跃进程：
+  - grpo_stage2_rasp_20：PID 263888，tmux session `grpo_stage2_rasp_20`，cuda:0，cron 120s
+  - grpo_stage2_standard_20：PID 263966，tmux session `grpo_stage2_standard_20`，cuda:1，cron 120s
+
+### 3. 📊 当前状态
+**刚做完**：SFT warmup 双模型完成 → N=100 eval（RASP 57% / Standard 64% greedy, 99% EOS）→ GRPO Stage 2 双模型提交并 RUNNING。GRASPrune 环境准备完毕。
+
+**Registry RUNNING**：
+- `grpo_stage2_rasp_20`（cuda:0）— 核心实验，SFT-RASP → GRPO RLVR，plan_003
+- `grpo_stage2_standard_20`（cuda:1）— 负对照，SFT-Standard → GRPO RLVR，plan_003
+
+**等待中的 Worker 回调**（4 个）：
+1. `worker_ops_grpo-mechanistic-check` — 检查 GRPO 日志中 KL/reward/clipped_ratio
+2. `worker_code_full-eval-script` — 写 N=1319 full eval 脚本（覆盖 6 模型，per-sample output）
+3. `worker_code_fix-grasp-warnings` — 修 grasp_scoring.py temp 实现 + run_graspune.sh 参数化
+4. `worker_ops_registry-housekeeping` — plan_002/003 registry_id 补齐 + eval JSON metrics 同步
+5. `worker_code_cka-reliability` — plan_014 CKA reliability 分析脚本
+
+### 4. 📋 待办（条件触发式）
+- GRPO cron 回调（进程退出）→ spawn worker 读日志分析 conclusion → 这是整个项目的决定性结果
+- GRPO RASP reward > Standard reward 且 clipped_ratio < 0.9 → success，核心假设成立，立即跑 full eval (plan_004) + 汇报 Director
+- GRPO RASP ≤ Standard（或两者都零梯度）→ negative，按 red-section 产 Framing 调整提案，不默默跑下一个
+- GRPO 完成后 GPU 释放 → 立即启动：(1) full eval N=1319 全模型 (plan_004)，(2) GRASPrune 20% baseline (plan_005, `bash run_graspune.sh 0`)，(3) CKA reliability (plan_014)
+- Worker 回调到手 → 处理结果，更新 registry，汇报 Director
+- clipped_ratio 持续 > 0.9 → SFT warmup 未真正修复 sampling 问题，需要诊断（但 EOS 99% 应该没问题）
+
+### 5. 🎯 战略上下文
+**核心结论链**：D005（35% 太猛）→ D006（20% RASP 29% vs Standard 1%）→ D009-D013（GRPO 直接恢复失败，根因是 sampling 退化不产 EOS）→ D013（SFT warmup 修复 EOS）→ 现在 GRPO Stage 2 是 make-or-break。
+
+**最容易判断错的事**：
+1. SFT 后 Standard 64% > RASP 57% **不代表** Standard 更好。SFT 是 pattern matching，恢复的是格式不是推理。GRPO 才区分谁保留了更深层推理结构。不要因为 SFT 数字就动摇 story。
+2. Post-prune accuracy（RASP 29% >> Standard 1%）是在 **greedy** mode 下测的。Sampling mode 两者都崩溃（D013 教训）。不要混淆 greedy/sampling 结论。
+3. 两模型 MLP 总参数量完全相同（395,232），差异纯来自分布策略（Scenario B）。这排除了"RASP 只是剪得少"的替代解释。
+
+**EMNLP 2026 deadline**：ARR May 25（距今 10 天）。GRPO 是 P0 blocking 项，之后还需 full eval + GRASPrune baseline + multi-seed + 论文写作。时间极紧。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+}
+```
+
+</details>
+
+---

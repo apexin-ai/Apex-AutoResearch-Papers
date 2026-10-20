@@ -1,0 +1,16 @@
+{
+  "exp_id": "alpha_ablation_westd_cal256",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:46:30.119Z",
+    "updated_at": "2026-05-15T12:35:46.897Z",
+    "hypothesis": "α ablation sweep (calibration=256, N=100). α∈{0.0,0.5,1.0,2.0,4.0} at 20% sparsity. Phase A (prune+eval) complete, Phase B (SFT) in progress. Note: calibration=256 differs from westb original (512), causing ~5% group selection differences.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T12:35:46.952291+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_gsm8k_grpo_alpha4_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:42:15.836Z",
+    "updated_at": "2026-05-31T13:01:29.505Z",
+    "hypothesis": "α=4.0 GRPO maintains reward 0.15-0.26 (vs α=1.0 collapse to ~0.008), predicting GSM8K accuracy significantly above α=1.0 baseline. v1 timed out at 774/1319 showing 62.93% interim — full eval needed to confirm α-dependent collapse hypothesis.",
+    "parent": "eval_gsm8k_grpo_alpha4_20",
+    "server": "westd-29022",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-29022",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-22T00:17:14.001Z"
+    },
+    "notes": "审批超时（48h）",
+    "conclusion": "killed",
+    "completed_at": "2026-05-24T00:17:42.096Z"
+  },
+  "timestamp": "2026-05-31T13:01:30.258692+00:00",
+  "trigger": "update_registry"
+}

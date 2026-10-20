@@ -1,0 +1,16 @@
+{
+  "exp_id": "pipeline_cka_only_15",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:09:53.762Z",
+    "updated_at": "2026-05-20T05:10:46.821Z",
+    "hypothesis": "CKA-only pruning at 15% sparsity full pipeline (prune→SFT→GRPO 100 steps→GSM8K eval N=1319). Lower sparsity should yield higher recovery than 20%. CKA-only preserves layer diversity, predicting stronger GRPO recovery vs Standard at same sparsity.",
+    "notes": "SFT complete: train_loss=0.6309, final_loss=0.4918, mean_token_accuracy=0.8698, runtime=1741s. Model saved to /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_15/"
+  },
+  "timestamp": "2026-05-20T05:10:47.279845+00:00",
+  "trigger": "update_registry"
+}

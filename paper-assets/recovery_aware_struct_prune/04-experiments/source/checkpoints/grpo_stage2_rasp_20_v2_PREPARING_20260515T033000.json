@@ -1,0 +1,14 @@
+{
+  "exp_id": "grpo_stage2_rasp_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:30:00.666Z",
+    "updated_at": "2026-05-15T03:30:00.666Z"
+  },
+  "timestamp": "2026-05-15T03:30:00.703990+00:00",
+  "trigger": "update_registry"
+}

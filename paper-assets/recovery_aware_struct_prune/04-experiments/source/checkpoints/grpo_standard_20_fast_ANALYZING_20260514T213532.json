@@ -1,0 +1,39 @@
+{
+  "exp_id": "grpo_standard_20_fast",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:38:55.838Z",
+    "updated_at": "2026-05-14T21:35:32.705Z",
+    "spec": {
+      "model_name": "pruned_standard_20",
+      "model_path": "/root/autodl-tmp/pruned_standard_20",
+      "output_dir": "/root/autodl-tmp/recovered_standard_20",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "gsm8k",
+      "data_count": 2000,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pruned_standard_20",
+      "hyperparams": {
+        "max_completion_length": 1024,
+        "num_train_epochs": 1,
+        "max_train_samples": 2000,
+        "reward_desert_patience": 50
+      },
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/train_grpo.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovered_standard_20 --gpu 1 --max_completion_length 1024 --num_train_epochs 1 --max_samples 2000 --learning_rate 1e-6 --save_total_limit 2 --save_steps 200 --reward_desert_patience 50",
+      "checkpoint_path": "/root/autodl-tmp/recovered_standard_20",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_standard_20_fast.log"
+    },
+    "hypothesis": "Standard-pruned model (20% sparsity, post-prune 1% GSM8K) expected to fail GRPO recovery (RewardDesertCallback triggers). This is the negative control — confirms RASP's structure selection enables recovery that standard pruning cannot.",
+    "parent": "mvp_rasp_pipeline_v4",
+    "notes": "D008: post-recovery eval 必须用 full GSM8K test (1319 samples)，不是 N=100。RewardDesertCallback 在当前配置下不会触发（patience×logging_steps=500=total_steps），Standard 未触发 RewardDesertCallback 不是正面证据。"
+  },
+  "timestamp": "2026-05-14T21:35:32.794009+00:00",
+  "trigger": "update_registry"
+}

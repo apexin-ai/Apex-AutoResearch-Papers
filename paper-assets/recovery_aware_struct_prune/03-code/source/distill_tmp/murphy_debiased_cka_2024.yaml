@@ -1,0 +1,78 @@
+paper_key: "murphy_debiased_cka_2024"
+title: "Correcting Biased Centered Kernel Alignment Measures in Biological and Artificial Neural Networks"
+venue: "ICLR 2024 Re-Align Workshop"
+full_text_available: true
+
+research:
+  baselines: [biased CKA, RV2 coefficient]
+  metrics:
+    - {name: "CKA similarity score", direction: "context_dependent"}
+    - {name: "debiased CKA score", direction: "context_dependent"}
+  datasets:
+    - {name: "THINGS fMRI", size: "3 subjects, 1024 images"}
+    - {name: "THINGS MEG", size: "occipital sensors"}
+    - {name: "ResNet18 activations", size: "standard"}
+    - {name: "CORnet-S activations", size: "standard"}
+  ablation_dimensions: [biased vs debiased CKA, random vs shuffled vs original data, feature-sample ratio, partial shuffling]
+  training_recipe: {optimizer: "N/A (analysis paper)", lr: "N/A", hardware: "N/A"}
+  method_family: "representation similarity analysis / CKA debiasing"
+
+positioning:
+  core_claim: "Standard biased CKA produces inflated similarity scores when feature-sample ratios differ, and debiased CKA (using unbiased HSIC estimator) is essential for reliable neural representation comparison"
+  key_results: "Biased CKA approaches 1.0 for random matrices when features >> samples; debiased CKA correctly returns ~0; only debiased CKA preserves hierarchical CNN-brain correspondence"
+  limitations: ["No debiased CKA alignment detected with MEG data", "Limited to linear kernels", "Single preprocessing pipeline"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "CKA is widely used to compare neural representations, but produces dangerously misleading results when feature dimensions differ"
+  tension: "Researchers comparing brain recordings to ANN activations get high CKA scores even for random data"
+  key_insight: "Biased CKA decomposes into two components: generalized structure (spurious) and stimuli-driven (real); debiased CKA isolates the latter"
+  argument_chain: "problem (CKA bias) → demonstration (random matrices get high scores) → diagnosis (feature-sample ratio sensitivity) → fix (debiased HSIC) → validation (real neural data)"
+  contribution_framing: "4 contributions: systematic investigation, debiasing necessity, false alignment demonstration, decomposability hypothesis"
+  intro_structure: "~4 paragraphs: CKA prevalence → bias problem → contributions → paper structure"
+  notable_technique: "Using random data controls to dramatically demonstrate the bias—simple but devastating evidence"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration"
+    description: "Biased CKA approaching 1.0 for random matrices as features increase, while debiased CKA stays near 0"
+    narrative_role: "Dramatically demonstrates the bias problem"
+    design_elements: ["three domain panels (high-data/equal/low-data)", "random baseline clearly visible"]
+    visual_style: "Multi-panel with clear divergence between biased and debiased curves"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Biased vs debiased CKA across ResNet18 layers for fMRI/MEG"
+      how_gain_highlighted: "Debiased correctly separates random/shuffled/real data"
+      design_note: "Three conditions (random/original/shuffled) reveal what each metric actually measures"
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      what_compared: "CKA across brain ROIs × CNN layers"
+      how_gain_highlighted: "Only debiased CKA shows hierarchical correspondence"
+      design_note: "Replicates known neuroscience finding only with debiased version"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["shuffle percentage"]
+      design_note: "Gradual shuffle shows debiased CKA degrades smoothly, validating decomposition"
+  figure_narrative_role: "Fig1 (dramatic bias demo) → Fig2 (real data: biased fails) → Fig3 (hierarchical pattern only with debiased) → Fig4 (replication with CORnet-S) → Fig5 (decomposition validation)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Appendix Table"
+    row_axis: "subjects"
+    col_axis: "ROI voxel counts"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "none"
+    statistical_reporting: "counts"
+    num_baselines: 0
+    design_note: "Supporting data showing voxel count variation that motivates bias correction"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-participant ROI sizes, debiased HSIC formulation details"
+    reason: "Technical details and data characteristics in appendix"

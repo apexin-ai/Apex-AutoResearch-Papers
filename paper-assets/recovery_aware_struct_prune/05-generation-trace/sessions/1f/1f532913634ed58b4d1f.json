@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f532913634ed58b4d1f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb kill conflict",
+  "task_key": "worker_ops_westb-kill-conflict_20260517T114413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-kill-conflict_20260517T114413_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "9c7cbbb9e336ff0a3d5bb97c9662b38a70c34eccf7bbd9ac04fd598214e55619"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Kill 结果\nPID 704557 和 710278 在执行 kill 前已不存在（自行退出或之前已被 kill）。\n\n### nvidia-smi 当前状态\n\n| GPU | PID | 进程 | 显存 |\n|-----|-----|------|------|\n| cuda:0 | 710618 | eval_gsm8k (pruned_cka_only_20, n=200) | 12994 MiB |\n| cuda:1 | 710113 | **sft_recovery (random_20, save_strategy=no)** ✓ 保留 | 50408 MiB |\n| cuda:1 | 712124 | eval_gsm8k (sft_random_20, n=200) | 24776 MiB |\n| cuda:1 | 712819 | eval_gsm8k (sft_random_20, n=200) | 21428 MiB |\n\ncuda:1 总占用 96631/97887 MiB (98.7%)，接近满载。\n\n### sft_random_20/ 目录状态\n- **checkpoint-1870/ 已删除**（~34GB，含 24GB optimizer.pt），由 PID 704557 写入\n- 顶层仍有 704557 写的 model.safetensors (12GB) 等文件，710113 训练完成后会覆盖\n- 710113 当前进度：~1086/1870 步，预计还需 ~39 分钟完成\n\n### 需注意\n**cuda:1 上有两个完全重复的 eval_sft_random_20 进程**（PID 712124 + 712819），参数一模一样，output_path 也相同，共占 ~46GB 显存。而且它们评估的是 704557 写的旧模型（非 710113 的最终结果）。如果需要清理可以 kill 其中一个或两个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-kill-conflict.md"
+}

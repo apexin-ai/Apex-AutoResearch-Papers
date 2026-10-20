@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval_sft_rasp_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:17:33.814Z",
+    "updated_at": "2026-05-16T19:15:43.879Z",
+    "hypothesis": "RASP 25% post-SFT GSM8K eval (N=1319, greedy, seed=42). sft_rasp_25 刚完成 (loss=0.8498, token_acc=0.8073)，对比 sft_standard_25 (待完成) 和 20% sparsity 结果 (RASP 57% vs Standard 64%)。Parent: sft_rasp_25.",
+    "parent": "sft_rasp_25",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_25.json",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "602990",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "model_name": "sft_rasp_25 (RASP 25% SFT recovered)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25",
+      "eval_data": "openai/gsm8k test split",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_sft_rasp_25.log"
+    },
+    "failure_reason": "Killed on westd due to GPU stall (10+h est). Restarting on westb-23072 cuda:0.",
+    "metrics": {
+      "accuracy": 0.5299,
+      "n_correct": 699,
+      "n_samples": 1319,
+      "seed": 42,
+      "stderr": 0.0137,
+      "eos_rate": 0.918,
+      "truncated": 108
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_25.json",
+    "completed_at": "2026-05-16T19:15:43.879Z"
+  },
+  "timestamp": "2026-05-16T19:15:44.069474+00:00",
+  "trigger": "update_registry"
+}

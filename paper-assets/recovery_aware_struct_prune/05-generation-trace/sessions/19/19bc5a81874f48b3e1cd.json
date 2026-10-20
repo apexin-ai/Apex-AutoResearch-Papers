@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19bc5a81874f48b3e1cd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260518T031456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260518T031456_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "5c50d3d0573103b6a72a7d0db8d08dfc1171a802a2d2ca478dc763712621ba1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加 3 篇 RL 训练不稳定性论文：\n\n1. **gao_reward_overoptimization_2023** — Gao, Schulman, Hilton (ICML 2023, `2210.10760`). Reward overoptimization 的 scaling laws，奠基性工作。与我们的关系：pruning 降低模型容量可放大 proxy-gold reward gap。\n\n2. **rl_plus_collapse_2025** — Dong et al. (arXiv `2508.00222`). RLVR 导致 capability boundary collapse（pass@1 升但 pass@k 降）。与我们的关系：pruning-induced collapse 是其结构性变体，剪枝移除的容量加剧了 on-policy sparse-reward 不稳定性。\n\n3. **comedy_of_estimators_2025** — Shah, Bengio, Courville et al. (arXiv `2512.21852`). KL regularization 实现中梯度计算错误导致训练不稳定。与我们的关系：剪枝后 policy distribution 偏移时，KL 估计误差对 RLVR recovery 稳定性的影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research.md"
+}

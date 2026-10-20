@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_math500_sft_rasp_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:14:47.071Z",
+    "updated_at": "2026-05-17T18:14:47.071Z"
+  },
+  "timestamp": "2026-05-17T18:14:47.358900+00:00",
+  "trigger": "update_registry"
+}

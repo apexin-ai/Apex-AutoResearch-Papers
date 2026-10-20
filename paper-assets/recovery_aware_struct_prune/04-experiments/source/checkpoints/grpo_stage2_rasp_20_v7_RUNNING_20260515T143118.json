@@ -1,0 +1,36 @@
+{
+  "exp_id": "grpo_stage2_rasp_20_v7",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:06:21.430Z",
+    "updated_at": "2026-05-15T14:31:18.212Z",
+    "hypothesis": "D030: GRPO v7 — v6 OOM fix. 8-bit AdamW optimizer (bitsandbytes) saves ~50% optimizer memory. max_steps=100 (~756s/step). All other params same as v6: max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True, monkey-patch ref_model.",
+    "spec": {
+      "command": "python src/train_grpo_v5.py --optim adamw_bnb_8bit --max_steps 100 --max_completion_length 1024 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --temperature 0.4 --repetition_penalty 1.15 --gradient_checkpointing true --save_total_limit 3 --save_steps 50 --reward_desert_patience 50 --learning_rate 1e-6",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "530940",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_stage2_rasp_20_v7.log",
+      "submitted_at": "2026-05-15T14:28:33.997Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 1000,
+      "model_name": "sft_rasp_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20"
+    },
+    "parent": "sft_rasp_20",
+    "notes": "v7 changes from v6: (1) 8-bit AdamW optimizer via bitsandbytes (adamw_bnb_8bit) — saves ~50% optimizer memory, peak GPU ~96.5GB vs v6 OOM at 95GB; (2) added --max_steps 100 support to train_grpo_v5.py. Dry-run confirmed 1 step completes in ~756s without OOM on single RTX PRO 6000 (98GB).",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T14:31:18.297933+00:00",
+  "trigger": "update_registry"
+}

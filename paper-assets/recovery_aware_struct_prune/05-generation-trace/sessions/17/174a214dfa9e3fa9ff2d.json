@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "174a214dfa9e3fa9ff2d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent harvest gsm8k standard25 both",
+  "task_key": "worker_ssh_urgent_harvest_gsm8k_standard25_both_20260521T121422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_harvest_gsm8k_standard25_both_20260521T121422_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "acff5091bb932b7789c539ffef9095dce2fb4c7d44f342099cece291766ecec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都在运行中，尚未完成。\n\n---\n\n## eval_gsm8k_grpo_standard_25 (westb-23072)\n\n| 项目 | 状态 |\n|------|------|\n| 进程状态 | **ALIVE** (PID 75282) |\n| 进度 | **1209/1319** (91.7%) |\n| 最近快照 (1200/1319) | acc=**51.50%**, eos_rate=95.67%, avg_len=318 |\n| 预估剩余 | ~30 min（周期性慢 spike ~100s/it） |\n| Registry 更新 | 未需要 |\n| Cron 删除 | 未需要 |\n\n## eval_gsm8k_sft_standard_25 (westd-29022)\n\n| 项目 | 状态 |\n|------|------|\n| 进程状态 | **ALIVE** (PID 335301) |\n| 进度 | **946/1319** (71.7%) |\n| 最近快照 (900/1319) | acc=**51.22%**, eos_rate=96.11%, avg_len=301 |\n| 预估剩余 | ~1.5h |\n| Registry 更新 | 未需要 |\n| Cron 删除 | 未需要 |\n\n两个都还在跑。westb 约 30 分钟内完成，westd 约 1.5 小时。需要我稍后再检查一次吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-harvest-gsm8k-standard25-both.md"
+}

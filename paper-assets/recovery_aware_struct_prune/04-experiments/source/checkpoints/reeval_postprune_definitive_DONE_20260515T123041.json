@@ -1,0 +1,37 @@
+{
+  "exp_id": "reeval_postprune_definitive",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:46:32.498Z",
+    "updated_at": "2026-05-15T12:30:41.698Z",
+    "hypothesis": "D023: Definitive re-eval of pruned_standard_20 and pruned_rasp_20 with current eval_gsm8k.py + load_pruned_model. N=100, max_new_tokens=4096, greedy. Validates whether original 1% vs 29% is reproducible with current code.",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/pruned_{rasp,standard}_20 --max_samples 100 --max_new_tokens 4096",
+      "server": "westb-23072 + westd-11672",
+      "data_path": "gsm8k_test",
+      "data_count": 100,
+      "model_name": "pruned_rasp_20 + pruned_standard_20",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "N/A"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "rasp_20_accuracy_westb": 0.31,
+      "rasp_20_accuracy_westd": 0.29,
+      "standard_20_accuracy_westb": 0.27,
+      "rasp_vs_standard_gap_pp": 4,
+      "original_claim_rasp": 0.29,
+      "original_claim_standard": 0.01,
+      "conclusion": "Original 29x advantage (29% vs 1%) not reproducible. Actual gap 4pp (31% vs 27% on westb), not statistically significant."
+    },
+    "notes": "D023 definitive re-eval complete. westb: RASP 31%, Standard 27% (4pp gap). westd: RASP 29% (2pp delta from westb due to GPU driver 580 vs 595). Original 29% vs 1% claim invalidated — Standard was never 1%, likely eval bug in v4 pipeline. Post-prune gap is ~4pp, not statistically significant at N=100. GRPO Stage 2 is now the sole deterministic experiment for the paper narrative.",
+    "completed_at": "2026-05-15T12:30:41.698Z"
+  },
+  "timestamp": "2026-05-15T12:30:41.742772+00:00",
+  "trigger": "update_registry"
+}

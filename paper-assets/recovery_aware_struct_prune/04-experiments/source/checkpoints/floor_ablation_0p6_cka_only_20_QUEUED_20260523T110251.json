@@ -1,0 +1,15 @@
+{
+  "exp_id": "floor_ablation_0p6_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:17:30.437Z",
+    "updated_at": "2026-05-23T11:02:50.354Z",
+    "hypothesis": "Floor ratio ablation: raising the MLP floor to 0.6 significantly limits pruning freedom (minimum 60% of each layer kept). If accuracy plateaus between 0.5→0.6, it identifies the saturation point of floor parameter. If still improving, suggests the 0.4 default is suboptimal for CKA-only pruning."
+  },
+  "timestamp": "2026-05-23T11:02:51.570190+00:00",
+  "trigger": "update_registry"
+}

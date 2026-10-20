@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Post-prune accuracy on GSM8K (N=100). Baseline: Qwen2.5-7B. Standard and RASP remove identical parameter counts at matched sparsity; the difference is purely in head selection strategy.}
+\label{tab:postprune}
+\sisetup{round-mode=places, round-precision=0, table-format=2.0}
+\begin{tabular}{l S[table-format=2.0] S[table-format=2.0] S[table-format=6.0]}
+\toprule
+{Method} & {Sparsity (\%)} & {GSM8K Acc (\%)} & {Params Removed} \\
+\midrule
+Baseline (no prune) & 0  & 94 & 0 \\
+Standard            & 20 & 1  & 395232 \\
+RASP ($\alpha{=}1.0$) & 20 & 29 & 395232 \\
+GRASPrune           & 20 & \textcolor{gray}{TBD} & \textcolor{gray}{TBD} \\
+\midrule
+Standard            & 25 & \textcolor{gray}{TBD} & \textcolor{gray}{TBD} \\
+RASP                & 25 & \textcolor{gray}{TBD} & \textcolor{gray}{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22337f2ed9130cd61737",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westb progress 20260517T143700",
+  "task_key": "worker_ops_check_westb_progress_20260517T143700_20260517T143836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westb_progress_20260517T143700_20260517T143836_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "036fb80724793db105c99fb988f4fec5a9e090b7f9cb22fe07ab1af9a6b0789f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**eval_sft_cka_only_20** — 176/200 (88%)，acc 稳定在 66.0%，预计 2 分钟内完成。\n\n**grpo_random_20** — 8/100 (8%)，~6.5 min/step，W&B 正常记录。stdout 无 reward/loss 输出（TRL 只写 W&B），需查 dashboard 看趋势。GPU 82°C 正常。预估 10 小时后（明早 ~08:40 UTC）完成。\n\n报告已写入 `artifacts/westb_progress_check_143700.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westb-progress-20260517t143700.md"
+}

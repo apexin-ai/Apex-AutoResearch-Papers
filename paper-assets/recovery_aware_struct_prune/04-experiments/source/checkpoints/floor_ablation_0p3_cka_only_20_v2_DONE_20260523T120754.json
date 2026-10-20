@@ -1,0 +1,40 @@
+{
+  "exp_id": "floor_ablation_0p3_cka_only_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:23:27.547Z",
+    "updated_at": "2026-05-23T12:07:53.712Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 bash scripts/run_floor_ablation.sh 0.3 0\"",
+      "server": "westd-32935",
+      "gpu": "cuda:0",
+      "pid": "120742",
+      "log_path": "~/runs/recovery_aware_struct_prune/floor_ablation_0p3_cka_only_20_v2.log",
+      "submitted_at": "2026-05-23T09:23:26.593Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "data_path": "MATH-train (SFT) + GSM8K (eval)",
+      "data_count": 1319,
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_floor_0.3/checkpoint-100/",
+      "wall_clock_seconds": 9867.1,
+      "gpu_hours": 2.74
+    },
+    "hypothesis": "Floor ratio ablation (retry): floor=0.3, CKA-only 20% pruning on DeepSeek-R1-Distill-Qwen-7B. Pipeline: Prune → SFT(2ep) → GRPO(100 steps) → GSM8K eval. v1 failed at GRPO save due to disk full; v2 resumes from completed Prune+SFT, only reruns GRPO+eval.",
+    "conclusion": "success",
+    "metrics": {
+      "gsm8k_accuracy": 0.6505,
+      "gsm8k_correct": 858,
+      "gsm8k_total": 1319
+    },
+    "completed_at": "2026-05-23T12:07:53.712Z"
+  },
+  "timestamp": "2026-05-23T12:07:54.363243+00:00",
+  "trigger": "update_registry"
+}

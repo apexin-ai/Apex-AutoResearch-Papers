@@ -1,0 +1,57 @@
+{
+  "exp_id": "eval_humaneval_sft_rasp_20_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:40:51.686Z",
+    "updated_at": "2026-05-17T13:42:35.970Z",
+    "hypothesis": "HumanEval pass@1 for SFT RASP 20% with max_new_tokens=2048 (previous run used 512 which truncated thinking chain). Tests whether longer generation improves code quality for pruned+recovered model.",
+    "spec": {
+      "command": "python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "23785",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_humaneval_sft_rasp_20_2048.log",
+      "submitted_at": "2026-05-17T12:41:09.839Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "model_name": "sft_rasp_20_westd",
+      "seed": 42,
+      "checkpoint_source": "sft_rasp_20_westd",
+      "eval_data": "HumanEval (164 problems, max_new_tokens=2048)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T13:35:15.143Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T13:35:19.516014+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "pass_at_1": 0.1037,
+      "correct": 17,
+      "total": 164,
+      "stderr": 0.0238,
+      "max_new_tokens": 2048,
+      "median_response_length": 2048,
+      "wall_time_min": 42,
+      "note": "still truncating at median=2048, main failure mode is thinking chain leaking into code output"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T13:42:36.228436+00:00",
+  "trigger": "update_registry"
+}

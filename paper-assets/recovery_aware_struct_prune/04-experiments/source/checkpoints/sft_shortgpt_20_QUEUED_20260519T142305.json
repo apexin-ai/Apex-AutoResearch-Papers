@@ -1,0 +1,15 @@
+{
+  "exp_id": "sft_shortgpt_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:22:26.084Z",
+    "updated_at": "2026-05-19T14:23:05.379Z",
+    "hypothesis": "ShortGPT depth pruning (20%, 5/28 layers removed) after SFT warmup will show lower recovery capacity than fine-grained structural pruning methods (Standard/CKA-only/RASP) because coarse layer removal destroys more distributed representations needed for GRPO recovery. Layers removed: [15,16,17,24,25], actual param sparsity 15.30%."
+  },
+  "timestamp": "2026-05-19T14:23:05.794948+00:00",
+  "trigger": "update_registry"
+}

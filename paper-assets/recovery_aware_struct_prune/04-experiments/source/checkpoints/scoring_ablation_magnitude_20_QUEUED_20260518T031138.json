@@ -1,0 +1,28 @@
+{
+  "exp_id": "scoring_ablation_magnitude_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "created_at": "2026-05-17T04:21:41.038Z",
+    "hypothesis": "Magnitude-only scoring (weight L2 norm per group) at 20% sparsity. Isolates contribution of gradient signal vs weight magnitude. If post-prune accuracy near 0% (as expected from heavy early-layer pruning), confirms magnitude alone is insufficient for structured pruning — CKA/gradient signals are essential.",
+    "retry_count": 0,
+    "status": "QUEUED",
+    "updated_at": "2026-05-18T03:11:38.448Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && export CUDA_VISIBLE_DEVICES=0 && echo '=== Step 1: Magnitude pruning at 20% ===' && /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode magnitude --sparsity 0.20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20 --seed 42 --skip_attention && echo '=== Step 2: GSM8K eval (200 samples) ===' && /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_magnitude_20.json && echo '=== ALL DONE ==='\"",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "766171",
+      "log_path": "~/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+      "submitted_at": "2026-05-18T02:51:10.729Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T03:11:38.740716+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "056bfb1bf93ae36528b0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westb gpu collision mf3",
+  "task_key": "worker_fix_westb_gpu_collision_mf3_20260522T080438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westb_gpu_collision_mf3_20260522T080438_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "0f069b0dcffa1763aed87252b7cb85de8581bfd027d88b39b8a4ff0806d5e5d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== Step 1: Kill MF3 ==\nPID 163403: killed ✅ (SIGTERM, clean exit)\n\n== Step 2: MF3 重启 ==\n无需重启 — PID 164710 已在 GPU 1 运行相同 GRPO 任务（7m38s ago）\n\n== Step 3: α=3.0 SFT ==\nPID: 162850 on GPU 0, still running (17m40s elapsed) ✅\n\n== Step 4: sft_recovery.py fix ==\nLines removed: 19-23 (# Parse --gpu early... + for loop)\nVerification: no CUDA_VISIBLE_DEVICES override ✅\n\n== Step 5: GPU 验证 ==\nGPU 0: PID 162850 (α=3.0 SFT) 51548 MiB ✅\nGPU 1: PID 164710 (MF3 GRPO) 58548 MiB ✅\n```\n\n碰撞已解除，两张卡各跑各的。163403 是被 kill 的旧 MF3 进程，164710 是此前已启动在 GPU 1 上的 MF3 GRPO（可能是之前的调度），参数完全一致，无需重复启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westb-gpu-collision-mf3.md"
+}

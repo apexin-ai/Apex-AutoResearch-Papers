@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_25_fixed",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T04:29:12.262Z",
+    "updated_at": "2026-05-24T05:56:19.584Z",
+    "hypothesis": "SFT CKA-only 25% model MATH-500 accuracy with fixed eval script (expression extraction + space normalization bug fix). Dose-response table data point."
+  },
+  "timestamp": "2026-05-24T05:56:20.294348+00:00",
+  "trigger": "update_registry"
+}

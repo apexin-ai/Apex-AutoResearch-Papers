@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d4d276b972f641478b2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh eval math500 sft random 20 westd",
+  "task_key": "worker_ssh_eval_math500_sft_random_20_westd_20260521T144422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_math500_sft_random_20_westd_20260521T144422_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "9467f281b60eb9ea6f4eaebbbddc0b7a2e2f0acf1aa7c1b7be110fb95691f6ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n- **PID**: 385685（tmux session: `eval_math500_sft_random_20`）\n- **GPU**: westd-29022 cuda:3，模型已加载中（13.9 GB）\n- **模型**: `/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20/model.safetensors` (11.3 GB, 完整)\n- **Registry**: RUNNING，spec 已写入\n- **Cron**: 已注册，120s 间隔监控"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-math500-sft-random-20-westd.md"
+}

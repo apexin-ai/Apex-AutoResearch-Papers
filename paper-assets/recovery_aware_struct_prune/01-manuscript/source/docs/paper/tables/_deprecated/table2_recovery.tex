@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Reward-accuracy decoupling on GSM8K ($N{=}1{,}319$, greedy decoding). SFT Acc: accuracy after SFT warmup. GRPO Acc: accuracy at the last stable checkpoint (step 100 for Unpruned, step 50 for Standard, step 5 for \rasp{}). $\Delta$: change from SFT to GRPO accuracy.}
+\label{tab:decoupling}
+\begin{tabular}{lcccc}
+\toprule
+Model & SFT Acc (\%) & GRPO Acc (\%) & $\Delta$ (pp) & Peak Reward \\
+\midrule
+Unpruned & \textbf{81.27} & \textbf{81.27} & $\phantom{-}$0.00 & \textbf{0.669} \\
+CKA-only 20\% & \underline{63.91} & TBD & --- & \underline{0.354} \\
+Standard 20\% & 59.29 & 58.91 & $-$0.38 & 0.081 \\
+\rasp{} 20\% & 61.49 & 60.65 & $-$0.84 & 0.061 \\
+\bottomrule
+\end{tabular}
+\end{table}

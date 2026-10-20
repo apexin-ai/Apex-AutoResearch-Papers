@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a473c86aa8b29bac79c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval gsm8k sft rasp 20 1p5b",
+  "task_key": "worker_analysis_eval_gsm8k_sft_rasp_20_1p5b_20260519T024144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_gsm8k_sft_rasp_20_1p5b_20260519T024144_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "a8ebdf65477d78e2f868080c0dd5373442b2ef1f256e92985225002a97726508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/eval_gsm8k_sft_rasp_20_1p5b_results.md`。\n\n**关键数据**:\n- SFT RASP 20% 1.5B GSM8K accuracy: **26.91%** (355/1319, greedy)\n- Checkpoint: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b`\n- GRPO delta = 26.16% - 26.91% = **-0.75 pp** (negative)\n\n**结论**: Negative result。GRPO (26.16%) 未超越 SFT baseline (26.91%)，差距在 stderr (±1.22%) 范围内，两者本质上无显著差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-gsm8k-sft-rasp-20-1p5b.md"
+}

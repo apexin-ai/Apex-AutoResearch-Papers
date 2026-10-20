@@ -1,0 +1,85 @@
+# director / loop_20.md
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_20.md`
+- **Structured JSON:** [`3ffe08c28a5f25bedf12.json`](../../sessions/3f/3ffe08c28a5f25bedf12.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 20
+reason: max_messages
+updated: '2026-05-23T19:45:37+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-32935 (cuda:0-3), westb-23072 (cuda:0-1)，共 6 张。不可使用其他服务器/GPU
+- MATH-500 eval 必须全部用 fixed script（修复了 expression extraction fallback + space normalization 两个 bug）。旧 buggy 脚本结果不可入表
+- grpo_standard_25 论文用的是 westb 版本 (beta=0.01, GSM8K=51.86%)，westd 版本 (beta=0.04) 不可用于论文主表
+- Random GRPO 用 max_completion_length=512（其他方法 1024），论文已披露为 "conservative comparison point"，不要再启动 v3 重跑
+- grpo_rasp_alpha3p0_20_retrain 必须用默认 512（与 dose-response 其余 α 值一致）
+- EMNLP 2026：正文 ≤8 页，abstract ≤200 words，Limitations 在正文内
+
+### 2. 🖥️ 基础设施快照
+- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/`
+- 匿名仓库：`/tmp/anon_repo`（HTTPS remote，已验证 65 files 与 GitHub 同步）
+- westd-32935：项目路径 `/root/autodl-tmp/recovery_aware_struct_prune/`，train 脚本在 `/root/recovery_aware_struct_prune/src/`
+- westb-23072：同上路径结构，磁盘已清理到 31GB 可用（之前 99%）
+- 关键 checkpoint 位置：sft_standard_25 在 westd (10.8GB)；grpo_standard_25 westb 版 (beta=0.01) **已删除**；grpo_standard_25 westd 版 (beta=0.04) 存在但不用于论文
+- Cron：eval 完成后自动触发回调，但 Agent session 空闲超过 ~30min 回调会丢失——需要手动 dispatch 补调度
+
+### 3. 📊 当前状态
+**刚完成：**
+- 数据完整性审计 ✓（全部数字可追溯，修了 4 处：appendix 排序错误、intro 范围限定、f₀ 边界、cross-arch caption）
+- GRPO 超参审计 ✓（实际只有 Random 一个方法用 512，其余 CKA-only/Standard/RASP α=1.0 都是 1024）
+- Paper Agent 已完成措辞修正（两轮 patch）
+- Floor ablation 全部完成：0.3=65.05% > 0.4=64.37% > 0.6=62.02% ≈ 0.5=61.71%
+- sft_standard_25_retrain 完成 ✓
+
+**RUNNING (6/6 GPU)：**
+| GPU | 实验 | 预计完成 |
+|-----|------|---------|
+| westd:0 | eval_math500_sft_standard_25_fixed | ~6h |
+| westd:1 | eval_math500_grpo_rasp_alpha1p0_20_fixed | ~2h |
+| westd:2 | eval_math500_grpo_standard_20_fixed | ~2.5h |
+| westd:3 | eval_math500_sft_standard_20_fixed | ~2.5h |
+| westb:0 | eval_math500_grpo_cka_only_20_fixed | ~6h |
+| westb:1 | eval_math500_sft_random_20_fixed | ~6h |
+
+**已收集的 fixed eval accuracy：**
+- sft_cka_only_20: 27.4%
+- sft_rasp_alpha1p0_20: 21.6%
+
+### 4. 📋 待办（条件触发式）
+- westd:1 释放 → 启动 dose-response batch 3 第一个 eval（α=0.5 SFT 或 GRPO）
+- westd:2 释放 → dose-response batch 3 第二个
+- westd:3 释放 → dose-response batch 3 第三个
+- westb GPU 释放 → 启动 grpo_rasp_alpha3p0_20_retrain（默认 512）→ 完成后 chain GSM8K eval + MATH-500 eval
+- grpo_random_20_retrain_v2 checkpoint 就绪 → 启动 eval_math500_grpo_random_20_fixed + eval_gsm8k_grpo_random_20_v2
+- 全部 20 个 MATH-500 fixed eval 完成 → 一次性更新 tab_math500.tex 所有数值 + experiments.tex/appendix.tex inline 数字
+- 25% Standard GRPO MATH-500：**留 '--'**（checkpoint 丢失，不重训）。检查 grpo_cka_only_25 checkpoint 是否还在——如果也丢了，25% GRPO 行全留 '--'
+- 全部数据更新完 → paper_compile_and_check + check_paper_consistency → submit_paper_to_review
+
+### 5. 🎯 战略上下文
+- **论文核心 story**：pruning criterion（不是 recovery method）决定恢复质量。CKA-only >> Standard 在 reward (4.4×) 和 accuracy (4.55pp) 上都成立。Reward-accuracy decoupling：SFT ≈ GRPO accuracy despite vastly different rewards。
+- **MATH-500 fixed eval 是唯一剩余的 blocking 数据工作**。20 个 eval 需要全部用 fixed script 重跑确保表格一致性。当前完成 2/20，6 个在跑。
+- **超参披露已处理**：Paper Agent 修改了所有 "identical hyperparameters" 措辞，披露 Random 用 512、dose-response α=1.0 用 1024 其余用 512。措辞框架为 "conservative estimate"。
+- **易错点**：(1) Agent session 空闲过久会导致 eval 完成 cron 回调丢失，需要定期检查 GPU 状态并手动 dispatch；(2) checkpoint→server 映射容易出错（之前 sft_cka_only_20 在 westb 但 eval 提交到 westd 导致 crash），每次提交 eval 前确认 checkpoint 所在服务器；(3) westb 磁盘曾满到 99%，新实验前先检查空间
+- **DDL**：EMNLP 2026 ARR May 25（~29h），论文结构已完成（15 页，0 critical warnings），等数据填完即可提交
+
+
+---

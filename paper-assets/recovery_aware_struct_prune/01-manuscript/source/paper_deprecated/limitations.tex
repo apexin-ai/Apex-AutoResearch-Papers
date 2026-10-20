@@ -1,0 +1,15 @@
+% Limitations — required by ACL/EMNLP
+
+\paragraph{Architecture and scale.}
+Our primary results are on DeepSeek-R1-Distill-Qwen-7B~\citep{deepseek2025r1} with GQA ($G{=}7$).
+Cross-architecture validation on Qwen2.5-Math-7B covers SFT recovery only ($N{=}200$); both models share the Qwen2.5 base architecture, so our cross-architecture evidence does not extend to different architecture families (e.g., LLaMA, Mistral).
+Whether the spectrum generalizes across architecture families and scales (1B--70B) remains open.
+
+\paragraph{Diagnostic limitations.}
+Reward-accuracy decoupling at 20--25\% sparsity means that recovery capacity---operationalized as peak reward---does not predict downstream accuracy improvements within our training horizon.
+Recovery capacity captures the model's ability to sustain RL training without collapse, but practitioners seeking accuracy gains may require longer training, different reward formulations, or lower sparsity levels.
+The per-layer capacity floor (40\% retention) was chosen heuristically and not ablated; different floor values may shift the recovery capacity spectrum.
+
+\paragraph{Replication and scope.}
+CKA-only and Standard are validated over 3 GRPO seeds; \rasp{} and Random each use a single seed ($N{=}1$).
+We evaluate on four benchmarks (GSM8K, MATH-500, HumanEval, MBPP) covering math reasoning and code generation; logical, commonsense, and multi-modal reasoning are not addressed.

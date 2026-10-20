@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b882283c70d3ab0ea41",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval mbpp grpo rasp 20 retry",
+  "task_key": "worker_fix_eval_mbpp_grpo_rasp_20_retry_20260519T183201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_mbpp_grpo_rasp_20_retry_20260519T183201_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "1078984ad85eaf875a7d708c72c95ad40f9df334d0e032dba059fcc8d444fb58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n| 步骤 | 状态 |\n|------|------|\n| kill 残留 tmux session | done |\n| 确认 session 清理 | `eval_mbpp_grpo_rasp_20` 不在旧列表中 |\n| 重新提交 (tmux + CUDA_VISIBLE_DEVICES=1) | PID 127964, tmux session 存活 |\n| 物理 GPU 确认 | Bus ID `5A:00.0` = 物理 GPU 1, 12488 MiB |\n| 日志 | 模型加载完成，MBPP dataset 已加载 (374 tasks) |\n| Registry | RUNNING, retry_count=2 |\n\n注意：因为 `submit_training_job` 工具不可用，这次是通过 `ssh_execute` 手动提交的 tmux session，没有框架的退出码监控钩子。如果进程结束，需要手动检查结果并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-mbpp-grpo-rasp-20-retry.md"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_gsm8k_grpo_cka_only_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:35:29.923Z",
+    "updated_at": "2026-05-18T20:09:40.771Z",
+    "hypothesis": "1.5B CKA-only post-GRPO GSM8K accuracy (N=1319). Cross-model generalization: 7B CKA-only GRPO achieved 64.37% GSM8K. If 1.5B CKA-only GRPO also leads among pruning methods, confirms scale-invariant recovery capacity gradient. Parent: grpo_cka_only_20_1p5b (reward=0.2375, highest among 1.5B methods).",
+    "parent": "grpo_cka_only_20_1p5b",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b/checkpoint-100",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_1p5b.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 0.3548,
+      "n_correct": 468,
+      "n_total": 1319,
+      "stderr": 0.0132
+    },
+    "completed_at": "2026-05-18T20:09:40.771Z"
+  },
+  "timestamp": "2026-05-18T20:09:41.098730+00:00",
+  "trigger": "update_registry"
+}

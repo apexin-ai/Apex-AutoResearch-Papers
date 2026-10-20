@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0878307544334f8a2d91",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix 25pct tokenizer",
+  "task_key": "worker_ops_fix-25pct-tokenizer_20260516T045344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-25pct-tokenizer_20260516T045344_result.json",
+    "occurrence": 1,
+    "bytes": 309,
+    "sha256": "ede5f259d32ca5748ed2f36b0a6f78e23d412605ec63cf343565639c72206b77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **pruned_rasp_25**: tokenizer 原本完整，无需修复\n- **pruned_standard_25**: 缺少 `tokenizer.json`、`tokenizer_config.json`、`chat_template.jinja` 三个文件，已从 pruned_rasp_25 复制补齐\n- 两个模型的 tokenizer 均验证加载成功，vocab_size=151643"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-25pct-tokenizer.md"
+}

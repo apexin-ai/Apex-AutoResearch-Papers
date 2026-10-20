@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "22077234c00f5a681671",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval sft standard 20 n1319",
+  "task_key": "worker_diagnose_eval_sft_standard_20_n1319_20260517T012508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_sft_standard_20_n1319_20260517T012508_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "2e5315b2f496f904e8fb0e4a4eaf9f717da4dc30e00399f3b99bfd96f0444eaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：实验正常完成，应改为 success\n\n**日志路径**: `/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log`\n\n**关键尾部日志**:\n```\n2026-05-17 09:01:52,484 [INFO] GSM8K Accuracy: 0.5929 ± 0.0135 (782/1319)\n2026-05-17 09:01:52,484 [INFO] EOS Stats: {\n  \"natural_eos\": 1293,\n  \"truncated\": 26,\n  \"eos_rate\": 0.9802880970432145,\n  \"avg_response_length\": 226.73692191053829,\n  \"max_response_length\": 4096,\n  \"min_response_length\": 32\n}\n2026-05-17 09:01:52,496 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\n```\n\n**确认**:\n- 1319/1319 样本全部完成，进度条 100%\n- accuracy = 0.5929 (782/1319)，与 registry 完全匹配\n- eos_rate = 0.9803，匹配\n- 无 error/traceback\n- 结果 JSON 已正常写出\n\n评估完全正常完成。Cron 标记 failed 是误判（缺少 W&B sentinel 但实际任务已成功结束）。应改为 success。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "natural_eos": 1293,
+              "truncated": 26,
+              "eos_rate": 0.9802880970432145,
+              "avg_response_length": 226.73692191053829,
+              "max_response_length": 4096,
+              "min_response_length": 32
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-sft-standard-20-n1319.md"
+}

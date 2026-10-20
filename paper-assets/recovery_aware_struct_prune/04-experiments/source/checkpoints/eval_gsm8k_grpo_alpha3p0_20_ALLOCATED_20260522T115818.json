@@ -1,0 +1,20 @@
+{
+  "exp_id": "eval_gsm8k_grpo_alpha3p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:30:06.630Z",
+    "updated_at": "2026-05-22T11:58:18.287Z",
+    "hypothesis": "α=3.0 GRPO GSM8K eval. Dose-response 5th data point: α=3.0 between α=2.0 (66.11%) and α=4.0 (62.77%). Completes the 5-point dose-response curve for causal evidence of CKA overlap suppression effect.",
+    "notes": "UNBLOCKED: grpo_rasp_alpha3p0_20_v2 checkpoint-100 完整 (12.3GB). Eval 已启动 PID 43755 on westd:0, 2.8s/sample, ETA ~60 min.",
+    "spec": {
+      "server": "westd-32935",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-22T11:58:18.905687+00:00",
+  "trigger": "update_registry"
+}

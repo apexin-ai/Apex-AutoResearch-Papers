@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0de6923eaca88941b3de",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code check unstructured 20 logs",
+  "task_key": "worker_code_check_unstructured_20_logs_20260517T084910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_unstructured_20_logs_20260517T084910_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "3831af5e33c4dbe21f09c64a8bd61a90f5bc9987abc59588ecde4ad89bb8c94b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：SUCCESS**\n\n| 指标 | 值 |\n|------|------|\n| GSM8K Accuracy | **87.87% (1159/1319)** |\n| stderr | ±0.90% |\n| EOS rate | 98.03% |\n| avg response length | 641 tokens |\n| truncated | 26/1319 |\n| 耗时 | ~3h14m |\n| 结果文件 | `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_unstructured_20_n1319.json` |\n| tmux session | 已退出 |\n| exit code | 0 |\n\n20% unstructured magnitude pruning 模型 GSM8K accuracy = 87.87%，评估正常完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-unstructured-20-logs.md"
+}

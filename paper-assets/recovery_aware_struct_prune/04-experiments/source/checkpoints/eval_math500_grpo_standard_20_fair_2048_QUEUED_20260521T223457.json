@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_grpo_standard_20_fair_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:34:50.380Z",
+    "updated_at": "2026-05-21T22:34:56.901Z",
+    "hypothesis": "Standard GRPO 20% on MATH-500 @2048 to fill P0 data gap. Standard 25% GRPO scored 12.8% — expect 20% to score higher due to less aggressive pruning.",
+    "parent": "grpo_standard_20_fair"
+  },
+  "timestamp": "2026-05-21T22:34:57.869504+00:00",
+  "trigger": "update_registry"
+}

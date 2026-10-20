@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval_sft_standard_20_n1319",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:20:21.771Z",
+    "updated_at": "2026-05-17T01:23:00.666Z",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "60789",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log",
+      "submitted_at": "2026-05-17T07:58:30Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd",
+      "eval_data": "gsm8k_test",
+      "data_path": "gsm8k:test",
+      "model_name": "Qwen2.5-7B-Standard-20%-SFT",
+      "seed": 42,
+      "data_count": 1319
+    },
+    "hypothesis": "Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.",
+    "parent": "sft_standard_20_retrain",
+    "conclusion": "failed",
+    "metrics": {
+      "accuracy": 0.5929,
+      "n_samples": 1319,
+      "n_correct": 782,
+      "stderr": 0.01353,
+      "eos_rate": 0.9803,
+      "temperature": 0,
+      "do_sample": false
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json",
+    "reproduce": {
+      "finished_at": "2026-05-17T01:22:59.098Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-17T01:23:00.666Z"
+  },
+  "timestamp": "2026-05-17T01:23:00.868143+00:00",
+  "trigger": "update_registry"
+}

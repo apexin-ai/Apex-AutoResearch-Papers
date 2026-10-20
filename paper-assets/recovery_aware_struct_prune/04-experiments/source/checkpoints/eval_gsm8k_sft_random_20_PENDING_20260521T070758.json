@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_gsm8k_sft_random_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:47:16.459Z",
+    "updated_at": "2026-05-21T07:07:58.174Z",
+    "hypothesis": "Random 20% SFT model GSM8K accuracy establishes the pre-GRPO floor for random pruning, enabling SFT→GRPO recovery delta comparison across pruning methods at 20% sparsity"
+  },
+  "timestamp": "2026-05-21T07:07:58.697452+00:00",
+  "trigger": "update_registry"
+}

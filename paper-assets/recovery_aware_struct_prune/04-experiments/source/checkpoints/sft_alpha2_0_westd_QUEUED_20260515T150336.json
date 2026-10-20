@@ -1,0 +1,17 @@
+{
+  "exp_id": "sft_alpha2_0_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:32:54.953Z",
+    "updated_at": "2026-05-15T15:03:36.567Z",
+    "hypothesis": "D027: α=2.0 pruned model SFT recovery on westd. α=2.0 post-prune accuracy 29%. Same SFT params as other α variants (2 epochs, lr=2e-5, batch=1, grad_accum=8). Completes α ablation sweep.",
+    "parent": "alpha_ablation_westd_cal256",
+    "notes": "α=2.0 SFT 已成功启动在 GPU 1。PID 43065 (nohup wrapper PID 43060). 35/1870 steps (~2%), loss 从 1.9 降至 1.39, mean_token_accuracy=0.71。~1.87s/step, 预计总运行约 58 min。与 α=1.0 eval (PID 42535) 共享 GPU 1, 合计 73.7GB VRAM。日志: /tmp/sft_alpha2_0.log"
+  },
+  "timestamp": "2026-05-15T15:03:36.633256+00:00",
+  "trigger": "update_registry"
+}

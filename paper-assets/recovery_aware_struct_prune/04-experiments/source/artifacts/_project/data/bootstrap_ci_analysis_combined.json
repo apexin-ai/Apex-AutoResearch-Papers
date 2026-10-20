@@ -1,0 +1,63 @@
+See full JSON at westd-29022:/root/autodl-tmp/recovery_aware_struct_prune/results/bootstrap_ci_analysis_combined.json
+
+=== BOOTSTRAP 95% CI (GSM8K, N=1319) ===
+
+Model                                Acc       95% CI              Width
+-----------------------------------------------------------------------
+7B @20% sparsity:
+Dense_GRPO_Unpruned_7B             81.27%  [79.15%, 83.32%]      4.17%
+CKA-only_SFT_7B@20%               63.91%  [61.33%, 66.49%]      5.16%
+CKA-only_GRPO_7B@20% (s42)        64.37%  [61.71%, 66.94%]      5.23%
+CKA-only_GRPO_7B@20% (s123)       64.22%  [61.64%, 66.72%]      5.08%
+Standard_SFT_7B@20%               59.29%  [56.63%, 61.94%]      5.31%
+Standard_GRPO_7B@20%              59.44%  [56.79%, 62.09%]      5.31%
+RASP_SFT_7B@20%                   61.56%  [58.91%, 64.14%]      5.23%
+RASP_GRPO_7B@20%                  60.88%  [58.23%, 63.46%]      5.23%
+
+7B @25% sparsity:
+Standard_GRPO_7B@25%              51.10%  [48.45%, 53.75%]      5.31%
+RASP_GRPO_7B@25%                  53.15%  [50.49%, 55.88%]      5.38%
+
+ShortGPT @20%:
+ShortGPT_SFT_7B@20%              44.73%  [42.64%, 48.85%]*     6.21%
+ShortGPT_GRPO_7B@20%             43.37%  [40.71%, 46.02%]      5.31%
+
+1.5B @20% sparsity:
+CKA-only_SFT_1.5B@20%            35.63%  [33.06%, 38.21%]      5.16%
+CKA-only_GRPO_1.5B@20%           35.48%  [32.90%, 37.98%]      5.08%
+RASP_SFT_1.5B@20%                26.91%  [24.56%, 29.34%]      4.78%
+RASP_GRPO_1.5B@20%               26.16%  [23.81%, 28.51%]      4.70%
+Standard_SFT_1.5B@20%            22.90%  [20.70%, 25.09%]      4.40%
+Standard_GRPO_1.5B@20%           22.29%  [20.09%, 24.49%]      4.40%
+
+* ShortGPT SFT: partial bootstrap (999/1319 samples recovered from truncated JSON)
+
+=== McNEMAR'S TESTS (continuity-corrected chi2, df=1) ===
+
+Comparison                              Acc_A   Acc_B    b     c     X2        p      Sig
+-----------------------------------------------------------------------------------------
+7B @20% GRPO:
+CKA-only vs Standard                   64.37%  59.44%  217   152   11.10   0.0009   ***
+CKA-only vs RASP                       64.37%  60.88%  210   164    5.41   0.0200     *
+CKA-only vs ShortGPT                   64.37%  43.37%  485   208  109.92   <0.001   ***
+RASP vs Standard                       60.88%  59.44%  194   175    0.88   0.3487   n.s.
+Dense vs CKA-only                      81.27%  64.37%  291    68  137.28   <0.001   ***
+
+7B @20% SFT:
+CKA-only vs Standard                   63.91%  59.29%  223   162    9.35   0.0022    **
+
+1.5B @20% SFT:
+CKA-only vs Standard                   35.63%  22.90%  283   115   70.07   <0.001   ***
+CKA-only vs RASP                       35.63%  26.91%  243   128   35.03   <0.001   ***
+
+1.5B @20% GRPO:
+CKA-only vs Standard                   35.48%  22.29%  285   111   75.58   <0.001   ***
+CKA-only vs RASP                       35.48%  26.16%  250   127   39.48   <0.001   ***
+
+b = A correct and B wrong, c = A wrong and B correct
+*** p<0.001, ** p<0.01, * p<0.05, n.s. not significant
+
+Notes:
+- CKA-only GRPO 7B@25% file not found
+- CKA-only vs Standard GRPO 25% comparison not available
+- All evals: greedy decoding, same 1319 GSM8K test samples

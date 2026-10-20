@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Dose-response analysis: effect of CKA coefficient $\alpha$ on GSM8K accuracy ($N{=}1{,}319$) at 20\% MLP channel sparsity. $\alpha{=}0$ reduces to Standard (importance-only); higher $\alpha$ weights representational diversity. Best in \textbf{bold}.}
+\label{tab:alpha}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$\alpha$ & SFT Acc.\,(\%) & GRPO Acc.\,(\%) & $\Delta$\,(pp) \\
+\midrule
+0.5 & 60.73 & 61.18 & $+$0.45 \\
+1.0 & 61.49 & 60.88 & $-$0.61 \\
+\textbf{2.0} & \textbf{64.97} & \textbf{66.11} & $+$1.14 \\
+3.0 & 64.14 & 63.46 & $-$0.68 \\
+4.0 & 61.94 & 62.77 & $+$0.83 \\
+\bottomrule
+\end{tabular}
+\end{table}

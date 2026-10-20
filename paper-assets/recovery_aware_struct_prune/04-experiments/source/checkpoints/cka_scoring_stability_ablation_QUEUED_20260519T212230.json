@@ -1,0 +1,15 @@
+{
+  "exp_id": "cka_scoring_stability_ablation",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T21:21:10.933Z",
+    "updated_at": "2026-05-19T21:22:30.032Z",
+    "hypothesis": "CKA scoring stability across calibration sizes (256/512/1024). If Spearman ρ > 0.95 between all pairs, CKA scoring is robust to calibration size — directly answers reviewer concern about scoring sensitivity. Plan_014, C2 mechanism evidence."
+  },
+  "timestamp": "2026-05-19T21:22:30.511620+00:00",
+  "trigger": "update_registry"
+}

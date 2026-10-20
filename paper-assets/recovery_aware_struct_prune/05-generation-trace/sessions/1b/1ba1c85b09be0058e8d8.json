@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ba1c85b09be0058e8d8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo stage2 prep batch",
+  "task_key": "worker_code_grpo_stage2_prep_batch_20260515T024627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_stage2_prep_batch_20260515T024627_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "da64816b24d83599dde79952534d623fbb9e9f1ba525fed841d0cde7510e81e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成。\n\n### 产出总结\n\n| Task | 状态 | 脚本 |\n|------|------|------|\n| α ablation | ✅ | `scripts/run_alpha_ablation.sh` (prune/sft/grpo/eval 分阶段) |\n| Full GSM8K eval | ✅ | `scripts/run_full_eval.sh` (7 checkpoints, phase1/2/3) |\n| GRASPrune 环境 | ✅ | `scripts/run_graspune.sh` (prune + HF convert) |\n\n### 关键发现\n- `prune.py` 已原生支持 `--alpha`，无需改代码\n- `eval_gsm8k.py` 默认跑全部 1319 题（`--max_samples` 不传即可）\n- GRASPrune import 验证通过，**禁止** `pip install -r requirements.txt`（会降级 torch）\n- GRPO Stage 2 实际输出路径是 `grpo_stage2_rasp_20`/`grpo_stage2_standard_20`，脚本已对齐\n- alpha=1.0 已有现成结果（`pruned_rasp_20`/`sft_rasp_20`/`grpo_stage2_rasp_20`），ablation 脚本会自动跳过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-stage2-prep-batch.md"
+}

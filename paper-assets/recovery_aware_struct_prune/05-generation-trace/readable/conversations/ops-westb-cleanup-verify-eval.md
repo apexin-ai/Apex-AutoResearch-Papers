@@ -1,0 +1,1182 @@
+# ops westb cleanup verify eval
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_ops_westb_cleanup_verify_eval_20260520T103030.jsonl`
+- **Structured JSON:** [`280dfba62c51f84012d7.json`](../../sessions/28/280dfba62c51f84012d7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T10:32:44.505499+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T10:32:44.505866+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T10:32:44.506062+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps -p 12115 -o pid,stat,etime 2>/dev/null || echo \"PROCESS_DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ps -p 12115 -o pid,stat,etime 2>/dev/null || echo \"PROCESS_DEAD\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T10:32:44.506209+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T10:32:44.506363+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "df -h /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "df -h /root/autodl-tmp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T10:32:44.506496+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  241G  9.8G  97% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T10:32:44.506652+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps -p 12115 -o pid,stat,etime 2>/dev/null || echo \"PROCESS_DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ps -p 12115 -o pid,stat,etime 2>/dev/null || echo \"PROCESS_DEAD\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T10:32:44.506782+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED\\nPROCESS_DEAD\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T10:32:44.506918+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "sft_qwen_math_standard_20_v2",
+  "field": "conclusion",
+  "value": "failed",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "sft_qwen_math_standard_20_v2",
+    "field": "conclusion",
+    "value": "failed",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T10:32:44.507080+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_qwen_math_standard_20_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:18:20.201Z\", \"updated_at\": \"2026-05-20T10:31:04.876Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final --gpu 0 --num_train_epochs 1 --save_strategy no\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:1\"], \"pid\": \"12115\", \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_qwen_math_standard_20_v2.log\", \"submitted_at\": \"2026-05-20T09:49:14.924Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k (cached)\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B-Standard-Pruned-20%\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935\", \"eval_data\": \"GSM8K train (7473 samples, SFT epoch 2)\"}, \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% SFT recovery epoch 2 (resume from checkpoint-935 = epoch 1 完成). 原始 sft_qwen_math_standard_20 在 935/1870 steps 崩溃（磁盘满）。checkpoint-935 验证完好（339 tensors）。从 epoch 1 权重续跑 1 epoch。\", \"parent\": \"sft_qwen_math_standard_20\", \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2283}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T10:32:44.507235+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "sft_qwen_math_standard_20_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "sft_qwen_math_standard_20_v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T10:32:44.507439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_qwen_math_standard_20_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:18:20.201Z\", \"updated_at\": \"2026-05-20T10:31:09.608Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final --gpu 0 --num_train_epochs 1 --save_strategy no\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:1\"], \"pid\": \"12115\", \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_qwen_math_standard_20_v2.log\", \"submitted_at\": \"2026-05-20T09:49:14.924Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k (cached)\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B-Standard-Pruned-20%\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935\", \"eval_data\": \"GSM8K train (7473 samples, SFT epoch 2)\", \"wall_clock_seconds\": 2514.7, \"gpu_hours\": 0.7}, \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% SFT recovery epoch 2 (resume from checkpoint-935 = epoch 1 完成). 原始 sft_qwen_math_standard_20 在 935/1870 steps 崩溃（磁盘满）。checkpoint-935 验证完好（339 tensors）。从 epoch 1 权重续跑 1 epoch。\", \"parent\": \"sft_qwen_math_standard_20\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-20T10:31:09.608Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0262}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T10:32:44.507623+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "bash -c 'echo \"=== CKA-only optimizer files ===\" && find /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/ -name \"optimizer.pt\" -exec ls -lh {} \\; && echo \"=== Standard optimizer files ===\" && find /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/ -name \"optimizer.pt\" -exec ls -lh {} \\;'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "bash -c 'echo \"=== CKA-only optimizer files ===\" && find /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/ -name \"optimizer.pt\" -exec ls -lh {} \\; && echo \"=== Standard optimizer files ===\" && find /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/ -name \"optimizer.pt\" -exec ls -lh {} \\;'",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T10:32:44.507762+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== CKA-only optimizer files ===\\n=== Standard optimizer files ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T10:32:44.507915+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "du -sh /root/autodl-tmp/recovery_aware_struct_prune/*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "du -sh /root/autodl-tmp/recovery_aware_struct_prune/*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T10:32:44.508076+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8.0K\\t/root/autodl-tmp/recovery_aware_struct_prune/artifacts/\\n8.0K\\t/root/autodl-tmp/recovery_aware_struct_prune/eval_results/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/\\n220K\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b/\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/\\n21M\\t/root/autodl-tmp/recovery_aware_struct_prune/logs/\\n3.4G\\t/root/autodl-tmp/recovery_aware_struct_prune/models/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_1p5b/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_qwen_math/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20_1p5b/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20/\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_1p5b/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_qwen_math/\\n11G\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/\\n23M\\t/root/autodl-tmp/recovery_aware_struct_prune/results/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/\\n12G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/\\n2.8G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b/\\n12G\\t/root/autodl-tmp/recovery_awar
+…[truncated 451 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T10:32:44.508270+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T10:32:44.508415+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T10:32:44.508554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12032084\\ndrwxr-xr-x  2 root root        4096 May 20 18:08 .\\ndrwxr-xr-x 33 root root        4096 May 20 17:20 ..\\n-rw-r--r--  1 root root        2513 May 20 18:08 chat_template.jinja\\n-rw-r--r--  1 root root        1728 May 20 18:07 config.json\\n-rw-r--r--  1 root root         215 May 20 18:07 generation_config.json\\n-rw-r--r--  1 root root 12309394488 May 20 18:08 model.safetensors\\n-rw-r--r--  1 root root    11421892 May 20 18:08 tokenizer.json\\n-rw-r--r--  1 root root         695 May 20 18:08 tokenizer_config.json\\n-rw-r--r--  1 root root        5777 May 20 18:08 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T10:32:44.508691+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12060476\\ndrwxr-xr-x  2 root root        4096 May 20 17:37 .\\ndrwxr-xr-x 33 root root        4096 May 20 17:20 ..\\n-rw-r--r--  1 root root        2513 May 20 17:37 chat_template.jinja\\n-rw-r--r--  1 root root        1727 May 20 17:37 config.json\\n-rw-r--r--  1 root root         215 May 20 17:37 generation_config.json\\n-rw-r--r--  1 root root 12338467960 May 20 17:37 model.safetensors\\n-rw-r--r--  1 root root    11421892 May 20 17:37 tokenizer.json\\n-rw-r--r--  1 root root         695 May 20 17:37 tokenizer_config.json\\n-rw-r--r--  1 root root        5777 May 20 17:37 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T10:32:44.508853+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && echo \"=== Standard checkpoint-935 ===\" && ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935/model.safetensors && python3 -c \"\nfrom safetensors import safe_open\nf = safe_open(\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935/model.safetensors\\\", framework=\\\"pt\\\")\nprint(f\\\"Standard OK: {len(f.keys())} tensors\\\")\n\" && echo \"=== CKA-only checkpoint-935 ===\" && ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935/model.safetensors && python3 -c \"\nfrom safetensors import safe_open\nf = safe_open(\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935/model.safetensors\\\", framework=\\\"pt\\\")\nprint(f\\\"CKA-only OK: {len(f.keys())} tensors\\\")\n\"'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && echo \"=== Standard checkpoint-935 ===\" && ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935/model.safetensors && python3 -c \"\nfrom safetensors import safe_open\nf = safe_open(\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935/model.safetensors\\\", framework=\\\"pt\\\")\nprint(f\\\"Standard OK: {len(f.keys())} tensors\\\")\n\" && echo \"=== CKA-only checkpoint-935 ===\" && ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935/model.safetensors && python3 -c \"\nfrom safetensors import safe_open\nf = safe_open(\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935/model.safetensors\\\", framework=\\\"pt\\\")\nprint(f\\\"CKA-only OK: {len(f.keys())} tensors\\\")\n\"'",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T10:32:44.508995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Standard checkpoint-935 ===\\n-rw-r--r-- 1 root root 12309394488 May 20 15:02 /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935/model.safetensors\\nStandard OK: 339 tensors\\n=== CKA-only checkpoint-935 ===\\n-rw-r--r-- 1 root root 12338467960 May 20 15:02 /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935/model.safetensors\\nCKA-only OK: 339 tensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.03}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T10:32:44.509142+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/recovery_aware_struct_prune/src/eval_gsm8k.py --help'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/recovery_aware_struct_prune/src/eval_gsm8k.py --help'",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T10:32:44.509309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: eval_gsm8k.py [-h] --model_path MODEL_PATH [--output_path OUTPUT_PATH]\\n                     [--max_new_tokens MAX_NEW_TOKENS]\\n                     [--max_samples MAX_SAMPLES] [--seed SEED]\\n                     [--dtype {float16,bfloat16,float32}]\\n                     [--device_map DEVICE_MAP] [--temperature TEMPERATURE]\\n                     [--do_sample] [--voting]\\n                     [--num_samples_per_question NUM_SAMPLES_PER_QUESTION]\\n                     [--voting_temperature VOTING_TEMPERATURE]\\n                     [--voting_top_p VOTING_TOP_P]\\n\\nEvaluate model on GSM8K test set\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --model_path MODEL_PATH\\n                        Path to model\\n  --output_path OUTPUT_PATH\\n                        Output JSON path for results\\n  --max_new_tokens MAX_NEW_TOKENS\\n  --max_samples MAX_SAMPLES\\n                        Limit test samples (None=all)\\n  --seed SEED\\n  --dtype {float16,bfloat16,float32}\\n  --device_map DEVICE_MAP\\n                        Device map: auto, cpu, cuda:0, etc.\\n  --temperature TEMPERATURE\\n                        Sampling temperature (0=greedy)\\n  --do_sample           Enable sampling mode\\n  --voting              Enable majority voting (self-consistency)\\n  --num_samples_per_question NUM_SAMPLES_PER_QUESTION\\n                        K samples per question for voting\\n  --voting_temperature VOTING_TEMPERATURE\\n                        Temperature for voting samples\\n  --voting_top_p VOTING_TOP_P\\n                        Top-p for voting samples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T10:32:44.509486+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_sft_qwen_cka_only_20",
+  "field": "hypothesis",
+  "value": "GSM8K N=200 eval of Qwen2.5-Math-7B CKA-only 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 1.00% (near zero). CKA-only preserves layer diversity but causes severe initial damage. Fair comparison with Standard at same training point (epoch 1.0, step 935). If CKA-only SFT recovers above Standard, validates recovery-aware principle on Qwen-Math.",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_sft_qwen_cka_only_20",
+    "field": "hypothesis",
+    "value": "GSM8K N=200 eval of Qwen2.5-Math-7B CKA-only 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 1.00% (near zero). CKA-only preserves layer diversity but causes severe initial damage. Fair comparison with Standard at same training point (epoch 1.0, step 935). If CKA-only SFT recovers above Standard, validates recovery-aware principle on Qwen-Math.",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T10:32:44.509626+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_sft_qwen_cka_only_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:32:11.084Z\", \"updated_at\": \"2026-05-20T10:32:11.084Z\", \"hypothesis\": \"GSM8K N=200 eval of Qwen2.5-Math-7B CKA-only 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 1.00% (near zero). CKA-only preserves layer diversity but causes severe initial damage. Fair comparison with Standard at same training point (epoch 1.0, step 935). If CKA-only SFT recovers above Standard, validates recovery-aware principle on Qwen-Math.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1186}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T10:32:44.509797+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_sft_qwen_standard_20",
+  "field": "hypothesis",
+  "value": "GSM8K N=200 eval of Qwen2.5-Math-7B Standard 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 18.5%. Standard uses importance-based pruning. Fair comparison with CKA-only at same training point (epoch 1.0, step 935).",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_sft_qwen_standard_20",
+    "field": "hypothesis",
+    "value": "GSM8K N=200 eval of Qwen2.5-Math-7B Standard 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 18.5%. Standard uses importance-based pruning. Fair comparison with CKA-only at same training point (epoch 1.0, step 935).",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T10:32:44.509986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_sft_qwen_standard_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:32:12.883Z\", \"updated_at\": \"2026-05-20T10:32:12.883Z\", \"hypothesis\": \"GSM8K N=200 eval of Qwen2.5-Math-7B Standard 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 18.5%. Standard uses importance-based pruning. Fair comparison with CKA-only at same training point (epoch 1.0, step 935).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1711}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T10:32:44.510118+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_sft_qwen_cka_only_20",
+  "field": "parent",
+  "value": "sft_qwen_math_cka_only_20",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_sft_qwen_cka_only_20",
+    "field": "parent",
+    "value": "sft_qwen_math_cka_only_20",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T10:32:44.510242+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_sft_qwen_standard_20",
+  "field": "parent",
+  "value": "sft_qwen_math_standard_20",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_sft_qwen_standard_20",
+    "field": "parent",
+    "value": "sft_qwen_math_standard_20",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T10:32:44.510394+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_sft_qwen_cka_only_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:32:11.084Z\", \"updated_at\": \"2026-05-20T10:32:17.238Z\", \"hypothesis\": \"GSM8K N=200 eval of Qwen2.5-Math-7B CKA-only 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 1.00% (near zero). CKA-only preserves layer diversity but causes severe initial damage. Fair comparison with Standard at same training point (epoch 1.0, step 935). If CKA-only SFT recovers above Standard, validates recovery-aware principle on Qwen-Math.\", \"parent\": \"sft_qwen_math_cka_only_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1393}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T10:32:44.510530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_sft_qwen_standard_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:32:12.883Z\", \"updated_at\": \"2026-05-20T10:32:18.391Z\", \"hypothesis\": \"GSM8K N=200 eval of Qwen2.5-Math-7B Standard 20% SFT epoch 1 (checkpoint-935). Post-prune accuracy was 18.5%. Standard uses importance-based pruning. Fair comparison with CKA-only at same training point (epoch 1.0, step 935).\", \"parent\": \"sft_qwen_math_standard_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1184}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T10:32:44.510673+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "gpu_ids": "['cuda:0']",
+  "exp_id": "eval_gsm8k_sft_qwen_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "timeout_hours": "4",
+  "account": "root",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935 --max_samples 200 --device_map cuda:0\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "westb-23072",
+    "gpu_ids": "['cuda:0']",
+    "exp_id": "eval_gsm8k_sft_qwen_cka_only_20",
+    "project": "recovery_aware_struct_prune",
+    "timeout_hours": "4",
+    "account": "root",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935 --max_samples 200 --device_map cuda:0\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-20T10:32:44.510803+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "gpu_ids": "['cuda:1']",
+  "exp_id": "eval_gsm8k_sft_qwen_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "timeout_hours": "4",
+  "account": "root",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935 --max_samples 200 --device_map cuda:0\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "westb-23072",
+    "gpu_ids": "['cuda:1']",
+    "exp_id": "eval_gsm8k_sft_qwen_standard_20",
+    "project": "recovery_aware_struct_prune",
+    "timeout_hours": "4",
+    "account": "root",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935 --max_samples 200 --device_map cuda:0\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T10:32:44.510936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"14636\", \"log_file\": \"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_cka_only_20.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westb-23072\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"eval_gsm8k_sft_qwen_cka_only_20\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T10:32:44.511060+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"14714\", \"log_file\": \"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_standard_20.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"westb-23072\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"eval_gsm8k_sft_qwen_standard_20\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T10:32:44.511195+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps -p 14636,14714 -o pid,stat,etime,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ps -p 14636,14714 -o pid,stat,etime,args",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T10:32:44.511369+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED COMMAND\\n 14636 Ss+        00:11 bash -c rm -f /tmp/agent-ml-exit/eval_gsm8k_sft_qwen_cka_only_20.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_cka_only_20.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_gsm8k_sft_qwen_cka_only_20.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=0 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935 --max_samples 200 --device_map cuda:0\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_cka_only_20.log 2>&1\\n 14714 Ss+        00:07 bash -c rm -f /tmp/agent-ml-exit/eval_gsm8k_sft_qwen_standard_20.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_standard_20.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_gsm8k_sft_qwen_standard_20.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=1 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935 --max_samples 200 --device_map cuda:0\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_qwen_standard_20.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, 
+…[truncated 44 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-20T10:32:44.511560+00:00_
+
+两个进程均在运行。
+
+## 总结
+
+| 项目 | 结果 |
+|------|------|
+| **optimizer.pt 清理** | 文件已不存在（之前已清理），无额外释放 |
+| **磁盘剩余** | /root/autodl-tmp/ 9.8G 可用 (97%) |
+| **Standard checkpoint-935** | 完好，339 tensors，12.3GB |
+| **CKA-only checkpoint-935** | 完好，339 tensors，12.3GB |
+| **eval 提交 - CKA-only** | `eval_gsm8k_sft_qwen_cka_only_20`，westb:0，PID 14636 |
+| **eval 提交 - Standard** | `eval_gsm8k_sft_qwen_standard_20`，westb:1，PID 14714 |
+| **Standard v2 registry** | 已标记 DONE/failed |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_westb_cleanup_verify_eval_20260520T103030"
+}
+```
+
+</details>
+
+---

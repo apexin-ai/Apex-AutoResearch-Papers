@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "172ecc365358a91d3881",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh launch seed123 v2 grpo westd1 v3",
+  "task_key": "worker_ssh_launch_seed123_v2_grpo_westd1_v3_20260522T143003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_seed123_v2_grpo_westd1_v3_20260522T143003_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "3b2ad26aec25fffea302768b67256e250a292bca3d248e30b2488a0e1545aab6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正式启动。\n\n## 汇报\n\n1. **GPU:1 清理**：kill 了 PID 52151（`eval_gsm8k.py --model_path sft_depth_first_20`，depth-first SFT eval）\n2. **旧 checkpoint**：`grpo_random_20_seed123/` 已删除\n3. **新训练**：\n   - PID: 53822（python 子进程），bash wrapper PID 53815\n   - 输出目录: `grpo_random_20_seed123_v2`\n   - wandb run: `j1ut733l` (`grpo_sft_random_20`)\n   - 进度: 0/100 steps，训练 loop 已启动\n4. **GPU:1 显存**: 25251 MiB，91% utilization\n5. **日志**: `/tmp/grpo_random_seed123_v2.log`，启动正常\n\n**附注**: 首次启动因 wandb 目录缺失失败（`/root/autodl-tmp/recovery_aware_struct_prune/wandb/` 不存在，`/root/recovery_aware_struct_prune/wandb` 是指向它的 symlink）。已创建目标目录后重启成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-seed123-v2-grpo-westd1-v3.md"
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "1fd8cce86d7ba7c70fa7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval gsm8k sft qwen cka only 20",
+  "task_key": "worker_diagnose_eval_gsm8k_sft_qwen_cka_only_20_20260520T153814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gsm8k_sft_qwen_cka_only_20_20260520T153814_result.json",
+    "occurrence": 1,
+    "bytes": 1678,
+    "sha256": "459a74695bc2704ccd9c194b0e97e952ccc82d4f5a9fd085a038e81fb393199f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验实际上**成功完成**了，不是失败。日志最后几行：\n\n```\nEXIT_CODE=0\nGSM8K Accuracy: 0.5150 ± 0.0353 (103/200)\nResults saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_qwen_cka_only_20.json\n```\n\n200/200 样本全部跑完，耗时 4h00m04s（平均 72s/sample）。慢的原因是 73% 的生成被截断到 max_new_tokens=2048：\n\n- eos_rate: 27%（仅 54/200 自然结束）\n- avg_response_length: 1536 tokens\n- truncated: 146/200\n\n```json\n{\"root_cause\":\"非失败。EXIT_CODE=0，200/200完成。用户报告的EXIT_CODE=143可能是监控脚本误判（实际进程正常退出后tmux/wrapper层面的信号）\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复，结果已保存\",\"如需加速未来eval，可降低max_new_tokens或加batch\",\"eos_rate仅27%说明模型倾向生成冗长推理链，可考虑SFT时加入更短的CoT样本\"],\"can_auto_fix\":false,\"partial_results\":\"完整结果已保存: acc=0.5150±0.0353 (103/200), eos_rate=27%, avg_len=1536\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "非失败。EXIT_CODE=0，200/200完成。用户报告的EXIT_CODE=143可能是监控脚本误判（实际进程正常退出后tmux/wrapper层面的信号）",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复，结果已保存",
+                "如需加速未来eval，可降低max_new_tokens或加batch",
+                "eos_rate仅27%说明模型倾向生成冗长推理链，可考虑SFT时加入更短的CoT样本"
+              ],
+              "can_auto_fix": false,
+              "partial_results": "完整结果已保存: acc=0.5150±0.0353 (103/200), eos_rate=27%, avg_len=1536"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-gsm8k-sft-qwen-cka-only-20.md"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "sft_alpha4_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:30:48.284Z",
+    "updated_at": "2026-05-21T19:32:26.967Z",
+    "hypothesis": "α=4.0 SFT recovery with save_only_model=True to prevent disk overflow. Pruning successful (19.09% sparsity). Testing if higher α mitigates RASP collapse after full SFT→GRPO→eval pipeline.",
+    "parent": "sft_alpha4_20_manual",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_sft_warmup.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20 --num_epochs 2 --lr 2e-5\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "401581",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log",
+      "submitted_at": "2026-05-21T18:31:05.499Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T18:54:53.481Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T18:54:59.708620+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T19:32:27.565652+00:00",
+  "trigger": "update_registry"
+}

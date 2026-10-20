@@ -1,0 +1,36 @@
+{
+  "exp_id": "prune_standard_30",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:06:31.546Z",
+    "updated_at": "2026-05-16T09:09:17.139Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode standard --sparsity 0.30 --dtype bfloat16 --importance_path results/importance_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30",
+      "server": "westb-23072",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "data_path": "results/importance_scores.pt",
+      "data_count": 0,
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30",
+      "log_path": "/tmp/prune_standard_30.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "actual_sparsity": 0.2854,
+      "target_sparsity": 0.3,
+      "attn_gqa_groups_pruned": 0,
+      "attn_gqa_groups_total": 112,
+      "mlp_groups_pruned": 299,
+      "mlp_groups_total": 784,
+      "pruned_params": 5442379264,
+      "safetensors_keys": 339
+    },
+    "completed_at": "2026-05-16T09:09:17.139Z"
+  },
+  "timestamp": "2026-05-16T09:09:17.272877+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2303 @@
+{
+  "schema_version": "1.0",
+  "id": "206a96721101e62dcecb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "eval westd cuda1 batch",
+  "task_key": "worker_eval_westd_cuda1_batch_20260516T014615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_westd_cuda1_batch_20260516T014615.jsonl",
+    "occurrence": 1,
+    "bytes": 71259,
+    "sha256": "990b98a74c851e47ed597120b6b499d62e81be5cb77e3e2a986cd4c06f7f718f"
+  },
+  "statistics": {
+    "messages": 113,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "tool_call": 56,
+      "tool_result": 56,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:52:48.635723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:52:48.636146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:52:48.636378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "westd-11672",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:52:48.636526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:52:48.636651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:52:48.636770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "which python3",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:52:48.636898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:52:48.637016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:52:48.637135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"74134, GPU-d1444413-8d05-7cae-d7be-416b07c34d24, 17654 MiB, /root/miniconda3/bin/python\\\\n74579, GPU-723a4c6c-54ba-a2a1-76ec-66efc37506a9, 17576 MiB, /root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T01:52:48.637310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha_ablation\\\\ngrpo_standard_v8_step50\\\\ngrpo_unpruned_v2\\\\nlogs\\\\npruned_graspune_20\\\\npruned_rasp_20\\\\npruned_standard_20\\\\nresults\\\\nrun_grpo_unpruned.sh\\\\nsft_ablation\\\\nsft_graspune_20\\\\nsft_rasp_20_westd\\\\nsft_rasp_20_westd.log\\\\nsft_standard_20_westd\\\\nsft_unpruned_baseline\\\\nsft_unpruned_baseline.log\\\\nsrc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T01:52:48.637529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:52:48.637731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:52:48.637968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:52:48.638189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 16 09:46:49 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   55C    P0            332W /  600W |   17663MiB /  97887MiB |     91%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   33C    P0             85W /  600W |   17585MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          \n…[truncated 359 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T01:52:48.638426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:52:48.638605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha_0.0\\\\nalpha_0.5\\\\nalpha_1.0\\\\nalpha_2.0\\\\nalpha_4.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T01:52:48.638782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T01:52:48.638953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha_0.0\\\\nalpha_1.0\\\\nalpha_2.0\\\\nalpha_4.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T01:52:48.639125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T01:52:48.639327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chat_template.jinja\\\\nconfig.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T01:52:48.639550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation/alpha_0.5/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T01:52:48.639744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chat_template.jinja\\\\nconfig.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\npruning_metadata.pt\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T01:52:48.639884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /proc/74579/cmdline",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T01:52:48.640018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000src/train_grpo_v5.py\\\\u0000--model_path\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/\\\\u0000--output_dir\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2\\\\u0000--gpu\\\\u00000\\\\u0000--max_completion_length\\\\u00001024\\\\u0000--beta\\\\u00000.01\\\\u0000--temperature\\\\u00000.4\\\\u0000--repetition_penalty\\\\u00001.15\\\\u0000--format_reward_weight\\\\u00000.1\\\\u0000--gradient_checkpointing\\\\u0000true\\\\u0000--optim\\\\u0000adamw_bnb_8bit\\\\u0000--loss_type\\\\u0000dapo\\\\u0000--learning_rate\\\\u00001e-6\\\\u0000--max_steps\\\\u0000100\\\\u0000--save_steps\\\\u00005\\\\u0000--save_total_limit\\\\u000010\\\\u0000--run_name\\\\u0000grpo_unpruned_v2\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T01:52:48.640148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "head -80 /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T01:52:48.640342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nGSM8K Test Set Evaluation.\\\\n\\\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\\\nand comparing extracted numeric answers against gold answers.\\\\n\\\\nSupports greedy decoding and majority voting (self-consistency).\\\\n\\\\nInput:  model path\\\\nOutput: accuracy printed to stdout + saved to results JSON\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport logging\\\\nimport os\\\\nimport random\\\\nimport re\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef _extract_boxed(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract content from \\\\\\\\\\\\\\\\boxed{...} with balanced brace matching.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idx = text.rfind(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    if idx == -1:\\\\n        return None\\\\n    depth = 0\\\\n    start = idx + len(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    for i in range(start, len(text)):\\\\n        if text[i] == \\\\\\\"{\\\\\\\":\\\\n            depth += 1\\\\n        elif text[i] == \\\\\\\"}\\\\\\\":\\\\n            if depth == 0:\\\\n                return text[start:i]\\\\n            depth -= 1\\\\n    return None\\\\n\\\\n\\\\ndef _clean_latex_number(s: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip LaTeX formatting to get a plain number.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\text\\\\\\\\{[^}]*\\\\\\\\}\\\\\\\", \\\\\\\"\\\\\\\", s)\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\(mathrm|mathbf|textbf)\\\\\\\\{([^}]*)\\\\\\\\}\\\\\\\", r\\\\\\\"\\\\\\\\2\\\\\\\", s)\\\\n    s = s.replace(\\\\\\\"\\\\\\\\\\\\\\\\!\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\,\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\;\\\\\\\", \n…[truncated 820 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T01:52:48.640546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T01:52:48.640677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha_0.0\\\\nalpha_1.0\\\\nalpha_2.0\\\\nalpha_4.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T01:52:48.640803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 2 -name \"*.safetensors\" -path \"*alpha*0.5*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T01:52:48.640925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T01:52:48.641037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 2 -name \"*.safetensors\" -path \"*sft*alpha*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T01:52:48.641152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T01:52:48.641284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /proc/74579/cmdline",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T01:52:48.641431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000src/train_grpo_v5.py\\\\u0000--model_path\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/\\\\u0000--output_dir\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2\\\\u0000--gpu\\\\u00000\\\\u0000--max_completion_length\\\\u00001024\\\\u0000--beta\\\\u00000.01\\\\u0000--temperature\\\\u00000.4\\\\u0000--repetition_penalty\\\\u00001.15\\\\u0000--format_reward_weight\\\\u00000.1\\\\u0000--gradient_checkpointing\\\\u0000true\\\\u0000--optim\\\\u0000adamw_bnb_8bit\\\\u0000--loss_type\\\\u0000dapo\\\\u0000--learning_rate\\\\u00001e-6\\\\u0000--max_steps\\\\u0000100\\\\u0000--save_steps\\\\u00005\\\\u0000--save_total_limit\\\\u000010\\\\u0000--run_name\\\\u0000grpo_unpruned_v2\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T01:52:48.641551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "head -120 /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T01:52:48.641750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nGSM8K Test Set Evaluation.\\\\n\\\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\\\nand comparing extracted numeric answers against gold answers.\\\\n\\\\nSupports greedy decoding and majority voting (self-consistency).\\\\n\\\\nInput:  model path\\\\nOutput: accuracy printed to stdout + saved to results JSON\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport logging\\\\nimport os\\\\nimport random\\\\nimport re\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef _extract_boxed(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract content from \\\\\\\\\\\\\\\\boxed{...} with balanced brace matching.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idx = text.rfind(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    if idx == -1:\\\\n        return None\\\\n    depth = 0\\\\n    start = idx + len(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    for i in range(start, len(text)):\\\\n        if text[i] == \\\\\\\"{\\\\\\\":\\\\n            depth += 1\\\\n        elif text[i] == \\\\\\\"}\\\\\\\":\\\\n            if depth == 0:\\\\n                return text[start:i]\\\\n            depth -= 1\\\\n    return None\\\\n\\\\n\\\\ndef _clean_latex_number(s: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip LaTeX formatting to get a plain number.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\text\\\\\\\\{[^}]*\\\\\\\\}\\\\\\\", \\\\\\\"\\\\\\\", s)\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\(mathrm|mathbf|textbf)\\\\\\\\{([^}]*)\\\\\\\\}\\\\\\\", r\\\\\\\"\\\\\\\\2\\\\\\\", s)\\\\n    s = s.replace(\\\\\\\"\\\\\\\\\\\\\\\\!\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\,\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\;\\\\\\\", \n…[truncated 2088 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T01:52:48.641954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T01:52:48.642085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"completions\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T01:52:48.642201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -30 /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T01:52:48.642363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        args.output_path = f\\\\\\\"results/eval_{model_name}_{mode}.json\\\\\\\"\\\\n\\\\n    os.makedirs(os.path.dirname(args.output_path) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    output = {\\\\n        \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n        \\\\\\\"mode\\\\\\\": mode,\\\\n        \\\\\\\"accuracy\\\\\\\": accuracy,\\\\n        \\\\\\\"stderr\\\\\\\": stderr,\\\\n        \\\\\\\"n_correct\\\\\\\": n_correct,\\\\n        \\\\\\\"n_total\\\\\\\": n_total,\\\\n        \\\\\\\"eos_stats\\\\\\\": eos_stats,\\\\n    }\\\\n    if args.voting:\\\\n        output[\\\\\\\"voting_config\\\\\\\"] = {\\\\n            \\\\\\\"num_samples_per_question\\\\\\\": args.num_samples_per_question,\\\\n            \\\\\\\"temperature\\\\\\\": args.voting_temperature,\\\\n            \\\\\\\"top_p\\\\\\\": args.voting_top_p,\\\\n        }\\\\n    else:\\\\n        output[\\\\\\\"temperature\\\\\\\"] = args.temperature if args.do_sample else 0.0\\\\n        output[\\\\\\\"do_sample\\\\\\\"] = args.do_sample\\\\n    output[\\\\\\\"examples\\\\\\\"] = results\\\\n\\\\n    with open(args.output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\\\n    logger.info(f\\\\\\\"Results saved to {args.output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T01:52:48.642500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"argparse\\|add_argument\\|--\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T01:52:48.642649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T01:52:48.642794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"add_argument\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T01:52:48.642935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"318:    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to model\\\\\\\")\\\\n319:    parser.add_argument(\\\\\\\"--output_path\\\\\\\", type=str, default=None, help=\\\\\\\"Output JSON path for results\\\\\\\")\\\\n320:    parser.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=4096)\\\\n321:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Limit test samples (None=all)\\\\\\\")\\\\n322:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n323:    parser.add_argument(\\\\\\\"--dtype\\\\\\\", type=str, default=\\\\\\\"bfloat16\\\\\\\", choices=[\\\\\\\"float16\\\\\\\", \\\\\\\"bfloat16\\\\\\\", \\\\\\\"float32\\\\\\\"])\\\\n324:    parser.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.0, help=\\\\\\\"Sampling temperature (0=greedy)\\\\\\\")\\\\n325:    parser.add_argument(\\\\\\\"--do_sample\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Enable sampling mode\\\\\\\")\\\\n326:    parser.add_argument(\\\\\\\"--voting\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Enable majority voting (self-consistency)\\\\\\\")\\\\n327:    parser.add_argument(\\\\\\\"--num_samples_per_question\\\\\\\", type=int, default=8, help=\\\\\\\"K samples per question for voting\\\\\\\")\\\\n328:    parser.add_argument(\\\\\\\"--voting_temperature\\\\\\\", type=float, default=0.7, help=\\\\\\\"Temperature for voting samples\\\\\\\")\\\\n329:    parser.add_argument(\\\\\\\"--voting_top_p\\\\\\\", type=float, default=0.95, help=\\\\\\\"Top-p for voting samples\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T01:52:48.643069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/completions/",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T01:52:48.643187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T01:52:48.643333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T01:52:48.643458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T01:52:48.643615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 3 -type d -name \"*0.5*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T01:52:48.643736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T01:52:48.643850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 3 -type d -name \"*0p5*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T01:52:48.643965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T01:52:48.644113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T01:52:48.644243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n2026-05-16 09:49:01,318 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\\n2026-05-16 09:49:01,915 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\\\n2026-05-16 09:49:01,915 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T01:52:48.644419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cd /root/recovery_aware_struct_prune && mkdir -p /root/autodl-tmp/recovery_aware_struct_prune/results && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json' > /tmp/eval_grasp_20.log 2>&1 & echo $!",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T01:52:48.644550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: \\\\\\\"cd /root/recovery_aware_struct_prune && mkdir -p /root/autodl-tmp/recovery_aware_struct_prune/results && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json' > /tmp/eval_grasp_20.log 2>&1 & echo $!\\\\\\\"\\\\n\\\\nStdout:\\\\n\\\\n76160\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T01:52:48.644694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /tmp/eval_grasp_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T01:52:48.644816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 09:49:35,511 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T01:52:48.644958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -20 /tmp/eval_grasp_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T01:52:48.645080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 09:49:35,511 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T01:52:48.645212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'eval_sft_grasp_20_westd'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T01:52:48.645355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1543}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T01:52:48.645510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'eval_sft_alpha_0p5'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T01:52:48.645669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1718}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T01:52:48.645843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42', 'server': 'westd-11672', 'data_path': 'gsm8k test split', 'data_count': 100, 'model_name': 'sft_graspune_20', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/', 'eval_data': 'gsm8k', 'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json', 'log_path': '/tmp/eval_grasp_20.log'}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T01:52:48.645982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2649}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T01:52:48.646101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T01:52:48.646233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:22:44.271Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:50:31.043Z\\\", \\\"hypothesis\\\": \\\"GraSP post-SFT eval (N=100, greedy). Three-way comparison final piece: Standard 64%, RASP 57%, GraSP ?%. Tests whether GraSP pruning criterion affects SFT recovery potential. GraSP pre-SFT was ~8%, SFT training completed (loss=0.5857, token_acc=0.8392).\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\", \\\"notes\\\": \\\"排队中。等 grasp_baseline_westd (pre-SFT eval N=100) 完成后在 westd cuda:0 启动。Command: python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --max_samples 100 --max_new_tokens 4096 --output_path results/eval_sft_graspune_20_greedy.json --seed 42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5865}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T01:52:48.646428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json', 'server': 'westd-11672', 'data_path': 'gsm8k test split', 'data_count': 100, 'model_name': 'sft_graspune_20', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/', 'eval_data': 'gsm8k', 'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json', 'log_path': '/tmp/eval_grasp_20.log'}"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T01:52:48.646593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:22:44.271Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:50:37.660Z\\\", \\\"hypothesis\\\": \\\"GraSP post-SFT eval (N=100, greedy). Three-way comparison final piece: Standard 64%, RASP 57%, GraSP ?%. Tests whether GraSP pruning criterion affects SFT recovery potential. GraSP pre-SFT was ~8%, SFT training completed (loss=0.5857, token_acc=0.8392).\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\", \\\"notes\\\": \\\"排队中。等 grasp_baseline_westd (pre-SFT eval N=100) 完成后在 westd cuda:0 启动。Command: python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --max_samples 100 --max_new_tokens 4096 --output_path results/eval_sft_graspune_20_greedy.json --seed 42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k test split\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"sft_graspune_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json\\\", \\\"log_path\\\": \\\"/tmp/eval_grasp_20.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4956}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T01:52:48.646757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -20 /tmp/eval_grasp_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T01:52:48.646891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 09:49:35,511 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T01:52:48.647025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 60 && echo \"done waiting\"",
+              "description": "Wait 60 seconds for model loading"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T01:52:48.647139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Blocked: sleep 60 followed by: echo \"done waiting\". To wait for a condition, use Monitor with an until-loop (e.g. `until <check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T01:52:48.647253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "wc -l /tmp/eval_grasp_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T01:52:48.647397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3 /tmp/eval_grasp_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T01:52:48.647526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls -la /proc/76160/status",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T01:52:48.647642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 16 09:49 /proc/76160/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T01:52:48.647780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -5 /tmp/eval_grasp_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T01:52:48.647899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 09:49:35,511 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T01:52:48.648020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -5 /tmp/eval_grasp_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T01:52:48.648139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 09:49:35,511 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform MLP detected: intermediate_size range [15189, 16056]\\\\n2026-05-16 09:49:36,104 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T01:52:48.648283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /proc/76160/status",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T01:52:48.648435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Name:\\\\tbash\\\\nUmask:\\\\t0022\\\\nState:\\\\tS (sleeping)\\\\nTgid:\\\\t76160\\\\nNgid:\\\\t0\\\\nPid:\\\\t76160\\\\nPPid:\\\\t1\\\\nTracerPid:\\\\t0\\\\nUid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nGid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nFDSize:\\\\t64\\\\nGroups:\\\\t0 \\\\nNStgid:\\\\t76160\\\\nNSpid:\\\\t76160\\\\nNSpgid:\\\\t76159\\\\nNSsid:\\\\t76159\\\\nVmPeak:\\\\t    4364 kB\\\\nVmSize:\\\\t    4364 kB\\\\nVmLck:\\\\t       0 kB\\\\nVmPin:\\\\t       0 kB\\\\nVmHWM:\\\\t    1788 kB\\\\nVmRSS:\\\\t    1788 kB\\\\nRssAnon:\\\\t     236 kB\\\\nRssFile:\\\\t    1552 kB\\\\nRssShmem:\\\\t       0 kB\\\\nVmData:\\\\t     304 kB\\\\nVmStk:\\\\t     132 kB\\\\nVmExe:\\\\t     892 kB\\\\nVmLib:\\\\t    1864 kB\\\\nVmPTE:\\\\t      44 kB\\\\nVmSwap:\\\\t       0 kB\\\\nHugetlbPages:\\\\t       0 kB\\\\nCoreDumping:\\\\t0\\\\nTHP_enabled:\\\\t1\\\\nThreads:\\\\t1\\\\nSigQ:\\\\t25/4126271\\\\nSigPnd:\\\\t0000000000000000\\\\nShdPnd:\\\\t0000000000000000\\\\nSigBlk:\\\\t0000000000010000\\\\nSigIgn:\\\\t0000000000000006\\\\nSigCgt:\\\\t0000000000010000\\\\nCapInh:\\\\t0000000000000000\\\\nCapPrm:\\\\t00000000a80425fb\\\\nCapEff:\\\\t00000000a80425fb\\\\nCapBnd:\\\\t00000000a80425fb\\\\nCapAmb:\\\\t0000000000000000\\\\nNoNewPrivs:\\\\t0\\\\nSeccomp:\\\\t2\\\\nSeccomp_filters:\\\\t1\\\\nSpeculation_Store_Bypass:\\\\tthread vulnerable\\\\nSpeculationIndirectBranch:\\\\tconditional enabled\\\\nCpus_allowed:\\\\tffff,ffffffff,ffffffff,ffffffff,ffffffff,ffffffff,ffffffff\\\\nCpus_allowed_list:\\\\t0-207\\\\nMems_allowed:\\\\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000003\\\\nMems_allowed_list:\\\\t0-1\\\\nvoluntary_ctxt_switches:\\\\t2\\\\nnonvoluntary_ctxt_switches:\\\\t0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T01:52:48.648591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /proc/76160/task -name \"children\" -exec cat {} \\;",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T01:52:48.648717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T01:52:48.648998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /proc/76160/task/76160/children",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T01:52:48.649134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /proc/76160/task/76160/children: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T01:52:48.649250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /proc -maxdepth 2 -name \"status\" -path \"*/76*/status\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T01:52:48.649412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/proc/76003/status\\\\n/proc/76025/status\\\\n/proc/76145/status\\\\n/proc/76405/status\\\\n/proc/76613/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T01:52:48.649544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T01:52:48.649665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"74134, GPU-d1444413-8d05-7cae-d7be-416b07c34d24, 17654 MiB, /root/miniconda3/bin/python\\\\n75381, GPU-723a4c6c-54ba-a2a1-76ec-66efc37506a9, 83192 MiB, /root/miniconda3/bin/python\\\\n75923, GPU-723a4c6c-54ba-a2a1-76ec-66efc37506a9, 12736 MiB, /root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T01:52:48.649846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -10 /tmp/eval_grasp_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-16T01:52:48.649981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    module._apply(fn)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 934, in _apply\\\\n    module._apply(fn)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 965, in _apply\\\\n    param_applied = fn(param)\\\\n                    ^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1097, in <lambda>\\\\n    return self._apply(lambda t: t.cuda(device))\\\\n                                 ^^^^^^^^^^^^^^\\\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.02 GiB. GPU 0 has a total capacity of 94.97 GiB of which 753.06 MiB is free. Process 75381 has 81.24 GiB memory in use. Process 75923 has 12.44 GiB memory in use. Including non-PyTorch memory, this process has 550.00 MiB memory in use. Of the allocated memory 0 bytes is allocated by PyTorch, and 0 bytes is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-16T01:52:48.650141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /proc/75381/cmdline",
+              "account": "root"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-16T01:52:48.650640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000src/train_grpo_v5.py\\\\u0000--model_path\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/\\\\u0000--output_dir\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2\\\\u0000--gpu\\\\u00000\\\\u0000--max_completion_length\\\\u00001024\\\\u0000--beta\\\\u00000.01\\\\u0000--temperature\\\\u00000.4\\\\u0000--repetition_penalty\\\\u00001.15\\\\u0000--format_reward_weight\\\\u00000.1\\\\u0000--gradient_checkpointing\\\\u0000true\\\\u0000--optim\\\\u0000adamw_bnb_8bit\\\\u0000--loss_type\\\\u0000dapo\\\\u0000--learning_rate\\\\u00001e-6\\\\u0000--max_steps\\\\u0000100\\\\u0000--save_steps\\\\u00005\\\\u0000--save_total_limit\\\\u000010\\\\u0000--run_name\\\\u0000grpo_unpruned_v2\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-16T01:52:48.650886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/",
+              "account": "root"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-16T01:52:48.651025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\ncheckpoint-5\\\\ncompletions\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-16T01:52:48.651148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ -maxdepth 1 -type d -name \"checkpoint*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-16T01:52:48.651299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-16T01:52:48.651620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-16T01:52:48.651827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: RUNNING → QUEUED. Allowed: ['ANALYZING', 'DONE']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1448}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-16T01:52:48.652046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "notes",
+              "value": "OOM on westd cuda:1: GRPO grpo_unpruned_v2 (PID 75381) occupies 81GB/95GB, eval needs ~14GB additional, only 753MB free. GRPO at step 5/100, will take a long time. Need to wait for GRPO to finish or use another GPU.",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-16T01:52:48.652282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:22:44.271Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:52:15.819Z\\\", \\\"hypothesis\\\": \\\"GraSP post-SFT eval (N=100, greedy). Three-way comparison final piece: Standard 64%, RASP 57%, GraSP ?%. Tests whether GraSP pruning criterion affects SFT recovery potential. GraSP pre-SFT was ~8%, SFT training completed (loss=0.5857, token_acc=0.8392).\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\", \\\"notes\\\": \\\"OOM on westd cuda:1: GRPO grpo_unpruned_v2 (PID 75381) occupies 81GB/95GB, eval needs ~14GB additional, only 753MB free. GRPO at step 5/100, will take a long time. Need to wait for GRPO to finish or use another GPU.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k test split\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"sft_graspune_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json\\\", \\\"log_path\\\": \\\"/tmp/eval_grasp_20.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4821}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-16T01:52:48.652508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'conclusion': 'negative'}"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-16T01:52:48.652711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1666}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-16T01:52:48.652912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "conclusion",
+              "value": "blocked",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-16T01:52:48.653110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'blocked'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4876}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-16T01:52:48.653311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "conclusion",
+              "value": "failed",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-16T01:52:48.653476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:22:44.271Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:52:26.119Z\\\", \\\"hypothesis\\\": \\\"GraSP post-SFT eval (N=100, greedy). Three-way comparison final piece: Standard 64%, RASP 57%, GraSP ?%. Tests whether GraSP pruning criterion affects SFT recovery potential. GraSP pre-SFT was ~8%, SFT training completed (loss=0.5857, token_acc=0.8392).\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\", \\\"notes\\\": \\\"OOM on westd cuda:1: GRPO grpo_unpruned_v2 (PID 75381) occupies 81GB/95GB, eval needs ~14GB additional, only 753MB free. GRPO at step 5/100, will take a long time. Need to wait for GRPO to finish or use another GPU.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k test split\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"sft_graspune_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json\\\", \\\"log_path\\\": \\\"/tmp/eval_grasp_20.log\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2697}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-16T01:52:48.653612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_grasp_20_westd",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-16T01:52:48.653858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20_westd\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:22:44.271Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:52:32.834Z\\\", \\\"hypothesis\\\": \\\"GraSP post-SFT eval (N=100, greedy). Three-way comparison final piece: Standard 64%, RASP 57%, GraSP ?%. Tests whether GraSP pruning criterion affects SFT recovery potential. GraSP pre-SFT was ~8%, SFT training completed (loss=0.5857, token_acc=0.8392).\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\", \\\"notes\\\": \\\"OOM on westd cuda:1: GRPO grpo_unpruned_v2 (PID 75381) occupies 81GB/95GB, eval needs ~14GB additional, only 753MB free. GRPO at step 5/100, will take a long time. Need to wait for GRPO to finish or use another GPU.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"gsm8k test split\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"sft_graspune_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json\\\", \\\"log_path\\\": \\\"/tmp/eval_grasp_20.log\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-16T01:52:32.834Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9614}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-16T01:52:48.654069+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均无法执行，汇报如下：\n\n---\n\n## 结果汇报\n\n### 实验 1: eval_sft_grasp_20_westd — **OOM 失败**\n\n- **原因**: westd cuda:1 **不是空闲的**。GRPO 训练 `grpo_unpruned_v2` (PID 75381) 正在 GPU 1 上运行，内存占用 81GB/95GB。eval 加载模型需要 ~14GB，总计超出 GPU 容量，触发 CUDA OOM。\n- **GRPO 进度**: 仅完成 step 5/100 (save_steps=5)，远未结束。\n- **Registry**: 已标记为 DONE(failed)，附 OOM 详情。\n\n### 实验 2: eval_sft_alpha_0p5 — **模型不存在**\n\n- **原因**: α=0.5 的 **SFT 模型从未训练**。\n  - `sft_ablation/` 目录仅有: alpha_0.0, alpha_1.0, alpha_2.0, alpha_4.0 — **缺少 alpha_0.5**\n  - `alpha_ablation/alpha_0.5/` 存在，但是 **pruned 模型**（含 `pruning_metadata.pt`），不是 post-SFT 模型\n- **需要**: 先对 α=0.5 pruned 模型做 SFT 训练，才能跑 eval\n\n### westd-11672 GPU 状态\n\n| GPU | PID | 进程 | 显存占用 |\n|-----|-----|------|----------|\n| cuda:0 | 74134 | python (未查) | 17.6GB / 95GB |\n| cuda:1 | 75381 | grpo_unpruned_v2 (step 5/100) | 81.2GB / 95GB |\n\n### 后续建议\n\n1. **GraSP eval**: 等 GRPO 训练结束后再跑，或在 westb-23072 的空闲 GPU 上跑\n2. **α=0.5 eval**: 需要先在 `alpha_ablation/alpha_0.5/` 上启动 SFT 训练"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_westd_cuda1_batch_20260516T014615"
+          },
+          "id": "event-000113"
+        }
+      ],
+      "message_count": 113
+    }
+  ],
+  "readable_path": "readable/conversations/eval-westd-cuda1-batch.md"
+}

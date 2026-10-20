@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval_pass_k8_rasp_20_sft_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:43:11.344Z",
+    "updated_at": "2026-05-16T18:48:29.286Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_sft_qwen_math.json",
+      "server": "westd-11672",
+      "gpu": "cuda:2",
+      "data_path": "GSM8K",
+      "data_count": 200,
+      "model_name": "sft_qwen_math_rasp_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20",
+      "eval_data": "GSM8K (N=200, pass@8, T=0.7)"
+    },
+    "metrics": {
+      "pass_at_k": 0.935,
+      "k": 8,
+      "temperature": 0.7,
+      "n_problems": 200,
+      "stderr": 0.0174,
+      "eos_rate": 0.99625,
+      "natural_eos": 1594,
+      "truncated": 6,
+      "avg_response_length": 139.86
+    },
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-16T18:30:19.034Z"
+    },
+    "failure_reason": null,
+    "completed_at": "2026-05-16T18:30:20.418Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T18:30:22.400738+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T18:48:29.663126+00:00",
+  "trigger": "update_registry"
+}

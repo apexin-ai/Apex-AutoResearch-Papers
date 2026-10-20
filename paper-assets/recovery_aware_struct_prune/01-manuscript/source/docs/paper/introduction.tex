@@ -1,0 +1,45 @@
+\section{Introduction}
+\label{sec:intro}
+
+Structured pruning compresses reasoning Large Language Models (LLMs) by removing entire channel groups, but the pruned model must recover through fine-tuning.
+\citet{selfhealing2025} show that reinforcement learning with verifiable rewards (RLVR) substantially outperforms supervised fine-tuning (SFT) for this recovery.
+This positions RLVR as the dominant paradigm and creates a testable prediction: a pruning criterion that preserves the model's capacity for RL exploration should yield higher final accuracy.
+The evidence, however, comes from unstructured magnitude pruning at 96.5\% parameter retention; whether the RLVR advantage holds under structural compression, which removes entire computational units and alters the architecture, remains untested.
+
+In our experimental setting, this prediction does not hold.
+On DeepSeek-R1-Distill-Qwen-7B~\citep{deepseek2025r1} pruned to 20\% MLP channel sparsity, one criterion achieves 4.4 times the peak RL reward of another (CKA-only vs.\ Standard) under Group Relative Policy Optimization (GRPO;~\citealp{shao2024grpo}), yet for each of the four main criteria, SFT and GRPO recover the model to within 1 percentage point of each other.
+The pruning criterion determines whether RL training succeeds or collapses, but this stark difference leaves almost no trace in final accuracy.
+We term this pattern \emph{reward-accuracy decoupling}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/paper/fig1_dose_response.pdf}
+\caption{Dose-response of CKA coefficient $\alpha$ on GSM8K at 20\% sparsity. SFT and GRPO curves nearly overlap ($|\Delta| \leq 1.14$\,pp): reward-accuracy decoupling.}
+\label{fig:dose_response}
+\end{figure}
+
+This disconnect is surprising in light of recent mechanistic work.
+RL compresses incorrect reasoning paths while SFT expands correct ones~\citep{rlsqueezes2026}.
+These asymmetric pressures predict that the two paradigms should complement each other, not converge to the same outcome.
+Yet existing structured pruning methods for reasoning LLMs~\citep{graspprune2026,resp2025,llmpruner2023,bonsai2025} optimize for immediate post-pruning quality without examining how the criterion shapes RL recovery.
+No prior work has compared multiple criteria under RL or tested whether the ``RLVR $>$ SFT'' advantage persists across pruning strategies.
+
+To investigate systematically, we introduce Recovery-Aware Structured Pruning (\rasp{}), a scoring function that combines gradient importance with CKA-based representational diversity~\citep{kornblith2019cka}.
+A single coefficient $\alpha$ controls the balance (Figure~\ref{fig:dose_response}): the dose-response curve reveals an inverted-U in recovery accuracy, peaking at $\alpha{=}2.0$ (66.11\% on GSM8K;~\citealp{cobbe2021gsm8k}).
+Under GRPO, the four criteria span a \textbf{recovery capacity spectrum} that tracks preserved diversity rather than importance: criteria that maximize diversity sustain RL training, while importance-dominated criteria fail to learn.
+The SFT and GRPO curves in Figure~\ref{fig:dose_response} nearly overlap at every $\alpha$, which confirms decoupling across the full spectrum.
+A depth pruning baseline (ShortGPT;~\citealp{shortgpt2024}) is the sole exception ($-$1.36\,pp on GSM8K), which suggests that pruning granularity interacts with RL trainability.
+
+Our contributions are:
+\begin{enumerate}[nosep,leftmargin=*]
+    \item \textbf{Reward-accuracy decoupling.} At 20--25\% fine-grained MLP sparsity, SFT and GRPO yield equivalent accuracy regardless of pruning criterion, supported by Two One-Sided Tests (TOST) equivalence testing ($p{<}0.05$ for 7 of 8 comparisons). At 15\%, GRPO amplifies the CKA-guided advantage, which delineates the boundary (\S\ref{sec:decoupling}).
+    \item \textbf{Recovery capacity spectrum.} \rasp{} reveals that four pruning criteria produce qualitatively distinct RL dynamics. Dose-response analysis traces an inverted-U in recovery, with preliminary evidence across scales and models within the Qwen2.5 family (\S\ref{sec:scoring}, \S\ref{sec:recovery_gradient}, \S\ref{sec:additional_results}, \S\ref{sec:extended_analysis}).
+    \item \textbf{SFT warmup as the dominant recovery mechanism.} At 20\% sparsity, SFT warmup recovers from near-zero post-prune accuracy to 51--64\% across all four criteria, while subsequent GRPO adds at most 0.61\,pp (1.14\,pp across $\alpha$ variants). This dominance persists at 300 steps for CKA-only and Standard. RL reward trajectories instead serve as structural diagnostics that reveal pruning deficiencies invisible to accuracy (\S\ref{sec:decoupling}, \S\ref{sec:extended_analysis}).
+\end{enumerate}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/paper/fig1_method_framework.pdf}
+\caption{Overview of the pruning comparison framework. Four scoring criteria combine shared importance and overlap scores differently; all pruned models undergo identical two-stage recovery (SFT $\to$ GRPO).}
+\label{fig:method_framework}
+\end{figure*}

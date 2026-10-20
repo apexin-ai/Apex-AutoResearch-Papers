@@ -1,0 +1,11 @@
+paper_key: "resp_2025"
+title: "RESP: Self-Reflective Structured Pruning for Reasoning LLMs"
+venue: "arXiv Dec 2025"
+full_text_available: false
+research:
+  baselines: [Wanda, GISP, FLAP, OWL, SparseGPT]
+  metrics: [{name: "exact-match accuracy (GSM8K)", direction: "higher_better"}, {name: "top-1 accuracy (MathQA)", direction: "higher_better"}]
+  datasets: [{name: "GSM8K", size: "standard"}, {name: "MathQA", size: "standard"}]
+  ablation_dimensions: [self-reflective calibration, decode-only gradient importance, progressive regeneration]
+  training_recipe: {}
+  method_family: "structured pruning for reasoning LLMs"

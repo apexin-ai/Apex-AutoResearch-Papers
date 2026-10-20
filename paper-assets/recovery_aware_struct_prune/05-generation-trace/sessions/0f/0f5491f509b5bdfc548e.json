@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f5491f509b5bdfc548e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh cleanup westb disk for seed456",
+  "task_key": "worker_ssh_cleanup_westb_disk_for_seed456_20260522T142637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cleanup_westb_disk_for_seed456_20260522T142637_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "d170a2e77d99f4e8047afd0f82dad8ca47fb6bff69c4600f4087dc92288efef0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 使用率 | 94% (233G/250G) | 88% (218G/250G) |\n| 可用空间 | 18G | **33G** |\n| 释放量 | — | **~15G** |\n\n删除内容：\n1. `grpo_qwen_math_cka_only_20/checkpoint-100/optimizer.pt` — 15GB（模型权重不受影响，仅 resume 训练需要）\n2. `grpo_random_20/` — 220K（旧 killed 实验残留）\n\n33G 可用，seed456 checkpoint (~12GB) 保存空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cleanup-westb-disk-for-seed456.md"
+}

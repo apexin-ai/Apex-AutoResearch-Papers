@@ -1,0 +1,697 @@
+# paper experiment tables
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_paper_experiment-tables_20260515T043938.log`
+- **Structured JSON:** [`216ce7be93cd0f9360bc.json`](../../sessions/21/216ce7be93cd0f9360bc.json)
+
+## Before a recorded user message
+
+14 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3ec4b23b-02c5-44a4-930f-399101f48274",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778837400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "bb349617-1d64-4c94-bf85-a778b17c535b",
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me create the three LaTeX table files in the artifacts/tables/ directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "591a06fe-4ac1-424f-b537-216498ee41b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LdmQZpptw652yKGYE2URSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12140,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12140
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JtJDJY1xfaeiTBT7hJMDJj`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables",
+  "description": "Create tables directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "2cccf56b-7372-41ba-a31c-a3ac7d3a96de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LdmQZpptw652yKGYE2URSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12140,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12140
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T04:39:48.602Z_
+
+<details><summary>↩ Tool result · `toolu_01JtJDJY1xfaeiTBT7hJMDJj`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "cb048fba-075f-4268-8bd2-24bcb669d93b",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01WscpTYNTE1Ei2vAioych1Y`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table1_postprune.tex",
+  "content": "\\begin{table}[t]\n\\centering\n\\caption{Post-prune accuracy on GSM8K (N=100). Baseline: Qwen2.5-7B. Standard and RASP remove identical parameter counts at matched sparsity; the difference is purely in head selection strategy.}\n\\label{tab:postprune}\n\\sisetup{round-mode=places, round-precision=0, table-format=2.0}\n\\begin{tabular}{l S[table-format=2.0] S[table-format=2.0] S[table-format=6.0]}\n\\toprule\n{Method} & {Sparsity (\\%)} & {GSM8K Acc (\\%)} & {Params Removed} \\\\\n\\midrule\nBaseline (no prune) & 0  & 94 & 0 \\\\\nStandard            & 20 & 1  & 395232 \\\\\nRASP ($\\alpha{=}1.0$) & 20 & 29 & 395232 \\\\\nGRASPrune           & 20 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\n\\midrule\nStandard            & 25 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\nRASP                & 25 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "f0c193bc-0084-4114-9af0-afd7f756bd0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ccg8GKazcV27VGLP69bXpx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 158,
+      "cache_read_input_tokens": 23981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 158
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T04:39:56.377Z_
+
+<details><summary>↩ Tool result · `toolu_01WscpTYNTE1Ei2vAioych1Y`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table1_postprune.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "a7a212fd-bbdb-4ddb-a004-0aa572b2fc40",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table1_postprune.tex",
+    "content": "\\begin{table}[t]\n\\centering\n\\caption{Post-prune accuracy on GSM8K (N=100). Baseline: Qwen2.5-7B. Standard and RASP remove identical parameter counts at matched sparsity; the difference is purely in head selection strategy.}\n\\label{tab:postprune}\n\\sisetup{round-mode=places, round-precision=0, table-format=2.0}\n\\begin{tabular}{l S[table-format=2.0] S[table-format=2.0] S[table-format=6.0]}\n\\toprule\n{Method} & {Sparsity (\\%)} & {GSM8K Acc (\\%)} & {Params Removed} \\\\\n\\midrule\nBaseline (no prune) & 0  & 94 & 0 \\\\\nStandard            & 20 & 1  & 395232 \\\\\nRASP ($\\alpha{=}1.0$) & 20 & 29 & 395232 \\\\\nGRASPrune           & 20 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\n\\midrule\nStandard            & 25 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\nRASP                & 25 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01JyygTwbj7enjNyY6hW6JxK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table2_recovery.tex",
+  "content": "\\begin{table}[t]\n\\centering\n\\caption{Recovery pipeline comparison on GSM8K (N=100, greedy decoding). Each column shows accuracy after the corresponding stage. Recovery $\\Delta$ = final accuracy $-$ post-prune accuracy.}\n\\label{tab:recovery}\n\\begin{tabular}{l S[table-format=2.0] S[table-format=2.0] S[table-format=2.0] S[table-format=3.0]}\n\\toprule\n{Pruning Method} & {Post-Prune (\\%)} & {+SFT (\\%)} & {+GRPO (\\%)} & {Recovery $\\Delta$} \\\\\n\\midrule\nStandard 20\\%  & 1  & 64 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\nRASP 20\\%      & 29 & 57 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\nGRASPrune 20\\% & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "3f5017cd-c80c-4389-b076-88dd3fac31b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ccg8GKazcV27VGLP69bXpx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 158,
+      "cache_read_input_tokens": 23981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 158
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T04:40:00.635Z_
+
+<details><summary>↩ Tool result · `toolu_01JyygTwbj7enjNyY6hW6JxK`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table2_recovery.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "d90e4f8f-be5d-4075-8e6d-94f2f4b27d5d",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table2_recovery.tex",
+    "content": "\\begin{table}[t]\n\\centering\n\\caption{Recovery pipeline comparison on GSM8K (N=100, greedy decoding). Each column shows accuracy after the corresponding stage. Recovery $\\Delta$ = final accuracy $-$ post-prune accuracy.}\n\\label{tab:recovery}\n\\begin{tabular}{l S[table-format=2.0] S[table-format=2.0] S[table-format=2.0] S[table-format=3.0]}\n\\toprule\n{Pruning Method} & {Post-Prune (\\%)} & {+SFT (\\%)} & {+GRPO (\\%)} & {Recovery $\\Delta$} \\\\\n\\midrule\nStandard 20\\%  & 1  & 64 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\nRASP 20\\%      & 29 & 57 & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\nGRASPrune 20\\% & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} & \\textcolor{gray}{TBD} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01YXVgPH6DZwYXnFGZnY7BaG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table3_alpha.tex",
+  "content": "\\begin{table}[t]\n\\centering\n\\caption{Ablation over the CKA balancing coefficient $\\alpha$ at 20\\% sparsity. $\\alpha{=}0$ reduces to standard importance-only pruning; higher $\\alpha$ increases the weight of CKA-based representational similarity in head selection.}\n\\label{tab:alpha}\n\\begin{tabular}{S[table-format=1.2] S[table-format=2.0] l l}\n\\toprule\n{$\\alpha$} & {Post-Prune Acc (\\%)} & {CKA Weight} & {Interpretation} \\\\\n\\midrule\n0.00 & \\textcolor{gray}{TBD} & None         & $=$ Standard pruning \\\\\n0.25 & \\textcolor{gray}{TBD} & Low          & Slight CKA awareness \\\\\n0.50 & \\textcolor{gray}{TBD} & Medium       & Balanced \\\\\n1.00 & 29                     & Full         & Default RASP \\\\\n2.00 & \\textcolor{gray}{TBD} & High         & Strong CKA emphasis \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "603a2f73-8024-4ad5-91b4-53994b286257",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ccg8GKazcV27VGLP69bXpx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 158,
+      "cache_read_input_tokens": 23981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 158
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T04:40:05.167Z_
+
+<details><summary>↩ Tool result · `toolu_01YXVgPH6DZwYXnFGZnY7BaG`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table3_alpha.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "0b7a30dd-e49c-4cf5-9d07-d8f33aaee879",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/tables/table3_alpha.tex",
+    "content": "\\begin{table}[t]\n\\centering\n\\caption{Ablation over the CKA balancing coefficient $\\alpha$ at 20\\% sparsity. $\\alpha{=}0$ reduces to standard importance-only pruning; higher $\\alpha$ increases the weight of CKA-based representational similarity in head selection.}\n\\label{tab:alpha}\n\\begin{tabular}{S[table-format=1.2] S[table-format=2.0] l l}\n\\toprule\n{$\\alpha$} & {Post-Prune Acc (\\%)} & {CKA Weight} & {Interpretation} \\\\\n\\midrule\n0.00 & \\textcolor{gray}{TBD} & None         & $=$ Standard pruning \\\\\n0.25 & \\textcolor{gray}{TBD} & Low          & Slight CKA awareness \\\\\n0.50 & \\textcolor{gray}{TBD} & Medium       & Balanced \\\\\n1.00 & 29                     & Full         & Default RASP \\\\\n2.00 & \\textcolor{gray}{TBD} & High         & Strong CKA emphasis \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+三个表格已创建：
+
+- `artifacts/tables/table1_postprune.tex` — Post-prune 对比，已填入 Baseline/Standard/RASP 20% 数据
+- `artifacts/tables/table2_recovery.tex` — Recovery pipeline 对比，已填入 Post-Prune 和 +SFT 数据
+- `artifacts/tables/table3_alpha.tex` — α 消融，已填入 α=1.0 数据
+
+所有表格使用 booktabs + siunitx S 列类型，TBD 以 `\textcolor{gray}{TBD}` 标记。主论文引用方式：`\input{tables/table1_postprune}`。需要在 preamble 中加载 `booktabs`、`siunitx`、`xcolor`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "uuid": "4061b3c5-e662-480a-851d-f9c84d94dfc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zDvhqmVyGADFjtYodWb25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1537,
+      "cache_read_input_tokens": 24139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1537
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 14_
+
+三个表格已创建：
+
+- `artifacts/tables/table1_postprune.tex` — Post-prune 对比，已填入 Baseline/Standard/RASP 20% 数据
+- `artifacts/tables/table2_recovery.tex` — Recovery pipeline 对比，已填入 Post-Prune 和 +SFT 数据
+- `artifacts/tables/table3_alpha.tex` — α 消融，已填入 α=1.0 数据
+
+所有表格使用 booktabs + siunitx S 列类型，TBD 以 `\textcolor{gray}{TBD}` 标记。主论文引用方式：`\input{tables/table1_postprune}`。需要在 preamble 中加载 `booktabs`、`siunitx`、`xcolor`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 26605,
+  "duration_api_ms": 27433,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "144434fe-f436-4de8-9e21-65787a456667",
+  "total_cost_usd": 0.16040925,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 13835,
+    "cache_read_input_tokens": 59961,
+    "output_tokens": 1675,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 13835,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 220,
+        "cache_read_input_tokens": 24139,
+        "cache_creation_input_tokens": 1537,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1537
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1995,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002065,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 1675,
+      "cacheReadInputTokens": 59961,
+      "cacheCreationInputTokens": 13835,
+      "webSearchRequests": 0,
+      "costUSD": 0.15834425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "495eec1a-fcbd-49e1-ab41-25161418880a"
+}
+```
+
+</details>
+
+---

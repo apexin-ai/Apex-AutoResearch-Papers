@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:38:01.585Z",
+    "updated_at": "2026-05-18T21:03:21.558Z",
+    "hypothesis": "Standard GRPO 1.5B (100 steps, reward=0.084) on GSM8K eval: expect low accuracy (~5-10%) given minimal training, serving as baseline for pruned model comparison.",
+    "parent": "grpo_standard_20_1p5b",
+    "spec": {
+      "gpu": [
+        "cuda:0"
+      ],
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_1p5b.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 0.2229,
+      "n_correct": 294,
+      "n_total": 1319,
+      "stderr": 0.0115
+    },
+    "completed_at": "2026-05-18T21:03:21.558Z"
+  },
+  "timestamp": "2026-05-18T21:03:21.889962+00:00",
+  "trigger": "update_registry"
+}

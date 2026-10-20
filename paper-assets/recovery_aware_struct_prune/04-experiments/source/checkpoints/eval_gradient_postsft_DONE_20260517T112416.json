@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_gradient_postsft",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:07:58.644Z",
+    "updated_at": "2026-05-17T11:24:16.260Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_gradient_20 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gradient_postsft.json\"",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "701495",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gradient_postsft.log",
+      "submitted_at": "2026-05-17T10:07:58.275Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4578.0,
+      "gpu_hours": 1.27
+    },
+    "hypothesis": "GSM8K accuracy after SFT recovery on gradient-pruned model. Pre-SFT was 25.5%. If post-SFT reaches ~50-60%, gradient scoring is viable but weaker than RASP (~61%). If much lower, gradient scoring causes partially irreversible damage.",
+    "parent": "gradient_sft_v3",
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 0.615,
+      "correct": 123,
+      "total": 200,
+      "stderr": 0.0344,
+      "eos_rate": 0.995,
+      "avg_response_length": 167.455
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_gradient_20",
+    "log_path": "~/runs/recovery_aware_struct_prune/eval_gradient_postsft.log",
+    "completed_at": "2026-05-17T11:24:16.260Z"
+  },
+  "timestamp": "2026-05-17T11:24:16.504510+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "eval_math500_grpo_alpha3p0_20_fixed",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:49:52.706Z",
+    "updated_at": "2026-05-24T10:03:29.254Z",
+    "hypothesis": "GRPO RASP α=3.0 20% MATH-500 with fixed eval script. Depends on grpo_rasp_alpha3p0_20_retrain. P1 dose-response table.",
+    "conclusion": "killed",
+    "fail_reason": "Checkpoint lost - westd-29022 offline, dir on westd-32935 only has old eval output. Director decision: mark \"--\" in table, consistent with grpo_standard_25."
+  },
+  "timestamp": "2026-05-24T10:03:29.990818+00:00",
+  "trigger": "update_registry"
+}

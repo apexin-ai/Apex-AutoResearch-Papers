@@ -1,0 +1,991 @@
+# eval eval postprune 25
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/chats/worker_eval_eval_postprune_25_20260516T200920.jsonl`
+- **Structured JSON:** [`eec557c052c9eacf15a6.json`](../../sessions/ee/eec557c052c9eacf15a6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+33 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T20:11:04.787116+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T20:11:04.787532+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T20:11:04.787729+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T20:11:04.787872+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T20:11:04.788000+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T20:11:04.788128+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T20:11:04.788250+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T20:11:04.788401+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T20:11:04.788549+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T20:11:04.788674+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T20:11:04.788806+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 11308084\\ndrwxr-xr-x  2 root root        4096 May 16 13:26 .\\ndrwxr-xr-x 37 root root        4096 May 17 03:44 ..\\n-rw-r--r--  1 root root        2246 May 16 13:26 chat_template.jinja\\n-rw-r--r--  1 root root        1727 May 16 13:26 config.json\\n-rw-r--r--  1 root root         180 May 16 13:26 generation_config.json\\n-rw-r--r--  1 root root 11568022544 May 16 13:26 model.safetensors\\n-rw-r--r--  1 root root        3235 May 16 13:26 pruning_metadata.pt\\n-rw-r--r--  1 root root    11421907 May 16 13:26 tokenizer.json\\n-rw-r--r--  1 root root         420 May 16 13:26 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T20:11:04.788947+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T20:11:04.789080+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 11322280\\ndrwxr-xr-x  2 root root        4096 May 16 14:02 .\\ndrwxr-xr-x 37 root root        4096 May 17 03:44 ..\\n-rw-r--r--  1 root root        2246 May 16 14:02 chat_template.jinja\\n-rw-r--r--  1 root root        1727 May 16 14:02 config.json\\n-rw-r--r--  1 root root         180 May 16 14:02 generation_config.json\\n-rw-r--r--  1 root root 11582559224 May 16 14:02 model.safetensors\\n-rw-r--r--  1 root root        3235 May 16 14:02 pruning_metadata.pt\\n-rw-r--r--  1 root root    11421907 May 16 14:02 tokenizer.json\\n-rw-r--r--  1 root root         420 May 16 14:02 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T20:11:04.789207+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T20:11:04.789394+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_postprune_rasp_25",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recovery_aware_struct_prune",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25 --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_25.json', 'server': 'westd-11672', 'data_path': 'gsm8k', 'data_count': 100, 'model_name': 'pruned_rasp_25', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25', 'eval_data': 'gsm8k'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_postprune_rasp_25",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "recovery_aware_struct_prune",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25 --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_25.json', 'server': 'westd-11672', 'data_path': 'gsm8k', 'data_count': 100, 'model_name': 'pruned_rasp_25', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25', 'eval_data': 'gsm8k'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T20:11:04.789543+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.2783}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T20:11:04.789686+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_postprune_rasp_25",
+  "field": "hypothesis",
+  "value": "25% RASP post-prune GSM8K eval (N=100, greedy). 对比 20% post-prune (31%). Parent: pruned_rasp_25.",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_postprune_rasp_25",
+    "field": "hypothesis",
+    "value": "25% RASP post-prune GSM8K eval (N=100, greedy). 对比 20% post-prune (31%). Parent: pruned_rasp_25.",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T20:11:04.789866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_postprune_rasp_25\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:07:02.187Z\", \"updated_at\": \"2026-05-16T20:09:54.911Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25 --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_25.json\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k\", \"data_count\": 100, \"model_name\": \"pruned_rasp_25 (RASP 25% pruned, no SFT)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25\", \"eval_data\": \"openai/gsm8k test split (N=100)\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_25.json\", \"log_path\": \"N/A\"}, \"metrics\": {\"accuracy\": 21, \"correct\": 21, \"total\": 100, \"stderr\": 4.07, \"eos_rate\": 56, \"avg_response_length\": 2032.9, \"truncated\": 44, \"natural_eos\": 56, \"seed\": 42}, \"hypothesis\": \"25% RASP post-prune GSM8K eval (N=100, greedy). 对比 20% post-prune (31%). Parent: pruned_rasp_25.\", \"parent\": \"prune_rasp_25\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T08:07:24.066Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4943}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T20:11:04.790036+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_postprune_standard_25'}",
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_postprune_standard_25'}",
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T20:11:04.790168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2978}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T20:11:04.790336+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader -i 3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader -i 3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T20:11:04.790469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"43709, GPU-723a4c6c-54ba-a2a1-76ec-66efc37506a9, 50422 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T20:11:04.790618+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T20:11:04.790757+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"42002, GPU-d129d877-8391-7413-5158-32c99390c8b0, 12740 MiB, python\\n42301, GPU-d129d877-8391-7413-5158-32c99390c8b0, 12740 MiB, /root/miniconda3/bin/python\\n42096, GPU-6efc4219-0d9e-67a3-2994-a7e36a54f098, 20802 MiB, python\\n42486, GPU-6efc4219-0d9e-67a3-2994-a7e36a54f098, 16302 MiB, /root/miniconda3/bin/python\\n42590, GPU-6efc4219-0d9e-67a3-2994-a7e36a54f098, 12266 MiB, python\\n33921, GPU-d1444413-8d05-7cae-d7be-416b07c34d24, 16012 MiB, python\\n34032, GPU-d1444413-8d05-7cae-d7be-416b07c34d24, 16012 MiB, python\\n34234, GPU-d1444413-8d05-7cae-d7be-416b07c34d24, 28902 MiB, python\\n43709, GPU-723a4c6c-54ba-a2a1-76ec-66efc37506a9, 50422 MiB, python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T20:11:04.790881+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "ps -p 43709 -o pid,user,start,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "ps -p 43709 -o pid,user,start,etime,cmd",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T20:11:04.791005+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID USER      STARTED     ELAPSED CMD\\n 43709 root     04:07:03       03:09 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_0.3 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.3 --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T20:11:04.791164+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-11672",
+  "command": "nvidia-smi --query-gpu=index,name,memory.total,memory.used,memory.free --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-11672",
+    "command": "nvidia-smi --query-gpu=index,name,memory.total,memory.used,memory.free --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T20:11:04.791315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 25494 MiB, 71757 MiB\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 50259 MiB, 46992 MiB\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 60945 MiB, 36306 MiB\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 50431 MiB, 46820 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T20:11:04.791479+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_postprune_standard_25",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recovery_aware_struct_prune",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json', 'server': 'westd-11672', 'data_path': 'openai/gsm8k', 'data_count': 100, 'model_name': 'pruned_standard_25 (Standard 25% pruned, no SFT)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25', 'eval_data': 'openai/gsm8k test split (N=100)', 'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json', 'log_path': '/tmp/eval_postprune_standard_25.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_postprune_standard_25",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "recovery_aware_struct_prune",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json', 'server': 'westd-11672', 'data_path': 'openai/gsm8k', 'data_count': 100, 'model_name': 'pruned_standard_25 (Standard 25% pruned, no SFT)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25', 'eval_data': 'openai/gsm8k test split (N=100)', 'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json', 'log_path': '/tmp/eval_postprune_standard_25.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T20:11:04.791633+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: DONE → RUNNING. Allowed: ['DEPLOYING', 'PREPARING']\", \"metadata\": {\"elapsed_seconds\": 0.2647}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T20:11:04.791765+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_postprune_standard_25",
+  "field": "hypothesis",
+  "value": "25% Standard post-prune GSM8K eval (N=100, greedy). 对比 20% post-prune (27%) 和 RASP 25% (21%). Parent: pruned_standard_25.",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_postprune_standard_25",
+    "field": "hypothesis",
+    "value": "25% Standard post-prune GSM8K eval (N=100, greedy). 对比 20% post-prune (27%) 和 RASP 25% (21%). Parent: pruned_standard_25.",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T20:11:04.791920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_postprune_standard_25\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:12:16.403Z\", \"updated_at\": \"2026-05-16T20:10:54.211Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json\", \"server\": \"westb-23072\", \"data_path\": \"gsm8k\", \"data_count\": 100, \"model_name\": \"pruned_standard_25\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\", \"eval_data\": \"gsm8k\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json\", \"log_path\": \"N/A\"}, \"hypothesis\": \"25% Standard post-prune GSM8K eval (N=100, greedy). 对比 20% post-prune (27%) 和 RASP 25% (21%). Parent: pruned_standard_25.\", \"conclusion\": \"negative\", \"metrics\": {\"accuracy\": 0.16, \"n_total\": 100, \"note\": \"Standard 25% post-prune 16% vs RASP 25% post-prune 21%. Standard worse as expected.\"}, \"completed_at\": \"2026-05-16T10:52:38.932Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4961}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_eval_postprune_25_20260516T200920",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-16T20:11:04.792111+00:00_
+
+两个实验都已经完成，结果已在 registry 中。
+
+## 25% Sparsity Post-Prune GSM8K 结果
+
+| Method | Accuracy | N |
+|--------|----------|---|
+| RASP 25% | **21%** | 100 |
+| Standard 25% | **16%** | 100 |
+
+对比 20% sparsity：
+- RASP: 31% → 21% (−10 pp)
+- Standard: 27% → 16% (−11 pp)
+
+RASP 在 25% sparsity 仍然领先 Standard 5 个百分点，差距与 20% 时 (4 pp) 基本一致。两个实验均已标记 DONE，结果 JSON 在 `/root/autodl-tmp/recovery_aware_struct_prune/results/` 下。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_eval_postprune_25_20260516T200920"
+}
+```
+
+</details>
+
+---

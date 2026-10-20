@@ -1,0 +1,11 @@
+paper_key: "paser_2025"
+title: "PASER: Data Selection for Pruning Recovery"
+venue: "under review 2025"
+full_text_available: false
+research:
+  baselines: [random selection, full dataset training, Instruction Mining, IFD, Nuggets]
+  metrics: [{name: "zero-shot perplexity (WikiText2, PTB)", direction: "lower_better"}, {name: "zero-shot accuracy (7 tasks)", direction: "higher_better"}]
+  datasets: [{name: "Alpaca", size: "52K"}, {name: "LaMini", size: "2.58M"}, {name: "WikiText2/PTB", size: "eval"}, {name: "BoolQ/PIQA/HellaSwag/WinoGrande/ARC-e/ARC-c/OBQA", size: "standard"}]
+  ablation_dimensions: [data selection strategy, manifold learning, spectral clustering]
+  training_recipe: {}
+  method_family: "data selection for post-pruning recovery"

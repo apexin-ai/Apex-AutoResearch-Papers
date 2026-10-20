@@ -1,0 +1,38 @@
+{
+  "exp_id": "pipeline_alpha2p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:48:26.680Z",
+    "updated_at": "2026-05-22T06:51:24.478Z",
+    "hypothesis": "α=2.0 (moderate overlap suppression) between α=1.0 (54.43% GRPO) and α=4.0 (62.77%). Tests monotonicity of dose-response curve. If monotonic: CKA overlap suppression causally harms recovery. Includes SFT eval for C1 decoupling at this α.",
+    "spec": {
+      "command": "nohup bash pipeline (prune α=2.0 → SFT → GRPO → eval_gsm8k×2)",
+      "server": "westd-32935",
+      "gpu": "cuda:2",
+      "pid": 14133,
+      "log_path": "~/runs/recovery_aware_struct_prune/pipeline_alpha2p0_20.log",
+      "submitted_at": "2026-05-22T05:48:39.452Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "seed": 42,
+      "wall_clock_seconds": 3755.3,
+      "gpu_hours": 1.04
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T06:51:13.330Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T06:51:14.787Z"
+  },
+  "timestamp": "2026-05-22T06:51:25.701988+00:00",
+  "trigger": "update_registry"
+}

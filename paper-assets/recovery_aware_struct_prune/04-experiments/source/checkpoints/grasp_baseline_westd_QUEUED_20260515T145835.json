@@ -1,0 +1,36 @@
+{
+  "exp_id": "grasp_baseline_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:40:34.072Z",
+    "updated_at": "2026-05-15T14:58:35.683Z",
+    "hypothesis": "D027: GraSP baseline on westd — compare GraSP pruning criterion against RASP at 20% sparsity. If RASP > GraSP post-recovery, confirms CKA-aware scoring advantage over gradient-based saliency. Critical for plan_005 and Dream reviewer concern.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && mkdir -p logs && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --output_path results/eval_pruned_graspune_20_greedy.json --max_new_tokens 4096 --seed 42 2>&1 | tee logs/graspune_eval.log\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "38120",
+      "log_path": "~/runs/recovery_aware_struct_prune/grasp_baseline_westd.log",
+      "submitted_at": "2026-05-15T12:45:44.074Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "GraSP 剪枝完成 (GRASPrune, keep_ratio=0.80, rescale_alpha=0.5, 512 samples, 4 epochs gate training). 模型: /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20/. 全量 eval (N=1319) 运行中 PID 34206 on westd GPU 0，50 样本 checkpoint: acc=8%, eos_rate=2%, avg_len=4019. ETA ~17.5h. 计划 kill 改 N=100。",
+    "metrics": {
+      "grasp_20_accuracy_50samples": 0.08,
+      "eos_rate_50samples": 0.02,
+      "avg_len_50samples": 4019,
+      "rasp_20_accuracy_ref": 0.31,
+      "rasp_vs_grasp_ratio": 3.6
+    }
+  },
+  "timestamp": "2026-05-15T14:58:35.783972+00:00",
+  "trigger": "update_registry"
+}

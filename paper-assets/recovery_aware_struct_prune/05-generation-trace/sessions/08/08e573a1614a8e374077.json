@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08e573a1614a8e374077",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westb and submit floor 0p6",
+  "task_key": "worker_ssh_check_westb_and_submit_floor_0p6_20260523T101316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westb_and_submit_floor_0p6_20260523T101316_result.json",
+    "occurrence": 1,
+    "bytes": 1235,
+    "sha256": "67d4da612fbb71c8006a167b0f06c2ed917f6f7fb595d562a594c523e0221717"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**磁盘空间不足，无法在 westb-23072 上运行此实验。**\n\n现状：\n- 数据盘 250GB 已用 241GB，仅剩 **9.2GB**\n- 7B 基模型需 **15GB**（westb 上没有）\n- 全 pipeline（剪枝+SFT+GRPO）额外需约 **33GB**（3 × 11GB）\n- 总计需要约 **48GB** 可用空间\n\n大空间占用分布（可能的清理候选）：\n\n| 类别 | 空间 | 说明 |\n|------|------|------|\n| Qwen2.5-Math-7B 基模型 | 15G | `/root/autodl-tmp/models/` |\n| qwen_math 系列实验 (5个) | ~72G | pruned/sft/grpo_qwen_math_* |\n| grpo_rasp_alpha0p5_20 | 23G | |\n| grpo_cka_only_20_seed123 | 12G | seed 复现实验 |\n| pruned_standard_25 | 11G | 25% 稀疏度实验 |\n| sft_random_20 | 12G | random baseline |\n| *_rasp_rlvr_20 系列 | 24G | pruned + sft |\n| *_rasp_alpha3p0_20 系列 | 24G | pruned + sft |\n\n**方案选择**：\n\n1. **清理 westb 旧实验** — 删除不再需要的实验目录腾出空间（需你确认哪些可删）\n2. **改在 westd-32935 上跑** — 那边已有 7B 模型，需确认 GPU 空闲情况\n3. **两者结合** — westb 做存储清理留给后续，这次先用 westd\n\n你倾向哪个方案？如果选方案 1，请告诉我哪些目录可以删。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westb-and-submit-floor-0p6.md"
+}

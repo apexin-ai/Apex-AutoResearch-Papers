@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_rasp_pipeline_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:08:01.844Z",
+    "updated_at": "2026-05-14T06:08:15.254Z",
+    "hypothesis": "CKA functional overlap F(h) predicts structured pruning recoverability under RLVR. RASP scoring S(h)=I(h)×(1-F(h))^α selects structures whose removal is more recoverable via GRPO RLVR than standard importance-only pruning. MVP: Spearman ρ(F(h), recoverability) ≥ 0.4 on DeepSeek-R1-Distill-Qwen-7B @ 35% sparsity. V2: GQA group granularity + MLP-level correlation.",
+    "parent": "mvp_rasp_pipeline"
+  },
+  "timestamp": "2026-05-14T06:08:15.262405+00:00",
+  "trigger": "update_registry"
+}

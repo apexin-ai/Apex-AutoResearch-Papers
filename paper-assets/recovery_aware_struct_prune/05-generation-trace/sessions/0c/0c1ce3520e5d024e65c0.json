@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c1ce3520e5d024e65c0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis math500 table compilation",
+  "task_key": "worker_analysis_math500_table_compilation_20260521T200734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_math500_table_compilation_20260521T200734_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "9dac4520954e14ead6a8d918fd4043446dbf9204b0a980b205e6f9e10a7b64da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/_project/report/math500_2048_full_table.md`（`art_20260521_598c93`）。\n\n**现状汇总**:\n\n**有结果的 cell（5个）**:\n| 配置 | Accuracy |\n|------|----------|\n| Dense GRPO | 69.0% |\n| CKA-only 20% GRPO | 29.2% |\n| Standard 20% SFT | 25.8% |\n| CKA-only 25% GRPO | 18.4% (inline) |\n| Standard 25% SFT | 13.0% |\n\n**进行中（2个）**: CKA-only 20% SFT (v6)、Standard 25% SFT (2048)\n\n**P0 缺失（需要立即补跑）**:\n1. **GRPO Standard 20%** — checkpoint 在，没有 MATH-500 eval\n2. **GRPO RASP 20%** — v3 failed（服务器释放），需要 v4\n3. **SFT RASP 20%** — checkpoint 在，没有 MATH-500 eval\n\n**Cross-benchmark**: MATH/GSM ratio 在 0.31–0.45 之间，MATH-500 对剪枝模型的打击远大于 GSM8K。CKA-only 20% GRPO 的 ratio 最高（0.454），说明 CKA-only 在难题上的保留能力相对更好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-math500-table-compilation.md"
+}

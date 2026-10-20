@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Recovery capacity spectrum: GRPO dynamics for four pruning criteria at 20\% sparsity under identical configuration (lr $1{\times}10^{-6}$, $\beta{=}0.01$, $T{=}0.4$, 100 steps). Peak reward = best across 100 training steps. $f_0$: fraction of training batches where all sampled completions receive identical reward (lower = healthier exploration). Best in \textbf{bold}, second-best \underline{underlined}.}
+\label{tab:recovery_gradient}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Method & Peak Rew.\,$\uparrow$ & Mean Rew.\,$\uparrow$ & Min $f_0$\,$\downarrow$ & Behavior \\
+\midrule
+CKA-only & \textbf{0.354} & \textbf{0.285} & \textbf{0.125} & Active learning \\
+Random$^\ddagger$ & \underline{0.190} & \underline{0.164} & \underline{0.300} & Stagnation \\
+Standard & 0.081 & 0.050 & 0.500 & Borderline collapse \\
+\rasp{}$^\ddagger$ & 0.061 & 0.031 & 0.675 & Full collapse \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^\ddagger$Single seed ($N{=}1$). CKA-only and Standard validated with 3 seeds (Table~\ref{tab:decoupling}).}
+\end{tabular}
+\end{table}

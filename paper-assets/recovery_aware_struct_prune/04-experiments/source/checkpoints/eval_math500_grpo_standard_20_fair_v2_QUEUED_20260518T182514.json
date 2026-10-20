@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_grpo_standard_20_fair_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:24:25.108Z",
+    "updated_at": "2026-05-18T18:25:14.338Z",
+    "hypothesis": "Standard 20% post-GRPO (fair v5) MATH-500 accuracy with max_new_tokens=2048. Restart of slow original. Interim Acc@100=36%. Cross-benchmark validation for C1 decoupling claim.",
+    "parent": "eval_math500_grpo_standard_20_fair"
+  },
+  "timestamp": "2026-05-18T18:25:14.692059+00:00",
+  "trigger": "update_registry"
+}

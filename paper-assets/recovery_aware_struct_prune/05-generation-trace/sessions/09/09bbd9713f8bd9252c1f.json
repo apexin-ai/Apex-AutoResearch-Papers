@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09bbd9713f8bd9252c1f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check standard sft submit westd0",
+  "task_key": "worker_ssh_check_standard_sft_submit_westd0_20260522T221405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_standard_sft_submit_westd0_20260522T221405_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "3b7e7558bfe4abb2c2caffbcf97216f66ccae9c2271968d7818c569b0efe5c6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 已成功启动并在运行中：\n\n- **进程**: PID 82310 在 GPU:0 上，占用 13698 MiB\n- **进度**: MATH-500 eval 已开始，1/500（~48s/it，预计约 6.5 小时完成）\n- **模型**: `sft_standard_20`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_2048_v2.json`\n- **exp_id**: `eval_math500_sft_standard_20_2048_v2`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-standard-sft-submit-westd0.md"
+}

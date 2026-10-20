@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:31:01.344Z",
+    "updated_at": "2026-05-22T15:08:28.688Z",
+    "hypothesis": "MF3 cross-architecture validation v2 (N=500, max_new_tokens=2048): Qwen2.5-Math-7B CKA-only 20% GRPO GSM8K eval. v1 killed due to 337s/sample (no token limit, model generating to 4096). v2 adds max_new_tokens=2048 to constrain generation length.",
+    "parent": "grpo_qwen_math_cka_only_20",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 nohup python src/eval_gsm8k.py --model_path grpo_qwen_math_cka_only_20 --output_path results/eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v2.json --max_samples 500 --max_new_tokens 2048 --seed 42 --dtype bfloat16",
+      "server": "westb-23072",
+      "gpu": "cuda:1",
+      "pid": "217798",
+      "data_path": "openai/gsm8k (test split)",
+      "data_count": 500,
+      "model_name": "Qwen2.5-Math-7B (grpo_qwen_math_cka_only_20)",
+      "seed": 42,
+      "checkpoint_source": "grpo_qwen_math_cka_only_20",
+      "eval_data": "gsm8k test N=500",
+      "log_path": "/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v2.log"
+    },
+    "conclusion": "failed",
+    "failure_reason": "OSError: model_path 使用相对路径 'grpo_qwen_math_cka_only_20'，找不到 config.json。需用绝对路径 /root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_cka_only_20",
+    "completed_at": "2026-05-22T15:08:28.688Z"
+  },
+  "timestamp": "2026-05-22T15:08:29.311943+00:00",
+  "trigger": "update_registry"
+}

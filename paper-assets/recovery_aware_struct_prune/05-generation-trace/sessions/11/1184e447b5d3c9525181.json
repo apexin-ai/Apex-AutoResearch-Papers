@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1184e447b5d3c9525181",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec plan012 westd extended eval",
+  "task_key": "worker_exec_plan012_westd_extended_eval_20260517T061258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_plan012_westd_extended_eval_20260517T061258_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "10a9a9bb5133c08af20aeef8a7fcced1ffe19ef0d5a2a606509cf310c91cee5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 eval 全部正常运行：\n\n| GPU | Job | 状态 |\n|-----|-----|------|\n| cuda:0 | MATH-500 unpruned (17.7GB) | 运行中，~18s/it |\n| cuda:1 | MATH-500 sft_rasp_20 (12.7GB) | 运行中，~2s/it |\n| cuda:2 | MATH-500 sft_standard_20 (12.7GB) | 运行中，刚开始 |\n| cuda:3 | HumanEval unpruned (17.7GB) | 运行中，~7s/it |\n\n剪枝模型（~12.7GB）比 unpruned（~17.7GB）小，推理速度更快（2s vs 18s/it）。\n\n预估完成时间：\n- HumanEval unpruned: ~20 min（164 problems × 7s）\n- MATH-500 sft_rasp/standard: ~17 min（500 × 2s）\n- MATH-500 unpruned: ~2.5 hours（500 × 18s）\n\n全部启动成功，HumanEval 和两个剪枝模型的 MATH eval 预计 30 分钟内完成，unpruned MATH 约 2.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-plan012-westd-extended-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "231853359c21b78b53d1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check gpu cross validate",
+  "task_key": "worker_check_gpu_cross_validate_20260520T123955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_cross_validate_20260520T123955_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "345e899a5ab99f8ef2a646ca33588298f05a05e0d8c5579002ed59bbaf525240"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：westd-29022 GPU 状态\n\n### GPU 概览\n\n| GPU | Utilization | 显存占用 | 进程 |\n|-----|------------|---------|------|\n| **cuda:0** | **0%** | **0 MiB** / 97887 MiB | **无** |\n| **cuda:1** | **0%** | **0 MiB** / 97887 MiB | **无** |\n| cuda:2 | 97% | 29157 MiB / 97887 MiB | PID 226966 |\n| cuda:3 | 100% | 29157 MiB / 97887 MiB | PID 227043 |\n\n### cuda:2/3 上实际运行的进程\n\n两个都是 **eval_gsm8k**（评估，非训练），18:26 启动，未设置 CUDA_VISIBLE_DEVICES：\n\n- **PID 226966** → cuda:2：`eval_gsm8k.py --model_path grpo_standard_20_seed123 --max_samples 1319`\n- **PID 227043** → cuda:3：`eval_gsm8k.py --model_path grpo_standard_20_seed456 --max_samples 1319`\n\n### Director 提到的目标进程\n\n**PID 245522 (grpo_cka_only_20_seed456) 和 PID 246464 (grpo_cka_only_15_v2) 均不存在。**\n\n- `ps aux` 中无这两个 PID\n- 日志文件 `grpo_cka_only_20_seed456.log` 和 `grpo_cka_only_15_v2.log` 也不存在于 `~/runs/recovery_aware_struct_prune/`\n- 日志目录中无任何 `cka_only_20_seed456` 或 `cka_only_15_v2` 相关文件\n\n### 结论\n\n**cuda:0/1 确实完全空闲，不是 CUDA_VISIBLE_DEVICES 错位问题。** Director 提到的两个训练进程在 westd-29022 上从未启动过（无进程、无日志）。可能是进程名/服务器搞混了，或者这两个训练任务根本没有被下发到这台机器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-cross-validate.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_humaneval_grpo_standard_20_1p5b_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:35:48.029Z",
+    "updated_at": "2026-05-19T15:01:23.773Z",
+    "hypothesis": "1.5B GRPO Standard HumanEval pass@1 @2048. Cross-scale validation baseline. 7B GRPO Standard HumanEval failed (multiple attempts). If 1.5B Standard also shows weak code generation after GRPO (vs CKA-only), strengthens claim that standard pruning loses broader capabilities."
+  },
+  "timestamp": "2026-05-19T15:01:24.195109+00:00",
+  "trigger": "update_registry"
+}

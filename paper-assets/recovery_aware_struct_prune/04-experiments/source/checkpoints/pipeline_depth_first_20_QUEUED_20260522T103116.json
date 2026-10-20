@@ -1,0 +1,15 @@
+{
+  "exp_id": "pipeline_depth_first_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:31:01.602Z",
+    "updated_at": "2026-05-22T10:31:16.257Z",
+    "hypothesis": "MF5 Late-Layer-First baseline: synthetic importance scores (L0-9=1.0, L10-17=0.5, L18-27=0.001) → standard prune 20% → SFT → GRPO 100 steps → eval. Tests if CKA-only advantage is confounded by layer-depth bias. If depth-first ≈ CKA-only, the advantage is just removing deep layers, not CKA-guided selection."
+  },
+  "timestamp": "2026-05-22T10:31:16.962317+00:00",
+  "trigger": "update_registry"
+}

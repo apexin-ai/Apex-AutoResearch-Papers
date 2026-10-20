@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_sft_random_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:49:47.353Z",
+    "updated_at": "2026-05-22T03:50:45.095Z",
+    "hypothesis": "Random 20% SFT MATH-500 @2048. Re-run on westd-32935 after outage. Establishes SFT baseline for random pruning MATH-500.",
+    "parent": "eval_math500_sft_random_20"
+  },
+  "timestamp": "2026-05-22T03:50:45.664769+00:00",
+  "trigger": "update_registry"
+}

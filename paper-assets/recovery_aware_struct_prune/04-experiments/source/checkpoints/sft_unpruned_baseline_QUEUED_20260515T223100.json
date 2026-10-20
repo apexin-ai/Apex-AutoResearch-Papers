@@ -1,0 +1,15 @@
+{
+  "exp_id": "sft_unpruned_baseline",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:07:43.929Z",
+    "updated_at": "2026-05-15T22:30:59.993Z",
+    "hypothesis": "D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。"
+  },
+  "timestamp": "2026-05-15T22:31:00.164539+00:00",
+  "trigger": "update_registry"
+}

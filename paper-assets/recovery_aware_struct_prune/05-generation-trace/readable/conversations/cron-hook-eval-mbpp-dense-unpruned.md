@@ -1,0 +1,2013 @@
+# cron hook eval mbpp dense unpruned
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 1
+- **Tool calls:** 32
+- **Original source:** `logs/chats/cron_hook_eval_mbpp_dense_unpruned.jsonl`
+- **Structured JSON:** [`2a74e408e4e26e54a24e.json`](../../sessions/2a/2a74e408e4e26e54a24e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+65 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T16:14:47.487922+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: eval_mbpp_dense_unpruned
+- project: recovery_aware_struct_prune
+- server: westd-29022
+- log_path: ~/runs/recovery_aware_struct_prune/eval_mbpp_dense_unpruned.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-19T16:14:58.355570+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-19T16:14:58.406172+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T16:15:01.518352+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T16:15:01.518816+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T16:15:02.070978+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T16:15:02.221877+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T16:15:02.679338+00:00_
+
+Error: result (164,232 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-61b18870/1f2800dd-f4ed-4edd-992e-9528db2dffd0/tool-results/mcp-agent-ml-research-read_registry-1779207302598.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-61b18870/1f2800dd-f4ed-4edd-992e-9528db2dffd0/tool-results/mcp-agent-ml-research-read_registry-1779207302598.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1160
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T16:15:02.731328+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 1212
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T16:15:02.732169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T16:14:45Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 251 个实验 — DONE 218, PREPARING 28, RUNNING 5\\n**DONE 分布**: failed 40, killed 17, negative 18, success 143\\n\\n### GPU 占用\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-29022:cuda:0, westd-29022:cuda:1, westd-29022:cuda:2, westd-29022:cuda:3\\n- **实际运行**: 3 张 — westb-23072:cuda:0(eval_humaneval_grpo_standard_20_1p5b_2048), westd-29022:cuda:3(sft_shortgpt_20), westd-29022:cuda:1(eval_mbpp_grpo_cka_only_20)\\n- **空闲（分配了没跑）**: westd-29022:cuda:2\\n\\n### 💾 磁盘余量\\n- **westb-23072**:\\n  - `/autodl-pub`: 6.6T/14T 可用（已用 54%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\n- **westd-29022**:\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval_humaneval_grpo_standard_20_1p5b_2048` | westb-23072 | cuda:0 | ? | `—` |\\n| `sft_shortgpt_20` | westd-29022 | cuda:3 | 112015 | `~/runs/recovery_aware_struct_prune/sft_shortgpt_20.log` |\\n| `eval_mbpp_grpo_cka_only_20` | westd-29022 | cuda:1 | 113408 | `…/recovery_aware_struct_prune/eval_mbpp_grpo_cka_only_20.log` |\\n| `eval_gsm8k_sft_shortgpt_20` | westd-29022 | ? | ? | `—` |\\n| `grpo_shortgpt_20` | westd-29022 | ? | 118669 | `…autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `eval_mbpp_dense_unpruned` [failed] — 2026-05-19T16:14:42 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `eval_humaneval_sft_rasp_20_2048_v2` [success] — 2026-05-19T15:47:14\\n- `eval_gsm8k_grpo_rasp_20_fair` [failed] — 2026-
+…[truncated 6487 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 661
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T16:15:02.784696+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-19 12:43 UTC | 更新原因: D075 full expansion plan — user gives full backing for EMNLP Main push\\n\\n## 核心方向\\nPruning criterion determines post-RLVR recovery capacity AND capability breadth. CKA-only >> importance-based. 详见 paper_framing.md.\\n\\n## 当前阶段: D075 Full Expansion Push (EMNLP Main ≥ 4.0)\\n\\n### 已完成核心数据\\n- **C2 Recovery Gradient (7B)**: ✅ 4-method fair v5. CKA-only 0.354 >> Random 0.19 >> Standard 0.081 > RASP 0.061\\n- **E2 Extended 300步**: ✅ CKA-only 5.5x Standard. Collapse permanent.\\n- **E3 CKA Heatmap**: ✅ Mechanism confirmed.\\n- **1.5B Cross-Scale GSM8K**: ✅ CKA-only 35.48% >> RASP 26.16% > Standard 22.29%\\n- **MATH-500 @2048**: ✅ Full 3×2 table. All |GRPO-SFT| < 2pp.\\n- **Unstructured GRPO**: ✅ 87.64%. Collapse = structural damage.\\n- **GSM8K Standard fair v5**: ✅ 59.44% (784/1319). Gap vs CKA-only = 4.93pp (p=0.002)\\n- **HumanEval GRPO column**: ✅ CKA-only 20.12%, Standard 10.98%, RASP 10.98%\\n- **SFT CKA-only HumanEval v2**: ✅ 20.12% (33/164) = GRPO exactly. D073 confirmed.\\n- **D074 Overlap analysis**: ✅ 17/33 overlap, 48.5% redistribution\\n\\n### HumanEval @2048 矩阵\\n| Method | SFT (fixed) | GRPO (fair v5) | Δ |\\n|--------|------------|----------------|---|\\n| CKA-only | **20.12%** ✅ | **20.12%** ✅ | **0.00pp** |\\n| Standard | 🔄 v3 running (~16.25%) | **10.98%** ✅ | pending |\\n| RASP | ⚠️ v2 即将启动 | **10.98%** ✅ | pending |\\n\\n### Wave 1: 进行中 (今天)\\n| GPU | 实验 | 状态 | ETA |\\n|-----|------|------|-----|\\n| westd cuda:0 | GSM8K RASP fair → SFT RASP HumanEval v2 | 即将启动 | 40min + 2h |\\n| westd cuda:1 | 1.5B SFT CKA-only HumanEval | RUNNING | ~30min |\\n| westd cuda:2 | 1.5B GRPO CKA-only HumanEval | RUNNING | ~30min |\\n| westd cuda:3 | SFT Standard HumanEval v3 | RUNNING (52%) | ~2h |\\n| westb c
+…[truncated 2704 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 562
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T16:15:10.870832+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'eval_mbpp_dense_unpruned'}",
+  "fields": "['*']",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'eval_mbpp_dense_unpruned'}",
+    "fields": "['*']",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T16:15:11.474356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5938}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 603
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T16:15:14.805738+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "fields": "['*']",
+  "project": "recovery_aware_struct_prune",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "fields": "['*']",
+    "project": "recovery_aware_struct_prune",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T16:15:15.662846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_mbpp_dense_unpruned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:47:53.814Z\", \"updated_at\": \"2026-05-19T16:14:42.070Z\", \"hypothesis\": \"Dense unpruned DeepSeek-R1-Distill-Qwen-7B MBPP pass@1 baseline @2048. Establishes ceiling performance for MBPP code generation. All pruned models' MBPP results will be compared against this baseline.\", \"spec\": {\"server\": \"westd-29022\", \"gpu\": [\"cuda:2\"], \"command\": \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_dense_unpruned.json'\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_mbpp_dense_unpruned.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MBPP\", \"data_count\": 374, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"eval_data\": \"MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)\", \"checkpoint_path\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"pid\": \"108291\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T16:14:39.089Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T16:14:42.070Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T16:14:46.802899+00:00\"}]}}, \"eval_humaneval_sft_rasp_20_2048_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:18:20.664Z\", \"updated_at\": \"2026-05-19T15:47:14.846Z\", \"hypothesis\": \"SFT RASP 20% HumanEval pass@1 @2048. Fills RASP SFT cell in HumanEval matrix. GRPO RASP = 10.98%. If SFT 
+…[truncated 5562 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 857
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T16:15:32.913976+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T16:15:33.466988+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_61b18870.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Read",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T16:15:33.467372+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T16:15:33.517989+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_61b18870.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T16:15:35.777539+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T16:15:36.179442+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Glob",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T16:15:36.179990+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T16:15:36.280620+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T16:15:39.191422+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T16:15:39.392946+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T16:15:43.909979+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T16:15:44.061336+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Read",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T16:15:44.111960+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T16:15:44.162815+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T16:15:55.763932+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T16:15:57.169967+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"content\": \"# Memory — recovery_aware_struct_prune\\n\\n## Gradient Flow Framing 约束 (2026-05-19)\\nReviewer/Director 指出：梯度更强 ≠ 因果地\\\"enable recovery\\\"。论文 framing 必须用 \\\"consistent with\\\"（CKA-only 的更强梯度信号与其更好的 GRPO 恢复一致），不能用 \\\"enables\\\" 或暗示因果关系。Gradient flow analysis 是 correlational evidence，不是因果证据。\\n\\n## Gradient Flow v2 初步结果 (2026-05-19)\\nCKA-only 梯度幅度 ~2.4x Standard（attn 2.38x, MLP 2.33x），但 cross-layer CV（平滑度）几乎相同。初步结论：优势来自更强的学习信号，非更均匀的梯度分布。v2 仅 20 样本、无统计检验、缺 RASP，不能直接用于论文。v3 需 200 样本 + Wilcoxon + bootstrap CI + 3-way 对比。\\n\\n## HumanEval Overlap Analysis 关键发现 (2026-05-19)\\n4 模型 overlap 分析（art_20260519_26eadf）揭示三个非直觉结论：\\n1. **Standard vs RASP 同分不同题**: 两者都是 18/164，但仅 5 题重合 (Jaccard 16.1%)，各有 13 题独占。不同 pruning criteria 保留的代码能力有本质分化。\\n2. **CKA-only 不是 Standard/RASP 的超集**: CKA union 49 unique tasks, Standard/RASP union 31, 交集仅 18。CKA 独占 31 题但丢了 13 题别人能解。能力保留是 pattern 差异，不只是量的差异。\\n3. **SFT→GRPO CKA 是纯 redistribution**: 总分不变 33/164，但 16 题丢失 16 题新增仅 17 题稳定。GRPO 不扩展能力边界，只重新分配。支撑 D072 \\\"GRPO = redistribution not expansion\\\"。\\n\\n## ⚠️ eval_humaneval.py PATH bug (2026-05-19)\\n第 51 行 `subprocess.run([\\\"python\\\", tmp_path])` 用裸 `python`。如果启动命令没激活 conda，`python` 不在 PATH → 164 题全报 \\\"No such file or directory: python\\\" → 假 0%。已修复为 `sys.executable`。教训：SFT CKA-only 的 0% 是假结果（v1 是 bug，不是模型行为），v2 重跑确认 20.12%。\\n\\n## SFT CKA-only HumanEval = GRPO CKA-only HumanEval = 20.12% (2026-05-19)\\n两者 pass@1 完全相同 (33/164)，但解的是不同的 33 题（仅 17 题稳定重合）。GRPO 对 CKA-only OOD 代码能力的净效果为零。\\n\\n## GRPO Standard fair HumanEval = 10.98% (2026-05-19)\\npass@1 = 10.98% (18/164)。与 GRPO RASP fair 完全同分 (18/164) 但解的几乎是不同的题。\\n\\n## westb GRPO 训练磁盘优化 (2026-05-19)\\nGRPOConfig 应设置 `save_only_model=True` 跳过 optimizer/scheduler 保存（每个 checkpoint 省 ~9.5GB）。当前 train_grpo_v5.py 未设置此参数，导致 grpo_unstructured_20 磁盘满。westb 数据盘 250GB，长期处于紧张状
+…[truncated 2011 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1406
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T16:15:57.371220+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T16:15:57.422032+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T16:16:13.334728+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "log_path": "~/runs/recovery_aware_struct_prune/eval_mbpp_dense_unpruned.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-29022",
+    "log_path": "~/runs/recovery_aware_struct_prune/eval_mbpp_dense_unpruned.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T16:16:13.385354+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T16:16:14.591911+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"2026-05-19 21:48:32,804 [INFO] Loading model from /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\", \"\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/339 [00:00<00:45,  7.49it/s]\\rLoading weights:   1%|          | 2/339 [00:00<00:46,  7.26it/s]\\rLoading weights:   5%|▌         | 17/339 [00:00<00:05, 55.30it/s]\\rLoading weights:  12%|█▏        | 41/339 [00:00<00:02, 112.29it/s]\\rLoading weights:  19%|█▉        | 64/339 [00:00<00:01, 142.31it/s]\\rLoading weights:  23%|██▎       | 79/339 [00:00<00:01, 139.35it/s]\\rLoading weights:  29%|██▉       | 100/339 [00:00<00:01, 155.83it/s]\\rLoading weights:  35%|███▌      | 120/339 [00:00<00:01, 167.84it/s]\\rLoading weights:  41%|████      | 138/339 [00:01<00:01, 158.95it/s]\\rLoading weights:  47%|████▋     | 160/339 [00:01<00:01, 169.49it/s]\\rLoading weights:  53%|█████▎    | 180/339 [00:01<00:00, 175.85it/s]\\rLoading weights:  58%|█████▊    | 198/339 [00:01<00:00, 167.75it/s]\\rLoading weights:  65%|██████▍   | 220/339 [00:01<00:00, 179.19it/s]\\rLoading weights:  72%|███████▏  | 244/339 [00:01<00:00, 194.96it/s]\\rLoading weights:  78%|███████▊  | 264/339 [00:01<00:00, 189.26it/s]\\rLoading weights:  84%|████████▍ | 284/339 [00:01<00:00, 183.63it/s]\\rLoading weights:  90%|████████▉ | 305/339 [00:01<00:00, 179.04it/s]\\rLoading weights:  97%|█████████▋| 330/339 [00:02<00:00, 190.31it/s]\\rLoading weights: 100%|██████████| 339/339 [00:02<00:00, 161.33it/s]\", \"2026-05-19 21:48:36,316 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\", \"'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py\", \"2026-05-19 21:49:56,567 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/mbpp/resol
+…[truncated 6601 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1257
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T16:16:15.294688+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westb-23072\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"westd-29022\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-29022\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"westd-29022\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"westd-29022\", \"gpu_id\": \"cuda:3\"}], \"actually_running_gpus\": [{\"server\": \"westb-23072\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"eval_humaneval_grpo_standard_20_1p5b_2048\"}, {\"server\": \"westd-29022\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"sft_shortgpt_20\"}, {\"server\": \"westd-29022\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"eval_mbpp_grpo_cka_only_20\"}], \"allocated_but_idle\": [{\"server\": \"westb-23072\", \"gpu_id\": \"cuda:1\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"westd-29022\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"westd-29022\", \"gpu_id\": \"cuda:2\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"eval_humaneval_grpo_standard_20_1p5b_2048\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"sft_shortgpt_20\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"eval_mbpp_grpo_cka_only_20\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 0, \"cpu_tasks\": 1, \"details\": [{\"worker_id\": \"worker_eval_humaneval_1p5b_westb_cuda0_20260519T145923\", \"task\": \"eval:humaneval_1p5b_westb_cuda0\"}]}, \"summary\": \"分配 6 张, 实际跑 3 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 1909
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T16:16:39.927763+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_dense_unpruned",
+  "field": "conclusion",
+  "value": "success",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_dense_unpruned",
+    "field": "conclusion",
+    "value": "success",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T16:16:40.730545+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.log",
+  "n": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-29022",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.log",
+    "n": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T16:16:41.082674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_dense_unpruned\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:47:53.814Z\", \"updated_at\": \"2026-05-19T16:16:40.474Z\", \"hypothesis\": \"Dense unpruned DeepSeek-R1-Distill-Qwen-7B MBPP pass@1 baseline @2048. Establishes ceiling performance for MBPP code generation. All pruned models' MBPP results will be compared against this baseline.\", \"spec\": {\"server\": \"westd-29022\", \"gpu\": [\"cuda:2\"], \"command\": \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_dense_unpruned.json'\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_mbpp_dense_unpruned.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MBPP\", \"data_count\": 374, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"eval_data\": \"MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)\", \"checkpoint_path\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"pid\": \"108291\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T16:14:39.089Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T16:14:42.070Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T16:14:46.802899+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1525}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1154
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T16:16:41.986256+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"Evaluating:  30%|███       | 400/1319 [40:09<40:34,  2.65s/it]\\rEvaluating:  30%|███       | 401/1319 [40:12<45:48,  2.99s/it]\\rEvaluating:  30%|███       | 402/1319 [40:15<42:36,  2.79s/it]\\rEvaluating:  31%|███       | 403/1319 [40:17<38:36,  2.53s/it]\\rEvaluating:  31%|███       | 404/1319 [40:20<42:22,  2.78s/it]\\rEvaluating:  31%|███       | 405/1319 [40:23<42:31,  2.79s/it]\\rEvaluating:  31%|███       | 406/1319 [40:26<42:24,  2.79s/it]\\rEvaluating:  31%|███       | 407/1319 [40:28<40:12,  2.65s/it]\\rEvaluating:  31%|███       | 408/1319 [40:30<37:32,  2.47s/it]\\rEvaluating:  31%|███       | 409/1319 [46:22<27:07:29, 107.31s/it]\\rEvaluating:  31%|███       | 410/1319 [46:27<19:21:34, 76.67s/it] \\rEvaluating:  31%|███       | 411/1319 [46:29<13:43:02, 54.39s/it]\\rEvaluating:  31%|███       | 412/1319 [46:30<9:39:41, 38.35s/it] \\rEvaluating:  31%|███▏      | 413/1319 [46:36<7:08:46, 28.40s/it]\\rEvaluating:  31%|███▏      | 414/1319 [46:39<5:15:17, 20.90s/it]\\rEvaluating:  31%|███▏      | 415/1319 [46:43<4:00:22, 15.95s/it]\\rEvaluating:  32%|███▏      | 416/1319 [46:46<2:58:51, 11.88s/it]\\rEvaluating:  32%|███▏      | 417/1319 [46:47<2:11:51,  8.77s/it]\\rEvaluating:  32%|███▏      | 418/1319 [46:49<1:37:59,  6.53s/it]\\rEvaluating:  32%|███▏      | 419/1319 [46:50<1:16:32,  5.10s/it]\\rEvaluating:  32%|███▏      | 420/1319 [46:52<1:02:08,  4.15s/it]\\rEvaluating:  32%|███▏      | 421/1319 [46:56<1:00:59,  4.08s/it]\\rEvaluating:  32%|███▏      | 422/1319 [46:58<48:44,  3.26s/it]  \\rEvaluating:  32%|███▏      | 423/1319 [46:59<40:00,  2.68s/it]\\rEvaluating:  32%|███▏      | 424/1319 [47:01<35:46,  2.40s/it]\\rEvaluating:  32%|███▏      | 425/1319 [47:02<31:43,  2.13s/it]\\rEvaluating:  32%|███▏      | 426/1319 [47:06<37:48,  2.54s/it]\\rEvaluating:  32%|███▏      | 427/1319 [47:09<40:45,  2.74s/it]\\rEvaluating:  32%|███▏      | 428/1319 [47:11<38:58,  2.62s/it]\\rEvaluating:  33%|███▎    
+…[truncated 6644 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1255
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-19T16:16:57.323020+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_dense_unpruned",
+  "field": "metrics",
+  "value": "{'pass_at_1': 0.5348, 'stderr': 0.0258, 'n_correct': 200, 'n_total': 374}",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_dense_unpruned",
+    "field": "metrics",
+    "value": "{'pass_at_1': 0.5348, 'stderr': 0.0258, 'n_correct': 200, 'n_total': 374}",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T16:16:59.380670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_dense_unpruned\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:47:53.814Z\", \"updated_at\": \"2026-05-19T16:16:57.861Z\", \"hypothesis\": \"Dense unpruned DeepSeek-R1-Distill-Qwen-7B MBPP pass@1 baseline @2048. Establishes ceiling performance for MBPP code generation. All pruned models' MBPP results will be compared against this baseline.\", \"spec\": {\"server\": \"westd-29022\", \"gpu\": [\"cuda:2\"], \"command\": \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_dense_unpruned.json'\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_mbpp_dense_unpruned.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MBPP\", \"data_count\": 374, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"eval_data\": \"MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)\", \"checkpoint_path\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"pid\": \"108291\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T16:14:39.089Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T16:14:42.070Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T16:14:46.802899+00:00\"}]}, \"metrics\": {\"pass_at_1\": 0.5348, \"stderr\": 0.0258, \"n_correct\": 200, \"n_total\": 374}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.952}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2057
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-19T16:16:59.833435+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_dense_unpruned",
+  "field": "notes",
+  "value": "Cron false positive: eval脚本不走W&B，进程正常退出后cron检测不到指标误判failed。实际 pass@1=53.48% (200/374), stderr=0.0258。Dense baseline for MBPP.",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_dense_unpruned",
+    "field": "notes",
+    "value": "Cron false positive: eval脚本不走W&B，进程正常退出后cron检测不到指标误判failed。实际 pass@1=53.48% (200/374), stderr=0.0258。Dense baseline for MBPP.",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T16:17:00.437340+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+  "field": "conclusion",
+  "value": "success",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+    "field": "conclusion",
+    "value": "success",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T16:17:00.889969+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_dense_unpruned\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:47:53.814Z\", \"updated_at\": \"2026-05-19T16:17:00.452Z\", \"hypothesis\": \"Dense unpruned DeepSeek-R1-Distill-Qwen-7B MBPP pass@1 baseline @2048. Establishes ceiling performance for MBPP code generation. All pruned models' MBPP results will be compared against this baseline.\", \"spec\": {\"server\": \"westd-29022\", \"gpu\": [\"cuda:2\"], \"command\": \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_dense_unpruned.json'\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_mbpp_dense_unpruned.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MBPP\", \"data_count\": 374, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"eval_data\": \"MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)\", \"checkpoint_path\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\", \"pid\": \"108291\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T16:14:39.089Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T16:14:42.070Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T16:14:46.802899+00:00\"}]}, \"metrics\": {\"pass_at_1\": 0.5348, \"stderr\": 0.0258, \"n_correct\": 200, \"n_total\": 374}, \"notes\": \"Cron false positive: eval脚本不走W&B，进程正常退出后cron检测不到指标误判failed。实际 pass@1=53.48% (200/374), stderr=0.0258。Dense baseline for MBPP.\"}}, \"error\": null, \"metadata\": {\"elapsed_second
+…[truncated 14 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1056
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T16:17:02.044478+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_grpo_rasp_20_fair\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T12:47:37.399Z\", \"updated_at\": \"2026-05-19T16:17:01.441Z\", \"hypothesis\": \"GRPO RASP 20% fair (v5 config) GSM8K 全量评估。RASP 结合 recovery-awareness 与 structural pruning，预期性能介于 Standard (59.44%) 和 CKA-only (64.37%) 之间。若 RASP ≈ Standard，说明 recovery-awareness 的增益主要来自 CKA 信号而非 RASP 的混合策略。N=1319。\", \"parent\": \"eval_gsm8k_grpo_standard_20_fair_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json\", \"server\": \"westd-29022\", \"data_path\": \"GSM8K\", \"data_count\": 1319, \"model_name\": \"grpo_stage2_rasp_20_fair\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\", \"eval_data\": \"GSM8K\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T15:28:58.925Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:29:02.102Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T15:29:07.839181+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1206}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1607
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-19T16:17:12.334958+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+  "field": "metrics",
+  "value": "{'accuracy': 0.6088, 'stderr': 0.0134, 'n_correct': 803, 'n_total': 1319, 'eos_rate': 0.9879, 'avg_response_length': 195.7}",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+    "field": "metrics",
+    "value": "{'accuracy': 0.6088, 'stderr': 0.0134, 'n_correct': 803, 'n_total': 1319, 'eos_rate': 0.9879, 'avg_response_length': 195.7}",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-19T16:17:14.894649+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_grpo_rasp_20_fair\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T12:47:37.399Z\", \"updated_at\": \"2026-05-19T16:17:12.864Z\", \"hypothesis\": \"GRPO RASP 20% fair (v5 config) GSM8K 全量评估。RASP 结合 recovery-awareness 与 structural pruning，预期性能介于 Standard (59.44%) 和 CKA-only (64.37%) 之间。若 RASP ≈ Standard，说明 recovery-awareness 的增益主要来自 CKA 信号而非 RASP 的混合策略。N=1319。\", \"parent\": \"eval_gsm8k_grpo_standard_20_fair_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json\", \"server\": \"westd-29022\", \"data_path\": \"GSM8K\", \"data_count\": 1319, \"model_name\": \"grpo_stage2_rasp_20_fair\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\", \"eval_data\": \"GSM8K\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T15:28:58.925Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:29:02.102Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T15:29:07.839181+00:00\"}]}, \"metrics\": {\"accuracy\": 0.6088, \"stderr\": 0.0134, \"n_correct\": 803, \"n_total\": 1319, \"eos_rate\": 0.9879, \"avg_response_length\": 195.7}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9557}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2559
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-19T16:17:15.497114+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+  "field": "notes",
+  "value": "Cron false positive: eval脚本不走W&B误判failed。实际 accuracy=60.88% (803/1319)。RASP 介于 Standard (59.44%) 和 CKA-only (64.37%) 之间，更靠近 Standard。RASP-Standard gap=1.44pp, CKA-RASP gap=3.49pp。recovery-awareness 增益主要来自 CKA 信号。",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+    "field": "notes",
+    "value": "Cron false positive: eval脚本不走W&B误判failed。实际 accuracy=60.88% (803/1319)。RASP 介于 Standard (59.44%) 和 CKA-only (64.37%) 之间，更靠近 Standard。RASP-Standard gap=1.44pp, CKA-RASP gap=3.49pp。recovery-awareness 增益主要来自 CKA 信号。",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-19T16:17:16.500783+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_grpo_rasp_20_fair\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T12:47:37.399Z\", \"updated_at\": \"2026-05-19T16:17:16.053Z\", \"hypothesis\": \"GRPO RASP 20% fair (v5 config) GSM8K 全量评估。RASP 结合 recovery-awareness 与 structural pruning，预期性能介于 Standard (59.44%) 和 CKA-only (64.37%) 之间。若 RASP ≈ Standard，说明 recovery-awareness 的增益主要来自 CKA 信号而非 RASP 的混合策略。N=1319。\", \"parent\": \"eval_gsm8k_grpo_standard_20_fair_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json\", \"server\": \"westd-29022\", \"data_path\": \"GSM8K\", \"data_count\": 1319, \"model_name\": \"grpo_stage2_rasp_20_fair\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\", \"eval_data\": \"GSM8K\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T15:28:58.925Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:29:02.102Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T15:29:07.839181+00:00\"}]}, \"metrics\": {\"accuracy\": 0.6088, \"stderr\": 0.0134, \"n_correct\": 803, \"n_total\": 1319, \"eos_rate\": 0.9879, \"avg_response_length\": 195.7}, \"notes\": \"Cron false positive: eval脚本不走W&B误判failed。实际 accuracy=60.88% (803/1319)。RASP 介于 Standard (59.44%) 和 CKA-only (64.37%) 之间，更靠近 Standard。RASP-Standard gap=1.44pp, CKA-RASP gap=3.49pp。recover
+…[truncated 95 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1003
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-19T16:17:38.407994+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__list_workers",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__list_workers",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-19T16:17:38.458708+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-19T16:17:40.817620+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T16:17:41.169276+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T16:17:41.422508+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for baseline + RASP_20 + Standard_20. Currently only N=100 — need full test set for tight CIs (±2.4pp vs ±9pp).\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_n1319_v2\", \"status_note\": \"baseline eval was running on GPU0, may be done\", \"status\": \"PREPARING\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"SFT warmup recovery for RASP_20 and Standard_20. Teacher-forcing on GSM8K train gold solutions to restore basic generation ability (fix no-EOS problem). Both models in parallel on 2 GPUs.\", \"priority\": \"P0\", \"gpu_budget_hours\": 10, \"deps\": [], \"registry_id\": \"sft_rasp_20\", \"status_note\": \"DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eos_rate_greedy_100\": 0.99, \"greedy_accuracy_100\": 0.57, \"greedy_avg_len\": 179.83, \"greedy_correct\": 57, \"greedy_max_len\": 4096, \"greedy_min_len\": 59, \"greedy_total\": 100, \"sampling_eos_rate_5\": 1, \"token_accuracy\": 0.83, \"total_steps\": 1870, \"train_loss_final\": 0.64, \"train_loss_initial\": 1.86, \"train_time_min\": 37}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"GRPO recovery on SFT-warmed models. RASP_20 and Standard_20 in parallel. This is the core MVP-completion experiment — demonstrate RASP enables RLVR recovery while Standard cannot recover.\", \"priority\": \"P0\", \"gpu_budget_hours\": 35, \"deps\": [\"plan_002\"], \"registry_id\": \"grpo_stage2_rasp_20_v2\", \"status_note\": \"RUNNING v6→v7 (v6 OOM, v7 8-bit optimizer). cuda:0=RASP, cuda:1=Standard\", \"status\": \"DONE\", \"conclusion\": \"negative\"}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for all recovered models. Final numbers for paper Table 1.\", \"priority\": \"P0\", \"gp
+…[truncated 18769 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 604
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-19T16:17:41.523397+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_eval_humaneval_1p5b_westb_cuda0_20260519T145923\", \"task_type\": \"eval:humaneval_1p5b_westb_cuda0\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"running\", \"started_at\": \"2026-05-19T14:59:23.590454+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 354
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-19T16:18:20.716341+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['status', 'spec']",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['status', 'spec']",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-19T16:18:21.368862+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"grpo_shortgpt_20\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\", \"server\": \"westd-29022\", \"data_path\": \"gsm8k\", \"data_count\": 7473, \"model_name\": \"ShortGPT-20%-BI-pruned + SFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\", \"eval_data\": \"gsm8k_train (GRPO training, not eval)\", \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log\", \"pid\": 118669}}, \"eval_gsm8k_sft_shortgpt_20\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_sft_shortgpt_20.json\", \"server\": \"westd-29022\", \"data_path\": \"gsm8k:test\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-7B-ShortGPT-20pct-SFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20/\", \"eval_data\": \"gsm8k:test\"}}, \"eval_humaneval_grpo_standard_20_1p5b_2048\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_1p5b_2048.json --seed 42\", \"server\": \"westb-23072\", \"gpu\": \"cuda:0\", \"data_path\": \"HumanEval\", \"data_count\": 164, \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b\", \"eval_data\": \"HumanEval\", \"model_name\": \"Qwen2.
+…[truncated 2070 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 652
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-19T16:19:12.582205+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 6/6 分配 | 实际在跑 5 (westb:0 eval_humaneval_1p5b, westd:0 grpo_shortgpt, westd:1 eval_mbpp_cka, westd:3 sft_shortgpt+eval_gsm8k_shortgpt) | 空闲 2 (westb:1, westd:2) | Worker 1→正在补充 | 磁盘: westd 817G/879G(3%), westb 396G/439G(5%)\n\n## Cron 误判纠正：2 个 eval 实际成功\n\n两个 eval 实验被 cron 误判为 failed（eval 脚本不走 W&B，进程正常退出后 cron 检测不到指标）。日志确认均成功完成并写了 sentinel。\n\n### 1. eval_mbpp_dense_unpruned → ✅ success\n- **MBPP pass@1 = 53.48% (200/374), stderr=0.0258**\n- Dense DeepSeek-R1-Distill-Qwen-7B baseline\n- 所有 pruned model 的 MBPP 结果将以此为 ceiling\n\n### 2. eval_gsm8k_grpo_rasp_20_fair → ✅ success\n- **GSM8K accuracy = 60.88% (803/1319), stderr=0.0134**\n- Hypothesis 验证: RASP 确实介于 Standard (59.44%) 和 CKA-only (64.37%) 之间\n- 但 **更靠近 Standard**: RASP-Standard gap = 1.44pp, CKA-RASP gap = 3.49pp\n- 结论: recovery-awareness 增益主要来自 CKA 信号，RASP 的 hybrid 策略没带来太多额外收益\n\n### GSM8K GRPO 完整排名 (7B 20%)\n| Method | GSM8K | vs CKA-only |\n|--------|-------|-------------|\n| CKA-only | **64.37%** | — |\n| RASP | 60.88% | -3.49pp |\n| Standard | 59.44% | -4.93pp (p=0.002) |\n\n### 空闲 GPU 计划\nwestb cuda:1 和 westd cuda:2 空闲，准备派 Worker 启动 MBPP eval（Standard GRPO、RASP GRPO、SFT 各方法），补齐 MBPP benchmark 矩阵。",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 6/6 分配 | 实际在跑 5 (westb:0 eval_humaneval_1p5b, westd:0 grpo_shortgpt, westd:1 eval_mbpp_cka, westd:3 sft_shortgpt+eval_gsm8k_shortgpt) | 空闲 2 (westb:1, westd:2) | Worker 1→正在补充 | 磁盘: westd 817G/879G(3%), westb 396G/439G(5%)\n\n## Cron 误判纠正：2 个 eval 实际成功\n\n两个 eval 实验被 cron 误判为 failed（eval 脚本不走 W&B，进程正常退出后 cron 检测不到指标）。日志确认均成功完成并写了 sentinel。\n\n### 1. eval_mbpp_dense_unpruned → ✅ success\n- **MBPP pass@1 = 53.48% (200/374), stderr=0.0258**\n- Dense DeepSeek-R1-Distill-Qwen-7B baseline\n- 所有 pruned model 的 MBPP 结果将以此为 ceiling\n\n### 2. eval_gsm8k_grpo_rasp_20_fair → ✅ success\n- **GSM8K accuracy = 60.88% (803/1319), stderr=0.0134**\n- Hypothesis 验证: RASP 确实介于 Standard (59.44%) 和 CKA-only (64.37%) 之间\n- 但 **更靠近 Standard**: RASP-Standard gap = 1.44pp, CKA-RASP gap = 3.49pp\n- 结论: recovery-awareness 增益主要来自 CKA 信号，RASP 的 hybrid 策略没带来太多额外收益\n\n### GSM8K GRPO 完整排名 (7B 20%)\n| Method | GSM8K | vs CKA-only |\n|--------|-------|-------------|\n| CKA-only | **64.37%** | — |\n| RASP | 60.88% | -3.49pp |\n| Standard | 59.44% | -4.93pp (p=0.002) |\n\n### 空闲 GPU 计划\nwestb cuda:1 和 westd cuda:2 空闲，准备派 Worker 启动 MBPP eval（Standard GRPO、RASP GRPO、SFT 各方法），补齐 MBPP benchmark 矩阵。",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T16:19:16.195061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3612
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-19T16:20:02.963863+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "eval:mbpp_grpo_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "在 westd-29022 上运行 MBPP eval for GRPO Standard 20% model。\n\n## 背景\n我们刚完成 Dense MBPP baseline (pass@1=53.48%, 200/374) 和 CKA-only MBPP eval (正在跑)。现在需要跑 Standard GRPO 的 MBPP eval 来补齐 MBPP benchmark 矩阵。\n\n## 任务\n1. SSH 到 westd-29022，确认 eval_mbpp.py 脚本存在于 /root/recovery_aware_struct_prune/src/eval_mbpp.py\n2. 确认 GRPO Standard 20% fair 模型路径存在：/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\n3. 用 submit_training_job 提交实验（不要用 nohup）：\n   - exp_id: eval_mbpp_grpo_standard_20\n   - server: westd-29022\n   - gpu: cuda:2 (空闲)\n   - 命令: bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json'\n\n4. 提交前先 update_registry 创建实验条目：\n   - hypothesis: \"Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37% — if capability breadth claim holds, Standard should show larger degradation on code generation (MBPP) than math (GSM8K).\"\n   - spec 必须包含: command, server, data_path=MBPP, data_count=374, model_name=grpo_stage2_standard_20_fair, seed=42, checkpoint_source, eval_data\n\n5. 确认 tmux session 启动成功后结束任务。\n\n注意: 实验脚本预计运行约 2 小时。",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:mbpp_grpo_standard_20",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "在 westd-29022 上运行 MBPP eval for GRPO Standard 20% model。\n\n## 背景\n我们刚完成 Dense MBPP baseline (pass@1=53.48%, 200/374) 和 CKA-only MBPP eval (正在跑)。现在需要跑 Standard GRPO 的 MBPP eval 来补齐 MBPP benchmark 矩阵。\n\n## 任务\n1. SSH 到 westd-29022，确认 eval_mbpp.py 脚本存在于 /root/recovery_aware_struct_prune/src/eval_mbpp.py\n2. 确认 GRPO Standard 20% fair 模型路径存在：/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\n3. 用 submit_training_job 提交实验（不要用 nohup）：\n   - exp_id: eval_mbpp_grpo_standard_20\n   - server: westd-29022\n   - gpu: cuda:2 (空闲)\n   - 命令: bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json'\n\n4. 提交前先 update_registry 创建实验条目：\n   - hypothesis: \"Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37% — if capability breadth claim holds, Standard should show larger degradation on code generation (MBPP) than math (GSM8K).\"\n   - spec 必须包含: command, server, data_path=MBPP, data_count=374, model_name=grpo_stage2_standard_20_fair, seed=42, checkpoint_source, eval_data\n\n5. 确认 tmux session 启动成功后结束任务。\n\n注意: 实验脚本预计运行约 2 小时。",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-19T16:20:18.636617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_mbpp_grpo_standard_20_20260519T162003\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_eval_mbpp_grpo_standard_20_20260519T162003.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_mbpp_grpo_standard_20_20260519T162003 started. Use get_worker_status('worker_eval_mbpp_grpo_standard_20_20260519T162003') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 15672
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-19T16:20:18.938498+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "eval:mbpp_grpo_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "task_prompt": "在 westb-23072 上运行 MBPP eval for GRPO RASP 20% fair model。\n\n## 背景\nDense MBPP baseline = 53.48% (200/374)。CKA-only MBPP 正在 westd cuda:1 跑，Standard MBPP 正在派发到 westd cuda:2。现在需要 RASP GRPO 的 MBPP eval。\n\n## 前置检查\n1. SSH 到 westb-23072，检查以下路径是否存在：\n   - eval 脚本: /root/recovery_aware_struct_prune/src/eval_mbpp.py\n   - GRPO RASP fair 模型: /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair（或 grpo_rasp_20_fair）\n\n2. 如果 eval_mbpp.py 不存在于 westb，需要从 westd 同步代码：\n   ```\n   cd /root/recovery_aware_struct_prune && git pull\n   ```\n\n3. 如果 GRPO RASP fair 模型不在 westb，检查是否在 westd-29022 上。如果只在 westd 上，则改为在 westb cuda:1 跑另一个可行的 eval（比如 1.5B GRPO RASP HumanEval，模型路径: /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b）。\n\n## 主任务（如果 RASP GRPO 模型存在于 westb）\n用 submit_training_job 提交：\n- exp_id: eval_mbpp_grpo_rasp_20\n- server: westb-23072\n- gpu: cuda:1 (空闲)\n- 命令: bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_mbpp.py --model_path {RASP_MODEL_PATH} --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_rasp_20.json'\n\n提交前创建 registry 条目：\n- hypothesis: \"RASP GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. RASP GSM8K GRPO=60.88% (between Standard 59.44% and CKA-only 64.37%). If RASP shows similar intermediary pattern on MBPP, confirms pruning criterion effect generalizes across benchmarks.\"\n- spec: command, server, data_path=MBPP, data_count=374, model_name, seed=42, checkpoint_source, eval_data\n\n## 备选任务（如果 RASP 模型不在 westb）\n跑 1.5B GRPO RASP HumanEval eval：\n- exp_id: eval_humaneval_grpo_rasp_20_1p5b_2048\n- 模型: /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b\n- 命令: CUDA_VISIBLE_DEVICES=1 python src/eval_humaneval.py --model_path ... --max_new_tokens 2048 --output_path ...\n- hypothesis: \"1.5B GRPO RASP HumanEval pass@1 @2048. Cross-scale validation. 7B result: pass@1=10.98%. If 1.5B RASP shows intermediate code capability (between Standard and CKA-only) after GRPO, confirms RASP partially preserves capability breadth across scales.\"\n\n确认 tmux session 启动成功后结束任务。",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_mbpp_dense_unpruned",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:mbpp_grpo_rasp_20",
+    "project": "recovery_aware_struct_prune",
+    "task_prompt": "在 westb-23072 上运行 MBPP eval for GRPO RASP 20% fair model。\n\n## 背景\nDense MBPP baseline = 53.48% (200/374)。CKA-only MBPP 正在 westd cuda:1 跑，Standard MBPP 正在派发到 westd cuda:2。现在需要 RASP GRPO 的 MBPP eval。\n\n## 前置检查\n1. SSH 到 westb-23072，检查以下路径是否存在：\n   - eval 脚本: /root/recovery_aware_struct_prune/src/eval_mbpp.py\n   - GRPO RASP fair 模型: /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair（或 grpo_rasp_20_fair）\n\n2. 如果 eval_mbpp.py 不存在于 westb，需要从 westd 同步代码：\n   ```\n   cd /root/recovery_aware_struct_prune && git pull\n   ```\n\n3. 如果 GRPO RASP fair 模型不在 westb，检查是否在 westd-29022 上。如果只在 westd 上，则改为在 westb cuda:1 跑另一个可行的 eval（比如 1.5B GRPO RASP HumanEval，模型路径: /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b）。\n\n## 主任务（如果 RASP GRPO 模型存在于 westb）\n用 submit_training_job 提交：\n- exp_id: eval_mbpp_grpo_rasp_20\n- server: westb-23072\n- gpu: cuda:1 (空闲)\n- 命令: bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_mbpp.py --model_path {RASP_MODEL_PATH} --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_rasp_20.json'\n\n提交前创建 registry 条目：\n- hypothesis: \"RASP GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. RASP GSM8K GRPO=60.88% (between Standard 59.44% and CKA-only 64.37%). If RASP shows similar intermediary pattern on MBPP, confirms pruning criterion effect generalizes across benchmarks.\"\n- spec: command, server, data_path=MBPP, data_count=374, model_name, seed=42, checkpoint_source, eval_data\n\n## 备选任务（如果 RASP 模型不在 westb）\n跑 1.5B GRPO RASP HumanEval eval：\n- exp_id: eval_humaneval_grpo_rasp_20_1p5b_2048\n- 模型: /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b\n- 命令: CUDA_VISIBLE_DEVICES=1 python src/eval_humaneval.py --model_path ... --max_new_tokens 2048 --output_path ...\n- hypothesis: \"1.5B GRPO RASP HumanEval pass@1 @2048. Cross-scale validation. 7B result: pass@1=10.98%. If 1.5B RASP shows intermediate code capability (between Standard and CKA-only) after GRPO, confirms RASP partially preserves capability breadth across scales.\"\n\n确认 tmux session 启动成功后结束任务。",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-19T16:34:47.951305+00:00_
+
+已汇报 Director。现在填空闲 GPU——派 Worker 在 westd cuda:2 跑 MBPP Standard GRPO eval，westb cuda:1 跑 1.5B RASP GRPO HumanEval eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_mbpp_dense_unpruned"
+}
+```
+
+</details>
+
+---

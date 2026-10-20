@@ -1,0 +1,26 @@
+{
+  "exp_id": "eval_math500_dense_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:08:58.081Z",
+    "updated_at": "2026-05-18T22:10:27.690Z",
+    "hypothesis": "Dense (unpruned) DeepSeek-R1-Distill-Qwen-7B MATH-500 eval with max_new_tokens=2048. Fair comparison baseline for all pruned model MATH-500 evals which also use 2048 max tokens. Previous Dense baseline (73.6%) used 4096 tokens.",
+    "parent": "eval_math500_dense_unpruned",
+    "spec": {
+      "command": "cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_dense_2048.json --max_new_tokens 2048",
+      "server": "westd-29022",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "checkpoint_source": "/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B",
+      "eval_data": "MATH-500",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-18T22:10:28.035297+00:00",
+  "trigger": "update_registry"
+}

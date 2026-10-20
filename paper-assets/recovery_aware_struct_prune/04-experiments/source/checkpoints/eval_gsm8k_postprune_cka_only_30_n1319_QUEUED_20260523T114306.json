@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_gsm8k_postprune_cka_only_30_n1319",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:43:05.490Z",
+    "updated_at": "2026-05-23T11:43:05.490Z"
+  },
+  "timestamp": "2026-05-23T11:43:06.165747+00:00",
+  "trigger": "update_registry"
+}

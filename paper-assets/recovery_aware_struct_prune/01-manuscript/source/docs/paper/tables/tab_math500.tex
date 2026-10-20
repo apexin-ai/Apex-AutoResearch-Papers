@@ -1,0 +1,30 @@
+\begin{table}[h]
+\centering
+\small
+\caption{MATH-500 out-of-distribution evaluation ($N{=}500$, greedy decoding, \texttt{max\_new\_tokens=2048}). CKA-only and Standard both outperform \rasp{} and Random; the CKA-only--Standard GRPO gap is 0.6\,pp (vs.\ 4.6\,pp on GSM8K), consistent with difficulty and truncation compressing scores toward a floor. Best per section in \textbf{bold}.}
+\label{tab:math500}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & SFT\,(\%) & GRPO\,(\%) & $\Delta$\,(pp) \\
+\midrule
+Dense & \multicolumn{3}{c}{53.0\,$^\dagger$} \\
+\midrule
+\multicolumn{4}{l}{\textit{20\% sparsity --- method comparison}} \\
+CKA-only & \textbf{27.4} & \textbf{27.6} & $+$0.2 \\
+Standard & 25.6 & 27.0 & $+$1.4 \\
+\rasp{} ($\alpha{=}1.0$) & 21.6 & 23.0 & $+$1.4 \\
+Random & 16.6 & 15.0 & $-$1.6 \\
+\midrule
+\multicolumn{4}{l}{\textit{20\% sparsity --- $\alpha$ dose-response}} \\
+$\alpha{=}0.5$ & 26.8 & 26.8 & $+$0.0 \\
+$\alpha{=}2.0$ & 25.6 & \textbf{27.4} & $+$1.8 \\
+$\alpha{=}3.0$ & 23.6 & -- & -- \\
+$\alpha{=}4.0$ & \textbf{27.8} & 27.2 & $-$0.6 \\
+\midrule
+\multicolumn{4}{l}{\textit{25\% sparsity}} \\
+CKA-only & 18.8 & 17.6 & $-$1.2 \\
+Standard & 15.4 & -- & -- \\
+\bottomrule
+\multicolumn{4}{p{0.85\columnwidth}}{\footnotesize $^\dagger$Over half of Dense responses truncated at 2048 tokens (73.6\% at 4096); all pruned models evaluated under the same constraint.}
+\end{tabular}
+\end{table}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "sft_rasp_rlvr_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:50:43.369Z",
+    "updated_at": "2026-05-16T13:25:09.720Z",
+    "hypothesis": "RASP-RLVR 20% post-prune SFT recovery (lr=2e-5, epochs=2). 验证反向 CKA scoring (保留冗余结构) 是否产生更好的 RLVR 恢复基础。对比 RASP SFT 和 Standard SFT。Parent: prune_rasp_rlvr_20.",
+    "spec": {
+      "command": "python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20 --gpu 1 --lr 2e-5 --epochs 2 --batch_size 1 --grad_accum 8 --max_seq_len 2048 --seed 42",
+      "server": "westb-23072",
+      "data_path": "gsm8k_sft",
+      "data_count": 7473,
+      "model_name": "Qwen2.5-7B-Instruct (RASP-RLVR pruned 20%)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_rasp_rlvr_20.log"
+    }
+  },
+  "timestamp": "2026-05-16T13:25:09.893280+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,31 @@
+\begin{table}[t]
+\centering
+\small
+\caption{MATH-500 accuracy (\%) and truncation rate (\%) under different pruning methods and recovery strategies. Sparsity = 20\% unless noted. Best pruned-model accuracy per column in \textbf{bold}.}
+\label{tab:math500}
+\begin{tabular}{l cc cc}
+\toprule
+& \multicolumn{2}{c}{\textbf{Post-SFT}} & \multicolumn{2}{c}{\textbf{Post-GRPO}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Method & Acc & Trunc & Acc & Trunc \\
+\midrule
+    Dense (unpruned) & 73.6 & 24.8 & 69.0 & 17.2 \\
+\midrule
+    Standard & -- & -- & 27.0 & -- \\
+    Random & -- & -- & -- & -- \\
+    CKA-only & \textbf{27.4} & 23.2 & \textbf{27.6} & -- \\
+    RASP ($\alpha\!=\!1.0$) & 21.6 & -- & 23.0 & 36.0 \\
+\midrule
+\multicolumn{5}{l}{\textit{Dose-response ($\alpha$ sweep, 20\% sparsity)}} \\
+    $\alpha = 0.5$ & -- & -- & -- & -- \\
+    $\alpha = 1.0$ & \textbf{21.6} & -- & \textbf{23.0} & 36.0 \\
+    $\alpha = 2.0$ & -- & -- & -- & -- \\
+    $\alpha = 3.0$ & -- & -- & -- & -- \\
+    $\alpha = 4.0$ & -- & -- & -- & -- \\
+\midrule
+\multicolumn{5}{l}{\textit{25\% sparsity}} \\
+    Standard (25\%) & -- & -- & -- & -- \\
+    CKA-only (25\%) & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}

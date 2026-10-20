@@ -1,0 +1,1571 @@
+# research dream action prep
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/chats/worker_research_dream-action-prep_20260515T031103.jsonl`
+- **Structured JSON:** [`099579bf4e7dfed2ddcb.json`](../../sessions/09/099579bf4e7dfed2ddcb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+53 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T03:14:14.821016+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T03:14:14.821382+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T03:14:14.821562+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls /root/recovery_aware_struct_prune/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls /root/recovery_aware_struct_prune/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T03:14:14.821713+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -80 /root/recovery_aware_struct_prune/src/prune.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -80 /root/recovery_aware_struct_prune/src/prune.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T03:14:14.821886+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -80 /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -80 /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T03:14:14.822048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\ncka_overlap.py\\ncka_overlap.py.bak\\nconvert_graspune_to_hf.py\\ncorrelation_analysis.py\\ncorrelation_analysis.py.bak\\ndebug_extract.py\\neval_gsm8k.py\\ngrasp_scoring.py\\nimportance_score.py\\nimportance_score.py.bak\\nmodel_utils.py\\nprune.py\\nprune.py.bak\\nrasp_scoring.py\\nrun_cka_reliability.py\\nrun_eval_25.sh\\nrun_full_eval.sh\\nrun_full_eval_all.sh\\nrun_full_eval_d008.sh\\nrun_full_eval_d008_parallel.sh\\nrun_grasp_prune.sh\\nrun_graspune.sh\\nrun_grpo_multiseed.sh\\nrun_grpo_stage2.sh\\nrun_grpo_v4.sh\\nrun_multi_seed_rasp.sh\\nrun_mvp.sh\\nrun_mvp_resume.sh\\nrun_mvp_resume_from_3_5.sh\\nrun_post_recovery_eval.sh\\nrun_sft_eval.sh\\nrun_sft_warmup.sh\\nsft_recovery.py\\ntrain_grpo.py\\ntrain_sft_warmup.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T03:14:14.822220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nStructured Pruning for Qwen2.5 architecture (GQA-group granularity).\\n\\nRemoves GQA groups (7 Q heads + 1 KV head each) and MLP channel groups\\nbased on RASP or standard importance scores.\\n\\nInput:  pretrained model + pruning scores\\nOutput: pruned model saved to disk\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport copy\\nimport logging\\nimport os\\nimport random\\n\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prune_attention_heads(model, attn_keep_masks: dict):\\n    \\\"\\\"\\\"Prune GQA groups from the model by slicing weight matrices in-place.\\n\\n    attn_keep_masks: dict[layer_idx -> list of GQA group indices to KEEP]\\n    Each GQA group = heads_per_kv Q heads + 1 KV head.\\n    \\\"\\\"\\\"\\n    config = model.config\\n    n_heads = config.num_attention_heads\\n    n_kv_heads = config.num_key_value_heads\\n    head_dim = config.hidden_size // n_heads\\n    heads_per_kv = n_heads // n_kv_heads\\n\\n    total_pruned_groups = 0\\n\\n    for layer_idx, keep_groups in attn_keep_masks.items():\\n        layer = model.model.layers[layer_idx]\\n        attn = layer.self_attn\\n        n_keep_groups = len(keep_groups)\\n        pruned_groups = n_kv_heads - n_keep_groups\\n\\n        # Expand GQA group indices to Q head weight indices\\n        q_indices = []\\n        for g in keep_groups:\\n            for qh in range(heads_per_kv):\\n                h = g * heads_per_kv + qh\\n                start = h * head_dim\\n                q_indices.extend(range(start, start + head_dim))\\n        q_indices = torch.tensor(q_indi
+…[truncated 1019 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T03:14:14.822456+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGSM8K Test Set Evaluation.\\n\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\nand comparing extracted numeric answers against gold answers.\\n\\nInput:  model path\\nOutput: accuracy printed to stdout + saved to results JSON\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random\\nimport re\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom transformers import AutoTokenizer\\nfrom model_utils import load_pruned_model\\nfrom tqdm import tqdm\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef _extract_boxed(text: str) -> str | None:\\n    \\\"\\\"\\\"Extract content from \\\\\\\\boxed{...} with balanced brace matching.\\\"\\\"\\\"\\n    idx = text.rfind(\\\"\\\\\\\\boxed{\\\")\\n    if idx == -1:\\n        return None\\n    depth = 0\\n    start = idx + len(\\\"\\\\\\\\boxed{\\\")\\n    for i in range(start, len(text)):\\n        if text[i] == \\\"{\\\":\\n            depth += 1\\n        elif text[i] == \\\"}\\\":\\n            if depth == 0:\\n                return text[start:i]\\n            depth -= 1\\n    return None\\n\\n\\ndef _clean_latex_number(s: str) -> str:\\n    \\\"\\\"\\\"Strip LaTeX formatting to get a plain number.\\\"\\\"\\\"\\n    s = re.sub(r\\\"\\\\\\\\text\\\\{[^}]*\\\\}\\\", \\\"\\\", s)\\n    s = re.sub(r\\\"\\\\\\\\(mathrm|mathbf|textbf)\\\\{([^}]*)\\\\}\\\", r\\\"\\\\2\\\", s)\\n    s = s.replace(\\\"\\\\\\\\!\\\", \\\"\\\").replace(\\\"\\\\\\\\,\\\", \\\"\\\").replace(\\\"\\\\\\\\;\\\", \\\"\\\")\\n    s = s.replace(\\\"\\\\\\\\$\\\", \\\"\\\").replace(\\\"$\\\", \\\"\\\").replace(\\\"\\\\
+…[truncated 868 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T03:14:14.822644+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "grep -n \"argparse\\|add_argument\\|alpha\\|method\\|target_sparsity\\|output\\|save\" /root/recovery_aware_struct_prune/src/prune.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "grep -n \"argparse\\|add_argument\\|alpha\\|method\\|target_sparsity\\|output\\|save\" /root/recovery_aware_struct_prune/src/prune.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T03:14:14.822782+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T03:14:14.822921+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "grep -n \"argparse\\|add_argument\\|model_path\\|output\\|num_samples\\|batch\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "grep -n \"argparse\\|add_argument\\|model_path\\|output\\|num_samples\\|batch\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T03:14:14.823044+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T03:14:14.823161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -60 /root/recovery_aware_struct_prune/src/rasp_scoring.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -60 /root/recovery_aware_struct_prune/src/rasp_scoring.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T03:14:14.823294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "head -60 /root/recovery_aware_struct_prune/src/model_utils.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "head -60 /root/recovery_aware_struct_prune/src/model_utils.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T03:14:14.823454+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nRASP Scoring: combine importance I(h) and functional overlap F(h).\\n\\nS(h) = I(h) * (1 - F(h))^alpha\\n\\nStructures with lower S(h) are pruned first.\\nStandard baseline uses only I(h) for ranking.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport logging\\nimport os\\n\\nimport torch\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef compute_rasp_scores(importance: dict, overlap: dict, alpha: float = 1.0) -> dict:\\n    \\\"\\\"\\\"Compute S(h) = I(h) * (1 - F(h))^alpha for each structure.\\n\\n    Args:\\n        importance: dict[layer_idx -> tensor of I(h)]\\n        overlap: dict[layer_idx -> tensor of F(h)]\\n        alpha: recoverability penalty exponent\\n\\n    Returns:\\n        dict[layer_idx -> tensor of S(h)]\\n    \\\"\\\"\\\"\\n    scores = {}\\n    for layer_idx in importance:\\n        ih = importance[layer_idx].float()\\n        fh = overlap[layer_idx].float()\\n        sh = ih * (1.0 - fh).pow(alpha)\\n        scores[layer_idx] = sh\\n    return scores\\n\\n\\ndef rank_structures(scores: dict) -> list:\\n    \\\"\\\"\\\"Flatten and rank all structures globally by score (ascending = prune first).\\n\\n    Returns list of (score, layer_idx, struct_idx) sorted ascending.\\n    \\\"\\\"\\\"\\n    entries = []\\n    for layer_idx, layer_scores in scores.items():\\n        for struct_idx in range(layer_scores.shape[0]):\\n            entries.append((layer_scores[struct_idx].item(), layer_idx, struct_idx))\\n    entries.sort(key=lambda x: x[0])\\n    return entries\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Compute RASP pruning scores\\\")\\n    parser.add_argument(\\\"--importance_path\\\", type=str, required=True, help=\\\"Path to importance scores .pt\\\")\\n    parser.add_argument(\\\"--cka_path\\\", type=str, default=None, help=\\\"Pat
+…[truncated 279 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T03:14:14.823634+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import logging\\nimport os\\n\\nimport torch\\nimport torch.nn as nn\\nfrom transformers import AutoConfig, AutoModelForCausalLM\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef _load_state_dict(model_path):\\n    safetensor_files = sorted(\\n        f for f in os.listdir(model_path) if f.endswith(\\\".safetensors\\\")\\n    )\\n    if safetensor_files:\\n        from safetensors.torch import load_file\\n        state_dict = {}\\n        for f in safetensor_files:\\n            state_dict.update(load_file(os.path.join(model_path, f)))\\n        return state_dict\\n    return torch.load(\\n        os.path.join(model_path, \\\"pytorch_model.bin\\\"),\\n        map_location=\\\"cpu\\\", weights_only=True,\\n    )\\n\\n\\ndef load_pruned_model(model_path, device_map=\\\"auto\\\", torch_dtype=torch.bfloat16):\\n    \\\"\\\"\\\"Load a pruned model that may have non-uniform MLP/attention dimensions per layer.\\\"\\\"\\\"\\n    config = AutoConfig.from_pretrained(model_path, trust_remote_code=True)\\n    per_layer_sizes = getattr(config, \\\"per_layer_intermediate_size\\\", None)\\n    per_layer_heads = getattr(config, \\\"per_layer_num_heads\\\", None)\\n    per_layer_kv_heads = getattr(config, \\\"per_layer_num_kv_heads\\\", None)\\n\\n    if per_layer_sizes is None and per_layer_heads is None:\\n        return AutoModelForCausalLM.from_pretrained(\\n            model_path, torch_dtype=torch_dtype, device_map=device_map,\\n            trust_remote_code=True,\\n        )\\n\\n    hidden_size = config.hidden_size\\n    head_dim = getattr(config, \\\"head_dim\\\", hidden_size // config.num_attention_heads)\\n\\n    if per_layer_sizes is not None:\\n        max_size = max(per_layer_sizes)\\n        config.intermediate_size = max_size\\n        logger.info(\\n            \\\"Non-uniform MLP detected: intermediate_size range [%d, %d]\\\",\\n            min(per_layer_sizes), max_size,\\n        )\\n\\n    if per_layer_
+…[truncated 554 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T03:14:14.823804+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -200 /root/recovery_aware_struct_prune/src/prune.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tail -200 /root/recovery_aware_struct_prune/src/prune.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T03:14:14.823926+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tail -60 /root/recovery_aware_struct_prune/src/rasp_scoring.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tail -60 /root/recovery_aware_struct_prune/src/rasp_scoring.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T03:14:14.824166+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    mlp_params_per_group = mlp_group_size * hidden * 3\\n\\n    logger.info(f\\\"GQA groups: {n_gqa_groups}/layer, ~{attn_params_per_group:,} params each\\\")\\n    logger.info(f\\\"MLP groups: {n_mlp_groups}/layer, ~{mlp_params_per_group:,} params each\\\")\\n\\n    target_prune_params = original_params * args.sparsity\\n\\n    # Unified ranking: merge attention GQA groups and MLP groups\\n    all_entries = []\\n    for layer_idx in range(n_layers):\\n        for g in range(n_gqa_groups):\\n            score = attn_scores[layer_idx][g].item()\\n            all_entries.append((score, \\\"attn\\\", layer_idx, g, attn_params_per_group))\\n        for g in range(n_mlp_groups):\\n            score = mlp_scores[layer_idx][g].item()\\n            all_entries.append((score, \\\"mlp\\\", layer_idx, g, mlp_params_per_group))\\n\\n    all_entries.sort(key=lambda x: x[0])\\n\\n    # Greedily select structures to prune\\n    pruned_params = 0\\n    attn_prune_set = set()\\n    mlp_prune_set = set()\\n\\n    min_keep_attn = 1  # keep at least 1 GQA group per layer\\n    min_keep_mlp = max(4, int(n_mlp_groups * 0.4))  # >= 40% MLP capacity per layer\\n    attn_prune_count = {i: 0 for i in range(n_layers)}\\n    mlp_prune_count = {i: 0 for i in range(n_layers)}\\n\\n    for score, stype, layer_idx, struct_idx, params in all_entries:\\n        if pruned_params >= target_prune_params:\\n            break\\n        if stype == \\\"attn\\\":\\n            if attn_prune_count[layer_idx] >= n_gqa_groups - min_keep_attn:\\n                continue\\n            attn_prune_set.add((layer_idx, struct_idx))\\n            attn_prune_count[layer_idx] += 1\\n        else:\\n            if mlp_prune_count[layer_idx] >= n_mlp_groups - min_keep_mlp:\\n                continue\\n            mlp_prune_set.add((layer_idx, struct_idx))\\n            mlp_prune_count[layer_idx] += 1\\n        pruned_params += params\\n\\n    logger.info(f\\\"Targe
+…[truncated 6862 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T03:14:14.824350+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "cat /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T03:14:14.824528+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    entries = []\\n    for layer_idx, layer_scores in scores.items():\\n        for struct_idx in range(layer_scores.shape[0]):\\n            entries.append((layer_scores[struct_idx].item(), layer_idx, struct_idx))\\n    entries.sort(key=lambda x: x[0])\\n    return entries\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Compute RASP pruning scores\\\")\\n    parser.add_argument(\\\"--importance_path\\\", type=str, required=True, help=\\\"Path to importance scores .pt\\\")\\n    parser.add_argument(\\\"--cka_path\\\", type=str, default=None, help=\\\"Path to CKA overlap scores .pt (None for standard mode)\\\")\\n    parser.add_argument(\\\"--mode\\\", type=str, choices=[\\\"standard\\\", \\\"rasp\\\"], default=\\\"rasp\\\")\\n    parser.add_argument(\\\"--alpha\\\", type=float, default=1.0, help=\\\"Recoverability penalty exponent\\\")\\n    parser.add_argument(\\\"--output_path\\\", type=str, required=True, help=\\\"Output .pt file for pruning scores\\\")\\n    args = parser.parse_args()\\n\\n    importance_data = torch.load(args.importance_path, map_location=\\\"cpu\\\", weights_only=True)\\n    attn_importance = importance_data[\\\"attn_importance\\\"]\\n    mlp_importance = importance_data[\\\"mlp_importance\\\"]\\n\\n    if args.mode == \\\"rasp\\\":\\n        if args.cka_path is None:\\n            raise ValueError(\\\"--cka_path required for rasp mode\\\")\\n        cka_data = torch.load(args.cka_path, map_location=\\\"cpu\\\", weights_only=True)\\n        attn_overlap = cka_data[\\\"attn_overlap\\\"]\\n        mlp_overlap = cka_data[\\\"mlp_overlap\\\"]\\n\\n        attn_scores = compute_rasp_scores(attn_importance, attn_overlap, args.alpha)\\n        mlp_scores = compute_rasp_scores(mlp_importance, mlp_overlap, args.alpha)\\n        logger.info(f\\\"Computed RASP scores with alpha={args.alpha}\\\")\\n    else:\\n        # Standard: score = importance only\\n        attn_score
+…[truncated 1280 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T03:14:14.824847+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGSM8K Test Set Evaluation.\\n\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\nand comparing extracted numeric answers against gold answers.\\n\\nInput:  model path\\nOutput: accuracy printed to stdout + saved to results JSON\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport logging\\nimport os\\nimport random\\nimport re\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom transformers import AutoTokenizer\\nfrom model_utils import load_pruned_model\\nfrom tqdm import tqdm\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef _extract_boxed(text: str) -> str | None:\\n    \\\"\\\"\\\"Extract content from \\\\\\\\boxed{...} with balanced brace matching.\\\"\\\"\\\"\\n    idx = text.rfind(\\\"\\\\\\\\boxed{\\\")\\n    if idx == -1:\\n        return None\\n    depth = 0\\n    start = idx + len(\\\"\\\\\\\\boxed{\\\")\\n    for i in range(start, len(text)):\\n        if text[i] == \\\"{\\\":\\n            depth += 1\\n        elif text[i] == \\\"}\\\":\\n            if depth == 0:\\n                return text[start:i]\\n            depth -= 1\\n    return None\\n\\n\\ndef _clean_latex_number(s: str) -> str:\\n    \\\"\\\"\\\"Strip LaTeX formatting to get a plain number.\\\"\\\"\\\"\\n    s = re.sub(r\\\"\\\\\\\\text\\\\{[^}]*\\\\}\\\", \\\"\\\", s)\\n    s = re.sub(r\\\"\\\\\\\\(mathrm|mathbf|textbf)\\\\{([^}]*)\\\\}\\\", r\\\"\\\\2\\\", s)\\n    s = s.replace(\\\"\\\\\\\\!\\\", \\\"\\\").replace(\\\"\\\\\\\\,\\\", \\\"\\\").replace(\\\"\\\\\\\\;\\\", \\\"\\\")\\n    s = s.replace(\\\"\\\\\\\\$\\\", \\\"\\\").replace(\\\"$\\\", \\\"\\\").replace(\\\"\\\\
+…[truncated 7542 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T03:14:14.825037+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "grep -n \"add_argument\\|def main\\|args.alpha\\|args.mode\\|args.sparsity\\|args.model\\|args.output\\|importance_path\\|cka_path\" /root/recovery_aware_struct_prune/src/prune.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "grep -n \"add_argument\\|def main\\|args.alpha\\|args.mode\\|args.sparsity\\|args.model\\|args.output\\|importance_path\\|cka_path\" /root/recovery_aware_struct_prune/src/prune.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T03:14:14.825174+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T03:14:14.825316+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls /root/recovery_aware_struct_prune/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls /root/recovery_aware_struct_prune/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T03:14:14.825451+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T03:14:14.825571+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/recovery_aware_struct_prune/artifacts/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T03:14:14.825706+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_results\\ngrpo_stage2_rasp_20\\ngrpo_stage2_standard_20\\nlogs\\nmodels\\nresults\\nsft_rasp_20\\nsft_standard_20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T03:14:14.825879+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "grep -n \"add_argument\" /root/recovery_aware_struct_prune/src/prune.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "grep -n \"add_argument\" /root/recovery_aware_struct_prune/src/prune.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T03:14:14.826027+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/models/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/models/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T03:14:14.826194+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/recovery_aware_struct_prune/src/ -name \"importance*\" -o -name \"cka*\" -o -name \"*.pt\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/recovery_aware_struct_prune/src/ -name \"importance*\" -o -name \"cka*\" -o -name \"*.pt\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T03:14:14.826387+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"161:    parser.add_argument(\\\"--model_path\\\", type=str, required=True, help=\\\"Path to pretrained model\\\")\\n162:    parser.add_argument(\\\"--importance_path\\\", type=str, required=True, help=\\\"Path to importance scores .pt\\\")\\n163:    parser.add_argument(\\\"--cka_path\\\", type=str, default=None, help=\\\"Path to CKA overlap scores .pt\\\")\\n164:    parser.add_argument(\\\"--mode\\\", type=str, choices=[\\\"standard\\\", \\\"rasp\\\"], required=True)\\n165:    parser.add_argument(\\\"--sparsity\\\", type=float, default=0.35, help=\\\"Target sparsity ratio\\\")\\n166:    parser.add_argument(\\\"--alpha\\\", type=float, default=1.0, help=\\\"RASP alpha parameter\\\")\\n167:    parser.add_argument(\\\"--output_path\\\", type=str, required=True, help=\\\"Output path for pruned model\\\")\\n168:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n169:    parser.add_argument(\\\"--dtype\\\", type=str, default=\\\"bfloat16\\\", choices=[\\\"float16\\\", \\\"bfloat16\\\", \\\"float32\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T03:14:14.826532+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T03:14:14.826653+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/src/cka_overlap.py\\n/root/recovery_aware_struct_prune/src/importance_score.py\\n/root/recovery_aware_struct_prune/src/cka_overlap.py.bak\\n/root/recovery_aware_struct_prune/src/importance_score.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T03:14:14.826798+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/recovery_aware_struct_prune -name \"*.pt\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/recovery_aware_struct_prune -name \"*.pt\" -not -path \"*__pycache__*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T03:14:14.826920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/results/cka_scores.pt\\n/root/recovery_aware_struct_prune/results/importance_scores.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T03:14:14.827034+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "find /root/autodl-tmp -maxdepth 2 -name \"*.pt\" -o -name \"config.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "find /root/autodl-tmp -maxdepth 2 -name \"*.pt\" -o -name \"config.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T03:14:14.827149+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ls /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ls /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T03:14:14.827292+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/config.json\\n/root/autodl-tmp/pruned_standard_20/config.json\\n/root/autodl-tmp/pruned_standard_20/pruning_metadata.pt\\n/root/autodl-tmp/pruned_rasp_20/config.json\\n/root/autodl-tmp/pruned_rasp_20/pruning_metadata.pt\\n/root/autodl-tmp/pruned_standard_25/config.json\\n/root/autodl-tmp/pruned_standard_25/pruning_metadata.pt\\n/root/autodl-tmp/pruned_rasp_25/config.json\\n/root/autodl-tmp/pruned_rasp_25/pruning_metadata.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T03:14:14.827431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LICENSE\\nREADME.md\\nconfig.json\\nconfiguration.json\\nfigures\\ngeneration_config.json\\nmodel-00001-of-000002.safetensors\\nmodel-00002-of-000002.safetensors\\nmodel.safetensors.index.json\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T03:14:14.827575+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat /root/recovery_aware_struct_prune/src/run_mvp.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "cat /root/recovery_aware_struct_prune/src/run_mvp.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T03:14:14.827690+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat /root/recovery_aware_struct_prune/src/run_full_eval.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "cat /root/recovery_aware_struct_prune/src/run_full_eval.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T03:14:14.827910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# RASP MVP Experiment\\n# cuda:0 + cuda:1 parallel where possible\\nset -e\\n\\nPROJECT_ROOT=\\\"$(cd \\\"$(dirname \\\"$0\\\")/..\\\" && pwd)\\\"\\ncd \\\"$PROJECT_ROOT\\\"\\n\\nmkdir -p results models\\n\\necho \\\"==========================================\\\"\\necho \\\"RASP MVP Experiment\\\"\\necho \\\"==========================================\\\"\\n\\n# Step 0: Baseline evaluation (accuracy upper bound)\\necho \\\"[Step 0/6] Baseline evaluation on GSM8K...\\\"\\nCUDA_VISIBLE_DEVICES=0 python3 src/eval_gsm8k.py \\\\\\n  --model_path models/DeepSeek-R1-Distill-Qwen-7B \\\\\\n  --output_path results/baseline_eval.json\\necho \\\"Baseline eval complete.\\\"\\n\\n# Step 1+2: CKA (cuda:0) + Importance (cuda:1) — parallel\\necho \\\"[Step 1+2/6] Computing CKA overlap + importance scores (parallel)...\\\"\\nCUDA_VISIBLE_DEVICES=0 python3 src/cka_overlap.py \\\\\\n  --model_path models/DeepSeek-R1-Distill-Qwen-7B \\\\\\n  --output_path results/cka_scores.pt \\\\\\n  --n_samples 512 &\\nPID_CKA=$!\\n\\nCUDA_VISIBLE_DEVICES=1 python3 src/importance_score.py \\\\\\n  --model_path models/DeepSeek-R1-Distill-Qwen-7B \\\\\\n  --output_path results/importance_scores.pt \\\\\\n  --n_samples 512 &\\nPID_IMP=$!\\n\\nwait $PID_CKA || { echo \\\"CKA FAILED with exit code $?\\\"; exit 1; }\\nwait $PID_IMP || { echo \\\"IMPORTANCE FAILED with exit code $?\\\"; exit 1; }\\necho \\\"CKA + Importance complete.\\\"\\n\\n# Step 3: Pruning — parallel on 2 GPUs\\necho \\\"[Step 3/6] Pruning models...\\\"\\nCUDA_VISIBLE_DEVICES=0 python3 src/prune.py \\\\\\n  --model_path models/DeepSeek-R1-Distill-Qwen-7B \\\\\\n  --importance_path results/importance_scores.pt \\\\\\n  --mode standard --sparsity 0.35 \\\\\\n  --output_path models/pruned_standard_35 &\\nPID_STD=$!\\n\\nCUDA_VISIBLE_DEVICES=1 python3 src/prune.py \\\\\\n  --model_path models/DeepSeek-R1-Distill-Qwen-7B \\\\\\n  --importance_path results/importance_scores
+…[truncated 5071 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T03:14:14.828133+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# =============================================================================\\n# Full GSM8K Evaluation (N=1319, greedy)\\n#\\n# Usage:\\n#   Phase 1 (baseline + pruned + SFT models):\\n#     bash run_full_eval.sh phase1\\n#\\n#   Phase 2 (GRPO models, after training completes):\\n#     bash run_full_eval.sh phase2\\n#\\n#   All phases:\\n#     bash run_full_eval.sh all\\n#\\n# GPU allocation: GPU0 and GPU1 run in parallel.\\n# Results: /root/autodl-tmp/recovery_aware_struct_prune/eval_results/full/\\n# =============================================================================\\n\\nset -euo pipefail\\n\\n# === Environment ===\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/recovery_aware_struct_prune/src\\n\\nEVAL_DIR=\\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_results/full\\\"\\nmkdir -p \\\"$EVAL_DIR\\\"\\n\\n# === Model Paths ===\\nBASELINE=\\\"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\\"\\nPRUNED_RASP_20=\\\"/root/autodl-tmp/pruned_rasp_20\\\"\\nSFT_RASP_20=\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\\"\\nSFT_STANDARD_20=\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\"\\n\\n# Phase 2 paths (update after GRPO completes)\\nGRPO_RASP_20=\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20\\\"\\nGRPO_STANDARD_20=\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20\\\"\\n\\n# === Helper ===\\nrun_eval() {\\n    local gpu=$1\\n    local model_path=$2\\n    local model_name=$3\\n\\n    local output=\\\"${EVAL_DIR}/eval_full_${model_name}_greedy.json\\\"\\n\\n    if [ -f \\\"$output\\\" ]; then\\n        echo \\\"[SKIP] $model_name already evaluated: $output\\\"\\n        return 0\\n    fi\\n\\n    echo \\\"[START] GPU${gpu} | ${model_name} | $(date '+%H:%M:%S')\\\"\\n    CUDA_VISIBLE_DEVICES=$gpu python eval_gsm8k.py \\\\\\n        --model_path \\\"$model_path\\\" \\\\\\n   
+…[truncated 2503 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T03:14:14.828363+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat > /root/recovery_aware_struct_prune/src/run_alpha_ablation.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# Alpha ablation for RASP scoring: S(h) = I(h) * (1 - F(h))^alpha\n# Sweeps alpha in {0.0, 0.5, 1.0, 1.5, 2.0} at 20% sparsity.\n# alpha=0.0 degenerates to importance-only (no recoverability penalty).\n#\n# Input:  pretrained model + importance/CKA scores\n# Output: per-alpha pruned models + GSM8K eval JSONs + summary JSON\n#\n# Usage:  CUDA_VISIBLE_DEVICES=0,1 bash src/run_alpha_ablation.sh\n# GPU time estimate: ~3h (5 prune runs ~15min each + 5 evals ~25min each)\n\nset -euo pipefail\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/recovery_aware_struct_prune\n\n# === Paths ===\nMODEL_PATH=\"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\"\nIMPORTANCE_PATH=\"results/importance_scores.pt\"\nCKA_PATH=\"results/cka_scores.pt\"\nABLATION_DIR=\"/root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation\"\nRESULT_DIR=\"results/alpha_ablation\"\nSPARSITY=0.20\n\nmkdir -p \"$ABLATION_DIR\" \"$RESULT_DIR\"\n\nALPHAS=(0.0 0.5 1.0 1.5 2.0)\n\necho \"==========================================\"\necho \"Alpha Ablation: RASP scoring @ ${SPARSITY} sparsity\"\necho \"Alphas: ${ALPHAS[*]}\"\necho \"Start: $(date)\"\necho \"==========================================\"\n\n# === Phase 1: Prune for each alpha (2 GPUs parallel) ===\n# Queue alphas onto GPU 0 and GPU 1 alternately\ngpu_queue_0=()\ngpu_queue_1=()\nfor i in \"${!ALPHAS[@]}\"; do\n    if (( i % 2 == 0 )); then\n        gpu_queue_0+=(\"${ALPHAS[$i]}\")\n    else\n        gpu_queue_1+=(\"${ALPHAS[$i]}\")\n    fi\ndone\n\nrun_prune_queue() {\n    local gpu=$1\n    shift\n    local alphas=(\"$@\")\n    for alpha in \"${alphas[@]}\"; do\n        local tag=\"alpha_${alpha}\"\n        local out_path=\"${ABLATION_DIR}/${tag}\"\n        if [ -f \"${out_path}/pruning_metadata.pt\" ]; then\n            echo \"[SKIP] Prune ${tag} already done\"\n            continue\n        fi\n        echo \"[PRUNE] GPU${gpu} | alpha=${alpha} | $(date '+%H:%M:%S')\"\n        CUDA_VISIBLE_DEVICES=$gpu python src/prune.py \\\n            --model_path \"$MODEL_PATH\" \\\n            --importance_path \"$IMPORTANCE_PATH\" \\\n            --cka_path \"$CKA_PATH\" \\\n            --mode rasp \\\n            --sparsity $SPARSITY \\\n            --alpha \"$alpha\" \\\n            --output_path \"$out_path\"\n        echo \"[DONE] Prune ${tag} | $(date '+%H:%M:%S')\"\n    done\n}\n\nrun_prune_queue 0 \"${gpu_queue_0[@]}\" &\nPID_GPU0=$!\nrun_prune_queue 1 \"${gpu_queue_1[@]}\" &\nPID_GPU1=$!\n\nwait $PID_GPU0 || { echo \"GPU0 prune queue FAILED\"; exit 1; }\nwait $PID_GPU1 || { echo \"GPU1 prune queue FAILED\"; exit 1; }\necho \"All pruning complete: $(date)\"\n\n# === Phase 2: Eval each pruned model on GSM8K (full test set) ===\nrun_eval_queue() {\n    local gpu=$1\n    shift\n    local alphas=(\"$@\")\n    for alpha in \"${alphas[@]}\"; do\n        local tag=\"alpha_${alpha}\"\n        local model_path=\"${ABLATION_DIR}/${tag}\"\n        local eval_path=\"${RESULT_DIR}/eval_${tag}.json\"\n        if [ -f \"$eval_path\" ]; then\n            echo \"[SKIP] Eval ${tag} already done\"\n            continue\n        fi\n        echo \"[EVAL] GPU${gpu} | alpha=${alpha} | $(date '+%H:%M:%S')\"\n        CUDA_VISIBLE_DEVICES=$gpu python src/eval_gsm8k.py \\\n            --model_path \"$model_path\" \\\n            --output_path \"$eval_path\" \\\n            --max_new_tokens 4096 \\\n            --dtype bfloat16\n        echo \"[DONE] Eval ${tag} | $(date '+%H:%M:%S')\"\n    done\n}\n\nrun_eval_queue 0 \"${gpu_queue_0[@]}\" &\nPID_GPU0=$!\nrun_eval_queue 1 \"${gpu_queue_1[@]}\" &\nPID_GPU1=$!\n\nwait $PID_GPU0 || { echo \"GPU0 eval queue FAILED\"; exit 1; }\nwait $PID_GPU1 || { echo \"GPU1 eval queue FAILED\"; exit 1; }\necho \"All evaluation complete: $(date)\"\n\n# === Phase 3: Collect summary ===\necho \"\"\necho \"==========================================\"\necho \"Alpha Ablation Summary\"\necho \"==========================================\"\n\npython -c \"\nimport json, os, glob\n\nresult_dir = '${RESULT_DIR}'\nsummary = {'sparsity': ${SPARSITY}, 'results': []}\n\nfor alpha in [0.0, 0.5, 1.0, 1.5, 2.0]:\n    tag = f'alpha_{alpha}'\n    eval_path = os.path.join(result_dir, f'eval_{tag}.json')\n    if not os.path.exists(eval_path):\n        print(f'  WARNING: {eval_path} not found')\n        continue\n    with open(eval_path) as f:\n        d = json.load(f)\n    entry = {\n        'alpha': alpha,\n        'accuracy': d['accuracy'],\n        'n_correct': d['n_correct'],\n        'n_total': d['n_total'],\n        'eos_rate': d['eos_stats']['eos_rate'],\n        'avg_response_length': d['eos_stats']['avg_response_length'],\n    }\n    summary['results'].append(entry)\n    print(f'  alpha={alpha:.1f}  acc={d[\\\"accuracy\\\"]:.4f}  ({d[\\\"n_correct\\\"]}/{d[\\\"n_total\\\"]})')\n\nout_path = os.path.join(result_dir, 'alpha_ablation_summary.json')\nwith open(out_path, 'w') as f:\n    json.dump(summary, f, indent=2)\nprint(f'\\nSummary saved to {out_path}')\n\"\n\necho \"==========================================\"\necho \"Alpha Ablation Complete: $(date)\"\necho \"==========================================\"\nSCRIPT_EOF\nchmod +x /root/recovery_aware_struct_prune/src/run_alpha_ablation.sh\necho \"DONE: run_alpha_ablation.sh\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "cat > /root/recovery_aware_struct_prune/src/run_alpha_ablation.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# Alpha ablation for RASP scoring: S(h) = I(h) * (1 - F(h))^alpha\n# Sweeps alpha in {0.0, 0.5, 1.0, 1.5, 2.0} at 20% sparsity.\n# alpha=0.0 degenerates to importance-only (no recoverability penalty).\n#\n# Input:  pretrained model + importance/CKA scores\n# Output: per-alpha pruned models + GSM8K eval JSONs + summary JSON\n#\n# Usage:  CUDA_VISIBLE_DEVICES=0,1 bash src/run_alpha_ablation.sh\n# GPU time estimate: ~3h (5 prune runs ~15min each + 5 evals ~25min each)\n\nset -euo pipefail\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/recovery_aware_struct_prune\n\n# === Paths ===\nMODEL_PATH=\"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\"\nIMPORTANCE_PATH=\"results/importance_scores.pt\"\nCKA_PATH=\"results/cka_scores.pt\"\nABLATION_DIR=\"/root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation\"\nRESULT_DIR=\"results/alpha_ablation\"\nSPARSITY=0.20\n\nmkdir -p \"$ABLATION_DIR\" \"$RESULT_DIR\"\n\nALPHAS=(0.0 0.5 1.0 1.5 2.0)\n\necho \"==========================================\"\necho \"Alpha Ablation: RASP scoring @ ${SPARSITY} sparsity\"\necho \"Alphas: ${ALPHAS[*]}\"\necho \"Start: $(date)\"\necho \"==========================================\"\n\n# === Phase 1: Prune for each alpha (2 GPUs parallel) ===\n# Queue alphas onto GPU 0 and GPU 1 alternately\ngpu_queue_0=()\ngpu_queue_1=()\nfor i in \"${!ALPHAS[@]}\"; do\n    if (( i % 2 == 0 )); then\n        gpu_queue_0+=(\"${ALPHAS[$i]}\")\n    else\n        gpu_queue_1+=(\"${ALPHAS[$i]}\")\n    fi\ndone\n\nrun_prune_queue() {\n    local gpu=$1\n    shift\n    local alphas=(\"$@\")\n    for alpha in \"${alphas[@]}\"; do\n        local tag=\"alpha_${alpha}\"\n        local out_path=\"${ABLATION_DIR}/${tag}\"\n        if [ -f \"${out_path}/pruning_metadata.pt\" ]; then\n            echo \"[SKIP] Prune ${tag} already done\"\n            continue\n        fi\n        echo \"[PRUNE] GPU${gpu} | alpha=${alpha} | $(date '+%H:%M:%S')\"\n        CUDA_VISIBLE_DEVICES=$gpu python src/prune.py \\\n            --model_path \"$MODEL_PATH\" \\\n            --importance_path \"$IMPORTANCE_PATH\" \\\n            --cka_path \"$CKA_PATH\" \\\n            --mode rasp \\\n            --sparsity $SPARSITY \\\n            --alpha \"$alpha\" \\\n            --output_path \"$out_path\"\n        echo \"[DONE] Prune ${tag} | $(date '+%H:%M:%S')\"\n    done\n}\n\nrun_prune_queue 0 \"${gpu_queue_0[@]}\" &\nPID_GPU0=$!\nrun_prune_queue 1 \"${gpu_queue_1[@]}\" &\nPID_GPU1=$!\n\nwait $PID_GPU0 || { echo \"GPU0 prune queue FAILED\"; exit 1; }\nwait $PID_GPU1 || { echo \"GPU1 prune queue FAILED\"; exit 1; }\necho \"All pruning complete: $(date)\"\n\n# === Phase 2: Eval each pruned model on GSM8K (full test set) ===\nrun_eval_queue() {\n    local gpu=$1\n    shift\n    local alphas=(\"$@\")\n    for alpha in \"${alphas[@]}\"; do\n        local tag=\"alpha_${alpha}\"\n        local model_path=\"${ABLATION_DIR}/${tag}\"\n        local eval_path=\"${RESULT_DIR}/eval_${tag}.json\"\n        if [ -f \"$eval_path\" ]; then\n            echo \"[SKIP] Eval ${tag} already done\"\n            continue\n        fi\n        echo \"[EVAL] GPU${gpu} | alpha=${alpha} | $(date '+%H:%M:%S')\"\n        CUDA_VISIBLE_DEVICES=$gpu python src/eval_gsm8k.py \\\n            --model_path \"$model_path\" \\\n            --output_path \"$eval_path\" \\\n            --max_new_tokens 4096 \\\n            --dtype bfloat16\n        echo \"[DONE] Eval ${tag} | $(date '+%H:%M:%S')\"\n    done\n}\n\nrun_eval_queue 0 \"${gpu_queue_0[@]}\" &\nPID_GPU0=$!\nrun_eval_queue 1 \"${gpu_queue_1[@]}\" &\nPID_GPU1=$!\n\nwait $PID_GPU0 || { echo \"GPU0 eval queue FAILED\"; exit 1; }\nwait $PID_GPU1 || { echo \"GPU1 eval queue FAILED\"; exit 1; }\necho \"All evaluation complete: $(date)\"\n\n# === Phase 3: Collect summary ===\necho \"\"\necho \"==========================================\"\necho \"Alpha Ablation Summary\"\necho \"==========================================\"\n\npython -c \"\nimport json, os, glob\n\nresult_dir = '${RESULT_DIR}'\nsummary = {'sparsity': ${SPARSITY}, 'results': []}\n\nfor alpha in [0.0, 0.5, 1.0, 1.5, 2.0]:\n    tag = f'alpha_{alpha}'\n    eval_path = os.path.join(result_dir, f'eval_{tag}.json')\n    if not os.path.exists(eval_path):\n        print(f'  WARNING: {eval_path} not found')\n        continue\n    with open(eval_path) as f:\n        d = json.load(f)\n    entry = {\n        'alpha': alpha,\n        'accuracy': d['accuracy'],\n        'n_correct': d['n_correct'],\n        'n_total': d['n_total'],\n        'eos_rate': d['eos_stats']['eos_rate'],\n        'avg_response_length': d['eos_stats']['avg_response_length'],\n    }\n    summary['results'].append(entry)\n    print(f'  alpha={alpha:.1f}  acc={d[\\\"accuracy\\\"]:.4f}  ({d[\\\"n_correct\\\"]}/{d[\\\"n_total\\\"]})')\n\nout_path = os.path.join(result_dir, 'alpha_ablation_summary.json')\nwith open(out_path, 'w') as f:\n    json.dump(summary, f, indent=2)\nprint(f'\\nSummary saved to {out_path}')\n\"\n\necho \"==========================================\"\necho \"Alpha Ablation Complete: $(date)\"\necho \"==========================================\"\nSCRIPT_EOF\nchmod +x /root/recovery_aware_struct_prune/src/run_alpha_ablation.sh\necho \"DONE: run_alpha_ablation.sh\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T03:14:14.828563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE: run_alpha_ablation.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T03:14:14.828739+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat > /root/recovery_aware_struct_prune/src/measure_inference_speed.py << 'PYEOF'\n\"\"\"\nInference speed benchmark: original vs RASP-pruned vs standard-pruned models.\n\nMeasures tokens/sec, first-token latency, per-token latency, and batch throughput\non GSM8K prompts. Reports wall-clock speedup from structured pruning.\n\nInput:  model paths (original, pruned_rasp_20, pruned_standard_20)\nOutput: JSON results to --output_path\n\nUsage:\n  CUDA_VISIBLE_DEVICES=0 python src/measure_inference_speed.py\n  # GPU time estimate: ~20 min (3 models x warmup + 50 prompts)\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport time\n\nimport numpy as np\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\nfrom model_utils import load_pruned_model\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\nDEFAULT_MODELS = {\n    \"original\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\",\n    \"pruned_rasp_20\": \"/root/autodl-tmp/pruned_rasp_20\",\n    \"pruned_standard_20\": \"/root/autodl-tmp/pruned_standard_20\",\n}\n\nOUTPUT_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\n\ndef get_gsm8k_prompts(n: int = 50, seed: int = 42):\n    \"\"\"Load first n GSM8K test questions as chat-formatted prompts.\"\"\"\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    ds = ds.shuffle(seed=seed).select(range(min(n, len(ds))))\n    prompts = []\n    for ex in ds:\n        prompts.append([{\"role\": \"user\", \"content\": ex[\"question\"]}])\n    return prompts\n\n\ndef measure_model(model, tokenizer, prompts, max_new_tokens=256, n_warmup=3):\n    \"\"\"Measure generation speed for a single model.\"\"\"\n    device = next(model.parameters()).device\n    model.eval()\n\n    # Warmup\n    logger.info(f\"  Warming up ({n_warmup} forward passes)...\")\n    for i in range(n_warmup):\n        text = tokenizer.apply_chat_template(prompts[i], tokenize=False, add_generation_prompt=True)\n        inputs = tokenizer(text, return_tensors=\"pt\").to(device)\n        with torch.no_grad():\n            model.generate(**inputs, max_new_tokens=32, do_sample=False)\n    torch.cuda.synchronize()\n\n    first_token_latencies = []\n    per_token_latencies = []\n    total_tokens = 0\n    total_time = 0.0\n\n    logger.info(f\"  Benchmarking {len(prompts)} prompts...\")\n    for prompt in prompts:\n        text = tokenizer.apply_chat_template(prompt, tokenize=False, add_generation_prompt=True)\n        inputs = tokenizer(text, return_tensors=\"pt\").to(device)\n        input_len = inputs[\"input_ids\"].shape[1]\n\n        torch.cuda.synchronize()\n\n        # First token latency (prefill)\n        t0 = time.perf_counter()\n        with torch.no_grad():\n            out_1 = model.generate(**inputs, max_new_tokens=1, do_sample=False)\n        torch.cuda.synchronize()\n        t1 = time.perf_counter()\n        first_token_latencies.append(t1 - t0)\n\n        # Full generation\n        torch.cuda.synchronize()\n        t0 = time.perf_counter()\n        with torch.no_grad():\n            out_full = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)\n        torch.cuda.synchronize()\n        t1 = time.perf_counter()\n\n        gen_tokens = out_full.shape[1] - input_len\n        gen_time = t1 - t0\n\n        if gen_tokens > 1:\n            per_token_latencies.append(gen_time / gen_tokens)\n\n        total_tokens += gen_tokens\n        total_time += gen_time\n\n    results = {\n        \"tokens_per_sec\": total_tokens / total_time if total_time > 0 else 0,\n        \"total_tokens\": int(total_tokens),\n        \"total_time_sec\": round(total_time, 3),\n        \"first_token_latency_ms\": {\n            \"mean\": round(np.mean(first_token_latencies) * 1000, 2),\n            \"median\": round(np.median(first_token_latencies) * 1000, 2),\n            \"p95\": round(np.percentile(first_token_latencies, 95) * 1000, 2),\n        },\n        \"per_token_latency_ms\": {\n            \"mean\": round(np.mean(per_token_latencies) * 1000, 2),\n            \"median\": round(np.median(per_token_latencies) * 1000, 2),\n            \"p95\": round(np.percentile(per_token_latencies, 95) * 1000, 2),\n        } if per_token_latencies else {},\n        \"max_new_tokens\": max_new_tokens,\n        \"n_prompts\": len(prompts),\n    }\n    return results\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Inference speed benchmark\")\n    parser.add_argument(\"--models\", type=str, nargs=\"*\", default=None,\n                        help=\"name:path pairs, e.g. original:/path/to/model\")\n    parser.add_argument(\"--n_prompts\", type=int, default=50)\n    parser.add_argument(\"--max_new_tokens\", type=int, default=256)\n    parser.add_argument(\"--output_path\", type=str,\n                        default=os.path.join(OUTPUT_DIR, \"inference_speed_benchmark.json\"))\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    torch_dtype = dtype_map[args.dtype]\n\n    # Parse model specs\n    model_specs = {}\n    if args.models:\n        for spec in args.models:\n            name, path = spec.split(\":\", 1)\n            model_specs[name] = path\n    else:\n        model_specs = DEFAULT_MODELS\n\n    prompts = get_gsm8k_prompts(n=args.n_prompts)\n    logger.info(f\"Loaded {len(prompts)} GSM8K prompts\")\n\n    all_results = {}\n    for name, path in model_specs.items():\n        logger.info(f\"=== Benchmarking: {name} ({path}) ===\")\n        if not os.path.exists(path):\n            logger.warning(f\"Model path not found: {path}, skipping\")\n            continue\n\n        tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)\n        if tokenizer.pad_token is None:\n            tokenizer.pad_token = tokenizer.eos_token\n\n        # Use load_pruned_model for pruned models, standard loader for original\n        if \"pruned\" in name or \"pruned\" in path:\n            model = load_pruned_model(path, device_map=\"auto\", torch_dtype=torch_dtype)\n        else:\n            model = AutoModelForCausalLM.from_pretrained(\n                path, torch_dtype=torch_dtype, device_map=\"auto\", trust_remote_code=True\n            )\n\n        n_params = sum(p.numel() for p in model.parameters())\n        logger.info(f\"  Parameters: {n_params:,}\")\n\n        results = measure_model(model, tokenizer, prompts, max_new_tokens=args.max_new_tokens)\n        results[\"n_parameters\"] = n_params\n        results[\"model_path\"] = path\n        all_results[name] = results\n\n        logger.info(f\"  tokens/sec: {results['tokens_per_sec']:.1f}\")\n        logger.info(f\"  first_token_latency (mean): {results['first_token_latency_ms']['mean']:.1f}ms\")\n\n        # Free GPU memory\n        del model\n        torch.cuda.empty_cache()\n\n    # Compute speedups relative to original\n    if \"original\" in all_results:\n        orig_tps = all_results[\"original\"][\"tokens_per_sec\"]\n        for name, res in all_results.items():\n            res[\"speedup_vs_original\"] = round(res[\"tokens_per_sec\"] / orig_tps, 3) if orig_tps > 0 else None\n\n    os.makedirs(os.path.dirname(args.output_path), exist_ok=True)\n    with open(args.output_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(f\"Results saved to {args.output_path}\")\n\n    # Print summary table\n    print(\"\\n\" + \"=\" * 70)\n    print(f\"{'Model':<25} {'Params':>12} {'tok/s':>10} {'Speedup':>8} {'1st tok ms':>11}\")\n    print(\"-\" * 70)\n    for name, res in all_results.items():\n        speedup = res.get(\"speedup_vs_original\", \"\")\n        speedup_str = f\"{speedup:.2f}x\" if speedup else \"—\"\n        print(f\"{name:<25} {res['n_parameters']:>12,} {res['tokens_per_sec']:>10.1f} \"\n              f\"{speedup_str:>8} {res['first_token_latency_ms']['mean']:>11.1f}\")\n    print(\"=\" * 70)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"DONE: measure_inference_speed.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "cat > /root/recovery_aware_struct_prune/src/measure_inference_speed.py << 'PYEOF'\n\"\"\"\nInference speed benchmark: original vs RASP-pruned vs standard-pruned models.\n\nMeasures tokens/sec, first-token latency, per-token latency, and batch throughput\non GSM8K prompts. Reports wall-clock speedup from structured pruning.\n\nInput:  model paths (original, pruned_rasp_20, pruned_standard_20)\nOutput: JSON results to --output_path\n\nUsage:\n  CUDA_VISIBLE_DEVICES=0 python src/measure_inference_speed.py\n  # GPU time estimate: ~20 min (3 models x warmup + 50 prompts)\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport time\n\nimport numpy as np\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\nfrom model_utils import load_pruned_model\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\nDEFAULT_MODELS = {\n    \"original\": \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\",\n    \"pruned_rasp_20\": \"/root/autodl-tmp/pruned_rasp_20\",\n    \"pruned_standard_20\": \"/root/autodl-tmp/pruned_standard_20\",\n}\n\nOUTPUT_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\n\ndef get_gsm8k_prompts(n: int = 50, seed: int = 42):\n    \"\"\"Load first n GSM8K test questions as chat-formatted prompts.\"\"\"\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    ds = ds.shuffle(seed=seed).select(range(min(n, len(ds))))\n    prompts = []\n    for ex in ds:\n        prompts.append([{\"role\": \"user\", \"content\": ex[\"question\"]}])\n    return prompts\n\n\ndef measure_model(model, tokenizer, prompts, max_new_tokens=256, n_warmup=3):\n    \"\"\"Measure generation speed for a single model.\"\"\"\n    device = next(model.parameters()).device\n    model.eval()\n\n    # Warmup\n    logger.info(f\"  Warming up ({n_warmup} forward passes)...\")\n    for i in range(n_warmup):\n        text = tokenizer.apply_chat_template(prompts[i], tokenize=False, add_generation_prompt=True)\n        inputs = tokenizer(text, return_tensors=\"pt\").to(device)\n        with torch.no_grad():\n            model.generate(**inputs, max_new_tokens=32, do_sample=False)\n    torch.cuda.synchronize()\n\n    first_token_latencies = []\n    per_token_latencies = []\n    total_tokens = 0\n    total_time = 0.0\n\n    logger.info(f\"  Benchmarking {len(prompts)} prompts...\")\n    for prompt in prompts:\n        text = tokenizer.apply_chat_template(prompt, tokenize=False, add_generation_prompt=True)\n        inputs = tokenizer(text, return_tensors=\"pt\").to(device)\n        input_len = inputs[\"input_ids\"].shape[1]\n\n        torch.cuda.synchronize()\n\n        # First token latency (prefill)\n        t0 = time.perf_counter()\n        with torch.no_grad():\n            out_1 = model.generate(**inputs, max_new_tokens=1, do_sample=False)\n        torch.cuda.synchronize()\n        t1 = time.perf_counter()\n        first_token_latencies.append(t1 - t0)\n\n        # Full generation\n        torch.cuda.synchronize()\n        t0 = time.perf_counter()\n        with torch.no_grad():\n            out_full = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)\n        torch.cuda.synchronize()\n        t1 = time.perf_counter()\n\n        gen_tokens = out_full.shape[1] - input_len\n        gen_time = t1 - t0\n\n        if gen_tokens > 1:\n            per_token_latencies.append(gen_time / gen_tokens)\n\n        total_tokens += gen_tokens\n        total_time += gen_time\n\n    results = {\n        \"tokens_per_sec\": total_tokens / total_time if total_time > 0 else 0,\n        \"total_tokens\": int(total_tokens),\n        \"total_time_sec\": round(total_time, 3),\n        \"first_token_latency_ms\": {\n            \"mean\": round(np.mean(first_token_latencies) * 1000, 2),\n            \"median\": round(np.median(first_token_latencies) * 1000, 2),\n            \"p95\": round(np.percentile(first_token_latencies, 95) * 1000, 2),\n        },\n        \"per_token_latency_ms\": {\n            \"mean\": round(np.mean(per_token_latencies) * 1000, 2),\n            \"median\": round(np.median(per_token_latencies) * 1000, 2),\n            \"p95\": round(np.percentile(per_token_latencies, 95) * 1000, 2),\n        } if per_token_latencies else {},\n        \"max_new_tokens\": max_new_tokens,\n        \"n_prompts\": len(prompts),\n    }\n    return results\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Inference speed benchmark\")\n    parser.add_argument(\"--models\", type=str, nargs=\"*\", default=None,\n                        help=\"name:path pairs, e.g. original:/path/to/model\")\n    parser.add_argument(\"--n_prompts\", type=int, default=50)\n    parser.add_argument(\"--max_new_tokens\", type=int, default=256)\n    parser.add_argument(\"--output_path\", type=str,\n                        default=os.path.join(OUTPUT_DIR, \"inference_speed_benchmark.json\"))\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    torch_dtype = dtype_map[args.dtype]\n\n    # Parse model specs\n    model_specs = {}\n    if args.models:\n        for spec in args.models:\n            name, path = spec.split(\":\", 1)\n            model_specs[name] = path\n    else:\n        model_specs = DEFAULT_MODELS\n\n    prompts = get_gsm8k_prompts(n=args.n_prompts)\n    logger.info(f\"Loaded {len(prompts)} GSM8K prompts\")\n\n    all_results = {}\n    for name, path in model_specs.items():\n        logger.info(f\"=== Benchmarking: {name} ({path}) ===\")\n        if not os.path.exists(path):\n            logger.warning(f\"Model path not found: {path}, skipping\")\n            continue\n\n        tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)\n        if tokenizer.pad_token is None:\n            tokenizer.pad_token = tokenizer.eos_token\n\n        # Use load_pruned_model for pruned models, standard loader for original\n        if \"pruned\" in name or \"pruned\" in path:\n            model = load_pruned_model(path, device_map=\"auto\", torch_dtype=torch_dtype)\n        else:\n            model = AutoModelForCausalLM.from_pretrained(\n                path, torch_dtype=torch_dtype, device_map=\"auto\", trust_remote_code=True\n            )\n\n        n_params = sum(p.numel() for p in model.parameters())\n        logger.info(f\"  Parameters: {n_params:,}\")\n\n        results = measure_model(model, tokenizer, prompts, max_new_tokens=args.max_new_tokens)\n        results[\"n_parameters\"] = n_params\n        results[\"model_path\"] = path\n        all_results[name] = results\n\n        logger.info(f\"  tokens/sec: {results['tokens_per_sec']:.1f}\")\n        logger.info(f\"  first_token_latency (mean): {results['first_token_latency_ms']['mean']:.1f}ms\")\n\n        # Free GPU memory\n        del model\n        torch.cuda.empty_cache()\n\n    # Compute speedups relative to original\n    if \"original\" in all_results:\n        orig_tps = all_results[\"original\"][\"tokens_per_sec\"]\n        for name, res in all_results.items():\n            res[\"speedup_vs_original\"] = round(res[\"tokens_per_sec\"] / orig_tps, 3) if orig_tps > 0 else None\n\n    os.makedirs(os.path.dirname(args.output_path), exist_ok=True)\n    with open(args.output_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(f\"Results saved to {args.output_path}\")\n\n    # Print summary table\n    print(\"\\n\" + \"=\" * 70)\n    print(f\"{'Model':<25} {'Params':>12} {'tok/s':>10} {'Speedup':>8} {'1st tok ms':>11}\")\n    print(\"-\" * 70)\n    for name, res in all_results.items():\n        speedup = res.get(\"speedup_vs_original\", \"\")\n        speedup_str = f\"{speedup:.2f}x\" if speedup else \"—\"\n        print(f\"{name:<25} {res['n_parameters']:>12,} {res['tokens_per_sec']:>10.1f} \"\n              f\"{speedup_str:>8} {res['first_token_latency_ms']['mean']:>11.1f}\")\n    print(\"=\" * 70)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"DONE: measure_inference_speed.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T03:14:14.828959+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE: measure_inference_speed.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T03:14:14.829114+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "cat > /root/recovery_aware_struct_prune/src/run_unstructured_baseline.py << 'PYEOF'\n\"\"\"\nUnstructured magnitude pruning baseline at 20% sparsity.\n\nZeros out the smallest-magnitude weights globally across all linear layers,\nthen evaluates on GSM8K. Compares against RASP structured pruning at the\nsame parameter reduction to demonstrate structured pruning advantages.\n\nInput:  original model path\nOutput: GSM8K eval JSON + pruning stats JSON\n\nUsage:\n  CUDA_VISIBLE_DEVICES=0 python src/run_unstructured_baseline.py\n  # GPU time estimate: ~40 min (pruning ~5min + eval ~35min on full GSM8K)\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\n\nimport numpy as np\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nfrom eval_gsm8k import evaluate, set_seed\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\nDEFAULT_MODEL = \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\"\nOUTPUT_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\n\ndef apply_magnitude_pruning(model, sparsity: float):\n    \"\"\"Apply global unstructured magnitude pruning by zeroing smallest weights.\n\n    Returns pruning statistics dict.\n    \"\"\"\n    all_weights = []\n    param_info = []\n\n    for name, param in model.named_parameters():\n        if param.dim() < 2:\n            continue\n        if any(skip in name for skip in [\"embed\", \"lm_head\", \"norm\"]):\n            continue\n        all_weights.append(param.data.abs().flatten())\n        param_info.append((name, param.data.shape, param.data.numel()))\n\n    all_magnitudes = torch.cat(all_weights)\n    total_prunable = all_magnitudes.numel()\n    n_prune = int(total_prunable * sparsity)\n\n    threshold = torch.kthvalue(all_magnitudes, n_prune).values.item()\n    logger.info(f\"Magnitude threshold for {sparsity:.0%} sparsity: {threshold:.6f}\")\n\n    total_zeroed = 0\n    layer_stats = []\n    for name, param in model.named_parameters():\n        if param.dim() < 2:\n            continue\n        if any(skip in name for skip in [\"embed\", \"lm_head\", \"norm\"]):\n            continue\n        mask = param.data.abs() <= threshold\n        n_zeroed = mask.sum().item()\n        total_zeroed += n_zeroed\n        param.data[mask] = 0.0\n        layer_stats.append({\n            \"name\": name,\n            \"shape\": list(param.data.shape),\n            \"total\": param.data.numel(),\n            \"zeroed\": n_zeroed,\n            \"sparsity\": n_zeroed / param.data.numel(),\n        })\n\n    actual_sparsity = total_zeroed / total_prunable\n    logger.info(f\"Pruned {total_zeroed:,} / {total_prunable:,} = {actual_sparsity:.2%} actual sparsity\")\n\n    return {\n        \"target_sparsity\": sparsity,\n        \"actual_sparsity\": actual_sparsity,\n        \"threshold\": threshold,\n        \"total_prunable_params\": total_prunable,\n        \"total_zeroed\": total_zeroed,\n        \"n_layers_pruned\": len(layer_stats),\n        \"layer_stats\": layer_stats,\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Unstructured magnitude pruning baseline\")\n    parser.add_argument(\"--model_path\", type=str, default=DEFAULT_MODEL)\n    parser.add_argument(\"--sparsity\", type=float, default=0.20)\n    parser.add_argument(\"--output_dir\", type=str, default=OUTPUT_DIR)\n    parser.add_argument(\"--max_new_tokens\", type=int, default=4096)\n    parser.add_argument(\"--max_samples\", type=int, default=None,\n                        help=\"Limit GSM8K samples (None=full test set)\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    torch_dtype = dtype_map[args.dtype]\n\n    sparsity_tag = f\"{int(args.sparsity * 100)}\"\n\n    # Load model\n    logger.info(f\"Loading model from {args.model_path}\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path, torch_dtype=torch_dtype, device_map=\"auto\", trust_remote_code=True\n    )\n\n    total_params = sum(p.numel() for p in model.parameters())\n    logger.info(f\"Model loaded: {total_params:,} parameters\")\n\n    # Apply unstructured pruning\n    logger.info(f\"Applying magnitude pruning at {args.sparsity:.0%} sparsity...\")\n    prune_stats = apply_magnitude_pruning(model, args.sparsity)\n\n    # Validate forward pass\n    device = next(model.parameters()).device\n    with torch.no_grad():\n        dummy = torch.randint(0, 1000, (1, 32)).to(device)\n        output = model(dummy)\n        logger.info(f\"Forward pass OK: {output.logits.shape}\")\n\n    # Save pruning stats (without layer_stats to keep it small)\n    stats_path = os.path.join(args.output_dir, f\"unstructured_prune_stats_{sparsity_tag}.json\")\n    stats_summary = {k: v for k, v in prune_stats.items() if k != \"layer_stats\"}\n    with open(stats_path, \"w\") as f:\n        json.dump(stats_summary, f, indent=2)\n    logger.info(f\"Pruning stats saved to {stats_path}\")\n\n    # Evaluate on GSM8K\n    logger.info(\"Loading GSM8K test set...\")\n    dataset = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    if args.max_samples is not None:\n        dataset = dataset.shuffle(seed=args.seed).select(range(min(args.max_samples, len(dataset))))\n    logger.info(f\"Evaluating on {len(dataset)} samples\")\n\n    accuracy, n_correct, n_total, results, eos_stats = evaluate(\n        model, tokenizer, dataset,\n        max_new_tokens=args.max_new_tokens,\n    )\n\n    logger.info(f\"GSM8K Accuracy: {accuracy:.4f} ({n_correct}/{n_total})\")\n\n    eval_output = {\n        \"method\": \"unstructured_magnitude\",\n        \"sparsity_target\": args.sparsity,\n        \"sparsity_actual\": prune_stats[\"actual_sparsity\"],\n        \"model_path\": args.model_path,\n        \"accuracy\": accuracy,\n        \"n_correct\": n_correct,\n        \"n_total\": n_total,\n        \"eos_stats\": eos_stats,\n        \"total_params\": total_params,\n        \"zeroed_params\": prune_stats[\"total_zeroed\"],\n        \"examples\": results,\n    }\n    eval_path = os.path.join(args.output_dir, f\"eval_unstructured_{sparsity_tag}.json\")\n    with open(eval_path, \"w\") as f:\n        json.dump(eval_output, f, indent=2, ensure_ascii=False)\n    logger.info(f\"Eval results saved to {eval_path}\")\n\n    # Print comparison hint\n    print(\"\\n\" + \"=\" * 60)\n    print(f\"Unstructured Magnitude Pruning @ {prune_stats['actual_sparsity']:.2%}\")\n    print(f\"GSM8K Accuracy: {accuracy:.4f} ({n_correct}/{n_total})\")\n    print(f\"Compare with RASP structured pruning eval results in:\")\n    print(f\"  results/alpha_ablation/ or eval_results/full/\")\n    print(\"=\" * 60)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"DONE: run_unstructured_baseline.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "cat > /root/recovery_aware_struct_prune/src/run_unstructured_baseline.py << 'PYEOF'\n\"\"\"\nUnstructured magnitude pruning baseline at 20% sparsity.\n\nZeros out the smallest-magnitude weights globally across all linear layers,\nthen evaluates on GSM8K. Compares against RASP structured pruning at the\nsame parameter reduction to demonstrate structured pruning advantages.\n\nInput:  original model path\nOutput: GSM8K eval JSON + pruning stats JSON\n\nUsage:\n  CUDA_VISIBLE_DEVICES=0 python src/run_unstructured_baseline.py\n  # GPU time estimate: ~40 min (pruning ~5min + eval ~35min on full GSM8K)\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\n\nimport numpy as np\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nfrom eval_gsm8k import evaluate, set_seed\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\nDEFAULT_MODEL = \"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\"\nOUTPUT_DIR = \"/root/autodl-tmp/recovery_aware_struct_prune/results\"\n\n\ndef apply_magnitude_pruning(model, sparsity: float):\n    \"\"\"Apply global unstructured magnitude pruning by zeroing smallest weights.\n\n    Returns pruning statistics dict.\n    \"\"\"\n    all_weights = []\n    param_info = []\n\n    for name, param in model.named_parameters():\n        if param.dim() < 2:\n            continue\n        if any(skip in name for skip in [\"embed\", \"lm_head\", \"norm\"]):\n            continue\n        all_weights.append(param.data.abs().flatten())\n        param_info.append((name, param.data.shape, param.data.numel()))\n\n    all_magnitudes = torch.cat(all_weights)\n    total_prunable = all_magnitudes.numel()\n    n_prune = int(total_prunable * sparsity)\n\n    threshold = torch.kthvalue(all_magnitudes, n_prune).values.item()\n    logger.info(f\"Magnitude threshold for {sparsity:.0%} sparsity: {threshold:.6f}\")\n\n    total_zeroed = 0\n    layer_stats = []\n    for name, param in model.named_parameters():\n        if param.dim() < 2:\n            continue\n        if any(skip in name for skip in [\"embed\", \"lm_head\", \"norm\"]):\n            continue\n        mask = param.data.abs() <= threshold\n        n_zeroed = mask.sum().item()\n        total_zeroed += n_zeroed\n        param.data[mask] = 0.0\n        layer_stats.append({\n            \"name\": name,\n            \"shape\": list(param.data.shape),\n            \"total\": param.data.numel(),\n            \"zeroed\": n_zeroed,\n            \"sparsity\": n_zeroed / param.data.numel(),\n        })\n\n    actual_sparsity = total_zeroed / total_prunable\n    logger.info(f\"Pruned {total_zeroed:,} / {total_prunable:,} = {actual_sparsity:.2%} actual sparsity\")\n\n    return {\n        \"target_sparsity\": sparsity,\n        \"actual_sparsity\": actual_sparsity,\n        \"threshold\": threshold,\n        \"total_prunable_params\": total_prunable,\n        \"total_zeroed\": total_zeroed,\n        \"n_layers_pruned\": len(layer_stats),\n        \"layer_stats\": layer_stats,\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Unstructured magnitude pruning baseline\")\n    parser.add_argument(\"--model_path\", type=str, default=DEFAULT_MODEL)\n    parser.add_argument(\"--sparsity\", type=float, default=0.20)\n    parser.add_argument(\"--output_dir\", type=str, default=OUTPUT_DIR)\n    parser.add_argument(\"--max_new_tokens\", type=int, default=4096)\n    parser.add_argument(\"--max_samples\", type=int, default=None,\n                        help=\"Limit GSM8K samples (None=full test set)\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    torch_dtype = dtype_map[args.dtype]\n\n    sparsity_tag = f\"{int(args.sparsity * 100)}\"\n\n    # Load model\n    logger.info(f\"Loading model from {args.model_path}\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path, torch_dtype=torch_dtype, device_map=\"auto\", trust_remote_code=True\n    )\n\n    total_params = sum(p.numel() for p in model.parameters())\n    logger.info(f\"Model loaded: {total_params:,} parameters\")\n\n    # Apply unstructured pruning\n    logger.info(f\"Applying magnitude pruning at {args.sparsity:.0%} sparsity...\")\n    prune_stats = apply_magnitude_pruning(model, args.sparsity)\n\n    # Validate forward pass\n    device = next(model.parameters()).device\n    with torch.no_grad():\n        dummy = torch.randint(0, 1000, (1, 32)).to(device)\n        output = model(dummy)\n        logger.info(f\"Forward pass OK: {output.logits.shape}\")\n\n    # Save pruning stats (without layer_stats to keep it small)\n    stats_path = os.path.join(args.output_dir, f\"unstructured_prune_stats_{sparsity_tag}.json\")\n    stats_summary = {k: v for k, v in prune_stats.items() if k != \"layer_stats\"}\n    with open(stats_path, \"w\") as f:\n        json.dump(stats_summary, f, indent=2)\n    logger.info(f\"Pruning stats saved to {stats_path}\")\n\n    # Evaluate on GSM8K\n    logger.info(\"Loading GSM8K test set...\")\n    dataset = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    if args.max_samples is not None:\n        dataset = dataset.shuffle(seed=args.seed).select(range(min(args.max_samples, len(dataset))))\n    logger.info(f\"Evaluating on {len(dataset)} samples\")\n\n    accuracy, n_correct, n_total, results, eos_stats = evaluate(\n        model, tokenizer, dataset,\n        max_new_tokens=args.max_new_tokens,\n    )\n\n    logger.info(f\"GSM8K Accuracy: {accuracy:.4f} ({n_correct}/{n_total})\")\n\n    eval_output = {\n        \"method\": \"unstructured_magnitude\",\n        \"sparsity_target\": args.sparsity,\n        \"sparsity_actual\": prune_stats[\"actual_sparsity\"],\n        \"model_path\": args.model_path,\n        \"accuracy\": accuracy,\n        \"n_correct\": n_correct,\n        \"n_total\": n_total,\n        \"eos_stats\": eos_stats,\n        \"total_params\": total_params,\n        \"zeroed_params\": prune_stats[\"total_zeroed\"],\n        \"examples\": results,\n    }\n    eval_path = os.path.join(args.output_dir, f\"eval_unstructured_{sparsity_tag}.json\")\n    with open(eval_path, \"w\") as f:\n        json.dump(eval_output, f, indent=2, ensure_ascii=False)\n    logger.info(f\"Eval results saved to {eval_path}\")\n\n    # Print comparison hint\n    print(\"\\n\" + \"=\" * 60)\n    print(f\"Unstructured Magnitude Pruning @ {prune_stats['actual_sparsity']:.2%}\")\n    print(f\"GSM8K Accuracy: {accuracy:.4f} ({n_correct}/{n_total})\")\n    print(f\"Compare with RASP structured pruning eval results in:\")\n    print(f\"  results/alpha_ablation/ or eval_results/full/\")\n    print(\"=\" * 60)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"DONE: run_unstructured_baseline.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T03:14:14.829323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE: run_unstructured_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T03:14:14.829469+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python -m py_compile src/measure_inference_speed.py && echo \"OK: measure_inference_speed.py\" && python -m py_compile src/run_unstructured_baseline.py && echo \"OK: run_unstructured_baseline.py\" && bash -n src/run_alpha_ablation.sh && echo \"OK: run_alpha_ablation.sh\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python -m py_compile src/measure_inference_speed.py && echo \"OK: measure_inference_speed.py\" && python -m py_compile src/run_unstructured_baseline.py && echo \"OK: run_unstructured_baseline.py\" && bash -n src/run_alpha_ablation.sh && echo \"OK: run_alpha_ablation.sh\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T03:14:14.829596+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: measure_inference_speed.py\\nOK: run_unstructured_baseline.py\\nOK: run_alpha_ablation.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_dream-action-prep_20260515T031103",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-15T03:14:14.829786+00:00_
+
+全部语法检查通过。
+
+---
+
+## 创建状态汇总
+
+| # | 脚本 | 路径 | 运行命令 | 预估 GPU 时间 |
+|---|------|------|----------|--------------|
+| **plan_015** | `run_alpha_ablation.sh` | `src/run_alpha_ablation.sh` | `CUDA_VISIBLE_DEVICES=0,1 bash src/run_alpha_ablation.sh` | ~3h（5次剪枝 ~15min/次 + 5次全量 GSM8K eval ~25min/次，双 GPU 并行） |
+| **plan_016** | `measure_inference_speed.py` | `src/measure_inference_speed.py` | `CUDA_VISIBLE_DEVICES=0 python src/measure_inference_speed.py` | ~20min（3 模型 × 50 prompts × 256 tokens） |
+| **plan_017** | `run_unstructured_baseline.py` | `src/run_unstructured_baseline.py` | `CUDA_VISIBLE_DEVICES=0 python src/run_unstructured_baseline.py` | ~40min（剪枝 5min + 全量 GSM8K eval 35min） |
+
+### 关键设计决策
+
+- **plan_015**: `--alpha` 已在 `prune.py:166` 支持，无需改代码。α=0.0 时 `(1-F(h))^0=1`，退化为纯 importance 排序。脚本按奇偶分配到 GPU0/GPU1 并行。剪枝后模型写 `/root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation/`（遵守 C002 磁盘约束）。
+- **plan_016**: `max_new_tokens=256`（速度测试不需完整推理链）。支持 `--models name:path` 自定义模型列表。自动计算相对 original 的 speedup。
+- **plan_017**: 全局 magnitude pruning，跳过 embedding/lm_head/norm 层。直接在内存中 zero-out 不保存模型（省磁盘），就地 eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_dream-action-prep_20260515T031103"
+}
+```
+
+</details>
+
+---

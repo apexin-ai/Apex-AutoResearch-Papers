@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "1e34dc0fdf54e90a94b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code fix prune and rerun v3",
+  "task_key": "worker_code_fix_prune_and_rerun_v3_20260514T140123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_prune_and_rerun_v3_20260514T140123.log",
+    "occurrence": 1,
+    "bytes": 2461151,
+    "sha256": "96dbe7e470cb62145551df8093024848d1687b8802117a388757905a092b7e2f"
+  },
+  "statistics": {
+    "messages": 915,
+    "user_turns": 2,
+    "tool_calls": 359,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 180,
+      "tool_call": 359,
+      "tool_result": 359,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 348,
+      "chunks": [
+        {
+          "path": "1e34dc0fdf54e90a94b9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1e34dc0fdf54e90a94b9-part-0002.json",
+          "message_count": 168
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "1e34dc0fdf54e90a94b9-part-0002.json",
+          "message_count": 12
+        },
+        {
+          "path": "1e34dc0fdf54e90a94b9-part-0003.json",
+          "message_count": 109
+        },
+        {
+          "path": "1e34dc0fdf54e90a94b9-part-0004.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 368,
+      "chunks": [
+        {
+          "path": "1e34dc0fdf54e90a94b9-part-0004.json",
+          "message_count": 102
+        },
+        {
+          "path": "1e34dc0fdf54e90a94b9-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "1e34dc0fdf54e90a94b9-part-0006.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-prune-and-rerun-v3.md"
+}

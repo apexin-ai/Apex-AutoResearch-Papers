@@ -1,0 +1,22 @@
+{
+  "exp_id": "eval_humaneval_sft_rasp_20_1p5b_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T11:35:50.597Z",
+    "updated_at": "2026-05-19T18:03:14.011Z",
+    "hypothesis": "1.5B SFT RASP HumanEval pass@1 @2048. Cross-scale validation. 7B GRPO RASP: 10.98%. RASP pruning expected between Standard and CKA-only on code generation at 1.5B scale.",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-19T17:41:24.131Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-19T18:03:14.416917+00:00",
+  "trigger": "update_registry"
+}

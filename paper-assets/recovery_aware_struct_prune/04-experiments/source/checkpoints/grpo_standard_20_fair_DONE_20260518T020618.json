@@ -1,0 +1,104 @@
+{
+  "exp_id": "grpo_standard_20_fair",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "created_at": "2026-05-18T01:05:44.644Z",
+    "hypothesis": "Fair retrain of GRPO on Standard 20% pruned model using v5 config (same as CKA-only/Random/RASP-fair). Completes D058 confound fix: enables fair 4-way comparison of recovery capacity gradient.",
+    "parent": "grpo_rasp_20_fair",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "sft_standard_20_westd",
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --gpu 0 --max_completion_length 1024 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 1e-6 --max_steps 100 --save_total_limit 3 --save_steps 10 --reward_desert_patience 200 --run_name grpo_standard_20_fair\"",
+      "data_count": 7473,
+      "data_path": "openai/gsm8k (GRPO training)",
+      "eval_data": "N/A (GRPO training, not eval)",
+      "gpu": [
+        "cuda:0"
+      ],
+      "hyperparams": {
+        "beta": 0.01,
+        "format_reward_weight": 0.1,
+        "loss_type": "dapo",
+        "lr": 1e-06,
+        "max_completion_length": 1024,
+        "max_steps": 100,
+        "optim": "adamw_bnb_8bit",
+        "repetition_penalty": 1.15,
+        "reward_desert_patience": 200,
+        "save_steps": 10,
+        "save_total_limit": 3,
+        "temperature": 0.4
+      },
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_20_fair.log",
+      "model_name": "sft_standard_20_westd",
+      "pid": "74224",
+      "seed": 42,
+      "server": "westd-11672",
+      "submitted_at": "2026-05-18T01:05:44.210Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 3631.9,
+      "gpu_hours": 1.01
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-18T02:06:18.410Z",
+    "reproduce": {
+      "finished_at": "2026-05-18T02:00:43.663Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T02:00:50.834061+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "wandb_run_id": "tyv20u2k",
+      "total_steps": 100,
+      "runtime_seconds": 3017,
+      "reward_trajectory": [
+        0.051,
+        0.056,
+        0.067,
+        0.081,
+        0.019,
+        0.043,
+        0.047,
+        0.046,
+        0.031,
+        0.054
+      ],
+      "frac_zero_std_trajectory": [
+        0.5,
+        0.625,
+        0.5,
+        0.5,
+        0.575,
+        0.55,
+        0.575,
+        0.55,
+        0.55,
+        0.55
+      ],
+      "peak_reward": 0.081,
+      "peak_reward_step": 40,
+      "final_reward": 0.054,
+      "final_frac_zero_std": 0.55,
+      "dynamics_pattern": "dip_then_partial_recovery",
+      "dip_step": 50,
+      "dip_reward": 0.019
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair",
+    "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_20_fair.log",
+    "conclusion": "success",
+    "notes": "Standard shows stagnation pattern: reward flat 0.03-0.08 全程无上升趋势, frac_zero_std stuck 0.5-0.55. 比 RASP (permanent collapse to 0.01 reward, frac_zero_std→0.85) 略好但也未恢复. 4-way gradient confirmed: CKA-only (active recovery) > Random (plateau) > Standard (stagnation) > RASP (permanent collapse). D058 fair comparison 完成.",
+    "completed_at": "2026-05-18T02:06:16.075Z"
+  },
+  "timestamp": "2026-05-18T02:06:18.755734+00:00",
+  "trigger": "update_registry"
+}

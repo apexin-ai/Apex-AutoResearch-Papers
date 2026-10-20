@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dffdde68c52a44927cc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "cleanup westb disk",
+  "task_key": "worker_cleanup_westb_disk_20260521T223801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_westb_disk_20260521T223801_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "00f47c547e2399245c1c43875fbb6d18bf7da6b9e2c8d99878dcca4257d468e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理完成\n\n| 操作 | 释放空间 |\n|------|---------|\n| 删 `sft_qwen_math_cka_only_20/`（训练 checkpoint，final 在 `_final`） | ~12G |\n| 删 `sft_standard_20_qwen_math/`（训练 checkpoint，final 在 `_final`） | ~12G |\n| 清理 `__pycache__`、`*.pyc`、空 `tmp_build/` | ~0 |\n| **合计** | **~23G** |\n\n**清理前**: 14G 可用 (95%)  \n**清理后**: 37G 可用 (86%)\n\n目标达成，MATH-500 eval 有足够磁盘空间运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-westb-disk.md"
+}

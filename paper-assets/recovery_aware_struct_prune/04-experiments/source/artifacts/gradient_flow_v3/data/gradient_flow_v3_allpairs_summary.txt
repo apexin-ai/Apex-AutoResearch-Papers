@@ -1,0 +1,22 @@
+CKA-only_vs_Standard: 55/56 significant, avg bootstrap ratio=2.107
+CKA-only_vs_RASP: 56/56 significant, avg bootstrap ratio=1.753
+Standard_vs_RASP: 45/56 significant, avg bootstrap ratio=0.877 (RASP/Standard ~1.28x)
+
+Non-significant layers (Standard vs RASP):
+  layer_18_mlp (p=0.081), layer_19_attn (p=0.122), layer_19_mlp (p=0.122),
+  layer_20_attn (p=0.339), layer_20_mlp (p=0.625), layer_21_attn (p=0.897),
+  layer_21_mlp (p=0.453), layer_22_attn (p=0.450), layer_24_mlp (p=0.054),
+  layer_27_attn (p=0.700), layer_27_mlp (p=0.895)
+
+Mean gradient L2 norms:
+  CKA-only: attn=0.3390, mlp=0.3069, overall=0.3229
+  Standard: attn=0.1152, mlp=0.1083, overall=0.1118
+  RASP:     attn=0.1476, mlp=0.1385, overall=0.1431
+
+Files on westb-23072:
+  statistical_tests.json - full per-layer Wilcoxon + bootstrap CI (43KB)
+  raw_gradient_norms.json - 3 methods x 56 layers x 200 samples (707KB)
+  gradient_flow_stats.json - per-layer mean/std/min/max
+  gradient_flow_comparison.{pdf,png} - bar chart with significance
+  gradient_ratio_bootstrap.{pdf,png} - bootstrap CI ratio plot
+  gradient_stability_comparison.{pdf,png} - CV line plot

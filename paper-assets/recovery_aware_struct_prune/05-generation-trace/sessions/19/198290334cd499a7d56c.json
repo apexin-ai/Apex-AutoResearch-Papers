@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "198290334cd499a7d56c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code cka reliability",
+  "task_key": "worker_code_cka-reliability_20260515T024807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cka-reliability_20260515T024807.log",
+    "occurrence": 1,
+    "bytes": 611007,
+    "sha256": "24a9d86c0bc86bf5d6a92f9cb59611a25b7df0132d148aebfeef2d48232e7ade"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 2,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 33,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 56,
+      "user": 2,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "198290334cd499a7d56c-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 147,
+      "chunks": [
+        {
+          "path": "198290334cd499a7d56c-part-0001.json",
+          "message_count": 147
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "198290334cd499a7d56c-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "198290334cd499a7d56c-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cka-reliability.md"
+}

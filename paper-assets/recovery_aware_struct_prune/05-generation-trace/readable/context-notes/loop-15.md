@@ -1,0 +1,83 @@
+# director / loop_15.md
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_15.md`
+- **Structured JSON:** [`4a7c788b3342a8f6816d.json`](../../sessions/4a/4a7c788b3342a8f6816d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 15
+reason: max_messages
+updated: '2026-05-21T07:47:36+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd cuda:0-3（4张）、westb cuda:0-1（2张），共6张。严禁使用其他卡
+- westd 磁盘紧张（~32GB free），任何新实验前先 `df -h` 确认，禁止存大 checkpoint 的 optimizer.pt
+- westb 磁盘更紧（~14GB free），同理
+- nohup 命令必须用 `nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...'` wrapper，直接 `nohup python` 找不到 conda 环境
+- RASP seed456 模型已损坏（磁盘满导致 optimizer.pt 截断），不可 eval，不要再尝试
+- EMNLP 2026 ARR DDL: May 25（~3天）
+
+### 2. 🖥️ 基础设施快照
+- **westd-29022**: `connect.westd.seetacloud.com` / 4× RTX PRO 6000 / `/root/recovery_aware_struct_prune`
+  - Python: `/root/miniconda3/bin/python`，conda base 环境
+  - 模型路径: `/root/runs/recovery_aware_struct_prune/` 下各实验子目录
+  - eval 日志: 同目录下 `eval_*.log`
+- **westb-23072**: `connect.westb.seetacloud.com` / 2× RTX PRO 6000 / `/root/recovery_aware_struct_prune`
+  - 同样 conda base 环境
+  - Standard 25% GRPO 模型在 `/root/runs/recovery_aware_struct_prune/grpo_standard_25_westb/`
+- 论文源码（编译用）: 本地 `projects/recovery_aware_struct_prune/docs/paper/`
+- Paper Agent 工作副本: 本地 `projects/recovery_aware_struct_prune/paper/`
+- 无 W&B，无 Git remote
+
+### 3. 📊 当前状态
+上一轮 session 最后派了 Agent 收割 eval 结果，但 Agent idle 16h 未执行（触发本次 RESET）。
+
+**所有 eval 应已完成**（启动后 16+ 小时），结果在 server 日志中待收割：
+
+| eval | server | log 路径 | 最后已知 interim |
+|------|--------|----------|-----------------|
+| eval_gsm8k_grpo_cka_only_25_v3 | westd:0 | `eval_gsm8k_grpo_cka_only_25_v3.log` | 59.65% @89% done |
+| eval_gsm8k_sft_cka_only_25 | westd:1 | `eval_gsm8k_sft_cka_only_25.log` | 58.80% @22% done |
+| eval_gsm8k_sft_random_20 | westd:2 | `eval_gsm8k_sft_random_20.log` | 51.40% @40% done |
+| eval_gsm8k_grpo_standard_25 | westb:1 | `eval_gsm8k_grpo_standard_25.log` | 52.50% @16% done |
+| eval_math500_sft_standard_25_v2 | westb:0 | `eval_math500_sft_standard_25_v2.log` | N/A @59% done |
+
+**还缺的数据点**: eval_gsm8k_sft_standard_25（SFT Standard 25% GSM8K baseline），未确认 SFT 模型在哪台服务器。
+
+registry 里可能有多个 stale RUNNING 条目需要清理（上一轮有 ghost entry 问题）。
+
+### 4. 📋 待办
+- **BOOT 后第一件事** → 派 Agent `tail` 所有 5 个 eval log 收割最终 accuracy，更新 registry
+- CKA-only 25% GSM8K 确认 ~59-60% → 与 Standard 25% ~52% 对比，gap ~+7pp，更新论文 cross-sparsity 表
+- 所有 25% 数据就位 → 派 Paper Agent patch Table（15%/20%/25% 三行完整）
+- Paper patch 完成 → `submit_paper_to_review` Round 4
+- westd cuda:3 一直空闲 → 检查是否有 SFT Standard 25% 模型可 eval，或分配其他任务
+- 论文更新后 → 向用户报告完整 cross-sparsity 结果 + Round 4 提交计划（用户上次明确要求"后续的计划和我说一下"，尚未完整回复）
+
+### 5. 🎯 战略上下文
+- **核心结论**: Pruning criterion shapes post-RLVR recovery capacity，CKA-only >> Standard >> Random >> RASP
+- **已入论文的硬数据**: 15% 3-seed (+7.20pp, p<0.001)、20% 3-seed (+4.55pp, p=0.0009)，这是论文骨架
+- **25% 是补强不是骨架**: 单 seed，用于展示 cross-sparsity 趋势。Standard 25% GRPO 完全 collapse（reward 0.008-0.0125）是强证据
+- **Round 3 审稿 3.0/5，34 issue 全 resolved**，Reviewer 评估加入 25% 数据后可达 3.5，有望摸 4.0
+- **易错点**: (1) 不要混淆 paper/ 和 docs/paper/ 两个目录——docs/paper/ 是编译源，paper/ 是 Paper Agent 工作副本，修改需双向同步 (2) Registry 状态经常与实际不符（cron 误判、ghost entry），任何状态断言前先 `tail` 实际日志确认 (3) 用户在 A 群等"后续计划"的回复，收割完结果后务必 `director_reply_to_user`
+- **Decision chain**: D087 否决 claim 升级保持 analysis paper，D090 保留 3-seed mean，D092/D093 确认 15% 数据 + post-15% 优先级
+
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04501be862ad2bbf09cb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 grpo standard 20 fair v2",
+  "task_key": "worker_diagnose_eval_math500_grpo_standard_20_fair_v2_20260519T013818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_grpo_standard_20_fair_v2_20260519T013818_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "afb81ea34a32449b68a70e2ce3d0a4780832258bdf5e416cee6c1d75137e0759"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n**进程消失原因：正常结束，sentinel 未写入。**\n\n日志最后一行明确显示评估于 `2026-05-19 09:35:46` 正常完成全部 500 题，结果已保存。tmux session 在脚本结束后自动退出，但脚本没有写 `_fair_v2` 对应的 sentinel 文件（`/tmp/agent-ml-exit/` 下只有旧的 `grpo_standard_20_fair.exit`，无 `v2` 版本）。\n\n**结果：**\n- **MATH-500 Accuracy: 26.40% (132/500)**, 置信区间 ±1.97%\n- 总耗时约 7 小时 6 分钟\n- 无 OOM、无 crash、无异常错误\n\n问题仅是启动脚本缺少写 v2 sentinel 的逻辑，Cron 因找不到 sentinel 而误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-grpo-standard-20-fair-v2.md"
+}

@@ -1,0 +1,59 @@
+{
+  "exp_id": "sft_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:37:33.162Z",
+    "updated_at": "2026-05-15T00:36:44.657Z",
+    "spec": {
+      "command": "python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --num_train_epochs 2 --learning_rate 2e-5",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "249577",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_rasp_20.log",
+      "submitted_at": "2026-05-14T23:47:23.413Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "pruned_rasp_20",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20",
+      "wall_clock_seconds": 2961.2,
+      "gpu_hours": 0.82
+    },
+    "hypothesis": "D013 Stage 1: SFT warmup on RASP-pruned model (20%, 29% GSM8K) to restore EOS generation ability before GRPO Stage 2.",
+    "reproduce": {
+      "finished_at": "2026-05-15T00:28:21.036Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T00:28:21.234043+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "notes": "SFT warmup SUCCESS. EOS恢复100% (5/5测试). Loss 1.86→0.64, token_accuracy 83%. 平均生成77 tokens, 无重复循环, 遵循GSM8K格式. 训练时间37min, 1870 steps (2 epochs). Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/",
+    "metrics": {
+      "train_loss_final": 0.64,
+      "train_loss_initial": 1.86,
+      "token_accuracy": 0.83,
+      "eos_rate": 1,
+      "avg_gen_length": 77,
+      "total_steps": 1870,
+      "train_time_min": 37
+    },
+    "completed_at": "2026-05-15T00:36:44.657Z"
+  },
+  "timestamp": "2026-05-15T00:36:44.684339+00:00",
+  "trigger": "update_registry"
+}

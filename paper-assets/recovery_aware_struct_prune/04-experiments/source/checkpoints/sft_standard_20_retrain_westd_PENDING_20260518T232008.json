@@ -1,0 +1,28 @@
+{
+  "exp_id": "sft_standard_20_retrain_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:40:50.567Z",
+    "updated_at": "2026-05-18T23:20:08.490Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --gpu 2\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "34341",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_standard_20_retrain_westd.log",
+      "submitted_at": "2026-05-18T22:40:50.078Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Retrain SFT Standard 20% on westd from pruned_standard_20. Original sft_standard_20 model lost (was on old westd-11672). Needed for eval_math500_sft_standard_20_2048 with correct model."
+  },
+  "timestamp": "2026-05-18T23:20:08.827082+00:00",
+  "trigger": "update_registry"
+}

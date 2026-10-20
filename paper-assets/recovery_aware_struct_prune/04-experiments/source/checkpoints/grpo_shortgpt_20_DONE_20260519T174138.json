@@ -1,0 +1,31 @@
+{
+  "exp_id": "grpo_shortgpt_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:04:46.243Z",
+    "updated_at": "2026-05-19T17:41:37.606Z",
+    "hypothesis": "GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected to show collapse or severe stagnation because removing entire layers destroys more distributed representations needed for RL training.",
+    "parent": "sft_shortgpt_20",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20 --max_steps 100 --seed 42 --run_name grpo_shortgpt_20",
+      "server": "westd-29022",
+      "data_path": "gsm8k",
+      "data_count": 7473,
+      "model_name": "ShortGPT-20%-BI-pruned + SFT",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20",
+      "eval_data": "gsm8k_train (GRPO training, not eval)",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log",
+      "pid": 118669
+    },
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T17:41:37.606Z"
+  },
+  "timestamp": "2026-05-19T17:41:38.011153+00:00",
+  "trigger": "update_registry"
+}

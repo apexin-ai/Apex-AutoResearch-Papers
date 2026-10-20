@@ -1,0 +1,14 @@
+{
+  "exp_id": "sft_rasp_20_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:10:59.311Z",
+    "updated_at": "2026-05-16T08:11:15.296Z"
+  },
+  "timestamp": "2026-05-16T08:11:15.434589+00:00",
+  "trigger": "update_registry"
+}

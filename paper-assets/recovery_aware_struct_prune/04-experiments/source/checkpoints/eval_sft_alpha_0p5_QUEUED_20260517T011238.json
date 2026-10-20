@@ -1,0 +1,18 @@
+{
+  "exp_id": "eval_sft_alpha_0p5",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:44:06.901Z",
+    "updated_at": "2026-05-17T01:12:38.307Z",
+    "hypothesis": "α=0.5 post-SFT GSM8K eval (N=100, greedy). Post-prune 25%. Completes full α ablation: α=0.0 (64%), α=0.5 (?), α=1.0 (57%), α=2.0 (pending), α=4.0 (62%). Parent: alpha_ablation_westd_cal256.",
+    "parent": "alpha_ablation_westd_cal256",
+    "conclusion": "killed",
+    "notes": "Director 决定跳过：α=0.5 checkpoint 损坏，无需修复。已有 α=0.0/1.0/2.0/4.0 四点，Reviewer 确认 SFT 下 α 无显著趋势（62/62/64 统计不可区分，57% 可能是 outlier）。四点足够。"
+  },
+  "timestamp": "2026-05-17T01:12:38.533294+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:12:46.181Z",
+    "updated_at": "2026-05-22T15:13:04.442Z",
+    "hypothesis": "MF3 cross-architecture validation v3 (N=500, max_new_tokens=2048): Qwen2.5-Math-7B CKA-only 20% GRPO GSM8K eval with absolute model_path fix. v2 crashed due to relative path OSError. v1 killed due to 337s/sample (no token limit). Tests whether CKA-only pruning + GRPO recovery generalizes beyond DeepSeek-R1-Distill to Qwen-Math architecture.",
+    "parent": "eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v2"
+  },
+  "timestamp": "2026-05-22T15:13:05.043988+00:00",
+  "trigger": "update_registry"
+}

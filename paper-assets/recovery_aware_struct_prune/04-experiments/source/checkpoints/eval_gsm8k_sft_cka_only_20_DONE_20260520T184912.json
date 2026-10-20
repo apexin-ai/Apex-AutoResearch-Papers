@@ -1,0 +1,41 @@
+{
+  "exp_id": "eval_gsm8k_sft_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:32:21.874Z",
+    "updated_at": "2026-05-20T18:49:11.554Z",
+    "hypothesis": "GSM8K N=1319 eval on CKA-only 20% SFT checkpoint (pre-GRPO). Direct measurement of SFT baseline for 20% sparsity — needed for paper table to calculate exact GRPO delta. Current estimate ~63.91% from reverse calculation.",
+    "parent": "pipeline_cka_only_20",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json",
+      "server": "westd-29022",
+      "gpu": "cuda:2",
+      "pid": 264522,
+      "data_path": "gsm8k/test",
+      "data_count": 1319,
+      "model_name": "sft_cka_only_20 (Qwen2.5-7B, 20% CKA-only sparsity, SFT only)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20",
+      "eval_data": "gsm8k:test:1319",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_20.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gsm8k_accuracy": 0.6391,
+      "gsm8k_accuracy_ci": 0.0132,
+      "correct": 843,
+      "total": 1319,
+      "eos_rate": 0.9901,
+      "avg_response_length": 198.1,
+      "truncated": 13
+    },
+    "completed_at": "2026-05-20T18:49:11.554Z"
+  },
+  "timestamp": "2026-05-20T18:49:12.086179+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,58 @@
+{
+  "exp_id": "eval_mbpp_sft_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T18:18:34.640Z",
+    "updated_at": "2026-05-19T21:05:27.078Z",
+    "hypothesis": "MBPP pass@1 eval on SFT RASP 20% model @2048. Dense baseline=53.48% (200/374). RASP SFT GSM8K=60.88% (post-GRPO), HumanEval SFT=10.37%. Tests whether RASP SFT preserves code capability on MBPP. Part of MBPP 3×2 matrix (3 methods × SFT/GRPO) for C2 capability breadth claim. Expected: between CKA-only SFT and Standard SFT.",
+    "server": "westd-29022",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-23072",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T18:19:54.269Z",
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\"",
+      "code_commit": "39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c",
+      "finished_at": "2026-05-19T21:05:26.016Z",
+      "training_hours": 2.76
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-19T18:21:31.440Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T18:21:37.020361+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Model not found on westb. 7B SFT RASP checkpoint is on westd (sft_rasp_20_westd), not westb. Need to rerun on westd when GPU available."
+      }
+    },
+    "notes": "Model not found on westb. 7B SFT RASP checkpoint is on westd (sft_rasp_20_westd), not westb. Need to rerun on westd when GPU available.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "133674",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log",
+      "submitted_at": "2026-05-19T20:00:13.578Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "133674",
+    "log_path": "~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log"
+  },
+  "timestamp": "2026-05-19T21:05:27.529438+00:00",
+  "trigger": "update_registry"
+}

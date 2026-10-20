@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15e32fba943c36096df1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops diagnose eval math500 grpo alpha0p5",
+  "task_key": "worker_ops_diagnose_eval_math500_grpo_alpha0p5_20260524T145002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_eval_math500_grpo_alpha0p5_20260524T145002_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "04c74440da9d4771b72ea9dd5ddf9e45c46d21cceb1f8032d641ebf994c13dca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结果：eval 成功**\n- Accuracy: **26.8% (134/500)**\n- EOS stats: 274 natural EOS, 226 truncated, avg response length 1110 tokens\n- 运行耗时 ~7h，结果已写入 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20_fixed.json`\n- Registry 已更新为 DONE/success\n- Cron 已不存在（无需删除）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-eval-math500-grpo-alpha0p5.md"
+}

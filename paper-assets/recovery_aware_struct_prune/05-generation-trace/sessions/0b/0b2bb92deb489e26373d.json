@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b2bb92deb489e26373d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest gsm8k alpha4 westd",
+  "task_key": "worker_harvest_gsm8k_alpha4_westd_20260522T052702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_gsm8k_alpha4_westd_20260522T052702_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "91b7be2a798ae105bf263680840d80d5a164c198fab10d8d3e7776be32025f38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== eval_gsm8k_grpo_alpha4_20_v3 ==\nStatus: DONE\nAccuracy: 62.77% (828/1319) ± 1.33%\nEOS rate: 98.56%, avg_len=188, truncated=19\nLog: \"GSM8K Accuracy: 0.6277 ± 0.0133 (828/1319)\" → sentinel written\n\n== eval_gsm8k_sft_alpha4_20_v5 ==\nStatus: STILL_RUNNING (PID 3586)\nProgress: 93.6% (1235/1319)\nInterim accuracy @1200: 62.25%, eos_rate=98.25%, avg_len=195\nEstimated ~3-4 min remaining\n\n== GPU Status ==\ncuda:0: 占用 (17541/97887 MiB, 98%)\ncuda:1: 占用 (15329/97887 MiB, 97%)\ncuda:2: 占用 — SFT eval 运行中 (16507/97887 MiB, 90%)\ncuda:3: 空闲 (0 MiB, 0%)\n```\n\nGRPO α=4.0 已完成收割：**62.77%**。SFT α=4.0 还剩 84 samples，几分钟内完成，interim accuracy 62.25% 和 GRPO 非常接近。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-gsm8k-alpha4-westd.md"
+}

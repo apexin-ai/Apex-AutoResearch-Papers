@@ -1,0 +1,71 @@
+{
+  "exp_id": "grpo_standard_25_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:51:12.657Z",
+    "updated_at": "2026-05-16T15:48:32.265Z",
+    "hypothesis": "Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.",
+    "spec": {
+      "command": "GRPO v4 Standard 25% sparsity 100 steps",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "17062",
+      "log_path": "/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+      "submitted_at": "2026-05-16T14:49:48.269Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "Qwen2.5-Math-7B",
+      "seed": 42,
+      "wall_clock_seconds": 3357.7,
+      "gpu_hours": 0.93,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math",
+      "wandb_run_id": "16vqw4e6"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T15:40:31.419Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T15:40:34.585285+00:00"
+        }
+      ]
+    },
+    "wandb_run_id": "16vqw4e6",
+    "metrics": {
+      "reward_final": 0.1819,
+      "reward_std_final": 0.3673,
+      "frac_zero_std_final": 0.325,
+      "completion_length_final": 527,
+      "kl_final": 0.2983,
+      "loss_final": 0.1651,
+      "reward_step10": 0.2006,
+      "frac_zero_std_step10": 0.375,
+      "kl_step20": 56.08,
+      "kl_step80": 4096000,
+      "loss_step80": 220300,
+      "collapse_pattern": "kl_explosion_transient",
+      "collapse_onset": "step20_kl_spike",
+      "collapse_permanence": "transient_recovery_step90",
+      "early_stop": false,
+      "total_steps": 100
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math",
+    "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T15:45:46.005Z"
+  },
+  "timestamp": "2026-05-16T15:48:32.462183+00:00",
+  "trigger": "update_registry"
+}

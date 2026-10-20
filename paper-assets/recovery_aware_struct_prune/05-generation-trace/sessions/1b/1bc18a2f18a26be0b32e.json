@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bc18a2f18a26be0b32e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent status westb",
+  "task_key": "worker_ssh_urgent_status_westb_20260522T183318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_status_westb_20260522T183318_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "a0821cea74211ff9dd68303b672f851f41458ef2797085013f16422237892662"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 GPU 状态\n\n| GPU | VRAM | Util | 进程 | PID | 状态 |\n|-----|------|------|------|-----|------|\n| 0 | 16801 / 97887 MiB | 98% | CKA-only MATH-500 eval | 234500 | alive (27m) |\n| 1 | 16547 / 97887 MiB | 99% | GSM8K GRPO CKA-only v2 eval | 220343 | alive (3h24m) |\n\n## CKA-only MATH-500 进度\n- 状态: running\n- 进度: 40/500 (8%)\n- 启动时间: ~27 分钟前\n- 预估剩余: ~20h（按 ~2.6min/sample）\n\n## MF3 v3 进度\n- **注意**: PID 220343 实际跑的是 **v2**（非 v3），输出文件 `eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v2.json`\n- 状态: running\n- 进度: **148/500** (29.6%)\n- acc@100: 48.0%, eos_rate: 18%, avg_len: 1734\n- 速度: ~100s/it，预估剩余 ~9.7h\n\n## 空闲 GPU\n- 无。两张 GPU 均满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-westb.md"
+}

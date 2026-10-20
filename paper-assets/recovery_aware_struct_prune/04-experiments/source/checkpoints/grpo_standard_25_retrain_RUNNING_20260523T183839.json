@@ -1,0 +1,41 @@
+{
+  "exp_id": "grpo_standard_25_retrain",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T17:52:21.325Z",
+    "updated_at": "2026-05-23T18:38:37.940Z",
+    "hypothesis": "Retrain GRPO Standard 25% from sft_standard_25_retrain (100 steps, seed 42). Old grpo_standard_25 checkpoint on defunct westd-11672. Critical path: tab_math500 25% sparsity row requires this + subsequent MATH-500 fixed eval.",
+    "parent": "sft_standard_25_retrain",
+    "server": "westd-32935",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-32935",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-23T18:38:30.440Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_retrain --max_steps 100 --save_steps 100 --seed 42\"",
+      "code_commit": "39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_retrain --max_steps 100 --save_steps 100 --seed 42\"",
+      "server": "westd-32935",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "154808",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_25_retrain.log",
+      "submitted_at": "2026-05-23T18:38:34.366Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "154808",
+    "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_25_retrain.log"
+  },
+  "timestamp": "2026-05-23T18:38:39.052841+00:00",
+  "trigger": "update_registry"
+}

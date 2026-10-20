@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1987a814bd375facb98b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check all 6gpu status",
+  "task_key": "worker_check_all_6gpu_status_20260520T141805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all_6gpu_status_20260520T141805_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "a3e09c8c38a6d04ab9edbf9e2d2e6b96afa7a5de7715baef0a996f5d865c9372"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总完成。\n\n| 服务器 | GPU | 实验 | 状态 | 进度/结果 |\n|--------|-----|------|------|-----------|\n| westd-29022 | cuda:0 | CKA-only 20% seed456 eval | **运行中** | 346/1319 (26%), acc@300=0.670 |\n| westd-29022 | cuda:1 | CKA-only 15% eval (v2) | **运行中** | 419/1319 (32%), acc@400=0.745 |\n| westd-29022 | cuda:2 | grpo_standard_15_v2 | **已完成** | 100/100 steps, checkpoint 13GB saved |\n| westd-29022 | cuda:3 | — | **IDLE** | — |\n| westb-23072 | cuda:0 | Qwen CKA-only SFT eval | **运行中** | 143/200 (72%), acc@100=0.540, eos_rate=32% |\n| westb-23072 | cuda:1 | Qwen Standard SFT eval | **运行中** | 128/200 (64%), acc@100=0.180, eos_rate=35% |\n\n**关键发现:**\n\n1. **grpo_standard_15_v2 已完成** — 100 steps, 21m49s, checkpoint 已写入 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_15_v2/model.safetensors`。wandb 为 offline 模式（run id: `kh15nsqz`），cuda:2 已释放空闲。\n\n2. **westd-29022 两个 eval 预计还需 ~1.5-2h** — seed456 约 2.6s/it，15% v2 约 2.5s/it。\n\n3. **Qwen eval 速度极慢（~90s/it）**，eos_rate 仅 32-35%，大量样本生成到 max_length 截断。CKA-only (0.540) 远优于 Standard (0.180)。westb 两个 eval 预计还需 ~1-1.5h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-6gpu-status.md"
+}

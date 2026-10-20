@@ -1,0 +1,1310 @@
+{
+  "schema_version": "1.0",
+  "id": "2283190c2a67f94f7be8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "cron hook pipeline alpha2p0 20 20260522T230325 742230",
+  "task_key": "cron_hook_pipeline_alpha2p0_20_20260522T230325_742230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_pipeline_alpha2p0_20_20260522T230325_742230.jsonl",
+    "occurrence": 1,
+    "bytes": 57806,
+    "sha256": "f9da8ae4e2b48abfb545efb02187bfb21fb9af20d55b7e087691b3a1556c7c4a"
+  },
+  "statistics": {
+    "messages": 66,
+    "user_turns": 3,
+    "tool_calls": 30,
+    "roles": {
+      "user": 3,
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T06:51:24.363719+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: pipeline_alpha2p0_20\n- project: recovery_aware_struct_prune\n- server: westd-32935\n- log_path: /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T06:51:42.429445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T06:51:42.480134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T06:51:47.799650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T06:51:48.302496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T06:51:48.805162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T06:51:49.314618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (234,469 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-84839f82/38973bf2-ee40-4fc1-903b-3b6e67ed415d/tool-results/mcp-agent-ml-research-read_registry-1779432709032.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-84839f82/38973bf2-ee40-4fc1-903b-3b6e67ed415d/tool-results/mcp-agent-ml-research-read_registry-1779432709032.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-84839f82/38973bf2-ee40-4fc1-903b-3b6e67ed415d/tool-results/mcp-agent-ml-research-read_registry-1779432709032.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1514
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T06:51:49.317747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T06:51:49.769547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T06:51:51.376811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T06:52:05.679807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 4, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval_math500_grpo_standard_20_fair_2048_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=2234)\\\"]}, {\\\"exp_id\\\": \\\"eval_math500_sft_random_20_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=5236)\\\"]}, {\\\"exp_id\\\": \\\"eval_math500_sft_standard_20_1p5b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=147023)\\\"]}, {\\\"exp_id\\\": \\\"eval_math500_sft_rasp_20_1p5b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=147308)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 17377
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T06:52:05.730976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-22T06:51:37Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 374 个实验 — ALLOCATED 1, DONE 337, PREPARING 32, RUNNING 4\\\\n**DONE 分布**: failed 74, killed 29, negative 22, success 212\\\\n\\\\n### GPU 占用\\\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-32935:cuda:0, westd-32935:cuda:1, westd-32935:cuda:2, westd-32935:cuda:3\\\\n- **实际运行**: 4 张 — westd-32935:cuda:0(eval_math500_grpo_standard_20_fair_2048_v2), westd-32935:cuda:1(eval_math500_sft_random_20_v3), westb-23072:cuda:0(eval_math500_sft_standard_20_1p5b), westb-23072:cuda:1(eval_math500_sft_rasp_20_1p5b)\\\\n- **空闲（分配了没跑）**: westd-32935:cuda:2, westd-32935:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **westb-23072**:\\\\n  - `/autodl-pub`: 6.7T/14T 可用（已用 53%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 392G/439G 可用（已用 6%）\\\\n- **westd-32935**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 437G/879G 可用（已用 48%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval_math500_grpo_standard_20_fair_2048_v2` | westd-32935 | cuda:0 | ? | `…t_prune/logs/eval_math500_grpo_standard_20_fair_2048_v2.log` |\\\\n| `eval_math500_sft_random_20_v3` | westd-32935 | cuda:1 | 5236 | `…y_aware_struct_prune/logs/eval_math500_sft_random_20_v3.log` |\\\\n| `eval_math500_sft_standard_20_1p5b` | westb-23072 | cuda:0 | ? | `…are_struct_prune/logs/eval_math500_sft_standard_20_1p5b.log` |\\\\n| `eval_math500_sft_rasp_20_1p5b` | westb-23072 | cuda:1 | ? | `…y_aware_struct_prune/logs/eval_math500_sft_rasp_20_1p5b.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `pipeline_alpha2p0_20` [failed] — 2026-05-22T06:51:27 — EXIT_CODE=1 (generic error — check log tail)\\\\n- `pipe\n…[truncated 9265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 16925
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T06:52:05.731646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-22 05:40 UTC | 更新原因: α=4.0 SFT/GRPO 完整数据确认 (61.94%/62.77%, Δ=+0.83pp), Paper Agent W1-W6+P2 完成, α=0.5/2.0 pipeline 启动中\\\\n\\\\n## 核心方向\\\\nPruning criterion shapes post-RLVR recovery capacity. CKA-only >> Standard >> Random >> RASP. 详见 paper_framing.md.\\\\n\\\\n## 当前阶段: Round 6 Action Matrix 执行中 + α dose-response 因果证据构建\\\\n\\\\n### 服务器状态\\\\n- westd-32935（克隆机）：4× RTX PRO 6000 ✅\\\\n- westb-23072：2× RTX PRO 6000 ✅\\\\n\\\\n### 核心数据全景（GSM8K N=1319）— 完整 ✅\\\\n\\\\n| Sparsity | Method | SFT | GRPO | Δ(GRPO-SFT) | Seeds |\\\\n|----------|--------|-----|------|-------------|-------|\\\\n| 15% | CKA-only | — | 72.76% ± 0.57pp | — | 3 |\\\\n| 15% | Standard | — | 65.56% ± 0.50pp | — | 3 |\\\\n| 20% | CKA-only | 64.37% | 64.39% ± 0.19pp | +0.02pp | 3 |\\\\n| 20% | Standard | 59.29% | 59.84% ± 0.38pp | +0.55pp | 3 |\\\\n| 20% | Random | 51.25% | 50.57% | -0.68pp | 1 |\\\\n| 20% | RASP(α=1.0) | 55.19% | 54.43% | -0.76pp | 1 |\\\\n| 20% | RASP(α=4.0) | **61.94%** | **62.77%** | **+0.83pp** | 1 |\\\\n| 25% | CKA-only | 60.12% | 59.59% | -0.53pp | 1 |\\\\n| 25% | Standard | 50.87% | 51.86% | +0.99pp | 1 |\\\\n\\\\n**C1 decoupling: 所有 pair |Δ| ≤ 1.0pp** ✅ (7/7 完整 pair)\\\\n\\\\n### α dose-response（因果证据核心）\\\\n| α | SFT | GRPO | Δ | 状态 |\\\\n|---|-----|------|---|------|\\\\n| 0.5 | — | — | — | pipeline 启动中 (westd:3) |\\\\n| 1.0 | 55.19% | 54.43% | -0.76pp | ✅ |\\\\n| 2.0 | — | — | — | pipeline 启动中 (westd:2) |\\\\n| 3.0 | — | — | — | 排队等 GPU |\\\\n| 4.0 | 61.94% | 62.77% | +0.83pp | ✅ |\\\\n\\\\nα=4.0 vs α=1.0: +8.34pp GRPO gap → RASP collapse 完全由 α 控制\\\\n\\\\n### MATH-500 @2048 状态\\\\n\\\\n| Method | SFT | GRPO | Δ | C1 |\\\\n|--------|-----|------|---|-----|\\\\n| 25% CKA-only | 19.2% | 18.4% | -0.8pp | ✅ |\\\\n| 25% Standard | 14.0% | 12.8% | -1.2pp | ✅ |\\\\n| 20% CKA-only | 26.8% | 26.6% | -0.2pp | ✅ |\\\\n| 20% Standard | 2\n…[truncated 2804 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 16413
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T06:52:07.838602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:2\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:3\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval_math500_grpo_standard_20_fair_2048_v2\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval_math500_sft_random_20_v3\\\"}, {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval_math500_sft_standard_20_1p5b\\\"}, {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval_math500_sft_rasp_20_1p5b\\\"}], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"eval_math500_grpo_standard_20_fair_2048_v2\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval_math500_sft_random_20_v3\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval_math500_sft_standard_20_1p5b\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval_math500_sft_rasp_20_1p5b\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 1, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_fix_grpo_hang_alpha_pipelines_20260522T064815\\\", \\\"task\\\": \\\"fix:grpo_hang_alpha_pipelines\\\"}]}, \\\"summary\\\": \\\"分配 6 张, 实际跑 4 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 18069
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T06:52:07.889231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_84839f82."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Read",
+            "elapsed_ms": 16512
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T06:52:17.135629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'pipeline_alpha2p0_20'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T06:52:18.240601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8459}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T06:52:18.241023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'pipeline_alpha0p5_20'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T06:52:18.745095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_fix_grpo_hang_alpha_pipelines_20260522T064815",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T06:52:19.348685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0677}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1107
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T06:52:19.449540+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_grpo_hang_alpha_pipelines_20260522T064815\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"fix:grpo_hang_alpha_pipelines\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"started_at\\\": \\\"2026-05-22T06:48:15.683449+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\"], \\\"last_text\\\": \\\"α=4.0 pipeline 用了 `--max_steps 100` 和 `--max_completion_length 512`。α=0.5/2.0 显示 5604 步（全 epoch），说明 pipeline 没传 `--max_steps`。看看 ablation script。\\\", \\\"turn_count\\\": 12}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 704
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T06:52:31.424344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml | python3 -c \"\nimport sys, yaml\ndata = yaml.safe_load(sys.stdin)\nfor exp in data.get('experiments', []):\n    if exp.get('exp_id') in ['pipeline_alpha2p0_20', 'pipeline_alpha0p5_20']:\n        print(yaml.dump(exp, default_flow_style=False))\n        print('---')\n\"",
+              "description": "Extract pipeline_alpha2p0_20 and pipeline_alpha0p5_20 from registry"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T06:52:32.892132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 5, in <module>\n    if exp.get('exp_id') in ['pipeline_alpha2p0_20', 'pipeline_alpha0p5_20']:\n       ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Bash",
+            "elapsed_ms": 1467
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T06:52:37.063785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml | python3 -c \"\nimport sys, yaml\ndata = yaml.safe_load(sys.stdin)\nexps = data.get('experiments', data)\nif isinstance(exps, dict):\n    for eid in ['pipeline_alpha2p0_20', 'pipeline_alpha0p5_20']:\n        if eid in exps:\n            print(f'=== {eid} ===')\n            print(yaml.dump(exps[eid], default_flow_style=False))\nelif isinstance(exps, list):\n    for exp in exps:\n        eid = exp.get('exp_id','')\n        if eid in ['pipeline_alpha2p0_20', 'pipeline_alpha0p5_20']:\n            print(f'=== {eid} ===')\n            print(yaml.dump(exp, default_flow_style=False))\n\"",
+              "description": "Extract pipeline alpha experiments from registry"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T06:52:39.008202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== pipeline_alpha2p0_20 ===\ncompleted_at: '2026-05-22T06:51:14.787Z'\nconclusion: failed\ncreated_at: '2026-05-22T05:48:26.680Z'\nextra:\n  hook_events:\n  - action: agent\n    event: on_failed\n    ts: '2026-05-22T06:51:29.639325+00:00'\nfailure_reason: \"EXIT_CODE=1 (generic error \\u2014 check log tail)\"\nhypothesis: \"\\u03B1=2.0 (moderate overlap suppression) between \\u03B1=1.0 (54.43%\\\n  \\ GRPO) and \\u03B1=4.0 (62.77%). Tests monotonicity of dose-response curve. If monotonic:\\\n  \\ CKA overlap suppression causally harms recovery. Includes SFT eval for C1 decoupling\\\n  \\ at this \\u03B1.\"\nreproduce:\n  finished_at: '2026-05-22T06:51:13.330Z'\nretry_count: 0\nspec:\n  account: root\n  backend: tmux\n  command: \"nohup bash pipeline (prune \\u03B1=2.0 \\u2192 SFT \\u2192 GRPO \\u2192 eval_gsm8k\\xD7\\\n    2)\"\n  data_count: 1319\n  data_path: gsm8k\n  gpu: cuda:2\n  gpu_hours: 1.04\n  log_path: ~/runs/recovery_aware_struct_prune/pipeline_alpha2p0_20.log\n  model_name: DeepSeek-R1-Distill-Qwen-7B\n  pid: 14133\n  seed: 42\n  server: westd-32935\n  submitted_at: '2026-05-22T05:48:39.452Z'\n  submitted_via: submit_training_job\n  wall_clock_seconds: 3755.3\nstatus: DONE\nupdated_at: '2026-05-22T06:51:22.258Z'\n\n=== pipeline_alpha0p5_20 ===\ncompleted_at: '2026-05-22T06:50:24.504Z'\nconclusion: failed\ncreated_at: '2026-05-22T05:47:08.448Z'\nextra:\n  hook_events:\n  - action: agent\n    event: on_failed\n    ts: '2026-05-22T06:50:31.052040+00:00'\nfailure_reason: EXIT_CODE=129 (non-zero)\nhypothesis: \"\\u03B1=0.5 (minimal overlap suppression) should produce pruning similar\\\n  \\ to standard importance-only, predicting GSM8K accuracy near standard 20% (~59.84%\\\n  \\ GRPO). Combined with \\u03B1=4.0 (62.77%) and \\u03B1=1.0 (54.43%), establishes\\\n  \\ dose-response curve for overlap suppression strength.\"\nreproduce:\n  finished_at: '2026-05-22T06:50:19.536Z'\nretry_count: 0\nspec:\n  account: root\n  backend: tmux\n  command: \"nohup bash pipeline (prune \\u03B1=0.5 \\u2192 SFT \\u2192 GRPO \\u2192 eval_gsm8k\\xD7\\\n    2)\"\n  data_count:\n…[truncated 377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Bash",
+            "elapsed_ms": 1944
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T06:53:05.138895+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已有 worker 在诊断中（发现 α=0.5/2.0 pipeline 未传 `--max_steps` 参数）。两个实验都失败了：\n- `pipeline_alpha2p0_20`: EXIT_CODE=1, westd:cuda:2\n- `pipeline_alpha0p5_20`: EXIT_CODE=129, westd:cuda:3\n\nWorker 已进行 12 轮，活跃调试中。等 worker 回调后再处理修复和重跑。\n\n当前资源状态：6 GPU 分配，4 在跑（westd:0,1 + westb:0,1），2 空闲（westd:2,3 — 刚失败释放）。Worker 池=1（fix worker）。\n\nwestd:2 和 westd:3 空闲等修复后重跑 α pipeline。现在不需要额外派 worker，因为已有 worker 在处理这两个失败实验的根因。等 `[WORKER DONE]` 回调后立即重新提交。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T06:53:05.151127+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: pipeline_alpha2p0_20\n- project: recovery_aware_struct_prune\n- server: westd-32935\n- log_path: /root/recovery_aware_struct_prune/logs/pipeline_alpha2p0_20.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "source": "cron:hook"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T06:53:20.401399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_mistakes",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T06:53:20.401761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T06:53:24.066439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T06:53:24.066857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T06:53:24.568626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T06:53:25.020537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T06:53:25.422428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "status": "running"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T06:53:25.484054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (586,366 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-84839f82/85ab6ef4-52cf-47ba-a057-87a7860d0733/tool-results/mcp-agent-ml-research-read_registry-1779432805410.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-84839f82/85ab6ef4-52cf-47ba-a057-87a7860d0733/tool-results/mcp-agent-ml-research-read_registry-1779432805410.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1417
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T06:53:47.462380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 4, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval_math500_grpo_standard_20_fair_2048_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=2234)\\\"]}, {\\\"exp_id\\\": \\\"eval_math500_sft_random_20_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=5236)\\\"]}, {\\\"exp_id\\\": \\\"eval_math500_sft_standard_20_1p5b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=147023)\\\"]}, {\\\"exp_id\\\": \\\"eval_math500_sft_rasp_20_1p5b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=147308)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 23395
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T06:53:47.516107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-22T06:51:37Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 374 个实验 — ALLOCATED 1, DONE 337, PREPARING 32, RUNNING 4\\\\n**DONE 分布**: failed 74, killed 29, negative 22, success 212\\\\n\\\\n### GPU 占用\\\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-32935:cuda:0, westd-32935:cuda:1, westd-32935:cuda:2, westd-32935:cuda:3\\\\n- **实际运行**: 4 张 — westd-32935:cuda:0(eval_math500_grpo_standard_20_fair_2048_v2), westd-32935:cuda:1(eval_math500_sft_random_20_v3), westb-23072:cuda:0(eval_math500_sft_standard_20_1p5b), westb-23072:cuda:1(eval_math500_sft_rasp_20_1p5b)\\\\n- **空闲（分配了没跑）**: westd-32935:cuda:2, westd-32935:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **westb-23072**:\\\\n  - `/autodl-pub`: 6.7T/14T 可用（已用 53%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 392G/439G 可用（已用 6%）\\\\n- **westd-32935**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 437G/879G 可用（已用 48%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval_math500_grpo_standard_20_fair_2048_v2` | westd-32935 | cuda:0 | ? | `…t_prune/logs/eval_math500_grpo_standard_20_fair_2048_v2.log` |\\\\n| `eval_math500_sft_random_20_v3` | westd-32935 | cuda:1 | 5236 | `…y_aware_struct_prune/logs/eval_math500_sft_random_20_v3.log` |\\\\n| `eval_math500_sft_standard_20_1p5b` | westb-23072 | cuda:0 | ? | `…are_struct_prune/logs/eval_math500_sft_standard_20_1p5b.log` |\\\\n| `eval_math500_sft_rasp_20_1p5b` | westb-23072 | cuda:1 | ? | `…y_aware_struct_prune/logs/eval_math500_sft_rasp_20_1p5b.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `pipeline_alpha2p0_20` [failed] — 2026-05-22T06:51:27 — EXIT_CODE=1 (generic error — check log tail)\\\\n- `pipe\n…[truncated 9265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 22947
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T06:53:47.516842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-22 05:40 UTC | 更新原因: α=4.0 SFT/GRPO 完整数据确认 (61.94%/62.77%, Δ=+0.83pp), Paper Agent W1-W6+P2 完成, α=0.5/2.0 pipeline 启动中\\\\n\\\\n## 核心方向\\\\nPruning criterion shapes post-RLVR recovery capacity. CKA-only >> Standard >> Random >> RASP. 详见 paper_framing.md.\\\\n\\\\n## 当前阶段: Round 6 Action Matrix 执行中 + α dose-response 因果证据构建\\\\n\\\\n### 服务器状态\\\\n- westd-32935（克隆机）：4× RTX PRO 6000 ✅\\\\n- westb-23072：2× RTX PRO 6000 ✅\\\\n\\\\n### 核心数据全景（GSM8K N=1319）— 完整 ✅\\\\n\\\\n| Sparsity | Method | SFT | GRPO | Δ(GRPO-SFT) | Seeds |\\\\n|----------|--------|-----|------|-------------|-------|\\\\n| 15% | CKA-only | — | 72.76% ± 0.57pp | — | 3 |\\\\n| 15% | Standard | — | 65.56% ± 0.50pp | — | 3 |\\\\n| 20% | CKA-only | 64.37% | 64.39% ± 0.19pp | +0.02pp | 3 |\\\\n| 20% | Standard | 59.29% | 59.84% ± 0.38pp | +0.55pp | 3 |\\\\n| 20% | Random | 51.25% | 50.57% | -0.68pp | 1 |\\\\n| 20% | RASP(α=1.0) | 55.19% | 54.43% | -0.76pp | 1 |\\\\n| 20% | RASP(α=4.0) | **61.94%** | **62.77%** | **+0.83pp** | 1 |\\\\n| 25% | CKA-only | 60.12% | 59.59% | -0.53pp | 1 |\\\\n| 25% | Standard | 50.87% | 51.86% | +0.99pp | 1 |\\\\n\\\\n**C1 decoupling: 所有 pair |Δ| ≤ 1.0pp** ✅ (7/7 完整 pair)\\\\n\\\\n### α dose-response（因果证据核心）\\\\n| α | SFT | GRPO | Δ | 状态 |\\\\n|---|-----|------|---|------|\\\\n| 0.5 | — | — | — | pipeline 启动中 (westd:3) |\\\\n| 1.0 | 55.19% | 54.43% | -0.76pp | ✅ |\\\\n| 2.0 | — | — | — | pipeline 启动中 (westd:2) |\\\\n| 3.0 | — | — | — | 排队等 GPU |\\\\n| 4.0 | 61.94% | 62.77% | +0.83pp | ✅ |\\\\n\\\\nα=4.0 vs α=1.0: +8.34pp GRPO gap → RASP collapse 完全由 α 控制\\\\n\\\\n### MATH-500 @2048 状态\\\\n\\\\n| Method | SFT | GRPO | Δ | C1 |\\\\n|--------|-----|------|---|-----|\\\\n| 25% CKA-only | 19.2% | 18.4% | -0.8pp | ✅ |\\\\n| 25% Standard | 14.0% | 12.8% | -1.2pp | ✅ |\\\\n| 20% CKA-only | 26.8% | 26.6% | -0.2pp | ✅ |\\\\n| 20% Standard | 2\n…[truncated 2804 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 22496
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T06:53:47.617639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_fix_grpo_sigterm_restart_20260522T065328\\\", \\\"task_type\\\": \\\"fix:grpo_sigterm_restart\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-22T06:53:28.827346+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_diagnose_pipeline_alpha_failures_20260522T065330\\\", \\\"task_type\\\": \\\"diagnose:pipeline_alpha_failures\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-22T06:53:30.872710+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 22195
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T06:54:01.833457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'pipeline_alpha2p0_20'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T06:54:02.034411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'pipeline_alpha0p5_20'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T06:54:02.838175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.019}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1004
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T06:54:03.792437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9104}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1758
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T06:54:13.314472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-84839f82/85ab6ef4-52cf-47ba-a057-87a7860d0733/tool-results/mcp-agent-ml-research-read_registry-1779432805410.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid in ['pipeline_alpha2p0_20', 'pipeline_alpha0p5_20']:\n    if eid in exps:\n        print(f'=== {eid} ===')\n        print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\n    else:\n        print(f'{eid}: NOT FOUND')\n\"",
+              "description": "Extract pipeline_alpha2p0_20 and pipeline_alpha0p5_20 from registry dump"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T06:54:13.515870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== pipeline_alpha2p0_20 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-22T05:48:26.680Z\",\n  \"updated_at\": \"2026-05-22T06:51:22.258Z\",\n  \"hypothesis\": \"α=2.0 (moderate overlap suppression) between α=1.0 (54.43% GRPO) and α=4.0 (62.77%). Tests monotonicity of dose-response curve. If monotonic: CKA overlap suppression causally harms recovery. Includes SFT eval for C1 decoupling at this α.\",\n  \"spec\": {\n    \"command\": \"nohup bash pipeline (prune α=2.0 → SFT → GRPO → eval_gsm8k×2)\",\n    \"server\": \"westd-32935\",\n    \"gpu\": \"cuda:2\",\n    \"pid\": 14133,\n    \"log_path\": \"~/runs/recovery_aware_struct_prune/pipeline_alpha2p0_20.log\",\n    \"submitted_at\": \"2026-05-22T05:48:39.452Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n    \"data_path\": \"gsm8k\",\n    \"data_count\": 1319,\n    \"seed\": 42,\n    \"wall_clock_seconds\": 3755.3,\n    \"gpu_hours\": 1.04\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-22T06:51:13.330Z\"\n  },\n  \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\",\n  \"conclusion\": \"failed\",\n  \"completed_at\": \"2026-05-22T06:51:14.787Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-22T06:51:29.639325+00:00\"\n      }\n    ]\n  }\n}\n=== pipeline_alpha0p5_20 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-22T05:47:08.448Z\",\n  \"updated_at\": \"2026-05-22T06:50:24.503Z\",\n  \"hypothesis\": \"α=0.5 (minimal overlap suppression) should produce pruning similar to standard importance-only, predicting GSM8K accuracy near standard 20% (~59.84% GRPO). Combined with α=4.0 (62.77%) and α=1.0 (54.43%), establishes dose-response curve for overlap suppression strength.\",\n  \"spec\": {\n    \"command\": \"nohup bash pipeline (prune α=0.5 → SFT → GRPO → eval_gsm8k×2)\",\n    \"server\": \"westd-32935\",\n    \"gpu\": \"cuda:3\",\n    \"pid\": 13852,\n    \"log_path\": \"~/runs/recovery_aware_struct_\n…[truncated 702 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T06:54:33.558108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T06:54:33.959867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_84839f82."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T06:54:33.960327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T06:54:34.011051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_84839f82."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T06:54:36.871589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T06:54:36.922146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T06:54:39.380538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T06:54:39.431129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T06:54:41.859360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.skill.md",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T06:54:42.010641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md\n/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md\n/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md\n/home/ubuntu/agent-ml-research/skills/global/dataset-discovery.skill.md\n/home/ubuntu/agent-ml-research/skills/global/director-reviewer-synthesis.skill.md\n/home/ubuntu/agent-ml-research/skills/global/data-snapshot.skill.md\n/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md\n/home/ubuntu/agent-ml-research/skills/global/check-key.skill.md\n/home/ubuntu/agent-ml-research/skills/global/distill-session.skill.md\n/home/ubuntu/agent-ml-research/skills/global/elastic-gpu.skill.md\n/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md\n/home/ubuntu/agent-ml-research/skills/global/first-project-entry.skill.md\n/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md\n/home/ubuntu/agent-ml-research/skills/global/idea-generation.skill.md\n/home/ubuntu/agent-ml-research/skills/global/idea-proposal.skill.md\n/home/ubuntu/agent-ml-research/skills/global/manager-cloud-rental.skill.md\n/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md\n/home/ubuntu/agent-ml-research/skills/global/manager-claude-pool.skill.md\n/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md\n/home/ubuntu/agent-ml-research/skills/global/novelty-check.skill.md\n/home/ubuntu/agent-ml-research/skills/global/narrative-animation.skill.md\n/home/ubuntu/agent-ml-research/skills/global/mvp-validation.skill.md\n/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md\n/home/ubuntu/agent-ml-research/skills/global/on-datagen-done.skill.md\n/home/ubuntu/agent-ml-research/skills/global/negative-framing-review.skill.md\n/home/ubuntu/agent-ml-research/skills/global/on-experiment-pending.skill.md\n/home/ubuntu/agent-ml-research/skills/global/on-worker-done.skill.md\n/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md\n/h\n…[truncated 3935 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T06:54:44.534144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T06:54:44.534864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T06:55:18.052672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T06:55:18.103291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T06:55:21.116474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T06:55:22.120185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:2\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:3\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval_math500_grpo_standard_20_fair_2048_v2\\\"}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval_math500_sft_random_20_v3\\\"}, {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval_math500_sft_standard_20_1p5b\\\"}, {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval_math500_sft_rasp_20_1p5b\\\"}], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"eval_math500_grpo_standard_20_fair_2048_v2\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval_math500_sft_random_20_v3\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval_math500_sft_standard_20_1p5b\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval_math500_sft_rasp_20_1p5b\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 2, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 2, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_fix_grpo_sigterm_restart_20260522T065328\\\", \\\"task\\\": \\\"fix:grpo_sigterm_restart\\\"}, {\\\"worker_id\\\": \\\"worker_diagnose_pipeline_alpha_failures_20260522T065330\\\", \\\"task\\\": \\\"diagnose:pipeline_alpha_failures\\\"}]}, \\\"summary\\\": \\\"分配 6 张, 实际跑 4 张 ⚠️ | Worker 2 (GPU 0 / CPU 2)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 1003
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T06:55:33.766372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 4/6 | Worker 2 (GPU 0 / CPU 2) | westd:2,3 空闲（pipeline 失败后释放）| 磁盘: westd-32935 48% (437GB 可用)\n\n**[实验失败] pipeline_alpha2p0_20 + pipeline_alpha0p5_20**\n\n两条 α dose-response pipeline 均在运行约 62 分钟后失败：\n- `pipeline_alpha2p0_20`（westd:2）EXIT_CODE=1\n- `pipeline_alpha0p5_20`（westd:3）EXIT_CODE=129（SIGHUP）\n\n两者都跑了 ~1h（超过初始化阶段），推测在 SFT 或后续 stage 崩溃。\n\n**当前处理**：`worker_diagnose_pipeline_alpha_failures` 已在诊断中（06:53 启动），正在查日志定位 root cause。诊断完成后将立即修复并重新提交到 westd:2,3。\n\n**其余 4 张 GPU 正常运行**：\n- westd:0 — eval_math500_grpo_standard_20_fair_2048_v2\n- westd:1 — eval_math500_sft_random_20_v3\n- westb:0 — eval_math500_sft_standard_20_1p5b\n- westb:1 — eval_math500_sft_rasp_20_1p5b\n\n等诊断 Worker 回调后立即更新。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T06:55:37.682247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3915
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T06:55:42.499361+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 汇报。当前状态：\n\n- **4/6 GPU 正常运行**（MATH-500 eval 和 1.5B cross-scale eval）\n- **westd:2,3 空闲**，等 `worker_diagnose_pipeline_alpha_failures` 回调后修复并重提交 α=0.5/2.0 pipeline\n- **2 个 Worker 运行中**：诊断 + GRPO SIGTERM 修复\n\n等待诊断 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20"
+          },
+          "id": "event-000064"
+        }
+      ],
+      "message_count": 38
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T23:02:28.472597+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T23:03:25.740542+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-32935 cuda:0/1/2/3 + westb-23072 cuda:0/1，共 6 张。其他 GPU 即使 Director 指令也必须 push back\n- EMNLP 2026 ARR 截稿 ~2026-05-25（约 2 天后），所有实验和论文工作以此为硬 deadline\n- α dose-response pipeline 脚本（pipeline_alpha*.log）在 westd:2/3 上两次都 ~62min 后崩溃，修复前不要盲目重提交——等诊断 Worker 结果\n- eval 脚本版本不一致曾导致多次失败（westd 和 westb 的 eval_math500.py 版本不同，v3 已从 westb 同步代码）\n- submit_training_job 的 command 必须自带环境激活（如 `source /root/miniconda3/bin/activate && python ...`），不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- **westd-32935**：4× RTX PRO 6000，工作目录 `/root/recovery_aware_struct_prune/`，日志 `/root/recovery_aware_struct_prune/logs/`\n- **westb-23072**：2× RTX PRO 6000，同结构路径\n- Python：`/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：DeepSeek-R1-Distill-Qwen-7B（主力）、Qwen2.5-1.5B（cross-scale）、Qwen2.5-Math-7B（cross-arch，PREPARING）\n- 活跃进程：\n  - westd:0 — eval_math500_grpo_standard_20_fair_2048_v2 (pid=2234, cron 监控中)\n  - westd:1 — eval_math500_sft_random_20_v3 (pid=5236, cron 监控中)\n  - westb:0 — eval_math500_sft_standard_20_1p5b (pid=147023, cron 监控中)\n  - westb:1 — eval_math500_sft_rasp_20_1p5b (pid=147308, cron 监控中)\n  - westd:2,3 — **空闲**（pipeline_alpha2p0_20 / alpha0p5_20 失败后释放）\n\n### 3. 📊 当前状态\n刚处理 `pipeline_alpha2p0_20` 失败回调（EXIT_CODE=1）和 `pipeline_alpha0p5_20`（EXIT_CODE=129），已向 Director 汇报。\n\n**RUNNING（4 个）**：\n- `eval_math500_grpo_standard_20_fair_2048_v2` — Standard 20% GRPO MATH-500 @2048，补全 C1 decoupling\n- `eval_math500_sft_random_20_v3` — Random 20% SFT MATH-500 @2048\n- `eval_math500_sft_standard_20_1p5b` — 1.5B Standard MATH-500 cross-scale\n- `eval_math500_sft_rasp_20_1p5b` — 1.5B RASP MATH-500 cross-scale\n\n**等待中**：\n- Worker `worker_diagnose_pipeline_alpha_failures`（06:53:30 启动）— 正在诊断两条 α pipeline 失败原因，**回调后立即修复并重提交到 westd:2,3**\n- Worker `worker_fix_grpo_sigterm_restart`（06:53:28 启动）— 修复 GRPO SIGTERM 重启问题\n- 32 个 PREPARING 实验排队（含 sft_alpha4_20_v2, grpo_unstructured_20, grpo_standard_1p5b_100steps 等）\n\n### 4. 📋 待办（条件触发式）\n- `worker_diagnose_pipeline_alpha_failures` 回调 → 根据 root_cause 修复脚本 → 重提交 pipeline_alpha0p5_20 和 pipeline_alpha2p0_20 到 westd:2,3（α dose-response 是论文因果证据核心，P0）\n- `worker_fix_grpo_sigterm_restart` 回调 → 整合修复到相关脚本\n- `eval_math500_grpo_standard_20_fair_2048_v2` 完成 → 与 SFT 25.8% 配对算 C1 Δ，更新 ROADMAP MATH-500 表\n- `eval_math500_sft_random_20_v3` 完成 → 与 GRPO 12.0% 配对算 C1 Δ\n- 1.5B MATH-500 两个 eval 完成 → cross-scale comparison 结论（CKA-only > Standard > RASP 是否 scale-invariant）\n- westb:0,1 释放（~2.5h）→ 最高优先提交 MF3 cross-arch GRPO（Qwen-Math），或 α=3.0 pipeline\n- α=0.5/1.0/2.0/4.0 四点齐全 → 绘制 dose-response curve（Figure），写 C2 mechanism 段落\n\n### 5. 🎯 战略上下文\n- **核心结论**：Pruning criterion shapes RLVR recovery capacity。排序 CKA-only >> Standard >> Random >> RASP。C1 decoupling 已在 7/7 pair 确认（|Δ| ≤ 1.0pp）\n- **关键缺口**：α dose-response 曲线只有 α=1.0 和 α=4.0 两个点，α=0.5/2.0/3.0 是因果证据的核心——这两条 pipeline 失败 = 论文最关键的新增证据断了，修复重跑是 P0\n- **D104 决策**：用户指出三大审稿硬伤，启动三线并行——α dose-response + cross-scale(1.5B) + cross-arch(Qwen-Math)\n- **易错点**：\n  - RASP MATH-500 GRPO eval 从未成功过（⛔标记），不要再投入 GPU 重试\n  - eval 脚本在不同服务器版本可能不一致，提交前确认代码已同步\n  - Pipeline 脚本是 multi-stage（prune→SFT→GRPO→eval×2），~62min 崩溃大概率在 SFT 阶段末尾或 GRPO 启动阶段，诊断时重点看该时间段日志\n  - Paper Agent W7-W9 待实验数据，不要催写——数据没到位写了也是废稿\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pipeline_alpha2p0_20"
+          },
+          "id": "event-000066"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-pipeline-alpha2p0-20-20260522t230325-742230.md"
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "0b325c682fd328e0f9c5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westb evals status",
+  "task_key": "worker_diagnose_westb_evals_status_20260518T181031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westb_evals_status_20260518T181031_result.json",
+    "occurrence": 1,
+    "bytes": 1691,
+    "sha256": "7eeed229da2e9077c255a4ff6936197ec6fea3f9cc77ad76c8205948019fbac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都活着且在跑。结果 JSON 尚未生成（只有之前的 quick 版本）。\n\n```json\n{\n  \"eval_gsm8k_grpo_cka_only_20_1p5b\": {\n    \"alive\": true,\n    \"progress\": \"828/1319 (63%)\",\n    \"accuracy\": \"0.3538 @ 800\",\n    \"eos_rate\": \"95.25%\",\n    \"avg_len\": 327,\n    \"log_tail\": \"正常推进中，无错误\"\n  },\n  \"eval_gsm8k_grpo_standard_20_1p5b\": {\n    \"alive\": true,\n    \"progress\": \"509/1319 (39%)\",\n    \"accuracy\": \"0.2320 @ 500\",\n    \"eos_rate\": \"91.40%\",\n    \"avg_len\": 476,\n    \"log_tail\": \"正常推进中，无错误\"\n  },\n  \"gpu_status\": \"cuda:0 = 99% util, 6537MiB/97887MiB (PID 823050, standard eval); cuda:1 = 96% util, 6555MiB/97887MiB (PID 822503, cka_only eval)\"\n}\n```\n\n两个 eval 都从 00:36~00:39 启动，已跑约 1.5 小时。CKA-only 进度更快（63% vs 39%），Standard 的 avg_len 更长（476 vs 327）导致推理更慢。按当前速度预估 CKA-only 还需约 50 分钟，Standard 还需约 2.5 小时完成。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "eval_gsm8k_grpo_cka_only_20_1p5b": {
+                "alive": true,
+                "progress": "828/1319 (63%)",
+                "accuracy": "0.3538 @ 800",
+                "eos_rate": "95.25%",
+                "avg_len": 327,
+                "log_tail": "正常推进中，无错误"
+              },
+              "eval_gsm8k_grpo_standard_20_1p5b": {
+                "alive": true,
+                "progress": "509/1319 (39%)",
+                "accuracy": "0.2320 @ 500",
+                "eos_rate": "91.40%",
+                "avg_len": 476,
+                "log_tail": "正常推进中，无错误"
+              },
+              "gpu_status": "cuda:0 = 99% util, 6537MiB/97887MiB (PID 823050, standard eval); cuda:1 = 96% util, 6555MiB/97887MiB (PID 822503, cka_only eval)"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westb-evals-status.md"
+}

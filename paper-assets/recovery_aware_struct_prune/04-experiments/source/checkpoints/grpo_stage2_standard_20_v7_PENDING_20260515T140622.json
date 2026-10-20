@@ -1,0 +1,14 @@
+{
+  "exp_id": "grpo_stage2_standard_20_v7",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:06:22.084Z",
+    "updated_at": "2026-05-15T14:06:22.084Z"
+  },
+  "timestamp": "2026-05-15T14:06:22.203240+00:00",
+  "trigger": "update_registry"
+}

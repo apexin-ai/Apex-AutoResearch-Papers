@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1775984b465489b8fb85",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops download qwen math westd",
+  "task_key": "worker_ops_download-qwen-math-westd_20260516T024840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download-qwen-math-westd_20260516T024840_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "dd9467127ed144825c6a59b31861af589862fab7345da8c3960761336a18d354"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载已启动并在运行中。当前状态：\n\n- **PID**: 80002（进程存活）\n- **下载进度**: model-00002-of-00004.safetensors 和 model-00003-of-00004.safetensors 同时下载中，速度约 470-500 kB/s\n- **数据盘剩余**: 46GB（7B 模型约 14-15GB，空间充足）\n- **预估时间**: 约 2 小时（速度偏慢，可能 ModelScope CDN 在当前时段限速）\n\n下载已在后台正常运行，不会因 SSH 断开而中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-qwen-math-westd.md"
+}

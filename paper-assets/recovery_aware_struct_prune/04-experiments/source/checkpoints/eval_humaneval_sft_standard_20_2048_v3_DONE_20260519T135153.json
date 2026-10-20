@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_humaneval_sft_standard_20_2048_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:05:36.497Z",
+    "updated_at": "2026-05-19T13:51:52.534Z",
+    "hypothesis": "SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same model as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~10% interim) and SFT CKA-only (~24% interim).",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_2048_v3.json'",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "86171",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "model_name": "sft_standard_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20",
+      "eval_data": "HumanEval (164 problems, pass@1, max_new_tokens=2048)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:51:50.117Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T13:51:51.044Z"
+  },
+  "timestamp": "2026-05-19T13:51:53.286620+00:00",
+  "trigger": "update_registry"
+}

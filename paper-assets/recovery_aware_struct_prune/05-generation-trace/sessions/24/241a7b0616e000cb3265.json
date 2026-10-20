@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "241a7b0616e000cb3265",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code math500 standard rasp westd",
+  "task_key": "worker_code_math500_standard_rasp_westd_20260518T130004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_math500_standard_rasp_westd_20260518T130004_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "f00f2bded4b9879e97b059d0d34326bf7354c1a112a51a8eb19f99105fbe8cca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正在加载 MATH 数据集。任务正常运行。\n\n**汇报：**\n\n- **PID**: 2261\n- **tmux session**: `math500_standard_grpo_fair`\n- **状态**: 从头跑（无已有结果文件，脚本不支持 resume）\n- **GPU**: cuda:1 @ westd-29022，已占用 10421 MiB\n- **日志**: `~/runs/recovery_aware_struct_prune/math500_standard_grpo_fair.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair.json`\n- **预计时长**: 参考 unpruned eval，500 题大约 30-60 分钟（剪枝模型更小，可能更快）\n\nStandard eval 完成后，下一个 worker 负责启动 RASP GRPO MATH-500 eval（模型路径 `grpo_stage2_rasp_20_fair`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-math500-standard-rasp-westd.md"
+}

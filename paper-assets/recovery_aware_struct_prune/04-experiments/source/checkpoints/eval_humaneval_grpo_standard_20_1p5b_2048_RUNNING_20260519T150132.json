@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_humaneval_grpo_standard_20_1p5b_2048",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:35:48.029Z",
+    "updated_at": "2026-05-19T15:01:31.754Z",
+    "hypothesis": "1.5B GRPO Standard HumanEval pass@1 @2048. Cross-scale validation baseline. 7B GRPO Standard HumanEval failed (multiple attempts). If 1.5B Standard also shows weak code generation after GRPO (vs CKA-only), strengthens claim that standard pruning loses broader capabilities.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_1p5b_2048.json --seed 42",
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b",
+      "eval_data": "HumanEval",
+      "model_name": "Qwen2.5-1.5B-pruned-standard-20-GRPO",
+      "tmux_session": "eval_humaneval_grpo_standard_1p5b"
+    }
+  },
+  "timestamp": "2026-05-19T15:01:32.224297+00:00",
+  "trigger": "update_registry"
+}

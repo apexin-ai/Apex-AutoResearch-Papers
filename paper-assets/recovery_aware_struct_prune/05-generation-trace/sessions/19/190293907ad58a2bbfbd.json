@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "190293907ad58a2bbfbd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag westd gpu utilization",
+  "task_key": "worker_diag_westd-gpu-utilization_20260515T145815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-gpu-utilization_20260515T145815_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "c6f63459f487722e2911d52f2c454504dd23db43febd9e4dd3e014dca89d265e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。westd-11672 实际状态：\n\n### GPU 利用情况\n\n| GPU | VRAM | Util | 进程 |\n|-----|------|------|------|\n| cuda:0 | 13.1 / 97.9 GB | 89% | GraSP eval (PID 38120) — 41/100 samples, ~1.7h remaining |\n| cuda:1 | 73.8 / 97.9 GB | 98% | α=1.0 eval (PID 42535, ~5min ETA) + α=2.0 SFT (PID 43065, 35/1870 ~2%, ~56min ETA) |\n\n**Reviewer 的担忧已过时** — cuda:1 并非空闲，反而是负载最重的卡（98% util, 73.8GB）。\n\n### 进程状态\n\n| 实验 | 状态 | 详情 |\n|------|------|------|\n| **GraSP SFT** (sft_grasp_20_westd) | **DONE** (success) | 1870/1870 steps, 58.5min, loss=0.5857, token_acc=0.8392. Exit code 0. |\n| **α=2.0 SFT** (PID 43065) | **RUNNING** | 35/1870 steps (~2%), GPU 1, ~56min remaining. 之前 Worker 的 nohup 启动成功（PID 43060→43065）。 |\n| **GraSP eval** (PID 38120) | **RUNNING** | 41/100 samples, GPU 0, ~105s/sample, ~1.7h remaining. |\n| **α=1.0 eval** (PID 42535) | **RUNNING** | 刚启动, GPU 1, ~3s/sample, 预计 5-8min 完成。 |\n\n### Registry 更新\n- `sft_grasp_20_westd`: ALLOCATED → **DONE** (success)\n- `sft_alpha2_0_westd`: notes 更新（RUNNING on GPU 1，状态机不允许 PREPARING→RUNNING 直接转换）\n- `eval-sft-alpha-1p0`: notes 更新\n- `grasp_baseline_westd`: notes 更新\n\nα=2.0 SFT 无需重新启动，已在正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-gpu-utilization.md"
+}

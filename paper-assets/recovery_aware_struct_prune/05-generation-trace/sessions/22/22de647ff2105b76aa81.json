@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22de647ff2105b76aa81",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval sft standard 20 n1319",
+  "task_key": "worker_diagnose_eval_sft_standard_20_n1319_20260517T010711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_sft_standard_20_n1319_20260517T010711_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "1c2ea08ea9de5efbffdfc528045c1ea44042362e7a54486876ee574c806256a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已在之前的 session 中删除或未创建），无需处理。\n\n---\n\n## 结果汇报\n\n**eval_sft_standard_20_n1319 — 成功完成 ✓**\n\n| 指标 | 值 |\n|------|------|\n| Accuracy | **59.29%** |\n| N samples | 1319 (full GSM8K test) |\n| N correct | 782 |\n| Stderr | ±1.35% |\n| EOS rate | 98.0% |\n| 设置 | greedy (T=0, do_sample=False) |\n\n**Paper Table 1 数据点**: Standard 20% pruning + SFT → **59.29% ± 1.35%**\n\n对比 N=100 快速评估的 64%，full eval 下降约 5pp，这是正常的小样本波动修正。Registry 已更新为 success + 完整 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-sft-standard-20-n1319-copy-2.md"
+}

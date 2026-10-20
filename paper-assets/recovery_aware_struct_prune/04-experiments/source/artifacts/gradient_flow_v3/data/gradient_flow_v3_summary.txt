@@ -1,0 +1,16 @@
+Results on westb-23072: /root/autodl-tmp/recovery_aware_struct_prune/results/gradient_flow_v3/
+
+Files:
+- gradient_flow_stats.json: Per-layer gradient norm stats (mean/std/min/max) for all 3 models
+- statistical_tests.json: Wilcoxon p-values + bootstrap 95% CIs per layer
+- gradient_flow_comparison.{pdf,png}: Bar chart with bootstrap CI error bars + significance annotations
+- gradient_stability_comparison.{pdf,png}: Coefficient of variation line plot
+- gradient_ratio_bootstrap.{pdf,png}: Bootstrap ratio chart color-coded by significance
+
+Key findings:
+- CKA-only: Attn mean=0.3390, MLP mean=0.3069
+- Standard: Attn mean=0.1152, MLP mean=0.1083
+- RASP: Attn mean=0.1476, MLP mean=0.1385
+- CKA-only vs Standard: 55/56 layers significant (p<0.05), ratio ~2.9x attn, ~2.8x MLP
+- CKA-only vs RASP: 56/56 layers significant (p<0.05), ratio ~2.0-2.3x
+- Only non-significant: layer_26_mlp CKA-only vs Standard (p=0.186)

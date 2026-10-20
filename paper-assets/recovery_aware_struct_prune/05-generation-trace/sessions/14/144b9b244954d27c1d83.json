@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "144b9b244954d27c1d83",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code alpha ablation v3",
+  "task_key": "worker_code_alpha_ablation_v3_20260515T035339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha_ablation_v3_20260515T035339_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "b535371fe2a911925a86e0a1c3ffe50d53c55536a808987562c001a278f7ed3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法检查通过。`scripts/run_alpha_ablation_v3.sh` 已创建。\n\n### v3 关键参数与执行流程\n\n**α 网格**: `{0.0, 0.25, 0.5, 1.0, 2.0}`\n\n**执行顺序**（顺序执行，磁盘安全）：\n\n| α | tag | 操作 | 模型路径 |\n|---|-----|------|----------|\n| 0.0 | `alpha0_0` | prune → eval → **删除** | `pruned_rasp_20_alpha_0_0` |\n| 0.25 | `alpha0_25` | prune → eval → **删除** | `pruned_rasp_20_alpha_0_25` |\n| 0.5 | `alpha0_5` | prune → eval → **删除** | `pruned_rasp_20_alpha_0_5` |\n| 1.0 | `alpha1_0` | **复用** `/root/autodl-tmp/pruned_rasp_20` → eval only | 不删除 |\n| 2.0 | `alpha2_0` | prune → eval → **删除** | `pruned_rasp_20_alpha_2_0` |\n\n**其他参数**：\n- Sparsity: 20%\n- Eval: GSM8K N=100, bfloat16, max_new_tokens=4096\n- GPU: 自动选择 cuda:0/cuda:1 中空闲显存最大的\n- 已有结果自动跳过（`eval_alpha_*.json` 存在即 skip）\n- 输出: `eval_results/alpha_ablation/eval_alpha_<tag>.json`\n- Summary: `eval_results/alpha_ablation/alpha_ablation_v3_summary.json`\n- 支持 `--dry-run` 预检"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-ablation-v3.md"
+}

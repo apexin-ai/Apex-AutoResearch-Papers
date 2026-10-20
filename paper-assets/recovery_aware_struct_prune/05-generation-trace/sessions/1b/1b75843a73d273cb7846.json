@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b75843a73d273cb7846",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "train westd sft rasp retrain",
+  "task_key": "worker_train_westd-sft-rasp-retrain_20260515T165932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_westd-sft-rasp-retrain_20260515T165932_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "48262a9e10d1e4bd5a2b7ac5622a477f12fb029482251276ee9913060a720161"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT 训练已在 westd-11672 cuda:0 上启动：\n\n| 项目 | 值 |\n|------|-----|\n| PID | 48946 |\n| tmux session | `sft_rasp_westd` |\n| 输出目录 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd` |\n| 日志 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd.log` |\n| 参数 | epochs=2, lr=2e-5, bs=1, grad_accum=8, max_seq_len=2048, seed=42 |\n| 预计耗时 | ~35-40 分钟 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-westd-sft-rasp-retrain.md"
+}

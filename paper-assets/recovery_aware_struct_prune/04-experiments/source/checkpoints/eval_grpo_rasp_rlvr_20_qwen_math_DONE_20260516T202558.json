@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_grpo_rasp_rlvr_20_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:39:30.069Z",
+    "updated_at": "2026-05-16T20:25:58.464Z",
+    "hypothesis": "Qwen2.5-Math-7B RASP-RLVR 20% post-GRPO GSM8K eval (N=200, greedy, seed=42). GRPO reward=0.090(最高)，验证 accuracy 是否也改善或依然 decoupling (C1)。对比 pre-GRPO: 73%. Parent: grpo_rasp_rlvr_20_qwen_math.",
+    "parent": "grpo_rasp_rlvr_20_qwen_math",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_rlvr_20_qwen_math.json",
+      "server": "westd-11672",
+      "data_path": "gsm8k",
+      "data_count": 200,
+      "model_name": "grpo_rasp_rlvr_20_qwen_math",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math",
+      "eval_data": "gsm8k",
+      "parent": "grpo_rasp_rlvr_20_qwen_math"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T20:18:03.885Z"
+    },
+    "failure_reason": null,
+    "conclusion": "success",
+    "completed_at": "2026-05-16T20:18:05.252Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T20:18:07.204564+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.71,
+      "n_samples": 200,
+      "mode": "greedy",
+      "seed": 42
+    },
+    "notes": "Cron 误判 (eval 无 W&B 信号)。实际成功完成。Post-GRPO accuracy 71.0% vs pre-GRPO SFT 73%: Δ=-2pp, 确认 C1 universal decoupling (reward=0.090 最高但 accuracy 不升反微降)。EOS=100%, avg_len=128, 生成行为正常。"
+  },
+  "timestamp": "2026-05-16T20:25:58.659325+00:00",
+  "trigger": "update_registry"
+}

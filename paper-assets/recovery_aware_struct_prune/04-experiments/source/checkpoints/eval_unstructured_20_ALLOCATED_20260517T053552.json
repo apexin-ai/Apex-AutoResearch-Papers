@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_unstructured_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:35:41.205Z",
+    "updated_at": "2026-05-17T05:35:52.091Z",
+    "hypothesis": "Unstructured magnitude pruning at 20% sparsity should retain more accuracy than structured pruning (RASP/Standard) at same sparsity level, since unstructured preserves model architecture. Serves as calibration baseline for structured vs unstructured gap. Expected post-prune accuracy ~75-80% (mild degradation from 82% dense).",
+    "parent": "prune_unstructured_20"
+  },
+  "timestamp": "2026-05-17T05:35:52.316047+00:00",
+  "trigger": "update_registry"
+}

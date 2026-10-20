@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23fd81eb41357efe3484",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "status westb grpo v8 check",
+  "task_key": "worker_status_westb-grpo-v8-check_20260515T170406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_westb-grpo-v8-check_20260515T170406_result.json",
+    "occurrence": 1,
+    "bytes": 2017,
+    "sha256": "22b96a2257800bcf192f0e40b046edd75344b90f8ea3fa5fa6dd23b7d1d36aa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRPO v8 双卡实验状态报告\n\n### 基础设施 ✅\n| 项目 | 状态 |\n|------|------|\n| RASP (PID 532861) | 运行中 2h30m, 114% CPU, 2.7GB RSS |\n| Standard (PID 534667) | 运行中 2h21m, 114% CPU, 2.7GB RSS |\n| cuda:0 | 100% 利用率, 71.7/97.9 GB |\n| cuda:1 | 100% 利用率, 71.7/97.9 GB |\n| /root/autodl-tmp | 88GB 可用 (65%) ✅ |\n| /root | 22GB 可用 (29%) ✅ |\n\n### W&B 关键指标 (Step 10 → 20)\n\n| 指标 | RASP v8 | Standard v8 |\n|------|---------|-------------|\n| reward/mean | 0.009 → 0.026 | 0.058 → 0.061 |\n| grad_norm | 0.013 → 0.011 | 2.906 → 1.586 |\n| loss | 0.009 → -0.005 | 0.060 → 0.056 |\n| frac_zero_std | **0.9 → 0.9** | 0.5 → 0.675 |\n| completion_length | 1003 → 996 | 749 → 762 |\n| clipped_ratio | **0.975 → 0.963** | 0.625 → 0.638 |\n| entropy | **0.060 → 0.065** | 0.148 → 0.145 |\n| terminated_length | 74 → 124 | 294 → 281 |\n| kl | 0.0008 → 0.0010 | 0.0029 → 0.0024 |\n\n### 判断\n\n**RASP v8 — ⚠️ 严重 collapse 风险**\n- `frac_zero_std = 0.9`：90% batch 组内 reward 方差为零，DAPO loss 近乎无效\n- `grad_norm ≈ 0.01`：梯度接近零，模型没有在学\n- `clipped_ratio = 0.97`：97% 生成被截断到 max_length，模型在产出无意义重复文本（output.log 可见数字翻倍循环）\n- `entropy = 0.06`：输出高度确定/重复\n- reward 虽非零但极低 (0.026)，不构成有效学习信号\n- **和 v2/v5 pattern 一致：collapse**\n\n**Standard v8 — ✅ 目前健康，但有早期预警**\n- grad_norm 正常 (1.6)，reward 合理 (0.061)，模型在学\n- `frac_zero_std` 从 0.5 升至 0.675，趋势不好，需持续观察\n- completion 长度合理 (762)，37% 自然终止\n- 整体表现远优于 RASP\n\n**结论**：RASP 剪枝模型在 GRPO 阶段再次出现 collapse，和之前版本同样问题。Standard 模型目前正常但 `frac_zero_std` 上升趋势需警惕。建议到 step 30-40 时再次检查 Standard 是否稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-westb-grpo-v8-check.md"
+}

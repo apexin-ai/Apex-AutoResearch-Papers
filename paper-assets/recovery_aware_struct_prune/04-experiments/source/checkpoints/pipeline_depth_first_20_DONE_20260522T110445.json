@@ -1,0 +1,33 @@
+{
+  "exp_id": "pipeline_depth_first_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:31:01.602Z",
+    "updated_at": "2026-05-22T11:04:44.496Z",
+    "hypothesis": "MF5 Late-Layer-First baseline: synthetic importance scores (L0-9=1.0, L10-17=0.5, L18-27=0.001) → standard prune 20% → SFT → GRPO 100 steps → eval. Tests if CKA-only advantage is confounded by layer-depth bias. If depth-first ≈ CKA-only, the advantage is just removing deep layers, not CKA-guided selection.",
+    "spec": {
+      "server": "westd-32935",
+      "gpu": "cuda:3",
+      "command": "prune.py(standard, synthetic_depth_scores) → sft_recovery.py(2ep) → train_grpo_v5.py(100 steps) → eval_gsm8k.py(GRPO+SFT)",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "pid": "36167",
+      "data_path": "openai/gsm8k (train split for SFT/GRPO)",
+      "data_count": 7473,
+      "checkpoint_source": "synthetic_depth_scores.pt → pruned_depth_first_20",
+      "eval_data": "gsm8k test 1319"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T11:04:35.462Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T11:04:36.910Z"
+  },
+  "timestamp": "2026-05-22T11:04:45.343574+00:00",
+  "trigger": "update_registry"
+}

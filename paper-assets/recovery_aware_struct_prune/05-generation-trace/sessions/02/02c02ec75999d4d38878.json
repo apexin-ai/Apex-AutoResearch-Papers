@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02c02ec75999d4d38878",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest standard 15 seed123 v3",
+  "task_key": "worker_ssh_harvest_standard_15_seed123_v3_20260521T005657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_standard_15_seed123_v3_20260521T005657_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "9cd6f9aa7cb0244d7edb5e1ecf628a513f12aaee7b342ddf105592b6d1a9373c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**Standard 15% seed123 结果**: accuracy = **65.13%** (859/1319)\n\n**Standard 15% 全部三个 seed 汇总**:\n\n| Seed | Accuracy |\n|------|----------|\n| seed42 | 待查 |\n| seed123 | 65.13% |\n| seed456 | 65.43% |\n\n注意 seed42 的结果不在本次任务范围内，已有的两个 seed 均值为 **65.28%**。\n\n**CKA-only 15% vs Standard 15% 对比**（已完成 seed）:\n- CKA-only 15%: mean **72.76%** (73.09 / 73.09 / 72.10)\n- Standard 15%: seed123=65.13%, seed456=65.43%\n\nCKA-only 在 15% 剪枝率下领先 Standard 约 **7.5 个百分点**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-standard-15-seed123-v3.md"
+}

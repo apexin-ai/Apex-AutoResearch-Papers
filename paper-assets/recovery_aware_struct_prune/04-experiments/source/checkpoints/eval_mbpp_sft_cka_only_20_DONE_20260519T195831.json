@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval_mbpp_sft_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:20:00.596Z",
+    "updated_at": "2026-05-19T19:58:30.970Z",
+    "hypothesis": "MBPP pass@1 eval on SFT CKA-only 20% model. Dense baseline=53.48% (200/374). CKA-only preserves most code generation capability after pruning. Compare SFT vs GRPO on MBPP to test redistribution hypothesis on second code benchmark.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_cka_only_20.json",
+      "server": "westd-29022",
+      "gpu": "cuda:3",
+      "pid": 123029,
+      "log_path": "/tmp/eval_mbpp_sft_cka_only_20.log",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20",
+      "eval_data": "MBPP sanitized (374 tasks)",
+      "data_path": "google-research-datasets/mbpp (sanitized)",
+      "data_count": 374,
+      "model_name": "Qwen2.5-7B-pruned-20%-SFT-CKA-only",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pass_at_1": 0.1283,
+      "stderr": 0.0173,
+      "n_correct": 48,
+      "n_total": 374,
+      "dense_baseline_pass_at_1": 0.5348,
+      "degradation_pct": 76.01,
+      "avg_response_length": 643.8,
+      "median_response_length": 363.5
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20",
+    "log_path": "/tmp/eval_mbpp_sft_cka_only_20.log",
+    "completed_at": "2026-05-19T19:58:30.970Z"
+  },
+  "timestamp": "2026-05-19T19:58:31.389030+00:00",
+  "trigger": "update_registry"
+}

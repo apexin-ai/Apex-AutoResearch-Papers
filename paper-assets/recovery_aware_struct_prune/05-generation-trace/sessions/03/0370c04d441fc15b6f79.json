@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0370c04d441fc15b6f79",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd full eval setup",
+  "task_key": "worker_ops_westd-full-eval-setup_20260515T162120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-full-eval-setup_20260515T162120_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "c7a20b04d05fbb9185cd904ed97c2fe4eb53f97331e68e6010f1b2c226b611f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n### 1. 模型路径\n**两个模型在 westd 上均不存在：**\n- `sft_rasp_20/` — **缺失**\n- `sft_standard_20/` — **缺失**\n- `sft_standard_20_retrain/` — **缺失**\n\nwestd 上已有的目录：`alpha_ablation`, `pruned_graspune_20`, `pruned_rasp_20`, `pruned_standard_20`, `sft_ablation`, `sft_graspune_20`\n\n### 2. eval 链状态\nwestd 上**无 tmux session、无 eval 进程**——之前的三条 eval 链已全部完成，cuda:0 和 cuda:1 空闲可用。\n\n### 3. 传输评估\n| 项目 | 数据 |\n|------|------|\n| westb `sft_rasp_20/model.safetensors` | 12.3 GB |\n| westb `sft_standard_20/model.safetensors` | 12.3 GB |\n| 含 checkpoint 的完整目录 | 各 81 GB（不需要传 checkpoint） |\n| 仅传必要文件（model + config + tokenizer） | ~12.3 GB × 2 ≈ 24.6 GB |\n| westd `/root/autodl-tmp/` 可用空间 | 46 GB ✓ |\n| **westb → westd 直连** | **不通**（SSH Permission denied） |\n\n### 4. eval 参数确认\n`eval_gsm8k.py` 的 `--max_samples` 参数：`None=all`，不传该参数即使用全部样本（N=1319）。\n\n### 需要决策\nwestb 无法直连 westd，模型传输需要中继方案。选项：\n1. **通过本地机器中继**：westb → 本地 → westd（双跳，24.6GB）\n2. **通过对象存储中继**（如有共享 OSS/COS）\n3. **在 westd 上重新训练 SFT**（但太慢，不推荐）\n\n请确认传输方案，我不会自行发起传输。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-full-eval-setup.md"
+}

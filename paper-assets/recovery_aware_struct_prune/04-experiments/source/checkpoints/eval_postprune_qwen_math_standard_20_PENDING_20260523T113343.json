@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_postprune_qwen_math_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:33:21.029Z",
+    "updated_at": "2026-05-23T11:33:42.432Z",
+    "hypothesis": "Qwen2.5-Math-7B Standard 20% post-prune GSM8K accuracy. Baseline for comparing CKA-only vs Standard pruning before recovery training on Qwen-Math model."
+  },
+  "timestamp": "2026-05-23T11:33:43.062995+00:00",
+  "trigger": "update_registry"
+}

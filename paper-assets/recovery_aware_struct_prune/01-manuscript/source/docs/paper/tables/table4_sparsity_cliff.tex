@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\caption{Sparsity cliff at 30\% structured sparsity. All tested pruning criteria collapse, with near-zero accuracy and EOS generation rates below 6\%.}
+\label{tab:sparsity_cliff}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & $N$ & Acc.\,(\%) & EOS Rate\,(\%) \\
+\midrule
+Standard & 200 & 4 & 5.5 \\
+\rasp{} ($\alpha{=}1.0$) & 200 & 0 & 3.0 \\
+CKA-only & 500$^\dagger$ & 1.6 & --$^\dagger$ \\
+\bottomrule
+\multicolumn{4}{@{}l}{\footnotesize $^\dagger$Terminated early after collapse confirmed; 8/500 correct.}
+\end{tabular}
+\end{table}

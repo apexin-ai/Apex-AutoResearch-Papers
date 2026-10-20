@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_gsm8k_sft_depth_first_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:20:43.950Z",
+    "updated_at": "2026-05-22T14:20:43.950Z"
+  },
+  "timestamp": "2026-05-22T14:20:44.579542+00:00",
+  "trigger": "update_registry"
+}

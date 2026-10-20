@@ -1,0 +1,16 @@
+{
+  "exp_id": "grpo_random_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:30:31.016Z",
+    "updated_at": "2026-05-17T13:38:52.741Z",
+    "hypothesis": "Random pruning 的 GRPO collapse 行为 — 如果 collapse ≈ RASP (step~10)，则所有结构剪枝伤 RL；如果 ≈ Standard (step~60)，则 CKA-aware 选择特别伤 RL（redundancy-stability tradeoff 确认）；如果 stable（无 collapse），则 CKA narrative 需要重构。",
+    "parent": "scoring_ablation_random_20"
+  },
+  "timestamp": "2026-05-17T13:38:53.020131+00:00",
+  "trigger": "update_registry"
+}

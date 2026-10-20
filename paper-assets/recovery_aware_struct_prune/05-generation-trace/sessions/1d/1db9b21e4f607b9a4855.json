@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1db9b21e4f607b9a4855",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 unpruned",
+  "task_key": "worker_diagnose_eval_math500_unpruned_20260517T120859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_unpruned_20260517T120859_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "8dd7d252f0d0c970b6eb59d8aec0233ace1dc70801b56f60206389d682c46fd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**判断：Success**\n\n实验已成功完成，结果：\n\n- **MATH-500 Accuracy: 73.60% (368/500)**，标准误 ±0.0197\n- 总耗时约 4 小时 48 分钟\n- 结果已保存至 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_unpruned.json`\n- 退出码 0，无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-unpruned.md"
+}

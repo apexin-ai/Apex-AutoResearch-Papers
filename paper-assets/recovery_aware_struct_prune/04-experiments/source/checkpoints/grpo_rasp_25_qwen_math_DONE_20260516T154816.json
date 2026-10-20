@@ -1,0 +1,70 @@
+{
+  "exp_id": "grpo_rasp_25_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:51:11.170Z",
+    "updated_at": "2026-05-16T15:48:16.334Z",
+    "hypothesis": "Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.",
+    "spec": {
+      "command": "GRPO v4 RASP 25% sparsity 100 steps",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "16978",
+      "log_path": "/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+      "submitted_at": "2026-05-16T14:49:45.668Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "Qwen2.5-Math-7B",
+      "seed": 42,
+      "wall_clock_seconds": 3335.3,
+      "gpu_hours": 0.93,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math",
+      "wandb_run_id": "3vjjzi13"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T15:40:25.443Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T15:40:27.310795+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_reward": 0.206,
+      "final_frac_zero_std": 0.35,
+      "final_kl": 0.00379,
+      "final_entropy": 0.09,
+      "final_completion_length": 811.9,
+      "collapse_onset_step": 10,
+      "collapse_type": "immediate_chronic",
+      "reward_range": [
+        0.111,
+        0.225
+      ],
+      "frac_zero_std_peak": 0.575,
+      "clipped_ratio_final": 0.719,
+      "runtime_seconds": 2708,
+      "total_steps": 100
+    },
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math",
+    "log_path": "~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+    "completed_at": "2026-05-16T15:45:20.942Z",
+    "wandb_run_id": "3vjjzi13"
+  },
+  "timestamp": "2026-05-16T15:48:16.719740+00:00",
+  "trigger": "update_registry"
+}

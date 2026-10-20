@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_math500_sft_rasp_alpha3p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:26:16.273Z",
+    "updated_at": "2026-05-22T18:26:37.451Z",
+    "hypothesis": "α=3.0 SFT MATH-500 eval @2048. Dose-response \"下降段确认点\": GSM8K α=3.0 SFT=64.14% (below α=2.0 peak 64.97%). If MATH-500 also shows α=3.0 < α=2.0, confirms inverted-U descending arm cross-benchmark. Completes 5/5 MATH-500 dose-response."
+  },
+  "timestamp": "2026-05-22T18:26:38.107034+00:00",
+  "trigger": "update_registry"
+}

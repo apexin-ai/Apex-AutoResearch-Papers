@@ -1,0 +1,46 @@
+{
+  "exp_id": "sft_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:37:34.863Z",
+    "updated_at": "2026-05-15T00:37:14.744Z",
+    "spec": {
+      "command": "python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --num_train_epochs 2 --learning_rate 2e-5",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "249655",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_standard_20.log",
+      "submitted_at": "2026-05-14T23:47:25.361Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "model_name": "pruned_standard_20",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20"
+    },
+    "hypothesis": "D013 Stage 1: SFT warmup on Standard-pruned model (20%, 1% GSM8K) as negative control. Expected: SFT partially recovers format but reasoning remains limited.",
+    "reproduce": {
+      "finished_at": "2026-05-15T00:28:23.640Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T00:28:25.338475+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T00:37:14.833540+00:00",
+  "trigger": "update_registry"
+}

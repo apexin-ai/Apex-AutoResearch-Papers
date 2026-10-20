@@ -1,0 +1,116 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{deepseekai2025}
+\citation{qwq2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\newlabel{eq:rasp}{{1}{1}{Introduction}{equation.1}{}}
+\citation{ma2024llmpruner}
+\citation{ashkboos2024slicegpt}
+\citation{sun2024wanda}
+\citation{graspune2026}
+\citation{bonsai2025}
+\citation{selfhealing2025}
+\citation{paser2025}
+\citation{resp2025}
+\citation{kornblith2019similarity}
+\citation{mpruner2024}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structured Pruning of LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recovery of Pruned Reasoning Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA for Model Analysis.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Recovery-Aware Structured Pruning (RASP)}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA Functional Overlap $F(h)$.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intuition.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Baselines}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pruning.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recovery.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Analysis.}{3}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Post-prune GSM8K accuracy (N=1319) at 20\% structured sparsity. The RASP--Standard gap is not statistically significant.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:postprune}{{1}{4}{Post-prune GSM8K accuracy (N=1319) at 20\% structured sparsity. The RASP--Standard gap is not statistically significant}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Multi-seed (N=5) post-prune GSM8K accuracy. The RASP advantage is not statistically significant. The seed-to-seed variance ($\pm $0.8pp) is comparable to the gap itself (0.9pp).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:multiseed}{{2}{4}{Multi-seed (N=5) post-prune GSM8K accuracy. The RASP advantage is not statistically significant. The seed-to-seed variance ($\pm $0.8pp) is comparable to the gap itself (0.9pp)}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Post-Prune Accuracy: RASP vs.\ Standard}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:postprune}{{5.1}{4}{Post-Prune Accuracy: RASP vs.\ Standard}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}SFT Recovery}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:sft}{{5.2}{4}{SFT Recovery}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}GRPO Recovery}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:grpo}{{5.3}{4}{GRPO Recovery}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Full Pipeline Comparison}{4}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:pipeline}{{5.4}{4}{Full Pipeline Comparison}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces SFT recovery results (N=1319). Standard recovers 8.2pp more than RASP despite similar post-prune accuracy.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:sft}{{3}{5}{SFT recovery results (N=1319). Standard recovers 8.2pp more than RASP despite similar post-prune accuracy}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces GRPO stage-2 recovery (N=1319). GRPO provides marginal or negative benefit.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:grpo}{{4}{5}{GRPO stage-2 recovery (N=1319). GRPO provides marginal or negative benefit}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Pruning$\times $Recovery Interaction}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:interaction}{{5.5}{5}{Pruning$\times $Recovery Interaction}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Additional Pruning Baselines}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:baselines}{{5.6}{5}{Additional Pruning Baselines}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Scoring Ablation and $\alpha $ Sensitivity}{5}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:ablation}{{5.7}{5}{Scoring Ablation and $\alpha $ Sensitivity}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scoring ablation.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$\alpha $ sensitivity.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}CKA--Recoverability Correlation}{5}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:cka_corr}{{5.8}{5}{CKA--Recoverability Correlation}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Full pipeline comparison (N=1319, 20\% sparsity). Standard + SFT achieves the highest post-recovery accuracy and recovery rate.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:pipeline}{{5}{6}{Full pipeline comparison (N=1319, 20\% sparsity). Standard + SFT achieves the highest post-recovery accuracy and recovery rate}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 2$\times $2 factorial analysis (N=1319). Pruning method matters; recovery method does not; they do not interact.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:anova}{{6}{6}{2$\times $2 factorial analysis (N=1319). Pruning method matters; recovery method does not; they do not interact}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{CKA reliability.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Sparsity Scaling}{6}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:sparsity}{{5.9}{6}{Sparsity Scaling}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Out-of-Distribution Evaluation}{6}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:ood}{{5.10}{6}{Out-of-Distribution Evaluation}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Unstructured Pruning Baseline}{6}{subsection.5.11}\protected@file@percent }
+\newlabel{sec:unstructured}{{5.11}{6}{Unstructured Pruning Baseline}{subsection.5.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Four pruning methods through the full pipeline (20\% sparsity). Post-prune accuracy poorly predicts post-recovery accuracy: GRASPrune has the worst post-prune (7.2\%) but competitive recovery (56\%).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:baselines}{{7}{7}{Four pruning methods through the full pipeline (20\% sparsity). Post-prune accuracy poorly predicts post-recovery accuracy: GRASPrune has the worst post-prune (7.2\%) but competitive recovery (56\%)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Scoring ablation (N=100, 20\% sparsity). $\alpha $-scaling substantially improves post-prune accuracy.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:scoring}{{8}{7}{Scoring ablation (N=100, 20\% sparsity). $\alpha $-scaling substantially improves post-prune accuracy}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}Inference Efficiency}{7}{subsection.5.12}\protected@file@percent }
+\newlabel{sec:speedup}{{5.12}{7}{Inference Efficiency}{subsection.5.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does CKA overlap fail to predict recoverability?}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does Standard outperform RASP after recovery?}{7}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces $\alpha $ ablation. Post-prune accuracy monotonically increases with $\alpha $, but post-recovery accuracy does not.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:alpha}{{9}{8}{$\alpha $ ablation. Post-prune accuracy monotonically increases with $\alpha $, but post-recovery accuracy does not}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Mixed-effects regression predicting per-structure post-recovery accuracy retention (N=784 MLP groups). CKA functional overlap is not a significant predictor.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:cka_regression}{{10}{8}{Mixed-effects regression predicting per-structure post-recovery accuracy retention (N=784 MLP groups). CKA functional overlap is not a significant predictor}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does $\alpha $-scaling help post-prune but not post-recovery?}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Positive takeaways.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibcite{deepseekai2025}{{1}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{qwq2025}{{2}{2025}{{QwQ Team}}{{}}}
+\bibcite{ma2024llmpruner}{{3}{2024}{{Ma et~al.}}{{}}}
+\bibcite{ashkboos2024slicegpt}{{4}{2024}{{Ashkboos et~al.}}{{}}}
+\bibcite{sun2024wanda}{{5}{2024}{{Sun et~al.}}{{}}}
+\bibcite{graspune2026}{{6}{2026}{{GRASPrune Authors}}{{}}}
+\bibcite{bonsai2025}{{7}{2025}{{Bonsai Authors}}{{}}}
+\bibcite{selfhealing2025}{{8}{2025}{{Self-Healing Authors}}{{}}}
+\bibcite{paser2025}{{9}{2025}{{PASER Authors}}{{}}}
+\bibcite{resp2025}{{10}{2025}{{RESP Authors}}{{}}}
+\bibcite{kornblith2019similarity}{{11}{2019}{{Kornblith et~al.}}{{}}}
+\bibcite{mpruner2024}{{12}{2024}{{MPruner Authors}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Higher sparsity results. The pattern from 20\% replicates at 25\%: Standard recovers better. At 30\%, both methods near-collapse.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:sparsity}{{11}{9}{Higher sparsity results. The pattern from 20\% replicates at 25\%: Standard recovers better. At 30\%, both methods near-collapse}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces OOD evaluation. Standard's advantage is consistent across all benchmarks, ruling out memorization.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:ood}{{12}{9}{OOD evaluation. Standard's advantage is consistent across all benchmarks, ruling out memorization}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Unstructured vs.\ structured pruning. Structured pruning + SFT recovery matches unstructured accuracy while providing real speedup.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:unstructured}{{13}{10}{Unstructured vs.\ structured pruning. Structured pruning + SFT recovery matches unstructured accuracy while providing real speedup}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Inference benchmarks. Both pruning methods yield identical speedup ($\sim $1.13$\times $) and $\sim $18.5\% memory reduction.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:speedup}{{14}{10}{Inference benchmarks. Both pruning methods yield identical speedup ($\sim $1.13$\times $) and $\sim $18.5\% memory reduction}{table.14}{}}
+\gdef \@abspage@last{10}

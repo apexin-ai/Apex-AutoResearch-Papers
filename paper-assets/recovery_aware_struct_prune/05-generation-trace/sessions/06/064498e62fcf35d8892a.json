@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "064498e62fcf35d8892a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch grpo alpha3p0 v2 westb0",
+  "task_key": "worker_launch_grpo_alpha3p0_v2_westb0_20260522T104100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_grpo_alpha3p0_v2_westb0_20260522T104100_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "70a015d8838b69b526a83ff17e5dfec1379770ce7c863f25d1367f4806dc816d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据盘 250GB 已 100% 满，无法启动训练。任务描述说\"约 44GB free\"，但实际只剩 3.3MB。\n\n主要占用：\n- `recovery_aware_struct_prune/`: 235GB（其中 `grpo_qwen_math_cka_only_20` 单独占 38GB）\n- `models/`: 15GB\n\n删除损坏的 `grpo_rasp_alpha3p0_20/checkpoint-100/`（~7.2GB）远不够，训练输出需要约 11-12GB，加上训练过程中的临时开销，至少需要清出 ~20-30GB。\n\n需要你决定哪些旧实验目录可以删除。候选：\n- `grpo_qwen_math_cka_only_20` — **38GB**，清掉后空间直接够用\n- `grpo_standard_25_westb` — 11GB\n- `grpo_cka_only_20_seed123` — 12GB\n- 1.5B 系列（9个目录 × ~2.8GB = ~25GB）\n\n你要删哪些？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-grpo-alpha3p0-v2-westb0.md"
+}

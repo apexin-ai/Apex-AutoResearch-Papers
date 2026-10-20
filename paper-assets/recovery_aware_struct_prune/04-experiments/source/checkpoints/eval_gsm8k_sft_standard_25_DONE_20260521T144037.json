@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_gsm8k_sft_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:13:12.112Z",
+    "updated_at": "2026-05-21T14:40:37.092Z",
+    "hypothesis": "Standard 25% SFT GSM8K accuracy establishes pre-GRPO floor for importance-based pruning at 25% sparsity, enabling SFT→GRPO recovery delta comparison with CKA-only 25%",
+    "spec": {
+      "command": "nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --max_samples 1319 --seed 42'",
+      "server": "westd-29022",
+      "gpu": "cuda:3",
+      "pid": 335301,
+      "data_path": "GSM8K (N=1319)",
+      "data_count": 1319,
+      "model_name": "sft_standard_25",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870",
+      "seed": 42,
+      "checkpoint_source": "sft_standard_25",
+      "eval_data": "GSM8K",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_25.log",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "metrics": {
+      "gsm8k_accuracy": 0.5087,
+      "stderr": 0.0138,
+      "correct": 671,
+      "n_total": 1319,
+      "eos_rate": 0.953,
+      "avg_response_length": 333.15
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T14:40:37.092Z"
+  },
+  "timestamp": "2026-05-21T14:40:37.641447+00:00",
+  "trigger": "update_registry"
+}

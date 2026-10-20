@@ -1,0 +1,3152 @@
+dream_id: dream_20260516T144805
+project: recovery_aware_struct_prune
+venue: ''
+focus: ''
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 25%稀疏度放大所有效应 + 跨模型复现collapse梯度 → 三条claim全部成立，RASP作为诊断工具的framing完整
+      key_assumptions:
+      - 25% sparsity下SFT gap显著扩大（RASP vs Standard ≥5pp, p<0.05）
+      - 25% GRPO collapse梯度更陡：RASP ≤5步collapse, Standard ≤30步collapse（比20%快2x）
+      - Qwen-Math-7B复现collapse严重度梯度（RASP collapse显著早于Standard）
+      - Redundancy-Stability Tradeoff在两个模型、两个稀疏度上一致成立
+      number_ranges:
+        sft_gap_25pct_pp:
+        - 5
+        - 10
+        sft_gap_25pct_p_value:
+        - 0.001
+        - 0.05
+        grpo_collapse_step_rasp_25:
+        - 1
+        - 5
+        grpo_collapse_step_standard_25:
+        - 15
+        - 30
+        cross_model_collapse_ratio_rasp_vs_standard:
+        - 3
+        - 10
+        rasp_sft_25_accuracy:
+        - 0.54
+        - 0.6
+        standard_sft_25_accuracy:
+        - 0.49
+        - 0.53
+      narrative_direction: 原始framing完全成立。三条claim无需调整：(1) GRPO universal failure +
+        pruning-specific collapse confirmed across sparsity levels and models; (2)
+        collapse severity gradient as zero-cost diagnostic validated on second model;
+        (3) Redundancy-Stability Tradeoff is a general principle, not artifact of
+        single config. RASP既是方法贡献(SFT显著优势)又是诊断工具(collapse速度预测pruning质量)。投EMNLP Main，reviewer
+        concerns全有实验回应。
+    median:
+      tier: median
+      meaning: 25%稀疏度部分放大效应但SFT gap仍边际显著；跨模型collapse存在但梯度不如主模型clean → Claim 1+2成立，Claim
+        3需弱化
+      key_assumptions:
+      - 25% SFT gap扩大但仍边际（3-5pp, p∈[0.05, 0.15]）
+      - 25% GRPO collapse梯度存在但没有20%那么干净（RASP ~5-10步, Standard ~20-40步）
+      - Qwen-Math-7B GRPO shows collapse for pruned models但RASP vs Standard差异不显著（collapse步数重叠）
+      - Unpruned GRPO reward-accuracy decoupling在所有配置下稳健
+      number_ranges:
+        sft_gap_25pct_pp:
+        - 3
+        - 5
+        sft_gap_25pct_p_value:
+        - 0.05
+        - 0.15
+        grpo_collapse_step_rasp_25:
+        - 5
+        - 10
+        grpo_collapse_step_standard_25:
+        - 20
+        - 40
+        cross_model_collapse_ratio_rasp_vs_standard:
+        - 1.2
+        - 3
+        rasp_sft_25_accuracy:
+        - 0.52
+        - 0.56
+        standard_sft_25_accuracy:
+        - 0.49
+        - 0.53
+      narrative_direction: Claim 1(GRPO universal failure)完全成立且是论文最强贡献。Claim 2(collapse
+        severity gradient)在主模型成立但跨模型证据弱化——改为'diagnostic tendency'而非'clean gradient'。Claim
+        3(Redundancy-Stability Tradeoff)从'fundamental principle'降级为'empirical observation
+        on DeepSeek-R1 family, consistent with but not proven as general mechanism'。SFT
+        gap报告为trend而非significant result。论文核心叙事转向：GRPO在pruned models上的systematic failure
+        + collapse dynamics作为pruning质量的cheap signal。仍投EMNLP Main但需要补充unstructured
+        pruning baseline做fair Self-Healing comparison，且Discussion需诚实承认generalization
+        limitation。
+    worst:
+      tier: worst
+      meaning: 25% GRPO不显示clean梯度 + 跨模型完全不复现 + SFT gap在所有稀疏度下不显著 → 核心机制性claim不成立，需reframe为empirical
+        failure analysis
+      key_assumptions:
+      - '25% GRPO: RASP和Standard都在≤10步collapse，severity gradient消失（高稀疏度下两者都太脆弱）'
+      - Qwen-Math-7B GRPO不collapse或两者同时collapse（无梯度差异）
+      - 'SFT gap在所有稀疏度下不显著（20%: p=0.25, 25%: p>0.1）'
+      - Redundancy-Stability Tradeoff无法被实验区分——CKA-aware选择在所有recovery范式下效果相似
+      number_ranges:
+        sft_gap_25pct_pp:
+        - 0
+        - 3
+        sft_gap_25pct_p_value:
+        - 0.1
+        - 0.5
+        grpo_collapse_step_rasp_25:
+        - 1
+        - 8
+        grpo_collapse_step_standard_25:
+        - 1
+        - 12
+        cross_model_collapse_ratio_rasp_vs_standard:
+        - 0.8
+        - 1.5
+        rasp_sft_25_accuracy:
+        - 0.5
+        - 0.54
+        standard_sft_25_accuracy:
+        - 0.49
+        - 0.53
+      narrative_direction: 'Reframe为：''Structured pruning breaks RLVR alignment —
+        a systematic empirical study''。放弃mechanism-level claim (Redundancy-Stability
+        Tradeoff)和RASP作为诊断工具的角色。核心贡献缩减为：(1) 首次documenting GRPO reward-accuracy decoupling（unpruned数据仍是strong
+        negative result挑战Self-Healing）；(2) 首次documenting GRPO training collapse on
+        structurally pruned reasoning models（即使梯度不clean，collapse本身仍是novel finding）；(3)
+        Empirical recommendation: SFT-only recovery for structurally pruned models。RASP降级为experiment中的一个pruning
+        variant而非方法贡献。论文从''mechanism paper''变为''empirical failure analysis + practical
+        warning''。仍投EMNLP Main(Efficient Methods track接受well-executed negative results)，但需要加强writing和framing的novelty
+        justification，可能需要补inference speedup数据证明structured pruning的实际价值来justify研究的practical
+        relevance。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260516T144805/best/paper.pdf
+  imagined_experiments:
+  - name: Full GSM8K eval baseline + pruned models
+    plan_id: plan_001
+    description: N=1319 full eval for unpruned baseline, RASP_20 post-prune, Standard_20
+      post-prune
+    expected_results:
+      unpruned_baseline_accuracy: 0.8127
+      rasp_20_postprune_accuracy: 0.29
+      standard_20_postprune_accuracy: 0.27
+      rasp_vs_standard_gap_pp: 2.0
+      n_total: 1319
+    result_rationale: 已有N=100数据确认RASP 31% vs Standard 27%。N=1319仅收窄CI（±2.4pp），点估计不变。Post-prune
+      gap ~2pp不显著，因为pruning damage尚未通过SFT recovery放大差异。
+    tables:
+    - name: 'Table: Post-Prune Accuracy (20% structured, N=1319)'
+      columns:
+      - Model
+      - Accuracy
+      - 95% CI
+      rows:
+      - - Unpruned
+        - 81.27%
+        - ±2.1pp
+      - - RASP_20
+        - 29.0%
+        - ±2.4pp
+      - - Standard_20
+        - 27.0%
+        - ±2.4pp
+    figures_description:
+    - Bar chart showing massive accuracy drop from pruning (81→29/27%) with overlapping
+      CIs between RASP and Standard
+    analysis: Post-prune差异不显著证实pruning damage本身不区分方法，真正差异在recovery阶段才显现。
+  - name: Full GSM8K eval all recovered models
+    plan_id: plan_004
+    description: N=1319 eval for RASP_20 SFT, Standard_20 SFT, RASP_20 GRPO, Standard_20
+      GRPO, unpruned GRPO
+    expected_results:
+      rasp_20_sft_accuracy: 0.6149
+      standard_20_sft_accuracy: 0.5929
+      rasp_20_grpo_step5_accuracy: 0.6065
+      standard_20_grpo_step50_accuracy: 0.5891
+      unpruned_grpo_step100_accuracy: 0.8127
+      sft_gap_rasp_vs_standard_pp: 2.2
+      grpo_delta_rasp_pp: -0.84
+      grpo_delta_standard_pp: -0.38
+      grpo_delta_unpruned_pp: 0.0
+    result_rationale: 已有完整数据。GRPO对所有模型accuracy无正增益（unpruned完全相同1072/1319），pruned模型略降。paper
+      Table 1核心数据已齐全。
+    tables:
+    - name: 'Table 1: Recovery Accuracy (GSM8K, N=1319, greedy)'
+      columns:
+      - Config
+      - SFT
+      - GRPO
+      - Δ(GRPO-SFT)
+      rows:
+      - - Unpruned
+        - 81.27%
+        - 81.27%
+        - +0.00pp
+      - - Standard_20
+        - 59.29%
+        - 58.91%
+        - -0.38pp
+      - - RASP_20
+        - 61.49%
+        - 60.65%
+        - -0.84pp
+    figures_description:
+    - 'Grouped bar chart: SFT vs GRPO accuracy for 3 configs, showing GRPO never improves
+      accuracy'
+    analysis: GRPO reward-accuracy decoupling是universal的；pruning-specific failure是training
+      collapse而非accuracy degradation。
+  - name: GRASPrune baseline 20% full pipeline
+    plan_id: plan_005
+    description: 'GRASPrune at 20% sparsity: prune → eval → SFT → GRPO. ACL 2026 SOTA
+      external baseline'
+    expected_results:
+      postprune_accuracy: 0.07
+      postprune_eos_rate: 0.02
+      post_sft_accuracy: 0.41
+      post_sft_stderr: 0.027
+      post_sft_n1319_accuracy: 0.4
+      grpo_collapse_step: 3
+      grpo_peak_reward: 0.012
+      grpo_final_frac_zero_std: 0.98
+    result_rationale: GRASP post-prune仅7%（已验证），SFT恢复至41%（已验证，p=0.001 vs Standard 64%）。GRASP激进剪枝破坏更多结构冗余，GRPO应在≤5步collapse——比RASP更快。GRASP
+      removes high-gradient structures regardless of functional redundancy，resulting
+      in maximal RLVR instability。
+    tables:
+    - name: 'Table: GRASPrune vs RASP vs Standard Pipeline'
+      columns:
+      - Method
+      - Post-Prune
+      - Post-SFT
+      - GRPO Collapse Step
+      rows:
+      - - GRASPrune
+        - 7%
+        - 41%
+        - ~3
+      - - RASP
+        - 29%
+        - 61.5%
+        - ~10
+      - - Standard
+        - 27%
+        - 59.3%
+        - ~60
+    figures_description:
+    - 'Collapse dynamics 4-line plot: GRASPrune(step3) < RASP(step10) < Standard(step60)
+      < Unpruned(never). 严重度梯度完整。'
+    analysis: GRASPrune的gradient-based选择策略去除了最多functional redundancy，验证了collapse速度∝redundancy
+      removal程度。四点梯度使诊断工具framing更convincing。
+  - name: Multi-seed post-prune eval (5 seeds)
+    plan_id: plan_006
+    description: RASP_20 + Standard_20 post-prune evaluation with 5 seeds for robust
+      variance estimation
+    expected_results:
+      rasp_20_mean_accuracy: 0.295
+      rasp_20_std: 0.012
+      standard_20_mean_accuracy: 0.27
+      standard_20_std: 0.015
+      rasp_vs_standard_p_value: 0.03
+      seeds:
+      - 42
+      - 123
+      - 456
+      - 789
+      - 1024
+      n_per_seed: 1319
+    result_rationale: Post-prune eval是deterministic（greedy decoding），seed影响仅来自calibration
+      data sampling。RASP的CKA scoring对calibration data更稳定（因为CKA captures structural而非instance-level信号），故std略低。5-seed下2.5pp
+      gap可达p<0.05。
+    tables:
+    - name: 'Table: Multi-Seed Post-Prune Accuracy'
+      columns:
+      - Method
+      - Mean±Std
+      - 95% CI
+      - Seeds
+      rows:
+      - - RASP_20
+        - 29.5±1.2%
+        - '[27.1, 31.9]'
+        - 5
+      - - Standard_20
+        - 27.0±1.5%
+        - '[24.0, 30.0]'
+        - 5
+    figures_description:
+    - Box plot with 5 seeds per method, showing RASP略高且方差更小
+    analysis: Post-prune gap达到marginal significance (p=0.03)，但核心论点不依赖此——真正差异在recovery和collapse
+      dynamics。Multi-seed确认pruning本身reproducible。
+  - name: Scoring ablation (magnitude/gradient/random)
+    plan_id: plan_007
+    description: 'Ablation pruning at 20%: magnitude-only, gradient-only, random.
+      Isolate CKA contribution'
+    expected_results:
+      magnitude_only_postprune: 0.25
+      gradient_only_postprune: 0.28
+      random_postprune: 0.15
+      magnitude_sft_recovery: 0.56
+      gradient_sft_recovery: 0.58
+      random_sft_recovery: 0.42
+      magnitude_grpo_collapse_step: 40
+      gradient_grpo_collapse_step: 45
+      random_grpo_collapse_step: 8
+    result_rationale: Magnitude-only保留大权重但忽略功能冗余，post-prune与Standard(importance-based)接近。Gradient-only与GRASPrune逻辑相似但无budget约束，略好于magnitude。Random是lower
+      bound。CKA的贡献在于：RASP(31%)>gradient(28%)>magnitude(25%)>random(15%)。GRPO collapse速度中，random最快（随机破坏冗余路径），magnitude/gradient因保留high-importance
+      units而较慢，但仍比Standard快（Standard的importance metric隐式保留了部分冗余）。
+    tables:
+    - name: 'Table: Scoring Ablation Results'
+      columns:
+      - Scoring
+      - Post-Prune
+      - Post-SFT
+      - GRPO Collapse
+      rows:
+      - - RASP (I×(1-F)^α)
+        - 29%
+        - 61.5%
+        - step ~10
+      - - Standard (importance)
+        - 27%
+        - 59.3%
+        - step ~60
+      - - Gradient-only
+        - 28%
+        - 58%
+        - step ~45
+      - - Magnitude-only
+        - 25%
+        - 56%
+        - step ~40
+      - - Random
+        - 15%
+        - 42%
+        - step ~8
+    figures_description:
+    - 'Scatter plot: post-prune accuracy vs GRPO collapse step for all methods, showing
+      RASP is Pareto-dominated point — high SFT but fast collapse'
+    analysis: CKA贡献体现在SFT recovery（+5pp over magnitude），但对GRPO有害（collapse比magnitude/gradient快4-6×）。验证redundancy
+      removal与collapse速度的因果关系。
+  - name: Per-structure CKA-recoverability correlation
+    plan_id: plan_008
+    description: Per-head F(h) correlated with activation change post-recovery. Mixed-effects
+      regression
+    expected_results:
+      fh_recovery_correlation_sft: -0.42
+      fh_recovery_correlation_sft_p: 0.001
+      fh_collapse_speed_correlation: 0.55
+      fh_collapse_speed_p: 0.0003
+      mixed_effects_r2: 0.38
+      layer_random_effect_variance: 0.15
+      controlling_for_weight_norm: true
+      controlling_for_gradient_importance: true
+      n_structures: 784
+    result_rationale: F(h)（CKA功能冗余度）高的结构在SFT后activation变化小（r=-0.42）——因为它们的功能已由其他结构承接，不需要恢复。但高F(h)结构的移除与GRPO
+      collapse速度正相关（r=0.55）——因为它们提供的backup paths是RL exploration的安全网。Mixed-effects
+      R²=0.38说明F(h)解释了显著但非全部方差（其他因素如layer position也重要）。
+    tables:
+    - name: 'Table: CKA-Recoverability Regression'
+      columns:
+      - Predictor
+      - β
+      - SE
+      - p-value
+      rows:
+      - - F(h) (CKA redundancy)
+        - -0.42
+        - 0.08
+        - <0.001
+      - - Weight norm
+        - 0.12
+        - 0.05
+        - 0.02
+      - - Gradient importance
+        - 0.08
+        - 0.06
+        - 0.18
+      - - Layer (random)
+        - σ²=0.15
+        - '-'
+        - '-'
+    figures_description:
+    - 'Scatter with regression line: F(h) vs activation change magnitude (left panel,
+      SFT context), F(h) vs time-to-collapse contribution (right panel, GRPO context)'
+    analysis: 机制验证：高冗余结构SFT可安全移除（功能可redistribution），但GRPO需要它们作为exploration buffer。这是Redundancy-Stability
+      Tradeoff的结构层面证据。
+  - name: SFT-only recovery comparison
+    plan_id: plan_009
+    description: Same pruned models, SFT only (no GRPO stage). Tests whether pruning
+      strategy优劣在SFT-only pipeline中成立
+    expected_results:
+      rasp_20_sft_only_accuracy: 0.6149
+      standard_20_sft_only_accuracy: 0.5929
+      gap_pp: 2.2
+      p_value: 0.25
+      rasp_25_sft_only_accuracy: 0.57
+      standard_25_sft_only_accuracy: 0.5125
+      gap_25_pp: 5.75
+      p_25_value: 0.008
+    result_rationale: 20%稀疏度下SFT gap仅2.2pp（已有数据，p=0.25不显著）。25%稀疏度放大效应：Standard在更高稀疏度下丢失更多关键结构，SFT难以完全恢复；RASP的CKA-aware选择在25%时保留了更关键的functional
+      units，使recovery gap扩大至5.75pp（p=0.008）。这验证了'SFT下RASP优越性随稀疏度单调递增'。
+    tables:
+    - name: 'Table: SFT-Only Recovery by Sparsity'
+      columns:
+      - Sparsity
+      - RASP SFT
+      - Standard SFT
+      - Gap
+      - p-value
+      rows:
+      - - 20%
+        - 61.49%
+        - 59.29%
+        - +2.2pp
+        - 0.25
+      - - 25%
+        - 57.0%
+        - 51.25%
+        - +5.75pp
+        - 0.008
+    figures_description:
+    - 'Line plot: accuracy vs sparsity for RASP and Standard, diverging as sparsity
+      increases. Error bars show CI narrowing at N=1319.'
+    analysis: SFT gap在25%处achieve significance。Claim 3直接支持：SFT-only pipeline下RASP显著优于Standard，但GRPO
+      pipeline下RASP有害——pruning策略的最优性conditioned on recovery method。
+  - name: 25% sparsity full pipeline (RASP + Standard)
+    plan_id: plan_010
+    description: '25% structured pruning: prune → eval → SFT → GRPO for both methods.
+      Core scope expansion.'
+    expected_results:
+      rasp_25_postprune: 0.21
+      standard_25_postprune: 0.16
+      rasp_25_sft_accuracy: 0.57
+      standard_25_sft_accuracy: 0.5125
+      sft_gap_pp: 5.75
+      sft_gap_p_value: 0.008
+      grpo_rasp_25_collapse_step: 4
+      grpo_rasp_25_peak_reward: 0.025
+      grpo_rasp_25_final_frac_zero_std: 0.97
+      grpo_standard_25_collapse_step: 20
+      grpo_standard_25_peak_reward: 0.055
+      grpo_standard_25_step60_frac_zero_std: 0.85
+      collapse_ratio_standard_vs_rasp: 5.0
+    result_rationale: 25%稀疏度下两个关键放大效应：(1) SFT gap从2.2pp扩大至5.75pp，因为Standard在更高稀疏度下不得不移除更多functionally
+      important structures（importance ranking的long tail quality下降），而RASP的CKA-aware
+      selection依然能识别truly redundant structures。(2) GRPO collapse加速：RASP从step10→step4（冗余路径更少，RL
+      exploration更快失去safety net），Standard从step60→step20（相同逻辑但程度较轻）。Collapse ratio从6x(20%)收缩至5x(25%)因为Standard也开始受损严重。
+    tables:
+    - name: 'Table: 25% Sparsity Pipeline Results'
+      columns:
+      - Method
+      - Post-Prune
+      - Post-SFT
+      - GRPO Collapse
+      - GRPO Δ vs SFT
+      rows:
+      - - RASP_25
+        - 21%
+        - 57.0%
+        - step 4
+        - -1.5pp
+      - - Standard_25
+        - 16%
+        - 51.25%
+        - step 20
+        - -2.0pp
+    - name: 'Table: Collapse Dynamics Comparison (20% vs 25%)'
+      columns:
+      - Method
+      - Collapse@20%
+      - Collapse@25%
+      - Acceleration
+      rows:
+      - - RASP
+        - step 10
+        - step 4
+        - 2.5×
+      - - Standard
+        - step 60
+        - step 20
+        - 3×
+    figures_description:
+    - 'Dual-panel: (Left) SFT accuracy vs sparsity showing divergence at 25%. (Right)
+      frac_zero_std curves at 25% showing RASP collapse at step 4 vs Standard at step
+      20.'
+    analysis: 25%是paper的sweet spot：SFT gap达到显著，GRPO collapse更极端，所有效应放大。这使三条claim全部有strong
+      statistical backing。
+  - name: 30% sparsity probe (prune + eval only)
+    plan_id: plan_011
+    description: 30% prune + post-prune eval for RASP and Standard. Map threshold
+      where both collapse.
+    expected_results:
+      rasp_30_postprune: 0.1
+      standard_30_postprune: 0.06
+      rasp_30_eos_rate: 0.3
+      standard_30_eos_rate: 0.15
+      both_below_threshold: true
+    result_rationale: '30%已完成pruning（registry: prune_rasp_30 actual=28.7%, prune_standard_30
+      actual=28.5%）。Post-prune eval预期：两者均严重受损但RASP略好。30%接近D005中35% total collapse的阈值，EOS
+      rate极低表明模型结构被严重破坏。RASP 10% > Standard 6%因为CKA-aware selection即使在极端稀疏度下仍能identify最核心的非冗余结构。'
+    tables:
+    - name: 'Table: Sparsity Threshold Mapping'
+      columns:
+      - Sparsity
+      - RASP Post-Prune
+      - Standard Post-Prune
+      - EOS Rate
+      rows:
+      - - 20%
+        - 29%
+        - 27%
+        - '>90%'
+      - - 25%
+        - 21%
+        - 16%
+        - 56-70%
+      - - 30%
+        - 10%
+        - 6%
+        - 15-30%
+    figures_description:
+    - 'Line plot: accuracy degradation curve across sparsity levels. Both methods
+      approach zero around 30-35%. The gap widens then narrows as both collapse.'
+    analysis: 30%标定了'structural death zone'。两者均不可SFT恢复至实用水平（预期<35%），确认paper focus
+      on 20-25%的合理性。提供sparsity-accuracy曲线的第三个数据点。
+  - name: Extended evaluation (MMLU, HumanEval, MATH-500)
+    plan_id: plan_012
+    description: Best recovered config on OOD benchmarks to show generalization beyond
+      GSM8K
+    expected_results:
+      rasp_20_sft_mmlu: 0.52
+      rasp_20_sft_humaneval: 0.35
+      rasp_20_sft_math500: 0.28
+      standard_20_sft_mmlu: 0.5
+      standard_20_sft_humaneval: 0.33
+      standard_20_sft_math500: 0.26
+      unpruned_sft_mmlu: 0.63
+      unpruned_sft_humaneval: 0.55
+      unpruned_sft_math500: 0.52
+    result_rationale: OOD eval确认SFT recovery不是GSM8K memorization。RASP在所有benchmarks上marginal
+      advantage（1-2pp）与GSM8K pattern一致。MMLU保留较多因为knowledge存储在unpruned layers。HumanEval和MATH-500降幅更大因为需要更多compositional
+      reasoning chains（被pruning破坏）。Unpruned→Pruned的gap在MATH-500最大因为multi-step reasoning最依赖structural
+      integrity。
+    tables:
+    - name: 'Table: Multi-Benchmark Evaluation'
+      columns:
+      - Config
+      - GSM8K
+      - MATH-500
+      - HumanEval
+      - MMLU
+      rows:
+      - - Unpruned
+        - 81.3%
+        - 52%
+        - 55%
+        - 63%
+      - - RASP_20 SFT
+        - 61.5%
+        - 28%
+        - 35%
+        - 52%
+      - - Standard_20 SFT
+        - 59.3%
+        - 26%
+        - 33%
+        - 50%
+    figures_description:
+    - 'Radar chart: 4 benchmarks × 3 configs, showing proportional degradation pattern
+      is consistent'
+    analysis: OOD generalization确认recovery是genuine reasoning restoration而非pattern
+      memorization。RASP advantage跨benchmark一致但不dramatic，支持'marginal SFT advantage'的honest
+      framing。
+  - name: Bonsai baseline 20%
+    plan_id: plan_013
+    description: Gradient-free structured pruning (ICML 2025) at 20%. Full pipeline
+      comparison.
+    expected_results:
+      bonsai_20_postprune: 0.22
+      bonsai_20_sft_accuracy: 0.53
+      bonsai_20_grpo_collapse_step: 35
+      bonsai_20_grpo_peak_reward: 0.048
+    result_rationale: Bonsai uses activation-based structural importance (no gradients)，比magnitude-only好但比gradient-based差。Post-prune
+      22%介于random(15%)和Standard(27%)之间。SFT recovery 53%低于Standard因为activation-based
+      scoring在reasoning model上不如gradient-based。GRPO collapse在step 35——比RASP(10)慢但比Standard(60)快，因为Bonsai的importance
+      metric不像Standard那样隐式保留冗余路径。
+    tables:
+    - name: 'Table: All Baselines Comparison'
+      columns:
+      - Method
+      - Type
+      - Post-Prune
+      - Post-SFT
+      - Collapse
+      rows:
+      - - RASP
+        - CKA-aware
+        - 29%
+        - 61.5%
+        - step 10
+      - - Standard
+        - Importance
+        - 27%
+        - 59.3%
+        - step 60
+      - - GRASPrune
+        - Gradient budget
+        - 7%
+        - 41%
+        - step 3
+      - - Bonsai
+        - Activation
+        - 22%
+        - 53%
+        - step 35
+      - - Random
+        - None
+        - 15%
+        - 42%
+        - step 8
+    figures_description:
+    - 'Scatter: SFT recovery (x) vs GRPO collapse step (y) for all 5 methods. Shows
+      inverse relationship for methods that remove more redundancy.'
+    analysis: 5-method comparison构建完整的方法landscape。关键洞见：collapse step与SFT accuracy不是简单正相关——RASP有最高SFT但最快collapse，验证Redundancy-Stability
+      Tradeoff不是artifact of binary comparison。
+  - name: CKA reliability analysis
+    plan_id: plan_014
+    description: Split-half consistency and calibration size sensitivity for CKA scoring
+    expected_results:
+      split_half_spearman_rho: 0.94
+      split_half_p_value: 0.0001
+      cal_256_vs_512_rank_correlation: 0.91
+      cal_512_vs_1024_rank_correlation: 0.96
+      cal_256_accuracy: 0.28
+      cal_512_accuracy: 0.31
+      cal_1024_accuracy: 0.31
+      optimal_cal_size: 512
+    result_rationale: CKA measures structural similarity which is a stable property
+      of the network（不像gradient那样sample-dependent）。Split-half ρ=0.94表明CKA scoring高度reproducible。256→512有accuracy提升因为更好估计layer-wise
+      statistics，但512→1024饱和因为CKA kernel已收敛。这证明RASP不需要大量calibration data，512 samples足够。
+    tables:
+    - name: 'Table: CKA Stability Analysis'
+      columns:
+      - Cal Size
+      - Accuracy
+      - Rank Corr vs 512
+      rows:
+      - - 256
+        - 28%
+        - 0.91
+      - - 512
+        - 31%
+        - 1.0
+      - - 1024
+        - 31%
+        - 0.96
+    figures_description:
+    - 'Left: split-half rank correlation histogram (bootstrapped). Right: accuracy
+      vs calibration size curve showing saturation at 512.'
+    analysis: 'CKA scoring is stable and efficient。reviewer concern about calibration
+      sensitivity addressed: 512 samples sufficient, split-half ρ>0.9。'
+  - name: α sensitivity ablation (post-SFT)
+    plan_id: plan_015
+    description: Sweep α ∈ {0, 0.25, 0.5, 1, 2} with full SFT recovery. Paper's single
+      free parameter.
+    expected_results:
+      alpha_0_sft_accuracy: 0.5929
+      alpha_0.25_sft_accuracy: 0.58
+      alpha_0.5_sft_accuracy: 0.59
+      alpha_1.0_sft_accuracy: 0.6149
+      alpha_2.0_sft_accuracy: 0.62
+      alpha_4.0_sft_accuracy: 0.62
+      optimal_alpha: 1.0
+      u_shape_confirmed: true
+      grpo_collapse_alpha_0: 55
+      grpo_collapse_alpha_1: 10
+      grpo_collapse_alpha_2: 7
+    result_rationale: α=0时S(h)=I(h)（Standard），α→∞时S(h)∝(1-F(h))^α（纯CKA，忽略importance）。已有post-prune
+      data showing U-shape：α∈{0,0.25,0.5}≈22-27%，α≥1.0达31-36%。Post-SFT pattern：α=0等同Standard
+      (59.3%)，α=1.0是RASP (61.5%)最优平衡，α=2.0略提升post-prune(36%)但SFT recovery与α=1相当（redundancy过度惩罚导致剪掉一些SFT需要的结构）。GRPO
+      collapse速度：α越大→越多redundancy被移除→collapse越快。α=0(Standard)≈step55（接近v8的60），α=1(RASP)=step10（v9数据），α=2约step7。
+    tables:
+    - name: 'Table: α Sensitivity (20% sparsity, N=1319)'
+      columns:
+      - α
+      - Post-Prune
+      - Post-SFT
+      - GRPO Collapse
+      rows:
+      - - 0.0
+        - 27%
+        - 59.3%
+        - step ~55
+      - - 0.25
+        - 23%
+        - 58%
+        - step ~50
+      - - 0.5
+        - 22%
+        - 59%
+        - step ~45
+      - - 1.0
+        - 31%
+        - 61.5%
+        - step ~10
+      - - 2.0
+        - 36%
+        - 62%
+        - step ~7
+    figures_description:
+    - 'Three-panel: (A) Post-prune accuracy vs α (U-shape). (B) Post-SFT accuracy
+      vs α (monotonic increase from α=0.5). (C) GRPO collapse step vs α (monotonic
+      decrease). Shows SFT and GRPO optimization directions are opposed.'
+    analysis: α controls redundancy-importance tradeoff。Panel C是核心：α越大SFT越好但GRPO越不稳定——这就是Redundancy-Stability
+      Tradeoff在连续parameter space中的表达。α是tuning knob，不是hyperparameter gamble。
+  - name: Inference speedup benchmark
+    plan_id: plan_016
+    description: Wall-clock latency and throughput for dense vs 20% RASP vs 20% Standard
+    expected_results:
+      dense_latency_ms: 45
+      rasp_20_latency_ms: 37
+      standard_20_latency_ms: 37
+      speedup_ratio: 1.22
+      dense_throughput_tps: 85
+      rasp_20_throughput_tps: 104
+      standard_20_throughput_tps: 104
+      memory_reduction_pct: 19
+      batch_size: 1
+      seq_len: 512
+    result_rationale: 20%结构化剪枝移除~19%参数（实际sparsity 19%，见registry）。结构化剪枝直接减少矩阵维度，无需专用sparse
+      kernel。理论加速1/(1-0.19)=1.23×，实际~1.22×因为attention和layer norm不被pruned。RASP和Standard
+      speedup相同因为它们移除相同数量的参数（只是选择不同structures）。Memory reduction与parameter reduction线性对应。
+    tables:
+    - name: 'Table: Inference Efficiency'
+      columns:
+      - Model
+      - Params (B)
+      - Latency (ms)
+      - Throughput (tok/s)
+      - Memory (GB)
+      rows:
+      - - Dense
+        - 7.62B
+        - 45
+        - 85
+        - 15.2
+      - - RASP_20
+        - 6.17B
+        - 37
+        - 104
+        - 12.3
+      - - Standard_20
+        - 6.17B
+        - 37
+        - 104
+        - 12.3
+    figures_description:
+    - Bar chart comparing latency/throughput across configs. Both pruned methods identical,
+      ~22% faster than dense.
+    analysis: Structured pruning delivers real wallclock speedup without custom kernels。Efficiency是pruning的practical
+      motivation，但不是paper核心contribution——放在appendix或supplementary。
+  - name: Unstructured pruning baseline 20%
+    plan_id: plan_017
+    description: Magnitude-based unstructured pruning at 20% for Self-Healing comparison
+      calibration
+    expected_results:
+      unstructured_20_postprune: 0.55
+      unstructured_20_sft_accuracy: 0.72
+      unstructured_20_grpo_collapse_step: null
+      unstructured_20_grpo_reward_final: 0.35
+      unstructured_20_grpo_no_collapse: true
+      unstructured_vs_structured_gap: 25
+    result_rationale: Unstructured pruning at 20% damage远小于structured（保留所有neuron/head，仅零化individual
+      weights）。Post-prune 55%（vs structured 27-29%）因为network topology完整。SFT recovery至72%因为functional
+      capacity largely preserved。GRPO不collapse因为exploration paths完整——这正是structured
+      pruning unique failure的对照。Self-Healing claims RLVR works at 25% unstructured
+      → 我们的数据应与其一致：unstructured pruning不触发collapse。这calibrates paper的claim为'structured
+      pruning specific'。
+    tables:
+    - name: 'Table: Structured vs Unstructured at 20%'
+      columns:
+      - Pruning Type
+      - Post-Prune
+      - Post-SFT
+      - GRPO Status
+      rows:
+      - - Structured (RASP)
+        - 29%
+        - 61.5%
+        - Collapse step 10
+      - - Structured (Standard)
+        - 27%
+        - 59.3%
+        - Collapse step 60
+      - - Unstructured (Magnitude)
+        - 55%
+        - 72%
+        - No collapse
+      - - Dense (Unpruned)
+        - 81.3%
+        - 81.3%
+        - No collapse
+    figures_description:
+    - 'Collapse dynamics plot: unstructured pruning curve overlaps with unpruned (both
+      stable), while structured methods show distinct collapse patterns'
+    analysis: 'Key differentiation vs Self-Healing: GRPO failure是structural pruning特有的。Unstructured
+      pruning保留all pathway topology，RL exploration不受限。Paper claim narrowed to ''structured
+      pruning causes GRPO collapse''——更精确，更defensible。'
+  - name: SFT OOD eval contingency
+    plan_id: plan_018
+    description: Standard_20 SFT model (59.3% GSM8K) evaluated on MATH-500 and HumanEval
+    expected_results:
+      standard_20_sft_math500: 0.26
+      standard_20_sft_humaneval: 0.33
+      rasp_20_sft_math500: 0.28
+      rasp_20_sft_humaneval: 0.35
+      unpruned_sft_math500: 0.52
+      ratio_gsm8k_to_math500_standard: 2.28
+      memorization_ruled_out: true
+    result_rationale: Standard SFT 1%→59.3%(GSM8K)的jump在OOD benchmarks上应按比例衰减但不崩溃。MATH-500比GSM8K难~2×，所以59.3%
+      GSM8K → ~26% MATH-500合理。如果是纯memorization则MATH-500应≈random(~5%)。26%远高于random，确认genuine
+      reasoning recovery。RASP在OOD上保持2pp advantage与GSM8K pattern一致。
+    tables:
+    - name: 'Table: OOD Generalization Check'
+      columns:
+      - Config
+      - GSM8K
+      - MATH-500
+      - HumanEval
+      rows:
+      - - Standard_20 SFT
+        - 59.3%
+        - 26%
+        - 33%
+      - - RASP_20 SFT
+        - 61.5%
+        - 28%
+        - 35%
+    figures_description:
+    - Grouped bars showing consistent RASP advantage across benchmarks, ruling out
+      GSM8K-specific overfitting
+    analysis: Contingency experiment结果positive：OOD performance confirms SFT recovery
+      is genuine。Standard的1%→59.3%不是memorization artifact。Best tier下此experiment是supplementary
+      evidence而非必需。
+  - name: Qwen-Math-7B GRPO collapse replication (20%)
+    plan_id: plan_010_cross_model_20
+    description: GRPO on Qwen-Math-7B pruned models to replicate collapse severity
+      gradient on second model
+    expected_results:
+      qwen_rasp_20_sft_accuracy: 0.725
+      qwen_standard_20_sft_accuracy: 0.71
+      qwen_rasp_20_grpo_collapse_step: 8
+      qwen_standard_20_grpo_collapse_step: 45
+      qwen_collapse_ratio: 5.6
+      qwen_rasp_grpo_peak_reward: 0.03
+      qwen_standard_grpo_peak_reward: 0.055
+      cross_model_pattern_replicated: true
+    result_rationale: Qwen-Math-7B SFT accuracy已知(RASP 72.5%, Standard 71%)。GRPO collapse应replicate
+      severity gradient：RASP更快collapse因为CKA-aware selection移除了更多冗余路径。但Qwen-Math的baseline更强（math-specific
+      pretraining），所以collapse略慢于DeepSeek-R1模型（step8 vs step10 for RASP）但比例关系保持。Collapse
+      ratio 5.6×(45/8)与DeepSeek的6×(60/10)相当，验证跨模型一致性。
+    tables:
+    - name: 'Table: Cross-Model Collapse Comparison'
+      columns:
+      - Model
+      - RASP Collapse
+      - Standard Collapse
+      - Ratio
+      rows:
+      - - DeepSeek-R1-7B
+        - step 10
+        - step 60
+        - 6×
+      - - Qwen-Math-7B
+        - step 8
+        - step 45
+        - 5.6×
+    figures_description:
+    - Side-by-side collapse dynamics (frac_zero_std) for both models, showing parallel
+      patterns with similar ratios
+    analysis: 跨模型复现是best tier的核心要求。Ratio在5-6×范围内一致证明Redundancy-Stability Tradeoff是general
+      principle而非model-specific artifact。
+  - name: Qwen-Math-7B 25% sparsity GRPO collapse
+    plan_id: plan_010_cross_model_25
+    description: GRPO on Qwen-Math-7B at 25% sparsity. Tests collapse acceleration
+      on second model.
+    expected_results:
+      qwen_rasp_25_sft_accuracy: 0.64
+      qwen_standard_25_sft_accuracy: 0.63
+      qwen_rasp_25_grpo_collapse_step: 3
+      qwen_standard_25_grpo_collapse_step: 18
+      qwen_25_collapse_ratio: 6.0
+      sft_gap_qwen_25_pp: 1.0
+      cross_model_collapse_acceleration: true
+    result_rationale: Qwen-Math 25% SFT已知(RASP 64%, Standard 63%, gap仅1pp)。GRPO collapse进一步加速：RASP
+      step3(vs 20%的step8)，Standard step18(vs 20%的step45)。Acceleration factor ~2.5×与DeepSeek
+      pattern(step4 vs step10)一致。注意Qwen-Math上SFT gap不显著(1pp)但collapse gradient依然清晰——这强化了'RASP对GRPO有害'的claim不依赖于SFT优势的大小。
+    tables:
+    - name: 'Table: Qwen-Math Sparsity × Method × Recovery'
+      columns:
+      - Sparsity
+      - Method
+      - SFT
+      - GRPO Collapse
+      rows:
+      - - 20%
+        - RASP
+        - 72.5%
+        - step 8
+      - - 20%
+        - Standard
+        - 71%
+        - step 45
+      - - 25%
+        - RASP
+        - 64%
+        - step 3
+      - - 25%
+        - Standard
+        - 63%
+        - step 18
+    figures_description:
+    - '2×2 grid of collapse curves: rows=sparsity(20/25), cols=model(DeepSeek/Qwen).
+      All four panels show same RASP<Standard pattern.'
+    analysis: 四个condition(2 models × 2 sparsities)全部replicate collapse severity gradient。这是paper最强的generalization
+      evidence。即使SFT gap在Qwen上不显著，GRPO collapse diagnostic依然robust——strengthens Claim
+      2 (collapse as diagnostic tool)。
+  review_report: "---\ndream_id: dream_20260516T144805\ntier: best\noverall_score:\
+    \ weak accept\ntimestamp: 2026-05-16T15:33:42.970433+00:00\n---\n\n# Dream Review\
+    \ Report: The Redundancy-Stability Tradeoff\n\n**Paper:** \"The Redundancy-Stability\
+    \ Tradeoff: Why CKA-Aware Pruning Helps SFT but Breaks RLVR in Reasoning Models\"\
+    \  \n**Review Mode:** Full (2 Reviewers + Roundtable)  \n**Date:** 2026-05-16\
+    \  \n\n---\n\n## Consolidated Assessment\n\n**Overall Score: 4 (Weak Accept)**\
+    \  \n**Consensus:** Both reviewers independently scored 4 (Weak Accept) with Confidence\
+    \ 4/5.\n\n---\n\n## Paper Summary\n\nThe paper introduces RASP (Recovery-Aware\
+    \ Structural Pruning), a CKA-based scoring function S(h) = I(h)·(1−F(h))^α that\
+    \ preferentially removes functionally redundant structures from reasoning LLMs.\
+    \ The central discovery is the \"Redundancy-Stability Tradeoff\": structures safely\
+    \ removable under SFT (because gradient-based learning redistributes function)\
+    \ provide critical exploration stability under RLVR (GRPO). RASP achieves best\
+    \ SFT recovery (+5.75pp at 25% sparsity, p=0.008) but accelerates GRPO collapse\
+    \ by 6× (step 10 vs step 60). This is replicated across two models, two sparsity\
+    \ levels, and five pruning methods.\n\n---\n\n## Experiment Coverage\n\nAll 18\
+    \ imagined experiments from the design document are reflected in the paper. Coverage\
+    \ is complete: GSM8K baselines (plan_001, plan_004), GRASPrune/Bonsai baselines\
+    \ (plan_005, plan_013), multi-seed (plan_006), scoring ablation (plan_007), per-structure\
+    \ regression (plan_008), SFT-only recovery (plan_009), 25%/30% sparsity (plan_010,\
+    \ plan_011), extended benchmarks (plan_012, plan_018), CKA reliability (plan_014),\
+    \ α sensitivity (plan_015), inference efficiency (plan_016), unstructured pruning\
+    \ (plan_017), and cross-model replication at both sparsity levels (plan_010_cross_model_20,\
+    \ plan_010_cross_model_25).\n\n---\n\n## Reviewer R1: Methods & Experiments (Score\
+    \ 4, Confidence 4)\n\n### Strengths\n\n- **Novel and important negative result.**\
+    \ GRPO reward-accuracy decoupling (reward 0→0.661 with Δ=0.00pp accuracy) and\
+    \ training collapse on pruned models is documented for the first time. This is\
+    \ timely and practically relevant.\n\n- **Clean severity gradient.** The monotonic\
+    \ collapse ordering across 5 methods (GRASPrune step 3 < Random step 8 < RASP\
+    \ step 10 < Bonsai step 35 < Magnitude step 40 < Gradient step 45 < Standard step\
+    \ 60 < Unpruned never) is the paper's strongest empirical contribution.\n\n- **Principled\
+    \ method design.** The RASP scoring function is well-motivated. The intra-layer\
+    \ CKA distinction from inter-layer CKA (used in depth pruning) is clear.\n\n-\
+    \ **Comprehensive baselines.** Table 6 includes 7 pruning methods at 20%, providing\
+    \ good landscape context.\n\n- **Per-structure regression (Table 11).** Mixed-effects\
+    \ regression on n=784 structures with F(h) as strongest predictor (β=−0.42, p<0.001)\
+    \ goes beyond model-level comparisons.\n\n- **Multi-seed validation.** 5-seed\
+    \ post-prune evaluation (Table 12) with p=0.03 strengthens reliability.\n\n###\
+    \ Weaknesses\n\n- **(Major) SFT advantage only significant at one sparsity level.**\
+    \ At 20% (the primary operating point), the SFT gap is +2.2pp with p=0.25. Significance\
+    \ (p=0.008) appears only at 25%. The title and abstract imply RASP consistently\
+    \ \"helps SFT,\" but evidence supports this only at higher sparsity. This risks\
+    \ overclaiming.\n\n- **(Major) GRPO collapse may be confounded with training configuration.**\
+    \ The collapse dynamics are the central claim, but the paper does not report sensitivity\
+    \ to GRPO hyperparameters (β, temperature, max_completion_length). Without showing\
+    \ that collapse ordering is robust across configurations, the finding could be\
+    \ an artifact of one particular unstable setup.\n\n- **(Major) Single primary\
+    \ model with limited cross-model control.** Core experiments are on DeepSeek-R1-Distill-Qwen-7B\
+    \ only. Table 5 shows Qwen2.5-Math-7B replication but with potential confounds\
+    \ (different calibration sizes, EOS token handling differences). The cross-model\
+    \ evidence is suggestive but not fully controlled.\n\n- **(Minor) Collapse step\
+    \ definition unclear.** The paper reports collapse at \"step 10\" and \"step 60\"\
+    \ but does not formally define what constitutes collapse (grad_norm threshold?\
+    \ frac_zero_std threshold? reward floor?).\n\n- **(Minor) α sensitivity non-monotonic.**\
+    \ Table 9 shows α=0.5 yields 59% post-SFT (below α=0's 59.3%), then jumps to 61.5%\
+    \ at α=1.0. This non-monotonic pattern is unexplained and raises questions about\
+    \ the mechanism.\n\n- **(Minor) Structured vs. unstructured comparison (Table\
+    \ 7) conflates granularity with damage level.** Unstructured pruning at 20% preserves\
+    \ far more effective capacity than structured pruning. The comparison mainly confirms\
+    \ unstructured is less damaging (well-known), rather than isolating the structural-pruning-specific\
+    \ mechanism.\n\n### Questions for Authors (R1)\n\n1. If you run GRPO with β=0.04\
+    \ (standard KL penalty) instead of β=0, does RASP still collapse faster than Standard?\
+    \ The zero-KL setting may amplify instability.\n\n2. The paper claims \"identical\
+    \ 1072/1319 correct\" for unpruned pre- and post-GRPO. Does this mean the exact\
+    \ same problems are solved (no gain/no loss), or net-zero with turnover?\n\n3.\
+    \ How sensitive is collapse step to the number of GRPO training samples? Would\
+    \ larger batches stabilize training?\n\n4. What fraction of RASP's pruning decisions\
+    \ are overridden by the per-layer capacity floor (40%)? If most decisions are\
+    \ floor-constrained, effective CKA influence may be minimal.\n\n5. Was the RASP-RLVR\
+    \ experiment (reverse CKA scoring to protect redundancy) run? This would be critical\
+    \ mechanistic evidence.\n\n---\n\n## Reviewer R2: Novelty & Related Work (Score\
+    \ 4, Confidence 4)\n\n### Strengths\n\n- **Genuinely novel observation.** The\
+    \ Redundancy-Stability Tradeoff has no direct precedent. The insight that structures\
+    \ optimal for SFT removal are exactly those needed for RLVR stability is conceptually\
+    \ clean and new.\n\n- **Intellectually honest framing.** RASP is presented as\
+    \ both the best SFT method AND the worst GRPO method — the paper does not hide\
+    \ the tradeoff. The diagnostic framing (collapse dynamics as zero-cost probe)\
+    \ is more valuable than RASP as a pruning method.\n\n- **Clean reconciliation\
+    \ with Self-Healing.** The paper properly narrows Self-Healing's claim: RLVR recovery\
+    \ works for unstructured but fails for structured pruning. This adds literature\
+    \ value.\n\n- **Well-structured claims.** Three claims are clearly stated, each\
+    \ with dedicated evidence. The paper reads as a focused empirical study rather\
+    \ than a scattered method paper.\n\n### Weaknesses\n\n- **(Major) Scope too narrow\
+    \ for \"universal\" claims.** Only 7B-scale models tested. The paper claims GRPO\
+    \ reward-accuracy decoupling is \"universal\" but tests only GRPO on two 7B math-reasoning\
+    \ models. No evidence for PPO, DPO, REINFORCE, or other RL methods. No evidence\
+    \ for 13B/70B models. No evidence beyond math reasoning.\n\n- **(Major) Single\
+    \ RL algorithm.** GRPO is specific — it uses group relative advantages without\
+    \ a value function. Collapse dynamics may differ fundamentally with PPO (value\
+    \ function stabilizes training) or DPO (no online rollouts). The tradeoff may\
+    \ be GRPO-specific, not RLVR-general.\n\n- **(Major) Only 100 GRPO steps.** The\
+    \ paper does not investigate whether longer training, learning rate warmup, or\
+    \ curriculum strategies could delay or prevent collapse. \"Collapse at step 10\"\
+    \ with 100 total steps leaves little room — perhaps with 1000 steps, even RASP\
+    \ would eventually recover. The permanence of collapse is not established.\n\n\
+    - **(Major) No proposed solution.** The paper identifies a problem but offers\
+    \ no mitigation beyond \"use SFT-only.\" A natural experiment — using RASP for\
+    \ SFT then switching to Standard-pruned model for GRPO, or modifying GRPO to be\
+    \ redundancy-aware — is absent. This limits practical impact.\n\n- **(Minor) Sparse\
+    \ citations (~10 references).** For a paper touching structural pruning, RLVR,\
+    \ CKA analysis, and reasoning LLMs, the reference list is inadequate. Missing\
+    \ areas include: lottery ticket hypothesis, knowledge distillation as alternative\
+    \ compression, DPO/PPO alignment, pruning-at-training approaches, RL stability/collapse\
+    \ in other contexts, quantization+pruning combinations.\n\n- **(Minor) GRPO reward-accuracy\
+    \ decoupling framing is misleading.** The paper implies this is a pruning-related\
+    \ finding (Claim 1), but the unpruned model also shows decoupling (reward 0→0.661,\
+    \ accuracy unchanged). This is more about GRPO's behavior on already-strong models\
+    \ than about pruning — the contribution is pruning-induced collapse, not the decoupling.\n\
+    \n### Missing Related Work\n\n- **Lottery ticket hypothesis** (Frankle & Carlin,\
+    \ 2019) — relevant to structured vs unstructured distinction\n- **Knowledge distillation**\
+    \ (Hinton et al., 2015; Sanh et al., 2019 DistilBERT) — alternative compression\
+    \ path that avoids structural damage\n- **DPO** (Rafailov et al., 2023) — major\
+    \ RL alternative, offline, may not exhibit same collapse\n- **PPO** (Schulman\
+    \ et al., 2017) — value function may stabilize against collapse\n- **Wanda** (Sun\
+    \ et al., 2023) — unstructured pruning baseline more relevant than magnitude\n\
+    - **SparseGPT** (Frantar & Alistarh, 2023) — another unstructured baseline\n-\
+    \ **RL training instability** literature (Henderson et al., 2018) — collapse is\
+    \ known in RL; connecting to that literature would strengthen the claim\n- **Pruning\
+    \ during training** (e.g., gradual magnitude pruning) — avoids the prune→recover\
+    \ pipeline entirely\n\n### Questions for Authors (R2)\n\n1. Would DPO (offline,\
+    \ no rollouts) exhibit the same collapse pattern on structurally pruned models?\
+    \ If not, the tradeoff is GRPO-specific.\n\n2. At 13B or 70B scale, models have\
+    \ more redundancy. Does the Redundancy-Stability Tradeoff weaken (more backup\
+    \ paths available even after RASP) or strengthen?\n\n3. The paper frames RASP\
+    \ as both a method and a diagnostic tool. Which is the primary contribution? The\
+    \ method has limited practical value (it makes GRPO worse), but the diagnostic\
+    \ framing is genuinely useful.\n\n4. Why only 100 GRPO steps? Self-Healing reports\
+    \ training for thousands of steps. Is it possible that collapse at step 10 is\
+    \ a transient instability that resolves with longer training?\n\n---\n\n## Roundtable\
+    \ Convergence\n\n### Areas of Agreement (Both Reviewers)\n\n1. **Novel and important\
+    \ finding.** The GRPO collapse on structurally pruned models and the Redundancy-Stability\
+    \ Tradeoff are genuinely new contributions to the literature.\n\n2. **SFT significance\
+    \ issue.** The primary SFT advantage (20% sparsity) is not statistically significant\
+    \ (p=0.25). The significant result at 25% (p=0.008) is one data point.\n\n3. **Clean\
+    \ collapse gradient.** The severity ordering across 5+ methods is the paper's\
+    \ strongest evidence and is well-presented.\n\n4. **Scope limitations.** Two 7B\
+    \ models, one RL algorithm, and one primary benchmark constrain the generalizability\
+    \ of \"universal\" claims.\n\n5. **Weak Accept.** The novelty of the finding justifies\
+    \ publication, but the evidence base is thin relative to the breadth of the claims.\n\
+    \n### Areas of Disagreement\n\n- **R1** places more weight on GRPO hyperparameter\
+    \ confounds (the finding may not be robust to β, temperature changes). **R2**\
+    \ is more concerned with algorithm generality (GRPO vs DPO/PPO).\n- **R1** sees\
+    \ the per-structure regression as strong mechanistic evidence. **R2** sees it\
+    \ as supporting but not decisive (R²=0.38 means 62% unexplained variance).\n-\
+    \ Both agree these are complementary concerns, not contradictory.\n\n### Consensus\
+    \ Recommendation\n\n**Score: 4 (Weak Accept).** The paper presents a genuinely\
+    \ novel negative result with clean empirical evidence at the configuration level\
+    \ tested. The Redundancy-Stability Tradeoff is a conceptually clean contribution.\
+    \ However, the evidence base needs strengthening in three directions to warrant\
+    \ a higher score: (1) GRPO hyperparameter robustness, (2) at least one additional\
+    \ RL algorithm, and (3) formal collapse definition with multi-seed collapse step\
+    \ statistics.\n\n---\n\n## Actionable Revision Suggestions (Priority-Ordered)\n\
+    \n1. **Add GRPO hyperparameter sensitivity analysis.** Run collapse experiments\
+    \ with at least 2 additional configurations (e.g., β=0.04, different temperature).\
+    \ Show that collapse ordering is robust. This is the single most important experiment\
+    \ missing.\n\n2. **Include one non-GRPO RL baseline.** DPO is cheapest to implement.\
+    \ If DPO doesn't collapse, reframe claims as \"GRPO-specific\" rather than \"\
+    RLVR-general.\" If it does collapse, the finding is much stronger.\n\n3. **Formalize\
+    \ collapse definition.** Specify threshold criteria (e.g., frac_zero_std ≥ 0.85\
+    \ for ≥ 5 consecutive steps) and report mean±std of collapse step across seeds.\n\
+    \n4. **Soften \"universal\" language.** Claim 1 says \"GRPO reward-accuracy decoupling\
+    \ is universal\" — this is tested on 2 models at 1 task. Replace with \"consistent\
+    \ across tested configurations.\"\n\n5. **Run the RASP-RLVR ablation.** Reverse\
+    \ CKA scoring (protect redundancy for GRPO) would be strong mechanistic evidence.\
+    \ If Standard's implicit redundancy preservation explains its slower collapse,\
+    \ explicitly preserving redundancy should further delay collapse.\n\n6. **Expand\
+    \ references.** Add at minimum: lottery ticket, knowledge distillation, DPO, PPO,\
+    \ Wanda, SparseGPT, RL instability literature. Target 25-30 references.\n\n7.\
+    \ **Report α=0 vs α=1 SFT gap with confidence intervals at both sparsity levels.**\
+    \ Currently the 20% gap being non-significant undermines the abstract's framing.\n\
+    \n---\n\n## Score Summary\n\n| Reviewer | Focus | Score | Confidence |\n|----------|-------|-------|------------|\n\
+    | R1 | Methods + Experiments | 4 (Weak Accept) | 4/5 |\n| R2 | Novelty + Related\
+    \ Work | 4 (Weak Accept) | 4/5 |\n| **Consolidated** | | **4 (Weak Accept)** |\
+    \ **4/5** |\n"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260516T144805/median/paper.pdf
+  imagined_experiments:
+  - name: Post-prune baselines N=1319 (20%)
+    plan_id: plan_001
+    description: 将post-prune评估从N=100扩展到N=1319，获得±2.4pp CI用于论文Table 1
+    expected_results:
+      unpruned_original_accuracy: 0.854
+      unpruned_original_correct: 1127
+      unpruned_original_n: 1319
+      unpruned_original_stderr: 0.0097
+      rasp_20_postprune_accuracy: 0.298
+      rasp_20_postprune_correct: 393
+      rasp_20_postprune_stderr: 0.0126
+      rasp_20_eos_rate: 0.89
+      rasp_20_avg_len: 782
+      standard_20_postprune_accuracy: 0.261
+      standard_20_postprune_correct: 344
+      standard_20_postprune_stderr: 0.0121
+      standard_20_eos_rate: 0.82
+      standard_20_avg_len: 1145
+      rasp_vs_standard_gap_pp: 3.7
+      rasp_vs_standard_p_value: 0.034
+    result_rationale: 'N=100数据（RASP 31%, Standard 27%）的点估计在扩展到N=1319后预计小幅回落—— N=100的CI为±9pp，真值可能偏低。CI从±9pp收窄到±2.5pp后，3.7pp
+      gap在post-prune阶段 达到弱显著（p=0.034），但这不是论文核心贡献。原始模型85.4%作为pruning damage的参照锚点。 Post-prune
+      EOS率差异（RASP 89% vs Standard 82%）反映Standard对generation流畅性的更大破坏。
+
+      '
+    tables:
+    - 'Table 1: Post-prune accuracy across methods — RASP 29.8% vs Standard 26.1%
+      vs Unpruned 85.4%'
+    figures_description:
+    - 'Fig 2 bar chart第一组: Post-prune accuracy对比，三种方法+unpruned baseline'
+    analysis: 'Post-prune gap（3.7pp）在N=1319下弱显著，确认RASP的CKA-aware selection保留了slightly
+      more functional capacity。但核心意义不在此——pruning后两者都丧失70%+能力，关键在recovery差异。
+
+      '
+  - name: All recovered models full eval N=1319
+    plan_id: plan_004
+    description: 整合所有recovery路径的N=1319评估，构建论文核心Table 2
+    expected_results:
+      rasp_sft_accuracy: 0.6149
+      rasp_sft_correct: 811
+      standard_sft_accuracy: 0.5929
+      standard_sft_correct: 782
+      sft_gap_pp: 2.2
+      sft_gap_p_value: 0.25
+      rasp_grpo_step5_accuracy: 0.6065
+      rasp_grpo_step5_correct: 800
+      standard_grpo_step50_accuracy: 0.5891
+      standard_grpo_step50_correct: 777
+      unpruned_sft_accuracy: 0.8127
+      unpruned_grpo_step100_accuracy: 0.8127
+      unpruned_grpo_step100_correct: 1072
+      unpruned_grpo_delta_pp: 0.0
+      grpo_delta_rasp_pp: -0.84
+      grpo_delta_standard_pp: -0.38
+      grasp_sft_accuracy_n1319: 0.395
+      grasp_sft_correct_n1319: 521
+      grasp_grpo_accuracy_n1319: 0.388
+    result_rationale: '已有数据已完整确认核心pattern: unpruned GRPO accuracy=SFT accuracy（1072/1319完全相同），
+      RASP和Standard GRPO均不优于SFT（甚至微降）。GRASPrune post-SFT从N=100的41%在N=1319 预计轻微下降至~39.5%（N=100
+      CI较宽）。GRASPrune post-GRPO预计~38.8%，同样无法从GRPO获益。 所有recovery路径都确认Claim 1: GRPO
+      reward-accuracy decoupling is universal。
+
+      '
+    tables:
+    - 'Table 2: Recovery accuracy matrix — rows=method (RASP/Standard/GRASPrune/Unpruned),
+      cols=recovery (Post-prune/SFT/GRPO)'
+    figures_description:
+    - 'Fig 2 grouped bar chart: 4 methods × 3 recovery stages，展示pruning damage和recovery
+      trajectory'
+    analysis: '核心发现已confirm: GRPO在所有配置下都不改善accuracy。SFT gap 2.2pp (p=0.25)不显著—— 在median
+      tier下报告为"consistent trend"而非"significant result"。GRASPrune作为external baseline进一步strengthen
+      Claim 1。
+
+      '
+  - name: GRASPrune full pipeline (20%)
+    plan_id: plan_005
+    description: 'GRASPrune (ACL 2026 SOTA) 20%稀疏度完整pipeline: prune→eval→SFT→GRPO'
+    expected_results:
+      postprune_accuracy_n1319: 0.068
+      postprune_correct: 90
+      postprune_eos_rate: 0.03
+      postprune_avg_len: 3950
+      post_sft_accuracy_n1319: 0.395
+      post_sft_correct: 521
+      post_sft_eos_rate: 0.96
+      grpo_collapse_step: 18
+      grpo_peak_reward: 0.012
+      grpo_peak_reward_step: 10
+      grpo_final_frac_zero_std: 0.92
+      grpo_final_grad_norm: 0.008
+      post_grpo_accuracy_n1319: 0.388
+      post_grpo_delta_vs_sft_pp: -0.7
+    result_rationale: 'GRASPrune的gate-based importance scoring造成最大structural damage（post-prune
+      7%）， 因为gate training优化output preservation但不考虑结构冗余——它aggressive地同时移除了 important和redundant
+      structures。SFT恢复到39.5%但远低于RASP(61.5%)/Standard(59.3%)， 因为deeper structural damage限制了SFT的function
+      redistribution能力。 GRPO collapse在step~18，介于RASP(10)和Standard(60)之间——GRASPrune的gate
+      training 意外保留了部分redundant结构（它们恰好有低gradient importance），所以比RASP慢collapse， 但远不如Standard，因为整体structural
+      capacity太低（39.5% SFT baseline）。 Peak reward仅0.012（vs RASP 0.039, Standard 0.065），确认reward
+      signal与starting accuracy相关。
+
+      '
+    tables:
+    - 'Table 2 新增行: GRASPrune — 6.8% / 39.5% / 38.8%'
+    - 'Table 3 新增行: GRASPrune collapse step ~18, peak reward 0.012'
+    figures_description:
+    - 'Fig 1 新增曲线: GRASPrune GRPO training dynamics (reward, frac_zero_std vs step)'
+    - 'Fig 2 新增组: GRASPrune recovery trajectory bar'
+    analysis: 'GRASPrune作为ACL 2026 SOTA external baseline强化了论文的generality: 即使最先进的
+      structured pruning method也无法避免GRPO collapse。其collapse timing(step 18)处于 RASP(10)和Standard(60)之间，为Claim
+      2的severity gradient增加了第四个data point， 支持collapse速度与structural damage类型的关联性。
+
+      '
+  - name: Multi-seed post-prune eval (5 seeds)
+    plan_id: plan_006
+    description: 5个随机种子的post-prune评估，建立RASP vs Standard variance estimation
+    expected_results:
+      rasp_20_mean_accuracy: 0.304
+      rasp_20_std: 0.028
+      rasp_20_seed_results:
+      - 0.31
+      - 0.28
+      - 0.33
+      - 0.29
+      - 0.31
+      standard_20_mean_accuracy: 0.265
+      standard_20_std: 0.032
+      standard_20_seed_results:
+      - 0.27
+      - 0.24
+      - 0.3
+      - 0.22
+      - 0.29
+      pairwise_gap_mean_pp: 3.9
+      pairwise_gap_std: 2.1
+      paired_t_test_p: 0.024
+      cohen_d: 0.58
+      seeds_used:
+      - 42
+      - 123
+      - 456
+      - 789
+      - 1024
+    result_rationale: 'Structured pruning对calibration data敏感——calibration batch的随机性影响哪些structures
+      被选中pruning。5个种子下RASP的variance（σ=2.8pp）略低于Standard（σ=3.2pp），因为 CKA-aware scoring提供了额外的稳定性信号（redundancy
+      estimation跨seeds更一致）。 Paired t-test p=0.024达到显著，因为paired design消除了seed-level共变量。
+      但Cohen''s d=0.58属于中等效应量，不足以称为"strong advantage"。
+
+      '
+    tables:
+    - 'Table 1 supplement: Mean±std post-prune accuracy across 5 seeds'
+    figures_description:
+    - 'Appendix box plot: 5-seed post-prune accuracy distribution, RASP vs Standard'
+    analysis: '5-seed paired test达到显著（p=0.024），但效应量中等（d=0.58）。在median tier下 这支持"RASP
+      provides a consistent small advantage in structure selection"， 但不足以成为论文主要卖点——核心贡献仍是GRPO
+      collapse phenomenon。
+
+      '
+  - name: Scoring ablation (magnitude/gradient/random)
+    plan_id: plan_007
+    description: 20%稀疏度下magnitude-only、gradient-only、random pruning scoring对比
+    expected_results:
+      magnitude_only_accuracy: 0.24
+      magnitude_only_eos_rate: 0.78
+      gradient_only_accuracy: 0.28
+      gradient_only_eos_rate: 0.85
+      random_accuracy: 0.17
+      random_eos_rate: 0.45
+      random_avg_len: 2680
+      rasp_ref: 0.31
+      standard_ref: 0.27
+      ordering: RASP(31%) > gradient(28%) ≈ Standard(27%) > magnitude(24%) > random(17%)
+      cka_marginal_contribution_pp: 3.0
+    result_rationale: 'Standard ≈ importance(gradient×magnitude)，所以gradient-only(28%)接近Standard(27%)——
+      magnitude信息对gradient已有的信号增量很小。Magnitude-only(24%)丢失了gradient的 task-specific信号，退化到只看权重大小。Random(17%)是下界——无信息选择。
+      RASP(31%)相对gradient-only(28%)的3pp增量就是CKA(functional redundancy)的marginal contribution。这3pp很小但方向一致，说明CKA提供了互补但non-dominant的信号。
+
+      '
+    tables:
+    - 'Table 6: Scoring ablation — Random(17%) < Magnitude(24%) < Gradient(28%) ≈
+      Standard(27%) < RASP(31%)'
+    figures_description:
+    - 'Fig 3 ablation bar chart: 5种scoring方法的post-prune accuracy对比'
+    analysis: 'CKA的marginal contribution仅3pp，说明在post-prune阶段CKA是helpful but not decisive的
+      补充信号。核心pruning quality仍由gradient/importance决定。CKA的关键价值在GRPO collapse differential（Claim
+      2）而非post-prune accuracy（Claim 3的弱化体现）。
+
+      '
+  - name: CKA-recoverability correlation analysis
+    plan_id: plan_008
+    description: Per-head F(h) vs post-recovery activation change的mixed-effects regression
+    expected_results:
+      overall_pearson_r: 0.38
+      overall_p_value: 0.003
+      within_layer_r: 0.22
+      within_layer_p: 0.041
+      between_layer_variance_explained: 0.62
+      within_layer_variance_explained: 0.08
+      mixed_effects_fixed_slope: 0.31
+      mixed_effects_random_intercept_sd: 0.18
+      layer_icc: 0.71
+      control_weight_norm_partial_r: 0.12
+      control_grad_importance_partial_r: 0.15
+      n_heads_analyzed: 224
+    result_rationale: 'F(h)（CKA-based functional redundancy score）在层间水平与recovery后activation
+      change 显著相关（r=0.38），因为不同层的redundancy基线差异大——早期层功能高度冗余，深层更specialized。 但within-layer的预测力弱（r=0.22），因为同层内heads的redundancy差异小，
+      局部connectivity和positional encoding效应主导了recovery dynamics。 Layer ICC=0.71意味着71%的variance在层间，仅29%在层内。这解释了为什么CKA-aware
+      pruning （RASP）在post-prune阶段只提供marginal advantage——大部分可利用的信号在层级选择， 而RASP和Standard在层级分配上差异不大（都优先剪浅层MLP）。
+
+      '
+    tables:
+    - 'Table 9 (Appendix): Mixed-effects regression coefficients'
+    figures_description:
+    - 'Fig 4: Scatter plot of F(h) vs ΔActivation, colored by layer depth, with regression
+      line'
+    - 'Appendix: ICC by layer bar chart'
+    analysis: 'CKA作为recoverability predictor在macro level有效但micro level较弱。 这直接支持Claim
+      3的弱化版本——CKA captures a real signal（r=0.38, p=0.003）， 但不足以成为"fundamental principle"级别的predictor。报告为"CKA
+      identifies a meaningful but layer-dominated redundancy signal"。
+
+      '
+  - name: SFT-only recovery comparison
+    plan_id: plan_009
+    description: RASP vs Standard在SFT-only recovery下的对比（无GRPO）
+    expected_results:
+      rasp_sft_20_accuracy: 0.6149
+      standard_sft_20_accuracy: 0.5929
+      sft_gap_20_pp: 2.2
+      sft_gap_20_p_value: 0.25
+      rasp_sft_20_loss_final: 0.64
+      standard_sft_20_loss_final: 0.64
+      rasp_sft_20_token_acc: 0.83
+      standard_sft_20_token_acc: 0.83
+      learning_curve_crossover_step: null
+      convergence_step_rasp: 1400
+      convergence_step_standard: 1350
+    result_rationale: 'SFT-only数据已有（RASP 61.49%, Standard 59.29%, gap 2.2pp, p=0.25）。
+      两者训练dynamics几乎完全相同——final loss 0.64, token accuracy 83%——表明 SFT的teacher-forcing机制能equally
+      well地利用不同pruning scheme保留的结构。 CKA-aware pruning在SFT recovery中的advantage是marginal的：SFT通过梯度下降
+      重新分配功能到remaining structures，不太依赖原始redundancy patterns。 Gap方向一致（RASP > Standard）但magnitude不足以达到significance
+      at N=1319。
+
+      '
+    tables:
+    - 'Table 2 SFT-only列: RASP 61.5% vs Standard 59.3% (p=0.25)'
+    figures_description:
+    - 'Appendix: SFT training loss curves对比 (RASP vs Standard, nearly identical)'
+    analysis: 'SFT-only comparison确认Claim 3的一半：SFT recovery下RASP advantage是marginal。
+      与GRPO collapse的dramatic差异形成对比——optimal pruning确实depends on recovery paradigm，
+      但SFT方向的evidence弱于GRPO方向。
+
+      '
+  - name: 25% sparsity full pipeline
+    plan_id: plan_010
+    description: 25%稀疏度RASP+Standard完整pipeline (prune→SFT→GRPO)，验证sparsity scaling
+    expected_results:
+      postprune_rasp_25: 0.21
+      postprune_standard_25: 0.16
+      sft_rasp_25_accuracy: 0.5449
+      sft_rasp_25_correct: 719
+      sft_rasp_25_stderr: 0.0137
+      sft_standard_25_accuracy: 0.5125
+      sft_standard_25_correct: 676
+      sft_gap_25_pp: 3.24
+      sft_gap_25_p_value: 0.089
+      grpo_rasp_25_collapse_step: 7
+      grpo_rasp_25_peak_reward: 0.018
+      grpo_rasp_25_peak_frac_zero_std: 0.97
+      grpo_rasp_25_final_grad_norm: 0.005
+      grpo_standard_25_collapse_step: 30
+      grpo_standard_25_peak_reward: 0.042
+      grpo_standard_25_step30_frac_zero_std: 0.72
+      grpo_standard_25_transient_recovery: false
+      grpo_standard_25_final_reward: 0.028
+      post_grpo_rasp_25_accuracy: 0.535
+      post_grpo_standard_25_accuracy: 0.505
+      collapse_ratio_rasp_vs_standard: 4.3
+    result_rationale: '25%稀疏度放大所有效应： (1) SFT gap从2.2pp扩大到3.24pp（p=0.089）——更多结构移除使RASP的CKA-aware
+      selection 产生更大differential effect，但p仍在[0.05,0.15]范围内，属于marginal。 (2) GRPO collapse加速——RASP从step~10降到step~7，Standard从step~60降到step~30。
+      两者都因更少structural capacity而更快collapse。但ratio从6x(20%)降到4.3x(25%)， 因为Standard在25%下也开始失去redundancy，两者向同一个floor
+      convergence。 (3) Standard在25%下不再有transient recovery（20%时step~60 dip后recovered
+      to step~90）—— 25%的structural capacity不足以支持recovery。 这是median tier的核心: collapse
+      gradient存在但"不如20%那么干净"。
+
+      '
+    tables:
+    - 'Table 1 新增25%行: RASP 21%→54.5%→53.5%, Standard 16%→51.3%→50.5%'
+    - 'Table 3 新增25%行: collapse steps and dynamics'
+    figures_description:
+    - 'Fig 1 新增panel: 25% GRPO training dynamics (reward, frac_zero_std curves)'
+    - 'Fig 5: Collapse step vs sparsity level line plot (20% and 25%, RASP vs Standard)'
+    analysis: '25%数据是Claim 2的关键支撑——collapse severity gradient在两个sparsity levels上成立。
+      但ratio compression（6x→4.3x）和Standard失去recovery能力说明gradient在高sparsity下变noisy。
+      SFT gap 3.24pp（p=0.089）是论文能报告的最强SFT evidence——在median tier下报告为 "marginally significant
+      trend (p<0.1) that amplifies with sparsity"。
+
+      '
+  - name: 30% sparsity probe (prune + eval only)
+    plan_id: plan_011
+    description: 30%稀疏度RASP+Standard post-prune评估，mapping practical sparsity ceiling
+    expected_results:
+      rasp_30_postprune_accuracy: 0.12
+      rasp_30_postprune_stderr: 0.032
+      rasp_30_eos_rate: 0.38
+      rasp_30_avg_len: 2850
+      standard_30_postprune_accuracy: 0.09
+      standard_30_postprune_stderr: 0.029
+      standard_30_eos_rate: 0.31
+      standard_30_avg_len: 3200
+      gap_pp: 3.0
+      gap_p_value: 0.48
+    result_rationale: '30%稀疏度接近structured pruning的实际上限——从25%(RASP 21%, Standard 16%)到30%，
+      accuracy再降约50%。两者都接近random chance on GSM8K（~10-12%可能仅靠简单算术题得分）。 EOS率极低（RASP
+      38%, Standard 31%）表明模型generation能力严重受损，大量输出截断。 Gap（3pp）在这个低accuracy下无统计意义（p=0.48），因为variance极大。
+      与D005的35%结果（total collapse）一致——30%是collapse onset，35%是complete failure。
+
+      '
+    tables:
+    - 'Table 1 新增30%行: RASP 12% vs Standard 9% (post-prune only)'
+    figures_description:
+    - 'Fig 5 extended: Sparsity vs post-prune accuracy curve (20%, 25%, 30%), marking
+      practical ceiling'
+    analysis: '确认~25-30%为DeepSeek-R1-Distill-Qwen-7B的structured pruning practical
+      ceiling。 不进行recovery实验因为starting point太低（<15%）。Paper discussion中报告为 "structured
+      pruning beyond 25% is impractical for this model class"。
+
+      '
+  - name: Extended eval (MMLU, HumanEval, MATH-500)
+    plan_id: plan_012
+    description: 最佳recovered config (RASP SFT 20%) + unpruned在三个OOD benchmark上的评估
+    expected_results:
+      rasp_sft_20_math500: 0.318
+      rasp_sft_20_humaneval: 0.354
+      rasp_sft_20_mmlu: 0.512
+      standard_sft_20_math500: 0.298
+      standard_sft_20_humaneval: 0.329
+      standard_sft_20_mmlu: 0.498
+      unpruned_sft_math500: 0.524
+      unpruned_sft_humaneval: 0.549
+      unpruned_sft_mmlu: 0.638
+      unpruned_original_math500: 0.558
+      unpruned_original_humaneval: 0.561
+      unpruned_original_mmlu: 0.651
+      recovery_ratio_gsm8k: 0.757
+      recovery_ratio_math500: 0.607
+      recovery_ratio_humaneval: 0.645
+      recovery_ratio_mmlu: 0.803
+    result_rationale: 'SFT recovery在GSM8K上恢复到75.7%（RASP 61.5% / Unpruned 81.3%），但OOD
+      benchmark 恢复率显著更低：MATH-500仅60.7%，HumanEval 64.5%。这是因为SFT teacher-forcing使用 GSM8K
+      gold solutions，recovery部分是GSM8K-specific pattern重建而非通用reasoning能力恢复。 MMLU恢复率最高(80.3%)因为factual
+      knowledge主要存储在embedding层和attention patterns中， structured pruning主要移除MLP groups（占pruned
+      structures的100%），对factual recall影响较小。 RASP vs Standard gap在OOD上方向一致但magnitude更小（MATH-500:
+      2pp, MMLU: 1.4pp）， 说明CKA-aware selection的advantage部分是GSM8K-specific的。
+
+      '
+    tables:
+    - 'Table 8: Extended eval — accuracy by benchmark and method'
+    figures_description:
+    - 'Fig 6 (Appendix): Recovery ratio by benchmark grouped bar chart'
+    analysis: 'OOD evaluation reveals SFT recovery的domain specificity。核心message: pruned
+      model recovers 75%+ capability on in-domain (GSM8K) but only 60-65% on harder
+      math/code tasks。 这strengthens the argument for better recovery methods——current
+      SFT pipeline有inherent limitation。 对Claim 3补充了nuance: RASP advantage在OOD上diminishes。
+
+      '
+  - name: Bonsai baseline (20%)
+    plan_id: plan_013
+    description: Bonsai (ICML 2025, gradient-free) 20%稀疏度作为第三个external baseline
+    expected_results:
+      postprune_accuracy_n100: 0.19
+      postprune_eos_rate: 0.52
+      post_sft_accuracy_n100: 0.47
+      post_sft_eos_rate: 0.95
+      grpo_collapse_step: 28
+      grpo_peak_reward: 0.022
+      grpo_final_frac_zero_std: 0.88
+      post_grpo_accuracy_n100: 0.46
+    result_rationale: 'Bonsai用activation norm作为pruning criterion（gradient-free），post-prune
+      19%介于 random(17%)和Standard(27%)之间——activation norm是importance的粗略proxy但不如gradient准确。
+      SFT恢复到47%，高于GRASPrune(41%)但低于Standard(59%)，因为Bonsai的structure selection 质量介于random和gradient-based之间。
+      GRPO collapse at step~28——比GRASPrune(18)慢因为Bonsai的简单norm-based selection 意外保留了更多redundant
+      structures（redundant structures often have moderate norms）， 但比Standard(60)快因为overall
+      pruning quality更差。
+
+      '
+    tables:
+    - 'Table 2 新增行 (Appendix): Bonsai — 19% / 47% / 46%'
+    - 'Table 3 新增行 (Appendix): Bonsai collapse step ~28'
+    figures_description:
+    - 'Appendix: Bonsai training dynamics curve'
+    analysis: 'Bonsai作为gradient-free baseline补全了pruning method spectrum。四种方法的collapse
+      ordering (RASP 10 < GRASPrune 18 < Bonsai 28 < Standard 60)进一步支持Claim 2: collapse速度
+      与pruning method的redundancy removal aggressive度相关。但Bonsai是P2优先级—— 如果GPU budget紧张可以drop，GRASPrune足以作为external
+      baseline。
+
+      '
+  - name: CKA reliability analysis
+    plan_id: plan_014
+    description: Split-half consistency和calibration size sensitivity验证CKA scoring稳定性
+    expected_results:
+      split_half_spearman_rho: 0.93
+      split_half_p_value: 1.0e-45
+      cal_256_spearman_rho: 0.88
+      cal_512_spearman_rho: 0.93
+      cal_1024_spearman_rho: 0.95
+      cal_256_accuracy_delta_vs_512: -0.015
+      cal_1024_accuracy_delta_vs_512: 0.008
+      n_structures_scored: 896
+      scoring_time_256_sec: 180
+      scoring_time_512_sec: 340
+      scoring_time_1024_sec: 660
+    result_rationale: 'CKA是kernel-based similarity metric，理论上convergence rate为O(1/√n)——512
+      samples 已足够达到ρ>0.9。Split-half consistency ρ=0.93表明在random half-split下scoring
+      order 高度稳定。256→512的提升（0.88→0.93）是主要增量，512→1024仅marginal（0.93→0.95）， 说明512是cost-effective
+      minimum。 Accuracy delta确认scoring stability translates to pruning outcome stability:
+      cal=256 vs cal=512仅相差1.5pp post-prune accuracy，cal=1024 vs 512仅0.8pp。
+
+      '
+    tables:
+    - 'Table 10 (Appendix): CKA reliability by calibration size'
+    figures_description:
+    - 'Appendix: Spearman ρ vs calibration size curve'
+    analysis: 'CKA scoring在512 samples下已稳定（ρ=0.93），支持RASP的practical usability。 这是一个defensive
+      result——reviewer可能质疑CKA computation的稳定性， 该实验提供conclusive evidence that CKA-based
+      scoring is reliable。
+
+      '
+  - name: Alpha sensitivity ablation (full)
+    plan_id: plan_015
+    description: α ∈ {0, 0.25, 0.5, 1, 2} post-prune和post-SFT accuracy sweep
+    expected_results:
+      postprune:
+        alpha_0p0: 0.27
+        alpha_0p25: 0.23
+        alpha_0p5: 0.22
+        alpha_1p0: 0.31
+        alpha_2p0: 0.36
+      post_sft_n1319:
+        alpha_0p0: 0.593
+        alpha_0p25: 0.558
+        alpha_0p5: 0.549
+        alpha_1p0: 0.573
+        alpha_2p0: 0.608
+      post_sft_n100_ref:
+        alpha_0p0: 0.64
+        alpha_0p25: null
+        alpha_0p5: null
+        alpha_1p0: 0.57
+        alpha_2p0: 0.62
+      u_shape_minimum_alpha: 0.5
+      optimal_postprune_alpha: 2.0
+      optimal_postsft_alpha: 2.0
+    result_rationale: 'Post-prune U-shape已由alpha_ablation_sweep确认（α=0.5最低22%, α=2.0最高36%）。
+      Post-SFT结果部分已有（N=100）——在N=1319下预计： α=0.0(=Standard)→59.3%（已确认），α=1.0→57.3%（从N=100的57%微调），α=2.0→60.8%（从N=100的62%微调）。
+      Post-SFT的U-shape被SFT recovery压缩但保留方向——α=2.0在SFT后仍最优，因为它在post-prune 阶段保留了最多functional
+      capacity（36%），给SFT更好的starting point。 α=0.25和α=0.5的post-SFT较低是因为它们在post-prune阶段创造了"noise
+      injection"效果—— CKA penalty太小时反而干扰了importance ranking而不是有效补充。
+
+      '
+    tables:
+    - 'Table 4: Alpha ablation — post-prune and post-SFT accuracy across α values'
+    figures_description:
+    - 'Fig 3: U-shape curve, dual y-axis (post-prune and post-SFT accuracy vs α)'
+    analysis: 'Alpha ablation是reviewer flagged的Critical experiment。U-shape confirms
+      α是meaningful parameter， 不是arbitrary choice。最优α=2.0（非default 1.0）→paper应report
+      this transparently并 讨论为什么aggressive CKA penalty有利（推测：更强地保护unique structures在reasoning
+      LLM中更关键）。 Post-SFT U-shape压缩但保留说明CKA contribution survives recovery——与plan_008的CKA-recoverability
+      correlation一致。
+
+      '
+  - name: Inference speedup benchmark
+    plan_id: plan_016
+    description: Dense vs 20% RASP-pruned vs 20% Standard-pruned wall-clock latency和throughput
+    expected_results:
+      dense_latency_ms: 142
+      rasp_20_latency_ms: 121
+      standard_20_latency_ms: 120
+      rasp_20_latency_reduction_pct: 14.8
+      standard_20_latency_reduction_pct: 15.5
+      dense_throughput_tok_s: 85
+      rasp_20_throughput_tok_s: 99
+      standard_20_throughput_tok_s: 100
+      rasp_20_throughput_gain_pct: 16.5
+      standard_20_throughput_gain_pct: 17.6
+      batch_size: 1
+      seq_len: 512
+      gpu: A100-80GB
+      n_runs: 50
+      warmup_runs: 10
+    result_rationale: '20% structured pruning移除~19%的parameters（全部是complete MLP groups），理论speedup为19%。
+      实际latency reduction ~15%因为：(1)非MLP compute（attention, LayerNorm, embedding）不变，
+      占总compute的~25%；(2)不同层的pruning不均匀导致GPU utilization不optimal； (3)framework overhead（PyTorch
+      dynamic shapes）。RASP和Standard的speedup几乎相同 因为sparsity level相同——pruning method影响which
+      structures被移除，不影响total removal量。 Standard微略快（0.7pp）可能是随机variation或因为Standard
+      pruned的structures恰好使 layer sizes更uniform。
+
+      '
+    tables:
+    - 'Table 7: Inference speedup — latency and throughput comparison'
+    figures_description:
+    - 'Appendix: Latency distribution box plot across 50 runs'
+    analysis: '~15% speedup在20% sparsity下是reasonable但不impressive——structured pruning的practical
+      motivation 需要至少25-30% sparsity才能达到meaningful speedup。但这个experiment是reviewer必问的
+      "where''s the efficiency gain"的defensive answer。Paper discussion应note that  structured
+      pruning实际speedup低于parameter reduction ratio。
+
+      '
+  - name: Unstructured pruning baseline (20%)
+    plan_id: plan_017
+    description: Magnitude-based unstructured pruning 20%作为Self-Healing fair comparison基线
+    expected_results:
+      postprune_accuracy: 0.682
+      postprune_correct: 900
+      postprune_n: 1319
+      postprune_stderr: 0.0128
+      postprune_eos_rate: 0.98
+      post_sft_accuracy: 0.763
+      post_sft_correct: 1007
+      post_sft_stderr: 0.0117
+      grpo_collapse: false
+      grpo_max_steps: 100
+      grpo_final_reward: 0.548
+      grpo_final_frac_zero_std: 0.32
+      grpo_final_grad_norm: 5.82
+      post_grpo_accuracy: 0.758
+      post_grpo_delta_vs_sft_pp: -0.5
+      grpo_reward_accuracy_decoupling: true
+      structured_vs_unstructured_gap_postprune_pp: 38.4
+      structured_vs_unstructured_gap_postsft_pp: 14.8
+    result_rationale: 'Unstructured pruning at 20%仅零化individual weights而不移除structural
+      units——所有224个attention heads和 784个MLP groups保持intact。Post-prune 68.2%远高于structured的30%(RASP)/27%(Standard)，
+      因为每个结构仍有80%的weights functional，network topology完全保留。 SFT恢复到76.3%——接近unpruned(81.3%)，gap仅5pp，因为结构完整性使SFT只需微调权重而非重建功能。
+      GRPO关键发现：NO COLLAPSE。100步训练stable（frac_zero_std<0.35, grad_norm~5.8）， reward达到0.548（vs
+      unpruned 0.661）。但accuracy仍不改善（76.3→75.8, Δ=-0.5pp）—— reward-accuracy decoupling在unstructured
+      pruned model上也成立（Claim 1 strengthened）， 但没有training collapse。 这直接支持structural
+      damage hypothesis: collapse是structural pruning的specific consequence （移除entire
+      exploration pathways），不是pruning in general的问题。Unstructured pruning 保留了所有structural
+      redundancy，因此GRPO可以stable训练。
+
+      '
+    tables:
+    - 'Table 2 新增行: Unstructured 20% — 68.2% / 76.3% / 75.8%'
+    - 'Table 3 新增行: Unstructured — no collapse, 100 steps stable'
+    figures_description:
+    - 'Fig 1 新增panel: Unstructured GRPO dynamics (stable reward, no frac_zero_std
+      spike)'
+    - 'Fig 7: Structured vs Unstructured comparison — collapse is structural-pruning-specific'
+    analysis: '这是median tier最关键的补充实验。Unstructured pruning确认了两个核心insights: (1) Reward-accuracy
+      decoupling is universal（连unstructured也有reward↑ accuracy=），strengthening Claim
+      1; (2) Training collapse is structural-pruning-specific（unstructured无collapse），confirming
+      the structural damage mechanism。 对Self-Healing comparison: Self-Healing用25%
+      unstructured报告recovery——我们在20% unstructured 也看到无collapse，但accuracy仍不从GRPO获益。Paper可argue:
+      Self-Healing的"RLVR recovery" 可能只是reward improvement without accuracy gain，需要replication
+      with accuracy evaluation。
+
+      '
+  - name: SFT OOD eval (Standard 20%)
+    plan_id: plan_018
+    description: Standard SFT 20% (59.29% GSM8K)在MATH-500和HumanEval上的OOD评估
+    expected_results:
+      standard_sft_20_math500: 0.285
+      standard_sft_20_math500_stderr: 0.02
+      standard_sft_20_humaneval: 0.305
+      standard_sft_20_humaneval_stderr: 0.036
+      unpruned_sft_math500: 0.524
+      unpruned_sft_humaneval: 0.549
+      recovery_ratio_gsm8k: 0.73
+      recovery_ratio_math500: 0.544
+      recovery_ratio_humaneval: 0.556
+      ood_degradation_pp: 18.6
+    result_rationale: 'Standard SFT从1%(post-prune)恢复到59.29%(GSM8K)看似impressive（+58pp），
+      但OOD evaluation揭示这部分recovery是GSM8K-specific。 MATH-500 28.5%（recovery ratio 54.4%
+      vs GSM8K的73%）——MATH-500需要更复杂的 multi-step reasoning，pruning damage对这类task影响更大，且SFT
+      on GSM8K gold 不能transfer reasoning chain construction ability to harder problems。
+      HumanEval 30.5%（ratio 55.6%）——code tasks需要不同的能力分布，GSM8K-specific SFT 不提供code
+      generation ability恢复。 OOD degradation证明pruned model的SFT recovery部分是"pattern
+      reconstruction on GSM8K" 而非"genuine reasoning ability recovery"。这为future work（multi-domain
+      recovery data） 提供了动机。
+
+      '
+    tables:
+    - 'Table 8: OOD evaluation — Standard SFT 20% on MATH-500 (28.5%) and HumanEval
+      (30.5%)'
+    figures_description:
+    - 'Appendix: Recovery ratio by benchmark bar chart'
+    analysis: 'OOD eval在median tier下是contingency experiment（only needed if GRPO RASP
+      advantage <5pp， which it is: -0.84pp）。结果confirms SFT recovery的domain specificity。
+      Paper discussion中acknowledge: "SFT recovery on in-domain data partially reconstructs
+      task-specific patterns rather than general reasoning capability."
+
+      '
+  - name: Qwen-Math-7B GRPO at 20% (re-run)
+    plan_id: scope_qwen_math_grpo_20
+    description: Qwen2.5-Math-7B上RASP/Standard 20%的GRPO训练，验证cross-model collapse
+    expected_results:
+      rasp_20_sft_ref: 0.725
+      standard_20_sft_ref: 0.71
+      rasp_20_grpo_collapse_step: 12
+      rasp_20_grpo_peak_reward: 0.028
+      rasp_20_grpo_final_frac_zero_std: 0.88
+      standard_20_grpo_collapse_step: 18
+      standard_20_grpo_peak_reward: 0.045
+      standard_20_grpo_final_frac_zero_std: 0.82
+      post_grpo_rasp_accuracy: 0.718
+      post_grpo_standard_accuracy: 0.705
+      collapse_ratio: 1.5
+      collapse_ratio_ci_95:
+      - 0.8
+      - 2.8
+      rasp_vs_standard_collapse_overlap: true
+    result_rationale: 'Qwen-Math-7B与DeepSeek-R1-Distill-Qwen-7B虽然share Qwen2.5 backbone但training
+      paradigm 不同——Qwen-Math是math-specific SFT，DeepSeek-R1-Distill是reasoning distillation。
+      两者的internal redundancy分布不同，导致RASP和Standard在Qwen-Math上的CKA-based selection differential更小。
+      GRPO collapse在两者上都发生（confirming Claim 1 cross-model），但RASP step 12 vs Standard
+      step 18 的ratio仅1.5x（vs DeepSeek的6x），且95% CI [0.8, 2.8]包含1——不显著。 这是因为Qwen-Math的math-specific
+      training使层间redundancy更均匀分布， RASP和Standard的pruning selection差异更小，导致collapse dynamics差异缩小。
+
+      '
+    tables:
+    - 'Table 5: Cross-model results — Qwen-Math-7B GRPO collapse dynamics'
+    figures_description:
+    - 'Fig 8: Cross-model collapse timing comparison (DeepSeek vs Qwen-Math)'
+    analysis: 'Cross-model evidence confirms Claim 1（GRPO collapse在不同model上都发生）， 但weakens
+      Claim 2——collapse severity gradient在Qwen-Math上不clean。 Paper rewording: "The
+      collapse severity gradient is a diagnostic tendency observed on DeepSeek-R1-Distill,
+      with directionally consistent but not statistically significant replication
+      on Qwen2.5-Math-7B."
+
+      '
+  - name: Qwen-Math-7B GRPO at 25%
+    plan_id: scope_qwen_math_grpo_25
+    description: Qwen2.5-Math-7B上RASP/Standard 25%的GRPO训练
+    expected_results:
+      rasp_25_sft_ref: 0.64
+      standard_25_sft_ref: 0.63
+      rasp_25_grpo_collapse_step: 8
+      rasp_25_grpo_peak_reward: 0.015
+      rasp_25_grpo_final_frac_zero_std: 0.93
+      standard_25_grpo_collapse_step: 14
+      standard_25_grpo_peak_reward: 0.031
+      standard_25_grpo_final_frac_zero_std: 0.87
+      post_grpo_rasp_accuracy: 0.632
+      post_grpo_standard_accuracy: 0.624
+      collapse_ratio: 1.75
+      collapse_ratio_ci_95:
+      - 0.9
+      - 3.1
+    result_rationale: '25%稀疏度在Qwen-Math上进一步加速collapse：RASP step 8, Standard step 14。
+      Ratio从1.5(20%)略增到1.75(25%)，因为higher sparsity使differential effects marginally
+      stronger。 但CI仍包含1——RASP vs Standard的差异在cross-model设置下not significant。 SFT gap仅1pp（64%
+      vs 63%），进一步confirm CKA-aware selection在不同model architecture 的internal redundancy
+      distribution下不produce consistent advantage。 两者都collapse confirms GRPO failure的robustness
+      across models and sparsity levels。
+
+      '
+    tables:
+    - 'Table 5 新增25%行: Qwen-Math-7B 25% sparsity GRPO results'
+    figures_description:
+    - 'Fig 8 extended: 25% sparsity collapse timing for Qwen-Math'
+    analysis: '25% Qwen-Math结果与20%方向一致但仍not significant。 Paper conclusion: GRPO collapse
+      is robust across models (Claim 1 strong), but the severity gradient as a diagnostic
+      tool requires further model diversity to establish generality (Claim 2 hedged).'
+  review_report: '---
+
+    dream_id: dream_20260516T144805
+
+    tier: median
+
+    overall_score: Weak Reject (3/6)
+
+    timestamp: 2026-05-16T15:40:35.192879+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper:** "GRPO Alignment Fails on Structurally Pruned Reasoning Models: Reward
+    Hacking, Training Collapse, and the Redundancy-Stability Tradeoff"
+
+
+    **Review Mode:** Full (2-Reviewer Roundtable)
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    ### Step 1: Independent Reviews
+
+
+    **R1 (Methods + Experiments) — Score: 4/6 (Weak Accept)**
+
+    - Methodological Soundness: 6/10
+
+    - Experimental Rigor: 6/10
+
+    - Reproducibility: 7/10
+
+    - Claim-Evidence Alignment: 5/10
+
+
+    **R2 (Novelty + Related Work) — Score: 3/6 (Weak Reject)**
+
+    - Novelty: 5/10
+
+    - Significance/Impact: 5/10
+
+    - Related Work Completeness: 6/10
+
+    - Positioning and Framing: 5/10
+
+    - Writing Quality: 7/10
+
+
+    ### Step 2: Cross-Sharing — Areas of Agreement
+
+
+    Both reviewers converge on the following assessments:
+
+
+    1. **Finding 2 (collapse severity gradient) is the paper''s most novel and strongest
+    contribution.** The four-method ordering (RASP step ~10, GRASPrune ~18, Bonsai
+    ~28, Standard ~60) plus the unstructured control (no collapse) is a clean result
+    that has not appeared in prior work.
+
+
+    2. **Greedy-only evaluation is a critical gap.** GRPO optimizes sampling diversity,
+    not the greedy mode. The "reward-accuracy decoupling" (Finding 1) could simply
+    reflect that greedy accuracy was already at its ceiling while GRPO improved pass@k.
+    Without pass@k evaluation (k=8, 64), the paper''s strongest claim — that GRPO
+    "universally fails" — is not adequately supported. Both reviewers flag this as
+    the single largest threat to validity.
+
+
+    3. **Cross-model replication is weak.** On Qwen2.5-Math-7B, the RASP/Standard
+    collapse ratio is 1.5–1.75× with 95% CIs [0.8, 2.8] and [0.9, 3.1], both including
+    1. The severity gradient — the paper''s most novel finding — does not significantly
+    replicate on the second model. The paper acknowledges this honestly ("diagnostic
+    tendency ... not statistically significant replication"), which both reviewers
+    appreciate.
+
+
+    4. **The SFT gap is not statistically significant at the primary sparsity level.**
+    At 20%, RASP vs Standard is +2.2pp (p = 0.25). At 25% it is +3.2pp (p = 0.089).
+    Neither reaches conventional significance. Finding 3 (Redundancy-Stability Tradeoff)
+    rests on this SFT advantage as one side of the tradeoff, making the evidence asymmetric:
+    the GRPO collapse side is strong, the SFT side is marginal.
+
+
+    5. **The structured vs. unstructured contrast is excellent.** At matched 20% sparsity,
+    structured pruning collapses (step ~10–60) while unstructured pruning trains stably
+    for 100 steps. This cleanly isolates structural integrity as the mechanism and
+    is the paper''s most convincing control experiment.
+
+
+    6. **RASP is technically simple but well-motivated as a diagnostic tool.** S(h)
+    = I(h) × (1−F(h))^α is a straightforward weighted product of importance and CKA-based
+    redundancy. The U-shaped alpha ablation (Table 4) confirms the parameter is meaningful.
+    Both reviewers agree RASP''s value is primarily diagnostic rather than as a superior
+    pruning method.
+
+
+    ### Step 3: Cross-Sharing — Areas of Divergence
+
+
+    1. **Publishability threshold.** R1 views the negative result (GRPO collapse)
+    and diagnostic framework as sufficient for a venue like EMNLP with claim downscoping.
+    R2 considers the greedy-only eval gap and single GRPO configuration as potentially
+    fatal weaknesses that could invalidate the central claim.
+
+
+    2. **Severity of the "universal" overclaim.** R1 flags that "universal" is tested
+    on one task (GSM8K), one eval protocol (greedy), and 100 GRPO steps, but considers
+    this addressable by narrowing the claim language. R2 argues more strongly that
+    without pass@k, the decoupling claim may be an artifact rather than a finding,
+    which would undermine the paper''s raison d''être.
+
+
+    3. **GRPO configuration concern.** R2 raises that only one GRPO configuration
+    is tested (KL coefficient 0.04, lr 5e-7, 100 steps) and that Self-Healing uses
+    different hyperparameters. R1 notes the issue but is less concerned since the
+    collapse pattern holds across multiple pruning methods.
+
+
+    **Resolution:** Both reviewers agree that the structural damage finding (Finding
+    2) and the structured-vs-unstructured control are genuine contributions regardless
+    of the greedy/pass@k question. The disagreement centers on whether Finding 1 (universal
+    decoupling) is real or an evaluation artifact. This is resolvable: pass@k evaluation
+    would either confirm or refute it.
+
+
+    ### Step 4: Consolidated Assessment
+
+
+    ---
+
+
+    ## Strengths
+
+
+    **S1 (Major): Novel identification of GRPO training collapse on structurally pruned
+    models.**
+
+    No prior work has documented this phenomenon. The collapse definition (frac_zero_std
+    > 0.85, grad_norm < 0.01, persisting ≥5 steps) is crisp and the severity gradient
+    across four structured pruning methods is clean. This is a genuine contribution
+    to the pruning-alignment interaction literature.
+
+
+    **S2 (Major): The structured vs. unstructured control experiment.**
+
+    At identical 20% sparsity, structured pruning (RASP: 29.8% post-prune) collapses
+    at step ~10 while unstructured pruning (68.2% post-prune) trains stably for 100
+    steps with reward reaching 0.548. The qualitative difference (collapse vs. stability)
+    cannot be fully explained by the accuracy gap alone and points to structural integrity
+    as a mechanism. This is the paper''s most convincing result.
+
+
+    **S3 (Major): Comprehensive experimental matrix.**
+
+    The paper evaluates 5 pruning methods (RASP, Standard, GRASPrune, Bonsai, Unstructured)
+    × 3 recovery paradigms (post-prune, SFT, GRPO) × 2–3 sparsity levels, with cross-model
+    validation, OOD evaluation (MATH-500, HumanEval, MMLU), scoring ablation, alpha
+    sensitivity, CKA reliability analysis, and inference speedup benchmarks. For a
+    9-page paper, the experimental breadth is impressive.
+
+
+    **S4 (Moderate): Honest and calibrated claim language.**
+
+    The Discussion section transparently acknowledges: (i) cross-model replication
+    is weak, (ii) the SFT gap is not significant at 20%, (iii) the Redundancy-Stability
+    Tradeoff is an "empirical observation on the DeepSeek-R1 family," not a universal
+    law. This self-awareness is commendable and appropriate.
+
+
+    **S5 (Moderate): The U-shaped alpha ablation (Table 4).**
+
+    The minimum at α = 0.5 and optimum at α = 2.0 for both post-prune and post-SFT
+    accuracy confirms the CKA penalty is a meaningful (not arbitrary) parameter and
+    reveals the "noise injection" regime where weak CKA signal disrupts importance
+    ranking.
+
+
+    **S6 (Minor): Practical recommendations are clearly stated.**
+
+    The paper offers actionable advice: (1) SFT-only recovery is currently the safe
+    path, (2) structured pruning beyond 25% is impractical for 7B reasoning models,
+    (3) if RLVR is required downstream, unstructured pruning preserves structural
+    integrity.
+
+
+    ---
+
+
+    ## Weaknesses
+
+
+    **W1 (Critical): Greedy-only evaluation may invalidate Finding 1.**
+
+    The paper evaluates exclusively with greedy decoding. GRPO is designed to improve
+    the distribution of outputs, not the mode. The identical 1072/1319 correct answers
+    before and after GRPO on the unpruned model could simply mean the greedy mode
+    was already optimal while GRPO improved sampling diversity (pass@k). If pass@8
+    or pass@64 shows improvement, the "reward-accuracy decoupling is universal" claim
+    collapses. This is acknowledged nowhere in the paper. **The paper must either
+    report pass@k or explicitly scope the claim to greedy evaluation.**
+
+
+    **W2 (Major): Single GRPO configuration tested.**
+
+    The paper uses one GRPO setup: lr 5e-7, KL coefficient 0.04, group size 8, 100
+    steps. Self-Healing (Chen et al. 2025) uses different hyperparameters. The paper
+    does not show that collapse persists across varying learning rates, KL penalties
+    (especially β > 0), temperature, or training duration. Standard pruning shows
+    transient collapse at step ~60 with "partial recovery" (Table 3 footnote) — does
+    collapse persist to step 200? 500? This undermines the "fundamental" framing of
+    the collapse phenomenon.
+
+
+    **W3 (Major): Cross-model replication does not reach significance.**
+
+    On Qwen2.5-Math-7B, the RASP/Standard collapse ratio is 1.5–1.75× with 95% CIs
+    including 1 (Table 5). Both models collapse (supporting Finding 1), but the severity
+    gradient (Finding 2) does not replicate. The paper correctly acknowledges this
+    as a "diagnostic tendency" rather than a universal law, but the abstract and introduction
+    still use "universal" language ("universally fails").
+
+
+    **W4 (Major): SFT advantage underlying Finding 3 is not significant.**
+
+    The RASP vs. Standard SFT gap is +2.2pp (p = 0.25) at 20% and +3.2pp (p = 0.089)
+    at 25%. Neither reaches conventional significance. The Redundancy-Stability Tradeoff
+    concept requires both sides to hold: RASP advantages under SFT AND RASP disadvantages
+    under GRPO. The GRPO side is well-supported; the SFT side is a consistent trend
+    that does not reach significance in the primary evaluation.
+
+
+    **W5 (Major): Confound between accuracy level and structural integrity.**
+
+    The unstructured control starts at 68.2% post-prune vs. 29.8% (RASP) or 26.1%
+    (Standard) for structured methods. The paper argues the qualitative collapse-vs-stability
+    difference points to structural integrity, not accuracy level, as the mechanism.
+    But this is not cleanly disentangled. A stronger control would be structured pruning
+    at a lower sparsity that matches unstructured''s starting accuracy, or unstructured
+    pruning at a higher sparsity that matches structured''s starting accuracy.
+
+
+    **W6 (Moderate): Single seed for most experiments.**
+
+    Multi-seed results appear only for post-prune evaluation (5 seeds, Appendix A).
+    All SFT, GRPO, cross-model, and OOD experiments are single-seed. For stochastic
+    training processes like GRPO, single-seed collapse step estimates may not be reliable.
+    The collapse step ~10 vs ~60 difference is large enough that it is unlikely a
+    seed artifact, but the GRASPrune (~18) and Bonsai (~28) positions in the gradient
+    are less certain without replication.
+
+
+    **W7 (Moderate): No mechanistic explanation for collapse.**
+
+    The paper observes that redundancy removal correlates with collapse speed but
+    does not explain the mechanism. Why does removing entire attention heads or MLP
+    groups eliminate exploration capacity while zeroing individual weights does not?
+    The "exploration topology" hypothesis is stated but not validated through, e.g.,
+    representation geometry analysis, gradient flow decomposition, or policy entropy
+    dynamics during training.
+
+
+    **W8 (Minor): Limited reference list.**
+
+    13 references is thin for a paper making broad claims about pruning-alignment
+    interaction at a top venue. Notable omissions: Davari et al. (ICLR 2023) on CKA
+    reliability/limitations (directly relevant to the core technical component), plasticity
+    loss literature in RL (Dohare, Nature 2024; Lyle et al., ICML 2024), and the "From
+    LLMs to LRMs" line of work on width vs. depth pruning for reasoning models.
+
+
+    **W9 (Minor): Bonsai and GRASPrune results appear in a limited capacity.**
+
+    Bonsai appears only in the main tables and a brief appendix paragraph. GRASPrune
+    has limited pipeline coverage. For these to serve as convincing data points in
+    the severity gradient, more detail (training curves, multi-seed, hyperparameter
+    choices) would strengthen the claim.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    **Q1:** Have you evaluated pass@k (k = 8, 64) for the unpruned model before and
+    after GRPO? If GRPO improves pass@8 from, say, 85% to 92% while greedy stays at
+    81.27%, the "reward-accuracy decoupling" claim needs fundamental revision.
+
+
+    **Q2:** What happens if you run GRPO for 200–500 steps on Standard-pruned models?
+    Table 3 notes "partial recovery" at step ~60. Does this recovery stabilize, or
+    does the model re-collapse?
+
+
+    **Q3:** Have you tested GRPO with different KL coefficients (β ∈ {0.01, 0.1, 0.5})?
+    A stronger KL anchor to the SFT reference policy might prevent collapse while
+    still providing alignment benefits.
+
+
+    **Q4:** To disentangle accuracy level from structural integrity: what happens
+    if you run unstructured pruning at 40–50% sparsity to match the ~30% post-prune
+    accuracy of structured pruning? Does GRPO still train stably?
+
+
+    **Q5:** The CKA-recoverability analysis (Table 10) shows within-layer variance
+    explained is only 8% (ICC = 0.71, layer dominates). Given that RASP and Standard
+    make similar layer-level allocation decisions, is RASP''s differentiation from
+    Standard almost entirely driven by within-layer structure selection? If so, the
+    8% explanatory power suggests RASP''s CKA signal is near-negligible at the relevant
+    granularity.
+
+
+    **Q6:** For the Qwen-Math cross-model experiments: the collapse ratios are 1.5–1.75×
+    with CIs including 1. Do you view Finding 2 as model-specific to DeepSeek-R1-Distill,
+    or do you maintain it generalizes?
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    Comparing against the review_context.yaml (18 imagined experiments):
+
+
+    | Experiment | Status | Notes |
+
+    |---|---|---|
+
+    | plan_001 (Post-prune N=1319) | ✅ Covered | Table 1 |
+
+    | plan_004 (All recovered models) | ✅ Covered | Table 2 |
+
+    | plan_005 (GRASPrune pipeline) | ✅ Covered | Tables 2, 3 |
+
+    | plan_006 (Multi-seed 5 seeds) | ✅ Covered | Table 1, Appendix A |
+
+    | plan_007 (Scoring ablation) | ✅ Covered | Table 6 |
+
+    | plan_008 (CKA-recoverability) | ✅ Covered | Table 10 |
+
+    | plan_009 (SFT-only recovery) | ✅ Covered | Table 2 |
+
+    | plan_010 (25% sparsity) | ✅ Covered | Tables 1–3 |
+
+    | plan_011 (30% probe) | ✅ Covered | Table 1 |
+
+    | plan_012 (Extended eval) | ✅ Covered | Table 8 |
+
+    | plan_013 (Bonsai baseline) | ✅ Covered | Tables 2, 3, Appendix B |
+
+    | plan_014 (CKA reliability) | ✅ Covered | Table 9 |
+
+    | plan_015 (Alpha ablation) | ✅ Covered | Table 4 |
+
+    | plan_016 (Inference speedup) | ✅ Covered | Table 7 |
+
+    | plan_017 (Unstructured baseline) | ✅ Covered | Tables 2, 3 |
+
+    | plan_018 (SFT OOD) | ✅ Covered | Table 8 |
+
+    | scope_qwen_math_grpo_20 | ✅ Covered | Table 5 |
+
+    | scope_qwen_math_grpo_25 | ✅ Covered | Table 5 |
+
+
+    **Coverage: 18/18 (100%).** All imagined experiments are reflected in the paper.
+    The experimental breadth is commendable.
+
+
+    ---
+
+
+    ## Consolidated Scores
+
+
+    | Dimension | R1 | R2 | Consolidated |
+
+    |---|---|---|---|
+
+    | Methodological Soundness | 6/10 | — | 6/10 |
+
+    | Experimental Rigor | 6/10 | — | 6/10 |
+
+    | Reproducibility | 7/10 | — | 7/10 |
+
+    | Claim-Evidence Alignment | 5/10 | — | 5/10 |
+
+    | Novelty | — | 5/10 | 5/10 |
+
+    | Significance/Impact | — | 5/10 | 5/10 |
+
+    | Related Work | — | 6/10 | 6/10 |
+
+    | Positioning/Framing | — | 5/10 | 6/10 |
+
+    | Writing Quality | — | 7/10 | 7/10 |
+
+
+    ---
+
+
+    ## Overall Score: 3 — Weak Reject
+
+
+    **Confidence: 4/5 (high)**
+
+
+    ### Justification
+
+
+    The paper identifies a genuinely interesting and previously undocumented phenomenon:
+    GRPO training collapse on structurally pruned reasoning models. The severity gradient
+    across four pruning methods and the structured-vs-unstructured control constitute
+    a real empirical contribution. The Redundancy-Stability Tradeoff is a useful conceptual
+    frame. The experimental matrix is impressively comprehensive for a 9-page paper
+    (5 methods × 3 recovery paths × 2–3 sparsity levels, plus cross-model, OOD, and
+    ablation studies).
+
+
+    However, three critical issues prevent acceptance:
+
+
+    1. **The "universal failure" claim (Finding 1) rests on greedy-only evaluation.**
+    GRPO is designed to improve sampling diversity, and the paper does not test pass@k.
+    The identical 1072/1319 correct answers could reflect greedy-mode saturation rather
+    than alignment failure. This is the paper''s headline claim and its evidence base
+    has a fundamental gap.
+
+
+    2. **The cross-model evidence undermines generalization.** The severity gradient
+    — the most novel finding — does not significantly replicate on Qwen-Math-7B (CIs
+    include 1). The paper honestly acknowledges this, but the abstract and title still
+    use language ("universally fails") that overpromises relative to the evidence.
+
+
+    3. **The SFT side of the Redundancy-Stability Tradeoff is not significant.** At
+    the primary sparsity (20%), p = 0.25. Finding 3 is therefore asymmetric: the collapse
+    side is strong, the SFT advantage side is a directional trend.
+
+
+    ### Path to Acceptance
+
+
+    This paper could reach acceptance at a top venue (EMNLP Main, NeurIPS) with:
+
+    - **pass@k evaluation** for the unpruned and key pruned configurations (resolves
+    W1)
+
+    - **GRPO hyperparameter sensitivity** (at minimum, varying KL coefficient and
+    training length) (resolves W2)
+
+    - Narrowing "universal" to "observed across all tested structured pruning methods
+    on GSM8K with greedy evaluation" (resolves W3)
+
+    - Ideally, one additional model family (e.g., Llama-based) for cross-model evidence
+
+    - Multi-seed replication of at least the primary GRPO collapse results
+
+
+    The core finding — that structural pruning causes GRPO collapse while unstructured
+    pruning does not — is valuable and, if confirmed with pass@k, would represent
+    an important warning for the pruning-alignment community.'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/dream_reports/dream_20260516T144805/worst/paper.pdf
+  imagined_experiments:
+  - name: Full GSM8K Eval Baseline + RASP_20 + Standard_20
+    plan_id: plan_001
+    description: Full test set (N=1319) eval for all three conditions at 20% sparsity
+    expected_results:
+      unpruned_accuracy: 0.8127
+      rasp_20_post_prune_accuracy: 0.31
+      standard_20_post_prune_accuracy: 0.27
+      rasp_vs_standard_gap_pp: 4.0
+      rasp_vs_standard_p_value: 0.38
+      ci_width_pp: 2.5
+    result_rationale: 已有N=100数据(RASP 31% vs Standard 27%)在full eval下只能微幅收敛。4pp gap在N=1319下仍不显著(p≈0.38)，因为post-prune
+      accuracy本身variance大、两者都在random-ish低准确率区间。Worst档下这个gap不构成meaningful difference。
+    tables:
+    - name: 'Table: Post-prune accuracy (N=1319)'
+      rows:
+      - method: Unpruned
+        accuracy: 81.27%
+        stderr: ±1.07pp
+      - method: RASP-20%
+        accuracy: 30.5%
+        stderr: ±2.54pp
+      - method: Standard-20%
+        accuracy: 27.1%
+        stderr: ±2.45pp
+    figures_description:
+    - Bar chart showing post-prune accuracy. Error bars overlap heavily for RASP vs
+      Standard.
+    analysis: Post-prune gap不显著，不能claim RASP preserves more reasoning capacity pre-recovery。两者都严重degraded到接近random
+      baseline (GSM8K ≈ 0% for truly random)。
+  - name: Full GSM8K Eval All Recovered Models
+    plan_id: plan_004
+    description: N=1319 eval for SFT-recovered and GRPO-recovered models (RASP_20,
+      Standard_20, unpruned)
+    expected_results:
+      sft_rasp_20_accuracy: 0.6149
+      sft_standard_20_accuracy: 0.5929
+      sft_gap_20_pp: 2.2
+      sft_gap_20_p_value: 0.25
+      grpo_rasp_step5_accuracy: 0.6065
+      grpo_standard_step50_accuracy: 0.5891
+      grpo_unpruned_step100_accuracy: 0.8127
+      grpo_unpruned_delta_vs_sft: 0.0
+    result_rationale: '这些数据已实际收集完毕。SFT gap 2.2pp (p=0.25)在worst档下被视为不显著。GRPO对所有模型都不提升accuracy（unpruned:
+      0.00pp, Standard: -0.38pp, RASP: -0.84pp），这是strong negative result但不需要RASP-specific解释。Collapse
+      dynamics差异（RASP step10 vs Standard step60）在20%下存在，但worst档的核心问题是这个gradient在25%下消失。'
+    tables:
+    - name: 'Table 1: Recovery accuracy comparison (N=1319)'
+      rows:
+      - condition: Unpruned SFT
+        accuracy: 81.27%
+        grpo_accuracy: 81.27%
+        delta: 0.00pp
+      - condition: RASP-20% SFT
+        accuracy: 61.49%
+        grpo_accuracy: 60.65%
+        delta: -0.84pp
+      - condition: Standard-20% SFT
+        accuracy: 59.29%
+        grpo_accuracy: 58.91%
+        delta: -0.38pp
+    figures_description:
+    - 'Paired bar chart: SFT vs GRPO accuracy for each condition. GRPO never exceeds
+      SFT for any condition.'
+    analysis: Universal reward-accuracy decoupling confirmed。但SFT gap (RASP vs Standard)
+      在p=0.25下insufficient to support Redundancy-Stability Tradeoff claim。论文只能claim
+      GRPO failure是universal，而非pruning-method-specific。
+  - name: GRASPrune Baseline 20% Sparsity
+    plan_id: plan_005
+    description: 'GRASPrune (ACL 2026 SOTA) at 20% sparsity: prune → eval → SFT →
+      GRPO full pipeline'
+    expected_results:
+      grasp_post_prune_accuracy: 0.07
+      grasp_post_sft_accuracy: 0.41
+      grasp_post_grpo_step30_accuracy: 0.39
+      grasp_grpo_collapse_step: 5
+      grasp_grpo_final_reward: 0.012
+      grasp_grpo_frac_zero_std_final: 0.97
+    result_rationale: GRASPrune在post-prune (7%)和post-SFT (41%)都远低于RASP(31%→61%)和Standard(27%→59%)。这是因为GRASPrune的gate-based
+      selection在reasoning model上suboptimal——它优化一般loss而非reasoning trace。在worst档下，GRASPrune
+      GRPO会比RASP更快collapse(step 5)，但这不提供diagnostic value因为GRASPrune本身就是inferior pruning，collapse快是trivial结论。这个baseline反而削弱了RASP的novelty——如果所有结构化剪枝方法的GRPO都collapse，那collapse不是RASP-specific
+      insight。
+    tables:
+    - name: 'Table: GRASPrune pipeline comparison'
+      rows:
+      - stage: Post-prune
+        grasp: 7%
+        rasp: 31%
+        standard: 27%
+      - stage: Post-SFT
+        grasp: 41%
+        rasp: 61.5%
+        standard: 59.3%
+      - stage: Post-GRPO
+        grasp: 39%
+        rasp: 60.7%
+        standard: 58.9%
+      - stage: GRPO collapse step
+        grasp: ~5
+        rasp: ~10
+        standard: ~60
+    figures_description:
+    - 'Training dynamics plot: GRASPrune collapses immediately (step 5), joining RASP
+      and Standard in universal GRPO failure pattern.'
+    analysis: 'GRASPrune数据confirms所有structured pruning methods的GRPO都fail，但severity
+      ordering (GRASPrune < RASP < Standard)在worst档下被解释为trivially correlated with
+      post-SFT quality而非redundancy-specific mechanism。Reviewer会argue: ''collapse speed
+      simply tracks model quality, not structural damage type''。'
+  - name: Multi-seed Post-prune Eval
+    plan_id: plan_006
+    description: 5 seeds (incl. seed 42) for RASP_20 + Standard_20 post-prune eval,
+      variance estimation
+    expected_results:
+      rasp_20_mean_accuracy: 0.305
+      rasp_20_std: 0.018
+      standard_20_mean_accuracy: 0.278
+      standard_20_std: 0.022
+      mean_gap_pp: 2.7
+      paired_t_p_value: 0.15
+      cohens_d: 0.42
+    result_rationale: Post-prune accuracy受calibration sample variance影响。5 seeds下RASP
+      mean ≈ 30.5%, Standard mean ≈ 27.8%, gap ~2.7pp。但std较大(1.8-2.2pp)导致paired-t
+      test p≈0.15。Worst档下reviewers会argue这个gap不足以支持CKA-aware scoring的优越性。Cohen's d=0.42
+      (medium effect)不够convincing for a core method claim。
+    tables:
+    - name: 'Table: Multi-seed post-prune accuracy'
+      rows:
+      - seed: 42
+        rasp: 31%
+        standard: 27%
+      - seed: 123
+        rasp: 29%
+        standard: 28%
+      - seed: 456
+        rasp: 32%
+        standard: 30%
+      - seed: 789
+        rasp: 28%
+        standard: 26%
+      - seed: 1024
+        rasp: 32.5%
+        standard: 28%
+    figures_description:
+    - Box plot showing overlapping distributions of RASP vs Standard across 5 seeds.
+      Medians differ by ~3pp but IQRs overlap.
+    analysis: Multi-seed证据weak。Gap存在但不robust (p=0.15)。在worst档下这strengthens the narrative
+      that CKA-aware scoring的marginal benefit不justify方法复杂度。
+  - name: Scoring Ablation (magnitude/gradient/random)
+    plan_id: plan_007
+    description: 'Ablation: magnitude-only, gradient-only, random pruning at 20% sparsity'
+    expected_results:
+      magnitude_only_accuracy: 0.26
+      gradient_only_accuracy: 0.29
+      random_pruning_accuracy: 0.18
+      rasp_accuracy_ref: 0.31
+      standard_accuracy_ref: 0.27
+      gradient_vs_rasp_gap: 2.0
+      gradient_vs_rasp_p_value: 0.41
+    result_rationale: Worst档下，gradient-only(即Standard的核心——importance scoring)已达到29%，接近RASP的31%。CKA
+      modulation仅额外贡献~2pp，这在N=100下完全不显著(p=0.41)。Magnitude-only(26%)和Standard(27%)几乎相同，说明importance
+      metric差异在post-prune这个极低accuracy regime下noise-dominated。Random(18%)是唯一clearly
+      worse的，但这是trivial——任何informed method都应该beat random。Ablation结果undermine CKA的独立贡献。
+    tables:
+    - name: 'Table: Scoring method ablation (20% sparsity, N=100)'
+      rows:
+      - method: RASP (I×(1-F)^α)
+        accuracy: 31%
+        stderr: ±4.6%
+      - method: Gradient-only (I)
+        accuracy: 29%
+        stderr: ±4.5%
+      - method: Standard (importance)
+        accuracy: 27%
+        stderr: ±4.4%
+      - method: Magnitude-only
+        accuracy: 26%
+        stderr: ±4.4%
+      - method: Random
+        accuracy: 18%
+        stderr: ±3.8%
+    figures_description:
+    - Horizontal bar chart with error bars. All informed methods cluster around 26-31%,
+      random at 18%. Error bars heavily overlap for all non-random methods.
+    analysis: CKA modulation的贡献被noise淹没。Worst档叙事：RASP's CKA component is at best marginal
+      (2pp over gradient-only, p=0.41)。不足以支持CKA作为method contribution。
+  - name: Per-structure CKA-Recoverability Correlation
+    plan_id: plan_008
+    description: Per-head F(h) vs activation change after recovery, mixed-effects
+      regression
+    expected_results:
+      pearson_r_fh_vs_activation_change: 0.12
+      spearman_rho: 0.09
+      mixed_effects_p_value_fh: 0.31
+      variance_explained_by_fh: 0.014
+      weight_norm_variance_explained: 0.08
+      gradient_importance_variance_explained: 0.11
+    result_rationale: Worst档下，F(h)（CKA-based functional redundancy）与recovery后的activation
+      change几乎无correlation (r=0.12)。Mixed-effects model中F(h)不显著(p=0.31)，且解释方差仅1.4%——远低于简单的weight
+      norm (8%)或gradient importance (11%)。这demolishes CKA作为'predicting recoverability'的诊断工具的claim。如果functional
+      redundancy不predict recoverability，Redundancy-Stability Tradeoff的机制基础就不存在。
+    tables:
+    - name: 'Table: Mixed-effects regression coefficients'
+      rows:
+      - predictor: F(h) (CKA redundancy)
+        beta: '0.034'
+        p_value: '0.31'
+        R²_partial: '0.014'
+      - predictor: Weight norm
+        beta: '0.089'
+        p_value: '0.02'
+        R²_partial: '0.08'
+      - predictor: Gradient importance
+        beta: '0.102'
+        p_value: '0.008'
+        R²_partial: '0.11'
+      - predictor: Activation magnitude
+        beta: '0.076'
+        p_value: '0.04'
+        R²_partial: '0.06'
+    figures_description:
+    - 'Scatter plot: F(h) vs activation change, color-coded by layer. No visible trend,
+      points scattered. R²=0.014 annotated.'
+    analysis: CKA-based redundancy metric不predict recovery behavior。在worst档下这是致命的——RASP的理论基础(redundant
+      structures are safely removable for SFT)没有per-structure evidence支撑。
+  - name: SFT-only Recovery Comparison
+    plan_id: plan_009
+    description: Same pruned models (RASP_20, Standard_20), SFT only, same data budget.
+      Tests recovery paradigm interaction.
+    expected_results:
+      sft_rasp_20_accuracy: 0.6149
+      sft_standard_20_accuracy: 0.5929
+      sft_gap_pp: 2.2
+      sft_gap_p_value: 0.25
+      sft_rasp_loss_curve_final: 0.64
+      sft_standard_loss_curve_final: 0.64
+    result_rationale: 这个实验实际上已经完成（plan_002的SFT就是SFT-only recovery）。Worst档下结果不变：RASP
+      61.49% vs Standard 59.29%，gap 2.2pp, p=0.25。Loss curves几乎identical（都converge到0.64）。不显著的SFT
+      gap意味着'CKA-aware pruning benefits SFT recovery'这个claim不成立。如果SFT gap都不存在，Redundancy-Stability
+      Tradeoff（SFT favors removing redundancy, RLVR needs it）的SFT侧就是null。
+    tables:
+    - name: 'Table: SFT-only recovery (N=1319)'
+      rows:
+      - method: RASP-20%
+        sft_accuracy: 61.49%
+        sft_loss: '0.64'
+      - method: Standard-20%
+        sft_accuracy: 59.29%
+        sft_loss: '0.64'
+      - method: Gap
+        delta: +2.20pp
+        p_value: '0.25'
+    figures_description:
+    - Loss curves for RASP vs Standard SFT recovery — virtually identical trajectories,
+      both converging to 0.64.
+    analysis: SFT gap不显著。Worst档叙事：无法claim RASP对SFT recovery有advantage，因此Redundancy-Stability
+      Tradeoff的一侧(SFT favors RASP)不成立。
+  - name: 25% Sparsity RASP + Standard Full Pipeline
+    plan_id: plan_010
+    description: '25% sparsity: prune → eval → SFT → GRPO for both RASP and Standard'
+    expected_results:
+      rasp_25_post_prune_accuracy: 0.21
+      standard_25_post_prune_accuracy: 0.16
+      rasp_25_sft_accuracy: 0.52
+      standard_25_sft_accuracy: 0.5125
+      sft_gap_25_pp: 0.75
+      sft_gap_25_p_value: 0.35
+      grpo_rasp_25_collapse_step: 4
+      grpo_standard_25_collapse_step: 6
+      grpo_rasp_25_peak_reward: 0.011
+      grpo_standard_25_peak_reward: 0.015
+      grpo_rasp_25_final_frac_zero_std: 0.98
+      grpo_standard_25_final_frac_zero_std: 0.96
+      collapse_ratio_rasp_vs_standard: 0.67
+    result_rationale: '25%是worst档的critical sparsity。Post-prune: RASP 21% vs Standard
+      16%（已confirmed）。Post-SFT: RASP ~52% vs Standard ~51.25%（已有Standard数据），gap缩小到<1pp
+      (p=0.35)——因为higher sparsity下SFT recovery能力更受限于absolute damage而非which structures
+      were removed。GRPO: 关键——两者都在≤10步内collapse。RASP step 4, Standard step 6，ratio仅0.67（不是20%下的6x差距）。这是因为25%
+      sparsity下两个模型的exploration capacity都已被破坏到临界值以下，collapse变成near-deterministic而非structure-dependent。Severity
+      gradient消失——无法区分''redundancy removal causing fast collapse'' vs ''general over-pruning
+      causing universal collapse''。'
+    tables:
+    - name: 'Table: 25% sparsity pipeline comparison'
+      rows:
+      - stage: Post-prune
+        rasp_25: 21%
+        standard_25: 16%
+      - stage: Post-SFT
+        rasp_25: 52%
+        standard_25: 51.25%
+      - stage: Post-SFT gap
+        delta: +0.75pp
+        p_value: '0.35'
+      - stage: GRPO collapse step
+        rasp_25: ~4
+        standard_25: ~6
+      - stage: GRPO final frac_zero_std
+        rasp_25: '0.98'
+        standard_25: '0.96'
+    - name: 'Table: Collapse gradient comparison across sparsity'
+      rows:
+      - sparsity: 20%
+        rasp_collapse: step 10
+        standard_collapse: step 60
+        ratio: 6.0x
+      - sparsity: 25%
+        rasp_collapse: step 4
+        standard_collapse: step 6
+        ratio: 1.5x
+    figures_description:
+    - 'Training dynamics overlay: RASP-25% and Standard-25% frac_zero_std curves nearly
+      overlapping, both reaching 0.95+ by step 8. Contrast with 20% where curves diverge
+      dramatically.'
+    - 'Collapse ratio vs sparsity plot: ratio drops from 6x at 20% to 1.5x at 25%,
+      suggesting the diagnostic value disappears at higher sparsity.'
+    analysis: '25% sparsity完全消解了collapse severity gradient。两者都太脆弱无法sustain GRPO training。Reviewer会argue:
+      ''你的diagnostic只在一个sparsity点work(20%)，换个sparsity就break——这不是robust mechanism而是coincidence。''
+      SFT gap也shrink到不显著(0.75pp, p=0.35)。Worst档核心结论：Redundancy-Stability Tradeoff在25%下不可观测。'
+  - name: 30% Sparsity Probe
+    plan_id: plan_011
+    description: 30% sparsity prune + eval only (no recovery) for RASP and Standard
+    expected_results:
+      rasp_30_post_prune_accuracy: 0.08
+      standard_30_post_prune_accuracy: 0.06
+      rasp_30_eos_rate: 0.25
+      standard_30_eos_rate: 0.18
+      gap_pp: 2.0
+      p_value: 0.55
+    result_rationale: 30% sparsity下两者都接近complete collapse (8% vs 6%)。Model基本无法生成coherent
+      reasoning。Gap 2pp在这个regime下meaningless——两者都是catastrophically damaged。这confirms
+      25-30%是DeepSeek-R1-Distill-Qwen-7B structured pruning的hard ceiling，但不提供任何method-differentiating
+      evidence。
+    tables:
+    - name: 'Table: 30% sparsity post-prune'
+      rows:
+      - method: RASP-30%
+        accuracy: 8%
+        eos_rate: 25%
+        avg_len: '3200'
+      - method: Standard-30%
+        accuracy: 6%
+        eos_rate: 18%
+        avg_len: '3500'
+    figures_description:
+    - 'Sparsity vs post-prune accuracy curve: steep decline from 20% to 30%, both
+      methods converging to near-zero.'
+    analysis: Confirms sparsity ceiling但对method comparison无价值。在worst档下用作evidence that
+      structured pruning has narrow useful range (practical limitation)。
+  - name: Extended Evaluation (MMLU, HumanEval, MATH-500)
+    plan_id: plan_012
+    description: Best recovered config on OOD benchmarks
+    expected_results:
+      rasp_20_sft_mmlu: 0.48
+      rasp_20_sft_humaneval: 0.35
+      rasp_20_sft_math500: 0.28
+      standard_20_sft_mmlu: 0.47
+      standard_20_sft_humaneval: 0.33
+      standard_20_sft_math500: 0.26
+      unpruned_sft_mmlu: 0.62
+      unpruned_sft_humaneval: 0.55
+      unpruned_sft_math500: 0.52
+      rasp_vs_standard_mmlu_p: 0.62
+      rasp_vs_standard_humaneval_p: 0.45
+      rasp_vs_standard_math500_p: 0.38
+    result_rationale: 'OOD benchmarks下RASP vs Standard gap同样不显著。MMLU差1pp, HumanEval差2pp,
+      MATH差2pp——都在noise range内。这是因为SFT recovery是domain-agnostic的(teacher-forcing on
+      GSM8K)，CKA-aware pruning的marginal structural advantage不transfer到其他tasks。Worst档下这进一步confirms
+      RASP无meaningful advantage。同时，pruned vs unpruned的大幅drop (MATH: 52%→27%)表明structured
+      pruning造成的reasoning能力损失是across-domain的。'
+    tables:
+    - name: 'Table: Extended evaluation'
+      rows:
+      - benchmark: MMLU
+        unpruned: 62%
+        rasp_20: 48%
+        standard_20: 47%
+        gap_pp: +1pp
+        p: '0.62'
+      - benchmark: HumanEval
+        unpruned: 55%
+        rasp_20: 35%
+        standard_20: 33%
+        gap_pp: +2pp
+        p: '0.45'
+      - benchmark: MATH-500
+        unpruned: 52%
+        rasp_20: 28%
+        standard_20: 26%
+        gap_pp: +2pp
+        p: '0.38'
+    figures_description:
+    - 'Radar chart showing capability profile: unpruned vs RASP-20% vs Standard-20%
+      across 4 benchmarks. Pruned models uniformly degraded, RASP and Standard nearly
+      identical.'
+    analysis: RASP advantage不generalize beyond GSM8K。在worst档下这是expected——如果GSM8K上gap都不显著，OOD上更不可能significant。但pruned
+      models的uniform degradation strengthens 'structured pruning is destructive' narrative。
+  - name: Bonsai Baseline 20%
+    plan_id: plan_013
+    description: Bonsai (ICML 2025) gradient-free structured pruning at 20% sparsity
+    expected_results:
+      bonsai_post_prune_accuracy: 0.24
+      bonsai_post_sft_accuracy: 0.56
+      bonsai_post_grpo_collapse_step: 8
+      bonsai_grpo_peak_reward: 0.019
+      bonsai_grpo_final_frac_zero_std: 0.93
+    result_rationale: 'Bonsai是gradient-free方法，通常在structured pruning中accuracy略低于gradient-based方法。Post-prune
+      24% (between random 18% and Standard 27%)。Post-SFT recovery到56%——低于RASP(61.5%)和Standard(59.3%)但仍reasonable。GRPO
+      collapse at step 8——和RASP(step 10)同量级。在worst档下，Bonsai的加入进一步demonstrates所有structured
+      pruning的GRPO都collapse，且collapse speed和post-SFT quality正相关（trivialy: worse model
+      = faster collapse）。不提供redundancy-specific insight。'
+    tables:
+    - name: 'Table: Method comparison including Bonsai'
+      rows:
+      - method: RASP
+        post_prune: 31%
+        post_sft: 61.5%
+        grpo_collapse: step 10
+      - method: Standard
+        post_prune: 27%
+        post_sft: 59.3%
+        grpo_collapse: step 60
+      - method: Bonsai
+        post_prune: 24%
+        post_sft: 56%
+        grpo_collapse: step 8
+      - method: GRASPrune
+        post_prune: 7%
+        post_sft: 41%
+        grpo_collapse: step 5
+    figures_description:
+    - 'Scatter plot: post-SFT accuracy vs GRPO collapse step for all 4 methods. Clear
+      positive correlation (r=0.95) suggesting collapse speed is simply a function
+      of model quality, not pruning mechanism.'
+    analysis: 'Bonsai数据reveals collapse speed几乎perfectly correlates with post-SFT
+      accuracy (r≈0.95)。Worst档下reviewer会argue: ''RASP collapses fast不是因为它removed redundancy,
+      而是因为它happens to produce slightly lower SFT quality than Standard (61.5 vs 59.3,
+      but at 25% the gap disappears and so does the collapse difference)。Collapse
+      is trivially predicted by model quality, not by structural damage type。'''
+  - name: CKA Reliability Analysis
+    plan_id: plan_014
+    description: Split-half consistency + calibration size sensitivity
+    expected_results:
+      split_half_spearman_rho: 0.72
+      cal_256_vs_512_rank_corr: 0.78
+      cal_512_vs_1024_rank_corr: 0.85
+      score_variance_across_splits: 0.15
+      top_20pct_overlap_across_splits: 0.68
+    result_rationale: CKA scores本身有moderate reliability (ρ=0.72 split-half)，不算terrible但也不够high
+      for confident structure selection。Top-20% pruned structures只有68% overlap across
+      splits——意味着32%的pruning decisions是unstable的。Calibration size从256→512→1024确实improves
+      (0.78→0.85)，但512 (我们用的) 仍有notable instability。Worst档下这undermines RASP scoring的reliability——如果CKA
+      scores themselves are noisy，基于它们的pruning decision也是noisy的。
+    tables:
+    - name: 'Table: CKA reliability metrics'
+      rows:
+      - metric: Split-half Spearman ρ
+        value: '0.72'
+      - metric: Cal-256 vs Cal-512 rank corr
+        value: '0.78'
+      - metric: Cal-512 vs Cal-1024 rank corr
+        value: '0.85'
+      - metric: Top-20% set overlap (split-half)
+        value: 68%
+    figures_description:
+    - Heatmap of structure rankings across 5 split-half replications. Visible inconsistency
+      in middle-ranked structures.
+    analysis: CKA reliability是acceptable but not high。32% decision instability在worst档下被interpret为：RASP的marginal
+      advantage可能just是particular calibration sample的artifact而非stable structural property。
+  - name: Alpha Sensitivity Ablation
+    plan_id: plan_015
+    description: α ∈ {0, 0.25, 0.5, 1, 2} sweep in RASP scoring at 20% sparsity, post-prune
+      + post-SFT eval
+    expected_results:
+      alpha_0_post_prune: 0.27
+      alpha_0_post_sft: 0.64
+      alpha_0p25_post_prune: 0.23
+      alpha_0p25_post_sft: 0.58
+      alpha_0p5_post_prune: 0.22
+      alpha_0p5_post_sft: 0.55
+      alpha_1p0_post_prune: 0.31
+      alpha_1p0_post_sft: 0.57
+      alpha_2p0_post_prune: 0.36
+      alpha_2p0_post_sft: 0.62
+      optimal_alpha_post_prune: 2.0
+      optimal_alpha_post_sft: 0.0
+      correlation_postprune_vs_postsft: -0.45
+    result_rationale: '已有post-prune数据(α=0:27%, α=0.25:23%, α=0.5:22%, α=1:31%, α=2:36%)。Post-SFT数据在worst档下shows反转：α=0(即Standard，无CKA)给出最高post-SFT(64%)，而α=2(强CKA
+      weighting, 最高post-prune)给出62%。α和post-SFT accuracy无单调关系，且post-prune和post-SFT
+      accuracy negatively correlated (r=-0.45)——高post-prune不predict高post-SFT。这is devastating:
+      RASP的CKA modulation optimizes wrong proxy。保留high-CKA structures helps immediate
+      post-prune accuracy但doesn''t help (甚至slightly hurts) SFT recovery。'
+    tables:
+    - name: 'Table: Alpha ablation full pipeline'
+      rows:
+      - alpha: 0.0 (=Standard)
+        post_prune: 27%
+        post_sft: 64%
+        post_sft_ci: ±4.7%
+      - alpha: '0.25'
+        post_prune: 23%
+        post_sft: 58%
+        post_sft_ci: ±4.9%
+      - alpha: '0.5'
+        post_prune: 22%
+        post_sft: 55%
+        post_sft_ci: ±5.0%
+      - alpha: 1.0 (=RASP)
+        post_prune: 31%
+        post_sft: 57%
+        post_sft_ci: ±5.0%
+      - alpha: '2.0'
+        post_prune: 36%
+        post_sft: 62%
+        post_sft_ci: ±4.9%
+    figures_description:
+    - 'Dual-axis plot: α vs post-prune accuracy (ascending) and α vs post-SFT accuracy
+      (non-monotonic/U-shape). Shows CKA helps post-prune but not post-SFT.'
+    - 'Scatter: post-prune accuracy vs post-SFT accuracy across α values. Negative
+      or null correlation.'
+    analysis: 'α ablation是worst档最damaging的实验。Post-prune accuracy和post-SFT accuracy
+      decouple——CKA optimization of post-prune is a wrong objective。α=0 (no CKA, Standard)
+      achieves highest post-SFT despite lowest post-prune。RASP''s core insight (''remove
+      redundant structures because they''re safely recoverable'') is empirically falsified:
+      recovering redundant-structure-preserving models is NOT easier。'
+  - name: Inference Speedup Benchmark
+    plan_id: plan_016
+    description: Wall-clock latency + throughput for dense vs 20% RASP vs 20% Standard
+    expected_results:
+      dense_latency_ms_per_token: 18.5
+      rasp_20_latency_ms_per_token: 16.2
+      standard_20_latency_ms_per_token: 16.0
+      dense_throughput_tokens_per_sec: 54.1
+      rasp_20_throughput_tokens_per_sec: 61.7
+      standard_20_throughput_tokens_per_sec: 62.5
+      speedup_rasp_vs_dense: 1.14
+      speedup_standard_vs_dense: 1.16
+      memory_reduction_pct: 18.5
+    result_rationale: '20% structured pruning只给14-16% speedup。这是因为：(1) MLP-only pruning
+      (attn groups未被pruned) 限制了speedup ceiling; (2) GPU利用率在batch_size=1时不是memory-bound;
+      (3) Structured pruning的实际speedup远低于theoretical FLOP reduction (20%)因为kernel
+      launch overhead和memory bandwidth不是线性关系。Worst档下1.14-1.16x speedup is disappointing——不足以justify
+      20pp+ accuracy loss (81%→61%)。Reviewer: ''you lose 20pp accuracy for 14% speedup
+      — no practitioner would make this trade。'''
+    tables:
+    - name: 'Table: Inference efficiency'
+      rows:
+      - model: Dense (7.6B)
+        latency_ms: '18.5'
+        throughput: 54.1 tok/s
+        memory_gb: '15.2'
+      - model: RASP-20% (6.2B)
+        latency_ms: '16.2'
+        throughput: 61.7 tok/s
+        memory_gb: '12.4'
+      - model: Standard-20% (6.2B)
+        latency_ms: '16.0'
+        throughput: 62.5 tok/s
+        memory_gb: '12.4'
+    figures_description:
+    - 'Bar chart: speedup factor vs accuracy retention. 1.14x speedup at 76% accuracy
+      retention — poor Pareto position.'
+    analysis: Inference speedup insufficient to justify accuracy cost。Worst档下这weaken
+      practical motivation：如果structured pruning只给14% speedup with 25% accuracy loss，research
+      question本身的relevance被questioned。需要在paper中reframe为'studying fundamental interaction'而非'practical
+      compression method'。
+  - name: Unstructured Pruning Baseline 20%
+    plan_id: plan_017
+    description: Magnitude-based unstructured pruning at 20%, eval + SFT → GRPO
+    expected_results:
+      unstructured_20_post_prune_accuracy: 0.72
+      unstructured_20_post_sft_accuracy: 0.79
+      unstructured_20_grpo_accuracy: 0.79
+      unstructured_20_grpo_collapse: false
+      unstructured_20_grpo_steps_stable: 100
+      unstructured_20_grpo_final_reward: 0.55
+    result_rationale: 'Unstructured pruning at 20% preserves大部分accuracy (72% post-prune
+      vs structured 27-31%)因为individual weight zeroing比removing entire structures
+      damage far less。Post-SFT recovery到79%接近dense baseline (81%)。关键：GRPO在unstructured
+      pruned model上NOT collapse——100 steps stable, reward reaches 0.55。这directly refutes
+      ''pruning breaks RLVR''的general claim，narrowing it to''STRUCTURED pruning breaks
+      RLVR''。In worst档: 这是double-edged。一方面narrows scope (only structured matters)；另一方面reviewer可能argue
+      ''if unstructured doesn''t collapse, your finding is about model capacity, not
+      redundancy — 20% structured removes much more effective capacity than 20% unstructured''。'
+    tables:
+    - name: 'Table: Structured vs Unstructured comparison'
+      rows:
+      - method: Dense
+        post_prune: 81%
+        post_sft: 81%
+        grpo_collapse: 'No'
+        grpo_accuracy: 81%
+      - method: Unstructured-20%
+        post_prune: 72%
+        post_sft: 79%
+        grpo_collapse: 'No'
+        grpo_accuracy: 79%
+      - method: RASP-Structured-20%
+        post_prune: 31%
+        post_sft: 61.5%
+        grpo_collapse: Step 10
+        grpo_accuracy: 60.7%
+      - method: Standard-Structured-20%
+        post_prune: 27%
+        post_sft: 59.3%
+        grpo_collapse: Step 60
+        grpo_accuracy: 58.9%
+    figures_description:
+    - 'GRPO training dynamics: unstructured-20% tracks dense model (no collapse),
+      while all structured methods collapse. Clear dichotomy.'
+    analysis: 'Unstructured doesn''t collapse → GRPO failure是structured-pruning-specific。Worst档下reviewer会reframe为capacity
+      argument: ''structured pruning removes 20% of architecture but >>20% of effective
+      capacity (因为removes entire functional units)，collapse是trivially因为model太弱not因为any
+      specific structural property''。这undermines Redundancy-Stability Tradeoff的mechanistic
+      claim进一步。'
+  - name: SFT OOD Eval Contingency
+    plan_id: plan_018
+    description: Standard SFT-recovered model (64%→59.3% GSM8K) on MATH-500 and HumanEval
+    expected_results:
+      standard_sft_math500: 0.22
+      standard_sft_humaneval: 0.28
+      rasp_sft_math500: 0.24
+      rasp_sft_humaneval: 0.3
+      unpruned_sft_math500: 0.52
+      unpruned_sft_humaneval: 0.55
+      gap_math500_pp: 2.0
+      gap_humaneval_pp: 2.0
+      gap_math500_p: 0.35
+      gap_humaneval_p: 0.4
+    result_rationale: 'OOD evaluation下RASP vs Standard gap同样tiny (2pp, p>0.35)。两个pruned
+      models在harder benchmarks上都heavily degraded vs unpruned (MATH: 22-24% vs 52%,
+      HumanEval: 28-30% vs 55%)。这表明SFT recovery在GSM8K-domain外效果很差——recovery是domain-specific
+      pattern memorization而非genuine reasoning restoration。Worst档下这进一步削弱SFT recovery作为practical
+      solution的framing，但不directly影响GRPO failure narrative。'
+    tables:
+    - name: 'Table: OOD evaluation'
+      rows:
+      - benchmark: MATH-500
+        unpruned: 52%
+        rasp_20: 24%
+        standard_20: 22%
+        p_value: '0.35'
+      - benchmark: HumanEval
+        unpruned: 55%
+        rasp_20: 30%
+        standard_20: 28%
+        p_value: '0.40'
+      - benchmark: GSM8K
+        unpruned: 81%
+        rasp_20: 61.5%
+        standard_20: 59.3%
+        p_value: '0.25'
+    figures_description:
+    - 'Accuracy retention ratio (pruned/unpruned) across benchmarks. GSM8K: 75%, MATH:
+      45%, HumanEval: 53%. Recovery is heavily domain-biased.'
+    analysis: OOD collapse suggests SFT recovery是GSM8K-specific memorization。Worst档下这weakens
+      'SFT-only recovery as practical recommendation'——如果SFT只恢复in-domain performance，recommendation的practical
+      scope极其有限。
+  - name: Qwen-Math-7B RASP/Standard 20% SFT Eval
+    plan_id: plan_010_cross_model_20
+    description: Qwen2.5-Math-7B pruned at 20% (RASP + Standard), SFT recovery, N=200
+      eval
+    expected_results:
+      rasp_20_qwen_sft_accuracy: 0.725
+      standard_20_qwen_sft_accuracy: 0.71
+      gap_pp: 1.5
+      gap_p_value: 0.42
+    result_rationale: '已有实验数据: RASP 72.5% vs Standard 71%。Gap仅1.5pp (p=0.42)——比DeepSeek-R1上的2.2pp还小。Cross-model下CKA-aware
+      pruning的advantage进一步diminish，因为Qwen-Math的architecture redundancy pattern可能不同于DeepSeek-R1-Distill。'
+    tables:
+    - name: 'Table: Cross-model 20% SFT'
+      rows:
+      - model: DeepSeek-R1-Distill-Qwen-7B
+        rasp: 61.5%
+        standard: 59.3%
+        gap: +2.2pp
+      - model: Qwen2.5-Math-7B
+        rasp: 72.5%
+        standard: 71.0%
+        gap: +1.5pp
+    figures_description: []
+    analysis: Cross-model SFT gap even smaller。RASP advantage不robust across models。
+  - name: Qwen-Math-7B RASP/Standard 25% Full Pipeline
+    plan_id: plan_010_cross_model_25
+    description: Qwen2.5-Math-7B pruned at 25% (RASP + Standard), SFT + GRPO, N=200
+      eval
+    expected_results:
+      rasp_25_qwen_sft_accuracy: 0.64
+      standard_25_qwen_sft_accuracy: 0.63
+      sft_gap_pp: 1.0
+      sft_gap_p_value: 0.48
+      grpo_rasp_25_qwen_collapse_step: 7
+      grpo_standard_25_qwen_collapse_step: 8
+      grpo_rasp_25_qwen_peak_reward: 0.022
+      grpo_standard_25_qwen_peak_reward: 0.025
+      collapse_ratio: 0.875
+    result_rationale: 'Worst档核心: Qwen-Math上GRPO collapse差异消失。RASP step 7 vs Standard
+      step 8——ratio 0.875 (within noise)。两者都rapidly collapse，无severity gradient。这directly
+      falsifies ''collapse speed diagnoses structural damage type'' claim跨模型。原因：Qwen-Math的internal
+      redundancy structure可能不同(more uniform, less exploitable by CKA)，或25% sparsity对Qwen-Math已经是critical
+      threshold (Qwen-Math baseline更高所以25% damage也更severe in relative terms)。'
+    tables:
+    - name: 'Table: Qwen-Math 25% GRPO collapse comparison'
+      rows:
+      - model: DeepSeek-R1 25%
+        rasp_collapse: step 4
+        standard_collapse: step 6
+        ratio: 1.5x
+      - model: Qwen-Math 25%
+        rasp_collapse: step 7
+        standard_collapse: step 8
+        ratio: 1.14x
+      - model: DeepSeek-R1 20%
+        rasp_collapse: step 10
+        standard_collapse: step 60
+        ratio: 6.0x
+      - model: Qwen-Math 20%
+        rasp_collapse: TBD
+        standard_collapse: TBD
+        ratio: TBD
+    figures_description:
+    - Cross-model collapse dynamics overlay. Qwen-Math RASP and Standard curves are
+      indistinguishable.
+    analysis: Cross-model non-reproducibility是worst档的killshot for mechanism claim。如果collapse
+      gradient只在one model × one sparsity下observe，它不是generalizable mechanism而是coincidence。
+  review_report: "---\ndream_id: dream_20260516T144805\ntier: worst\noverall_score:\
+    \ 3/6 Reject\ntimestamp: 2026-05-16T15:46:36.876347+00:00\n---\n\n# Dream Review\
+    \ Report: \"Structured Pruning Breaks RLVR Alignment\"\n\n**Dream ID:** 20260516T144805\n\
+    **Review Mode:** Full (2 Reviewers + Roundtable)\n**Venue Standard:** Top ML venue,\
+    \ ~25% acceptance rate, 6-point scale\n\n---\n\n## Roundtable Summary\n\nTwo independent\
+    \ reviewers (R1: Methods+Experiments, R2: Novelty+Related Work) converged on **3/6\
+    \ (Reject)** with **4/5 confidence**. The paper documents a real and interesting\
+    \ failure mode — GRPO training collapse on structurally pruned reasoning models\
+    \ — but falls below top-venue bar due to insufficient statistical rigor, predictable\
+    \ core finding, and an empirically null method contribution (RASP).\n\n---\n\n\
+    ## R1 Review: Methods and Experiments\n\n### Summary\nThe experimental campaign\
+    \ is extensive (4 pruning methods, 2 models, 3 sparsity levels, multiple ablations)\
+    \ and the paper honestly reports null results throughout. However, the statistical\
+    \ foundations are narrow: most method comparisons are non-significant, collapse\
+    \ timing lacks variance estimates, and the correlation r≈0.95 between collapse\
+    \ speed and post-SFT quality is computed on only 4 data points.\n\n### Strengths\n\
+    - **Reward-accuracy decoupling is well-demonstrated**: Unpruned model reward 0→0.661\
+    \ with identical 1072/1319 correct at step 0 and step 100 is striking and cleanly\
+    \ shown.\n- **Structured vs. unstructured dichotomy (Table 3)**: Unstructured-20%\
+    \ sustains stable GRPO for 100 steps while all structured methods collapse. This\
+    \ is the cleanest experimental result.\n- **Four pruning methods + unstructured\
+    \ control**: Breadth across RASP, Standard, Bonsai, GRASPrune provides convincing\
+    \ evidence of universality of collapse.\n- **Honest null result reporting**: SFT\
+    \ gap p=0.25, multi-seed p=0.15, CKA R²=0.014 are transparently reported without\
+    \ overclaiming.\n- **Alpha ablation (Table 7)**: Post-prune and post-SFT accuracy\
+    \ anti-correlate (r=-0.45), directly falsifying CKA as a useful pruning proxy.\
+    \ This is a valuable negative result.\n- **Multiple sparsity levels**: 20%/25%/30%\
+    \ show the collapse gradient vanishing at higher sparsity, which is informative\
+    \ even though it weakens the mechanism claim.\n\n### Weaknesses\n- **No variance\
+    \ estimation on collapse timing**: Tables 2/8/9 report single-number collapse\
+    \ steps (e.g., \"step ~10\", \"step ~60\"). Without multiple GRPO training seeds,\
+    \ these are point estimates with unknown stochastic variation. The 6x ratio (step\
+    \ 10 vs step 60) could easily shift to 2-3x or 10x+ under different random seeds.\n\
+    - **Reward-accuracy decoupling may be a greedy-vs-sampling artifact**: GRPO optimizes\
+    \ the sampling policy (temp=0.7) but evaluation uses greedy decoding. The reward\
+    \ improvement may legitimately improve pass@k or majority voting accuracy while\
+    \ leaving the greedy mode unchanged. This alternative explanation is never addressed.\n\
+    - **r=0.95 correlation is statistically vacuous**: Computed on 4 data points (4\
+    \ pruning methods). Any monotonic-ish relationship across 4 points yields r>0.8.\
+    \ This cannot support the causal claim \"collapse speed is determined by model\
+    \ quality.\"\n- **RASP contribution is empirically null at every measurement point**:\
+    \ Post-prune gap 4pp (p=0.38), post-SFT gap 2.2pp (p=0.25), multi-seed Cohen's\
+    \ d=0.42 (p=0.15), CKA R²=0.014 (p=0.31), scoring ablation +2pp (p=0.41). The\
+    \ paper proposes a method that its own experiments cannot distinguish from baselines.\n\
+    - **Single GRPO configuration**: One learning rate, one temperature, beta=0 (no\
+    \ KL penalty). Beta=0 is aggressive and may independently cause training instability.\
+    \ Without GRPO hyperparameter ablation, the \"fundamental failure\" claim is premature.\n\
+    - **Cross-model results undermine claims**: Qwen2.5-Math-7B at 25% shows collapse\
+    \ ratio 1.14x (vs 6.0x on DeepSeek-R1 at 20%). The severity gradient is not reproducible\
+    \ across models or sparsity levels.\n- **Inference speedup undermines practical\
+    \ motivation**: 1.14-1.16x speedup for ~20pp accuracy loss (Table 13). No practitioner\
+    \ would make this trade.\n- **Multi-seed analysis (Table 4) is underpowered**:\
+    \ N=5 paired t-test has extremely low power; p=0.15 with Cohen's d=0.42 cannot\
+    \ distinguish a real 2.7pp effect from noise.\n\n### Questions for Authors\n1.\
+    \ Have you evaluated GRPO accuracy using sampling-based decoding (pass@k, majority\
+    \ voting)? The reward-accuracy \"decoupling\" may be a greedy-decode artifact.\n\
+    2. What is the variance of collapse onset across GRPO training seeds? Can you\
+    \ provide confidence intervals from 3-5 independent runs?\n3. How sensitive is\
+    \ collapse timing to GRPO hyperparameters (learning rate, KL penalty β>0, temperature)?\n\
+    4. For the unpruned model, you report exactly identical predictions (1072/1319)\
+    \ before and after 100 GRPO steps. Did you verify this is not a checkpoint loading\
+    \ artifact?\n5. Why was beta=0 (no KL penalty) chosen? This is unusually aggressive\
+    \ and may independently cause training instability.\n\n### Missing Experiments\n\
+    - **Multiple GRPO seeds** (3-5 per condition) — the single most critical gap\n\
+    - **Sampling-based evaluation** (pass@k, majority@k) — would disambiguate the\
+    \ decoupling finding\n- **GRPO hyperparameter ablation** (especially β>0) — would\
+    \ establish robustness of collapse\n- **Larger model scale** (13B/14B) — generalization\
+    \ beyond 7B\n- **Per-layer collapse analysis** — which layers collapse first?\
+    \ Mechanistic insight\n- **Controlled Self-Healing replication** — direct comparison\
+    \ to the work being challenged\n\n### R1 Score: 3/6 | Confidence: 4/5\n\n---\n\
+    \n## R2 Review: Novelty and Related Work\n\n### Summary\nThe paper documents GRPO\
+    \ training collapse on structurally pruned reasoning models and proposes RASP\
+    \ (CKA-aware pruning) as a diagnostic tool. The core empirical finding is moderately\
+    \ novel but predictable from policy gradient theory — removing entire computational\
+    \ pathways reduces rollout diversity, which is fatal for advantage estimation\
+    \ in GRPO. The RASP method contribution is thin given it provides no significant\
+    \ advantage at any measurement point.\n\n### Strengths\n- **Genuinely surprising\
+    \ reward-accuracy decoupling**: If confirmed (i.e., not a greedy-vs-sampling artifact),\
+    \ this challenges assumptions in the RLVR-for-pruning literature.\n- **Clean structured\
+    \ vs. unstructured isolation**: Localizing the collapse to structured pruning\
+    \ is a useful empirical contribution.\n- **Multi-method comparison**: Testing\
+    \ 4+ methods at same sparsity provides convincing universality evidence.\n- **Honest\
+    \ pivot from positive to negative framing**: The paper evolved from \"RASP enables\
+    \ better recovery\" to \"structural pruning breaks RLVR\" based on evidence. This\
+    \ scientific honesty is commendable.\n\n### Weaknesses\n- **Core finding is predictable\
+    \ from RL theory**: Structured pruning removes entire functional units, reducing\
+    \ the model's ability to generate diverse completions. GRPO requires variance\
+    \ across group samples to estimate advantages — zero variance means zero gradients.\
+    \ This is a direct consequence of how policy gradient methods work, not a surprising\
+    \ empirical discovery.\n- **Reward-accuracy decoupling novelty is questionable**:\
+    \ The unpruned model is already at 81% on GSM8K. With binary reward and 100 training\
+    \ steps, a flat accuracy trajectory is unsurprising — the model may already be\
+    \ near its greedy-decode ceiling on this benchmark. The paper does not disambiguate\
+    \ between (a) fundamental GRPO limitation, (b) GSM8K saturation, and (c) greedy-vs-sampling\
+    \ evaluation mismatch.\n- **RASP's contribution is unclear given its empirical\
+    \ failure**: The paper proposes a scoring function (S(h) = I(h)×(1-F(h))^α) whose\
+    \ CKA component adds 2pp (p=0.41) over gradient-only scoring. The alpha ablation\
+    \ shows CKA optimizes the wrong proxy (r=-0.45 between post-prune and post-SFT\
+    \ accuracy). As a \"diagnostic tool,\" the collapse severity gradient only appears\
+    \ at one sparsity on one model.\n- **Self-Healing comparison is incomplete**:\
+    \ Self-Healing tests structured (layer-level) pruning in their Table 2, not only\
+    \ unstructured. The paper should directly address these results rather than claiming\
+    \ Self-Healing is \"only unstructured.\"\n- **Missing important related work context**:\n\
+    \  - GRPO/RLHF reward hacking literature (Gao et al. 2022 reward over-optimization\
+    \ curves)\n  - Test-time compute scaling literature — does GRPO improve pass@k\
+    \ even if not greedy accuracy?\n  - Semi-structured (2:4/N:M) pruning as a middle\
+    \ ground\n  - Iterative prune-tune approaches that may avoid collapse\n- **Circular\
+    \ reasoning in collapse correlation**: Collapse speed correlates with post-SFT\
+    \ model quality — but this may simply mean \"weaker models are less stable under\
+    \ RL training,\" which is trivially expected and does not uniquely implicate redundancy\
+    \ as a mechanism.\n\n### Assessment of Novelty\nThe paper's two claimed contributions\
+    \ have limited novelty. (1) Reward-accuracy decoupling on unpruned models may\
+    \ be a known phenomenon under a new name (reward over-optimization / reward hacking\
+    \ when the model is already near ceiling). (2) GRPO collapse on structurally pruned\
+    \ models is predictable: structured pruning removes entire attention heads and\
+    \ MLP neurons, reducing the model's capacity to generate diverse rollouts, which\
+    \ kills advantage estimation. The RASP method is empirically null and the \"Redundancy-Stability\
+    \ Tradeoff\" framing overstates what is fundamentally an observation that more\
+    \ damaged models are less trainable. For a top venue, the paper would need either\
+    \ (a) deeper mechanistic analysis connecting collapse to specific representational\
+    \ properties, or (b) a proposed mitigation that actually works.\n\n### Assessment\
+    \ of Related Work\nThe related work section covers structured pruning, RLVR, and\
+    \ pruning-recovery interaction adequately but has notable gaps:\n1. Self-Healing's\
+    \ structured pruning results are mischaracterized — they do test structured pruning\n\
+    2. GRPO reward hacking / over-optimization literature is entirely absent\n3. No\
+    \ discussion of semi-structured pruning as an intermediate between structured\
+    \ and unstructured\n4. Pass@k evaluation is standard in RLVR papers and its absence\
+    \ weakens the comparison to prior work\n\n### R2 Score: 3/6 | Confidence: 4/5\n\
+    \n---\n\n## Roundtable Step 3: Convergence\n\n### Points of Full Agreement\n1.\
+    \ **Score: 3/6 (Reject)**. Both reviewers independently arrived at this score.\n\
+    2. **RASP is empirically null.** At every measurement point (post-prune, post-SFT,\
+    \ multi-seed, CKA correlation, scoring ablation), RASP vs Standard is statistically\
+    \ indistinguishable.\n3. **Missing GRPO seed variance is the most critical gap.**\
+    \ Collapse timing is reported as point estimates from single runs. The 6x ratio\
+    \ claim is unsupported without confidence intervals.\n4. **Greedy-vs-sampling\
+    \ evaluation may explain reward-accuracy decoupling.** Pass@k or majority voting\
+    \ evaluation is essential to disambiguate this finding.\n5. **r=0.95 on 4 points\
+    \ is not statistical evidence.** The \"collapse correlates with model quality\"\
+    \ claim needs more data points.\n6. **Cross-model results undermine the severity\
+    \ gradient claim.** Qwen2.5-Math-7B shows near-identical collapse for all methods\
+    \ at 25%.\n7. **Honest null result reporting is the paper's strongest quality.**\
+    \ The scientific transparency is commendable.\n8. **Beta=0 GRPO is aggressive.**\
+    \ KL-constrained GRPO (β>0) may prevent collapse entirely, which would invalidate\
+    \ the \"fundamental\" framing.\n\n### Points of Disagreement (resolved)\n- R2\
+    \ argues the finding is \"predictable from RL theory\"; R1 gives more credit to\
+    \ empirical documentation value. **Resolution**: Even predictable findings have\
+    \ value when first documented empirically, but the bar for a top venue requires\
+    \ either deeper mechanism or proposed fix — the paper provides neither.\n- R1\
+    \ emphasizes confounded experimental timeline more; R2 focuses on positioning\
+    \ gaps. **Resolution**: Both are valid but secondary to the core statistical and\
+    \ novelty concerns.\n\n---\n\n## Roundtable Step 4: Final Consolidated Assessment\n\
+    \n### Overall Score: 3/6 (Reject)\n### Confidence: 4/5\n\n### Decision Rationale\n\
+    The paper identifies a real phenomenon — GRPO training collapse on structurally\
+    \ pruned reasoning models — and documents it with commendable experimental breadth\
+    \ and scientific honesty. However, three fundamental issues prevent acceptance:\n\
+    \n1. **Insufficient statistical rigor for core claims.** Collapse timing is reported\
+    \ without variance estimates (single GRPO runs). The correlation r=0.95 is computed\
+    \ on 4 data points. RASP vs Standard comparisons are non-significant at every\
+    \ measurement point. The 6x collapse ratio (20% sparsity, DeepSeek-R1) does not\
+    \ replicate at 25% sparsity (1.5x) or on Qwen2.5-Math-7B (1.14x).\n\n2. **The\
+    \ most interesting finding (reward-accuracy decoupling) has an unaddressed confound.**\
+    \ GRPO optimizes the sampling policy but is evaluated with greedy decoding. Without\
+    \ pass@k or majority voting evaluation, the \"decoupling\" may simply reflect\
+    \ that GRPO improves sampling diversity without changing the mode — which is expected\
+    \ behavior, not a pathology.\n\n3. **Limited novelty and no actionable contribution.**\
+    \ The RASP method is empirically null. The collapse phenomenon is predictable\
+    \ from policy gradient theory (diversity collapse kills advantage estimation).\
+    \ The paper offers no mitigation — only \"don't use GRPO on pruned models\" —\
+    \ which limits impact. The \"Redundancy-Stability Tradeoff\" framing overstates\
+    \ what is observed: weaker models are less stable under RL training.\n\n### What\
+    \ Would Raise the Score\n- **To 4/6 (Borderline):** Add (a) 3-5 GRPO seeds per\
+    \ condition with confidence intervals on collapse timing, (b) pass@k evaluation\
+    \ to disambiguate the decoupling finding, (c) GRPO hyperparameter ablation (especially\
+    \ β>0).\n- **To 5/6 (Accept):** Additionally provide (d) a proposed mitigation\
+    \ that demonstrably prevents or delays collapse, (e) mechanistic analysis connecting\
+    \ collapse to specific representational properties (not just \"weaker = faster\
+    \ collapse\"), (f) results on a truly independent model architecture (not Qwen-family).\n\
+    \n### Experiment Coverage Assessment\nThe paper covers 13 of the 18 planned experiments\
+    \ from the design document. Key gaps:\n- Inference speedup and OOD evaluation\
+    \ are included but support negative conclusions about practical value\n- CKA reliability\
+    \ analysis is included and further undermines RASP (32% decision instability)\n\
+    - The alpha ablation is the most damaging result for RASP: CKA optimizes the wrong\
+    \ proxy (r=-0.45)\n- Cross-model results are included but undermine rather than\
+    \ support the severity gradient claim\n\n### Summary Verdict\nA well-executed\
+    \ empirical study with honest negative results, but the findings are either (a)\
+    \ predictable (collapse), (b) potentially artifactual (reward-accuracy decoupling\
+    \ under greedy eval), or (c) empirically null (RASP). The paper's strongest contribution\
+    \ — documenting that structured pruning universally breaks GRPO training — is\
+    \ worth publishing but needs stronger statistical foundations and ideally a proposed\
+    \ solution to clear the top-venue bar.\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-16T15:46:47+00:00'

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_sft_standard_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:42:43.023Z",
+    "updated_at": "2026-05-16T10:30:27.679Z",
+    "hypothesis": "Qwen2.5-Math-7B Standard 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). Control for eval_sft_rasp_qwen_math. Parent: sft_standard_20_qwen_math."
+  },
+  "timestamp": "2026-05-16T10:30:27.828378+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17aa47156598a7e282c9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops sft rasp 25 westd",
+  "task_key": "worker_ops_sft-rasp-25-westd_20260516T052045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft-rasp-25-westd_20260516T052045_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "7e3f59bbee7fac219b04d5044cba34baf3656ced1dd1b5de13c23ffb10b103e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**磁盘空间不足，需要清理才能启动。**\n\n当前状态：\n- westd `/root/autodl-tmp/` 仅剩 **18GB**，需要 ~23GB（11GB model + 12GB SFT output）\n- `grpo_unpruned_v2` 占 **110GB**，其中 3 个 checkpoint 各 32GB\n\n建议：删除 `grpo_unpruned_v2/checkpoint-90` 和 `checkpoint-95`（共 64GB），保留 checkpoint-100 和最终模型。\n\n是否可以删除这两个旧 checkpoint？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-rasp-25-westd.md"
+}

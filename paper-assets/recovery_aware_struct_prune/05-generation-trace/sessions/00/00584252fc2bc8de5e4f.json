@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00584252fc2bc8de5e4f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify gpus westb",
+  "task_key": "worker_ssh_verify_gpus_westb_20260523T222412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_gpus_westb_20260523T222412_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "e15426c5060bceff36758e84cb3608110ba34f6588e82769757c3eda69229488"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n### 当前 GPU 占用\n\n| GPU | 进程 | PID | 显存占用 | GPU 利用率 | 温度 | 运行时间 |\n|-----|------|-----|---------|-----------|------|---------|\n| 0 | eval_math500 **grpo_cka_only_20_fixed** | 321428 | 17,044 MiB / 97,887 MiB | **95%** | 71°C | 2h48m |\n| 1 | eval_math500 **grpo_random_20_fixed** | 330254 | 15,354 MiB / 97,887 MiB | **99%** | 81°C | 37m |\n\n- 每张 GPU **只有一个进程**，无竞争\n- 注意：GPU 0 实际 PID 是 **321428**（不是预期的 321423），可能是子进程 fork 导致的偏移\n\n### 正在运行的 eval 详情\n\n- **GPU 0**: `eval_math500_grpo_cka_only_20_fixed.json` ← 模型路径 `grpo_cka_only_20/checkpoint-100`\n- **GPU 1**: `eval_math500_grpo_random_20_fixed.json` ← 模型路径 `grpo_random_20_retrain`\n\n### 已完成的 eval 结果\n\n| 文件 | 完成时间 | Accuracy | n_correct / n_total |\n|------|---------|----------|---------------------|\n| eval_math500_**sft_cka_only_20_fixed** | May 24 03:33 | **27.4%** | 137/500 |\n| eval_math500_**grpo_rasp_alpha0p5_20** | May 23 18:05 | **24.8%** | 124/500 |\n| eval_math500_**sft_qwen_math_cka_only_20** | May 23 18:37 | **21.6%** | 108/500 |\n| eval_math500_**sft_standard_25** | May 21 19:16 | **13.0%** | 65/500 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-gpus-westb.md"
+}

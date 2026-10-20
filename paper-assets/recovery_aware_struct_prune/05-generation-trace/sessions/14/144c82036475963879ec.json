@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "144c82036475963879ec",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grasp eval n100",
+  "task_key": "worker_code_grasp-eval-n100_20260515T134928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grasp-eval-n100_20260515T134928_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "5adc2f6e3fc9e9f3c672db466a4ce694fd248ec9adbaa82f176d0fe66450d754"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **全量 eval (PID 34206, 34195)** — 已 kill\n- **N=100 eval (PID 38120)** — GPU 0 上运行中，模型已加载（12.7GB），正在载入 GSM8K 数据\n- **SFT recovery (PID 38514)** — 另一个 agent 在 GPU 0 上启动了 GraSP SFT 训练（tmux: `sft_grasp_20_westd`），96GB 显存应该够两个共存\n- **GPU 1** — 空闲（alpha 4.0 eval 已结束）\n\n10 分钟后回来查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grasp-eval-n100.md"
+}

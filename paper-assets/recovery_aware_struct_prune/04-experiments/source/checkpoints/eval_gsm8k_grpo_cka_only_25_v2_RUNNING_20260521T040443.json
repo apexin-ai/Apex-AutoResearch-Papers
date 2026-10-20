@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_gsm8k_grpo_cka_only_25_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:03:53.404Z",
+    "updated_at": "2026-05-21T04:04:43.202Z",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25/checkpoint-100 --max_samples 1319 --seed 42",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "318738",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_cka_only_25_v2.log",
+      "submitted_at": "2026-05-21T04:03:52.643Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B-pruned-cka_only-25pct-GRPO",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25/checkpoint-100",
+      "eval_data": "GSM8K"
+    },
+    "hypothesis": "CKA-only 25% GRPO后GSM8K评估（v2修正路径）。Cross-sparsity对比: Standard 25% GRPO=51.1%, RASP 25% GRPO=53.15%。验证CKA-guided pruning在25%稀疏度下的数学推理能力。",
+    "parent": "grpo_cka_only_25"
+  },
+  "timestamp": "2026-05-21T04:04:43.726642+00:00",
+  "trigger": "update_registry"
+}

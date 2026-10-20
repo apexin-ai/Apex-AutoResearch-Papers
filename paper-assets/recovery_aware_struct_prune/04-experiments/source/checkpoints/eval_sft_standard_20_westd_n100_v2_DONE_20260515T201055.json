@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_sft_standard_20_westd_n100_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:24:09.850Z",
+    "updated_at": "2026-05-15T20:10:55.158Z",
+    "spec": {
+      "command": "bash -c \"cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 100 --max_new_tokens 4096 --output_path results/eval_sft_standard_20_westd_n100.json --seed 42\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_sft_standard_20_westd_n100_v2.log",
+      "submitted_at": "2026-05-15T19:24:09.745Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "gsm8k test",
+      "data_count": 100,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (Standard pruned 20% + SFT westd)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd",
+      "eval_data": "gsm8k test N=100",
+      "wall_clock_seconds": 2805.4,
+      "gpu_hours": 0.78
+    },
+    "hypothesis": "N=100 quick validation of Standard SFT retrain on westd (v2 retry — fixed working directory + output_path typo). Expected ~64% (matching westb). Cross-server reproducibility check. Parent: sft_standard_20_westd_retrain.",
+    "conclusion": "success",
+    "checkpoint_path": "/root/recovery_aware_struct_prune/results/eval_sft_standard_20_westd_n100.json",
+    "completed_at": "2026-05-15T20:10:55.158Z"
+  },
+  "timestamp": "2026-05-15T20:10:55.254765+00:00",
+  "trigger": "update_registry"
+}

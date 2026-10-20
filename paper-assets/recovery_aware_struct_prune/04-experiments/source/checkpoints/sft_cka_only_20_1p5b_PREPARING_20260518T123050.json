@@ -1,0 +1,23 @@
+{
+  "exp_id": "sft_cka_only_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T11:29:09.842Z",
+    "updated_at": "2026-05-18T12:30:49.964Z",
+    "hypothesis": "CKA-only 20% SFT recovery on 1.5B model. Cross-model generalization test: if CKA-only SFT recovery pattern (high accuracy) holds on 1.5B as on 7B, validates that CKA-guided pruning preserves recovery capacity across model scales.",
+    "notes": "Training completed 1870/1870 steps. Checkpoint save crashed (RuntimeError at inline_container.cc:668) due to disk 100% full. Model weights rescued from checkpoint-1870 (optimizer.pt truncated but model.safetensors intact). Checkpoints cleaned, model files promoted to output dir. Pending load validation.",
+    "completed_at": "2026-05-18T12:09:49.634Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "notes": "Training completed 1870/1870 steps. Checkpoint save crashed (RuntimeError at inline_container.cc:668) due to disk 100% full. Model weights rescued from checkpoint-1870 (optimizer.pt truncated but model.safetensors intact). Checkpoints cleaned, model files promoted to output dir. Pending load validation."
+      }
+    }
+  },
+  "timestamp": "2026-05-18T12:30:50.298729+00:00",
+  "trigger": "update_registry"
+}

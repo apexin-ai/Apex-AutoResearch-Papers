@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval_math500_sft_rasp_alpha1p0_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:50:24.239Z",
+    "updated_at": "2026-05-22T23:01:03.419Z",
+    "hypothesis": "α=1.0 SFT MATH-500 eval @2048 v2 (on westb). Default RASP α=1.0. Cross-benchmark dose-response: GSM8K α=1.0 SFT=63.31%. v1 killed at 304/500, result file never written. Completes 5-point dose-response curve on MATH-500.",
+    "parent": "eval_math500_sft_rasp_alpha1p0_20",
+    "notes": "westb submission failed: model sft_rasp_20_westd not found on westb. Only exists on westd-32935. Waiting for westd:3 (α=4.0, 85%) to free up.",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha1p0_20_v2.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T22:58:10.208Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T22:58:19.219921+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.212,
+      "correct": 106,
+      "total": 500,
+      "truncated": 186,
+      "stderr": 0.0183
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T23:01:03.420Z"
+  },
+  "timestamp": "2026-05-22T23:01:04.506343+00:00",
+  "trigger": "update_registry"
+}

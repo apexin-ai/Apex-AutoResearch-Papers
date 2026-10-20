@@ -1,0 +1,61 @@
+{
+  "exp_id": "eval_postprune_standard_30",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "created_at": "2026-05-17T19:08:46.051Z",
+    "hypothesis": "Standard 30% post-prune GSM8K accuracy (N=200). At 20% Standard post-prune was 17.5%, at 25% was ~15%. 30% should show further degradation. Compared with RASP 30% post-prune (running) to verify RASP advantage persists at higher sparsity. Extends multi-sparsity degradation curve.",
+    "parent": "prune_standard_30",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "pruned_standard_30",
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json\"",
+      "data_count": 200,
+      "data_path": "openai/gsm8k",
+      "eval_data": "GSM8K (N=200, post-prune accuracy eval)",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_postprune_standard_30.log",
+      "model_name": "pruned_standard_30",
+      "pid": "47667",
+      "seed": 42,
+      "server": "westd-11672",
+      "submitted_at": "2026-05-17T19:09:42.413Z",
+      "submitted_via": "submit_training_job",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json",
+      "wall_clock_seconds": 19076.9,
+      "gpu_hours": 5.3
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-18T00:27:39.362Z",
+    "reproduce": {
+      "finished_at": "2026-05-18T00:25:35.734Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T00:25:39.283839+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gsm8k_accuracy": 0.04,
+      "correct": 8,
+      "total": 200,
+      "eos_rate": 0.055,
+      "avg_response_length": 3907.875,
+      "natural_eos": 11,
+      "truncated": 189
+    },
+    "completed_at": "2026-05-18T00:27:39.362Z"
+  },
+  "timestamp": "2026-05-18T00:27:39.646449+00:00",
+  "trigger": "update_registry"
+}

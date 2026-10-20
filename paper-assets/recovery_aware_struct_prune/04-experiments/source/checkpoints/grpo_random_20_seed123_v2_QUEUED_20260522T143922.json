@@ -1,0 +1,16 @@
+{
+  "exp_id": "grpo_random_20_seed123_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:22:29.868Z",
+    "updated_at": "2026-05-22T14:39:21.717Z",
+    "hypothesis": "MF2 multi-seed validation v2: Random 20% GRPO with seed123, correct batch_size=2 (matching seed42/seed456). v1 used batch_size=1 (half data per 100 steps), results invalidated. Tests C1 decoupling robustness across random seeds.",
+    "parent": "grpo_random_20_seed123"
+  },
+  "timestamp": "2026-05-22T14:39:22.372746+00:00",
+  "trigger": "update_registry"
+}

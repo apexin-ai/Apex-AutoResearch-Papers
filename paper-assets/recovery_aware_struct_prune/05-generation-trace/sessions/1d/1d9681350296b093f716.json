@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d9681350296b093f716",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis bootstrap ci accuracy correct",
+  "task_key": "worker_analysis_bootstrap_ci_accuracy_correct_20260519T035328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_accuracy_correct_20260519T035328_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "4cf1e3699c4555186e6cbe9765331cb5350bb7b3ec61b2bc056215a7bc153686"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**16 个方法加载成功**（全部 N=1319，i.i.d. binary outcomes）\n\n### 7B 20% sparsity (核心结果)\n\n| 比较 | Gap | 95% CI | 显著性 |\n|------|-----|--------|--------|\n| SFT CKA-only vs SFT Standard | +4.6% | [+1.7%, +7.5%] | **p=0.002** |\n| SFT CKA-only vs SFT RASP | +2.4% | [-0.5%, +5.2%] | n.s. |\n| SFT Standard vs SFT RASP | -2.3% | [-5.0%, +0.6%] | n.s. |\n| GRPO CKA-only vs SFT CKA-only | +0.5% | [-0.8%, +1.7%] | n.s. |\n| GRPO CKA-only vs SFT Standard | +5.1% | [+2.1%, +8.0%] | **p<0.001** |\n| GRPO CKA-only vs SFT RASP | +2.8% | [-0.1%, +5.6%] | n.s. (borderline) |\n\n### 7B 25% sparsity\n所有 pairwise 比较均不显著（Standard/RASP, GRPO/SFT 之间差异不大）。\n\n### 1.5B 20% sparsity\nCKA-only 显著优于所有其他方法（gap 8-13%，p<0.001）。GRPO/SFT 同方法间差异不显著。\n\n### 缺失数据\n- `grpo_standard_20` 和 `grpo_rasp_20` 无 N=1319 的 eval（只有 25% sparsity 版本）。\n\n结果 JSON 已保存到 `artifacts/bootstrap_ci_accuracy/bootstrap_ci_accuracy_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci-accuracy-correct.md"
+}

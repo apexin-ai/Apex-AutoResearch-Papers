@@ -1,0 +1,8 @@
+2026-05-16 15:12:36,441 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 0): while parsing a flow sequence
+  in "<unicode string>", line 302, column 13:
+              - [Clean gradient?, "Yes (6x)", "N ... 
+                ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 302, column 28:
+              - [Clean gradient?, "Yes (6x)", "No (1.4x)"]
+                               ^

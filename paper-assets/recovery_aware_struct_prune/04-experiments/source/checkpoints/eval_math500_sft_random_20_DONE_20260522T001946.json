@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_math500_sft_random_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:43:53.119Z",
+    "updated_at": "2026-05-22T00:19:44.965Z",
+    "hypothesis": "Random 20% SFT model MATH-500 @2048 accuracy establishes pre-GRPO baseline for random pruning, enabling SFT→GRPO recovery delta comparison with importance-based methods (CKA-only, Standard) at 20% sparsity on MATH-500",
+    "parent": "eval_gsm8k_sft_random_20",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/results.json --max_new_tokens 2048 --seed 42",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "385685",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "sft_random_20",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20",
+      "seed": 42,
+      "checkpoint_source": "sft_random_20",
+      "eval_data": "MATH-500",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_math500_sft_random_20/eval.log"
+    },
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 29022 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T00:19:40.303Z"
+  },
+  "timestamp": "2026-05-22T00:19:46.162136+00:00",
+  "trigger": "update_registry"
+}

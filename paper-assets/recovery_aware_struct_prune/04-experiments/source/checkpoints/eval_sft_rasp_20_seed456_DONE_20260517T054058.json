@@ -1,0 +1,41 @@
+{
+  "exp_id": "eval_sft_rasp_20_seed456",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:18:18.631Z",
+    "updated_at": "2026-05-17T05:40:57.783Z",
+    "hypothesis": "Multi-seed variance estimation: RASP 20% post-SFT GSM8K accuracy should show low variance (std<3pp) across seeds, confirming seed=42 result (57%) is representative. Part of 5-seed suite for statistical significance.",
+    "parent": "sft_rasp_20",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_samples 200 --seed 456'",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 75308,
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_sft_rasp_20_seed456.log",
+      "submitted_at": "2026-05-17T04:56:12.689Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "sft_rasp_20",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd",
+      "data_path": "gsm8k_test",
+      "data_count": 200,
+      "eval_data": "GSM8K test (n=200)",
+      "seed": 456,
+      "checkpoint_source": "sft_rasp_20",
+      "wall_clock_seconds": 2685.1,
+      "gpu_hours": 0.75
+    },
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 11672 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T05:40:57.784Z"
+  },
+  "timestamp": "2026-05-17T05:40:58.294691+00:00",
+  "trigger": "update_registry"
+}

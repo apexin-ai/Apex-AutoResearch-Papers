@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "192ebe59e0bd3fa5d7a3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops full gpu state check",
+  "task_key": "worker_ops_full_gpu_state_check_20260519T105936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_gpu_state_check_20260519T105936_result.json",
+    "occurrence": 1,
+    "bytes": 1928,
+    "sha256": "1edceaefcb99aee64af0c9a9dd1569b7b0128318e799e022bf14382bc9becd94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU State Audit Summary\n\n### westd-29022 (4× RTX PRO 6000)\n\n| GPU | Experiment | PID | Status | Progress | Key Metric | VRAM | Util |\n|-----|-----------|-----|--------|----------|------------|------|------|\n| cuda:0 | eval_gsm8k_grpo_standard_20_fair_v2 | 83299 | Running | **766/1319 (58%)** | acc=59.47% @750 | 30GB | 94% |\n| cuda:1 | eval_humaneval_sft_cka_only_20_2048_v2 | 78740 | Running | **161/164 (98%)** | pass@1=20.62% @160 | 18GB | 98% |\n| cuda:2 | eval_humaneval_grpo_standard_20_fair_2048_v3 | 76392 | Running | **155/164 (95%)** | pass@1=11.43% @140 | 18GB | 91% |\n| cuda:3 | eval_humaneval_sft_standard_20_2048_v3 | 86171 | Running | **64/164 (39%)** | pass@1=16.67% @60 | 17GB | 99% |\n\n**ETAs (westd):**\n- **sft_cka_only_20_2048_v2**: ~5 min (3 problems left, ~87s/it)\n- **grpo_standard_20_fair_2048_v3**: ~16 min (9 problems left, ~107s/it)\n- **gsm8k_grpo_standard_20_fair_v2**: ~1-2 hours (553 left, variable 2-5s/it with occasional long-gen outliers)\n- **sft_standard_20_2048_v3**: ~2.5 hours (100 left, ~91s/it)\n\n---\n\n### westb-23072 (2× RTX PRO 6000)\n\n| GPU | Experiment | PID | Status | Progress | VRAM | Util |\n|-----|-----------|-----|--------|----------|------|------|\n| cuda:0 | — | — | **IDLE** | — | 0MB | 0% |\n| cuda:1 | grpo_cka_only_20_seed123 | 857962 | Running | **~step 63/100** | 68GB | 99% |\n\n**Training pace**: ~6.9 min/step (consistent across all 10-step dumps). ETA for step 100: **~23:15 today**.\n\n**Disk**: `/root/autodl-tmp` — 213G/250G (85%), **38G free**.\n\n---\n\n### Anomalies\n- **None.** All 5 expected experiments are alive and progressing normally.\n- GSM8K eval has occasional long-generation outliers (5-6 min pauses at items 722, 732) but resumes normally — likely hard problems triggering max token generation.\n- Two HumanEval evals (cuda:1, cuda:2) will finish imminently. Their GPUs will be free within ~20 min."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-gpu-state-check.md"
+}

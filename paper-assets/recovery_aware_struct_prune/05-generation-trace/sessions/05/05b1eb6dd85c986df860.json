@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05b1eb6dd85c986df860",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh read alpha3p0 math500 result",
+  "task_key": "worker_ssh_read_alpha3p0_math500_result_20260522T221116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_read_alpha3p0_math500_result_20260522T221116_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "2441a4dcb7740f353dbd5db7e2f9dfb3eb46ae9cd7bc4099be42173023e7b580"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== α=3.0 MATH-500 RESULT ===\naccuracy=0.232, correct=116, total=500, truncated=144, stderr=0.0189\n\n=== westd GPU STATUS ===\nGPU 0: IDLE (0%, 0 MiB)\nGPU 1: PID=75284 (93%, 17010 MiB)\nGPU 2: PID=58276 (99%, 19218 MiB)\nGPU 3: PID=79030 (87%, 12858 MiB)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-read-alpha3p0-math500-result.md"
+}

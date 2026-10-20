@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03111feb45aa42d1c32d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "audit westb ground truth",
+  "task_key": "worker_audit_westb-ground-truth_20260517T104022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_westb-ground-truth_20260517T104022_result.json",
+    "occurrence": 1,
+    "bytes": 2994,
+    "sha256": "d657d80fbc6a2f49a96fc593cb9c024211bed2fcd4aa356d13277c4140ece962"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态审计报告\n\n---\n\n### 1. 磁盘清理\n\n| 项目 | 状态 |\n|------|------|\n| checkpoint-935 | **DELETED** |\n| checkpoint-1870 | **DELETED** |\n| model.safetensors | 存在，12G |\n| /root/autodl-tmp | **162G/250G (65%)，89G 可用** |\n\n---\n\n### 2. Random eval (PID 696141)\n\n**状态: ALIVE，运行 1h45m，约 85% 完成 (171/200)**\n\n- 命令: `eval_gsm8k.py --model_path pruned_random_20 --max_samples 200`\n- GPU 1，占用 12880MiB，76% 利用率\n- 最近进度点 (150/200): **acc=0.3400, eos_rate=45.33%, avg_len=2636**\n- 速度极慢（~35-50s/it），因为 eos_rate 低、生成长度大（平均 2636 tokens，频繁 truncate 到 max_length）\n- 结果 JSON **尚未生成**，预计 ~15-20 分钟完成\n- `random_cka_ablation_log.txt` 存在于 autodl-tmp/results/，记录了 random pruning 过程（20.04% sparsity, 210 MLP groups pruned, 0 attn groups）\n\n---\n\n### 3. Gradient post-SFT eval\n\n**状态: 已完成**\n\n| 项目 | 值 |\n|------|-----|\n| tmux sessions | V1 GONE, V2 GONE |\n| V1 结果 | **GSM8K acc = 0.6150 ± 0.0344 (123/200)** |\n| eos_rate | 99.50% |\n| avg_len | 167 |\n| 结果文件 | `eval_gradient_postsft.json` (May 17 18:23, 153KB) |\n| 退出码 | 129 (SIGHUP, session 关闭导致) |\n| V2 session | 失败，`python: command not found` |\n\n---\n\n### 4. GPU + 进程状态\n\n**GPU:**\n| GPU | 状态 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 | **空闲** | 0MiB / 97887MiB | 0% |\n| 1 | random eval | 12889MiB / 97887MiB | 76% |\n\n**tmux sessions:**\n- `scoring_ablation_random` (created 16:54) — 正在运行 random eval\n- `scoring_ablation_v2` (created 15:37) — 可能已完成\n\n**Python 进程:**\n- PID 696141 — random eval (活跃，110% CPU)\n- PID 680597 — eval_unstructured_20 tmux (0% CPU，已完成)\n- jupyter-lab, tensorboard, http.server (常驻)\n\n---\n\n### 5. 最新结果文件 (autodl-tmp/results/, top 10)\n\n| 文件 | 时间 | 说明 |\n|------|------|------|\n| random_cka_ablation_log.txt | 18:40 | random pruning 日志 |\n| eval_gradient_postsft.json | 18:23 | **gradient SFT 后 eval, acc=0.615** |\n| eval_gradient_sft.log | 18:14 | python not found 错误 |\n| ablation_log.txt | 17:07 | ablation 日志 |\n| eval_unstructured_20_n1319.json | 16:48 | unstructured eval 完成 |\n| eval_postprune_gradient_20.json | 16:48 | gradient 剪枝后 eval |\n| eval_sft_standard_20_seed456.json | 15:47 | |\n| eval_sft_rasp_20_seed456.json | 15:28 | |\n| eval_sft_standard_20_seed123.json | 14:40 | |\n| eval_sft_rasp_20_seed123.json | 14:02 | |\n\n---\n\n### 关键要点\n\n1. **GPU 0 空闲**，可立即调度新任务\n2. **Random eval 即将完成**（~85%），但中间指标很差：acc=34%, eos_rate=45%（对比 gradient postsft acc=61.5%, eos_rate=99.5%）\n3. **Gradient postsft eval 已落盘**，acc=0.615，可直接使用\n4. V2 eval session 因 `python: command not found` 失败（可能缺少 conda activate）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-westb-ground-truth.md"
+}

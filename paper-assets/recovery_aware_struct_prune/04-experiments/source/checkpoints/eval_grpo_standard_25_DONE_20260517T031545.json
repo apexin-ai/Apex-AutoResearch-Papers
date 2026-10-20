@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval_grpo_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-16T19:39:31.510Z",
+    "updated_at": "2026-05-17T03:15:44.931Z",
+    "hypothesis": "DeepSeek-R1-Distill-Qwen-7B Standard 25% post-GRPO GSM8K eval (N=1319, greedy, seed=42). GRPO reward=0.0075(near-collapse)，验证 accuracy 损失程度。对比 pre-GRPO sft_standard_25: 51.25%. Parent: grpo_standard_25.",
+    "parent": "grpo_standard_25",
+    "reproduce": {
+      "finished_at": "2026-05-16T21:29:03.454Z"
+    },
+    "failure_reason": "",
+    "completed_at": "2026-05-16T21:13:27.442Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T21:13:33.404018+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T21:29:08.933205+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json",
+      "server": "westd-11672",
+      "gpu": "cuda:1",
+      "pid": 48540,
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25",
+      "eval_data": "GSM8K test (n=1319)",
+      "seed": 42,
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_grpo_standard_25.log",
+      "output_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json",
+      "started_at": "2026-05-17T05:19:52"
+    },
+    "conclusion": "success",
+    "notes": "Registry 被 cron 误标 DONE(failed)。实际 PID 48540 仍在运行（SSH 确认 2026-05-17T02:00: 1205/1319=91.4%, acc=51.17%, eos=96.5%）。预计 5-10 min 后完成。结果写入 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json。完成后需手动收割。"
+  },
+  "timestamp": "2026-05-17T03:15:45.190773+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0790df334945935919f1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag eval mbpp sft cka only 20 exit",
+  "task_key": "worker_diag_eval_mbpp_sft_cka_only_20_exit_20260519T195746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_mbpp_sft_cka_only_20_exit_20260519T195746_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "a6d2dabea54fc29c85d370ba75f3f02506adf41e3d3459c6e65ff90e93802bfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果**: eval_mbpp_sft_cka_only_20 成功完成。\n\n| 指标 | 值 |\n|------|-----|\n| pass@1 | 12.83% ± 1.73% (48/374) |\n| Dense baseline | 53.48% (200/374) |\n| 性能下降 | **76.0%** |\n\nSFT CKA-only 20% 模型在 MBPP 上严重退化。大量生成结果包含自然语言解释而非代码（SyntaxError: unterminated string literal），说明模型在剪枝+SFT 后丧失了代码生成的格式遵循能力。\n\nRegistry 已更新为 DONE/success，cron 已删除，cuda:3 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-mbpp-sft-cka-only-20-exit.md"
+}

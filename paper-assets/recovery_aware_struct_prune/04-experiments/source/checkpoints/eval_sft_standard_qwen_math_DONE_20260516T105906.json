@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_sft_standard_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:42:43.023Z",
+    "updated_at": "2026-05-16T10:59:06.735Z",
+    "hypothesis": "Qwen2.5-Math-7B Standard 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). Control for eval_sft_rasp_qwen_math. Parent: sft_standard_20_qwen_math.",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20 --max_samples 1319 --seed 42 --gpu 1 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_qwen_math_n1319.json",
+      "server": "westd-11672",
+      "model_name": "Qwen2.5-Math-7B-Standard-20%-SFT",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20",
+      "eval_data": "gsm8k_test",
+      "checkpoint_path": "N/A - killed before completion",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/eval_sft_standard_qwen_math.log"
+    },
+    "conclusion": "killed",
+    "notes": "Intentionally killed: N=1319 eval too slow (~5min/sample, ETA 4-5 days). Director approved Option A: restart with N=200.",
+    "completed_at": "2026-05-16T10:59:06.735Z"
+  },
+  "timestamp": "2026-05-16T10:59:06.871131+00:00",
+  "trigger": "update_registry"
+}

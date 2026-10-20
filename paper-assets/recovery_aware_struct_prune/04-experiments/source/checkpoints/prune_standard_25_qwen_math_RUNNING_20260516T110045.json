@@ -1,0 +1,29 @@
+{
+  "exp_id": "prune_standard_25_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:00:13.880Z",
+    "updated_at": "2026-05-16T11:00:44.954Z",
+    "conclusion": "success",
+    "metrics": {
+      "actual_sparsity": 0.2396,
+      "target_sparsity": 0.25,
+      "mlp_groups_pruned": "251/784",
+      "attn_gqa_groups_pruned": "0/112"
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/models/Qwen2.5-Math-7B --mode standard --sparsity 0.25 --dtype bfloat16 --importance_path results/importance_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math",
+      "server": "westd-11672",
+      "model_name": "Qwen2.5-Math-7B",
+      "data_path": "results/importance_scores.pt",
+      "data_count": 0,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T11:00:45.113223+00:00",
+  "trigger": "update_registry"
+}

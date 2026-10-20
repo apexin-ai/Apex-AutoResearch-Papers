@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bf73d3dd702d60318d8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e2 extended grpo standard",
+  "task_key": "worker_code_e2_extended_grpo_standard_20260518T125953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e2_extended_grpo_standard_20260518T125953_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "2950080cdc2a7bca68d3a0ea12c19df710b5e0f18b7344738139e02aabfeb9ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并正在运行。\n\n**状态汇总：**\n- **PID**: 2682\n- **W&B run_id**: `k5ex8kfs`\n- **W&B URL**: https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/k5ex8kfs\n- **Step 起点**: 从 step 100 resume 成功（进度条 101/300）\n- **配置**: beta=0.01, loss_type=dapo, format_reward=0.1, temp=0.4, rep_penalty=1.15, optim=adamw_8bit\n- **注意**: save_steps 从原来的 10 变为默认 100（有 warning 但不影响训练），将在 step 200、300 保存 checkpoint\n\n**LR 警告**: 原训练 100 步 cosine decay 已衰减到 1e-08。resume 后 scheduler 状态从 checkpoint 加载，LR 可能极低。建议在 step 110 处检查 wandb 上的 learning_rate 曲线。如果 LR 接近 0，可能需要 kill 并改用 checkpoint-100 作为 model_path 重新训练 200 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e2-extended-grpo-standard.md"
+}

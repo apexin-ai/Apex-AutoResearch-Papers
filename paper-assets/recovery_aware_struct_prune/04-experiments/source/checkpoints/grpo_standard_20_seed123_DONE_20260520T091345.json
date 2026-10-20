@@ -1,0 +1,52 @@
+{
+  "exp_id": "grpo_standard_20_seed123",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:22:27.444Z",
+    "updated_at": "2026-05-20T09:13:45.445Z",
+    "hypothesis": "Multi-seed validation (seed=123) of Standard 20% GRPO. v5 fair config (100 steps, beta=0.01, loss_type=dapo, temperature=0.4, max_completion_length=1024). Seed=42 baseline: 59.44% GSM8K (784/1319). If seed=123 result within ±3pp, confirms Standard method's recovery capacity is stable across seeds.",
+    "parent": "grpo_stage2_standard_20_fair",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 WANDB_MODE=offline python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed123 --max_steps 100 --max_completion_length 1024 --save_steps 100 --gpu 0 --run_name grpo_standard_20_seed123 --seed 123\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "211972",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_standard_20_seed123.log",
+      "submitted_at": "2026-05-20T06:22:37.312Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B-Standard-20%-SFT",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed123",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20",
+      "eval_data": "GSM8K train (7473 samples, GRPO RLVR training)",
+      "tmux_session": "grpo_standard_20_seed123",
+      "wall_clock_seconds": 10268.1,
+      "gpu_hours": 2.85
+    },
+    "metrics": {
+      "steps_completed": 100,
+      "runtime_sec": 2783,
+      "peak_reward": 0.0619,
+      "peak_reward_step": 80,
+      "final_reward": 0.0594,
+      "final_frac_zero_std": 0.6,
+      "seed": 123,
+      "wandb_run": "pgzwv725",
+      "wandb_mode": "offline"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T09:13:45.445Z"
+  },
+  "timestamp": "2026-05-20T09:13:45.903031+00:00",
+  "trigger": "update_registry"
+}

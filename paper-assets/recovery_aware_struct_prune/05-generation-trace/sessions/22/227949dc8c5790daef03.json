@@ -1,0 +1,745 @@
+{
+  "schema_version": "1.0",
+  "id": "227949dc8c5790daef03",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260515T045157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_method_20260515T045157.jsonl",
+    "occurrence": 1,
+    "bytes": 46133,
+    "sha256": "52c1bb43e855c17b687634582746c57747f812c2ae77512551e79b41e3f4d1fc"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T04:57:17.553661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T04:57:17.554297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T04:57:17.554498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/backup/method.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T04:57:17.554707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method: Recovery-Aware Structured Pruning}\n2\t\\label{sec:method}\n3\t\n4\tWe propose \\textbf{Recovery-Aware Structured Pruning (RASP)}, a three-stage framework that optimizes structural pruning decisions for post-RLVR recoverability rather than immediate accuracy preservation.\n5\tThe core insight is that structures with high functional overlap---those whose computations are redundant with other retained structures---are more recoverable under RLVR, because reinforcement learning can redistribute their function through global exploration~\\citep{rlsqueezes2026}.\n6\t\n7\t\\subsection{Preliminaries and Notation}\n8\t\\label{sec:prelim}\n9\t\n10\t\\paragraph{Structured pruning.}\n11\tGiven a pretrained transformer $\\mathcal{M}$ with $L$ layers, structured pruning removes entire computational units---attention heads or MLP channels---to reduce model size while maintaining hardware-friendly dense computation.\n12\tWe denote the set of prunable structures as $\\mathcal{H} = \\{h_1, h_2, \\ldots, h_N\\}$.\n13\t\n14\t\\paragraph{Grouped Query Attention (GQA).}\n15\tIn GQA architectures~\\citep{ainslie2023gqa}, $n_Q$ query heads share $n_{KV}$ key-value heads, with each KV head serving a group of $G = n_Q / n_{KV}$ query heads.\n16\tFor DeepSeek-R1-Distill-Qwen-7B ($n_Q{=}28$, $n_{KV}{=}4$), $G = 7$, yielding 4 GQA groups per layer.\n17\tWe treat each GQA group (7 Q heads + 1 KV head) as a single prunable unit, since removing a KV head necessitates removing all associated Q heads.\n18\t\n19\t\\paragraph{RLVR recovery.}\n20\tReinforcement Learning with Verifiable Rewards (RLVR) recovers pruned model capabilities using outcome-based rewards from tasks with verifiable answers.\n21\tWe use Group Relative Policy Optimization (GRPO;~\\citealp{shao2024grpo}) as the recovery algorithm, following~\\citet{selfhealing2025}.\n22\t\n23\t\\subsection{Stage 1: Reasoning-Trace Structural Analysis}\n24\t\\label{sec:stage1}\n25\t\n26\tRASP computes two complementary scores per structure: \\emph{importance} $I(h)$ capturing the structure's contr\n…[truncated 7173 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T04:57:17.554869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/references.bib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T04:57:17.555054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t@article{deepseek2025r1,\n2\t  title={DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning},\n3\t  author={{DeepSeek-AI}},\n4\t  journal={arXiv preprint arXiv:2501.12948},\n5\t  year={2025},\n6\t  url={https://arxiv.org/abs/2501.12948}\n7\t}\n8\t\n9\t@article{qwen2.5,\n10\t  title={Qwen2.5 Technical Report},\n11\t  author={Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and others},\n12\t  journal={arXiv preprint arXiv:2412.15115},\n13\t  year={2024},\n14\t  url={https://arxiv.org/abs/2412.15115}\n15\t}\n16\t\n17\t@article{cobbe2021gsm8k,\n18\t  title={Training Verifiers to Solve Math Word Problems},\n19\t  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n20\t  journal={arXiv preprint arXiv:2110.14168},\n21\t  year={2021},\n22\t  url={https://arxiv.org/abs/2110.14168}\n23\t}\n24\t\n25\t@article{shao2024grpo,\n26\t  title={DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n27\t  author={Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},\n28\t  journal={arXiv preprint arXiv:2402.03300},\n29\t  year={2024},\n30\t  url={https://arxiv.org/abs/2402.03300}\n31\t}\n32\t\n33\t@inproceedings{llmpruner2023,\n34\t  title={LLM-Pruner: On the Structural Pruning of Large Language Models},\n35\t  author={Ma, Xinyin and Fang, Gongfan and Wang, Xinchao},\n36\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n37\t  year={2023},\n38\t  url={https://arxiv.org/abs/2305.11627}\n39\t}\n40\t\n41\t@inproceedings{graspprune2026,\n42\t  title={GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models},\n43\t  author={Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n44\t  booktitle\n…[truncated 7344 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T04:57:17.555230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find paper context files",
+              "prompt": "Find files related to paper framing, writing plan, and main.tex in the project directory /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/. Look for:\n1. paper_framing.md (could be in paper/ or parent directories)\n2. writing_plan.yaml\n3. main.tex (to check preamble and macros)\n4. Any other .tex files in the paper directory\n\nSearch breadth: medium"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T04:57:17.555403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper_framing.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T04:57:17.555521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md\nartifacts/dream_reports/dream_20260514T233950/best/paper_framing.md\nartifacts/dream_reports/dream_20260514T233950/median/paper_framing.md\nartifacts/dream_reports/dream_20260514T233950/worst/paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T04:57:17.555640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/writing_plan.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T04:57:17.555747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "writing_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T04:57:17.555860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/main.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T04:57:17.555968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T04:57:17.556079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper/**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T04:57:17.556375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/introduction.tex\npaper/related_work.tex\npaper/method.tex\npaper/experiments.tex\nartifacts/_project/paper/table1_postprune.tex\nartifacts/_project/paper/table2_recovery.tex\nartifacts/_project/paper/table3_alpha.tex\npaper/backup/experiments.tex\npaper/backup/introduction.tex\npaper/backup/method.tex\npaper/backup/related_work.tex\npaper/main.tex\npaper/abstract.tex\npaper/conclusion.tex\npaper/limitations.tex\npaper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T04:57:17.556512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T04:57:17.556652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — recovery_aware_struct_prune\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR May 25 submission)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Deadline: ARR May 25, 2026\n7\t\n8\t## Core Insight (Redundancy Paradox)\n9\tTraditional structured pruning removes \"redundant\" structures (high functional overlap with others) to minimize immediate accuracy loss. We show this logic inverts for RLVR recovery: structures with high functional overlap are precisely the most RLVR-recoverable, because RLVR's global exploration can redistribute their function across retained structures. This creates a **Redundancy Paradox** — what's safe to prune for immediate accuracy is different from what's safe to prune for post-recovery accuracy.\n10\t\n11\tRASP exploits this by protecting structures that are both important AND functionally unique (low CKA overlap = irreplaceable reasoning scaffolding), while allowing removal of structures whose function can be recovered through RLVR's path compression mechanism (\"RL Squeezes, SFT Expands\", ICLR 2026).\n12\t\n13\t## Core Claims (3)\n14\t\n15\t1. **CKA-aware pruning preserves reasoning ability**: At matched sparsity and parameter count, RASP preserves significantly more post-prune reasoning accuracy than importance-only pruning (MVP evidence: 29% vs 1% GSM8K at 20% sparsity, p<0.0001), and this gap enables qualitatively different recovery outcomes (RASP-pruned models can be recovered via RLVR; standard-pruned models cannot).\n16\t\n17\t2. **Functional overlap predicts per-structure recoverability**: Per-structure CKA functional overlap F(h) is a stronger predictor of post-recovery accuracy restoration than standard importance metrics alone. Validated via mixed-effects regression (layer as random effect) on N=224+ attention heads, controlling for weight norm, gradient importance, and activation magnitude.\n18\t\n19\t3. **Recovery method conditions optimal pruning order**: The relative ranking of pruning strategies changes depending on recovery method (RL\n…[truncated 4839 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T04:57:17.556809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/writing_plan.yaml"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T04:57:17.556992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tmeta:\n2\t  venue: EMNLP 2026\n3\t  track: main\n4\t  template: \"\"\n5\t  template_note: \"ARR May 25 submission; need ACL 2023/2024 rolling review template. Existing .tex files in paper/ need updating from 35%→20% sparsity.\"\n6\t  page_limit: 8\n7\t  deadline: 2026-05-25\n8\t  core_claim: \"The optimal pruning strategy depends on the recovery paradigm: CKA-based functional overlap predicts RLVR recoverability, creating a Redundancy Paradox where structures traditionally 'safe' to prune (high overlap) are precisely those most recoverable under RLVR.\"\n9\t  created_at: 2026-05-15T12:00:00Z\n10\t  updated_at: 2026-05-15T18:00:00Z\n11\t  existing_drafts:\n12\t    - paper/introduction.tex\n13\t    - paper/method.tex\n14\t    - paper/related_work.tex\n15\t    - paper/experiments.tex\n16\t  draft_issues:\n17\t    - \"All .tex files reference 35% sparsity; actual experiments use 20%\"\n18\t    - \"experiments.tex has many [TBD] placeholders\"\n19\t    - \"No main.tex, references.bib, abstract.tex, conclusion.tex\"\n20\t    - \"Introduction contribution list references 35% sparsity and overclaims comprehensiveness\"\n21\t\n22\tnarrative_constraints:\n23\t  updated_at: 2026-05-15T18:00:00Z\n24\t  source: \"Director review of narrative robustness\"\n25\t\n26\t  evidence_restrictions:\n27\t    - id: ER-001\n28\t      description: \"SFT N=100 greedy eval (57% RASP vs 64% Standard) CANNOT be cited as Claim 3 evidence\"\n29\t      reason: \"CI overlap, difference not statistically significant at N=100\"\n30\t      scope: \"Claim 3 only — these numbers may appear in Table 1 as descriptive data, but must not support the ordering-reversal claim\"\n31\t    - id: ER-002\n32\t      description: \"Post-prune 29% vs 1% (28pp gap, p<0.0001) remains valid evidence for Claim 1\"\n33\t      scope: \"Claim 1, Introduction hook, Abstract\"\n34\t\n35\t  dual_version_framework:\n36\t    description: \"Prepare two narrative versions; selection depends on GRPO Stage 2 results\"\n37\t    decision_trigger: \"grpo_stage2_rasp_20_v2 and grpo_stage2_standard_20_v2 completion\"\n38\t\n39\t    strong_ve\n…[truncated 15827 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T04:57:17.557148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/main.tex",
+              "limit": "100"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T04:57:17.557289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{booktabs}\n15\t\\usepackage{algorithm}\n16\t\\usepackage[noend]{algpseudocode}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{xcolor}\n19\t\\usepackage{hyperref}\n20\t\n21\t\\newcommand{\\rasp}{\\textsc{Rasp}}\n22\t\n23\t\\title{Recovery-Aware Structured Pruning for Reasoning Language Models}\n24\t\n25\t\\author{Anonymous}\n26\t\n27\t\\begin{document}\n28\t\\maketitle\n29\t\n30\t\\begin{abstract}\n31\t\\input{abstract}\n32\t\\end{abstract}\n33\t\n34\t\\input{introduction}\n35\t\\input{related_work}\n36\t\\input{method}\n37\t\\input{experiments}\n38\t\\input{conclusion}\n39\t\n40\t\\section*{Limitations}\n41\t\\input{limitations}\n42\t\n43\t\\bibliography{references}\n44\t\\bibliographystyle{acl_natbib}\n45\t\n46\t\\appendix\n47\t\\input{appendix}\n48\t\n49\t\\end{document}\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T04:57:17.557429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/*.tex 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T04:57:17.557553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/*.tex 2>/dev/null | tail -1"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T04:57:17.557668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  147 May 15 04:50 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu   98 May 15 04:50 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu  105 May 15 04:50 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu 6473 May 14 09:07 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu 7046 May 14 06:51 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  115 May 15 04:50 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu  856 May 15 04:50 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/main.tex\n-rw-r--r-- 1 ubuntu ubuntu 8781 May 14 08:59 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/method.tex\n-rw-r--r-- 1 ubuntu ubuntu 5782 May 14 06:55 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T04:57:17.557805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  339 total"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T04:57:17.557973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Let me now provide you with a comprehensive report of the paper-related files found.\n\n## Summary of Paper-Related Files\n\n### Core Paper Framing & Planning Files\n\n**1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md` (58 lines)**\n   - Target venue: EMNLP 2026 Main (ARR May 25 submission deadline)\n   - Core insight: \"Redundancy Paradox\" — structures safe to prune for immediate accuracy are precisely those most RLVR-recoverable\n   - 3 core claims with supporting evidence framework\n   - Story spine from problem → existing gaps → RASP solution → headline results\n   - Anticipated reviewer concerns with experimental responses mapped to exp IDs\n   - Key differentiations vs related work (MPruner, Self-Healing, RESP, GRASPrune, PASER)\n\n**2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/writing_plan.yaml` (309 lines)**\n   - Meta: EMNLP 2026 main track, 8-page limit, May 25 deadline\n   - Narrative constraints with **dual-version framework** — strong version (if GRPO confirms) vs weak version (if GRPO ambiguous)\n   - Evidence restrictions (ER-001: SFT N=100 greedy eval cannot support Claim 3; ER-002: post-prune 29% vs 1% always valid)\n   - Paper outline for all 7 sections (abstract, introduction, related_work, method, experiments, conclusion, appendix)\n   - Word budgets, dependencies, and registry references per section\n   - Literature strategy with citation budget (35) and 5 micro-clusters\n   - Visualization plan (4 figures with data sources)\n   - Table plan (4 tables with dual-version handling)\n   - Execution phases: Phase 1 (method/related/intro now), Phase 2 (experiments/abstract/conclusion post-GRPO), Phase 3 (figures)\n\n### Main LaTeX Files\n\n**3. `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/main.tex` (50 lines)**\n   - Document class: `[review]{acl}` (ACL template)\n   - Key macro: `\\newcommand{\\rasp}{\\textsc{Rasp}}`\n   - In\n…[truncated 1803 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Agent",
+            "elapsed_ms": 2
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T04:57:17.558139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T04:57:17.558318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — recovery_aware_struct_prune\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR May 25 submission)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Deadline: ARR May 25, 2026\n7\t\n8\t## Core Insight (Redundancy Paradox)\n9\tTraditional structured pruning removes \"redundant\" structures (high functional overlap with others) to minimize immediate accuracy loss. We show this logic inverts for RLVR recovery: structures with high functional overlap are precisely the most RLVR-recoverable, because RLVR's global exploration can redistribute their function across retained structures. This creates a **Redundancy Paradox** — what's safe to prune for immediate accuracy is different from what's safe to prune for post-recovery accuracy.\n10\t\n11\tRASP exploits this by protecting structures that are both important AND functionally unique (low CKA overlap = irreplaceable reasoning scaffolding), while allowing removal of structures whose function can be recovered through RLVR's path compression mechanism (\"RL Squeezes, SFT Expands\", ICLR 2026).\n12\t\n13\t## Core Claims (3)\n14\t\n15\t1. **CKA-aware pruning preserves reasoning ability**: At matched sparsity and parameter count, RASP preserves significantly more post-prune reasoning accuracy than importance-only pruning (MVP evidence: 29% vs 1% GSM8K at 20% sparsity, p<0.0001), and this gap enables qualitatively different recovery outcomes (RASP-pruned models can be recovered via RLVR; standard-pruned models cannot).\n16\t\n17\t2. **Functional overlap predicts per-structure recoverability**: Per-structure CKA functional overlap F(h) is a stronger predictor of post-recovery accuracy restoration than standard importance metrics alone. Validated via mixed-effects regression (layer as random effect) on N=224+ attention heads, controlling for weight norm, gradient importance, and activation magnitude.\n18\t\n19\t3. **Recovery method conditions optimal pruning order**: The relative ranking of pruning strategies changes depending on recovery method (RL\n…[truncated 4839 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T04:57:17.558474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/main.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T04:57:17.558605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{booktabs}\n15\t\\usepackage{algorithm}\n16\t\\usepackage[noend]{algpseudocode}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{xcolor}\n19\t\\usepackage{hyperref}\n20\t\n21\t\\newcommand{\\rasp}{\\textsc{Rasp}}\n22\t\n23\t\\title{Recovery-Aware Structured Pruning for Reasoning Language Models}\n24\t\n25\t\\author{Anonymous}\n26\t\n27\t\\begin{document}\n28\t\\maketitle\n29\t\n30\t\\begin{abstract}\n31\t\\input{abstract}\n32\t\\end{abstract}\n33\t\n34\t\\input{introduction}\n35\t\\input{related_work}\n36\t\\input{method}\n37\t\\input{experiments}\n38\t\\input{conclusion}\n39\t\n40\t\\section*{Limitations}\n41\t\\input{limitations}\n42\t\n43\t\\bibliography{references}\n44\t\\bibliographystyle{acl_natbib}\n45\t\n46\t\\appendix\n47\t\\input{appendix}\n48\t\n49\t\\end{document}\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T04:57:17.558727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/method.tex"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T04:57:17.558906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method: Recovery-Aware Structured Pruning}\n2\t\\label{sec:method}\n3\t\n4\tWe propose \\textbf{Recovery-Aware Structured Pruning (RASP)}, a three-stage framework that optimizes structural pruning decisions for post-RLVR recoverability rather than immediate accuracy preservation.\n5\tThe core insight is that structures with high functional overlap---those whose computations are redundant with other retained structures---are more recoverable under RLVR, because reinforcement learning can redistribute their function through global exploration~\\citep{rlsqueezes2026}.\n6\t\n7\t\\subsection{Preliminaries and Notation}\n8\t\\label{sec:prelim}\n9\t\n10\t\\paragraph{Structured pruning.}\n11\tGiven a pretrained transformer $\\mathcal{M}$ with $L$ layers, structured pruning removes entire computational units---attention heads or MLP channels---to reduce model size while maintaining hardware-friendly dense computation.\n12\tWe denote the set of prunable structures as $\\mathcal{H} = \\{h_1, h_2, \\ldots, h_N\\}$.\n13\t\n14\t\\paragraph{Grouped Query Attention (GQA).}\n15\tIn GQA architectures~\\citep{ainslie2023gqa}, $n_Q$ query heads share $n_{KV}$ key-value heads, with each KV head serving a group of $G = n_Q / n_{KV}$ query heads.\n16\tFor DeepSeek-R1-Distill-Qwen-7B ($n_Q{=}28$, $n_{KV}{=}4$), $G = 7$, yielding 4 GQA groups per layer.\n17\tWe treat each GQA group (7 Q heads + 1 KV head) as a single prunable unit, since removing a KV head necessitates removing all associated Q heads.\n18\t\n19\t\\paragraph{RLVR recovery.}\n20\tReinforcement Learning with Verifiable Rewards (RLVR) recovers pruned model capabilities using outcome-based rewards from tasks with verifiable answers.\n21\tWe use Group Relative Policy Optimization (GRPO;~\\citealp{shao2024grpo}) as the recovery algorithm, following~\\citet{selfhealing2025}.\n22\t\n23\t\\subsection{Stage 1: Reasoning-Trace Structural Analysis}\n24\t\\label{sec:stage1}\n25\t\n26\tRASP computes two complementary scores per structure: \\emph{importance} $I(h)$ capturing the structure's contr\n…[truncated 7173 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T04:57:17.559207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/method.tex",
+              "content": "\\section{Method: Recovery-Aware Structured Pruning}\n\\label{sec:method}\n\nWe propose \\textbf{Recovery-Aware Structured Pruning (\\rasp{})}, a three-stage framework that optimizes structural pruning decisions for post-RLVR recoverability rather than immediate accuracy preservation.\nThe core insight is that structures with high functional overlap---those whose computations are redundant with other retained structures---are more recoverable under RLVR, because reinforcement learning can redistribute their function through global exploration~\\citep{rlsqueezes2026}.\n\n\\subsection{Preliminaries and Notation}\n\\label{sec:prelim}\n\n\\paragraph{Structured pruning.}\nGiven a pretrained transformer $\\mathcal{M}$ with $L$ layers, structured pruning removes entire computational units---attention heads or MLP channels---to reduce model size while maintaining hardware-friendly dense computation.\nWe denote the set of prunable structures as $\\mathcal{H} = \\{h_1, h_2, \\ldots, h_N\\}$.\n\n\\paragraph{Grouped Query Attention (GQA).}\nIn GQA architectures~\\citep{ainslie2023gqa}, $n_Q$ query heads share $n_{KV}$ key-value heads, with each KV head serving a group of $G = n_Q / n_{KV}$ query heads.\nFor DeepSeek-R1-Distill-Qwen-7B ($n_Q{=}28$, $n_{KV}{=}4$), $G = 7$, yielding 4 GQA groups per layer.\nWe treat each GQA group (7 Q heads + 1 KV head) as a single prunable unit, since removing a KV head necessitates removing all associated Q heads.\n\n\\paragraph{RLVR and GRPO.}\nReinforcement Learning with Verifiable Rewards (RLVR) recovers pruned model capabilities using outcome-based rewards from tasks with verifiable answers.\nWe use Group Relative Policy Optimization (GRPO;~\\citealp{shao2024grpo}) as the recovery algorithm, following~\\citet{selfhealing2025}.\n\n\\subsection{Stage 1: Reasoning-Trace Structural Analysis}\n\\label{sec:stage1}\n\n\\rasp{} computes two complementary scores per structure: \\emph{importance} $I(h)$ capturing the structure's contribution to reasoning, and \\emph{functional overlap} $F(h)$ measuring the degree to which its function is recoverable from other structures.\n\n\\paragraph{Self-calibrated reasoning traces.}\nFollowing~\\citet{resp2025}, we generate chain-of-thought reasoning traces from the model's own distribution rather than using external calibration data.\nGiven a calibration set of reasoning problems $\\mathcal{D}_\\text{cal}$, we sample traces $\\{(x_j, \\hat{y}_j)\\}_{j=1}^{M}$ where $\\hat{y}_j \\sim p_\\mathcal{M}(\\cdot \\mid x_j)$.\nThis ensures importance scores reflect the model's actual reasoning pathways.\n\n\\paragraph{Structural importance.}\nFor each structure $h$, we compute importance $I(h)$ via first-order Taylor expansion on the reasoning trace loss:\n\\begin{equation}\n    I(h) = \\left| \\sum_{(x,\\hat{y}) \\in \\mathcal{D}_\\text{cal}} \\mathbf{a}_h(x, \\hat{y})^\\top \\frac{\\partial \\mathcal{L}(x, \\hat{y})}{\\partial \\mathbf{a}_h} \\right|,\n    \\label{eq:importance}\n\\end{equation}\nwhere $\\mathbf{a}_h$ denotes the activation of structure $h$ and $\\mathcal{L}$ is the language modeling loss over the reasoning trace.\nFor a GQA group $g$ containing Q heads $\\{q_1, \\ldots, q_G\\}$ and KV head $k$, we aggregate: $I(g) = \\sum_{i=1}^{G} I(q_i) + I(k)$.\n\n\\paragraph{Functional overlap via CKA.}\nWe measure functional overlap using linear Centered Kernel Alignment (CKA;~\\citealp{kornblith2019cka}), which quantifies similarity between two sets of representations invariant to invertible linear transformations.\nGiven activation matrices $\\mathbf{X}, \\mathbf{Y} \\in \\mathbb{R}^{n \\times d}$ collected over $n$ calibration examples, linear CKA is:\n\\begin{equation}\n    \\text{CKA}(\\mathbf{X}, \\mathbf{Y}) = \\frac{\\text{HSIC}(\\mathbf{X}, \\mathbf{Y})}{\\sqrt{\\text{HSIC}(\\mathbf{X}, \\mathbf{X}) \\cdot \\text{HSIC}(\\mathbf{Y}, \\mathbf{Y})}},\n    \\label{eq:cka}\n\\end{equation}\nwhere $\\text{HSIC}(\\mathbf{X}, \\mathbf{Y}) = \\frac{1}{(n-1)^2} \\operatorname{tr}(\\mathbf{K} \\mathbf{H} \\mathbf{L} \\mathbf{H})$, with $\\mathbf{K} = \\mathbf{X}\\mathbf{X}^\\top$, $\\mathbf{L} = \\mathbf{Y}\\mathbf{Y}^\\top$, and $\\mathbf{H} = \\mathbf{I}_n - \\frac{1}{n}\\mathbf{1}\\mathbf{1}^\\top$.\n\nFor a GQA group $g_i$ in layer $\\ell$, we form its representation by concatenating its constituent Q head activations: $\\mathbf{X}_{g_i} = [\\mathbf{a}_{q_1}; \\ldots; \\mathbf{a}_{q_G}] \\in \\mathbb{R}^{n \\times Gd_h}$.\nThe functional overlap of $g_i$ is the mean pairwise CKA with other groups in the same layer:\n\\begin{equation}\n    F(g_i) = \\frac{1}{|\\mathcal{G}_\\ell| - 1} \\sum_{\\substack{g_j \\in \\mathcal{G}_\\ell \\\\ j \\neq i}} \\text{CKA}(\\mathbf{X}_{g_i}, \\mathbf{X}_{g_j}),\n    \\label{eq:overlap}\n\\end{equation}\nwhere $\\mathcal{G}_\\ell$ is the set of GQA groups in layer $\\ell$.\nUnlike prior work that uses inter-layer CKA to identify globally redundant layers for depth pruning~\\citep{mpruner2024,lachance2024cka}, \\rasp{} uses \\emph{intra-layer} CKA between individual GQA groups to predict per-structure recoverability---a fundamentally different granularity and objective.\n\n\\subsection{Stage 2: Recovery-Aware Scoring}\n\\label{sec:stage2}\n\nThe recovery-aware score combines importance and functional overlap:\n\\begin{equation}\n    S(h) = I(h) \\times \\big(1 - F(h)\\big)^\\alpha,\n    \\label{eq:score}\n\\end{equation}\nwhere $\\alpha > 0$ controls the strength of the recoverability penalty.\nStructures with the lowest $S(h)$ are pruned up to the target sparsity ratio.\n\nThe scoring captures three regimes:\n\\begin{itemize}[nosep,leftmargin=*]\n    \\item \\textbf{High $I$, low $F$} (irreplaceable scaffolding): No other structure can assume its function. High $S$ $\\rightarrow$ \\emph{protected}.\n    \\item \\textbf{High $I$, high $F$} (redundant but important): RLVR can redistribute its function via global exploration. Low $S$ $\\rightarrow$ \\emph{pruned preferentially}.\n    \\item \\textbf{Low $I$} (unimportant): Pruned regardless of overlap.\n\\end{itemize}\n\nThe key distinction from standard pruning---which ranks solely by $I(h)$---is that \\rasp{} additionally down-weights protection of structures whose function overlaps with retained structures.\nThis is motivated by the finding that RLVR recovers through global exploration and path compression~\\citep{rlsqueezes2026}, making high-overlap structures more amenable to functional redistribution than unique structures of equivalent importance.\n\n\\paragraph{Per-layer capacity floor.}\nGlobal ranking by $S(h)$ can concentrate pruning in layers where many structures have high overlap, collapsing that layer's representational capacity.\nTo prevent this, we enforce a per-layer capacity floor: each layer must retain at least 40\\% of its MLP channel groups after pruning.\nFor DeepSeek-R1-Distill-Qwen-7B, this requires ${\\ge}12$ of 28 MLP groups per layer.\nDuring structure selection, if removing a candidate would violate this constraint, it is skipped in favor of the next lowest-scoring structure.\nThis constraint adds negligible overhead to the scoring procedure but prevents representational collapse in individual layers---a failure mode we observed when unconstrained global ranking was applied at 20\\% sparsity.\n\nAttention GQA groups and MLP channel groups are scored jointly and ranked in a unified list, enabling cross-component pruning decisions subject to the per-layer floor.\nAlgorithm~\\ref{alg:rasp} summarizes the complete pipeline.\n\n\\subsection{Stage 3: Two-Stage Recovery}\n\\label{sec:stage3}\n\nAfter pruning, we recover reasoning ability through two stages: supervised finetuning (SFT) warmup followed by GRPO-based RLVR.\n\n\\paragraph{Motivation for two-stage recovery.}\nDirectly applying GRPO to a pruned model fails.\nStructured pruning disrupts the model's ability to generate end-of-sequence (EOS) tokens: in sampling mode, pruned models produce repetitive digit loops without termination, yielding sequences that are truncated at the maximum length.\nSince GRPO computes rewards only from completed generations, this EOS collapse means no valid completions are produced, the clipped ratio reaches 1.0, and gradient norms drop to zero---making direct RLVR recovery impossible.\n\n\\paragraph{Stage 3a: SFT warmup.}\nWe first apply a short SFT phase on reasoning demonstrations to restore two capabilities destroyed by pruning: (1) EOS token generation, ensuring the model can terminate sequences, and (2) basic format compliance, so that outputs follow the expected answer extraction pattern.\nSFT warmup uses teacher-forced training on chain-of-thought traces, which does not require the model to produce complete generations and thus bypasses the EOS collapse problem.\nThis stage is intentionally brief---its purpose is to restore the minimal generation competence needed for GRPO, not to recover full reasoning ability.\n\n\\paragraph{Stage 3b: GRPO recovery.}\nWith generation competence restored, we apply GRPO-based RLVR on mathematical reasoning data to recover the pruned model's reasoning ability.\nThe reward is binary: $r = 1$ if the model's final answer matches the ground truth, $r = 0$ otherwise.\nRLVR is preferred over extended SFT for reasoning recovery because of their fundamentally different training dynamics: \\citet{rlsqueezes2026} show that RLVR \\emph{compresses} incorrect reasoning trajectories while SFT \\emph{expands} correct ones.\nFor a pruned model, RLVR can globally explore and redistribute functionality across remaining structures, while SFT is limited to imitating fixed trajectories through a reduced architecture.\nStructures with high functional overlap $F(h)$ are precisely those whose function can be absorbed by similar retained structures through RLVR's global optimization---the theoretical basis for \\rasp{}'s scoring criterion.\n\n\\begin{algorithm}[t]\n\\caption{Recovery-Aware Structured Pruning (\\rasp{})}\n\\label{alg:rasp}\n\\begin{algorithmic}[1]\n\\Require Model $\\mathcal{M}$, calibration problems $\\mathcal{D}_\\text{cal}$, target sparsity $s$, overlap weight $\\alpha$, SFT data $\\mathcal{D}_\\text{sft}$, RLVR data $\\mathcal{D}_\\text{rlvr}$, layer floor $\\tau$\n\\Ensure Pruned and recovered model $\\mathcal{M}'$\n\\Statex \\textit{\\% Stage 1: Reasoning-Trace Structural Analysis}\n\\State Sample traces $\\{(x_j, \\hat{y}_j)\\} \\sim p_\\mathcal{M}(\\cdot \\mid \\mathcal{D}_\\text{cal})$\n\\For{each structure $h \\in \\mathcal{H}$}\n    \\State Compute $I(h)$ via Eq.~\\eqref{eq:importance}\n    \\State Collect activations $\\mathbf{X}_h$\n\\EndFor\n\\For{each layer $\\ell = 1, \\ldots, L$}\n    \\For{each group $g_i \\in \\mathcal{G}_\\ell$}\n        \\State $F(g_i) \\gets \\frac{1}{|\\mathcal{G}_\\ell|-1} \\sum_{j \\neq i} \\text{CKA}(\\mathbf{X}_{g_i}, \\mathbf{X}_{g_j})$\n    \\EndFor\n\\EndFor\n\\Statex \\textit{\\% Stage 2: Recovery-Aware Scoring}\n\\For{each structure $h \\in \\mathcal{H}$}\n    \\State $S(h) \\gets I(h) \\times (1 - F(h))^\\alpha$\n\\EndFor\n\\State Sort $\\mathcal{H}$ by $S(h)$ ascending\n\\State $\\mathcal{P} \\gets \\emptyset$\n\\For{each $h$ in sorted $\\mathcal{H}$}\n    \\If{layer($h$) retains $< \\tau$ fraction after adding $h$ to $\\mathcal{P}$}\n        \\State \\textbf{continue}\n    \\EndIf\n    \\State $\\mathcal{P} \\gets \\mathcal{P} \\cup \\{h\\}$\n    \\If{$\\sum_{h' \\in \\mathcal{P}} \\text{params}(h') \\ge s \\cdot |\\theta|$}\n        \\State \\textbf{break}\n    \\EndIf\n\\EndFor\n\\State $\\mathcal{M}_\\text{pruned} \\gets \\text{Remove}(\\mathcal{M}, \\mathcal{P})$\n\\Statex \\textit{\\% Stage 3: Two-Stage Recovery}\n\\State $\\mathcal{M}_\\text{warm} \\gets \\text{SFT}(\\mathcal{M}_\\text{pruned}, \\mathcal{D}_\\text{sft})$ \\hfill $\\triangleright$ restore EOS \\& format\n\\State $\\mathcal{M}' \\gets \\text{GRPO}(\\mathcal{M}_\\text{warm}, \\mathcal{D}_\\text{rlvr})$ \\hfill $\\triangleright$ restore reasoning\n\\State \\Return $\\mathcal{M}'$\n\\end{algorithmic}\n\\end{algorithm}\n"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T04:57:17.559613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T04:57:17.559772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/method.tex"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T04:57:17.559974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method: Recovery-Aware Structured Pruning}\n2\t\\label{sec:method}\n3\t\n4\tWe propose \\textbf{Recovery-Aware Structured Pruning (\\rasp{})}, a three-stage framework that optimizes structural pruning decisions for post-RLVR recoverability rather than immediate accuracy preservation.\n5\tThe core insight is that structures with high functional overlap---those whose computations are redundant with other retained structures---are more recoverable under RLVR, because reinforcement learning can redistribute their function through global exploration~\\citep{rlsqueezes2026}.\n6\t\n7\t\\subsection{Preliminaries and Notation}\n8\t\\label{sec:prelim}\n9\t\n10\t\\paragraph{Structured pruning.}\n11\tGiven a pretrained transformer $\\mathcal{M}$ with $L$ layers, structured pruning removes entire computational units---attention heads or MLP channels---to reduce model size while maintaining hardware-friendly dense computation.\n12\tWe denote the set of prunable structures as $\\mathcal{H} = \\{h_1, h_2, \\ldots, h_N\\}$.\n13\t\n14\t\\paragraph{Grouped Query Attention (GQA).}\n15\tIn GQA architectures~\\citep{ainslie2023gqa}, $n_Q$ query heads share $n_{KV}$ key-value heads, with each KV head serving a group of $G = n_Q / n_{KV}$ query heads.\n16\tFor DeepSeek-R1-Distill-Qwen-7B ($n_Q{=}28$, $n_{KV}{=}4$), $G = 7$, yielding 4 GQA groups per layer.\n17\tWe treat each GQA group (7 Q heads + 1 KV head) as a single prunable unit, since removing a KV head necessitates removing all associated Q heads.\n18\t\n19\t\\paragraph{RLVR and GRPO.}\n20\tReinforcement Learning with Verifiable Rewards (RLVR) recovers pruned model capabilities using outcome-based rewards from tasks with verifiable answers.\n21\tWe use Group Relative Policy Optimization (GRPO;~\\citealp{shao2024grpo}) as the recovery algorithm, following~\\citet{selfhealing2025}.\n22\t\n23\t\\subsection{Stage 1: Reasoning-Trace Structural Analysis}\n24\t\\label{sec:stage1}\n25\t\n26\t\\rasp{} computes two complementary scores per structure: \\emph{importance} $I(h)$ capturing the structure's\n…[truncated 10077 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T04:57:17.560192+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verification complete. All 5 checks pass:\n\n1. **Section hierarchy**: `\\section` → 4 `\\subsection`s (Preliminaries, Stage 1, Stage 2, Stage 3)\n2. **Equation labels**: `eq:importance`, `eq:cka`, `eq:overlap`, `eq:score` — all present\n3. **Algorithm syntax**: Uses `\\State`, `\\For`, `\\If`, `\\Require`, `\\Ensure` (algpseudocode) — no algorithm2e commands\n4. **Citation keys**: All 8 keys (`rlsqueezes2026`, `ainslie2023gqa`, `shao2024grpo`, `selfhealing2025`, `resp2025`, `kornblith2019cka`, `mpruner2024`, `lachance2024cka`) verified in `references.bib`\n5. **No 35% sparsity**: Only \"20\\% sparsity\" appears (line 86, capacity floor context)\n\nThree key changes from the existing draft:\n- **Per-layer capacity floor** (lines 81–86): ≥40% MLP groups retained per layer (≥12/28), prevents representational collapse from unconstrained global ranking\n- **Two-stage recovery** (lines 91–111): SFT warmup (restore EOS & format) → GRPO (restore reasoning), motivated by EOS collapse in direct GRPO on pruned models\n- **Algorithm 1** (lines 113–151): Converted from broken algorithm2e syntax to proper algpseudocode; added capacity floor constraint loop and two-stage recovery steps with `$\\mathcal{D}_\\text{sft}$`/`$\\mathcal{D}_\\text{rlvr}$` inputs"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T045157"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-method.md"
+}

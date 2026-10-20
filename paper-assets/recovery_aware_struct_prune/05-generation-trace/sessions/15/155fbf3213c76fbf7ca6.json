@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "155fbf3213c76fbf7ca6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag westd eval accuracy issue",
+  "task_key": "worker_diag_westd-eval-accuracy-issue_20260515T183951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-eval-accuracy-issue_20260515T183951_result.json",
+    "occurrence": 1,
+    "bytes": 1481,
+    "sha256": "200bfee4e83ca363b95f549972fb7269699dfef9cab8eb32983c882d53c7af93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根因确认：westd 使用了错误版本的 eval 脚本，不包含 chat template。**\n\n### 关键差异对比\n\n| | westb eval | westd eval |\n|---|---|---|\n| **Prompt 构造** | `tokenizer.apply_chat_template(messages)` → `<｜User｜>q<｜Assistant｜>` | 纯文本: `\"Solve...Put your final answer in \\boxed{}.\\n\\nQuestion: {q}\\n\\nAnswer:\"` |\n| **与 SFT 训练格式匹配** | 匹配（SFT 使用 chat template） | **不匹配** |\n| **EOS rate** | 0.99 | ≈0（几乎所有 sample 生成到 4096 tokens 才停） |\n| **Avg gen len** | ~180 tokens | ~4096 tokens |\n| **准确率** | 57%/64% | 2.5%/0% |\n\n### 因果链\n\n1. SFT 训练使用 chat template 格式（`<｜User｜>...<｜Assistant｜>...`）\n2. westd eval 脚本（`/root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py`）是一个简化版本，不使用 `apply_chat_template`，直接用纯文本 prompt\n3. 模型收到不认识的 prompt 格式 → 不知道何时停止 → 生成到 max_new_tokens (4096)\n4. 4096 tokens 的退化输出中 answer extraction 几乎无法提取正确答案\n\n### 建议\n\n1. **Kill 当前 eval 进程**（PID 55353, 55286）— 结果无意义\n2. **将 westb 的 eval_gsm8k.py 同步到 westd** — 即 `/root/recovery_aware_struct_prune/src/eval_gsm8k.py` → `/root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py`\n3. **重跑 eval**，使用正确脚本\n\n需要我执行修复操作吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-eval-accuracy-issue.md"
+}

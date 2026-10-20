@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{selfhealing2025}
+\citation{graspune2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{llmpruner2023}
+\citation{shortgpt2024}
+\citation{graspune2026}
+\citation{bonsai2025}
+\citation{grpo2025}
+\citation{deepseekr1}
+\citation{qwen25math}
+\citation{selfhealing2025}
+\citation{cka2019}
+\citation{mpruner2024}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural pruning for LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RLVR alignment for reasoning.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA for model analysis.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Recovery-Aware Structural Pruning (RASP)}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}RASP Scoring Function}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:rasp}{{1}{2}{RASP Scoring Function}{equation.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Recovery accuracy on GSM8K ($N{=}1319$, greedy decoding). $\Delta $ = GRPO $-$ SFT accuracy. GRPO never improves accuracy; pruning adds training collapse.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:main_recovery}{{1}{3}{Recovery accuracy on GSM8K ($N{=}1319$, greedy decoding). $\Delta $ = GRPO $-$ SFT accuracy. GRPO never improves accuracy; pruning adds training collapse}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA stability.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pruning.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recovery.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: Recovery Accuracy}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main_results}{{4.2}{3}{Main Results: Recovery Accuracy}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}GRPO Collapse Dynamics}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:collapse}{{4.3}{3}{GRPO Collapse Dynamics}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Full pipeline results across sparsity levels (DeepSeek-R1-Distill-Qwen-7B, GSM8K).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:sparsity_scaling}{{2}{4}{Full pipeline results across sparsity levels (DeepSeek-R1-Distill-Qwen-7B, GSM8K)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces SFT-only recovery by sparsity. RASP advantage becomes significant at 25\%.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:sft_only}{{3}{4}{SFT-only recovery by sparsity. RASP advantage becomes significant at 25\%}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Sparsity Scaling}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:sparsity}{{4.4}{4}{Sparsity Scaling}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{SFT gap significance.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Collapse acceleration.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Model Replication}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:cross_model}{{4.5}{4}{Cross-Model Replication}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Baseline Comparisons}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:baselines}{{4.6}{4}{Baseline Comparisons}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Collapse acceleration from 20\% to 25\% sparsity (DeepSeek-R1).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:collapse_acceleration}{{4}{5}{Collapse acceleration from 20\% to 25\% sparsity (DeepSeek-R1)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-model replication on Qwen2.5-Math-7B. The collapse severity gradient is consistent.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:cross_model}{{5}{5}{Cross-model replication on Qwen2.5-Math-7B. The collapse severity gradient is consistent}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Structured vs.\ Unstructured Pruning}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:struct_vs_unstruct}{{4.7}{5}{Structured vs.\ Unstructured Pruning}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Ablation Studies}{5}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:ablations}{{4.8}{5}{Ablation Studies}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.1}Scoring Component Ablation}{5}{subsubsection.4.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.2}$\alpha $ Sensitivity}{5}{subsubsection.4.8.2}\protected@file@percent }
+\newlabel{sec:alpha}{{4.8.2}{5}{$\alpha $ Sensitivity}{subsubsection.4.8.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces All baselines at 20\% sparsity (DeepSeek-R1, GSM8K, $N{=}1319$).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:all_baselines}{{6}{6}{All baselines at 20\% sparsity (DeepSeek-R1, GSM8K, $N{=}1319$)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Structured vs.\ unstructured pruning at 20\% sparsity. GRPO collapse is structural-pruning-specific.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:struct_unstruct}{{7}{6}{Structured vs.\ unstructured pruning at 20\% sparsity. GRPO collapse is structural-pruning-specific}{table.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.3}CKA Reliability}{6}{subsubsection.4.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Per-Structure CKA-Recoverability Correlation}{6}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:correlation}{{4.9}{6}{Per-Structure CKA-Recoverability Correlation}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Multi-Seed Robustness}{6}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:multiseed}{{4.10}{6}{Multi-Seed Robustness}{subsection.4.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Extended Benchmarks}{6}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:extended}{{4.11}{6}{Extended Benchmarks}{subsection.4.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Scoring ablation at 20\% sparsity. CKA improves SFT but accelerates GRPO collapse.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:scoring_ablation}{{8}{7}{Scoring ablation at 20\% sparsity. CKA improves SFT but accelerates GRPO collapse}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces $\alpha $ sensitivity (20\% sparsity, DeepSeek-R1, $N{=}1319$). Higher $\alpha $ improves SFT but accelerates GRPO collapse.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:alpha}{{9}{7}{$\alpha $ sensitivity (20\% sparsity, DeepSeek-R1, $N{=}1319$). Higher $\alpha $ improves SFT but accelerates GRPO collapse}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Inference Efficiency}{7}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:efficiency}{{4.12}{7}{Inference Efficiency}{subsection.4.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Redundancy-Stability Tradeoff.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Collapse as diagnostic.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relation to Self-Healing.}{7}{section*.14}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{cka2019}{{1}{2019}{{Kornblith et~al.}}{{}}}
+\bibcite{llmpruner2023}{{2}{2023}{{Ma et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces CKA scoring stability across calibration sizes.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:cka_stability}{{10}{8}{CKA scoring stability across calibration sizes}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Mixed-effects regression of CKA redundancy $F(h)$ on recovery dynamics ($n{=}784$ structures, $R^2{=}0.38$).}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:regression}{{11}{8}{Mixed-effects regression of CKA redundancy $F(h)$ on recovery dynamics ($n{=}784$ structures, $R^2{=}0.38$)}{table.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{shortgpt2024}{{3}{2024}{{Men et~al.}}{{}}}
+\bibcite{grpo2025}{{4}{2025}{{Shao et~al.}}{{}}}
+\bibcite{deepseekr1}{{5}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{qwen25math}{{6}{2025}{{Yang et~al.}}{{}}}
+\bibcite{selfhealing2025}{{7}{2025}{{Zhang et~al.}}{{}}}
+\bibcite{graspune2026}{{8}{2026}{{Wang et~al.}}{{}}}
+\bibcite{bonsai2025}{{9}{2025}{{Li et~al.}}{{}}}
+\bibcite{mpruner2024}{{10}{2024}{{Chen et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Multi-seed post-prune accuracy (5 seeds, $N{=}1319$ per seed).}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:multiseed}{{12}{9}{Multi-seed post-prune accuracy (5 seeds, $N{=}1319$ per seed)}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Multi-benchmark evaluation (20\% sparsity, post-SFT).}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:extended}{{13}{9}{Multi-benchmark evaluation (20\% sparsity, post-SFT)}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Inference efficiency (batch size 1, sequence length 512).}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:efficiency}{{14}{10}{Inference efficiency (batch size 1, sequence length 512)}{table.14}{}}
+\gdef \@abspage@last{10}

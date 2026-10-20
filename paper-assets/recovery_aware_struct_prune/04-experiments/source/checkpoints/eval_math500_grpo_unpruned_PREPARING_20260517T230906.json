@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval_math500_grpo_unpruned",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "created_at": "2026-05-17T18:14:45.810Z",
+    "hypothesis": "MATH-500 accuracy for unpruned GRPO v2 (step-100). Establishes MATH-500 baseline: if unpruned post-GRPO ≈ 73.6% (pre-GRPO), confirms decoupling pattern holds on harder benchmark. If higher, GRPO genuinely helps unpruned but not pruned = pruning-specific failure.",
+    "parent": "eval_math500_unpruned",
+    "retry_count": 0,
+    "status": "PREPARING",
+    "updated_at": "2026-05-17T23:09:06.207Z",
+    "spec": {
+      "command": "python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json",
+      "server": "westd-11672",
+      "model_name": "grpo_unpruned_v2",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/",
+      "eval_data": "MATH-500"
+    }
+  },
+  "timestamp": "2026-05-17T23:09:06.519609+00:00",
+  "trigger": "update_registry"
+}

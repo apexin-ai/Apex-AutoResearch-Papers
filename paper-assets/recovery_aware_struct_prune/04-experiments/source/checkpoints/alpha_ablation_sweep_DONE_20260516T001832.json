@@ -1,0 +1,58 @@
+{
+  "exp_id": "alpha_ablation_sweep",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:15:39.765Z",
+    "updated_at": "2026-05-16T00:18:32.836Z",
+    "hypothesis": "plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity.",
+    "spec": {
+      "command": "bash run_alpha_sweep_fix.sh",
+      "server": "westb-23072",
+      "gpu_id": "cuda:0",
+      "pid": 556867,
+      "data_path": "openai/gsm8k",
+      "data_count": 100,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "log_path": "/tmp/alpha_sweep_fix.log",
+      "checkpoint_path": "/root/recovery_aware_struct_prune/results/",
+      "notes": "Alpha ablation: 0.25, 0.5, 1.0, 2.0. Partial results: alpha=0.0 acc=0.27 eos=0.80, alpha=0.25 acc=0.23 eos=0.63. Currently running alpha=0.5 eval.",
+      "calibration_samples": 512,
+      "sparsity": 0.2,
+      "alphas": [
+        0,
+        0.25,
+        0.5,
+        1,
+        2
+      ]
+    },
+    "log_path": "/tmp/alpha_sweep_fix.log",
+    "checkpoint_path": "/root/recovery_aware_struct_prune/results/",
+    "metrics": {
+      "alpha_0p0_accuracy": 0.27,
+      "alpha_0p0_eos_rate": 0.8,
+      "alpha_0p0_avg_len": 1192,
+      "alpha_0p25_accuracy": 0.23,
+      "alpha_0p25_eos_rate": 0.63,
+      "alpha_0p25_avg_len": 1834,
+      "alpha_0p5_accuracy": 0.22,
+      "alpha_0p5_eos_rate": 0.81,
+      "alpha_0p5_avg_len": 1141,
+      "alpha_1p0_accuracy": 0.31,
+      "alpha_1p0_eos_rate": 0.92,
+      "alpha_1p0_avg_len": 733,
+      "alpha_2p0_accuracy": 0.36,
+      "alpha_2p0_eos_rate": 0.59,
+      "alpha_2p0_avg_len": 2130
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T00:14:46.464Z"
+  },
+  "timestamp": "2026-05-16T00:18:32.935422+00:00",
+  "trigger": "update_registry"
+}

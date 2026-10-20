@@ -1,0 +1,20 @@
+\begin{table}[h]
+\centering
+\small
+\caption{MBPP code generation accuracy ($N{=}374$, greedy decoding). All fine-grained pruning methods converge near a capability floor (${\sim}$75\% code capability loss vs Dense), limiting differentiation (${\sim}$1\,pp range, within stderr). ShortGPT shows a larger GRPO delta ($+$4.01\,pp) but at the 95\% CI boundary (stderr ${\approx}$1.55\,pp).}
+\label{tab:mbpp}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & SFT\,(\%) & GRPO\,(\%) & $\Delta$\,(pp) \\
+\midrule
+Dense & -- & 53.48 & -- \\
+\midrule
+CKA-only 20\% & 12.83 & 14.17 & $+$1.34 \\
+Standard 20\% & 12.03 & 13.10 & $+$1.07 \\
+\rasp{} ($\alpha{=}1.0$) 20\% & 11.76 & 13.10 & $+$1.34 \\
+\midrule
+ShortGPT 20\%$^\dagger$ & 10.43 & 14.44 & $+$4.01 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $^\dagger$Depth pruning; removes entire layers.}
+\end{tabular}
+\end{table}

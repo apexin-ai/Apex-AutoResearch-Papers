@@ -1,0 +1,57 @@
+{
+  "exp_id": "sft_standard_20_retrain_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:40:50.567Z",
+    "updated_at": "2026-05-18T23:23:03.857Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --gpu 2\"",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "34346",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_standard_20_retrain_westd.log",
+      "submitted_at": "2026-05-18T22:40:50.078Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "pruned_standard_20 -> sft_standard_20",
+      "data_path": "gsm8k (SFT recovery)",
+      "data_count": 7473,
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20",
+      "wall_clock_seconds": 2533.8,
+      "gpu_hours": 0.7
+    },
+    "hypothesis": "Retrain SFT Standard 20% on westd from pruned_standard_20. Original sft_standard_20 model lost (was on old westd-11672). Needed for eval_math500_sft_standard_20_2048 with correct model.",
+    "reproduce": {
+      "finished_at": "2026-05-18T23:21:01.355Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T23:21:07.869075+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 0.758,
+      "mean_token_accuracy": 0.8252,
+      "train_runtime_sec": 1688,
+      "train_samples_per_second": 8.856,
+      "epochs": 2,
+      "total_steps": 1870
+    },
+    "completed_at": "2026-05-18T23:23:03.857Z"
+  },
+  "timestamp": "2026-05-18T23:23:04.577788+00:00",
+  "trigger": "update_registry"
+}

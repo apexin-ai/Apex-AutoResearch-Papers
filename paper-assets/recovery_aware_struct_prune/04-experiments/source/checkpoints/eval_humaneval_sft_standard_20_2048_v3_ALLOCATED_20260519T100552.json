@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_humaneval_sft_standard_20_2048_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:05:36.497Z",
+    "updated_at": "2026-05-19T10:05:51.774Z",
+    "hypothesis": "SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same model as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~10% interim) and SFT CKA-only (~24% interim)."
+  },
+  "timestamp": "2026-05-19T10:05:52.185814+00:00",
+  "trigger": "update_registry"
+}

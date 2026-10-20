@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:26:15.836Z",
+    "updated_at": "2026-05-17T17:43:48.120Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\"",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "36724",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log",
+      "submitted_at": "2026-05-17T16:26:15.449Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T17:43:47.471Z"
+    }
+  },
+  "timestamp": "2026-05-17T17:43:48.496325+00:00",
+  "trigger": "update_registry"
+}

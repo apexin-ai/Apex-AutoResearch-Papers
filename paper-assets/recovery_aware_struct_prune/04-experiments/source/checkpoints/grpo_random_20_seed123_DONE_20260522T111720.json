@@ -1,0 +1,45 @@
+{
+  "exp_id": "grpo_random_20_seed123",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:34:12.100Z",
+    "updated_at": "2026-05-22T11:17:19.692Z",
+    "hypothesis": "MF2 multi-seed validation: Random pruning 20% GRPO with seed123. Tests if GRPO decoupling result (C1) is robust across random seeds. If variance across seeds is low (±2pp), C1 claim is strengthened.",
+    "spec": {
+      "server": "westd-32935",
+      "gpu": "cuda:2",
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123 --num_steps 100 --seed 123'",
+      "pid": "36832",
+      "data_path": "openai/gsm8k (train split)",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (sft_random_20)",
+      "seed": 123,
+      "checkpoint_source": "sft_random_20",
+      "eval_data": "N/A - GRPO training, not eval",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123",
+      "log_path": "/tmp/mf2_random_seed123_grpo.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T11:12:49.435Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T11:12:57.919Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T11:13:16.493425+00:00"
+        }
+      ]
+    },
+    "notes": "Cron 误判 (已知 pattern: process dead 5× with no sentinel/W&B)。实际 GRPO 训练正常完成 (19:02 CST)。模型保存: /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123。WandB run: grpo_sft_random_20 (ID: 1silchcm)。日志: /tmp/mf2_random_seed123_grpo.log"
+  },
+  "timestamp": "2026-05-22T11:17:20.296461+00:00",
+  "trigger": "update_registry"
+}

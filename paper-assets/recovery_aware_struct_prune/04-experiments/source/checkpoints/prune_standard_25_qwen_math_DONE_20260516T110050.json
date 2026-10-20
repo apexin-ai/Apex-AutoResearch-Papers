@@ -1,0 +1,32 @@
+{
+  "exp_id": "prune_standard_25_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:00:13.880Z",
+    "updated_at": "2026-05-16T11:00:50.302Z",
+    "conclusion": "success",
+    "metrics": {
+      "actual_sparsity": 0.2396,
+      "target_sparsity": 0.25,
+      "mlp_groups_pruned": "251/784",
+      "attn_gqa_groups_pruned": "0/112"
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/models/Qwen2.5-Math-7B --mode standard --sparsity 0.25 --dtype bfloat16 --importance_path results/importance_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math",
+      "server": "westd-11672",
+      "model_name": "Qwen2.5-Math-7B",
+      "data_path": "results/importance_scores.pt",
+      "data_count": 0,
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math/",
+      "log_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ops_westd_disk_cleanup_qwen25_20260516T105526.log"
+    },
+    "completed_at": "2026-05-16T11:00:50.302Z"
+  },
+  "timestamp": "2026-05-16T11:00:50.443368+00:00",
+  "trigger": "update_registry"
+}

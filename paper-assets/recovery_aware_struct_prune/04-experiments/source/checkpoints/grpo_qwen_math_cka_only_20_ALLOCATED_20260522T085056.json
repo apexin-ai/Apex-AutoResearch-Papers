@@ -1,0 +1,20 @@
+{
+  "exp_id": "grpo_qwen_math_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:50:34.293Z",
+    "updated_at": "2026-05-22T08:50:55.468Z",
+    "hypothesis": "MF3 cross-architecture validation: Qwen2.5-Math-7B CKA-only 20% pruned → SFT → GRPO 100 steps. Tests if CKA-guided pruning advantage transfers beyond DeepSeek-R1 to Qwen-Math family. P0 highest priority.",
+    "parent": "sft_qwen_math_cka_only_20_v2",
+    "spec": {
+      "server": "westb-23072",
+      "gpu": "cuda:1"
+    }
+  },
+  "timestamp": "2026-05-22T08:50:56.118009+00:00",
+  "trigger": "update_registry"
+}

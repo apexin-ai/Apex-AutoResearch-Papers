@@ -1,0 +1,64 @@
+{
+  "exp_id": "grasp_baseline_westd",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:40:34.072Z",
+    "updated_at": "2026-05-15T17:11:44.734Z",
+    "hypothesis": "D027: GraSP baseline on westd — compare GraSP pruning criterion against RASP at 20% sparsity. If RASP > GraSP post-recovery, confirms CKA-aware scoring advantage over gradient-based saliency. Critical for plan_005 and Dream reviewer concern.",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --max_samples 100 --max_new_tokens 4096",
+      "command_note": "实际运行命令无 --output_path 和 --seed，但源码默认 seed=42 且 output_path 自动回退到 results/eval_pruned_graspune_20_greedy.json",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "38120",
+      "log_path": "results/eval_grasp_n100.log",
+      "submitted_at": "2026-05-15T12:45:44.074Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "gsm8k test split",
+      "data_count": 100,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (GraSP pruned 20%)",
+      "seed": 42,
+      "checkpoint_source": "GraSP pruning pipeline",
+      "eval_data": "gsm8k test N=100"
+    },
+    "notes": "GraSP post-prune eval (N=100) 运行中 on westd GPU 0. PID 38120. 71/100 at 15:25 UTC, ~51s/sample, 预计 ~25min 完成。中间结果 (50 samples): accuracy 6%, eos_rate 2%, avg_len 4018. 输出确认安全: seed 默认 42, output_path 默认 results/eval_pruned_graspune_20_greedy.json. 完成后立即启动 GraSP post-SFT eval (cuda:0, model at sft_graspune_20/). Cron 监控中。",
+    "metrics": {
+      "grasp_20_accuracy_n100": 0.07,
+      "n_correct": 7,
+      "n_total": 100,
+      "eos_rate": 0.02,
+      "avg_len": 4018,
+      "rasp_20_accuracy_ref": 0.31,
+      "standard_20_accuracy_ref": 0.27,
+      "json_path": "results/eval_pruned_graspune_20_greedy.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T15:10:55.707Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:06:17.807624+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:10:56.704857+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T17:11:44.810325+00:00",
+  "trigger": "update_registry"
+}

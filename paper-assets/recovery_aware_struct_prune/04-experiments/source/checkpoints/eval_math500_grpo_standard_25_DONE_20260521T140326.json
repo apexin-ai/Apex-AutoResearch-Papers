@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_math500_grpo_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:42:06.222Z",
+    "updated_at": "2026-05-21T14:03:25.448Z",
+    "hypothesis": "Standard 25% GRPO model MATH-500 accuracy expected near-zero due to reward collapse (0.00813), providing strong evidence that standard pruning at 25% destroys RL recovery capacity",
+    "spec": {
+      "command": "nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/recovery_aware_struct_prune/src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/checkpoint-100 --output_dir /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25 --n_samples 500 --seed 42 --temperature 0' > /root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25/eval_math500_grpo_standard_25.log 2>&1 &",
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "pid": 90585,
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B Standard 25% GRPO checkpoint-100",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/checkpoint-100",
+      "seed": 42,
+      "checkpoint_source": "grpo_standard_25_westb",
+      "eval_data": "MATH-500",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25/eval_math500_grpo_standard_25.log"
+    },
+    "parent": "eval_gsm8k_grpo_standard_25",
+    "conclusion": "killed",
+    "failure_reason": "D097: @4096 与论文 @2048 标准不一致，kill 并用 @2048 重跑 (eval_math500_grpo_standard_25_v2)",
+    "completed_at": "2026-05-21T14:03:25.448Z"
+  },
+  "timestamp": "2026-05-21T14:03:26.005972+00:00",
+  "trigger": "update_registry"
+}

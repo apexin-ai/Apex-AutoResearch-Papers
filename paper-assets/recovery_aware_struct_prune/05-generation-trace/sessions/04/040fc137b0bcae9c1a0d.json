@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "040fc137b0bcae9c1a0d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb cleanup and scp e3",
+  "task_key": "worker_ops_westb_cleanup_and_scp_e3_20260518T154118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_cleanup_and_scp_e3_20260518T154118_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "ea6988d123ea3ade476e157a3d8614356fd0a4378ba3240c22f30ab5447d008e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n## 清理\n已删除: pruned_gradient_20 (12G), pruned_magnitude_20 (12G)\n释放空间: ~24G (7.7G → 31G)\n\n## SCP\n- pruned_standard_20: 成功, 12G (westd → westb 直推)\n- pruned_rasp_20: 成功, 12G (westd → westb 直推)\n\n## 5 模型验证\n全部就位: **yes**\n- Dense (DeepSeek-R1-Distill-Qwen-7B) ✓\n- pruned_cka_only_20 ✓\n- pruned_standard_20 ✓\n- pruned_random_20 ✓\n- pruned_rasp_20 ✓\n\n## GPU 状态\n- cuda:0: 运行中 — `grpo_cka_only_20_1p5b` step 93/100 (约 3h 运行，还剩 ~13min)\n- cuda:1: 运行中 — `grpo_rasp_20_1p5b` step 68/100 (约 36min 运行，还剩 ~17min)\n\n另外 `grpo_standard_1p5b_100steps` 已完成 (EXIT_CODE=0)。\n\n## 磁盘\n传输后: 243G used / 7.7G avail (250G total) — 两个 12G 模型传入填满了释放的空间，符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-cleanup-and-scp-e3.md"
+}

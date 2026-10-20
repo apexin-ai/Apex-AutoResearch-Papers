@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14c9c805ff9074977543",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent status westb",
+  "task_key": "worker_ssh_urgent_status_westb_20260523T183609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_status_westb_20260523T183609_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "d9082b6198a5f652258bc83206e23a082835eb3f2a363bf6e88f04152a012e7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态\n\n**空闲 GPU**: 无（两张均被占用）\n\n**运行中**:\n| PID | GPU | 实验名 | 运行时间 | 进度 | 显存 |\n|-----|-----|--------|---------|------|------|\n| 309964 (子进程 309969) | cuda:0 | grpo_random_20_retrain_v2 | 2h18m | 76/100 steps (76%) | 55,530 MiB / 97,887 MiB |\n| 306963 (子进程 306968) | cuda:1 | eval_math500_sft_cka_only_20_fixed_v2 | 2h51m | 381/500 (76%) | 17,030 MiB / 97,887 MiB |\n\n**已完成 eval**: 无（结果文件尚未生成，eval 仍在运行中）\n\n**grpo_random_20_retrain_v2**: 运行中，76/100 steps，输出目录 `grpo_random_20_retrain/` 已创建（含 `completions/` 子目录），预计约 40 分钟内完成\n\n**eval_math500_sft_cka_only_20_fixed_v2**: 运行中，381/500 (76%)，平均 ~27s/it，预计约 50 分钟内完成\n\n**Checkpoint 确认**:\n- grpo_cka_only_20/checkpoint-100: **存在** (11.5GB)\n- sft_rasp_alpha3p0_20/checkpoint-935: **存在** (11.5GB)\n- sft_random_20: **存在** (11.3GB)\n\n**磁盘**: /root/autodl-tmp 209G/250G (84%), 剩余 42G"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-westb-copy-2.md"
+}

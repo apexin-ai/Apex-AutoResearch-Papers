@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_math500_grpo_rasp_alpha3p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:19:40.950Z",
+    "updated_at": "2026-05-23T03:19:40.950Z"
+  },
+  "timestamp": "2026-05-23T03:19:41.628672+00:00",
+  "trigger": "update_registry"
+}

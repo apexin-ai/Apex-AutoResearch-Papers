@@ -1,0 +1,16 @@
+{
+  "exp_id": "grpo_standard_25_retrain",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T17:52:21.325Z",
+    "updated_at": "2026-05-23T18:38:14.700Z",
+    "hypothesis": "Retrain GRPO Standard 25% from sft_standard_25_retrain (100 steps, seed 42). Old grpo_standard_25 checkpoint on defunct westd-11672. Critical path: tab_math500 25% sparsity row requires this + subsequent MATH-500 fixed eval.",
+    "parent": "sft_standard_25_retrain"
+  },
+  "timestamp": "2026-05-23T18:38:15.405384+00:00",
+  "trigger": "update_registry"
+}

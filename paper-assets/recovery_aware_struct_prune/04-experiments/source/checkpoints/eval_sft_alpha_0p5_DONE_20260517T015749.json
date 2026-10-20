@@ -1,0 +1,32 @@
+{
+  "exp_id": "eval_sft_alpha_0p5",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:44:06.901Z",
+    "updated_at": "2026-05-17T01:57:48.940Z",
+    "hypothesis": "α=0.5 post-SFT GSM8K eval (N=100, greedy). Post-prune 25%. Completes full α ablation: α=0.0 (64%), α=0.5 (?), α=1.0 (57%), α=2.0 (pending), α=4.0 (62%). Parent: alpha_ablation_westd_cal256.",
+    "parent": "alpha_ablation_westd_cal256",
+    "conclusion": "killed",
+    "notes": "Director 决定跳过：α=0.5 checkpoint 损坏，无需修复。已有 α=0.0/1.0/2.0/4.0 四点，Reviewer 确认 SFT 下 α 无显著趋势（62/62/64 统计不可区分，57% 可能是 outlier）。四点足够。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5 --max_samples 100 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_alpha_0p5.json",
+      "server": "westd-11672",
+      "gpu": "cuda:3",
+      "pid": 64889,
+      "data_path": "openai/gsm8k",
+      "data_count": 100,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (RASP alpha=0.5, post-SFT)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5",
+      "eval_data": "GSM8K test (N=100, greedy)",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_sft_alpha_0p5.log"
+    },
+    "completed_at": "2026-05-17T01:57:48.940Z"
+  },
+  "timestamp": "2026-05-17T01:57:49.153249+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_sft_alpha4_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:41:39.959Z",
+    "updated_at": "2026-05-21T21:41:53.918Z",
+    "hypothesis": "If CKA-only GRPO provides ~0pp benefit over SFT (C1 decoupling), this pattern should hold for α=4.0 pruning as well. SFT α=4.0 GSM8K baseline is needed to compare against GRPO α=4.0 (interim 62.77%) to test universality of decoupling.",
+    "parent": "sft_alpha4_20_v2"
+  },
+  "timestamp": "2026-05-21T21:41:54.483768+00:00",
+  "trigger": "update_registry"
+}

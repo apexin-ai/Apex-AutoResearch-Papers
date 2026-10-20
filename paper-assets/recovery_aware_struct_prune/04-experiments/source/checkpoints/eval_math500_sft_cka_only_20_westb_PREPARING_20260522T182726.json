@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_math500_sft_cka_only_20_westb",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:27:25.380Z",
+    "updated_at": "2026-05-22T18:27:25.380Z"
+  },
+  "timestamp": "2026-05-22T18:27:26.253556+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "gradient_flow_analysis",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:44:25.606Z",
+    "updated_at": "2026-05-19T14:44:39.736Z",
+    "hypothesis": "CKA-only pruned models exhibit stronger gradient flow (higher per-layer gradient norms) compared to Standard pruned models, enabling more effective GRPO recovery. Standard pruning creates weaker gradient signals that limit training effectiveness."
+  },
+  "timestamp": "2026-05-19T14:44:40.375126+00:00",
+  "trigger": "update_registry"
+}

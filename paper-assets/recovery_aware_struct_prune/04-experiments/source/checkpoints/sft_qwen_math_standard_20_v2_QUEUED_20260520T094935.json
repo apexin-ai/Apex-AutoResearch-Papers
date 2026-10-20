@@ -1,0 +1,29 @@
+{
+  "exp_id": "sft_qwen_math_standard_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:18:20.201Z",
+    "updated_at": "2026-05-20T09:49:35.370Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math/checkpoint-935 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final --gpu 0 --num_train_epochs 1 --save_strategy no\"",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "12115",
+      "log_path": "~/runs/recovery_aware_struct_prune/sft_qwen_math_standard_20_v2.log",
+      "submitted_at": "2026-05-20T09:49:14.924Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Qwen2.5-Math-7B Standard 20% SFT recovery epoch 2 (resume from checkpoint-935 = epoch 1 完成). 原始 sft_qwen_math_standard_20 在 935/1870 steps 崩溃（磁盘满）。checkpoint-935 验证完好（339 tensors）。从 epoch 1 权重续跑 1 epoch。",
+    "parent": "sft_qwen_math_standard_20"
+  },
+  "timestamp": "2026-05-20T09:49:35.837545+00:00",
+  "trigger": "update_registry"
+}

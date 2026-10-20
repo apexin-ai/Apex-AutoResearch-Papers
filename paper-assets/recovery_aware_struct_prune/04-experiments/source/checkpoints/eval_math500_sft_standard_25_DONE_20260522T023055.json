@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval_math500_sft_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-21T02:58:32.492Z",
+    "updated_at": "2026-05-22T02:30:55.009Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "reproduce": {
+      "finished_at": "2026-05-21T02:58:40.587Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T02:58:45.343074+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "math500_accuracy": 0.13,
+          "correct": 65,
+          "n_total": 500
+        },
+        "notes": "v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。"
+      }
+    },
+    "notes": "v1 结果采用（v2 启动即崩溃）。结果文件: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json。Director 于 2026-05-21 批准采用 v1 数据。",
+    "hypothesis": "Standard 25% SFT model MATH-500 accuracy establishes pre-GRPO baseline for standard pruning at 25% sparsity, enabling SFT→GRPO recovery delta on MATH-500",
+    "completed_at": "2026-05-21T19:22:29.444Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json --max_new_tokens 2048 --seed 42",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "104592",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "sft_standard_25/checkpoint-1870",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870",
+      "seed": 42,
+      "checkpoint_source": "sft_standard_25",
+      "eval_data": "MATH-500",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/run.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "math500_accuracy": 0.14,
+      "correct": 70,
+      "n_total": 500,
+      "natural_eos": 185,
+      "truncated": 315,
+      "avg_response_length": 1367.82,
+      "v1_accuracy": 0.13,
+      "v1_correct": 65
+    }
+  },
+  "timestamp": "2026-05-22T02:30:55.668118+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_humaneval_sft_cka_only_20_2048_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T09:27:07.470Z",
+    "updated_at": "2026-05-19T09:27:40.664Z",
+    "hypothesis": "SFT CKA-only HumanEval v2 (PATH bug 修复版重跑)，验证 v1 的 0% 是否为假结果。v1 因 eval_humaneval.py 用裸 python 导致 164 题全部 sandbox 失败。修复后用 sys.executable 重跑。",
+    "parent": "eval_humaneval_sft_cka_only_20_2048"
+  },
+  "timestamp": "2026-05-19T09:27:41.058031+00:00",
+  "trigger": "update_registry"
+}

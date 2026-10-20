@@ -1,0 +1,37 @@
+{
+  "exp_id": "grpo_stage2_standard_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:30:01.400Z",
+    "updated_at": "2026-05-15T03:33:54.681Z",
+    "hypothesis": "D017: GRPO Stage 2 v2 negative control — SFT-warmed Standard-pruned model GRPO recovery with optimized params (max_completion_length=1024, max_samples=1000). Post-SFT: 64% greedy accuracy, EOS 99%, avg_len 176 tokens. Expected: GRPO improvement smaller than RASP counterpart.",
+    "parent": "sft_standard_20",
+    "spec": {
+      "data_path": "openai/gsm8k",
+      "data_count": 1000,
+      "model_name": "sft_standard_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20",
+      "eval_data": "gsm8k",
+      "hyperparams": {
+        "max_completion_length": 1024,
+        "learning_rate": 1e-06,
+        "num_train_epochs": 1,
+        "reward_desert_patience": 50,
+        "max_samples": 1000,
+        "num_generations": 4,
+        "beta": 0,
+        "loss_type": "dapo",
+        "temperature": 0.7,
+        "steps_per_generation": 8,
+        "gradient_checkpointing": true
+      }
+    }
+  },
+  "timestamp": "2026-05-15T03:33:54.760805+00:00",
+  "trigger": "update_registry"
+}

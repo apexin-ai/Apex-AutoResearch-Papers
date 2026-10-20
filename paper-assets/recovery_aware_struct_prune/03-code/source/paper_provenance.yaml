@@ -1,0 +1,712 @@
+paper:
+  title: ''
+  version: 42
+  generated_at: '2026-05-18T04:00:34.039904+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CKA functional overlap predicts recoverability of pruned groups under RLVR
+  type: empirical
+  evidence:
+  - 'mvp_rasp_pipeline: Spearman correlation between F(h) and per-group recoverability'
+  decisions:
+  - D001
+  deprecated: true
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: RASP achieves higher post-recovery accuracy than importance-only pruning at
+    35% sparsity
+  type: empirical
+  evidence:
+  - 'mvp_rasp_pipeline: GSM8K accuracy comparison Standard vs RASP after GRPO'
+  decisions:
+  - D001
+  deprecated: true
+- id: C006
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: At 35% sparsity, global importance ranking naturally prunes only MLP groups
+  type: empirical
+  evidence:
+  - 'mvp_rasp_pipeline: pruning mask analysis showing attention groups retained'
+  decisions:
+  - D001
+  deprecated: true
+- id: C007
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: RASP scoring S(h) = I(h) × (1-F(h))^α protects functionally unique structures
+    while allowing removal of high-overlap structures recoverable via RLVR
+  type: methodological
+  evidence:
+  - eq:score definition
+  - rlsqueezes2026 theoretical basis
+  decisions: []
+  deprecated: true
+- id: C009
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Per-layer capacity floor (≥40% MLP groups) prevents representational collapse
+    from unconstrained global ranking
+  type: methodological
+  evidence:
+  - observed failure at 20% sparsity without floor (mvp_rasp_pipeline_v2/v3)
+  decisions: []
+  deprecated: true
+- id: C012
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Two-stage recovery (SFT warmup → GRPO) is necessary because direct GRPO fails
+    on pruned models due to EOS collapse
+  type: methodological
+  evidence:
+  - 'grpo_rasp_20_4096: clipped_ratio=1.0, grad_norm=0'
+  - 'grpo_standard_20_4096: same failure'
+  decisions: []
+  deprecated: true
+- id: C013
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: No prior work optimizes pruning decisions for post-RLVR recoverability
+  type: positioning
+  evidence:
+  - survey of 15+ pruning/recovery papers
+  decisions: []
+  deprecated: true
+- id: C015
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'RASP extends LTH to paradigm-conditioned trainability: optimal subnetwork
+    depends on recovery paradigm'
+  type: conceptual
+  evidence:
+  - frankle2019lth
+  - rlsqueezes2026
+  decisions: []
+  deprecated: true
+- id: C018
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: RASP uses intra-layer CKA (width pruning) vs prior work inter-layer CKA (depth
+    pruning) — different granularity and objective
+  type: positioning
+  evidence:
+  - mpruner2024
+  - lachance2024cka
+  - kornblith2019cka
+  decisions: []
+  deprecated: true
+- id: C019
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Redundancy Paradox: high functional overlap predicts RLVR recoverability;
+    RASP prunes high-overlap, protects low-overlap'
+  type: conceptual
+  evidence:
+  - exp_id: mvp_rasp_pipeline_v4
+    description: 29% vs 1% post-prune demonstrates overlap-aware scoring advantage
+  decisions:
+  - 'D018: Redundancy Paradox direction corrected — RASP prunes high overlap, protects
+    low overlap'
+  deprecated: true
+- id: C020
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: RASP preserves 29% GSM8K vs 1% for importance-only at 20% sparsity (p<0.0001)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_rasp_pipeline_v4
+    metric: post_prune_accuracy
+    value: 29% vs 1%
+  decisions: []
+  deprecated: true
+- id: C022
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: After two-stage recovery, RASP recovers to [TBD]% vs [TBD]%
+  type: quantitative_placeholder
+  evidence:
+  - exp_id: grpo_stage2_rasp_20_v2
+    status: RUNNING
+  - exp_id: grpo_stage2_standard_20_v2
+    status: RUNNING
+  decisions: []
+  deprecated: true
+- id: C025
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Redundancy Paradox: functional overlap predicts RLVR recoverability'
+  type: conceptual
+  evidence:
+  - exp_id: mvp_rasp_pipeline_v4
+    description: post-prune gap attributable to CKA-based scoring
+  decisions: []
+  deprecated: true
+- id: C026
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 28-percentage-point post-prune advantage (29% vs 1% GSM8K) at 20% sparsity
+  type: quantitative
+  evidence:
+  - exp_id: mvp_rasp_pipeline_v4
+    metric: post_prune_accuracy
+    value: 29% vs 1%
+  decisions: []
+  deprecated: true
+- id: C028
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: After two-stage recovery, RASP reaches [TBD]% vs [TBD]%
+  type: quantitative_placeholder
+  evidence:
+  - exp_id: grpo_stage2_rasp_20_v2
+    status: RUNNING
+  - exp_id: grpo_stage2_standard_20_v2
+    status: RUNNING
+  decisions: []
+  deprecated: true
+- id: C031
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Paradigm-conditioned prunability extends LTH
+  type: conceptual
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C032
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: At 20% sparsity, 0/112 attention GQA groups pruned; all 200 pruned structures
+    are MLP groups
+  type: quantitative
+  evidence:
+  - exp_id: mvp_rasp_pipeline_v4
+    description: Pruning distribution at 20% sparsity
+  decisions: []
+  deprecated: true
+- id: C033
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: At 20% sparsity, 0/112 attention GQA groups pruned; Claim 2 applies specifically
+    to MLP groups
+  type: scope_limitation
+  evidence:
+  - exp_id: mvp_rasp_pipeline_v4
+    description: Pruning distribution observation
+  decisions:
+  - 'D018: Claim 2 scope limited to MLP groups at moderate sparsity'
+  deprecated: false
+- id: C034
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'GRPO reward-accuracy decoupling is bidirectional: neither reward increase
+    (unpruned) nor reward collapse (RASP) changes reasoning accuracy'
+  type: empirical
+  evidence:
+  - exp_id: eval_grpo_unpruned_v2_step100
+    metric: accuracy
+    value: 81.27%
+  - exp_id: eval_grpo_rasp_v9_step10
+    metric: accuracy
+    value: 61.87%
+  - exp_id: eval_sft_rasp_full_westd
+    metric: accuracy
+    value: 61.49%
+  decisions: []
+  deprecated: true
+- id: C035
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: RASP accuracy at collapse onset (step 10) = 61.87%, statistically indistinguishable
+    from SFT baseline 61.49% (p=0.52, N=1319)
+  type: quantitative
+  evidence:
+  - exp_id: eval_grpo_rasp_v9_step10
+    metric: accuracy
+    value: 61.87%
+  - exp_id: eval_sft_rasp_full_westd
+    metric: accuracy
+    value: 61.49%
+  decisions: []
+  deprecated: true
+- id: C036
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: GRPO training collapse destroys training dynamics (gradient signal, exploration
+    diversity) but not greedy-decoded reasoning capability
+  type: empirical
+  evidence:
+  - exp_id: eval_grpo_rasp_v9_step5
+    metric: accuracy
+    value: 60.65%
+  - exp_id: eval_grpo_rasp_v9_step10
+    metric: accuracy
+    value: 61.87%
+  - exp_id: eval_sft_rasp_full_westd
+    metric: accuracy
+    value: 61.49%
+  decisions: []
+  deprecated: true
+- id: C037
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'RASP serves as a diagnostic tool: comparing recovery-aware vs importance-only
+    pruning under identical GRPO reveals how structural pruning interacts with recovery
+    paradigms'
+  type: methodological
+  evidence:
+  - 'grpo_stage2_rasp_20_v9: collapse at step 10'
+  - 'grpo_stage2_standard_20_v8: collapse at step 60'
+  decisions: []
+  deprecated: true
+- id: C038
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: GRPO reward 0 to 0.661 over 100 steps yet accuracy stays 81.27% (identical
+    1072/1319 correct)
+  type: quantitative
+  evidence:
+  - 'eval_grpo_unpruned_v2_step100: accuracy=81.27%'
+  - 'eval_sft_unpruned_full: accuracy=81.27%'
+  - 'grpo_unpruned_v2: final_reward=0.661'
+  decisions: []
+  deprecated: true
+- id: C040
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: RASP collapses at step 10, 6x faster than Standard (step 60)
+  type: quantitative
+  evidence:
+  - 'grpo_stage2_rasp_20_v9: collapse_onset=step10'
+  - 'grpo_stage2_standard_20_v8: collapse_onset=step60'
+  decisions: []
+  deprecated: true
+- id: C043
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Bidirectional decoupling: RASP post-GRPO 61.87% approx post-SFT 61.49% (N=1319)'
+  type: quantitative
+  evidence:
+  - 'eval_grpo_rasp_v9_step10: accuracy=61.87%'
+  - 'eval_sft_rasp_full_westd: accuracy=61.49%'
+  decisions: []
+  deprecated: true
+- id: C047
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Post-prune RASP 29% vs Standard 1% (N=100, p<0.0001)
+  type: quantitative
+  evidence:
+  - 'alpha_ablation_sweep: alpha_1.0.accuracy=0.31'
+  decisions: []
+  deprecated: true
+- id: C052
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Post-SFT RASP 61.49% vs Standard 59.29% (+2.2pp, N=1319)
+  type: quantitative
+  evidence:
+  - 'eval_sft_rasp_full_westd: accuracy=61.49%'
+  - 'eval_sft_standard_full_westd: accuracy=59.29%'
+  decisions: []
+  deprecated: true
+- id: C058
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Redundancy-Stability Tradeoff: structures optimal for SFT are exactly those
+    needed for RLVR stability'
+  type: conceptual
+  evidence:
+  - 'grpo_stage2_rasp_20_v9: RASP collapse step 10'
+  - 'eval_sft_rasp_full_westd: RASP SFT advantage +2.2pp'
+  decisions: []
+  deprecated: true
+- id: C059
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 29% GSM8K accuracy after pruning vs 1% for importance-only (p<0.0001)
+  type: quantitative
+  evidence:
+  - 'eval_postprune_rasp_v9: accuracy=29%'
+  - 'eval_postprune_standard: accuracy=1%'
+  decisions: []
+  deprecated: true
+- id: C061
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'SFT recovery: RASP 61.49% vs Standard 59.29% (+2.2pp)'
+  type: quantitative
+  evidence:
+  - 'eval_sft_rasp_full_westd: accuracy=61.49%'
+  - 'eval_sft_standard_full_westd: accuracy=59.29%'
+  decisions: []
+  deprecated: true
+- id: C064
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: RASP collapses at step 10, 6x faster than Standard (step 60)
+  type: quantitative
+  evidence:
+  - 'grpo_stage2_rasp_20_v9: collapse_onset=step10'
+  - 'grpo_stage2_standard_20_v8: collapse_onset=step60'
+  decisions: []
+  deprecated: true
+- id: C068
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Post-collapse accuracy 61.87% unchanged from post-SFT
+  type: quantitative
+  evidence:
+  - 'eval_grpo_rasp_v9_step10: accuracy=61.87%'
+  - 'eval_sft_rasp_full_westd: accuracy=61.49%'
+  decisions: []
+  deprecated: true
+- id: C069
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Unpruned reward 0->0.661, accuracy unchanged 81.27%
+  type: quantitative
+  evidence:
+  - 'grpo_unpruned_v2: peak_reward=0.661'
+  - 'eval_grpo_unpruned_v2_step100: accuracy=81.27%'
+  - 'eval_sft_unpruned_full: accuracy=81.27%'
+  decisions: []
+  deprecated: true
+- id: C071
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: RASP collapses step 10, 6x faster than Standard at 20% sparsity
+  type: quantitative
+  evidence:
+  - 'grpo_stage2_rasp_20_v9: collapse_onset=step10'
+  - 'grpo_stage2_standard_20_v8: collapse_onset=step60'
+  decisions: []
+  deprecated: true
+- id: C074
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'SFT: RASP +2.2pp over importance-only'
+  type: quantitative
+  evidence:
+  - 'eval_sft_rasp_full_westd: accuracy=61.49%'
+  - 'eval_sft_standard_full_westd: accuracy=59.29%'
+  decisions: []
+  deprecated: true
+- id: C075
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CKA-only peak reward 0.354
+  type: quantitative
+  evidence:
+  - grpo_cka_only_20
+  decisions: []
+  deprecated: false
+- id: C076
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Four scoring criteria span from pure gradient importance to pure representational
+    diversity preservation
+  type: methodological
+  evidence:
+  - 'grpo_cka_only_20: CKA-only (pure representational diversity), peak reward 0.354'
+  - 'grpo_random_20: Random baseline, plateau pattern reward 0.14-0.19'
+  - 'grpo_standard_20_fair: Standard (pure gradient importance), stagnation reward 0.054'
+  - 'grpo_rasp_20_fair: RASP (combined), permanent collapse reward 0.010'
+  decisions: []
+  deprecated: false
+- id: C078
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: CKA-only corresponds to alpha->infinity limit of RASP scoring
+  type: methodological
+  evidence:
+  - 'alpha_ablation_sweep: U-shape confirmed across alpha={0,0.25,0.5,1.0,2.0}, alpha>=1.0 outperforms alpha<=0.5'
+  decisions: []
+  deprecated: false
+- id: C081
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Per-layer capacity floor retains >=40% MLP groups per layer
+  type: methodological
+  evidence:
+  - 'grpo_cka_only_20: 20% sparsity pruning with per-layer floor constraint, 199/784 MLP groups pruned'
+  decisions: []
+  deprecated: false
+- id: C085
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: SFT warmup restores EOS generation destroyed by pruning
+  type: methodological
+  evidence:
+  - 'grpo_rasp_20_4096: direct GRPO on pruned model fails (clipped_ratio=1.0, grad_norm=0, EOS collapse)'
+  - 'sft_rasp_20: SFT warmup restores generation ability, enabling subsequent GRPO training'
+  decisions: []
+  deprecated: false
+- id: C090
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: GRPO config held constant across all four pruned models
+  type: methodological
+  evidence:
+  - 'grpo_cka_only_20: v5 config (beta=0.01, T=0.4, rep_penalty=1.15, lr=1e-6, dapo, 100 steps)'
+  - 'grpo_random_20: identical v5 config'
+  - 'grpo_standard_20_fair: identical v5 config'
+  - 'grpo_rasp_20_fair: identical v5 config'
+  decisions: []
+  deprecated: false
+- id: C091
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Unpruned GRPO raises reward from 0 to 0.661 but accuracy stays 81.27%
+  type: quantitative
+  evidence:
+  - eval_grpo_unpruned_v2_step100
+  - grpo_unpruned_v2
+  decisions: []
+  deprecated: false
+- id: C093
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Standard-pruned GRPO accuracy 58.91% vs SFT 59.29%
+  type: quantitative
+  evidence:
+  - eval_grpo_standard_step50_full
+  - eval_sft_standard_full_westd
+  decisions: []
+  deprecated: false
+- id: C096
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: CKA-only peak reward 0.354, 4.4x Standard
+  type: quantitative
+  evidence:
+  - grpo_cka_only_20
+  - grpo_standard_20_fair
+  decisions: []
+  deprecated: false
+- id: C100
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: CKA-only self-recovery from 0.242 to 0.344
+  type: quantitative
+  evidence:
+  - grpo_cka_only_20
+  decisions: []
+  deprecated: false
+- id: C105
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: RASP peak 0.061, 85% zero reward variance
+  type: quantitative
+  evidence:
+  - grpo_rasp_20_fair
+  decisions: []
+  deprecated: false
+- id: C111
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 37.8% vs 7.7% inference latency reduction
+  type: quantitative
+  evidence:
+  - inference_speedup_plan016_v2
+  decisions: []
+  deprecated: false
+- id: C112
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: No prior work compares multiple pruning criteria under RL alignment
+  type: qualitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C114
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Self-Healing uses single pruning method without training dynamics
+  type: qualitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C117
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: CKA achieves 99.3% layer identification accuracy vs 45.4% for SVCCA
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C118
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CKA-only peak reward 0.354 with self-recovery
+  type: quantitative
+  evidence:
+  - grpo_cka_only_20
+  decisions: []
+  deprecated: false
+- id: C120
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Random peak 0.190, Standard peak 0.081, RASP peak 0.061
+  type: quantitative
+  evidence:
+  - grpo_random_20
+  - grpo_standard_20_fair
+  - grpo_rasp_20_fair
+  decisions: []
+  deprecated: false
+- id: C123
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Unpruned reward 0 to 0.661, accuracy unchanged 81.27%
+  type: quantitative
+  evidence:
+  - grpo_unpruned_v2
+  - eval_grpo_unpruned_v2_step100
+  decisions: []
+  deprecated: false
+- id: C124
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CKA-only peak reward 4.4x Standard
+  type: quantitative
+  evidence:
+  - grpo_cka_only_20
+  - grpo_standard_20_fair
+  decisions: []
+  deprecated: false
+- id: C126
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CKA-only SFT 63.91% vs Standard 59.29% (p~0.015)
+  type: quantitative
+  evidence:
+  - eval_sft_cka_only_20_n1319
+  - eval_sft_standard_full_westd
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 13/21
+  claims: 21
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 13
+    tier3: 8
+    tierX: 0
+  last_checked: '2026-05-18T04:00:34.039940+00:00'

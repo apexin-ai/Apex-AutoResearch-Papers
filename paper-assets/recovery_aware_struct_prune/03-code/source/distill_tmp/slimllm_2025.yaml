@@ -1,0 +1,11 @@
+paper_key: "slimllm_2025"
+title: "SlimLLM: Accurate Structured Pruning for Large Language Models"
+venue: "ICML 2025"
+full_text_available: false
+research:
+  baselines: [LLM-Pruner, LoRAPrune, LoRAP]
+  metrics: [{name: "perplexity (WikiText2, PTB)", direction: "lower_better"}, {name: "zero-shot accuracy (7 tasks)", direction: "higher_better"}]
+  datasets: [{name: "WikiText2", size: "standard"}, {name: "PTB", size: "standard"}, {name: "BoolQ/PIQA/HellaSwag/WinoGrande/ARC-e/ARC-c/OBQA", size: "standard"}]
+  ablation_dimensions: [channel importance, head importance, layer-based pruning ratio]
+  training_recipe: {}
+  method_family: "structured pruning with holistic importance evaluation"

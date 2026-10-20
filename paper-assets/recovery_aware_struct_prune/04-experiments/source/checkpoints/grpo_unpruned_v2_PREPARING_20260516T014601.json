@@ -1,0 +1,16 @@
+{
+  "exp_id": "grpo_unpruned_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:45:10.586Z",
+    "updated_at": "2026-05-16T01:46:01.371Z",
+    "hypothesis": "D043+ Unpruned GRPO v2 — 三模型 collapse 时间线对比的最后一块拼图。Unpruned SFT baseline (84% N=100) → GRPO recovery。与 RASP v9 (collapse ~step 10) 和 Standard v8 (collapse ~step 60) 对比。Prior grpo_unpruned_baseline (v1) 因磁盘满+无 SFT 步骤而无效 (D041)。v2 使用正确的 SFT checkpoint, save_steps=5 捕获 collapse dynamics。预期 collapse onset ~step 80 (基于 v1 观察)。Parent: sft_unpruned_baseline.",
+    "parent": "sft_unpruned_baseline"
+  },
+  "timestamp": "2026-05-16T01:46:01.482303+00:00",
+  "trigger": "update_registry"
+}

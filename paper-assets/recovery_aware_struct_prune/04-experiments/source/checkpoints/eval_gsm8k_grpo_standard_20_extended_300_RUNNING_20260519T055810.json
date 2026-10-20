@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_20_extended_300",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:57:41.667Z",
+    "updated_at": "2026-05-19T05:58:09.781Z",
+    "metrics": {
+      "accuracy": 0.5929,
+      "n_correct": 782,
+      "n_total": 1319,
+      "eos_rate": 0.9795,
+      "avg_response_length": 229.57,
+      "stderr": 0.01353
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300",
+    "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json",
+    "spec": {
+      "command": "python eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300 --greedy",
+      "server": "westd-29022",
+      "data_path": "gsm8k-test",
+      "data_count": 1319,
+      "model_name": "grpo_standard_20_extended_300",
+      "seed": 42,
+      "checkpoint_source": "grpo_standard_20_extended_300",
+      "eval_data": "gsm8k-test-1319"
+    }
+  },
+  "timestamp": "2026-05-19T05:58:10.140706+00:00",
+  "trigger": "update_registry"
+}

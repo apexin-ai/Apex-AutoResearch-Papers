@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01eb1c85d6e06ce524b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "submit cka stability westd3",
+  "task_key": "worker_submit_cka_stability_westd3_20260519T212743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_cka_stability_westd3_20260519T212743_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "653ed8a09b93b9d0ce144179c609870d28449b8715ea62b101b8a4b9cacd3ac8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动确认：\n\n- **Session**: `cka_stability` ALIVE\n- **PID**: 143187\n- **GPU**: cuda:3 占用 62.7GB / 97.9GB\n- **进度**: GQA head activations 已完成 (1024/1024)，正在收集 MLP group activations\n- **Registry**: `cka_scoring_stability_ablation` → RUNNING\n- **监控 cron**: 每 4 分钟自动检查日志和状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-cka-stability-westd3.md"
+}

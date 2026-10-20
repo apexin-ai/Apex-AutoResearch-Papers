@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_grpo_standard_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:27:18.869Z",
+    "updated_at": "2026-05-17T09:27:23.807Z",
+    "hypothesis": "MATH-500 accuracy for grpo_standard_20 vs sft_standard_20. If grpo_standard ≈ sft_standard on MATH-500 (as on GSM8K), C1 decoupling holds across benchmarks. Tests cross-benchmark generalization of C1.",
+    "parent": "eval_math500_sft_rasp_20"
+  },
+  "timestamp": "2026-05-17T09:27:24.302604+00:00",
+  "trigger": "update_registry"
+}

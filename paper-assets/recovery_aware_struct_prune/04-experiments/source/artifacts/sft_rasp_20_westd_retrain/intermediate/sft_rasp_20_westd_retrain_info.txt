@@ -1,0 +1,11 @@
+Experiment: sft_rasp_20_westd_retrain
+Server: westd-11672, cuda:0
+Started: 2026-05-16 01:00 UTC
+PID: 48946
+Tmux: sft_rasp_westd
+Log: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd.log
+Output: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd
+
+Params: epochs=2, lr=2e-5, bs=1, grad_accum=8, max_seq_length=2048, seed=42
+Model: pruned_rasp_20
+Purpose: Cross-server independent reproduction for full N=1319 eval

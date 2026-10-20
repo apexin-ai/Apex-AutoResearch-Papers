@@ -1,0 +1,102 @@
+# agent / loop_9.md
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_9.md`
+- **Structured JSON:** [`c38a8ca16c52925e3402.json`](../../sessions/c3/c38a8ca16c52925e3402.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 9
+reason: idle_timeout
+updated: '2026-05-15T17:39:30+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1。**不允许用任何其他 GPU**，即使 Director 指令也必须 push back
+- GRPO RASP v8 (westb cuda:0) 已 COLLAPSED，Director 设定 **step 30 硬性 kill 门槛**（grad_norm<0.05 OR frac_zero_std≥0.85 OR reward<0.03，任一即 kill）。step 30 ETA ~2026-05-15 18:03 UTC。**kill 后 cuda:0 优先级**: unpruned baseline GRPO > α=0.0 GRPO > GraSP GRPO（D036 决策）
+- GRPO Standard v8 (westb cuda:1) 健康但 frac_zero_std 上升中(0.5→0.675)，**不要 kill**，继续观察到 step 30-40
+- sft_standard_20 checkpoint 已删 (磁盘清理)，正在 westd 重训。**不要假设 westb 上还有这个 checkpoint**
+- α=0.5 checkpoint 损坏，Director 已决定**跳过不重跑**，四点 (0.0/1.0/2.0/4.0) 足够
+- 工作目录: westb/westd 均为 `/root/autodl-tmp/recovery_aware_struct_prune/`（不是 `/root/recovery_aware_struct_prune/`）
+- EMNLP 2026 ARR May 25 提交，**距今 10 天**
+
+### 2. 🖥️ 基础设施快照
+- **westb-23072**: 2× ~98GB GPU | Python: `/root/miniconda3/bin/python` (conda base) | 磁盘 65% (88GB free)
+  - cuda:0: GRPO RASP v8, PID 532861, tmux=未知, wandb=0wz7xpd5, **COLLAPSED step 23**
+  - cuda:1: GRPO Standard v8, PID 534667, tmux=未知, wandb=q34vz8j2, HEALTHY step 22
+  - HF cache: 已迁移到数据盘 (`/root/autodl-tmp/`)
+  - 模型路径: `sft_rasp_20`, `sft_standard_20`(重训中), `pruned_standard_20`, `pruned_rasp_20`
+  - Worker running: `worker_ops_download-base-model-westb` — 下载 base model shard1 10% (~27min ETA)
+- **westd-11672**: 2× ~95GB GPU | Python: `/root/miniconda3/bin/python` (conda base)
+  - cuda:0: sft_rasp_20_westd_retrain (PID 48946, tmux=sft_rasp_westd)
+  - cuda:1: sft_standard_20_westd_retrain (PID 49645, 但 cron 报 process gone miss 2/5)
+  - GraSP: `/root/GRASPrune/` (不要 pip install -r requirements.txt)
+  - Worker running: `worker_diag_sft-standard-westd-completion-and-eval` — 诊断 sft_standard_20_westd 完成状态
+- **Cron 活跃 (3)**:
+  - grpo_stage2_rasp_20_v8: running (pid 532861)
+  - grpo_stage2_standard_20_v8: running (pid 534667)
+  - sft_standard_20_westd_retrain: **process gone, miss 2/5** — Worker 正在诊断
+
+### 3. 📊 当前状态
+**刚做完**: D032-D036 决策链——GRPO v7 双组崩溃(磁盘满)→v8 修复(缓存迁移+GPU映射+8bit optimizer)→v8 启动→step 20 检查→RASP collapse 确认→kill 门槛设定→unpruned baseline GRPO 准备。同时完成了 GraSP post-SFT eval (41%, p=0.001)、α ablation 全 sweep (α=2.0 完成)、三方对比确认 (Standard 64% > RASP 57% > GraSP 41%)。
+
+**RUNNING 实验**:
+| exp_id | 服务器 | GPU | 状态 | 关键 |
+|--------|--------|-----|------|------|
+| grpo_stage2_rasp_20_v8 | westb | cuda:0 | COLLAPSED step 23 | step 30 kill |
+| grpo_stage2_standard_20_v8 | westb | cuda:1 | HEALTHY step 22 | frac_zero_std 上升中 |
+| sft_standard_20_westd_retrain | westd | cuda:1 | process gone | Worker 诊断中 |
+| sft_rasp_20_westd_retrain | westd | cuda:0 | RUNNING | ~35-40min |
+
+**PREPARING (待推进)**:
+- grpo_unpruned_baseline: 等 westb cuda:0 释放 + base model 下载完成
+- eval_sft_grasp_20_westd, eval_sft_rasp_20_westd_n100: 等 westd SFT retrain 完成
+- eval_sft_standard_20_full, eval_sft_rasp_20_full: N=1319 full eval，等 westd retrain 完成
+
+**等待中**:
+- Worker `download-base-model-westb`: 下载 unpruned base model，shard1 进度 10%，~27min
+- Worker `sft-standard-westd-completion-and-eval`: 诊断 sft_standard_20_westd_retrain 进程消失
+- Cron 回调: grpo_stage2_rasp_20_v8 step 30 kill (~18:03 UTC)、grpo_stage2_standard_20_v8 持续监控
+
+### 4. 📋 待办（条件触发式）
+- **GRPO RASP v8 到 step 30** (~18:03 UTC) → 检查 kill 条件 → kill → 释放 westb cuda:0 → 提交 unpruned baseline GRPO (D036 优先级)
+- **GRPO Standard v8 到 step 30** (~18:14 UTC) → 检查 frac_zero_std 是否 ≥0.85 → 如果也 collapse 则记录双 collapse（核心假设失败，需 pivot）；如果健康则继续跑到 100 步
+- **base model 下载完成** → 准备 unpruned baseline GRPO 代码和参数（与 v8 完全一致，只换 model_path 为 unpruned）
+- **sft_standard_20_westd_retrain Worker 诊断完成** → 如果成功则推进 N=100 eval；如果失败则在 westd cuda:1 重启 SFT
+- **sft_rasp_20_westd_retrain 完成** → N=100 eval (expected ~57%) → 然后 N=1319 full eval
+- **westd 两个 SFT retrain 都完成** → 推进 eval_sft_grasp_20_westd (GraSP eval on westd)
+- **GRPO Standard v8 100 步完成** → eval N=100 greedy → 判定 RASP vs Standard 差异 → 走 ROADMAP contingency 表
+- **GRPO 双组都完成** → 如果 RASP collapse + Standard 存活 → 这本身就是 finding（剪枝策略影响 RL stability），但需要 unpruned baseline 证明不是 GRPO 方法问题
+
+### 5. 🎯 战略上下文
+**项目核心局面**: Post-prune claim 已崩塌 (RASP 31% vs Standard 27%, p=0.54)。Post-SFT Standard 反超 RASP 7pp。**GRPO v8 是唯一能救核心假设的路径**——如果 GRPO 阶段 RASP 显著优于 Standard，story 变为"CKA-aware pruning 创造更好的 RL recovery dynamics"。
+
+**RASP v8 已 collapse**，Standard 暂时健康。如果 Standard 也 collapse → 双 collapse = GRPO 方法在剪枝模型上不 work，需要根本性 pivot。如果 Standard 存活 → Standard > RASP（最差情况），但 unpruned baseline 仍可能证明"collapse 是剪枝导致的"这一 subsidiary finding。
+
+**关键决策链**: D027(post-prune claim 崩塌) → D029(SFT Standard>RASP) → D033(α ablation 不显著) → D034(GraSP 41% 是核心 finding) → D035(RASP collapse 不 kill 到 step 50) → D036(step 30 改为硬 kill + unpruned baseline)
+
+**最容易判断错的事**:
+1. **不要把 RASP collapse 当作项目失败**——如果 Standard 存活，"collapse asymmetry"本身是可发表的 finding
+2. **unpruned baseline GRPO 是 Reviewer 必问的控制实验**——必须证明 collapse 不是 GRPO 本身的问题
+3. **GraSP 41% (p=0.001) 是目前最强的论文素材**——三方对比 Standard 64% > RASP 57% > GraSP 41%，gradient-based 远劣是确定的
+4. **westb 磁盘曾多次满**——GRPO 输出 + checkpoint 吃空间快，注意监控 `df -h`
+5. **submit_training_job 的 command 必须自带环境激活**（source conda），不要假设 .venv 存在
+6. **GRPO v1-v7 全部失败**（截断/collapse/OOM/磁盘满），v8 才是第一个稳定版本——不要轻易改参数
+
+
+---

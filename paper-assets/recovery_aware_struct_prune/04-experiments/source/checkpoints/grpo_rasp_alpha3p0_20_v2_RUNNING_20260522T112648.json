@@ -1,0 +1,30 @@
+{
+  "exp_id": "grpo_rasp_alpha3p0_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:40:19.362Z",
+    "updated_at": "2026-05-22T11:26:48.112Z",
+    "hypothesis": "Re-run of grpo_rasp_alpha3p0_20 (checkpoint corrupted by disk-full). α=3.0 GRPO 100 steps on sft_rasp_alpha3p0_20/checkpoint-935. Critical for dose-response curve (α=3.0 between α=2.0 peak and α=4.0 decline).",
+    "parent": "grpo_rasp_alpha3p0_20",
+    "spec": {
+      "server": "westd-32935",
+      "gpu": "cuda:0",
+      "command": "train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2 --max_steps 100 --learning_rate 1e-6 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_completion_length 512 --temperature 0.4 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_8bit --seed 42 --run_name grpo_rasp_alpha3p0_20_v2",
+      "pid": "42003",
+      "data_path": "openai/gsm8k (train split)",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (sft_rasp_alpha3p0_20)",
+      "seed": 42,
+      "checkpoint_source": "sft_rasp_alpha3p0_20/checkpoint-935",
+      "eval_data": "N/A - GRPO training",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2",
+      "log_path": "/tmp/grpo_alpha3p0_v2.log"
+    }
+  },
+  "timestamp": "2026-05-22T11:26:48.748165+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_15_seed456_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:00:15.387Z",
+    "updated_at": "2026-05-20T23:00:41.895Z",
+    "hypothesis": "GSM8K N=1319 eval on Standard 15% GRPO seed456 (v3 checkpoint on data disk). Fixed: tokenizer.json copied from seed123, HF_HOME pointing to data disk cache.",
+    "parent": "grpo_standard_15_seed456_v3"
+  },
+  "timestamp": "2026-05-20T23:00:42.415972+00:00",
+  "trigger": "update_registry"
+}

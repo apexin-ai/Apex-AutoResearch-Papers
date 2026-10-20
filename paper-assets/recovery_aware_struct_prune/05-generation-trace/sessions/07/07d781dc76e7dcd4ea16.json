@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07d781dc76e7dcd4ea16",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure fig2 reward trajectories",
+  "task_key": "worker_paper_figure_fig2_reward_trajectories_20260518T022200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_reward_trajectories_20260518T022200_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "e3c194d859a0efd1dd8d0c93f01157bc2dfce33b37cc06020748cf07c9ba5a8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure looks good. All 5 trajectories are clearly distinguishable, annotations are readable, and the visual hierarchy is correct.\n\n**Generated files:**\n- PDF: `figures/paper/fig2_reward_trajectories.pdf` (19.5 KB)\n- PNG: `figures/paper/fig2_reward_trajectories.png` (189 KB)\n- Script: `figures/paper/gen_fig2_reward_trajectories.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-reward-trajectories.md"
+}

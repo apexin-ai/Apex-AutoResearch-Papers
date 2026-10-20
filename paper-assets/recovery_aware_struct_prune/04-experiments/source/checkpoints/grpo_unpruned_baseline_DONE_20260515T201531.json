@@ -1,0 +1,59 @@
+{
+  "exp_id": "grpo_unpruned_baseline",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:29:03.104Z",
+    "updated_at": "2026-05-15T20:15:30.998Z",
+    "hypothesis": "D032: Unpruned baseline GRPO — 证明 GRPO 本身在未剪枝 DeepSeek-R1-Distill-Qwen-7B 上有效。如果 RASP/Standard 剪枝模型 collapse 而 unpruned 不 collapse，证明 collapse 是剪枝导致的，不是 GRPO 方法问题。Reviewer 关键缺失证据。参数与 v8 完全一致。",
+    "notes": "NEGATIVE (collapse). 100/100 steps, ~49min. Peak reward 0.044 (step 20) → step 80 collapse → final: reward=0, frac_zero_std=1.0, clipped_ratio=1.0. Checkpoint save failed (disk full 250G/250G). Unpruned model collapses under same GRPO v8 params — collapse is GRPO config issue, not pruning artifact.",
+    "spec": {
+      "command": "bash run_grpo_unpruned.sh",
+      "server": "westb-23072",
+      "gpu_id": "cuda:0",
+      "pid": 547366,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "model_path": "/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B",
+      "output_dir": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_baseline",
+      "log_path": "/tmp/grpo_unpruned_baseline.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_baseline",
+      "seed": "default",
+      "data_path": "train_grpo_v5.py default (GSM8K)",
+      "data_count": "N/A",
+      "params": {
+        "beta": 0.01,
+        "temperature": 0.4,
+        "repetition_penalty": 1.15,
+        "format_reward_weight": 0.1,
+        "optim": "adamw_bnb_8bit",
+        "loss_type": "dapo",
+        "learning_rate": 1e-06,
+        "max_steps": 100,
+        "max_completion_length": 1024,
+        "gradient_checkpointing": true,
+        "save_steps": 50
+      }
+    },
+    "wandb_run_id": "e49c42ha",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T19:34:07.826Z",
+    "metrics": {
+      "steps_completed": 100,
+      "runtime_min": 49,
+      "peak_reward": 0.044,
+      "peak_reward_step": 20,
+      "collapse_onset_step": 80,
+      "final_reward": 0,
+      "final_frac_zero_std": 1,
+      "final_clipped_ratio": 1,
+      "final_mean_terminated_length": 0,
+      "checkpoint_saved": false,
+      "disk_full": true
+    }
+  },
+  "timestamp": "2026-05-15T20:15:31.146972+00:00",
+  "trigger": "update_registry"
+}

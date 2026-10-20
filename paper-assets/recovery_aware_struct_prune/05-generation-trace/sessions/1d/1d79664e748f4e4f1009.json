@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d79664e748f4e4f1009",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix grpo path and launch",
+  "task_key": "worker_fix_grpo_path_and_launch_20260514T170649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_grpo_path_and_launch_20260514T170649_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "117c91579dd35c103256b7ebe1cd90401e14bc9d389c6e617db61ca4bc37e909"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO rasp_20 启动成功：\n\n- **GPU 0**: python 进程 PID 221271，已占用 12488MiB 显存\n- 模型加载完成，正在准备 GSM8K 数据集\n- GPU 1 eval 不受影响（PID 217541，12286MiB）\n\n**完成总结**：\n1. 修复了 `run_grpo_v4.sh` 的 `MODEL_PATH` → `/root/autodl-tmp/pruned_${METHOD}_${SPARSITY}`\n2. 修复了 `OUTPUT_DIR` → `/root/autodl-tmp/recovered_${METHOD}_${SPARSITY}`\n3. GRPO rasp_20 训练已在 cuda:0 上启动，日志：`~/runs/recovery_aware_struct_prune/grpo_rasp_20.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-grpo-path-and-launch.md"
+}

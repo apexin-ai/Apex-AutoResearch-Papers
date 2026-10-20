@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_gsm8k_sft_cka_only_15",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:19:42.152Z",
+    "updated_at": "2026-05-20T18:33:53.213Z",
+    "hypothesis": "GSM8K N=1319 eval on CKA-only 15% SFT checkpoint (pre-GRPO). Fills cross-sparsity comparison table: CKA-only 15% SFT baseline. Compare with Standard 15% SFT (eval_gsm8k_sft_standard_15) to quantify pruning method effect at SFT stage for 15% sparsity.",
+    "parent": "pipeline_cka_only_15",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_15 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json",
+      "server": "westd-29022",
+      "gpu": "cuda:1",
+      "pid": 262728,
+      "data_path": "gsm8k/test",
+      "data_count": 1319,
+      "model_name": "sft_cka_only_15 (Qwen2.5-7B, 15% CKA-only sparsity, SFT only)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_15",
+      "eval_data": "gsm8k:test:1319",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gsm8k_accuracy": 0.7218,
+      "correct": 952,
+      "total": 1319
+    },
+    "completed_at": "2026-05-20T18:33:53.213Z"
+  },
+  "timestamp": "2026-05-20T18:33:53.703038+00:00",
+  "trigger": "update_registry"
+}

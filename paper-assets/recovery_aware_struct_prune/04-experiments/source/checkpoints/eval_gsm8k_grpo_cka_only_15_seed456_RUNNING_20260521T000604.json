@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_gsm8k_grpo_cka_only_15_seed456",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:35:29.444Z",
+    "updated_at": "2026-05-21T00:06:03.984Z",
+    "hypothesis": "GSM8K N=1319 eval on CKA-only 15% GRPO seed456. Multi-seed validation for 15% sparsity gap statistical significance.",
+    "parent": "grpo_cka_only_15_seed456",
+    "spec": {
+      "command": "python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_15_seed456/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed456_n1319.json",
+      "server": "westd-29022",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B-pruned-cka_only-15pct-grpo-seed456",
+      "seed": 42,
+      "checkpoint_source": "grpo_cka_only_15_seed456",
+      "eval_data": "gsm8k_test_n1319"
+    },
+    "notes": "[2026-05-20T23:15] Director 确认进程仍在运行 (PID 285821, cuda:1, 824/1319, 98% GPU利用率)。Cron 5x miss 误判为 failed，已恢复 RUNNING。",
+    "metrics": {
+      "accuracy": 0.721,
+      "n_correct": 951,
+      "n_total": 1319,
+      "stderr": 0.0123,
+      "eos_rate": 0.9894,
+      "avg_response_length": 201.94
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T00:06:04.602736+00:00",
+  "trigger": "update_registry"
+}

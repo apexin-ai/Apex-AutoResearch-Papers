@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_sft_cka_only_20_full",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:22:00Z",
+    "updated_at": "2026-05-17T19:01:36.713Z",
+    "hypothesis": "CKA-only 20% post-SFT GSM8K N=1319. post-prune 38.5% highest, if post-SFT also highest then CKA-only scoring has SFT advantage; if converges to ~60% confirms SFT equalizes. N=200 pilot showed 64.0%.",
+    "parent": "eval_sft_cka_only_20",
+    "spec": {
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "44066",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "model_name": "sft_cka_only_20",
+      "seed": 42,
+      "checkpoint_source": "sft_cka_only_20",
+      "eval_data": "GSM8K (1319 samples, greedy)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T19:01:31.886Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T19:01:36.713Z"
+  },
+  "timestamp": "2026-05-17T19:01:37.013876+00:00",
+  "trigger": "update_registry"
+}

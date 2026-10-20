@@ -1,0 +1,34 @@
+{
+  "exp_id": "prune_rasp_30",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:03:45.925Z",
+    "updated_at": "2026-05-16T09:04:22.915Z",
+    "conclusion": "success",
+    "metrics": {
+      "target_sparsity": 0.3,
+      "actual_sparsity": 0.2873,
+      "mlp_groups_pruned": "301/784",
+      "attn_groups_pruned": "0/112",
+      "params_pruned": 5427842560,
+      "model_size_gb": 11
+    },
+    "spec": {
+      "command": "python src/prune.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --mode rasp --sparsity 0.30 --alpha 1.0 --dtype bfloat16 --importance_path results/importance_scores.pt --cka_path results/cka_scores.pt",
+      "server": "westb-23072",
+      "data_path": "calibration data",
+      "data_count": 512,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30",
+      "log_path": "N/A (CPU)"
+    },
+    "completed_at": "2026-05-16T09:04:22.915Z"
+  },
+  "timestamp": "2026-05-16T09:04:23.046711+00:00",
+  "trigger": "update_registry"
+}

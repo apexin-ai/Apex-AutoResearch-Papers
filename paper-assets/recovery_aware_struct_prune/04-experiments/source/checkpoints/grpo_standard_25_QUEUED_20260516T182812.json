@@ -1,0 +1,15 @@
+{
+  "exp_id": "grpo_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:42:41.240Z",
+    "updated_at": "2026-05-16T18:28:12.458Z",
+    "hypothesis": "Standard 25% GRPO recovery (100 steps). Negative control for grpo_rasp_25. 预期 collapse 比 RASP 更早/更严重（如 20% 所示）。Parent: sft_standard_25."
+  },
+  "timestamp": "2026-05-16T18:28:12.664922+00:00",
+  "trigger": "update_registry"
+}

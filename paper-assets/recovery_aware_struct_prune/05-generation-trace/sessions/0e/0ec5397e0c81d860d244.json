@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ec5397e0c81d860d244",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest westd results",
+  "task_key": "worker_harvest_westd-results_20260517T103609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_westd-results_20260517T103609_result.json",
+    "occurrence": 1,
+    "bytes": 2432,
+    "sha256": "8c984d279cdc8087cefb9cc21a05b5a508550af2c98404c0af046176ab88f28c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。汇总如下：\n\n---\n\n## 任务 1: 结果文件汇总\n\n| 文件 | 模型 | Benchmark | Accuracy | n_correct/n_total | EOS Rate | Avg Len |\n|---|---|---|---|---|---|---|\n| `eval_postprune_rasp_25.json` | pruned_rasp_25 | GSM8K | **0.21** | 21/100 | 56% | 2033 |\n| `eval_postprune_standard_25.json` | pruned_standard_25 | GSM8K | **0.16** | 16/100 | 23% | 3241 |\n| `eval_sft_rasp_rlvr_20_qwen_math.json` | sft_rasp_rlvr_20_qwen_math | GSM8K | **0.73** | 146/200 | 100% | 127 |\n\n关键观察：\n- RASP 25% 剪枝后 GSM8K = 21%，Standard 25% = 16%，RASP 优势 +5pp\n- Standard 剪枝的 EOS rate 仅 23%（77% 被 4096 截断），说明模型退化严重，无法收敛到答案\n- SFT RASP+RLVR 恢复到 73%，EOS rate 100%，avg_len 仅 127 tokens，非常干净\n\n## 任务 2: eval_sft_rasp_rlvr_20_qwen_math 状态\n\n**已正常完成**。日志显示 200/200 样本跑完，最终 acc=0.7300，结果已保存。文件时间戳 `May 17 02:08`。registry 显示 RUNNING 是因为没有正确更新状态，实际进程已结束。\n\n另外发现 `eval_grpo_rasp_rlvr_20_qwen_math.json` 也已存在（May 17 04:17, 142KB）。\n\n## 任务 3: HumanEval Pass@1 诊断\n\n所有 HumanEval 结果汇总：\n\n| 模型 | Pass@1 | n_correct/164 | Avg Len | Median Len |\n|---|---|---|---|---|\n| **unpruned** (DeepSeek-R1-Distill-Qwen-7B) | **0.0183** | 3/164 | 512.0 | 512.0 |\n| grpo_standard_20 | **0.0183** | 3/164 | 505.9 | 512.0 |\n| sft_standard_20 | **0.0305** | 5/164 | 505.4 | 512.0 |\n| sft_rasp_20 | **0.0732** | 12/164 | 420.5 | 512.0 |\n| grpo_rasp_20 | **0.1037** | 17/164 | 417.6 | 512.0 |\n\n### 诊断结论：**max_new_tokens=512 截断是根因，不是模型能力崩塌**\n\n证据：\n1. **连 unpruned 基座模型也只有 1.8% Pass@1**，median response length = 512.0（全部被截断）\n2. `eval_humaneval.py` 第 70 行：`default=512`。DeepSeek-R1-Distill 是 thinking model，生成代码前会先输出大量推理 chain-of-thought 文本（\"Okay, I need to...\"），512 tokens 根本不够写完代码\n3. 错误全部是 SyntaxError（代码在思考文本中间被截断），不是逻辑错误\n4. RASP 模型相对好一些（10.4% vs 1.8%），可能因为 SFT/GRPO 训练让输出更紧凑，偶尔能在 512 tokens 内完成代码\n\n**修复方案**: `max_new_tokens` 改为 2048 或更高，重新跑所有 HumanEval 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-westd-results.md"
+}

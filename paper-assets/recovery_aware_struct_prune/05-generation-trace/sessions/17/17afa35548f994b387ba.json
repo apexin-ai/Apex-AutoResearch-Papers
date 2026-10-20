@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "17afa35548f994b387ba",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "audit figures compile compliance",
+  "task_key": "worker_audit_figures_compile_compliance_20260524T045159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_figures_compile_compliance_20260524T045159.log",
+    "occurrence": 1,
+    "bytes": 1324281,
+    "sha256": "8b7dfe8b7a4b63a677f4ea3c60281187da1269928c002dcb0e9d3987c5b114da"
+  },
+  "statistics": {
+    "messages": 290,
+    "user_turns": 2,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 58,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 105,
+      "tool_result": 105,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "17afa35548f994b387ba-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "17afa35548f994b387ba-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "17afa35548f994b387ba-part-0003.json",
+          "message_count": 67
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "17afa35548f994b387ba-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "17afa35548f994b387ba-part-0003.json",
+          "message_count": 89
+        },
+        {
+          "path": "17afa35548f994b387ba-part-0004.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-figures-compile-compliance.md"
+}

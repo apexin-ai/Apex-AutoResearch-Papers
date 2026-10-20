@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:11:09.017Z",
+    "updated_at": "2026-05-23T10:43:44.276Z",
+    "hypothesis": "Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch.",
+    "parent": "sft_qwen_math_cka_only_20",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048",
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "data_path": "HuggingFaceH4/MATH-500",
+      "data_count": 500,
+      "model_name": "Qwen2.5-Math-7B-CKA-only-20%-SFT-ep1",
+      "seed": 42,
+      "checkpoint_source": "sft_qwen_math_cka_only_20_final",
+      "eval_data": "MATH-500 (N=500, max_new_tokens=2048)",
+      "pid": 250766,
+      "log_path": "/tmp/eval_math500_sft_qwen_cka_only_20.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T10:43:44.929617+00:00",
+  "trigger": "update_registry"
+}

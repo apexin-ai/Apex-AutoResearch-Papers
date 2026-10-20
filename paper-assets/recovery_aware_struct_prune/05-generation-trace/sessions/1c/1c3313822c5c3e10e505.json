@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c3313822c5c3e10e505",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd cleanup grasp restart",
+  "task_key": "worker_code_westd-cleanup-grasp-restart_20260515T124017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-cleanup-grasp-restart_20260515T124017_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "e577c6d01b9d2c397eef37385c17e2d9d8cd3bb8668fa8c694386e666910f704"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载中，运行正常。\n\n---\n\n**清理报告：**\n\n| 操作 | 释放空间 |\n|------|---------|\n| 删除 `graspune_output/`（冗余中间产物，`pruned_graspune_20/` 已有最终模型） | ~12GB |\n| pip cache purge（198 files） | ~2.1GB |\n| conda clean --all | ~107MB |\n\n磁盘状态：228GB used → 125GB used，**126GB 可用**（目标 ≥30GB）。\n\n**GraSP baseline 已提交：**\n- exp_id: `grasp_baseline_westd`\n- 服务器: westd-11672, cuda:0\n- PID: 34195, tmux session: `grasp_baseline_westd`\n- 跳过 Phase 1/2（pruning + convert 已完成），直接跑 Phase 3 eval（GSM8K）\n- 结果将输出到 `results/eval_pruned_graspune_20_greedy.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-cleanup-grasp-restart.md"
+}

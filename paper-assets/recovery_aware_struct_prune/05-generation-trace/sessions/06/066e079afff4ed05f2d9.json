@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "066e079afff4ed05f2d9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh launch sft depth first eval westd2",
+  "task_key": "worker_ssh_launch_sft_depth_first_eval_westd2_20260522T144004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_sft_depth_first_eval_westd2_20260522T144004_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "364c6f3de1bee3771dce37570a69c0a0a668b7049e778600c1fe968fdf09dd57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认启动成功。\n\n**汇报：**\n\n1. **Checkpoint**: 完整，`/root/autodl-tmp/recovery_aware_struct_prune/sft_depth_first_20/model.safetensors` (12GB)，直接使用该目录作为 model_path\n2. **PID**: 54882（python 进程），父 bash PID 54877\n3. **GPU:2**: 已占用 12595 MiB，93% 利用率\n4. **日志**: 模型加载成功，1319 test samples，正在推理中（~2s/it，预计 ~40 分钟完成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-sft-depth-first-eval-westd2.md"
+}

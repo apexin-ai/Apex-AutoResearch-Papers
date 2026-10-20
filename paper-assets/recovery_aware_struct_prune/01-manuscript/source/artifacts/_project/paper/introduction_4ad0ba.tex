@@ -1,0 +1,37 @@
+\section{Introduction}
+\label{sec:intro}
+
+Large language models trained with Reinforcement Learning with Verifiable Rewards (RLVR) achieve strong performance on mathematical and logical reasoning~\citep{deepseek2025r1,shao2024grpo}, but their parameter counts and extended chain-of-thought traces make deployment costly.
+Structured pruning---removing entire attention heads or MLP channels---offers a hardware-friendly compression path that reduces both memory and latency without specialized sparse-computation support~\citep{llmpruner2023,graspprune2026}.
+However, structured pruning at moderate sparsity severely degrades reasoning ability, necessitating a post-pruning recovery stage.
+\citet{selfhealing2025} show that RLVR-based recovery substantially outperforms SFT-based recovery for pruned reasoning models, establishing RLVR as the preferred recovery paradigm.
+
+Despite this, current approaches treat pruning and recovery as independent steps: pruning methods optimize for immediate post-pruning accuracy~\citep{resp2025,graspprune2026,bonsai2025}, while recovery methods operate on whatever architecture they receive~\citep{selfhealing2025,paser2025}.
+No prior work has studied whether the \emph{choice} of what to prune affects how well RLVR can subsequently recover reasoning---or whether this interaction differs from SFT-based recovery.
+This gap is consequential because RLVR and SFT impose fundamentally different functional demands on the retained architecture: \citet{rlsqueezes2026} show that RLVR recovers through global exploration and path compression, while SFT recovers through local trajectory imitation.
+The optimal set of structures to retain should therefore depend on the recovery paradigm.
+
+We hypothesize that \emph{functional overlap}---the degree to which a structure's computation is redundant with its within-layer peers---positively predicts RLVR recoverability.
+If a pruned structure has high overlap with retained structures, RLVR can absorb its function through global policy optimization over the remaining architecture.
+Conversely, structures with unique, non-redundant computations are difficult to recover once removed.
+This yields what we term the \textbf{Redundancy Paradox}: traditional pruning preferentially removes high-overlap structures because their function is ``already covered,'' while recovery-aware pruning \emph{retains} them because their function is ``easily redistributed'' by RLVR.
+The same structural property receives opposite treatment depending on whether one optimizes for immediate accuracy or post-recovery performance.
+
+We propose \textbf{Recovery-Aware Structured Pruning (\rasp{})}, a three-stage framework that incorporates recoverability into the pruning decision.
+In Stage~1, \rasp{} computes for each structure both a gradient-based importance score and a functional overlap score via intra-layer Centered Kernel Alignment (CKA;~\citealp{kornblith2019cka}).
+In Stage~2, these are combined into a recovery-aware score $S(h) = I(h) \times (1 - F(h))^\alpha$ that protects structures which are both important \emph{and} functionally unique, while allowing removal of important-but-redundant structures whose function RLVR can redistribute.
+In Stage~3, the pruned model undergoes a brief SFT warmup to restore generation competence, followed by GRPO-based RLVR recovery~\citep{shao2024grpo} to restore reasoning ability.
+Unlike prior CKA-based pruning that uses inter-layer similarity for depth pruning~\citep{mpruner2024,lachance2024cka}, \rasp{} uses \emph{intra-layer} CKA between individual GQA groups and MLP channels to predict per-structure recoverability---a finer granularity optimizing for a fundamentally different objective.
+
+We evaluate \rasp{} on DeepSeek-R1-Distill-Qwen-7B~\citep{deepseek2025r1} at 20\% structured sparsity.
+At matched sparsity, \rasp{}-pruned models retain 29\% GSM8K~\citep{cobbe2021gsm8k} accuracy immediately after pruning, compared to 1\% for importance-only pruning ($N{=}100$, $p{<}0.0001$)---a 28-percentage-point advantage attributable to the recovery-aware scoring criterion.
+After SFT warmup, both pruning strategies recover substantially (57--64\%), with detailed comparison deferred to \S\ref{sec:experiments}.
+[TBD: GRPO results]
+
+Our contributions are:
+\begin{enumerate}[nosep,leftmargin=*]
+    \item We identify the \emph{Redundancy Paradox}---that functional redundancy, typically a signal for removal in standard pruning, is the property that enables RLVR recovery---and formalize it through intra-layer CKA-based functional overlap scoring.
+    \item We propose \rasp{}, a recovery-aware pruning framework that integrates functional overlap into structural pruning decisions, achieving 29\% post-prune GSM8K accuracy versus 1\% for importance-only pruning at matched 20\% sparsity on DeepSeek-R1-Distill-Qwen-7B.
+    \item [TBD: GRPO recovery results---contribution demonstrating that \rasp{}'s post-prune advantage translates to superior post-RLVR reasoning performance.]
+    \item We present preliminary evidence that the optimal pruning strategy may be conditioned on the recovery paradigm~\citep{frankle2019lth}, supporting the notion of \emph{paradigm-conditioned prunability} [TBD: pending GRPO confirmation and statistical validation].
+\end{enumerate}

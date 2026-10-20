@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "007461351e427069485c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops graspune env prep",
+  "task_key": "worker_ops_graspune-env-prep_20260514T235856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_graspune-env-prep_20260514T235856_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "e8cdc708f50093c382fbc66ef474c810cce32cd6a7e03026522c77693b02cbc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRASPrune 环境就绪。汇总：\n\n| 检查项 | 状态 |\n|--------|------|\n| GRASPrune 代码 | `/root/GRASPrune` 已存在 |\n| 依赖包 | 已装（torch 2.10, transformers 5.8, 版本高于 requirements.txt 要求） |\n| gates import | `LlamaMLPGate`, `LlamaAttnGate`, `QwenMLPGate`, `QwenAttnGate` ✓ |\n| pipeline import | `run_pruning_pipeline`, `PruningConfig` ✓ |\n| 模型路径 | `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/config.json` 存在 ✓ |\n| run_grasp_prune.sh | `MODEL_PATH` 指向正确路径 ✓ |\n\n注意：pipeline.py 没有 `GRASPrunePipeline` 类，实际入口是函数 `run_pruning_pipeline(config: PruningConfig)`。`lm-eval` 未安装，评估阶段再装即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-graspune-env-prep.md"
+}

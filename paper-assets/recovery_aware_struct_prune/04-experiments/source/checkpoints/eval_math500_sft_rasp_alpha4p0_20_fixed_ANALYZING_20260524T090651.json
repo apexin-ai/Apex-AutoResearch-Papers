@@ -1,0 +1,57 @@
+{
+  "exp_id": "eval_math500_sft_rasp_alpha4p0_20_fixed",
+  "project": "recovery_aware_struct_prune",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T19:48:04.445Z",
+    "updated_at": "2026-05-24T09:06:50.801Z",
+    "hypothesis": "SFT RASP α=4.0 20% MATH-500 with fixed eval script. Dose-response table. Checkpoint is sft_alpha4_20 (no rasp_ prefix in dir name).",
+    "spec": {
+      "command": "python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20 --max_new_tokens 2048",
+      "server": "westd-32935",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 185975,
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha4p0_20_fixed.log",
+      "submitted_at": "2026-05-24T03:08:59.927Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        2
+      ],
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "sft_rasp_alpha4p0_20",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T09:04:24.734Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T09:04:34.632646+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.278,
+      "accuracy_stderr": 0.02,
+      "correct": 139,
+      "total": 500,
+      "avg_response_length": 947.996,
+      "natural_eos": 310,
+      "truncated": 190
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T09:06:51.548907+00:00",
+  "trigger": "update_registry"
+}

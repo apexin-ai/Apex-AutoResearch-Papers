@@ -1,0 +1,73 @@
+{
+  "pairwise_results": {
+    "CKA-only vs Random": {
+      "mean_gap": 0.11368,
+      "ci_lower": 0.08792,
+      "ci_upper": 0.14479,
+      "significant": true,
+      "n_paired": 9
+    },
+    "CKA-only vs Standard": {
+      "mean_gap": 0.23513,
+      "ci_lower": 0.19986,
+      "ci_upper": 0.27214,
+      "significant": true,
+      "n_paired": 10
+    },
+    "CKA-only vs RASP": {
+      "mean_gap": 0.25388,
+      "ci_lower": 0.22931,
+      "ci_upper": 0.28083,
+      "significant": true,
+      "n_paired": 10
+    },
+    "Random vs Standard": {
+      "mean_gap": 0.11529,
+      "ci_lower": 0.09564,
+      "ci_upper": 0.13411,
+      "significant": true,
+      "n_paired": 9
+    },
+    "Random vs RASP": {
+      "mean_gap": 0.13126,
+      "ci_lower": 0.12223,
+      "ci_upper": 0.14104,
+      "significant": true,
+      "n_paired": 9
+    },
+    "Standard vs RASP": {
+      "mean_gap": 0.01875,
+      "ci_lower": -0.00031,
+      "ci_upper": 0.03606,
+      "significant": false,
+      "n_paired": 10
+    }
+  },
+  "method_means": {
+    "CKA-only": {
+      "mean": 0.28451,
+      "std": 0.0484,
+      "n": 10
+    },
+    "Random": {
+      "mean": 0.16418,
+      "std": 0.01713,
+      "n": 9
+    },
+    "Standard": {
+      "mean": 0.04938,
+      "std": 0.01653,
+      "n": 10
+    },
+    "RASP": {
+      "mean": 0.03063,
+      "std": 0.01784,
+      "n": 10
+    }
+  },
+  "config": {
+    "n_bootstrap": 10000,
+    "ci": 0.95,
+    "seed": 42
+  }
+}

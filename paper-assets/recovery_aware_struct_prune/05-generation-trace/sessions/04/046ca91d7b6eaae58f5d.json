@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "046ca91d7b6eaae58f5d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "prepare remaining math500 fixed evals",
+  "task_key": "worker_prepare_remaining_math500_fixed_evals_20260524T042704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prepare_remaining_math500_fixed_evals_20260524T042704_result.json",
+    "occurrence": 1,
+    "bytes": 1737,
+    "sha256": "11932792b90214b104f9a459a712243e5f96e557e52f6b516b7166b369733117"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-29022 不可连接。汇总结果：\n\n| 实验 | 预期路径 | 实际位置 | 状态 |\n|------|---------|---------|------|\n| `sft_cka_only_25` | westd-32935: `.../sft_cka_only_25` | **westd-32935** (root level, 有 config.json) | ✅ 可用 |\n| `grpo_rasp_alpha0p5_20` | westd-32935: `.../grpo_rasp_alpha0p5_20` | **westb-23072** (root level, 有 config.json) | ⚠️ 需迁移 |\n| `sft_rasp_alpha3p0_20` | westd-32935: `.../sft_rasp_alpha3p0_20/checkpoint-935` | **westb-23072** (checkpoint-935/config.json 存在) | ⚠️ 需迁移 |\n| `grpo_rasp_alpha3p0_20_v2` | westd-32935: `.../grpo_rasp_alpha3p0_20_v2/checkpoint-100` | westd-32935 仅有 README.md + completions/（旧 eval 输出）；westb-23072 不存在；westd-29022 不可连接 | ❌ 缺失 |\n| `grpo_alpha4_20` | westd-32935: `.../grpo_alpha4_20/checkpoint-100` | **westd-32935** root level 有完整模型文件（config.json, model.safetensors），但无 checkpoint-100 子目录 | ⚠️ 路径修正 |\n\n### 结论\n\n**可直接提交（1个）：**\n- `sft_cka_only_25` — westd-32935 上就绪\n\n**需路径修正（1个）：**\n- `grpo_alpha4_20` — 模型在 `.../grpo_alpha4_20/`（非 checkpoint-100 子目录），eval 脚本路径改为根目录即可\n\n**需 SCP 迁移到 westd-32935（2个）：**\n- `grpo_rasp_alpha0p5_20` — 从 westb-23072 迁移\n- `sft_rasp_alpha3p0_20/checkpoint-935` — 从 westb-23072 迁移\n\n（或者这两个直接在 westb-23072 上跑 eval）\n\n**checkpoint 缺失（1个）：**\n- `grpo_rasp_alpha3p0_20_v2/checkpoint-100` — 三台服务器均无完整模型。westd-29022 已关机无法连接。需要重新训练，或确认该 checkpoint 是否曾存储在其他路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prepare-remaining-math500-fixed-evals.md"
+}

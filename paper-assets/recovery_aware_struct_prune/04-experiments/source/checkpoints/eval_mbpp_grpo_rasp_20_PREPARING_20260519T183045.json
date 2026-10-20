@@ -1,0 +1,41 @@
+{
+  "exp_id": "eval_mbpp_grpo_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T18:18:35.729Z",
+    "updated_at": "2026-05-19T18:30:44.747Z",
+    "hypothesis": "MBPP pass@1 eval on GRPO RASP 20% model @2048. Dense baseline=53.48% (200/374). RASP GRPO GSM8K=60.88%, HumanEval=10.37%. Tests RASP GRPO code generation on MBPP. Completes MBPP 3×2 matrix. Expected: between CKA-only GRPO (14.17%) and Standard GRPO (running). Recovery gradient on MBPP validates C2 capability breadth claim on second code benchmark.",
+    "server": "westd-29022",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-29022",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T18:20:09.298Z",
+      "finished_at": "2026-05-19T18:24:23.279Z",
+      "training_hours": 0.07
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-19T18:24:28.539Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T18:24:39.007529+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: 进程在加载 MBPP 数据集时被 SIGHUP (EXIT_CODE=129) 终止。模型 /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair 加载成功，非代码/路径问题。疑似资源竞争或外部信号。待诊断后重试。"
+      }
+    },
+    "notes": "失败原因: 进程在加载 MBPP 数据集时被 SIGHUP (EXIT_CODE=129) 终止。模型 /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair 加载成功，非代码/路径问题。疑似资源竞争或外部信号。待诊断后重试。"
+  },
+  "timestamp": "2026-05-19T18:30:45.207225+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,11 @@
+paper_key: "klabunde_similarity_survey_2025"
+title: "Similarity of Neural Network Models: A Survey of Functional and Representational Measures"
+venue: "ACM Computing Surveys 2025"
+full_text_available: false
+research:
+  baselines: [CCA, SVCCA, PWCCA, CKA, RSA, dCor, NBS, many others]
+  metrics: [{name: "representational similarity", direction: "context_dependent"}, {name: "functional similarity", direction: "context_dependent"}]
+  datasets: [{name: "survey covering vision and NLP benchmarks", size: "meta-analysis"}]
+  ablation_dimensions: [measure taxonomy, discriminative ability]
+  training_recipe: {}
+  method_family: "survey of neural network similarity measures"

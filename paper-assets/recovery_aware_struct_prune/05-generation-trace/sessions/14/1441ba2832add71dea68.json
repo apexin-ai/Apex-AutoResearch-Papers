@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1441ba2832add71dea68",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp westd full eval n1319",
+  "task_key": "worker_exp_westd-full-eval-n1319_20260515T203631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_westd-full-eval-n1319_20260515T203631_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "7b7313dd26780f34e99a856df282a744c7386bc19af5f29d6ff45fcb3ec40665"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡 full GSM8K eval 已成功启动并确认：\n\n| 实验 | GPU | 显存占用 | PID | 状态 |\n|------|-----|---------|-----|------|\n| eval_sft_standard_full_westd | cuda:0 | 12497 MiB | 62463 | RUNNING, 已加载 GSM8K 数据集 |\n| eval_sft_rasp_full_westd | cuda:1 | 12497 MiB | 62565 | RUNNING, 已加载 GSM8K 数据集 |\n\nN=1319 samples，预计 ~50 分钟完成。日志分别在 `/tmp/eval_standard_full.log` 和 `/tmp/eval_rasp_full.log`，结果输出到 `results/eval_sft_standard_20_westd_full.json` 和 `results/eval_sft_rasp_20_westd_full.json`。Registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-westd-full-eval-n1319.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_grpo_rasp_alpha4p0_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:01:54.194Z",
+    "updated_at": "2026-05-23T00:03:08.182Z",
+    "hypothesis": "GRPO RASP α=4.0 MATH-500 eval @2048. C1 decoupling on MATH-500: SFT α=4.0 = 26.6%. If |GRPO - SFT| < 2pp, C1 decoupling holds cross-benchmark for α=4.0. GSM8K GRPO α=4.0 = 62.77%.",
+    "parent": "eval_gsm8k_grpo_alpha4_20_v3"
+  },
+  "timestamp": "2026-05-23T00:03:08.937841+00:00",
+  "trigger": "update_registry"
+}

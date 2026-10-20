@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09ddc246fd6dee265c75",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_12_1778908611.md",
+  "task_key": "loop_12_1778908611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778908611.md",
+    "occurrence": 1,
+    "bytes": 5891,
+    "sha256": "b7e64b234d6b9b98811a4980a6cda2c325a4959ec41cf27b3aecd395acdfdc01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:16:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1。C001+C003 约束，其他卡一律不碰\n- sft_recovery.py `--gpu N` 内部覆盖 CUDA_VISIBLE_DEVICES；eval_gsm8k.py **不会**覆盖，依赖外部 `CUDA_VISIBLE_DEVICES`；train_grpo_v5.py 用 `CUDA_VISIBLE_DEVICES=X --gpu 0` 模式\n- westd 是 AutoDL：pip 前必须 `source /etc/network_turbo`；HF 下载需 `HF_HUB_DISABLE_XET=1` + `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt` + `SSL_CERT_FILE=...`；大模型优先 ModelScope\n- 所有模型/checkpoint 只写 `/root/autodl-tmp/recovery_aware_struct_prune/`，禁止写根分区（30GB 上限）\n- westb 和 westd 之间不能 scp（Permission denied），checkpoint 必须在本地服务器 eval\n- Cron 监控 PID 必须是实际训练子进程 PID，不是 wrapper/launcher PID（本 session 踩了 3 次误判 FAILED）\n- grpo_unpruned_v2 曾有 PID 冲突（原进程 75381 vs 可能重复进程 77647），接手前必须确认是否已解决\n\n### 2. 🖥️ 基础设施快照\n**westb-23072** (2× RTX PRO 6000 Blackwell, 98GB)\n- 工作目录: `/root/recovery_aware_struct_prune/`\n- Python: `/root/miniconda3/bin/python`（conda base）\n- 数据盘: `/root/autodl-tmp/recovery_aware_struct_prune/`，~125GB free\n- wandb: entity=xiaoyucorynne-, project=recovery_aware_struct_prune\n- 关键 checkpoint:\n  - SFT Standard: `sft_standard_20/`\n  - SFT RASP: `sft_rasp_20/`\n  - Standard GRPO checkpoint-50: `grpo_stage2_standard_20_v8/checkpoint-50/`\n  - RASP v9 checkpoints: `grpo_stage2_rasp_20_v9/checkpoint-{5,10,15}/`\n\n**westd-11672** (2× RTX PRO 6000 Blackwell, 96GB)\n- 同样路径结构，conda base\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- SFT Unpruned: `sft_unpruned_baseline/`\n\n**活跃进程**（上一个 session 结束时）:\n- westb cuda:0: RASP GRPO v9 (PID 566666, wandb=mrikafz3, max_steps=30, save_steps=5)\n- westb cuda:1: eval_grpo_rasp_v9_step5 (PID 572124, N=1319 eval)\n- westd cuda:0: eval_sft_unpruned_full (PID 74129, N=1319)\n- westd cuda:1: grpo_unpruned_v2 (PID 75381, step 25/100, wandb=nhsx0bt2)\n\n### 3. 📊 当前状态\n**核心数据已基本齐全（D045 确认）**。叙事已 pivot（D044）到：\n\n> \"GRPO reward-accuracy decoupling 普遍存在；pruning 导致 training collapse；collapse 速度诊断结构损伤。\"\n\n**已完成的关键数据点**:\n| 模型 | SFT eval (N=1319) | GRPO eval (N=1319) | GRPO Collapse |\n|------|-------------------|-------------------|---------------|\n| Unpruned | 81.27% | 81.27% (Δ=0.00pp, step-100) | 无 collapse, reward=0.661 |\n| Standard | 59.29% | 58.91% (Δ=-0.38pp, step-50) | Transient dip step ~60, 恢复 |\n| RASP | 61.49% | 60.65% (Δ=-0.84pp, step-5) | 永久 collapse step ~10 |\n\n**仍在 RUNNING 的实验**（可能已完成，需检查）:\n- `grpo_stage2_rasp_20_v9`: 30 步训练，westb cuda:0\n- `eval_grpo_rasp_v9_step5`: N=1319 eval，westb cuda:1（N=100 中间结果 68%，可能超 SFT 61.49%）\n- `eval_sft_unpruned_full`: N=1319 unpruned SFT eval，westd cuda:0\n- `grpo_unpruned_v2`: 100 步训练，westd cuda:1\n- `eval_grpo_rasp_v9_step10`: 在跑或待重试（之前有网络错误，需 HF_HUB_OFFLINE=1）\n\n**report.md 中 RUNNING 但可能已是旧条目**:\n- `prune_standard_25` / `prune_rasp_25`：25% sparsity scope expansion，状态待确认\n\n**等待中的回调**:\n- 上述所有 RUNNING 实验的 cron 回调\n- Worker: worker_ops_fix-grpo-unpruned-pid-conflict（PID 冲突修复）\n\n### 4. 📋 待办（条件触发式）\n- session 启动 → `reconcile_crons` + `read_registry` 确认所有 RUNNING 实验当前真实状态（上 session 结束 ~02:19 UTC，距今可能已有多个实验完成）\n- grpo_unpruned_v2 完成 → N=1319 eval on westd（关键：确认 step-100 accuracy = SFT，补全 paper evidence table）\n- eval_grpo_rasp_v9_step10 成功 → 量化 collapse 前后 accuracy drop（step-5 vs step-10）；若 step-10 << step-5 则 collapse 代价量化完成\n- eval_grpo_rasp_v9_step5 确认 >61.49% → \"GRPO 在 collapse 前有瞬时提升\"是 paper 加分项但非 core claim\n- 所有 eval 完成 → 更新 `paper_results_tables.md` + `paper_framing.md` evidence table → 启动论文写作\n- **scope expansion**（25-30% sparsity）准备就绪 + GPU 空闲 → 执行 prune_standard_25 / prune_rasp_25 + eval，看是否 SFT gap 变显著 + collapse 加速\n- Director 指示开始写论文 → 按 writing_plan.yaml 并行派 Worker 写各章节\n\n### 5. 🎯 战略上下文\n**DDL: EMNLP 2026 ARR May 25（距今 9 天）**\n\n**决策链关键节点**: D006(原29x优势) → D027(修正为4pp不显著) → D037(RASP 3x collapse pivot) → D039(unpruned也collapse) → D041(unpruned实验无效,缺SFT) → D043(Standard step60 collapse确认) → D044(narrative pivot到GRPO failure+diagnostics) → D045(core data complete)\n\n**paper_framing.md 已更新为最终叙事**:\n1. Claim 1: GRPO reward-accuracy decoupling 普遍存在；pruning 加上 training collapse\n2. Claim 2: Collapse severity gradient 诊断结构损伤（RASP step10 < Standard step60 < Unpruned never）\n3. Claim 3: Recovery method conditions optimal pruning（SFT: RASP 边际优势；RLVR: RASP 有害）\n\n**易错点**:\n- Standard v8 \"step 60 collapse\" 在后续分析中修正为 transient dip + recovery（非永久 collapse）。paper_framing.md 已更新但 ROADMAP 等可能有旧描述\n- Unpruned GRPO 第一版 (grpo_unpruned_baseline) 无效（缺 SFT），v2 (grpo_unpruned_v2) 才是正确对照\n- SFT gap (RASP 61.49% vs Standard 59.29%) p=0.248 不显著——paper 不能基于此 claim，只作 supplementary context\n- N=100 中间结果（68%）和 N=1319 最终结果可能有偏差，以最终 N=1319 为准\n- save_total_limit 问题：grpo_unpruned_v2 设了 10，如果 checkpoint 积累可能又撑爆磁盘\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778908611.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01d5dcb496ad942e4973",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 timeout",
+  "task_key": "worker_diagnose_eval_math500_timeout_20260517T143922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_timeout_20260517T143922_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "1cdaaa1753df192b4be5a1d616397e89bca2a635dc3d1da703daf1e77c95b6f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/diag_eval_math500_grpo_timeout.md`。核心结论：\n\n### 实验状态\n\n| 实验 | 状态 | 进度 | 耗时 |\n|------|------|------|------|\n| grpo_rasp_20_v2 | **FAILED** (timeout EXIT_CODE=124) | 193/500 | 5h55m |\n| grpo_standard_20 (pid 14556) | **仍在运行** | 123/500 | 5h13m+ |\n\n### 根因\n\n`max_new_tokens=4096` + GRPO 模型生成极长 `<think>` 推理链。GRPO 模型频繁命中 4096 token 上限，单题最慢达 **350s**，平均 110-153s/题。对比 SFT 模型平均仅 21s/题（7x 差距）。脚本无 per-sample timeout。\n\n### 修复建议\n\n1. **GRPO eval 使用 `--max_new_tokens 2048`**：2048 tokens 足够覆盖正确推理，预估总时间从 15-21h 降至 **8-10h**\n2. 当前 standard_20 进程（pid 14556，acc@100=36%）建议让它跑完（预计明天 ~09:00），结果有价值\n3. rasp_20_v2 用 `--max_new_tokens 2048` 重跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-timeout.md"
+}

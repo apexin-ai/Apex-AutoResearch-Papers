@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_20_step50",
+  "project": "recovery_aware_struct_prune",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:46:11.922Z",
+    "updated_at": "2026-05-20T02:46:17.691Z",
+    "hypothesis": "GSM8K N=1319 eval on Standard GRPO step-50 checkpoint. paper_framing 引用 58.91% 但无结果 JSON 可追溯。重跑以建立完整 provenance。用 grpo_stage2_standard_20_fair/checkpoint-50。预期 ~58.91%。C1 decoupling 证据：SFT 59.29% vs GRPO-50 ~58.91% = Δ≈0.38pp。",
+    "parent": "grpo_standard_20_fair"
+  },
+  "timestamp": "2026-05-20T02:46:18.178781+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f618116837dba0c1772",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d021 grpo v4 fix and launch",
+  "task_key": "worker_code_d021-grpo-v4-fix-and-launch_20260515T081725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d021-grpo-v4-fix-and-launch_20260515T081725_result.json",
+    "occurrence": 1,
+    "bytes": 2561,
+    "sha256": "fbb10031a6bfc955f5da38e03a04c03230ebfb9801c50e04869a5de846e5fad9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "First GRPO step involves generating completions (2048 tokens, 4 generations per prompt) — takes a few minutes. GPU 0 at 100% confirms active generation.\n\nHere's the full status report:\n\n---\n\n## GRPO v4 Launch Report\n\n### 1. TRL Version & ref_model 方案\n\n- **TRL 1.1.0** — `GRPOTrainer.__init__` 不接受 `ref_model` 参数，而是通过 `create_model_from_path` 内部创建\n- **方案 B: monkey-patch** `trl.trainer.grpo_trainer.create_model_from_path`\n  - 检测 config 中的 `per_layer_intermediate_size` 属性\n  - 有此属性时路由到 `load_pruned_model`（支持非均匀 MLP 维度）\n  - 无此属性时回退到原始函数\n\n### 2. train_grpo_v4.py 关键改动\n\n| 改动 | v3 | v4 |\n|------|----|----|\n| ref_model 加载 | 无处理（crash） | monkey-patch → `load_pruned_model` |\n| temperature | 0.7 | **0.4** |\n| repetition_penalty | 无 | **1.15** |\n| save_steps | 200 | **100** |\n| save_total_limit | 5 | **3** |\n| gradient_checkpointing | 未设 | **true** |\n\n### 3. v4 完整参数表\n\n| 参数 | 值 |\n|------|----|\n| model_path | `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20` |\n| output_dir | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v4` |\n| GPU | cuda:0 |\n| learning_rate | 1e-6 |\n| num_train_epochs | 1 |\n| max_samples | 1000 |\n| per_device_train_batch_size | 1 |\n| gradient_accumulation_steps | 4 |\n| num_generations | 4 |\n| max_completion_length | 2048 |\n| beta | 0.01 |\n| loss_type | dapo |\n| temperature | 0.4 |\n| repetition_penalty | 1.15 |\n| format_reward_weight | 0.1 |\n| gradient_checkpointing | true |\n| save_steps | 100 |\n| save_total_limit | 3 |\n| reward_desert_patience | 50 |\n| dtype | bfloat16 |\n\n### 4. Launch 验证\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | `grpo_stage2_rasp_20_v4` 存活 |\n| PID | 339111 (R state, 416 threads) |\n| GPU 0 显存 | **68643 MiB / 97887 MiB (70%)**, 100% utilization |\n| GPU 1 | 51575 MiB (sft_standard_20_retrain 运行中) |\n| ref_model | monkey-patch 成功，16:49 加载完成 (8 min) |\n| wandb | run `grpo_stage2_rasp_20_v4` (ID: `75d1o9wa`) |\n| 训练进度 | 0/250 步（首步生成中） |\n| 报错 | 无 |\n\n### 5. 磁盘空间\n\n| 分区 | 容量 | 已用 | 可用 |\n|------|------|------|------|\n| / (root) | 30G | 8.6G | **22G** |\n| /root/autodl-tmp (data) | 250G | 141G | **110G** |\n\n---\n\nStandard variant 脚本 (`run_grpo_stage2_v4_standard.sh`) 已创建但未启动，cuda:1 当前被 `sft_standard_20_retrain` 占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d021-grpo-v4-fix-and-launch.md"
+}

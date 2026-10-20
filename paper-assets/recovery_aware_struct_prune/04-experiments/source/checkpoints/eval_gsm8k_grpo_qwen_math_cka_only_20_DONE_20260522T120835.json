@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_gsm8k_grpo_qwen_math_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:30:10.266Z",
+    "updated_at": "2026-05-22T12:08:34.874Z",
+    "hypothesis": "MF3 cross-architecture validation: Qwen2.5-Math-7B CKA-only 20% pruned → SFT → GRPO → GSM8K eval. Tests if CKA-guided pruning advantage transfers to Qwen-Math architecture.",
+    "parent": "grpo_qwen_math_cka_only_20",
+    "spec": {
+      "server": "westb-23072",
+      "gpu": "cuda:1",
+      "command": "eval_gsm8k.py --model_path grpo_qwen_math_cka_only_20 --max_new_tokens 2048 --output_path results/eval_gsm8k_grpo_qwen_math_cka_only_20.json",
+      "model_name": "Qwen2.5-Math-7B",
+      "seed": 42,
+      "data_path": "openai/gsm8k (test split)",
+      "data_count": 1319,
+      "checkpoint_source": "grpo_qwen_math_cka_only_20",
+      "eval_data": "gsm8k test 1319",
+      "pid": "179898",
+      "checkpoint_path": "N/A - eval killed before completion",
+      "log_path": "/tmp/eval_gsm8k_mf3.log"
+    },
+    "notes": "KILLED: Director 批准 kill (78s/sample too slow, 26.5h ETA). 重启为 N=500 版本 (eval_gsm8k_grpo_qwen_math_cka_only_20_n500). 中间数据: 96/1319, acc=46.0%@50, EOS=14%, avg_len=1805.",
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T12:08:34.874Z"
+  },
+  "timestamp": "2026-05-22T12:08:35.717806+00:00",
+  "trigger": "update_registry"
+}

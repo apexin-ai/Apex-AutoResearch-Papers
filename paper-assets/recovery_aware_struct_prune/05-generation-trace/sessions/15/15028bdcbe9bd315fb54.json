@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15028bdcbe9bd315fb54",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval mbpp grpo shortgpt 20 v2",
+  "task_key": "worker_diagnose_eval_mbpp_grpo_shortgpt_20_v2_20260519T223652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_mbpp_grpo_shortgpt_20_v2_20260519T223652_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "740fe467c92edfbc1de49383ec7b175f3664a507fdc3d921f6ca5c7a2d2942ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因：工作目录错误。**\n\n提交命令用相对路径 `src/eval_mbpp.py`，但 cwd 是数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`，Python 找不到 `/root/autodl-tmp/recovery_aware_struct_prune/src/eval_mbpp.py`。实际脚本在 `/root/recovery_aware_struct_prune/src/eval_mbpp.py`。\n\n**修复**：命令中加 `cd /root/recovery_aware_struct_prune &&`，或将 `src/eval_mbpp.py` 改为绝对路径 `/root/recovery_aware_struct_prune/src/eval_mbpp.py`。\n\n诊断报告已写入 `artifacts/diagnose_eval_mbpp_grpo_shortgpt_20_v2.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-mbpp-grpo-shortgpt-20-v2.md"
+}

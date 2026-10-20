@@ -1,0 +1,14 @@
+{
+  "exp_id": "prune_standard_20_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:03:56.378Z",
+    "updated_at": "2026-05-16T08:03:56.378Z"
+  },
+  "timestamp": "2026-05-16T08:03:56.502872+00:00",
+  "trigger": "update_registry"
+}

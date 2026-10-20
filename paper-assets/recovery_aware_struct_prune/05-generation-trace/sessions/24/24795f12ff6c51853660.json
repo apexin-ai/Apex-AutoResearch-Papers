@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24795f12ff6c51853660",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code gradient flow analysis",
+  "task_key": "worker_code_gradient_flow_analysis_20260519T142343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gradient_flow_analysis_20260519T142343_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "f7fd80af355fe83c79fc4b8631e4e27ff42a7a8808ea276e29388e034e5ad184"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写好，语法和参数解析均通过验证。\n\n**文件**: `src/gradient_flow_analysis.py`\n\n**核心流程**:\n1. 加载 GSM8K train 子集作为 calibration data\n2. 对每个模型，在 `self_attn` 和 `mlp` 上注册 `register_full_backward_hook`，捕获 `grad_output[0]` 的 L2 norm\n3. 逐样本 forward+backward，累积 per-layer 梯度范数\n4. 计算统计量 (mean/std/min/max)，输出 JSON\n5. 用 matplotlib 画 attention/MLP 双子图，log scale，Okabe-Ito 色盲友好 palette，error bar 表示 std\n\n**用法示例**:\n```bash\npython src/gradient_flow_analysis.py \\\n  --model_paths /path/to/cka_only /path/to/standard /path/to/rasp \\\n  --model_names \"CKA-only\" \"Standard\" \"RASP\" \\\n  --n_samples 128 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/gradient_flow/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gradient-flow-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1aea70fa27ffaf670377",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh fix seed456 collision westb0",
+  "task_key": "worker_ssh_fix_seed456_collision_westb0_20260522T163032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_seed456_collision_westb0_20260522T163032_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "7019178f300f7e4db244b25ca6bfecc271f13a46eb3801708c0a3ac45b19840a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 冲突修复\n\n- Retrain PID 225466: **killed**\n- Eval PID 224705: **alive** — 正常运行中，150/1319 (11%)，当前 acc=0.4933\n- Checkpoint-100: **missing**（整个目录被诊断 Worker 删除）\n- 最终操作: **eval 继续运行**（模型已在 GPU 内存中，不受磁盘删除影响）\n\n**需要注意**：checkpoint-100 已从磁盘删除。当前 eval 不受影响（模型已加载到 GPU），但 eval 结束后如果需要这个 checkpoint 做其他事（其他 benchmark eval、作为 artifact 保存），需要重新训练。预计 eval 还需约 50 分钟完成（按 ~2.5s/it × 1169 剩余）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-seed456-collision-westb0.md"
+}

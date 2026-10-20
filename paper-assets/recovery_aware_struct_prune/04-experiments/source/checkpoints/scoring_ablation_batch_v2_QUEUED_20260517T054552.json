@@ -1,0 +1,16 @@
+{
+  "exp_id": "scoring_ablation_batch_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:45:47.123Z",
+    "updated_at": "2026-05-17T05:45:52.113Z",
+    "hypothesis": "Scoring ablation with controlled search space (MLP-only, --skip_attention): CKA-aware scoring (RASP) preserves more post-prune accuracy than magnitude-only, gradient-only, random, or CKA-only scoring at 20% sparsity. Search space restricted to MLP groups only (matching RASP/Standard natural behavior of 0/112 attention groups pruned) for fair comparison.",
+    "parent": "scoring_ablation_batch"
+  },
+  "timestamp": "2026-05-17T05:45:52.359313+00:00",
+  "trigger": "update_registry"
+}

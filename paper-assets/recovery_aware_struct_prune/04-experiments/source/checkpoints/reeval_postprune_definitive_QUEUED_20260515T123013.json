@@ -1,0 +1,15 @@
+{
+  "exp_id": "reeval_postprune_definitive",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:46:32.498Z",
+    "updated_at": "2026-05-15T12:30:13.876Z",
+    "hypothesis": "D023: Definitive re-eval of pruned_standard_20 and pruned_rasp_20 with current eval_gsm8k.py + load_pruned_model. N=100, max_new_tokens=4096, greedy. Validates whether original 1% vs 29% is reproducible with current code."
+  },
+  "timestamp": "2026-05-15T12:30:13.920003+00:00",
+  "trigger": "update_registry"
+}

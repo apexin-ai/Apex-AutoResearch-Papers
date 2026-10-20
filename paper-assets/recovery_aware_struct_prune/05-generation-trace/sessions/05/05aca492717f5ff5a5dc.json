@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05aca492717f5ff5a5dc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check qwen math sft math500 result",
+  "task_key": "worker_ssh_check_qwen_math_sft_math500_result_20260523T104307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_qwen_math_sft_math500_result_20260523T104307_result.json",
+    "occurrence": 1,
+    "bytes": 419,
+    "sha256": "1083945f824ad603d4f9d8caf8b5de8351821ee3e10919dc9c7387bc15d16a95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成，cron 已不存在（可能已被之前的 session 删除）。\n\n**结果**: accuracy = **21.6%** (108/500), stderr ± 1.84%\n\n**关键信号**: 82% 的样本被截断（410/500 truncated, avg_response_length=1745），说明 max_new_tokens=2048 对数学推理偏短，大量回答未生成完整答案就被截断。\n\n**GPU 状态**: cuda:0 和 cuda:1 均空闲（0% util, 0 MiB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-qwen-math-sft-math500-result.md"
+}

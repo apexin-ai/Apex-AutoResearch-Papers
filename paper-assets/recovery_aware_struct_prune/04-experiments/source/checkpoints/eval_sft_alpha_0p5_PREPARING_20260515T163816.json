@@ -1,0 +1,17 @@
+{
+  "exp_id": "eval_sft_alpha_0p5",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:44:06.901Z",
+    "updated_at": "2026-05-15T16:38:16.900Z",
+    "hypothesis": "α=0.5 post-SFT GSM8K eval (N=100, greedy). Post-prune 25%. Completes full α ablation: α=0.0 (64%), α=0.5 (?), α=1.0 (57%), α=2.0 (pending), α=4.0 (62%). Parent: alpha_ablation_westd_cal256.",
+    "parent": "alpha_ablation_westd_cal256",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T16:38:16.989925+00:00",
+  "trigger": "update_registry"
+}

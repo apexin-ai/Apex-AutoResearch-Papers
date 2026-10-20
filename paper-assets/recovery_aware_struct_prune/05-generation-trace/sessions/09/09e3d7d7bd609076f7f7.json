@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09e3d7d7bd609076f7f7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval grpo standard 20 2048",
+  "task_key": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "ad8a96e4bd19a2c10ecc77f6346a9bb7f0d38fa97032a88393bd123bf404335c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n**结果摘要：**\n\n| 模型 | HumanEval pass@1 |\n|---|---|\n| Unpruned | 45.12% |\n| GRPO RASP | **14.63%** |\n| SFT Standard | 11.59% |\n| GRPO Standard | 10.37% |\n| SFT RASP | 10.37% |\n\nGRPO Standard (10.37%) 低于 GRPO RASP (14.63%)，结论 negative。RASP 在代码生成任务上也优于 Standard pruning。值得注意的是 GRPO Standard 甚至没能超过 SFT Standard (11.59%)，且 median response length = 2048 说明大量样本被截断，模型倾向于生成冗长的思考过程而非直接输出代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-grpo-standard-20-2048-copy-2.md"
+}

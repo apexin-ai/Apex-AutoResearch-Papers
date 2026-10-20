@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_gsm8k_grpo_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:06:54.386Z",
+    "updated_at": "2026-05-18T05:21:36.326Z",
+    "hypothesis": "GRPO with CKA-only recovery (20 steps) preserves GSM8K math reasoning accuracy compared to unpruned baseline, because CKA alignment guides recovery to restore the most task-critical representations in pruned layers.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json",
+      "server": "westd-11672",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "model_name": "grpo_cka_only_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20",
+      "eval_data": "gsm8k_test"
+    },
+    "conclusion": "failed",
+    "failure_reason": "westd-11672 server unreachable (SSH connection failed). Experiment never confirmed running (no pid). Server-level outage.",
+    "completed_at": "2026-05-18T05:21:36.326Z"
+  },
+  "timestamp": "2026-05-18T05:21:36.663227+00:00",
+  "trigger": "update_registry"
+}

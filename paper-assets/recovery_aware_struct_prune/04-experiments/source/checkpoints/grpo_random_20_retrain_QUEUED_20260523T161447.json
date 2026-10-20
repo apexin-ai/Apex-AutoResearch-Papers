@@ -1,0 +1,15 @@
+{
+  "exp_id": "grpo_random_20_retrain",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:49:40.832Z",
+    "updated_at": "2026-05-23T16:14:46.503Z",
+    "hypothesis": "Retrain GRPO Random 20% from sft_random_20 (100 steps, seed 42). Original grpo_random_20/checkpoint-100 was deleted during disk cleanup. P0 — needed for method comparison table Random baseline."
+  },
+  "timestamp": "2026-05-23T16:14:47.310998+00:00",
+  "trigger": "update_registry"
+}

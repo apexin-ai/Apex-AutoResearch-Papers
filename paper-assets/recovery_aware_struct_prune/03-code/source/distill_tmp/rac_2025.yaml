@@ -1,0 +1,84 @@
+paper_key: "rac_2025"
+title: "RAC: Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction"
+venue: "NeurIPS 2025"
+full_text_available: true
+
+research:
+  baselines: [SparseGPT with C4 calibration, SparseGPT with prompt-only calibration, off-policy CoT]
+  metrics:
+    - {name: "MATH-500 accuracy (acc@1:1)", direction: "higher_better"}
+    - {name: "LiveCodeBench pass@1:16", direction: "higher_better"}
+    - {name: "inference runtime (minutes)", direction: "lower_better"}
+    - {name: "throughput (tok/s)", direction: "higher_better"}
+  datasets:
+    - {name: "MATH-500", size: "500 problems"}
+    - {name: "LiveCodeBench", size: "standard"}
+    - {name: "C4", size: "1M tokens calibration"}
+    - {name: "Open-R1-Math-220k", size: "calibration"}
+    - {name: "Codeforces", size: "calibration"}
+  ablation_dimensions: [calibration source (C4 vs prompt vs RAC), on-policy vs off-policy CoT, sparsity level, model scale, token budget]
+  training_recipe: {optimizer: "N/A (one-shot pruning)", lr: "N/A", hardware: "N/A", max_decode: "T_max=8192 tokens"}
+  method_family: "reasoning-aware calibration for one-shot pruning"
+
+positioning:
+  core_claim: "Standard pruning calibration fails for reasoning models because they are decode-dominated; augmenting with on-policy CoT activations recovers most accuracy without retraining"
+  key_results: "DeepSeek-R1-7B at 50% sparsity: 90.0% MATH-500 (vs 74.4% with C4 calibration, 93.6% dense); also reduces runtime by fixing token inflation"
+  limitations: ["Doesn't directly optimize inference runtime", "Collecting on-policy CoT increases calibration cost", "Interaction with iterative compression unexplored"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Reasoning LLMs generate long CoT traces making them costly; pruning should help but standard approaches make them both worse AND slower"
+  tension: "Standard pruning causes accuracy drop AND runtime increase (more thinking tokens, worse quality)—counterproductive"
+  key_insight: "The distribution mismatch: reasoning models have |CoT|+|output| >> |input|, but calibration only uses input activations"
+  argument_chain: "problem (pruning hurts reasoning disproportionately) → diagnosis (input/output distribution mismatch) → solution (calibrate on CoT activations) → validation (90% at 50% sparsity)"
+  contribution_framing: "Key insight + drop-in fix: RAC as simple augmentation to existing pruning pipelines"
+  intro_structure: "~4 paragraphs: reasoning model cost → pruning paradox (worse AND slower) → distribution mismatch diagnosis → RAC solution"
+  notable_technique: "The 'pruning makes it slower' paradox as hook—counterintuitive result that grabs attention immediately"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "motivation"
+    description: "Shows pruning causing both accuracy drop and runtime increase due to token inflation"
+    narrative_role: "Establishes the counterintuitive paradox that motivates the work"
+    design_elements: ["dual-axis showing accuracy and runtime", "counterintuitive downward accuracy + upward runtime"]
+    visual_style: "Clear paradox visualization with dual metrics"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "heatmap"
+      what_compared: "Tokenwise reconstruction error: RAC vs baseline across decode positions"
+      how_gain_highlighted: "Color coding showing RAC reduces error specifically in decode phase"
+      design_note: "Directly visualizes WHY RAC works—error reduction in the decode phase"
+  ablation_figures:
+    - figure_id: "runtime analysis"
+      viz_type: "bar_chart"
+      dimensions_varied: ["token budget (32k, 8k, 4k)", "sparsity level"]
+      design_note: "Shows runtime penalty disappears with reasonable token limits"
+  figure_narrative_role: "Fig1 (paradox motivation) → Fig2 (mechanism: where error reduces) → Results tables → Runtime analysis"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (calibration strategies)"
+    col_axis: "models × sparsity levels × accuracy"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run with acc@1:1"
+    num_baselines: 3
+    design_note: "Scale-separated results (1.5B, 7B, 14B, 32B) showing consistent gains across model sizes"
+  ablation_tables:
+    - table_id: "on-policy vs off-policy"
+      what_varied: ["CoT source (on-policy vs off-policy)"]
+      variation_style: "full_numbers"
+      design_note: "Validates that on-policy is essential, not just any CoT"
+    - table_id: "structured pruning"
+      what_varied: ["2:4 sparsity pattern regions"]
+      variation_style: "full_numbers"
+      design_note: "Extends to structured setting with throughput numbers"
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended sparsity sweeps, additional benchmarks"
+    reason: "Main text focuses on the key comparison; appendix provides completeness"

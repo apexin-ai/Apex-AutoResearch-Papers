@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f1a08b73829e0bcfc7d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops diagnose eval math500 grpo alpha4p0",
+  "task_key": "worker_ops_diagnose_eval_math500_grpo_alpha4p0_20260524T145342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_eval_math500_grpo_alpha4p0_20260524T145342_result.json",
+    "occurrence": 1,
+    "bytes": 289,
+    "sha256": "a4b8ecd010250886457e8b205aa11c270d6fc3c72ae0137aa664e33acd1913be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被自动清除）。\n\n**结果汇总：**\n- eval_math500_grpo_rasp_alpha4p0_20_fixed — **成功**\n- Accuracy: **27.20% (136/500)**\n- EOS: 320 natural, 180 truncated, avg response length 925.48 tokens\n- Registry 已更新为 DONE/success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-eval-math500-grpo-alpha4p0.md"
+}

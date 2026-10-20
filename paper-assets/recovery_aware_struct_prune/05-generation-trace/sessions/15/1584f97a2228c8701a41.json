@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1584f97a2228c8701a41",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_16_1779016566.md",
+  "task_key": "loop_16_1779016566",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779016566.md",
+    "occurrence": 1,
+    "bytes": 5315,
+    "sha256": "8aa088a1ca840ef17feaed647e953fd39cd5bd8d9646e596b1532bfd1aa87010"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-17T11:05:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westb-23072 cuda:0/1, westd-11672 cuda:0/1/2/3（config 里只有 cuda:0-3，但 report 显示 6 张分配）\n- westb↔westd 之间无 SSH 互信，模型不能 SCP 直传，需中间节点或 HF Hub 中转\n- Qwen Math 系列模型 EOS token bug: generate() 必须加 `eos_token_id=[151643, 151645]`，否则每 sample 跑满 max_tokens\n- sft_recovery.py 参数名: `--learning_rate` `--num_train_epochs` `--gradient_accumulation_steps`（不是 --lr/--epochs/--grad_accum）\n- eval 脚本不走 W&B，cron 会误判 failed——收到 eval 类 failed 回调先检查 registry 是否已有 metrics\n- EMNLP ARR May 25 deadline，距今 ~8 天\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: root@westb-23072, 工作目录 /root/recovery_aware_struct_prune, Python /root/miniconda3/bin/python, 预置镜像 aml-train\n  - 模型/checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/ 下（pruned_rasp_20, pruned_standard_20, sft_rasp_20, sft_standard_20, grpo_stage2_rasp_20_v9, grpo_stage2_standard_20_v8, sft_unpruned_baseline 等）\n  - 磁盘: /autodl-pub 7.2T/14T 可用(49%)\n  - GPU: 2× ~98GB, 当前全部空闲 ⚠️\n- **westd-11672**: root@westd-11672, 同路径结构\n  - 磁盘: /autodl-pub 5.3T/7.3T 可用(24%), 系统盘 817G/879G 可用\n  - GPU: 4× ~95GB, cuda:2 运行 eval_humaneval_grpo_standard_20 (PID 16483), cuda:3 运行 eval_math500_grpo_rasp_20_v2 (PID 11891), cuda:0/1 空闲 ⚠️\n- **活跃 cron**: eval_math500_unpruned (running), eval_math500_grpo_standard_20 (PID 14556, running)\n- **Workers**: 0 running（违反 pool<2 红线，接手后立即补）\n\n### 3. 📊 当前状态\n**刚完成的关键实验**:\n- gradient_sft_v3 (success) — 梯度剪枝后 SFT 恢复验证\n- eval_math500_sft_standard_20 (success) — Standard 20% 的 MATH-500 eval\n- eval_math500_sft_rasp_20 (success) — RASP 20% 的 MATH-500 eval\n- eval_unstructured_20 (success) — 非结构化剪枝 20% eval\n- scoring_ablation_batch_v2 (failed) — 评分消融实验第二次失败\n\n**RUNNING (3)**:\n| exp_id | server | GPU | 用途 |\n|--------|--------|-----|------|\n| eval_math500_grpo_rasp_20_v2 | westd | cuda:3 | RASP GRPO 的 MATH-500 eval (C1 cross-benchmark) |\n| eval_math500_grpo_standard_20 | westd | ? | Standard GRPO 的 MATH-500 eval (C1 cross-benchmark) |\n| eval_humaneval_grpo_standard_20 | westd | cuda:2 | Standard GRPO 的 HumanEval eval |\n\n**等待中**:\n- eval_math500_grpo_standard_20 的 cron 回调（PID 14556）\n- eval_math500_unpruned 的 cron 回调\n- 3 个 RUNNING eval 完成后需更新 report.md + 汇报 Director\n- 18 个 PREPARING 实验待提交（scoring ablation 5 个、25% sparsity GRPO、Qwen Math pipeline 等）\n\n**项目总览**: 154 实验，132 DONE (84 success, 14 negative, 23 failed, 11 killed), 3 RUNNING, 18 PREPARING, 1 QUEUED\n\n### 4. 📋 待办（条件触发式）\n- eval_math500_grpo_rasp_20_v2 完成 → 对比 sft_rasp_20 MATH-500 结果，验证 C1 cross-benchmark decoupling\n- eval_math500_grpo_standard_20 完成 → 对比 sft_standard_20 MATH-500 结果，如 Δ≈0 则 C1 在 MATH-500 上也成立\n- eval_humaneval_grpo_standard_20 完成 → 与 sft_standard_20 HumanEval (3.05%) 对比，填 HumanEval 矩阵\n- 三个 MATH-500 eval 全部完成 → 更新 paper_framing.md Evidence Status，通知 Paper Agent patch 数据\n- westb 2卡空闲 → 立即启动 scoring_ablation_batch（已失败 2 次，需诊断根因后重试）或 25% GRPO\n- westd cuda:0/1 空闲 → Qwen Math SFT/GRPO 或 scoring ablation 并行\n- scoring_ablation_batch 再次失败 → 拆成单个实验逐个跑（magnitude/gradient/random/cka_only 分别提交）\n- Paper Agent Step 2 (Plot Generation) 完成 → 审查 plots，推进 Step 3 (Draft)\n- 所有 25% + Qwen Math 数据就绪 → patch 论文，全文 consistency check\n\n### 5. 🎯 战略上下文\n**核心叙事 (D044/D045 后稳定)**:\n- C1: GRPO reward-accuracy decoupling 是 universal（unpruned 也如此），pruning 额外引入 collapse\n- C2: Collapse severity gradient 诊断 structural damage（RASP permanent step~10 > Standard transient step~60 > Unpruned none）\n- C3: Recovery method conditions optimal pruning — Redundancy-Stability Tradeoff（SFT 受益 vs RLVR 受害）\n\n**关键决策链**:\n- D044: 叙事从 \"RASP enables better RLVR recovery\" pivot 到 \"GRPO universally fails; pruning adds collapse\"\n- D050: RASP-RLVR 降级为 ablation (negative result)\n- D048: C3 reframe 为 \"RASP enables better GRPO recovery\" → Redundancy-Stability Tradeoff\n- D046: Qwen Math calibration=256 不重跑，论文加 footnote\n\n**易错点**:\n- scoring_ablation_batch 已连续失败 2 次（v1 + v2），需要仔细看 log 诊断，不要盲目重试\n- eval_math500_grpo_standard_20 registry 里没有 GPU/PID，cron 用 PID 14556 监控——可能存在 spec 不完整问题\n- SFT gap (RASP vs Standard) p=0.25 不显著，论文里只能说 marginal，不能 claim significance\n- westb 和 westd 上的模型/checkpoint 可能不完全同步（SCP 不通），注意 eval 用对路径\n- Paper writing 和实验必须并行——8 天 DDL，不能等实验全完再写\n- Worker 池当前为 0，接手后第一件事补 Worker（GPU 空闲是失职）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779016566.md"
+}

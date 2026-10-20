@@ -1,0 +1,17 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Structured pruning of LLMs.}
+Width pruning (LLM-Pruner~\citep{llmpruner2023}, Bonsai~\citep{bonsai2025}, GRASPrune~\citep{graspprune2026}) removes heads or MLP channels; depth pruning~\citep{shortgpt2024,slicegpt2024} removes entire layers but causes severe reasoning degradation~\citep{shrestha2026layerpruninglimits,llms2lrms2026}.
+For reasoning models, RESP~\citep{resp2025}, RAC~\citep{rac2025}, and SSGR~\citep{ssgr2025} refine calibration data but retain gradient-based importance scoring.
+Functional-structure-guided methods cluster neurons~\citep{fang_2025}, apply ICA~\citep{funcnet_2025}, or use inter-layer CKA for depth pruning~\citep{mpruner2024,kornblith2019cka}; we differ in using \emph{intra-layer} CKA between individual structures, optimizing for RL recovery.
+
+\paragraph{Pruning-aware recovery.}
+\citet{selfhealing2025} show RLVR restores pruned reasoning models, outperforming SFT, but evaluate only unstructured pruning at 96.5\% retention; our results suggest this advantage diminishes under fine-grained structural pruning that preserves diversity.
+Complementary axes include post-pruning scaling~\citep{p2law2025}, recovery data selection~\citep{paser2025}, joint pruning-tuning~\citep{pat2025}, post-hoc compensation~\citep{restorelcc_2025}, iterative prune-tune loops~\citep{boiling_frog_2026}, and post-RLVR compression~\citep{opsd2026}; none study which \emph{pruning criterion} enables RL-based recovery.
+Concurrent benchmarks~\citep{li2025reasoning_compression,canpruning2025} also do not isolate this variable.
+
+\paragraph{RLVR training dynamics.}
+\citet{rlsqueezes2026} show RLVR \emph{compresses} incorrect trajectories while SFT \emph{expands} correct ones, with training evolving linearly by amplifying early trends~\citep{wang2026linearity}; our results qualify this: the asymmetry manifests as a recovery capacity difference, but the expected accuracy gap does not materialize when pruning preserves diversity ($|\Delta| \leq 1.8$\,pp; \S\ref{sec:decoupling}).
+GRPO-specific instabilities are well characterized: \citet{deng2025grpocollapse} identify likelihood displacement as the mechanism driving collapse spirals, \citet{suk2025rlvrdynamics} derive step-size thresholds separating convergence from collapse, and \citet{mroueh2025grpodynamics} analyze GRPO's effective loss as a KL-regularized contrastive objective that amplifies success probability.
+\citet{mukherjee2025rlsubnetworks} find RL updates only 5--30\% of parameters; we show the pruning criterion determines which subnetwork remains active and its susceptibility to these collapse modes.

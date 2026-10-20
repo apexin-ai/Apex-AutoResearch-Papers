@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0284a6e40e37c7a02a1e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "survey westb full harvest",
+  "task_key": "worker_survey_westb_full_harvest_20260522T003605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_survey_westb_full_harvest_20260522T003605_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "c97d279bcda002f03496862aea452f25e34d91bc034d649eb1326166e20cf0b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态汇总\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| cuda:0 | 0 / 97887 MiB | 0% | **空闲** |\n| cuda:1 | 36244 / 97887 MiB | 100% | 占用（2 个 eval 进程） |\n\n### 运行中的 Eval\n\n| PID | 任务 | 运行时长 | 进度 | 预估剩余 |\n|-----|------|---------|------|----------|\n| 104592 | eval_math500_**sft_standard_25** (ckpt-1870) | 9h16m | **382/500 (76%)** | ~6h（~180s/it） |\n| 118095 | eval_math500_**sft_cka_only_20** (v6) | 5h03m | **312/500 (62%)** | ~5h（~57-100s/it） |\n\n两个 eval 都仍在运行，尚未产出 results.json。按当前速度预计还需 5-6 小时完成。\n\n### 磁盘\n\n`/root/autodl-tmp/`: **34GB 可用** (87% used, 217/250GB)\n\n### 本地 Checkpoint 列表（/root/autodl-tmp/recovery_aware_struct_prune/）\n\n**剪枝模型：**\n- pruned_cka_only_20, pruned_cka_only_20_1p5b, pruned_cka_only_20_qwen_math\n- pruned_rasp_20, pruned_rasp_20_1p5b, pruned_rasp_rlvr_20\n- pruned_standard_20, pruned_standard_20_1p5b, pruned_standard_20_qwen_math, pruned_standard_25\n\n**SFT 模型：**\n- sft_cka_only_20, sft_cka_only_20_1p5b, sft_qwen_math_cka_only_20_final\n- sft_rasp_20_1p5b, sft_rasp_rlvr_20\n- sft_standard_20_1p5b, sft_standard_20_qwen_math_final, sft_standard_25\n\n**GRPO 模型：**\n- grpo_cka_only_20, grpo_cka_only_20_1p5b, grpo_cka_only_20_seed123\n- grpo_random_20, grpo_rasp_20_1p5b, grpo_standard_20_1p5b, grpo_standard_25_westb\n\n---\n\n**结论：** cuda:0 完全空闲可安排新任务。cuda:1 上两个 MATH-500 eval 预计今晚（~UTC+8 凌晨）完成，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/survey-westb-full-harvest.md"
+}

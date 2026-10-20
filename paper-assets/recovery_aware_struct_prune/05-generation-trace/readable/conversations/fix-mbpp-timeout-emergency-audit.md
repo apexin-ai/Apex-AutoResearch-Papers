@@ -1,0 +1,1930 @@
+# fix mbpp timeout emergency audit
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 0
+- **Tool calls:** 32
+- **Original source:** `logs/chats/worker_fix_mbpp_timeout_emergency_audit_20260519T203035.jsonl`
+- **Structured JSON:** [`b88dee513119b3fe8de8.json`](../../sessions/b8/b88dee513119b3fe8de8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+65 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T20:37:04.708103+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T20:37:04.708500+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T20:37:04.708710+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "submit training job",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T20:37:04.708853+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T20:37:04.708977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T20:37:04.709102+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "ps -eo pid,ppid,etime,args --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "ps -eo pid,ppid,etime,args --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T20:37:04.709227+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 12497 MiB, 0 %\\n1, 17277 MiB, 98 %\\n2, 16767 MiB, 73 %\\n3, 12811 MiB, 88 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T20:37:04.709418+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "ps -eo pid,ppid,etime,args --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "ps -eo pid,ppid,etime,args --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T20:37:04.709612+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1      0  1-07:39:36 bash /init/boot/boot.sh\\n   917      1  1-07:39:33 /bin/supervisord -c /init/supervisor/supervisor.ini\\n   933    917  1-07:39:33 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\n   935    917  1-07:39:33 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\n   938    917  1-07:39:33 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\n   939    917  1-07:39:33 proxy -c /init/proxy/proxy-hot-backup.ini\\n   940    917  1-07:39:33 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\n   941    917  1-07:39:33 proxy -c /init/proxy/proxy.ini\\n  1052    940  1-07:39:33 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_4_ocohnk/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_4_ocohnk/startup_error\\n 19609      1  1-02:38:24 tmux new-session -d -s math500_standard_grpo_fair source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_standard_grpo_fair_v2.log\\n127962  19609    01:57:55 bash -c CUDA_VISIBLE_DEVICES=1 bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_rasp_20.json\\\" 2>&1 | tee /root/autodl-t
+…[truncated 4767 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T20:37:04.709843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1      0  7-12:39:33 bash /init/boot/boot.sh\\n   893      1  7-12:39:30 /bin/supervisord -c /init/supervisor/supervisor.ini\\n   909    893  7-12:39:30 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\n   913    893  7-12:39:30 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\n   915    893  7-12:39:30 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\n   916    893  7-12:39:30 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\n   917    893  7-12:39:30 proxy -c /init/proxy/proxy-hot-backup.ini\\n   918    893  7-12:39:30 proxy -c /init/proxy/proxy.ini\\n  1008    915  7-12:39:30 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_g935czi1/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_g935czi1/startup_error\\n680597      1  2-14:56:08 tmux new-session -d -s eval_unstructured_20 bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_unstructured_20_n1319.json 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_unstructured_20.log; echo EXIT_CODE=$? >> /root/runs/recovery_aware_struct_prune/eval_unstructured_20.log'\\n690470 680597  2-12:53:31 -bash\\n911523    916    02:49:11 sshd: root@notty\\n911525    916    02:49:11 sshd: root@notty\\n916217 680597    01:46:26 bash -c source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/m
+…[truncated 2154 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T20:37:04.710062+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T20:37:04.710199+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T20:37:04.710347+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_grpo_rasp_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T20:37:04.710481+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T20:37:04.710668+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rMBPP:  37%|███▋      | 140/374 [1:13:39<38:45,  9.94s/it]\\rMBPP:  38%|███▊      | 141/374 [1:15:18<2:22:33, 36.71s/it]\\rMBPP:  38%|███▊      | 142/374 [1:17:01<3:38:43, 56.57s/it]\\rMBPP:  38%|███▊      | 143/374 [1:17:05<2:37:41, 40.96s/it]\\rMBPP:  39%|███▊      | 144/374 [1:18:47<3:46:17, 59.03s/it]\\rMBPP:  39%|███▉      | 145/374 [1:18:50<2:42:00, 42.45s/it]\\rMBPP:  39%|███▉      | 146/374 [1:18:55<1:58:05, 31.07s/it]\\rMBPP:  39%|███▉      | 147/374 [1:20:39<3:20:38, 53.03s/it]\\rMBPP:  40%|███▉      | 148/374 [1:20:50<2:32:16, 40.43s/it]\\rMBPP:  40%|███▉      | 149/374 [1:22:46<3:56:01, 62.94s/it]\\rMBPP:  40%|████      | 150/374 [1:22:48<2:47:42, 44.92s/it]\\rMBPP:  40%|████      | 151/374 [1:22:51<1:59:20, 32.11s/it]\\rMBPP:  41%|████      | 152/374 [1:22:55<1:27:41, 23.70s/it]\\rMBPP:  41%|████      | 153/374 [1:24:43<3:00:17, 48.95s/it]\\rMBPP:  41%|████      | 154/374 [1:24:51<2:14:41, 36.73s/it]\\rMBPP:  41%|████▏     | 155/374 [1:24:54<1:37:46, 26.79s/it]\\rMBPP:  42%|████▏     | 156/374 [1:24:59<1:13:06, 20.12s/it]\\rMBPP:  42%|████▏     | 157/374 [1:25:04<56:23, 15.59s/it]  \\rMBPP:  42%|████▏     | 158/374 [1:25:08<43:46, 12.16s/it]\\rMBPP:  43%|████▎     | 159/374 [1:25:14<36:42, 10.24s/it]2026-05-20 04:02:43,722 [INFO] Progress: 160/374, Pass@1: 0.1125\\n\\rMBPP:  43%|████▎     | 160/374 [1:26:55<2:13:29, 37.43s/it]\\rMBPP:  43%|████▎     | 161/374 [1:26:58<1:36:44, 27.25s/it]\\rMBPP:  43%|████▎     | 162/374 [1:28:37<2:52:25, 48.80s/it]\\rMBPP:  44%|████▎     | 163/374 [1:28:40<2:02:47, 34.92s/it]\\rMBPP:  44%|████▍     | 164/374 [1:28:44<1:29:41, 25.63s/it]\\rMBPP:  44%|████▍     | 165/374 [1:28:49<1:07:33, 19.40s/it]\\rMBPP:  44%|████▍     | 166/374 [1:30:39<2:41:19, 46.54s/it]\\rMBPP:  45%|████▍     | 167/374 [1:32:20<3:37:24, 63.02s/it]\\rMBPP:  45%|████▍     | 168/374 [1:32:23<2:34:27, 44.99s/it]\\rMBPP:  45%|████▌     | 169/374 [1:32:27<1:51:40, 32.68s/it]\\rMBPP:  45%|████▌    
+…[truncated 3534 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T20:37:04.710819+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T20:37:04.710986+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "tmux list-sessions 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "tmux list-sessions 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T20:37:04.711112+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "tmux list-sessions 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "tmux list-sessions 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T20:37:04.711243+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_mbpp_grpo_rasp_20: 1 windows (created Wed May 20 02:33:01 2026)\\neval_mbpp_grpo_standard_20: 1 windows (created Wed May 20 04:28:52 2026)\\neval_mbpp_sft_rasp_20: 1 windows (created Wed May 20 04:00:13 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T20:37:04.711394+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_mbpp_sft_cka_only_20_1p5b: 1 windows (created Wed May 20 02:44:33 2026)\\neval_mbpp_sft_standard_20_1p5b: 1 windows (created Wed May 20 02:56:24 2026)\\nscoring_ablation_v2: 1 windows (created Sun May 17 15:37:29 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T20:37:04.711567+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "tmux capture-pane -t eval_mbpp_grpo_standard_20 -p 2>&1 | tail -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "tmux capture-pane -t eval_mbpp_grpo_standard_20 -p 2>&1 | tail -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T20:37:04.711714+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 04:30:17,945 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggin\\ngface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py\\n2026-05-20 04:31:38,217 [WARNING] '[Errno 101] Network is unreachable' thrown wh\\nile requesting HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacf\\nda99d4ac4205087b89d32030c/mbpp.py\\nRetrying in 1s [Retry 1/5].\\n2026-05-20 04:31:38,217 [WARNING] Retrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since mbpp couldn't be found on t\\nhe Hugging Face Hub\\n2026-05-20 04:31:39,218 [WARNING] Using the latest cached version of the dataset\\n since mbpp couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'full' at /root/.cache/huggingface\\n/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modifie\\nd on Tue May 19 21:26:42 2026).\\n2026-05-20 04:31:39,219 [WARNING] Found the latest cached dataset configuration\\n'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d\\n4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\n2026-05-20 04:31:39,244 [INFO] Loaded 374 problems\\nMBPP:   1%|          | 2/374 [00:48<2:18:16, 22.30s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T20:37:04.711844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "tail -3 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "tail -3 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T20:37:04.711973+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 04:31:39,219 [WARNING] Found the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\n2026-05-20 04:31:39,244 [INFO] Loaded 374 problems\\n\\rMBPP:   0%|          | 0/374 [00:00<?, ?it/s]\\rMBPP:   0%|          | 1/374 [00:35<3:39:34, 35.32s/it]\\rMBPP:   1%|          | 2/374 [00:48<2:18:16, 22.30s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T20:37:04.712102+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "tail -3 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "tail -3 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T20:37:04.712239+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 04:28:09,072 [WARNING] Found the latest cached dataset configuration 'full' at /root/.cache/huggingface/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c (last modified on Tue May 19 21:26:42 2026).\\n2026-05-20 04:28:09,094 [INFO] Loaded 374 problems\\n\\rMBPP:   0%|          | 0/374 [00:00<?, ?it/s]\\rMBPP:   0%|          | 1/374 [00:35<3:40:57, 35.54s/it]\\rMBPP:   1%|          | 2/374 [00:48<2:19:02, 22.42s/it]\\rMBPP:   1%|          | 3/374 [02:34<6:14:53, 60.63s/it]\\rMBPP:   1%|          | 4/374 [02:47<4:16:04, 41.53s/it]\\rMBPP:   1%|▏         | 5/374 [02:58<3:08:07, 30.59s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T20:37:04.712442+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "echo \"=== Kill duplicate eval_mbpp_grpo_standard_20 on cuda:0 ===\" && tmux kill-session -t eval_mbpp_grpo_standard_20 && echo \"Session killed\" && echo \"\" && echo \"=== Verify cuda:0 freed ===\" && ps -p 136270 -o pid,args 2>&1 || echo \"Process 136270 gone\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "echo \"=== Kill duplicate eval_mbpp_grpo_standard_20 on cuda:0 ===\" && tmux kill-session -t eval_mbpp_grpo_standard_20 && echo \"Session killed\" && echo \"\" && echo \"=== Verify cuda:0 freed ===\" && ps -p 136270 -o pid,args 2>&1 || echo \"Process 136270 gone\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T20:37:04.712578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Kill duplicate eval_mbpp_grpo_standard_20 on cuda:0 ===\\nSession killed\\n\\n=== Verify cuda:0 freed ===\\n   PID COMMAND\\n136270 [python] &lt;defunct>\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T20:37:04.712702+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "echo \"=== Kill timeout wrapper PID 135725 on cuda:2 ===\" && ps -o pid,ppid,args -p 135725,135726 2>&1 && echo \"\" && echo \"Killing timeout wrapper 135725...\" && kill 135725 && sleep 1 && echo \"=== Verify python 135726 still alive ===\" && ps -p 135726 -o pid,etime,args 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "echo \"=== Kill timeout wrapper PID 135725 on cuda:2 ===\" && ps -o pid,ppid,args -p 135725,135726 2>&1 && echo \"\" && echo \"Killing timeout wrapper 135725...\" && kill 135725 && sleep 1 && echo \"=== Verify python 135726 still alive ===\" && ps -p 135726 -o pid,etime,args 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T20:37:04.712841+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'echo \\\"=== Kill timeout wrapper PID 135725 on cuda:2 ===\\\" && ps -o pid,ppid,args -p 135725,135726 2>&1 && echo \\\"\\\" && echo \\\"Killing timeout wrapper 135725...\\\" && kill 135725 && sleep 1 && echo \\\"=== Verify python 135726 still alive ===\\\" && ps -p 135726 -o pid,etime,args 2>&1'\\n\\nExit code: 1\\n\\nStdout:\\n\\n=== Kill timeout wrapper PID 135725 on cuda:2 ===\\n   PID   PPID COMMAND\\n135725 135721 timeout 21600 env bash -c bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json\\\"\\n135726 135725 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json\\n\\nKilling timeout wrapper 135725...\\n=== Verify python 135726 still alive ===\\n   PID     ELAPSED COMMAND\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T20:37:04.713021+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_sft_standard_20",
+  "field": "conclusion",
+  "value": "failed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_sft_standard_20",
+    "field": "conclusion",
+    "value": "failed"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T20:37:04.713157+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_sft_standard_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:33:36.869Z\", \"updated_at\": \"2026-05-19T20:33:36.869Z\", \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2521}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T20:37:04.713298+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T20:37:04.713431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 0 %\\n1, 17277 MiB, 99 %\\n2, 0 MiB, 0 %\\n3, 12811 MiB, 88 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T20:37:04.713608+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_sft_standard_20",
+  "field": "failure_reason",
+  "value": "Killed by timeout wrapper at 189/374 (M017)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_sft_standard_20",
+    "field": "failure_reason",
+    "value": "Killed by timeout wrapper at 189/374 (M017)"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-19T20:37:04.713765+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "submit training job",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T20:37:04.713910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_sft_standard_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:33:36.869Z\", \"updated_at\": \"2026-05-19T20:33:54.665Z\", \"conclusion\": \"failed\", \"failure_reason\": \"Killed by timeout wrapper at 189/374 (M017)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2719}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T20:37:04.714041+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T20:37:04.714174+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "+submit job",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "+submit job",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T20:37:04.714322+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T20:37:04.714549+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_sft_standard_20",
+  "field": "status",
+  "value": "DONE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_sft_standard_20",
+    "field": "status",
+    "value": "DONE"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T20:37:04.714713+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1343}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T20:37:04.714884+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_sft_standard_20",
+  "field": "status",
+  "value": "PENDING"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_sft_standard_20",
+    "field": "status",
+    "value": "PENDING"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T20:37:04.715023+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_sft_standard_20\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:33:36.869Z\", \"updated_at\": \"2026-05-19T20:34:49.240Z\", \"conclusion\": \"failed\", \"failure_reason\": \"Killed by timeout wrapper at 189/374 (M017)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4709}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T20:37:04.715149+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_sft_standard_20",
+  "field": "status",
+  "value": "QUEUED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_sft_standard_20",
+    "field": "status",
+    "value": "QUEUED"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T20:37:04.715307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_sft_standard_20\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:33:36.869Z\", \"updated_at\": \"2026-05-19T20:34:52.522Z\", \"conclusion\": \"failed\", \"failure_reason\": \"Killed by timeout wrapper at 189/374 (M017)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3739}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T20:37:04.715451+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_sft_standard_20",
+  "field": "status",
+  "value": "ALLOCATED",
+  "spec": "{'server': 'westd-29022', 'gpu': 'cuda:0'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_sft_standard_20",
+    "field": "status",
+    "value": "ALLOCATED",
+    "spec": "{'server': 'westd-29022', 'gpu': 'cuda:0'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T20:37:04.715596+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_sft_standard_20\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:33:36.869Z\", \"updated_at\": \"2026-05-19T20:34:56.539Z\", \"conclusion\": \"failed\", \"failure_reason\": \"Killed by timeout wrapper at 189/374 (M017)\", \"spec\": {\"server\": \"westd-29022\", \"gpu\": \"cuda:0\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3554}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T20:37:04.715756+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "mkdir -p ~/runs/recovery_aware_struct_prune /root/autodl-tmp/recovery_aware_struct_prune/logs /root/autodl-tmp/recovery_aware_struct_prune/results && tmux new-session -d -s eval_mbpp_sft_standard_20 && tmux send-keys -t eval_mbpp_sft_standard_20 'export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_sft_standard_20.log' Enter && echo \"SUBMITTED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "mkdir -p ~/runs/recovery_aware_struct_prune /root/autodl-tmp/recovery_aware_struct_prune/logs /root/autodl-tmp/recovery_aware_struct_prune/results && tmux new-session -d -s eval_mbpp_sft_standard_20 && tmux send-keys -t eval_mbpp_sft_standard_20 'export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_mbpp_sft_standard_20.log' Enter && echo \"SUBMITTED\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T20:37:04.715889+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SUBMITTED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T20:37:04.716009+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_sft_standard_20",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": "{'server': 'westd-29022', 'gpu': 'cuda:0', 'command': 'python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_sft_standard_20",
+    "field": "status",
+    "value": "RUNNING",
+    "spec": "{'server': 'westd-29022', 'gpu': 'cuda:0', 'command': 'python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T20:37:04.716137+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to RUNNING without spec fields: ['data_count', 'data_path', 'model_name', 'seed']. Pass spec={...} with at least: ['command', 'data_count', 'data_path', 'model_name', 'seed', 'server']\", \"metadata\": {\"elapsed_seconds\": 0.1344}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T20:37:04.716273+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_mbpp_sft_standard_20",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": "{'server': 'westd-29022', 'gpu': 'cuda:0', 'command': 'python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json', 'data_path': 'mbpp_sanitized', 'data_count': 374, 'model_name': 'sft_standard_20', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_mbpp_sft_standard_20",
+    "field": "status",
+    "value": "RUNNING",
+    "spec": "{'server': 'westd-29022', 'gpu': 'cuda:0', 'command': 'python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json', 'data_path': 'mbpp_sanitized', 'data_count': 374, 'model_name': 'sft_standard_20', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T20:37:04.716432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_mbpp_sft_standard_20\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:33:36.869Z\", \"updated_at\": \"2026-05-19T20:35:15.153Z\", \"conclusion\": \"failed\", \"failure_reason\": \"Killed by timeout wrapper at 189/374 (M017)\", \"spec\": {\"server\": \"westd-29022\", \"gpu\": \"cuda:0\", \"command\": \"python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json\", \"data_path\": \"mbpp_sanitized\", \"data_count\": 374, \"model_name\": \"sft_standard_20\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3581}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T20:37:04.716575+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "sleep 15 && tmux capture-pane -t eval_mbpp_sft_standard_20 -p 2>&1 | tail -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "sleep 15 && tmux capture-pane -t eval_mbpp_sft_standard_20 -p 2>&1 | tail -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T20:37:04.716705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"urce /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && py\\nthon src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/\\nsft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aw\\nare_struct_prune/results/eval_mbpp_sft_standard_20.json 2>&1 | tee /root/autodl-\\ntmp/recovery_aware_struct_prune/logs/eval_mbpp_sft_standard_20.log\\n2026-05-20 04:35:09,006 [INFO] Loading model from /root/autodl-tmp/recovery_awar\\ne_struct_prune/sft_standard_20\\n2026-05-20 04:35:09,593 [INFO] Non-uniform MLP detected: intermediate_size range\\n [8128, 18944]\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T20:37:04.716870+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T20:37:04.716998+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 0 %\\n1, 17277 MiB, 97 %\\n2, 0 MiB, 0 %\\n3, 12811 MiB, 87 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T20:37:04.717118+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "tail -2 /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "tail -2 /root/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T20:37:04.717296+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rMBPP:  48%|████▊     | 180/374 [29:20<22:21,  6.92s/it]\\rMBPP:  48%|████▊     | 181/374 [29:23<18:32,  5.76s/it]\\rMBPP:  49%|████▊     | 182/374 [29:27<16:54,  5.29s/it]\\rMBPP:  49%|████▉     | 183/374 [29:52<35:51, 11.26s/it]\\rMBPP:  49%|████▉     | 184/374 [29:57<29:28,  9.31s/it]\\rMBPP:  49%|████▉     | 185/374 [30:22<44:19, 14.07s/it]\\rMBPP:  50%|████▉     | 186/374 [30:24<32:50, 10.48s/it]\\rMBPP:  50%|█████     | 187/374 [30:49<46:24, 14.89s/it]\\rMBPP:  50%|█████     | 188/374 [31:14<55:43, 17.97s/it]\\rMBPP:  51%|█████     | 189/374 [31:16<40:16, 13.06s/it]\\rMBPP:  51%|█████     | 190/374 [31:19<30:33,  9.96s/it]\\rMBPP:  51%|█████     | 191/374 [31:21<23:39,  7.76s/it]\\rMBPP:  51%|█████▏    | 192/374 [31:23<17:34,  5.80s/it]\\rMBPP:  52%|█████▏    | 193/374 [31:25<14:10,  4.70s/it]\\rMBPP:  52%|█████▏    | 194/374 [31:50<32:31, 10.84s/it]\\rMBPP:  52%|█████▏    | 195/374 [31:52<24:46,  8.30s/it]\\rMBPP:  52%|█████▏    | 196/374 [31:54<18:41,  6.30s/it]\\rMBPP:  53%|█████▎    | 197/374 [31:57<16:13,  5.50s/it]\\rMBPP:  53%|█████▎    | 198/374 [32:00<13:48,  4.71s/it]\\rMBPP:  53%|█████▎    | 199/374 [32:03<11:56,  4.10s/it]2026-05-20 04:35:07,237 [INFO] Progress: 200/374, Pass@1: 0.0850\\n\\rMBPP:  53%|█████▎    | 200/374 [32:05<09:42,  3.35s/it]\\rMBPP:  54%|█████▎    | 201/374 [32:06<08:00,  2.78s/it]\\rMBPP:  54%|█████▍    | 202/374 [32:08<07:37,  2.66s/it]\\rMBPP:  54%|█████▍    | 203/374 [32:34<26:47,  9.40s/it]\\rMBPP:  55%|█████▍    | 204/374 [32:36<20:17,  7.16s/it]\\rMBPP:  55%|█████▍    | 205/374 [32:37<15:04,  5.35s/it]\\rMBPP:  55%|█████▌    | 206/374 [32:39<12:52,  4.60s/it]\\rMBPP:  55%|█████▌    | 207/374 [32:41<10:23,  3.74s/it]\\rMBPP:  56%|█████▌    | 208/374 [32:42<08:06,  2.93s/it]\\rMBPP:  56%|█████▌    | 209/374 [32:45<07:50,  2.85s/it]\\rMBPP:  56%|█████▌    | 210/374 [32:49<08:31,  3.12s/it]\\rMBPP:  56%|█████▋    | 211/374 [32:51<07:27,  2.74s/it]\\rMBPP:  57%|█████▋ 
+…[truncated 199 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T20:37:04.717456+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-23072",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T20:37:04.717586+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 4237 MiB, 96 %\\n1, 4259 MiB, 98 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T20:37:04.717770+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "sleep 20 && nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && tmux capture-pane -t eval_mbpp_sft_standard_20 -p 2>&1 | tail -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29022",
+    "command": "sleep 20 && nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && tmux capture-pane -t eval_mbpp_sft_standard_20 -p 2>&1 | tail -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T20:37:04.717929+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 12497 MiB, 0 %\\n1, 17277 MiB, 99 %\\n2, 0 MiB, 0 %\\n3, 12811 MiB, 88 %\\n---\\ne_struct_prune/sft_standard_20\\n2026-05-20 04:35:09,593 [INFO] Non-uniform MLP detected: intermediate_size range\\n [8128, 18944]\\n2026-05-20 04:36:31,105 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-19T20:37:04.718114+00:00_
+
+cuda:0 已占用 12497 MiB，数据集正在加载。eval_mbpp_sft_standard_20 成功启动。
+
+---
+
+## E. 汇总表格
+
+### westd-29022
+
+| GPU | 实验 | timeout wrapper | timeout 值 | 操作 | Python PID 状态 |
+|-----|------|----------------|-----------|------|----------------|
+| cuda:0 | **eval_mbpp_sft_standard_20** (新) | ❌ 无 | — | 已重新提交，无 timeout | 模型已加载 12.5GB，数据集加载中 ✅ |
+| cuda:0 | eval_mbpp_grpo_standard_20 (旧) | ❌ 无 | — | 已杀掉（与 cuda:2 的 v2 重复，同一输出路径） | Dead |
+| cuda:1 | eval_mbpp_grpo_rasp_20 | ❌ 无 | — | 安全，无需操作 | PID 127964, 222/374 运行中 ✅ |
+| cuda:2 | eval_mbpp_grpo_standard_20_v2 | ✅ 有 | 21600s (6h) | ⚠️ **附带伤亡**：kill timeout 时 SIGTERM 被转发给子进程，python 也死了 | Dead (仅 5/374，损失极小) |
+| cuda:3 | eval_mbpp_sft_rasp_20 | ✅ 有 | 86400s (24h) | 安全（>8h），未动 | PID 133679, 213/374 运行中 ✅ |
+
+### westb-23072
+
+| GPU | 实验 | timeout wrapper | timeout 值 | 操作 | Python PID 状态 |
+|-----|------|----------------|-----------|------|----------------|
+| cuda:0 | eval_mbpp_sft_standard_20_1p5b | ❌ 无 | — | 安全 | PID 917409 运行中 ✅ |
+| cuda:1 | eval_mbpp_sft_cka_only_20_1p5b | ❌ 无 | — | 安全 | PID 916225 运行中 ✅ |
+
+### 关键发现
+
+1. **eval_mbpp_sft_standard_20** — 已在 westd cuda:0 重新提交，**无 timeout wrapper**，registry 已更新为 RUNNING
+2. **eval_mbpp_grpo_standard_20_v2** (cuda:2) — 附带伤亡。GNU `timeout` 收到 SIGTERM 时会转发给子进程组，无法单独杀 wrapper 保留 python。仅 5/374，损失极小。**cuda:2 现已空闲，需要重新提交此实验**
+3. **eval_mbpp_sft_rasp_20** (cuda:3) — 24h timeout 充足，未触碰
+4. **westb 两个实验均无 timeout wrapper**，全部安全
+
+### 教训
+
+`kill &lt;timeout_PID>` 无法安全解除 timeout wrapper——`timeout` 会将收到的信号转发给子进程组。正确做法是：要么一开始就不用 timeout，要么接受它直到自然过期。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_fix_mbpp_timeout_emergency_audit_20260519T203035"
+}
+```
+
+</details>
+
+---

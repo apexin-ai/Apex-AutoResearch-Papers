@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval_math500_grpo_cka_only_20_fixed",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:50:01.329Z",
+    "updated_at": "2026-05-23T23:14:58.954Z",
+    "hypothesis": "GRPO CKA-only 20% MATH-500 with fixed eval script. Model on westb (grpo_cka_only_20/checkpoint-100). P0 method comparison.",
+    "server": "westb-23072",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-23T19:35:44.377Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_20_fixed.json --seed 42 --dtype bfloat16\"",
+      "code_commit": "e6ce5f70bb3b993ba8964f0ea62d2f6001155551",
+      "finished_at": "2026-05-23T23:11:32.857Z",
+      "training_hours": 3.6
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_20_fixed.json --seed 42 --dtype bfloat16\"",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "321423",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_20_fixed.log",
+      "submitted_at": "2026-05-23T19:35:48.851Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 13096.9,
+      "gpu_hours": 3.64
+    },
+    "pid": "321423",
+    "log_path": "~/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_20_fixed.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T23:11:41.994371+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.276,
+      "n_correct": 138,
+      "n_total": 500,
+      "stderr": 0.02
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100",
+    "completed_at": "2026-05-23T23:14:05.791Z"
+  },
+  "timestamp": "2026-05-23T23:14:59.669251+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_sft_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:28:35.380Z",
+    "updated_at": "2026-05-17T14:28:54.105Z",
+    "hypothesis": "CKA-only 20% post-SFT GSM8K accuracy (N=200). Post-prune was 38.5% (highest among all methods). If post-SFT >> 60%, CKA-only scoring is superior for SFT recovery. If ~60% like RASP/Standard/Random, confirms SFT equalizes all scoring methods regardless of post-prune advantage.",
+    "parent": "sft_cka_only_20"
+  },
+  "timestamp": "2026-05-17T14:28:54.358842+00:00",
+  "trigger": "update_registry"
+}

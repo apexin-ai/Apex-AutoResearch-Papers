@@ -1,0 +1,1275 @@
+# cron hook eval grpo unpruned v2 step90
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/cron_hook_eval_grpo_unpruned_v2_step90.jsonl`
+- **Structured JSON:** [`4b681e83c74c356acb2a.json`](../../sessions/4b/4b681e83c74c356acb2a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+44 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T05:21:01.699366+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: eval_grpo_unpruned_v2_step90
+- project: recovery_aware_struct_prune
+- server: westd-11672
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T05:21:13.645612+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": "12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "max_results": "12"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T05:21:13.696795+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T05:21:17.428676+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T05:21:17.479334+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T05:21:18.236929+00:00_
+
+Error: result (112,895 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-5269c544/5b2f2b23-ed65-4452-bb95-f0f6cc34524c/tool-results/mcp-agent-ml-research-read_registry-1778908878140.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-5269c544/5b2f2b23-ed65-4452-bb95-f0f6cc34524c/tool-results/mcp-agent-ml-research-read_registry-1778908878140.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-5269c544/5b2f2b23-ed65-4452-bb95-f0f6cc34524c/tool-results/mcp-agent-ml-research-read_registry-1778908878140.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 808
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T05:21:18.242475+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T05:21:18.242858+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T05:21:18.294492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"eval_grpo_rasp_v9_step10\", \"success\": true, \"actions\": [\"Skipped (created 58s ago < interval 120s)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 815
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T05:21:18.347710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-16T05:21:01Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 68 个实验 — ANALYZING 2, DONE 55, PREPARING 10, RUNNING 1\\n**DONE 分布**: failed 11, killed 6, negative 9, success 29\\n\\n### GPU 占用\\n- **分配**: 4 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-11672:cuda:0, westd-11672:cuda:1\\n- **实际运行**: 1 张 — westb-23072:cuda:0(eval_grpo_rasp_v9_step10)\\n- **空闲（分配了没跑）**: westb-23072:cuda:1, westd-11672:cuda:0, westd-11672:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `eval_grpo_rasp_v9_step10` | westb-23072 | cuda:0 | 585618 | `…ns/recovery_aware_struct_prune/eval_grpo_rasp_v9_step10.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `eval_grpo_rasp_v9_step5` [success] — 2026-05-16T05:18:16\\n- `prune_standard_25` [success] — 2026-05-16T05:16:41\\n- `prune_rasp_25` [success] — 2026-05-16T05:16:39\\n- `grpo_unpruned_v2` [success] — 2026-05-16T04:43:16 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `grpo_stage2_rasp_20_v9` [success] — 2026-05-16T03:38:37\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_grpo_rasp_v9_step10 | RASP GRPO v9 step-10 checkpoint GSM8K eval (N=1319, greedy, seed=42). Step 10 = collapse onset (reward=0.015, frac_zero_std=0.875). 对比 step-5 eval 和 Standard step-50 eval (58.91%) 量化 collapse 影响。Parent: grpo_stage2_rasp_20_v9. | — | — | — |\\n| eval_grpo_unpruned_v2_step90 | — | — | — | — |\\n| eval_grpo_unpruned_v2_step100 | — | — | — | — |\\n\\n## 待处理\\n- eval_sft_standard_20_full: Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 6
+…[truncated 3526 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 105
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T05:21:18.398663+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-15 14:50 UTC | 更新原因: D032 GRPO v8 双卡稳定运行，更新工程历史和任务状态\\n\\n## 核心方向\\nRecovery-Aware Structured Pruning (RASP)：CKA functional overlap 指导结构化剪枝，在 matched sparsity 下比 importance-only 剪枝显著更好地保留推理能力（**Redundancy Paradox**）。详见 paper_framing.md。\\n\\n## 目标会议\\nEMNLP 2026 ARR May 25 提交（距今 10 天）\\n\\n## 当前阶段\\n**Research Phase** — GRPO v8 双卡稳定运行中（D032）。westd GraSP SFT + α ablation 并行推进。\\n\\n## 核心证据（D027 修正后）\\n- ~~Post-prune: RASP 29% vs Standard 1%~~ → **D027 修正: RASP 31% vs Standard 27% (4pp, p=0.54, 不显著)**\\n- Post-SFT GSM8K (N=100): RASP 57% vs Standard 64%（Standard 反超 7pp）\\n- GraSP post-prune: 8% — RASP >> GraSP 3.6x，gradient-based baseline 远劣（D027 仍成立）\\n- α ablation post-prune: α=0.0 30% / α=0.5 25% / α=1.0 27% / α=4.0 40%（CI 重叠，N=100 不足以区分）\\n- α=4.0 post-SFT: 62%，α=1.0 post-SFT: 57%——SFT 有均衡化效应\\n- **GRPO v8 是唯一尚存的核心假设验证路径**\\n\\n## Claims & 实验覆盖\\n| Claim | P0 实验 | 状态 |\\n|-------|---------|------|\\n| C1: CKA-aware pruning preserves reasoning | plan_001-006, plan_015 | ⏳ GRPO v8 运行中 |\\n| C2: F(h) predicts recoverability | plan_007-008, plan_014-015 | 待 GRPO 完成 |\\n| C3: Recovery method conditions pruning order | plan_009 | SFT: Standard>RASP (D029)；待 GRPO 确认反转 |\\n\\n## 近期任务\\n- [ ] **GRPO v8 双卡运行中** — westb cuda:0 RASP, cuda:1 Standard (~21h, ETA ~5/16 11:30 UTC)\\n- [ ] **GRPO v8 监控** — step 5 (~1h) 和 step 20 (~4h) 检查 reward/grad_norm 早期信号\\n- [ ] **GraSP SFT + eval** — westd cuda:0，接近完成\\n- [ ] **α ablation SFT sweep** — westd cuda:1, 已完成 α=0.0/0.5/1.0/4.0, α=2.0 启动中\\n- [ ] GRPO v8 完成 → eval 两模型(N=100, greedy) → 判定: |RASP-Standard| >15pp/5-15pp/<5pp\\n- [ ] 全部 α SFT+eval 完成 → α vs recovery 曲线\\n- [ ] [Dream P0] α ablation plan_015 — GRPO 完成后立即执行\\n- [ ] [Dream P1] Inference speedup plan_016 / Unstructured baseline plan_017
+…[truncated 3259 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 155
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T05:21:26.093829+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'exp_id': 'eval_grpo_unpruned_v2_step90'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'exp_id': 'eval_grpo_unpruned_v2_step90'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T05:21:26.596406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1777}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T05:21:26.900467+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T05:21:27.302300+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_grpo_unpruned_v2_step90\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:05:00.333Z\", \"updated_at\": \"2026-05-16T05:20:57.054Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step90.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:1\"], \"pid\": \"83667\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step90.log\", \"submitted_at\": \"2026-05-16T03:39:13.660Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 80.59, \"correct\": 1063, \"total\": 1319, \"eos_rate\": 99.6, \"avg_response_length\": 213, \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-16T05:20:55.145Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T05:21:01.910684+00:00\"}]}}, \"eval_grpo_unpruned_v2_step100\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:04:55.936Z\", \"updated_at\": \"2026-05-16T05:20:50.229Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step100.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\
+…[truncated 715 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T05:21:27.505664+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T05:21:27.758498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_grpo_rasp_v9_step10\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:40:46.186Z\", \"updated_at\": \"2026-05-16T05:18:54.501Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9/checkpoint-10 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_v9_step10.json\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"585618\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_grpo_rasp_v9_step10.log\", \"submitted_at\": \"2026-05-16T04:57:36.867Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"RASP GRPO v9 step-10 checkpoint GSM8K eval (N=1319, greedy, seed=42). Step 10 = collapse onset (reward=0.015, frac_zero_std=0.875). 对比 step-5 eval 和 Standard step-50 eval (58.91%) 量化 collapse 影响。Parent: grpo_stage2_rasp_20_v9.\", \"parent\": \"grpo_stage2_rasp_20_v9\", \"metrics\": {\"progress\": \"249/1319\", \"acc_at_200\": 0.68, \"eos_rate\": 0.995, \"avg_len\": 167, \"speed_s_per_it\": 2.2, \"eta_min\": 40, \"checked_at\": \"2026-05-16T05:18:00Z\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2385}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T05:21:27.758923+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T05:21:27.859708+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-16: α Ablation Sweep westb (cal=512) — 非单调 U 形确认\\n- α=0.0→27%, α=0.25→23%, α=0.5→22%, α=1.0→31%, α=2.0→36%\\n- 与 westd (cal=256) 对比：两者都呈非单调 U 形。小 α (0.25-0.5) 引入噪声反而更差\\n- α=1.0 是精度-生成质量最佳平衡（31%, EOS 92%, avg_len 733）\\n- α=2.0 精度最高但 EOS 仅 59%——可能是\\\"暴力搜索\\\"（长输出碰运气）\\n- **Claim 2 支撑：α 显著影响 post-prune reasoning retention，最优区间 α∈[1.0, 2.0]**\\n\\n## 2026-05-16: sft_unpruned_baseline — 全量模型 SFT 基线\\n- Unpruned SFT: loss 0.332, token_acc 0.909（vs 剪枝模型 loss 0.64, token_acc 0.83）\\n- 全量参数模型学习能力明显更强，8pp token_accuracy 差异\\n- N=100 eval 运行中，结果待收集\\n\\n## 2026-05-16: RASP GRPO v9 — save_steps=5 捕获 collapse 前 peak\\n- PID 566666, westb cuda:0, wandb mrikafz3\\n- save_steps=5, save_total_limit=5, max_steps=30\\n- 预计 step 5/10 有 checkpoint（RASP collapse onset ~step 10）\\n- 这是论文 RASP vs Standard GRPO 对比的关键缺失数据\\n\\n## 2026-05-15: N=1319 Full Eval — RASP vs Standard SFT 无显著差异\\n- westd N=1319: Standard 59.29% ±1.35%, RASP 61.49% ±1.34%\\n- Δ(RASP - Standard) = +2.20pp, z=1.154, **p=0.248, 不显著**, 95% CI = [-1.53, +5.93]pp\\n- **结论：post-SFT 两种 pruning 方法恢复能力无统计差异，论文 Claim 不能基于 SFT accuracy 差异**\\n\\n## 2026-05-15: Unpruned GRPO baseline COLLAPSE — 改变 narrative\\n- Unpruned DeepSeek-R1-Distill-Qwen-7B 在相同 GRPO v8 参数下也 collapse：peak reward 0.044 (step 20) → step 80 collapse → step 100 全零\\n- **结论：GRPO collapse 不是剪枝导致的，是当前 GRPO 配置本身的问题**\\n- Collapse 时间线：RASP (step ~10) < Standard (step ~60) < Unpruned (step ~80)\\n- **Standard pruning 是唯一延迟 collapse 最久的** — counterintuitive\\n\\n## 2026-05-15: 文献搜索 — Pruning + RL Stability (Narrative A 支撑)\\n- **无直接先例**: 没有论文报告 pruning → GRPO/RLVR collapse。强新颖性。\\n- **Top 引用**: ①Dohare Nature 2024 ②Ma ICML 2025 ③Obando-Ceron ICML 2024 ④Zheng GSPO 2025\\n\\n## 2026-05-15: RASP GRPO 3x collapse + 零 checkpoint\\n- RASP GRPO v2/v5/v8 全部 collapse，v2-v8 全版本零 check
+…[truncated 656 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T05:21:57.018200+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'exp_id': 'eval_grpo_rasp_v9_step5'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'exp_id': 'eval_grpo_rasp_v9_step5'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T05:21:57.471901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.221}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T05:21:57.923947+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'exp_id': 'eval_grpo_standard_step50_full'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'exp_id': 'eval_grpo_standard_step50_full'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T05:21:58.478414+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2076}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 554
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T05:21:58.478846+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'exp_id': 'grpo_unpruned_v2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'exp_id': 'grpo_unpruned_v2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T05:21:59.036598+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1893}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 557
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T05:21:59.037014+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T05:21:59.088407+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_5269c544.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T05:22:04.617785+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "filters": "{'status': 'DONE', 'conclusion': 'success'}",
+  "limit": "10",
+  "fields": "['status', 'conclusion', 'metrics', 'hypothesis', 'parent']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "filters": "{'status': 'DONE', 'conclusion': 'success'}",
+    "limit": "10",
+    "fields": "['status', 'conclusion', 'metrics', 'hypothesis', 'parent']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T05:22:04.971668+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_grpo_rasp_v9_step5\": {\"status\": \"DONE\", \"hypothesis\": \"RASP GRPO v9 step-5 checkpoint GSM8K eval (N=1319, greedy, seed=42). Step 5 是 RASP collapse 前最后可能的 pre-collapse checkpoint（v9 collapse onset ≤step 10, logging_steps=10 无法判断 step 5 状态）。与 Standard step-50 eval (58.91%) 对比，量化 RASP GRPO 短暂训练的效果。Parent: grpo_stage2_rasp_20_v9.\", \"parent\": \"grpo_stage2_rasp_20_v9\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 60.65, \"total\": 1319, \"seed\": 42}}, \"prune_standard_25\": {\"status\": \"DONE\", \"hypothesis\": \"Standard importance-only pruning at 25% sparsity (calibration=256). Negative control for RASP 25%. Multi-sparsity extension.\", \"conclusion\": \"success\"}, \"prune_rasp_25\": {\"status\": \"DONE\", \"hypothesis\": \"RASP pruning at 25% sparsity (α=1.0, calibration=256). Multi-sparsity extension: compare with 20% to establish sparsity-collapse relationship.\", \"conclusion\": \"success\"}, \"grpo_unpruned_v2\": {\"status\": \"DONE\", \"hypothesis\": \"D043+ Unpruned GRPO v2 (D041 fix) — 修复 v1 设计缺陷（无 SFT 步骤）。使用 sft_unpruned_baseline checkpoint (84% N=100, loss=0.332) → GRPO，与 v8 完全相同参数 (8-bit AdamW, max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, lr=1e-6, max_steps=100, save_steps=5)。三模型 collapse dynamics 最后一块拼图：RASP ~step10, Standard ~step60, Unpruned ?。如果 Unpruned collapse 显著晚于 pruned models → 确立 pruning-specificity (Claim 1/2)。如果 Unpruned 也快速 collapse → GRPO 方法本身问题，需重新 frame。Parent: sft_unpruned_baseline.\", \"parent\": \"sft_unpruned_baseline\", \"conclusion\": \"success\", \"metrics\": {\"max_steps\": 100, \"collapse_onset\": \"N/A\", \"peak_reward\": 0.669, \"peak_reward_step\": 80, \"final_reward\": 0.661, \"final_grad_norm\": 6.97, \"final_entropy\": 0.194, \"final_kl\": 0.0051, \"reward_range\": \"0.425-0.669\", \"checkpoints_available\": [\"checkpoint-90\", \"checkpoint-95\", \"checkpoint-100\"], \"training_seconds\": 2660,
+…[truncated 4244 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T05:22:04.972134+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T05:22:05.022634+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T05:22:35.928411+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_grpo_unpruned_v2_step90",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90', 'log_path': '~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step90.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_grpo_unpruned_v2_step90",
+    "field": "status",
+    "value": "DONE",
+    "project": "recovery_aware_struct_prune",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90', 'log_path': '~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step90.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T05:22:37.035528+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_grpo_unpruned_v2_step90\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:05:00.333Z\", \"updated_at\": \"2026-05-16T05:22:36.109Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step90.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:1\"], \"pid\": \"83667\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step90.log\", \"submitted_at\": \"2026-05-16T03:39:13.660Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90\", \"wall_clock_seconds\": 6194.8, \"gpu_hours\": 1.72}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 80.59, \"correct\": 1063, \"total\": 1319, \"eos_rate\": 99.6, \"avg_response_length\": 213, \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-16T05:20:55.145Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T05:21:01.910684+00:00\"}]}, \"completed_at\": \"2026-05-16T05:22:28.433Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6955}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1107
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T05:22:37.867105+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_grpo_unpruned_v2_step100",
+  "field": "status",
+  "value": "DONE",
+  "project": "recovery_aware_struct_prune",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100', 'log_path': '~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step100.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_grpo_unpruned_v2_step100",
+    "field": "status",
+    "value": "DONE",
+    "project": "recovery_aware_struct_prune",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100', 'log_path': '~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step100.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T05:22:38.019947+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T05:22:39.225319+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_grpo_unpruned_v2_step100\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:04:55.936Z\", \"updated_at\": \"2026-05-16T05:22:38.323Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step100.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"83589\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step100.log\", \"submitted_at\": \"2026-05-16T03:39:11.392Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100\", \"wall_clock_seconds\": 6195.8, \"gpu_hours\": 1.72}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 81.27, \"correct\": 1072, \"total\": 1319, \"eos_rate\": 99.7, \"avg_response_length\": 209, \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-16T05:20:49.514Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T05:20:51.768048+00:00\"}]}, \"completed_at\": \"2026-05-16T05:22:27.217Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2981}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1358
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T05:22:39.275966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_sft-standard-25_20260516T051939\", \"task_type\": \"ops:sft-standard-25\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"running\", \"started_at\": \"2026-05-16T05:19:39.565513+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ops_prep-sft-standard-25_20260516T051945\", \"task_type\": \"ops:prep-sft-standard-25\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"running\", \"started_at\": \"2026-05-16T05:19:45.704525+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_research_compile-evidence-table_20260516T051959\", \"task_type\": \"research:compile-evidence-table\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"running\", \"started_at\": \"2026-05-16T05:19:59.340491+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_eval_postprune-25-eval_20260516T052037\", \"task_type\": \"eval:postprune-25-eval\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"running\", \"started_at\": \"2026-05-16T05:20:37.321848+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ops_sft-rasp-25-westd_20260516T052045\", \"task_type\": \"ops:sft-rasp-25-westd\", \"project\": \"recovery_aware_struct_prune\", \"status\": \"running\", \"started_at\": \"2026-05-16T05:20:45.539462+00:00\", \"ended_at\": null}], \"count\": 5}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 1256
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T05:23:32.749562+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4 / 实际跑 1 (westb:0 eval_grpo_rasp_v9_step10) | Worker 池 5 (GPU 0 / CPU 5: sft-standard-25, prep-sft-standard-25, compile-evidence-table, postprune-25-eval, sft-rasp-25-westd)\nwestd cuda:0/1 刚从 eval 释放，5 个 Worker 正在准备 25% sparsity 系列任务，预计即将占用。\n\n---\n\n**Unpruned GRPO v2 step 90/100 eval 完成** — 确认 reward-accuracy decoupling\n\n| 模型 | 阶段 | GSM8K (N=1319) |\n|------|------|----------------|\n| Unpruned | SFT | 81.27% |\n| Unpruned | GRPO step 90 | 80.59% |\n| Unpruned | GRPO step 100 | 81.27% |\n| Standard 20% | SFT | 59.29% |\n| Standard 20% | GRPO step 50 (pre-collapse) | 58.91% |\n| RASP 20% | SFT | 61.49% |\n| RASP 20% | GRPO v9 step 5 (pre-collapse) | 60.65% |\n| RASP 20% | GRPO v9 step 10 (running) | ~68% (early 200 samples) |\n\n**关键发现:**\n1. **Unpruned GRPO 不增加精度** — step 90/100 accuracy ≡ SFT baseline (81.27%)，但 reward 从 ~0.4 升到 0.669。GRPO 改善了 reward format 但不改善推理能力。\n2. **Pruned 模型同理** — Standard/RASP 的 GRPO pre-collapse accuracy ≈ SFT accuracy（58.91% vs 59.29%, 60.65% vs 61.49%），GRPO 未提升推理。\n3. **RASP step 10 可能反常** — 早期 200 样本显示 ~68%，高于 SFT 的 61.49%。如果全量 eval 确认，这意味着 RASP 在 collapse onset 时有短暂的精度提升窗口，但此结论需等 eval 完成。\n\n**对 D044/D045 narrative 的印证**: Unpruned 结果彻底确认\"GRPO reward-accuracy decoupling\"——reward 不等于推理能力。论文 story 应聚焦 pruning 如何改变 GRPO 训练 dynamics（collapse timing、stability），而非 accuracy recovery。\n\n**待 eval_grpo_rasp_v9_step10 完成**（westb:0, ETA ~40min），将拼齐 RASP collapse-onset 的精确精度数据。",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4 / 实际跑 1 (westb:0 eval_grpo_rasp_v9_step10) | Worker 池 5 (GPU 0 / CPU 5: sft-standard-25, prep-sft-standard-25, compile-evidence-table, postprune-25-eval, sft-rasp-25-westd)\nwestd cuda:0/1 刚从 eval 释放，5 个 Worker 正在准备 25% sparsity 系列任务，预计即将占用。\n\n---\n\n**Unpruned GRPO v2 step 90/100 eval 完成** — 确认 reward-accuracy decoupling\n\n| 模型 | 阶段 | GSM8K (N=1319) |\n|------|------|----------------|\n| Unpruned | SFT | 81.27% |\n| Unpruned | GRPO step 90 | 80.59% |\n| Unpruned | GRPO step 100 | 81.27% |\n| Standard 20% | SFT | 59.29% |\n| Standard 20% | GRPO step 50 (pre-collapse) | 58.91% |\n| RASP 20% | SFT | 61.49% |\n| RASP 20% | GRPO v9 step 5 (pre-collapse) | 60.65% |\n| RASP 20% | GRPO v9 step 10 (running) | ~68% (early 200 samples) |\n\n**关键发现:**\n1. **Unpruned GRPO 不增加精度** — step 90/100 accuracy ≡ SFT baseline (81.27%)，但 reward 从 ~0.4 升到 0.669。GRPO 改善了 reward format 但不改善推理能力。\n2. **Pruned 模型同理** — Standard/RASP 的 GRPO pre-collapse accuracy ≈ SFT accuracy（58.91% vs 59.29%, 60.65% vs 61.49%），GRPO 未提升推理。\n3. **RASP step 10 可能反常** — 早期 200 样本显示 ~68%，高于 SFT 的 61.49%。如果全量 eval 确认，这意味着 RASP 在 collapse onset 时有短暂的精度提升窗口，但此结论需等 eval 完成。\n\n**对 D044/D045 narrative 的印证**: Unpruned 结果彻底确认\"GRPO reward-accuracy decoupling\"——reward 不等于推理能力。论文 story 应聚焦 pruning 如何改变 GRPO 训练 dynamics（collapse timing、stability），而非 accuracy recovery。\n\n**待 eval_grpo_rasp_v9_step10 完成**（westb:0, ETA ~40min），将拼齐 RASP collapse-onset 的精确精度数据。",
+    "project": "recovery_aware_struct_prune"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T05:23:33.535715+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T05:23:39.064421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 6314
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T05:23:39.064965+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-16: α Ablation Sweep westb (cal=512) — 非单调 U 形确认\\n- α=0.0→27%, α=0.25→23%, α=0.5→22%, α=1.0→31%, α=2.0→36%\\n- 与 westd (cal=256) 对比：两者都呈非单调 U 形。小 α (0.25-0.5) 引入噪声反而更差\\n- α=1.0 是精度-生成质量最佳平衡（31%, EOS 92%, avg_len 733）\\n- α=2.0 精度最高但 EOS 仅 59%——可能是\\\"暴力搜索\\\"（长输出碰运气）\\n- **Claim 2 支撑：α 显著影响 post-prune reasoning retention，最优区间 α∈[1.0, 2.0]**\\n\\n## 2026-05-16: sft_unpruned_baseline — 全量模型 SFT 基线\\n- Unpruned SFT: loss 0.332, token_acc 0.909（vs 剪枝模型 loss 0.64, token_acc 0.83）\\n- 全量参数模型学习能力明显更强，8pp token_accuracy 差异\\n- N=100 eval 运行中，结果待收集\\n\\n## 2026-05-16: RASP GRPO v9 — save_steps=5 捕获 collapse 前 peak\\n- PID 566666, westb cuda:0, wandb mrikafz3\\n- save_steps=5, save_total_limit=5, max_steps=30\\n- 预计 step 5/10 有 checkpoint（RASP collapse onset ~step 10）\\n- 这是论文 RASP vs Standard GRPO 对比的关键缺失数据\\n\\n## 2026-05-15: N=1319 Full Eval — RASP vs Standard SFT 无显著差异\\n- westd N=1319: Standard 59.29% ±1.35%, RASP 61.49% ±1.34%\\n- Δ(RASP - Standard) = +2.20pp, z=1.154, **p=0.248, 不显著**, 95% CI = [-1.53, +5.93]pp\\n- **结论：post-SFT 两种 pruning 方法恢复能力无统计差异，论文 Claim 不能基于 SFT accuracy 差异**\\n\\n## 2026-05-15: Unpruned GRPO baseline COLLAPSE — 改变 narrative\\n- Unpruned DeepSeek-R1-Distill-Qwen-7B 在相同 GRPO v8 参数下也 collapse：peak reward 0.044 (step 20) → step 80 collapse → step 100 全零\\n- **结论：GRPO collapse 不是剪枝导致的，是当前 GRPO 配置本身的问题**\\n- Collapse 时间线：RASP (step ~10) < Standard (step ~60) < Unpruned (step ~80)\\n- **Standard pruning 是唯一延迟 collapse 最久的** — counterintuitive\\n\\n## 2026-05-15: 文献搜索 — Pruning + RL Stability (Narrative A 支撑)\\n- **无直接先例**: 没有论文报告 pruning → GRPO/RLVR collapse。强新颖性。\\n- **Top 引用**: ①Dohare Nature 2024 ②Ma ICML 2025 ③Obando-Ceron ICML 2024 ④Zheng GSPO 2025\\n\\n## 2026-05-15: RASP GRPO 3x collapse + 零 checkpoint\\n- RASP GRPO v2/v5/v8 全部 collapse，v2-v8 全版本零 check
+…[truncated 656 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 5529
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T05:24:08.491425+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "memory.md",
+  "content": "# Memory\n\n## 2026-05-16: Reward-Accuracy Decoupling — GRPO 不改善推理\n- **Unpruned GRPO v2**: reward 0.4→0.669 (step 80), accuracy step 90=80.59%, step 100=81.27% ≡ SFT baseline 81.27%\n- **Standard GRPO v8**: pre-collapse accuracy step 50=58.91% ≈ SFT 59.29%\n- **RASP GRPO v9**: pre-collapse accuracy step 5=60.65% ≈ SFT 61.49%\n- **结论**: GRPO 提升 reward 但不提升 GSM8K accuracy。所有模型 GRPO accuracy ≈ SFT accuracy。\n- 论文 story 应聚焦 pruning 对 GRPO stability 的影响（collapse dynamics），不是 accuracy recovery。\n\n## 2026-05-16: Unpruned GRPO v2 (含 SFT) — 不 collapse\n- grpo_unpruned_v2（SFT→GRPO，修复 D041 设计）: reward 0.425→0.669, step 100 未 collapse\n- 此前 grpo_unpruned_baseline（无 SFT, D041 invalid）确实 collapse\n- **修正后的 collapse 时间线**: RASP ~step10, Standard ~step60, Unpruned 不 collapse\n- 原因：SFT 提供稳定起点，pruning 削弱了 GRPO 训练稳定性\n\n## 2026-05-16: α Ablation Sweep westb (cal=512) — 非单调 U 形确认\n- α=0.0→27%, α=0.25→23%, α=0.5→22%, α=1.0→31%, α=2.0→36%\n- 与 westd (cal=256) 对比：两者都呈非单调 U 形。小 α (0.25-0.5) 引入噪声反而更差\n- α=1.0 是精度-生成质量最佳平衡（31%, EOS 92%, avg_len 733）\n- α=2.0 精度最高但 EOS 仅 59%——可能是\"暴力搜索\"（长输出碰运气）\n- **Claim 2 支撑：α 显著影响 post-prune reasoning retention，最优区间 α∈[1.0, 2.0]**\n\n## 2026-05-16: sft_unpruned_baseline — 全量模型 SFT 基线\n- Unpruned SFT: loss 0.332, token_acc 0.909（vs 剪枝模型 loss 0.64, token_acc 0.83）\n- 全量参数模型学习能力明显更强，8pp token_accuracy 差异\n\n## 2026-05-16: RASP GRPO v9 — save_steps=5 捕获 collapse 前 peak\n- PID 566666, westb cuda:0, wandb mrikafz3\n- save_steps=5, save_total_limit=5, max_steps=30\n- 预计 step 5/10 有 checkpoint（RASP collapse onset ~step 10）\n- 这是论文 RASP vs Standard GRPO 对比的关键缺失数据\n\n## 2026-05-15: N=1319 Full Eval — RASP vs Standard SFT 无显著差异\n- westd N=1319: Standard 59.29% ±1.35%, RASP 61.49% ±1.34%\n- Δ(RASP - Standard) = +2.20pp, z=1.154, **p=0.248, 不显著**, 95% CI = [-1.53, +5.93]pp\n- **结论：post-SFT 两种 pruning 方法恢复能力无统计差异，论文 Claim 不能基于 SFT accuracy 差异**\n\n## 2026-05-15: 文献搜索 — Pruning + RL Stability (Narrative A 支撑)\n- **无直接先例**: 没有论文报告 pruning → GRPO/RLVR collapse。强新颖性。\n- **Top 引用**: ①Dohare Nature 2024 ②Ma ICML 2025 ③Obando-Ceron ICML 2024 ④Zheng GSPO 2025\n\n## 2026-05-15: RASP GRPO 3x collapse + 零 checkpoint\n- RASP GRPO v2/v5/v8 全部 collapse，v2-v8 全版本零 checkpoint（save_steps 大于 collapse 步数）\n- v9 (save_steps=5) 是修复方案\n\n## 2026-05-15: 三方 post-SFT 对比 — 论文核心数据点\n- **Standard 64% > RASP 57% > GraSP 41%** (N=100, greedy, seed=42, westb)\n- GraSP vs Standard: p=0.001，统计显著\n- α ablation: SFT 下 α 无显著趋势（α=0.0 64%, α=1.0 57%, α=2.0 62%, α=4.0 62%）\n\n## 2026-05-15: 代码与环境备忘\n- westd eval 脚本必须从 westb 同步（含 apply_chat_template），旧版在 /root/autodl-tmp/ 下\n- sft_recovery.py `--gpu` 参数覆盖外层 CUDA_VISIBLE_DEVICES（第 19-22 行）——启动时直接传正确 --gpu N\n- eval_gsm8k.py 默认: seed=42, greedy\n- westb 磁盘：清理后可用空间充足（旧 RASP GRPO v2-v8 目录已清理）\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "recovery_aware_struct_prune",
+    "file": "memory.md",
+    "content": "# Memory\n\n## 2026-05-16: Reward-Accuracy Decoupling — GRPO 不改善推理\n- **Unpruned GRPO v2**: reward 0.4→0.669 (step 80), accuracy step 90=80.59%, step 100=81.27% ≡ SFT baseline 81.27%\n- **Standard GRPO v8**: pre-collapse accuracy step 50=58.91% ≈ SFT 59.29%\n- **RASP GRPO v9**: pre-collapse accuracy step 5=60.65% ≈ SFT 61.49%\n- **结论**: GRPO 提升 reward 但不提升 GSM8K accuracy。所有模型 GRPO accuracy ≈ SFT accuracy。\n- 论文 story 应聚焦 pruning 对 GRPO stability 的影响（collapse dynamics），不是 accuracy recovery。\n\n## 2026-05-16: Unpruned GRPO v2 (含 SFT) — 不 collapse\n- grpo_unpruned_v2（SFT→GRPO，修复 D041 设计）: reward 0.425→0.669, step 100 未 collapse\n- 此前 grpo_unpruned_baseline（无 SFT, D041 invalid）确实 collapse\n- **修正后的 collapse 时间线**: RASP ~step10, Standard ~step60, Unpruned 不 collapse\n- 原因：SFT 提供稳定起点，pruning 削弱了 GRPO 训练稳定性\n\n## 2026-05-16: α Ablation Sweep westb (cal=512) — 非单调 U 形确认\n- α=0.0→27%, α=0.25→23%, α=0.5→22%, α=1.0→31%, α=2.0→36%\n- 与 westd (cal=256) 对比：两者都呈非单调 U 形。小 α (0.25-0.5) 引入噪声反而更差\n- α=1.0 是精度-生成质量最佳平衡（31%, EOS 92%, avg_len 733）\n- α=2.0 精度最高但 EOS 仅 59%——可能是\"暴力搜索\"（长输出碰运气）\n- **Claim 2 支撑：α 显著影响 post-prune reasoning retention，最优区间 α∈[1.0, 2.0]**\n\n## 2026-05-16: sft_unpruned_baseline — 全量模型 SFT 基线\n- Unpruned SFT: loss 0.332, token_acc 0.909（vs 剪枝模型 loss 0.64, token_acc 0.83）\n- 全量参数模型学习能力明显更强，8pp token_accuracy 差异\n\n## 2026-05-16: RASP GRPO v9 — save_steps=5 捕获 collapse 前 peak\n- PID 566666, westb cuda:0, wandb mrikafz3\n- save_steps=5, save_total_limit=5, max_steps=30\n- 预计 step 5/10 有 checkpoint（RASP collapse onset ~step 10）\n- 这是论文 RASP vs Standard GRPO 对比的关键缺失数据\n\n## 2026-05-15: N=1319 Full Eval — RASP vs Standard SFT 无显著差异\n- westd N=1319: Standard 59.29% ±1.35%, RASP 61.49% ±1.34%\n- Δ(RASP - Standard) = +2.20pp, z=1.154, **p=0.248, 不显著**, 95% CI = [-1.53, +5.93]pp\n- **结论：post-SFT 两种 pruning 方法恢复能力无统计差异，论文 Claim 不能基于 SFT accuracy 差异**\n\n## 2026-05-15: 文献搜索 — Pruning + RL Stability (Narrative A 支撑)\n- **无直接先例**: 没有论文报告 pruning → GRPO/RLVR collapse。强新颖性。\n- **Top 引用**: ①Dohare Nature 2024 ②Ma ICML 2025 ③Obando-Ceron ICML 2024 ④Zheng GSPO 2025\n\n## 2026-05-15: RASP GRPO 3x collapse + 零 checkpoint\n- RASP GRPO v2/v5/v8 全部 collapse，v2-v8 全版本零 checkpoint（save_steps 大于 collapse 步数）\n- v9 (save_steps=5) 是修复方案\n\n## 2026-05-15: 三方 post-SFT 对比 — 论文核心数据点\n- **Standard 64% > RASP 57% > GraSP 41%** (N=100, greedy, seed=42, westb)\n- GraSP vs Standard: p=0.001，统计显著\n- α ablation: SFT 下 α 无显著趋势（α=0.0 64%, α=1.0 57%, α=2.0 62%, α=4.0 62%）\n\n## 2026-05-15: 代码与环境备忘\n- westd eval 脚本必须从 westb 同步（含 apply_chat_template），旧版在 /root/autodl-tmp/ 下\n- sft_recovery.py `--gpu` 参数覆盖外层 CUDA_VISIBLE_DEVICES（第 19-22 行）——启动时直接传正确 --gpu N\n- eval_gsm8k.py 默认: seed=42, greedy\n- westb 磁盘：清理后可用空间充足（旧 RASP GRPO v2-v8 目录已清理）\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T05:24:08.491931+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-16T05:24:17.583607+00:00_
+
+处理完毕。
+
+**总结**: eval_grpo_unpruned_v2_step90 (80.59%) 和 step100 (81.27%) 均已推到 DONE。两者与 SFT baseline (81.27%) 一致，确认 GRPO reward-accuracy decoupling：reward 从 0.4 升到 0.669 但精度不变。已向 Director 汇报，memory.md 已更新。eval_grpo_rasp_v9_step10 仍在 westb:0 运行中（ETA ~40min），5 个 Worker 正推进 25% sparsity 系列。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_grpo_unpruned_v2_step90"
+}
+```
+
+</details>
+
+---

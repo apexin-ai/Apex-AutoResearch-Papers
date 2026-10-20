@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19b35e2b635225cc50ed",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify westd gpu3",
+  "task_key": "worker_ssh_verify_westd_gpu3_20260523T223742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_westd_gpu3_20260523T223742_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "38a0ffaeb975d0fcb82e51829a161580a85c8bdb652eceaf6e817914b1b0dc8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### GPU 3 竞争检查：**无竞争，无需 kill**\n\nGPU 3 只有 PID 168451（grpo_cka_only_25_fixed eval），没有 sft_rasp_alpha0p5 或其他额外进程。Director 报告的竞争可能已自行结束。\n\n### 4 张 GPU 当前进程\n\n| GPU | PID | 进程 | 显存 | 利用率 |\n|-----|-----|------|------|--------|\n| 0 | 166245 | eval_math500 **sft_standard_25** (fixed_v2, seed42, bf16) | 16824 MiB | 96% |\n| 1 | 168524 | eval_math500 **grpo_rasp_alpha2p0_20** (fixed) | 16732 MiB | 98% |\n| 2 | 171964 | eval_math500 **sft_rasp_alpha2p0_20** (fixed) | 16732 MiB | 96% |\n| 3 | 168451 | eval_math500 **grpo_cka_only_25** (fixed) | 16846 MiB | 98% |\n\n4 张卡都满载运行 eval_math500，各自独占一张卡。\n\n### 最新已完成的 eval 结果（May 24）\n\n| 文件 | 时间 | Accuracy | N_correct/Total |\n|------|------|----------|-----------------|\n| grpo_standard_20_fair_fixed | 06:09 | **27.0%** | 135/500 |\n| grpo_rasp_alpha1p0_20_fixed | 05:21 | **23.0%** | 115/500 |\n| sft_rasp_alpha1p0_20_fixed | 02:33 | **21.6%** | 108/500 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-westd-gpu3.md"
+}

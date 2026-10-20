@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval_mbpp_sft_rasp_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:18:34.640Z",
+    "updated_at": "2026-05-19T18:20:29.165Z",
+    "hypothesis": "MBPP pass@1 eval on SFT RASP 20% model @2048. Dense baseline=53.48% (200/374). RASP SFT GSM8K=60.88% (post-GRPO), HumanEval SFT=10.37%. Tests whether RASP SFT preserves code capability on MBPP. Part of MBPP 3×2 matrix (3 methods × SFT/GRPO) for C2 capability breadth claim. Expected: between CKA-only SFT and Standard SFT.",
+    "server": "westb-23072",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-23072",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T18:19:54.269Z"
+    }
+  },
+  "timestamp": "2026-05-19T18:20:29.636824+00:00",
+  "trigger": "update_registry"
+}

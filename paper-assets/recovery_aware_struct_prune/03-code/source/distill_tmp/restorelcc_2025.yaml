@@ -1,0 +1,76 @@
+paper_key: "restorelcc_2025"
+title: "RestoreLCC: Restoring Pruned Large Language Models via Lost Component Compensation"
+venue: "NeurIPS 2025 Spotlight"
+full_text_available: true
+
+research:
+  baselines: [LoRA, DoRA, LoFiT, Wanda, SparseGPT, SlimGPT]
+  metrics:
+    - {name: "WikiText-2 perplexity", direction: "lower_better"}
+    - {name: "mean zero-shot accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "WikiText-2", size: "standard"}
+    - {name: "zero-shot benchmarks (likely ARC, HellaSwag, WinoGrande, PIQA, BoolQ)", size: "standard"}
+    - {name: "task-specific benchmarks", size: "standard"}
+  ablation_dimensions: [contrastive probing, head selection method (MSE/KL/contrastive), directional vs bias components]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A", param_overhead: "<0.05%"}
+  method_family: "activation-space recovery via lost component injection"
+
+positioning:
+  core_claim: "Directly injecting lost activation components (identified via contrastive probing and SVD) into pruned attention heads recovers more than LoRA-style parameter updates, with <0.05% parameter overhead"
+  key_results: "LLaMA-7B 50% unstructured: 58.83% mean acc (+2.01% over DoRA), 6.93 PPL; works across structured/semi-structured/unstructured"
+  limitations: ["Assigns magnitudes to all components potentially causing overfitting", "Future work needed on pre-selecting relevant components"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "PEFT methods like LoRA are designed for dense models and overlook the distinct properties of pruned models"
+  tension: "LoRA improves logits globally but doesn't target the specific information loss from pruning"
+  key_insight: "Pruning-induced information loss is localized in attention activations; directly reintroducing lost SVD components is more targeted than parameter updates"
+  argument_chain: "problem (PEFT suboptimal for pruned models) → observation (loss is in attention activations) → method (contrastive probing + SVD injection) → validation (consistent gains across pruning types)"
+  contribution_framing: "3 contributions: observation, method, experiments"
+  intro_structure: "~5 paragraphs: pruning importance → PEFT limitations for pruned models → activation analysis observation → RestoreLCC proposal → contributions"
+  notable_technique: "Contrasting LoRA head-level logit improvement vs direct component injection—makes the mechanism difference tangible"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "motivation"
+    description: "Comparison showing LoRA vs direct component injection effect on attention head outputs"
+    narrative_role: "Visually demonstrates why targeted injection outperforms generic PEFT"
+    design_elements: ["side-by-side comparison", "attention head activation visualization"]
+    visual_style: "Dual-panel comparison with activation heatmaps"
+  result_figures:
+    - figure_id: "Main result tables"
+      viz_type: "N/A (tables)"
+      what_compared: "RestoreLCC vs LoRA/DoRA/LoFiT across pruning types"
+      how_gain_highlighted: "Bold best + consistent improvement across all settings"
+      design_note: "Separate tables for unstructured, semi-structured, structured—shows universality"
+  ablation_figures:
+    - figure_id: "Ablation table"
+      viz_type: "N/A (table)"
+      dimensions_varied: ["contrastive probing", "head selection", "SVD components", "bias vector"]
+      design_note: "Systematic component removal shows all parts contribute"
+  figure_narrative_role: "Motivation (LoRA vs injection) → Method → Results across pruning types → Ablation"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "PPL + mean accuracy"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 4
+    design_note: "Separate tables per pruning type (unstructured/semi-structured/structured) emphasizes universality"
+  ablation_tables:
+    - table_id: "Ablation"
+      what_varied: ["probing method", "SVD terms", "bias"]
+      variation_style: "delta_from_base"
+      design_note: "Clear impact column showing each component's marginal contribution"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-benchmark breakdown, additional model sizes"
+    reason: "Main text aggregates; appendix provides granular results"

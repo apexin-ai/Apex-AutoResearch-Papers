@@ -1,0 +1,10 @@
+See westb-23072:/root/autodl-tmp/recovery_aware_struct_prune/results/rci_diversity_correlation.json for full data.
+
+Summary:
+- CKA Diversity Scores: cka_only=0.3798, rasp=0.1178, standard=0.0961, random=0.0767
+- GRPO Peak Reward: cka_only=0.354, random=0.190, standard=0.081, rasp=0.061
+- GSM8K Accuracy: cka_only=64.22%, rasp=60.88%, standard=59.44%, random=N/A
+- Spearman rho (diversity vs peak_reward, n=4): 0.2 (p=0.8) - NOT significant
+- Spearman rho (diversity vs GSM8K accuracy, n=3): 1.0 (p=0.0) - perfect rank match
+- Spearman rho (diversity vs peak_reward, n=3 excl random): 0.5 (p=0.67)
+- Hypothesis rho>0.9: PARTIALLY SUPPORTED for GSM8K among optimization-based methods

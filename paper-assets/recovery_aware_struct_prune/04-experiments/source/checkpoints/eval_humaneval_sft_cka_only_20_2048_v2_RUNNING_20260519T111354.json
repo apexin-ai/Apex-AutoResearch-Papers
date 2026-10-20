@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_humaneval_sft_cka_only_20_2048_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T09:27:07.470Z",
+    "updated_at": "2026-05-19T11:13:54.110Z",
+    "hypothesis": "SFT CKA-only HumanEval v2 (PATH bug 修复版重跑)，验证 v1 的 0% 是否为假结果。v1 因 eval_humaneval.py 用裸 python 导致 164 题全部 sandbox 失败。修复后用 sys.executable 重跑。",
+    "parent": "eval_humaneval_sft_cka_only_20_2048",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048_v2.json'",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "78740",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "model_name": "sft_cka_only_20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20",
+      "eval_data": "HumanEval (164 problems, pass@1, max_new_tokens=2048, sys.executable fix)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T11:13:52.207Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T11:13:54.486178+00:00",
+  "trigger": "update_registry"
+}

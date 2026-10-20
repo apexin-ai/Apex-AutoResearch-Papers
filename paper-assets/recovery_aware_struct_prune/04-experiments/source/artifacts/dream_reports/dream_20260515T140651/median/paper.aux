@@ -1,0 +1,97 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\newlabel{eq:rasp}{{1}{2}{Introduction}{equation.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structured Pruning for LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recovery Training for Pruned Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA in Model Compression.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RLVR for Reasoning.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}CKA Functional Overlap}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}RASP Scoring}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Recovery Pipeline}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Full pipeline results on GSM8K (N=1,319) at 20\% structured sparsity. Recovery $\Delta $ is the improvement from post-prune to post-GRPO accuracy.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Full pipeline results on GSM8K (N=1,319) at 20\% structured sparsity. Recovery $\Delta $ is the improvement from post-prune to post-GRPO accuracy}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pruning Methods.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sparsity Levels.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CKA Calibration.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Pipeline Results (20\% Sparsity)}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main}{{5.1}{4}{Main Pipeline Results (20\% Sparsity)}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Multi-seed post-prune GSM8K accuracy (N=1,319). One seed (123) shows a reversal where Standard exceeds RASP.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:multiseed}{{2}{5}{Multi-seed post-prune GSM8K accuracy (N=1,319). One seed (123) shows a reversal where Standard exceeds RASP}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pruning $\times $ Recovery interaction at 20\% sparsity. Under SFT, Standard pruning is superior; under GRPO, RASP is superior. The 12pp interaction effect is significant ($p{=}0.008$).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:interaction}{{3}{5}{Pruning $\times $ Recovery interaction at 20\% sparsity. Under SFT, Standard pruning is superior; under GRPO, RASP is superior. The 12pp interaction effect is significant ($p{=}0.008$)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Multi-Seed Statistical Validation}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:multiseed}{{5.2}{5}{Multi-Seed Statistical Validation}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Pruning $\times $ Recovery Interaction}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:interaction}{{5.3}{5}{Pruning $\times $ Recovery Interaction}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scoring method ablation at 20\% sparsity (post-prune GSM8K, N=1,319).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:ablation}{{4}{6}{Scoring method ablation at 20\% sparsity (post-prune GSM8K, N=1,319)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Mixed-effects regression predicting per-structure post-recovery activation change (N=784 MLP groups, ${\sim }200$ pruned). CKA provides significant but modest additional signal.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:regression}{{5}{6}{Mixed-effects regression predicting per-structure post-recovery activation change (N=784 MLP groups, ${\sim }200$ pruned). CKA provides significant but modest additional signal}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mechanistic interpretation.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Scoring Ablation}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:ablation}{{5.4}{6}{Scoring Ablation}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}CKA as Predictor of Recoverability}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:regression}{{5.5}{6}{CKA as Predictor of Recoverability}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $\alpha $ ablation at 20\% sparsity. Higher $\alpha $ increases the CKA signal's weight, monotonically improving post-prune accuracy up to $\alpha {=}4$.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:alpha}{{6}{7}{$\alpha $ ablation at 20\% sparsity. Higher $\alpha $ increases the CKA signal's weight, monotonically improving post-prune accuracy up to $\alpha {=}4$}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 25\% sparsity full pipeline. The interaction effect persists: SFT favors Standard, GRPO favors RASP.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:sparsity25}{{7}{7}{25\% sparsity full pipeline. The interaction effect persists: SFT favors Standard, GRPO favors RASP}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}$\alpha $ Sensitivity}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:alpha}{{5.6}{7}{$\alpha $ Sensitivity}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Sparsity Scaling}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:sparsity}{{5.7}{7}{Sparsity Scaling}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Post-prune accuracy scaling with sparsity. RASP's absolute advantage (in pp) increases with sparsity, but both methods approach collapse at 30\%.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:sparsity_trend}{{8}{8}{Post-prune accuracy scaling with sparsity. RASP's absolute advantage (in pp) increases with sparsity, but both methods approach collapse at 30\%}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Comparison with external baselines and unstructured pruning at 20\% sparsity.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:baselines}{{9}{8}{Comparison with external baselines and unstructured pruning at 20\% sparsity}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Baseline Comparisons}{8}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:baselines}{{5.8}{8}{Baseline Comparisons}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Out-of-Distribution Evaluation}{8}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:ood}{{5.9}{8}{Out-of-Distribution Evaluation}{subsection.5.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Out-of-distribution evaluation of GRPO-recovered models. RASP's advantage is specific to mathematical reasoning (GSM8K, MATH-500).}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:ood}{{10}{9}{Out-of-distribution evaluation of GRPO-recovered models. RASP's advantage is specific to mathematical reasoning (GSM8K, MATH-500)}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces SFT vs.\ GRPO recovery comparison across benchmarks. GRPO recovery delivers higher OOD retention, especially on MATH-500.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:sft_ood}{{11}{9}{SFT vs.\ GRPO recovery comparison across benchmarks. GRPO recovery delivers higher OOD retention, especially on MATH-500}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}CKA Reliability}{9}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:reliability}{{5.10}{9}{CKA Reliability}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Inference Efficiency}{9}{subsection.5.11}\protected@file@percent }
+\newlabel{sec:efficiency}{{5.11}{9}{Inference Efficiency}{subsection.5.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis and Discussion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{9}{Analysis and Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does the interaction occur?}{9}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{9}{section*.12}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{deepseekr1}{{1}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces CKA scoring stability. 512 samples provide near-optimal rank preservation at moderate compute cost.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:reliability}{{12}{10}{CKA scoring stability. 512 samples provide near-optimal rank preservation at moderate compute cost}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Inference efficiency at 20\% structured sparsity. Both pruned models achieve ${\sim }$1.20$\times $ speedup with negligible difference between pruning methods.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:efficiency}{{13}{10}{Inference efficiency at 20\% structured sparsity. Both pruned models achieve ${\sim }$1.20$\times $ speedup with negligible difference between pruning methods}{table.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{10}{Conclusion}{section.7}{}}
+\bibcite{selfhealing}{{2}{}{{}}{{}}}
+\bibcite{graspune}{{3}{}{{}}{{}}}
+\bibcite{resp}{{4}{}{{}}{{}}}
+\bibcite{paser}{{5}{}{{}}{{}}}
+\bibcite{mpruner}{{6}{}{{}}{{}}}
+\bibcite{rlsqueezes}{{7}{}{{}}{{}}}
+\bibcite{cka}{{8}{}{{}}{{}}}
+\bibcite{bonsai}{{9}{}{{}}{{}}}
+\bibcite{grpo}{{10}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\gdef \@abspage@last{11}

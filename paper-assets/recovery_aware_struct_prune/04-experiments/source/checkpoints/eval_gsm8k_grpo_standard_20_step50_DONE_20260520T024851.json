@@ -1,0 +1,53 @@
+{
+  "exp_id": "eval_gsm8k_grpo_standard_20_step50",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:46:11.922Z",
+    "updated_at": "2026-05-20T02:48:50.357Z",
+    "hypothesis": "GSM8K N=1319 eval on Standard GRPO step-50 checkpoint. paper_framing 引用 58.91% 但无结果 JSON 可追溯。重跑以建立完整 provenance。用 grpo_stage2_standard_20_fair/checkpoint-50。预期 ~58.91%。C1 decoupling 证据：SFT 59.29% vs GRPO-50 ~58.91% = Δ≈0.38pp。",
+    "parent": "grpo_standard_20_fair",
+    "server": "westd-29022",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-29022",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T02:46:31.068Z",
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/checkpoint-50 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_standard_20_step50.json'",
+      "code_commit": "39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c",
+      "finished_at": "2026-05-20T02:46:55.793Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/checkpoint-50",
+      "eval_data": "GSM8K test (1319)",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "model_name": "Qwen2.5-7B-Standard-20%-GRPO-step50",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_standard_20_step50.log"
+    },
+    "pid": "175747",
+    "log_path": "~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_standard_20_step50.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "killed",
+    "completed_at": "2026-05-20T02:46:59.721Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T02:47:06.897593+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: EXIT_CODE=1 — 模型路径 /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/checkpoint-50 不存在。Transformers 尝试当 HF repo id 解析报 OSError。已知失败模式（同 eval_mbpp_sft_rasp_20）。已派 Worker 查找正确路径。"
+  },
+  "timestamp": "2026-05-20T02:48:51.211959+00:00",
+  "trigger": "update_registry"
+}

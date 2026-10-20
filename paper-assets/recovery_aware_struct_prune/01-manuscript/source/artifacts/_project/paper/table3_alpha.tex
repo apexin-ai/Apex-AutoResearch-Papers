@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Ablation over the CKA balancing coefficient $\alpha$ at 20\% sparsity. $\alpha{=}0$ reduces to standard importance-only pruning; higher $\alpha$ increases the weight of CKA-based representational similarity in head selection.}
+\label{tab:alpha}
+\begin{tabular}{S[table-format=1.1] S[table-format=2.0] l l}
+\toprule
+{$\alpha$} & {Post-Prune Acc (\%)} & {CKA Weight} & {Interpretation} \\
+\midrule
+0.0 & \textcolor{gray}{TBD} & None         & $=$ Standard pruning \\
+0.5 & \textcolor{gray}{TBD} & Low          & Slight CKA awareness \\
+1.0 & 29                     & Medium       & Default RASP \\
+2.0 & \textcolor{gray}{TBD} & High         & Strong CKA emphasis \\
+4.0 & \textcolor{gray}{TBD} & Very High    & Dominant CKA weight \\
+\bottomrule
+\end{tabular}
+\end{table}

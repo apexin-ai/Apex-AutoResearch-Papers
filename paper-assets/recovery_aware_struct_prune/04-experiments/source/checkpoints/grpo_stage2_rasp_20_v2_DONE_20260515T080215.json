@@ -1,0 +1,49 @@
+{
+  "exp_id": "grpo_stage2_rasp_20_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:30:00.666Z",
+    "updated_at": "2026-05-15T08:02:15.455Z",
+    "hypothesis": "D017: GRPO Stage 2 v2 — SFT-warmed RASP-pruned model RLVR recovery with optimized params (max_completion_length=1024, max_samples=1000). Post-SFT: 57% greedy accuracy, EOS 99%, avg_len 180 tokens. Reduced completion length justified by SFT restoring EOS. If GRPO pushes RASP significantly above Standard, confirms CKA-aware pruning preserves RLVR-recoverable structures.",
+    "parent": "sft_rasp_20",
+    "spec": {
+      "data_path": "openai/gsm8k",
+      "data_count": 1000,
+      "model_name": "sft_rasp_20 (SFT-warmed pruned_rasp_20)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20",
+      "eval_data": "gsm8k",
+      "hyperparams": {
+        "max_completion_length": 1024,
+        "learning_rate": 1e-06,
+        "num_train_epochs": 1,
+        "reward_desert_patience": 50,
+        "max_samples": 1000,
+        "num_generations": 4,
+        "beta": 0,
+        "loss_type": "dapo",
+        "temperature": 0.7,
+        "steps_per_generation": 8,
+        "gradient_checkpointing": true
+      },
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v2 --gpu 0 --max_completion_length 1024 --num_train_epochs 1 --max_samples 1000 --learning_rate 1e-6 --save_total_limit 3 --save_steps 100 --reward_desert_patience 50 --run_name grpo_stage2_rasp_20_v2",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "274151",
+      "log_path": "~/runs/recovery_aware_struct_prune/grpo_stage2_rasp_20_v2.log",
+      "checkpoint_path": "N/A (killed at step 35, no useful checkpoint)"
+    },
+    "wandb_run_id": "e16rbclf",
+    "conclusion": "negative",
+    "notes": "D019: GRPO Stage 2 v2 RASP — killed at step 35/250 (~4h17m). Confirmed grad_norm=0 collapse: sampling mode (temp=0.7) produces degenerate repetitive loops (e.g. \"$708033600000\" repeated 20+ steps), 0 reward, 0 gradient. Despite SFT restoring 57% greedy accuracy and 99% EOS rate, GRPO sampling destabilizes the pruned model. Same root cause as Standard counterpart. This is a GRPO method failure, not a RASP vs Standard comparison. wandb: e16rbclf.",
+    "completed_at": "2026-05-15T08:02:15.455Z"
+  },
+  "timestamp": "2026-05-15T08:02:15.491447+00:00",
+  "trigger": "update_registry"
+}

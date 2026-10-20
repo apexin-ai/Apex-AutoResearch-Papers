@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_mbpp_sft_cka_only_20_1p5b",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:37:10.228Z",
+    "updated_at": "2026-05-19T18:42:18.484Z",
+    "hypothesis": "MBPP pass@1 for 1.5B SFT CKA-only 20% model @2048. Dense 7B baseline=53.48%. 1.5B cross-scale validation: if 1.5B SFT CKA-only shows higher MBPP pass@1 than 1.5B SFT Standard/RASP, confirms recovery gradient generalizes across model scales on code benchmark.",
+    "spec": {
+      "command": "python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.json",
+      "server": "westb-23072",
+      "gpu": "cuda:1",
+      "data_path": "MBPP",
+      "data_count": 500,
+      "model_name": "Qwen2.5-Coder-1.5B-SFT-CKA-Only-20",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b",
+      "eval_data": "MBPP",
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.log",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b",
+      "failure_reason": "Network unreachable - AutoDL instance failed to reach huggingface.co to download MBPP dataset. source /etc/network_turbo was not active or dataset was not pre-cached."
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T18:42:18.484Z"
+  },
+  "timestamp": "2026-05-19T18:42:18.924003+00:00",
+  "trigger": "update_registry"
+}

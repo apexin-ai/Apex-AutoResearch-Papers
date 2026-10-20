@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2255ad89c0de6f88a633",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp rasp grpo v9 wait launch",
+  "task_key": "worker_exp_rasp-grpo-v9-wait-launch_20260515T224025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_rasp-grpo-v9-wait-launch_20260515T224025_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "861a113e23ccd61a5c5a2f3ac2a264242bee390174dba704825cd465501cceb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 摘要\n\n**α sweep 仍在 cuda:0 上运行**（当前 α=0.5 eval，后续 α=1.0, 2.0）。15 次轮询内未完成（实际间隔 <5min，sweep 预计还需 ~90min）。\n\n**已部署自动启动器** `auto_v9_launcher`（tmux session），逻辑：\n1. 每 120s 检查 sweep 是否完成（4 个结果文件 or sweep 进程退出）\n2. 等 GPU 0 显存释放 < 1000 MiB\n3. 清理旧 GRPO v2-v8 目录\n4. 启动 GRPO v9（tmux `grpo_rasp_v9`）\n5. 验证 + 收集 α sweep 全部结果\n\n**已有 α sweep 结果**：\n\n| α | accuracy | eos_rate | avg_len |\n|---|----------|----------|---------|\n| 0.0 | 0.27 | 0.80 | 1192 |\n| 0.25 | 0.23 | 0.63 | 1834 |\n| 0.5 | pending | — | — |\n| 1.0 | pending | — | — |\n| 2.0 | pending | — | — |\n\n**Registry 更新**：\n- `grpo_stage2_rasp_20_v9`: QUEUED（auto-launcher 待启动）\n- `alpha_ablation_sweep`: RUNNING（部分结果已记录）\n\n**监控命令**：\n```\nssh_read_only: tail -20 /tmp/auto_launch_grpo_v9.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-rasp-grpo-v9-wait-launch.md"
+}

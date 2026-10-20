@@ -1,0 +1,41 @@
+{
+  "exp_id": "grpo_standard_20_extended_300",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:40:13.842Z",
+    "updated_at": "2026-05-18T13:40:35.700Z",
+    "hypothesis": "Extended GRPO Standard 7B from step 100 to 300. Tests whether longer GRPO training changes the recovery capacity gradient — does Standard eventually catch up to CKA-only, or does the gap persist/widen? If gap widens, confirms CKA-guided pruning creates a structural advantage that more training cannot compensate.",
+    "parent": "grpo_standard_20_fair",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/checkpoint-100 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300 --beta 0.01 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --loss_type dapo --learning_rate 1e-6 --max_steps 300 --resume_from_checkpoint /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/checkpoint-100'",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2682",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (Standard 20% pruned, SFT recovered, GRPO extended)",
+      "data_path": "openai/gsm8k",
+      "data_count": 7473,
+      "seed": 42,
+      "wandb_run_id": "k5ex8kfs",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/checkpoint-100",
+      "eval_data": "openai/gsm8k (GRPO RL training)",
+      "hyperparams": {
+        "beta": 0.01,
+        "temperature": 0.4,
+        "repetition_penalty": 1.15,
+        "format_reward_weight": 0.1,
+        "loss_type": "dapo",
+        "lr": 1e-06,
+        "max_steps": 300,
+        "resume_from_step": 100
+      }
+    }
+  },
+  "timestamp": "2026-05-18T13:40:36.035747+00:00",
+  "trigger": "update_registry"
+}
