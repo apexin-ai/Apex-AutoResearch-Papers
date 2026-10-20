@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "689db7fc2b9bd2a9a304",
+  "project": "policy_ambiguity_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: policy_ambiguity_safety ## 运行环境 - 项目代码根目录: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/pr",
+  "task_key": "582012c4-448a-4616-a556-b8179faec0c9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/582012c4-448a-4616-a556-b8179faec0c9.jsonl",
+    "occurrence": 1,
+    "bytes": 1386085,
+    "sha256": "ec0245aed81f156d70d35050de42b6c802e366afb29caf3c18b0ed4ed7dadb60"
+  },
+  "statistics": {
+    "messages": 1012,
+    "user_turns": 1,
+    "tool_calls": 338,
+    "roles": {
+      "record": 255,
+      "user": 1,
+      "assistant": 80,
+      "tool_call": 338,
+      "tool_result": 338
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "689db7fc2b9bd2a9a304-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1010,
+      "chunks": [
+        {
+          "path": "689db7fc2b9bd2a9a304-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "689db7fc2b9bd2a9a304-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "689db7fc2b9bd2a9a304-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "689db7fc2b9bd2a9a304-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "689db7fc2b9bd2a9a304-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "689db7fc2b9bd2a9a304-part-0006.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-policy-ambiguity-safety-home-ubuntu-agent-ml-research-be-idea-copy-78.md"
+}

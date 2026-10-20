@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "4730a528bf9790e2f543",
+  "project": "policy_ambiguity_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are auditing a research paper for data accuracy before submission. Your job is to extract EVERY number from 3 tex fi",
+  "task_key": "agent-ace9a2adc8a52a500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ace9a2adc8a52a500.jsonl",
+    "occurrence": 1,
+    "bytes": 567466,
+    "sha256": "28999a6d73b1bbedb75075770c7d0f8f7ead659475e23d00e96c8a0dadf676fc"
+  },
+  "statistics": {
+    "messages": 236,
+    "user_turns": 1,
+    "tool_calls": 105,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 105,
+      "tool_result": 105
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "4730a528bf9790e2f543-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4730a528bf9790e2f543-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-auditing-a-research-paper-for-data-accuracy-before-submission-your-job.md"
+}

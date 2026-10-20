@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **91 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **92 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -64,6 +64,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [pgpf-collapse-filter](../paper-assets/pgpf-collapse-filter/05-generation-trace/README.md) | 8 | 11 | 10 | 0 | 3,992 | [Read](../paper-assets/pgpf-collapse-filter/05-generation-trace/readable/README.md) |
 | [phase-gated-compound-sparse](../paper-assets/phase-gated-compound-sparse/05-generation-trace/README.md) | 591 | 724 | 687 | 270 | 147,551 | [Read](../paper-assets/phase-gated-compound-sparse/05-generation-trace/readable/README.md) |
 | [policy_ambiguity_safety](../paper-assets/policy_ambiguity_safety/05-generation-trace/README.md) | 61 | 144 | 141 | 10 | 58,856 | [Read](../paper-assets/policy_ambiguity_safety/05-generation-trace/readable/README.md) |
+| [policy_ambiguity_safety--export-20260712](../research-snapshots/policy_ambiguity_safety/2026-07-12/05-generation-trace/README.md) | 443 | 0 | 0 | 0 | 59,219 | [Read](../research-snapshots/policy_ambiguity_safety/2026-07-12/05-generation-trace/readable/README.md) |
 | [prism_collapse_mixing](../paper-assets/prism_collapse_mixing/05-generation-trace/README.md) | 25 | 38 | 38 | 3 | 6,679 | [Read](../paper-assets/prism_collapse_mixing/05-generation-trace/readable/README.md) |
 | [prod42](../paper-assets/prod42/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod42/05-generation-trace/readable/README.md) |
 | [prod43](../paper-assets/prod43/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod43/05-generation-trace/readable/README.md) |
@@ -100,6 +101,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**99,355 source records · 8,252,840 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**99,798 source records · 8,312,059 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

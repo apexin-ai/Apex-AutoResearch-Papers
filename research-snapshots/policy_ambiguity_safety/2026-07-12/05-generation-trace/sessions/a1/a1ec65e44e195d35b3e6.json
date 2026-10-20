@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a1ec65e44e195d35b3e6",
+  "project": "policy_ambiguity_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: policy_ambiguity_safety ## 运行环境 - 项目代码根目录: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/pr",
+  "task_key": "41b0af00-7ce5-44f8-9378-47373e862e68",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/41b0af00-7ce5-44f8-9378-47373e862e68.jsonl",
+    "occurrence": 1,
+    "bytes": 561995,
+    "sha256": "07f1c71d0574f7c881025ee83bfb4e32d731b78a52fb433afc9e99c2ea14320b"
+  },
+  "statistics": {
+    "messages": 323,
+    "user_turns": 1,
+    "tool_calls": 101,
+    "roles": {
+      "record": 66,
+      "user": 1,
+      "assistant": 54,
+      "tool_call": 101,
+      "tool_result": 101
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a1ec65e44e195d35b3e6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 321,
+      "chunks": [
+        {
+          "path": "a1ec65e44e195d35b3e6-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a1ec65e44e195d35b3e6-part-0002.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-policy-ambiguity-safety-home-ubuntu-agent-ml-research-be-idea-copy-80.md"
+}

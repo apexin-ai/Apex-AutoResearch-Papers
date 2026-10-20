@@ -1,0 +1,999 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。 你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保
+
+**Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/91675ad0-49d8-40c6-b84d-4fad34e58650.jsonl`
+- **Structured JSON:** [`7b35d47c424ee4cf9b73.json`](../../sessions/7b/7b35d47c424ee4cf9b73.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T15:22:37.255Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T15:22:37.255Z",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650",
+  "content": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。\n\n你需要同时定义 best / median / worst 三档：\n1. 每档的核心假设（哪些假设成立/不成立）\n2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）\n3. 每档的论文叙事方向——\n   - best: 原始 framing 完全成立，claims 无需调整\n   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验\n   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）\n\n三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性\n自行判断。但必须确保三档之间的数字和叙事逻辑一致。\n\n# Project context\nproject: policy_ambiguity_safety\nfocus: Framing pivoted from \"Uniform Nocuity\" to \"Differential Nocuity\" after plan_002 falsified C2 (V=0.207). Key new claims: (1) Layer hierarchy Spec~46pp >> Ling~27pp, (2) Disambiguation Channel Hypothesis, (3) Coreferential as boundary case. Validate whether the new framing is stronger than uniform, and whether the layer effect survives scrutiny. plan_002 real data: auth_scope 55%, incompleteness 52%, scopal 40%, lexical 38%, CP 35%, coreferential 25%. Perturbation control PASS (Δ=3.33pp).\n\n## paper_framing.md\n\n# Paper Framing — policy_ambiguity_safety\n\n> 最后更新: 2026-05-20 | 状态: plan_002 complete, framing pivot (C2 falsified)\n> 目标: EMNLP 2026 (ARR Aug cycle, DDL ~Aug 3)\n> Dream: dream_20260520T112859 — best 3.5 / median 3.0 / worst 2.5 (pre-pivot; re-dream needed)\n> plan_002: 1,200 episodes, C1 confirmed (+36.5pp), C2 FALSIFIED (V=0.207, p=0.0001)\n\n## Core Insight\n\nPolicy ambiguity causes devastating safety violations in LLM agents (+36.5pp), but **not all types are equally dangerous**: specification-layer ambiguities (authorization scope, incompleteness) cause nearly twice the violation rate increase (~46pp) of linguistic-layer ambiguities (~27pp). This layer hierarchy connects Berry & Kamsties' nocuous ambiguity theory to LLM agent safety and suggests type-aware triage prioritizing specification-layer ambiguities.\n\n## Title (Working)\n\n\"Not All Policy Ambiguity Is Equal: Specification-Layer Ambiguity Poses Greater Safety Risks for LLM Agents\"\n\nAlternative: \"Differential Nocuity: How Ambiguity Type Predicts Safety Violation Severity in LLM Agent Policies\"\n\nNote: Pivoted from \"Uniformly Nocuous\" after plan_002 falsified C2 (V=0.207, p=0.0001). Layer hierarchy is a stronger, more informative finding.\n\n## Core Claims\n\n### C1: Binary Effect (PRIMARY — confirmed)\nAmbiguous policy specifications cause massive safety violation rate increases compared to unambiguous matched variants. Effect: +36.5pp (plan_002), McNemar OR=44.8 (CI: [18.47, 108.69]), p<0.0001. Holds across all 6 types and both models.\n- **Evidence**: mvp_001 (360 episodes, 3 types) + plan_002 (1,200 episodes, 6 types, 2 models). Bootstrap CI: [+32.0pp, +40.5pp].\n- **Strength**: Very strong. Replicated across types and models. Perturbation control (plan_010) confirms ambiguity-specific (Δ_perturb=3.33pp, PASS).\n- **Causal backing**: Matched-pair design + perturbation control → strongest causal inference in the literature.\n\n### C2: Type Hierarchy (SECONDARY — confirmed positive, upgraded from null)\n**PIVOTED from uniformity null.** Different ambiguity types produce significantly different violation rates. Omnibus χ²=25.61, p=0.0001, V=0.207.\n- **Evidence**: plan_002 (1,200 episodes, 6 types × 2 conditions × 2 models)\n  - Specification-layer: auth_scope 55% (+53pp), incompleteness 52% (+49pp), CP 35% (+35pp) → avg Δ≈46pp\n  - Linguistic-layer: scopal 40% (+36pp), lexical 38% (+30pp), coreferential 25% (+16pp) → avg Δ≈27pp\n- **Layer effect**: Specification avg Δ ≈ 46pp vs Linguistic avg Δ ≈ 27pp (~19pp gap)\n- **Implication**: Type-aware triage warranted. Specification-layer ambiguities should be prioritized in policy auditing pipelines.\n- **TOST**: ±15pp equivalence rejected for most pairs (3/15 equivalent); ±10pp all rejected. Types are NOT interchangeable.\n- **MVP→Full Study evolution**: MVP 3 types gave V=0.084 (null); full study 6 types gives V=0.207 (significant). The new types (especially auth_scope and coreferential) drove the heterogeneity — MVP's 3 types were coincidentally similar.\n- **Coreferential as boundary case**: 25% violation rate (Δ=+16pp) is the lowest — agents can partially disambiguate via tool responses and cautious strategies. This defines the \"nocuous ambiguity boundary\" — where external disambiguation channels reduce but don't eliminate harm.\n\n### C3: Layer Effect (SECONDARY — new, from plan_002 data)\n**Replaces old \"Visibility Moderates Risk\" hypothesis.** Specification-layer ambiguities (operating at pragmatic/discourse level of policy interpretation) cause significantly more violations than linguistic-layer ambiguities (operating at syntactic/semantic level).\n- **Evidence**: plan_002 layer comparison. Spec avg 47.3% vs Ling avg 34.3%, Δ≈13pp.\n- **Mechanism hypothesis**: Linguistic ambiguity can sometimes be resolved by contextual cues (tool responses, user messages, world knowledge). Specification ambiguity (undefined roles, missing conditions) has no external resolution channel — agents must guess.\n- **CL connection**: Parallels pragmatics vs semantics distinction. Connects to good-enough processing (Ferreira et al. 2002) — agents may handle syntactic ambiguity \"good enough\" but fail on pragmatic underspecification.\n- **Note on old C3 (visibility)**: diag_001's CP(34%) vs scopal(40%) direction confirmed in full study (CP 35% vs scopal 40%), but the effect is subsumed by the broader layer hierarchy. CP is specification-layer but has the lowest spec-layer rate, while scopal is linguistic-layer with the highest ling-layer rate — they are the convergence point between layers.\n\n### C4: Model Consistency (EXPLORATORY — updated)\nNo significant model main effect (p=0.581, V=0.016). Both models show similar overall violation rates. Model×type interaction to be tested with 5 models (plan_003 adds Qwen3-8B, Qwen3-32B-AWQ; Claude pending).\n- **Evidence**: plan_002 gpt-5.4 (41.0%) vs gpt-4.1 (40.7%). Consistent direction across types.\n- **Strength**: 2-model result. Full 5-model test needed for formal interaction analysis.\n\n### C5: Error Analysis (EXPLORATORY — EMNLP core)\nDifferent ambiguity types produce qualitatively different failure modes. Now additionally: failure mode analysis should explain WHY specification-layer types are more dangerous.\n- **Evidence**: Requires full study qualitative analysis of agent traces.\n- **EMNLP value**: Highest. CL reviewers care about linguistic analysis of WHY, not just THAT.\n- **Key questions**: (a) Do spec-layer failures involve more \"guessing\" (assumption-based action) while ling-layer failures involve \"misparse\" (scope/reference errors)? (b) Does coreferential show more \"avoidance\" behavior (conservative strategy) explaining its low rate? (c) Are auth_scope failures distinctive (unauthorized escalation)?\n\n## Narrative Structure (CL-first for EMNLP)\n\n### Intro Logic Chain\n1. Agent policies are written in NL → contain ambiguity (established)\n2. Prior work classifies ambiguity types in policies (DRIP-R, Li et al., Massey et al.) but doesn't measure safety impact\n3. Berry & Kamsties (2003): ambiguity is nocuous (divergent interpretations) or innocuous (convergent). In human RE, shared organizational context makes most ambiguity innocuous.\n4. **Gap**: LLM agents lack shared context. Are policy ambiguities nocuous for agents? Does type matter for safety?\n5. **This paper**: First causal, type-granularity study. Matched-pair design isolates ambiguity effect. Perturbation control confirms ambiguity-specific causation.\n6. **Core findings**: (a) All ambiguity is nocuous (+36.5pp), (b) but type DOES predict severity — specification-layer ambiguities (~46pp) are nearly twice as dangerous as linguistic-layer (~27pp), (c) this hierarchy reflects availability of external disambiguation channels.\n\n### Section Map\n- **§1 Intro**: Gap + contributions (causal map + differential nocuity + layer hierarchy + disambiguation channel theory)\n- **§2 Related Work**: Ambiguity taxonomies (NLP + RE) → Agent safety evaluation → Policy specification quality. Position vs DRIP-R (concurrent, different angle: we measure safety, they measure decision quality)\n- **§3 Taxonomy**: 2-layer, 6-type taxonomy with cross-walk to Li et al. + Massey et al. + DRIP-R. Operational definition (ambiguity + vagueness, per Wasow 2005)\n- **§4 Method**: Matched-pair causal design, τ²-bench, clause generation pipeline, perturbation control, cross-judge evaluation, statistical analysis plan\n- **§5 Results**: C1 (binary, +36.5pp) → C2 (type hierarchy, V=0.207) → C3 (layer effect, Spec>>Ling) → C4 (model consistency)\n- **§6 Analysis**: C5 error analysis — qualitative failure modes per type, explaining WHY specification-layer is more dangerous. This is the EMNLP core.\n- **§7 Discussion**: Differential nocuity theory. Disambiguation channel hypothesis. Practical implications (type-aware triage pipeline, prioritize spec-layer). Limitations (2 domains, 2 API models, synthetic injection).\n- **§8 Conclusion**: All policy ambiguity is nocuous, but specification-layer ambiguities demand priority attention. Type-aware auditing recommended.\n\n## Anticipated Reviewer Concerns\n\n### RC1: \"Type effect could be artifact of taxonomy granularity\"\n**Response**: (a) Layer effect (Spec vs Ling ~19pp gap) is robust — holds even if individual types are reclassified. (b) 2-layer structure grounded in Li et al. + Massey et al. (c) Coreferential's low rate has structural explanation (disambiguation channels), not just noise. (d) TOST confirms types are NOT equivalent (0/15 pairs at ±10pp).\n\n### RC2: \"Taxonomy is ad hoc / why these 6 types\"\n**Response**: 2-layer structure grounded in Li et al. 2024 (11-type NLP) + Massey et al. 2014 (6-type RE). Selection criteria: frequency in policy documents + theoretical distinctiveness. Explicit cross-walk to DRIP-R's 5 types. Operational definition handles ambiguity/vagueness boundary (Wasow 2005, Kennedy 2007).\n\n### RC3: \"Only API models, no open-source\"\n**Response**: Full study adds Qwen3-8B + Qwen3-32B-AWQ (open-source, local inference). 5-model coverage spans frontier API (gpt-5.4, claude-sonnet-4-6) + mid-tier API (gpt-4.1) + open-source at two scales. Model×type interaction analysis (C4) explicitly tests capability dependence.\n**Note [Reviewer 2026-05-20]**: Cross-judge asymmetry — Claude judged by gpt-5.4 (strongest), gpt-5.4 judged by gpt-4.1 (weaker). Must disclose in Method. plan_009 judge calibration measures this bias.\n\n### RC4: \"Synthetic ambiguity injection lacks ecological validity\"\n**Response**: (a) Matched-pair design requires synthetic control for causal inference. (b) Reviewer-verified quality (Chantree-style). (c) CP clauses use both explicit labeling and naturalistic rule rewrites. (d) Full study mixes formats per Reviewer suggestion. (e) Realism validation: distribution comparison with DRIP-R natural ambiguities.\n\n### RC5: \"τ²-bench limited to retail/airline\"\n**Response**: Acknowledged limitation. Two domains already show consistent effects. Cross-domain transfer is Future Work (Phase 3 classifier PoC, if time permits). DRIP-R also single-domain (retail).\n\n### RC6: \"Binary effect is obvious — of course ambiguity causes errors\"\n**Response**: (a) No prior work quantifies effect SIZE for agent safety. +35-42pp is massive and non-trivial. (b) DRIP-R measures decision quality, not safety violations. (c) Prior work (PolicyBank, PhantomPolicy) studies different failure modes, not ambiguity-specific causation. (d) The interesting finding is C2: type DOESN'T matter, contradicting intuition that some ambiguities are worse.\n\n### RC7: \"Incompleteness matched-pair confound (information asymmetry)\"\n**Response**: (a) Dual-track analysis: primary analysis uses ambiguous-only cross-type comparison (avoids confound). (b) Incompleteness pairs constrained to minimal information addition. (c) Explicitly discussed as limitation for within-type effect size.\n\n### RC8: \"RC attachment in coreferential overlaps with scopal / structural ambiguity\"\n**Response**: (a) Our scopal category is explicitly scoped to quantifier/negation/modal scope interactions, not syntactic attachment. (b) RC attachment in policies manifests as *referential* confusion (which entity does the clause modify?) not *scope* confusion (which operator takes wide scope?). (c) Li et al. 2024 distinguishes syntactic ambiguity (including RC attachment) from scopal ambiguity — our grouping follows their treatment that RC attachment is closer to coreferential than scopal in terms of downstream interpretation. (d) Empirically, if the distinction were problematic, coreferential and scopal would show identical violation patterns — the error analysis (C5) can test whether their failure modes differ.\n\n### RC9: \"authorization_scope is just a subtype of incompleteness\"\n**Response**: (a) Incompleteness = missing conditions/exceptions/boundaries (structural absence). Authorization scope = ambiguous permission/role boundaries that ARE stated but vague (e.g., \"authorized personnel\" without specifying which functions). (b) The disambiguation pattern differs: incompleteness adds new conditions; auth_scope clarifies existing permission boundaries. (c) Empirically testable: if they were the same, their violation patterns and failure modes (C5) would be indistinguishable. (d) Report disambiguation length ratio per type as control variable in §4 Method.\n\n### RC10: \"API sampling noise undermines reliability\"\n**Response**: (a) Reviewer identified ±8pp test-retest band for scopal clauses. (b) Full study reports bootstrap CI for all violation rates. (c) Key findings (binary effect +31-42pp) far exceed noise band. (d) Null findings (type effect V=0.084) are robust — even with favorable noise, effect remains negligible.\n\n### RC11: \"Prompt sensitivity confound\" [Dream A9 — best tier \"strongest point\"]\n**Concern**: The +35-42pp effect is attributed entirely to ambiguity, but without a control condition using non-ambiguity perturbations (synonym substitution, clause reordering), the paper cannot cleanly distinguish ambiguity-specific harm from general prompt brittleness.\n**Response**: ✅ RESOLVED. plan_010 perturbation control (120 episodes): Δ_perturb=3.33pp (CI contains 0) vs ambiguity Δ=36.5pp. Non-ambiguity surface changes cause zero meaningful effect. This is the strongest causal evidence in the agent safety literature.\n\n## Concept Naming (distill insight: 命名即贡献)\n\nCore phenomenon: **\"Differential Nocuity\"** — all policy ambiguity types are nocuous for LLM agents, but specification-layer ambiguities are nearly twice as dangerous as linguistic-layer ones. Unlike human RE where organizational context renders most ambiguity innocuous, agents lack disambiguation channels for specification-level underspecification.\n\nSecondary phenomenon: **\"Ambiguity Blindness\"** — agents process grammatically fluent ambiguous clauses without meta-cognitive awareness of the ambiguity, adopting surface interpretations. Contrasts with explicit rule conflicts where agents show awareness and choose conservatively.\n\nTertiary phenomenon: **\"Disambiguation Channel Hypothesis\"** — the layer hierarchy reflects availability of external disambiguation: linguistic ambiguity (coreferential, lexical) can sometimes be resolved by tool responses, user context, or world knowledge; specification ambiguity (auth_scope, incompleteness) has no external resolution channel, forcing agents to guess.\n\n## Opening Hook Strategy (distill insight: 具体案例, 不要 \"Recently...\")\n\nOpen with a concrete τ²-bench failure: e.g., a customer returns a customized item within the return window; the agent grants a full refund + free return shipping because the policy says \"items may be returned within 30 days\" (scopal: \"items\" scopes over all categories including custom). The unambiguous version specifies \"standard items only\" — agent correctly refuses. One word of ambiguity → $200 unauthorized refund.\n\n## Narrative Type: 突破局限型 (distill pattern, 5/8 papers)\n\n\"DRIP-R classifies 5 ambiguity types and shows models disagree on interpretation → but does not measure whether this disagreement leads to safety violations. We close this gap — and find the answer is surprising: all types are equally dangerous.\"\n\n## Benchmark Comparison Table (distill insight: 必有 feature matrix)\n\n| Feature | DRIP-R | PhantomPolicy | PolicyBank | AgentPex | **Ours** |\n|---------|--------|---------------|------------|----------|----------|\n| Ambiguity taxonomy | 5 RE types | — | 3 gap types | — | **6 types (2-layer)** |\n| Causal design | — | — | — | — | **matched pairs** |\n| Safety violation metric | — | binary | — | procedural | **3-tier severity** |\n| Cross-type comparison | descriptive | — | — | — | **statistical (χ² + V)** |\n| Models tested | 6 API | 4 API | 2 API | 2 API | **2 API + 2 open-source** |\n| Domain | retail | mixed | retail | telecom/retail/airline | **retail + airline** |\n\n## Contribution Positioning (for EMNLP)\n\n1. **Problem formulation**: First causal framing of ambiguity type → safety violation in agent policies. Introduces \"uniform nocuity\" as a named phenomenon.\n2. **Empirical**: Quantifies binary effect (+31-42pp) across 6 types and 4 models. Reports informative null on type differentiation.\n3. **Theoretical**: Connects Berry & Kamsties nocuous ambiguity theory to agent safety. Proposes \"ambiguity blindness\" mechanism linking linguistic visibility to safety risk.\n4. **Practical**: Binary ambiguity detection suffices for safety triage. Type-specific pipelines not justified.\n5. **Methodological**: Matched-pair causal design + cross-judge evaluation + 2-layer taxonomy with cross-walk.\n\n## Required Reference Expansion [Dream A2 — three-tier consistent]\n\nCurrent plan has thin references. Must add (≥25 total in final paper):\n- **Good-enough processing**: Ferreira, Bailey & Ferraro (2002); Ferreira & Patson (2007) — directly relevant to visibility hypothesis (how processors handle ambiguity without full reanalysis)\n- **Surprisal/expectation-based**: Levy (2008); Hale (2001) — why some ambiguity triggers reanalysis\n- **Instruction-following robustness**: Zhou et al. (IFEval, 2023); Qin et al. (ToolBench, 2024) — ambiguity sensitivity as special case of instruction robustness\n- **Prompt sensitivity**: Sclar et al. (2024); Lu et al. (2022) — general prompt brittleness literature\n- **Broader agent safety**: R-Judge, ToolEmu, InjecAgent — position against wider agent safety work\n- **Formal semantics of vagueness**: Lassiter & Goodman (2017) — ambiguity/vagueness boundary\n- **Garden-path**: Frazier & Rayner (1982) — reanalysis cost grounding for C3\n- **Ambiguity detection**: Willis et al. (2008); Ezzini et al. (TAPHSIR, 2022)\n\n## Code/Data Release Plan [Dream A6 — three-tier consistent]\n\nMust commit to releasing:\n1. All 300 clause pairs (ambiguous + unambiguous variants) with type labels\n2. Evaluation scripts (τ²-bench integration, cross-judge pipeline)\n3. Statistical analysis code (all tests, bootstrap CI computation)\n4. Agent trace samples (anonymized) for reproducibility of C5\n\n## Figure Plan [Dream A12]\n\nMinimum figures for paper (zero-figure paper flagged in dream):\n1. **Figure 1**: System architecture / experimental pipeline overview (§4 Method)\n2. **Figure 2**: Forest plot — per-type binary effect sizes with 95% CI (§5 C1)\n3. **Figure 3**: Model × Type heatmap — violation rates across 4 models × 6 types (§5 C4)\n4. **Figure 4**: Visibility mechanism — CP vs scopal violation rates + trace evidence (§5 C3)\n5. **Figure 5**: Failure mode × type Sankey/alluvial diagram (§6 C5)\n6. **Figure 6**: Annotated trace pair — CP (conflict detection) vs scopal (surface adoption) (§6 C5)\n\n## Berry & Kamsties Operationalization Note [Dream best Q5]\n\nBerry & Kamsties define nocuity as inter-reader divergence. Our design measures agent-vs-intent deviation. Full study should additionally test whether different models adopt different readings of the same ambiguous clause (true inter-model nocuity). If 4 models produce 4 different interpretations of the same clause → true nocuity. If all 4 adopt the same wrong interpretation → systematic bias, still nocuous but for different reason. Report inter-model agreement on ambiguous clauses as supplementary analysis.\n\n## Contingency Framing [Reviewer assessment 2026-05-20]\n\n如果 full study 结果偏离 MVP，预备以下 pivot 方向（小时级完成 reframe）：\n\n**Scenario B — 2/6 types binary effect 不显著**（概率中低，取决于 coreferential 修复质量）:\n- Pivot: \"Not All Ambiguity Is Nocuous: Type-Dependent Safety Risks\"\n- C1 降级 \"most types nocuous\" + 效果异质性; C2 升级为 positive finding\n- 更深 CL insight: nocuity 取决于 agent 消歧渠道可获取性\n- 实用建议从 \"binary detection\" 改为 \"type-aware triage\"\n\n**Scenario C — Type uniformity 被拒绝（omnibus p<0.05, 但所有类型仍 nocuous）**（概率中等）:\n- Pivot: 去掉 \"Uniformly\"，改为 \"type hierarchy predicts severity\"\n- C2 从 confirmed null → weak type effect / type hierarchy\n- C4 从 exploratory 升级为 supporting evidence\n- 如果排序与语言学理论一致 → 正面发现；随机排序 → noise\n\n**关键降风险措施**: coreferential 第三轮 mini-pilot 是 Scenario B 的最大杠杆点。\n\n## Claude Baseline — RESOLVED [2026-05-20]\n\n4/8 distilled papers use Claude as baseline. ✅ Claude Sonnet 4.6 added as 5th model via OpenRouter proxy (base_url=http://47.94.22.126/v1). plan_002 expanded to 3 API models (gpt-5.4, gpt-4.1, claude-sonnet-4-6). Total model coverage: 5 models across 3 families (OpenAI, Anthropic, Qwen).\n\n\n## experiment_plan (with registry status)\n\n- id: plan_001\n  name: full_study_clause_generation\n  claim: C1, C2, C3\n  description: 'Generate remaining clauses for full study: coreferential (50 new),\n    authorization_scope (50 new), lexical (+20 to reach 50), incompleteness (+20 to\n    reach 50). Total 140 new clauses. Validate all 300 clauses (50/type × 6 types)\n    for completeness and cross-type balance. Mix CP format per Reviewer suggestion\n    (labeled + unlabeled).\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps: []\n  status: planned\n- id: plan_001b\n  name: new_type_mini_pilot\n  claim: C1 (validation)\n  description: 'Mini-pilot for coreferential + authorization_scope (never tested):\n    5 clauses/type × 2 conditions × 1 model (gpt-5.4) = 20 episodes. Verify: (a) ambiguous\n    triggers violations (b) unambiguous control < 15%. If systematic issues found,\n    fix clause design before full study. API cost negligible (~$2). Per Reviewer warning\n    on untested types.\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  status: planned\n- id: plan_002\n  name: full_study_api\n  claim: C1, C2, C3, C4, C5\n  description: 'Run 300 clauses × 2 conditions × 3 API models (gpt-5.4, gpt-4.1, claude-sonnet-4-6)\n    = 1,800 episodes on τ²-bench. Cross-judge evaluation. Output: episodes.jsonl +\n    judgments.jsonl. No GPU needed. Claude via OpenRouter proxy (base_url=http://47.94.22.126/v1).\n    [2026-05-20] Claude added per distill gap (4/8 papers use Claude baseline).\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  - plan_001b\n  - plan_010\n  status: planned\n- id: plan_003\n  name: full_study_local\n  claim: C1, C2, C3, C4, C5\n  description: 'Run 300 clauses × 2 conditions × 2 local models (Qwen3-8B, Qwen3-32B-AWQ\n    via vLLM) = 1,200 episodes on τ²-bench. Requires 1× RTX PRO 6000 (48GB). Cross-judge\n    uses API models. Can run in parallel with plan_002.\n\n    '\n  priority: P0\n  gpu_budget_hours: 48\n  deps:\n  - plan_001\n  status: planned\n- id: plan_004\n  name: full_study_analysis\n  claim: C1, C2, C3, C4\n  description: 'Statistical analysis of full study data (3,000 episodes): (a) Binary\n    effect per type with bootstrap CI (C1) (b) Omnibus χ² + pairwise across 6 types\n    (C2) (c) Visibility comparison: CP vs scopal rates (C3) (d) Model × type interaction:\n    5×6 contingency + logistic regression (C4) Report effect sizes + CI for all comparisons\n    per Reviewer suggestion. [Dream A3] Power analysis: report MDE for C2 (given N=250/type\n    pooled) and C3 (given N=250 per type). If V < 0.20 but MDE > observed V, discuss\n    underpowered possibility. [Dream A4] TOST equivalence test with both ±15pp and\n    ±10pp margins. Justify margin choice explicitly. [Dream A10] Report per-type information\n    delta (token count difference between ambiguous and unambiguous variants) as control\n    variable. [Dream B&K] Inter-model agreement on ambiguous clauses: do 5 models\n    adopt same or different interpretations? (supplementary analysis)\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_002\n  - plan_003\n  status: planned\n- id: plan_005\n  name: error_analysis\n  claim: C5\n  description: \"Qualitative analysis of agent traces from full study: (a) Sample 50\\\n    \\ violation traces per type (300 total) (b) Classify failure modes (scope misapplication,\\\n    \\ conservative refusal,\\n    assumption-based action, arbitrary rule selection,\\\n    \\ etc.)\\n(c) Cross-type failure mode distribution (d) Visibility mechanism: compare\\\n    \\ CP traces (explicit conflict detection\\n    behavior) vs scopal traces (surface\\\n    \\ scope adoption without awareness)\\n(e) Model-specific failure patterns (connect\\\n    \\ to C4)\\n\"\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_002\n  - plan_003\n  status: planned\n- id: plan_006\n  name: reliability_test\n  claim: C1, C2\n  description: 'Test-retest reliability: select 30 representative clauses (5/type),\n    run 3 independent replicates × 2 conditions × 5 models = 900 episodes. Compute\n    ICC for per-clause violation rates. Addresses Reviewer warning about ±8pp sampling\n    noise (scopal 51.7% → 43.3% across MVP/diag). Bootstrap CI width should be < 10pp\n    for key comparisons.\n\n    '\n  priority: P1\n  gpu_budget_hours: 15\n  deps:\n  - plan_001\n  status: planned\n- id: plan_007\n  name: realism_validation\n  claim: C1 (methodological)\n  description: \"Validate synthetic ambiguity injection realism: (a) Linguistic property\\\n    \\ comparison with DRIP-R natural ambiguities\\n    (sentence length, parse depth,\\\n    \\ Flesch-Kincaid, TTR) + KS tests\\n(b) Optional: discriminator test if DRIP-R\\\n    \\ data accessible Addresses RC4 (ecological validity).\\n\"\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  status: planned\n- id: plan_009\n  name: judge_calibration\n  claim: C1 (methodological)\n  description: 'LLM-as-judge calibration per distilled research norm (5/8 papers):\n    (a) Sample 100 episodes stratified by type×model×condition (b) Human expert labels\n    (2 annotators, target κ ≥ 0.75) (c) Compute judge precision/recall/F1 against\n    human ground truth (d) Per-severity-tier agreement rates (e) Report in Method\n    section as standard practice per AgentAuditor/DRIP-R [Dream A7] Upgraded P1→P0:\n    Dream best-tier reviewers identified this as \"single most critical missing validation.\"\n    Without it, entire measurement chain from episode to violation label is unvalidated.\n    κ=0.91 measures LLM-LLM agreement, not accuracy.\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_002\n  status: planned\n- id: plan_010\n  name: perturbation_control\n  claim: C1 (causal validity)\n  description: '[Dream A9] Non-ambiguity perturbation control arm to distinguish ambiguity-specific\n    harm from general prompt brittleness. Generate 30 clause pairs with non-ambiguity\n    perturbations: (a) 15 synonym substitution pairs (replace key terms with synonyms)\n    (b) 15 clause reordering pairs (reorder conditions without changing meaning) Run\n    30 × 2 conditions × 3 API models (gpt-5.4, gpt-4.1, claude-sonnet-4-6) = 180 episodes.\n    Key metric: Δ_net = Δ_ambiguity - Δ_perturb (net ambiguity-specific effect). [Reviewer升级]\n    必须在 plan_002/003 full study 之前完成—— 如果 perturbation Δpp ≈ ambiguity Δpp，2,400 episodes\n    全部无效。 低成本验证（30 pairs + 120 episodes API）优先于高成本投入。 [判定标准 — 5 档]: PASS: Δ_perturb\n    < 5pp (CI含0), ratio < 0.15 → C1 因果 claim 最强形式 PASS+caveat: 5-10pp, ratio 0.15-0.30\n    → 报告 perturbation baseline, C1 写 net effect CONDITIONAL: 10-15pp, ratio 0.30-0.45\n    → 需 Δ_net > 20pp 且显著才可发表 WARNING: 15-20pp, ratio 0.45-0.60 → C1 改为 \"additional\n    violations beyond sensitivity\" FAIL: > 20pp, ratio > 0.60 → 无法声称 ambiguity-specific,\n    需根本重新设计 [Power 注意]: N=120 对 10pp 差异 power ≈ 30%. 用 CI 宽度判定, 非 p-value. 若 CI 过宽(>15pp\n    width), 追加 60 episodes 压窄至 <10pp width. 输出标准化 verdict 文件: perturbation_Δpp, ambiguity_Δpp,\n    net_Δpp, CI, ratio, verdict.\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - plan_001\n  status: planned\n- id: plan_008\n  name: classifier_poc\n  claim: practical contribution\n  description: 'Binary ambiguity detector PoC: fine-tune DeBERTa-v3-large on annotated\n    clause pairs (ambiguous/unambiguous labels). Eval on held-out set. Demonstrates\n    practical applicability of findings. Phase 3 from IDEA_BRIEF, scoped to PoC for\n    EMNLP.\n\n    '\n  priority: P2\n  gpu_budget_hours: 8\n  deps:\n  - plan_001\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: mvp_001\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics: {}\n- exp_id: diag_001\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics: {}\n- exp_id: plan_002\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics: {}\n\n# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）\n\n```yaml\ntiers:\n  best:\n    meaning: \"...\"\n    key_assumptions: [...]\n    number_ranges: {metric_a: [low, high], metric_b: [...]}\n    narrative_direction: \"...\"\n  median:\n    meaning: \"...\"\n    ...\n  worst:\n    meaning: \"...\"\n    ...\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T15:22:37.258Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T15:22:37.258Z",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T15:22:37.277Z_
+
+你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。
+
+你需要同时定义 best / median / worst 三档：
+1. 每档的核心假设（哪些假设成立/不成立）
+2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）
+3. 每档的论文叙事方向——
+   - best: 原始 framing 完全成立，claims 无需调整
+   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验
+   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）
+
+三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性
+自行判断。但必须确保三档之间的数字和叙事逻辑一致。
+
+# Project context
+project: policy_ambiguity_safety
+focus: Framing pivoted from "Uniform Nocuity" to "Differential Nocuity" after plan_002 falsified C2 (V=0.207). Key new claims: (1) Layer hierarchy Spec~46pp >> Ling~27pp, (2) Disambiguation Channel Hypothesis, (3) Coreferential as boundary case. Validate whether the new framing is stronger than uniform, and whether the layer effect survives scrutiny. plan_002 real data: auth_scope 55%, incompleteness 52%, scopal 40%, lexical 38%, CP 35%, coreferential 25%. Perturbation control PASS (Δ=3.33pp).
+
+## paper_framing.md
+
+# Paper Framing — policy_ambiguity_safety
+
+> 最后更新: 2026-05-20 | 状态: plan_002 complete, framing pivot (C2 falsified)
+> 目标: EMNLP 2026 (ARR Aug cycle, DDL ~Aug 3)
+> Dream: dream_20260520T112859 — best 3.5 / median 3.0 / worst 2.5 (pre-pivot; re-dream needed)
+> plan_002: 1,200 episodes, C1 confirmed (+36.5pp), C2 FALSIFIED (V=0.207, p=0.0001)
+
+## Core Insight
+
+Policy ambiguity causes devastating safety violations in LLM agents (+36.5pp), but **not all types are equally dangerous**: specification-layer ambiguities (authorization scope, incompleteness) cause nearly twice the violation rate increase (~46pp) of linguistic-layer ambiguities (~27pp). This layer hierarchy connects Berry & Kamsties' nocuous ambiguity theory to LLM agent safety and suggests type-aware triage prioritizing specification-layer ambiguities.
+
+## Title (Working)
+
+"Not All Policy Ambiguity Is Equal: Specification-Layer Ambiguity Poses Greater Safety Risks for LLM Agents"
+
+Alternative: "Differential Nocuity: How Ambiguity Type Predicts Safety Violation Severity in LLM Agent Policies"
+
+Note: Pivoted from "Uniformly Nocuous" after plan_002 falsified C2 (V=0.207, p=0.0001). Layer hierarchy is a stronger, more informative finding.
+
+## Core Claims
+
+### C1: Binary Effect (PRIMARY — confirmed)
+Ambiguous policy specifications cause massive safety violation rate increases compared to unambiguous matched variants. Effect: +36.5pp (plan_002), McNemar OR=44.8 (CI: [18.47, 108.69]), p<0.0001. Holds across all 6 types and both models.
+- **Evidence**: mvp_001 (360 episodes, 3 types) + plan_002 (1,200 episodes, 6 types, 2 models). Bootstrap CI: [+32.0pp, +40.5pp].
+- **Strength**: Very strong. Replicated across types and models. Perturbation control (plan_010) confirms ambiguity-specific (Δ_perturb=3.33pp, PASS).
+- **Causal backing**: Matched-pair design + perturbation control → strongest causal inference in the literature.
+
+### C2: Type Hierarchy (SECONDARY — confirmed positive, upgraded from null)
+**PIVOTED from uniformity null.** Different ambiguity types produce significantly different violation rates. Omnibus χ²=25.61, p=0.0001, V=0.207.
+- **Evidence**: plan_002 (1,200 episodes, 6 types × 2 conditions × 2 models)
+  - Specification-layer: auth_scope 55% (+53pp), incompleteness 52% (+49pp), CP 35% (+35pp) → avg Δ≈46pp
+  - Linguistic-layer: scopal 40% (+36pp), lexical 38% (+30pp), coreferential 25% (+16pp) → avg Δ≈27pp
+- **Layer effect**: Specification avg Δ ≈ 46pp vs Linguistic avg Δ ≈ 27pp (~19pp gap)
+- **Implication**: Type-aware triage warranted. Specification-layer ambiguities should be prioritized in policy auditing pipelines.
+- **TOST**: ±15pp equivalence rejected for most pairs (3/15 equivalent); ±10pp all rejected. Types are NOT interchangeable.
+- **MVP→Full Study evolution**: MVP 3 types gave V=0.084 (null); full study 6 types gives V=0.207 (significant). The new types (especially auth_scope and coreferential) drove the heterogeneity — MVP's 3 types were coincidentally similar.
+- **Coreferential as boundary case**: 25% violation rate (Δ=+16pp) is the lowest — agents can partially disambiguate via tool responses and cautious strategies. This defines the "nocuous ambiguity boundary" — where external disambiguation channels reduce but don't eliminate harm.
+
+### C3: Layer Effect (SECONDARY — new, from plan_002 data)
+**Replaces old "Visibility Moderates Risk" hypothesis.** Specification-layer ambiguities (operating at pragmatic/discourse level of policy interpretation) cause significantly more violations than linguistic-layer ambiguities (operating at syntactic/semantic level).
+- **Evidence**: plan_002 layer comparison. Spec avg 47.3% vs Ling avg 34.3%, Δ≈13pp.
+- **Mechanism hypothesis**: Linguistic ambiguity can sometimes be resolved by contextual cues (tool responses, user messages, world knowledge). Specification ambiguity (undefined roles, missing conditions) has no external resolution channel — agents must guess.
+- **CL connection**: Parallels pragmatics vs semantics distinction. Connects to good-enough processing (Ferreira et al. 2002) — agents may handle syntactic ambiguity "good enough" but fail on pragmatic underspecification.
+- **Note on old C3 (visibility)**: diag_001's CP(34%) vs scopal(40%) direction confirmed in full study (CP 35% vs scopal 40%), but the effect is subsumed by the broader layer hierarchy. CP is specification-layer but has the lowest spec-layer rate, while scopal is linguistic-layer with the highest ling-layer rate — they are the convergence point between layers.
+
+### C4: Model Consistency (EXPLORATORY — updated)
+No significant model main effect (p=0.581, V=0.016). Both models show similar overall violation rates. Model×type interaction to be tested with 5 models (plan_003 adds Qwen3-8B, Qwen3-32B-AWQ; Claude pending).
+- **Evidence**: plan_002 gpt-5.4 (41.0%) vs gpt-4.1 (40.7%). Consistent direction across types.
+- **Strength**: 2-model result. Full 5-model test needed for formal interaction analysis.
+
+### C5: Error Analysis (EXPLORATORY — EMNLP core)
+Different ambiguity types produce qualitatively different failure modes. Now additionally: failure mode analysis should explain WHY specification-layer types are more dangerous.
+- **Evidence**: Requires full study qualitative analysis of agent traces.
+- **EMNLP value**: Highest. CL reviewers care about linguistic analysis of WHY, not just THAT.
+- **Key questions**: (a) Do spec-layer failures involve more "guessing" (assumption-based action) while ling-layer failures involve "misparse" (scope/reference errors)? (b) Does coreferential show more "avoidance" behavior (conservative strategy) explaining its low rate? (c) Are auth_scope failures distinctive (unauthorized escalation)?
+
+## Narrative Structure (CL-first for EMNLP)
+
+### Intro Logic Chain
+1. Agent policies are written in NL → contain ambiguity (established)
+2. Prior work classifies ambiguity types in policies (DRIP-R, Li et al., Massey et al.) but doesn't measure safety impact
+3. Berry & Kamsties (2003): ambiguity is nocuous (divergent interpretations) or innocuous (convergent). In human RE, shared organizational context makes most ambiguity innocuous.
+4. **Gap**: LLM agents lack shared context. Are policy ambiguities nocuous for agents? Does type matter for safety?
+5. **This paper**: First causal, type-granularity study. Matched-pair design isolates ambiguity effect. Perturbation control confirms ambiguity-specific causation.
+6. **Core findings**: (a) All ambiguity is nocuous (+36.5pp), (b) but type DOES predict severity — specification-layer ambiguities (~46pp) are nearly twice as dangerous as linguistic-layer (~27pp), (c) this hierarchy reflects availability of external disambiguation channels.
+
+### Section Map
+- **§1 Intro**: Gap + contributions (causal map + differential nocuity + layer hierarchy + disambiguation channel theory)
+- **§2 Related Work**: Ambiguity taxonomies (NLP + RE) → Agent safety evaluation → Policy specification quality. Position vs DRIP-R (concurrent, different angle: we measure safety, they measure decision quality)
+- **§3 Taxonomy**: 2-layer, 6-type taxonomy with cross-walk to Li et al. + Massey et al. + DRIP-R. Operational definition (ambiguity + vagueness, per Wasow 2005)
+- **§4 Method**: Matched-pair causal design, τ²-bench, clause generation pipeline, perturbation control, cross-judge evaluation, statistical analysis plan
+- **§5 Results**: C1 (binary, +36.5pp) → C2 (type hierarchy, V=0.207) → C3 (layer effect, Spec>>Ling) → C4 (model consistency)
+- **§6 Analysis**: C5 error analysis — qualitative failure modes per type, explaining WHY specification-layer is more dangerous. This is the EMNLP core.
+- **§7 Discussion**: Differential nocuity theory. Disambiguation channel hypothesis. Practical implications (type-aware triage pipeline, prioritize spec-layer). Limitations (2 domains, 2 API models, synthetic injection).
+- **§8 Conclusion**: All policy ambiguity is nocuous, but specification-layer ambiguities demand priority attention. Type-aware auditing recommended.
+
+## Anticipated Reviewer Concerns
+
+### RC1: "Type effect could be artifact of taxonomy granularity"
+**Response**: (a) Layer effect (Spec vs Ling ~19pp gap) is robust — holds even if individual types are reclassified. (b) 2-layer structure grounded in Li et al. + Massey et al. (c) Coreferential's low rate has structural explanation (disambiguation channels), not just noise. (d) TOST confirms types are NOT equivalent (0/15 pairs at ±10pp).
+
+### RC2: "Taxonomy is ad hoc / why these 6 types"
+**Response**: 2-layer structure grounded in Li et al. 2024 (11-type NLP) + Massey et al. 2014 (6-type RE). Selection criteria: frequency in policy documents + theoretical distinctiveness. Explicit cross-walk to DRIP-R's 5 types. Operational definition handles ambiguity/vagueness boundary (Wasow 2005, Kennedy 2007).
+
+### RC3: "Only API models, no open-source"
+**Response**: Full study adds Qwen3-8B + Qwen3-32B-AWQ (open-source, local inference). 5-model coverage spans frontier API (gpt-5.4, claude-sonnet-4-6) + mid-tier API (gpt-4.1) + open-source at two scales. Model×type interaction analysis (C4) explicitly tests capability dependence.
+**Note [Reviewer 2026-05-20]**: Cross-judge asymmetry — Claude judged by gpt-5.4 (strongest), gpt-5.4 judged by gpt-4.1 (weaker). Must disclose in Method. plan_009 judge calibration measures this bias.
+
+### RC4: "Synthetic ambiguity injection lacks ecological validity"
+**Response**: (a) Matched-pair design requires synthetic control for causal inference. (b) Reviewer-verified quality (Chantree-style). (c) CP clauses use both explicit labeling and naturalistic rule rewrites. (d) Full study mixes formats per Reviewer suggestion. (e) Realism validation: distribution comparison with DRIP-R natural ambiguities.
+
+### RC5: "τ²-bench limited to retail/airline"
+**Response**: Acknowledged limitation. Two domains already show consistent effects. Cross-domain transfer is Future Work (Phase 3 classifier PoC, if time permits). DRIP-R also single-domain (retail).
+
+### RC6: "Binary effect is obvious — of course ambiguity causes errors"
+**Response**: (a) No prior work quantifies effect SIZE for agent safety. +35-42pp is massive and non-trivial. (b) DRIP-R measures decision quality, not safety violations. (c) Prior work (PolicyBank, PhantomPolicy) studies different failure modes, not ambiguity-specific causation. (d) The interesting finding is C2: type DOESN'T matter, contradicting intuition that some ambiguities are worse.
+
+### RC7: "Incompleteness matched-pair confound (information asymmetry)"
+**Response**: (a) Dual-track analysis: primary analysis uses ambiguous-only cross-type comparison (avoids confound). (b) Incompleteness pairs constrained to minimal information addition. (c) Explicitly discussed as limitation for within-type effect size.
+
+### RC8: "RC attachment in coreferential overlaps with scopal / structural ambiguity"
+**Response**: (a) Our scopal category is explicitly scoped to quantifier/negation/modal scope interactions, not syntactic attachment. (b) RC attachment in policies manifests as *referential* confusion (which entity does the clause modify?) not *scope* confusion (which operator takes wide scope?). (c) Li et al. 2024 distinguishes syntactic ambiguity (including RC attachment) from scopal ambiguity — our grouping follows their treatment that RC attachment is closer to coreferential than scopal in terms of downstream interpretation. (d) Empirically, if the distinction were problematic, coreferential and scopal would show identical violation patterns — the error analysis (C5) can test whether their failure modes differ.
+
+### RC9: "authorization_scope is just a subtype of incompleteness"
+**Response**: (a) Incompleteness = missing conditions/exceptions/boundaries (structural absence). Authorization scope = ambiguous permission/role boundaries that ARE stated but vague (e.g., "authorized personnel" without specifying which functions). (b) The disambiguation pattern differs: incompleteness adds new conditions; auth_scope clarifies existing permission boundaries. (c) Empirically testable: if they were the same, their violation patterns and failure modes (C5) would be indistinguishable. (d) Report disambiguation length ratio per type as control variable in §4 Method.
+
+### RC10: "API sampling noise undermines reliability"
+**Response**: (a) Reviewer identified ±8pp test-retest band for scopal clauses. (b) Full study reports bootstrap CI for all violation rates. (c) Key findings (binary effect +31-42pp) far exceed noise band. (d) Null findings (type effect V=0.084) are robust — even with favorable noise, effect remains negligible.
+
+### RC11: "Prompt sensitivity confound" [Dream A9 — best tier "strongest point"]
+**Concern**: The +35-42pp effect is attributed entirely to ambiguity, but without a control condition using non-ambiguity perturbations (synonym substitution, clause reordering), the paper cannot cleanly distinguish ambiguity-specific harm from general prompt brittleness.
+**Response**: ✅ RESOLVED. plan_010 perturbation control (120 episodes): Δ_perturb=3.33pp (CI contains 0) vs ambiguity Δ=36.5pp. Non-ambiguity surface changes cause zero meaningful effect. This is the strongest causal evidence in the agent safety literature.
+
+## Concept Naming (distill insight: 命名即贡献)
+
+Core phenomenon: **"Differential Nocuity"** — all policy ambiguity types are nocuous for LLM agents, but specification-layer ambiguities are nearly twice as dangerous as linguistic-layer ones. Unlike human RE where organizational context renders most ambiguity innocuous, agents lack disambiguation channels for specification-level underspecification.
+
+Secondary phenomenon: **"Ambiguity Blindness"** — agents process grammatically fluent ambiguous clauses without meta-cognitive awareness of the ambiguity, adopting surface interpretations. Contrasts with explicit rule conflicts where agents show awareness and choose conservatively.
+
+Tertiary phenomenon: **"Disambiguation Channel Hypothesis"** — the layer hierarchy reflects availability of external disambiguation: linguistic ambiguity (coreferential, lexical) can sometimes be resolved by tool responses, user context, or world knowledge; specification ambiguity (auth_scope, incompleteness) has no external resolution channel, forcing agents to guess.
+
+## Opening Hook Strategy (distill insight: 具体案例, 不要 "Recently...")
+
+Open with a concrete τ²-bench failure: e.g., a customer returns a customized item within the return window; the agent grants a full refund + free return shipping because the policy says "items may be returned within 30 days" (scopal: "items" scopes over all categories including custom). The unambiguous version specifies "standard items only" — agent correctly refuses. One word of ambiguity → $200 unauthorized refund.
+
+## Narrative Type: 突破局限型 (distill pattern, 5/8 papers)
+
+"DRIP-R classifies 5 ambiguity types and shows models disagree on interpretation → but does not measure whether this disagreement leads to safety violations. We close this gap — and find the answer is surprising: all types are equally dangerous."
+
+## Benchmark Comparison Table (distill insight: 必有 feature matrix)
+
+| Feature | DRIP-R | PhantomPolicy | PolicyBank | AgentPex | **Ours** |
+|---------|--------|---------------|------------|----------|----------|
+| Ambiguity taxonomy | 5 RE types | — | 3 gap types | — | **6 types (2-layer)** |
+| Causal design | — | — | — | — | **matched pairs** |
+| Safety violation metric | — | binary | — | procedural | **3-tier severity** |
+| Cross-type comparison | descriptive | — | — | — | **statistical (χ² + V)** |
+| Models tested | 6 API | 4 API | 2 API | 2 API | **2 API + 2 open-source** |
+| Domain | retail | mixed | retail | telecom/retail/airline | **retail + airline** |
+
+## Contribution Positioning (for EMNLP)
+
+1. **Problem formulation**: First causal framing of ambiguity type → safety violation in agent policies. Introduces "uniform nocuity" as a named phenomenon.
+2. **Empirical**: Quantifies binary effect (+31-42pp) across 6 types and 4 models. Reports informative null on type differentiation.
+3. **Theoretical**: Connects Berry & Kamsties nocuous ambiguity theory to agent safety. Proposes "ambiguity blindness" mechanism linking linguistic visibility to safety risk.
+4. **Practical**: Binary ambiguity detection suffices for safety triage. Type-specific pipelines not justified.
+5. **Methodological**: Matched-pair causal design + cross-judge evaluation + 2-layer taxonomy with cross-walk.
+
+## Required Reference Expansion [Dream A2 — three-tier consistent]
+
+Current plan has thin references. Must add (≥25 total in final paper):
+- **Good-enough processing**: Ferreira, Bailey & Ferraro (2002); Ferreira & Patson (2007) — directly relevant to visibility hypothesis (how processors handle ambiguity without full reanalysis)
+- **Surprisal/expectation-based**: Levy (2008); Hale (2001) — why some ambiguity triggers reanalysis
+- **Instruction-following robustness**: Zhou et al. (IFEval, 2023); Qin et al. (ToolBench, 2024) — ambiguity sensitivity as special case of instruction robustness
+- **Prompt sensitivity**: Sclar et al. (2024); Lu et al. (2022) — general prompt brittleness literature
+- **Broader agent safety**: R-Judge, ToolEmu, InjecAgent — position against wider agent safety work
+- **Formal semantics of vagueness**: Lassiter & Goodman (2017) — ambiguity/vagueness boundary
+- **Garden-path**: Frazier & Rayner (1982) — reanalysis cost grounding for C3
+- **Ambiguity detection**: Willis et al. (2008); Ezzini et al. (TAPHSIR, 2022)
+
+## Code/Data Release Plan [Dream A6 — three-tier consistent]
+
+Must commit to releasing:
+1. All 300 clause pairs (ambiguous + unambiguous variants) with type labels
+2. Evaluation scripts (τ²-bench integration, cross-judge pipeline)
+3. Statistical analysis code (all tests, bootstrap CI computation)
+4. Agent trace samples (anonymized) for reproducibility of C5
+
+## Figure Plan [Dream A12]
+
+Minimum figures for paper (zero-figure paper flagged in dream):
+1. **Figure 1**: System architecture / experimental pipeline overview (§4 Method)
+2. **Figure 2**: Forest plot — per-type binary effect sizes with 95% CI (§5 C1)
+3. **Figure 3**: Model × Type heatmap — violation rates across 4 models × 6 types (§5 C4)
+4. **Figure 4**: Visibility mechanism — CP vs scopal violation rates + trace evidence (§5 C3)
+5. **Figure 5**: Failure mode × type Sankey/alluvial diagram (§6 C5)
+6. **Figure 6**: Annotated trace pair — CP (conflict detection) vs scopal (surface adoption) (§6 C5)
+
+## Berry & Kamsties Operationalization Note [Dream best Q5]
+
+Berry & Kamsties define nocuity as inter-reader divergence. Our design measures agent-vs-intent deviation. Full study should additionally test whether different models adopt different readings of the same ambiguous clause (true inter-model nocuity). If 4 models produce 4 different interpretations of the same clause → true nocuity. If all 4 adopt the same wrong interpretation → systematic bias, still nocuous but for different reason. Report inter-model agreement on ambiguous clauses as supplementary analysis.
+
+## Contingency Framing [Reviewer assessment 2026-05-20]
+
+如果 full study 结果偏离 MVP，预备以下 pivot 方向（小时级完成 reframe）：
+
+**Scenario B — 2/6 types binary effect 不显著**（概率中低，取决于 coreferential 修复质量）:
+- Pivot: "Not All Ambiguity Is Nocuous: Type-Dependent Safety Risks"
+- C1 降级 "most types nocuous" + 效果异质性; C2 升级为 positive finding
+- 更深 CL insight: nocuity 取决于 agent 消歧渠道可获取性
+- 实用建议从 "binary detection" 改为 "type-aware triage"
+
+**Scenario C — Type uniformity 被拒绝（omnibus p<0.05, 但所有类型仍 nocuous）**（概率中等）:
+- Pivot: 去掉 "Uniformly"，改为 "type hierarchy predicts severity"
+- C2 从 confirmed null → weak type effect / type hierarchy
+- C4 从 exploratory 升级为 supporting evidence
+- 如果排序与语言学理论一致 → 正面发现；随机排序 → noise
+
+**关键降风险措施**: coreferential 第三轮 mini-pilot 是 Scenario B 的最大杠杆点。
+
+## Claude Baseline — RESOLVED [2026-05-20]
+
+4/8 distilled papers use Claude as baseline. ✅ Claude Sonnet 4.6 added as 5th model via OpenRouter proxy (base_url=http://47.94.22.126/v1). plan_002 expanded to 3 API models (gpt-5.4, gpt-4.1, claude-sonnet-4-6). Total model coverage: 5 models across 3 families (OpenAI, Anthropic, Qwen).
+
+
+## experiment_plan (with registry status)
+
+- id: plan_001
+  name: full_study_clause_generation
+  claim: C1, C2, C3
+  description: 'Generate remaining clauses for full study: coreferential (50 new),
+    authorization_scope (50 new), lexical (+20 to reach 50), incompleteness (+20 to
+    reach 50). Total 140 new clauses. Validate all 300 clauses (50/type × 6 types)
+    for completeness and cross-type balance. Mix CP format per Reviewer suggestion
+    (labeled + unlabeled).
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  status: planned
+- id: plan_001b
+  name: new_type_mini_pilot
+  claim: C1 (validation)
+  description: 'Mini-pilot for coreferential + authorization_scope (never tested):
+    5 clauses/type × 2 conditions × 1 model (gpt-5.4) = 20 episodes. Verify: (a) ambiguous
+    triggers violations (b) unambiguous control < 15%. If systematic issues found,
+    fix clause design before full study. API cost negligible (~$2). Per Reviewer warning
+    on untested types.
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  status: planned
+- id: plan_002
+  name: full_study_api
+  claim: C1, C2, C3, C4, C5
+  description: 'Run 300 clauses × 2 conditions × 3 API models (gpt-5.4, gpt-4.1, claude-sonnet-4-6)
+    = 1,800 episodes on τ²-bench. Cross-judge evaluation. Output: episodes.jsonl +
+    judgments.jsonl. No GPU needed. Claude via OpenRouter proxy (base_url=http://47.94.22.126/v1).
+    [2026-05-20] Claude added per distill gap (4/8 papers use Claude baseline).
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  - plan_001b
+  - plan_010
+  status: planned
+- id: plan_003
+  name: full_study_local
+  claim: C1, C2, C3, C4, C5
+  description: 'Run 300 clauses × 2 conditions × 2 local models (Qwen3-8B, Qwen3-32B-AWQ
+    via vLLM) = 1,200 episodes on τ²-bench. Requires 1× RTX PRO 6000 (48GB). Cross-judge
+    uses API models. Can run in parallel with plan_002.
+
+    '
+  priority: P0
+  gpu_budget_hours: 48
+  deps:
+  - plan_001
+  status: planned
+- id: plan_004
+  name: full_study_analysis
+  claim: C1, C2, C3, C4
+  description: 'Statistical analysis of full study data (3,000 episodes): (a) Binary
+    effect per type with bootstrap CI (C1) (b) Omnibus χ² + pairwise across 6 types
+    (C2) (c) Visibility comparison: CP vs scopal rates (C3) (d) Model × type interaction:
+    5×6 contingency + logistic regression (C4) Report effect sizes + CI for all comparisons
+    per Reviewer suggestion. [Dream A3] Power analysis: report MDE for C2 (given N=250/type
+    pooled) and C3 (given N=250 per type). If V < 0.20 but MDE > observed V, discuss
+    underpowered possibility. [Dream A4] TOST equivalence test with both ±15pp and
+    ±10pp margins. Justify margin choice explicitly. [Dream A10] Report per-type information
+    delta (token count difference between ambiguous and unambiguous variants) as control
+    variable. [Dream B&K] Inter-model agreement on ambiguous clauses: do 5 models
+    adopt same or different interpretations? (supplementary analysis)
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_002
+  - plan_003
+  status: planned
+- id: plan_005
+  name: error_analysis
+  claim: C5
+  description: "Qualitative analysis of agent traces from full study: (a) Sample 50\
+    \ violation traces per type (300 total) (b) Classify failure modes (scope misapplication,\
+    \ conservative refusal,\n    assumption-based action, arbitrary rule selection,\
+    \ etc.)\n(c) Cross-type failure mode distribution (d) Visibility mechanism: compare\
+    \ CP traces (explicit conflict detection\n    behavior) vs scopal traces (surface\
+    \ scope adoption without awareness)\n(e) Model-specific failure patterns (connect\
+    \ to C4)\n"
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_002
+  - plan_003
+  status: planned
+- id: plan_006
+  name: reliability_test
+  claim: C1, C2
+  description: 'Test-retest reliability: select 30 representative clauses (5/type),
+    run 3 independent replicates × 2 conditions × 5 models = 900 episodes. Compute
+    ICC for per-clause violation rates. Addresses Reviewer warning about ±8pp sampling
+    noise (scopal 51.7% → 43.3% across MVP/diag). Bootstrap CI width should be < 10pp
+    for key comparisons.
+
+    '
+  priority: P1
+  gpu_budget_hours: 15
+  deps:
+  - plan_001
+  status: planned
+- id: plan_007
+  name: realism_validation
+  claim: C1 (methodological)
+  description: "Validate synthetic ambiguity injection realism: (a) Linguistic property\
+    \ comparison with DRIP-R natural ambiguities\n    (sentence length, parse depth,\
+    \ Flesch-Kincaid, TTR) + KS tests\n(b) Optional: discriminator test if DRIP-R\
+    \ data accessible Addresses RC4 (ecological validity).\n"
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  status: planned
+- id: plan_009
+  name: judge_calibration
+  claim: C1 (methodological)
+  description: 'LLM-as-judge calibration per distilled research norm (5/8 papers):
+    (a) Sample 100 episodes stratified by type×model×condition (b) Human expert labels
+    (2 annotators, target κ ≥ 0.75) (c) Compute judge precision/recall/F1 against
+    human ground truth (d) Per-severity-tier agreement rates (e) Report in Method
+    section as standard practice per AgentAuditor/DRIP-R [Dream A7] Upgraded P1→P0:
+    Dream best-tier reviewers identified this as "single most critical missing validation."
+    Without it, entire measurement chain from episode to violation label is unvalidated.
+    κ=0.91 measures LLM-LLM agreement, not accuracy.
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_002
+  status: planned
+- id: plan_010
+  name: perturbation_control
+  claim: C1 (causal validity)
+  description: '[Dream A9] Non-ambiguity perturbation control arm to distinguish ambiguity-specific
+    harm from general prompt brittleness. Generate 30 clause pairs with non-ambiguity
+    perturbations: (a) 15 synonym substitution pairs (replace key terms with synonyms)
+    (b) 15 clause reordering pairs (reorder conditions without changing meaning) Run
+    30 × 2 conditions × 3 API models (gpt-5.4, gpt-4.1, claude-sonnet-4-6) = 180 episodes.
+    Key metric: Δ_net = Δ_ambiguity - Δ_perturb (net ambiguity-specific effect). [Reviewer升级]
+    必须在 plan_002/003 full study 之前完成—— 如果 perturbation Δpp ≈ ambiguity Δpp，2,400 episodes
+    全部无效。 低成本验证（30 pairs + 120 episodes API）优先于高成本投入。 [判定标准 — 5 档]: PASS: Δ_perturb
+    < 5pp (CI含0), ratio < 0.15 → C1 因果 claim 最强形式 PASS+caveat: 5-10pp, ratio 0.15-0.30
+    → 报告 perturbation baseline, C1 写 net effect CONDITIONAL: 10-15pp, ratio 0.30-0.45
+    → 需 Δ_net > 20pp 且显著才可发表 WARNING: 15-20pp, ratio 0.45-0.60 → C1 改为 "additional
+    violations beyond sensitivity" FAIL: > 20pp, ratio > 0.60 → 无法声称 ambiguity-specific,
+    需根本重新设计 [Power 注意]: N=120 对 10pp 差异 power ≈ 30%. 用 CI 宽度判定, 非 p-value. 若 CI 过宽(>15pp
+    width), 追加 60 episodes 压窄至 <10pp width. 输出标准化 verdict 文件: perturbation_Δpp, ambiguity_Δpp,
+    net_Δpp, CI, ratio, verdict.
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - plan_001
+  status: planned
+- id: plan_008
+  name: classifier_poc
+  claim: practical contribution
+  description: 'Binary ambiguity detector PoC: fine-tune DeBERTa-v3-large on annotated
+    clause pairs (ambiguous/unambiguous labels). Eval on held-out set. Demonstrates
+    practical applicability of findings. Phase 3 from IDEA_BRIEF, scoped to PoC for
+    EMNLP.
+
+    '
+  priority: P2
+  gpu_budget_hours: 8
+  deps:
+  - plan_001
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: mvp_001
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics: {}
+- exp_id: diag_001
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics: {}
+- exp_id: plan_002
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics: {}
+
+# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）
+
+```yaml
+tiers:
+  best:
+    meaning: "..."
+    key_assumptions: [...]
+    number_ranges: {metric_a: [low, high], metric_b: [...]}
+    narrative_direction: "..."
+  median:
+    meaning: "..."
+    ...
+  worst:
+    meaning: "..."
+    ...
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9e4bae32-4cd4-4983-b482-e61136768c53",
+  "type": "user",
+  "uuid": "4a8ea2de-528f-4c15-835e-1ca84838fa41",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T15:22:37.275Z_
+
+```json
+{
+  "parentUuid": "4a8ea2de-528f-4c15-835e-1ca84838fa41",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "267e8610-3442-4a73-a821-483424905583",
+  "timestamp": "2026-05-20T15:22:37.275Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T15:22:37.275Z_
+
+```json
+{
+  "parentUuid": "267e8610-3442-4a73-a821-483424905583",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "286d8333-c518-4f4c-a780-6fbdc5621748",
+  "timestamp": "2026-05-20T15:22:37.275Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "286d8333-c518-4f4c-a780-6fbdc5621748",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-tier scenarios for policy ambiguity agent safety study",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T15:24:36.366Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to define three tiers (best/median/worst) for a Dream simulation based on the research context provided. This is a policy_ambiguity_safety project that has pivoted from "Uniform Nocuity" to "Differential Nocuity" after plan_002 falsified C2.
+
+Let me analyze the current state:
+
+Key data from plan_002:
+- C1 (Binary Effect): +36.5pp, confirmed, very strong
+- C2 (Type Hierarchy): V=0.207, p=0.0001, significant heterogeneity confirmed
+- Layer effect: Spec ~46pp vs Ling ~27pp (~19pp gap)
+
+
+- Individual ambiguity types show variation from auth_scope at 55% down to coreferential at 25%, with perturbation control passing and no significant model main effects.
+
+The framing has shifted to emphasize four core claims: the binary effect of ambiguity itself, the significant type hierarchy, the substantial layer effect favoring Spec, and model consistency across conditions.
+
+Looking at what's left to tackle, plan_002 is actually marked complete in the registry despite the experiment plan listing 1,800 episodes with three API models. The remaining work branches into plan_003 for local models like Qwen variants, plan_004 for full statistical analysis, plan_005 for error analysis, plan_009 for judge calibration, and supporting experiments. I need to reconcile what the registry shows as done versus what still needs execution.
+
+The critical question is whether the layer hierarchy pattern (Specification >> Linguistic) holds up when testing with open-source models, and whether the model×type interaction stays non-significant as I expand to five total models. There are several key uncertainties I'm working through about how the Differential Nocuity framing will perform across these remaining experiments.
+
+For the Best tier outcome, I need all the new data to reinforce this framing: the layer hierarchy should replicate consistently across all five models, the gap between layers should stay at least 15 percentage points, the effect size should reach 0.20 or higher with pooled data, and the error analysis should show clean, distinct failure patterns that explain why the specification layer is more dangerous. The coreferential results should also demonstrate the distinctive avoidance behavior that supports the disambiguation channel hypothesis, and the judge calibration needs to achieve strong agreement with the LLM judge.
+
+For the Median tier, the core story survives but gets messier—the layer hierarchy holds directionally though the gap might shrink to 10-15 percentage points, some open-source models might deviate from the pattern, the effect size lands in the moderate range, error analysis shows some bleed-through between layer failure modes, and judge calibration is acceptable but varies by task type.
+
+In the Worst case, the layer hierarchy doesn't hold up—the gap drops below 10 percentage points with the full dataset, the effect becomes small and barely significant, open-source models show opposite or flat patterns, the layer effect turns out to be model-dependent rather than universal, failure modes don't cleanly separate by layer, and judge calibration issues emerge for certain task types, forcing a reframe around model heterogeneity and the binary effect in C1 rather than a clean layer hierarchy story.
+
+But I need to make sure even the Worst case is still EMNLP-worthy. Let me establish specific metric thresholds to track consistently across scenarios: layer gap measured as the difference in average performance between Spec and Ling types, Cramér's V for heterogeneity, the overall binary effect size, judge-human agreement metrics, the proportion of error traces that actually match predicted layer patterns, the significance of model-by-type interactions, and inter-model agreement on ambiguous cases.
+
+Now I'm setting up the metric ranges to ensure best, median, and worst scenarios maintain proper ordering...
+
+Wait, I need to reconsider the interaction p-value metric since higher values actually indicate what we want—a universal layer effect across models with no significant interaction. So best should be p-values above 0.10, median in the borderline range of 0.03 to 0.10, and worst below 0.03 where interaction becomes significant.
+
+Now I'm checking the details on the open-source models and the plan_002 dataset. The experiment plan mentions 3 API models totaling 1,800 episodes, but the project context says plan_002 ran with 1,200 episodes, so there's some inconsistency I need to clarify between what was planned versus what actually executed.
+
+Looking at the remaining work: I need to run Claude as the third API model, then execute plan_003 with the two Qwen local models, followed by plan_004 for the full analysis across all five models, plus plan_005 for error analysis and plan_009 for judge calibration.
+
+Now I'm thinking through what success looks like across these tiers. The best outcome would have all five models replicating the layer hierarchy with a gap of at least 15 percentage points, pooled V ≥ 0.20, a clean mechanistic story from error analysis, and strong judge calibration—letting the Differential Nocuity paper stand as written. The middle ground would show four of five models supporting the hierarchy with a smaller gap and moderate effect size, requiring some softening of claims and caveats about model variation. The worst case would have inconsistent hierarchy findings across models, which would fundamentally reshape how I present the results.
+
+I'm about to write this up as YAML to be systematic. One key insight: the binary effect (C1) is remarkably robust at +36.5 percentage points, so even in worst-case scenarios it should hold—the real uncertainty centers on the type hierarchy, layer effects, and error analysis quality. I'm also thinking through failure modes: open-source models might struggle more with ambiguity, creating higher baseline violation rates and compressed gaps between types, or they might show different type rankings entirely, introducing model-by-type interactions that complicate the story.
+
+For the worst-case reframe that keeps the venue and target intact, if the layer hierarchy doesn't replicate across five models, I pivot to emphasizing that C1 remains massive even conservatively, reframe type heterogeneity as model-dependent rather than universal, and elevate the error analysis as the core contribution—showing that different architectures fail on different ambiguity types in systematic ways.
+
+I'm also noting that the binary effect should stay robust at [25, 35] percentage points since it's been consistently confirmed, so even with open-source models in the mix, that core finding holds. Now I'm finalizing the YAML structure with best-case and worst-case scenarios, including the key assumptions about layer gaps surviving across the five models and whether open-source models match the type rankings from API models.
+
+Writing config YAML... Now I'm looking at the specific numerical ranges for each metric — the binary effect spans 33-42 percentage points across the five models, the layer gap sits between 15-22 points, and inter-rater agreement stays solid at 0.85-0.95 F1. The core narrative frames this as a progression: the binary finding anchors the argument, the hierarchy emerges from Cramér's V, the layer gap becomes the headline result, and the error analysis provides the mechanistic explanation. The Disambiguation Channel Hypothesis gets elevated to a theoretical contribution, with a working title around policy ambiguity not being monolithic.
+
+For the median scenario, the layer hierarchy holds directionally but the gap compresses when pooling across all five models, especially with the open-source ones pulling it down. Four of the five models show the Specification-over-Linguistics direction, though one likely deviates. The model-by-type interaction hovers at the borderline of significance, suggesting the layer effect is mostly consistent but not perfectly clean. The error analysis finds some mechanistic support but with partial coverage. failure modes but with 30-50% overlap between layers. There's coreferential avoidance behavior present, though it's messier than I'd hoped and mixed with other failure modes. Judge-human agreement sits around 0.75-0.85 overall, dipping below 0.75 for a couple specific types. Open-source models have higher baseline violation rates, which compresses the relative differences I'm seeing.
+
+Looking at the metrics, I'm seeing binary effects in the 28-36 percentage point range across the five models, layer gaps of 8-15 points, and Cramér's V values between 0.14-0.20. Judge-human F1 ranges from 0.75-0.85 with kappa between 0.68-0.80. The failure mode layer matching is around 50-70%, model type interactions show p-values between 0.03-0.10, and coreferential violation rates sit at 25-40%. Inter-model agreement on ambiguous cases is lower at 0.35-0.55.
+
+The core story about differential nocuity still holds, but I need to soften the language—moving from "nearly twice as dangerous" to "substantially higher." The C3 layer effect is real but with confidence intervals that touch the boundary at certain types, so I'm acknowledging that convergence zone. Model capability should be a moderator in the discussion since smaller models compress the gap. The error analysis needs careful framing as predominant patterns rather than clean dichotomies, and the judge calibration caveat for those 1-2 types belongs in limitations. I'm considering retitling to "Differential Nocuity: How Ambiguity Type Predicts Safety Violation Severity" and adding per-model breakdowns to show the hierarchy holds for frontier models. This should still be viable for EMNLP. the gap exists, just smaller."
+
+worst:
+    meaning: "Layer hierarchy inconsistent across models (significant model×type interaction); error analysis fails to find clean mechanistic separation; judge calibration reveals type-specific bias; need new angle to reframe"
+    key_assumptions:
+      - "Layer gap < 8pp when pooling 5 models — open-source models show flat or reversed pattern"
+      - "Model×type interaction significant (p < 0.03) — type ranking is model-dependent, not universal"
+      - "Qwen3-8B shows qualitatively different vulnerability profile (e.g., high coreferential, low auth_scope)"
+      - "Error analysis shows high overlap in failure modes across layers (no clean spec vs ling distinction)"
+      - "Judge calibration F1 < 0.75 for ≥2 types, revealing systematic measurement bias"
+      - "C1 binary effect still holds (+25-30pp) but C2/C3 claims cannot be sustained as stated"
+      - "Inter-model agreement high on ambiguous clauses (systematic bias, not true nocuity divergence)"
+    number_ranges:
+      binary_effect_5model_pp: [25, 33]
+      layer_gap_5model_pp: [0, 8]
+      cramers_v_5model: [0.08, 0.14]
+      judge_human_f1: [0.60, 0.75]
+      judge_human_kappa: [0.55, 0.70]
+      failure_mode_layer_match_pct: [30, 50]
+      model_type_interaction_p: [0.001, 0.03]
+      coreferential_violation_rate: [30, 50]
+      inter_model_fleiss_kappa_ambiguous: [0.50, 0.75]
+    narrative_direction: "Layer hierarchy cannot be sustained as a universal principle — the effect is real for C1 but fragile across model families and vulnerable types, with measurement artifacts confounding the story."
+
+I'm considering three reframing angles depending on what the data actually supports. The first focuses on how vulnerability profiles shift across different model architectures, which means any auditing approach needs to be tailored to the specific model rather than applied universally. The second centers on the fact that all models struggle with ambiguity detection itself — the core failure mechanism — which connects to how language models handle good-enough processing and why agents fail. The third emphasizes that the binary effect size of 25-30 percentage points is genuinely massive compared to other causal findings in agent safety research, and the perturbation control makes this the strongest causal evidence available, so the real story is how large the effect is rather than which specific types matter most.
+
+For the backup title, I'm thinking "Policy Ambiguity Causes Catastrophic Safety Violations in LLM Agents: A Causal Study" — this targets EMNLP with the three core contributions: the main causal finding, the perturbation control validation, and the error analysis across models.
+
+Now I'm checking consistency across the metric ranges to make sure the best, median, and worst values follow a logical ordering. f1: best [0.85,0.95], median [0.75,0.85], worst [0.60,0.75] — clean ✓
+- judge_human_kappa: best [0.80,0.92], median [0.68,0.80], worst [0.55,0.70] — slight overlap at 0.70/0.68 boundary, fine ✓
+- failure_mode_layer_match_pct: best [70,90], median [50,70], worst [30,50] — clean ✓
+- model_type_interaction_p: best [0.10,1.0], median [0.03,0.10], worst [0.001,0.03] — higher is better (non-significant), clean ✓
+- coreferential_violation_rate: Lower is better here. Best case around 20-30% confirms it as a boundary case, while worst case could spike to 30-50% if open-source models struggle with coreferential resolution ✓
+- inter_model_fleiss_kappa_ambiguous: Lower kappa values indicate more divergent interpretations, which is what we want for the best case, so best [0.20,0.45], median [0.35,0.55], worst [0.50,0.75] ✓
+
+These ranges look solid and ready to finalize.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "286d8333-c518-4f4c-a780-6fbdc5621748",
+  "isSidechain": false,
+  "requestId": "req_011CbE3r4fA5yr2HdSwzU6PG",
+  "type": "assistant",
+  "uuid": "98b08b64-1819-41d8-93a2-cae6dd2b0263",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YD7EvU3t9oaSTEJmHqs683",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14579,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 8011,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 8011,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T15:25:02.854Z_
+
+```yaml
+tiers:
+  best:
+    meaning: "Layer hierarchy (Spec >> Ling) replicates across all 5 models; error analysis reveals clean mechanistic separation; judge calibration strong; Differential Nocuity framing fully validated"
+    key_assumptions:
+      - "Layer gap ≥15pp survives addition of Claude + 2 Qwen models"
+      - "Open-source models preserve same type ranking (auth_scope > incompleteness > scopal > lexical > CP > coreferential)"
+      - "Model×type interaction non-significant — layer effect is architecture-universal"
+      - "Error analysis finds distinct failure modes per layer: spec = unauthorized assumption/escalation, ling = misparse/scope error"
+      - "Coreferential shows distinctive avoidance/conservative behavior, confirming disambiguation channel hypothesis"
+      - "Judge-human F1 ≥ 0.85 across all 6 types"
+      - "Inter-model nocuity: models adopt divergent interpretations of same ambiguous clause (true Berry & Kamsties nocuity)"
+    number_ranges:
+      binary_effect_5model_pp: [33, 42]
+      layer_gap_5model_pp: [15, 22]
+      cramers_v_5model: [0.20, 0.28]
+      judge_human_f1: [0.85, 0.95]
+      judge_human_kappa: [0.80, 0.92]
+      failure_mode_layer_match_pct: [70, 90]
+      model_type_interaction_p: [0.10, 1.0]
+      coreferential_violation_rate: [20, 30]
+      inter_model_fleiss_kappa_ambiguous: [0.20, 0.45]
+    narrative_direction: "Differential Nocuity 全部成立。C1 (+35pp) 为基础，C2 (V≥0.20) 建立类型层级，C3 (gap≥15pp) 为 headline finding，C5 提供 clean 的 WHY 解释。Disambiguation Channel Hypothesis 升级为理论贡献。标题: 'Not All Policy Ambiguity Is Equal'。五个 claims 按原始强度发表。审稿人获得: causal design + perturbation control + layer hierarchy + mechanistic explanation + 5-model replication。EMNLP 最强投稿形态。"
+
+  median:
+    meaning: "Layer hierarchy 方向正确但 gap 被 open-source 模型压缩; error analysis 部分支持机制假说; judge calibration 存在 per-type 波动; 核心故事存活但 claims 需降级"
+    key_assumptions:
+      - "Layer gap 缩至 8-15pp (open-source 模型压缩差异，可能因更高 baseline violation rate)"
+      - "4/5 模型 Spec > Ling 方向一致，1 模型 (Qwen3-8B) 偏离"
+      - "Model×type interaction borderline (0.03 < p < 0.10) — 层级效应 mostly universal 但不 clean"
+      - "Error analysis 找到部分 distinct failure modes 但 30-50% 跨层重叠"
+      - "Coreferential avoidance behavior 存在但与其他 failure modes 混合，不如预期 clean"
+      - "Judge-human F1 整体 0.75-0.85 但 1-2 个 type 低于 0.75"
+      - "Open-source 模型 baseline violation rate 更高，压缩相对差异"
+    number_ranges:
+      binary_effect_5model_pp: [28, 36]
+      layer_gap_5model_pp: [8, 15]
+      cramers_v_5model: [0.14, 0.20]
+      judge_human_f1: [0.75, 0.85]
+      judge_human_kappa: [0.68, 0.80]
+      failure_mode_layer_match_pct: [50, 70]
+      model_type_interaction_p: [0.03, 0.10]
+      coreferential_violation_rate: [25, 40]
+      inter_model_fleiss_kappa_ambiguous: [0.35, 0.55]
+    narrative_direction: "核心 differential nocuity 故事存活但需 hedge。'nearly twice as dangerous' 降为 'substantially higher'。C3 layer effect 报告 CI，承认 CP/scopal 为 convergence zone。Discussion 增加 model capability 作为 moderator — 较小模型压缩 gap。Error analysis 从 'clean dichotomy' 改写为 'predominant patterns with overlap'。Judge calibration caveat 进 limitations。标题调整: 'Differential Nocuity: How Ambiguity Type Predicts Safety Violation Severity'。补充 per-model breakdown 表明 frontier 模型层级更清晰。补充实验选项: (a) 增加 3rd Qwen 模型看 open-source 趋势, (b) 加深 coreferential error analysis 挽救 disambiguation channel story。仍 EMNLP-viable — gap 存在，只是更小。"
+
+  worst:
+    meaning: "Layer hierarchy 跨模型不一致 (显著 model×type interaction); error analysis 无法分离层级机制; judge calibration 暴露 type-specific 偏差; 需要新 angle reframe"
+    key_assumptions:
+      - "Layer gap < 8pp (pooled 5 models) — open-source 模型 flat 或 reversed pattern"
+      - "Model×type interaction 显著 (p < 0.03) — type ranking 是 model-dependent 非 universal"
+      - "Qwen3-8B vulnerability profile 质变 (如 coreferential 高、auth_scope 低)"
+      - "Error analysis 跨层 failure mode 高度重叠，无 clean spec vs ling 区分"
+      - "Judge calibration F1 < 0.75 for ≥2 types，暴露系统性测量偏差"
+      - "C1 binary effect 仍成立 (+25-30pp) 但 C2/C3 按原述无法维持"
+      - "Inter-model agreement 高 (systematic bias) — 非 true nocuity divergence"
+    number_ranges:
+      binary_effect_5model_pp: [25, 33]
+      layer_gap_5model_pp: [0, 8]
+      cramers_v_5model: [0.08, 0.14]
+      judge_human_f1: [0.60, 0.75]
+      judge_human_kappa: [0.55, 0.70]
+      failure_mode_layer_match_pct: [30, 50]
+      model_type_interaction_p: [0.001, 0.03]
+      coreferential_violation_rate: [30, 50]
+      inter_model_fleiss_kappa_ambiguous: [0.50, 0.75]
+    narrative_direction: "Layer hierarchy 不能做 headline。三条 reframe 路径按数据形态选择: (A) 'Model-Dependent Vulnerability Profiles' — type ranking 因架构而异，实用启示=type-aware auditing 必须 model-specific。Model×type interaction 从 nuisance 升级为 finding，连接 model capability 与 ambiguity sensitivity。(B) 'Ambiguity Blindness as Universal Phenomenon' — pivot C5 error analysis 为核心，展示所有模型均无法检测 ambiguity (blindness mechanism)，即使在不同 type 上失败。CL 贡献=连接 good-enough processing 到 agent failure mode。(C) 'The Massive Binary Effect' — +25-30pp 仍是 agent safety 文献最大因果效应。Perturbation control (Δ=3.33pp) 使之成为最强因果证据。任何 ambiguity detection (甚至 binary) 都有巨大安全收益。首选 reframe: (C) 为 primary + (B) 为 §6 core analysis。备选标题: 'Policy Ambiguity Causes Catastrophic Safety Violations in LLM Agents: A Causal Study'。仍投 EMNLP — C1 + perturbation control + error analysis 是 solid 3-contribution paper，放弃 C2/C3 层级 claim。"
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98b08b64-1819-41d8-93a2-cae6dd2b0263",
+  "isSidechain": false,
+  "requestId": "req_011CbE3r4fA5yr2HdSwzU6PG",
+  "type": "assistant",
+  "uuid": "2abedd5c-c621-40e0-b8b2-cef7526fa0e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YD7EvU3t9oaSTEJmHqs683",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14579,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 8011,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 8011,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "2abedd5c-c621-40e0-b8b2-cef7526fa0e3",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-tier scenarios for policy ambiguity agent safety study",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "2abedd5c-c621-40e0-b8b2-cef7526fa0e3",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-tier scenarios for policy ambiguity agent safety study",
+  "sessionId": "91675ad0-49d8-40c6-b84d-4fad34e58650"
+}
+```
+
+---

@@ -1,0 +1,2610 @@
+{
+  "schema_version": "1.0",
+  "id": "2848a7d58a46b4e2eb07",
+  "project": "policy_ambiguity_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: policy_ambiguity_safety ## 运行环境 - 项目代码根目录: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/pr",
+  "task_key": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/fe62da37-1cc4-44a1-b093-10b1c9a33e34.jsonl",
+    "occurrence": 1,
+    "bytes": 146257,
+    "sha256": "d25a9ede6da63994551208155a6963bd4734fb4940d76b3a2d7c11f64c697ed4"
+  },
+  "statistics": {
+    "messages": 54,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "record": 17,
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:12:30.294Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-22T14:12:30.294Z",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+                "content": "<project_context>\n# 项目: policy_ambiguity_safety\n\n## 运行环境\n- 项目代码根目录: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：Round 14 论文修改 — Group 1（abstract, introduction, conclusion, discussion）\n\n对以下 4 个文件做精确编辑。每个修改给出了 old → new 的确切文本。\n\n### 文件路径前缀\n`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/`\n\n---\n\n### 1. abstract.tex\n\n**MF-3a: confound-free range 为主**\n\n找到：\n```\neffects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound reflecting an information-addition confound)\n```\n\n替换为：\n```\neffects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound\n```\n\n**MF-3b: domain scope 统一**\n\n找到最后一句中的：\n```\nfor policy-governed agent deployments\n```\n\n替换为：\n```\nfor customer-service policy domains\n```\n\n（注意：检查 abstract 最后一句的确切措辞，可能是 \"These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for customer-service policy domains\" 会重复。如果 \"These results---observed in customer-service policy domains---\" 已存在，那最后的 \"for policy-governed agent deployments\" 改为 \"for customer-service policy domains\" 不会重复因为前者是限定，后者是推荐目标。确认不重复后再改。）\n\n---\n\n### 2. introduction.tex\n\n**MF-1a: Contribution (2) 重写**\n\n找到（约 L21）：\n```\n(2)~incompleteness as a consistent upper-bound risk type across all models and margins, with clause-level wording---not type membership or model identity---driving the bulk of violation variance (22.4\\% vs.\\ 0.4\\% and 1.0\\%, respectively; 60.8\\% residual; \\S\\ref{sec:results})\n```\n\n替换为：\n```\n(2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion})\n```\n\n**SF-8: Awareness numbers 统一**\n\n在 introduction.tex 中找到提到 \"fewer than 11\\%\" 或 \"11\\%\" awareness 的地方（约 L19 附近，contribution (3)）。当前可能是：\n```\nfewer than 11\\% showing any disambiguation awareness\n```\n或类似。改为：\n```\nfewer than 11\\% showing any disambiguation awareness (4.6\\% overall; \\S\\ref{sec:analysis})\n```\n\n如果已经有 \"(4.6\\% overall)\" 则不需要重复添加。只需确认两个数字（≤11% per-model 和 4.6% overall）都在 introduction 中同时出现。\n\n---\n\n### 3. conclusion.tex\n\n**MF-3c: 同步修改 range**\n\n找到：\n```\nEffects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound)\n```\n\n替换为：\n```\nEffects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types, with incompleteness reaching $+$49.2\\,pp (upper bound, conditional on an information-addition confound)\n```\n\n---\n\n### 4. discussion.tex\n\n**MF-1d: 新段落 \"Taxonomy as intervention design\"**\n\n在 `\\paragraph{Differential nocuity.}` 段落之后、`\\paragraph{Prompt-based mitigation.}` 段落之前，插入新段落：\n\n```\n\\paragraph{Taxonomy as intervention design.}\nType membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording---knowing a clause's type adds negligible predictive power. However, the taxonomy's value lies not in prediction but in intervention design. Our mitigation experiments reveal type-specific asymmetries: authorization scope responds to prompted boundary checking ($-12$\\,pp, $p = 0.070$), while incompleteness resists or worsens under prompting ($+14$\\,pp), and the three failure mechanisms (\\S\\ref{sec:analysis}) map to distinct mitigation strategies---boundary enforcement for authorization scope, information supplementation for incompleteness, parse constraint for structural misparse types. The practical recommendation is therefore two-tiered: clause-level auditing for risk assessment, type-level guidance for intervention selection.\n```\n\n**MF-3d: \"Practical implications\" 段加 info quality vs quantity**\n\n在 discussion.tex 的 `\\paragraph{Practical implications.}` 段落中，在提到 classifier 的句子（\"A proof-of-concept classifier...\"）之前，加：\n\n```\nNotably, authorization scope resolution adds more tokens ($+$36.1 words) than incompleteness ($+$34.6) yet triggers fewer violations, suggesting that information \\emph{quality}---not mere quantity---modulates the information-addition confound (Appendix~\\ref{app:confound}).\n```\n\n---\n\n### 验证\n修改完成后，通读每个文件确认：\n1. LaTeX 语法正确（括号配对、命令拼写）\n2. 无重复句子\n3. 逻辑连贯\n\n不要修改其他文件。不要 commit。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T14:12:30.298Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-22T14:12:30.298Z",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T14:12:30.331Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: policy_ambiguity_safety\n\n## 运行环境\n- 项目代码根目录: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/artifacts\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：Round 14 论文修改 — Group 1（abstract, introduction, conclusion, discussion）\n\n对以下 4 个文件做精确编辑。每个修改给出了 old → new 的确切文本。\n\n### 文件路径前缀\n`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/`\n\n---\n\n### 1. abstract.tex\n\n**MF-3a: confound-free range 为主**\n\n找到：\n```\neffects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound reflecting an information-addition confound)\n```\n\n替换为：\n```\neffects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound\n```\n\n**MF-3b: domain scope 统一**\n\n找到最后一句中的：\n```\nfor policy-governed agent deployments\n```\n\n替换为：\n```\nfor customer-service policy domains\n```\n\n（注意：检查 abstract 最后一句的确切措辞，可能是 \"These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for customer-service policy domains\" 会重复。如果 \"These results---observed in customer-service policy domains---\" 已存在，那最后的 \"for policy-governed agent deployments\" 改为 \"for customer-service policy domains\" 不会重复因为前者是限定，后者是推荐目标。确认不重复后再改。）\n\n---\n\n### 2. introduction.tex\n\n**MF-1a: Contribution (2) 重写**\n\n找到（约 L21）：\n```\n(2)~incompleteness as a consistent upper-bound risk type across all models and margins, with clause-level wording---not type membership or model identity---driving the bulk of violation variance (22.4\\% vs.\\ 0.4\\% and 1.0\\%, respectively; 60.8\\% residual; \\S\\ref{sec:results})\n```\n\n替换为：\n```\n(2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion})\n```\n\n**SF-8: Awareness numbers 统一**\n\n在 introduction.tex 中找到提到 \"fewer than 11\\%\" 或 \"11\\%\" awareness 的地方（约 L19 附近，contribution (3)）。当前可能是：\n```\nfewer than 11\\% showing any disambiguation awareness\n```\n或类似。改为：\n```\nfewer than 11\\% showing any disambiguation awareness (4.6\\% overall; \\S\\ref{sec:analysis})\n```\n\n如果已经有 \"(4.6\\% overall)\" 则不需要重复添加。只需确认两个数字（≤11% per-model 和 4.6% overall）都在 introduction 中同时出现。\n\n---\n\n### 3. conclusion.tex\n\n**MF-3c: 同步修改 range**\n\n找到：\n```\nEffects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound)\n```\n\n替换为：\n```\nEffects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types, with incompleteness reaching $+$49.2\\,pp (upper bound, conditional on an information-addition confound)\n```\n\n---\n\n### 4. discussion.tex\n\n**MF-1d: 新段落 \"Taxonomy as intervention design\"**\n\n在 `\\paragraph{Differential nocuity.}` 段落之后、`\\paragraph{Prompt-based mitigation.}` 段落之前，插入新段落：\n\n```\n\\paragraph{Taxonomy as intervention design.}\nType membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording---knowing a clause's type adds negligible predictive power. However, the taxonomy's value lies not in prediction but in intervention design. Our mitigation experiments reveal type-specific asymmetries: authorization scope responds to prompted boundary checking ($-12$\\,pp, $p = 0.070$), while incompleteness resists or worsens under prompting ($+14$\\,pp), and the three failure mechanisms (\\S\\ref{sec:analysis}) map to distinct mitigation strategies---boundary enforcement for authorization scope, information supplementation for incompleteness, parse constraint for structural misparse types. The practical recommendation is therefore two-tiered: clause-level auditing for risk assessment, type-level guidance for intervention selection.\n```\n\n**MF-3d: \"Practical implications\" 段加 info quality vs quantity**\n\n在 discussion.tex 的 `\\paragraph{Practical implications.}` 段落中，在提到 classifier 的句子（\"A proof-of-concept classifier...\"）之前，加：\n\n```\nNotably, authorization scope resolution adds more tokens ($+$36.1 words) than incompleteness ($+$34.6) yet triggers fewer violations, suggesting that information \\emph{quality}---not mere quantity---modulates the information-addition confound (Appendix~\\ref{app:confound}).\n```\n\n---\n\n### 验证\n修改完成后，通读每个文件确认：\n1. LaTeX 语法正确（括号配对、命令拼写）\n2. 无重复句子\n3. 逻辑连贯\n\n不要修改其他文件。不要 commit。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "b174833b-1cff-42fe-8752-cf71e85e5389",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T14:12:30.330Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "b174833b-1cff-42fe-8752-cf71e85e5389",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3beeef88-0ad6-4fcf-883b-793f0d0f2130",
+                "timestamp": "2026-05-22T14:12:30.330Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T14:12:30.330Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3beeef88-0ad6-4fcf-883b-793f0d0f2130",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "6d3c3129-2347-4527-8891-d6026451388f",
+                "timestamp": "2026-05-22T14:12:30.330Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:12:30.330Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "6d3c3129-2347-4527-8891-d6026451388f",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "b0981791-0887-41d7-ad86-686e0fb3af69",
+                "timestamp": "2026-05-22T14:12:30.330Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Edit paper sections for Round 14 revisions",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:12:33.686Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading all 4 files to understand their current content before making edits.",
+              "signature": "EqECCmMIDRgCKkD0G6bGg7pLoSppTRJgxsSkLVjDSnK0MSXahy/oXKjlUS3a+BBEKnieY6BIZxC+lI1mzJWkThjQRr9O2GM6asQtMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDD0AH6D7fm9Zm0Oi6hoM97a2ppO5egyAmPnDIjBSm4HmHL57KRABai7XBzeugU09gB1OYZbAR8SKgbu1xarVj+4EBrXitHgwmtc0i+EqbGAuKhCrifq9yIRtKv8IR2H+CK9gJgVyUNTh238bZVNqmZF20WZ/B4rgq9TbtGpfCnhhoToah82hZoBpVf2yyQ9alcKkE/oFg41ZDtF2L++JnwnpwecwrobEn7LukqSkLQl/58JGm5KFaQ0vrxgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0981791-0887-41d7-ad86-686e0fb3af69",
+            "isSidechain": false,
+            "requestId": "req_011CbHk7nBaBXZ8zRKUJ3dz7",
+            "type": "assistant",
+            "uuid": "148bb11b-2cd6-4b1a-b946-2251de9d4f04",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VqR25rkDpKYgPbuavCdLL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13318,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 366,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 366,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T14:12:33.688Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reading all 4 files first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "148bb11b-2cd6-4b1a-b946-2251de9d4f04",
+            "isSidechain": false,
+            "requestId": "req_011CbHk7nBaBXZ8zRKUJ3dz7",
+            "type": "assistant",
+            "uuid": "4c316990-5e0d-4d76-bbfa-c0c6a41ca1a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VqR25rkDpKYgPbuavCdLL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13318,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 366,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 366,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T14:12:34.230Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01McHCwiaoTygLrys9dxPWLK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c316990-5e0d-4d76-bbfa-c0c6a41ca1a2",
+            "isSidechain": false,
+            "requestId": "req_011CbHk7nBaBXZ8zRKUJ3dz7",
+            "type": "assistant",
+            "uuid": "fc19181f-9f38-4a7d-ab7f-4ac574b92a77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VqR25rkDpKYgPbuavCdLL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13318,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 366,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 366,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T14:12:35.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Q3CibxPQhsLwMbi886UJE",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Differential nocuity.}\n5\tBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction, our results are consistent with a \\emph{differential nocuity} hypothesis \\citep{willis_nocuous_2008}: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. Types with explicit decision points (e.g., authorization scope) appear more amenable to both safety training and prompted intervention than gap-filling types (e.g., incompleteness), where mitigation attempts can backfire (see below).\n6\t\n7\t\\paragraph{Prompt-based mitigation.}\n8\tBuilding on the five-model type-specific mitigation study ($-$8.5\\,pp pooled, unpaired design; Appendix~\\ref{app:mitigation}), we test whether disambiguation can be prompted at finer granularity using a matched-pair design. We evaluate generic awareness prompting (``the policy may contain ambiguous clauses; ask for clarification'') and type-specific prompting (targeting incompleteness, authorization scope, and lexical ambiguity individually) on GPT-5.4 with matched-pair McNemar tests ($n = 50$ per type). Generic prompting produces no overall reduction ($\\Delta = +1.3$\\,pp, $p > 0.5$). Type-specific results are asymmetric: authorization scope shows a marginal reduction ($-12$\\,pp, $p = 0.070$), lexical ambiguity is unchanged ($-2$\\,pp), and incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$; non-significant trend)---suggesting that prompting agents to attend to missing information may trigger confabulation rather than caution. The five-model study in Appendix~\\ref{app:mitigation} uses a different prompt formulation and unpaired design, yielding directionally different results; mitigation outcomes appear sensitive to prompt wording and experimental design. That identical types show opposite directions under different prompt formulations (e.g., incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) underscores prompt sensitivity as a finding in itself, reinforcing the need for policy-design-level solutions rather than prompt-level fixes.\n9\t\n10\t\\paragraph{Practical implications.}\n11\tA proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary detection but only 0.34 for incompleteness---the highest-risk type is hardest to detect. With disambiguation neglect in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.\n12\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4ce593e-a417-4842-9cf7-1ae9ebd08679",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "1e3e5688-b966-449e-9e3a-ec3e2160be9a",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Differential nocuity.}\nBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction, our results are consistent with a \\emph{differential nocuity} hypothesis \\citep{willis_nocuous_2008}: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. Types with explicit decision points (e.g., authorization scope) appear more amenable to both safety training and prompted intervention than gap-filling types (e.g., incompleteness), where mitigation attempts can backfire (see below).\n\n\\paragraph{Prompt-based mitigation.}\nBuilding on the five-model type-specific mitigation study ($-$8.5\\,pp pooled, unpaired design; Appendix~\\ref{app:mitigation}), we test whether disambiguation can be prompted at finer granularity using a matched-pair design. We evaluate generic awareness prompting (``the policy may contain ambiguous clauses; ask for clarification'') and type-specific prompting (targeting incompleteness, authorization scope, and lexical ambiguity individually) on GPT-5.4 with matched-pair McNemar tests ($n = 50$ per type). Generic prompting produces no overall reduction ($\\Delta = +1.3$\\,pp, $p > 0.5$). Type-specific results are asymmetric: authorization scope shows a marginal reduction ($-12$\\,pp, $p = 0.070$), lexical ambiguity is unchanged ($-2$\\,pp), and incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$; non-significant trend)---suggesting that prompting agents to attend to missing information may trigger confabulation rather than caution. The five-model study in Appendix~\\ref{app:mitigation} uses a different prompt formulation and unpaired design, yielding directionally different results; mitigation outcomes appear sensitive to prompt wording and experimental design. That identical types show opposite directions under different prompt formulations (e.g., incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) underscores prompt sensitivity as a finding in itself, reinforcing the need for policy-design-level solutions rather than prompt-level fixes.\n\n\\paragraph{Practical implications.}\nA proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary detection but only 0.34 for incompleteness---the highest-risk type is hardest to detect. With disambiguation neglect in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.\n",
+                "numLines": 12,
+                "startLine": 1,
+                "totalLines": 12
+              }
+            },
+            "sourceToolAssistantUUID": "f4ce593e-a417-4842-9cf7-1ae9ebd08679",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:12:34.245Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01McHCwiaoTygLrys9dxPWLK",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tLLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound reflecting an information-addition confound); the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc19181f-9f38-4a7d-ab7f-4ac574b92a77",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "c4fe4187-545b-4a3a-b5ed-151849fc218b",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex",
+                "content": "\\begin{abstract}\nLLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound reflecting an information-addition confound); the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.\n\\end{abstract}\n",
+                "numLines": 4,
+                "startLine": 1,
+                "totalLines": 4
+              }
+            },
+            "sourceToolAssistantUUID": "fc19181f-9f38-4a7d-ab7f-4ac574b92a77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T14:12:35.201Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vfkb8ky7a7uLT7mKLn9pqm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4fe4187-545b-4a3a-b5ed-151849fc218b",
+            "isSidechain": false,
+            "requestId": "req_011CbHk7nBaBXZ8zRKUJ3dz7",
+            "type": "assistant",
+            "uuid": "37e32495-3751-48a5-9bac-b9047cb90dde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VqR25rkDpKYgPbuavCdLL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13318,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 366,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 366,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T14:12:35.206Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vfkb8ky7a7uLT7mKLn9pqm",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \\$200.\n5\t\n6\tLLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \\citet{berry_kamsties_2004} distinguish between \\emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \\emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.\n7\t\n8\tLLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \\emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \\citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \\citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.\n9\t\n10\t\\begin{figure*}[t]\n11\t\\centering\n12\t\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n13\t\\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}\n14\t\\label{fig:overview}\n15\t\\end{figure*}\n16\t\n17\tWe address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers---linguistic and specification, including specification-level gaps that produce equivalent behavioral effects in LLM agents (\\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.\n18\t\n19\tOur results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness.\n20\t\n21\tOur contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with clause-level wording---not type membership or model identity---driving the bulk of violation variance (22.4\\% vs.\\ 0.4\\% and 1.0\\%, respectively; 60.8\\% residual; \\S\\ref{sec:results}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis}).\n22\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37e32495-3751-48a5-9bac-b9047cb90dde",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "f0fbec96-2d41-4284-bdee-5289831b95a9",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nA customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \\$200.\n\nLLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \\citet{berry_kamsties_2004} distinguish between \\emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \\emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.\n\nLLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \\emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \\citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \\citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n\\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}\n\\label{fig:overview}\n\\end{figure*}\n\nWe address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers---linguistic and specification, including specification-level gaps that produce equivalent behavioral effects in LLM agents (\\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.\n\nOur results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness.\n\nOur contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with clause-level wording---not type membership or model identity---driving the bulk of violation variance (22.4\\% vs.\\ 0.4\\% and 1.0\\%, respectively; 60.8\\% residual; \\S\\ref{sec:results}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis}).\n",
+                "numLines": 22,
+                "startLine": 1,
+                "totalLines": 22
+              }
+            },
+            "sourceToolAssistantUUID": "37e32495-3751-48a5-9bac-b9047cb90dde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T14:12:35.685Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011h21RG7kpFru9EgGtCmExE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0fbec96-2d41-4284-bdee-5289831b95a9",
+            "isSidechain": false,
+            "requestId": "req_011CbHk7nBaBXZ8zRKUJ3dz7",
+            "type": "assistant",
+            "uuid": "996d609a-97dc-4bfa-8e89-8e85c08825bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VqR25rkDpKYgPbuavCdLL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13318,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 366,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 366,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T14:12:35.690Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011h21RG7kpFru9EgGtCmExE",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\n3\tAmbiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1); clause-level wording drives 22.4\\% of variance versus 0.4\\% for type and 1.0\\% for model (60.8\\% residual). Effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound), forming a margin-dependent gradient across seven models. With disambiguation neglect in $>$89\\% of cases and 41.3\\% model-convergent violations, type-aware auditing and externalized detection are critical for customer-service deployments.\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "996d609a-97dc-4bfa-8e89-8e85c08825bc",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "8ce3ffda-b419-4e2b-b228-723ce1c9a8e2",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex",
+                "content": "\\section{Conclusion}\n\nAmbiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1); clause-level wording drives 22.4\\% of variance versus 0.4\\% for type and 1.0\\% for model (60.8\\% residual). Effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound), forming a margin-dependent gradient across seven models. With disambiguation neglect in $>$89\\% of cases and 41.3\\% model-convergent violations, type-aware auditing and externalized detection are critical for customer-service deployments.\n",
+                "numLines": 4,
+                "startLine": 1,
+                "totalLines": 4
+              }
+            },
+            "sourceToolAssistantUUID": "996d609a-97dc-4bfa-8e89-8e85c08825bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T14:12:35.918Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Q3CibxPQhsLwMbi886UJE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ce3ffda-b419-4e2b-b228-723ce1c9a8e2",
+            "isSidechain": false,
+            "requestId": "req_011CbHk7nBaBXZ8zRKUJ3dz7",
+            "type": "assistant",
+            "uuid": "f4ce593e-a417-4842-9cf7-1ae9ebd08679",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014VqR25rkDpKYgPbuavCdLL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13318,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 366,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 366,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "1e3e5688-b966-449e-9e3a-ec3e2160be9a",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Edit paper sections for Round 14 revisions",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T14:12:59.329Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the files. Let me make all the edits.\n\n### 1. abstract.tex\n\n**MF-3a**: Replace the range description\n**MF-3b**: Replace \"for policy-governed agent deployments\" with \"for customer-service policy domains\"\n\nLooking at the last sentence: \"These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.\"\n\nSo \"customer-service policy domains\" already appears as context, and \"for policy-governed agent deployments\" is at the end. Changing the latter to \"for customer-service policy domains\" would make it: \"These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for customer-service policy domains.\" That does seem redundant. \n\nBut the user clarified that the first instance is an observation qualifier while the second is the recommendation target, so they're serving different purposes. Even though it reads awkwardly, the user wants this change, so I'll proceed with it.\n\n### 2. introduction.tex\n\n**MF-1a**: Replace contribution (2)\n\nI'm updating the contribution statement to emphasize the variance decomposition results more directly. Instead of just noting that clause-level wording drives violation variance, I'm restructuring it to show the specific percentages (22.4% for clause wording versus 0.4% and 1.0% for type and model) and then connecting this finding to the practical implication that clause-level auditing should be prioritized while the type taxonomy still has value for designing targeted interventions.\n\n**SF-8**: Checking line 19 about the disambiguation awareness metric...\n\nI see the current text says \"fewer than 11\\% showing any disambiguation awareness\" but the user wants to add the overall percentage. Looking at line 21, there's already \"(4.6\\% overall)\" mentioned in contribution (3), so I need to verify whether adding it again to line 19 would be redundant or if it strengthens the finding by anchoring it at the point where it's first introduced. I'm checking whether both numbers appear together in the introduction. Line 19 has the 11% figure, but line 21 is where both the ≤11% per-model and 4.6% overall figures appear together. Since the user wants both numbers present and they're already there on line 21, I don't need to add anything to line 19. Now moving on to the other files—conclusion.tex needs a straightforward replacement, and for discussion.tex I need to insert a new paragraph between the \"Differential nocuity\" and \"Prompt-based mitigation\" sections, plus handle the MF-3d changes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e3e5688-b966-449e-9e3a-ec3e2160be9a",
+            "isSidechain": false,
+            "requestId": "req_011CbHk8C3H6isVri45ywR15",
+            "type": "assistant",
+            "uuid": "08d436c9-bcff-4e6c-bf77-54bb5f19c8ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0154T73B1jiciEKMNZLaYkHS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2770,
+                "cache_read_input_tokens": 25159,
+                "output_tokens": 1484,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2770,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1484,
+                    "cache_read_input_tokens": 25159,
+                    "cache_creation_input_tokens": 2770,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2770
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T14:12:59.331Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now making all edits. Starting with the independent ones in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08d436c9-bcff-4e6c-bf77-54bb5f19c8ba",
+            "isSidechain": false,
+            "requestId": "req_011CbHk8C3H6isVri45ywR15",
+            "type": "assistant",
+            "uuid": "fab18fa4-63bb-46e6-9a64-030605d31831",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0154T73B1jiciEKMNZLaYkHS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2770,
+                "cache_read_input_tokens": 25159,
+                "output_tokens": 1484,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2770,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1484,
+                    "cache_read_input_tokens": 25159,
+                    "cache_creation_input_tokens": 2770,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2770
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T14:12:59.360Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KdDXMSWvcAMpNwz97vVbT6",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex",
+                "old_string": "effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound reflecting an information-addition confound)",
+                "new_string": "effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fab18fa4-63bb-46e6-9a64-030605d31831",
+            "isSidechain": false,
+            "requestId": "req_011CbHk8C3H6isVri45ywR15",
+            "type": "assistant",
+            "uuid": "86b2f446-ccdf-4dc1-a74f-1fd4550e2628",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0154T73B1jiciEKMNZLaYkHS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2770,
+                "cache_read_input_tokens": 25159,
+                "output_tokens": 1484,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2770,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1484,
+                    "cache_read_input_tokens": 25159,
+                    "cache_creation_input_tokens": 2770,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2770
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T14:12:59.377Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KdDXMSWvcAMpNwz97vVbT6",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86b2f446-ccdf-4dc1-a74f-1fd4550e2628",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "f8f1fdde-1143-4f0e-80be-d28c8216f62c",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex",
+              "oldString": "effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound reflecting an information-addition confound)",
+              "newString": "effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound",
+              "originalFile": "\\begin{abstract}\nLLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound reflecting an information-addition confound); the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.\n\\end{abstract}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 3,
+                  "newStart": 1,
+                  "newLines": 3,
+                  "lines": [
+                    " \\begin{abstract}",
+                    "-LLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound reflecting an information-addition confound); the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.",
+                    "+LLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound; the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.",
+                    " \\end{abstract}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "86b2f446-ccdf-4dc1-a74f-1fd4550e2628",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T14:13:04.476Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0198ifppp54v75No7ujYGfzc",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex",
+                "old_string": "for policy-governed agent deployments",
+                "new_string": "for customer-service policy domains"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8f1fdde-1143-4f0e-80be-d28c8216f62c",
+            "isSidechain": false,
+            "requestId": "req_011CbHk9vcdgUbjd3g12eJQM",
+            "type": "assistant",
+            "uuid": "c399218e-1b6a-46de-9af5-cb21feac9320",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YXYRbLseGLj9djtHf9gNnL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1559,
+                "cache_read_input_tokens": 27929,
+                "output_tokens": 142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1559,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 142,
+                    "cache_read_input_tokens": 27929,
+                    "cache_creation_input_tokens": 1559,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1559
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T14:13:04.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0198ifppp54v75No7ujYGfzc",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c399218e-1b6a-46de-9af5-cb21feac9320",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "793b4877-953c-4279-94d5-717cdbee88d7",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex",
+              "oldString": "for policy-governed agent deployments",
+              "newString": "for customer-service policy domains",
+              "originalFile": "\\begin{abstract}\nLLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound; the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.\n\\end{abstract}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 3,
+                  "newStart": 1,
+                  "newLines": 3,
+                  "lines": [
+                    " \\begin{abstract}",
+                    "-LLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound; the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.",
+                    "+LLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound; the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for customer-service policy domains.",
+                    " \\end{abstract}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "c399218e-1b6a-46de-9af5-cb21feac9320",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T14:13:08.932Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BZguZA2YrQ6NbN8swKdSM1",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex",
+                "old_string": "(2)~incompleteness as a consistent upper-bound risk type across all models and margins, with clause-level wording---not type membership or model identity---driving the bulk of violation variance (22.4\\% vs.\\ 0.4\\% and 1.0\\%, respectively; 60.8\\% residual; \\S\\ref{sec:results})",
+                "new_string": "(2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion})"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "793b4877-953c-4279-94d5-717cdbee88d7",
+            "isSidechain": false,
+            "requestId": "req_011CbHkAJ8hAw7RkQzysU13U",
+            "type": "assistant",
+            "uuid": "5ca40cba-4288-41ae-af70-7b08fb4e38b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AMaPMrUbaiZB3zaNn8AhVM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 220,
+                "cache_read_input_tokens": 29488,
+                "output_tokens": 317,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 220,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 317,
+                    "cache_read_input_tokens": 29488,
+                    "cache_creation_input_tokens": 220,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 220
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T14:13:08.951Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BZguZA2YrQ6NbN8swKdSM1",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ca40cba-4288-41ae-af70-7b08fb4e38b3",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "64b8ce66-1f03-4dad-ba00-ef5157546a11",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex",
+              "oldString": "(2)~incompleteness as a consistent upper-bound risk type across all models and margins, with clause-level wording---not type membership or model identity---driving the bulk of violation variance (22.4\\% vs.\\ 0.4\\% and 1.0\\%, respectively; 60.8\\% residual; \\S\\ref{sec:results})",
+              "newString": "(2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion})",
+              "originalFile": "\\section{Introduction}\n\\label{sec:introduction}\n\nA customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \\$200.\n\nLLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \\citet{berry_kamsties_2004} distinguish between \\emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \\emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.\n\nLLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \\emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \\citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \\citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n\\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}\n\\label{fig:overview}\n\\end{figure*}\n\nWe address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers---linguistic and specification, including specification-level gaps that produce equivalent behavioral effects in LLM agents (\\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.\n\nOur results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness.\n\nOur contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with clause-level wording---not type membership or model identity---driving the bulk of violation variance (22.4\\% vs.\\ 0.4\\% and 1.0\\%, respectively; 60.8\\% residual; \\S\\ref{sec:results}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 18,
+                  "oldLines": 4,
+                  "newStart": 18,
+                  "newLines": 4,
+                  "lines": [
+                    " ",
+                    " Our results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness.",
+                    " ",
+                    "-Our contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with clause-level wording---not type membership or model identity---driving the bulk of violation variance (22.4\\% vs.\\ 0.4\\% and 1.0\\%, respectively; 60.8\\% residual; \\S\\ref{sec:results}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis}).",
+                    "+Our contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis})."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "5ca40cba-4288-41ae-af70-7b08fb4e38b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "64b8ce66-1f03-4dad-ba00-ef5157546a11",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Edit paper sections for Round 14 revisions",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T14:13:12.551Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A9mX5aq5Tw2ryq9tm1WJBF",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex",
+                "old_string": "with fewer than 11\\% showing any disambiguation awareness.",
+                "new_string": "with fewer than 11\\% showing any disambiguation awareness (4.6\\% overall; \\S\\ref{sec:analysis})."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "64b8ce66-1f03-4dad-ba00-ef5157546a11",
+            "isSidechain": false,
+            "requestId": "req_011CbHkAdCfQ8vShsSM22iVL",
+            "type": "assistant",
+            "uuid": "b7a6d927-68fb-4851-8c5d-3496b7a5d273",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YE6JX2nEmw23EAFunVTgqy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 376,
+                "cache_read_input_tokens": 29708,
+                "output_tokens": 187,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 376,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 187,
+                    "cache_read_input_tokens": 29708,
+                    "cache_creation_input_tokens": 376,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 376
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T14:13:12.562Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A9mX5aq5Tw2ryq9tm1WJBF",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7a6d927-68fb-4851-8c5d-3496b7a5d273",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "0e5202f9-322e-4c32-a24f-ced77e513912",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex",
+              "oldString": "with fewer than 11\\% showing any disambiguation awareness.",
+              "newString": "with fewer than 11\\% showing any disambiguation awareness (4.6\\% overall; \\S\\ref{sec:analysis}).",
+              "originalFile": "\\section{Introduction}\n\\label{sec:introduction}\n\nA customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \\$200.\n\nLLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \\citet{berry_kamsties_2004} distinguish between \\emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \\emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.\n\nLLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \\emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \\citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \\citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n\\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}\n\\label{fig:overview}\n\\end{figure*}\n\nWe address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers---linguistic and specification, including specification-level gaps that produce equivalent behavioral effects in LLM agents (\\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.\n\nOur results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness.\n\nOur contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 16,
+                  "oldLines": 6,
+                  "newStart": 16,
+                  "newLines": 6,
+                  "lines": [
+                    " ",
+                    " We address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers---linguistic and specification, including specification-level gaps that produce equivalent behavioral effects in LLM agents (\\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.",
+                    " ",
+                    "-Our results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness.",
+                    "+Our results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness (4.6\\% overall; \\S\\ref{sec:analysis}).",
+                    " ",
+                    " Our contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis})."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "b7a6d927-68fb-4851-8c5d-3496b7a5d273",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T14:13:12.565Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0e5202f9-322e-4c32-a24f-ced77e513912",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "13781d31-bb96-4c1d-83ad-1dc14f3739e2",
+                "timestamp": "2026-05-22T14:13:12.565Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T14:13:16.764Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C89ecYhmc4ocMTHwY596xs",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex",
+                "old_string": "Effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound)",
+                "new_string": "Effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types, with incompleteness reaching $+$49.2\\,pp (upper bound, conditional on an information-addition confound)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13781d31-bb96-4c1d-83ad-1dc14f3739e2",
+            "isSidechain": false,
+            "requestId": "req_011CbHkAtXQYAYXi9zfEPG3k",
+            "type": "assistant",
+            "uuid": "9e9d2365-98be-4a91-accb-f5a0c91b5e8f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VekBUwGJpBE3Uw4CJ6QuXe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 350,
+                "cache_read_input_tokens": 30084,
+                "output_tokens": 251,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 350,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 251,
+                    "cache_read_input_tokens": 30084,
+                    "cache_creation_input_tokens": 350,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 350
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T14:13:16.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C89ecYhmc4ocMTHwY596xs",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e9d2365-98be-4a91-accb-f5a0c91b5e8f",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "30de2b6f-60c4-4cc2-9b0b-fb39a3544ef8",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex",
+              "oldString": "Effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound)",
+              "newString": "Effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types, with incompleteness reaching $+$49.2\\,pp (upper bound, conditional on an information-addition confound)",
+              "originalFile": "\\section{Conclusion}\n\nAmbiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1); clause-level wording drives 22.4\\% of variance versus 0.4\\% for type and 1.0\\% for model (60.8\\% residual). Effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound), forming a margin-dependent gradient across seven models. With disambiguation neglect in $>$89\\% of cases and 41.3\\% model-convergent violations, type-aware auditing and externalized detection are critical for customer-service deployments.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 3,
+                  "newStart": 1,
+                  "newLines": 3,
+                  "lines": [
+                    " \\section{Conclusion}",
+                    " ",
+                    "-Ambiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1); clause-level wording drives 22.4\\% of variance versus 0.4\\% for type and 1.0\\% for model (60.8\\% residual). Effects range from $+$18.7\\,pp (coreferential, confound-free) to $+$49.2\\,pp (incompleteness, upper bound), forming a margin-dependent gradient across seven models. With disambiguation neglect in $>$89\\% of cases and 41.3\\% model-convergent violations, type-aware auditing and externalized detection are critical for customer-service deployments.",
+                    "+Ambiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1); clause-level wording drives 22.4\\% of variance versus 0.4\\% for type and 1.0\\% for model (60.8\\% residual). Effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types, with incompleteness reaching $+$49.2\\,pp (upper bound, conditional on an information-addition confound), forming a margin-dependent gradient across seven models. With disambiguation neglect in $>$89\\% of cases and 41.3\\% model-convergent violations, type-aware auditing and externalized detection are critical for customer-service deployments."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "9e9d2365-98be-4a91-accb-f5a0c91b5e8f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T14:13:25.463Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0146gx9LRcHiQGVGvjWVv6kP",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex",
+                "old_string": "\\paragraph{Prompt-based mitigation.}",
+                "new_string": "\\paragraph{Taxonomy as intervention design.}\nType membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording---knowing a clause's type adds negligible predictive power. However, the taxonomy's value lies not in prediction but in intervention design. Our mitigation experiments reveal type-specific asymmetries: authorization scope responds to prompted boundary checking ($-12$\\,pp, $p = 0.070$), while incompleteness resists or worsens under prompting ($+14$\\,pp), and the three failure mechanisms (\\S\\ref{sec:analysis}) map to distinct mitigation strategies---boundary enforcement for authorization scope, information supplementation for incompleteness, parse constraint for structural misparse types. The practical recommendation is therefore two-tiered: clause-level auditing for risk assessment, type-level guidance for intervention selection.\n\n\\paragraph{Prompt-based mitigation.}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30de2b6f-60c4-4cc2-9b0b-fb39a3544ef8",
+            "isSidechain": false,
+            "requestId": "req_011CbHkBCnG66REw6VJhfhqL",
+            "type": "assistant",
+            "uuid": "0c50845c-3294-465a-9c1b-4b2bc58706df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019ri8k4DL7PTeLEMoVcPBeW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 310,
+                "cache_read_input_tokens": 30434,
+                "output_tokens": 361,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 310,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 361,
+                    "cache_read_input_tokens": 30434,
+                    "cache_creation_input_tokens": 310,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 310
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T14:13:25.475Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0146gx9LRcHiQGVGvjWVv6kP",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c50845c-3294-465a-9c1b-4b2bc58706df",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "e9e2ccec-1aed-445f-a582-0f1a982a4cf8",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex",
+              "oldString": "\\paragraph{Prompt-based mitigation.}",
+              "newString": "\\paragraph{Taxonomy as intervention design.}\nType membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording---knowing a clause's type adds negligible predictive power. However, the taxonomy's value lies not in prediction but in intervention design. Our mitigation experiments reveal type-specific asymmetries: authorization scope responds to prompted boundary checking ($-12$\\,pp, $p = 0.070$), while incompleteness resists or worsens under prompting ($+14$\\,pp), and the three failure mechanisms (\\S\\ref{sec:analysis}) map to distinct mitigation strategies---boundary enforcement for authorization scope, information supplementation for incompleteness, parse constraint for structural misparse types. The practical recommendation is therefore two-tiered: clause-level auditing for risk assessment, type-level guidance for intervention selection.\n\n\\paragraph{Prompt-based mitigation.}",
+              "originalFile": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Differential nocuity.}\nBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction, our results are consistent with a \\emph{differential nocuity} hypothesis \\citep{willis_nocuous_2008}: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. Types with explicit decision points (e.g., authorization scope) appear more amenable to both safety training and prompted intervention than gap-filling types (e.g., incompleteness), where mitigation attempts can backfire (see below).\n\n\\paragraph{Prompt-based mitigation.}\nBuilding on the five-model type-specific mitigation study ($-$8.5\\,pp pooled, unpaired design; Appendix~\\ref{app:mitigation}), we test whether disambiguation can be prompted at finer granularity using a matched-pair design. We evaluate generic awareness prompting (``the policy may contain ambiguous clauses; ask for clarification'') and type-specific prompting (targeting incompleteness, authorization scope, and lexical ambiguity individually) on GPT-5.4 with matched-pair McNemar tests ($n = 50$ per type). Generic prompting produces no overall reduction ($\\Delta = +1.3$\\,pp, $p > 0.5$). Type-specific results are asymmetric: authorization scope shows a marginal reduction ($-12$\\,pp, $p = 0.070$), lexical ambiguity is unchanged ($-2$\\,pp), and incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$; non-significant trend)---suggesting that prompting agents to attend to missing information may trigger confabulation rather than caution. The five-model study in Appendix~\\ref{app:mitigation} uses a different prompt formulation and unpaired design, yielding directionally different results; mitigation outcomes appear sensitive to prompt wording and experimental design. That identical types show opposite directions under different prompt formulations (e.g., incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) underscores prompt sensitivity as a finding in itself, reinforcing the need for policy-design-level solutions rather than prompt-level fixes.\n\n\\paragraph{Practical implications.}\nA proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary detection but only 0.34 for incompleteness---the highest-risk type is hardest to detect. With disambiguation neglect in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 4,
+                  "oldLines": 6,
+                  "newStart": 4,
+                  "newLines": 9,
+                  "lines": [
+                    " \\paragraph{Differential nocuity.}",
+                    " Building on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction, our results are consistent with a \\emph{differential nocuity} hypothesis \\citep{willis_nocuous_2008}: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. Types with explicit decision points (e.g., authorization scope) appear more amenable to both safety training and prompted intervention than gap-filling types (e.g., incompleteness), where mitigation attempts can backfire (see below).",
+                    " ",
+                    "+\\paragraph{Taxonomy as intervention design.}",
+                    "+Type membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording---knowing a clause's type adds negligible predictive power. However, the taxonomy's value lies not in prediction but in intervention design. Our mitigation experiments reveal type-specific asymmetries: authorization scope responds to prompted boundary checking ($-12$\\,pp, $p = 0.070$), while incompleteness resists or worsens under prompting ($+14$\\,pp), and the three failure mechanisms (\\S\\ref{sec:analysis}) map to distinct mitigation strategies---boundary enforcement for authorization scope, information supplementation for incompleteness, parse constraint for structural misparse types. The practical recommendation is therefore two-tiered: clause-level auditing for risk assessment, type-level guidance for intervention selection.",
+                    "+",
+                    " \\paragraph{Prompt-based mitigation.}",
+                    " Building on the five-model type-specific mitigation study ($-$8.5\\,pp pooled, unpaired design; Appendix~\\ref{app:mitigation}), we test whether disambiguation can be prompted at finer granularity using a matched-pair design. We evaluate generic awareness prompting (``the policy may contain ambiguous clauses; ask for clarification'') and type-specific prompting (targeting incompleteness, authorization scope, and lexical ambiguity individually) on GPT-5.4 with matched-pair McNemar tests ($n = 50$ per type). Generic prompting produces no overall reduction ($\\Delta = +1.3$\\,pp, $p > 0.5$). Type-specific results are asymmetric: authorization scope shows a marginal reduction ($-12$\\,pp, $p = 0.070$), lexical ambiguity is unchanged ($-2$\\,pp), and incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$; non-significant trend)---suggesting that prompting agents to attend to missing information may trigger confabulation rather than caution. The five-model study in Appendix~\\ref{app:mitigation} uses a different prompt formulation and unpaired design, yielding directionally different results; mitigation outcomes appear sensitive to prompt wording and experimental design. That identical types show opposite directions under different prompt formulations (e.g., incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) underscores prompt sensitivity as a finding in itself, reinforcing the need for policy-design-level solutions rather than prompt-level fixes.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "0c50845c-3294-465a-9c1b-4b2bc58706df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T14:13:30.496Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ABWuTxWpzoF7P8SBkevmHF",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex",
+                "old_string": "A proof-of-concept classifier",
+                "new_string": "Notably, authorization scope resolution adds more tokens ($+$36.1 words) than incompleteness ($+$34.6) yet triggers fewer violations, suggesting that information \\emph{quality}---not mere quantity---modulates the information-addition confound (Appendix~\\ref{app:confound}). A proof-of-concept classifier"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9e2ccec-1aed-445f-a582-0f1a982a4cf8",
+            "isSidechain": false,
+            "requestId": "req_011CbHkBqj1Xx2EMCmUbpNTK",
+            "type": "assistant",
+            "uuid": "ac0574ae-4a10-4eb5-8380-642bebaca799",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013Q5i9Fy9cVusGNVGNZ5hja",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 420,
+                "cache_read_input_tokens": 30744,
+                "output_tokens": 232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 420,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 232,
+                    "cache_read_input_tokens": 30744,
+                    "cache_creation_input_tokens": 420,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 420
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T14:13:30.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ABWuTxWpzoF7P8SBkevmHF",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac0574ae-4a10-4eb5-8380-642bebaca799",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "4300b51e-8651-4d40-9a97-1a9624f0d802",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex",
+              "oldString": "A proof-of-concept classifier",
+              "newString": "Notably, authorization scope resolution adds more tokens ($+$36.1 words) than incompleteness ($+$34.6) yet triggers fewer violations, suggesting that information \\emph{quality}---not mere quantity---modulates the information-addition confound (Appendix~\\ref{app:confound}). A proof-of-concept classifier",
+              "originalFile": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Differential nocuity.}\nBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction, our results are consistent with a \\emph{differential nocuity} hypothesis \\citep{willis_nocuous_2008}: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. Types with explicit decision points (e.g., authorization scope) appear more amenable to both safety training and prompted intervention than gap-filling types (e.g., incompleteness), where mitigation attempts can backfire (see below).\n\n\\paragraph{Taxonomy as intervention design.}\nType membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording---knowing a clause's type adds negligible predictive power. However, the taxonomy's value lies not in prediction but in intervention design. Our mitigation experiments reveal type-specific asymmetries: authorization scope responds to prompted boundary checking ($-12$\\,pp, $p = 0.070$), while incompleteness resists or worsens under prompting ($+14$\\,pp), and the three failure mechanisms (\\S\\ref{sec:analysis}) map to distinct mitigation strategies---boundary enforcement for authorization scope, information supplementation for incompleteness, parse constraint for structural misparse types. The practical recommendation is therefore two-tiered: clause-level auditing for risk assessment, type-level guidance for intervention selection.\n\n\\paragraph{Prompt-based mitigation.}\nBuilding on the five-model type-specific mitigation study ($-$8.5\\,pp pooled, unpaired design; Appendix~\\ref{app:mitigation}), we test whether disambiguation can be prompted at finer granularity using a matched-pair design. We evaluate generic awareness prompting (``the policy may contain ambiguous clauses; ask for clarification'') and type-specific prompting (targeting incompleteness, authorization scope, and lexical ambiguity individually) on GPT-5.4 with matched-pair McNemar tests ($n = 50$ per type). Generic prompting produces no overall reduction ($\\Delta = +1.3$\\,pp, $p > 0.5$). Type-specific results are asymmetric: authorization scope shows a marginal reduction ($-12$\\,pp, $p = 0.070$), lexical ambiguity is unchanged ($-2$\\,pp), and incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$; non-significant trend)---suggesting that prompting agents to attend to missing information may trigger confabulation rather than caution. The five-model study in Appendix~\\ref{app:mitigation} uses a different prompt formulation and unpaired design, yielding directionally different results; mitigation outcomes appear sensitive to prompt wording and experimental design. That identical types show opposite directions under different prompt formulations (e.g., incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) underscores prompt sensitivity as a finding in itself, reinforcing the need for policy-design-level solutions rather than prompt-level fixes.\n\n\\paragraph{Practical implications.}\nA proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary detection but only 0.34 for incompleteness---the highest-risk type is hardest to detect. With disambiguation neglect in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 11,
+                  "oldLines": 4,
+                  "newStart": 11,
+                  "newLines": 4,
+                  "lines": [
+                    " Building on the five-model type-specific mitigation study ($-$8.5\\,pp pooled, unpaired design; Appendix~\\ref{app:mitigation}), we test whether disambiguation can be prompted at finer granularity using a matched-pair design. We evaluate generic awareness prompting (``the policy may contain ambiguous clauses; ask for clarification'') and type-specific prompting (targeting incompleteness, authorization scope, and lexical ambiguity individually) on GPT-5.4 with matched-pair McNemar tests ($n = 50$ per type). Generic prompting produces no overall reduction ($\\Delta = +1.3$\\,pp, $p > 0.5$). Type-specific results are asymmetric: authorization scope shows a marginal reduction ($-12$\\,pp, $p = 0.070$), lexical ambiguity is unchanged ($-2$\\,pp), and incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$; non-significant trend)---suggesting that prompting agents to attend to missing information may trigger confabulation rather than caution. The five-model study in Appendix~\\ref{app:mitigation} uses a different prompt formulation and unpaired design, yielding directionally different results; mitigation outcomes appear sensitive to prompt wording and experimental design. That identical types show opposite directions under different prompt formulations (e.g., incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) underscores prompt sensitivity as a finding in itself, reinforcing the need for policy-design-level solutions rather than prompt-level fixes.",
+                    " ",
+                    " \\paragraph{Practical implications.}",
+                    "-A proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary detection but only 0.34 for incompleteness---the highest-risk type is hardest to detect. With disambiguation neglect in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.",
+                    "+Notably, authorization scope resolution adds more tokens ($+$36.1 words) than incompleteness ($+$34.6) yet triggers fewer violations, suggesting that information \\emph{quality}---not mere quantity---modulates the information-addition confound (Appendix~\\ref{app:confound}). A proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary detection but only 0.34 for incompleteness---the highest-risk type is hardest to detect. With disambiguation neglect in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "ac0574ae-4a10-4eb5-8380-642bebaca799",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "4300b51e-8651-4d40-9a97-1a9624f0d802",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Edit paper sections for Round 14 revisions",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T14:13:34.614Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits done. Verifying final state of each file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4300b51e-8651-4d40-9a97-1a9624f0d802",
+            "isSidechain": false,
+            "requestId": "req_011CbHkCDNG3CiTwpSPkD7hJ",
+            "type": "assistant",
+            "uuid": "6c60dc11-d60b-420b-bd97-6905ddb4e764",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeRBePw7u6RYKVMCsHHZUV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 291,
+                "cache_read_input_tokens": 31164,
+                "output_tokens": 336,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 336,
+                    "cache_read_input_tokens": 31164,
+                    "cache_creation_input_tokens": 291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T14:13:35.259Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EjHoyv1Z4dhVHtyqy3LTEA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c60dc11-d60b-420b-bd97-6905ddb4e764",
+            "isSidechain": false,
+            "requestId": "req_011CbHkCDNG3CiTwpSPkD7hJ",
+            "type": "assistant",
+            "uuid": "c4f41a1e-80da-4eac-8e2e-bdaa8dd7d706",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeRBePw7u6RYKVMCsHHZUV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 291,
+                "cache_read_input_tokens": 31164,
+                "output_tokens": 336,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 336,
+                    "cache_read_input_tokens": 31164,
+                    "cache_creation_input_tokens": 291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T14:13:35.267Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EjHoyv1Z4dhVHtyqy3LTEA",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tLLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound; the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for customer-service policy domains.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4f41a1e-80da-4eac-8e2e-bdaa8dd7d706",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "7df196b1-16ab-4690-b658-872e7916bf52",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex",
+                "content": "\\begin{abstract}\nLLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types; incompleteness reaches $+$49.2\\,pp but reflects an information-addition confound; the remaining five types form a risk gradient rather than sharp tiers, with rankings partly margin-dependent. Third, error analysis of 614 violation traces reveals \\emph{Disambiguation Neglect} ($\\leq$11\\% per-model awareness, 4.6\\% overall) and \\emph{systematic nocuity}---41.3\\% of clauses triggering model-convergent violations---indicating clause-level rather than model-level risk factors. These results---observed in customer-service policy domains---motivate type-aware policy auditing and externalized ambiguity detection for customer-service policy domains.\n\\end{abstract}\n",
+                "numLines": 4,
+                "startLine": 1,
+                "totalLines": 4
+              }
+            },
+            "sourceToolAssistantUUID": "c4f41a1e-80da-4eac-8e2e-bdaa8dd7d706",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T14:13:36.472Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WmJwBWSLMeh5yjQn93Ft6c",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Differential nocuity.}\n5\tBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction, our results are consistent with a \\emph{differential nocuity} hypothesis \\citep{willis_nocuous_2008}: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. Types with explicit decision points (e.g., authorization scope) appear more amenable to both safety training and prompted intervention than gap-filling types (e.g., incompleteness), where mitigation attempts can backfire (see below).\n6\t\n7\t\\paragraph{Taxonomy as intervention design.}\n8\tType membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording---knowing a clause's type adds negligible predictive power. However, the taxonomy's value lies not in prediction but in intervention design. Our mitigation experiments reveal type-specific asymmetries: authorization scope responds to prompted boundary checking ($-12$\\,pp, $p = 0.070$), while incompleteness resists or worsens under prompting ($+14$\\,pp), and the three failure mechanisms (\\S\\ref{sec:analysis}) map to distinct mitigation strategies---boundary enforcement for authorization scope, information supplementation for incompleteness, parse constraint for structural misparse types. The practical recommendation is therefore two-tiered: clause-level auditing for risk assessment, type-level guidance for intervention selection.\n9\t\n10\t\\paragraph{Prompt-based mitigation.}\n11\tBuilding on the five-model type-specific mitigation study ($-$8.5\\,pp pooled, unpaired design; Appendix~\\ref{app:mitigation}), we test whether disambiguation can be prompted at finer granularity using a matched-pair design. We evaluate generic awareness prompting (``the policy may contain ambiguous clauses; ask for clarification'') and type-specific prompting (targeting incompleteness, authorization scope, and lexical ambiguity individually) on GPT-5.4 with matched-pair McNemar tests ($n = 50$ per type). Generic prompting produces no overall reduction ($\\Delta = +1.3$\\,pp, $p > 0.5$). Type-specific results are asymmetric: authorization scope shows a marginal reduction ($-12$\\,pp, $p = 0.070$), lexical ambiguity is unchanged ($-2$\\,pp), and incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$; non-significant trend)---suggesting that prompting agents to attend to missing information may trigger confabulation rather than caution. The five-model study in Appendix~\\ref{app:mitigation} uses a different prompt formulation and unpaired design, yielding directionally different results; mitigation outcomes appear sensitive to prompt wording and experimental design. That identical types show opposite directions under different prompt formulations (e.g., incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) underscores prompt sensitivity as a finding in itself, reinforcing the need for policy-design-level solutions rather than prompt-level fixes.\n12\t\n13\t\\paragraph{Practical implications.}\n14\tNotably, authorization scope resolution adds more tokens ($+$36.1 words) than incompleteness ($+$34.6) yet triggers fewer violations, suggesting that information \\emph{quality}---not mere quantity---modulates the information-addition confound (Appendix~\\ref{app:confound}). A proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary detection but only 0.34 for incompleteness---the highest-risk type is hardest to detect. With disambiguation neglect in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.\n15\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "083508ee-f1fe-4222-aa97-104d5dbad441",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "226d871e-4c70-4ff8-a339-2468c5dc015a",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Differential nocuity.}\nBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction, our results are consistent with a \\emph{differential nocuity} hypothesis \\citep{willis_nocuous_2008}: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. Types with explicit decision points (e.g., authorization scope) appear more amenable to both safety training and prompted intervention than gap-filling types (e.g., incompleteness), where mitigation attempts can backfire (see below).\n\n\\paragraph{Taxonomy as intervention design.}\nType membership explains only 0.4\\% of violation variance versus 22.4\\% for individual clause wording---knowing a clause's type adds negligible predictive power. However, the taxonomy's value lies not in prediction but in intervention design. Our mitigation experiments reveal type-specific asymmetries: authorization scope responds to prompted boundary checking ($-12$\\,pp, $p = 0.070$), while incompleteness resists or worsens under prompting ($+14$\\,pp), and the three failure mechanisms (\\S\\ref{sec:analysis}) map to distinct mitigation strategies---boundary enforcement for authorization scope, information supplementation for incompleteness, parse constraint for structural misparse types. The practical recommendation is therefore two-tiered: clause-level auditing for risk assessment, type-level guidance for intervention selection.\n\n\\paragraph{Prompt-based mitigation.}\nBuilding on the five-model type-specific mitigation study ($-$8.5\\,pp pooled, unpaired design; Appendix~\\ref{app:mitigation}), we test whether disambiguation can be prompted at finer granularity using a matched-pair design. We evaluate generic awareness prompting (``the policy may contain ambiguous clauses; ask for clarification'') and type-specific prompting (targeting incompleteness, authorization scope, and lexical ambiguity individually) on GPT-5.4 with matched-pair McNemar tests ($n = 50$ per type). Generic prompting produces no overall reduction ($\\Delta = +1.3$\\,pp, $p > 0.5$). Type-specific results are asymmetric: authorization scope shows a marginal reduction ($-12$\\,pp, $p = 0.070$), lexical ambiguity is unchanged ($-2$\\,pp), and incompleteness \\emph{worsens} ($+14$\\,pp, $p = 0.118$; non-significant trend)---suggesting that prompting agents to attend to missing information may trigger confabulation rather than caution. The five-model study in Appendix~\\ref{app:mitigation} uses a different prompt formulation and unpaired design, yielding directionally different results; mitigation outcomes appear sensitive to prompt wording and experimental design. That identical types show opposite directions under different prompt formulations (e.g., incompleteness: $-$3.4\\,pp in v1 vs.\\ $+$14\\,pp in v2) underscores prompt sensitivity as a finding in itself, reinforcing the need for policy-design-level solutions rather than prompt-level fixes.\n\n\\paragraph{Practical implications.}\nNotably, authorization scope resolution adds more tokens ($+$36.1 words) than incompleteness ($+$34.6) yet triggers fewer violations, suggesting that information \\emph{quality}---not mere quantity---modulates the information-addition confound (Appendix~\\ref{app:confound}). A proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary detection but only 0.34 for incompleteness---the highest-risk type is hardest to detect. With disambiguation neglect in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.\n",
+                "numLines": 15,
+                "startLine": 1,
+                "totalLines": 15
+              }
+            },
+            "sourceToolAssistantUUID": "083508ee-f1fe-4222-aa97-104d5dbad441",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T14:13:35.724Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Zf4bTz4ce5GphHzXb3YJz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7df196b1-16ab-4690-b658-872e7916bf52",
+            "isSidechain": false,
+            "requestId": "req_011CbHkCDNG3CiTwpSPkD7hJ",
+            "type": "assistant",
+            "uuid": "a8eab2d8-051c-46cd-8e7d-2f76ff9c1529",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeRBePw7u6RYKVMCsHHZUV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 291,
+                "cache_read_input_tokens": 31164,
+                "output_tokens": 336,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 336,
+                    "cache_read_input_tokens": 31164,
+                    "cache_creation_input_tokens": 291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T14:13:35.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Zf4bTz4ce5GphHzXb3YJz",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \\$200.\n5\t\n6\tLLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \\citet{berry_kamsties_2004} distinguish between \\emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \\emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.\n7\t\n8\tLLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \\emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \\citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \\citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.\n9\t\n10\t\\begin{figure*}[t]\n11\t\\centering\n12\t\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n13\t\\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}\n14\t\\label{fig:overview}\n15\t\\end{figure*}\n16\t\n17\tWe address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers---linguistic and specification, including specification-level gaps that produce equivalent behavioral effects in LLM agents (\\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.\n18\t\n19\tOur results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness (4.6\\% overall; \\S\\ref{sec:analysis}).\n20\t\n21\tOur contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis}).\n22\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8eab2d8-051c-46cd-8e7d-2f76ff9c1529",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "96fffb07-27a1-4c3e-b602-8b706a6fac5c",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nA customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \\$200.\n\nLLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \\citet{berry_kamsties_2004} distinguish between \\emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \\emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.\n\nLLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \\emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \\citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \\citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n\\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}\n\\label{fig:overview}\n\\end{figure*}\n\nWe address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers---linguistic and specification, including specification-level gaps that produce equivalent behavioral effects in LLM agents (\\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.\n\nOur results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), with type primarily determining severity. Incompleteness is consistently high (46--62\\% across all models); an exploratory model$\\times$type interaction (\\S\\ref{sec:c4}) suggests differential vulnerability across type--model combinations. Agents exhibit disambiguation neglect in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness (4.6\\% overall; \\S\\ref{sec:analysis}).\n\nOur contributions are: (1)~the first matched-pair causal study of policy ambiguity's safety impact with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with a variance decomposition showing that individual clause wording (22.4\\%) dominates type membership (0.4\\%) and model identity (1.0\\%)---motivating clause-level auditing while the type taxonomy retains value for differential intervention design (\\S\\ref{sec:discussion}); and (3)~an error analysis quantifying \\emph{Disambiguation Neglect} in consequential agentic settings---extending LLM ambiguity-collapse findings \\citep{liu_ambiguity_2023,hu_ambiguity_2025} to agentic settings---with $\\leq$11\\% per-model awareness (4.6\\% overall), and \\emph{systematic nocuity}: 41.3\\% of ambiguous clauses trigger majority-convergent violations, indicating clause-level risk factors (\\S\\ref{sec:analysis}).\n",
+                "numLines": 22,
+                "startLine": 1,
+                "totalLines": 22
+              }
+            },
+            "sourceToolAssistantUUID": "a8eab2d8-051c-46cd-8e7d-2f76ff9c1529",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T14:13:36.113Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019S6gNTHbzVidKntuJGMgHh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96fffb07-27a1-4c3e-b602-8b706a6fac5c",
+            "isSidechain": false,
+            "requestId": "req_011CbHkCDNG3CiTwpSPkD7hJ",
+            "type": "assistant",
+            "uuid": "55c6d6f2-7fca-41fd-a9b3-e9c4a836a1a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeRBePw7u6RYKVMCsHHZUV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 291,
+                "cache_read_input_tokens": 31164,
+                "output_tokens": 336,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 336,
+                    "cache_read_input_tokens": 31164,
+                    "cache_creation_input_tokens": 291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T14:13:36.119Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019S6gNTHbzVidKntuJGMgHh",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\n3\tAmbiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1); clause-level wording drives 22.4\\% of variance versus 0.4\\% for type and 1.0\\% for model (60.8\\% residual). Effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types, with incompleteness reaching $+$49.2\\,pp (upper bound, conditional on an information-addition confound), forming a margin-dependent gradient across seven models. With disambiguation neglect in $>$89\\% of cases and 41.3\\% model-convergent violations, type-aware auditing and externalized detection are critical for customer-service deployments.\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55c6d6f2-7fca-41fd-a9b3-e9c4a836a1a5",
+            "isSidechain": false,
+            "promptId": "826374d2-eb4f-4755-b0f8-899489d477c7",
+            "type": "user",
+            "uuid": "fe9076f9-af4e-4fc1-9b9c-513823e54694",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex",
+                "content": "\\section{Conclusion}\n\nAmbiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1); clause-level wording drives 22.4\\% of variance versus 0.4\\% for type and 1.0\\% for model (60.8\\% residual). Effects range from $+$18.7\\,pp (coreferential) to $+$36.0\\,pp (authorization scope) among confound-controlled types, with incompleteness reaching $+$49.2\\,pp (upper bound, conditional on an information-addition confound), forming a margin-dependent gradient across seven models. With disambiguation neglect in $>$89\\% of cases and 41.3\\% model-convergent violations, type-aware auditing and externalized detection are critical for customer-service deployments.\n",
+                "numLines": 4,
+                "startLine": 1,
+                "totalLines": 4
+              }
+            },
+            "sourceToolAssistantUUID": "55c6d6f2-7fca-41fd-a9b3-e9c4a836a1a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T14:13:36.467Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WmJwBWSLMeh5yjQn93Ft6c",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe9076f9-af4e-4fc1-9b9c-513823e54694",
+            "isSidechain": false,
+            "requestId": "req_011CbHkCDNG3CiTwpSPkD7hJ",
+            "type": "assistant",
+            "uuid": "083508ee-f1fe-4222-aa97-104d5dbad441",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeRBePw7u6RYKVMCsHHZUV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 291,
+                "cache_read_input_tokens": 31164,
+                "output_tokens": 336,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 336,
+                    "cache_read_input_tokens": 31164,
+                    "cache_creation_input_tokens": 291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T14:13:43.420Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 处编辑完成，验证通过：\n\n1. **abstract.tex** — confound-free range 改为 confound-controlled 表述；domain scope 改为 \"for customer-service policy domains\"\n2. **introduction.tex** — Contribution (2) 重写为 variance decomposition + taxonomy value 表述；L19 添加了 \"(4.6\\% overall; \\S\\ref{sec:analysis})\"\n3. **conclusion.tex** — range 同步更新，incompleteness 标注 conditional on confound\n4. **discussion.tex** — 插入 \"Taxonomy as intervention design\" 新段落；\"Practical implications\" 段前添加 info quality vs quantity 句\n\nLaTeX 语法、括号配对均正确，无重复句子。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "226d871e-4c70-4ff8-a339-2468c5dc015a",
+            "isSidechain": false,
+            "requestId": "req_011CbHkCf5L9i7pWbXqkGt7d",
+            "type": "assistant",
+            "uuid": "c1b719e8-1d77-42fa-89d2-af5b1042ed1e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety",
+            "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XXDPy8Rf6CoHPHqjBQus47",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3065,
+                "cache_read_input_tokens": 31455,
+                "output_tokens": 204,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3065,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 204,
+                    "cache_read_input_tokens": 31455,
+                    "cache_creation_input_tokens": 3065,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3065
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c1b719e8-1d77-42fa-89d2-af5b1042ed1e",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Edit paper sections for Round 14 revisions",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c1b719e8-1d77-42fa-89d2-af5b1042ed1e",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Edit paper sections for Round 14 revisions",
+                "sessionId": "fe62da37-1cc4-44a1-b093-10b1c9a33e34"
+              }
+            }
+          ],
+          "id": "event-000054"
+        }
+      ],
+      "message_count": 52
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-policy-ambiguity-safety-home-ubuntu-agent-ml-research-be-idea-copy-76.md"
+}

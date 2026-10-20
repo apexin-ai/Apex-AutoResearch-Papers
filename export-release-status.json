@@ -23,6 +23,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1948
+        },
+        "policy_ambiguity_safety": {
+          "status": "uploaded",
+          "project": "policy_ambiguity_safety",
+          "collection": "policy_ambiguity_safety--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "458c31c4126d052ab23c3f9b76d2cbac7935c989737cc9742f17b0e469881a6f",
+          "indexed_members": 448,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 443
         }
       },
       "status": "in_progress",

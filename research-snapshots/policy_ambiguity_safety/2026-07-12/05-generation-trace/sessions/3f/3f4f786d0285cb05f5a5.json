@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3f4f786d0285cb05f5a5",
+  "project": "policy_ambiguity_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：policy_ambiguity_safety Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambi",
+  "task_key": "0216ed0a-c08b-49ce-97de-1409772cd735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/0216ed0a-c08b-49ce-97de-1409772cd735.jsonl",
+    "occurrence": 1,
+    "bytes": 699524,
+    "sha256": "e6c276b93842852cf3de53bac3b7ef5126bd76822d2b6bf6156d22c7a83c2f17"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 1,
+    "tool_calls": 53,
+    "roles": {
+      "record": 44,
+      "user": 1,
+      "assistant": 33,
+      "tool_call": 53,
+      "tool_result": 53
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3f4f786d0285cb05f5a5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "3f4f786d0285cb05f5a5-part-0001.json",
+          "message_count": 120
+        },
+        {
+          "path": "3f4f786d0285cb05f5a5-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-policy-ambiguity-safety-venue-emnlp-2026-home-ubuntu-agent-ml-research-be-idea-copy-6.md"
+}

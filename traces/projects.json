@@ -827,6 +827,19 @@
       }
     },
     {
+      "project": "policy_ambiguity_safety--export-20260712",
+      "title": "Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety (July export snapshot)",
+      "catalog": "../research-snapshots/policy_ambiguity_safety/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 443,
+        "messages": 59219,
+        "user_turns": 2151,
+        "tool_calls": 15794,
+        "unparsed_lines": 0,
+        "conversation": 443
+      }
+    },
+    {
       "project": "prism_collapse_mixing",
       "title": "prism collapse mixing",
       "catalog": "../paper-assets/prism_collapse_mixing/05-generation-trace/catalog.json",

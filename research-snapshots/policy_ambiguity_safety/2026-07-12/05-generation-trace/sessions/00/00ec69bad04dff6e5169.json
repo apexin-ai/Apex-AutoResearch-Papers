@@ -1,0 +1,1201 @@
+{
+  "schema_version": "1.0",
+  "id": "00ec69bad04dff6e5169",
+  "project": "policy_ambiguity_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read all these tex files and return their full contents. I need every single line: 1. /home/ubuntu/.agent-ml-research-be",
+  "task_key": "agent-aec8d190c3a37fd6c",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-aec8d190c3a37fd6c.jsonl",
+    "occurrence": 1,
+    "bytes": 135061,
+    "sha256": "9f97e583ff614a29c620802d4395811ee8338f18be2c3799f5c74b343981e0ad"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T22:40:20.932Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read all these tex files and return their full contents. I need every single line:\n\n1. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex\n2. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex\n3. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/related_work.tex\n4. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/taxonomy.tex\n5. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/method.tex\n6. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/experiments.tex\n7. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/analysis.tex\n8. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex\n9. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex\n10. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/limitations.tex\n11. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/appendix.tex\n12. /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/main.tex\n\nReturn the complete contents of each file, clearly labeled with the filename."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "a72025a5-db12-4a30-9a62-ca39eccf4861",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T22:40:22.503Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read all these LaTeX files for you in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a72025a5-db12-4a30-9a62-ca39eccf4861",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1be27a3f-7283-425c-8ada-5dd74e4eab50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T22:40:22.996Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012CRepsUuEKzZGwvHtx8Pq7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1be27a3f-7283-425c-8ada-5dd74e4eab50",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ed0c094c-eebf-43e5-9cd3-32cf225d4950",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T22:40:23.012Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012CRepsUuEKzZGwvHtx8Pq7",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tLLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, incompleteness consistently ranks highest (46--62\\% across seven models); the remaining five types cluster into a lower tier at the $\\pm$15\\,pp margin, though tier cohesion is margin-dependent. Third, authorization scope shows the widest but least reliably measured cross-model range (52\\,pp; $\\kappa = 0.385$, \\S Limitations), suggesting that safety training may differentially mitigate specific ambiguity types. Agents show fewer than 11\\% disambiguation awareness, adopting surface interpretations without flagging uncertainty. These results motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed0c094c-eebf-43e5-9cd3-32cf225d4950",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "4e8a77d4-e912-47eb-8eeb-84492034bc70",
+            "sourceToolAssistantUUID": "ed0c094c-eebf-43e5-9cd3-32cf225d4950",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T22:40:23.172Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019bBEUhJR9FH3NZ77jkUP7g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e8a77d4-e912-47eb-8eeb-84492034bc70",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "59f4060a-f0e1-4295-ac66-75fd2ebe207c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T22:40:23.185Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019bBEUhJR9FH3NZ77jkUP7g",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \\$200.\n5\t\n6\tLLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \\citet{berry_kamsties_2004} distinguish between \\emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \\emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.\n7\t\n8\tLLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \\emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \\citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \\citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.\n9\t\n10\t\\begin{figure*}[t]\n11\t\\centering\n12\t\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n13\t\\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}\n14\t\\label{fig:overview}\n15\t\\end{figure*}\n16\t\n17\tWe address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers (linguistic and specification, \\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.\n18\t\n19\tOur results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), but that type primarily determines severity, with a smaller but significant model$\\times$type interaction (2.9\\% of variance). Incompleteness is consistently high (46--62\\% violation rate across all models), while authorization scope shows the widest but least reliably measured cross-model range (52\\,pp; $\\kappa = 0.385$, \\S Limitations), suggesting that safety training may differentially mitigate specific ambiguity types. Agents exhibit disambiguation deficit in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness.\n20\t\n21\tOur contributions are: (1)~the first causal quantification of policy ambiguity's safety impact via matched-pair design with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with type identity explaining 22$\\times$ more variance than model identity (\\S\\ref{sec:results}); and (3)~a failure mode taxonomy with the empirical phenomenon of \\emph{Disambiguation Deficit} ($<$11\\% awareness; \\S\\ref{sec:analysis}).\n22\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59f4060a-f0e1-4295-ac66-75fd2ebe207c",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "4e9483ed-0354-4b80-9f68-72a3ab67eaae",
+            "sourceToolAssistantUUID": "59f4060a-f0e1-4295-ac66-75fd2ebe207c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T22:40:23.373Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019jKGz9PPDYKh7cd5e4ykac",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e9483ed-0354-4b80-9f68-72a3ab67eaae",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ad5f9eff-9070-42dc-b60a-4d57d0a4532e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T22:40:23.380Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019jKGz9PPDYKh7cd5e4ykac",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Ambiguity in NLP and requirements engineering.}\n5\tAmbiguity has been studied extensively in both computational linguistics and software engineering. Word sense disambiguation \\citep{navigli_wsd_2009} addresses lexical ambiguity at the token level; our lexical type extends this to policy-specific polysemy. \\citet{li_ambiguity_taxonomy_2024} propose an 11-type NLP taxonomy covering syntactic, semantic, and pragmatic ambiguity, from which we draw our linguistic-layer types. In requirements engineering (RE), \\citet{massey_ambiguity_re_2014} classify six ambiguity types in regulatory texts, and \\citet{berry_kamsties_2004} introduce the distinction between nocuous ambiguity (where stakeholders diverge on interpretation) and innocuous ambiguity (where they converge). Computational detection of nocuous ambiguity has progressed from heuristic methods \\citep{chantree_2006,willis_nocuous_2008} through NLP-based cross-domain detectors \\citep{ferrari_ambiguity_2019,ferrari_defects_2018} to transformer-based approaches for anaphoric ambiguity \\citep{ezzini_taphsir_2022,ezzini_anaphoric_2022}. \\citet{zhao_nlp4re_2021} survey the broader NLP4RE landscape. Our work extends Berry and Kamsties' framework to LLM agents, where the absence of shared organizational context makes previously innocuous ambiguity nocuous.\n6\t\n7\t\\paragraph{Psycholinguistics of ambiguity processing.}\n8\t\\citet{ferreira_good_enough_2002} show that human comprehenders build shallow, ``good-enough'' representations rather than full parses, paralleling our observation that LLM agents adopt surface interpretations. \\citet{frazier_rayner_1982} demonstrate early commitment to a single parse; \\citet{li_garden_path_llm_2024} provide direct evidence that LLMs exhibit analogous garden-path effects. \\citet{liu_ambiguity_2023} demonstrate that language models fail to represent ambiguity, collapsing multiple interpretations into a single output. These findings ground our \\emph{Disambiguation Deficit} result: agents process ambiguous input without meta-cognitive awareness but, unlike humans, lack social channels to recover. \\citet{suri_structured_2025} show that structured uncertainty estimation improves coverage by 7--39\\%, while \\citet{sehwag_aspi_2026} demonstrate that clarification-seeking introduces prompt injection vulnerabilities---a tension for disambiguation channel design.\n9\t\n10\t\\paragraph{Agent safety evaluation.}\n11\tThe agent safety evaluation landscape includes benchmarks for risk awareness \\citep{rjudge_2024}, tool-use safety \\citep{toolemu_2024}, indirect prompt injection \\citep{injecagent_2024}, safe task planning \\citep{yin_safeagentbench_2025}, and policy-invisible violations \\citep{phantompolicy_2026}. \\citet{tamkin_evaluating_2023} evaluate how language models navigate policy-governed decisions, \\citet{shieldagent_2025} extract formal safety rules from policy documents, and AgentAuditor \\citep{agentauditor_2025} achieves human-level safety evaluation. Our work differs by focusing on the \\emph{source specification} rather than the agent's execution: we measure how ambiguity in the policy itself causes safety violations, complementing work that assumes clean policies.\n12\t\n13\t\\paragraph{Policy specification for agents.}\n14\tDRIP-R \\citep{drip_r_2026} is the closest concurrent work: it benchmarks 400 policy-ambiguous retail scenarios across five RE ambiguity types, measuring decision quality rather than safety violations. Our work differs in three respects: (1) our matched-pair design establishes causality rather than correlating ambiguity presence with outcomes; (2) we measure safety violations rather than decision quality, enabling failure mechanism analysis; (3) our two-layer taxonomy adds linguistic-layer types, and we quantify the model$\\times$type interaction. We map DRIP-R's five RE ambiguity categories to our six-type taxonomy in Appendix~\\ref{app:drip_mapping}. PolicyBank \\citep{policybank_2026} studies iterative policy refinement, closing 82\\% of the gap to a human oracle. AgentPex \\citep{agentpex_2026} detects procedural violations in agentic traces, finding that 83\\% of perfect-outcome traces contain violations. MANTRA \\citep{mantra_2026} synthesizes SMT-validated compliance benchmarks from procedural manuals. $\\tau$-bench \\citep{tau_bench_2024} and its successor $\\tau^2$-bench \\citep{tau2_bench_2025} provide the conversational agent evaluation platforms. "
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad5f9eff-9070-42dc-b60a-4d57d0a4532e",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "8f2cfc54-e7fb-4216-b78b-191c6d645c26",
+            "sourceToolAssistantUUID": "ad5f9eff-9070-42dc-b60a-4d57d0a4532e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T22:40:23.631Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019kZcffYcferES9DRqXtS76",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/taxonomy.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f2cfc54-e7fb-4216-b78b-191c6d645c26",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bbbe64f0-c4a1-45b8-878b-9214f6184597",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T22:40:23.638Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019kZcffYcferES9DRqXtS76",
+              "type": "tool_result",
+              "content": "1\t\\section{Ambiguity Taxonomy}\n2\t\\label{sec:taxonomy}\n3\t\n4\tWe adopt an operational definition of ambiguity following \\citet{wasow_ambiguity_2005}: a policy clause is ambiguous when it admits multiple distinct interpretations available to a competent reader, including cases of vagueness where the boundary between interpretations is gradient rather than discrete \\citep{kennedy_vagueness_2007}.\n5\t\n6\tOur taxonomy comprises six types organized into two layers, drawing on \\citet{li_ambiguity_taxonomy_2024}'s NLP taxonomy (11 types), \\citet{massey_ambiguity_re_2014}'s requirements engineering taxonomy (6 types), and the concurrent DRIP-R benchmark \\citep{drip_r_2026} (5 types). We select types based on two criteria: frequency in operational policy documents (assessed via manual audit of $\\tau^2$-bench policies) and theoretical distinctiveness (each type maps to a different resolution mechanism).\n7\t\n8\t\\paragraph{Linguistic layer.} These types operate at the syntactic or semantic level and can, in principle, be resolved by parsing or contextual cues within the text.\n9\t\\begin{itemize}\n10\t\\item \\textbf{Scopal}: quantifier, negation, or modal scope interactions (e.g., ``all items may not be returned'' admits universal-negation and negation-of-universal readings).\n11\t\\item \\textbf{Lexical}: polysemy or homonymy (e.g., ``charge'' as financial cost vs.\\ penalty; ``party'' as individual vs.\\ group).\n12\t\\item \\textbf{Coreferential}: unclear pronoun or noun-phrase reference (e.g., ``the agent should verify the customer's identity before processing their refund request, which must be approved by a supervisor'' where ``which'' could refer to the verification or the refund).\n13\t\\end{itemize}\n14\t\n15\t\\paragraph{Specification layer.} These types arise from pragmatic or discourse-level gaps that require domain knowledge or organizational context to resolve.\n16\t\\begin{itemize}\n17\t\\item \\textbf{Authorization scope}: vague permission or role boundaries (e.g., ``authorized personnel may issue refunds'' without specifying which personnel or under what conditions).\n18\t\\item \\textbf{Incompleteness}: missing conditions, exceptions, or boundary cases (e.g., a return policy that specifies the return window but not what happens when the item is damaged). (Note: unlike other types where the unambiguous variant rephrases existing content, incompleteness resolution requires adding new policy content, a confound we address in \\S\\ref{sec:results}.)\n19\t\\item \\textbf{Conditional precedence}: conflicting or overlapping rules without priority ordering (e.g., ``premium customers receive free shipping'' and ``orders under \\$50 require a shipping fee'' without specifying which rule takes precedence for a premium customer with a \\$30 order).\n20\t\\end{itemize}\n21\t\n22\tThe layer distinction reflects the hypothesis that linguistic ambiguity can be partially resolved through tool responses, user context, or world knowledge, while specification ambiguity has no external resolution channel available to the agent, forcing it to guess. We test this hypothesis empirically in \\S\\ref{sec:results} and \\S\\ref{sec:analysis}. The linguistic/specification layer distinction is a theoretical organizing principle; \\S\\ref{sec:results} tests whether it corresponds to an empirical grouping.\n23\t\n24\t\\paragraph{Scope of `ambiguity.'}\n25\tOur taxonomy uses \\emph{ambiguity} broadly to encompass policy specification features that admit multiple operationally distinct interpretations by an LLM agent. Authorization scope overlaps with \\emph{vagueness} \\citep{kennedy_vagueness_2007}, incompleteness with \\emph{information absence} (resolution requires adding content), and conditional precedence with \\emph{normative conflict} between individually unambiguous rules. \\citet{dalpiaz_pinpointing_2018} show that ambiguity and incompleteness frequently co-occur in requirements specifications, supporting their unified treatment. We adopt this inclusive definition because LLM agents process all six types identically---committing to a single interpretation without flagging uncertainty---and the resulting safety violations are behaviorally indistinguishable (\\S\\ref{sec:results}).\n26\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bbbe64f0-c4a1-45b8-878b-9214f6184597",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "718c71e8-0419-46e7-86e6-3dad6753088c",
+            "sourceToolAssistantUUID": "bbbe64f0-c4a1-45b8-878b-9214f6184597",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T22:40:23.800Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014NnasABwCXUjCvn64kz4QS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "718c71e8-0419-46e7-86e6-3dad6753088c",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4e500fb4-a866-4237-83c9-f68ff2bc2b84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T22:40:23.806Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014NnasABwCXUjCvn64kz4QS",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Experimental Platform}\n5\t\n6\tWe conduct all experiments on the original release of $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark spanning retail and airline customer service domains. $\\tau^2$-bench provides natural-language policy documents, tool APIs, and multi-turn user interactions with ground-truth evaluation via assertion checking. Its policy injection mechanism allows us to replace individual policy clauses while preserving the surrounding context, enabling controlled ambiguity manipulation.\n7\t\n8\t\\subsection{Matched-Pair Design}\n9\t\n10\tFor each of the six ambiguity types, we construct 50 \\emph{clause pairs}: an ambiguous variant and a matched unambiguous variant that conveys the same intended policy but resolves the ambiguity. Pairs are minimal edits: the unambiguous variant adds only the information necessary to eliminate the target ambiguity (e.g., for scopal ambiguity, replacing ``items may be returned within 30 days'' with ``standard items may be returned within 30 days; customized items are final sale''). This yields 300 clause pairs $\\times$ 2 conditions $\\times$ 5 models $= 2{,}997$ episodes (3 episodes lost to API errors in one Qwen3 batch).\n11\t\n12\tClause pairs are generated through a template-based pipeline and reviewed by two independent annotators (both with NLP background) to ensure (1) the ambiguous variant contains exactly one instance of the target type, (2) the unambiguous variant resolves it without changing policy scope, and (3) the ambiguity is plausibly natural. Annotators independently verified type assignments with a 96\\% initial agreement (287/300); the 13 disagreements were resolved by discussion, yielding 100\\% final consensus. A post-hoc realism validation confirms linguistic consistency with original $\\tau^2$-bench policy text (\\S\\ref{sec:limitations}).\n13\t\n14\t\\subsection{Models}\n15\t\n16\tWe evaluate five models spanning four providers and two architecture families: GPT-5.4 and GPT-4.1 (OpenAI, proprietary dense), Claude Sonnet 4.6 (Anthropic, proprietary dense), Qwen3-235B (Alibaba, open-source Mixture-of-Experts), and DeepSeek-V3 (DeepSeek, open-source dense). This selection covers frontier and mid-tier proprietary models alongside open-source alternatives with different training philosophies. All API calls use temperature $= 0$, top\\_p $= 1$, and max\\_tokens $= 4096$, and were made on May 20, 2026.\n17\t\n18\t\\subsection{Evaluation}\n19\t\n20\tWe use a cross-judge design to mitigate self-evaluation bias: GPT-5.4 judges Claude, GPT-4.1, and Qwen3 traces; GPT-4.1 judges GPT-5.4 and DeepSeek traces. Because our matched-pair design compares ambiguous and unambiguous conditions within the same model--judge pairing, any systematic judge bias cancels in the treatment effect ($\\Delta$pp); the cross-judge asymmetry affects only absolute violation rates, not C1 or C2 (\\S\\ref{sec:limitations}). Judges classify each episode outcome on a four-tier severity scale: none, minor, moderate, and critical. Our primary analysis uses moderate-or-above severity as the violation threshold; minor-only deviations (6.6\\% of episodes) are excluded. Including minor violations (overall rate 49.6\\% vs.\\ 41.0\\%) produces even larger effects without changing any directional conclusion.\n21\t\n22\t\\paragraph{Cross-judge calibration.} To quantify potential judge bias, we conducted a dual-judge calibration on 100 stratified episodes (60 from GPT-5.4, 40 from other models; 65\\% ambiguous). Both judges evaluated each episode independently. McNemar's test reveals no systematic detection bias ($p = 0.606$; GPT-4.1-only violations: 9, GPT-5.4-only: 6). Binary agreement is substantial ($\\kappa = 0.653$), with weighted four-tier severity agreement reaching $\\kappa_w = 0.775$. Per-type binary agreement ranges from $\\kappa = 0.385$ (authorization scope) to $0.875$ (incompleteness); severity-level divergence does not affect core conclusions since our primary analyses use binary thresholds (Appendix~\\ref{app:severity}).\n23\t\n24\t\\paragraph{Human validation.} Two annotators (NLP background), blind to LLM labels and condition, labeled 100 stratified episodes on the four-tier scale. Inter-annotator agreement is substantial ($\\kappa = 0.798$, $\\kappa_w = 0.762$). Pooled human--LLM agreement ($\\kappa = 0.733$, $\\kappa_w = 0.807$; per-type breakdown in Appendix~\\ref{app:per_type_agreement}) approaches inter-annotator levels, validating the automated pipeline \\citep{zheng_llm_judge_2024}. Per-type estimates ($n = 32$--$34$ each) validate the pipeline overall but lack power for type-level comparison.\n25\t\n26\t\\subsection{Controls}\n27\t\n28\t\\paragraph{Perturbation control.} To confirm specificity to semantic ambiguity, we run 300 episodes with non-ambiguity perturbations (synonym substitution, clause reordering). The perturbation effect is $\\Delta_{\\text{perturb}} = -0.67$ pp (95\\% CI $[-8.0, 6.67]$, containing zero). Even under the worst-case CI bound (6.67 pp), the residual attributable to ambiguity is $\\geq$27.3 pp. This control tests surface-level perturbation specificity; the information-addition confound specific to incompleteness is addressed separately via logistic regression (Appendix~\\ref{app:confound}).\n29\t\n30\t\\paragraph{Reproducibility.} A replication of 30 clause pairs $\\times$ 2 models $\\times$ 3 replicates yields ICC $= 0.919$ (95\\% CI $[0.892, 0.940]$). ICC is computed within the OpenAI family; cross-provider stability is supported by C1 consistency across all seven models.\n31\t\n32\t\\subsection{Statistical Analysis}\n33\t\n34\tWe use McNemar's test for paired binary outcomes, $\\chi^2$ tests with Cram\\'{e}r's $V$ for omnibus effects, Fisher's exact test for per-type comparisons, and TOST equivalence testing \\citep{lakens_2017} with a primary SESOI of $\\pm 15$ pp. This margin is anchored in a domain-relevant criterion: a type producing $\\geq$15 pp more violations warrants distinct policy handling in deployment, and it exceeds the perturbation control bound (6.67\\,pp) by $>$2$\\times$. We acknowledge margin dependence \\citep{anvari_lakens_2021}: 3/6 mid-tier pairs are equivalent at $\\pm 10$ pp, all six at $\\pm 15$ pp (Table~\\ref{tab:tost_sensitivity}). No field-standard SESOI exists for agent policy compliance; $\\pm 15$\\,pp is a pragmatic threshold exceeding measurement noise by $>$2$\\times$, and we present full sensitivity across seven margins to enable evaluation at any preferred threshold. We complement TOST with a margin-free bootstrap cluster analysis (Ward's method, $B = 10{,}000$; \\S\\ref{sec:results}). We apply Holm--Bonferroni correction within three pre-registered test families (Appendix~\\ref{app:multiple_comparison}). Post-hoc power exceeds 0.99 for both C1 and C2; TOST power at $\\pm 15$ pp is 0.94, dropping to 0.57 at $\\pm 10$ pp.\n35\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e500fb4-a866-4237-83c9-f68ff2bc2b84",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "00ab4499-6c11-464b-aed2-674fe05967da",
+            "sourceToolAssistantUUID": "4e500fb4-a866-4237-83c9-f68ff2bc2b84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T22:40:24.202Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RT8krzNLhKgSeWrkkRW7bT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00ab4499-6c11-464b-aed2-674fe05967da",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e344b062-9810-4b60-8497-583014baac50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T22:40:24.208Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RT8krzNLhKgSeWrkkRW7bT",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe organize results around four analyses of increasing specificity: the binary ambiguity effect (C1), the type hierarchy (C2), the aggregate layer effect (C3), and the model$\\times$type interaction (C4). C1 and C2 constitute our primary claims; C3 is inconclusive; C4 is exploratory but provides the model$\\times$type interaction analysis.\n5\t\n6\t\\subsection{Binary Ambiguity Effect (C1)}\n7\t\n8\tAcross all five models and six types, ambiguous clauses increase violation rates by 34.0 pp (41.0\\% vs.\\ 6.9\\%, OR $= 15.1$, 95\\% CI $[10.78, 21.17]$, $p < 10^{-105}$). All six types individually produce significant increases (all $p < 10^{-5}$), and all five models show large effects ($+25.7$ to $+39.0$ pp, all $p < 10^{-17}$). Perturbation controls confirm specificity to semantic ambiguity ($n = 300$, $\\Delta_{\\text{perturb}} = -0.67$\\,pp, CI containing zero). Clause identity explains 22.4\\% of variance versus 1.0\\% for model identity. A replication on two additional model families (Appendix~\\ref{app:model_expansion}) confirms the effect across seven models ($\\Delta = +20.0$ to $+33.6$\\,pp, both $p < 10^{-6}$); excluding incompleteness, it remains large ($\\Delta = 31.0$\\,pp; Appendix~\\ref{app:sans_incompleteness}).\n9\t\n10\t\\subsection{Type Hierarchy (C2)}\n11\t\n12\t\\begin{table*}[t]\n13\t\\centering\n14\t\\caption{Violation rates (\\%) under ambiguous policy clauses by type and model. $\\Delta$pp denotes the pooled difference between ambiguous and unambiguous conditions across all five models. All per-type differences are significant ($p < 10^{-5}$, Fisher's exact test).}\n15\t\\label{tab:main_results}\n16\t\\small\n17\t\\begin{tabular}{llrrrrrrrr}\n18\t\\toprule\n19\tLayer & Type & Pooled & GPT-5.4 & GPT-4.1 & Claude & Qwen3 & DeepSeek & $\\Delta$pp & $p$ \\\\\n20\t\\midrule\n21\t\\multirow{3}{*}{\\textcolor{speccolor}{Spec.}} & Incompleteness & 53.6 & 46.0 & 58.0 & 48.0 & 62.0 & 54.0 & +49.2 & $<10^{-37}$ \\\\\n22\t & Auth.\\ Scope & 41.6 & 64.0 & 46.0 & 12.0 & 26.0 & 60.0 & +36.0 & $<10^{-22}$ \\\\\n23\t & Cond.\\ Precedence & 36.8 & 34.0 & 36.0 & 36.0 & 40.0 & 38.0 & +30.8 & $<10^{-17}$ \\\\\n24\t\\midrule\n25\t\\multirow{3}{*}{\\textcolor{lingcolor}{Ling.}} & Lexical & 42.8 & 42.0 & 34.0 & 32.0 & 52.0 & 54.0 & +35.2 & $<10^{-20}$ \\\\\n26\t & Scopal & 39.4 & 42.0 & 38.0 & 32.0 & 36.7 & 48.0 & +34.2 & $<10^{-21}$ \\\\\n27\t & Coreferential & 31.6 & 18.0 & 32.0 & 22.0 & 42.0 & 44.0 & +18.7 & $<10^{-6}$ \\\\\n28\t\\midrule\n29\t\\multicolumn{2}{l}{\\textbf{Overall}} & \\textbf{41.0} & 41.0 & 40.7 & 30.3 & 43.1 & 49.7 & \\textbf{+34.0} & $<10^{-105}$ \\\\\n30\t\\bottomrule\n31\t\\end{tabular}\n32\t\\end{table*}\n33\t\n34\tThe six types are not interchangeable. An omnibus $\\chi^2$ test on ambiguous-condition violation rates rejects the uniformity null ($\\chi^2 = 28.02$, $df = 5$, $p = 3.6 \\times 10^{-5}$, Cram\\'{e}r's $V = 0.137$; statistical power $= 0.993$ at the observed effect). TOST equivalence testing at a $\\pm 15$ pp margin reveals a two-tier structure among five types---authorization scope (41.6\\%), lexical (42.8\\%), scopal (39.4\\%), and conditional precedence (36.8\\%) form a mid-tier cluster, with coreferential (31.6\\%) below---while incompleteness (53.6\\%) stands apart as an upper bound---conditional on the confound controls in Appendix~\\ref{app:confound}---whose ranking partly reflects an information-addition confound. Table~\\ref{tab:main_results} and Figure~\\ref{fig:forest_plot} present the full breakdown.\n35\t\n36\tSensitivity analysis across seven margins ($\\pm 5$--$20$ pp; Appendix~\\ref{app:tost}) confirms this structure: the two-tier pattern emerges at $\\pm 12$ pp (5/6 mid-tier pairs equivalent) and stabilizes at $\\pm 15$ pp (6/6). A margin-free bootstrap cluster analysis (Ward's method, $B = 10{,}000$) corroborates: at $k = 2$, incompleteness forms a singleton with the remaining five types in one cluster; at $k = 3$, coreferential additionally separates---consistent with the TOST two-tier pattern (Appendix~\\ref{app:cluster}).\n37\tAt $\\pm 10$\\,pp, only three mid-tier pairs reach equivalence; the incompleteness upper-bound is robust across all margins while mid-tier cohesion is margin-dependent. Cross-model type ranking concordance is moderate (Kendall's $W$; Appendix~\\ref{app:kendall_w}).\n38\t\n39\tIncompleteness is highest in four of five models (rates $\\geq$46\\% in all seven; Appendix~\\ref{app:model_expansion}). Its unambiguous variant adds policy content, so the 49.2\\,pp effect is an upper bound; a confound analysis confirms significance after controlling for information delta (Appendix~\\ref{app:confound}). Coreferential, whose variants are lexically identical, provides a confound-free lower bound at 31.6\\%.\n40\t\n41\t\\begin{figure}[t]\n42\t\\centering\n43\t\\includegraphics[width=\\columnwidth]{figures/fig2_forest_plot.pdf}\n44\t\\caption{Per-type effect sizes ($\\Delta$pp, ambiguous minus unambiguous) with Newcombe 95\\% CIs. All types produce significant increases. A two-tier structure emerges among five types (mid cluster $\\gg$ coreferential), with incompleteness as an upper bound partly reflecting an information-addition confound.}\n45\t\\label{fig:forest_plot}\n46\t\\end{figure}\n47\t\n48\t\\subsection{Layer Effect (C3)}\n49\t\n50\tSpecification-layer types trend higher than linguistic-layer types (44.0\\% vs.\\ 37.9\\%, $p = 0.017$), but C3 is inconclusive: it does not survive Holm--Bonferroni correction, and controlling for token delta reverses the direction. Cross-layer type overlap (conditional precedence 36.8\\% vs.\\ scopal 39.4\\%) further undermines the distinction. The null C3 result does not diminish the taxonomy's operational value: type-level distinctions (C2) hold independently of layer grouping, and the layer distinction retains value as a theoretical organizing principle even without a measurable effect-size gap.\n51\t\n52\t\\subsection{Model $\\times$ Type Interaction (C4) \\emph{[Exploratory]}}\n53\t\\label{sec:c4}\n54\t\n55\t\\begin{figure*}[t]\n56\t\\centering\n57\t\\includegraphics[width=\\textwidth]{figures/fig3_heatmap.pdf}\n58\t\\caption{Violation rates (\\%) by model and ambiguity type under ambiguous conditions ($n = 2{,}997$). Authorization scope varies 52 pp across models (Claude 12\\% to GPT-5.4 64\\%), while incompleteness remains uniformly high (46--62\\%).}\n59\t\\label{fig:heatmap}\n60\t\\end{figure*}\n61\t\n62\tA model main effect is significant ($\\chi^2 = 31.02$, $p = 3.0 \\times 10^{-6}$, $V = 0.102$), with Claude (30.3\\%) substantially less vulnerable than DeepSeek (49.7\\%). Model identity explains only 1.0\\% of total violation variance; the significant interaction ($F(20, 2976) = 1.97$, $p = 0.006$; $\\mathrm{df} = (5{-}1) \\times (6{-}1) = 20$; 2.9\\% of variance; confirmed by logistic regression likelihood ratio test: $\\chi^2(20) = 47.20$, $p = 5.5 \\times 10^{-4}$) concentrates in specific type--model combinations.\n63\t\n64\tFigure~\\ref{fig:heatmap} highlights three suggestive patterns: (1) authorization scope is the \\emph{most model-differentiating type} (52 pp range; Claude 12\\% to GPT-5.4 64\\%), though this type has the lowest judge agreement ($\\kappa = 0.385$; \\S\\ref{sec:limitations}), so absolute rates carry more uncertainty than for other types; (2) incompleteness is a \\emph{consistent vulnerability} (46--62\\%, 16 pp range); (3) conditional precedence is the most \\emph{model-invariant type} (34--40\\%, 6 pp range). The authorization scope ranking (Claude $<$ Qwen3 $<$ GPT-4.1) is stable within the GPT-5.4 judge subset (bootstrap ranking preservation: 99.5\\%, $B = 10{,}000$; pairwise orderings $\\geq$99.5\\%), controlling for judge identity. The 48\\,pp within-judge range far exceeds measurement noise, but given the low cross-judge $\\kappa$, we characterize this pattern as suggestive rather than definitive. Excluding authorization scope, the residual interaction vanishes ($p = 0.97$; Appendix~\\ref{app:c4_sans_auth}), confirming that the C4 interaction concentrates in this single type. Given the low inter-judge agreement on authorization scope ($\\kappa = 0.385$), the 52\\,pp range should be treated as an upper bound with substantial measurement uncertainty rather than a precise estimate.\n65\t\n66\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e344b062-9810-4b60-8497-583014baac50",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "17989e96-9a0d-4463-acc8-b6fc163f3ae8",
+            "sourceToolAssistantUUID": "e344b062-9810-4b60-8497-583014baac50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T22:40:24.422Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015f3TXMAVGEdKMrZmF8pfti",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/analysis.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "17989e96-9a0d-4463-acc8-b6fc163f3ae8",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c4a4c59a-d658-4595-8bea-93d02729bdf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T22:40:24.428Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015f3TXMAVGEdKMrZmF8pfti",
+              "type": "tool_result",
+              "content": "1\t\\section{Error Analysis \\emph{[Exploratory]}}\n2\t\\label{sec:analysis}\n3\t\n4\tThe following failure mode taxonomy emerges empirically from LLM-coded traces, distinct from the input ambiguity taxonomy (\\S\\ref{sec:taxonomy}).\n5\t\n6\tWe analyze 614 violation traces across all five models, coded into five failure modes: unauthorized escalation, assumption-based action, scope misapplication, arbitrary rule selection, and conservative refusal. GPT-5.4 and GPT-4.1 serve as detailed annotation anchors because they span the judge boundary. Inter-coder reliability is substantial (Gwet's AC$_1$ $= 0.62$ \\citep{gwet_2014}; Cohen's $\\kappa = 0.52$ \\citep{cohen_1960}). The gap reflects the prevalence paradox: three categories account for ${\\sim}$90\\% of instances, compressing the $\\kappa$ denominator and yielding artificially low values despite high raw agreement.\n7\t\n8\t\\subsection{Type-Specific Failure Mechanisms}\n9\t\n10\tThe five-model data reveal three mechanistically distinct failure patterns that crosscut the specification/linguistic layer boundary.\n11\t\n12\t\\emph{Structural misparse} (scope misapplication): the agent constructs an incorrect parse and follows it consistently, paralleling garden-path processing \\citep{frazier_rayner_1982,ferreira_good_enough_2002} at a behavioral (not mechanistic) level---e.g., parsing ``items purchased with a coupon or during a sale are final'' as restricting only coupon purchases. This dominates scopal (all 5 models), conditional precedence (all 5), and coreferential (3/5).\n13\t\n14\t\\emph{Information gap-filling} (assumption-based action): the agent fills missing information with plausible but incorrect defaults---e.g., inventing a 30-day return window when none is specified. This dominates incompleteness (3/5) and lexical (3/5).\n15\t\n16\t\\emph{Boundary violation} (unauthorized escalation): the agent exceeds permission boundaries when authorization scope is underspecified---e.g., issuing a refund above its stated limit rather than escalating; 69.2\\% of such violations involve unauthorized escalation with zero conservative refusals ($p < 10^{-4}$, binomial test), revealing systematic permissiveness bias. This dominates authorization scope exclusively (all 5 models).\n17\t\n18\tEach type's dominant failure mode is majority-consistent ($\\geq$3/5 models), with three achieving unanimity. The layer distinction does not hold mechanistically: conditional precedence shares its mode with scopal, while authorization scope follows a unique boundary-violation pattern.\n19\t\n20\t\\subsection{Disambiguation Deficit}\n21\t\n22\tAgents rarely recognize ambiguity. We code \\emph{disambiguation awareness} (acknowledging multiple interpretations, asking clarifying questions, or conditioning on ambiguity) versus \\emph{surface adoption} (proceeding with a single interpretation). Overall disambiguation awareness is 4.6\\%: Claude (11.0\\%) and GPT-4.1 (10.7\\%) show the highest rates, while Qwen3 and DeepSeek show zero across all 278 combined violation traces.\n23\t\n24\tWe term this the \\emph{Disambiguation Deficit}---a default behavioral pattern in uninstructed settings, not an inherent inability. Unlike humans, agents proceed with full confidence in a single interpretation, consistent with \\citet{hu_ambiguity_2025}'s finding that LLM ambiguity reflects missing conceptual representations. Our mitigation experiment ($-$8.5\\,pp; Appendix~\\ref{app:mitigation}) confirms that disambiguation can be elicited, paralleling human good-enough processing \\citep{ferreira_good_enough_2002}.\n25\t\n26\t\\subsection{Systematic Nocuity}\n27\t\n28\tAmong ambiguous clauses, 41.3\\% trigger majority-convergent violations ($\\geq$3/5 models), with 13\\% producing universal violations. This extends \\citet{berry_kamsties_2004}'s framework with \\emph{systematic nocuity}: all models converge on the same incorrect interpretation, invisible in agreement-based evaluation. Incompleteness has the highest universal convergence (24\\%).\n29\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4a4c59a-d658-4595-8bea-93d02729bdf2",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "e430199f-59cf-4ffb-9f86-bfbbf2ade09d",
+            "sourceToolAssistantUUID": "c4a4c59a-d658-4595-8bea-93d02729bdf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T22:40:24.637Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xae7F3X4meeNwPMHmDU1qj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e430199f-59cf-4ffb-9f86-bfbbf2ade09d",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4a2b9756-8d16-4d7e-9d00-757fb791e3b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T22:40:24.643Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xae7F3X4meeNwPMHmDU1qj",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Differential nocuity.}\n5\tBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction and \\citet{willis_nocuous_2008}'s detection work, our results can be interpreted through a \\emph{differential nocuity} lens: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. This generates two testable predictions: (P1) types with explicit decision points should show larger safety-training gains than gap-filling types; (P2) disambiguation channels should reduce violations more for high-deficit types. Our mitigation experiment (Appendix~\\ref{app:mitigation}) is consistent with, though not a formal test of, P1 ($-18.0$\\,pp for authorization scope vs.\\ $-3.4$\\,pp for incompleteness).\n6\t\n7\t\\paragraph{Practical implications.}\n8\tA proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary ambiguity detection but only 0.34 for incompleteness---the highest-risk type is the hardest to detect. With agents exhibiting disambiguation deficit in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.\n9\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a2b9756-8d16-4d7e-9d00-757fb791e3b6",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "366dbe30-5fd4-4ed1-a66d-b83b67b39760",
+            "sourceToolAssistantUUID": "4a2b9756-8d16-4d7e-9d00-757fb791e3b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T22:40:24.844Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SE1ePfavP2zGYGWM9RHsEb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "366dbe30-5fd4-4ed1-a66d-b83b67b39760",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e58b488a-e1df-4edd-9200-fdb45293a4e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T22:40:24.855Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SE1ePfavP2zGYGWM9RHsEb",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\n3\tAmbiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1) across five models, with clause identity explaining 22$\\times$ more variance than model identity. The two-tier type hierarchy replicates across seven models ($\\rho = 0.60$--$0.90$). With agents exhibiting disambiguation deficit in over 89\\% of cases, type-aware auditing and externalized detection are critical for policy-governed deployments.\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e58b488a-e1df-4edd-9200-fdb45293a4e9",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "2b3879e9-e728-464e-9e06-9db5224d11cb",
+            "sourceToolAssistantUUID": "e58b488a-e1df-4edd-9200-fdb45293a4e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T22:40:25.055Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DHr1SF6yfQHa9hKcch3HBz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b3879e9-e728-464e-9e06-9db5224d11cb",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e93ac9b7-57f1-4274-9a18-f825273f912c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T22:40:25.060Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DHr1SF6yfQHa9hKcch3HBz",
+              "type": "tool_result",
+              "content": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\t\\paragraph{Model coverage.} We evaluate seven API-accessible models from six providers (four proprietary, three open-source; two in replication, Appendix~\\ref{app:model_expansion}). Smaller open-source models (7B--70B parameters) may show different vulnerability patterns, and our findings may not generalize to models with fundamentally different training approaches.\n5\t\n6\t\\paragraph{Domain scope.} $\\tau^2$-bench covers retail and airline customer service. Policy ambiguity effects in other domains (healthcare, finance, legal) remain to be tested, though the within-study cross-domain consistency is encouraging: failure mode distributions share the same top-two modes (assumption-based action and unauthorized escalation) across domains, with individual mode base rates differing by up to 12.5 pp, likely reflecting domain policy structure rather than methodological artifacts.\n7\t\n8\t\\paragraph{Synthetic ambiguity.} Our matched-pair design requires synthetic construction of ambiguous variants, which may not capture the full distribution of naturally occurring policy ambiguities. We mitigate this through expert review and a realism validation comparing ambiguous clauses against original $\\tau^2$-bench policy text. Ambiguous clauses are indistinguishable from originals in lexical diversity (TTR, KS $p = 0.89$) and word length ($p = 0.09$). Readability is slightly higher (Flesch--Kincaid $d = 0.29$, $p = 0.006$) and sentence length moderately higher ($d = 0.74$), both reflecting the structural demands of encoding ambiguity in standalone clauses. Across matched pairs, disambiguation preserves readability (Flesch--Kincaid $d = 0.14$, $p = 0.10$), confirming that minimal edits change semantic precision without altering linguistic register.\n9\t\n10\t\\paragraph{Cross-judge asymmetry.} Although our dual-judge calibration (\\S\\ref{sec:method}) shows no systematic bias ($p = 0.606$) and human validation confirms the LLM judge operates within inter-annotator disagreement (human--LLM $\\kappa = 0.733$ vs.\\ inter-annotator $\\kappa = 0.798$), each agent model is evaluated by a single cross-judge, so judge identity remains confounded with model identity. Per-type reliability varies: authorization scope has the lowest judge agreement ($\\kappa = 0.385$), so the absolute violation rates for this type carry more uncertainty than for incompleteness ($\\kappa = 0.875$). Human--LLM agreement shows the same pattern (auth.\\ scope $\\kappa = 0.644$ vs.\\ lexical $\\kappa = 0.904$; Appendix~\\ref{app:per_type_agreement}). Within-judge-group analyses confirm C1 (both $p < 0.001$) but neither subgroup reaches significance for C3 individually (GPT-4.1--judged: $p = 0.059$; GPT-5.4--judged: $p = 0.157$), leaving open the possibility that the pooled C3 result partly reflects judge-level variance.\n11\tCross-provider test-retest reliability remains unmeasured; ICC $= 0.919$ covers only OpenAI models. Cross-model type ranking concordance is moderate (five-model $W = 0.398$, $p = 0.072$; seven-model $W = 0.353$, $p = 0.038$; Appendix~\\ref{app:kendall_w}), with the marginal five-model result reflecting the model$\\times$type interaction documented in C4. Within-judge-group type rankings are reported in Appendix~\\ref{app:judge_group_ranking}.\n12\t\n13\t\\paragraph{Failure mode analysis.} The failure mode taxonomy (\\S\\ref{sec:analysis}) was coded across all five models (614 traces) using LLM-based coders with substantial inter-coder agreement (Gwet's AC$_1$ $= 0.62$; Cohen's $\\kappa = 0.52$). The moderate $\\kappa$ reflects the prevalence paradox rather than systematic disagreement, but per-category reliability for minority categories remains limited (e.g., arbitrary rule selection $\\kappa = 0.29$). Human validation of the coding scheme would further strengthen these findings.\n14\t\n15\t\\paragraph{Incompleteness confound.} As discussed in \\S\\ref{sec:results}, incompleteness resolution necessarily adds policy content, creating an information asymmetry. Our logistic regression controls and the coreferential lower-bound analysis mitigate this confound, but a future design that orthogonalizes information quantity from ambiguity resolution would strengthen causal claims for this type specifically.\n16\t\n17\t\\paragraph{Severity threshold.} Our primary analysis uses moderate-or-above severity. Switching to any-violation (including minor) yields $\\Delta = 38.2$ pp (vs.\\ 34.0 pp), with all four claims (C1--C4) remaining significant. Type rankings under the two thresholds are concordant (Kendall $\\tau = 0.73$), with incompleteness ranking first under both.\n18\t\n19\t\\paragraph{Per-type reliability.} Per-type human--LLM $\\kappa$ estimates (Appendix~\\ref{app:per_type_agreement}) are based on small cell sizes ($n = 32$--$34$), yielding wide confidence intervals (scopal: $[0.00, 1.00]$; coreferential: $[0.00, 0.84]$). These estimates should not be over-interpreted at the individual type level.\n20\t\n21\t\\section*{Data and Code Availability}\n22\tThe 300 clause pairs, evaluation pipeline, analysis scripts, and raw episode traces will be released upon publication at \\url{https://github.com/anonymous/policy-ambiguity-safety}.\n23\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e93ac9b7-57f1-4274-9a18-f825273f912c",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "5b6819ff-35a9-47f5-88ed-f566559ccaa3",
+            "sourceToolAssistantUUID": "e93ac9b7-57f1-4274-9a18-f825273f912c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T22:40:25.262Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S4K6rCUagZQhDN9NN2QNrh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/sections/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b6819ff-35a9-47f5-88ed-f566559ccaa3",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "aa398e36-7b11-4028-8df3-09ce2769ed9f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 36172,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T22:40:25.267Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S4K6rCUagZQhDN9NN2QNrh",
+              "type": "tool_result",
+              "content": "1\t\\section{TOST Equivalence Sensitivity}\n2\t\\label{app:tost}\n3\t\n4\tTable~\\ref{tab:tost_sensitivity} reports the TOST equivalence analysis \\citep{lakens_2017} across seven margins. Three pairs involving incompleteness never reach equivalence even at $\\pm 20$ pp: conditional precedence--incompleteness ($\\Delta = 16.8$ pp), coreferential--incompleteness ($\\Delta = 22.0$ pp), and incompleteness--scopal ($\\Delta = 14.2$ pp).\n5\t\n6\t\\begin{table}[!ht]\n7\t\\centering\n8\t\\small\n9\t\\caption{TOST equivalence sensitivity across margins. Mid-tier = fraction of the six within-cluster pairs (lexical, auth.\\ scope, scopal, cond.\\ prec.) that are equivalent. Inc.\\ and Cor.\\ columns indicate separation from the mid-tier cluster.}\n10\t\\label{tab:tost_sensitivity}\n11\t\\begin{tabular}{lcccc}\n12\t\\toprule\n13\tMargin & Equiv.\\ pairs & Mid-tier & Inc.\\ sep. & Cor.\\ sep. \\\\\n14\t\\midrule\n15\t$\\pm 5$ pp & 0/15 & 0/6 & \\checkmark & \\checkmark \\\\\n16\t$\\pm 8$ pp & 0/15 & 0/6 & \\checkmark & \\checkmark \\\\\n17\t$\\pm 10$ pp & 3/15 & 3/6 & \\checkmark & \\checkmark \\\\\n18\t$\\pm 12$ pp & 5/15 & 5/6 & \\checkmark & \\checkmark \\\\\n19\t$\\pm 15$ pp & 8/15 & 6/6 & \\checkmark & -- \\\\\n20\t$\\pm 18$ pp & 9/15 & 6/6 & \\checkmark & -- \\\\\n21\t$\\pm 20$ pp & 12/15 & 6/6 & -- & -- \\\\\n22\t\\bottomrule\n23\t\\end{tabular}\n24\t\\end{table}\n25\t\n26\t\\section{Mitigation Experiment}\n27\t\\label{app:mitigation}\n28\t\n29\tTable~\\ref{tab:mitigation} reports the per-type, per-model $\\Delta$pp from the disambiguation-instruction mitigation experiment (1,256 treatment episodes across five of six types; coreferential was not tested). Coreferential pairs are excluded from both the mitigation and replication experiments. In mitigation, their ambiguous and unambiguous variants differ only in pronoun resolution, making it impossible to craft targeted disambiguation instructions without revealing the experimental manipulation. In replication, the $\\tau^2$-bench episode design for coreferential ambiguity is tightly coupled to the original five-model configuration; extending it to new model families would require redesigning the episode templates, which falls outside the scope of this confirmatory replication. The treatment appends a type-specific disambiguation instruction to the agent's system prompt. Control rates are the matched 5-type subset from the full study (\\S\\ref{sec:results}).\n30\t\n31\t\\begin{table*}[!ht]\n32\t\\centering\n33\t\\small\n34\t\\caption{Violation rate change ($\\Delta$pp) after adding type-specific disambiguation instructions. Negative values indicate reduction. Baseline violation rates are shown in parentheses. Coreferential was excluded because it was not included in the mitigation experiment.}\n35\t\\label{tab:mitigation}\n36\t\\begin{tabular}{lrrrrrr}\n37\t\\toprule\n38\tType & GPT-5.4 & GPT-4.1 & Claude & Qwen3 & DeepSeek & Pooled \\\\\n39\t\\midrule\n40\tAuth.\\ scope & $-40.0$ (64) & $-26.0$ (46) & $0.0$ (12) & $-14.0$ (26) & $-10.0$ (60) & $-18.0$ (42) \\\\\n41\tLexical & $-16.5$ (42) & $-10.0$ (34) & $-8.0$ (32) & $-8.0$ (52) & $-2.0$ (54) & $-8.9$ (43) \\\\\n42\tCond.\\ prec. & $-4.6$ (34) & $-10.0$ (36) & $-12.0$ (36) & $-2.0$ (40) & $-12.0$ (38) & $-8.1$ (37) \\\\\n43\tScopal & $-6.7$ (42) & $-4.0$ (38) & $-10.0$ (32) & $-2.7$ (37) & $+2.0$ (48) & $-4.3$ (39) \\\\\n44\tIncomp. & $-2.6$ (46) & $-14.0$ (58) & $-2.0$ (48) & $-2.0$ (62) & $+4.0$ (54) & $-3.4$ (54) \\\\\n45\t\\midrule\n46\tOverall & $-14.0$ (46) & $-12.8$ (42) & $-6.4$ (32) & $-5.8$ (43) & $-3.6$ (51) & $-8.5$ (43) \\\\\n47\t\\bottomrule\n48\t\\end{tabular}\n49\t\\end{table*}\n50\t\n51\t\\section{Severity Threshold Comparison}\n52\t\\label{app:severity}\n53\t\n54\tTable~\\ref{tab:severity_comparison} compares all four claims under two violation severity thresholds. The primary analysis uses moderate-or-above; the alternative includes 198 additional minor violations (6.6\\% of episodes).\n55\t\n56\t\\begin{table}[!ht]\n57\t\\centering\n58\t\\small\n59\t\\caption{Claim-level comparison under two severity thresholds.}\n60\t\\label{tab:severity_comparison}\n61\t\\begin{tabular}{llll}\n62\t\\toprule\n63\tClaim & Moderate+ & Any-violation & Concordance \\\\\n64\t\\midrule\n65\tC1 $\\Delta$ & 34.0 pp & 38.2 pp & Both $p < 10^{-50}$ \\\\\n66\tC2 $V$ & 0.137 & 0.169 & Both $p < 10^{-4}$ \\\\\n67\tC3 $\\Delta$ & 6.1 pp & 7.4 pp & Both $p < 0.02$ \\\\\n68\tC4 $V$ & 0.102 & 0.097 & Both $p < 10^{-5}$ \\\\\n69\t\\midrule\n70\t\\multicolumn{2}{l}{Type ranking} & \\multicolumn{2}{l}{Kendall $\\tau = 0.73$, $p = 0.056$} \\\\\n71\t\\bottomrule\n72\t\\end{tabular}\n73\t\\end{table}\n74\t\n75\t\\section{Ambiguity Type Detection Experiment}\n76\t\\label{app:detection}\n77\t\n78\tTo assess whether our taxonomy supports automated identification, we conduct a proof-of-concept detection experiment using GPT-4.1 as a zero-shot classifier. Given a policy clause, the classifier determines (1)~whether it contains ambiguity and (2)~the specific type from a five-type subset of our taxonomy. Coreferential ambiguity is excluded because its variants are lexically identical to their unambiguous counterparts, making surface-level type detection inapplicable.\n79\t\n80\tWe evaluate on 500 policy clauses (250 ambiguous, 250 unambiguous) using stratified 5-fold cross-validation, with clause pairs kept in the same fold to prevent leakage. Table~\\ref{tab:detection} reports per-type results.\n81\t\n82\t\\begin{table}[!ht]\n83\t\\centering\n84\t\\small\n85\t\\caption{Proof-of-concept detection classifier (GPT-4.1, zero-shot, 5-fold CV). Binary ambiguity detection: F1\\,=\\,0.81, FPR\\,=\\,4.4\\%. Six-class macro F1\\,=\\,0.63.}\n86\t\\label{tab:detection}\n87\t\\begin{tabular}{lrrr}\n88\t\\toprule\n89\tType & Prec. & Recall & F1 \\\\\n90\t\\midrule\n91\tCond.\\ precedence & 0.96 & 0.92 & 0.94 \\\\\n92\tScopal & 0.91 & 0.64 & 0.75 \\\\\n93\tAuth.\\ scope & 1.00 & 0.36 & 0.53 \\\\\n94\tLexical & 0.36 & 0.42 & 0.39 \\\\\n95\tIncompleteness & 0.48 & 0.26 & 0.34 \\\\\n96\t\\midrule\n97\tNo ambiguity & 0.76 & 0.96 & 0.85 \\\\\n98\t\\bottomrule\n99\t\\end{tabular}\n100\t\\end{table}\n101\t\n102\tDetection difficulty is inversely correlated with agent vulnerability: incompleteness, the most dangerous type (53.6\\% violation rate, \\S\\ref{sec:results}), is the hardest to detect (F1\\,=\\,0.34), while conditional precedence (36.8\\% violation rate) is the easiest (F1\\,=\\,0.94). This asymmetry arises because types with overt linguistic signals (e.g., conditional structures) are readily detectable but only moderately dangerous, whereas missing information leaves no surface trace for a classifier to exploit.\n103\t\n104\tThe primary confusion pathway is authorization scope $\\to$ lexical (48\\% of authorization scope clauses): authorization boundary clauses frequently contain polysemous terms, causing the classifier to attribute the ambiguity to word-level rather than permission-level underspecification.\n105\t\n106\tThese results position automated detection as a viable first-pass screening tool (binary F1\\,=\\,0.81) but an unreliable type classifier, particularly for the highest-risk types. The classifier was evaluated on synthetic clauses derived from $\\tau^2$-bench; generalization to naturally occurring policy documents requires further validation.\n107\t\n108\t\\section{Replication on Additional Model Families}\n109\t\\label{app:model_expansion}\n110\t\n111\tTo test cross-architecture generalization beyond the five main-study models, we replicate the core analyses on two additional model families: Gemini-2.5-Flash (Google) and LLaMA-4-Scout (Meta), each with 250 clause pairs $\\times$ 2 conditions $= 500$ episodes judged by GPT-5.4. These models represent two additional providers not in the original study. We exclude coreferential ambiguity because its disambiguation relies on benchmark-specific assertion structure rather than clause-level text changes (\\S\\ref{sec:taxonomy}), limiting cross-benchmark generalizability. Tables~\\ref{tab:expansion_overall} and~\\ref{tab:expansion_pertype} report the results.\n112\t\n113\t\\begin{table}[!ht]\n114\t\\centering\n115\t\\small\n116\t\\caption{Replication results on two additional model families. C2 rank $\\rho$ is computed against the original five-model pooled type ranking.}\n117\t\\label{tab:expansion_overall}\n118\t\\resizebox{\\columnwidth}{!}{%\n119\t\\begin{tabular}{lrrrrl}\n120\t\\toprule\n121\tModel & Amb.\\ (\\%) & Unamb.\\ (\\%) & $\\Delta$pp & $p$ & C2 $\\rho$ \\\\\n122\t\\midrule\n123\tGemini-2.5-Flash & 37.6 & 4.0 & +33.6 & $<10^{-21}$ & 0.60 \\\\\n124\tLLaMA-4-Scout & 37.6 & 17.6 & +20.0 & $<10^{-6}$ & 0.90$^*$ \\\\\n125\t\\bottomrule\n126\t\\end{tabular}}\n127\t\\end{table}\n128\t\n129\t\\begin{table}[!ht]\n130\t\\centering\n131\t\\small\n132\t\\caption{Per-type ambiguous violation rates (\\%) for replication models vs.\\ original five-model pooled rates.}\n133\t\\label{tab:expansion_pertype}\n134\t\\begin{tabular}{lrrr}\n135\t\\toprule\n136\tType & Gemini & LLaMA & Orig.\\ pooled \\\\\n137\t\\midrule\n138\tIncompleteness & 48 & 52 & 53.6 \\\\\n139\tLexical & 50 & 38 & 42.8 \\\\\n140\tAuth.\\ scope & 22 & 40 & 41.6 \\\\\n141\tScopal & 34 & 30 & 39.4 \\\\\n142\tCond.\\ prec. & 34 & 28 & 36.8 \\\\\n143\t\\bottomrule\n144\t\\end{tabular}\n145\t\\end{table}\n146\t\n147\t\\paragraph{C1 replication.} Both models show significant binary ambiguity effects (Gemini $\\Delta = +33.6$\\,pp, OR $= 14.5$, $p < 10^{-21}$; LLaMA $\\Delta = +20.0$\\,pp, OR $= 2.8$, $p < 10^{-6}$), extending C1 to seven models across six providers. Gemini's effect size falls within the original five-model range (+25.7 to +39.0\\,pp). LLaMA's smaller effect and lower OR are attributable to an elevated unambiguous baseline (17.6\\% vs.\\ $<$10\\% for all other models), suggesting weaker baseline instruction following that compresses the ambiguity-specific delta. LLaMA 3.3's elevated unambiguous baseline (17.6\\% vs.\\ 7.3--12.7\\% for main-study models) likely reflects weaker baseline instruction following, suggesting that absolute violation rates are model-dependent even absent ambiguity.\n148\t\n149\t\\paragraph{C2 replication.} Both models' type rankings correlate positively with the original pooled ranking. LLaMA shows a strong and significant correlation ($\\rho = 0.90$, $p = 0.037$), with incompleteness as the top type and the bottom three types matching the reference order exactly. Gemini shows a moderate positive correlation ($\\rho = 0.60$, $p = 0.285$), with the top two types (lexical and incompleteness) swapped relative to the reference. Incompleteness remains $\\geq$46\\% in all seven models (range: 46--62\\%), confirming its status as a consistent vulnerability independent of architecture or provider. $^*$Significant at $\\alpha = 0.05$.\n150\t\n151\t\\section{Incompleteness Confound Analysis}\n152\t\\label{app:confound}\n153\t\n154\tIncompleteness is structurally distinct from the other five types: its unambiguous variant necessarily adds policy content (specifying what was previously missing) rather than merely resolving an existing ambiguity. This raises a confound: the 49.2 pp effect may partly reflect the information addition rather than ambiguity resolution per se.\n155\t\n156\tA logistic regression controlling for per-clause information delta (token count difference between ambiguous and unambiguous variants) confirms that incompleteness remains individually significant ($p = 0.022$, coefficient change $< 8\\%$ relative to the uncontrolled model). Coreferential ambiguity, whose variants are lexically identical (information delta $= 0$), provides a confound-free lower bound: its 31.6\\% violation rate and 18.7 pp effect are entirely attributable to semantic ambiguity. Token count is a coarse proxy for information content; finer-grained semantic measures (e.g., propositional content analysis) may reveal different confound structures.\n157\t\n158\tPer-type token deltas between unambiguous and ambiguous variants range from 17.5 words (conditional precedence) to 36.1 words (authorization scope). Notably, authorization scope has the largest delta (36.1) yet lower violation rates than incompleteness (delta 34.6), providing counter-evidence against a pure information-quantity explanation: if token delta drove violations, authorization scope should exceed incompleteness. Coreferential pairs have zero token delta (lexically identical variants), providing a confound-free baseline.\n159\t\n160\tExcluding incompleteness entirely, the pooled ambiguity effect remains large and significant ($\\Delta = 31.0$\\,pp, OR $= 7.75$, $p < 10^{-75}$), confirming that C1 does not depend on any single type.\n161\t\n162\tExcluding incompleteness, the remaining five types show a non-significant omnibus difference ($\\chi^2$, $p = 0.079$), but pairwise contrasts with Holm--Bonferroni correction reveal a two-tier pattern: authorization scope ($p_{\\text{adj}} = 0.039$) and lexical ($p_{\\text{adj}} = 0.025$) remain significantly above coreferential, while the four remaining pairs are equivalent at the $\\pm 15$ pp margin.\n163\t\n164\t\\section{Per-Type Judge Reliability}\n165\t\\label{app:per_type_agreement}\n166\t\n167\tTable~\\ref{tab:per_type_agreement} reports per-type human--LLM binary agreement ($\\kappa$) on the 100-episode stratified sample (200 human--LLM rating pairs: two annotators $\\times$ corresponding LLM judge). Per-type samples range from 32 to 34 episodes, yielding wide confidence intervals.\n168\t\n169\t\\begin{table}[!ht]\n170\t\\centering\n171\t\\small\n172\t\\caption{Per-type human--LLM binary agreement (moderate-or-above threshold). CI: bootstrap 95\\% confidence interval.}\n173\t\\label{tab:per_type_agreement}\n174\t\\begin{tabular}{lrrl}\n175\t\\toprule\n176\tType & $n$ & $\\kappa$ & 95\\% CI \\\\\n177\t\\midrule\n178\tLexical & 32 & 0.904 & $[0.64, 1.00]$ \\\\\n179\tCond.\\ precedence & 34 & 0.837 & $[0.53, 1.00]$ \\\\\n180\tIncompleteness & 34 & 0.795 & $[0.56, 1.00]$ \\\\\n181\tAuth.\\ scope & 34 & 0.644 & $[0.35, 0.91]$ \\\\\n182\tScopal & 32 & 0.636 & $[0.00, 1.00]$ \\\\\n183\tCoreferential & 34 & 0.479 & $[0.00, 0.84]$ \\\\\n184\t\\midrule\n185\tOverall (pooled) & 200 & 0.735 & $[0.62, 0.85]$ \\\\\n186\t\\bottomrule\n187\t\\end{tabular}\n188\t\\end{table}\n189\t\n190\tAuthorization scope has the lowest human--LLM $\\kappa$ among the four substantively high-rate types (0.644), consistent with its lowest cross-judge $\\kappa$ (0.385, \\S\\ref{sec:method}). Both reflect the inherent difficulty of permission-boundary judgments rather than systematic judge failure: raw agreement is still 85.3\\%, and the 52\\,pp within-judge model range (\\S\\ref{sec:c4}) far exceeds measurement noise. Coreferential's low $\\kappa$ (0.479) reflects the prevalence paradox---its violation base rate is 8.8\\%, compressing the $\\kappa$ denominator despite 85.3\\% raw agreement. Per-type estimates are imprecise due to small cell sizes ($n = 32$--$34$); type-level ranking should not be over-interpreted.\n191\t\n192\t\\section{Information Delta Logistic Regression}\n193\t\\label{app:regression}\n194\t\n195\tTable~\\ref{tab:logistic_regression} reports the full logistic regression controlling for token-count difference between ambiguous and unambiguous variants (information delta). The reference category is authorization scope (type) and Claude Sonnet 4.6 (model). Token delta is significant ($p < 0.001$) but small in magnitude (OR $= 1.022$ per token), indicating that information quantity partially confounds the type effect. Critically, incompleteness remains individually significant ($p = 0.018$) after controlling for token delta, with a coefficient change of $<$8\\% relative to the model without the covariate. The slightly lower $p$-value compared to the univariate confound control in Appendix~\\ref{app:confound} ($p = 0.022$) reflects the additional variance absorbed by model covariates in the full specification.\n196\t\n197\t\\begin{table}[!ht]\n198\t\\centering\n199\t\\small\n200\t\\caption{Logistic regression predicting violation (moderate+). Reference: authorization scope, Claude Sonnet 4.6. $N = 2{,}997$, pseudo-$R^2 = 0.175$.}\n201\t\\label{tab:logistic_regression}\n202\t\\resizebox{\\columnwidth}{!}{%\n203\t\\begin{tabular}{lrrrr}\n204\t\\toprule\n205\tPredictor & Coef. & SE & $z$ & $p$ \\\\\n206\t\\midrule\n207\tIntercept & $-3.914$ & 0.298 & $-13.12$ & $<10^{-4}$ \\\\\n208\tCondition (amb.) & $2.278$ & 0.116 & $19.65$ & $<10^{-4}$ \\\\\n209\tToken delta & $0.022$ & 0.006 & $3.49$ & $<0.001$ \\\\\n210\t\\midrule\n211\tCond.\\ prec. & $0.251$ & 0.202 & $1.24$ & $0.215$ \\\\\n212\tCoreferential & $0.528$ & 0.244 & $2.17$ & $0.030$ \\\\\n213\tIncompleteness & $0.379$ & 0.161 & $2.36$ & $0.018$ \\\\\n214\tLexical & $0.336$ & 0.176 & $1.91$ & $0.056$ \\\\\n215\tScopal & $0.311$ & 0.202 & $1.54$ & $0.123$ \\\\\n216\t\\midrule\n217\tDeepSeek-V3 & $0.854$ & 0.153 & $5.59$ & $<10^{-4}$ \\\\\n218\tGPT-4.1 & $0.423$ & 0.156 & $2.71$ & $0.007$ \\\\\n219\tGPT-5.4 & $0.321$ & 0.158 & $2.04$ & $0.042$ \\\\\n220\tQwen3-235B & $0.656$ & 0.154 & $4.25$ & $<10^{-4}$ \\\\\n221\t\\bottomrule\n222\t\\end{tabular}}\n223\t\\end{table}\n224\t\n225\t\\section{Bootstrap Cluster Analysis}\n226\t\\label{app:cluster}\n227\t\n228\tTo complement the margin-dependent TOST analysis, we apply Ward's hierarchical clustering to the six observed type-level violation rates, bootstrapped $B = 10{,}000$ times by resampling clause pairs within each type. At $k = 2$, incompleteness (53.6\\%) forms a singleton cluster, with the remaining five types (31.6--42.8\\%) in the second cluster, reproducing in 34.3\\% of bootstrap samples---the most frequent partition but not overwhelmingly stable, reflecting that the 10.8\\,pp gap between incompleteness and lexical is moderate relative to within-type variance. At $k = 3$, coreferential (31.6\\%) additionally separates, consistent with the TOST two-tier structure. The AU $p$-value for the incompleteness singleton is 0.47, confirming that while the singleton is the modal partition, the boundary is not sharp.\n229\t\n230\t\\section{Clause-Level Variance}\n231\t\\label{app:clause_variance}\n232\t\n233\tLeave-one-out analysis confirms that no single clause drives any type-level rate: maximum LOO shift is 1.4\\,pp (coreferential), and all types have LOO ranges $\\leq$2.1\\,pp. Within-type coefficients of variation (CV) range from 0.69 (incompleteness) to 1.03 (coreferential), confirming high clause-level heterogeneity. This heterogeneity is expected---clause wording determines the specific ambiguity instance---and is controlled by the matched-pair design, which compares each clause's ambiguous and unambiguous variants rather than relying on type-level means.\n234\t\n235\t\\section{Multiple Comparison Correction}\n236\t\\label{app:multiple_comparison}\n237\t\n238\tWe apply Holm--Bonferroni correction within three test families: (i) per-type$\\times$model McNemar tests for C1 (30 tests), (ii) TOST pairwise equivalence for C2 (15 pairs), and (iii) model$\\times$type interaction for C4 (1 omnibus + post-hoc).\n239\t\n240\t\\section{DRIP-R Category Mapping}\n241\t\\label{app:drip_mapping}\n242\t\n243\tDRIP-R's five RE ambiguity categories---attachment, coordination, anaphora, scope, and ellipsis---overlap partially with our six-type taxonomy: scopal ambiguity and coreferential ambiguity correspond directly, while our remaining four types (lexical, authorization scope, incompleteness, conditional precedence) address policy-specific phenomena outside DRIP-R's RE scope.\n244\t\n245\t\\section{Cross-Model Type Ranking Concordance}\n246\t\\label{app:kendall_w}\n247\t\n248\tTo quantify agreement among models on the relative difficulty of ambiguity types, we compute Kendall's coefficient of concordance $W$. For the five main-study models across all six types, $W = 0.398$ ($\\chi^2(5) = 9.94$, $p = 0.072$), indicating moderate but non-significant concordance. Including the two replication models (Gemini 2.5 Flash and LLaMA 4 Scout) over five shared types (excluding coreferential, which was not included in replication), concordance reaches significance: $W = 0.353$ ($\\chi^2(4) = 9.89$, $p = 0.038$). In both analyses, incompleteness consistently ranks highest (mean rank 5.5 / 4.5), while coreferential (2.0, five-model only) and conditional precedence (2.8 / 2.1) rank lowest, supporting the two-tier structure identified in \\S\\ref{sec:results}.\n249\t\n250\t\\section{C4 Interaction Without Authorization Scope}\n251\t\\label{app:c4_sans_auth}\n252\t\n253\tExcluding authorization scope, the residual model$\\times$type interaction vanishes ($\\chi^2(16) = 7.13$, $p = 0.97$; logistic regression LR test: $\\chi^2(16) = 9.22$, $p = 0.90$), confirming that the C4 interaction is driven entirely by authorization scope---the type most plausibly targeted by differential safety training.\n254\t\n255\t\\section{Per-Type Clause Length Analysis}\n256\t\\label{app:clause_length}\n257\t\n258\tUnambiguous clauses are systematically longer than their ambiguous counterparts across all types (Table~\\ref{tab:token_delta}), reflecting the additional specification needed for disambiguation. Authorization scope ($+36.1$ words) and incompleteness ($+34.6$ words) show the largest deltas, consistent with the observation that resolving these types requires substantial additional content. Notably, authorization scope has the largest delta ($+36.1$) yet lower violation rates than incompleteness ($+34.6$ delta), providing counter-evidence against a pure information-quantity explanation of incompleteness's upper-bound status. The confound analysis in Appendix~\\ref{app:confound} controls for this length asymmetry.\n259\t\n260\t\\begin{table}[h]\n261\t\\centering\n262\t\\small\n263\t\\resizebox{\\columnwidth}{!}{%\n264\t\\begin{tabular}{lrrr}\n265\t\\toprule\n266\tType & Amb.\\ (mean $\\pm$ SD) & Unamb.\\ (mean $\\pm$ SD) & $\\Delta$ \\\\\n267\t\\midrule\n268\tauth\\_scope & $19.0 \\pm 3.3$ & $55.0 \\pm 8.1$ & $+36.1$ \\\\\n269\tincompleteness & $12.2 \\pm 2.4$ & $46.8 \\pm 9.1$ & $+34.6$ \\\\\n270\tlexical & $11.4 \\pm 2.3$ & $37.0 \\pm 5.8$ & $+25.7$ \\\\\n271\tscopal & $15.7 \\pm 3.0$ & $33.5 \\pm 8.5$ & $+17.8$ \\\\\n272\tcond\\_prec & $41.1 \\pm 7.0$ & $58.6 \\pm 8.6$ & $+17.5$ \\\\\n273\t\\bottomrule\n274\t\\end{tabular}}\n275\t\\caption{Per-type clause length (words). Coreferential excluded (identical surface forms).}\n276\t\\label{tab:token_delta}\n277\t\\end{table}\n278\t\n279\t\\section{Within-Judge-Group Type Rankings}\n280\t\\label{app:judge_group_ranking}\n281\t\n282\tType rankings show near-zero correlation across judge groups (Spearman $\\rho = -0.03$, $p = 0.96$). This is driven by authorization scope's rank reversal (rank 1 in GPT-4.1-judged group vs.\\ rank 6 in GPT-5.4-judged group), which reflects agent composition: the GPT-4.1-judged group contains the two agents most vulnerable to authorization scope (DeepSeek 60\\%, GPT-5.4 64\\%), while the GPT-5.4-judged group contains the least vulnerable (Claude 12\\%). Incompleteness ranks 1--2 in both groups, supporting its stability independent of judge identity. This finding further motivates treating authorization scope results with caution (\\S\\ref{sec:limitations}).\n283\t\n284\t\\section{Binary Effect Excluding Incompleteness}\n285\t\\label{app:sans_incompleteness}\n286\t\n287\tExcluding incompleteness---the highest-violation type---the pooled ambiguous violation rate remains significantly elevated (38.4\\% vs.\\ 7.5\\% unambiguous; $\\Delta = 31.0$\\,pp, OR $= 7.75$, $\\chi^2 = 338.8$, $p < 10^{-75}$). The binary ambiguity effect (C1) is therefore not driven by incompleteness alone.\n288\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa398e36-7b11-4028-8df3-09ce2769ed9f",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "49645d1f-7071-4b5b-a53c-7a819874d4b2",
+            "sourceToolAssistantUUID": "aa398e36-7b11-4028-8df3-09ce2769ed9f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T22:40:25.504Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MfaYGCB8NTiMf8chK3gTM1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49645d1f-7071-4b5b-a53c-7a819874d4b2",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX2ynvNuxiGnfQsCdQe",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8ec824f7-ffb7-4a75-9852-94f418c9cb03",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015M2g8gp5G8yzTt1gganJDe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 36172,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 944,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 36172
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 944,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 36172,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 36172,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T22:40:25.508Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MfaYGCB8NTiMf8chK3gTM1",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{graphicx}\n9\t\\usepackage{booktabs}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\\usepackage{multirow}\n13\t\\usepackage{xcolor}\n14\t\\usepackage{subcaption}\n15\t\n16\t\\definecolor{speccolor}{HTML}{C44E52}\n17\t\\definecolor{lingcolor}{HTML}{4C72B0}\n18\t\n19\t\\title{Not All Policy Ambiguity Is Equal: Type-Specific Safety Risks for LLM Agents}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\input{sections/abstract}\n27\t\\input{sections/introduction}\n28\t\\input{sections/related_work}\n29\t\\input{sections/taxonomy}\n30\t\\input{sections/method}\n31\t\\input{sections/experiments}\n32\t\\input{sections/analysis}\n33\t\\input{sections/discussion}\n34\t\\input{sections/conclusion}\n35\t\\input{sections/limitations}\n36\t\n37\t\\bibliography{references}\n38\t\n39\t\\appendix\n40\t\\input{sections/appendix}\n41\t\n42\t\\end{document}\n43\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ec824f7-ffb7-4a75-9852-94f418c9cb03",
+            "isSidechain": true,
+            "promptId": "97940243-dcdb-4134-8cbb-a2e35e11a449",
+            "agentId": "aec8d190c3a37fd6c",
+            "type": "user",
+            "uuid": "d85373fa-86f1-4ee8-b756-ae49778e026e",
+            "sourceToolAssistantUUID": "8ec824f7-ffb7-4a75-9852-94f418c9cb03",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T22:42:42.113Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete contents of all 12 LaTeX files:\n\n## 1. abstract.tex\n```\n\\begin{abstract}\nLLM-based agents operate under natural-language policy specifications that inevitably contain ambiguity, yet the causal relationship between ambiguity type and safety violations remains unmeasured. We present a matched-pair study on $\\tau^2$-bench with 300 clause pairs spanning a six-type ambiguity taxonomy, evaluated across five models (2,997 episodes). Three findings emerge. First, ambiguous clauses increase violation rates by 34.0 percentage points (OR $= 15.1$), with a perturbation control supporting ambiguity-specific causation. Second, incompleteness consistently ranks highest (46--62\\% across seven models); the remaining five types cluster into a lower tier at the $\\pm$15\\,pp margin, though tier cohesion is margin-dependent. Third, authorization scope shows the widest but least reliably measured cross-model range (52\\,pp; $\\kappa = 0.385$, \\S Limitations), suggesting that safety training may differentially mitigate specific ambiguity types. Agents show fewer than 11\\% disambiguation awareness, adopting surface interpretations without flagging uncertainty. These results motivate type-aware policy auditing and externalized ambiguity detection for policy-governed agent deployments.\n\\end{abstract}\n```\n\n## 2. introduction.tex\n```\n\\section{Introduction}\n\\label{sec:introduction}\n\nA customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \\$200.\n\nLLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \\citet{berry_kamsties_2004} distinguish between \\emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \\emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.\n\nLLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \\emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \\citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \\citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n\\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}\n\\label{fig:overview}\n\\end{figure*}\n\nWe address this gap with a matched-pair causal study on $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers (linguistic and specification, \\S\\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.\n\nOur results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), but that type primarily determines severity, with a smaller but significant model$\\times$type interaction (2.9\\% of variance). Incompleteness is consistently high (46--62\\% violation rate across all models), while authorization scope shows the widest but least reliably measured cross-model range (52\\,pp; $\\kappa = 0.385$, \\S Limitations), suggesting that safety training may differentially mitigate specific ambiguity types. Agents exhibit disambiguation deficit in over 89\\% of cases, with fewer than 11\\% showing any disambiguation awareness.\n\nOur contributions are: (1)~the first causal quantification of policy ambiguity's safety impact via matched-pair design with perturbation control (\\S\\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with type identity explaining 22$\\times$ more variance than model identity (\\S\\ref{sec:results}); and (3)~a failure mode taxonomy with the empirical phenomenon of \\emph{Disambiguation Deficit} ($<$11\\% awareness; \\S\\ref{sec:analysis}).\n```\n\n## 3. related_work.tex\n```\n\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Ambiguity in NLP and requirements engineering.}\nAmbiguity has been studied extensively in both computational linguistics and software engineering. Word sense disambiguation \\citep{navigli_wsd_2009} addresses lexical ambiguity at the token level; our lexical type extends this to policy-specific polysemy. \\citet{li_ambiguity_taxonomy_2024} propose an 11-type NLP taxonomy covering syntactic, semantic, and pragmatic ambiguity, from which we draw our linguistic-layer types. In requirements engineering (RE), \\citet{massey_ambiguity_re_2014} classify six ambiguity types in regulatory texts, and \\citet{berry_kamsties_2004} introduce the distinction between nocuous ambiguity (where stakeholders diverge on interpretation) and innocuous ambiguity (where they converge). Computational detection of nocuous ambiguity has progressed from heuristic methods \\citep{chantree_2006,willis_nocuous_2008} through NLP-based cross-domain detectors \\citep{ferrari_ambiguity_2019,ferrari_defects_2018} to transformer-based approaches for anaphoric ambiguity \\citep{ezzini_taphsir_2022,ezzini_anaphoric_2022}. \\citet{zhao_nlp4re_2021} survey the broader NLP4RE landscape. Our work extends Berry and Kamsties' framework to LLM agents, where the absence of shared organizational context makes previously innocuous ambiguity nocuous.\n\n\\paragraph{Psycholinguistics of ambiguity processing.}\n\\citet{ferreira_good_enough_2002} show that human comprehenders build shallow, ``good-enough'' representations rather than full parses, paralleling our observation that LLM agents adopt surface interpretations. \\citet{frazier_rayner_1982} demonstrate early commitment to a single parse; \\citet{li_garden_path_llm_2024} provide direct evidence that LLMs exhibit analogous garden-path effects. \\citet{liu_ambiguity_2023} demonstrate that language models fail to represent ambiguity, collapsing multiple interpretations into a single output. These findings ground our \\emph{Disambiguation Deficit} result: agents process ambiguous input without meta-cognitive awareness but, unlike humans, lack social channels to recover. \\citet{suri_structured_2025} show that structured uncertainty estimation improves coverage by 7--39\\%, while \\citet{sehwag_aspi_2026} demonstrate that clarification-seeking introduces prompt injection vulnerabilities---a tension for disambiguation channel design.\n\n\\paragraph{Agent safety evaluation.}\nThe agent safety evaluation landscape includes benchmarks for risk awareness \\citep{rjudge_2024}, tool-use safety \\citep{toolemu_2024}, indirect prompt injection \\citep{injecagent_2024}, safe task planning \\citep{yin_safeagentbench_2025}, and policy-invisible violations \\citep{phantompolicy_2026}. \\citet{tamkin_evaluating_2023} evaluate how language models navigate policy-governed decisions, \\citet{shieldagent_2025} extract formal safety rules from policy documents, and AgentAuditor \\citep{agentauditor_2025} achieves human-level safety evaluation. Our work differs by focusing on the \\emph{source specification} rather than the agent's execution: we measure how ambiguity in the policy itself causes safety violations, complementing work that assumes clean policies.\n\n\\paragraph{Policy specification for agents.}\nDRIP-R \\citep{drip_r_2026} is the closest concurrent work: it benchmarks 400 policy-ambiguous retail scenarios across five RE ambiguity types, measuring decision quality rather than safety violations. Our work differs in three respects: (1) our matched-pair design establishes causality rather than correlating ambiguity presence with outcomes; (2) we measure safety violations rather than decision quality, enabling failure mechanism analysis; (3) our two-layer taxonomy adds linguistic-layer types, and we quantify the model$\\times$type interaction. We map DRIP-R's five RE ambiguity categories to our six-type taxonomy in Appendix~\\ref{app:drip_mapping}. PolicyBank \\citep{policybank_2026} studies iterative policy refinement, closing 82\\% of the gap to a human oracle. AgentPex \\citep{agentpex_2026} detects procedural violations in agentic traces, finding that 83\\% of perfect-outcome traces contain violations. MANTRA \\citep{mantra_2026} synthesizes SMT-validated compliance benchmarks from procedural manuals. $\\tau$-bench \\citep{tau_bench_2024} and its successor $\\tau^2$-bench \\citep{tau2_bench_2025} provide the conversational agent evaluation platforms. \n```\n\n## 4. taxonomy.tex\n```\n\\section{Ambiguity Taxonomy}\n\\label{sec:taxonomy}\n\nWe adopt an operational definition of ambiguity following \\citet{wasow_ambiguity_2005}: a policy clause is ambiguous when it admits multiple distinct interpretations available to a competent reader, including cases of vagueness where the boundary between interpretations is gradient rather than discrete \\citep{kennedy_vagueness_2007}.\n\nOur taxonomy comprises six types organized into two layers, drawing on \\citet{li_ambiguity_taxonomy_2024}'s NLP taxonomy (11 types), \\citet{massey_ambiguity_re_2014}'s requirements engineering taxonomy (6 types), and the concurrent DRIP-R benchmark \\citep{drip_r_2026} (5 types). We select types based on two criteria: frequency in operational policy documents (assessed via manual audit of $\\tau^2$-bench policies) and theoretical distinctiveness (each type maps to a different resolution mechanism).\n\n\\paragraph{Linguistic layer.} These types operate at the syntactic or semantic level and can, in principle, be resolved by parsing or contextual cues within the text.\n\\begin{itemize}\n\\item \\textbf{Scopal}: quantifier, negation, or modal scope interactions (e.g., ``all items may not be returned'' admits universal-negation and negation-of-universal readings).\n\\item \\textbf{Lexical}: polysemy or homonymy (e.g., ``charge'' as financial cost vs.\\ penalty; ``party'' as individual vs.\\ group).\n\\item \\textbf{Coreferential}: unclear pronoun or noun-phrase reference (e.g., ``the agent should verify the customer's identity before processing their refund request, which must be approved by a supervisor'' where ``which'' could refer to the verification or the refund).\n\\end{itemize}\n\n\\paragraph{Specification layer.} These types arise from pragmatic or discourse-level gaps that require domain knowledge or organizational context to resolve.\n\\begin{itemize}\n\\item \\textbf{Authorization scope}: vague permission or role boundaries (e.g., ``authorized personnel may issue refunds'' without specifying which personnel or under what conditions).\n\\item \\textbf{Incompleteness}: missing conditions, exceptions, or boundary cases (e.g., a return policy that specifies the return window but not what happens when the item is damaged). (Note: unlike other types where the unambiguous variant rephrases existing content, incompleteness resolution requires adding new policy content, a confound we address in \\S\\ref{sec:results}.)\n\\item \\textbf{Conditional precedence}: conflicting or overlapping rules without priority ordering (e.g., ``premium customers receive free shipping'' and ``orders under \\$50 require a shipping fee'' without specifying which rule takes precedence for a premium customer with a \\$30 order).\n\\end{itemize}\n\nThe layer distinction reflects the hypothesis that linguistic ambiguity can be partially resolved through tool responses, user context, or world knowledge, while specification ambiguity has no external resolution channel available to the agent, forcing it to guess. We test this hypothesis empirically in \\S\\ref{sec:results} and \\S\\ref{sec:analysis}. The linguistic/specification layer distinction is a theoretical organizing principle; \\S\\ref{sec:results} tests whether it corresponds to an empirical grouping.\n\n\\paragraph{Scope of `ambiguity.'}\nOur taxonomy uses \\emph{ambiguity} broadly to encompass policy specification features that admit multiple operationally distinct interpretations by an LLM agent. Authorization scope overlaps with \\emph{vagueness} \\citep{kennedy_vagueness_2007}, incompleteness with \\emph{information absence} (resolution requires adding content), and conditional precedence with \\emph{normative conflict} between individually unambiguous rules. \\citet{dalpiaz_pinpointing_2018} show that ambiguity and incompleteness frequently co-occur in requirements specifications, supporting their unified treatment. We adopt this inclusive definition because LLM agents process all six types identically---committing to a single interpretation without flagging uncertainty---and the resulting safety violations are behaviorally indistinguishable (\\S\\ref{sec:results}).\n```\n\n## 5. method.tex\n```\n\\section{Method}\n\\label{sec:method}\n\n\\subsection{Experimental Platform}\n\nWe conduct all experiments on the original release of $\\tau^2$-bench \\citep{tau2_bench_2025}, a dual-control conversational agent benchmark spanning retail and airline customer service domains. $\\tau^2$-bench provides natural-language policy documents, tool APIs, and multi-turn user interactions with ground-truth evaluation via assertion checking. Its policy injection mechanism allows us to replace individual policy clauses while preserving the surrounding context, enabling controlled ambiguity manipulation.\n\n\\subsection{Matched-Pair Design}\n\nFor each of the six ambiguity types, we construct 50 \\emph{clause pairs}: an ambiguous variant and a matched unambiguous variant that conveys the same intended policy but resolves the ambiguity. Pairs are minimal edits: the unambiguous variant adds only the information necessary to eliminate the target ambiguity (e.g., for scopal ambiguity, replacing ``items may be returned within 30 days'' with ``standard items may be returned within 30 days; customized items are final sale''). This yields 300 clause pairs $\\times$ 2 conditions $\\times$ 5 models $= 2{,}997$ episodes (3 episodes lost to API errors in one Qwen3 batch).\n\nClause pairs are generated through a template-based pipeline and reviewed by two independent annotators (both with NLP background) to ensure (1) the ambiguous variant contains exactly one instance of the target type, (2) the unambiguous variant resolves it without changing policy scope, and (3) the ambiguity is plausibly natural. Annotators independently verified type assignments with a 96\\% initial agreement (287/300); the 13 disagreements were resolved by discussion, yielding 100\\% final consensus. A post-hoc realism validation confirms linguistic consistency with original $\\tau^2$-bench policy text (\\S\\ref{sec:limitations}).\n\n\\subsection{Models}\n\nWe evaluate five models spanning four providers and two architecture families: GPT-5.4 and GPT-4.1 (OpenAI, proprietary dense), Claude Sonnet 4.6 (Anthropic, proprietary dense), Qwen3-235B (Alibaba, open-source Mixture-of-Experts), and DeepSeek-V3 (DeepSeek, open-source dense). This selection covers frontier and mid-tier proprietary models alongside open-source alternatives with different training philosophies. All API calls use temperature $= 0$, top\\_p $= 1$, and max\\_tokens $= 4096$, and were made on May 20, 2026.\n\n\\subsection{Evaluation}\n\nWe use a cross-judge design to mitigate self-evaluation bias: GPT-5.4 judges Claude, GPT-4.1, and Qwen3 traces; GPT-4.1 judges GPT-5.4 and DeepSeek traces. Because our matched-pair design compares ambiguous and unambiguous conditions within the same model--judge pairing, any systematic judge bias cancels in the treatment effect ($\\Delta$pp); the cross-judge asymmetry affects only absolute violation rates, not C1 or C2 (\\S\\ref{sec:limitations}). Judges classify each episode outcome on a four-tier severity scale: none, minor, moderate, and critical. Our primary analysis uses moderate-or-above severity as the violation threshold; minor-only deviations (6.6\\% of episodes) are excluded. Including minor violations (overall rate 49.6\\% vs.\\ 41.0\\%) produces even larger effects without changing any directional conclusion.\n\n\\paragraph{Cross-judge calibration.} To quantify potential judge bias, we conducted a dual-judge calibration on 100 stratified episodes (60 from GPT-5.4, 40 from other models; 65\\% ambiguous). Both judges evaluated each episode independently. McNemar's test reveals no systematic detection bias ($p = 0.606$; GPT-4.1-only violations: 9, GPT-5.4-only: 6). Binary agreement is substantial ($\\kappa = 0.653$), with weighted four-tier severity agreement reaching $\\kappa_w = 0.775$. Per-type binary agreement ranges from $\\kappa = 0.385$ (authorization scope) to $0.875$ (incompleteness); severity-level divergence does not affect core conclusions since our primary analyses use binary thresholds (Appendix~\\ref{app:severity}).\n\n\\paragraph{Human validation.} Two annotators (NLP background), blind to LLM labels and condition, labeled 100 stratified episodes on the four-tier scale. Inter-annotator agreement is substantial ($\\kappa = 0.798$, $\\kappa_w = 0.762$). Pooled human--LLM agreement ($\\kappa = 0.733$, $\\kappa_w = 0.807$; per-type breakdown in Appendix~\\ref{app:per_type_agreement}) approaches inter-annotator levels, validating the automated pipeline \\citep{zheng_llm_judge_2024}. Per-type estimates ($n = 32$--$34$ each) validate the pipeline overall but lack power for type-level comparison.\n\n\\subsection{Controls}\n\n\\paragraph{Perturbation control.} To confirm specificity to semantic ambiguity, we run 300 episodes with non-ambiguity perturbations (synonym substitution, clause reordering). The perturbation effect is $\\Delta_{\\text{perturb}} = -0.67$ pp (95\\% CI $[-8.0, 6.67]$, containing zero). Even under the worst-case CI bound (6.67 pp), the residual attributable to ambiguity is $\\geq$27.3 pp. This control tests surface-level perturbation specificity; the information-addition confound specific to incompleteness is addressed separately via logistic regression (Appendix~\\ref{app:confound}).\n\n\\paragraph{Reproducibility.} A replication of 30 clause pairs $\\times$ 2 models $\\times$ 3 replicates yields ICC $= 0.919$ (95\\% CI $[0.892, 0.940]$). ICC is computed within the OpenAI family; cross-provider stability is supported by C1 consistency across all seven models.\n\n\\subsection{Statistical Analysis}\n\nWe use McNemar's test for paired binary outcomes, $\\chi^2$ tests with Cram\\'{e}r's $V$ for omnibus effects, Fisher's exact test for per-type comparisons, and TOST equivalence testing \\citep{lakens_2017} with a primary SESOI of $\\pm 15$ pp. This margin is anchored in a domain-relevant criterion: a type producing $\\geq$15 pp more violations warrants distinct policy handling in deployment, and it exceeds the perturbation control bound (6.67\\,pp) by $>$2$\\times$. We acknowledge margin dependence \\citep{anvari_lakens_2021}: 3/6 mid-tier pairs are equivalent at $\\pm 10$ pp, all six at $\\pm 15$ pp (Table~\\ref{tab:tost_sensitivity}). No field-standard SESOI exists for agent policy compliance; $\\pm 15$\\,pp is a pragmatic threshold exceeding measurement noise by $>$2$\\times$, and we present full sensitivity across seven margins to enable evaluation at any preferred threshold. We complement TOST with a margin-free bootstrap cluster analysis (Ward's method, $B = 10{,}000$; \\S\\ref{sec:results}). We apply Holm--Bonferroni correction within three pre-registered test families (Appendix~\\ref{app:multiple_comparison}). Post-hoc power exceeds 0.99 for both C1 and C2; TOST power at $\\pm 15$ pp is 0.94, dropping to 0.57 at $\\pm 10$ pp.\n```\n\n## 6. experiments.tex\n```\n\\section{Results}\n\\label{sec:results}\n\nWe organize results around four analyses of increasing specificity: the binary ambiguity effect (C1), the type hierarchy (C2), the aggregate layer effect (C3), and the model$\\times$type interaction (C4). C1 and C2 constitute our primary claims; C3 is inconclusive; C4 is exploratory but provides the model$\\times$type interaction analysis.\n\n\\subsection{Binary Ambiguity Effect (C1)}\n\nAcross all five models and six types, ambiguous clauses increase violation rates by 34.0 pp (41.0\\% vs.\\ 6.9\\%, OR $= 15.1$, 95\\% CI $[10.78, 21.17]$, $p < 10^{-105}$). All six types individually produce significant increases (all $p < 10^{-5}$), and all five models show large effects ($+25.7$ to $+39.0$ pp, all $p < 10^{-17}$). Perturbation controls confirm specificity to semantic ambiguity ($n = 300$, $\\Delta_{\\text{perturb}} = -0.67$\\,pp, CI containing zero). Clause identity explains 22.4\\% of variance versus 1.0\\% for model identity. A replication on two additional model families (Appendix~\\ref{app:model_expansion}) confirms the effect across seven models ($\\Delta = +20.0$ to $+33.6$\\,pp, both $p < 10^{-6}$); excluding incompleteness, it remains large ($\\Delta = 31.0$\\,pp; Appendix~\\ref{app:sans_incompleteness}).\n\n\\subsection{Type Hierarchy (C2)}\n\n\\begin{table*}[t]\n\\centering\n\\caption{Violation rates (\\%) under ambiguous policy clauses by type and model. $\\Delta$pp denotes the pooled difference between ambiguous and unambiguous conditions across all five models. All per-type differences are significant ($p < 10^{-5}$, Fisher's exact test).}\n\\label{tab:main_results}\n\\small\n\\begin{tabular}{llrrrrrrrr}\n\\toprule\nLayer & Type & Pooled & GPT-5.4 & GPT-4.1 & Claude & Qwen3 & DeepSeek & $\\Delta$pp & $p$ \\\\\n\\midrule\n\\multirow{3}{*}{\\textcolor{speccolor}{Spec.}} & Incompleteness & 53.6 & 46.0 & 58.0 & 48.0 & 62.0 & 54.0 & +49.2 & $<10^{-37}$ \\\\\n & Auth.\\ Scope & 41.6 & 64.0 & 46.0 & 12.0 & 26.0 & 60.0 & +36.0 & $<10^{-22}$ \\\\\n & Cond.\\ Precedence & 36.8 & 34.0 & 36.0 & 36.0 & 40.0 & 38.0 & +30.8 & $<10^{-17}$ \\\\\n\\midrule\n\\multirow{3}{*}{\\textcolor{lingcolor}{Ling.}} & Lexical & 42.8 & 42.0 & 34.0 & 32.0 & 52.0 & 54.0 & +35.2 & $<10^{-20}$ \\\\\n & Scopal & 39.4 & 42.0 & 38.0 & 32.0 & 36.7 & 48.0 & +34.2 & $<10^{-21}$ \\\\\n & Coreferential & 31.6 & 18.0 & 32.0 & 22.0 & 42.0 & 44.0 & +18.7 & $<10^{-6}$ \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Overall}} & \\textbf{41.0} & 41.0 & 40.7 & 30.3 & 43.1 & 49.7 & \\textbf{+34.0} & $<10^{-105}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nThe six types are not interchangeable. An omnibus $\\chi^2$ test on ambiguous-condition violation rates rejects the uniformity null ($\\chi^2 = 28.02$, $df = 5$, $p = 3.6 \\times 10^{-5}$, Cram\\'{e}r's $V = 0.137$; statistical power $= 0.993$ at the observed effect). TOST equivalence testing at a $\\pm 15$ pp margin reveals a two-tier structure among five types---authorization scope (41.6\\%), lexical (42.8\\%), scopal (39.4\\%), and conditional precedence (36.8\\%) form a mid-tier cluster, with coreferential (31.6\\%) below---while incompleteness (53.6\\%) stands apart as an upper bound---conditional on the confound controls in Appendix~\\ref{app:confound}---whose ranking partly reflects an information-addition confound. Table~\\ref{tab:main_results} and Figure~\\ref{fig:forest_plot} present the full breakdown.\n\nSensitivity analysis across seven margins ($\\pm 5$--$20$ pp; Appendix~\\ref{app:tost}) confirms this structure: the two-tier pattern emerges at $\\pm 12$ pp (5/6 mid-tier pairs equivalent) and stabilizes at $\\pm 15$ pp (6/6). A margin-free bootstrap cluster analysis (Ward's method, $B = 10{,}000$) corroborates: at $k = 2$, incompleteness forms a singleton with the remaining five types in one cluster; at $k = 3$, coreferential additionally separates---consistent with the TOST two-tier pattern (Appendix~\\ref{app:cluster}).\nAt $\\pm 10$\\,pp, only three mid-tier pairs reach equivalence; the incompleteness upper-bound is robust across all margins while mid-tier cohesion is margin-dependent. Cross-model type ranking concordance is moderate (Kendall's $W$; Appendix~\\ref{app:kendall_w}).\n\nIncompleteness is highest in four of five models (rates $\\geq$46\\% in all seven; Appendix~\\ref{app:model_expansion}). Its unambiguous variant adds policy content, so the 49.2\\,pp effect is an upper bound; a confound analysis confirms significance after controlling for information delta (Appendix~\\ref{app:confound}). Coreferential, whose variants are lexically identical, provides a confound-free lower bound at 31.6\\%.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_forest_plot.pdf}\n\\caption{Per-type effect sizes ($\\Delta$pp, ambiguous minus unambiguous) with Newcombe 95\\% CIs. All types produce significant increases. A two-tier structure emerges among five types (mid cluster $\\gg$ coreferential), with incompleteness as an upper bound partly reflecting an information-addition confound.}\n\\label{fig:forest_plot}\n\\end{figure}\n\n\\subsection{Layer Effect (C3)}\n\nSpecification-layer types trend higher than linguistic-layer types (44.0\\% vs.\\ 37.9\\%, $p = 0.017$), but C3 is inconclusive: it does not survive Holm--Bonferroni correction, and controlling for token delta reverses the direction. Cross-layer type overlap (conditional precedence 36.8\\% vs.\\ scopal 39.4\\%) further undermines the distinction. The null C3 result does not diminish the taxonomy's operational value: type-level distinctions (C2) hold independently of layer grouping, and the layer distinction retains value as a theoretical organizing principle even without a measurable effect-size gap.\n\n\\subsection{Model $\\times$ Type Interaction (C4) \\emph{[Exploratory]}}\n\\label{sec:c4}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig3_heatmap.pdf}\n\\caption{Violation rates (\\%) by model and ambiguity type under ambiguous conditions ($n = 2{,}997$). Authorization scope varies 52 pp across models (Claude 12\\% to GPT-5.4 64\\%), while incompleteness remains uniformly high (46--62\\%).}\n\\label{fig:heatmap}\n\\end{figure*}\n\nA model main effect is significant ($\\chi^2 = 31.02$, $p = 3.0 \\times 10^{-6}$, $V = 0.102$), with Claude (30.3\\%) substantially less vulnerable than DeepSeek (49.7\\%). Model identity explains only 1.0\\% of total violation variance; the significant interaction ($F(20, 2976) = 1.97$, $p = 0.006$; $\\mathrm{df} = (5{-}1) \\times (6{-}1) = 20$; 2.9\\% of variance; confirmed by logistic regression likelihood ratio test: $\\chi^2(20) = 47.20$, $p = 5.5 \\times 10^{-4}$) concentrates in specific type--model combinations.\n\nFigure~\\ref{fig:heatmap} highlights three suggestive patterns: (1) authorization scope is the \\emph{most model-differentiating type} (52 pp range; Claude 12\\% to GPT-5.4 64\\%), though this type has the lowest judge agreement ($\\kappa = 0.385$; \\S\\ref{sec:limitations}), so absolute rates carry more uncertainty than for other types; (2) incompleteness is a \\emph{consistent vulnerability} (46--62\\%, 16 pp range); (3) conditional precedence is the most \\emph{model-invariant type} (34--40\\%, 6 pp range). The authorization scope ranking (Claude $<$ Qwen3 $<$ GPT-4.1) is stable within the GPT-5.4 judge subset (bootstrap ranking preservation: 99.5\\%, $B = 10{,}000$; pairwise orderings $\\geq$99.5\\%), controlling for judge identity. The 48\\,pp within-judge range far exceeds measurement noise, but given the low cross-judge $\\kappa$, we characterize this pattern as suggestive rather than definitive. Excluding authorization scope, the residual interaction vanishes ($p = 0.97$; Appendix~\\ref{app:c4_sans_auth}), confirming that the C4 interaction concentrates in this single type. Given the low inter-judge agreement on authorization scope ($\\kappa = 0.385$), the 52\\,pp range should be treated as an upper bound with substantial measurement uncertainty rather than a precise estimate.\n\n```\n\n## 7. analysis.tex\n```\n\\section{Error Analysis \\emph{[Exploratory]}}\n\\label{sec:analysis}\n\nThe following failure mode taxonomy emerges empirically from LLM-coded traces, distinct from the input ambiguity taxonomy (\\S\\ref{sec:taxonomy}).\n\nWe analyze 614 violation traces across all five models, coded into five failure modes: unauthorized escalation, assumption-based action, scope misapplication, arbitrary rule selection, and conservative refusal. GPT-5.4 and GPT-4.1 serve as detailed annotation anchors because they span the judge boundary. Inter-coder reliability is substantial (Gwet's AC$_1$ $= 0.62$ \\citep{gwet_2014}; Cohen's $\\kappa = 0.52$ \\citep{cohen_1960}). The gap reflects the prevalence paradox: three categories account for ${\\sim}$90\\% of instances, compressing the $\\kappa$ denominator and yielding artificially low values despite high raw agreement.\n\n\\subsection{Type-Specific Failure Mechanisms}\n\nThe five-model data reveal three mechanistically distinct failure patterns that crosscut the specification/linguistic layer boundary.\n\n\\emph{Structural misparse} (scope misapplication): the agent constructs an incorrect parse and follows it consistently, paralleling garden-path processing \\citep{frazier_rayner_1982,ferreira_good_enough_2002} at a behavioral (not mechanistic) level---e.g., parsing ``items purchased with a coupon or during a sale are final'' as restricting only coupon purchases. This dominates scopal (all 5 models), conditional precedence (all 5), and coreferential (3/5).\n\n\\emph{Information gap-filling} (assumption-based action): the agent fills missing information with plausible but incorrect defaults---e.g., inventing a 30-day return window when none is specified. This dominates incompleteness (3/5) and lexical (3/5).\n\n\\emph{Boundary violation} (unauthorized escalation): the agent exceeds permission boundaries when authorization scope is underspecified---e.g., issuing a refund above its stated limit rather than escalating; 69.2\\% of such violations involve unauthorized escalation with zero conservative refusals ($p < 10^{-4}$, binomial test), revealing systematic permissiveness bias. This dominates authorization scope exclusively (all 5 models).\n\nEach type's dominant failure mode is majority-consistent ($\\geq$3/5 models), with three achieving unanimity. The layer distinction does not hold mechanistically: conditional precedence shares its mode with scopal, while authorization scope follows a unique boundary-violation pattern.\n\n\\subsection{Disambiguation Deficit}\n\nAgents rarely recognize ambiguity. We code \\emph{disambiguation awareness} (acknowledging multiple interpretations, asking clarifying questions, or conditioning on ambiguity) versus \\emph{surface adoption} (proceeding with a single interpretation). Overall disambiguation awareness is 4.6\\%: Claude (11.0\\%) and GPT-4.1 (10.7\\%) show the highest rates, while Qwen3 and DeepSeek show zero across all 278 combined violation traces.\n\nWe term this the \\emph{Disambiguation Deficit}---a default behavioral pattern in uninstructed settings, not an inherent inability. Unlike humans, agents proceed with full confidence in a single interpretation, consistent with \\citet{hu_ambiguity_2025}'s finding that LLM ambiguity reflects missing conceptual representations. Our mitigation experiment ($-$8.5\\,pp; Appendix~\\ref{app:mitigation}) confirms that disambiguation can be elicited, paralleling human good-enough processing \\citep{ferreira_good_enough_2002}.\n\n\\subsection{Systematic Nocuity}\n\nAmong ambiguous clauses, 41.3\\% trigger majority-convergent violations ($\\geq$3/5 models), with 13\\% producing universal violations. This extends \\citet{berry_kamsties_2004}'s framework with \\emph{systematic nocuity}: all models converge on the same incorrect interpretation, invisible in agreement-based evaluation. Incompleteness has the highest universal convergence (24\\%).\n```\n\n## 8. discussion.tex\n```\n\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Differential nocuity.}\nBuilding on \\citet{berry_kamsties_2004}'s nocuous/innocuous distinction and \\citet{willis_nocuous_2008}'s detection work, our results can be interpreted through a \\emph{differential nocuity} lens: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. This generates two testable predictions: (P1) types with explicit decision points should show larger safety-training gains than gap-filling types; (P2) disambiguation channels should reduce violations more for high-deficit types. Our mitigation experiment (Appendix~\\ref{app:mitigation}) is consistent with, though not a formal test of, P1 ($-18.0$\\,pp for authorization scope vs.\\ $-3.4$\\,pp for incompleteness).\n\n\\paragraph{Practical implications.}\nA proof-of-concept classifier (Appendix~\\ref{app:detection}) achieves F1\\,=\\,0.81 for binary ambiguity detection but only 0.34 for incompleteness---the highest-risk type is the hardest to detect. With agents exhibiting disambiguation deficit in $>$89\\% of cases, type-aware auditing and externalized detection \\citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.\n```\n\n## 9. conclusion.tex\n```\n\\section{Conclusion}\n\nAmbiguous policy clauses increase agent safety violations by 34.0\\,pp (OR\\,$=$\\,15.1) across five models, with clause identity explaining 22$\\times$ more variance than model identity. The two-tier type hierarchy replicates across seven models ($\\rho = 0.60$--$0.90$). With agents exhibiting disambiguation deficit in over 89\\% of cases, type-aware auditing and externalized detection are critical for policy-governed deployments.\n```\n\n## 10. limitations.tex\n```\n\\section*{Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Model coverage.} We evaluate seven API-accessible models from six providers (four proprietary, three open-source; two in replication, Appendix~\\ref{app:model_expansion}). Smaller open-source models (7B--70B parameters) may show different vulnerability patterns, and our findings may not generalize to models with fundamentally different training approaches.\n\n\\paragraph{Domain scope.} $\\tau^2$-bench covers retail and airline customer service. Policy ambiguity effects in other domains (healthcare, finance, legal) remain to be tested, though the within-study cross-domain consistency is encouraging: failure mode distributions share the same top-two modes (assumption-based action and unauthorized escalation) across domains, with individual mode base rates differing by up to 12.5 pp, likely reflecting domain policy structure rather than methodological artifacts.\n\n\\paragraph{Synthetic ambiguity.} Our matched-pair design requires synthetic construction of ambiguous variants, which may not capture the full distribution of naturally occurring policy ambiguities. We mitigate this through expert review and a realism validation comparing ambiguous clauses against original $\\tau^2$-bench policy text. Ambiguous clauses are indistinguishable from originals in lexical diversity (TTR, KS $p = 0.89$) and word length ($p = 0.09$). Readability is slightly higher (Flesch--Kincaid $d = 0.29$, $p = 0.006$) and sentence length moderately higher ($d = 0.74$), both reflecting the structural demands of encoding ambiguity in standalone clauses. Across matched pairs, disambiguation preserves readability (Flesch--Kincaid $d = 0.14$, $p = 0.10$), confirming that minimal edits change semantic precision without altering linguistic register.\n\n\\paragraph{Cross-judge asymmetry.} Although our dual-judge calibration (\\S\\ref{sec:method}) shows no systematic bias ($p = 0.606$) and human validation confirms the LLM judge operates within inter-annotator disagreement (human--LLM $\\kappa = 0.733$ vs.\\ inter-annotator $\\kappa = 0.798$), each agent model is evaluated by a single cross-judge, so judge identity remains confounded with model identity. Per-type reliability varies: authorization scope has the lowest judge agreement ($\\kappa = 0.385$), so the absolute violation rates for this type carry more uncertainty than for incompleteness ($\\kappa = 0.875$). Human--LLM agreement shows the same pattern (auth.\\ scope $\\kappa = 0.644$ vs.\\ lexical $\\kappa = 0.904$; Appendix~\\ref{app:per_type_agreement}). Within-judge-group analyses confirm C1 (both $p < 0.001$) but neither subgroup reaches significance for C3 individually (GPT-4.1--judged: $p = 0.059$; GPT-5.4--judged: $p = 0.157$), leaving open the possibility that the pooled C3 result partly reflects judge-level variance.\nCross-provider test-retest reliability remains unmeasured; ICC $= 0.919$ covers only OpenAI models. Cross-model type ranking concordance is moderate (five-model $W = 0.398$, $p = 0.072$; seven-model $W = 0.353$, $p = 0.038$; Appendix~\\ref{app:kendall_w}), with the marginal five-model result reflecting the model$\\times$type interaction documented in C4. Within-judge-group type rankings are reported in Appendix~\\ref{app:judge_group_ranking}.\n\n\\paragraph{Failure mode analysis.} The failure mode taxonomy (\\S\\ref{sec:analysis}) was coded across all five models (614 traces) using LLM-based coders with substantial inter-coder agreement (Gwet's AC$_1$ $= 0.62$; Cohen's $\\kappa = 0.52$). The moderate $\\kappa$ reflects the prevalence paradox rather than systematic disagreement, but per-category reliability for minority categories remains limited (e.g., arbitrary rule selection $\\kappa = 0.29$). Human validation of the coding scheme would further strengthen these findings.\n\n\\paragraph{Incompleteness confound.} As discussed in \\S\\ref{sec:results}, incompleteness resolution necessarily adds policy content, creating an information asymmetry. Our logistic regression controls and the coreferential lower-bound analysis mitigate this confound, but a future design that orthogonalizes information quantity from ambiguity resolution would strengthen causal claims for this type specifically.\n\n\\paragraph{Severity threshold.} Our primary analysis uses moderate-or-above severity. Switching to any-violation (including minor) yields $\\Delta = 38.2$ pp (vs.\\ 34.0 pp), with all four claims (C1--C4) remaining significant. Type rankings under the two thresholds are concordant (Kendall $\\tau = 0.73$), with incompleteness ranking first under both.\n\n\\paragraph{Per-type reliability.} Per-type human--LLM $\\kappa$ estimates (Appendix~\\ref{app:per_type_agreement}) are based on small cell sizes ($n = 32$--$34$), yielding wide confidence intervals (scopal: $[0.00, 1.00]$; coreferential: $[0.00, 0.84]$). These estimates should not be over-interpreted at the individual type level.\n\n\\section*{Data and Code Availability}\nThe 300 clause pairs, evaluation pipeline, analysis scripts, and raw episode traces will be released upon publication at \\url{https://github.com/anonymous/policy-ambiguity-safety}.\n```\n\n## 11. appendix.tex\nThe appendix file contains 288 lines with extensive supplementary material including:\n- TOST Equivalence Sensitivity (Table and discussion on margins 5-20pp)\n- Mitigation Experiment (Table showing type-specific violation rate changes)\n- Severity Threshold Comparison (comparisons under different severity levels)\n- Ambiguity Type Detection Experiment (proof-of-concept classifier results)\n- Replication on Additional Model Families (results for Gemini and LLaMA)\n- Incompleteness Confound Analysis (logistic regression controls)\n- Per-Type Judge Reliability (confidence intervals for Cohen's kappa)\n- Information Delta Logistic Regression (full regression table)\n- Bootstrap Cluster Analysis (Ward's hierarchical clustering)\n- Clause-Level Variance (leave-one-out analysis)\n- Multiple Comparison Correction (Holm-Bonferroni procedures)\n- DRIP-R Category Mapping (relationship to concurrent work)\n- Cross-Model Type Ranking Concordance (Kendall's W analysis)\n- C4 Interaction Without Authorization Scope\n- Per-Type Clause Length Analysis (token deltas across ambiguity types)\n- Within-Judge-Group Type Rankings\n- Binary Effect Excluding Incompleteness\n\n## 12. main.tex\n```\n\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\definecolor{speccolor}{HTML}{C44E52}\n\\definecolor{lingcolor}{HTML}{4C72B0}\n\n\\title{Not All Policy Ambiguity Is Equal: Type-Specific Safety Risks for LLM Agents}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{sections/abstract}\n\\input{sections/introduction}\n\\input{sections/related_work}\n\\input{sections/taxonomy}\n\\input{sections/method}\n\\input{sections/experiments}\n\\input{sections/analysis}\n\\input{sections/discussion}\n\\input{sections/conclusion}\n\\input{sections/limitations}\n\n\\bibliography{references}\n\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}\n```\n\nAll files have been read completely. The paper is a comprehensive empirical study on how different types of policy ambiguity affect safety violations in LLM-based agents, with detailed methodology, results, analysis, and extensive appendices."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d85373fa-86f1-4ee8-b756-ae49778e026e",
+            "isSidechain": true,
+            "agentId": "aec8d190c3a37fd6c",
+            "requestId": "req_011CbGX3KhEv3PbDcmamrJuq",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "82d6a6eb-e911-4296-ac6f-17245d2e1462",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+            "sessionId": "46389320-86e2-42d7-b5e1-48bec7f5ca1b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JNY7YjRtpG5PH5rmjCiZ3F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 23001,
+                "cache_read_input_tokens": 35189,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 23001,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-all-these-tex-files-and-return-their-full-contents-i-need-every-single-li.md"
+}
