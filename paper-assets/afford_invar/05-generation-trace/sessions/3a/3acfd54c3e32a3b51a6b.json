@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3acfd54c3e32a3b51a6b",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code layer scan",
+  "task_key": "worker_code_layer-scan_20260519T210734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_layer-scan_20260519T210734_result.json",
+    "occurrence": 1,
+    "bytes": 133,
+    "sha256": "8b3030a697239533545406138614f554bfeb763c5e1e2d1e6dab3fdaa2fbf4a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件保存在 `/root/afford_invar/results/phase0/layer_scan/real_image_divergence_layer{4,8,12,24,30}.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-layer-scan.md"
+}

@@ -1,0 +1,26 @@
+% Limitations: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)
+\section*{Limitations}
+\label{sec:limitations}
+
+\paragraph{Circular evaluation.}
+Our primary evaluation is against silver labels derived from the same labeling functions whose signals overlap with the structural features.
+The structural RF's 0.9951 macro-F1 therefore reflects LF-reconstructibility, not ground-truth detection accuracy.
+Cross-agent transfer (0.967) partially breaks this circularity, and we have prepared a 650-window gold set with a validated annotation pipeline; however, human annotation is pending, and all in-domain structural results should be interpreted with this caveat.
+
+\paragraph{Agent coverage.}
+We evaluate on two agents (SWE-Agent and OpenHands), both operating on software engineering tasks from SWE-bench.
+Whether structural features maintain their dominance on agents with fundamentally different action spaces---web browsing agents, data analysis assistants, or multi-agent systems---remains untested.
+
+\paragraph{Binary classification.}
+We frame stagnation as a binary label (stagnation vs.\ progress), but real agent behavior exists on a spectrum.
+An agent may be making slow progress, exploring productively, or experiencing partial stagnation.
+A graded formulation could capture these nuances but would require richer annotation schemes.
+
+\paragraph{Hand-crafted labeling functions.}
+Our three LFs are manually designed.
+The low inter-LF conflict (95.1\% agreement at conf${\geq}$2) limits the headroom for temporal label models and may underrepresent stagnation patterns that none of the three LFs capture.
+A larger, more diverse LF set could both improve silver label coverage and provide the disagreement necessary for temporal aggregation to demonstrate value.
+
+\paragraph{Task domain.}
+All trajectories come from coding and software engineering tasks.
+Stagnation in other domains---where ``progress'' lacks clear structural markers like file modifications or test outcomes---may require semantic understanding that our structural approach does not provide.

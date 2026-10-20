@@ -1,0 +1,22 @@
+Paired Bootstrap Test Results (v2) - Fixed methodology
+
+Task 1: Structural GB vs Probe (cross-agent OH test split)
+  n_samples: 20807
+  GB macro_f1: 0.9767
+  Probe macro_f1: 0.6443
+  Delta: +0.3324
+  95% CI: [0.3241, 0.3407]
+  p-value: 0.0 (p < 0.001)
+  Note: Paired on same OH test split, labels from windows_labeled.jsonl (current version)
+
+Task 2: Structural RF vs Probe (in-domain, fixed)
+  n_samples: 1824
+  RF macro_f1: 0.9951
+  Probe macro_f1: 0.9055
+  Delta: +0.0896
+  95% CI: [0.0744, 0.1057]
+  p-value: 0.0 (p < 0.001)
+  Note: Fixed - uses original RF model predictions, no retraining
+
+Methodology: Predictions from original trained models, bootstrap resamples indices only (no retraining)
+Full JSON at server: /root/autodl-tmp/agent_progress_probe/results_paired_bootstrap_v2.json

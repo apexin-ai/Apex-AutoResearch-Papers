@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "60f111de9678d279294e",
+  "project": "afford_invar",
+  "kind": "worker",
+  "title": "code fix embedding v2",
+  "task_key": "worker_code_fix-embedding-v2_20260519T180135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-embedding-v2_20260519T180135.log",
+    "occurrence": 1,
+    "bytes": 1008377,
+    "sha256": "e5d426be246a0449a3c15d672362be52e9713e85ff00cdbdb54e1661b4bc9229"
+  },
+  "statistics": {
+    "messages": 573,
+    "user_turns": 0,
+    "tool_calls": 221,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 127,
+      "tool_call": 221,
+      "tool_result": 221,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 573,
+      "chunks": [
+        {
+          "path": "60f111de9678d279294e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "60f111de9678d279294e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "60f111de9678d279294e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "60f111de9678d279294e-part-0004.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-embedding-v2.md"
+}

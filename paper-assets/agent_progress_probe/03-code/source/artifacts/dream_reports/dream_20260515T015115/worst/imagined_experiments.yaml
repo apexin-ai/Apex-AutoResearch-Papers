@@ -1,0 +1,748 @@
+tier: worst
+narrative_guidance: 'Gold validation (κ=0.76, N=650) reveals ~22% of MV labels are
+  incorrect — predominantly semantically diverse stagnation that LFs miss. Structural
+  features collapse from 0.995→0.78-0.80 on gold (20pp circular evaluation tax); probe
+  drops only 0.906→0.82 (-8.6pp) and surpasses structural on gold. LLM-judge few-shot
+  (0.81) pulls even with probe and structural. Overlap ablation confirms >55% of structural
+  advantage was circular (residual F1=0.70). Instance-isolated cross-agent GB drops
+  from 0.967→0.89, and probe-10%FT now surpasses it (0.91). Paper must pivot completely:
+  "structural dominance" → "circular evaluation as systematic risk in WS for sequential
+  data." Primary contributions become (1) 650-window annotated benchmark, (2) quantification
+  of circular evaluation bias, (3) probe''s surprising gold-robustness as evidence
+  that embeddings learn beyond LF heuristics. Structural retains value only as zero-data
+  baseline in strict no-target-data deployment. TLM negative finding (Claim 3) unchanged.
+  Target EMNLP Findings as methodology/analysis + resource paper.
+
+  '
+imagined_experiments:
+- name: gold-set
+  plan_id: gold-set
+  description: '650 windows human-annotated from SWE-agent conf≥2 (stratified sample
+    from 15401). Two annotators + adjudication. All trained methods re-evaluated against
+    gold labels. GO/NO-GO gate for paper framing.
+
+    '
+  expected_results:
+    gold_n_windows: 650
+    gold_kappa: 0.76
+    gold_adjudication_rate: 0.31
+    gold_stag_count: 201
+    gold_prog_count: 449
+    gold_stag_rate: 0.309
+    mv_stag_rate_on_gold_sample: 0.265
+    gold_mv_agreement_rate: 0.78
+    gold_mv_agreement_n: 507
+    gold_mv_disagree_n: 143
+    disagree_mv_prog_gold_stag: 86
+    disagree_mv_stag_gold_prog: 57
+    disagree_dominated_by_missed_stag_pct: 60.1
+    structural_rf_gold_macro_f1: 0.78
+    structural_rf_gold_f1_stag: 0.68
+    structural_rf_gold_f1_prog: 0.88
+    structural_rf_gold_accuracy: 0.81
+    structural_rf_lf_macro_f1_ref: 0.9951
+    structural_rf_gold_drop_pp: -21.5
+    structural_gb_gold_macro_f1: 0.8
+    structural_gb_gold_f1_stag: 0.71
+    structural_gb_gold_f1_prog: 0.89
+    structural_gb_gold_accuracy: 0.83
+    structural_gb_lf_macro_f1_ref: 0.9951
+    structural_gb_gold_drop_pp: -19.5
+    probe_qwen_gold_macro_f1: 0.82
+    probe_qwen_gold_f1_stag: 0.76
+    probe_qwen_gold_f1_prog: 0.88
+    probe_qwen_gold_accuracy: 0.84
+    probe_qwen_lf_macro_f1_ref: 0.9055
+    probe_qwen_gold_drop_pp: -8.6
+    probe_e5_gold_macro_f1: 0.83
+    probe_e5_gold_f1_stag: 0.77
+    probe_e5_gold_f1_prog: 0.89
+    probe_e5_lf_macro_f1_ref: 0.9363
+    probe_e5_gold_drop_pp: -10.6
+    probe_bge_gold_macro_f1: 0.84
+    probe_bge_gold_f1_stag: 0.78
+    probe_bge_gold_f1_prog: 0.9
+    probe_bge_lf_macro_f1_ref: 0.9413
+    probe_bge_gold_drop_pp: -10.1
+    llm_judge_zeroshot_gold_macro_f1: 0.73
+    llm_judge_zeroshot_gold_f1_stag: 0.66
+    llm_judge_zeroshot_gold_f1_prog: 0.8
+    llm_judge_zeroshot_lf_macro_f1_ref: 0.6625
+    llm_judge_zeroshot_gold_gain_pp: 6.8
+    twv_labels_gold_macro_f1: 0.72
+    twv_labels_gold_mv_agreement: 0.74
+    twv_labels_vs_mv_gold_delta_pp: -6.0
+    twv_probe_gold_macro_f1: 0.8
+    twv_probe_lf_macro_f1_ref: 0.9517
+    twv_probe_gold_drop_pp: -15.2
+    structural_gb_minus_probe_qwen_gold_pp: -2.0
+    structural_gb_minus_probe_bge_gold_pp: -4.0
+    structural_gb_minus_llm_zs_gold_pp: 7.0
+    disagree_structural_rf_macro_f1: 0.36
+    disagree_structural_gb_macro_f1: 0.39
+    disagree_probe_qwen_macro_f1: 0.53
+    disagree_probe_bge_macro_f1: 0.56
+    disagree_llm_judge_zs_macro_f1: 0.49
+    probe_fp_on_lf_validated_by_gold_pct: 0.42
+    structural_fp_on_lf_validated_by_gold_pct: 0.07
+    gold_stag_rate_vs_mv_stag_rate_delta: +4.4pp
+    gold_finds_more_stagnation: true
+  result_rationale: 'Gold-MV agreement 78% 意味着 ~22% 的 MV 标签错误。143 个分歧窗口中 86 个 (60%)
+    是 MV=progress 但 gold=stagnation——LFs 系统性地漏掉了 "语义多样停滞"（agent 执行多样命令 + 修改文件，看起来像
+    progress，但人工标注者判定为无效）。另外 57 个 (40%) 是 MV=stag 但 gold=progress——agent 重复命令模式但实际在推进。Gold
+    停滞率 (30.9%) 高于 MV (26.5%)， 证实 LFs 低估停滞。
+
+    Structural RF/GB 从 0.995 暴跌到 0.78-0.80（-19.5~-21.5pp），因为结构特征本质上学会了 LF→label 映射；LF
+    错时，structural 跟着错。在 143 个分歧窗口上 structural 仅 0.36-0.39 macro_f1——基本跟随 MV 的错误判断。
+
+    Probe 仅从 0.906 降到 0.82（-8.6pp），降幅远小于 structural。关键发现：probe 之前在 LF 标签上的 FP（预测 stag
+    但 LF 说 progress）中有 42% 被 gold 验证为正确的 stagnation ——probe 通过语义表征学到了超越 LF 启发式的真实信号。在分歧窗口上
+    probe 达到 0.53， 远超 structural 的 0.39。三个 encoder (Qwen/E5/BGE) 在 gold 上均超过 structural，
+    其中 BGE 最高 (0.84)。
+
+    LLM judge zero-shot 在 gold 上反而提升 +6.8pp（0.6625→0.73），因为 LLM 之前的部分 "错误" （与 LF 不一致）实际是正确的人类判断。但
+    0.73 仍低于 probe 和 structural。
+
+    TWV 标签在 gold 上比 MV 更差（0.72 vs 0.78），因为 TWV 的时序平滑传播了 LF 的系统性 偏差。TWV-probe 同样受损（0.80），低于直接
+    MV 训练的 probe（0.82）。
+
+    κ=0.76 处于可接受但偏低的水平——约 15% 的窗口存在标注者分歧需裁决，反映停滞边界的 内在模糊性。这本身也是论文的发现：stagnation 不是简单的
+    binary concept。
+
+    '
+  tables:
+  - name: 'Table 1: Gold-Validated Method Comparison (N=650)'
+    columns:
+    - Method
+    - LF_Macro_F1
+    - Gold_Macro_F1
+    - Δ_pp
+    - Gold_F1_Stag
+    - Gold_F1_Prog
+    rows:
+    - - Structural RF
+      - 0.9951
+      - 0.78
+      - -21.5
+      - 0.68
+      - 0.88
+    - - Structural GB
+      - 0.9951
+      - 0.8
+      - -19.5
+      - 0.71
+      - 0.89
+    - - Probe (Qwen)
+      - 0.9055
+      - 0.82
+      - -8.6
+      - 0.76
+      - 0.88
+    - - Probe (E5)
+      - 0.9363
+      - 0.83
+      - -10.6
+      - 0.77
+      - 0.89
+    - - Probe (BGE)
+      - 0.9413
+      - 0.84
+      - -10.1
+      - 0.78
+      - 0.9
+    - - LLM Judge 0-shot
+      - 0.6625
+      - 0.73
+      - 6.8
+      - 0.66
+      - 0.8
+    - - TWV Labels
+      - —
+      - 0.72
+      - —
+      - 0.63
+      - 0.81
+    - - TWV Probe
+      - 0.9517
+      - 0.8
+      - -15.2
+      - 0.73
+      - 0.87
+    - - MV Labels
+      - 1.0
+      - 0.78
+      - —
+      - —
+      - —
+  - name: 'Table 2: Gold-MV Disagreement Breakdown (N=143)'
+    columns:
+    - Type
+    - Count
+    - Pct
+    - Dominant_LF_Pattern
+    - Interpretation
+    rows:
+    - - MV=prog → gold=stag
+      - 86
+      - 60.1
+      - cmd_rep=0 ∧ file_diff=1
+      - 'LFs miss semantic stagnation: diverse actions with file changes but no goal-directed
+        progress'
+    - - MV=stag → gold=prog
+      - 57
+      - 39.9
+      - cmd_rep=1 ∧ OB=0
+      - 'LFs over-call: repetitive commands that are actually productive (e.g., iterative
+        testing)'
+  - name: 'Table 3: Method Performance on Disagreement Windows (N=143)'
+    columns:
+    - Method
+    - Disagree_Macro_F1
+    - Follows_Gold_Pct
+    - Follows_MV_Pct
+    rows:
+    - - Structural RF
+      - 0.36
+      - 35.7
+      - 64.3
+    - - Structural GB
+      - 0.39
+      - 38.5
+      - 61.5
+    - - Probe (Qwen)
+      - 0.53
+      - 52.4
+      - 47.6
+    - - Probe (BGE)
+      - 0.56
+      - 55.2
+      - 44.8
+    - - LLM Judge 0-shot
+      - 0.49
+      - 48.3
+      - 51.7
+  - name: 'Table 4: Probe FP Re-evaluation Against Gold'
+    columns:
+    - Probe_Error_Type_on_LF
+    - Count_in_Gold_Sample
+    - Gold_Validates_Pct
+    - Interpretation
+    rows:
+    - - FP (probe=stag, LF=prog)
+      - 48
+      - 42
+      - Probe detected real stagnation that LFs missed
+    - - FN (probe=prog, LF=stag)
+      - 22
+      - 18
+      - Small portion of probe FN also wrong per gold
+  figures_description:
+  - 'Fig A: Scatter plot — LF_Macro_F1 (x) vs Gold_Macro_F1 (y) for all methods. Structural
+    methods far below y=x line (massive gold penalty); probes closer to y=x; LLM judge
+    above y=x (improves on gold). Dashed line y=x highlights circular evaluation tax.'
+  - 'Fig B: Grouped bar chart — F1_stag by method, LF labels vs gold labels side-by-side.
+    Structural stag-F1 collapses from 0.99→0.68-0.71; probe stag-F1 drops less (0.86→0.76-0.78).
+    Visualizes where structural fails most.'
+  - 'Fig C: Confusion matrix heatmaps (2×2) for structural GB and probe on gold —
+    structural shows massive FN block (gold=stag, pred=prog); probe shows more balanced
+    errors.'
+  - 'Fig D: Disagreement window analysis — stacked bars showing what fraction of each
+    method''s predictions align with gold vs MV on the 143 contested windows. Probe
+    aligns more with gold; structural aligns more with MV.'
+  - 'Fig E: Distribution of probe prediction probability on gold-validated vs gold-rejected
+    FP windows — bimodal: probe is confident on gold-validated FPs (mean prob 0.91),
+    less confident on truly-wrong FPs (mean prob 0.72).'
+  analysis: 'Gold set 结果确认 worst 档：structural dominance 是 circular evaluation artifact。
+
+    核心证据链：(1) MV 与 gold 仅 78% 一致——22% 窗口上 LF 标签错误，以漏标语义停滞为主； (2) Structural 在 LF 标签上
+    0.995 暴跌到 gold 上 0.78-0.80，因为 structural 本质是 LF 逆向工程器——它学会了 "cmd_rep high → stag,
+    file_diff high → prog" 这套规则， 但这套规则在 22% 窗口上是错的；(3) Probe 在 gold 上 0.82-0.84，超过
+    structural 2-4pp—— 语义表征学到了超越 LF 启发式的信号；(4) Probe 之前的 FP (on LF) 中 42% 被 gold 验证
+    为正确——probe 的 "错误模式" 恰好是 gold 认为正确的模式；(5) LLM judge 在 gold 上提升， 进一步确认 LF 标签偏差而非方法本身的问题。
+
+    论文 reframe 方向：Claim 1 从 "structural dominance" 转为 "circular evaluation as systematic
+    risk"——30 个结构特征在 LF-derived labels 上 0.995 是问题的量化，不是成就。 Claim 2 变为 "probe gold-robustness"——embedding-based
+    detectors 在噪声标签训练下 仍保留超越 LF 的信号。650-window benchmark 成为论文最重要的 resource contribution。
+
+    风险与对策：κ=0.76 偏低可能被 reviewer 质疑标注质量——需要展示 adjudication 流程 + 分歧案例分析证明 κ 低是因为任务内在模糊性，不是标注者不称职。Gold
+    样本 N=650 占 conf≥2 的 4.2%——reviewer 可能要求更大样本——对策是展示 3-seed 子采样稳定性 (std<0.01)。
+
+    '
+- name: llm-judge-fewshot
+  plan_id: llm-judge-fewshot
+  description: 'LLM-as-judge with 5-shot examples (2 stagnation + 2 progress + 1 ambiguous
+    boundary case) + chain-of-thought prompting. Claude Sonnet 4. Evaluated on 650
+    gold windows.
+
+    '
+  expected_results:
+    llm_judge_fewshot_gold_macro_f1: 0.81
+    llm_judge_fewshot_gold_f1_stag: 0.75
+    llm_judge_fewshot_gold_f1_prog: 0.87
+    llm_judge_fewshot_gold_accuracy: 0.83
+    llm_judge_fewshot_gold_precision_stag: 0.78
+    llm_judge_fewshot_gold_recall_stag: 0.72
+    llm_judge_zeroshot_gold_macro_f1_ref: 0.73
+    fewshot_vs_zeroshot_gold_delta_pp: 8.0
+    fewshot_vs_structural_gb_gold_delta_pp: 1.0
+    fewshot_vs_probe_qwen_gold_delta_pp: -1.0
+    fewshot_vs_probe_bge_gold_delta_pp: -3.0
+    api_cost_usd: 15.2
+    total_tokens: 4350000
+    mean_cot_length_tokens: 187
+    parse_failures: 2
+  result_rationale: 'Few-shot examples 教会 LLM "语义停滞" 的具体表现——agent 做了多样但无效的操作序列 ——这正是
+    gold 标注者捕捉但 LF 遗漏的模式。CoT 强迫 LLM 显式推理 "这些操作是否 朝目标推进"，将 stag recall 从 zero-shot
+    的 ~0.58 提升到 0.72。
+
+    0.81 的 gold F1 与 probe (0.82) 和 structural GB (0.80) 在统计上不可区分——三种 截然不同的方法在 gold
+    上收敛到相同水平。这是 worst 档的关键发现：structural 在 LF 标签上领先 LLM +33pp（0.995 vs 0.663），但在 gold
+    上反而落后 1pp（0.80 vs 0.81） ——"dominance" 完全是 circular artifact。
+
+    Cost 从 $11.66 升到 $15.20（+30%），因为 5-shot examples + CoT chain 增加了 prompt 长度。但 LLM
+    的主要劣势不是 cost 而是 stag precision 偏低（0.78）——LLM 倾向于 将探索性行为误判为停滞（aggressive stagnation
+    caller），few-shot examples 部分 缓解但未完全解决。
+
+    '
+  tables:
+  - name: 'Table: LLM Judge Variants vs Other Methods on Gold (N=650)'
+    columns:
+    - Method
+    - Gold_Macro_F1
+    - Gold_F1_Stag
+    - Gold_Recall_Stag
+    - Cost_USD
+    rows:
+    - - LLM 0-shot
+      - 0.73
+      - 0.66
+      - 0.58
+      - 11.66
+    - - LLM 5-shot+CoT
+      - 0.81
+      - 0.75
+      - 0.72
+      - 15.2
+    - - Structural GB
+      - 0.8
+      - 0.71
+      - 0.63
+      - 0.0
+    - - Probe (Qwen)
+      - 0.82
+      - 0.76
+      - 0.71
+      - 0.0
+    - - Probe (BGE)
+      - 0.84
+      - 0.78
+      - 0.74
+      - 0.0
+  - name: 'Table: LF-Label vs Gold-Label Performance Spread'
+    columns:
+    - Method
+    - LF_Macro_F1
+    - Gold_Macro_F1
+    - Δ_pp
+    - Rank_on_LF
+    - Rank_on_Gold
+    rows:
+    - - Structural GB
+      - 0.9951
+      - 0.8
+      - -19.5
+      - 1
+      - 4
+    - - Structural RF
+      - 0.9951
+      - 0.78
+      - -21.5
+      - 1
+      - 5
+    - - Probe (BGE)
+      - 0.9413
+      - 0.84
+      - -10.1
+      - 3
+      - 1
+    - - Probe (Qwen)
+      - 0.9055
+      - 0.82
+      - -8.6
+      - 4
+      - 2
+    - - LLM 5-shot+CoT
+      - ~0.74†
+      - 0.81
+      - +7.0†
+      - 5
+      - 3
+    - - LLM 0-shot
+      - 0.6625
+      - 0.73
+      - 6.8
+      - 6
+      - 6
+  figures_description:
+  - 'Fig: Rank reversal visualization — parallel coordinates plot showing method rankings
+    on LF labels (left axis) vs gold labels (right axis). Structural drops from rank
+    1→4/5; probe rises from 3-4→1-2; LLM rises from 5-6→3.'
+  - 'Fig: 2-3 CoT output examples where LLM correctly reasons about semantic stagnation
+    — e.g., ''The agent modified 3 different files and ran unique commands, but each
+    edit reverts or contradicts the previous one, indicating circular problem-solving
+    without convergence.'''
+  analysis: 'LLM few-shot 结果是 structural dominance claim 的致命打击。在 LF 标签上 structural
+    领先 LLM +33pp；在 gold 上 LLM few-shot 反超 structural +1pp。5 个 in-context examples
+    高效传递了 "语义停滞" 概念——无需 30 个手工特征 + 训练分类器。
+
+    更深层的意义：三种完全不同的方法路线（hand-crafted features → ML classifier、 frozen embeddings →
+    GRU probe、LLM in-context learning）在 gold 上收敛到 0.80-0.84 区间——这暗示 650 窗口标注集的 "可达上界"
+    约 0.84-0.86（受限于标注 ambiguity, κ=0.76）。 所有方法都在逼近人类标注者间一致性的天花板，而非某种方法有本质优势。
+
+    这支持论文 reframe 为 methodology paper：问题不是 "哪种方法最好" 而是 "circular evaluation 如何系统性扭曲方法排序"。
+
+    '
+- name: structural-feature-overlap-ablation
+  plan_id: structural-feature-overlap-ablation
+  description: '从 30 维结构特征中移除与 LF 直接重叠的特征（cmd_rep 相关: command_repetition_ratio, unique_command_ratio,
+    repeated_command_count 等; file_diff 相关: file_diff_count, files_modified, diff_size
+    等），测量残差特征在 gold 上的 F1 以隔离非 circular 贡献。
+
+    '
+  expected_results:
+    full_30dim_gold_macro_f1: 0.8
+    full_30dim_lf_macro_f1: 0.9951
+    overlap_features_removed_n: 12
+    overlap_feature_names: 'command_repetition_ratio, unique_command_ratio, repeated_command_count,
+      command_diversity_index, file_diff_count, files_modified, diff_line_count, diff_size_bytes,
+      new_files_created, file_diversity_ratio, cmd_rep_binary, file_diff_binary
+
+      '
+    residual_features_n: 18
+    residual_gold_macro_f1: 0.7
+    residual_gold_f1_stag: 0.6
+    residual_gold_f1_prog: 0.8
+    residual_gold_accuracy: 0.74
+    residual_lf_macro_f1: 0.87
+    residual_lf_f1_stag: 0.82
+    residual_lf_f1_prog: 0.92
+    overlap_only_gold_macro_f1: 0.77
+    overlap_only_lf_macro_f1: 0.98
+    overlap_ablation_delta_gold_pp: -10.0
+    overlap_ablation_delta_lf_pp: -12.5
+    residual_vs_probe_qwen_gold_pp: -12.0
+    residual_vs_probe_bge_gold_pp: -14.0
+    residual_vs_random_gold_pp: 20.0
+    top_residual_features:
+    - name: action_diversity_entropy
+      gini_importance: 0.18
+      gold_univariate_f1: 0.62
+    - name: trajectory_position_normalized
+      gini_importance: 0.14
+      gold_univariate_f1: 0.59
+    - name: mean_output_length
+      gini_importance: 0.12
+      gold_univariate_f1: 0.57
+    - name: step_duration_variance
+      gini_importance: 0.09
+      gold_univariate_f1: 0.56
+    - name: action_length_mean
+      gini_importance: 0.08
+      gold_univariate_f1: 0.55
+  result_rationale: '移除 12 个与 LF 计算直接重叠的特征剥离了 circular signal 通路。这 12 个特征本质上是 LF 输入的子集或高度相关变量——cmd_rep
+    LF 直接使用 command_repetition_ratio， file_diff LF 直接使用 file_diff_count。当 evaluation
+    labels 也由这些 LF 生成时， 这些特征天然具有近完美预测力，但这是 tautological 的。
+
+    残差 18 个特征（action diversity entropy、trajectory position、output length 特征等） 在 gold
+    上仅 0.70——比 full structural 低 10pp，比 probe 低 12pp。这证实： structural 在 gold 上的 0.80
+    中，约 10pp（~55%的有效 signal）来自 LF-overlap 特征 的 circular 贡献。
+
+    残差 0.70 仍高于 random (0.50) 20pp——非 overlap 特征确实捕获了一些真实停滞信号。 Action diversity entropy
+    是最强残差特征（gini=0.18）：停滞窗口的动作多样性确实偏低， 这不完全等同于 cmd_rep（低多样性 ≠ 高重复）。Trajectory position
+    也有信号：停滞更多 发生在中后段。但这些信号远不足以与 probe 的语义表征竞争。
+
+    Overlap-only 特征在 gold 上 0.77——高于残差（0.70），因为 cmd_rep 和 file_diff 确实 捕获了真实的停滞信号（重复和无文件变更是停滞的真实指标）。问题不是这些特征无信息量，
+    而是在 LF-derived labels 上评估它们将 0.77 的真实能力膨胀为 0.98。
+
+    在 LF 标签上，残差仍达 0.87（vs 0.995 full），因为即使非 overlap 特征也与 LF 输出 间接相关（如 action_diversity
+    与 cmd_rep 相关 r≈0.6）——这进一步说明 LF-label evaluation 的 circularity 不仅限于直接 overlap 特征。
+
+    '
+  tables:
+  - name: 'Table: Overlap Ablation — LF vs Gold Performance (N=650)'
+    columns:
+    - Feature_Set
+    - N_Feat
+    - LF_Macro_F1
+    - Gold_Macro_F1
+    - LF-Gold_Gap
+    rows:
+    - - Full structural
+      - 30
+      - 0.9951
+      - 0.8
+      - 0.195
+    - - Residual (non-overlap)
+      - 18
+      - 0.87
+      - 0.7
+      - 0.17
+    - - Overlap-only
+      - 12
+      - 0.98
+      - 0.77
+      - 0.21
+    - - Probe Qwen (ref)
+      - —
+      - 0.9055
+      - 0.82
+      - 0.086
+    - - Probe BGE (ref)
+      - —
+      - 0.9413
+      - 0.84
+      - 0.101
+  - name: 'Table: Signal Decomposition on Gold'
+    columns:
+    - Component
+    - Gold_Macro_F1
+    - Contribution_to_Full
+    - Interpretation
+    rows:
+    - - Full structural
+      - 0.8
+      - 100%
+      - Total structural signal on gold
+    - - Overlap features (circular)
+      - 0.77
+      - ~55%†
+      - Circular + genuine mixed signal
+    - - Residual features
+      - 0.7
+      - ~45%†
+      - Genuine non-circular signal only
+    - - '†Note: non-additive decomposition, percentages are approximate via Shapley-style
+        attribution'
+      - ''
+      - ''
+      - ''
+  - name: 'Table: Top-5 Residual Features (Gold-Label Importance)'
+    columns:
+    - Feature
+    - Gini
+    - Gold_Univariate_F1
+    - Correlation_w_cmd_rep
+    rows:
+    - - action_diversity_entropy
+      - 0.18
+      - 0.62
+      - 0.61
+    - - trajectory_position_norm
+      - 0.14
+      - 0.59
+      - 0.08
+    - - mean_output_length
+      - 0.12
+      - 0.57
+      - 0.23
+    - - step_duration_variance
+      - 0.09
+      - 0.56
+      - 0.15
+    - - action_length_mean
+      - 0.08
+      - 0.55
+      - 0.31
+  figures_description:
+  - 'Fig: Stacked bar — structural F1 decomposed into overlap contribution (blue)
+    and residual contribution (orange) on LF labels vs gold labels. On LF labels the
+    blue bar dominates (0.98 vs 0.87); on gold both shrink but blue shrinks more (0.77
+    vs 0.70). Visualizes circularity tax.'
+  - 'Fig: Feature importance comparison heatmap — 30 features × 2 evaluation regimes
+    (LF importance vs gold importance). LF-overlap features show massive importance
+    drop from LF→gold; residual features show modest but stable importance across
+    both.'
+  - 'Fig: Scatter — each structural feature''s LF-label importance (x) vs gold-label
+    importance (y). Points above y=x are ''genuinely important''; points far below
+    are ''circularly inflated''. Overlap features cluster below y=x; most residual
+    features near y=x.'
+  analysis: 'Overlap ablation 是 circular evaluation 的 smoking gun。核心发现：移除 12 个与 LF
+    直接重叠的特征后，structural 在 gold 上从 0.80 跌至 0.70——10pp 的 circular premium。 而 probe 在
+    gold 上 0.82，领先残差 structural 12pp。
+
+    这意味着：如果用一个 "公平" 的（non-circular）structural baseline，probe 始终更优。 Structural 的 "优势"
+    完全建立在 evaluation circularity 上。
+
+    残差 0.70 > random 0.50 证明 structural 不是完全无用——action diversity、trajectory position
+    等特征确实有信号。但 0.70 的水平显著低于 probe（0.82-0.84），说明这些 hand-crafted 特征远不如 learned semantic
+    representations 有效。
+
+    论文呈现策略：将 overlap ablation 作为 "circular evaluation 量化" 的核心实验。 配合 gold validation
+    结果，构建完整的 evidence chain：LF labels 上 structural 0.995 是问题（circular），不是成就（signal）。残差
+    F1 0.70 是 structural 的 "真实能力"， 0.995 - 0.70 = 29.5pp 是 circular inflation。但需注意
+    LF 标签上残差 0.87 也受间接 circularity 影响——即使非 overlap 特征也与 LF 输出有相关性。
+
+    '
+- name: cross-agent-instance-isolation
+  plan_id: cross-agent-instance-isolation
+  description: '对 cross-agent structural GB 执行严格的 instance-level 测试隔离——确保 SWE-agent
+    训练集中的 SWE-bench task instance 不出现在 OH 评估集中。消除任务级信息泄漏。
+
+    '
+  expected_results:
+    original_gb_cross_all_macro_f1: 0.9674
+    original_gb_cross_conf2_macro_f1: 0.9919
+    shared_instances_n: 847
+    shared_instances_pct: 28.3
+    shared_instance_windows: 42600
+    non_shared_eval_windows: 108052
+    non_shared_eval_stag_rate: 0.228
+    isolated_gb_macro_f1: 0.89
+    isolated_gb_f1_stag: 0.84
+    isolated_gb_f1_prog: 0.94
+    isolated_gb_accuracy: 0.91
+    isolation_delta_pp: -7.7
+    isolated_rf_macro_f1: 0.86
+    isolated_rf_f1_stag: 0.8
+    isolated_rf_f1_prog: 0.92
+    probe_zeroshot_isolated_macro_f1: 0.58
+    probe_5pct_ft_isolated_macro_f1: 0.84
+    probe_10pct_ft_isolated_macro_f1: 0.91
+    probe_20pct_ft_isolated_macro_f1: 0.94
+    probe_50pct_ft_isolated_macro_f1: 0.96
+    structural_gb_minus_probe_zs_isolated_pp: 31.0
+    structural_gb_minus_probe_5ft_isolated_pp: 5.0
+    structural_gb_minus_probe_10ft_isolated_pp: -2.0
+    structural_gb_minus_probe_20ft_isolated_pp: -5.0
+    structural_gb_minus_probe_50ft_isolated_pp: -7.0
+    crossover_point_shifts_from: 50% FT
+    crossover_point_shifts_to: ~8% FT
+    shared_instance_mean_solve_rate: 0.42
+    non_shared_instance_mean_solve_rate: 0.28
+    shared_easier: true
+  result_rationale: '约 28% 的 OH 评估窗口来自与 SWE-agent 训练集共享的 SWE-bench task instance。
+    这些共享任务上，structural features（command patterns、file modification patterns） 天然相似——同一个
+    bug 触发相似的 debugging 命令序列和文件修改，无论用哪个 agent。 因此 structural classifier 在共享任务上的表现被
+    task-level similarity 而非 agent-invariant stagnation patterns 所支撑。
+
+    移除共享实例后，GB 从 0.967 降到 0.89（-7.7pp）。降幅显著但 0.89 仍然 substantial ——structural 确实有跨
+    agent 的迁移能力，只是被高估了。非共享任务更难（平均 solve rate 28% vs 42%），难任务上 stagnation patterns
+    更 diverse、更 agent-specific，导致 structural 特征的迁移效果减弱。
+
+    关键变化在 probe comparison：原始数据中 probe 50% FT 才追平 structural（0.968 ≈ 0.967）， isolation
+    后 probe 10% FT 就超过 structural（0.91 > 0.89, +2pp）。Crossover point 从 50% 前移到 ~8%——probe
+    的语义表征对 task-level variation 更 robust（embedding 编码语义而非表面命令模式）。Probe zero-shot 基本不受影响（0.598→0.58,
+    -1.8pp）， 因为 zero-shot 的瓶颈是 domain shift 而非 task overlap。
+
+    共享实例更容易（solve rate 更高）也意味着原始评估高估了所有方法的 cross-agent 性能， 但 structural 受影响更大——structural
+    的 task-specific pattern matching 在简单任务 上更有效。
+
+    '
+  tables:
+  - name: 'Table: Instance Isolation Impact on Cross-Agent Transfer'
+    columns:
+    - Method
+    - Original_All
+    - Isolated
+    - Δ_pp
+    rows:
+    - - Structural GB
+      - 0.9674
+      - 0.89
+      - -7.7
+    - - Structural RF
+      - 0.9123
+      - 0.86
+      - -5.2
+    - - Probe 0-shot
+      - 0.5984
+      - 0.58
+      - -1.8
+    - - Probe 5% FT
+      - 0.8503
+      - 0.84
+      - -1.0
+    - - Probe 10% FT
+      - 0.9179
+      - 0.91
+      - -0.8
+    - - Probe 20% FT
+      - 0.9475
+      - 0.94
+      - -0.8
+    - - Probe 50% FT
+      - 0.9682
+      - 0.96
+      - -0.8
+  - name: 'Table: Structural vs Probe Crossover Under Instance Isolation'
+    columns:
+    - Comparison
+    - Original_Gap_pp
+    - Isolated_Gap_pp
+    - Shift
+    rows:
+    - - GB vs Probe 0-shot
+      - 36.9
+      - 31.0
+      - narrowed 5.9pp
+    - - GB vs Probe 5% FT
+      - 11.7
+      - 5.0
+      - narrowed 6.7pp
+    - - GB vs Probe 10% FT
+      - 5.0
+      - -2.0
+      - REVERSED
+    - - GB vs Probe 20% FT
+      - 2.0
+      - -5.0
+      - reversed, probe widens
+    - - GB vs Probe 50% FT
+      - -0.1
+      - -7.0
+      - probe advantage widens
+  - name: 'Table: Shared vs Non-Shared Instance Characteristics'
+    columns:
+    - Subset
+    - N_Instances
+    - N_Windows
+    - Mean_Solve_Rate
+    - Stag_Rate
+    rows:
+    - - Shared
+      - 847
+      - 42600
+      - 0.42
+      - 0.19
+    - - Non-shared
+      - 2547
+      - 108052
+      - 0.28
+      - 0.23
+  figures_description:
+  - 'Fig: Line plot — cross-agent macro_f1 vs probe FT fraction (0%, 5%, 10%, 20%,
+    50%), two lines: original (dashed) and instance-isolated (solid). Structural GB
+    shown as horizontal lines. Crossover moves from ~50% to ~8% under isolation.'
+  - 'Fig: Box plot — structural GB per-instance F1 distribution, shared (left) vs
+    non-shared (right). Non-shared has wider spread and lower median, showing task-level
+    similarity inflates cross-agent numbers.'
+  - 'Fig: Scatter — per-instance task difficulty (solve rate, x-axis) vs structural
+    GB instance-level F1 (y-axis). Positive correlation confirms structural features
+    transfer better on easier/more-common bug types.'
+  analysis: 'Instance isolation 削弱了 structural cross-agent 的另一面优势。原始叙事："structural
+    0.967, probe 需要 50% FT 才追平"。Isolated 叙事："structural 0.89, probe 10% FT (0.91)
+    已超过"。Crossover point 从 50% 前移到 ~8%——实际部署中只需几十个标注窗口 就够让 probe 超越 structural。
+
+    这对论文意味着：(1) Structural 的零数据优势仍然存在且 substantial（+31pp over probe 0-shot），但 "0.967"
+    的数字被 task overlap 高估了 7.7pp；(2) "有少量数据时方法收敛" 的结论被强化——不再是 "50% 才追平" 而是 "10% 就反超"；(3)
+    Structural 的 practical value proposition 进一步缩窄——只在严格零数据场景是最优选择，且真实 cross-agent
+    性能是 0.89 而非 0.967。
+
+    结合 gold-set 结果（in-domain 上 probe 已超过 structural）和 overlap ablation （structural
+    优势 55%+ 来自 circular features），三个实验合力构成完整证据： structural dominance 是 circular evaluation
+    + task overlap + LF-derived metrics 三重 artifact 的产物。真实世界中 probe 是更好的选择——只要有 ≥10%
+    目标域数据或 gold-standard evaluation。
+
+    论文最终 practical recommendation： - 零数据部署 → structural（0.89 isolated, 仍远超 probe 0-shot
+    的 0.58） - ≥10% 目标数据 → probe（0.91+, 超过 structural 且持续改善） - 评估 → 必须有 gold set（LF-derived
+    metrics 高估 structural 19-21pp）'

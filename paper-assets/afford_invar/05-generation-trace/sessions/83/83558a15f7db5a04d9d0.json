@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83558a15f7db5a04d9d0",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra qwen3 download v3",
+  "task_key": "worker_infra_qwen3-download-v3_20260519T180106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen3-download-v3_20260519T180106_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "2c26ce2f5d8db54928ff833fe193a999cb4fbe8d6070a6390678cde405cbc806"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4.5 分钟后自动回来检查。当前两个下载都在正常推进，Qwen3 预计 ~20 分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen3-download-v3.md"
+}

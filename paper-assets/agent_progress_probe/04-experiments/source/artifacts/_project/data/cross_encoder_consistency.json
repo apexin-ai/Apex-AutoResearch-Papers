@@ -1,0 +1,10 @@
+See full JSON at server: /root/autodl-tmp/agent_progress_probe/results/cross_encoder_consistency.json
+
+Key results:
+- n_common_windows: 269 (intersection of 3 encoder test sets)
+- 3/3 agree: 85.87%, 2/3 agree: 14.13%, all disagree: 0%
+- Fleiss kappa: 0.6449 (substantial agreement)
+- Pairwise Pearson r: STE-E5=0.629, STE-BGE=0.700, E5-BGE=0.874
+- Pairwise Spearman r: STE-E5=0.655, STE-BGE=0.620, E5-BGE=0.811
+- All 38 disagreement windows are conf=2, distributed early:15/mid:8/late:15
+- Disagree mean probs: STE=0.742 (over-confident), E5=0.352, BGE=0.366

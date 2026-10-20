@@ -1,0 +1,62 @@
+{
+  "exp_id": "phase1_transfer_v2",
+  "project": "afford_invar",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:08:19.226Z",
+    "updated_at": "2026-05-20T00:52:46.977Z",
+    "hypothesis": "修复 spatial_normalize 后的 L_transfer：用 decoder pre-softmax 4×4 spatial grid + projection head 替代 global avg pool，保留空间信息。InfoNCE 应能驱动 decoder 学习空间判别特征。预期：L_xfr 持续下降（不锁死 4.17），hm_max > 0.05，hm_ent 下降，dec_gnorm > 0.01。1000-step 硬判断：L_xfr < 3.5 → 继续，≈ 4.17 → Path C (kill 项目)。",
+    "parent": "phase1_transfer_v1",
+    "spec": {
+      "command": "torchrun --nproc_per_node=1 --master_port=29501 vla-scripts/finetune_afford_transfer.py --vla_path /root/autodl-tmp/openvla-7b --data_root_dir /root/autodl-tmp/modified_libero_rlds --dataset_name libero_goal_no_noops --run_root_dir /root/autodl-tmp/afford_invar/runs --lora_rank 32 --batch_size 2 --learning_rate 5e-4 --max_steps 20000 --save_freq 500 --layer_idx 18 --lambda_H 0 --beta 0.1 --transfer_temperature 0.07 --queue_size 256 --sim_threshold 0.80",
+      "server": "westd-19957",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "125786",
+      "log_path": "/root/autodl-tmp/afford_invar/runs/phase1_transfer_v2.log",
+      "submitted_at": "2026-05-20T00:13:03.067Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/modified_libero_rlds/libero_goal_no_noops",
+      "data_count": "~5000 demos",
+      "model_name": "openvla-7b + LoRA r=32 + AffordanceDecoder 1.72M (fixed transfer_proj)",
+      "seed": "default",
+      "checkpoint_source": "N/A - fresh training with fixed spatial_normalize",
+      "eval_data": "N/A - training experiment",
+      "fix": "spatial_normalize replaced with decoder pre-softmax 4x4 grid + projection head (18688 new params)",
+      "wall_clock_seconds": 2383.9,
+      "gpu_hours": 0.66
+    },
+    "metrics": {
+      "L_xfr_1000step": 4.05,
+      "L_xfr_range": "4.05-4.21 (flat, no trend)",
+      "dec_gnorm_1000": 0.04,
+      "grad_ratio_1000": 0.0037,
+      "hm_ent_1000": 6.5,
+      "hm_max_1000": 0.015,
+      "pos_zero_ratio": "40-50%",
+      "pos_count_avg": 0.27,
+      "chance_level": 5.55,
+      "L_xfr_trend": "step 300→4.156, 500→4.143, 800→4.170, 900→4.181, 999→4.052, 1100→4.210",
+      "hm_ent_trend": "8.7→6.5 (improving)",
+      "transfer_grad_norm_trend": "0.22→0.08 (shrinking)",
+      "verdict": "PATH_C per Director criteria (L_xfr ≈ 4.17, no downward trend at 1000 steps)",
+      "pos_diagnosis": "Not a bug. LIBERO-Goal has only 1/45 instruction pairs above sim_threshold=0.80. v1 had ~1.55 pos/step likely because it used LIBERO-Spatial (highly similar instructions). Fix: lower threshold to 0.70 or enable paraphrase augmentation.",
+      "pos_fix_options": [
+        "lower sim_threshold to 0.70",
+        "paraphrase augmentation in training data",
+        "expand pair_index with paraphrases"
+      ]
+    },
+    "conclusion": "killed",
+    "notes": "D013: Director 决定 kill。PATH_C 判定暂缓，但 pos 诊断揭示根因（LIBERO-Goal 仅 1/45 对 sim>0.80）。hm_ent 8.7→6.5 的积极信号验证了 transfer_proj 架构有效。v3 将用 paraphrase augmentation 解决正样本稀缺问题。",
+    "completed_at": "2026-05-20T00:52:46.977Z"
+  },
+  "timestamp": "2026-05-20T00:52:47.023489+00:00",
+  "trigger": "update_registry"
+}

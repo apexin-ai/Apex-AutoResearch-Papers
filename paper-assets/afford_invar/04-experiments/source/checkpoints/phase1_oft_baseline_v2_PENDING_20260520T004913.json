@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase1_oft_baseline_v2",
+  "project": "afford_invar",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:49:06.904Z",
+    "updated_at": "2026-05-20T00:49:13.753Z",
+    "hypothesis": "OFT vanilla baseline（续跑）：从 phase1_oft_baseline step-4500 checkpoint resume，修复 checkpoint 策略（merge_lora_during_training=False, save_freq=2000）。同一实验目标：提供干净 OFT 对照组用于 LIBERO SR 和 PRIDE 基线对比。",
+    "parent": "phase1_oft_baseline"
+  },
+  "timestamp": "2026-05-20T00:49:13.774299+00:00",
+  "trigger": "update_registry"
+}

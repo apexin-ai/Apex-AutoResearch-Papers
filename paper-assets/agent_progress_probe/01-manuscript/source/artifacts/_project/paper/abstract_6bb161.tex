@@ -1,0 +1,11 @@
+% Abstract: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)
+\begin{abstract}
+LLM agents deployed on long-horizon software engineering tasks frequently \emph{stagnate}---producing diverse yet collectively unproductive action sequences that evade simple loop detectors.
+Detecting this failure mode is critical for enabling timely interventions, yet it remains unclear what information is needed: does identifying subtle agent stagnation require semantic understanding, or do simpler structural patterns suffice?
+We present a systematic empirical study addressing this question through weak supervision over trajectories of two architecturally distinct agents, SWE-Agent (54,809 windows, 28.5\% stagnation) and OpenHands (150,652 windows, 6.6\% stagnation).
+Our central finding is that stagnation signals are fundamentally structural: 30 hand-crafted features---command repetition rates, file operation counts, edit distances---achieve 0.995 in-domain and 0.967 cross-agent macro-F1, surpassing a GRU embedding probe (0.906 in-domain, 0.751 with full fine-tuning) by up to 21.6 percentage points and an LLM-as-judge baseline (0.663) by 33.3 pp, while requiring no GPU and running in under 5\,ms per window.
+This structural advantage is encoder-agnostic: three embedding backbones all yield probe F1 above 0.90.
+We further characterize labeling function temporal dynamics, revealing agent-specific roles: command repetition leads stagnation by 1.87 steps on SWE-Agent but reverses to lagging on OpenHands, where removing it improves probe F1 by 17.6\,pp.
+Despite these well-characterized temporal patterns, three temporal label models---time-varying weights, HMM, and lag-aware HMM---all fail to improve over majority vote, a negative result we trace to low inter-LF conflict in the current 3-function regime.
+Our findings redirect agent monitoring from costly representation learning toward lightweight structural approaches.
+\end{abstract}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d9574530451dedfc5aef",
+  "project": "afford_invar",
+  "kind": "worker",
+  "title": "infra download check and fix",
+  "task_key": "worker_infra_download-check-and-fix_20260519T184720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-check-and-fix_20260519T184720.log",
+    "occurrence": 1,
+    "bytes": 513900,
+    "sha256": "c5803457143a81c55922efb49a054b13f88d32e708c3cf948052412f0762f7c8"
+  },
+  "statistics": {
+    "messages": 362,
+    "user_turns": 0,
+    "tool_calls": 153,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 153,
+      "tool_result": 153,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 362,
+      "chunks": [
+        {
+          "path": "d9574530451dedfc5aef-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9574530451dedfc5aef-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9574530451dedfc5aef-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-download-check-and-fix.md"
+}

@@ -1,0 +1,7 @@
+See server: /root/autodl-tmp/agent_progress_probe/data/cross_agent_structural_results.json
+
+Key results (macro_f1):
+- In-domain: LR=0.9874, RF=0.9951, GB=0.9951
+- Cross-agent OH all: LR=0.7801, RF=0.9123, GB=0.9674
+- Cross-agent OH conf>=2: LR=0.9671, RF=0.9959, GB=0.9919
+- Reference probe: in-domain=0.9055, zero-shot=0.532, finetune=0.751

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cb7b336dfdc0055acb1",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra verify transfer v1",
+  "task_key": "worker_infra_verify-transfer-v1_20260519T232515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-transfer-v1_20260519T232515_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "c9901e8631fbf5d2266ebd1b8347a439651a008aa6ddbb369d5afa1809216f60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，汇报如下：\n\n| 项目 | 状态 |\n|------|------|\n| **PID 115114** | 存活，已运行 3 分 42 秒 |\n| **错误/异常** | 无 traceback、无 exception |\n| **当前进度** | Step 860 / 20,000（4%），速度 ~4.4 it/s，预计剩余 ~1h12m |\n| **Loss** | L_act≈0.32, L_xfr≈4.17, L_tot≈0.74（正常下降中） |\n| **GPU 利用率** | GPU0: 81%, 25.4/97.9 GB; GPU1: 68%, 25.0/97.9 GB; GPU2-3: 空闲 |\n\n训练刚启动不久，双卡正常工作，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-transfer-v1.md"
+}

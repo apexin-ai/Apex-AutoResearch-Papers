@@ -1,0 +1,24 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Process Supervision and Self-Reflection.}
+PRMs assign step-level quality scores \citep{xi2025agentprm,choudhury2025prm,fan2026agentrm}, building on process supervision \citep{lightman2024letsverify,uesato2022processfeedback}, with benchmarks revealing long-horizon degradation \citep{wang2026planrewardbench,li2026toolprmbench}.
+Self-reflection methods \citep{shinn2023reflexion,yao2023react,yao2023tot,zhou2024lats} prompt agents to diagnose failures, but LLMs cannot reliably self-correct without external feedback \citep{huang2024selfcorrect,kamoi2024selfcorrection}.
+We address a complementary question---\emph{when} is the agent stuck---using external structural signals at window level, targeting real-time monitoring ($<$5\,ms) without outcome labels.
+
+\paragraph{Weak Supervision, Noisy Labels, and Label Leakage.}
+Data programming \citep{ratner2016dataprogramming,ratner2019snorkel} enables dataset creation through labeling functions, extended via multi-task aggregation \citep{ratner2019snorkelmetal}, triplet methods \citep{fu2020flyingsquid}, sequential HMMs \citep{safranchik2020linkedhmm}, multi-resolution LFs \citep{sala2019multiresolution}, and benchmarked by WRENCH \citep{zhang2021wrench}. \citet{zhan2019multi} apply WS to multi-agent trajectory generation; our work targets single-agent monitoring.
+Our application differs from standard Snorkel pipelines in three ways: LFs target agent trajectory structure (command repetition, file diffs) rather than text patterns; labels exhibit temporal dependencies within and across windows; and LF firing patterns are agent-specific, requiring cross-agent transfer analysis absent from prior weak supervision work.
+Unlike \citeauthor{safranchik2020linkedhmm}'s NER results, temporal label models do not improve over majority vote in our low-conflict 3-LF regime (\S\ref{sec:temporal_label_models}).
+Our silver labels connect to noisy label learning \citep{han2018coteaching,li2020dividemix}; the structural feature--label overlap instantiates label leakage \citep{kaufman2012leakage} and Goodhart's Law \citep{manheim2018goodhart}, mitigated through cross-coding-agent evaluation and a gold set (\S\ref{sec:gold_set}).
+
+\paragraph{Agent Benchmarks and Monitoring.}
+Agent evaluation spans diverse environments---general tasks \citep{liu2024agentbench}, web navigation \citep{zhou2024webarena}, interactive coding \citep{yang2024intercode}, tool use \citep{qin2024toolllm}, and debugging \citep{tian2024debugbench}---creating demand for scalable monitoring.
+\citet{orlanski2026slopcodebench} document coding agent degradation; \citet{rath2026agentdrift} quantify multi-agent behavioral drift; \citet{chen2025monitoring} show sequence-level context is necessary; \citet{kale2025weaktostrong} show weak monitors can oversee stronger agents; and \citet{cemri2025multiagentfail,zhu2025agentfail} catalog systematic failure modes.
+Guardrail frameworks \citep{rebedea2023nemo,xiang2024guardagent,wang2025probguard} address safety but not progress.
+
+\paragraph{Anomaly Detection, Process Mining, and Compute Efficiency.}
+Stagnation detection relates to sequential anomaly detection \citep{chandola2009anomaly}, including deep log analysis \citep{du2017deeplog,meng2019loganomaly}, runtime verification \citep{leucker2009runtime}, and change point detection \citep{aminikhanghahi2017changepoint,adams2007bayesian}.
+Cycle detectors \citep{george2025cycledetection,pipis2025reasoningloop} target structural repetition but miss semantically diverse stagnation; \citet{liu2026trajad} train trajectory verifiers for broader anomaly detection.
+Our structural features draw on process mining \citep{vanderaalst2016processmining}; the success of hand-crafted features parallels classical findings for narrow detection tasks \citep{liu2008isolationforest}.
+Early-exit architectures \citep{teerapittayanon2016branchynet,schwartz2020righttool} and curriculum learning \citep{bengio2009curriculum} reduce computation by adapting effort to difficulty, analogous to terminating unproductive agent computation.

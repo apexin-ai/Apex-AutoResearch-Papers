@@ -1,0 +1,405 @@
+issues:
+  # ============================================================
+  # ROUND 6 — MUST-FIX (Critical)
+  # ============================================================
+
+  - id: "CIRC-NARR-1"
+    summary: "Headlines still silver-centric despite circularity; need gold-centric narrative + LF threshold baseline"
+    category: framing
+    severity: critical
+    status: in_progress
+    first_raised_round: 5
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "OVERCLAIM-1: cross-regime subtraction meaningless"
+      - round: 6
+        reviewers: [1, 2]
+        note: "MF-1: All headlines based on silver (0.967, 39.4pp, 47.6pp). LF threshold baseline missing. Gold 0.839 not in abstract."
+    action_items:
+      - round: 5
+        action: "16.8pp/19.6pp removed. Replaced with matched-scope 39.4pp + cross-agent 47.6pp."
+        assigned_to: paper_agent
+        status: done
+      - round: 6
+        action: "Gold-centric narrative rewrite: abstract/intro lead with gold numbers, silver demoted to 'pipeline validation'. Add LF threshold baseline experiment."
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "GOLD-SCOPE-1"
+    summary: "Gold set N=505 insufficient for cross-agent claims (κ=0.39, SWE-only, no OH gold)"
+    category: method
+    severity: critical
+    status: in_progress
+    first_raised_round: 3
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "GOLD-2: κ CI too wide, prevalence unreported"
+      - round: 6
+        reviewers: [1, 2]
+        note: "MF-2: N=505 only SWE conf≥2. Cross-agent claim has zero non-circular validation. Need 1000+ with OH."
+    action_items:
+      - round: 5
+        action: "Added prevalence 26.3%, conf≥2 κ=0.865, MV CI [0.758, 0.837]"
+        assigned_to: paper_agent
+        status: done
+      - round: 6
+        action: "Cannot expand gold in 9 days. Mitigation: honest limitation statement + bidirectional symmetry as indirect evidence + target Findings track."
+        assigned_to: research_director
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "NOV-MAIN-1"
+    summary: "Method novelty limited (Snorkel direct application) — Findings track appropriate"
+    category: framing
+    severity: critical
+    status: in_progress
+    first_raised_round: 3
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "NOV-2: Both recommend Findings track. Excitement 2-3.5/5."
+      - round: 6
+        reviewers: [1, 2]
+        note: "MF-3: 3 LFs + MV is standard Snorkel. 30-dim features = standard engineering. Findings acceptable if findings reliable."
+    action_items:
+      - round: 6
+        action: "Target Findings track. Reposition as empirical study with 3 novel findings (cross-agent transfer, circular eval quantification, deployment trade-off)."
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "LLM-NARR-1"
+    summary: "LLM narrative imbalanced: gold LLM 0.910 > GB 0.839 downplayed, silver LLM collapse over-emphasized"
+    category: framing
+    severity: critical
+    status: in_progress
+    first_raised_round: 5
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [internal]
+        note: "LLM-GOLD-1: Self-discovered, paper reframed to deployment trade-off"
+      - round: 6
+        reviewers: [1, 2]
+        note: "MF-4: Gold LLM advantage underreported. Need balanced trade-off presentation + OH-specific few-shot + gold CI/p-value."
+    action_items:
+      - round: 5
+        action: "Paper reframed to cross-agent + deployment efficiency"
+        assigned_to: paper_agent
+        status: done
+      - round: 6
+        action: "Further balance: gold LLM superiority explicitly acknowledged in abstract. Gold CI/p-value added. Trade-off framing strengthened."
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  # ============================================================
+  # ROUND 6 — SHOULD-FIX
+  # ============================================================
+
+  - id: "SCOPE-AGENT-1"
+    summary: "Agent-agnostic claim overclaimed — only 2 SWE-Bench agents, ACR 0.608"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 5
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "Bidirectional 0.995/0.995 added but scope still SWE-Bench only"
+      - round: 6
+        reviewers: [1, 2]
+        note: "SF-1: Limit to 'SWE-Bench ecosystem transferability', remove 'agent-agnostic'"
+    action_items:
+      - round: 6
+        action: "Replace 'agent-agnostic' with 'SWE-Bench ecosystem transferability' throughout"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "2LF-DEPLOY-1"
+    summary: "2-LF deployment caveat insufficient — GB -12pp in appendix only"
+    category: method
+    severity: warning
+    status: in_progress
+    first_raised_round: 5
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "PRIV-1: 2-LF results added to appendix"
+      - round: 6
+        reviewers: [1, 2]
+        note: "SF-2: 2-LF must be in main text, not just appendix. λ₃ deployment caveat prominent."
+    action_items:
+      - round: 5
+        action: "Added 2-LF to Appendix G.7"
+        assigned_to: paper_agent
+        status: done
+      - round: 6
+        action: "Promote 2-LF full results to §4 main text. Discuss λ₃ deployment impact prominently."
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "STAT-2"
+    summary: "Gold LLM vs GB and other comparisons lack CI/p-value"
+    category: experiment
+    severity: warning
+    status: in_progress
+    first_raised_round: 5
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "STAT-1: matched-scope CI added"
+      - round: 6
+        reviewers: [1, 2]
+        note: "SF-3: Gold LLM 0.910 vs GB 0.839 needs CI + p-value. Label model comparisons need CI."
+    action_items:
+      - round: 5
+        action: "Added 39.4pp CI [37.9, 41.0], p=0.0"
+        assigned_to: paper_agent
+        status: done
+      - round: 6
+        action: "Run bootstrap CI + McNemar for gold LLM vs GB. Run CI for cross-agent LLM vs GB."
+        assigned_to: main_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "FIND3-SCOPE-1"
+    summary: "Finding 3 (label models fail) needs scope limitation to 3-LF/95% agreement conditions"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 5
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "LF-QUANT-1: 6-LF confirms LF quantity bottleneck"
+      - round: 6
+        reviewers: [1, 2]
+        note: "SF-4: Finding 3 limited to '3 binary LFs / 95% agreement / low-conflict'. 6-LF HMM +6.5pp proves it."
+    action_items:
+      - round: 6
+        action: "Rewrite Finding 3 with explicit scope limitation"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "CONTRIB2-1"
+    summary: "Contribution 2 (label quality as transfer bottleneck) evidence too thin"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 6
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "SF-5: Only 1 embedding version change as natural experiment. Downgrade to observation."
+    action_items:
+      - round: 6
+        action: "Downgrade from 'contribution' to 'empirical observation'"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "REPEAT-1"
+    summary: "Same numbers repeated 5 times across sections"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 6
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "SF-6: 0.967/39.4pp/47.6pp/0.491/0.910/0.839 repeated in Abstract, Intro, Experiments, Analysis, Conclusion"
+    action_items:
+      - round: 6
+        action: "Each section takes different narrative role; reduce verbatim repetition"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "UNIQUE-1"
+    summary: "'uniquely' lacks baseline comparison (no LF threshold / TF-IDF / rule-based)"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 6
+    last_seen_round: 6
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "SF-7: Change to 'robustly' or add baselines"
+    action_items:
+      - round: 6
+        action: "LF threshold baseline experiment covers this. Change 'uniquely' to 'robustly' where baseline not yet shown."
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  # ============================================================
+  # ROUND 6 — MINOR
+  # ============================================================
+
+  - id: "TERM-1"
+    summary: "Terminology inconsistency: cross-agent vs cross-coding-agent, label convention"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 6
+    last_seen_round: 6
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "MI-1: Mixed terminology throughout"
+    action_items:
+      - round: 6
+        action: "Standardize to 'cross-agent' throughout; fix label convention consistency"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "BIB-2"
+    summary: "rath2026agentdrift bib entry incomplete (no arXiv ID, author='Rath and others')"
+    category: format
+    severity: info
+    status: open
+    first_raised_round: 6
+    last_seen_round: 6
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "MI-2: Incomplete bib entry"
+    action_items:
+      - round: 6
+        action: "Complete bib entry with full author list and arXiv ID"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "FOOTNOTE-1"
+    summary: "Table 1 footnote $^b$ contradicts text about fine-tuned probe"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 6
+    last_seen_round: 6
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "MI-3: Scope difference causes apparent contradiction"
+    action_items:
+      - round: 6
+        action: "Clarify scope difference in footnote or align text"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "QUANT-1"
+    summary: "Abstract 'frequently' unquantified — should use 28.5%/20.9%"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 6
+    last_seen_round: 6
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "MI-4: Quantify in abstract"
+    action_items:
+      - round: 6
+        action: "Replace 'frequently' with specific percentages"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "PAGE-2"
+    summary: "Page compliance uncertain (R2 estimates ~9 pages)"
+    category: format
+    severity: info
+    status: open
+    first_raised_round: 6
+    last_seen_round: 6
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "MI-5: Divergence—R1 says compliant, R2 estimates 9 pages. Need PDF measurement."
+    action_items:
+      - round: 6
+        action: "Verify exact page count; Limitations section does not count toward limit"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  # ============================================================
+  # RESOLVED FROM PRIOR ROUNDS
+  # ============================================================
+
+  - id: "PAGE-1"
+    summary: "Page limit violation: §6 Conclusion overflows to page 9"
+    category: format
+    severity: critical
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    mentions:
+      - round: 3
+        reviewers: [2]
+        note: "R2-N1: ~4 pages over limit."
+      - round: 5
+        reviewers: [1, 2]
+        note: "Improved to ~8.1 pages."
+    action_items:
+      - round: 5
+        action: "Compressed Intro, moved §5.3 to Appendix, trimmed Conclusion"
+        assigned_to: paper_agent
+        status: done
+    resolution: "Paper Agent confirms body ≤8 pages after compression rounds"
+    resolution_round: 5
+
+  - id: "FMT-3"
+    summary: "7 orphan bibliography entries (ACL template leftovers)"
+    category: format
+    severity: info
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 5
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "7 entries in template custom.bib"
+    action_items:
+      - round: 5
+        action: "Confirmed entries in template file only"
+        assigned_to: paper_agent
+        status: done
+    resolution: "Orphan entries in template file only, clean compile excludes them."
+    resolution_round: 5

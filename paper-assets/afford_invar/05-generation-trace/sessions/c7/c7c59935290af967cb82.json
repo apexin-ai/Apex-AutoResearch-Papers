@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7c59935290af967cb82",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra kill old training",
+  "task_key": "worker_infra_kill-old-training_20260519T225843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-old-training_20260519T225843_result.json",
+    "occurrence": 1,
+    "bytes": 548,
+    "sha256": "a3ee0f3a60abc43707da87b8524b57005895c9fe60385f463b1569baa2376d4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成，汇总如下：\n\n**1. Kill 确认** — 3 个进程（110152, 110153, 110222）全部已终止，无残留。\n\n**2. GPU 释放** — 4 张 GPU 全部 0 MiB / 0% 利用率。\n\n**3. Checkpoint 路径**\n- `/root/afford_invar/runs/libero_goal_no_noops+afford+b2+lr0.0005+a0.1/checkpoint-500/`（完整，~790MB）\n- `/root/afford_invar/runs/libero_goal_no_noops+afford+b2+lr0.0005+a0.1/checkpoint-1000/`\n\n**4. Log 文件**\n- 路径：`/root/afford_invar/results/phase1_train_v2.log`\n- 大小：197KB，1403 行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-old-training.md"
+}

@@ -1,0 +1,15 @@
+% Abstract: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)
+LLM-based agents deployed on software engineering tasks frequently exhibit semantic stagnation---executing diverse yet collectively unproductive action sequences that extend beyond simple n-gram repetition and overwhelm LLM-based judges.
+No systematic study has compared detection approaches across deployment scenarios or investigated what signals carry stagnation information.
+
+We propose a weak supervision methodology for agent stagnation monitoring: three labeling functions aggregated by majority vote produce silver labels over 205K+ windows from two coding agents (SWE-Agent and OpenHands) on SWE-bench.
+Against both silver labels (LF-agreement scores) and a human-annotated gold set ($N{=}505$, three annotators), we compare 30 structural features, a GRU-based neural probe, n-gram cycle detectors, and LLM-as-judge baselines across zero-data and fine-tuned regimes.
+
+We find a deployment-regime trade-off.
+On a human-annotated gold set ($N{=}505$), the best LLM judge achieves the highest non-circular accuracy (few-shot-CoT 0.910 vs.\ structural GB 0.839), but LLM judges collapse on cross-agent transfer (0.491 vs.\ 0.967, $-$47.6\,pp) at orders-of-magnitude higher cost.
+Cycle detection matches structural features on in-domain gold (${\sim}$0.84) but likewise collapses cross-agent ($-$43.7\,pp).
+In zero-data transfer, structural features outperform the neural probe by 39.4\,pp; with fine-tuning, the probe surpasses structural features (0.976 vs.\ 0.967).
+
+Labeling functions exhibit agent-specific temporal dynamics: command repetition leads stagnation by 1.87 steps on SWE-Agent but lags by 3.32 steps on OpenHands.
+Label version bias---not LF noise---was the dominant cross-coding-agent transfer bottleneck.
+Five label models (three temporal, two generative) all fail to improve over majority vote; the bottleneck is LF quantity, not aggregation sophistication.

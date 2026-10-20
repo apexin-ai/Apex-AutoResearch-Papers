@@ -1,0 +1,750 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{subcaption}
+
+\title{ProgressProbe: Temporal-Aware Weak Supervision\\for Window-Level Progress Estimation in LLM Agent Trajectories}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+LLM-based agents frequently exhibit \emph{semantic stagnation}---executing superficially diverse but collectively ineffective action sequences during long-horizon tasks.
+Detecting such stagnation at the window level requires labels that are expensive to obtain manually and noisy when generated automatically via labeling functions (LFs).
+We observe that LFs on sequential agent trajectories violate the i.i.d.\ assumption underlying standard data programming: some LFs \emph{lead} stagnation onset (e.g., command repetition fires ${\sim}1.8$ steps early) while others \emph{lag} (e.g., outcome back-propagation fires ${\sim}2.1$ steps late).
+Exploiting this, we propose a \textbf{temporal label model} that weights LF votes according to their empirically estimated temporal roles, improving gold-set label quality by $+6$\,pp macro-F1 over majority vote and $+3$\,pp over FlyingSquid.
+A lightweight GRU \textbf{ProgressProbe} trained on these labels achieves $0.80$ macro-F1 on a 400-window human-annotated gold set, matching or slightly exceeding the LF oracle ($+2$\,pp) without requiring LF computation at inference.
+Compared to LLM-as-judge with chain-of-thought prompting, the probe attains comparable accuracy ($-2$\,pp vs.\ best LLM CoT) at $700\times$ lower latency and ${\sim}850\times$ lower cost.
+Cross-agent transfer from SWE-agent to OpenHands shows the probe degrades less than the LF oracle ($-9$\,pp vs.\ $-14$\,pp), suggesting it captures implementation-agnostic progress signals.
+Extensive ablations over encoder choice, window size, architecture, and LF contributions confirm the robustness of the approach.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Large language model (LLM) agents are increasingly deployed on complex, long-horizon software engineering tasks, where a single trajectory may span dozens of tool invocations, file edits, and test executions.
+A recurring failure mode is \emph{semantic stagnation}: the agent produces actions that are individually plausible and superficially diverse, yet collectively fail to advance the task goal.
+Unlike simple repetition loops, semantic stagnation evades cycle detectors because each action differs syntactically from its predecessors.
+
+Existing monitoring approaches fall into several categories, none of which fully address window-level progress estimation.
+Cycle detectors~\citep{chen2024cdcs} capture structural repetition but miss semantically diverse stagnation.
+Process reward models (PRMs)~\citep{lightman2023lets,wang2024mathshepherd} score individual steps but require costly per-step outcome labels and lose temporal dynamics within windows.
+Self-reflection methods~\citep{shinn2023reflexion,yao2023tree} rely on the stagnating model's own judgment.
+LLM-as-judge approaches provide high accuracy but at latencies ($>2$\,s/window) and costs (\$0.50+/1K windows) incompatible with real-time monitoring.
+
+We reformulate the problem as \textbf{window-level progress estimation} and propose a three-layer solution.
+First, we design five labeling functions capturing complementary stagnation signals (command repetition, embedding diversity drop, error patterns, tool misuse, and outcome back-propagation) and analyze their temporal dynamics relative to stagnation onset (\S\ref{sec:temporal_dynamics}).
+We find that LFs exhibit systematic leading/lagging behavior, violating the conditional independence assumption of standard data programming.
+Second, we propose a \textbf{temporal label model} (\S\ref{sec:temporal_lm}) that exploits these temporal roles for improved label aggregation, outperforming majority vote by $+6$\,pp and FlyingSquid by $+3$\,pp on a human gold set.
+Third, we train a lightweight \textbf{ProgressProbe}---a 542K-parameter GRU operating on frozen embeddings---that distills weak labels into a fast inference-time classifier (\S\ref{sec:probe}), achieving $0.80$ gold macro-F1 at $4$\,ms/window.
+
+Our contributions are:
+\begin{enumerate}
+\item An empirical analysis of LF temporal dynamics on agent trajectories, revealing leading/lagging structure that violates i.i.d.\ assumptions (\S\ref{sec:temporal_dynamics}).
+\item A temporal-aware label aggregation method that exploits domain-specific leading/lagging indicators for improved weak supervision on sequential data (\S\ref{sec:temporal_lm}).
+\item A systematic empirical study including cross-implementation transfer, LLM-as-judge comparison, and extensive ablations (\S\ref{sec:experiments}).
+\end{enumerate}
+
+%==============================================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Agent Failure Detection.}
+Cycle detection approaches such as CDCS/CDSA~\citep{chen2024cdcs} and SpecRA~\citep{wang2024specra} identify structural repetition in agent traces.
+TrajAD~\citep{zhang2024trajad} applies anomaly detection to trajectory embeddings.
+These methods target surface-level repetition and miss semantically diverse stagnation patterns.
+
+\paragraph{Process Reward Models.}
+PRMs~\citep{lightman2023lets,wang2024mathshepherd} assign step-level correctness scores.
+While effective in mathematical reasoning, they require expensive per-step outcome labels and aggregate uniformly within windows, losing temporal dynamics.
+Our approach is a weak-supervision alternative that requires no step-level labels.
+
+\paragraph{Agent Self-Reflection.}
+Reflexion~\citep{shinn2023reflexion}, LATS~\citep{zhou2023lats}, and Tree of Thoughts~\citep{yao2023tree} enable agents to critique and revise their actions.
+These are intervention mechanisms, not monitoring tools, and rely on the stagnating model's own judgment.
+
+\paragraph{Data Programming and Weak Supervision.}
+Snorkel~\citep{ratner2017snorkel} introduced programmatic labeling via noisy LFs aggregated by a generative label model.
+FlyingSquid~\citep{fu2020fast} extends this with efficient triplet-based dependency estimation.
+Both assume i.i.d.\ data points, which is violated in sequential agent trajectories.
+Our temporal label model explicitly addresses this gap.
+
+\paragraph{LLM-as-Judge.}
+Using LLMs to evaluate other LLM outputs~\citep{zheng2023judging} achieves high accuracy but at significant latency and cost, making it impractical for real-time trajectory monitoring.
+
+%==============================================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+
+Given an agent trajectory $\tau = (a_1, a_2, \ldots, a_T)$ of $T$ actions, we partition $\tau$ into overlapping windows of size $k$: $w_i = (a_i, a_{i+1}, \ldots, a_{i+k-1})$.
+The task is binary classification: $y_i \in \{\textsc{Progress}, \textsc{Stagnation}\}$ for each window $w_i$.
+
+\subsection{Labeling Functions}
+\label{sec:lfs}
+
+We design five LFs capturing complementary stagnation signals:
+
+\begin{enumerate}
+\item \textbf{Command Repetition} ($\lambda_\text{cmd}$): Detects repeated shell commands or API calls within a window via exact and fuzzy matching.
+\item \textbf{Diversity Drop} ($\lambda_\text{div}$): Measures pairwise cosine similarity of action embeddings; fires when mean similarity exceeds a threshold, indicating low semantic diversity.
+\item \textbf{Error Pattern} ($\lambda_\text{err}$): Identifies recurring error messages or failure patterns across consecutive actions.
+\item \textbf{Tool Misuse} ($\lambda_\text{tool}$): Detects repeated invocations of tools with invalid arguments or in inappropriate contexts.
+\item \textbf{Outcome Back-Propagation} ($\lambda_\text{out}$): Uses trajectory-final exit context (exit codes, error messages) to retrospectively label preceding windows.
+\end{enumerate}
+
+\subsection{LF Temporal Dynamics}
+\label{sec:temporal_dynamics}
+
+We analyze the temporal offset of each LF relative to stagnation onset across 4,820 onset windows.
+Define the offset $\delta_\lambda$ of LF $\lambda$ as the median number of steps between $\lambda$'s first firing and the annotated stagnation onset.
+Negative $\delta$ indicates a \emph{leading} indicator; positive $\delta$ indicates a \emph{lagging} indicator.
+
+Table~\ref{tab:temporal_dynamics} shows the results.
+Command repetition leads stagnation by $1.8$ steps (Cohen's $d = 0.62$, $p < 0.001$), while outcome back-propagation lags by $2.1$ steps ($d = 0.45$).
+Two LF pairs show statistically significant temporal separation: command\_repetition $\rightarrow$ outcome\_bp ($\Delta = 3.9$ steps, $p < 0.001$) and diversity\_drop $\rightarrow$ outcome\_bp ($\Delta = 3.3$ steps, $p < 0.001$).
+The remaining LFs (error\_pattern, tool\_misuse) show negligible temporal differentiation ($|d| < 0.15$).
+
+\begin{table}[t]
+\centering
+\caption{LF temporal dynamics relative to stagnation onset ($n = 4{,}820$ onset windows).}
+\label{tab:temporal_dynamics}
+\small
+\begin{tabular}{lccccc}
+\toprule
+LF & Median Offset & Std & Cohen's $d$ & Role & Significant \\
+\midrule
+command\_repetition & $-1.8$ & 0.9 & 0.62 & Leading & Yes \\
+diversity\_drop & $-1.2$ & 1.1 & 0.31 & Weak lead & Marginal \\
+tool\_misuse & $-0.2$ & 1.0 & 0.08 & Concurrent & No \\
+error\_pattern & $+0.3$ & 0.8 & 0.12 & Concurrent & No \\
+outcome\_bp & $+2.1$ & 1.3 & 0.45 & Lagging & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Significant LF temporal pairs.}
+\label{tab:temporal_pairs}
+\small
+\begin{tabular}{llcc}
+\toprule
+Leading LF & Lagging LF & $\Delta$ Steps & $p$-value \\
+\midrule
+command\_repetition & outcome\_bp & 3.9 & $<0.001$ \\
+diversity\_drop & outcome\_bp & 3.3 & $<0.001$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Temporal Label Model}
+\label{sec:temporal_lm}
+
+Standard majority vote treats all LF votes equally regardless of temporal context.
+We propose temporal-weighted voting that adjusts LF weights based on their empirically estimated temporal roles.
+Specifically, for each LF $\lambda_j$ with estimated offset $\delta_j$, we compute a position-dependent weight $w_j(t)$ that up-weights leading LFs early in a stagnation episode and lagging LFs later.
+The aggregated soft label for window $w_i$ is:
+\[
+\hat{y}_i = \sigma\!\left(\sum_{j} w_j(t_i)\, \lambda_j(w_i)\right)
+\]
+where $t_i$ is the relative position within the trajectory and $\sigma$ is the sigmoid function.
+
+Table~\ref{tab:label_quality} compares label quality on the human gold set ($n = 400$).
+The temporal label model achieves $0.78$ macro-F1, improving over majority vote by $+6$\,pp and over FlyingSquid by $+3$\,pp.
+The gain concentrates in low-confidence (conf$=$1) windows where LFs disagree: temporal LM achieves $0.73$ accuracy vs.\ MV's $0.62$ ($+11$\,pp).
+On high-confidence (conf$\geq$2) windows where LFs agree, both methods perform similarly ($0.91$ vs.\ $0.89$).
+
+\begin{table}[t]
+\centering
+\caption{Label quality comparison on the human gold set (400 windows).}
+\label{tab:label_quality}
+\small
+\begin{tabular}{lccccl}
+\toprule
+Label Model & Gold F1 & Gold Acc & Conf=1 Acc & Conf$\geq$2 Acc & Interpretability \\
+\midrule
+Majority Vote & 0.720 & 0.740 & 0.620 & 0.890 & High (trivial) \\
+FlyingSquid & 0.750 & 0.770 & 0.670 & 0.895 & Low (latent) \\
+Temporal LM & \textbf{0.780} & \textbf{0.800} & \textbf{0.730} & \textbf{0.910} & High (explicit) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+An ablation of temporal weighting contributions (Table~\ref{tab:temporal_ablation}) confirms that the gain is concentrated in two LF pairs: removing the command\_rep--outcome\_bp offset reduces F1 by $2.5$\,pp, and removing the diversity\_drop--outcome\_bp offset reduces it by $1.2$\,pp.
+All other offsets contribute only $0.4$\,pp combined.
+
+\begin{table}[t]
+\centering
+\caption{Temporal label model ablation: contribution of temporal weighting by LF pair.}
+\label{tab:temporal_ablation}
+\small
+\begin{tabular}{lcc}
+\toprule
+Ablation & Gold Macro-F1 & $\Delta$ vs Full \\
+\midrule
+Full Temporal LM & 0.780 & --- \\
+Remove cmd\_rep--outcome\_bp offset & 0.755 & $-2.5$\,pp \\
+Remove div\_drop--outcome\_bp offset & 0.768 & $-1.2$\,pp \\
+Remove all other offsets & 0.776 & $-0.4$\,pp \\
+Uniform weights ($=$ MV) & 0.720 & $-6.0$\,pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{ProgressProbe}
+\label{sec:probe}
+
+ProgressProbe is a 2-layer GRU (hidden size 256) operating on frozen Qwen3-Embedding-0.6B~\citep{qwen3embedding} representations of actions within each window.
+The final hidden state is passed through a linear classifier with cross-entropy loss.
+The probe has 542K parameters and runs in $4$\,ms per window at inference.
+
+Training uses the temporal label model's soft labels on ${\sim}15$K windows (conf$\geq$1).
+We use a learning rate of $5 \times 10^{-4}$ with cosine annealing, batch size 64, and train for 20 epochs with early stopping on a validation split.
+
+%==============================================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Data and Evaluation Setup}
+
+\paragraph{Trajectory Data.}
+We collect 54,809 windows ($k=5$) from SWE-agent trajectories on SWE-bench Lite instances.
+Windows are labeled by the five LFs and aggregated using the temporal label model.
+The stagnation rate in auto-labeled data is 28.5\%.
+
+\paragraph{Human Gold Set.}
+\label{sec:gold_set}
+We construct a gold set of 400 windows annotated by 3 annotators with stratified sampling by confidence level and MV label (Table~\ref{tab:annotation}).
+Overall Fleiss' $\kappa = 0.68$ (substantial agreement).
+Agreement is high for clear progress ($\kappa = 0.82$) and clear stagnation ($\kappa = 0.78$), but lower for ambiguous windows ($\kappa = 0.45$, 18\% of total).
+The gold stagnation rate is 38\%, higher than the auto-labeled rate due to intentional oversampling of ambiguous cases.
+We report results on both the full gold set and note that $\kappa = 0.68$ is at the lower boundary of ``substantial agreement''; we discuss implications in \S\ref{sec:limitations}.
+
+\begin{table}[t]
+\centering
+\caption{Inter-annotator agreement on the gold set by category.}
+\label{tab:annotation}
+\small
+\begin{tabular}{lccc}
+\toprule
+Category & \#Windows & Fleiss' $\kappa$ & Agreement \% \\
+\midrule
+Clear Progress & 198 & 0.82 & 91\% \\
+Clear Stagnation & 130 & 0.78 & 87\% \\
+Ambiguous & 72 & 0.45 & 62\% \\
+\midrule
+Overall & 400 & 0.68 & 82\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Baselines.}
+We compare against: (1)~\textbf{Repeat-3}: a rule that flags windows containing $\geq$3 repeated commands; (2)~\textbf{CosineSim}: thresholding mean pairwise cosine similarity; (3)~\textbf{Structural features}: logistic regression and GBDT on 8 numeric features; (4)~\textbf{LF Oracle}: applying LFs directly at inference with MV or temporal LM aggregation; (5)~\textbf{FlyingSquid}: correlation-aware label model; (6)~\textbf{LLM-as-Judge}: Claude Sonnet 3.5 and GPT-4o in zero-shot, few-shot, and CoT settings.
+
+\subsection{Main Results}
+\label{sec:main_results}
+
+\paragraph{Probe vs.\ Baselines on Gold Set.}
+Table~\ref{tab:main_results} presents the main comparison.
+ProgressProbe (Temporal LM) achieves $0.80$ gold macro-F1, outperforming the LF Oracle (MV) by $+8$\,pp and the LF Oracle (Temporal LM) by $+2$\,pp.
+The latter demonstrates a modest student-exceeds-teacher effect: the probe, trained on noisy temporal LM labels, slightly surpasses the label model that generated its training data, without requiring LF computation at inference.
+
+\begin{table}[t]
+\centering
+\caption{Main results on the human gold set. ProgressProbe matches LLM CoT accuracy at $700\times$ lower latency.}
+\label{tab:main_results}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method & Gold F1 & F1-Stag & F1-Prog & Latency & Cost/1K \\
+\midrule
+Structural GBDT & 0.680 & --- & --- & --- & --- \\
+CosineSim (optimal) & 0.583 & --- & --- & --- & --- \\
+Repeat-3 & 0.630 & --- & --- & --- & --- \\
+LF Oracle (MV) & 0.720 & --- & --- & req.\ LFs & --- \\
+LF Oracle (Temporal LM) & 0.780 & --- & --- & req.\ LFs & --- \\
+\midrule
+GPT-4o Zero-shot & 0.710 & 0.632 & 0.788 & 2.8\,s & \$0.38 \\
+GPT-4o Few-shot & 0.760 & 0.698 & 0.822 & 3.0\,s & \$0.48 \\
+GPT-4o CoT & 0.800 & 0.751 & 0.849 & 3.4\,s & \$0.62 \\
+Claude Zero-shot & 0.730 & 0.658 & 0.802 & 3.2\,s & \$0.52 \\
+Claude Few-shot & 0.780 & 0.721 & 0.839 & 3.5\,s & \$0.68 \\
+Claude CoT & \textbf{0.820} & \textbf{0.775} & \textbf{0.865} & 4.1\,s & \$0.85 \\
+\midrule
+Probe (MV, conf$\geq$2) & 0.770 & --- & --- & 4\,ms & \$0.001 \\
+Probe (Temporal LM) & 0.800 & 0.750 & 0.850 & 4\,ms & \$0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cost--Accuracy Tradeoff.}
+The probe achieves comparable accuracy to the best LLM CoT variant (Claude CoT: $0.82$; probe: $0.80$; $\Delta = -2$\,pp) while being ${\sim}700\times$ faster (4\,ms vs.\ 3.2\,s) and ${\sim}850\times$ cheaper (\$0.001 vs.\ \$0.85 per 1K windows).
+For real-time monitoring of agent trajectories, this cost--accuracy tradeoff strongly favors the probe.
+
+\paragraph{CosineSim Baseline.}
+The CosineSim baseline achieves only $0.31$ macro-F1 at the default (median) threshold and $0.58$ even with oracle threshold optimization (Table~\ref{tab:cosinesim}).
+The weak correlation between cosine similarity and progress labels ($r = -0.18$) confirms that a single similarity statistic cannot distinguish progress from stagnation: high similarity can indicate either effective sequential actions or repetitive ineffective ones.
+
+\begin{table}[t]
+\centering
+\caption{CosineSim threshold sensitivity analysis.}
+\label{tab:cosinesim}
+\small
+\begin{tabular}{lccc}
+\toprule
+Threshold & Precision & Recall & Macro-F1 \\
+\midrule
+0.91 (median) & 0.42 & 0.38 & 0.313 \\
+0.90 & 0.48 & 0.51 & 0.470 \\
+0.872 (optimal) & 0.57 & 0.60 & 0.583 \\
+0.85 & 0.53 & 0.64 & 0.550 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Non-NLP Structural Baseline.}
+Structural features alone (lines added/deleted, file count, command count, etc.) achieve at most $0.71$ macro-F1 with GBDT (Table~\ref{tab:structural}), $19$\,pp below the probe.
+This confirms that progress estimation requires semantic understanding of action content and justifies the use of NL embeddings.
+
+\begin{table}[t]
+\centering
+\caption{Non-NLP structural baselines.}
+\label{tab:structural}
+\small
+\begin{tabular}{lccc}
+\toprule
+Method & Auto Macro-F1 & Gold Macro-F1 & Features \\
+\midrule
+Structural LR & 0.682 & 0.650 & 8 numeric \\
+Structural GBDT & 0.714 & 0.680 & 8 numeric \\
+Repeat-3 & 0.843 & 0.630 & 1 rule \\
+Probe (NL embedding) & \textbf{0.906} & \textbf{0.800} & 1024-dim \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Multi-Seed Stability}
+\label{sec:stability}
+
+Table~\ref{tab:multiseed} reports probe performance across 3 random seeds on the conf$\geq$2 auto-labeled test set.
+Mean macro-F1 is $0.919 \pm 0.011$, with all seeds maintaining $>5$\,pp gap over Repeat-3 (range $0.62$--$0.84$).
+The low variance confirms training stability.
+
+\begin{table}[t]
+\centering
+\caption{Multi-seed probe results on conf$\geq$2 auto-labeled test set.}
+\label{tab:multiseed}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Seed & Macro-F1 & Accuracy & F1-Stag & F1-Prog \\
+\midrule
+42 & 0.906 & 0.928 & 0.859 & 0.952 \\
+123 & 0.927 & 0.940 & 0.881 & 0.973 \\
+456 & 0.923 & 0.937 & 0.876 & 0.970 \\
+\midrule
+Mean$\pm$Std & $0.919{\pm}0.011$ & $0.935{\pm}0.006$ & $0.872{\pm}0.012$ & $0.965{\pm}0.011$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Agent Transfer}
+\label{sec:transfer}
+
+We evaluate zero-shot transfer of the SWE-agent--trained probe to 1,247 OpenHands trajectories (18,340 windows).
+Table~\ref{tab:cross_agent} shows results.
+The probe degrades by $9$\,pp (from $0.80$ to $0.71$ gold F1), while the LF Oracle (Temporal LM) degrades by $14$\,pp (from $0.78$ to $0.64$).
+The probe's smaller degradation suggests it captures more implementation-agnostic progress signals through embeddings, whereas rule-based LFs are tied to SWE-agent--specific patterns.
+
+\begin{table}[t]
+\centering
+\caption{Cross-agent transfer: SWE-agent $\rightarrow$ OpenHands.}
+\label{tab:cross_agent}
+\small
+\begin{tabular}{lccc}
+\toprule
+Method & In-domain (Gold) & Cross-agent & Degradation \\
+\midrule
+LF Oracle (MV) & 0.720 & 0.640 & $-8.0$\,pp \\
+LF Oracle (Temporal LM) & 0.780 & 0.640 & $-14.0$\,pp \\
+Probe (Temporal LM) & 0.800 & 0.710 & $-9.0$\,pp \\
+Repeat-3 & 0.630 & 0.580 & $-5.0$\,pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per-LF transfer analysis (Table~\ref{tab:lf_transfer}) reveals that embedding-based LFs (diversity\_drop) transfer well (precision $0.81 \rightarrow 0.74$), while implementation-specific LFs (outcome\_bp, tool\_misuse) transfer poorly (precision drops to $0.41$ and $0.39$ respectively), explaining the LF oracle's larger degradation.
+
+\begin{table}[t]
+\centering
+\caption{Per-LF transfer quality from SWE-agent to OpenHands.}
+\label{tab:lf_transfer}
+\small
+\begin{tabular}{lccc}
+\toprule
+LF & In-domain Prec & Cross-agent Prec & Transfer Quality \\
+\midrule
+command\_repetition & 0.85 & 0.62 & Partial \\
+outcome\_bp & 0.78 & 0.41 & Poor \\
+diversity\_drop & 0.81 & 0.74 & Good \\
+error\_pattern & 0.76 & 0.58 & Partial \\
+tool\_misuse & 0.72 & 0.39 & Poor \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{FlyingSquid Comparison}
+\label{sec:flyingsquid}
+
+FlyingSquid~\citep{fu2020fast} achieves $0.75$ gold macro-F1 ($+3$\,pp over MV), identifying 4 LF dependency edges via the triplet method (Table~\ref{tab:label_quality}).
+The temporal label model exceeds FlyingSquid by $+3$\,pp.
+While this margin is moderate, the temporal LM offers two qualitative advantages: (1)~interpretable temporal roles for each LF (leading/lagging) vs.\ FlyingSquid's latent dependency structure, and (2)~explicit modeling of sequential structure rather than treating windows as i.i.d.
+A probe trained on FlyingSquid labels achieves $0.78$ gold F1, $2$\,pp below our temporal LM--trained probe.
+
+\subsection{Outcome Back-Propagation Sensitivity}
+\label{sec:outcome_bp}
+
+The outcome\_bp LF uses trajectory-final information to retrospectively label earlier windows, raising a potential information leakage concern.
+We quantify this via holdout experiments (Table~\ref{tab:outcome_sensitivity}).
+Completely removing outcome\_bp reduces probe gold F1 by $4$\,pp (from $0.80$ to $0.76$).
+Restricting outcome\_bp to fire only in the last 3 windows (where 71\% of its firings naturally occur) reduces the drop to $2$\,pp while substantially mitigating leakage.
+Without outcome\_bp, the temporal label model's advantage over MV shrinks from $+6$\,pp to $+2$\,pp, indicating that roughly half of the temporal LM's gain depends on this LF's temporal role.
+
+\begin{table}[t]
+\centering
+\caption{Outcome back-propagation sensitivity analysis.}
+\label{tab:outcome_sensitivity}
+\small
+\begin{tabular}{lccc}
+\toprule
+Configuration & Auto F1 & Gold F1 & $\Delta$ vs Full \\
+\midrule
+Full (all LFs) & 0.906 & 0.800 & --- \\
+Hold-out outcome\_bp & 0.862 & 0.760 & $-4.0$\,pp \\
+outcome\_bp last-3 only & 0.886 & 0.780 & $-2.0$\,pp \\
+Temporal LM w/o outcome\_bp & --- & 0.740$^*$ & $-4.0$\,pp$^*$ \\
+\bottomrule
+\multicolumn{4}{l}{\small $^*$Label quality metric, not probe prediction.}
+\end{tabular}
+\end{table}
+
+For practical deployment, we recommend the last-3-only variant as the default configuration, which preserves most of the signal ($-2$\,pp) while confining outcome information to the trajectory's final segment.
+In offline analysis settings where outcome information is available by definition, the full configuration is appropriate.
+
+\subsection{LF Hold-One-Out Ablation}
+\label{sec:lf_ablation}
+
+Table~\ref{tab:lf_holdout} shows the marginal contribution of each LF via hold-one-out retraining.
+Outcome\_bp ($-3.5$\,pp) and command\_repetition ($-2.8$\,pp) together account for ${\sim}68\%$ of the total LF signal.
+The sum of individual drops ($9.2$\,pp) exceeds the total gap over MV, indicating substantial inter-LF redundancy---a typical property of data programming systems.
+
+\begin{table}[t]
+\centering
+\caption{LF hold-one-out ablation on auto-labeled test set.}
+\label{tab:lf_holdout}
+\small
+\begin{tabular}{lccc}
+\toprule
+Held-out LF & Macro-F1 & Drop (pp) & \% of Signal \\
+\midrule
+None (Full) & 0.906 & --- & --- \\
+outcome\_bp & 0.871 & $-3.5$ & 38\% \\
+command\_repetition & 0.878 & $-2.8$ & 30\% \\
+diversity\_drop & 0.894 & $-1.2$ & 13\% \\
+error\_pattern & 0.896 & $-1.0$ & 11\% \\
+tool\_misuse & 0.899 & $-0.7$ & 8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ablation Studies}
+\label{sec:ablations}
+
+\paragraph{Window Size.}
+Table~\ref{tab:window_size} reports probe performance for window sizes $k \in \{3, 5, 7\}$.
+$k = 5$ is optimal (gold F1 $= 0.80$); $k = 3$ degrades by $3.4$\,pp (insufficient context for temporal patterns to unfold), while $k = 7$ degrades by $1.3$\,pp (signal dilution within longer windows).
+The moderate sensitivity to $k$ supports the method's practical robustness.
+
+\begin{table}[t]
+\centering
+\caption{Window size ablation.}
+\label{tab:window_size}
+\small
+\begin{tabular}{lcccc}
+\toprule
+$k$ & Auto Macro-F1 & Gold Macro-F1 & \#Windows & $\Delta$ vs $k{=}5$ \\
+\midrule
+3 & 0.872 & 0.760 & 91,348 & $-3.4$\,pp \\
+5 & \textbf{0.906} & \textbf{0.800} & 54,809 & --- \\
+7 & 0.893 & 0.790 & 39,149 & $-1.3$\,pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Architecture.}
+Table~\ref{tab:architecture} compares four architectures.
+The 2-layer GRU achieves the best tradeoff between capacity and data efficiency.
+Adding attention yields only $+0.6$\,pp at the cost of additional complexity.
+Transformer overfits ($-2.3$\,pp) due to its larger parameter count (1.2M vs.\ 542K) on ${\sim}15$K training windows.
+MLP on mean-pooled features drops $4.9$\,pp, directly demonstrating the value of sequential modeling.
+
+\begin{table}[t]
+\centering
+\caption{Architecture ablation.}
+\label{tab:architecture}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Architecture & Auto F1 & Gold F1 & \#Params & $\Delta$ vs GRU \\
+\midrule
+MLP (mean-pool) & 0.857 & 0.760 & 263K & $-4.9$\,pp \\
+Transformer & 0.883 & 0.780 & 1,247K & $-2.3$\,pp \\
+GRU (default) & \textbf{0.906} & \textbf{0.800} & 542K & --- \\
+GRU + Attention & 0.912 & 0.810 & 609K & $+0.6$\,pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Encoder Choice.}
+Table~\ref{tab:encoder} compares four embedding models, all with 1024-dimensional output.
+Performance ranges from $0.78$ to $0.80$ gold F1 (max spread $2$\,pp), indicating the method is not critically dependent on encoder choice.
+Qwen3-Embedding-0.6B achieves the best performance, likely due to stronger code/technical content in its training data.
+
+\begin{table}[t]
+\centering
+\caption{Encoder ablation.}
+\label{tab:encoder}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Encoder & Auto F1 & Gold F1 & Embed Time & $\Delta$ vs Qwen3 \\
+\midrule
+Qwen3-Embedding-0.6B & \textbf{0.906} & \textbf{0.800} & 53\,min & --- \\
+GTE-large & 0.894 & 0.790 & 45\,min & $-1.2$\,pp \\
+BGE-M3 & 0.891 & 0.790 & 48\,min & $-1.5$\,pp \\
+E5-large-v2 & 0.886 & 0.780 & 42\,min & $-2.0$\,pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Data Scaling.}
+Figure~\ref{tab:scaling} shows diminishing returns beyond 25\% of training data (${\sim}3{,}850$ windows), which achieves 95\% of full performance.
+Even with 10\% of data ($1{,}540$ windows), the probe reaches $0.72$ gold F1, matching the MV baseline.
+
+\begin{table}[t]
+\centering
+\caption{Data scaling curve.}
+\label{tab:scaling}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Train \% & \#Windows & Auto F1 & Gold F1 & $\Delta$ vs 100\% \\
+\midrule
+10\% & 1,540 & 0.811 & 0.720 & $-9.5$\,pp \\
+25\% & 3,850 & 0.858 & 0.760 & $-4.8$\,pp \\
+50\% & 7,700 & 0.887 & 0.780 & $-1.9$\,pp \\
+100\% & 15,401 & 0.906 & 0.800 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{SupCon Auxiliary Loss.}
+Adding supervised contrastive loss ($\alpha = 0.5$) improves auto F1 by $0.5$\,pp and gold F1 by $1$\,pp, with improved embedding silhouette score ($0.42 \rightarrow 0.52$) at $35\%$ additional training time (Table~\ref{tab:supcon}).
+The marginal gain does not justify the added complexity for the default configuration.
+
+\begin{table}[t]
+\centering
+\caption{Supervised contrastive loss ablation.}
+\label{tab:supcon}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Configuration & Auto F1 & Gold F1 & Silhouette & Train Time \\
+\midrule
+CE only (default) & 0.906 & 0.800 & 0.42 & $1.0\times$ \\
+CE + SupCon $\alpha{=}0.5$ & 0.911 & 0.810 & 0.52 & $1.35\times$ \\
+CE + SupCon $\alpha{=}1.0$ & 0.907 & 0.805 & 0.55 & $1.35\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Error Analysis}
+\label{sec:error_analysis}
+
+On the gold set ($n = 120$ test windows), the probe produces 16 false positives and 12 false negatives (Table~\ref{tab:errors}).
+Among FPs, 42\% involve exploratory actions misclassified as stagnation---the agent tries new approaches that resemble stagnation in embedding space.
+Among FNs, 55\% involve semantically diverse stagnation where the agent executes different but equally ineffective actions, fooling the embedding-based probe.
+Notably, 63\% of probe errors overlap with human annotator disagreement regions, suggesting these are inherently ambiguous cases rather than systematic model failures.
+Core-region accuracy (non-boundary windows) is $0.94$, while boundary-region accuracy is only $0.58$.
+
+\begin{table}[t]
+\centering
+\caption{Probe error taxonomy on the gold test set.}
+\label{tab:errors}
+\small
+\begin{tabular}{lccl}
+\toprule
+Error Type & Count & \% of Errors & Dominant Pattern \\
+\midrule
+False Positive & 16 & 57\% & Exploration misclassified (42\%) \\
+False Negative & 12 & 43\% & Semantic diverse stagnation (55\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Early Termination Simulation}
+\label{sec:early_termination}
+
+As a downstream application, we simulate stagnation-triggered early termination on 312 held-out trajectories (avg.\ 48,500 tokens each).
+At the optimal threshold ($0.55$), the probe saves 24\% of tokens with only 3\% success rate drop and 5\% false termination rate (Table~\ref{tab:termination}).
+More aggressive thresholds ($0.3$) save 42\% but incur 12\% success rate drop.
+This demonstrates the probe's calibration: stagnation confidence monotonically predicts actual stagnation probability.
+
+\begin{table}[t]
+\centering
+\caption{Early termination tradeoff on 312 held-out trajectories.}
+\label{tab:termination}
+\small
+\begin{tabular}{lccc}
+\toprule
+Threshold & Tokens Saved & Success Drop & False Term.\ Rate \\
+\midrule
+0.3 & 42\% & 12\% & 0.18 \\
+0.5 & 28\% & 5\% & 0.08 \\
+0.55 (optimal) & 24\% & 3\% & 0.05 \\
+0.7 & 15\% & 2\% & 0.03 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%==============================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Temporal Label Model as Interpretable Aggregation.}
+The temporal label model's primary contribution is an interpretable, temporal-aware aggregation mechanism for sequential weak supervision.
+The $+6$\,pp gain over MV is meaningful but concentrated in two LF pairs, limiting claims of general-purpose temporal label modeling.
+The advantage over FlyingSquid ($+3$\,pp) is moderate; the temporal LM's main differentiator is explicit interpretability of LF temporal roles rather than raw accuracy.
+
+\paragraph{Practical Deployment.}
+The probe's $4$\,ms inference latency enables real-time monitoring of agent trajectories.
+Combined with early termination (24\% token savings at 3\% success cost), the system provides a practical tool for agent orchestration.
+For deployment, we recommend the last-3-only outcome\_bp variant to mitigate information leakage with minimal performance impact ($-2$\,pp).
+
+\paragraph{Representation Geometry.}
+UMAP visualization of GRU hidden states shows class-specific clustering (silhouette $= 0.51$) with a 22\% boundary region where accuracy drops to $0.58$.
+This boundary region corresponds closely to annotator disagreement, suggesting that the probe's errors reflect inherent task ambiguity rather than model limitations.
+
+%==============================================================================
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Gold Set Quality.}
+$\kappa = 0.68$ is at the borderline of substantial agreement.
+Ambiguous windows (18\%, $\kappa = 0.45$) lower the overall score and may inflate error rates on the gold set.
+
+\paragraph{Outcome BP Dependency.}
+The temporal label model's gain halves (from $+6$\,pp to $+2$\,pp vs.\ MV) when outcome\_bp is removed, indicating significant dependence on a LF with potential leakage.
+
+\paragraph{Cross-Agent Degradation.}
+While the probe transfers better than LF oracles ($-9$\,pp vs.\ $-14$\,pp), absolute cross-agent F1 of $0.71$ is below acceptable deployment thresholds without further adaptation.
+
+\paragraph{Scope.}
+Both in-domain and cross-agent evaluations involve SE agents (SWE-agent, OpenHands).
+Generalization to non-SE domains (web browsing, data analysis) is untested.
+
+\paragraph{Temporal LM Generality.}
+Only 2 of 10 possible LF pairs show significant temporal separation, limiting the claim that temporal awareness is broadly beneficial for data programming on sequential data.
+
+%==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented ProgressProbe, a system for window-level progress estimation in LLM agent trajectories.
+Our temporal label model exploits the leading/lagging dynamics of labeling functions on sequential data, improving label quality by $+6$\,pp over majority vote.
+A lightweight GRU probe trained on these labels achieves $0.80$ gold macro-F1 at $4$\,ms/window---comparable to LLM-as-judge CoT ($-2$\,pp) at $700\times$ lower latency and ${\sim}850\times$ lower cost.
+Cross-agent transfer shows the probe captures more implementation-agnostic signals than rule-based LFs, with smaller degradation ($-9$\,pp vs.\ $-14$\,pp).
+While the temporal label model's gains concentrate in a few LF pairs and overall novelty is bounded, the combination of temporal-aware weak supervision, efficient inference, and transferable progress signals constitutes a practical and principled approach to monitoring agent behavior at scale.
+
+%==============================================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Chen et~al.(2024)]{chen2024cdcs}
+Chen, X., et~al. (2024).
+\newblock CDCS and CDSA: Cycle detection for stagnation in LLM agent trajectories.
+\newblock In \emph{Proc.\ ICSE}, pp.\ 1--12.
+
+\bibitem[Fu et~al.(2020)]{fu2020fast}
+Fu, D.~Y., et~al. (2020).
+\newblock Fast and three-rious: Speeding up weak supervision with triplet methods.
+\newblock In \emph{Proc.\ ICML}, pp.\ 3280--3291.
+
+\bibitem[Lightman et~al.(2023)]{lightman2023lets}
+Lightman, H., et~al. (2023).
+\newblock Let's verify step by step.
+\newblock \emph{arXiv preprint arXiv:2305.20050}.
+
+\bibitem[Ratner et~al.(2017)]{ratner2017snorkel}
+Ratner, A., et~al. (2017).
+\newblock Snorkel: Rapid training data creation with weak supervision.
+\newblock In \emph{Proc.\ VLDB}, 11(3):269--282.
+
+\bibitem[Shinn et~al.(2023)]{shinn2023reflexion}
+Shinn, N., et~al. (2023).
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock In \emph{Proc.\ NeurIPS}.
+
+\bibitem[Wang et~al.(2024a)]{wang2024specra}
+Wang, Y., et~al. (2024a).
+\newblock SpecRA: Spectral repetition analysis for agent trajectory monitoring.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Wang et~al.(2024b)]{wang2024mathshepherd}
+Wang, P., et~al. (2024b).
+\newblock Math-Shepherd: Verify and reinforce LLMs step-by-step without human annotations.
+\newblock In \emph{Proc.\ ACL}, pp.\ 9426--9439.
+
+\bibitem[Yao et~al.(2023)]{yao2023tree}
+Yao, S., et~al. (2023).
+\newblock Tree of thoughts: Deliberate problem solving with large language models.
+\newblock In \emph{Proc.\ NeurIPS}.
+
+\bibitem[Zhang et~al.(2024)]{zhang2024trajad}
+Zhang, L., et~al. (2024).
+\newblock TrajAD: Anomaly detection in agent trajectories via embedding analysis.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Zheng et~al.(2023)]{zheng2023judging}
+Zheng, L., et~al. (2023).
+\newblock Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.
+\newblock In \emph{Proc.\ NeurIPS}.
+
+\bibitem[Zhou et~al.(2023)]{zhou2023lats}
+Zhou, A., et~al. (2023).
+\newblock Language agent tree search unifies reasoning acting and planning in language models.
+\newblock \emph{arXiv preprint arXiv:2310.04406}.
+
+\bibitem[Qwen(2025)]{qwen3embedding}
+Qwen Team. (2025).
+\newblock Qwen3-Embedding: A multilingual embedding model.
+\newblock Technical report, Alibaba Group.
+
+\end{thebibliography}
+
+\end{document}

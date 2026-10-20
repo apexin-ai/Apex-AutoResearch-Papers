@@ -1,0 +1,3140 @@
+dream_id: dream_20260514T184058
+project: agent_progress_probe
+venue: ''
+focus: 'D039 pivot: empirical analysis paper with structural signal discovery as primary
+  claim, LF temporal dynamics as secondary, TLM negative finding as tertiary. Key
+  risk: circular evaluation concern, venue fit (SE data at NLP venue), and whether
+  negative finding has enough contribution. Gold set not yet available.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Gold set validates LF labels as reasonable stagnation proxy; structural
+        dominance is genuine, not circular artifact
+      key_assumptions:
+      - LF majority-vote labels align well with human stagnation judgment (κ ≥ 0.72)
+      - Structural features outperform probe AND LLM-judge on gold labels, not just
+        LF-derived labels
+      - Cross-agent structural transfer (GB 0.967 on OH) reflects real stagnation
+        detection, not LF-pattern mimicry
+      - Conf≥2 LF labels are near-gold-quality (accuracy ≥ 0.88)
+      - LF temporal onset patterns (cmd_rep leading, OB lagging) align with gold stagnation
+        boundaries
+      - TLM negative finding unchanged — MV already near-optimal because LFs are reliable
+      number_ranges:
+        gold_lf_kappa:
+        - 0.72
+        - 0.88
+        gold_conf2_lf_accuracy:
+        - 0.88
+        - 0.95
+        gold_conf1_lf_accuracy:
+        - 0.58
+        - 0.72
+        structural_gb_gold_macro_f1:
+        - 0.83
+        - 0.92
+        probe_gold_macro_f1:
+        - 0.73
+        - 0.84
+        structural_minus_probe_gold_pp:
+        - 6
+        - 15
+        llm_judge_gold_macro_f1:
+        - 0.58
+        - 0.7
+        structural_minus_llm_judge_gold_pp:
+        - 15
+        - 30
+        gold_temporal_onset_alignment_pct:
+        - 65
+        - 85
+      narrative_direction: '原始 framing 完全成立。Claim 1 "stagnation signals are structural,
+        not semantic" 从 LF-label 结果升级为 gold-validated 结论。Gold set 证明 LF labels 虽有噪声但
+        方向正确，structural 0.83-0.92 在 gold 上仍大幅领先 probe 和 LLM-judge。 Circularity concern
+        被正面化解——in-domain 0.9951 包含 circular 成分，但 gold 上 的 0.83+ 证明 structural features
+        捕获了真实信号。Claim 2 temporal dynamics 获得 gold 验证（onset alignment 65-85%）。Claim
+        3 TLM negative finding 获得 新解释：MV 已够好因为 LFs 本身可靠。论文按原始 headline 投稿，gold set
+        作为 最强 evidence 放在 Section 5 核心位置。
+
+        '
+    median:
+      tier: median
+      meaning: Gold set shows LF labels capture stagnation direction but with systematic
+        biases; structural advantage shrinks but survives
+      key_assumptions:
+      - LF labels moderately aligned with human judgment (κ 0.50-0.72) — direction
+        correct but boundary noisy
+      - Structural features still outperform probe on gold, but gap narrows from ~9pp
+        to 1-8pp
+      - LLM-judge closes gap on gold — structural efficiency advantage survives but
+        accuracy advantage weakens
+      - Conf≥2 labels decent (0.72-0.88) but conf=1 labels substantially diverge from
+        gold
+      - LF temporal patterns partially validated — onset timing noisy, role reversal
+        on OH still holds
+      - Gold reveals a 'semantic residual' — human-recognizable stagnation types that
+        neither structural nor NL probe captures well
+      number_ranges:
+        gold_lf_kappa:
+        - 0.5
+        - 0.72
+        gold_conf2_lf_accuracy:
+        - 0.72
+        - 0.88
+        gold_conf1_lf_accuracy:
+        - 0.42
+        - 0.58
+        structural_gb_gold_macro_f1:
+        - 0.68
+        - 0.83
+        probe_gold_macro_f1:
+        - 0.62
+        - 0.76
+        structural_minus_probe_gold_pp:
+        - 1
+        - 8
+        llm_judge_gold_macro_f1:
+        - 0.55
+        - 0.66
+        structural_minus_llm_judge_gold_pp:
+        - 5
+        - 20
+        gold_temporal_onset_alignment_pct:
+        - 40
+        - 65
+      narrative_direction: 'Claim 1 需降级：从 "stagnation signals ARE structural" 改为 "LF-approximated
+        stagnation is structural; human-recognizable stagnation has additional semantic
+        dimensions." Structural features 仍是最佳 practical 选择（效率 + 跨域迁移）， 但不再 claim 语义理解无价值——而是
+        claim 当前 NL 方法尚未捕获语义残差。 补充实验：gold set error analysis 识别 structural blind spots（哪些
+        stagnation 类型只有人能判断）。Claim 2 temporal dynamics 保留但加 caveat：onset timing 是统计趋势（±2-3
+        步噪声），非精确预测。Claim 3 不变。标题从 "signals are structural" 调整为 "structural features
+        dominate current approaches"，留出 语义方向的未来空间。仍冲 EMNLP，但 contribution pitch 从
+        "definitive finding" 转为 "strong empirical evidence with identified limitations"。
+
+        '
+    worst:
+      tier: worst
+      meaning: Gold set reveals LF labels poorly approximate real stagnation; structural
+        dominance is confirmed as circular artifact
+      key_assumptions:
+      - LF-gold agreement low (κ 0.25-0.50) — LFs systematically misclassify semantically
+        diverse stagnation and false-flag active exploration
+      - Structural features drop to near-probe level on gold — 0.9951→0.50-0.68 collapse
+        confirms circularity
+      - LLM-judge may match or exceed structural on gold — overturns the efficiency
+        narrative
+      - Conf≥2 labels unreliable (0.55-0.72) — even high LF consensus doesn't guarantee
+        correctness
+      - LF temporal patterns are real but describe LF behavior, not stagnation behavior
+      - OH cmd_rep role reversal is the strongest surviving finding — it's about LF
+        mechanics, not stagnation
+      number_ranges:
+        gold_lf_kappa:
+        - 0.25
+        - 0.5
+        gold_conf2_lf_accuracy:
+        - 0.55
+        - 0.72
+        gold_conf1_lf_accuracy:
+        - 0.35
+        - 0.48
+        structural_gb_gold_macro_f1:
+        - 0.5
+        - 0.68
+        probe_gold_macro_f1:
+        - 0.48
+        - 0.65
+        structural_minus_probe_gold_pp:
+        - -5
+        - 3
+        llm_judge_gold_macro_f1:
+        - 0.48
+        - 0.62
+        structural_minus_llm_judge_gold_pp:
+        - -8
+        - 8
+        gold_temporal_onset_alignment_pct:
+        - 20
+        - 40
+      narrative_direction: '核心 reframe：论文从 "structural signal discovery" 转为 "weak
+        supervision pitfall discovery for agent monitoring"。新 primary claim：naive
+        LF-based weak supervision on agent trajectories creates self-fulfilling structural
+        proxies — simple features achieve 0.995 precisely BECAUSE they reverse-engineer
+        the LFs, not because stagnation is structural。这是对 data programming 在 sequential
+        agent data 上的重要方法论警告，直接服务 Snorkel/WS 社区（NLP 原生）。 Claim 2 temporal dynamics
+        升级为新 primary：LF 时序角色分析成为独立贡献—— 描述 weak supervision 在时序数据上的行为模式，包括 agent-specific
+        role reversal 作为 LF failure mode 的诊断工具。Claim 3 TLM 获得新解释：temporal model 失败不是因为
+        MV 够好，而是因为 LF labels 本身有问题——temporal alignment of noise is still noise。补充
+        gold set 上的 failure taxonomy 作为新实验： 哪些类型的停滞 LFs 系统性遗漏，为下一代 LF 设计提供路线图。 仍冲
+        EMNLP——methodology/analysis paper about WS failure modes 是该 venue 的合理 paper
+        type，且 "negative finding about popular methodology" 在 EMNLP 有先例。标题方向："When
+        Labeling Functions Lie: Circular Evaluation Traps in Weak Supervision for
+        Agent Monitoring"。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T184058/best/paper.pdf
+  imagined_experiments:
+  - name: Gold-LF Agreement (Cohen's κ)
+    plan_id: gold-set
+    description: '两名标注者对 650 个 k=5 窗口独立标注 stagnation/progress，计算 inter-annotator agreement
+      后合并为 gold labels，与 MV LF labels 计算 Cohen''s κ。
+
+      '
+    expected_results:
+      inter_annotator_kappa: 0.81
+      inter_annotator_pct_agreement: 0.91
+      gold_lf_kappa: 0.84
+      gold_lf_pct_agreement: 0.92
+      gold_n: 650
+      gold_stag_ratio: 0.33
+      gold_prog_ratio: 0.67
+      lf_stag_ratio_in_sample: 0.3
+      disagreement_cases_n: 52
+      lf_stag_gold_prog_n: 28
+      lf_prog_gold_stag_n: 24
+    result_rationale: 'κ=0.84 因为 LFs 的设计基础——command repetition、file diff absence、outcome
+      failure——与人类对 "agent 没有进展" 的直觉判断高度一致。三个 LFs 中 cmd_rep 和 file_diff 捕获了最明显的停滞信号（反复执行相同命令、不产生代码变更），这些是
+      annotator 也能直接观察到的行为模式。52 个 disagreement cases 主要集中在 "agent 在尝试不同方法但都失败"（LF
+      判 progress 因为命令多样，人类判 stagnation 因为没有实质进展）和 "agent 重复命令但实际在 debugging"（LF 判
+      stagnation， 人类判 progress 因为理解了调试意图）。这两类 borderline cases 数量大致对称 （28 vs 24），说明
+      LF 没有系统性偏向。
+
+      '
+    tables:
+    - name: 'Table 5: Gold-LF Agreement Confusion Matrix'
+      content: '|              | Gold=Stag | Gold=Prog |
+
+        |--------------|-----------|-----------|
+
+        | LF=Stag      | 190       | 28        |
+
+        | LF=Prog      | 24        | 408       |
+
+        κ=0.84, N=650
+
+        '
+    - name: 'Table 6: Agreement by LF Confidence Level'
+      content: '| LF Conf | N    | Gold-LF Agree% | κ    |
+
+        |---------|------|----------------|------|
+
+        | conf=1  | 215  | 0.83           | 0.62 |
+
+        | conf=2  | 370  | 0.96           | 0.91 |
+
+        | conf=3  | 65   | 0.98           | 0.96 |
+
+        '
+    figures_description:
+    - 'Scatter: LF confidence vs gold agreement rate，展示单调递增关系'
+    - 'Confusion heatmap: 2x2 矩阵 with per-cell 典型 trajectory 片段示例'
+    analysis: 'κ=0.84 落在 best tier 范围 [0.72, 0.88] 的上部。Gold-LF agreement 按 confidence
+      分层严格单调递增（0.83→0.96→0.98），验证 confidence-gradient 实验的发现。 Conf=1 κ=0.62 表明这些 labels
+      噪声显著但仍 better than chance，probe 在 conf=1 上 23.6% 的 divergence 部分反映了 LF 噪声而非
+      probe 错误。
+
+      '
+  - name: Gold-LF Conf≥2 Accuracy
+    plan_id: gold-set
+    description: '在 gold set 中 conf≥2 子集上评估 LF label accuracy。
+
+      '
+    expected_results:
+      gold_conf2_n: 435
+      gold_conf2_lf_accuracy: 0.93
+      gold_conf2_precision_stag: 0.9
+      gold_conf2_recall_stag: 0.92
+      gold_conf2_precision_prog: 0.95
+      gold_conf2_recall_prog: 0.94
+      gold_conf2_macro_f1: 0.92
+      gold_conf1_n: 215
+      gold_conf1_lf_accuracy: 0.68
+      gold_conf1_precision_stag: 0.55
+      gold_conf1_recall_stag: 0.71
+      gold_conf1_precision_prog: 0.78
+      gold_conf1_recall_prog: 0.66
+      gold_conf1_macro_f1: 0.64
+    result_rationale: 'Conf≥2 accuracy 0.93 因为当 2/3 或 3/3 LFs 达成共识时，多数投票已过滤掉单个 LF
+      的 false positive。在已完成实验中 conf≥2 内部一致率 95.1%，但与 gold 对比 会降 ~2pp 因为 LFs 共享的 blind
+      spot（如 "diverse commands but no progress" 模式三个 LF 都漏判）。Conf=1 accuracy 0.68
+      因为仅一个 LF firing 时信号很弱， 且 cmd_rep 在 SWE-Agent 上 12.75% per-LF error rate 在 conf=1
+      区域被放大。
+
+      '
+    tables:
+    - name: 'Table 7: LF Label Quality by Confidence (Gold-Validated)'
+      content: '| Confidence | N   | Accuracy | Macro-F1 | Stag Prec | Stag Recall
+        |
+
+        |------------|-----|----------|----------|-----------|-------------|
+
+        | conf=1     | 215 | 0.68     | 0.64     | 0.55      | 0.71        |
+
+        | conf≥2     | 435 | 0.93     | 0.92     | 0.90      | 0.92        |
+
+        | conf=3     | 65  | 0.98     | 0.97     | 0.97      | 0.98        |
+
+        '
+    figures_description:
+    - 'Bar chart: accuracy by confidence level，附 95% CI error bars'
+    analysis: 'Conf≥2 的 0.93 accuracy 落在 best tier [0.88, 0.95] 上部。这验证了 data programming
+      pipeline 的核心假设：多 LF 共识是可靠的 stagnation proxy。Conf=1 的 0.68 落在 [0.58, 0.72] 上部，说明
+      probe 在 conf=1 上的高 disagreement（23.6%）约一半是 "probe 比 LF 更对"，一半是 "probe 也错了"。
+
+      '
+  - name: Structural Features on Gold Labels
+    plan_id: gold-set
+    description: '在 650 gold windows 上重新评估 structural GB/RF/LR，量化 circular artifact
+      的 大小并验证 structural dominance 是否在 non-circular 评估下成立。
+
+      '
+    expected_results:
+      gold_structural_gb_macro_f1: 0.89
+      gold_structural_gb_f1_stag: 0.85
+      gold_structural_gb_f1_prog: 0.93
+      gold_structural_rf_macro_f1: 0.88
+      gold_structural_rf_f1_stag: 0.83
+      gold_structural_rf_f1_prog: 0.93
+      gold_structural_lr_macro_f1: 0.86
+      gold_structural_lr_f1_stag: 0.8
+      gold_structural_lr_f1_prog: 0.92
+      lf_derived_gb_macro_f1: 0.9951
+      circularity_gap_pp: 10.5
+      gold_structural_gb_accuracy: 0.91
+      top3_features_importance:
+      - cmd_repetition_ratio: 0.28
+      - unique_cmd_ratio: 0.19
+      - file_diff_count: 0.15
+    result_rationale: 'GB 从 0.9951 降到 0.89，~10.5pp drop 量化了 circular artifact。降幅来源：
+      structural features 是 LF inputs 的超集（30 features 包含 cmd_rep 相关的 5+ 个 features），在
+      LF-derived labels 上它们几乎完美重建 LF 投票逻辑。但在 gold labels 上，人类标注引入了 LFs 捕获不到的语义维度（如
+      "agent 在 debugging 所以 重复命令是合理的"），structural features 无法覆盖这些 cases。然而 0.89 仍然很高
+      因为 stagnation 的核心行为模式（反复执行、不产生变更、不尝试新方法）确实在结构 层面有强信号。Top-3 features 与 LF-derived
+      评估一致说明信号结构稳定。
+
+      '
+    tables:
+    - name: 'Table 8: Structural Features — LF-Derived vs Gold Evaluation'
+      content: '| Model | LF-Derived F1 | Gold F1 | Δ (pp) | Interpretation        |
+
+        |-------|---------------|---------|--------|-----------------------|
+
+        | LR    | 0.9874        | 0.86    | -12.7  | ~13pp circular        |
+
+        | RF    | 0.9951        | 0.88    | -11.5  | ~12pp circular        |
+
+        | GB    | 0.9951        | 0.89    | -10.5  | ~11pp circular        |
+
+        '
+    - name: 'Table 9: Feature Importance Stability (LF-Derived vs Gold)'
+      content: '| Feature           | Rank (LF) | Rank (Gold) | Importance (Gold)
+        |
+
+        |-------------------|-----------|-------------|-------------------|
+
+        | cmd_rep_ratio     | 1         | 1           | 0.28              |
+
+        | unique_cmd_ratio  | 2         | 2           | 0.19              |
+
+        | file_diff_count   | 3         | 3           | 0.15              |
+
+        | edit_diversity     | 4         | 5           | 0.09              |
+
+        | cmd_entropy       | 5         | 4           | 0.10              |
+
+        '
+    figures_description:
+    - 'Bar chart: LF-derived vs Gold macro_f1 for LR/RF/GB，visually 量化 circularity
+      gap'
+    - 'Feature importance comparison: side-by-side bar chart LF vs Gold ranking'
+    analysis: 'GB 0.89 on gold 落在 best tier [0.83, 0.92] 上部。Circularity gap ~10.5pp
+      证明 in-domain 0.9951 确实包含 circular 成分，但 0.89 的 gold performance 证明 structural
+      features 捕获了真实 stagnation 信号。Feature importance ranking 在 LF-derived 和 gold
+      之间高度一致（Spearman ρ≈0.95），说明 circular artifact 主要是幅度膨胀 而非方向偏差——structural features
+      检测的确实是 stagnation，只是在 LF labels 上 分数被人为放大了。
+
+      '
+  - name: Probe on Gold Labels
+    plan_id: gold-set
+    description: '在 650 gold windows 上评估 GRU probe（Qwen3-Embedding），量化 probe 在 non-circular
+      评估下的真实能力，并与 structural features 对比。
+
+      '
+    expected_results:
+      gold_probe_macro_f1: 0.81
+      gold_probe_f1_stag: 0.74
+      gold_probe_f1_prog: 0.88
+      gold_probe_accuracy: 0.84
+      gold_probe_precision_macro: 0.83
+      gold_probe_recall_macro: 0.8
+      lf_derived_probe_macro_f1: 0.9055
+      probe_circularity_gap_pp: 9.6
+      structural_minus_probe_gold_pp: 8
+      probe_e5_gold_macro_f1: 0.83
+      probe_bge_gold_macro_f1: 0.84
+    result_rationale: 'Probe 从 0.9055 降到 0.81，~9.6pp drop。Probe 的 circular artifact
+      略小于 structural（9.6 vs 10.5pp）因为 probe 从 embeddings 学习了部分 LF 规则之外的 语义信号——error
+      analysis 已证明 probe 的 FP 模式是 "diverse commands but ineffective"，这些 cases 中 probe
+      可能比 LFs 更接近人类判断。但 probe 整体 仍低于 structural 8pp 因为：(a) stagnation 的核心信号确实是结构性的（命令重复、
+      无代码变更），embedding 对此无增量；(b) probe 在 borderline cases 上的优势 被 embedding domain
+      noise 部分抵消。BGE-m3 和 E5 在 gold 上微弱领先 Qwen3 （+2-3pp）与 LF-derived 评估趋势一致。
+
+      '
+    tables:
+    - name: 'Table 10: Probe vs Structural on Gold Labels'
+      content: '| Method         | LF-Derived F1 | Gold F1 | Circ Gap | Gold Δ vs
+        Struct |
+
+        |----------------|---------------|---------|----------|-----------------|
+
+        | Structural GB  | 0.9951        | 0.89    | 10.5pp   | —               |
+
+        | Probe (Qwen3)  | 0.9055        | 0.81    | 9.6pp    | -8pp            |
+
+        | Probe (E5)     | 0.9363        | 0.83    | 10.6pp   | -6pp            |
+
+        | Probe (BGE)    | 0.9413        | 0.84    | 10.1pp   | -5pp            |
+
+        '
+    figures_description:
+    - 'Grouped bar: structural vs probe (3 encoders) on gold，突出 structural dominance'
+    analysis: 'Probe 0.81 on gold 落在 best tier [0.73, 0.84] 上部。Structural-minus-probe
+      gap 在 gold 上为 8pp，落在 [6, 15] 范围内。这证明 structural dominance 不是 circular artifact——在公平的
+      gold 评估下，simple structural features 仍然优于 neural embedding probe。Encoder-agnostic
+      结论在 gold 上维持（3 encoders 都低于 structural），进一步支持 "stagnation signals are structural,
+      not semantic"。
+
+      '
+  - name: LLM-Judge on Gold Labels
+    plan_id: gold-set
+    description: '在 650 gold windows 上评估 Claude Sonnet LLM-as-judge baseline，验证 structural
+      vs LLM-judge gap 在 non-circular 评估下的表现。
+
+      '
+    expected_results:
+      gold_llm_judge_macro_f1: 0.67
+      gold_llm_judge_f1_stag: 0.58
+      gold_llm_judge_f1_prog: 0.76
+      gold_llm_judge_accuracy: 0.7
+      lf_derived_llm_judge_macro_f1: 0.6625
+      llm_judge_circularity_gap_pp: -0.8
+      structural_minus_llm_judge_gold_pp: 22
+      probe_minus_llm_judge_gold_pp: 14
+    result_rationale: 'LLM-judge 在 gold 上 0.67，几乎与 LF-derived 评估（0.6625）持平，甚至微弱上升
+      0.8pp。这是因为 LLM-judge 的错误模式与 LF 的错误模式不相关——LLM 的 zero-shot 判断基于通用语言理解而非 LF 规则，所以
+      LF labels 和 gold labels 之间的差异 不系统性影响 LLM 分数。LLM 在 gold 上微弱改善因为 gold labels 包含了一些
+      LLM 判断正确但 LF 判错的 cases（"diverse commands but stuck" 场景 LLM 有时 能识别）。Structural-minus-LLM
+      gap 为 22pp（落在 [15, 30]），证明结构方法的 巨大优势在 gold 上依然成立。
+
+      '
+    tables:
+    - name: 'Table 11: All Methods on Gold Labels (Summary)'
+      content: '| Method            | Gold Macro-F1 | Gold F1_stag | Cost/window |
+        Latency |
+
+        |-------------------|---------------|-------------|-------------|---------|
+
+        | Structural GB     | 0.89          | 0.85        | ~$0         | <1ms    |
+
+        | Structural RF     | 0.88          | 0.83        | ~$0         | <1ms    |
+
+        | Probe (BGE-m3)    | 0.84          | 0.78        | ~$0         | ~5ms    |
+
+        | Probe (Qwen3)     | 0.81          | 0.74        | ~$0         | ~5ms    |
+
+        | LLM-judge (Sonnet)| 0.67          | 0.58        | $0.006      | ~800ms  |
+
+        | MV LF labels      | 0.92*         | 0.89*       | ~$0         | <1ms    |
+
+        * MV evaluated as classifier output, not oracle
+
+        '
+    figures_description:
+    - 'Horizontal bar chart: 所有方法在 gold 上的 macro_f1，从高到低排列'
+    - 'Cost-performance Pareto frontier: x=cost, y=gold_f1'
+    analysis: 'LLM-judge 0.67 on gold 落在 best tier [0.58, 0.7] 上部。关键发现：LLM-judge 是唯一在
+      gold 上不降反微升的方法（+0.8pp），这验证了 LLM 的错误与 LF 的错误 是正交的。但 LLM 仍远低于 structural（-22pp）和
+      probe（-14pp），且 cost 高 6 个数量级。这强化了 Claim 1 的 practical message：即使有无限预算用 LLM，
+      structural approach 仍然更准确。
+
+      '
+  - name: Gold Temporal Onset Alignment
+    plan_id: gold-set
+    description: '在 gold set 中识别 stagnation onset boundaries（gold labels 从 progress→stagnation
+      的转换点），与 LF firing onset 对齐，验证 Claim 2 temporal dynamics 的 gold 证据。
+
+      '
+    expected_results:
+      gold_onset_boundaries_n: 85
+      gold_temporal_onset_alignment_pct: 80
+      cmd_rep_onset_alignment_pct: 83
+      file_diff_onset_alignment_pct: 76
+      ob_onset_alignment_pct: 72
+      cmd_rep_gold_mean_lag: -1.6
+      file_diff_gold_mean_lag: -0.9
+      ob_gold_mean_lag: 7.2
+      lf_derived_cmd_rep_mean_lag: -1.87
+      lf_derived_ob_mean_lag: 6.7
+      onset_boundary_tolerance_steps: 2
+    result_rationale: '80% onset alignment 因为 LF temporal patterns 反映了真实的 stagnation
+      dynamics： command repetition 确实在 agent 开始陷入困境时最先出现（agent 先重复几次命令 才开始其他无效行为），file
+      diff 变化在 stagnation 初期就减少，outcome 信息 最晚才确认。Gold onset boundaries 使用 ±2 步容差因为人类标注
+      "何时开始停滞" 有固有模糊性。Cmd_rep alignment 最高（83%）因为它的 leading 角色最明确—— 人类 annotator 也倾向于以
+      "agent 开始重复" 作为 stagnation 开始的标志。 OB alignment 最低（72%）因为 OB 依赖 outcome 信息，其
+      lagging 特性意味着它 标记的 stagnation 区域与 gold onset 在时间上有更大偏移。Gold-derived lag 值 （cmd_rep
+      -1.6, OB +7.2）与 LF-derived 值（-1.87, +6.7）一致性好，轻微差异 来自 gold onset boundary 定义与
+      MV onset 定义的差异。
+
+      '
+    tables:
+    - name: 'Table 12: Gold-Validated Temporal Onset Alignment'
+      content: '| LF                  | LF-Derived Lag | Gold Lag | Alignment% | ±2
+        step |
+
+        |---------------------|----------------|----------|------------|---------|
+
+        | command_repetition  | -1.87          | -1.6     | 83%        | ±2      |
+
+        | file_diff_delta     | -1.2           | -0.9     | 76%        | ±2      |
+
+        | outcome_backprop    | +6.7           | +7.2     | 72%        | ±2      |
+
+        | Overall alignment   |                |          | 80%        |         |
+
+        '
+    figures_description:
+    - 'Timeline visualization: 3-5 个典型 trajectory 的 gold onset boundary vs LF firing
+      points'
+    - 'Lag distribution: violin plots comparing LF-derived vs gold-derived lag per
+      LF'
+    analysis: '80% alignment 落在 best tier [65, 85] 上部。LF-derived 和 gold-derived lag
+      值 高度一致（cmd_rep: -1.87 vs -1.6, OB: +6.7 vs +7.2），验证 Claim 2 temporal dynamics
+      不是 LF label 的循环产物。特别是 cmd_rep 的 leading 角色和 OB 的 lagging 角色在 gold 上完全确认，为 "LF
+      temporal roles are systematic" 提供了 gold-validated evidence。
+
+      '
+  - name: Gold Cross-Agent Structural Validation
+    plan_id: gold-set
+    description: '使用 gold set 中的 OH 子集（如有），验证 cross-agent structural transfer 在 gold
+      labels 下是否仍然成立。若 gold set 仅含 SWE-Agent，则用 SWE-Agent gold 子集训练 structural model
+      并在 SWE-Agent gold test 上评估。
+
+      '
+    expected_results:
+      gold_swe_structural_gb_macro_f1: 0.89
+      gold_swe_structural_gb_f1_stag: 0.85
+      gold_swe_probe_macro_f1: 0.81
+      gold_swe_structural_vs_probe_pp: 8
+      cross_agent_inference: 'If GB 0.89 on SWE gold (non-circular) and GB 0.967 on
+        OH LF-labels, then OH gold performance is bounded by [0.83, 0.92] given similar
+        circularity gap. Cross-agent structural dominance is validated.
+
+        '
+    result_rationale: 'Gold set 650 窗口主要来自 SWE-Agent（gold set 标注以 SWE-Agent 数据为主因为
+      这是 primary dataset）。Structural GB 在 SWE gold 上 0.89 直接证明了 in-domain structural
+      detection 是真实的。Cross-agent OH 的 gold 验证需要单独的 OH gold annotation（不在本实验 scope
+      内），但可以通过 circularity gap 推断：如果 SWE 上 circular gap 是 ~10.5pp，OH 上类似的 gap 会把 0.967
+      降到 ~0.87-0.92，仍然 远高于 probe full-FT（0.751）。这个推断在论文中作为 bounded estimate 呈现。
+
+      '
+    tables: []
+    figures_description:
+    - 'Schematic diagram: circularity gap estimation for cross-agent inference'
+    analysis: 'Structural dominance 在 gold 上确认后，cross-agent 0.967 的解读从 "可能是 circular
+      artifact" 升级为 "真实信号 + 部分 circular 膨胀"。即使最保守估计 （full circularity gap applied
+      to cross-agent），structural 仍大幅领先 probe。
+
+      '
+  - name: Gold-Validated Circularity Quantification
+    plan_id: gold-set
+    description: '综合分析：quantify circular evaluation artifact 的具体大小，分解 in-domain 0.9951
+      中有多少来自 circular artifact、多少来自真实信号。
+
+      '
+    expected_results:
+      in_domain_lf_f1: 0.9951
+      gold_f1: 0.89
+      circularity_artifact_pp: 10.5
+      genuine_signal_f1: 0.89
+      genuine_signal_above_majority_baseline_pp: 42
+      genuine_signal_above_probe_pp: 8
+      genuine_signal_above_llm_judge_pp: 22
+      circularity_as_pct_of_total: 10.6
+    result_rationale: 'In-domain 0.9951 = 0.89（genuine signal）+ 0.105（circular artifact）。
+      Circular artifact 占总 F1 的 ~10.6%。Genuine signal 0.89 仍然是 strong result 因为：(a)
+      远高于 majority baseline（~0.47 on gold balanced）；(b) 高于 probe 和 LLM-judge；(c) 在
+      non-circular 条件下仍是最佳方法。这个分解直接回应了 reviewer concern "structural features 只是逆向工程
+      LF 规则" —— 确实有 10.5pp 是 circular，但 89% 的信号是真实的。
+
+      '
+    tables:
+    - name: 'Table 13: Circularity Decomposition'
+      content: '| Component                  | Value  | Interpretation                    |
+
+        |----------------------------|--------|-----------------------------------|
+
+        | In-domain LF-derived F1    | 0.9951 | Upper bound (circular + genuine)  |
+
+        | Gold F1                    | 0.89   | Genuine signal                    |
+
+        | Circularity artifact       | 10.5pp | Structural ≈ LF inputs component |
+
+        | Genuine signal vs Probe    | +8pp   | Structural dominance confirmed    |
+
+        | Genuine signal vs LLM      | +22pp  | Cost-free advantage massive       |
+
+        '
+    figures_description:
+    - 'Stacked bar: 0.9951 分解为 genuine (0.89) + circular (0.105) 两部分'
+    analysis: 'Circularity 量化是论文最关键的方法论贡献之一。10.5pp circular artifact 不可忽略 但也不致命——genuine
+      0.89 证明 structural features 的实际价值。这个分解框架 可推广到任何用 weak supervision + 相关 features
+      的 pipeline。
+
+      '
+  - name: F1_stag Per-Class Breakdown by Confidence
+    plan_id: f1-stag-analysis
+    description: '将 test set 按 LF confidence 分层，分析 F1_stag 在不同 confidence level 的
+      表现差异，识别 probe 检测 stagnation 的能力在哪些 regime 最强/最弱。
+
+      '
+    expected_results:
+      overall_f1_stag: 0.8593
+      conf2_f1_stag: 0.8633
+      conf2_n: 1780
+      conf2_stag_n: 473
+      conf3_f1_stag: 0.7273
+      conf3_n: 44
+      conf3_stag_n: 12
+      conf3_note: small sample, wide CI
+      full_data_conf1_estimated_f1_stag: 0.62
+      full_data_conf1_n: 39408
+    result_rationale: 'Conf=2 F1_stag（0.863）接近 overall（0.859）因为 test set 97.6% 是 conf≥2。
+      Conf=3 F1_stag 低（0.727）主要因为样本量极小（N=44, 12 stag）导致的方差而非 系统性问题——error analysis
+      已发现 conf=3 上 5/44 errors 但这不具统计意义。 Conf=1 F1_stag 估计 ~0.62 基于 confidence-gradient
+      实验中 23.6% disagreement rate 和 probe 偏向预测 stagnation 的 asymmetry（19.99% probe→stag
+      vs 3.63% probe→prog）。在 conf=1 上 probe 过度预测 stagnation 导致 precision 低但 recall
+      较高。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: F1_stag by Trajectory Position
+    plan_id: f1-stag-analysis
+    description: '按 trajectory 位置（early/middle/late）分析 F1_stag。
+
+      '
+    expected_results:
+      early_0_33:
+        n: 351
+        stag_n: 62
+        f1_stag: 0.82
+        precision_stag: 0.79
+        recall_stag: 0.85
+      middle_33_66:
+        n: 353
+        stag_n: 105
+        f1_stag: 0.8
+        precision_stag: 0.75
+        recall_stag: 0.86
+      late_66_100:
+        n: 1070
+        stag_n: 318
+        f1_stag: 0.88
+        precision_stag: 0.85
+        recall_stag: 0.91
+    result_rationale: 'Late-trajectory F1_stag 最高（0.88）因为 late stagnation 模式最典型——agent
+      已 长时间尝试、开始重复、不再产生新代码变更，signals 最清晰。Middle-trajectory F1_stag 最低（0.80）与 error
+      analysis 一致（middle 10.2% error rate vs endpoints 6.5%）——这是 transition zone，agent
+      可能正从 progress 滑入 stagnation 或反之， 信号最模糊。Early-trajectory 中 stagnation 样本少（62/351），检测较容易因为
+      early stagnation 通常是极端情况（agent 从一开始就困在错误方向）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: F1_stag by Stagnation Subtype
+    plan_id: f1-stag-analysis
+    description: '将 stagnation windows 按行为模式分为 repetitive-command (cmd_rep fires)、
+      no-file-change (file_diff fires)、outcome-failure-only (only OB fires) 三类， 分析各子类型的
+      F1_stag。
+
+      '
+    expected_results:
+      repetitive_cmd_dominant:
+        n_stag_windows: 315
+        f1_stag: 0.9
+        description: cmd_rep fires, stagnation 通过命令重复体现
+      no_file_change_dominant:
+        n_stag_windows: 98
+        f1_stag: 0.83
+        description: file_diff fires 但 cmd_rep 不一定 fire
+      outcome_only:
+        n_stag_windows: 72
+        f1_stag: 0.72
+        description: 仅 OB fires，行为表面上多样
+      mixed_signals:
+        n_stag_windows: 0
+        note: conf≥2 test set 上 mixed 归入上述类别
+    result_rationale: 'Repetitive-command stagnation 最易检测（F1=0.90）因为 command repetition
+      是 embedding space 中最强的 stagnation 信号——相同或相似的 action embeddings 产生 高 intra-window
+      similarity，probe 容易区分。No-file-change stagnation 次之 （F1=0.83）因为 file diff 的缺失在
+      embedding 层面表现为 action 序列中缺少 edit/write 类 embedding patterns。Outcome-only stagnation
+      最难（F1=0.72）因为 这些 windows 中 agent 行为表面上多样（不重复命令、可能在做 file changes）， 仅通过最终 outcome
+      才能判定为 stagnation——这正是 error analysis 中 FP 的主要 来源（"diverse commands but ineffective"，probe
+      高置信错判为 progress）。
+
+      '
+    tables:
+    - name: 'Table 14: F1_stag by Stagnation Subtype'
+      content: '| Subtype               | N    | F1_stag | Precision | Recall | Primary
+        Signal     |
+
+        |-----------------------|------|---------|-----------|--------|--------------------|
+
+        | Repetitive commands   | 315  | 0.90    | 0.88      | 0.92   | Embedding
+        similarity|
+
+        | No file changes       | 98   | 0.83    | 0.80      | 0.86   | Action type
+        absence |
+
+        | Outcome-only          | 72   | 0.72    | 0.68      | 0.76   | Weak — needs
+        OB     |
+
+        | Overall               | 485  | 0.86    | 0.83      | 0.89   |                    |
+
+        '
+    figures_description:
+    - 'Grouped bar: F1_stag/precision/recall per subtype'
+    - 'Confusion analysis: per-subtype error patterns with example trajectory snippets'
+    analysis: 'Subtype analysis 揭示了 probe 的 capability boundary：对 behavioral-level
+      stagnation（重复命令、无文件变更）检测能力强，对 outcome-level stagnation（行为 多样但无效）检测能力弱。这与 Claim
+      1 "stagnation signals are structural" 完美 对应——structural signals（cmd_rep, file_diff）能检测前两类，outcome-level
+      需要 更深的理解。这也解释了为什么 structural features 在 gold 上仍领先 probe： structural features
+      直接捕获前两类信号，probe 通过 embeddings 间接学习同样的 信号但损失了精度。
+
+      '
+  - name: F1_stag Probe vs Structural Feature Importance Decomposition
+    plan_id: f1-stag-analysis
+    description: '对比 probe 和 structural model 在 stagnation class 上的错误分布，识别两种 方法的互补性和各自的
+      failure mode。
+
+      '
+    expected_results:
+      probe_f1_stag: 0.8593
+      structural_gb_f1_stag: 0.9928
+      probe_FP_count: 85
+      probe_FN_count: 46
+      structural_FP_count: 3
+      structural_FN_count: 4
+      probe_only_errors: 124
+      structural_only_errors: 7
+      shared_errors: 0
+      probe_errors_on_lf_conflict: 52
+      structural_errors_on_lf_conflict: 2
+    result_rationale: 'Structural model 在 LF-derived labels 上几乎无错（7 total errors）因为它直接
+      重建 LF 逻辑。Probe 的 131 errors 几乎都是 structural model 答对的 cases—— 因为 structural
+      features 包含了 LF 规则的完整信息而 probe 通过 embeddings 间接学习。两者 shared errors ≈0 反映了不同的
+      failure mechanism：structural 的 极少错误来自 feature 数值精度边界，probe 的错误来自 embedding 信息的不完整性。
+      但这个比较在 LF-derived labels 上是 circular——在 gold labels 上，structural errors 会增加到
+      ~70+ cases，两者差距缩小但 structural 仍领先。
+
+      '
+    tables:
+    - name: 'Table 15: Error Distribution — Probe vs Structural (LF-Derived)'
+      content: '| Metric              | Probe    | Structural GB | Delta  |
+
+        |---------------------|----------|---------------|--------|
+
+        | F1_stag             | 0.8593   | 0.9928        | -13.4pp|
+
+        | Total errors        | 131      | 7             | —      |
+
+        | FP (pred stag wrong)| 85       | 3             | —      |
+
+        | FN (miss stag)      | 46       | 4             | —      |
+
+        | Errors on LF conflict| 52 (40%)| 2 (29%)       | —      |
+
+        '
+    figures_description:
+    - 'Venn diagram: probe errors vs structural errors 的 overlap'
+    analysis: 在 LF-derived eval 上 structural 的压倒性优势（13.4pp gap on F1_stag）是 circular
+      artifact。在 gold eval 上（gold-set 实验预测），gap 缩小到 ~11pp （0.85 vs 0.74 F1_stag），但
+      structural 仍然领先。这个 per-class 分析强化了 Claim 1：即使只看更难的 stagnation class，structural
+      features 仍然是最佳选择。
+  review_report: '---
+
+    dream_id: dream_20260514T184058
+
+    tier: best
+
+    overall_score: Weak Reject (3/6)
+
+    timestamp: 2026-05-14T19:17:51.067941+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper:** Stagnation Signals Are Structural, Not Semantic: A Systematic Empirical
+    Study of Progress Detection in LLM Agents
+
+
+    **Review Mode:** Full (2 Reviewers, 4-step roundtable)
+
+
+    **Overall Score: Weak Reject (3/6)**
+
+
+    ---
+
+
+    ## Consolidated Summary
+
+
+    This paper presents an empirical study comparing structural features, neural embedding
+    probes, and LLM-as-judge for detecting progress stagnation in LLM agents. Using
+    a weak supervision pipeline with 3 labeling functions and 650 gold-annotated windows
+    from SWE-Agent trajectories, it demonstrates that gradient boosting over 30 hand-crafted
+    structural features achieves 0.89 gold macro-F1, surpassing GRU probes (0.81)
+    and Claude Sonnet zero-shot (0.67). The paper quantifies the circular evaluation
+    artifact (~10.5pp from in-domain to gold) and reports a well-motivated negative
+    result on temporal label models.
+
+
+    The paper is competent and honest, but falls below the bar for a top ML venue
+    (~25% acceptance) due to limited methodological novelty, narrow evaluation scope
+    (2 SE agents), missing statistical significance tests, and an unfairly weak LLM-judge
+    baseline.
+
+
+    ---
+
+
+    ## R1 Review: Methods & Experiments
+
+
+    ### Strengths
+
+
+    - **S1: Circularity decomposition is the paper''s strongest contribution.** The
+    explicit quantification of in-domain 0.995 → gold 0.89 (~10.5pp gap) is rigorous
+    and honest. The observation that the LLM-judge is the only method whose gold performance
+    does not decline (+0.8pp) provides an elegant internal consistency check confirming
+    that LF-correlated methods show circularity drops while LF-orthogonal methods
+    do not.
+
+
+    - **S2: Feature importance stability analysis (Spearman ρ≈0.95)** between LF-derived
+    and gold evaluation demonstrates that circularity inflates magnitude but does
+    not alter directional signal, strengthening the claim that structural features
+    capture genuine stagnation patterns.
+
+
+    - **S3: Gold annotation protocol is adequate.** 650 windows, 2 annotators, κ=0.81,
+    disagreements resolved by discussion. The stratified analysis by LF confidence
+    (conf=1: 0.68, conf≥2: 0.93, conf=3: 0.98) reveals a clean monotonic relationship
+    validating the LF pipeline design.
+
+
+    - **S4: The three-way method comparison on gold labels is the right experimental
+    design** for an empirical analysis paper. Each method class represents a natural
+    point on the cost-complexity spectrum.
+
+
+    - **S5: The TLM negative result is well-grounded.** Three implementations all
+    fail, with TWV degrading downstream by 21.7pp. The mechanistic explanation (low-conflict
+    regime, 95.1% conf≥2 agreement) is satisfying.
+
+
+    ### Weaknesses
+
+
+    - **W1: Gold set covers SWE-Agent only; cross-agent claims lack independent validation.**
+    The cross-agent 0.967 F1 on OpenHands is evaluated entirely on LF-derived labels.
+    The paper applies the SWE-Agent circularity gap to bound OpenHands gold performance
+    at [0.83, 0.92], but this extrapolation assumes the circularity structure transfers
+    across agents — unjustified given that LF failure modes differ qualitatively between
+    agents (e.g., cmd_rep has 71% false positive rate on OpenHands).
+
+
+    - **W2: No confidence intervals or significance tests on any gold-set comparison.**
+    The structural-vs-probe gap on gold is 5–8pp with N=650. Whether the 5pp structural-vs-BGE
+    gap is statistically significant is left unaddressed. This is a serious omission
+    for a top-venue empirical paper.
+
+
+    - **W3: Subtype analysis (Table 9) and trajectory position analysis (Table 10)
+    may mix LF-derived and gold labels.** Table 9 reports 485 stagnation windows,
+    but the gold set contains only ~214 stagnation windows. The evaluation regime
+    is not clarified, creating ambiguity about circularity.
+
+
+    - **W4: The 30 structural features are not fully specified.** Only 5 are named;
+    the remaining 25 are undocumented. For the paper''s primary recommended approach,
+    complete specification is essential for reproducibility.
+
+
+    - **W5: MV LF labels (0.92 gold macro-F1) outperform the trained GB classifier
+    (0.89).** This means the raw LF majority vote, without any learning, beats the
+    structural classifier by 3pp. The paper includes this row with an asterisk but
+    does not address the implication: if MV already achieves 0.92, what additional
+    value does training GB provide?
+
+
+    - **W6: LLM-judge baseline limited to zero-shot Claude Sonnet.** No few-shot,
+    no chain-of-thought, no other LLMs tested. The 0.67 may reflect weak prompting
+    rather than a fundamental limitation.
+
+
+    - **W7: Temporal onset alignment uses ±2 step tolerance on k=5 windows (40% margin).**
+    Alignment at stricter tolerances (±1, exact match) is not reported. The 80% alignment
+    may partly reflect tolerance generosity.
+
+
+    ### Questions for Authors
+
+
+    - Q1: Does the MV LF label superiority (0.92 vs 0.89) mean the GB classifier is
+    strictly worse than simply applying LFs at test time?
+
+    - Q2: How many of the 85 gold onset boundaries come from trajectories overlapping
+    with the structural classifier''s training set?
+
+    - Q3: Can you provide direct analysis of cases where the probe is correct and
+    structural features are wrong on gold?
+
+
+    ### Scores
+
+    - Soundness: 3/4
+
+    - Empirical Rigor: 3/4
+
+
+    ---
+
+
+    ## R2 Review: Novelty & Related Work
+
+
+    ### Strengths
+
+
+    - **S1: The structural dominance finding is empirically valuable despite being
+    intuitive.** Showing that command repetition ratios outperform embeddings by 8–22pp
+    on gold is a practically useful result that could redirect engineering effort.
+    The magnitude of the gap is the contribution.
+
+
+    - **S2: The circularity decomposition is a genuine methodological contribution**
+    providing a reusable framework for weak supervision studies.
+
+
+    - **S3: The temporal dynamics analysis reveals a non-obvious cross-agent finding.**
+    The cmd_rep role reversal between SWE-Agent (leading, −1.87 steps) and OpenHands
+    (lagging, +3.32 steps), with +21.6pp improvement from removing cmd_rep on OpenHands,
+    is concrete and actionable.
+
+
+    - **S4: Honest treatment of the negative TLM result** with a plausible mechanistic
+    explanation.
+
+
+    ### Weaknesses
+
+
+    - **W1: Limited methodological novelty.** The paper employs entirely standard
+    components (majority vote, gradient boosting, GRU probes, zero-shot LLM). There
+    is no new algorithm, model, or inference procedure. The novelty rests entirely
+    on the finding, which has a "confirm the obvious" quality: structural LFs naturally
+    produce labels that structural features predict. The gold-validated residual (0.89)
+    is the genuine contribution, but methodological novelty is near zero.
+
+
+    - **W2: Narrow evaluation scope severely limits significance claims.** Both agents
+    are SE agents on SWE-bench. The title and abstract make sweeping claims about
+    "LLM Agents" without qualification. Structural features are heavily SE-specific
+    (file diff count, edit diversity). Whether these transfer to web navigation, scientific
+    discovery, or conversational agents is entirely unknown.
+
+
+    - **W3: The "semantic stagnation" framing is undermined by the paper''s own results.**
+    The paper motivates itself with detecting "semantically diverse but collectively
+    ineffective" behavior. Yet Table 9 shows the "outcome-only" subtype (true semantic
+    stagnation) has the lowest detection (F1_stag=0.72), confirming structural features
+    struggle with the very phenomenon the paper claims to address. This tension deserves
+    direct confrontation.
+
+
+    - **W4: Gold set is SWE-Agent only** (same as R1-W1). Cross-agent claims rest
+    on circular evaluation.
+
+
+    - **W5: The LLM-judge baseline is unfairly weak** (same as R1-W6). A single zero-shot
+    prompt achieving 0.67 is unsurprising and does not constitute a fair comparison.
+
+
+    - **W6: No statistical significance tests** (same as R1-W2).
+
+
+    - **W7: Temporal onset validation rests on N=85 onset events** — a small sample
+    for per-LF breakdown with ±2 tolerance.
+
+
+    ### Missing Related Work
+
+
+    - **George et al. 2025, "Unsupervised Cycle Detection in Agentic Applications"
+    (arXiv 2511.10650):** Most directly comparable prior work on cycle/stagnation
+    detection, combining call-stack structural analysis with embedding similarity.
+    Significant omission.
+
+    - **Pipis et al. 2025, "Wait, Wait, Wait... Why Do Reasoning Models Loop?" (arXiv
+    2512.12895):** Analyzes looping in reasoning models using 30-gram repetition.
+    Relevant to cmd_rep LF design.
+
+    - **Cemri et al. 2025, "Why Do Multi-Agent LLM Systems Fail?" (arXiv 2503.13657):**
+    MAST taxonomy includes "Step Repetition" failure mode.
+
+    - **Safranchik et al. AAAI 2020, "Weakly Supervised Sequence Tagging from Noisy
+    Rules":** Linked HMM for sequential weak supervision — closest methodological
+    precedent for the TLM attempt. Essential for contextualizing the negative result.
+
+    - **Sala et al. NeurIPS 2019, "Multi-Resolution Weak Supervision for Sequential
+    Data":** Direct precedent for weak supervision on sequential data with temporal
+    structure.
+
+    - **Ratner et al. 2018 (Snorkel, VLDB)** and **FlyingSquid (Fu et al., ICML 2020):**
+    Core weak supervision references surprisingly absent.
+
+    - **Dawid & Skene 1979** and broader label aggregation literature: The paper frames
+    majority vote as the only i.i.d. alternative without discussing more sophisticated
+    aggregation.
+
+
+    ### Questions for Authors
+
+
+    - Q1: What performance does the LLM-judge achieve with few-shot prompting and
+    chain-of-thought?
+
+    - Q2: How many of the 30 features are SE-specific vs. domain-general? Could you
+    report a "domain-general subset" ablation?
+
+    - Q3: What does the probe achieve on the "outcome-only" stagnation subtype? If
+    the probe outperforms structural there, the structural/semantic dichotomy requires
+    nuancing.
+
+    - Q4: How close is structural GB (0.89) to the inter-annotator ceiling (~0.91
+    agreement)?
+
+
+    ### Scores
+
+    - Novelty: 2/4
+
+    - Significance: 2/4
+
+
+    ---
+
+
+    ## Roundtable Convergence
+
+
+    ### Points of Agreement (Both Reviewers)
+
+
+    1. **No statistical significance tests** — the most critical gap. Both reviewers
+    flag this as a serious omission for an empirical paper at a top venue with N=650.
+
+    2. **Gold set limited to SWE-Agent** — cross-agent claims are unvalidated on gold
+    and the circularity gap extrapolation is methodologically unsound.
+
+    3. **Weak LLM-judge baseline** — zero-shot only, no few-shot/CoT variants tested.
+    The -22pp gap may be an artifact of minimal prompting effort.
+
+    4. **Circularity decomposition is the strongest contribution** — both reviewers
+    agree this is rigorous, honest, and potentially generalizable.
+
+    5. **TLM negative result is well-motivated** — honest reporting with mechanistic
+    explanation.
+
+    6. **Temporal onset tolerance (±2 on k=5) is generous** — alignment at stricter
+    tolerances needed.
+
+
+    ### Points of Divergence
+
+
+    - **R1 leans toward borderline weak accept** (emphasizing empirical contribution
+    value and circularity decomposition); **R2 leans toward weak reject** (emphasizing
+    limited novelty and narrow scope).
+
+    - **R2 raises the framing tension** — the paper''s "semantic stagnation" motivation
+    is undermined by its own results showing structural methods fail on outcome-only
+    stagnation (F1=0.72). R1 does not flag this.
+
+    - **R2 identifies significant missing related work** (6+ papers) that R1 does
+    not discuss.
+
+    - **R1 uniquely catches the MV > GB tension** (0.92 vs 0.89 on gold) — a potentially
+    damaging finding for the paper''s practical message.
+
+
+    ### Consensus Score: Weak Reject (3/6)
+
+
+    The combination of limited methodological novelty, narrow evaluation scope (2
+    SE agents only), absent statistical significance tests, unfairly weak LLM-judge
+    baseline, and several significant missing related works places this paper below
+    the acceptance threshold for a top venue. The circularity decomposition framework
+    and the well-motivated TLM negative result are genuine contributions, but insufficient
+    to overcome the accumulated weaknesses.
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    | Planned Experiment | Status | Notes |
+
+    |---|---|---|
+
+    | Gold-LF Agreement (κ) | ✅ Covered | Table 1, κ=0.84 |
+
+    | Gold-LF Conf≥2 Accuracy | ✅ Covered | Table 2, 0.93 accuracy |
+
+    | Structural on Gold | ✅ Covered | Table 3, GB 0.89 |
+
+    | Probe on Gold | ✅ Covered | Table 5, Qwen3 0.81 |
+
+    | LLM-Judge on Gold | ✅ Covered | Table 6, 0.67 |
+
+    | Temporal Onset Alignment | ✅ Covered | Table 7, 80% alignment |
+
+    | Cross-Agent Gold Validation | ⚠️ Partial | Discussion only, no gold annotation
+    for OpenHands |
+
+    | Circularity Quantification | ✅ Covered | Table 8 |
+
+    | F1_stag by Confidence | ⚠️ Partial | Mentioned in text, no dedicated table |
+
+    | F1_stag by Position | ✅ Covered | Table 10 |
+
+    | F1_stag by Subtype | ✅ Covered | Table 9 |
+
+    | Probe vs Structural Error Decomp | ✅ Covered | Table 11 |
+
+
+    Coverage: 9/12 fully covered, 2 partial, 1 missing (OpenHands gold). The paper
+    reflects ~80% of the planned experiment matrix.
+
+
+    ---
+
+
+    ## Actionable Recommendations (Priority Order)
+
+
+    1. **Add bootstrap 95% CIs and McNemar''s test** to all gold-set method comparisons
+    (structural vs probe, structural vs LLM-judge).
+
+    2. **Test LLM-judge with 5-shot prompting and CoT** to establish whether 0.67
+    is robust to prompting strategy.
+
+    3. **Hedge cross-agent claims explicitly** — state that OpenHands results are
+    LF-derived only, with bounded estimates, not validated findings.
+
+    4. **Address the MV > GB tension** — explain why training a classifier is valuable
+    when raw MV achieves higher gold F1.
+
+    5. **Add missing related work** — George et al. 2025, Safranchik et al. 2020,
+    Snorkel, FlyingSquid at minimum.
+
+    6. **Confront the framing tension** — the "semantic stagnation" motivation vs.
+    the structural dominance finding. Either reframe the motivation or discuss outcome-only
+    stagnation (F1=0.72) as a limitation of the structural approach.
+
+    7. **Document all 30 features** in an appendix for reproducibility.
+
+    8. **Report temporal onset alignment at ±0 and ±1 tolerances** alongside ±2.
+
+    9. **Clarify evaluation regime** for Tables 9 and 10 (gold vs. LF-derived labels).
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T184058/median/paper.pdf
+  imagined_experiments:
+  - name: gold-annotation-stats
+    plan_id: gold-set
+    description: '650 窗口人工标注基本统计：IAA、标签分布、置信度分层覆盖。 2 名标注者 per window，第 3 人仲裁分歧。分层采样自
+      54809 总窗口。
+
+      '
+    expected_results:
+      total_windows: 650
+      sampling_strategy: stratified by LF confidence
+      conf1_sampled: 250
+      conf2_sampled: 340
+      conf3_sampled: 60
+      annotators: 3
+      annotators_per_window: 2
+      adjudication_method: 3rd annotator on disagreements
+      inter_annotator_kappa: 0.67
+      inter_annotator_pct_agreement: 0.81
+      gold_stagnation_count: 270
+      gold_progress_count: 380
+      gold_stag_ratio: 0.415
+      lf_stag_ratio_same_sample: 0.335
+      annotation_time_per_window_min: 3.5
+      total_annotation_hours: 38
+    result_rationale: 'IAA κ=0.67（substantial agreement）反映 stagnation 判断的固有主观性：标注者对"结构性重复"（高一致）
+      和"语义停滞"（低一致）的认知不同。Gold stag 比例（41.5%）高于 LF 标注（33.5%），因为人类识别出 LFs 遗漏的语义停滞——agent
+      命令多样但逻辑循环。κ=0.67 落在 median 范围 [0.50, 0.72] 中偏高位， 反映标注者在 SE domain 有足够的 coding
+      agent 经验来达成中等以上共识，但边界案例仍有分歧。
+
+      '
+    tables:
+    - name: 'Table: Gold Set Annotation Summary'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - Total windows
+        - 650
+      - - Inter-annotator κ
+        - 0.67
+      - - Inter-annotator % agreement
+        - 81%
+      - - Gold stagnation ratio
+        - 41.5%
+      - - LF stagnation ratio (same sample)
+        - 33.5%
+      - - Adjudicated windows
+        - 124 (19.1%)
+    figures_description:
+    - 'Annotator agreement heatmap (2×2): 同意-stag, 同意-prog, A1=stag/A2=prog, A1=prog/A2=stag'
+    analysis: 'Gold stag 比例显著高于 LF stag 比例（41.5% vs 33.5%），暗示 LFs 系统性漏报 stagnation——
+      即存在 LFs 判定 progress 但人类判定 stagnation 的窗口（语义停滞）。这为 Claim 1 降级提供直接证据。 IAA 分歧主要集中在两类：(1)
+      agent 做了 edit 但 edit 无效（标注者对"无效 edit"的判定标准不一）， (2) agent 在长 trajectory 末期的"探索性尝试"是否算
+      progress。
+
+      '
+  - name: gold-lf-validation
+    plan_id: gold-set
+    description: 'LF 标签（MV）与 gold 标签的一致性分析，按置信度分层。 核心回答：LF labels 在多大程度上反映真实 stagnation？
+
+      '
+    expected_results:
+      overall_gold_lf_kappa: 0.61
+      overall_gold_lf_accuracy: 0.72
+      overall_gold_lf_precision_stag: 0.78
+      overall_gold_lf_recall_stag: 0.63
+      overall_gold_lf_f1_stag: 0.7
+      conf3_accuracy: 0.92
+      conf3_kappa: 0.83
+      conf3_n: 60
+      conf2_accuracy: 0.82
+      conf2_kappa: 0.62
+      conf2_n: 340
+      conf2_precision_stag: 0.84
+      conf2_recall_stag: 0.73
+      conf1_accuracy: 0.51
+      conf1_kappa: 0.08
+      conf1_n: 250
+      conf1_precision_stag: 0.55
+      conf1_recall_stag: 0.41
+      lf_fp_rate: 0.14
+      lf_fn_rate: 0.14
+      lf_fp_pattern: cmd_rep false firing on productive-but-repetitive debugging sequences
+      lf_fn_pattern: semantic stagnation with diverse commands — LFs see activity,
+        humans see no progress
+    result_rationale: 'κ=0.61 反映 LFs 捕获 stagnation 方向正确但有系统性偏差。Conf≥2 accuracy=0.82
+      落在 median 范围 [0.72, 0.88] 中间偏高：2+ LFs 同意时方向通常对，但边界噪声导致 ~18% 错误。 Conf=1 accuracy=0.51
+      接近随机（median 范围 [0.42, 0.58]），因为单个 LF 信号不足以可靠判断—— 尤其 cmd_rep 在 conf=1 中贡献最多但
+      FP 率最高。 LF recall_stag 偏低（0.63）是关键发现：LFs 系统性遗漏约 37% 的人类标注 stagnation， 这些遗漏即"语义残差"——结构特征看不到的停滞类型。
+      LF precision_stag 较高（0.78）说明 LFs 判定 stagnation 时大多数时候是对的，但过于保守。
+
+      '
+    tables:
+    - name: 'Table: LF Label Accuracy vs Gold by Confidence'
+      columns:
+      - Confidence
+      - N
+      - Accuracy
+      - κ
+      - Precision_stag
+      - Recall_stag
+      rows:
+      - - conf=3
+        - 60
+        - 0.92
+        - 0.83
+        - 0.94
+        - 0.88
+      - - conf=2
+        - 340
+        - 0.82
+        - 0.62
+        - 0.84
+        - 0.73
+      - - conf=1
+        - 250
+        - 0.51
+        - 0.08
+        - 0.55
+        - 0.41
+      - - Overall
+        - 650
+        - 0.72
+        - 0.61
+        - 0.78
+        - 0.63
+    - name: 'Table: LF Error Confusion Matrix (Overall)'
+      columns:
+      - ''
+      - Gold=Stag
+      - Gold=Prog
+      rows:
+      - - LF=Stag
+        - 170 (TP)
+        - 48 (FP)
+      - - LF=Prog
+        - 100 (FN)
+        - 332 (TN)
+    figures_description:
+    - 'Stacked bar chart: LF accuracy by confidence level (correct/FP/FN 三色)'
+    - 'Scatter plot: per-window LF confidence score vs gold agreement (binary)'
+    analysis: 'Conf≥2 准确率 0.82 验证了论文在 LF-derived labels 上训练的合理性——高置信标签方向基本正确。 但 conf=1
+      接近随机（0.51）意味着 54809 窗口中 39408 个（72%）的标签质量极差。 这解释了为什么 probe 在 full data (probe-002,
+      F1=0.847) 低于 conf≥2 only (probe-001, F1=0.906)： conf=1 噪声拖低了训练质量。LF recall_stag=0.63
+      的系统性遗漏为 Claim 1 降级提供了核心论据。
+
+      '
+  - name: gold-structural-eval
+    plan_id: gold-set
+    description: '将已训练的 structural GB/RF/LR 模型在 650 gold 标签窗口上评估。 核心回答：structural
+      features 在真实标签上的性能 + circular eval 的真实影响。
+
+      '
+    expected_results:
+      test_set: gold 650 windows
+      structural_gb:
+        macro_f1: 0.76
+        accuracy: 0.78
+        f1_stag: 0.71
+        f1_prog: 0.81
+      structural_rf:
+        macro_f1: 0.74
+        accuracy: 0.77
+        f1_stag: 0.68
+        f1_prog: 0.8
+      structural_lr:
+        macro_f1: 0.73
+        accuracy: 0.76
+        f1_stag: 0.67
+        f1_prog: 0.79
+      by_gold_confidence:
+        conf_ge2:
+          structural_gb_macro_f1: 0.82
+          n: 400
+        conf1:
+          structural_gb_macro_f1: 0.67
+          n: 250
+      drop_from_lf_eval_pp: -21.9
+      circular_eval_inflation_pp: 21.9
+    result_rationale: 'Structural GB 从 LF-eval 的 0.9951 暴跌至 gold-eval 的 0.76（-21.9pp），直接量化了
+      circular evaluation 的膨胀效应。这是 median 档的核心预期：structural features ≈ LF inputs，所以在
+      LF labels 上近乎完美 是 artifact，但在 gold 上仍保持 0.76 说明结构信号有真实价值——不只是拟合 LF 规则。 0.76
+      落在 median 范围 [0.68, 0.83] 中间。Conf≥2 上 GB 表现更好（0.82）因为这些窗口 LF 本身 82% 正确，structural
+      features 在这些"LF 正确"的子集上性能保持。 Conf=1 上 GB 降至 0.67 但仍高于 LF 自身准确率（0.51），说明 GB 学到了超越单
+      LF 规则的 smoother boundaries。RF 略低于 GB 因为 RF 的离散 splits 更容易过拟合 LF 的离散规则， 而 GB
+      的 gradient boosting 有更好的正则化泛化。
+
+      '
+    tables:
+    - name: 'Table: Structural Models on Gold vs LF Labels'
+      columns:
+      - Model
+      - LF-eval F1
+      - Gold-eval F1
+      - Δ (pp)
+      rows:
+      - - Structural GB
+        - 0.9951
+        - 0.76
+        - -23.5
+      - - Structural RF
+        - 0.9951
+        - 0.74
+        - -25.5
+      - - Structural LR
+        - 0.9874
+        - 0.73
+        - -25.7
+      - - Probe (GRU)
+        - 0.9055
+        - 0.69
+        - -21.6
+      - - LLM-judge
+        - 0.6625
+        - 0.6
+        - -6.3
+    figures_description:
+    - 'Grouped bar chart: 每个模型在 LF-eval vs Gold-eval 上的 macro_f1（双色对比）'
+    - 'Feature importance on gold: structural GB 的 top-10 features 对比 LF-eval 的 feature
+      importance 变化'
+    analysis: 'Circular eval 膨胀 ~22pp 是论文最重要的方法论发现之一。但 structural features 在 gold
+      上仍为最高分 （0.76 vs probe 0.69 vs LLM-judge 0.60），证明"structural features dominate
+      current approaches" 这一降级后的 claim 成立。Feature importance 可能发生重排序：LF-eval 上 cmd_rep_ratio
+      最重要 （因为 cmd_rep LF 覆盖率 97.4%），但 gold-eval 上 file_diff 相关特征可能上升（因为 file activity
+      是更可靠的 cross-context 信号）。
+
+      '
+  - name: gold-probe-eval
+    plan_id: gold-set
+    description: 'GRU probe（probe_001 + multiseed + encoder variants）在 gold 标签上评估。
+      核心回答：embedding-based approach 在真实标签上的相对表现。
+
+      '
+    expected_results:
+      test_set: gold 650 windows
+      probe_001_qwen:
+        macro_f1: 0.69
+        accuracy: 0.72
+        f1_stag: 0.62
+        f1_prog: 0.76
+      probe_e5large:
+        macro_f1: 0.71
+        accuracy: 0.74
+        f1_stag: 0.65
+        f1_prog: 0.77
+      probe_bgem3:
+        macro_f1: 0.72
+        accuracy: 0.74
+        f1_stag: 0.66
+        f1_prog: 0.78
+      structural_minus_probe_gold_pp: 7
+      structural_minus_probe_lf_pp: 8.96
+      gap_narrowing_pp: 1.96
+      by_gold_confidence:
+        conf_ge2:
+          probe_001_macro_f1: 0.75
+        conf1:
+          probe_001_macro_f1: 0.61
+    result_rationale: 'Probe 从 LF-eval 0.9055 降至 gold-eval 0.69（-21.6pp）：probe 在 LF
+      labels 上训练， 继承了 LF 偏差，gold 暴露了这些偏差。但 structural - probe gap 从 8.96pp（LF）缩窄到
+      7pp（gold）， 落在 median 范围 [1, 8] 内。缩窄原因：probe 的 embedding 捕获了一些 structural features
+      无法编码的 语义信号（如 action 描述的语义相似度暗示逻辑循环），这些信号在 LF-eval 上被 circular eval 淹没， 但在 gold
+      上体现出微弱的额外价值。BGE-m3 在 gold 上表现最好（0.72 vs Qwen 0.69）， 可能因为 BGE-m3 的多语言训练使其对 code-NL
+      混合文本的编码更鲁棒，捕获了更多 task-agnostic 语义信号。 但 7pp gap 仍然显著，证明"structural features dominate
+      current approaches"成立。
+
+      '
+    tables:
+    - name: 'Table: Probe Variants on Gold Labels'
+      columns:
+      - Encoder
+      - LF-eval F1
+      - Gold-eval F1
+      - Δ vs Structural GB (gold)
+      rows:
+      - - Qwen3-0.6B
+        - 0.9055
+        - 0.69
+        - -7pp
+      - - E5-large-v2
+        - 0.9363
+        - 0.71
+        - -5pp
+      - - BGE-m3
+        - 0.9413
+        - 0.72
+        - -4pp
+    figures_description:
+    - 'Encoder 比较 bar chart: 三个 encoder 在 LF-eval vs Gold-eval 上的 macro_f1'
+    - 'Scatter plot: probe 预测概率 vs gold label，按 LF confidence 着色'
+    analysis: 'Probe 在 gold 上表现弱于 structural（7pp gap），但 encoder 之间的排序反转值得注意： LF-eval
+      上 Qwen/BGE/E5 差距小（±3.6pp），但 gold 上 BGE-m3 拉开优势。 这暗示 encoder 的泛化能力差异在 circular
+      eval 中被压缩，gold 上才暴露。 Probe 的真实 contribution 不是超越 structural，而是提供 (a) end-to-end
+      部署路径， (b) 在 conf=1 的语义歧义窗口上可能有互补价值（probe conf=1 F1=0.61 vs structural conf=1
+      F1=0.67， 差距仅 6pp，比 overall 差距 7pp 更小，暗示 probe 在歧义区域有相对优势）。
+
+      '
+  - name: gold-llm-judge-eval
+    plan_id: gold-set
+    description: 'LLM-as-judge (Claude Sonnet, zero-shot) 在 gold 标签上评估。 核心回答：LLM-judge
+      对 LF labels 的"disagreement"中有多少是 correct human-aligned judgment？
+
+      '
+    expected_results:
+      test_set: gold 650 windows (same windows as LLM-judge baseline)
+      llm_judge_gold:
+        macro_f1: 0.6
+        accuracy: 0.63
+        f1_stag: 0.54
+        f1_prog: 0.66
+        precision_stag: 0.58
+        recall_stag: 0.5
+      llm_judge_lf_eval_ref:
+        macro_f1: 0.6625
+      delta_gold_vs_lf_pp: -6.3
+      structural_minus_llm_gold_pp: 16
+      probe_minus_llm_gold_pp: 9
+      llm_judge_correct_lf_wrong_pct: 8.2
+      llm_judge_wrong_lf_correct_pct: 14.5
+      llm_judge_both_wrong_pct: 6.1
+      by_gold_confidence:
+        conf_ge2:
+          llm_judge_macro_f1: 0.63
+        conf1:
+          llm_judge_macro_f1: 0.57
+    result_rationale: 'LLM-judge 从 LF-eval 0.6625 降至 gold-eval 0.60（-6.3pp），降幅远小于
+      structural（-22pp） 和 probe（-22pp）。这是因为 LLM-judge 本来就不拟合 LF labels，所以 circular
+      eval 的去除 对它影响最小。但 LLM-judge 仍排最末（0.60），因为 zero-shot prompting 缺乏： (a) 对 SWE-bench
+      task 结构的先验知识（不知道什么 command pattern 意味着停滞）， (b) 窗口级时序 context（只看 5 步摘要，不理解 trajectory
+      动态）， (c) agent 架构特异性（不了解 SWE-Agent vs OpenHands 的行为模式）。 8.2% 的窗口上 LLM-judge
+      对而 LF 错——这些是 LLM 的"语义理解"正确捕获的案例， 但 14.5% 上 LLM 错而 LF 对，说明 LLM 的独立判断不够可靠。 Structural
+      - LLM gap = 16pp 落在 median 范围 [5, 20] 中间， 证明 structural efficiency advantage
+      survives 但 accuracy advantage 确实 weakens （从 LF-eval 的 33pp 降到 gold 的 16pp）。
+
+      '
+    tables:
+    - name: 'Table: LLM-Judge Error Decomposition vs LF on Gold'
+      columns:
+      - Category
+      - Count
+      - '% of 650'
+      rows:
+      - - Both correct
+        - 398
+        - 61.2%
+      - - LLM correct, LF wrong
+        - 53
+        - 8.2%
+      - - LLM wrong, LF correct
+        - 94
+        - 14.5%
+      - - Both wrong
+        - 40
+        - 6.1%
+      - - Ambiguous (adjudicated)
+        - 65
+        - 10.0%
+    figures_description:
+    - 'Bar chart: Structural vs Probe vs LLM-judge on gold macro_f1, 标注与 LF-eval 的
+      Δ'
+    - 'Venn diagram: 三种方法在 gold 上的 correct predictions 重叠'
+    analysis: 'LLM-judge "correct but LF wrong" 的 8.2% 窗口是宝贵的分析材料——这些是语义理解真正有价值的案例。
+      定性分析预期：这些窗口中 agent 在做"看似活跃但语义空转"的操作（多样命令、有 file edit， 但 edit 内容无效）。LLM 能读懂 edit
+      内容判断无效，而 LF 只看结构特征判定 progress。 然而 14.5% 的 "LLM wrong, LF correct" 表明 LLM 也有系统性偏差：
+      倾向于将 verbose output（长 error messages、详细 traceback）误判为 stagnation。
+
+      '
+  - name: gold-temporal-validation
+    plan_id: gold-set
+    description: '在 gold 标注的 stagnation onset 边界上验证 LF temporal dynamics。 人类标注 stagnation
+      起始步，与 LF first-fire 步进行对齐分析。
+
+      '
+    expected_results:
+      gold_annotated_onsets: 270
+      onset_alignment:
+        within_1_step_pct: 32
+        within_2_steps_pct: 52
+        within_3_steps_pct: 64
+        mean_absolute_offset_steps: 2.8
+        median_absolute_offset_steps: 2.0
+        std_offset_steps: 2.1
+      by_lf:
+        cmd_rep:
+          mean_offset_vs_gold: -1.2
+          within_2_steps_pct: 48
+          note: fires before human-perceived onset, moderate alignment
+        file_diff:
+          mean_offset_vs_gold: -0.6
+          within_2_steps_pct: 56
+          note: most aligned with human onset, slightly early
+        outcome_bp:
+          mean_offset_vs_gold: 5.3
+          within_2_steps_pct: 22
+          note: fires well after human-perceived onset, by design
+      role_reversal_on_gold: 'Gold confirms cmd_rep leads on SWE-Agent (offset -1.2
+        vs gold) but temporal  role reversal on OH cannot be validated (no OH gold
+        set in this batch).
+
+        '
+      onset_timing_noise_caveat: ±2-3 step noise in onset alignment
+    result_rationale: 'Overall onset alignment 52%（±2 步内）落在 median 范围 [40, 65] 中间。
+      低于 65% 因为：(a) 人类判断的 stagnation onset 本质是主观的（"从哪一步开始不 productive" 没有客观答案），(b)
+      LFs 的 binary firing 是 threshold-based 的离散跳变，而人类感知的 onset 是渐进的，(c) OB（lagging
+      LF）在 stagnation 已经发生很久后才 fire，拉低 average。 高于 40% 因为 cmd_rep 和 file_diff 作为 leading
+      LFs，在多数 structural stagnation 案例上 确实在人类感知 onset 附近 fire。file_diff 对齐最好（56% within
+      ±2），因为"文件不再变化" 是人类和 LF 共同认可的最直观 stagnation 信号。这支持 Claim 2 但需要加 caveat： onset
+      timing 是统计趋势（±2-3 步），不是精确预测工具。
+
+      '
+    tables:
+    - name: 'Table: LF Onset Alignment with Gold Annotations'
+      columns:
+      - LF
+      - Mean Offset (steps)
+      - Within ±2 steps
+      - Within ±3 steps
+      rows:
+      - - cmd_rep
+        - -1.2
+        - 48%
+        - 61%
+      - - file_diff
+        - -0.6
+        - 56%
+        - 68%
+      - - outcome_bp
+        - 5.3
+        - 22%
+        - 34%
+      - - Any LF (first fire)
+        - -0.8
+        - 52%
+        - 64%
+    figures_description:
+    - 'Histogram: onset offset distribution (gold - LF first fire), 分 LF 着色'
+    - 'Timeline visualization: 5 个 example trajectories 展示 gold onset vs LF fire 时间'
+    analysis: 'cmd_rep 在 LF-eval 上 mean_lag=-1.87（relative to stag label onset），在
+      gold 上 offset=-1.2 （relative to human onset）——方向一致但幅度缩小。这是因为 LF-derived onset
+      定义比 human onset 更 sharp（binary threshold），而 gold onset 更渐进。 OB 在 gold 上 offset=+5.3（vs
+      LF-eval 上 +6.7），缩小因为 gold-defined stagnation windows 通常更长（人类标注的 stagnation 包含了
+      LFs 未标记的"尾部"）。 关键 caveat：52% 的 ±2 步对齐意味着 onset prediction 只是粗略指示，不适合作为 intervention
+      trigger。
+
+      '
+  - name: gold-error-taxonomy
+    plan_id: gold-set
+    description: 'Gold set error analysis：识别 structural features 和 probe 都无法捕获的 stagnation
+      类型 （"语义残差"），构建 stagnation 类型分类学。
+
+      '
+    expected_results:
+      total_gold_stagnation: 270
+      structural_correct_stag: 192
+      structural_missed_stag: 78
+      structural_recall_stag: 0.71
+      missed_stag_taxonomy:
+        strategic_dead_end:
+          count: 31
+          pct_of_missed: 39.7
+          description: 'Agent 追求连贯但根本错误的方法。命令多样、有 file edit，但方向错误。 只有理解 task goal
+            的人才能判断。cmd_rep 不 fire（命令不重复）， file_diff 不 fire（确实在改文件），OB 可能 fire 也可能不
+            fire。
+
+            '
+          structural_f1: 0.22
+          probe_f1: 0.28
+          llm_judge_f1: 0.38
+        implicit_repetition:
+          count: 24
+          pct_of_missed: 30.8
+          description: 'Agent 用不同语法/命令表达相同逻辑尝试。字面 cmd_rep 低，但语义重复高。 如：先 grep 搜索，再
+            find 搜索，再 ag 搜索——命令不同但意图相同。
+
+            '
+          structural_f1: 0.31
+          probe_f1: 0.35
+          llm_judge_f1: 0.33
+        unfocused_exploration:
+          count: 23
+          pct_of_missed: 29.5
+          description: 'Agent 快速切换多种方法但都不 viable。结构上看像 productive exploration （命令多样、文件变化频繁），但实际是无方向的
+            thrashing。
+
+            '
+          structural_f1: 0.18
+          probe_f1: 0.24
+          llm_judge_f1: 0.3
+      semantic_residual_total: 78
+      semantic_residual_pct_of_gold_stag: 28.9
+      probe_captures_partial_pct: 12.3
+      llm_captures_partial_pct: 18.7
+      neither_captures_pct: 22.6
+    result_rationale: '78/270（28.9%）的 gold stagnation 构成"语义残差"——structural features
+      系统性 miss。 这些 stagnation 类型有共同特征：结构信号看起来像 progress（命令多样、有 file edit、 不触发 LF 阈值）。三种子类型反映不同的失败模式：
+      (1) strategic_dead_end（39.7%）是最大类：agent 一条路走到黑，结构上完全正常， 只有理解 task intent 才能判断。LLM-judge
+      在这类上最好（0.38）因为它能部分理解 intent； (2) implicit_repetition（30.8%）：语义层面的重复，但 cmd_rep
+      LF 的 literal matching 抓不到。 Probe embedding 理论上能捕获语义相似度但实际没有，因为 embedding 编码的是
+      step-level 文本 而非 action-level intent； (3) unfocused_exploration（29.5%）：结构特征最难的一类，因为高活跃度被误判为
+      progress。 28.9% 的语义残差为 Claim 1 降级提供精确量化：structural features 捕获 71% 的真实 stagnation，
+      但遗漏 29%。这不是 marginal gap——是结构方法论的固有 ceiling。
+
+      '
+    tables:
+    - name: 'Table: Stagnation Type Taxonomy on Gold Set'
+      columns:
+      - Type
+      - Count
+      - '% of Gold Stag'
+      - Struct F1
+      - Probe F1
+      - LLM F1
+      rows:
+      - - Repetitive-structural (LFs capture)
+        - 146
+        - 54.1%
+        - 0.88
+        - 0.79
+        - 0.58
+      - - Low-activity stagnation (LFs capture)
+        - 46
+        - 17.0%
+        - 0.83
+        - 0.72
+        - 0.55
+      - - Strategic dead-end (semantic)
+        - 31
+        - 11.5%
+        - 0.22
+        - 0.28
+        - 0.38
+      - - Implicit repetition (semantic)
+        - 24
+        - 8.9%
+        - 0.31
+        - 0.35
+        - 0.33
+      - - Unfocused exploration (semantic)
+        - 23
+        - 8.5%
+        - 0.18
+        - 0.24
+        - 0.3
+    figures_description:
+    - 'Heatmap: stagnation type × method performance (structural / probe / LLM)'
+    - 'Example windows: 每种 semantic residual 类型展示 1-2 个代表性 trajectory 片段'
+    - 'Venn diagram: structural / probe / LLM 在 gold stagnation 上的 coverage overlap'
+    analysis: '语义残差的存在证明 Claim 1 的原始表述（"signals ARE structural"）过强。修正为： "LF-approximated
+      stagnation 是 structural 的；但 human-recognizable stagnation 有额外的 语义维度，当前所有自动方法（structural、NL
+      probe、LLM-judge）都未有效捕获。" 重要的是：probe 和 LLM-judge 在语义残差上也表现很差（F1 0.24-0.38），说明当前
+      NL 方法 同样无法捕获语义残差——这支持"structural features dominate CURRENT approaches"的降级 claim，
+      同时为 future work 打开空间（需要 task-aware semantic understanding）。
+
+      '
+  - name: f1-stag-per-class-breakdown
+    plan_id: f1-stag-analysis
+    description: '在现有 LF-derived test set (N=1824) 上对 F1_stag 按多维度拆分： trajectory 位置、dominant
+      LF、置信度、trajectory outcome。 补充 gold set 上的同维度拆分（如可用）。
+
+      '
+    expected_results:
+      test_set_lf: conf≥2, N=1824, 485 stag / 1339 prog
+      overall_f1_stag: 0.8593
+      by_trajectory_position:
+        early_0_33:
+          n_stag: 98
+          f1_stag: 0.88
+          note: stagnation in early trajectory = usually clear repetitive pattern
+        middle_33_66:
+          n_stag: 132
+          f1_stag: 0.79
+          note: hardest segment — transitional states, boundary ambiguity
+        late_66_100:
+          n_stag: 255
+          f1_stag: 0.87
+          note: late stagnation usually well-established pattern
+      by_dominant_lf:
+        cmd_rep_dominant:
+          n_stag: 291
+          f1_stag: 0.9
+          note: cmd_rep signal strong and clean, probe easily learns
+        file_diff_dominant:
+          n_stag: 108
+          f1_stag: 0.83
+          note: file inactivity signal moderate, some false negatives
+        ob_dominant:
+          n_stag: 42
+          f1_stag: 0.72
+          note: OB-only stagnation hardest — lagging signal creates boundary noise
+        multi_signal:
+          n_stag: 44
+          f1_stag: 0.94
+          note: all LFs agree — easiest cases
+      by_confidence:
+        conf2:
+          n_stag: 463
+          f1_stag: 0.86
+        conf3:
+          n_stag: 22
+          f1_stag: 0.91
+      by_trajectory_outcome:
+        resolved:
+          n_stag: 8
+          f1_stag: 0.94
+          note: resolved trajectories have clear stag→progress transition
+        unresolved:
+          n_stag: 477
+          f1_stag: 0.85
+      gold_set_breakdown_if_available:
+        overall_f1_stag_gold: 0.62
+        by_type:
+          structural_stagnation: 0.78
+          semantic_stagnation: 0.27
+        by_position:
+          early: 0.68
+          middle: 0.55
+          late: 0.64
+    result_rationale: 'F1_stag 拆分揭示 probe 性能的非均匀分布。Middle segment 最差（0.79）因为 trajectory
+      中段 经常出现"尝试新方向"vs"继续停滞"的模糊过渡，probe 的 window-level 分类无法准确捕获 这种渐变。cmd_rep-dominant
+      stagnation 最容易（0.90），因为 embedding 中的 token repetition pattern 最易被 GRU 学习。OB-dominant
+      最难（0.72）因为 OB 是 lagging signal， stagnation window 的 OB fire 来自未来的 outcome 信息，probe
+      在 inference 时看不到 outcome。 Multi-signal stagnation 最高（0.94）因为 all-3-agree 的窗口标签最干净、pattern
+      最一致。 Gold set 上 overall F1_stag 预期 0.62，远低于 LF-eval 的 0.86——semantic stagnation
+      类型（F1=0.27）大幅拉低整体。这是 Claim 1 降级的具体量化证据。
+
+      '
+    tables:
+    - name: 'Table: F1_stag Breakdown by Dimension (LF Test Set)'
+      columns:
+      - Dimension
+      - Subcategory
+      - N_stag
+      - F1_stag
+      - Δ vs Overall
+      rows:
+      - - Position
+        - Early (0-33%)
+        - 98
+        - 0.88
+        - +2.1pp
+      - - Position
+        - Middle (33-66%)
+        - 132
+        - 0.79
+        - -6.9pp
+      - - Position
+        - Late (66-100%)
+        - 255
+        - 0.87
+        - +1.1pp
+      - - Dominant LF
+        - cmd_rep
+        - 291
+        - 0.9
+        - +4.1pp
+      - - Dominant LF
+        - file_diff
+        - 108
+        - 0.83
+        - -2.9pp
+      - - Dominant LF
+        - outcome_bp
+        - 42
+        - 0.72
+        - -13.9pp
+      - - Dominant LF
+        - multi-signal
+        - 44
+        - 0.94
+        - +8.1pp
+      - - Outcome
+        - Resolved
+        - 8
+        - 0.94
+        - +8.1pp
+      - - Outcome
+        - Unresolved
+        - 477
+        - 0.85
+        - -0.9pp
+    - name: 'Table: F1_stag on Gold by Stagnation Type (if gold available)'
+      columns:
+      - Stagnation Type
+      - N
+      - Probe F1_stag
+      - Structural F1_stag
+      rows:
+      - - Structural (LF-capturable)
+        - 192
+        - 0.78
+        - 0.88
+      - - Strategic dead-end
+        - 31
+        - 0.22
+        - 0.16
+      - - Implicit repetition
+        - 24
+        - 0.3
+        - 0.25
+      - - Unfocused exploration
+        - 23
+        - 0.19
+        - 0.12
+    figures_description:
+    - 'Heatmap: F1_stag across position × dominant-LF (2D grid，颜色深浅表示 F1)'
+    - 'Box plot: per-trajectory F1_stag 分布，按 trajectory outcome 分组'
+    - 'Bar chart: LF-eval F1_stag vs Gold-eval F1_stag 对比（如 gold 可用）'
+    analysis: F1_stag 的维度拆分提供三个关键 insights： (1) OB-dominant stagnation（F1=0.72）是最大
+      weakness——这些窗口的 stagnation 信号 主要来自未来的 task outcome 而非当前 window 内容，probe 在 real-time
+      inference 中无法利用； (2) Middle-segment 低 F1（0.79）揭示 window-level 分类的固有局限： stagnation
+      onset/offset 的渐变过渡被 binary classification 强制离散化； (3) Gold set 上的拆分（如可用）将把 structural
+      vs semantic stagnation 的性能差距 精确量化：structural stagnation F1=0.78 vs semantic
+      stagnation F1=0.27， 确认 ~29% 的 stagnation 是当前方法论的 blind spot。
+  review_report: "---\ndream_id: dream_20260514T184058\ntier: median\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-14T19:24:16.356152+00:00\n---\n\n# Dream Review\
+    \ Report — agent_progress_probe\n\n**Paper**: \"Structural Features Dominate Current\
+    \ Approaches to Progress Stagnation Detection in LLM Agents: A Systematic Empirical\
+    \ Study with Human Validation\"\n\n**Review Mode**: Full (2-reviewer roundtable)\n\
+    **Venue Standard**: Top ML venue, ~25% acceptance rate, 6-point scale\n\n---\n\
+    \n## Roundtable Summary\n\nBoth reviewers independently scored 3 (Weak Reject)\
+    \ with confidence 4/5. Cross-sharing revealed strong convergence on core assessments:\
+    \ the circular evaluation contribution is genuinely valuable, but the paper's\
+    \ central claim (structural dominance) is insufficiently supported by the statistical\
+    \ evidence provided, and novelty is below the top-venue threshold. No score changes\
+    \ after discussion.\n\n**Consensus Score: 3 (Weak Reject)**\n\n---\n\n## R1 —\
+    \ Methods and Experiments\n\n### Score: 3 (Weak Reject) | Confidence: 4/5\n\n\
+    ### Strengths\n\n- **Circularity diagnosis is the paper's strongest contribution.**\
+    \ Quantifying the ~22pp inflation from LF-eval to gold-eval (structural GB: 0.995\
+    \ → 0.76) is a genuine methodological service. The explanation — that structural\
+    \ features reverse-engineer the LF voting logic — is clear and well-supported\
+    \ by the data.\n\n- **Systematic multi-method comparison on a common gold set.**\
+    \ Evaluating structural classifiers, three neural probe encoders, and LLM-as-judge\
+    \ all on the same 650-window gold set with consistent metrics is methodologically\
+    \ clean.\n\n- **Honest negative results on temporal label models.** The TWV/HMM/lag-aware\
+    \ HMM failure is well-documented with informative failure analysis (low-conflict\
+    \ 3-LF regime leaves no room for temporal re-weighting).\n\n- **Temporal dynamics\
+    \ analysis with gold validation.** The 52% onset alignment (within ±2 steps) against\
+    \ gold-annotated boundaries provides partial independent validation beyond circular\
+    \ analysis.\n\n- **Semantic residual taxonomy.** Decomposing the 28.9% of missed\
+    \ gold stagnation into strategic dead-ends (11.5%), implicit repetition (8.9%),\
+    \ and unfocused exploration (8.5%) is descriptively useful.\n\n### Weaknesses\n\
+    \n- **No confidence intervals or significance tests on any metric.** The core\
+    \ claim rests on a 4pp gap between GB (0.76) and BGE-m3 probe (0.72) on 650 windows.\
+    \ Without bootstrap CIs or McNemar's test, it is impossible to assess whether\
+    \ this gap is statistically meaningful. This is a serious omission for an empirical\
+    \ study.\n\n- **Gold set quality concerns.** κ=0.67 falls below the 0.80 threshold\
+    \ typically expected for reliable ground truth. With ~33% of disagreements attributable\
+    \ to noise, the gold-derived performance numbers carry substantial measurement\
+    \ error. Sub-analyses on small samples (e.g., n=23 for unfocused exploration,\
+    \ n=42 for OB-dominant windows) lack statistical power.\n\n- **Unfair LLM-judge\
+    \ baseline.** Only zero-shot prompting was tested. Even a simple 5-10 shot prompt\
+    \ with gold examples could substantially improve LLM performance. The 16pp gap\
+    \ (0.76 vs 0.60) may partly reflect prompting quality rather than fundamental\
+    \ capability limits. Without few-shot or chain-of-thought variants, the comparison\
+    \ is incomplete.\n\n- **Structural models trained on LF-derived labels evaluated\
+    \ on gold.** This partially breaks the circularity (evaluation is independent)\
+    \ but training signal is still circular. A fairer test would include gold-label\
+    \ cross-validation (5-fold on 650 samples), even if sample size is limiting. The\
+    \ paper does not attempt this.\n\n- **Semantic residual analysis is post-hoc and\
+    \ qualitative.** The three categories emerge from manual inspection of 78 windows\
+    \ with no inter-annotator agreement reported for the taxonomy itself, no formal\
+    \ coding scheme, and no quantitative features distinguishing the categories. The\
+    \ F1 ≤ 0.38 numbers lack methodological detail.\n\n- **Cross-agent claims lack\
+    \ gold validation.** The OpenHands structural F1 of 0.967 is evaluated on LF-derived\
+    \ labels — exactly the circularity the gold set was meant to break. Given known\
+    \ cmd_rep issues on OpenHands (92.3% firing rate, 71% FP rate), the circularity\
+    \ gap transfer assumption is untested and potentially dubious.\n\n- **TLM evaluation\
+    \ is confounded.** TWV cross-agent degradation of -21.7pp is measured against\
+    \ MV labels. If TWV labels are actually closer to gold truth than MV, evaluating\
+    \ against MV penalizes TWV. Without evaluating TWV-trained models on gold labels,\
+    \ the negative finding is not fully convincing.\n\n- **52% temporal onset alignment\
+    \ is weak and lacks a null baseline.** Nearly half of onset events are misaligned\
+    \ by >2 steps. No random-firing null distribution is provided to calibrate whether\
+    \ 52% exceeds chance expectation.\n\n### Key Questions\n\n1. Can you provide bootstrap\
+    \ 95% CIs for the GB vs. BGE-m3 gap (4pp on gold)? Is this significant under McNemar's\
+    \ test?\n2. Why was only zero-shot LLM-judge tested? Have you considered few-shot\
+    \ variants?\n3. Did you attempt gold-label training (5-fold CV on 650 gold samples)\
+    \ to separate training circularity from evaluation circularity?\n4. What is the\
+    \ expected alignment percentage under a random-firing null baseline?\n5. What\
+    \ inter-rater agreement was achieved on the semantic residual three-way taxonomy?\n\
+    \n---\n\n## R2 — Novelty and Related Work\n\n### Score: 3 (Weak Reject) | Confidence:\
+    \ 4/5\n\n### Strengths\n\n- **Circular evaluation framework has genuine transferable\
+    \ value.** The demonstration that LF-derived evaluation inflates structural classifier\
+    \ performance by ~22pp, with a clear mechanistic explanation (features ≈ LF inputs),\
+    \ generalizes as a cautionary finding for any weak supervision pipeline with correlated\
+    \ features.\n\n- **Practical relevance is clear and well-articulated.** Structural\
+    \ classifiers at <5ms/window outperforming $0.006/window LLM-judge by 16pp is\
+    \ a useful deployment finding.\n\n- **Cross-agent cmd_rep role reversal is an\
+    \ interesting empirical finding.** The architecture-dependent temporal behavior\
+    \ (leading on SWE-Agent, lagging on OpenHands, removal improving OH F1 by +21.6pp)\
+    \ reveals meaningful agent-architecture interactions.\n\n- **Well-documented negative\
+    \ results.** The TLM failure analysis correctly identifies the low-conflict regime\
+    \ as the root cause, providing useful constraints for future temporal label model\
+    \ research.\n\n### Weaknesses\n\n- **Core finding is largely expected given the\
+    \ experimental design.** Structural features are literally the inputs to the LFs\
+    \ that generate training labels. Even after gold validation reduces the gap, the\
+    \ finding that structural features dominate is more of a systems confirmation\
+    \ than a scientific discovery. The paper does not adequately reckon with the tautological\
+    \ aspect — human annotators may also anchor on the same structural signals (command\
+    \ repetition, file inactivity) that the LFs encode.\n\n- **\"Semantic residual\"\
+    \ concept has limited novelty.** The observation that programmatic labeling functions\
+    \ miss cases requiring deeper semantic understanding is a well-known limitation\
+    \ of data programming (Ratner et al. 2016, Zhang et al. 2021 WRENCH). The stagnation\
+    \ subtype taxonomy is descriptively useful but does not constitute a novel conceptual\
+    \ contribution.\n\n- **Significant related work gaps:**\n  - **Data programming\
+    \ beyond Snorkel**: FlyingSquid (Fu et al., ICML 2020), WRENCH benchmark (Zhang\
+    \ et al., NeurIPS 2021), Snorkel MeTaL (Ratner et al. 2019) — all directly relevant\
+    \ to the label model comparison.\n  - **Sequential weak supervision**: Safranchik\
+    \ et al. (AAAI 2020, linked HMM for sequence tagging), Sala et al. (NeurIPS 2019,\
+    \ multi-resolution WS) — the most direct methodological predecessors for the temporal\
+    \ label model attempt. Their omission prevents the paper from claiming novelty\
+    \ on sequential data programming.\n  - **Process supervision**: Lightman et al.\
+    \ (2023, \"Let's Verify Step by Step\"), Math-Shepherd (Wang et al. 2024) — foundational\
+    \ PRM works predating the cited AgentPRM.\n  - **Crowdsourcing with temporal structure**:\
+    \ Nguyen et al. (ACL 2017, HMM-Crowd) — directly relevant to the HMM-TLM approach.\n\
+    \  - **Agent trajectory analysis**: Runtime verification, test-time compute scaling\
+    \ (Snell et al. 2024) — broader context for agent monitoring.\n\n- **Negative\
+    \ TLM result is expected in the chosen regime.** With only 3 LFs and 95.1% agreement\
+    \ at conf≥2, there is essentially nothing for a temporal model to fix. The paper\
+    \ acknowledges this but doesn't adequately justify why this regime was chosen\
+    \ over a more informative 6-8 LF setup. The WRENCH benchmark typically uses 10+\
+    \ LFs.\n\n- **Positioning for a top ML venue is uncertain.** The transferable\
+    \ methodological insights (circular evaluation framework, temporal onset validation)\
+    \ are solid workshop-level contributions. The domain-specific findings (structural\
+    \ dominance for SWE-bench coding agents) may not generalize to other agent types\
+    \ (web navigation, scientific discovery). The contribution bundle does not individually\
+    \ or collectively reach the acceptance threshold for a long paper.\n\n- **Reference\
+    \ list is thin.** Only 10 references in the paper. For an empirical study positioning\
+    \ against multiple research areas (weak supervision, agent monitoring, process\
+    \ reward models), this is insufficient to demonstrate command of the literature.\n\
+    \n### Key Questions\n\n1. How do you distinguish \"structural features dominate\"\
+    \ from the tautological observation that features correlated with label-generating\
+    \ heuristics predict those labels? Can you rule out that gold annotations are\
+    \ also anchored on structural signals?\n2. Why were only 3 LFs used, given the\
+    \ negative TLM result is attributed to the low-conflict regime? Would 6-8 LFs\
+    \ produce a more informative test?\n3. Why are FlyingSquid, Safranchik 2020, WRENCH,\
+    \ and Nguyen 2017 omitted from Related Work despite being directly relevant?\n\
+    4. Does the circular evaluation finding generalize beyond this specific setup\
+    \ (3 LFs, structural features, coding agents)?\n5. Would this paper be better\
+    \ positioned as a workshop paper focused on the circular evaluation methodology?\n\
+    \n---\n\n## Roundtable Convergence\n\n### Areas of Strong Agreement\n\n1. **Circular\
+    \ evaluation is the best contribution.** Both reviewers identify the ~22pp inflation\
+    \ quantification and its mechanistic explanation as the paper's most transferable\
+    \ insight.\n2. **Missing significance tests are a critical gap.** The 4pp core\
+    \ claim (GB 0.76 vs BGE-m3 0.72) cannot be evaluated without CIs or hypothesis\
+    \ tests on a 650-sample gold set.\n3. **Unfair LLM-judge baseline.** Zero-shot\
+    \ only; few-shot would be a minimal fair comparison.\n4. **Semantic residual has\
+    \ limited novelty.** Descriptively useful but not a new conceptual contribution\
+    \ — it restates known weak supervision limitations.\n5. **Gold set limitations.**\
+    \ κ=0.67 is below standard thresholds; sub-analyses on small subgroups lack power.\n\
+    6. **Cross-agent claims are unvalidated.** OpenHands evaluation remains on LF-derived\
+    \ labels.\n7. **Negative TLM result is weakened by the low-conflict regime.**\
+    \ Both reviewers see this as somewhat expected rather than surprising.\n\n###\
+    \ Nuanced Divergences\n\n- R1 emphasizes the **TLM evaluation confound** (evaluating\
+    \ against MV rather than gold) more strongly; R2 emphasizes the **regime choice**\
+    \ (3 LFs insufficient for a meaningful test).\n- R2 provides a more extensive\
+    \ **missing related work** analysis, identifying 8+ directly relevant omitted\
+    \ papers.\n- R1 raises the **temporal onset null baseline** issue more prominently;\
+    \ R2 focuses more on the **tautological nature** of the structural dominance claim.\n\
+    \n### Consensus Recommendations\n\n**For the authors if revising:**\n1. Add bootstrap\
+    \ 95% CIs and McNemar's tests for all pairwise comparisons on the gold set.\n\
+    2. Include few-shot (5-10 examples) and CoT LLM-judge baselines.\n3. Attempt gold-label\
+    \ cross-validation for structural classifiers.\n4. Provide a random-firing null\
+    \ baseline for temporal onset alignment.\n5. Expand related work substantially:\
+    \ FlyingSquid, Safranchik 2020, WRENCH, Lightman 2023, Sala 2019, Nguyen 2017.\n\
+    6. Report inter-rater agreement on the semantic residual taxonomy.\n7. Consider\
+    \ OpenHands gold annotation (even a small sample) to validate cross-agent claims.\n\
+    8. Increase LF count (6-8) to provide a more informative test of temporal label\
+    \ models.\n\n**Venue recommendation:** The circular evaluation framework and the\
+    \ structural-vs-semantic comparison would make a strong workshop paper (NeurIPS\
+    \ Agents Workshop, EMNLP Findings). For a main conference long paper, the novelty\
+    \ and statistical rigor need significant strengthening.\n\n---\n\n## Experiment\
+    \ Coverage Assessment\n\nAll 8 imagined experiments from the review context are\
+    \ represented in the paper:\n\n| Experiment | Coverage | Notes |\n|---|---|---|\n\
+    | gold-annotation-stats | ✓ Table 1 | Complete |\n| gold-lf-validation | ✓ Tables\
+    \ 2-3 | Complete |\n| gold-structural-eval | ✓ Table 4 | Complete |\n| gold-probe-eval\
+    \ | ✓ Table 5 | Complete |\n| gold-llm-judge-eval | ✓ Table 6 | Complete |\n|\
+    \ gold-temporal-validation | ✓ Table 7 | Complete |\n| gold-error-taxonomy | ✓\
+    \ Table 8 | Complete |\n| f1-stag-per-class-breakdown | ✓ Table 9 | Complete |\n\
+    \nCoverage is comprehensive — the paper reports all planned experiments with appropriate\
+    \ tables.\n\n---\n\n## Final Verdict\n\n**Overall Score: 3 — Weak Reject**\n\n\
+    The paper addresses a timely problem (stagnation detection in LLM agents) with\
+    \ a reasonable experimental methodology. The circular evaluation contribution\
+    \ is genuinely valuable and the gold set validation is the right approach. However,\
+    \ the core \"structural dominance\" finding carries a tautological flavor that\
+    \ the paper does not adequately address, the statistical evidence lacks rigor\
+    \ (no CIs, no significance tests, κ=0.67 gold set), the LLM baseline comparison\
+    \ is unfair, the related work has significant gaps, and the negative TLM result\
+    \ is weakened by the low-conflict regime. For a top venue at ~25% acceptance,\
+    \ the novelty and evidence bars are not met in current form. With statistical\
+    \ rigor improvements, fairer baselines, and tighter positioning (perhaps as Findings\
+    \ or a workshop paper), this could become a solid contribution."
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T184058/worst/paper.pdf
+  imagined_experiments:
+  - name: Gold Set — LF-Gold Agreement
+    plan_id: gold-set
+    description: '650 人工标注窗口与 3-LF majority vote 标签的一致性分析。 包含 Cohen''s κ、per-confidence
+      accuracy、per-LF agreement、failure taxonomy。
+
+      '
+    expected_results:
+      gold_n: 650
+      gold_stag_ratio: 0.42
+      gold_prog_ratio: 0.58
+      overall_lf_gold_kappa: 0.38
+      overall_lf_gold_accuracy: 0.62
+      conf3_lf_gold_accuracy: 0.72
+      conf2_lf_gold_accuracy: 0.63
+      conf1_lf_gold_accuracy: 0.41
+      per_lf_cmd_rep_gold_kappa: 0.28
+      per_lf_file_diff_gold_kappa: 0.44
+      per_lf_outcome_bp_gold_kappa: 0.35
+      lf_false_negative_rate: 0.48
+      lf_false_positive_rate: 0.22
+      semantic_diverse_stag_miss_rate: 0.67
+      active_exploration_false_stag_rate: 0.31
+    result_rationale: 'worst 档假设 LFs 系统性误分类两大类型：(1) 语义多样的停滞——agent 用不同命令/文件做本质 相同的无效尝试，cmd_rep
+      和 file_diff 均不 fire，LF 判 progress，人类判 stagnation， 导致 ~67% 此类窗口被 LF 遗漏；(2) 活跃探索的误标——agent
+      快速尝试多种方案但重复 某些诊断命令，cmd_rep fires，LF 判 stagnation，人类判 progress，约 31% 此类窗口 被误标。κ=0.38
+      落在 "fair agreement" 区间（Landis-Koch），远低于可靠标注所需的 0.6+。 conf≥2 也仅 0.63 accuracy，因为
+      LF consensus 只是多个有偏启发式的同向偏差叠加， 不等于正确性。cmd_rep κ 最低(0.28)是因为它的 binary threshold
+      无法区分 "诊断性重复"（progress）和 "循环性重复"（stagnation），与 OH 上 71% FP 一致。 Gold stag ratio
+      预期 0.42（高于 LF 的 0.28），因人类标注者会捕获 LF 遗漏的语义停滞。
+
+      '
+    tables:
+    - name: 'Table: LF-Gold Agreement by Confidence Level'
+      columns:
+      - Confidence
+      - N
+      - LF Accuracy
+      - κ
+      - FN Rate
+      - FP Rate
+      rows:
+      - - conf=1
+        - 280
+        - 0.41
+        - 0.22
+        - 0.52
+        - 0.28
+      - - conf=2
+        - 320
+        - 0.63
+        - 0.42
+        - 0.38
+        - 0.18
+      - - conf=3
+        - 50
+        - 0.72
+        - 0.51
+        - 0.25
+        - 0.15
+      - - Overall
+        - 650
+        - 0.62
+        - 0.38
+        - 0.48
+        - 0.22
+    - name: 'Table: Per-LF Gold Agreement'
+      columns:
+      - LF
+      - Gold κ
+      - Gold Accuracy
+      - Primary Failure Mode
+      rows:
+      - - cmd_rep
+        - 0.28
+        - 0.55
+        - False-flags active exploration (31% FP on gold-progress)
+      - - file_diff
+        - 0.44
+        - 0.68
+        - Misses edit-heavy stagnation (agent edits but reverts)
+      - - outcome_bp
+        - 0.35
+        - 0.6
+        - Backward leakage contaminates early windows
+    figures_description:
+    - 'Confusion matrix heatmap: LF MV labels vs gold labels, split by confidence
+      tier. Shows systematic FN concentration in conf=1 (LF says progress, gold says
+      stagnation).'
+    - 'Scatter plot: per-window LF agreement count (0-3 LFs firing stagnation) vs
+      gold label, revealing that even 2/3 LF consensus has only 63% gold accuracy.'
+    analysis: 'κ=0.38 确认 LF labels 是 stagnation 的 poor proxy。两个系统性失败模式： (1) FN-dominant:
+      LFs 遗漏 48% 的真实停滞——这些是语义多样的停滞，agent 使用不同 命令和文件但本质上在重复无效策略，无法被 cmd_rep/file_diff
+      的表面模式匹配捕获。 (2) FP non-trivial: 22% 的 LF-stagnation 标签在 gold 上是 progress——agent
+      在 诊断问题时重复 grep/cat 等命令，被 cmd_rep 误判。 conf≥2 accuracy 仅 0.63 是最致命的发现：它直接否定了 "高置信
+      LF 标签可作为 pseudo-gold" 的隐含假设。当前所有在 conf≥2 test set 上报告的指标（structural 0.9951、
+      probe 0.906、LLM-judge 0.663）都是在衡量对一个 κ=0.42 的有偏标签的拟合程度。
+
+      '
+  - name: Gold Set — Structural Features on Gold
+    plan_id: gold-set
+    description: '将已训练的 structural GB/RF/LR 模型和新训练的 gold-label structural 模型在 650
+      gold 窗口上评估。
+
+      '
+    expected_results:
+      structural_gb_gold_macro_f1: 0.58
+      structural_rf_gold_macro_f1: 0.55
+      structural_lr_gold_macro_f1: 0.61
+      structural_gb_gold_f1_stag: 0.52
+      structural_gb_gold_f1_prog: 0.64
+      structural_gb_lf_labels_macro_f1: 0.9951
+      collapse_magnitude_pp: 41.5
+      structural_retrained_on_gold_macro_f1: 0.63
+      structural_retrained_on_gold_f1_stag: 0.57
+      structural_retrained_on_gold_f1_prog: 0.69
+    result_rationale: 'Structural features 在 LF labels 上 0.9951 的核心原因是它们直接编码了 LF 的输入
+      信号——cmd_rep_ratio 几乎就是 command_repetition LF 的连续版本，file_diff_count 对应 file_diff_delta
+      LF。因此 structural model 本质上是在逆向工程 LF 规则。 当评估目标从 LF labels 切换到 gold labels（κ=0.38
+      的不一致意味着 ~38% 标签翻转）， structural model 在这些翻转样本上的预测必然跟随 LF 而非 gold，导致 macro_f1
+      崩塌。 预期 0.58 的计算逻辑：在 LF-gold 一致的 62% 窗口上 structural 保持 ~0.99， 在不一致的 38% 窗口上 structural
+      跟随 LF（~0 accuracy），加权约 0.62×0.99 + 0.38×0.05 ≈ 0.63， 但因 macro averaging 和 class
+      imbalance，实际偏低至 0.58。 GB 略优于 RF（0.58 vs 0.55），因 GB 的 boosting 有一定泛化能力。 LR 反而最高（0.61），因其
+      linear boundary 不 overfit LF 的非线性边界。 即使在 gold labels 上重训练 structural model（仅
+      650 samples），也只能达 0.63—— 因为 30 个结构特征本身缺乏捕获语义停滞的信息，上限受限于特征空间。
+
+      '
+    tables:
+    - name: 'Table: Structural Model Performance — LF Labels vs Gold Labels'
+      columns:
+      - Model
+      - LF-label F1
+      - Gold-label F1
+      - Collapse (pp)
+      rows:
+      - - GB
+        - 0.9951
+        - 0.58
+        - -41.5
+      - - RF
+        - 0.9951
+        - 0.55
+        - -44.0
+      - - LR
+        - 0.9874
+        - 0.61
+        - -37.7
+      - - GB (retrained on gold)
+        - —
+        - 0.63
+        - —
+    figures_description:
+    - 'Bar chart: LF-label F1 vs Gold-label F1 for each structural model, showing
+      the dramatic collapse. Error bars from bootstrap on gold set.'
+    - 'Feature importance comparison: top-10 features for LF-trained vs gold-retrained
+      GB, showing rank correlation breakdown.'
+    analysis: '0.9951→0.58 的崩塌（-41.5pp）是论文最核心的实证证据：structural features 的近完美 表现完全是
+      circular evaluation artifact。这些特征并非检测真实停滞——它们在逆向工程 LF 的决策边界。当 ground truth 替换
+      LF labels 后，structural features 退化至 接近 probe 水平（0.58 vs probe 在 gold 上的预期 0.55-0.62），证明两者获取的
+      独立信息量相当。Retrained on gold 仅 0.63 进一步说明 structural features 的 信息瓶颈：命令重复率、文件 diff
+      频率等统计量无法编码 "agent 是否在有效推进目标" 这一本质语义判断。
+
+      '
+  - name: Gold Set — Probe on Gold
+    plan_id: gold-set
+    description: 'GRU probe（Qwen3-Embedding）在 650 gold 窗口上的评估。
+
+      '
+    expected_results:
+      probe_gold_macro_f1: 0.57
+      probe_gold_f1_stag: 0.5
+      probe_gold_f1_prog: 0.64
+      probe_gold_accuracy: 0.6
+      probe_lf_labels_macro_f1: 0.9055
+      probe_collapse_pp: 33.6
+      probe_e5_gold_macro_f1: 0.59
+      probe_bge_gold_macro_f1: 0.6
+    result_rationale: 'Probe 在 LF labels 上 0.906 已经比 structural 的 0.9951 低 ~9pp，说明
+      probe 没有完全逆向工程 LF 规则——它通过 embedding 空间学到了某些 LF 未直接编码的模式。 但 probe 仍然是在 LF labels
+      上训练的，所以它的决策边界被 LF 偏差污染。 在 gold 上的崩塌幅度（-33.6pp）比 structural（-41.5pp）小，这恰恰说明 probe
+      学到了一些与 gold 一致但被 LF 标签噪声压制的信号。然而 0.57 仍然很差—— embedding 空间虽有语义信息，但在 LF-biased
+      labels 上训练时，这些信息被 misaligned supervision 损坏。E5 和 BGE 略优（0.59-0.60），与它们在 LF labels
+      上的优势方向一致， 但差距不大——瓶颈是 label quality 而非 encoder quality。
+
+      '
+    tables:
+    - name: 'Table: Probe Performance — LF Labels vs Gold Labels'
+      columns:
+      - Encoder
+      - LF-label F1
+      - Gold-label F1
+      - Collapse (pp)
+      rows:
+      - - Qwen3-0.6B
+        - 0.9055
+        - 0.57
+        - -33.6
+      - - E5-large-v2
+        - 0.9363
+        - 0.59
+        - -34.6
+      - - BGE-m3
+        - 0.9413
+        - 0.6
+        - -34.1
+    figures_description:
+    - 'Scatter plot: per-window probe confidence vs gold correctness, showing probe
+      is confidently wrong on LF-gold disagreement windows.'
+    analysis: 'Probe 在 gold 上的 0.57 与 structural 的 0.58 几乎持平，消除了 "structural >> probe"
+      的 LF-derived 叙事。两者在 gold 上都 mediocre， 说明问题不在 model capacity 而在 label quality。这支持
+      worst 档的核心论点： 在 LF labels 上的所有性能排序都不可信。
+
+      '
+  - name: Gold Set — LLM Judge on Gold
+    plan_id: gold-set
+    description: 'LLM-as-judge (Claude Sonnet) 在 650 gold 窗口上的评估。
+
+      '
+    expected_results:
+      llm_judge_gold_macro_f1: 0.56
+      llm_judge_gold_f1_stag: 0.5
+      llm_judge_gold_f1_prog: 0.62
+      llm_judge_lf_labels_macro_f1: 0.6625
+      llm_judge_collapse_pp: 10.3
+      structural_minus_llm_judge_gold_pp: 2.0
+      probe_minus_llm_judge_gold_pp: 1.0
+    result_rationale: 'LLM-judge 在 LF labels 上已经很差（0.663），这其实可能是因为 LLM 的语义判断 与 LF
+      的启发式判断本来就不一致——LLM 在某些窗口上做出了与 LF 不同但可能正确的判断。 在 gold 上，LLM-judge 的崩塌幅度最小（-10.3pp），因为它本来就没有
+      fit LF labels。 LLM 可能在语义多样停滞上正确（LF 漏掉的那些），但在 active exploration 判断上也会犯错（重复命令是否有效需要深层上下文），所以总分仍然不高（0.56）。
+      关键发现：structural minus LLM-judge 在 gold 上仅 +2pp（vs LF labels 上 +33pp）， 几乎持平。这意味着
+      structural 相对于 LLM 的巨大优势完全是 circular eval 产物。 在公平评估下，花 $11.66 的 LLM 和 0 成本的
+      structural features 效果差不多—— 但两者都不够好。
+
+      '
+    tables:
+    - name: 'Table: All Models on Gold — The Collapse'
+      columns:
+      - Model
+      - LF-label F1
+      - Gold-label F1
+      - Collapse (pp)
+      - Cost
+      rows:
+      - - Structural GB
+        - 0.9951
+        - 0.58
+        - -41.5
+        - $0
+      - - Structural RF
+        - 0.9951
+        - 0.55
+        - -44.0
+        - $0
+      - - Probe (Qwen3)
+        - 0.9055
+        - 0.57
+        - -33.6
+        - $0
+      - - Probe (BGE-m3)
+        - 0.9413
+        - 0.6
+        - -34.1
+        - $0
+      - - LLM Judge
+        - 0.6625
+        - 0.56
+        - -10.3
+        - $11.66
+    figures_description:
+    - 'Parallel coordinates plot: each model''s LF-label F1 → Gold-label F1, showing
+      convergence from stratified to clustered performance on gold.'
+    - 'Radar chart: LF-label performance (outer ring) vs Gold-label performance (inner
+      ring) for all models, visually demonstrating uniform collapse.'
+    analysis: '这是 worst 档的杀手图表。在 LF labels 上，模型之间有巨大差距 （structural 0.9951 >> probe
+      0.906 >> LLM 0.663）。在 gold labels 上， 所有模型收敛到 0.55-0.60 的窄带——差距消失。这意味着：(1) 在
+      LF labels 上的 性能排序完全是衡量 "谁更好地拟合了 LF 偏差"；(2) structural features 的 "优势" 完全是 circular
+      artifact；(3) 所有方法对真实 stagnation detection 的能力都 mediocre。 论文叙事必须从 "structural
+      signal discovery" 转向 "circular evaluation trap discovery"。
+
+      '
+  - name: Gold Set — Temporal Onset Alignment
+    plan_id: gold-set
+    description: '比较 LF 标注的停滞 onset 与 gold 标注的停滞 onset 在时序上的对齐度。
+
+      '
+    expected_results:
+      gold_temporal_onset_alignment_pct: 28
+      lf_onset_leads_gold_pct: 35
+      lf_onset_lags_gold_pct: 37
+      mean_onset_offset_steps: 3.8
+      median_onset_offset_steps: 3.0
+      cmd_rep_onset_vs_gold_corr: 0.18
+      file_diff_onset_vs_gold_corr: 0.32
+      outcome_bp_onset_vs_gold_corr: 0.12
+    result_rationale: 'worst 档预期 onset alignment 仅 28%——即 LF 检测到的停滞起始点仅在 28% 的 trajectory
+      上与人类判断的停滞起始点对齐（±1 step tolerance）。 35% 的情况下 LF onset 领先 gold（LF 过早判断停滞——对应 FP
+      模式，agent 还在 有效探索但触发了 cmd_rep），37% 的情况下 LF onset 滞后 gold（LF 延迟检测 停滞——对应 FN 模式，语义停滞已经开始但尚未产生结构性信号）。
+      outcome_bp 与 gold 相关性最低(0.12)，因为它的后向传播机制人为制造了时序偏移； file_diff 与 gold 相关性最高(0.32)，因为文件修改是相对可靠的进展信号。
+      平均偏移 3.8 步意味着 LF 和人类对 "停滞何时开始" 的判断在 ~4 个 step 的范围内波动—— 对于 k=5 的窗口而言，这几乎是整个窗口宽度，说明
+      LF 和人类在测量不同的东西。
+
+      '
+    tables:
+    - name: 'Table: Temporal Onset Alignment — LF vs Gold'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - Aligned (±1 step)
+        - 28%
+      - - LF leads gold
+        - 35%
+      - - LF lags gold
+        - 37%
+      - - Mean offset
+        - 3.8 steps
+      - - cmd_rep-gold onset corr
+        - 0.18
+      - - file_diff-gold onset corr
+        - 0.32
+      - - outcome_bp-gold onset corr
+        - 0.12
+    figures_description:
+    - 'Histogram: distribution of onset offset (LF onset - gold onset) in steps, showing
+      bimodal distribution centered away from 0.'
+    analysis: '28% onset alignment 证明 Claim 2 的 LF temporal dynamics 描述的是 LF 的行为模式，
+      不是停滞的行为模式。cmd_rep leading (-1.87 steps) 这个发现在 gold 视角下的解读 完全改变：不是 "命令重复是停滞的早期预警"，而是
+      "cmd_rep LF 过早触发导致 FP"。 这强化了 worst 档的 reframe：temporal dynamics 是 LF failure
+      mode 的诊断工具。
+
+      '
+  - name: Gold Set — Failure Taxonomy
+    plan_id: gold-set
+    description: '基于 gold set 的 LF 错误分类分析——哪些类型的停滞 LFs 系统性遗漏。
+
+      '
+    expected_results:
+      taxonomy_categories: 5
+      cat1_semantic_diverse_stag:
+        description: Agent uses varied commands/files but repeats ineffective strategies
+        gold_n: 82
+        lf_recall: 0.27
+        example: agent tries 5 different fix approaches but all fail for the same
+          root cause
+      cat2_edit_revert_loop:
+        description: Agent edits files then reverts, net zero progress
+        gold_n: 45
+        lf_recall: 0.38
+        example: agent modifies config, tests fail, reverts, tries different config
+      cat3_diagnostic_exploration:
+        description: Agent actively diagnosing but LF flags as stagnation due to repeated
+          grep/cat
+        gold_n: 58
+        lf_precision_on_these: 0.41
+        example: agent greps logs with different patterns — progress, not stagnation
+      cat4_subtle_progress:
+        description: Agent making incremental progress but too slowly to be obvious
+        gold_n: 35
+        lf_recall: 0.48
+        example: each step adds a few lines of correct code but at very slow pace
+      cat5_clear_structural_stag:
+        description: Obvious repetitive loops — LFs handle correctly
+        gold_n: 55
+        lf_recall: 0.91
+        example: agent runs same failing test 5 times in a row
+    result_rationale: 'Failure taxonomy 来自对 gold-LF disagreement 窗口的定性分析。worst 档预期
+      5 个类别，其中 LFs 仅在 cat5（明显结构性循环）上表现好(0.91 recall)—— 这恰恰是现有 cycle detector 也能处理的简单情况。真正有价值的停滞类型
+      （cat1 语义多样停滞、cat2 编辑回退循环）LF recall 极低(0.27-0.38)， 因为这些需要理解 agent 行动的语义效果而非表面命令模式。cat3
+      是 FP 问题—— agent 在有效探索但 cmd_rep 误判。这些分类直接服务于 "下一代 LF 设计路线图"： 需要 outcome-aware
+      LFs（检测编辑是否被 revert）、strategy-level LFs （检测是否在重复同一策略而非同一命令）、和 goal-tracking LFs（检测是否在向
+      目标推进）。
+
+      '
+    tables:
+    - name: 'Table: Stagnation Failure Taxonomy'
+      columns:
+      - Category
+      - N (gold)
+      - LF Recall
+      - Root Cause of LF Failure
+      rows:
+      - - Semantic-diverse stagnation
+        - 82
+        - 0.27
+        - Different commands ≠ different strategies
+      - - Edit-revert loops
+        - 45
+        - 0.38
+        - file_diff fires on edits but misses reverts
+      - - Diagnostic exploration (FP)
+        - 58
+        - N/A (prec=0.41)
+        - cmd_rep fires on valid diagnostic repetition
+      - - Subtle progress
+        - 35
+        - 0.48
+        - Progress too incremental for threshold-based LFs
+      - - Clear structural loops
+        - 55
+        - 0.91
+        - LFs designed for this case
+    figures_description:
+    - 'Stacked bar chart: distribution of gold stagnation windows across taxonomy
+      categories, with LF recall overlaid as line.'
+    - Example windows from each category with anonymized agent actions, showing qualitative
+      difference between LF-detected and LF-missed stagnation.
+    analysis: 'Failure taxonomy 是 worst 档最有 contribution 的新实验。它将 "LF labels 不准" 这个定量发现转化为可操作的洞见：(1)
+      当前 LFs 只能检测 "结构性循环" 这一种 停滞类型（cat5，占 gold stagnation 的 ~20%），对占 ~80% 的其他停滞类型
+      几乎失效；(2) 语义多样停滞（cat1）需要 strategy-level 而非 command-level 的 分析——这正是 LLM-as-judge
+      理论上的优势领域，尽管当前 zero-shot LLM 也只能 部分解决；(3) 编辑回退循环（cat2）暴露了 file_diff LF 的根本缺陷——它只看
+      "是否有 diff" 而不看 "diff 是否被保留"。这为 Snorkel/WS 社区提供了 sequential agent data 上的 LF
+      设计指南，是独立于 circular eval 发现之外的方法论贡献。
+
+      '
+  - name: Gold Set — Conf≥2 Label Reliability
+    plan_id: gold-set
+    description: '专门分析 conf≥2 子集（所有主要实验的 test set）在 gold 上的可靠性。
+
+      '
+    expected_results:
+      conf2_n_in_gold: 320
+      conf2_lf_gold_accuracy: 0.63
+      conf2_lf_gold_kappa: 0.42
+      conf2_lf_gold_f1_stag: 0.55
+      conf2_lf_gold_f1_prog: 0.71
+      conf3_n_in_gold: 50
+      conf3_lf_gold_accuracy: 0.72
+      conf3_lf_gold_kappa: 0.51
+      current_conf2_test_n: 1824
+      implied_mislabeled_in_test: 675
+    result_rationale: 'Worst 档假设 conf≥2 labels 仅 63% accuracy——意味着当前 1824 个 conf≥2
+      test windows 中约 675 个标签是错误的。这直接否定了用 conf≥2 子集作为 "高质量 pseudo-gold" 的做法。κ=0.42（仍在
+      "fair" 区间）说明 LF consensus 只是 多个有偏 heuristic 的系统性偏差叠加——当两个或三个 LFs 犯同一个方向的错误 （如都被表面结构模式误导），consensus
+      不等于正确性。 conf=3 accuracy 略高(0.72)是因为三个 LFs 全部同意时确实更可能捕获了真正明显的 停滞（cat5 类型），但 0.72
+      仍不够用作 ground truth。
+
+      '
+    tables:
+    - name: 'Table: Label Reliability by Confidence'
+      columns:
+      - Confidence
+      - N (gold)
+      - Accuracy
+      - κ
+      - Implied mislabel rate
+      rows:
+      - - conf=1
+        - 280
+        - 0.41
+        - 0.22
+        - 59%
+      - - conf=2
+        - 320
+        - 0.63
+        - 0.42
+        - 37%
+      - - conf=3
+        - 50
+        - 0.72
+        - 0.51
+        - 28%
+    figures_description:
+    - 'Line chart: label accuracy vs confidence level, with 95% CI bands, showing
+      even conf=3 doesn''t reach 0.8 threshold.'
+    analysis: 'conf≥2 accuracy=0.63 是对所有已完成实验的系统性降级。structural 0.9951 on conf≥2 现在必须解读为
+      "0.9951 fidelity to a 63%-accurate label set"。 论文需要在每个 claim 下加入 gold-calibrated
+      caveat。
+
+      '
+  - name: Gold Set — Cross-Agent Structural on Gold
+    plan_id: gold-set
+    description: '如果 OH 也有 gold 标注子集，structural GB cross-agent 在 gold 上的表现。
+
+      '
+    expected_results:
+      structural_gb_oh_gold_macro_f1: 0.52
+      structural_gb_oh_lf_all_macro_f1: 0.9674
+      collapse_oh_pp: 44.7
+      structural_gb_oh_gold_f1_stag: 0.4
+      structural_gb_oh_gold_f1_prog: 0.64
+    result_rationale: 'OH cross-agent 上 structural GB 0.967 已是 circular eval（OH LF
+      labels 同样 由相同 3 个 LFs 生成）。在 gold 上，OH 的额外困难在于 cmd_rep 在 OH 上的 role reversal——92%
+      firing rate + 71% FP 意味着 OH 的 LF labels 比 SWE-Agent 更有偏，gold-LF 不一致率更高。Structural
+      model 在这些高偏差标签上训练后 迁移到 gold 上，崩塌更严重（0.52 vs SWE-Agent 上的 0.58）。 f1_stag 仅 0.40
+      因为 structural model 学到的 OH "停滞"模式主要是 cmd_rep 造成的 伪模式。
+
+      '
+    tables:
+    - name: 'Table: Cross-Agent Structural — LF vs Gold'
+      columns:
+      - Setting
+      - LF-label F1
+      - Gold-label F1
+      - Collapse (pp)
+      rows:
+      - - SWE-Agent in-domain
+        - 0.9951
+        - 0.58
+        - -41.5
+      - - OH cross-agent (all)
+        - 0.9674
+        - 0.52
+        - -44.7
+      - - OH cross-agent (conf≥2)
+        - 0.9919
+        - —
+        - —
+    figures_description:
+    - 'Grouped bar chart: in-domain vs cross-agent, LF-eval vs gold-eval, showing
+      double collapse.'
+    analysis: 'Cross-agent 0.967 的 "强迁移" 故事在 gold 上崩塌至 0.52——几乎是随机水平。 这证明 structural
+      features 跨 agent 迁移的不是 "stagnation signal"，而是 "LF heuristic pattern"。因为 SWE-Agent
+      和 OH 使用相同的 LFs，structural model 在两者上都能高分——但这衡量的是 LF 规则的跨 agent 一致性，不是停滞 检测的跨
+      agent 泛化。
+
+      '
+  - name: F1-Stag Per-Class Breakdown on Gold
+    plan_id: f1-stag-analysis
+    description: '在 gold labels 下对 stagnation class 做细粒度 per-subtype 分析。
+
+      '
+    expected_results:
+      overall_f1_stag_gold: 0.52
+      f1_stag_by_type:
+        structural_loops: 0.82
+        semantic_diverse: 0.25
+        edit_revert: 0.35
+        subtle_progress_mislabel: 0.18
+      probe_f1_stag_gold: 0.5
+      probe_f1_stag_structural_loops: 0.78
+      probe_f1_stag_semantic_diverse: 0.3
+      llm_judge_f1_stag_gold: 0.5
+      llm_judge_f1_stag_semantic_diverse: 0.38
+    result_rationale: 'F1_stag 分解到停滞子类型后，模式清晰：所有方法在 structural loops 上都还行 （0.78-0.82），因为这是最简单的停滞类型。但在语义多样停滞上，structural
+      和 probe 都崩塌至 0.25-0.30——因为两者都在 LF labels 上训练，而 LF 本身 就漏掉了这些。LLM-judge 在语义多样停滞上略优（0.38），因为它不受
+      LF 训练偏差 约束，能部分通过语义理解识别无效策略重复。但 0.38 仍然很差，说明 zero-shot LLM 对 agent stagnation
+      的理解也很有限。 subtle_progress_mislabel 的 0.18 表示 structural model 系统性地将缓慢进展 误判为停滞——因为
+      LF 训练集中这些样本就被错标了。
+
+      '
+    tables:
+    - name: 'Table: F1-Stag by Stagnation Subtype'
+      columns:
+      - Subtype
+      - N (gold)
+      - Structural F1
+      - Probe F1
+      - LLM F1
+      rows:
+      - - Structural loops
+        - 55
+        - 0.82
+        - 0.78
+        - 0.75
+      - - Semantic-diverse
+        - 82
+        - 0.25
+        - 0.3
+        - 0.38
+      - - Edit-revert
+        - 45
+        - 0.35
+        - 0.33
+        - 0.3
+      - - Overall stag
+        - 275
+        - 0.52
+        - 0.5
+        - 0.5
+    figures_description:
+    - 'Heatmap: model (rows) × stagnation subtype (columns), cell color = F1, showing
+      all models fail on semantic-diverse and edit-revert.'
+    analysis: 'Per-subtype breakdown 是 worst 档叙事的关键论据：当前 detection pipeline 只能 处理最
+      trivial 的停滞类型（structural loops），而这恰恰是现有 cycle detectors 已经能解决的。对于 agent monitoring
+      真正需要检测的复杂停滞（语义多样、编辑回退）， 所有方法——无论 structural、embedding-based 还是 LLM——都 essentially
+      fail。 这重新定义了问题：不是 "structural vs semantic" 的方法选型，而是 "当前 LF framework 根本无法为任何下游模型提供足够好的训练信号"。
+
+      '
+  - name: Gold Set — TLM Reinterpretation
+    plan_id: gold-set
+    description: '在 gold labels 下重新评估 TWV/HMM 标签质量。
+
+      '
+    expected_results:
+      mv_gold_accuracy: 0.62
+      twv_gold_accuracy: 0.6
+      hmm_gold_accuracy: 0.45
+      hmm_lag_aware_gold_accuracy: 0.58
+      twv_minus_mv_gold_pp: -2.0
+      mv_gold_kappa: 0.38
+      twv_gold_kappa: 0.35
+    result_rationale: 'TLM 在 LF labels 上 "fail to beat MV" 的原始叙事（Claim 3）在 worst 档下获得
+      新解释。MV 在 gold 上本身只有 62% accuracy——TLM 试图改进的基础就是 noisy 的。 TWV 的 temporal smoothing
+      在 gold 上反而比 MV 差 2pp，因为它 smooth 的方向 是由 LF 的系统性偏差决定的——当 LF 在某个时序区段系统性犯错时，TWV
+      的 Gaussian kernel 会扩散这个错误到邻近窗口。HMM 在 gold 上更差(0.45)，因为 它学到的 transition matrix
+      编码了 LF labels 的（错误的）时序模式。 Lag-aware HMM 稍好(0.58)因为 confidence anchoring 在高 conf
+      样本上约束了 偏离。总结：temporal alignment of noise produces more noise，而不是更好的信号。
+
+      '
+    tables:
+    - name: 'Table: Label Model Quality — LF-eval vs Gold-eval'
+      columns:
+      - Label Model
+      - LF-eval F1
+      - Gold Accuracy
+      - Gold κ
+      rows:
+      - - MV
+        - 1.0
+        - 0.62
+        - 0.38
+      - - TWV (σ=2)
+        - 0.9003
+        - 0.6
+        - 0.35
+      - - HMM
+        - 0.7502
+        - 0.45
+        - 0.15
+      - - Lag-aware HMM
+        - 0.8936
+        - 0.58
+        - 0.33
+    figures_description:
+    - 'Line plot: label model sophistication (x-axis: MV → TWV → HMM → lag-HMM) vs
+      gold accuracy, showing no monotonic improvement.'
+    analysis: Claim 3 在 worst 档下的新叙事：TLM 失败不是因为 "MV 够好"（MV 也很差，gold acc=0.62）， 而是因为
+      "LF labels 本身是 noisy 的，temporal alignment of noisy labels 不会收敛到 true labels"。这是一个比原始
+      negative finding 更深的方法论洞见： 在 weak supervision 中，如果 LFs 的系统性偏差是 non-stationary
+      且 correlated with the temporal structure of the data（正如 agent trajectories 中
+      LFs 的 时序角色所示），那么任何试图利用这个时序结构来改进标签的方法都会被 LF 偏差 的时序结构所污染。这是一个 fundamental limitation，不是
+      engineering failure。
+  review_report: '---
+
+    dream_id: dream_20260514T184058
+
+    tier: worst
+
+    overall_score: 3/6 Weak Reject
+
+    timestamp: 2026-05-14T19:30:20.858918+00:00
+
+    ---
+
+
+    # Dream Review Report: "When Labeling Functions Lie: Circular Evaluation Traps
+    in Weak Supervision for Agent Monitoring"
+
+
+    **Review Mode**: Full (2-Reviewer Roundtable)
+
+    **Date**: 2026-05-14
+
+    **Target Venue Standard**: Top ML venue (~25% acceptance, 6-point scale)
+
+
+    ---
+
+
+    ## Reviewer Assignment
+
+    - **R1**: Methodology and Experiments
+
+    - **R2**: Novelty and Related Work
+
+
+    ---
+
+
+    ## R1 Review: Methodology and Experiments
+
+
+    ### Summary
+
+    The paper identifies a "circular evaluation trap" in weak supervision for agent
+    stagnation detection, demonstrating that structural features collapse from 0.995
+    to 0.55–0.61 F1 when evaluated on a 650-window gold set instead of LF-derived
+    labels. A 5-category failure taxonomy and negative results on three TLM implementations
+    are presented. The core insight is genuine and transferable, but the paper suffers
+    from critical statistical gaps, an insufficiently validated gold set, and incomplete
+    experimental analysis.
+
+
+    ### Strengths
+
+    - **S1**: The circular evaluation trap is the paper''s strongest contribution.
+    The mechanistic explanation — structural features are continuous relaxations of
+    LF inputs — is clean and generalizable to any WS pipeline where features correlate
+    with label-generating heuristics.
+
+    - **S2**: Comprehensive multi-method comparison on a shared gold set (Table 6)
+    provides an apples-to-apples comparison across structural classifiers, neural
+    probes, and LLM judges.
+
+    - **S3**: The failure taxonomy (Table 8) is descriptively valuable, revealing
+    that LFs handle only ~20% of gold stagnation (clear structural loops) while missing
+    73% of semantically diverse stagnation.
+
+    - **S4**: Honest negative results on TLMs — three implementations failing, combined
+    with the "temporal alignment of noise is still noise" insight.
+
+    - **S5**: The convergence finding (all methods to 0.55–0.60 on gold) is genuinely
+    surprising and underappreciated.
+
+
+    ### Weaknesses
+
+    - **W1 (Critical)**: No confidence intervals, significance tests, or bootstrap
+    analyses anywhere. The core claims rest on 1–5pp differences across methods on
+    650 samples (e.g., GB 0.58 vs. BGE 0.60 vs. LLM 0.56 in Table 6). Without McNemar''s
+    test or bootstrap 95% CIs, these differences may be noise. For an empirical analysis
+    paper at a top venue, this is a disqualifying omission.
+
+    - **W2 (Critical)**: No inter-annotator agreement (IAA) reported for the gold
+    set. The paper''s entire thesis rests on gold evaluation, yet the gold set''s
+    own reliability is uncharacterized. Without IAA ≥ 0.75, gold-derived numbers carry
+    unknown measurement error.
+
+    - **W3**: Gold set construction and sampling strategy are underspecified. How
+    were 650 windows sampled? Was there stratification by confidence, trajectory length,
+    agent type? Selection bias directly affects all conclusions.
+
+    - **W4**: The retraining-on-gold experiment (GB: 0.63) conflates insufficient
+    data with feature limitations. A learning curve or cross-validated estimate would
+    be needed to disentangle the two.
+
+    - **W5**: LLM judge baseline is unfairly weak — only zero-shot classification.
+    No few-shot, no chain-of-thought, no alternative LLMs. The 2pp gap on gold could
+    easily reverse with a fairer baseline.
+
+    - **W6**: Cross-agent OH gold evaluation (Table 7, 0.52) — provenance of OH gold
+    labels unclear. If these are LF-derived rather than human-annotated, this is a
+    methodological inconsistency.
+
+    - **W7**: Temporal onset alignment (28%, Table 10) lacks a random-firing null
+    baseline for calibration.
+
+    - **W8**: Failure taxonomy has no formal inter-coder reliability. Categories defined
+    post-hoc by manual inspection without codebook or independent coding.
+
+
+    ### Questions for Authors
+
+    - Q1: Bootstrap 95% CIs for all pairwise comparisons in Table 6?
+
+    - Q2: Inter-annotator agreement on the 650-window gold set? Single or multiple
+    annotators?
+
+    - Q3: How were 650 gold windows sampled? Any overlap with model training data?
+
+    - Q4: Learning curve for gold-retrained GB (100/200/400/650 samples)?
+
+    - Q5: LLM judge performance with 5-shot prompting and chain-of-thought?
+
+    - Q6: OH cross-agent gold labels — human-annotated or LF-derived?
+
+    - Q7: Random-firing null baseline for temporal onset alignment?
+
+    - Q8: Error correlation analysis — do all methods fail on the same windows?
+
+
+    ### Experiment Coverage Assessment
+
+
+    | # | Experiment | Status | Gap |
+
+    |---|-----------|--------|-----|
+
+    | 1 | LF-Gold Agreement | ✅ Covered | Missing IAA for gold itself |
+
+    | 2 | Structural on Gold | ✅ Covered | Missing learning curve for retrained model
+    |
+
+    | 3 | Probe on Gold | ✅ Covered | Missing CIs |
+
+    | 4 | LLM Judge on Gold | ✅ Covered | Zero-shot only; no few-shot/CoT |
+
+    | 5 | Temporal Onset Alignment | ✅ Covered | Missing null baseline |
+
+    | 6 | Failure Taxonomy | ✅ Covered | No inter-coder reliability |
+
+    | 7 | Conf≥2 Reliability | ✅ Covered | Strong finding (37% error rate) |
+
+    | 8 | Cross-Agent on Gold | ⚠️ Partial | OH gold provenance unclear |
+
+    | 9 | F1-Stag Per-Subtype | ✅ Covered | Small N per category |
+
+    | 10 | TLM Reinterpretation | ✅ Covered | Clean negative result |
+
+
+    **Coverage**: ~85%. All 10 experiments are at least partially represented. Gaps
+    are in statistical rigor and methodological documentation rather than missing
+    experiments.
+
+
+    ### R1 Scores
+
+    - Soundness: 2/4
+
+    - Contribution: 3/4
+
+    - Presentation: 3/4
+
+    - Overall: 3/6 (Weak Reject)
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## R2 Review: Novelty and Related Work
+
+
+    ### Summary
+
+    The paper quantifies a circular evaluation trap in weak supervision for agent
+    stagnation detection, showing all models converge to 0.55–0.60 F1 on human-annotated
+    gold labels despite spanning 0.663–0.995 on LF-derived labels. While the quantification
+    is careful and the failure taxonomy is concrete, the core finding is not surprising
+    to the WS community, the scope is narrow (2 SE agents), and several important
+    related works are missing.
+
+
+    ### Strengths
+
+    - **S1**: The circular evaluation quantification is transferable — the 37–44pp
+    collapse and the recommendation for feature-LF independence audits when LF-label
+    F1 > 0.95 are actionable for practitioners.
+
+    - **S2**: The 5-category failure taxonomy provides a concrete decomposition of
+    where weak supervision breaks, with per-category recall numbers that guide future
+    LF design.
+
+    - **S3**: Well-structured TLM negative result. The "temporal alignment of noise
+    is still noise" framing is accurate and memorable.
+
+    - **S4**: The gold set validation is the right experimental design for addressing
+    circularity. The paper practices what it preaches.
+
+    - **S5**: Cross-agent analysis reveals non-obvious LF-architecture interactions
+    (cmd_rep role reversal between SWE-Agent and OpenHands).
+
+
+    ### Weaknesses
+
+    - **W1 (Major)**: The core finding — that features correlated with label-generating
+    heuristics predict those labels — is not surprising to the WS community. The Snorkel
+    papers explicitly discuss gold-set validation for exactly this reason. The contribution
+    is a quantified case study, not a novel methodological insight. The "all models
+    collapse to 0.55–0.60" convergence is the genuine surprise, but its generalizability
+    beyond this setup is unclear.
+
+    - **W2 (Major)**: Gold set limitations undermine the strongest claims. 650 windows,
+    single domain, 2 agents, no IAA. The failure taxonomy subtypes have small N (n=35–82),
+    limiting statistical power.
+
+    - **W3**: No statistical significance tests on any comparison. If all methods
+    converge to the same gold F1 range, this must be formally demonstrated.
+
+    - **W4**: The TLM negative finding is expected given the experimental regime.
+    Only 3 LFs with 95.1% agreement at conf≥2 — standard WS benchmarks use 10+ LFs.
+    Cannot distinguish "TLMs fail on sequential agent data" from "TLMs fail with 3
+    low-conflict LFs."
+
+    - **W5**: Narrow scope. Title implies broad applicability to "agent monitoring,"
+    but all evidence is from 2 coding agents on SWE-bench. Transfer to web navigation,
+    scientific discovery, or conversational agents is unknown.
+
+    - **W6**: No training on gold labels. Cross-validated gold-trained models would
+    separate label quality bottleneck from model capacity bottleneck.
+
+
+    ### Related Work Gaps
+
+    1. **Safranchik et al. (AAAI 2020)** — "Weakly Supervised Sequence Tagging from
+    Noisy Rules": most direct methodological predecessor for the TLM approach (linked
+    HMM for sequential WS). Critical omission.
+
+    2. **Sala et al. (NeurIPS 2019)** — "Multi-Resolution Weak Supervision for Sequential
+    Data": direct precedent for WS on sequential data with temporal structure.
+
+    3. **Fu et al. (ICML 2020)** — FlyingSquid: core WS label model not compared against.
+
+    4. **Zhang et al. (NeurIPS 2021)** — WRENCH benchmark: contextualizes the 3-LF
+    regime as unusually small.
+
+    5. **George et al. (2025)** — "Unsupervised Cycle Detection in Agentic Applications":
+    most directly comparable work on stagnation/cycle detection combining structural
+    and embedding approaches.
+
+    6. **Lightman et al. (2023)** — "Let''s Verify Step by Step": foundational PRM
+    work missing from the PRM discussion.
+
+    7. More sophisticated i.i.d. label models (Dawid-Skene EM, Snorkel''s generative
+    model, FlyingSquid) should be compared — MV is the simplest baseline, and the
+    TLM negative finding is less informative without showing that sophisticated i.i.d.
+    models also fail.
+
+
+    ### R2 Scores
+
+    - Soundness: 3/4
+
+    - Contribution: 2/4
+
+    - Presentation: 3/4
+
+    - Overall: 3/6 (Weak Reject)
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Reviewer Exchange
+
+
+    **R1 → R2**: R1 flags that the OH cross-agent gold labels may not be true human
+    annotations, which would mean Table 7''s cross-agent collapse (0.967→0.52) is
+    built on the same circular foundation the paper critiques. R1 also notes the LLM
+    judge baseline is unfairly weak (zero-shot only), and the retraining-on-gold experiment
+    conflates data insufficiency with feature limitations.
+
+
+    **R2 → R1**: R2 notes that the circular evaluation finding, while well-quantified,
+    is not novel to the WS community — Snorkel explicitly recommends gold validation.
+    R2 identifies 7 significant missing references. R2 also argues the 3-LF regime
+    makes the TLM negative result somewhat trivial — WRENCH benchmarks use 10+ LFs.
+
+
+    ### Step 3: Convergence
+
+
+    **Points of consensus:**
+
+    1. **Missing statistical rigor is the most critical flaw** — both reviewers independently
+    flag the absence of CIs, significance tests, and bootstrap analyses as disqualifying
+    for a top venue.
+
+    2. **Missing inter-annotator agreement is a fundamental gap** — the paper''s entire
+    thesis rests on gold evaluation, yet the gold set''s own reliability is uncharacterized.
+
+    3. **Temporal onset alignment lacks a null baseline** — both flag this independently.
+
+    4. **The circular evaluation trap quantification is a real contribution** — but
+    better suited to Findings track than a main venue paper.
+
+    5. **The failure taxonomy is valuable but undervalidated** — small N per category,
+    no inter-coder reliability.
+
+    6. **The paper is well-written and honestly reported** — both acknowledge presentation
+    quality.
+
+
+    **Points of divergence:**
+
+    - R1 rates soundness lower (2/4) due to experimental execution gaps; R2 rates
+    contribution lower (2/4) due to limited novelty. These are complementary concerns,
+    not conflicting ones.
+
+
+    **Reconciled assessment:** The paper identifies a genuine methodological issue
+    (circular evaluation in WS for agent monitoring) and provides useful empirical
+    evidence. However, (a) the core insight is not new to the WS community, (b) the
+    experimental validation lacks statistical rigor, (c) the gold set foundation is
+    insufficiently characterized, and (d) the scope is too narrow for the claims made.
+    These issues place it below the acceptance threshold for a top ML venue main paper.
+
+
+    ---
+
+
+    ## Consolidated Assessment
+
+
+    ### Overall Score: 3/6 (Weak Reject)
+
+
+    ### Decision Rationale
+
+    The paper makes a genuine methodological contribution by quantifying the circular
+    evaluation trap in weak supervision for agent monitoring. The 37–44pp collapse
+    from LF-evaluation to gold-evaluation is a striking demonstration, and the failure
+    taxonomy provides concrete guidance for future LF design. However, three fundamental
+    issues prevent acceptance:
+
+
+    1. **Statistical rigor**: No confidence intervals, significance tests, or bootstrap
+    analyses on any comparison. Claims rest on 1–5pp differences over 650 samples.
+
+    2. **Gold set validation**: No inter-annotator agreement, underspecified construction,
+    unclear OH gold provenance.
+
+    3. **Novelty threshold**: The circular evaluation concern is well-known in the
+    WS literature. The contribution is a careful case study, not a novel insight.
+
+
+    ### Actionable Recommendations for Revision
+
+    1. Add bootstrap 95% CIs and McNemar''s tests for all pairwise model comparisons
+    on gold.
+
+    2. Report inter-annotator agreement (Cohen''s κ) for the 650-window gold set with
+    at least 2 annotators on a substantial subset.
+
+    3. Include a random-firing null baseline for temporal onset alignment.
+
+    4. Test LLM judge with few-shot prompting and chain-of-thought to establish a
+    fair baseline.
+
+    5. Expand to 6–8 LFs to provide a more informative test of temporal label models.
+
+    6. Add learning curve for gold-retrained structural model to disentangle data
+    insufficiency from feature limitation.
+
+    7. Address all missing related work: Safranchik et al. (AAAI 2020), FlyingSquid
+    (ICML 2020), WRENCH (NeurIPS 2021), George et al. (2025).
+
+    8. Reframe scope in title/abstract to explicitly state this is about coding agents
+    on SWE-bench, not general "agent monitoring."
+
+    9. Add error correlation analysis across methods to determine whether the 0.55–0.60
+    convergence reflects shared hard cases or complementary errors.
+
+    10. Clarify gold set sampling strategy, potential contamination with training
+    data, and OH gold label provenance.
+
+
+    ### Venue Recommendation
+
+    - **Top ML venue (EMNLP/NeurIPS/ICML main)**: Below threshold in current form.
+
+    - **Findings track (EMNLP Findings / ACL Findings)**: Strong candidate with statistical
+    rigor added (items 1–3 above).
+
+    - **Workshop paper (WS-specific workshop, e.g., Data-Centric AI)**: Acceptable
+    as-is for a shorter format.
+
+
+    ### Score Summary
+
+
+    | Criterion | R1 | R2 | Consolidated |
+
+    |-----------|----|----|-------------|
+
+    | Soundness | 2/4 | 3/4 | 2.5/4 |
+
+    | Contribution | 3/4 | 2/4 | 2.5/4 |
+
+    | Presentation | 3/4 | 3/4 | 3/4 |
+
+    | Overall | 3/6 | 3/6 | **3/6 (Weak Reject)** |
+
+    | Confidence | 4/5 | 4/5 | 4/5 |
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-14T19:30:34+00:00'

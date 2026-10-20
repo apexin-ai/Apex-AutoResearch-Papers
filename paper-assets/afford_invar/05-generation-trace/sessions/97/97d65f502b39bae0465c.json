@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97d65f502b39bae0465c",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra qwen3 verify",
+  "task_key": "worker_infra_qwen3-verify_20260519T180549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen3-verify_20260519T180549_result.json",
+    "occurrence": 1,
+    "bytes": 162,
+    "sha256": "30cf2682eb9cf3d68a0ee42c738c65d912b2220aa0bf1d1686f39330a2cfd029"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置，270 秒后检查进度。当前 Qwen3-8B 约 50% 完成，预计还需 ~60 分钟。下次检查后会根据进度调整间隔。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen3-verify.md"
+}

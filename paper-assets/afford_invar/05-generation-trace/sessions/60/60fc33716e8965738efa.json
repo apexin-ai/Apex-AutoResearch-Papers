@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60fc33716e8965738efa",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code phase1 dryrun v2",
+  "task_key": "worker_code_phase1-dryrun-v2_20260519T211248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1-dryrun-v2_20260519T211248_result.json",
+    "occurrence": 1,
+    "bytes": 1806,
+    "sha256": "ba7d21868017077ae4e3073ba08ce7943bb9cab3cb530be18fc2769150c0a8ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功完成。汇总报告：\n\n---\n\n## Phase 1 Dry-Run 验证报告\n\n### 1. 环境检查\n- **transformers**: 4.40.1 (OFT fork) ✓\n\n### 2. 代码正确性验证\n- **hidden_states 索引**: 全部使用 `cfg.layer_idx + 1` ✓（L363, L385）\n- **token 布局**: 全部使用 `[:, :NUM_PATCHES, :]` ✓（无 `1:1+` 前缀）\n- **affordance_decoder.py**: 无 BatchNorm，使用 GroupNorm ✓\n- **NUM_PATCHES** = 256（运行时确认）\n\n### 3. Dry-Run 每步 Loss\n\n| Step | L_action | L_consist | H_entropy | L_total |\n|------|----------|-----------|-----------|---------|\n| 0    | 0.6602   | 0.5274    | -8.7945   | 0.6250  |\n| 1    | 6.3125   | 0.6522    | -8.4551   | 6.2932  |\n| 2    | 2.0469   | 0.7654    | -8.1932   | 2.0415  |\n| 3    | 1.1094   | 0.1528    | -7.5882   | 1.0488  |\n| 4    | 1.2109   | 0.1012    | -7.9873   | 1.1412  |\n| 5    | 0.5352   | 0.0643    | -8.3273   | 0.4583  |\n\nL_total 公式验证（Step 0）: `0.6602 + 0.1×0.5274 + 0.01×(-8.7945) = 0.6250` ✓\n\n### 4. Gradient & Heatmap（Step 0）\n- **lora_gnorm** = 5.1517, **dec_gnorm** = 3.0815 — 均非零 ✓\n- **heatmap**: mean=6.1e-5, std=1.5e-4, max=6.8e-3, entropy=8.62\n- 所有值合理，无 NaN/Inf ✓\n\n### 5. 判定：**通过** ✓\n\n**关键观察**：\n1. **L_consist 有学习信号** — 从 0.527 下降到 0.064，decoder gradient norm 3.08 非零，证明一致性损失产生了有效梯度\n2. **无 CUDA OOM** — batch_size=2 在单卡上稳定运行\n3. **heatmap 初始值偏小**（mean~6e-5）— 随机初始化的 decoder 输出接近零，符合预期，训练过程中会逐步学到有意义的 affordance 分布\n4. 详细 gradient/heatmap 统计仅在 Step 0 输出（wandb_log_freq=10），5 步 dry-run 只触发一次完整日志"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-dryrun-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8888b84605813289617",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code paraphrase gen",
+  "task_key": "worker_code_paraphrase-gen_20260519T190517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paraphrase-gen_20260519T190517_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "43b400bd33c599c2a796f87d2408a8e5848b9aa081f0cc655f45114c71ec989e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verification checks pass. Task C complete.\n\n**Summary:**\n\n| Step | Status | Details |\n|------|--------|---------|\n| 1. Kill Qwen3-8B & cleanup | Done | Freed ~12GB disk |\n| 2. Download Qwen3-4B | Done | 3 shards (3.7G + 3.8G + 96M) at `/root/autodl-tmp/models/Qwen/Qwen3-4B/`, 4.02B params verified |\n| 3. Extract LIBERO tasks | Done | 130 tasks across 5 suites (spatial:10, object:10, goal:10, libero_10:10, libero_90:90) |\n| 4. Generate paraphrases | Done | Script at `/root/afford_invar/scripts/phase0/generate_paraphrases.py`, ran in ~3.5min |\n| 5. Verify paraphrases | Done | 130 tasks × 5 = **650 paraphrases**, 0 empty, 0 duplicates with original |\n\nOutput: `/root/afford_invar/data/paraphrases.json` (61KB)\n\nNote: had to upgrade `transformers` from 4.40.1 → 5.8.1 (Qwen3 requires ≥4.43)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paraphrase-gen.md"
+}

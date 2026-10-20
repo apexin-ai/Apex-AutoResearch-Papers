@@ -1,0 +1,1 @@
+total_windows: 154743, valid: 150652, stagnation: 31440, progress: 119212, sampled: 25+25=50, all conf=3

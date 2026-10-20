@@ -1,0 +1,9 @@
+Lambda | macro_f1 | f1_stag | f1_prog | accuracy | sep_ratio
+0.0    | 0.9055   | 0.8593  | 0.9518  | 0.9282   | 2.8742
+0.1    | 0.9063   | 0.8611  | 0.9516  | 0.9282   | 4.4326
+0.5    | 0.9076   | 0.8624  | 0.9529  | 0.9298   | 5.0072
+1.0    | 0.9326   | 0.9017  | 0.9636  | 0.9468   | 7.4870
+
+Key finding: lambda=1.0 yields +2.71pp macro_f1, +4.24pp f1_stag over baseline.
+Separability ratio increases monotonically with lambda (2.87 -> 7.49).
+SupCon strongly improves stagnation class detection (minority class).

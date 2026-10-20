@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "012eb9124e55d4e3c3c6",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra install tmux",
+  "task_key": "worker_infra_install-tmux_20260519T220142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install-tmux_20260519T220142_result.json",
+    "occurrence": 1,
+    "bytes": 71,
+    "sha256": "2430bf9727f7173e25216547226807260b34d683b3f3b27e16d0be31733e5d51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "安装成功。**tmux 3.2a**，路径 `/usr/bin/tmux`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux.md"
+}

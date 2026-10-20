@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bb49083690870992efa",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra kill hdf5 download",
+  "task_key": "worker_infra_kill-hdf5-download_20260519T173428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-hdf5-download_20260519T173428_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "f4730211af8d4cef2afa4f7492da5480e22bdc38127698121a6d8d54e3e1ceee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**已 kill 的 HDF5 进程**: PID 13269 (wget), 8758 (python3), 8753 (bash wrapper) — 全部已确认终止\n\n**RLDS 下载**: 运行中 (PID 8365, 已运行 20min), 已下载 3.0G\n\n**Qwen3-8B 下载**: 运行中 (PID 6028 + 8127, 两个实例), 已下载 5.1G\n\n**HDF5 已下载部分**: 8.0G（保留在磁盘上，后续可恢复）\n\n**磁盘**: /root/autodl-tmp 350G 总量, 已用 32G, 剩余 319G (10%)\n\n注意：Qwen3 有两个下载进程 (6028 和 8127)，可能是重复启动的。如果想节省带宽可以 kill 其中一个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-hdf5-download.md"
+}

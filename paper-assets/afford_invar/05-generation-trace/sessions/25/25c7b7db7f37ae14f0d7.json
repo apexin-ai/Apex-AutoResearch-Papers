@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25c7b7db7f37ae14f0d7",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260519T161651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260519T161651_result.json",
+    "occurrence": 1,
+    "bytes": 1528,
+    "sha256": "7b6088e061193e1be3001569528cc628fb822070e31699463eacc2fd60fce5fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境搭建完成。汇报如下：\n\n---\n\n### 环境搭建结果\n\n**1. Python/CUDA/PyTorch**\n| 组件 | 版本 |\n|------|------|\n| Python | 3.12.3 (conda base) |\n| CUDA Driver | 13.0 (Driver 580.95.05) |\n| PyTorch | 2.8.0+cu128, `cuda=True` |\n\n**2. GPU 确认**\n- 4× NVIDIA RTX PRO 6000 Blackwell Server Edition, 每卡 94GB（共 376GB 显存）\n\n**3. 代码库**\n| Repo | 状态 | 大小 |\n|------|------|------|\n| openvla-oft | clone 成功，`pip install -e . --no-deps` 完成 | 1.8M |\n| LIBERO | clone 成功，`pip install -e .` 完成 | 639M |\n\n**4. 依赖安装**\n| 包 | 版本 | 状态 |\n|---|---|---|\n| transformers (openvla-oft fork) | 4.40.1 | OK |\n| accelerate | 1.13.0 | OK |\n| einops | 0.8.2 | OK |\n| wandb | 0.27.0 | OK |\n| peft | 0.11.1 | OK |\n| timm | 1.0.27 | OK |\n| diffusers | 0.30.3 | OK |\n| flash-attn | 2.8.3 | OK |\n| tensorflow | 2.21.0 | OK |\n| datasets | 4.8.5 | OK |\n| dlimp | 0.0.1 (--no-deps) | OK |\n\n**5. 磁盘**\n- 根分区：30G 总计，5.1G 已用（17%），25G 可用\n- conda 环境：11G\n- 无 autodl-tmp 数据盘，大模型/数据集需注意磁盘空间\n\n**6. 注意事项**\n- openvla-oft 的 pyproject.toml 固定 `torch==2.2.0`/`torchvision==0.17.0`/`timm==0.9.10`，与当前环境不兼容（pip 有 warning），但不影响运行。如遇 API 不兼容，需要对代码做适配\n- dlimp 固定 `tensorflow==2.15.0`，实际装的是 2.21.0，可能有 API 差异\n- 启用网络加速需 `source /etc/network_turbo`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup.md"
+}

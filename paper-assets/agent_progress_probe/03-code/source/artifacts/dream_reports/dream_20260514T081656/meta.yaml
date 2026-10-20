@@ -1,0 +1,3374 @@
+dream_id: dream_20260514T081656
+project: agent_progress_probe
+venue: ''
+focus: MVP 结果异常强（F1=0.9055），需要验证：(1) 高 F1 是否因为 conf≥2 数据太容易——全量数据泛化性是关键风险；(2) Repeat-3
+  baseline 0.84 已经很强——probe 增量价值是否足够撑论文；(3) 弱监督框架作为核心贡献的 novelty 是否成立——LF ensemble
+  oracle 可能让 probe 显得多余；(4) EMNLP venue fit 风险——SE 领域数据投 NLP venue
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 全量数据泛化成功 + 跨agent迁移有效 + 人工标注验证通过——三条claims全部成立，原始framing无需调整
+      key_assumptions:
+      - conf=1 噪声标签不显著损害probe学习能力，全量训练F1仅小幅下降
+      - GRU probe在全量数据上仍显著优于Repeat-3和LF oracle，证明时序建模捕获了LF规则之外的信号
+      - 跨agent迁移（SWE-agent→OpenHands）保持有效，F1绝对值可用
+      - 人工标注gold set确认majority vote标签质量≥80%，消除circular evaluation顾虑
+      - LLM-as-judge在可比F1下token开销高出2x+，cost-accuracy Pareto明确有利于probe
+      - Mean-pooling+LR显著低于GRU，确认时序建模的增量价值
+      number_ranges:
+        probe_fulldata_macro_f1:
+        - 0.85
+        - 0.91
+        gap_vs_repeat3_fulldata_pp:
+        - 5.0
+        - 8.0
+        gap_vs_lf_oracle_pp:
+        - 3.0
+        - 7.0
+        cross_agent_macro_f1:
+        - 0.78
+        - 0.88
+        human_gold_probe_f1:
+        - 0.82
+        - 0.9
+        human_label_accuracy_pct:
+        - 80
+        - 90
+        meanpool_lr_macro_f1:
+        - 0.72
+        - 0.8
+        llm_judge_f1:
+        - 0.82
+        - 0.9
+        llm_judge_cost_multiplier:
+        - 20
+        - 100
+      narrative_direction: '原始framing完全成立。Headline: 弱监督框架成功迁移到agent trajectory领域，
+        GRU probe在全量噪声标签上学到了超越启发式规则的时序progress信号， 且跨实现可迁移。三条claims各有独立实验支撑，无需调整强度。
+        Paper结构：弱监督框架（方法论贡献）+ 时序建模实证（技术贡献）+ 跨agent泛化（泛化性贡献）， 强调Snorkel到sequential
+        trajectory的非平凡迁移 + 实用性（<5ms inference）。
+
+        '
+    median:
+      tier: median
+      meaning: 全量数据F1下降明显但仍优于baselines + 跨agent迁移部分成功 + 部分claims需降级调整
+      key_assumptions:
+      - conf=1噪声导致全量训练F1下降5-10pp，但probe仍优于Repeat-3（gap缩小至2-5pp）
+      - Probe对LF oracle的优势收窄至边际显著，时序建模增量价值需要更精细的error analysis来论证
+      - 跨agent迁移F1下降明显（10-15pp），但仍优于random/majority baselines，模式可识别
+      - 人工标注揭示majority vote准确率在70-80%区间，conf=1子集标签质量成为明确弱点
+      - Mean-pooling+LR与GRU差距存在但不大（2-4pp），时序建模claim需补充attention可视化等定性证据
+      number_ranges:
+        probe_fulldata_macro_f1:
+        - 0.78
+        - 0.85
+        gap_vs_repeat3_fulldata_pp:
+        - 2.0
+        - 5.0
+        gap_vs_lf_oracle_pp:
+        - 1.0
+        - 3.0
+        cross_agent_macro_f1:
+        - 0.68
+        - 0.78
+        human_gold_probe_f1:
+        - 0.72
+        - 0.82
+        human_label_accuracy_pct:
+        - 70
+        - 80
+        meanpool_lr_macro_f1:
+        - 0.75
+        - 0.82
+        llm_judge_f1:
+        - 0.8
+        - 0.88
+        llm_judge_cost_multiplier:
+        - 15
+        - 80
+      narrative_direction: 'Claim 2（时序建模显著优于启发式）从"显著优于"降级为"在噪声标签下仍具竞争优势"， 强调probe的鲁棒性而非绝对性能优势。Claim
+        3（跨agent迁移）从"保持有效"调整为 "zero-shot迁移存在但需domain adaptation"，增加few-shot fine-tuning实验作为补充。
+        重心转移：弱监督框架（Claim 1）升格为主贡献，probe成为框架的一个下游验证。 补充实验：(a) confidence-aware training（用conf权重加权loss）试图恢复全量数据性能，
+        (b) error analysis深挖probe捕获的Repeat-3遗漏模式作为定性贡献， (c) data scaling曲线展示标注效率。Paper叙事从"probe很强"转向"弱监督框架使这类研究成为可能"。
+
+        '
+    worst:
+      tier: worst
+      meaning: 全量数据泛化失败暴露conf≥2选择偏差 + probe增量价值存疑 + 需要根本性reframe但不降venue
+      key_assumptions:
+      - 全量训练F1跌破0.78，conf≥2的高F1被确认为选择偏差（高conf=容易样本）
+      - Probe在全量数据上与LF oracle/Repeat-3无显著差异，时序建模claim不成立
+      - 跨agent迁移基本失败（F1<0.68），泛化性claim不成立
+      - 人工标注揭示majority vote准确率<70%，弱监督标签质量不足以支撑训练
+      - Mean-pooling+LR接近或匹配GRU性能，证伪时序建模的必要性
+      - 但LF分析本身揭示了有价值的stagnation pattern taxonomy
+      number_ranges:
+        probe_fulldata_macro_f1:
+        - 0.68
+        - 0.78
+        gap_vs_repeat3_fulldata_pp:
+        - -1.0
+        - 2.0
+        gap_vs_lf_oracle_pp:
+        - -2.0
+        - 1.0
+        cross_agent_macro_f1:
+        - 0.55
+        - 0.68
+        human_gold_probe_f1:
+        - 0.62
+        - 0.72
+        human_label_accuracy_pct:
+        - 60
+        - 70
+        meanpool_lr_macro_f1:
+        - 0.66
+        - 0.77
+        llm_judge_f1:
+        - 0.78
+        - 0.88
+        llm_judge_cost_multiplier:
+        - 10
+        - 50
+      narrative_direction: 原始三条claims均无法按设计强度成立。Reframe策略——放弃"probe优于一切"的叙事， 转向empirical
+        study framing："What Do Labeling Functions Reveal About Agent Stagnation?"
+        核心贡献变为：(1) 首个大规模agent stagnation的弱监督标注框架和taxonomy， LF temporal dynamics分析（哪些信号leading
+        vs lagging）成为主要发现； (2) 全量vs高conf的性能差异本身成为关于data programming在sequential data上
+        failure mode的实证贡献——conf-aware sample selection作为方法论发现； (3) 负面结果（probe≈LF oracle）说明当前embedding+简单架构不足以超越
+        domain-specific规则，指出未来方向（更强的trajectory encoder,  hierarchical modeling）。LLM-as-judge对比仍可保留（cost
+        argument不依赖probe绝对性能）。 仍投EMNLP，但叙事从"我们的方法更好"转向"我们提出了框架+发现了关键insights"， 走Findings
+        track而非main conference如果必要。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T081656/best/paper.pdf
+  imagined_experiments:
+  - name: 全量数据泛化训练
+    plan_id: probe-002
+    description: conf≥1全量54,809窗口训练GRU probe，与conf≥2子集训练对比，验证标签噪声容忍度
+    expected_results:
+      fulldata_macro_f1: 0.8742
+      fulldata_accuracy: 0.9031
+      fulldata_f1_stagnation: 0.8189
+      fulldata_f1_progress: 0.9295
+      fulldata_precision_macro: 0.8853
+      fulldata_recall_macro: 0.8648
+      conf2_macro_f1_reference: 0.9055
+      delta_vs_conf2_pp: -3.13
+      gap_vs_repeat3_fulldata_pp: 6.52
+      best_epoch: 5
+      total_epochs: 10
+      val_macro_f1_best: 0.8891
+    result_rationale: 'conf=1窗口占总量72%（39,408/54,809），这些窗口仅有单个LF投票，标签噪声率约25-30%。 在best档位下，GRU的时序建模能力足以从噪声标签中提取一致的progress信号——
+      因为多数conf=1窗口的噪声是随机的而非系统性的，GRU通过序列内一致性约束实现了隐式去噪。 F1从0.9055下降至0.8742（-3.13pp）是合理的：噪声增加但训练数据量增加3.6x提供了补偿。
+      关键是gap vs Repeat-3仍保持6.52pp，证明probe在噪声条件下仍显著优于最强启发式。 训练需要更多epoch（5 vs 3）才能收敛，因为模型需要更多迭代来拟合噪声分布。
+
+      '
+    tables:
+    - name: 'Table 3: Full-data vs High-confidence Training'
+      columns:
+      - Setting
+      - Train Size
+      - Macro-F1
+      - F1-Stag
+      - F1-Prog
+      - Δ vs Repeat-3
+      rows:
+      - - conf≥2 (MVP)
+        - 15,401
+        - '0.9055'
+        - '0.8593'
+        - '0.9518'
+        - +6.24pp
+      - - conf≥1 (full)
+        - 54,809
+        - '0.8742'
+        - '0.8189'
+        - '0.9295'
+        - +6.52pp
+      - - Repeat-3
+        - —
+        - '0.8190'
+        - '0.7512'
+        - '0.8868'
+        - —
+    figures_description:
+    - Learning curves对比图：conf≥2在epoch 3即收敛，conf≥1在epoch 5收敛但最终validation loss更低，说明大数据量最终弥补了噪声劣势
+    - Per-confidence-level F1分解：conf=1/2/3测试窗口上的F1分别为0.83/0.91/0.96，展示模型在高置信窗口上表现更好但低置信窗口也可用
+    analysis: 'F1仅下降3.13pp证明核心假设成立：conf=1噪声标签不显著损害probe学习能力。 Stagnation类F1下降更大（-4.04pp
+      vs progress类-2.23pp），因为stagnation窗口在conf=1中噪声更高 （单个LF投stagnation时更易出错），但仍保持>0.81的可用水平。
+      Gap vs Repeat-3在全量数据上反而略增（6.52 vs 6.24pp），因为Repeat-3在conf=1窗口上 表现更差——这些窗口包含更多语义多样的停滞模式，正是Repeat-3无法捕获的。
+
+      '
+  - name: LF Ensemble Oracle Baseline
+    plan_id: baseline-lf-oracle
+    description: 直接用3个LF的实时输出做窗口级判定（majority vote），作为probe的上界参照
+    expected_results:
+      lf_oracle_macro_f1_conf2: 0.8612
+      lf_oracle_macro_f1_fulldata: 0.8203
+      lf_oracle_f1_stagnation_conf2: 0.7985
+      lf_oracle_f1_progress_conf2: 0.9239
+      lf_oracle_f1_stagnation_fulldata: 0.7341
+      lf_oracle_f1_progress_fulldata: 0.9065
+      gap_probe_vs_oracle_conf2_pp: 4.43
+      gap_probe_vs_oracle_fulldata_pp: 5.39
+      lf_oracle_coverage: 0.719
+      abstain_rate: 0.281
+    result_rationale: 'LF oracle直接使用LF投票结果，在conf≥2数据上表现较好因为这些窗口本身就是LF高一致的子集。 但oracle有两个固有局限：(1)
+      它只能在有LF投票的窗口上做判定，覆盖率仅71.9%； (2) 它无法捕获LF规则之外的信号——比如action语义漂移、上下文依赖的progress模式。
+      Probe在conf≥2上超oracle 4.43pp，在全量数据上超5.39pp，差距扩大因为conf=1窗口中 LF之间分歧大，oracle的majority
+      vote退化为单LF判定。这证明GRU学到了超越LF启发式的信号。 stagnation类上差距更大（probe 0.8593 vs oracle 0.7985
+      = +6.08pp）， 因为stagnation的语义多样性恰好是规则方法的盲区。
+
+      '
+    tables:
+    - name: 'Table 4: Probe vs LF Oracle vs Baselines'
+      columns:
+      - Method
+      - Macro-F1 (conf≥2)
+      - Macro-F1 (full)
+      - Coverage
+      rows:
+      - - GRU Probe
+        - '0.9055'
+        - '0.8742'
+        - 100%
+      - - LF Oracle (majority)
+        - '0.8612'
+        - '0.8203'
+        - 71.9%
+      - - Repeat-3
+        - '0.8432'
+        - '0.8190'
+        - 100%
+      - - Cosine Similarity
+        - '0.3129'
+        - —
+        - 100%
+    figures_description:
+    - Venn diagram：probe正确但oracle错误的样本 vs oracle正确但probe错误的样本，展示probe捕获了oracle遗漏的模式类型
+    analysis: 'Probe vs LF oracle的差距（4.43-5.39pp）直接论证了Claim 1的核心： probe不只是在学LF的规则，而是从LF提供的弱监督信号出发，通过时序建模学到了更丰富的表示。
+      Oracle在stagnation检测上尤其弱——LF设计时各自关注不同的stagnation信号 （file_diff_delta关注输出变化、command_repetition关注行为重复、outcome_backpropagation关注结果），
+      它们的简单投票无法捕获多维度信号的交互。GRU通过序列建模隐式实现了这种信号融合。
+
+      '
+  - name: LLM-as-Judge Baseline
+    plan_id: baseline-llm-judge
+    description: Claude Sonnet 4 + GPT-4o zero-shot/few-shot窗口级progress判定，对比probe的cost-accuracy
+      tradeoff
+    expected_results:
+      claude_zeroshot_macro_f1: 0.8347
+      claude_fewshot_macro_f1: 0.8681
+      gpt4o_zeroshot_macro_f1: 0.8192
+      gpt4o_fewshot_macro_f1: 0.8534
+      claude_fewshot_f1_stagnation: 0.8103
+      claude_fewshot_f1_progress: 0.9259
+      probe_macro_f1_reference: 0.9055
+      gap_probe_vs_best_llm_pp: 3.74
+      claude_avg_tokens_per_window: 4280
+      claude_cost_per_1k_windows_usd: 12.84
+      probe_cost_per_1k_windows_usd: 0.41
+      llm_judge_cost_multiplier: 31.3
+      claude_latency_per_window_ms: 2850
+      probe_latency_per_window_ms: 4.7
+      latency_multiplier: 606
+      eval_sample_size: 500
+      inter_run_variance_claude: 0.018
+      inter_run_variance_probe: 0.003
+    result_rationale: 'LLM-as-judge在best档位下表现良好但不及probe，原因有三： (1) Window-level判定需要理解5-step序列的整体progress趋势，LLM倾向逐step评估再聚合，
+      丢失stagnation onset的时序签名——与Mean-pooling的failure mode类似； (2) Zero-shot时LLM缺少domain-specific的progress/stagnation
+      calibration， few-shot通过示例部分弥补（+3.34pp for Claude），但仍不如从15K样本中学习的probe； (3) LLM在stagnation检测上特别保守——倾向将"有动作执行"判为progress，
+      即使这些动作集体无效。Claude优于GPT-4o因为对code/agent行为的理解更强。 Cost multiplier 31.3x来自：每窗口平均4,280
+      tokens（5 steps × 800+ tokens/step + prompt）， 以Sonnet 4价格计算。Probe推理仅需前向传播1024×5维输入，成本几乎可忽略。
+
+      '
+    tables:
+    - name: 'Table 5: Probe vs LLM-as-Judge'
+      columns:
+      - Method
+      - Macro-F1
+      - F1-Stag
+      - Cost/1K
+      - Latency/window
+      rows:
+      - - GRU Probe
+        - '0.9055'
+        - '0.8593'
+        - $0.41
+        - 4.7ms
+      - - Claude Sonnet 4 (few-shot)
+        - '0.8681'
+        - '0.8103'
+        - $12.84
+        - 2.85s
+      - - Claude Sonnet 4 (zero-shot)
+        - '0.8347'
+        - '0.7756'
+        - $11.20
+        - 2.41s
+      - - GPT-4o (few-shot)
+        - '0.8534'
+        - '0.7948'
+        - $9.63
+        - 3.12s
+      - - GPT-4o (zero-shot)
+        - '0.8192'
+        - '0.7589'
+        - $8.47
+        - 2.78s
+    figures_description:
+    - Cost-Accuracy Pareto图：x轴=cost per 1K windows (log scale)，y轴=Macro-F1。Probe位于Pareto前沿左上角，LLM-as-judge位于右侧。标注cost
+      multiplier和F1 gap
+    - Confusion matrix对比：Probe vs Claude few-shot，highlight probe在semantic stagnation上的优势
+    analysis: 'LLM-as-judge在F1上可用（0.87）但不及probe（0.91），且成本高31x、延迟高606x。 这直接回应reviewer的"为什么不直接用LLM"质疑：即使忽略成本，probe在准确率上也更优，
+      因为它从大量弱监督样本中学到了domain-calibrated的progress判定边界。 LLM的优势场景是冷启动（无训练数据时），但一旦有LF框架提供弱监督标签，
+      专用probe在accuracy和efficiency上双重胜出。这构成了清晰的cost-accuracy Pareto论证。
+
+      '
+  - name: Mean-pooling + Logistic Regression Baseline
+    plan_id: baseline-meanpool-lr
+    description: 窗口内step embeddings均值池化 + LR分类，作为非时序建模的参数匹配下界
+    expected_results:
+      meanpool_lr_macro_f1: 0.7683
+      meanpool_lr_accuracy: 0.8104
+      meanpool_lr_f1_stagnation: 0.6571
+      meanpool_lr_f1_progress: 0.8795
+      meanpool_lr_precision_macro: 0.7892
+      meanpool_lr_recall_macro: 0.7543
+      gap_gru_vs_meanpool_pp: 13.72
+      meanpool_lr_best_C: 0.1
+      meanpool_svm_macro_f1: 0.7821
+    result_rationale: 'Mean-pooling将5个step embeddings平均为单个1024维向量，完全丢弃了步骤间的时序信息。 在best档位下F1=0.7683，比GRU低13.72pp，差距显著。
+      根本原因：stagnation的核心时序特征是"从有效到无效的转折点"—— 比如前2步有进展但后3步停滞，mean-pooling会将这种模式平均成"中等进展"，
+      而GRU通过门控机制精确定位transition point。 Stagnation类F1尤其低（0.6571 vs GRU的0.8593），因为stagnation窗口中
+      往往混有个别看似有效的step（如运行了新命令但结果无用），均值化后这些step 稀释了stagnation信号。Progress类相对好（0.8795）因为progress窗口中steps通常一致向前。
+      SVM略优于LR（+1.38pp）因为非线性核捕获了部分embedding空间中的非线性边界， 但仍远不如GRU，说明瓶颈在时序建模而非分类器容量。
+
+      '
+    tables:
+    - name: 'Table 6: Temporal vs Static Aggregation'
+      columns:
+      - Method
+      - Aggregation
+      - Classifier
+      - Macro-F1
+      - F1-Stag
+      - Δ vs GRU
+      rows:
+      - - GRU Probe
+        - Sequential (learned)
+        - GRU+Attention
+        - '0.9055'
+        - '0.8593'
+        - —
+      - - Mean-pool + LR
+        - Mean
+        - Logistic Regression
+        - '0.7683'
+        - '0.6571'
+        - -13.72pp
+      - - Mean-pool + SVM
+        - Mean
+        - RBF-SVM
+        - '0.7821'
+        - '0.6743'
+        - -12.34pp
+      - - Max-pool + LR
+        - Max
+        - Logistic Regression
+        - '0.7412'
+        - '0.6298'
+        - -16.43pp
+      - - Repeat-3
+        - Rule-based
+        - Heuristic
+        - '0.8432'
+        - '0.7512'
+        - -6.24pp
+    figures_description:
+    - 'Bar chart: 各聚合策略的Macro-F1对比，清晰展示时序建模（GRU）相对于静态聚合（mean/max-pool）的增量价值'
+    analysis: 'Mean-pool+LR的0.7683 F1确认了时序建模的必要性——GRU的+13.72pp增益不是来自更大的模型容量 （LR在1024维上已有充分表达力），而是来自序列内步骤间依赖关系的建模。
+      有趣的是Repeat-3（0.8432）反而优于Mean-pool+LR（0.7683），因为Repeat-3至少捕获了 一种时序模式（连续重复），而mean-pooling连这种简单模式也丢失了。
+      这为Claim 2提供了强支撑：时序建模是关键，不仅仅是更好的特征。
+
+      '
+  - name: Probe错误分析
+    plan_id: error-analysis
+    description: 在conf≥2测试集上对probe的FP/FN按action type、LF source、trajectory outcome分类
+    expected_results:
+      total_test_errors: 221
+      false_positives: 98
+      false_negatives: 123
+      fp_rate: 0.0412
+      fn_rate: 0.0636
+      fp_dominant_pattern: exploratory_actions_misclassified_as_stagnation
+      fn_dominant_pattern: semantic_drift_with_diverse_commands
+      fp_by_action_type:
+        file_editing: 0.31
+        command_execution: 0.42
+        search_exploration: 0.27
+      fn_by_action_type:
+        file_editing: 0.24
+        command_execution: 0.35
+        mixed_diverse: 0.41
+      fp_trajectory_outcome_resolved_pct: 0.67
+      fn_trajectory_outcome_unresolved_pct: 0.82
+      errors_where_repeat3_correct: 34
+      errors_where_probe_uniquely_correct: 187
+    result_rationale: '在best档位下probe的错误总量较少（221/3,080 ≈ 7.2%），且错误分布揭示了有意义的模式。 FP（将progress误判为stagnation）集中在探索性行为——agent在搜索文件、阅读文档、
+      尝试不同方法时，表面上看起来"没有进展"但实际在积累信息。这是probe的合理failure mode： information gathering确实与stagnation在embedding空间中相似（都表现为"无输出变化"）。
+      FN（将stagnation误判为progress）集中在语义漂移场景——agent执行多样化但集体无效的命令， 每一步看起来都不同，embedding变化大但方向无效。这正是probe最难的case，也是future
+      work方向。 67%的FP发生在最终resolved的轨迹中——probe对"暂时绕路但最终成功"的轨迹过于悲观。 Probe相比Repeat-3额外捕获了187个正确case，仅在34个case上不如Repeat-3——净增值清晰。
+
+      '
+    tables:
+    - name: 'Table 7: Error Analysis by Pattern Type'
+      columns:
+      - Error Type
+      - Count
+      - Dominant Pattern
+      - Example
+      rows:
+      - - FP (progress→stagnation)
+        - '98'
+        - Exploratory search without file changes
+        - Agent reads 4 files, runs grep, no edits yet
+      - - FN (stagnation→progress)
+        - '123'
+        - Diverse but ineffective commands
+        - Agent tries 5 different fix approaches, all fail
+    - name: 'Table 8: Probe vs Repeat-3 Error Overlap'
+      columns:
+      - Category
+      - Count
+      - Pct of Total Errors
+      rows:
+      - - Both wrong
+        - '87'
+        - 39.4%
+      - - Probe wrong, Repeat-3 correct
+        - '34'
+        - 15.4%
+      - - Probe correct, Repeat-3 wrong
+        - '187'
+        - —
+      - - Both correct
+        - 2,772
+        - —
+    figures_description:
+    - Error case gallery：4个代表性FP和4个代表性FN的窗口摘要，标注action sequence和LF votes，帮助reviewer理解probe的failure
+      mode
+    - Scatter plot：x=窗口内embedding变化量，y=probe预测概率，颜色=真实标签，标注FP/FN cluster位置
+    analysis: '错误分析服务于两个论文目标：(1) 展示probe捕获了Repeat-3遗漏的187个case——这些是 语义多样的停滞模式（如agent用不同方法反复失败但Repeat-3只检测字面重复）；
+      (2) 识别probe的系统性failure mode（exploratory behavior vs stagnation的区分）， 为future
+      work提供方向（引入trajectory outcome信号或多粒度建模）。 FP中67%在resolved轨迹中这一发现特别有价值——可以在Discussion中讨论
+      "progress"概念的粒度：window-level停滞不等于trajectory-level失败。
+
+      '
+  - name: 跨Agent迁移评估
+    plan_id: cross-agent
+    description: SWE-agent训练的probe在OpenHands轨迹上zero-shot评估，验证progress信号的跨实现迁移性
+    expected_results:
+      openhands_total_windows: 48352
+      openhands_stagnation_windows: 18914
+      openhands_progress_windows: 29438
+      cross_agent_macro_f1: 0.8347
+      cross_agent_accuracy: 0.8621
+      cross_agent_f1_stagnation: 0.7823
+      cross_agent_f1_progress: 0.8871
+      cross_agent_precision_macro: 0.8456
+      cross_agent_recall_macro: 0.8264
+      within_agent_reference_f1: 0.9055
+      delta_cross_vs_within_pp: -7.08
+      repeat3_on_openhands_f1: 0.7894
+      gap_vs_repeat3_cross_pp: 4.53
+      lf_adaptation_notes: command_repetition LF需适配OpenHands的action格式差异
+      openhands_embed_time_hours: 6.2
+      openhands_unique_instances: 2195
+    result_rationale: '跨agent迁移F1=0.8347，比within-agent低7.08pp但仍在best档可用范围[0.78, 0.88]内。
+      下降来自三个因素：(1) OpenHands的action格式与SWE-agent不同——OpenHands使用 structured action space（CmdRunAction,
+      FileEditAction等），而SWE-agent使用 free-form bash commands，embedding空间有分布偏移；(2) OpenHands的停滞模式不同——
+      它有专门的think action和structured editing，某些SWE-agent中的"无效重复"在OpenHands中 不存在，但OpenHands有自己独特的停滞模式（如反复调用FileEditAction但diff为空）；
+      (3) LF适配引入了少量noise——command_repetition LF需要重写以匹配OpenHands格式。 尽管如此，0.8347仍显著优于Repeat-3在OpenHands上的表现（0.7894,
+      +4.53pp）， 证明probe学到的不是SWE-agent特有的行为模式，而是更通用的progress信号—— embedding空间中的"步骤间语义变化模式"在不同agent实现间部分共享。
+
+      '
+    tables:
+    - name: 'Table 9: Cross-Agent Transfer Results'
+      columns:
+      - Setting
+      - Agent
+      - Macro-F1
+      - F1-Stag
+      - F1-Prog
+      - Δ vs Repeat-3
+      rows:
+      - - Within-agent
+        - SWE-agent
+        - '0.9055'
+        - '0.8593'
+        - '0.9518'
+        - +6.24pp
+      - - Cross-agent (zero-shot)
+        - OpenHands
+        - '0.8347'
+        - '0.7823'
+        - '0.8871'
+        - +4.53pp
+      - - Repeat-3
+        - OpenHands
+        - '0.7894'
+        - '0.7156'
+        - '0.8632'
+        - —
+      - - LF Oracle
+        - OpenHands
+        - '0.7981'
+        - '0.7234'
+        - '0.8728'
+        - +0.87pp
+    figures_description:
+    - t-SNE可视化：SWE-agent和OpenHands的GRU hidden states在同一空间中的分布，颜色标注agent来源和progress/stagnation标签，展示跨agent的表示空间重叠程度
+    - Per-instance difficulty scatter：x=SWE-bench instance difficulty (resolved rate)，y=cross-agent
+      probe F1，验证迁移效果是否与任务难度相关
+    analysis: '跨agent迁移的成功直接支撑Claim 3：probe学到的是通用的goal-directed progress信号。 7.08pp的下降主要来自distribution
+      shift而非信号本质差异——t-SNE可视化会展示 两个agent的hidden states在progress/stagnation维度上有清晰重叠，但在agent-specific
+      行为模式维度上有偏移。Gap vs Repeat-3从6.24pp降至4.53pp但仍显著， 说明时序建模的增量价值在跨agent场景下依然存在。 LF
+      Oracle在OpenHands上仅比Repeat-3好0.87pp，因为LF规则是为SWE-agent设计的， 适配后覆盖率和精度都下降——而probe通过embedding空间的泛化能力部分弥补了这个gap。
+
+      '
+  - name: Window Size消融
+    plan_id: ablation-window-size
+    description: k=3,5,7的窗口大小消融，评估检测粒度与信号积累的tradeoff
+    expected_results:
+      k3_macro_f1: 0.8724
+      k5_macro_f1: 0.9055
+      k7_macro_f1: 0.9148
+      k3_f1_stagnation: 0.8142
+      k5_f1_stagnation: 0.8593
+      k7_f1_stagnation: 0.8712
+      k3_detection_latency_steps: 3
+      k5_detection_latency_steps: 5
+      k7_detection_latency_steps: 7
+      k3_total_windows: 72841
+      k5_total_windows: 54809
+      k7_total_windows: 43267
+    result_rationale: 'k=7比k=5略优（+0.93pp），因为更长的窗口积累了更多时序context—— 特别是stagnation onset通常需要3-4步来确认（前几步可能是合理的探索），
+      k=7提供了足够的上下文来区分"暂时探索"和"真正停滞"。 k=3较差（-3.31pp），因为3步窗口中有效信号太少——很多stagnation在3步内
+      看起来与exploration无异。但k=3的优势是检测延迟最低（3步 vs 7步）， 在实际部署中有latency-accuracy tradeoff。
+      k=5是sweet spot：F1接近k=7但检测延迟少2步，且与LF设计一致（LF也基于5步窗口设计）， 减少了LF-probe之间的粒度不匹配。
+
+      '
+    tables:
+    - name: 'Table A1: Window Size Ablation'
+      columns:
+      - Window k
+      - '# Windows'
+      - Macro-F1
+      - F1-Stag
+      - Detection Latency
+      rows:
+      - - k=3
+        - 72,841
+        - '0.8724'
+        - '0.8142'
+        - 3 steps
+      - - k=5 (default)
+        - 54,809
+        - '0.9055'
+        - '0.8593'
+        - 5 steps
+      - - k=7
+        - 43,267
+        - '0.9148'
+        - '0.8712'
+        - 7 steps
+    figures_description:
+    - 'Line chart: window size vs F1 和 detection latency 的dual-axis图，展示accuracy-latency
+      tradeoff曲线'
+    analysis: 'k=5的选择是合理的——k=7仅增加0.93pp但延迟增加2步、数据量减少21%。 在paper中可以用k=7结果作为"oracle
+      window size"参考，说明更多context确实有帮助， 但k=5在实用性和准确率之间取得了最佳平衡。
+
+      '
+  - name: 架构消融
+    plan_id: ablation-architecture
+    description: GRU+attention vs GRU+mean-pool vs Transformer encoder vs MLP on pooled
+    expected_results:
+      gru_attention_macro_f1: 0.9055
+      gru_meanpool_macro_f1: 0.8891
+      transformer_encoder_macro_f1: 0.8967
+      mlp_pooled_macro_f1: 0.7812
+      gru_attention_params: 1.32e6
+      gru_meanpool_params: 1.31e6
+      transformer_encoder_params: 2.67e6
+      mlp_pooled_params: 0.53e6
+      gru_attention_train_time_min: 12
+      transformer_encoder_train_time_min: 28
+    result_rationale: 'GRU+attention最优但Transformer encoder仅差0.88pp——在best档位下两种时序架构都有效，
+      差距不大。GRU+attention的优势来自attention机制对stagnation onset位置的显式建模—— attention权重可以聚焦在序列中"转折"的step上，而GRU+mean-pool丢失了这种位置敏感性。
+      Transformer encoder参数量2x于GRU但F1略低，因为5步的序列太短， self-attention的全局依赖建模优势无法体现，反而过参数化导致轻微过拟合。
+      MLP on pooled（0.7812）与Mean-pool+LR（0.7683）接近，确认了瓶颈在时序建模而非分类器。
+
+      '
+    tables:
+    - name: 'Table A2: Architecture Ablation'
+      columns:
+      - Architecture
+      - Macro-F1
+      - F1-Stag
+      - Params
+      - Train Time
+      rows:
+      - - GRU + Attention
+        - '0.9055'
+        - '0.8593'
+        - 1.32M
+        - 12 min
+      - - Transformer Encoder (2L)
+        - '0.8967'
+        - '0.8478'
+        - 2.67M
+        - 28 min
+      - - GRU + Mean-pool
+        - '0.8891'
+        - '0.8389'
+        - 1.31M
+        - 11 min
+      - - MLP on Concat
+        - '0.7812'
+        - '0.6689'
+        - 0.53M
+        - 5 min
+    figures_description:
+    - Attention weight heatmap：在stagnation窗口中attention集中在onset step（通常step 2-3），在progress窗口中attention分布更均匀
+    analysis: '架构消融的核心结论：时序建模是关键（GRU/Transformer >> MLP/pooling）， 但具体架构选择影响不大（GRU
+      vs Transformer差异<1pp）。 这支持paper的framing——架构是deliberate simple choice，贡献在方法论而非架构创新。
+      Attention的可解释性是bonus：它自然揭示了stagnation onset的位置。
+
+      '
+  - name: LF Hold-one-out消融
+    plan_id: ablation-lf-holdout
+    description: 每次移除一个LF重新训练probe，量化各LF的边际贡献
+    expected_results:
+      full_3lf_macro_f1: 0.9055
+      drop_file_diff_delta_f1: 0.8634
+      drop_command_repetition_f1: 0.8812
+      drop_outcome_backprop_f1: 0.8903
+      marginal_file_diff_delta_pp: 4.21
+      marginal_command_repetition_pp: 2.43
+      marginal_outcome_backprop_pp: 1.52
+      two_lf_coverage_drop_pct:
+        without_file_diff: 0.583
+        without_cmd_rep: 0.641
+        without_outcome: 0.695
+    result_rationale: 'file_diff_delta贡献最大（-4.21pp when removed），因为它是唯一直接测量"输出变化"的LF——
+      在agent trajectory中，文件变化是最强的progress信号，移除它导致大量progress窗口失去关键标注依据。 command_repetition贡献中等（-2.43pp），它捕获的是stagnation中最常见的子模式（行为重复），
+      但部分信号与Repeat-3 baseline重叠。 outcome_backpropagation贡献最小（-1.52pp），因为它是事后信号（基于最终结果回溯），
+      在训练时提供的增量信息最少——很多窗口在它投票前已被其他两个LF覆盖。 但三个LF的组合效应是非加和的：移除任一个都导致覆盖率下降（从71.9%降至58-70%），
+      这意味着每个LF覆盖了不同子集的窗口，它们的互补性是框架价值的核心。
+
+      '
+    tables:
+    - name: 'Table A3: LF Hold-one-out Ablation'
+      columns:
+      - LF Configuration
+      - '# LFs'
+      - Coverage
+      - Probe F1
+      - Δ vs Full
+      rows:
+      - - All 3 LFs
+        - '3'
+        - 71.9%
+        - '0.9055'
+        - —
+      - - − file_diff_delta
+        - '2'
+        - 58.3%
+        - '0.8634'
+        - -4.21pp
+      - - − command_repetition
+        - '2'
+        - 64.1%
+        - '0.8812'
+        - -2.43pp
+      - - − outcome_backprop
+        - '2'
+        - 69.5%
+        - '0.8903'
+        - -1.52pp
+    figures_description:
+    - Stacked bar chart：每个LF在不同conf级别上的投票覆盖率，展示LF间的互补性
+    analysis: '三个LF都有不可替代的贡献，但重要性递减（file_diff > cmd_rep > outcome_backprop）。 这个结果for
+      paper的意义：(1) 证明LF框架设计是合理的——每个LF捕获了不同维度的信号； (2) 提示未来工作可以设计更多LF来进一步提升覆盖率和准确率；
+      (3) file_diff_delta的主导地位与直觉一致——在SWE任务中，代码变化是最直接的progress指标。
+
+      '
+  - name: SupCon辅助损失消融
+    plan_id: ablation-supcon
+    description: 有/无supervised contrastive loss对F1和embedding分离度的影响
+    expected_results:
+      with_supcon_macro_f1: 0.9055
+      without_supcon_macro_f1: 0.8924
+      delta_supcon_pp: 1.31
+      with_supcon_embed_separation: 0.847
+      without_supcon_embed_separation: 0.761
+      supcon_weight: 0.3
+      supcon_temperature: 0.07
+    result_rationale: 'SupCon在best档位下提供1.31pp的增益，效果显著但不是主要贡献者。 增益来自SupCon对GRU hidden
+      states的正则化效应——它强制同类窗口的表示聚集、 异类分离，使最终分类边界更清晰。embedding分离度从0.761提升到0.847（+11.3%），
+      说明SupCon确实改善了表示空间结构。 增益相对温和是因为GRU本身已通过序列建模学到了较好的表示—— SupCon主要帮助处理边界case（stagnation
+      onset附近的模糊窗口）。
+
+      '
+    tables:
+    - name: 'Table A4: SupCon Ablation'
+      columns:
+      - Setting
+      - Macro-F1
+      - Embed Separation
+      - Δ F1
+      rows:
+      - - GRU + CE + SupCon
+        - '0.9055'
+        - '0.847'
+        - —
+      - - GRU + CE only
+        - '0.8924'
+        - '0.761'
+        - -1.31pp
+    figures_description:
+    - t-SNE对比：有/无SupCon的GRU hidden states，展示SupCon对类间分离的影响
+    analysis: 'SupCon是有价值的但非必要的组件。在paper中应放在appendix消融中， 不作为核心贡献——它是标准技术的应用，不构成novelty。
+      但1.31pp在stagnation检测场景中有实际意义（对应约40个窗口的正确判定差异）。
+
+      '
+  - name: Non-NLP Baseline
+    plan_id: non-nlp-baseline
+    description: 仅用纯结构/数值特征（行数改动、文件数、命令类型计数等）分类，不使用NL embedding
+    expected_results:
+      non_nlp_macro_f1: 0.7234
+      non_nlp_accuracy: 0.7689
+      non_nlp_f1_stagnation: 0.6012
+      non_nlp_f1_progress: 0.8456
+      feature_count: 18
+      gap_vs_probe_pp: 18.21
+      gap_vs_meanpool_lr_pp: 4.49
+      top_features:
+      - lines_changed_std
+      - unique_commands
+      - file_count_delta
+      - edit_entropy
+    result_rationale: 'Non-NLP baseline仅用18个手工提取的结构特征（行数改动均值/方差、唯一命令数、文件数变化、 编辑熵等），不使用任何NL
+      embedding。F1=0.7234，比probe低18.21pp。 这证明NL embedding的必要性——结构特征能捕获一些表面模式（如"改动行数为零"=stagnation），
+      但无法理解动作的语义内容（如"执行了有意义的搜索"vs"执行了无效的重复搜索"）。 Stagnation检测上尤其差（0.6012），因为很多语义停滞在结构上并不明显——
+      agent可能在修改文件（行数变化>0）但修改方向错误。 有趣的是non-NLP还是比random（0.4955）高很多，说明结构信号有一定的预测力，
+      但远不足以替代语义理解。这为EMNLP venue fit提供了强论据： NL理解是进步检测的关键组件，将本工作锚定在NLP社区的核心能力上。
+
+      '
+    tables:
+    - name: 'Table A5: NLP vs Non-NLP Features'
+      columns:
+      - Method
+      - Features
+      - Macro-F1
+      - F1-Stag
+      rows:
+      - - GRU Probe
+        - NL Embeddings (1024d)
+        - '0.9055'
+        - '0.8593'
+      - - Mean-pool + LR
+        - NL Embeddings (1024d)
+        - '0.7683'
+        - '0.6571'
+      - - Non-NLP (GBT)
+        - Structural (18d)
+        - '0.7234'
+        - '0.6012'
+      - - Random
+        - —
+        - '0.4955'
+        - —
+    figures_description:
+    - Feature importance bar chart：non-NLP baseline中top-10特征的SHAP importance，展示结构特征的预测力上限
+    analysis: 'Non-NLP baseline的存在专门服务EMNLP venue fit策略—— 证明"理解agent行为的自然语言内容"是progress检测的核心能力需求，
+      纯结构分析不足。这直接回应"更适合ICSE/FSE"的reviewer质疑。
+
+      '
+  - name: Data Scaling曲线
+    plan_id: data-scaling
+    description: 10%/25%/50%/100%训练数据→probe F1，评估标注数据需求曲线
+    expected_results:
+      pct10_macro_f1: 0.8234
+      pct25_macro_f1: 0.8612
+      pct50_macro_f1: 0.8876
+      pct100_macro_f1: 0.9055
+      pct10_train_size: 1540
+      pct25_train_size: 3850
+      pct50_train_size: 7700
+      pct100_train_size: 15401
+      saturation_point_pct: 60
+      marginal_gain_50_to_100_pp: 1.79
+    result_rationale: 'Scaling曲线呈典型的对数形状：10%数据（1,540窗口）已达0.8234 F1， 说明probe在少量标注数据下即可学到有效的progress信号。
+      从50%到100%仅增加1.79pp，接近饱和——这在best档位下是积极信号， 意味着弱监督框架即使只标注部分数据也能产生足够的训练信号。 饱和点约在60%（~9,240窗口），此后增益递减。
+      这为实践指导提供了价值：对新domain/agent，不需要跑完所有轨迹就能训练有效的probe。
+
+      '
+    tables:
+    - name: 'Table A6: Data Scaling'
+      columns:
+      - Train %
+      - Train Size
+      - Macro-F1
+      - Δ vs 100%
+      rows:
+      - - 10%
+        - 1,540
+        - '0.8234'
+        - -8.21pp
+      - - 25%
+        - 3,850
+        - '0.8612'
+        - -4.43pp
+      - - 50%
+        - 7,700
+        - '0.8876'
+        - -1.79pp
+      - - 100%
+        - 15,401
+        - '0.9055'
+        - —
+    figures_description:
+    - Scaling curve：x=训练数据量(log)，y=Macro-F1，标注饱和点和95%性能线
+    analysis: 'Scaling曲线的实际意义：证明弱监督框架的data efficiency—— 即使在数据受限场景（如新agent/新domain），少量轨迹+LF即可训练有效probe。
+      这强化了方法论贡献的实用性叙事。
+
+      '
+  - name: Simulated Early Termination
+    plan_id: early-termination-sim
+    description: 在held-out轨迹上模拟probe驱动的early stopping，计算token节省vs成功率tradeoff
+    expected_results:
+      threshold_0_5:
+        tokens_saved_pct: 38.4
+        success_rate_preserved_pct: 94.2
+        false_termination_rate: 0.058
+      threshold_0_7:
+        tokens_saved_pct: 27.1
+        success_rate_preserved_pct: 97.8
+        false_termination_rate: 0.022
+      threshold_0_9:
+        tokens_saved_pct: 14.3
+        success_rate_preserved_pct: 99.4
+        false_termination_rate: 0.006
+      optimal_threshold: 0.6
+      optimal_tokens_saved_pct: 32.7
+      optimal_success_preserved_pct: 96.1
+      intervention_paradox_evidence: true
+      paradox_detail: 17.3%的被终止轨迹在原始run中最终resolved——但平均在解决前又消耗了2,847 tokens在无效动作上
+    result_rationale: '在best档位下，probe的高准确率（0.9055 F1）使得early termination策略切实可行。 Threshold=0.5时可节省38.4%
+      tokens但牺牲5.8%的潜在成功（false termination）， threshold=0.7是保守选择（27.1%节省，仅2.2% false
+      termination）。 Intervention Paradox确实存在：部分被标记为stagnation并建议终止的轨迹在原始run中 最终resolved——但分析发现这些"迟来的成功"付出了极高的token代价
+      （平均2,847额外tokens），cost-effectiveness角度早终止仍然有利。 这证明probe不仅是分类工具，更是实际可部署的agent效率优化组件。
+
+      '
+    tables:
+    - name: 'Table 10: Early Termination Tradeoffs'
+      columns:
+      - Threshold
+      - Tokens Saved
+      - Success Preserved
+      - False Termination
+      rows:
+      - - '0.5'
+        - 38.4%
+        - 94.2%
+        - 5.8%
+      - - 0.6 (optimal)
+        - 32.7%
+        - 96.1%
+        - 3.9%
+      - - '0.7'
+        - 27.1%
+        - 97.8%
+        - 2.2%
+      - - '0.9'
+        - 14.3%
+        - 99.4%
+        - 0.6%
+    figures_description:
+    - 'Pareto curve: x=tokens saved (%)，y=success rate preserved (%)，各threshold标注，highlight
+      Pareto-optimal region'
+    - Intervention Paradox分析图：被终止轨迹中最终resolved的比例 vs 它们在resolve前的额外token消耗分布
+    analysis: 'Early termination simulation将probe从学术贡献提升到实用工具—— 32.7%的token节省在大规模agent部署中意味着显著的成本降低。
+      Intervention Paradox的量化（17.3%被终止轨迹原本会成功，但代价是平均2,847额外tokens） 为threshold选择提供了principled依据，不仅仅是accuracy
+      vs coverage的权衡， 而是cost-adjusted expected value的优化。
+
+      '
+  - name: 可解释性可视化
+    plan_id: interpretability
+    description: GRU hidden states的t-SNE/UMAP可视化 + attention权重分析
+    expected_results:
+      tsne_cluster_separation: clear
+      progress_cluster_count: 2
+      stagnation_cluster_count: 3
+      attention_onset_concentration: 0.73
+      attention_pattern_stagnation: weight peaks at step 2-3 (onset)
+      attention_pattern_progress: roughly uniform across steps
+      silhouette_score: 0.412
+    result_rationale: '在best档位下，GRU hidden states应形成清晰的progress/stagnation分离。 Progress形成2个子cluster（持续进展
+      vs 先探索后进展）， stagnation形成3个子cluster（重复型、漂移型、静止型）—— 这与错误分析中的模式分类一致。 Attention权重在stagnation窗口中集中在step
+      2-3（onset位置），浓度系数0.73， 说明GRU+attention确实学会了关注"转折点"而非均匀处理所有步骤。 Progress窗口中attention更均匀，因为每一步都在贡献进展信号。
+      Silhouette score 0.412表明聚类结构存在但非完美分离—— 这是预期的，因为progress/stagnation是连续谱，不是离散类别。
+
+      '
+    tables: []
+    figures_description:
+    - t-SNE 2D plot：GRU last-layer hidden states，颜色=标签（progress蓝/stagnation红），marker=conf
+      level（大=conf3, 中=conf2），展示类别分离和置信度梯度
+    - UMAP 2D plot：同上但用UMAP投影，对比两种降维方法的稳定性
+    - Attention heatmap矩阵：随机采样20个stagnation和20个progress窗口的attention weights（5 steps
+      × 1 head），标注onset step位置
+    - Attention weight分布box plot：stagnation vs progress窗口中各step位置的attention weight分布
+    analysis: '可解释性分析为paper提供了定性证据支撑定量结论： (1) t-SNE分离确认probe学到了有意义的progress/stagnation表示；
+      (2) stagnation的3个子cluster为future work（细粒度stagnation分类）提供了线索； (3) attention对onset
+      step的聚焦是最有说服力的发现—— 它直接可视化了"时序建模的增量价值"，这是Mean-pooling无法实现的。
+
+      '
+  - name: 人工标注Gold Set
+    plan_id: human-annotation
+    description: 400窗口3人标注gold set，Fleiss κ一致性，在人工标签上重新评估所有方法
+    expected_results:
+      total_annotated: 400
+      annotator_count: 3
+      fleiss_kappa: 0.724
+      human_label_accuracy_vs_majority_vote_pct: 84.5
+      agreement_3_of_3_pct: 68.2
+      agreement_2_of_3_pct: 31.8
+      probe_f1_on_gold: 0.8623
+      repeat3_f1_on_gold: 0.7934
+      lf_oracle_f1_on_gold: 0.8187
+      llm_judge_f1_on_gold: 0.8412
+      meanpool_lr_f1_on_gold: 0.7289
+      probe_gap_vs_repeat3_on_gold_pp: 6.89
+      gold_stagnation_count: 156
+      gold_progress_count: 244
+      majority_vote_errors_on_gold: 62
+      mv_error_type_stagnation_as_progress: 38
+      mv_error_type_progress_as_stagnation: 24
+    result_rationale: 'Fleiss κ=0.724（substantial agreement）反映了progress/stagnation标注的内在难度——
+      部分窗口确实处于模糊地带（如agent在做有目的的探索但看起来没有进展）。 人工标签验证majority vote准确率84.5%（在best档[80,90]范围内），
+      说明弱监督标签整体可靠但有约15%的噪声——主要集中在conf=1窗口。 Probe在gold set上F1=0.8623，比在majority vote标签上的0.9055低4.32pp——
+      这个下降主要来自majority vote标签中被人类纠正的case（probe学了一些错误标签的模式）。 关键是probe在gold set上仍显著优于所有baseline：
+      +6.89pp vs Repeat-3, +4.36pp vs LF Oracle, +2.11pp vs LLM-as-judge。 这彻底破解circular
+      evaluation顾虑：即使在真实标签上，probe的优势依然明确。 38个majority vote将stagnation误标为progress >
+      24个反方向错误， 说明弱监督框架对progress有轻微偏好——与数据中progress占比71.5%的先验一致。
+
+      '
+    tables:
+    - name: 'Table 2: Results on Human-Annotated Gold Set (400 windows)'
+      columns:
+      - Method
+      - Macro-F1
+      - F1-Stag
+      - F1-Prog
+      - Δ vs Repeat-3
+      rows:
+      - - GRU Probe
+        - '0.8623'
+        - '0.8089'
+        - '0.9157'
+        - +6.89pp
+      - - Claude Sonnet 4 (few-shot)
+        - '0.8412'
+        - '0.7834'
+        - '0.8990'
+        - +4.78pp
+      - - LF Oracle
+        - '0.8187'
+        - '0.7512'
+        - '0.8862'
+        - +2.53pp
+      - - Repeat-3
+        - '0.7934'
+        - '0.7198'
+        - '0.8670'
+        - —
+      - - Mean-pool + LR
+        - '0.7289'
+        - '0.6234'
+        - '0.8344'
+        - -6.45pp
+    - name: 'Table A7: Majority Vote Label Quality'
+      columns:
+      - Metric
+      - Value
+      rows:
+      - - Fleiss κ
+        - '0.724'
+      - - 3/3 Agreement
+        - 68.2%
+      - - 2/3 Agreement
+        - 31.8%
+      - - MV Accuracy vs Gold
+        - 84.5%
+      - - MV Errors (stag→prog)
+        - 38/400
+      - - MV Errors (prog→stag)
+        - 24/400
+    figures_description:
+    - Confusion matrix：majority vote标签 vs human gold标签，展示弱监督的系统性偏差方向
+    - Bar chart：所有方法在gold set vs majority vote标签上的F1对比，展示circular evaluation bias的大小
+    analysis: '人工标注是本paper最关键的validation实验。κ=0.724和84.5%标签准确率共同证明： (1) 弱监督标签整体可靠，支撑Claim
+      1； (2) Probe在真实标签上仍优于所有baseline，排除circular evaluation的alternative explanation；
+      (3) LLM-as-judge在gold set上接近probe（差2.11pp），但考虑31x成本差异，probe仍Pareto-dominant。
+      这个实验应该出现在main paper Table 2，不是appendix——它是对所有reviewer concerns的统一回应。
+
+      '
+  - name: LF Temporal Dynamics
+    plan_id: lf-temporal-dynamics
+    description: 分析哪个LF在stagnation onset最先激活（leading vs lagging indicator）
+    expected_results:
+      leading_indicator: command_repetition
+      cmd_rep_avg_lead_steps: 1.8
+      file_diff_avg_lead_steps: 0.3
+      outcome_backprop_avg_lag_steps: -2.1
+      first_lf_to_fire_distribution:
+        command_repetition: 0.52
+        file_diff_delta: 0.31
+        outcome_backpropagation: 0.17
+      temporal_agreement_at_onset: 0.34
+      temporal_agreement_at_peak: 0.71
+    result_rationale: 'command_repetition是最早的leading indicator（平均领先1.8步），因为行为重复通常是
+      stagnation的最早信号——agent开始重复尝试同样的方法。file_diff_delta几乎实时（领先0.3步）， 因为文件变化停止与stagnation几乎同时发生。outcome_backpropagation是lagging
+      indicator （滞后2.1步），因为它依赖最终结果的回溯——只有在后续步骤确认失败后才激活。 在onset时刻LF一致率仅34%，到stagnation
+      peak时升至71%—— 这解释了为什么conf=1窗口噪声高：它们多处于onset阶段，LF还未达成共识。 这个发现对probe设计有启示：probe可能从command_repetition信号中获益最多，
+      因为它是最早可用的监督信号。
+
+      '
+    tables:
+    - name: 'Table A8: LF Temporal Dynamics'
+      columns:
+      - LF
+      - Role
+      - Avg Lead/Lag (steps)
+      - First-to-fire %
+      rows:
+      - - command_repetition
+        - Leading
+        - '+1.8'
+        - 52%
+      - - file_diff_delta
+        - Coincident
+        - '+0.3'
+        - 31%
+      - - outcome_backpropagation
+        - Lagging
+        - '-2.1'
+        - 17%
+    figures_description:
+    - Timeline diagram：典型stagnation episode中3个LF的激活时间线，展示leading/lagging关系
+    - Heatmap：LF pair-wise agreement随窗口内步骤位置的变化，展示onset时低一致→peak时高一致的动态
+    analysis: LF temporal dynamics为弱监督框架增添了分析深度： 不同LF捕获stagnation的不同阶段——从早期行为信号到中期输出信号到晚期结果信号。
+      这是Snorkel到sequential data迁移的非平凡洞见——在i.i.d.设置中LF没有时序性， 但在trajectory上LF本身表现出leading/lagging动态。
+      这个分析可以放在Analysis section中，强化方法论贡献的深度。
+  review_report: "---\ndream_id: dream_20260514T081656\ntier: best\noverall_score:\
+    \ reject\ntimestamp: 2026-05-14T08:57:23.283843+00:00\n---\n\n# Dream Review Report:\
+    \ ProgressProbe\n\n**Paper:** ProgressProbe: Weakly-Supervised Temporal Progress\
+    \ Estimation for LLM Agent Trajectories\n**Dream ID:** 20260514T081656\n**Review\
+    \ Mode:** Full (2 Reviewers, 4-step roundtable)\n**Date:** 2026-05-14\n\n---\n\
+    \n## 1. Paper Summary\n\nThe paper proposes ProgressProbe, a framework for detecting\
+    \ \"semantic stagnation\" in LLM agent trajectories — situations where agents\
+    \ execute diverse but collectively ineffective actions. The framework has two\
+    \ components: (1) a data-programming pipeline that transfers Snorkel's paradigm\
+    \ to sequential trajectory data using three domain-specific labeling functions\
+    \ (file_diff_delta, command_repetition, outcome_backpropagation), producing window-level\
+    \ progress/stagnation labels via majority vote; and (2) a lightweight GRU probe\
+    \ with attention (1.32M params) trained on these noisy labels. On SWE-bench agent\
+    \ trajectories, the probe achieves 0.906 macro-F1 on majority-vote labels and\
+    \ 0.862 on a 400-window human gold set, outperforming baselines including LF oracle\
+    \ (+4.43pp), Repeat-3 heuristic (+6.89pp on gold), and Claude Sonnet 4 few-shot\
+    \ (+3.74pp at 31× lower cost). Cross-agent transfer from SWE-agent to OpenHands\
+    \ retains 0.835 F1. Simulated early termination saves 32.7% of tokens while preserving\
+    \ 96.1% task success.\n\nThe paper covers 16 experiments including main results,\
+    \ 7 baselines, 6 ablations, error analysis, cross-agent transfer, LF temporal\
+    \ dynamics, and a downstream early-termination application.\n\n---\n\n## 2. Reviewer\
+    \ Reports\n\n### Reviewer 1 (R1): Methods + Experiments\n\n**Strengths:**\n1.\
+    \ **Comprehensive experimental coverage** — 16 experiments leaving few obvious\
+    \ gaps\n2. **Circularity addressed** via 400-window human gold set (Fleiss κ=0.724)\
+    \ as primary evaluation\n3. **Strong baseline suite** including LLM-as-Judge (Claude\
+    \ S4, GPT-4o) with cost-accuracy Pareto analysis\n4. **Instance-level data splitting**\
+    \ prevents cross-contamination between train/test windows from the same trajectory\n\
+    5. **Honest architectural positioning** — architecture framed as engineering choice,\
+    \ not contribution; supported by ablation showing GRU ≈ Transformer (< 1pp difference)\n\
+    6. **Informative error analysis** — FP/FN decomposition with meaningful patterns\
+    \ (exploratory behavior vs. diverse ineffective commands)\n7. **LF temporal dynamics**\
+    \ — leading/lagging behavior of LFs at stagnation onset (34% → 71% agreement)\
+    \ is a genuinely interesting observation for the data programming community\n\n\
+    **Weaknesses:**\n1. **(Critical) Sentence encoder unnamed.** The paper says \"\
+    a frozen sentence encoder\" with 1024 dimensions but never identifies it. Code\
+    \ inspection reveals it is Qwen3-Embedding-0.6B with last-token pooling. This\
+    \ is a basic reproducibility failure. No embedding model ablation is provided\
+    \ — results may differ substantially with different encoders.\n2. **(Critical)\
+    \ No variance reporting.** All results are from a single seed (42). With margins\
+    \ of 2–7pp over baselines and a small gold set, it is impossible to assess statistical\
+    \ reliability. Multi-seed experiments are absent.\n3. **(Critical) Code-paper\
+    \ architecture discrepancy.** The paper describes a BiGRU with learned attention\
+    \ weights (Equations 2–3, Section 3.4) and reports attention-based interpretability\
+    \ results (concentration coefficient 0.73, stagnation onset localization at steps\
+    \ 2–3). **Code inspection reveals the actual model is a unidirectional 2-layer\
+    \ GRU that takes the last hidden state with no attention mechanism whatsoever.**\
+    \ This means either the paper describes a model different from what was evaluated,\
+    \ or the attention-based interpretability claims (Section 7) are unsupported.\
+    \ This is the most serious finding of this review.\n4. **(Major) outcome_backpropagation\
+    \ LF leaks future information.** This LF propagates final trajectory outcome backward\
+    \ to label earlier windows. For exit_context trajectories, ALL windows are labeled\
+    \ as stagnation regardless of actual content. This creates a risk that the probe\
+    \ learns trajectory-position features as a proxy for genuine progress signals.\n\
+    5. **(Major) Human gold set too small.** 400 windows (156 stag / 244 prog) yields\
+    \ ~±3–4pp bootstrap CI on macro-F1. The +2.11pp advantage over Claude S4 few-shot\
+    \ is likely not statistically significant at this sample size. No confidence intervals\
+    \ are reported.\n6. **(Moderate) Repeat-3 is a straw-man.** Repeat-3 uses exact\
+    \ string matching. Real cycle detectors use embedding similarity or learned anomaly\
+    \ detection. A soft-match Repeat-3 variant would likely close part of the gap.\n\
+    7. **(Moderate) Cross-agent evaluation uses unvalidated labels.** The 48,352 OpenHands\
+    \ windows are labeled by the same LFs (with format adaptation). Without any human\
+    \ labels on OpenHands, the 0.835 F1 may reflect ability to mimic adapted LFs rather\
+    \ than genuine progress detection.\n8. **(Minor) Class imbalance.** 71.5% progress\
+    \ / 28.5% stagnation. MV labels systematically under-label stagnation (38 stag→prog\
+    \ errors vs. 24 prog→stag in gold set). Per-class precision/recall not reported\
+    \ for most tables.\n\n**R1 Questions to Authors:**\n1. What is the frozen sentence\
+    \ encoder? Why was it chosen? How sensitive are results to this choice?\n2. Which\
+    \ model produced the reported numbers — the attention model described in the paper\
+    \ or the simpler GRU in the code?\n3. Multi-seed variance results?\n4. How were\
+    \ the 400 gold windows sampled?\n5. How was the early-termination \"optimal threshold\"\
+    \ criterion defined?\n6. What prompt template was used for LLM-as-Judge?\n7. What\
+    \ fraction of training data comes from exit_context trajectories?\n\n**R1 Scores:**\
+    \ Soundness 3/5 | Presentation 4/5 | Contribution 3/5 | **Overall 3/6 (Weak Reject)**\
+    \ | Confidence 4/5\n\n---\n\n### Reviewer 2 (R2): Novelty + Related Work\n\n**Strengths:**\n\
+    1. **Problem identification is practically valuable** — semantic stagnation is\
+    \ a genuine pain point in deployed agent systems\n2. **\"Student exceeds teacher\"\
+    \ effect** (+4.43pp over LF oracle) is the cleanest conceptual contribution, demonstrating\
+    \ GRU captures temporal dependencies LFs miss\n3. **Cross-agent transfer** provides\
+    \ meaningful generalization evidence\n4. **Cost-efficiency analysis** (31× cheaper,\
+    \ 606× faster, higher F1 vs. LLM judges) gives immediate practical relevance\n\
+    \n**Weaknesses:**\n1. **(Critical) Novelty is thin.** Both components are straightforward\
+    \ applications of existing techniques: (a) Snorkel majority-vote aggregation with\
+    \ three hand-written threshold heuristics, (b) a standard GRU classifier. Neither\
+    \ involves methodological innovation. The \"first to apply data programming to\
+    \ sequential trajectory data\" is a narrow priority claim; the sequential extension\
+    \ is handled by the downstream GRU, not by any modification to the data programming\
+    \ framework.\n2. **(Critical) Related work severely incomplete.** Only 10 references\
+    \ — far below the 30–50 standard for a top venue. Critical missing areas:\n  \
+    \ - **Process Reward Models (PRMs):** Lightman et al. (2023) \"Let's Verify Step\
+    \ by Step,\" Math-Shepherd — these estimate step-level correctness/progress in\
+    \ reasoning chains, which is conceptually the same task\n   - **RL value functions:**\
+    \ Any RL agent framework learns a value function estimating expected future reward\
+    \ — literally a progress estimator. CodeRL, RLHF-based agent training\n   - **Agent\
+    \ scaffolding with self-reflection:** Reflexion (Shinn et al. 2023), LATS (Zhou\
+    \ et al. 2023) — detect agent failure and intervene\n   - **Execution feedback:**\
+    \ Test-pass-rate signals in SWE-bench and follow-ups\n   - **Trajectory anomaly\
+    \ detection** beyond the two papers cited\n   - **Weak supervision beyond Snorkel:**\
+    \ MeTaL, FlyingSquid, programmatic labeling advances\n3. **(Major) \"Semantic\
+    \ stagnation\" may rebrand existing concepts.** The RL literature studies \"plateaus\"\
+    ; the agent literature discusses \"looping\" and \"unproductive exploration.\"\
+    \ The paper does not adequately argue why this requires a new term versus positioning\
+    \ within existing vocabulary (exploration-exploitation failure).\n4. **(Moderate)\
+    \ LLM-as-Judge comparison underspecified.** One prompt template against two models\
+    \ does not constitute a thorough comparison with the LLM-based monitoring paradigm.\
+    \ Chain-of-thought, multi-turn evaluation, and prompt optimization are known to\
+    \ substantially improve LLM judgment.\n5. **(Major) Domain specificity undermines\
+    \ generality.** All three LFs are hand-crafted for SWE-bench coding agents. No\
+    \ evaluation on non-coding agent tasks (WebArena, ToolBench, mathematical reasoning).\
+    \ Cross-agent transfer within the same task distribution (SWE-bench) is a weak\
+    \ form of generalization.\n6. **(Moderate) Venue fit concern.** The problem and\
+    \ solution are deeply embedded in SE agent evaluation. The Section 6.5 non-NLP\
+    \ baseline (0.723 F1 for structural features) argues for NLP relevance, but the\
+    \ entire framework (LFs, evaluation, application) is SE-specific.\n\n**R2 Questions\
+    \ to Authors:**\n1. How does ProgressProbe differ from training a PRM on agent\
+    \ trajectories?\n2. Could a simple value function trained with TD learning achieve\
+    \ similar performance?\n3. What is the concrete plan for extending to non-coding\
+    \ domains?\n4. Why were only 10 references included?\n5. What embedding model\
+    \ is used?\n6. Was logistic regression on combined handcrafted features + LF outputs\
+    \ tried?\n\n**R2 Scores:** Soundness 3/5 | Presentation 3/5 | Contribution 2/5\
+    \ | **Overall 3/6 (Reject)** | Confidence 4/5\n\n---\n\n## 3. Roundtable Discussion\n\
+    \n### Step 2: Cross-Sharing\n\n**R1 after reading R2:**\n- Agrees with R2's related\
+    \ work critique (W2) as a significant oversight — PRM literature is particularly\
+    \ relevant since ProgressProbe is functionally a PRM trained via weak supervision\n\
+    - Agrees that domain specificity (W5–W6) reinforces generalizability concerns\n\
+    - Partially disagrees with W3 (semantic stagnation as rebrand): the operationalization\
+    \ via embedding similarity over sliding windows is concrete and measurable, not\
+    \ merely relabeling\n- Thinks R2 underweights the \"student exceeds teacher\"\
+    \ effect\n- **Maintains 3/6**\n\n**R2 after reading R1:**\n- Considers R1's W3\
+    \ (code-paper discrepancy) the most damaging finding in either review\n- Agrees\
+    \ with all of R1's critical weaknesses (unnamed encoder, single seed, future leakage,\
+    \ small gold set)\n- Disagrees with R1's Presentation 4/5 — a paper describing\
+    \ an architecture different from its implementation has a presentation problem,\
+    \ not just soundness\n- Thinks R1 overweights LF temporal dynamics as \"genuinely\
+    \ novel\" — it is a descriptive finding, not a methodological contribution\n-\
+    \ **Lowers score to 2/6 (Strong Reject)** due to compounded concerns about reproducibility\
+    \ and accuracy\n\n### Step 3: Convergence\n\nBoth reviewers converge on the following\
+    \ critical issues:\n1. **Code-paper discrepancy is disqualifying in current form**\
+    \ — the BiGRU+attention described in the paper does not exist in the codebase;\
+    \ all attention-based interpretability claims are unsupported\n2. **Unnamed embedding\
+    \ model is a reproducibility failure**\n3. **Related work is severely incomplete**\
+    \ — missing PRMs, RL value functions, agent self-reflection\n4. **No statistical\
+    \ rigor** — single seed, no confidence intervals\n5. **Novelty is thin** — R1\
+    \ acknowledges but sees value in the weak-supervision pipeline if executed cleanly;\
+    \ R2 considers it insufficient for a top venue\n\nDisagreements:\n- R1 rates presentation\
+    \ higher (4/5) while R2 rates it lower (3/5 → 2-3/5 after cross-sharing)\n- R1\
+    \ sees more novelty in LF temporal dynamics; R2 considers it descriptive only\n\
+    - R2 is harsher on novelty (2/5 contribution) vs R1 (3/5)\n\n---\n\n## 4. Consolidated\
+    \ Assessment\n\n### What the Paper Does Well\n- **Problem is real and practically\
+    \ important.** Semantic stagnation is a genuine failure mode in deployed LLM agents.\n\
+    - **Experimental coverage is exceptional.** 16 experiments, 7 baselines, 6 ablations\
+    \ — well above average thoroughness.\n- **Evaluation design is mostly sound.**\
+    \ Human gold set as primary evaluation, instance-level splitting, cost-efficiency\
+    \ Pareto analysis.\n- **\"Student exceeds teacher\" result is interesting.** The\
+    \ +4.43pp over LF oracle demonstrates the GRU captures temporal patterns beyond\
+    \ its training signal.\n- **LF temporal dynamics observation** (leading/lagging\
+    \ indicators, onset agreement 34% → 71%) is a genuinely interesting finding about\
+    \ data programming on sequential data.\n\n### Critical Issues Requiring Resolution\n\
+    \n| # | Issue | Severity | Both Agree? |\n|---|-------|----------|-------------|\n\
+    | 1 | Code-paper discrepancy (no attention in code, BiGRU+attention in paper)\
+    \ | **Fatal** | Yes |\n| 2 | Sentence encoder unnamed, no ablation | Critical\
+    \ | Yes |\n| 3 | No multi-seed variance or significance tests | Critical | Yes\
+    \ |\n| 4 | Related work incomplete (10 refs, missing PRMs, RL, Reflexion) | Critical\
+    \ | Yes |\n| 5 | Novelty = Snorkel + GRU, both off-the-shelf | Major | Yes (degree\
+    \ differs) |\n| 6 | Domain specificity (SWE-bench only, no cross-task eval) |\
+    \ Major | Yes |\n| 7 | Human gold set too small for narrow margins | Major | Yes\
+    \ |\n| 8 | Cross-agent eval on unvalidated LF-generated labels | Major | Yes |\n\
+    | 9 | outcome_backpropagation future information leakage | Moderate | Yes |\n\
+    | 10 | Repeat-3 straw-man baseline | Moderate | R1 only |\n\n### Experiment Coverage\
+    \ vs. Design Reference\n\nThe paper covers all 16 imagined experiments from review_context.yaml,\
+    \ which is commendable. However, coverage is necessary but not sufficient — the\
+    \ quality of execution (issues #1–3 above) undermines the otherwise thorough experimental\
+    \ program.\n\n**Missing from imagined experiments that would strengthen the paper:**\n\
+    - Multi-seed variance (mentioned in experiment plans but not executed)\n- Embedding\
+    \ model ablation\n- Human labels on OpenHands subset\n- PRM baseline comparison\n\
+    - Soft-match cycle detection baseline\n\n### Scores Summary\n\n| Criterion | R1\
+    \ | R2 | Consolidated |\n|-----------|-----|-----|-------------|\n| Soundness\
+    \ | 3/5 | 3/5 | **3/5** |\n| Presentation | 4/5 | 3/5 | **3/5** |\n| Contribution\
+    \ | 3/5 | 2/5 | **2.5/5** |\n| Overall | 3/6 | 2/6 (post-discussion) | **3/6 (Reject)**\
+    \ |\n| Confidence | 4/5 | 4/5 | **4/5** |\n\n### Final Recommendation: **Reject\
+    \ (3/6)**\n\nThe paper addresses a real, practically important problem and presents\
+    \ an impressively thorough experimental program. However, multiple critical issues\
+    \ prevent acceptance:\n\n1. The **code-paper architecture discrepancy** is the\
+    \ most serious concern. The described BiGRU+attention model does not exist in\
+    \ the codebase; all attention-based interpretability results are therefore unsupported.\
+    \ This must be resolved before any re-evaluation.\n2. The **unnamed embedding\
+    \ model** and **absence of multi-seed variance** are basic reproducibility and\
+    \ rigor gaps below the threshold for a top venue.\n3. The **novelty is insufficient**\
+    \ — applying Snorkel majority-vote + training a GRU classifier are both standard\
+    \ techniques. The paper's contribution is primarily empirical/engineering, which\
+    \ demands even higher standards for experimental rigor (currently undermined by\
+    \ issues #1–3).\n4. The **related work is severely incomplete** — failure to engage\
+    \ with process reward models, RL value functions, and agent self-reflection methods\
+    \ leaves the paper's positioning unclear.\n\n### Path to Acceptance\n\nThe paper\
+    \ has a viable path to acceptance if the authors:\n1. **Align code and paper**\
+    \ — implement the described BiGRU+attention, or correct the paper to describe\
+    \ the actual model; re-run all experiments with the final architecture\n2. **Name\
+    \ and ablate the embedding model** — at minimum test 2–3 encoders\n3. **Report\
+    \ multi-seed variance** (≥3 seeds) with confidence intervals on gold set results\n\
+    4. **Expand related work to 30+ references** — engage deeply with PRMs, RL value\
+    \ functions, agent scaffolding (Reflexion/LATS), and weak supervision advances\n\
+    5. **Add human labels for OpenHands** (even 100–200 windows) to validate cross-agent\
+    \ claims\n6. **Evaluate on one non-coding agent domain** to strengthen generality\n\
+    7. **Address outcome_backpropagation leakage** — report fraction of exit_context\
+    \ data and test sensitivity\n\nWith these revisions, the comprehensive experimental\
+    \ program and practical relevance would make a solid submission.\n"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T081656/median/paper.pdf
+  imagined_experiments:
+  - name: 全量数据训练（conf≥1）
+    plan_id: probe-002
+    description: 在全部54,809窗口（含39,408个conf=1噪声窗口）上训练GRU probe，对比conf≥2基线
+    expected_results:
+      fulldata_test_macro_f1: 0.82
+      fulldata_test_accuracy: 0.865
+      fulldata_test_f1_stagnation: 0.76
+      fulldata_test_f1_progress: 0.88
+      fulldata_repeat3_f1: 0.785
+      gap_vs_repeat3_fulldata_pp: 3.5
+      conf_ge2_only_macro_f1: 0.9055
+      drop_from_conf2_pp: 8.5
+      confidence_weighted_macro_f1: 0.84
+      confidence_weighted_gain_pp: 2.0
+      best_epoch_fulldata: 5
+      training_windows: 54809
+      val_macro_f1_best_fulldata: 0.85
+    result_rationale: 'conf=1窗口占全量数据72%（39,408/54,809），这些窗口仅有单个LF投票，标签噪声率估计25-35%。
+      噪声主要影响stagnation类（少数类），因为conf=1中大量实际progress窗口被单个保守LF误标为stagnation， 导致stagnation
+      F1从0.8593暴跌至0.76（-10pp），而progress F1仅从0.9518降至0.88（-7pp）。 整体macro-F1下降8.5pp至0.82，符合median档[0.78,0.85]区间中部。
+      Repeat-3在全量测试集上也受影响——conf=1窗口中许多语义停滞不涉及命令重复，Repeat-3从0.8432降至0.785。 Gap从6.24pp缩小至3.5pp，probe仍优于Repeat-3但优势不再compelling。
+      Confidence-weighted training（loss按conf加权：conf3=1.0, conf2=0.7, conf1=0.3）部分恢复至0.84，
+      说明显式建模标签可信度有帮助但无法完全补偿噪声——因为conf=1窗口的标签本身就有系统性偏差而非随机噪声。
+
+      '
+    tables:
+    - 'Table: Full-data vs High-confidence Training | Setting | Macro-F1 | Stag-F1
+      | Prog-F1 | Gap vs R3 | conf≥2 only: 0.9055, 0.8593, 0.9518, +6.24pp | Full
+      (conf≥1): 0.82, 0.76, 0.88, +3.5pp | Conf-weighted: 0.84, 0.79, 0.89, +4.5pp'
+    figures_description:
+    - Bar chart对比三个训练设置（conf≥2, full, conf-weighted）在macro-F1和per-class F1上的表现，附带Repeat-3水平虚线作为参考
+    - Confusion matrix对比：conf≥2训练 vs full训练，展示stagnation类FN显著增加
+    analysis: '全量数据训练的F1下降证实了conf=1标签噪声是核心瓶颈。关键发现：(1) 噪声不对称——stagnation类受损更严重， 因为conf=1中存在大量"假stagnation"标签（单个保守LF的误判）；(2)
+      confidence-weighted training恢复2pp， 说明框架的confidence信号有实际价值；(3) probe在全量数据上仍优于Repeat-3（+3.5pp），但优势收窄意味着
+      Claim 2需从"显著优于"降级为"在噪声条件下仍具竞争优势"。 Paper叙事调整：强调conf≥2子集（15,401窗口）作为"高质量核心数据集"的价值，全量数据实验作为robustness
+      test。 Confidence-aware training作为方法论贡献——展示弱监督框架的confidence校准可直接用于下游训练。
+
+      '
+  - name: LF Ensemble Oracle Baseline
+    plan_id: baseline-lf-oracle
+    description: 直接用LF实时输出做窗口级判定，在auto-labeled和human-gold两个评估集上与probe对比
+    expected_results:
+      oracle_auto_test_macro_f1: 1.0
+      oracle_auto_test_accuracy: 1.0
+      oracle_gold_macro_f1: 0.75
+      oracle_gold_accuracy: 0.75
+      oracle_gold_f1_stagnation: 0.7
+      oracle_gold_f1_progress: 0.8
+      probe_gold_macro_f1: 0.77
+      gap_probe_vs_oracle_gold_pp: 2.0
+      oracle_conf1_subset_gold_accuracy: 0.62
+      oracle_conf2_subset_gold_accuracy: 0.83
+    result_rationale: 'LF oracle在auto-labeled测试集上达到1.0 F1——这是定义层面的结果，因为测试标签本身就是LF
+      majority vote。 这意味着probe在auto-labels上永远无法"超越"oracle（0.9055 < 1.0），probe的增量价值只能在human
+      gold上体现。 在400窗口human gold上，oracle F1=0.75：三个LF的majority vote是对progress/stagnation的合理但不完美近似，
+      conf=1子集尤其薄弱（accuracy仅62%），因为单LF投票缺乏交叉验证。 Probe在gold上达0.77（+2pp），说明probe通过embedding空间学到了LF未显式编码的模式——
+      特别是语义相似但表面不同的stagnation模式（paraphrased repetition）。 但2pp的gap仅边际显著（400样本下bootstrap
+      CI可能overlap），这是median档的核心张力： probe的增量价值真实存在但统计上不够robust。
+
+      '
+    tables:
+    - 'Table: LF Oracle vs Probe on Auto-Labels and Gold Labels | Evaluation Set |
+      LF Oracle F1 | Probe F1 | Gap | Auto-labeled (conf≥2 test): 1.00, 0.9055, -9.45pp
+      | Auto-labeled (full test): 1.00, 0.82, -18pp | Human Gold (all): 0.75, 0.77,
+      +2.0pp | Human Gold (conf=1 subset): 0.60, 0.68, +8pp | Human Gold (conf≥2 subset):
+      0.84, 0.83, -1pp'
+    figures_description:
+    - Venn diagram展示LF oracle和probe各自正确/错误的窗口集合，highlight probe独有正确案例（oracle错probe对）的语义特征
+    analysis: 'Oracle baseline揭示了弱监督框架的核心limitation：在auto-labels上，probe无法超越label source本身。
+      Probe的价值在于泛化——在human gold上+2pp，特别是在conf=1子集上+8pp（0.68 vs 0.60）， 说明probe在LF disagree的模糊区域学到了更好的decision
+      boundary。 但conf≥2 gold子集上oracle反超probe 1pp（0.84 vs 0.83），说明当LFs一致且正确时probe没有增量价值。
+      Paper framing：oracle baseline不是probe的竞争对手而是框架的一部分——oracle提供quick-and-dirty判断，
+      probe提供更robust的泛化，两者是同一框架的不同deployment选项。
+
+      '
+  - name: LLM-as-Judge Baseline
+    plan_id: baseline-llm-judge
+    description: Claude-3.5-Sonnet和GPT-4o作为zero-shot和few-shot judge，在auto-labels和gold上评估
+    expected_results:
+      claude_zeroshot_auto_macro_f1: 0.81
+      claude_fewshot_auto_macro_f1: 0.84
+      gpt4o_zeroshot_auto_macro_f1: 0.8
+      gpt4o_fewshot_auto_macro_f1: 0.83
+      claude_fewshot_gold_macro_f1: 0.82
+      gpt4o_fewshot_gold_macro_f1: 0.8
+      probe_conf2_auto_macro_f1: 0.9055
+      probe_fulldata_auto_macro_f1: 0.82
+      probe_gold_macro_f1: 0.77
+      cost_per_window_probe_usd: 0.0005
+      cost_per_window_claude_usd: 0.018
+      cost_multiplier: 35
+      latency_probe_ms: 3
+      latency_claude_ms: 2800
+      latency_multiplier: 930
+      total_eval_windows: 500
+      api_cost_total_usd: 95
+    result_rationale: 'LLM judge有access to full window context（raw trajectory text），而probe只看embedding。
+      Claude few-shot在auto-labels上达0.84——接近conf≥2 probe（0.9055）但低于oracle（1.0）。 关键发现：在human
+      gold上，Claude few-shot达0.82，反超probe的0.77——LLM的语义理解能力使其在gold evaluation上更强。 这是median档的核心挑战：LLM
+      judge在质量上占优，probe的优势只剩cost-efficiency。 Cost multiplier=35x：每个窗口5步×200-400 tokens/步=1000-2000
+      input tokens + prompt template， Claude-3.5-Sonnet pricing下约$0.018/窗口，vs probe的embedding
+      inference $0.0005/窗口。 Latency差距更大：probe <5ms（GPU inference）vs LLM ~2.8s（API
+      roundtrip + generation）。 Zero-shot vs few-shot gap约3pp，说明LLM需要task-specific
+      calibration但门槛不高。 GPT-4o略弱于Claude 1-2pp，两者差距不大。
+
+      '
+    tables:
+    - 'Table: LLM-as-Judge vs Probe | Method | Auto F1 | Gold F1 | $/window | ms/window
+      | Probe (conf≥2): 0.9055, 0.77, 0.0005, 3 | Probe (full): 0.82, 0.77, 0.0005,
+      3 | Claude ZS: 0.81, 0.79, 0.018, 2800 | Claude FS: 0.84, 0.82, 0.018, 2800
+      | GPT-4o ZS: 0.80, 0.78, 0.015, 3200 | GPT-4o FS: 0.83, 0.80, 0.015, 3200 |
+      LF Oracle: 1.00, 0.75, ~0, ~0'
+    figures_description:
+    - Cost-Accuracy Pareto图：x轴=$/window (log scale)，y轴=Gold F1，每个method一个点，Pareto
+      front连线。Probe和LF oracle在左下（cheap+decent），LLM judge在右上（expensive+best）
+    - Latency-F1 散点图：展示probe在real-time deployment场景的优势（<5ms inference enables per-step
+      monitoring）
+    analysis: 'LLM judge在gold F1上超过probe 5pp（0.82 vs 0.77），这是median档最具挑战性的结果——reviewer可能问"为什么不直接用LLM"。
+      应对策略：(1) Cost-accuracy Pareto展示probe在budget-constrained场景的价值——监控54K窗口用LLM需$972
+      vs probe $27； (2) Latency argument——probe的3ms inference使per-step real-time monitoring成为可能，LLM的2.8s不适合在线干预；
+      (3) 架构论证——probe是轻量local model，可在edge/on-device部署，不依赖API availability。 Paper应诚实承认LLM
+      judge的quality优势，将probe定位为"practical deployment option"而非"quality frontier"。
+      框架贡献的重心不受影响——弱监督标注框架解决的是数据获取问题，下游可以用probe也可以用LLM judge做inference。
+
+      '
+  - name: Mean-Pooling + Logistic Regression Baseline
+    plan_id: baseline-meanpool-lr
+    description: 窗口内step embeddings做mean-pooling后接LR分类器，作为参数匹配下界验证GRU时序建模增量
+    expected_results:
+      meanpool_lr_conf2_macro_f1: 0.86
+      meanpool_lr_conf2_accuracy: 0.89
+      meanpool_lr_conf2_f1_stagnation: 0.81
+      meanpool_lr_conf2_f1_progress: 0.91
+      meanpool_lr_fulldata_macro_f1: 0.79
+      gap_gru_vs_meanpool_conf2_pp: 4.5
+      gap_gru_vs_meanpool_fulldata_pp: 3.0
+      meanpool_lr_gold_macro_f1: 0.74
+    result_rationale: 'Mean-pooling丢弃了步骤间的顺序信息——将5个step embeddings均匀平均为单个向量。 在conf≥2上达0.86（vs
+      GRU 0.9055, gap=4.5pp），说明embedding空间本身已编码了相当的progress/stagnation信号， 即使没有时序建模也能达到reasonable性能。4.5pp的gap虽然真实，但不像6.24pp（GRU
+      vs Repeat-3）那么compelling。 在全量数据上gap缩小至3pp（0.82 vs 0.79），因为标签噪声同时削弱两个方法，但GRU更受时序信号disruption影响。
+      Stagnation F1（0.81）显著低于GRU（0.8593），符合直觉——stagnation的onset位置是关键时序信号，mean-pooling无法捕获。
+      Median档核心问题："GRU与LR差距存在但不大（2-4pp），时序建模claim需补充attention可视化等定性证据"。
+
+      '
+    tables:
+    - 'Table: Temporal Modeling Ablation | Method | conf≥2 F1 | Full F1 | Gold F1
+      | Stag F1 (conf≥2) | GRU+Attn: 0.9055, 0.82, 0.77, 0.8593 | MeanPool+LR: 0.86,
+      0.79, 0.74, 0.81 | Repeat-3: 0.8432, 0.785, 0.72, 0.75 | Gap GRU-LR: +4.5pp,
+      +3pp, +3pp, +5pp'
+    figures_description:
+    - Paired error analysis：GRU正确但LR错误的窗口 vs LR正确但GRU错误的窗口——按stagnation onset位置分组，展示GRU在early-onset和late-onset
+      stagnation上的优势
+    analysis: '4.5pp gap支持时序建模有增量价值，但在median档下这不足以standalone支撑Claim 2。 需要补充定性证据：(1)
+      attention可视化展示GRU在stagnation onset位置的注意力集中模式（LR无法表达）； (2) 错误分析展示GRU独有正确案例集中在"渐进式停滞"（前2步正常、后3步停滞）——这类模式mean-pooling会被前2步稀释。
+      Paper建议将GRU vs LR差距frame为"时序建模在stagnation onset检测上的边际贡献"，而非"GRU大幅优于静态方法"。
+
+      '
+  - name: Probe Error Analysis
+    plan_id: error-analysis
+    description: Probe FP/FN按action type、LF source、trajectory outcome分类，揭示probe捕获vs遗漏的模式
+    expected_results:
+      total_errors_conf2_test: 221
+      false_positives: 98
+      false_negatives: 123
+      fp_rate: 0.063
+      fn_rate: 0.079
+      fp_dominant_category: exploration_misclassified_as_stagnation
+      fp_exploration_pct: 42
+      fp_single_lf_disagreement_pct: 31
+      fp_trajectory_eventually_succeeded_pct: 67
+      fn_dominant_category: semantic_stagnation_without_repetition
+      fn_no_repeat3_signal_pct: 71
+      fn_diverse_commands_pct: 58
+      fn_trajectory_failed_pct: 89
+      probe_catches_repeat3_misses: 187
+      repeat3_catches_probe_misses: 34
+      overlap_correct: 2571
+    result_rationale: '在conf≥2测试集（~3,080窗口）上，probe有221个错误（7.18% error rate）。 FP（98个）：最大类别是"exploration误判为stagnation"（42%）——agent在搜索文件、尝试不同路径，
+      每步都不同但整体缺乏linear progress，probe将这种"发散性探索"误读为停滞。31%的FP在LF层面就有分歧（conf=2但两个LF方向相反）。
+      FN（123个）：主导类别是"无重复的语义停滞"（58%）——agent执行多样化命令但都不朝goal方向推进， 71%的FN在Repeat-3层面也miss（因为没有字面重复）。这是probe当前的盲区：需要goal-awareness才能检测的停滞。
+      Probe独有正确187个 vs Repeat-3独有正确34个：probe的主要增量来自检测paraphrased repetition（同一操作不同表述）
+      和gradual stagnation（前几步有进展、后几步停滞的窗口）。
+
+      '
+    tables:
+    - 'Table: Error Taxonomy | Category | Count | % of Errors | Example Pattern |
+      FP-exploration: 41, 42%, agent grep/find不同文件 | FP-lf-conflict: 30, 31%, conf=2但LF方向冲突
+      | FP-other: 27, 27%, edge cases | FN-semantic-stag: 72, 58%, 多样命令零进展 | FN-late-onset:
+      31, 25%, 停滞在窗口最后1-2步 | FN-other: 20, 16%, rare patterns'
+    - 'Table: Probe vs Repeat-3 Error Overlap | | R3 Correct | R3 Wrong | Probe Correct:
+      2571, 187 | Probe Wrong: 34, 221-overlap矩阵'
+    figures_description:
+    - Sankey diagram：错误类型 → action type → trajectory outcome，展示错误流向
+    - 具体案例展示（3-4个典型FP/FN），每个案例包含5步window原文摘要 + LF输出 + probe预测 + gold label
+    analysis: 'Error analysis是median档的关键定性贡献。两个核心发现： (1) Probe捕获了187个Repeat-3遗漏的窗口，集中在paraphrased
+      repetition和gradual onset——这些是heuristic无法表达的模式， 支撑"学习的时序模型捕获了启发式之外的信号"这一降级后的claim。
+      (2) Probe的主要盲区是goal-unaware semantic stagnation——agent做不同的事但都没用，检测这类停滞需要task-level
+      goal理解。 这为future work提供了明确方向（goal-conditioned probe）。 Paper中这部分应重点展示具体案例（case
+      study），用qualitative evidence弥补quantitative gap收窄带来的说服力不足。
+
+      '
+  - name: 跨Agent迁移评估（OpenHands）
+    plan_id: cross-agent
+    description: SWE-agent训练的probe在OpenHands轨迹上zero-shot评估 + few-shot fine-tuning恢复曲线
+    expected_results:
+      openhands_total_trajectories: 2140
+      openhands_total_windows: 18720
+      openhands_lf_adapted_coverage: 0.87
+      zeroshot_macro_f1: 0.73
+      zeroshot_accuracy: 0.78
+      zeroshot_f1_stagnation: 0.65
+      zeroshot_f1_progress: 0.81
+      drop_from_swe_agent_pp: 17.5
+      zeroshot_vs_random_pp: 23.0
+      zeroshot_vs_majority_pp: 30.7
+      zeroshot_repeat3_openhands_f1: 0.71
+      gap_vs_repeat3_openhands_pp: 2.0
+      fewshot_50_macro_f1: 0.78
+      fewshot_200_macro_f1: 0.82
+      fewshot_500_macro_f1: 0.85
+      openhands_embedding_time_hours: 3.2
+      openhands_lf_adaptation_issues: command format差异导致command_repetition LF recall下降15%
+    result_rationale: 'Zero-shot迁移F1=0.73（-17.5pp from SWE-agent的0.9055），符合median档[0.68,0.78]区间。
+      下降来源：(1) OpenHands和SWE-agent的action space差异——OpenHands用不同的命令格式和文件操作API， 导致embedding空间分布shift；(2)
+      LF适配不完全——command_repetition LF依赖特定命令格式匹配， OpenHands格式差异导致recall下降15%，file_diff_delta
+      LF较robust（基于git diff，与agent无关）； (3) 轨迹结构差异——OpenHands倾向更短的action序列和更频繁的tool
+      switching。 Stagnation F1（0.65）远低于progress F1（0.81），说明stagnation模式的跨agent迁移更困难——
+      不同agent的"停滞方式"差异大于"进展方式"。 Few-shot fine-tuning效果显著：50个标注窗口即恢复至0.78，200个恢复至0.82，500个接近SWE-agent性能（0.85）。
+      这支持"learned representations are transferable starting points"的叙事。 Repeat-3在OpenHands上也下降至0.71（SWE-agent上0.8432），probe保持2pp领先。
+
+      '
+    tables:
+    - 'Table: Cross-Agent Transfer | Setting | Macro-F1 | Stag-F1 | Prog-F1 | SWE-agent
+      (conf≥2): 0.9055, 0.8593, 0.9518 | OpenHands zero-shot: 0.73, 0.65, 0.81 | OpenHands
+      50-shot: 0.78, 0.72, 0.84 | OpenHands 200-shot: 0.82, 0.77, 0.87 | OpenHands
+      500-shot: 0.85, 0.81, 0.89'
+    - 'Table: Baselines on OpenHands | Method | Macro-F1 | Random: 0.50 | Majority:
+      0.42 | Repeat-3: 0.71 | Cosine-sim: 0.35 | Probe zero-shot: 0.73 | Probe 200-shot:
+      0.82'
+    figures_description:
+    - Few-shot learning curve：x轴=fine-tuning样本数（0,50,200,500），y轴=macro-F1，含SWE-agent
+      performance水平虚线
+    - t-SNE对比：SWE-agent GRU hidden states vs OpenHands GRU hidden states，展示distribution
+      shift但保持cluster结构
+    analysis: 'Zero-shot F1=0.73证实了跨agent progress信号的可迁移性——probe学到的不仅是SWE-agent特定行为模式。
+      但17.5pp drop也说明domain adaptation是必要的，不能claim"直接迁移保持有效"。 Few-shot曲线是median档的关键补充实验——200个窗口即可恢复至0.82，说明probe
+      representations 提供了strong initialization，远优于from-scratch训练（相同200样本from-scratch仅~0.65）。
+      Claim 3调整为："zero-shot迁移存在（+23pp vs random），few-shot adaptation高效（200样本恢复至82%），
+      表明probe学到的progress信号具有跨实现的通用性，但需要少量target-domain数据calibration"。 LF适配问题应在Limitations中明确讨论——command_repetition的format
+      dependency是框架的结构性弱点。
+
+      '
+  - name: Window Size消融
+    plan_id: ablation-window-size
+    description: k=3,5,7步窗口大小消融，评估检测粒度与信号积累的tradeoff
+    expected_results:
+      k3_macro_f1: 0.86
+      k3_f1_stagnation: 0.81
+      k3_total_windows: 22130
+      k5_macro_f1: 0.9055
+      k5_f1_stagnation: 0.8593
+      k5_total_windows: 15401
+      k7_macro_f1: 0.89
+      k7_f1_stagnation: 0.84
+      k7_total_windows: 11280
+      optimal_k: 5
+    result_rationale: 'k=3（0.86）：窗口太短，stagnation信号不够accumulate——3步中可能只有1-2步显示停滞迹象，
+      导致stagnation F1从0.8593降至0.81。同时窗口数量增加（22K vs 15K），但每个窗口的信噪比降低。 k=5（0.9055）：最优平衡点——足够长以捕获stagnation
+      onset的时序签名，又不至于被过多context稀释。 k=7（0.89）：窗口过长引入两个问题——(1) 跨phase窗口增多（前4步progress+后3步stagnation混合），
+      标签变得ambiguous；(2) 可用训练窗口减少（11K，短轨迹被排除）。 k=5 > k=7的1.5pp gap不大，但一致支持5步作为default选择。
+
+      '
+    tables:
+    - 'Table: Window Size Ablation | k | Windows | Macro-F1 | Stag-F1 | Prog-F1 |
+      3: 22130, 0.86, 0.81, 0.91 | 5: 15401, 0.9055, 0.8593, 0.9518 | 7: 11280, 0.89,
+      0.84, 0.94'
+    figures_description:
+    - 'Line chart: k vs macro-F1和per-class F1，展示k=5的sweet spot'
+    analysis: 'k=5是clear optimal，但k=3和k=7的性能下降不剧烈（<5pp），说明probe对窗口大小较robust。 Paper中作为Table放在appendix，主文一句话提及"k=5
+      optimal, robust to ±2 steps"。
+
+      '
+  - name: 架构消融
+    plan_id: ablation-architecture
+    description: GRU+attention vs GRU+mean-pool vs Transformer encoder vs MLP on concat，在conf≥2上对比
+    expected_results:
+      gru_attention_macro_f1: 0.9055
+      gru_meanpool_macro_f1: 0.89
+      transformer_encoder_macro_f1: 0.9
+      mlp_concat_macro_f1: 0.87
+      gru_attention_params: 542000
+      gru_meanpool_params: 530000
+      transformer_encoder_params: 1200000
+      mlp_concat_params: 2600000
+    result_rationale: 'GRU+attention（0.9055）vs Transformer（0.90）：差距仅0.5pp，Transformer理论上有更强的长程依赖建模，
+      但5步窗口太短，长程优势无法发挥，反而参数量是GRU的2.2x，更容易在小数据上overfit。 GRU+mean-pool（0.89）vs GRU+attention（0.9055）：attention贡献1.5pp，主要来自对stagnation
+      onset位置的加权—— attention机制允许模型关注窗口内的关键转折点，mean-pool则均匀对待每步。 MLP on concat（0.87）：将5个1024维embedding拼接为5120维向量后接MLP，完全丢弃顺序信息，
+      性能最低但仍远超Repeat-3（+2.7pp），说明embedding空间本身的区分度很高。
+
+      '
+    tables:
+    - 'Table: Architecture Ablation | Architecture | Macro-F1 | Stag-F1 | Params |
+      Inference ms | GRU+Attn: 0.9055, 0.8593, 542K, 2.8 | GRU+MeanPool: 0.89, 0.84,
+      530K, 2.5 | Transformer: 0.90, 0.85, 1.2M, 3.5 | MLP-Concat: 0.87, 0.82, 2.6M,
+      1.2'
+    figures_description:
+    - Params vs F1 散点图，展示GRU+attention的efficiency优势（最少参数、最高F1）
+    analysis: '架构选择对性能的影响（3.5pp range）小于训练数据质量的影响（8.5pp drop on full data）。 这支持paper的framing——"架构是deliberate
+      simple technical choice，不是核心贡献"。 GRU+attention的marginal优势（vs Transformer +0.5pp）在统计上可能不显著，
+      但parameter efficiency（542K vs 1.2M）和inference speed是合理的选择理由。 放在appendix，主文用一句话："GRU+attention
+      achieves best F1 among four architectures (0.87-0.91 range); architecture choice
+      matters less than label quality."
+
+      '
+  - name: LF Hold-One-Out消融
+    plan_id: ablation-lf-holdout
+    description: 每次移除一个LF重新生成标签并训练probe，量化各LF边际贡献
+    expected_results:
+      all_3_lfs_macro_f1: 0.9055
+      without_command_repetition_f1: 0.87
+      without_command_repetition_drop_pp: 3.5
+      without_file_diff_delta_f1: 0.88
+      without_file_diff_delta_drop_pp: 2.5
+      without_outcome_backprop_f1: 0.89
+      without_outcome_backprop_drop_pp: 1.5
+      without_command_repetition_conf2_windows: 9800
+      without_file_diff_delta_conf2_windows: 10200
+      without_outcome_backprop_conf2_windows: 12100
+      without_command_repetition_label_flip_pct: 12.3
+      without_file_diff_delta_label_flip_pct: 8.7
+      without_outcome_backprop_label_flip_pct: 5.1
+    result_rationale: 'command_repetition移除后drop最大（-3.5pp）：这是最informative的LF，因为命令重复是stagnation最直接的信号，
+      移除它后12.3%的窗口标签翻转，conf≥2窗口数从15,401降至9,800（大量窗口失去第二个支持LF）， 训练数据大幅缩减导致probe性能下降。
+      file_diff_delta移除（-2.5pp）：文件改动信号是progress的strong indicator，移除后probe更难区分 "有file
+      diff的progress"和"无diff的exploration"。 outcome_backpropagation移除（-1.5pp）：结果回传LF是lagging
+      indicator（需要trajectory结束后才能计算）， 对实时检测的边际贡献最小。但它提供了唯一的outcome-level信号，移除后probe对"最终成功前的暂时停滞"更容易FP。
+      三个LF都有不可替代的贡献（最小drop仍有1.5pp），支持"三个LF互补"的框架设计claim。
+
+      '
+    tables:
+    - 'Table: LF Hold-One-Out | Removed LF | Macro-F1 | Drop | conf≥2 Windows | Label
+      Flips % | None: 0.9055, -, 15401, - | command_rep: 0.87, -3.5pp, 9800, 12.3%
+      | file_diff: 0.88, -2.5pp, 10200, 8.7% | outcome_bp: 0.89, -1.5pp, 12100, 5.1%'
+    figures_description:
+    - Stacked bar chart展示每个LF被移除后的label flip方向（progress→stagnation vs stagnation→progress）
+    analysis: 'LF hold-out支持框架设计的合理性：每个LF贡献1.5-3.5pp，没有冗余LF。 command_repetition是backbone
+      LF，但移除后probe仍达0.87（远超Repeat-3），说明probe不仅学了repetition检测。 Paper中作为Table 3放主文（支撑Claim
+      1），强调LF互补性是data programming在trajectory上有效的关键。
+
+      '
+  - name: SupCon辅助损失消融
+    plan_id: ablation-supcon
+    description: 对比有/无supervised contrastive loss对F1和embedding分离度的影响
+    expected_results:
+      without_supcon_macro_f1: 0.9055
+      with_supcon_macro_f1: 0.915
+      supcon_gain_pp: 1.0
+      without_supcon_silhouette_score: 0.42
+      with_supcon_silhouette_score: 0.58
+      supcon_weight_optimal: 0.3
+      with_supcon_fulldata_macro_f1: 0.835
+      supcon_fulldata_gain_pp: 1.5
+    result_rationale: '当前probe（probe-001）未使用SupCon。添加SupCon辅助损失（权重0.3）在conf≥2上仅提升1pp至0.915——
+      因为conf≥2数据本身已经很clean，embedding空间的CE loss已足够分离两类。 但SupCon的真正价值在全量数据上：+1.5pp（0.835
+      vs 0.82），因为contrastive loss对noisy labels更robust—— 即使部分样本label错误，大多数同类样本仍会pull
+      together，提供了implicit label smoothing效果。 Silhouette score从0.42提升至0.58，说明SupCon确实改善了embedding空间的类别分离度。
+      但整体增益modest（1-1.5pp），在median档下不值得作为独立贡献，放appendix。
+
+      '
+    tables:
+    - 'Table: SupCon Ablation | Setting | w/o SupCon | w/ SupCon | Gain | conf≥2 F1:
+      0.9055, 0.915, +1.0pp | Full F1: 0.82, 0.835, +1.5pp | Silhouette: 0.42, 0.58,
+      +0.16'
+    figures_description:
+    - t-SNE visualization对比：无SupCon vs 有SupCon的GRU hidden states，展示类别分离度改善
+    analysis: 'SupCon提供modest improvement，在全量数据上更有价值（+1.5pp）。 建议作为"confidence-aware
+      training"的supplement之一——combined with conf-weighted loss， 可能将full-data F1推至0.84-0.85。但不改变median档的整体叙事。Appendix
+      material。
+
+      '
+  - name: Non-NLP Baseline
+    plan_id: non-nlp-baseline
+    description: 仅用纯结构/数值特征分类（行数改动、命令类型、文件数等），证明NL embedding的必要性
+    expected_results:
+      structural_features_only_f1: 0.72
+      structural_features_accuracy: 0.78
+      structural_f1_stagnation: 0.63
+      structural_f1_progress: 0.81
+      features_used: 15
+      feature_importance_top3: lines_changed_std, unique_commands_ratio, file_count_delta
+      gap_vs_probe_pp: 18.5
+      gap_vs_repeat3_pp: -12.3
+      structural_plus_embedding_f1: 0.91
+    result_rationale: '纯结构特征（15个手工特征：行数改动均值/方差、唯一命令比例、文件数变化、命令长度、AST相关指标等） 在GBM分类器上达0.72——远超random（0.50）但远低于embedding-based方法（0.9055）。
+      关键gap在stagnation检测（0.63 vs 0.8593）：结构特征无法区分"表面不同但语义相似的停滞"—— 两个不同命令的行数改动可能相似，但语义上一个是有效修复、另一个是无效尝试。
+      NL embedding的增量价值=18.5pp，这是venue fit论证的核心数据——证明NL理解（而非纯SE指标） 对progress estimation是必要的，使paper属于NLP
+      scope而非SE-only。 Structural+embedding融合（0.91）略优于纯embedding（0.9055），说明结构特征提供少量complementary信号。
+
+      '
+    tables:
+    - 'Table: NLP vs Non-NLP Features | Feature Set | Macro-F1 | Stag-F1 | Structural
+      only (15 features): 0.72, 0.63 | NL Embedding only (GRU): 0.9055, 0.8593 | Structural
+      + Embedding: 0.91, 0.87 | Gap (embed-structural): +18.5pp, +23pp'
+    figures_description:
+    - Feature importance bar chart（结构特征top-10），展示哪些SE指标对progress最有信息量
+    - Scatter plot：structural feature prediction confidence vs embedding prediction
+      confidence，展示两者disagreement区域
+    analysis: '18.5pp gap是venue fit论证的killer evidence——纯结构特征不够，NL understanding是必要的。
+      这将paper锚定在NLP scope：progress estimation不是一个可以用SE metrics解决的问题，需要语义层面的建模。 Structural+embedding的marginal
+      gain（+0.5pp）说明feature engineering不是bottleneck。 主文Table，用于Section 5的venue fit论证段落。
+
+      '
+  - name: Data Scaling曲线
+    plan_id: data-scaling
+    description: 10%/25%/50%/100%训练数据→probe F1，评估标注数据需求和框架效率
+    expected_results:
+      scale_10pct_windows: 1540
+      scale_10pct_macro_f1: 0.8
+      scale_25pct_windows: 3850
+      scale_25pct_macro_f1: 0.85
+      scale_50pct_windows: 7700
+      scale_50pct_macro_f1: 0.88
+      scale_100pct_windows: 15401
+      scale_100pct_macro_f1: 0.9055
+      diminishing_returns_threshold: 50%（~7.7K windows）
+      scale_10pct_vs_repeat3_gap_pp: -4.3
+      scale_25pct_vs_repeat3_gap_pp: 0.7
+      scale_50pct_vs_repeat3_gap_pp: 3.7
+    result_rationale: '10%数据（1,540窗口）probe达0.80——低于Repeat-3（0.8432），说明极少数据下heuristic更reliable。
+      25%（3,850窗口）达0.85，首次surpass Repeat-3（+0.7pp），标志着"probe优于heuristic"的数据门槛。 50%（7,700窗口）达0.88，性能曲线开始flatten——50%→100%仅+2.5pp
+      vs 25%→50%的+3pp。 Scaling近似log-linear：每翻倍数据约+2-3pp，符合typical neural model behavior。
+      关键takeaway：框架生成的15K高质量窗口已接近saturation，继续扩大数据量（如纳入conf=1） 回报递减且引入噪声——这从数据效率角度论证了"conf≥2策略的合理性"。
+
+      '
+    tables:
+    - 'Table: Data Scaling | Training % | Windows | Macro-F1 | vs Repeat-3 | 10%:
+      1540, 0.80, -4.3pp | 25%: 3850, 0.85, +0.7pp | 50%: 7700, 0.88, +3.7pp | 100%:
+      15401, 0.9055, +6.2pp'
+    figures_description:
+    - 'Learning curve: x轴=训练窗口数(log scale)，y轴=macro-F1，含Repeat-3水平虚线和25% crossover标注'
+    analysis: 'Data scaling曲线是弱监督框架的效率论证——用LFs自动生成的15K标签足以训练competitive probe。 对比人工标注成本：标注15K窗口按$0.5/窗口需$7,500+annotator管理开销，
+      而LF开发是one-time effort（3个LF + majority vote pipeline）。 25%crossover point（~4K窗口）是practical
+      guidance——部署时minimum viable dataset约4K窗口。 放主文Figure，支撑Claim 1（弱监督框架有效性+数据效率）。
+
+      '
+  - name: Early Termination模拟
+    plan_id: early-termination-sim
+    description: 在held-out轨迹上模拟probe-triggered early termination，计算token savings vs
+      success rate tradeoff
+    expected_results:
+      total_held_out_trajectories: 320
+      threshold_07_token_savings_pct: 22
+      threshold_07_success_rate_drop_pct: 3.1
+      threshold_05_token_savings_pct: 35
+      threshold_05_success_rate_drop_pct: 7.8
+      threshold_09_token_savings_pct: 12
+      threshold_09_success_rate_drop_pct: 1.2
+      intervention_paradox_cases: 28
+      intervention_paradox_pct: 8.7
+      avg_tokens_saved_per_trajectory: 4200
+      optimal_threshold: 0.7
+      pareto_auc: 0.82
+    result_rationale: '在320条held-out轨迹上模拟：当probe连续N个窗口输出P(stagnation)>threshold时触发early
+      termination。 Threshold=0.7（推荐设置）：节省22% tokens（平均每条轨迹省4,200 tokens），success rate仅下降3.1%。
+      下降来自Intervention Paradox：28条轨迹（8.7%）被probe正确识别为"当前停滞"后终止， 但实际上agent在后续步骤中"突破"了停滞并最终解决问题——这是fundamentally不可避免的。
+      Threshold=0.5（激进）：35% token savings但7.8% success rate drop，部分premature termination。
+      Threshold=0.9（保守）：仅12% savings但近零false termination。 Median档下这些数据是decent但不spectacular——22%
+      savings不足以支撑standalone的"cost reduction"claim， 作为supplementary result放附录。
+
+      '
+    tables:
+    - 'Table: Early Termination Tradeoff | Threshold | Token Savings % | Success Drop
+      % | False Terminations | 0.5: 35%, -7.8%, 25 | 0.7: 22%, -3.1%, 10 | 0.9: 12%,
+      -1.2%, 4'
+    figures_description:
+    - 'Pareto curve: x轴=success rate drop，y轴=token savings %，每个threshold一个点，含annotated
+      optimal point'
+    - 'Case study: 2-3个Intervention Paradox案例——probe正确检测stagnation但agent后来recovered'
+    analysis: 'Early termination实验展示probe的practical deployment价值，但median档下savings不够impressive（22%）。
+      Intervention Paradox（8.7%）是honest limitation——任何real-time monitor都面临这个问题。 Paper建议放Discussion
+      section作为"deployment考量"，不作为core result。 重点highlight Intervention Paradox作为methodological
+      insight——offline probe evaluation和online intervention之间的gap。
+
+      '
+  - name: 可解释性分析（t-SNE + Attention）
+    plan_id: interpretability
+    description: GRU hidden states的t-SNE/UMAP可视化 + attention weight在stagnation onset位置的分析
+    expected_results:
+      tsne_cluster_separation: partial
+      tsne_silhouette_score: 0.42
+      tsne_boundary_overlap_pct: 18
+      attention_stagnation_peak_position: step 3-4 (late window)
+      attention_progress_distribution: relatively uniform
+      attention_entropy_stagnation: 1.2
+      attention_entropy_progress: 1.8
+      attention_onset_alignment_with_lf_pct: 68
+    result_rationale: 't-SNE展示两个主cluster（progress和stagnation）但存在18%的boundary overlap——
+      这些overlap窗口主要是conf=2中两个LF分歧较大的borderline cases和exploration-that-looks-like-stagnation。
+      Silhouette score 0.42（moderate）反映了问题本身的ambiguity，不是模型缺陷。 Attention分析揭示关键模式：stagnation窗口中attention集中在step
+      3-4（窗口后段）， 这与stagnation onset的直觉一致——前几步可能还在progress，后几步才开始stagnation。 Progress窗口的attention更均匀（entropy
+      1.8 vs stagnation的1.2），因为每步都有contribution。 Attention peak与LF firing位置对齐68%——probe的attention"看到了"和LF相似但不完全相同的位置。
+      剩余32%的misalignment是probe学到的LF之外的信号。
+
+      '
+    tables: []
+    figures_description:
+    - t-SNE 2D scatter plot：progress（蓝）vs stagnation（红），transparency=confidence level，标注overlap
+      region
+    - Attention heatmap grid：5个典型stagnation窗口和5个progress窗口的attention weight分布，x轴=step
+      position
+    - Attention entropy histogram：stagnation窗口（左偏，集中attention）vs progress窗口（右偏，分散attention）
+    analysis: '可解释性分析是median档下支撑Claim 2（时序建模价值）的关键定性证据。 Attention模式提供了GRU vs mean-pool差距（4.5pp）的直观解释：mean-pool等权对待5步，
+      但stagnation detection需要关注"从哪步开始停滞"——attention机制正好捕获了这个onset位置信号。 t-SNE figure放主文（Figure
+      3），attention heatmap放主文（Figure 4）。 这些可视化弥补了quantitative gap收窄后的说服力需求。
+
+      '
+  - name: 人工标注Gold Set
+    plan_id: human-annotation
+    description: 400窗口×3标注者人工标注，Fleiss κ，在gold标签上重评所有方法
+    expected_results:
+      total_windows_annotated: 400
+      annotators: 3
+      fleiss_kappa: 0.62
+      inter_annotator_agreement_pct: 78
+      majority_vote_label_accuracy_on_gold: 75
+      conf1_label_accuracy_on_gold: 62
+      conf2_label_accuracy_on_gold: 83
+      conf3_label_accuracy_on_gold: 94
+      probe_gold_macro_f1: 0.77
+      probe_gold_f1_stagnation: 0.71
+      probe_gold_f1_progress: 0.83
+      repeat3_gold_macro_f1: 0.72
+      lf_oracle_gold_macro_f1: 0.75
+      meanpool_lr_gold_macro_f1: 0.74
+      llm_judge_gold_macro_f1: 0.82
+      cosine_sim_gold_macro_f1: 0.38
+      gold_progress_pct: 62
+      gold_stagnation_pct: 38
+      gold_vs_auto_label_disagreement_pct: 25
+    result_rationale: 'Fleiss κ=0.62（substantial agreement）反映任务的inherent ambiguity——"progress"和"stagnation"的边界在人类判断中也不清晰，
+      特别是exploration、backtracking、partial progress等灰色地带。 Majority vote标签准确率75%（整体），conf分层明显：conf3=94%（几乎完美）、conf2=83%（可靠）、conf1=62%（接近随机）。
+      这直接验证了conf作为质量proxy的有效性，也解释了全量数据F1下降——38%的conf=1标签是错的。 Probe在gold上达0.77——低于auto-labeled
+      conf≥2上的0.9055（-13pp），因为： (1) probe在auto-labels上训练，对auto-labels overfitting；(2)
+      human gold发现了一些LFs系统性遗漏的模式 （如"有效exploration被LF标为stagnation"）。 LLM judge在gold上达0.82（超过probe
+      5pp），因为LLM直接理解语义，不受LF bias的间接影响。 关键：probe在gold上仍优于LF oracle（+2pp）和Repeat-3（+5pp），confirm了learning的增量价值。
+
+      '
+    tables:
+    - 'Table: All Methods on Human Gold Set (N=400) | Method | Gold Macro-F1 | Gold
+      Stag-F1 | Gold Prog-F1 | LLM Judge (FS): 0.82, 0.78, 0.86 | Probe (conf≥2):
+      0.77, 0.71, 0.83 | LF Oracle: 0.75, 0.70, 0.80 | MeanPool+LR: 0.74, 0.68, 0.80
+      | Repeat-3: 0.72, 0.65, 0.79 | Cosine-sim: 0.38, 0.30, 0.46 | Random: 0.50,
+      0.48, 0.52'
+    - 'Table: Label Quality by Confidence | Confidence | Windows | Auto-Gold Agreement
+      | Accuracy | conf=1: 160, 62%, 62% | conf=2: 200, 83%, 83% | conf=3: 40, 94%,
+      94% | Overall: 400, 75%, 75%'
+    figures_description:
+    - Grouped bar chart：所有方法在gold F1上的对比，从高到低排列
+    - Calibration plot：confidence level vs label accuracy，展示conf的quality proxy有效性
+    analysis: 'Human gold evaluation是median档的核心实验——它打破circular evaluation，提供"ground
+      truth"参考。 关键发现：(1) probe在gold上仍是best non-LLM method（0.77），验证了学习的增量价值； (2) LLM
+      judge在gold上领先（0.82），但cost 35x——probe是cost-constrained场景的最佳选择； (3) conf=1标签质量差（62%）是全量数据F1下降的root
+      cause，明确了框架的改进方向（更好的LF或label model）； (4) κ=0.62说明任务本身hard，0.77的gold F1实际上已经接近人类水平。
+      Paper主文Table（最重要的result table之一），Section 5.3 "Evaluation on Human Gold Labels"。
+
+      '
+  - name: LF Temporal Dynamics
+    plan_id: lf-temporal-dynamics
+    description: 分析各LF在stagnation onset前后的firing时序——leading vs lagging indicator
+    expected_results:
+      command_repetition_median_lead_steps: 1.5
+      command_repetition_first_fire_pct: 58
+      file_diff_delta_median_lead_steps: 0.5
+      file_diff_delta_first_fire_pct: 28
+      outcome_backprop_median_lag_steps: 2.0
+      outcome_backprop_first_fire_pct: 14
+      lf_agreement_at_onset: 0.35
+      lf_agreement_deep_stagnation: 0.72
+      probe_attention_aligns_with_leading_lf_pct: 65
+    result_rationale: 'command_repetition是最早的leading indicator（median lead 1.5步）：命令重复往往在stagnation初期就出现，
+      agent开始"重试"之前的操作。58%的stagnation窗口中它最先firing。 file_diff_delta接近同步（lead 0.5步）：文件改动减少与stagnation几乎同时发生，因为停滞的直接表现就是代码不再变化。
+      outcome_backpropagation是lagging indicator（lag 2步）：需要知道轨迹最终结果才能回传， 在real-time场景中这个信号不可用——但对offline
+      analysis有价值。 Onset时刻LF agreement仅0.35——stagnation初期信号微弱，各LF判断不一致； 深度停滞阶段agreement升至0.72——所有信号converge。
+      这解释了conf=1窗口的噪声来源：很多conf=1窗口是stagnation onset的early stage， 只有一个leading LF发出信号，其他LF尚未fire。
+
+      '
+    tables:
+    - 'Table: LF Temporal Characteristics | LF | Median Lead/Lag | First-Fire % |
+      Type | command_rep: +1.5 steps, 58%, leading | file_diff: +0.5 steps, 28%, synchronous
+      | outcome_bp: -2.0 steps, 14%, lagging'
+    figures_description:
+    - Timeline plot：以stagnation onset为零点，展示三个LF的firing概率随时间变化的曲线
+    - Heatmap：LF agreement × window position，展示onset处的低agreement到深度停滞处的高agreement
+    analysis: LF temporal dynamics提供了框架的mechanistic insight——不同LF在stagnation lifecycle中扮演不同角色。
+      对实际部署有指导意义：real-time monitoring应更权重command_repetition（leading），offline analysis可用outcome_backprop（lagging）。
+      对conf=1噪声的解释很有价值——onset阶段的低agreement是structural而非random noise， 这为confidence-aware
+      training的改进方向提供了理论依据（时序权重而非静态confidence权重）。 放Discussion section或Appendix作为框架的deeper
+      analysis。
+  review_report: '---
+
+    dream_id: dream_20260514T081656
+
+    tier: median
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-14T09:03:22.254212+00:00
+
+    ---
+
+
+    # Dream Review Report: Weakly-Supervised Progress Estimation for LLM Agent Trajectories
+
+
+    **Dream ID:** 20260514T081656
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-14
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper introduces a weak-supervision framework for detecting "semantic stagnation"
+    in LLM agent trajectories — where agents take superficially diverse but collectively
+    unproductive actions. Three domain-specific labeling functions (command repetition,
+    file-diff delta, outcome back-propagation) produce noisy window-level labels via
+    majority vote with confidence scores. A lightweight GRU probe (542K params) trained
+    on high-confidence labels (conf≥2) achieves 0.906 macro-F1 on auto-labeled data,
+    outperforming the Repeat-3 heuristic by 6.2pp. On a 400-window human gold set
+    (Fleiss κ=0.62), the probe reaches 0.77 F1 — above the LF oracle (0.75) and Repeat-3
+    (0.72), but below an LLM-as-judge baseline (0.82 F1) that costs 35× more. Cross-agent
+    transfer from SWE-agent to OpenHands yields 0.73 F1 zero-shot, recoverable to
+    0.82 with 200 labeled examples. The paper positions the weak-supervision framework
+    — not the probe — as the primary contribution.
+
+
+    ---
+
+
+    ## 2. Reviewer Summaries
+
+
+    ### Reviewer 1 (R1): Methods & Experiments — Score: 3/6 (Weak Reject), Confidence:
+    4/5
+
+
+    R1 finds the experimental program impressively broad (16 experiments covering
+    baselines, ablations, transfer, error analysis, interpretability, and deployment
+    simulation). Instance-level data splitting correctly prevents cross-contamination.
+    The "student exceeds teacher" result (+2pp over LF oracle on gold) and cost-accuracy
+    Pareto analysis against LLM judges are highlighted as strengths.
+
+
+    Key concerns: (1) The paper describes a GRU with learned attention (Eq. 1 + attention
+    equations), but R1 questions whether the actual implementation matches this description,
+    noting that all attention-based interpretability claims depend on this being accurate.
+    (2) All results come from a single random seed with no variance reporting or significance
+    tests; margins of 2-5pp on N=400 gold set likely fall within bootstrap confidence
+    intervals. (3) The frozen sentence encoder producing 1024-dim embeddings is never
+    named, and no encoder ablation exists. (4) The outcome_backpropagation LF may
+    leak trajectory-level outcome information into window-level labels. (5) The gold
+    set (N=400) is undersized for the narrow margins reported.
+
+
+    ### Reviewer 2 (R2): Novelty & Related Work — Score: 3/6 (Weak Reject), Confidence:
+    4/5
+
+
+    R2 finds the problem identification practically valuable and the experimental
+    coverage thorough. The cost-efficiency analysis (35× cheaper, 930× faster than
+    LLM judges) gives immediate practical relevance. The error overlap analysis (187
+    windows probe catches that Repeat-3 misses vs. 34 reverse) is convincing evidence
+    of complementary signal.
+
+
+    Key concerns: (1) Novelty is thin — majority vote aggregation and GRU classification
+    are both off-the-shelf; no methodological innovation in adapting data programming
+    to sequences. (2) Related work is severely incomplete (~10 references), missing
+    Process Reward Models (Lightman et al., Math-Shepherd), agent scaffolding (Reflexion,
+    LATS), and advanced label models (FlyingSquid). (3) Domain specificity undermines
+    generality claims — all LFs, evaluation, and application are SWE-bench-specific.
+    (4) The LLM-as-Judge comparison may undersell the LLM baseline (single prompt
+    template, no chain-of-thought). (5) "Semantic stagnation" potentially rebrands
+    existing concepts without sufficient justification for new terminology.
+
+
+    ---
+
+
+    ## 3. Roundtable Convergence
+
+
+    ### 3.1 Points of Agreement (High Confidence)
+
+
+    Both reviewers converge on these findings:
+
+
+    | # | Issue | Severity | Agreement |
+
+    |---|-------|----------|-----------|
+
+    | 1 | Architecture description accuracy — paper describes GRU+attention but implementation
+    details need verification | Critical | Both R1, R2 |
+
+    | 2 | Single seed, no variance or significance tests | Critical | Both R1, R2
+    |
+
+    | 3 | Embedding model unnamed, no encoder ablation | Critical | Both R1, R2 |
+
+    | 4 | outcome_backpropagation LF may leak trajectory-level outcome | Major | Both
+    R1, R2 |
+
+    | 5 | Gold set (N=400) underpowered for reported margins | Major | Both R1, R2
+    |
+
+    | 6 | Novelty below top-venue bar (off-the-shelf components) | Major | R2 primary,
+    R1 concurs |
+
+    | 7 | Related work severely incomplete | Major | R2 primary |
+
+    | 8 | Domain-specific LFs limit generality claims | Moderate | R2 primary |
+
+    | 9 | No cross-agent human validation (OpenHands) | Moderate | R1 primary |
+
+
+    ### 3.2 Points of Agreement — Strengths
+
+
+    | # | Strength | Agreement |
+
+    |---|----------|-----------|
+
+    | 1 | Exceptional experimental breadth (16 experiments, 7 baselines, 6 ablations)
+    | Both |
+
+    | 2 | "Student exceeds teacher" — probe outperforms its own label source on gold
+    | Both |
+
+    | 3 | Cost-accuracy Pareto positioning vs. LLM judges is compelling and practical
+    | Both |
+
+    | 4 | Error analysis with FP/FN taxonomy and overlap quantification | Both |
+
+    | 5 | LF temporal dynamics (leading/synchronous/lagging indicators) | Both |
+
+    | 6 | Honest framing — architecture as "engineering choice, not contribution"
+    | Both |
+
+    | 7 | Instance-level data splitting prevents cross-contamination | Both |
+
+    | 8 | Data scaling curve establishes minimum viable dataset size (~4K windows)
+    | R1 |
+
+
+    ### 3.3 Resolved Disagreements
+
+
+    No score disagreements to resolve. R1 and R2 independently arrived at 3/6 with
+    complementary but non-conflicting rationales. R1''s statistical rigor concerns
+    and R2''s novelty concerns reinforce each other: thin novelty places a higher
+    burden on experimental execution, and the execution gaps (single seed, no CIs,
+    small gold set) fail to meet that raised bar.
+
+
+    ---
+
+
+    ## 4. Consolidated Assessment
+
+
+    ### 4.1 Overall Score: 3/6 (Weak Reject)
+
+
+    ### 4.2 Confidence: 4/5 (High)
+
+
+    ### 4.3 Justification
+
+
+    The paper tackles a genuine and practically important problem — semantic stagnation
+    in LLM agents is a real failure mode that existing tools detect poorly. The experimental
+    program is among the most thorough we see at this stage, covering 16 experiments
+    with good coverage of baselines, ablations, transfer evaluation, error analysis,
+    and practical deployment simulation. The "student exceeds teacher" finding and
+    the cost-accuracy Pareto positioning against LLM judges are genuinely useful contributions.
+
+
+    However, the paper does not meet the acceptance bar for a top ML venue (~25% acceptance
+    rate) for the following reasons:
+
+
+    1. **Novelty gap.** The methodological contribution reduces to applying two well-known
+    techniques (Snorkel-style majority vote + GRU classifier) to a new domain. The
+    data programming framework is used without modification — no temporal label model,
+    no LF dependency modeling, no innovation in aggregation for sequential data. This
+    places the paper in "competent application" territory, which requires exceptionally
+    strong empirical results to compensate.
+
+
+    2. **Statistical rigor below threshold.** The compensating empirical strength
+    is undermined by: single-seed results throughout, no confidence intervals or significance
+    tests, and a gold set (N=400) that provides ~±3.5pp bootstrap CIs — meaning the
+    2pp probe-vs-oracle gap and several other key margins are likely non-significant.
+    For a paper whose value proposition is empirical, this is disqualifying.
+
+
+    3. **Architecture description concerns.** The paper describes a GRU with learned
+    attention weights and builds interpretability arguments on attention patterns
+    (concentration at stagnation onset, entropy differences). If the actual implementation
+    differs from this description, the interpretability claims would be unsupported.
+    This needs clarification.
+
+
+    4. **Related work gaps.** ~10 references is far below venue expectations. The
+    omission of Process Reward Models, agent scaffolding systems (Reflexion, LATS),
+    and advanced label models (FlyingSquid) leaves the paper poorly positioned. The
+    relationship to PRMs — which also estimate step-level quality in sequential decision-making
+    — is never discussed.
+
+
+    5. **Information leakage concern.** The outcome_backpropagation LF uses trajectory-level
+    outcome to label individual windows, potentially allowing the probe to learn trajectory-position
+    and exit-status proxies rather than genuine window-level progress signals. The
+    paper does not quantify or control for this.
+
+
+    ### 4.4 Relationship to Experimental Design
+
+
+    The paper covers all experiments from the experimental design: full-data training,
+    LF oracle, LLM-as-judge, MeanPool+LR, error analysis, cross-agent transfer, window
+    size ablation, architecture ablation, LF hold-one-out, SupCon ablation, non-NLP
+    baseline, data scaling, early termination simulation, interpretability analysis,
+    human gold set, and LF temporal dynamics. Coverage is complete and well-organized
+    across main text and appendix.
+
+
+    The experimental results are internally consistent with the design expectations.
+    Key numbers closely match planned values (e.g., conf≥2 F1=0.906, full-data F1=0.82,
+    zero-shot transfer F1=0.73, gold F1=0.77). The narrative adjustment from "probe
+    is strong" to "framework enables research, probe is one efficient downstream application"
+    is executed as designed.
+
+
+    ---
+
+
+    ## 5. Actionable Recommendations for Revision
+
+
+    ### Must-fix (for any resubmission):
+
+
+    1. **Multi-seed results.** Run all main experiments with ≥3 seeds. Report mean
+    ± std. Provide bootstrap CIs on gold-set comparisons.
+
+
+    2. **Name the embedding model.** State the frozen encoder explicitly. Run at least
+    one alternative encoder (e.g., BGE, E5, GTE) to assess sensitivity.
+
+
+    3. **Clarify architecture.** Ensure the paper description exactly matches the
+    implementation. If attention is used, the code should reflect it. If not, remove
+    attention-based interpretability claims and rerun architecture ablations.
+
+
+    4. **Expand related work.** Add PRMs (Lightman et al., Math-Shepherd), agent scaffolding
+    (Reflexion, LATS, Tree of Thoughts), advanced label models (FlyingSquid), and
+    execution feedback systems. Discuss relationship to PRMs explicitly. Target 30+
+    references.
+
+
+    5. **Quantify outcome_backpropagation impact.** Report what fraction of training
+    data comes from exit_context trajectories. Show results with outcome_backpropagation
+    restricted to last-N-windows only (no blanket labeling).
+
+
+    ### Should-fix:
+
+
+    6. **Larger gold set.** Scale to ≥1000 windows to tighten CIs on the 2-5pp margins
+    that drive key claims.
+
+
+    7. **Stronger LLM baseline.** Test chain-of-thought prompting for LLM-as-judge.
+    The current single-template comparison may undersell the LLM.
+
+
+    8. **Soft-match Repeat-3.** Implement edit-distance or embedding-similarity variant
+    of Repeat-3 to make the comparison fairer.
+
+
+    9. **Cross-domain signal.** Even a small-scale evaluation on non-SWE-bench trajectories
+    (web navigation, research tasks) would substantially strengthen the generality
+    claim.
+
+
+    10. **Discuss PRM relationship.** Frame ProgressProbe relative to PRMs — what
+    does weak supervision on trajectory structure buy over training a PRM with outcome
+    supervision?
+
+
+    ### Nice-to-have:
+
+
+    11. Consider using Snorkel''s generative label model or FlyingSquid instead of
+    naive majority vote, given low inter-LF agreement (LF agreement at onset = 0.35).
+
+
+    12. Explore temporal confidence weighting (weight by LF lead/lag position rather
+    than static confidence scores).
+
+
+    ---
+
+
+    ## 6. Meta-Assessment
+
+
+    This paper is a solid empirical study of a real problem, held back by insufficient
+    novelty for a top venue and execution gaps in statistical rigor. The experimental
+    design is comprehensive and the framing is honest. With the multi-seed results,
+    named encoder, corrected architecture description, and expanded related work,
+    it could become a competitive submission — likely as an empirical/applications
+    paper rather than a methods paper. The weak-supervision framework for trajectory
+    annotation is a genuine practical contribution even if it doesn''t clear a high
+    novelty bar; the right venue and framing could make this publishable.
+
+
+    **Recommended venue positioning:** Workshop paper at a top venue (NeurIPS/ICML
+    workshop on agents or data-centric AI), or full paper at a mid-tier venue (AAMAS,
+    EACL). For top-venue acceptance, a methodological contribution to the label aggregation
+    step (temporal label model) would be needed.
+
+
+    ---
+
+
+    *Review conducted by: R1 (Methods & Experiments) + R2 (Novelty & Related Work)*
+
+    *Roundtable: 4-step protocol (Independent → Cross-share → Convergence → Synthesis)*
+
+    *Consensus score: 3/6 (Weak Reject), Confidence 4/5*'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/dream_reports/dream_20260514T081656/worst/paper.pdf
+  imagined_experiments:
+  - name: 全量数据训练（conf≥1）
+    plan_id: probe-002
+    description: 全量54,809窗口训练GRU probe，对比conf≥2子集的0.9055基线
+    expected_results:
+      fulldata_macro_f1: 0.74
+      fulldata_accuracy: 0.78
+      fulldata_f1_stagnation: 0.67
+      fulldata_f1_progress: 0.81
+      conf2_macro_f1_reference: 0.9055
+      f1_drop_pp: 16.55
+      fulldata_gap_vs_repeat3_pp: 1.2
+      fulldata_val_macro_f1_best: 0.77
+      best_epoch: 5
+    result_rationale: 'conf≥1包含39,408个conf=1窗口（占总量72%），这些窗口只有单个LF投票，标签本质上 等于单个启发式规则的输出，噪声率极高。在worst档下，这些低置信度标签中相当比例
+      是错误的——尤其是stagnation类，因为command_repetition和file_diff_delta在边界 情况下容易误判（例如agent在探索不同文件但diff很小，或重复了一次命令但不构成停滞）。
+      conf≥2的0.9055实际上是选择偏差的产物：高置信度窗口是多个LF一致同意的"容易"样本， 这些窗口的stagnation模式更明显（反复执行相同命令、diff为零等），分类器在这些
+      pattern-obvious的样本上自然表现好。引入全量数据后，模型需要处理大量歧义样本， GRU无法从嘈杂标签中学到一致的时序信号，F1跌至0.74，与Repeat-3的差距收窄到
+      仅1.2pp，统计上可能不显著（p>0.05），直接动摇Claim 2的核心论据。
+
+      '
+    tables:
+    - name: 'Table: conf≥2 vs 全量数据性能对比'
+      columns:
+      - Setting
+      - Train Size
+      - Macro-F1
+      - Stag-F1
+      - Prog-F1
+      - Gap vs Repeat-3 (pp)
+      rows:
+      - - conf≥2 (probe-001)
+        - 15,401
+        - '0.9055'
+        - '0.8593'
+        - '0.9518'
+        - '+6.24'
+      - - conf≥1 (full)
+        - 54,809
+        - '0.74'
+        - '0.67'
+        - '0.81'
+        - '+1.2'
+      - - Δ
+        - —
+        - '-0.1655'
+        - '-0.1893'
+        - '-0.1418'
+        - '-5.04'
+    figures_description:
+    - 'Bar chart: conf≥2 vs conf≥1在macro-F1/stagnation-F1/progress-F1上的对比，附error bar'
+    - Confusion matrix对比：conf≥2训练 vs 全量训练的FP/FN分布差异
+    analysis: 'F1下降16.55pp证实conf≥2是选择偏差。stagnation-F1下降最严重（-18.93pp）， 因为低conf窗口中stagnation的歧义性最高。与Repeat-3的差距从6.24pp缩小到1.2pp，
+      在bootstrap CI下不显著。这是核心negative result：probe的"优势"高度依赖数据筛选， 不具备泛化性。但这本身是data programming在sequential
+      data上的重要failure mode发现。
+
+      '
+  - name: LF Ensemble Oracle Baseline
+    plan_id: baseline-lf-oracle
+    description: 直接用LF实时输出做窗口级判定，不经过任何学习
+    expected_results:
+      lf_oracle_conf2_macro_f1: 0.92
+      lf_oracle_fulldata_macro_f1: 0.73
+      lf_oracle_fulldata_stag_f1: 0.66
+      probe_fulldata_macro_f1: 0.74
+      gap_probe_vs_oracle_fulldata_pp: 1.0
+      lf_oracle_coverage: 1.0
+      lf_oracle_conf2_accuracy: 0.94
+    result_rationale: 'LF oracle在conf≥2子集上F1达0.92，实际上高于probe的0.9055——因为conf≥2的标签 本身就是LF
+      majority vote的输出，oracle直接复现了标签生成过程，probe反而因为 学习过程中的泛化损失略低于oracle。这直接证明probe在高conf子集上没有学到超越
+      LF规则的信号，只是在拟合LF的输出。在全量数据上，oracle和probe几乎打平 （0.73 vs 0.74，差距1pp），说明probe的时序建模在noisy
+      label下没有提供实质增量。 Oracle的优势在于零训练成本、完全可解释、无需embedding——probe的存在变得难以justify。
+
+      '
+    tables:
+    - name: 'Table: Probe vs LF Oracle 对比'
+      columns:
+      - Method
+      - conf≥2 F1
+      - Full-data F1
+      - Training Cost
+      - Interpretability
+      rows:
+      - - LF Oracle (majority vote)
+        - '0.92'
+        - '0.73'
+        - None
+        - Full
+      - - GRU Probe
+        - '0.9055'
+        - '0.74'
+        - 0.5 GPU-hr
+        - Low
+      - - Repeat-3
+        - '0.8432'
+        - '0.728'
+        - None
+        - Full
+    figures_description:
+    - 'Radar chart: Probe vs LF Oracle vs Repeat-3在conf≥2/全量/stagnation-F1/progress-F1四个维度'
+    analysis: 'Probe在全量数据上仅比LF oracle高1pp，与conf≥2上反而低于oracle，证明probe没有 超越LF的增量价值。Claim
+      2（时序建模优于启发式）在全量数据上不成立。但正面发现： LF oracle本身在全量数据上也只有0.73，说明当前LF设计在低conf区域存在系统性盲区，
+      这成为LF taxonomy分析的motivation。
+
+      '
+  - name: LLM-as-Judge Baseline
+    plan_id: baseline-llm-judge
+    description: Claude/GPT-4o零样本+少样本判定窗口级progress/stagnation
+    expected_results:
+      llm_judge_zeroshot_macro_f1: 0.82
+      llm_judge_fewshot_macro_f1: 0.86
+      llm_judge_f1_stagnation: 0.8
+      llm_judge_f1_progress: 0.92
+      llm_judge_latency_ms: 3200
+      probe_latency_ms: 4.5
+      latency_ratio: 711
+      llm_cost_per_1k_windows_usd: 14.5
+      probe_cost_per_1k_windows_usd: 0.08
+      cost_multiplier: 181
+      llm_judge_vs_probe_fulldata_gap_pp: 12.0
+      llm_judge_vs_human_gold_f1: 0.84
+    result_rationale: 'LLM-as-judge在worst档下表现相对strong（0.86 few-shot），因为LLM本身具备理解 agent行为语义的能力，不受弱监督标签噪声的限制。Few-shot
+      F1 0.86显著高于 probe全量数据的0.74（+12pp），这进一步削弱probe的价值主张。但LLM的成本和延迟 仍然是硬伤：每1k窗口$14.50
+      vs probe的$0.08，延迟711倍。在worst档的reframe下， 这个对比的叙事从"probe更好"变成"probe在cost-constrained场景下是reasonable的
+      trade-off，但如果追求准确率，LLM-as-judge是更优选择"。cost argument仍然成立 但说服力减弱，因为accuracy gap太大（12pp）。
+
+      '
+    tables:
+    - name: 'Table: LLM-as-Judge vs Probe 全量对比'
+      columns:
+      - Method
+      - Macro-F1
+      - Stag-F1
+      - Latency (ms)
+      - Cost/1k ($)
+      - Training Required
+      rows:
+      - - GPT-4o zero-shot
+        - '0.82'
+        - '0.76'
+        - '3200'
+        - '14.50'
+        - 'No'
+      - - GPT-4o few-shot (5)
+        - '0.86'
+        - '0.80'
+        - '4100'
+        - '18.20'
+        - 'No'
+      - - Claude few-shot (5)
+        - '0.84'
+        - '0.78'
+        - '2800'
+        - '12.80'
+        - 'No'
+      - - GRU Probe (full)
+        - '0.74'
+        - '0.67'
+        - '4.5'
+        - '0.08'
+        - 'Yes'
+      - - GRU Probe (conf≥2)
+        - '0.9055'
+        - '0.8593'
+        - '4.5'
+        - '0.08'
+        - 'Yes'
+    - name: 'Table: Cost-Accuracy Pareto'
+      columns:
+      - Method
+      - Macro-F1
+      - Annual Cost (50k windows)
+      - Feasible for Real-time
+      rows:
+      - - GRU Probe
+        - '0.74'
+        - $4
+        - 'Yes'
+      - - LF Oracle
+        - '0.73'
+        - $0
+        - 'Yes'
+      - - Repeat-3
+        - '0.728'
+        - $0
+        - 'Yes'
+      - - LLM Judge
+        - '0.86'
+        - $910
+        - 'No'
+    figures_description:
+    - Cost-Accuracy Pareto frontier图：x=log(cost per 1k windows)，y=macro-F1，标注各方法
+    - Latency CDF图：probe vs LLM judge在不同窗口复杂度下的推理时间分布
+    analysis: 'LLM-as-judge在accuracy上显著优于probe（+12pp），削弱了probe的核心价值。 Cost argument仍成立（181倍成本差），但在worst档叙事中需要承认：如果用户关心
+      准确率，LLM是更好选择；probe的唯一优势是成本。Reframe中这变成"当前轻量probe 不足以替代LLM判断，但弱监督框架可以为未来更强的probe提供训练数据"。
+
+      '
+  - name: Mean-Pooling + Logistic Regression Baseline
+    plan_id: baseline-meanpool-lr
+    description: 窗口内embedding均值池化后接LR，作为非时序对照
+    expected_results:
+      meanpool_lr_conf2_macro_f1: 0.87
+      meanpool_lr_fulldata_macro_f1: 0.72
+      meanpool_lr_fulldata_stag_f1: 0.64
+      meanpool_lr_fulldata_prog_f1: 0.8
+      gru_vs_meanpool_conf2_gap_pp: 3.55
+      gru_vs_meanpool_fulldata_gap_pp: 2.0
+      meanpool_lr_training_time_sec: 12
+      gru_training_time_min: 28
+    result_rationale: 'Mean-pooling+LR在conf≥2上达0.87，与probe的0.9055差距仅3.55pp；在全量数据上
+      达0.72，与probe的0.74差距仅2pp。这说明GRU的时序建模提供的增量价值很小—— 大部分分类信号来自embedding本身的语义内容（mean-pool已经捕获了窗口的"平均语义"），
+      而非step间的时序动态。在worst档下，这直接证伪了Claim 2的核心前提：stagnation 检测不需要时序建模，静态聚合已经足够。LR只需12秒训练（vs
+      GRU 28分钟）， 参数量级差100倍，性能差距不显著。这支持reframe中"当前架构不足以超越规则"的论点。
+
+      '
+    tables:
+    - name: 'Table: 时序 vs 静态聚合对比'
+      columns:
+      - Method
+      - conf≥2 F1
+      - Full F1
+      - Params
+      - Train Time
+      rows:
+      - - GRU Probe
+        - '0.9055'
+        - '0.74'
+        - ~530K
+        - 28 min
+      - - Mean-pool + LR
+        - '0.87'
+        - '0.72'
+        - ~1K
+        - 12 sec
+      - - Gap
+        - +3.55pp
+        - +2.0pp
+        - 530x
+        - 140x
+    figures_description:
+    - 'Paired bar chart: GRU vs Mean-pool+LR在两个数据设定下的F1对比'
+    analysis: '2pp的全量数据差距在bootstrap test下大概率不显著（p~0.08-0.15），直接证伪 时序建模的必要性。Mean-pool+LR以1/530的参数量和1/140的训练时间达到几乎相同
+      的性能。在reframe中，这变成"当前embedding质量下，简单聚合已经接近天花板， 暗示瓶颈在标签质量而非模型能力"。
+
+      '
+  - name: Probe 错误分析
+    plan_id: error-analysis
+    description: FP/FN按action type、LF source、trajectory outcome分类
+    expected_results:
+      total_errors_conf2: 221
+      fp_count: 98
+      fn_count: 123
+      fn_semantic_stagnation_pct: 58
+      fn_late_onset_pct: 24
+      fp_exploration_mislabel_pct: 42
+      fp_conf1_label_noise_pct: 35
+      errors_on_conf1_windows_pct: 71
+      error_rate_conf1: 0.31
+      error_rate_conf2: 0.09
+    result_rationale: '在worst档下，错误分析揭示probe的核心弱点：71%的错误集中在conf=1窗口， error rate在conf=1上高达0.31（vs
+      conf=2的0.09），直接量化了选择偏差的程度。 FN中58%是"语义停滞"——agent执行不同命令但无实质进展，LF无法捕获这种模式 （因为command不重复、diff非零），probe也未能从embedding中学到这一信号。
+      FP中42%是"探索性行为被误判为停滞"——agent在尝试不同方案，短期内看似无进展 但实际上在收集信息。这些发现本身有价值：它们定义了当前弱监督框架的盲区，
+      为LF taxonomy贡献了"哪些stagnation模式可以被规则捕获、哪些不能"的实证证据。
+
+      '
+    tables:
+    - name: 'Table: 错误分布按confidence分层'
+      columns:
+      - Confidence
+      - Windows
+      - Errors
+      - Error Rate
+      - '% of Total Errors'
+      rows:
+      - - conf=1
+        - 39,408
+        - 12,216
+        - '0.31'
+        - 71%
+      - - conf=2
+        - 14,609
+        - 1,315
+        - '0.09'
+        - 26%
+      - - conf=3
+        - '792'
+        - '24'
+        - '0.03'
+        - 3%
+    - name: 'Table: FN类型分解'
+      columns:
+      - FN Type
+      - Count
+      - Pct
+      - Example Pattern
+      rows:
+      - - Semantic stagnation
+        - '71'
+        - 58%
+        - Different commands, same ineffective strategy
+      - - Late-onset stagnation
+        - '30'
+        - 24%
+        - Progress in first 2 steps, stall in last 3
+      - - Ambiguous boundary
+        - '22'
+        - 18%
+        - Partial progress, debatable label
+    figures_description:
+    - 'Sankey diagram: error flow from conf level → error type → action category'
+    - 'Heatmap: error rate by (trajectory position, LF agreement level)'
+    analysis: '错误分析的核心发现是conf-stratified error rate的巨大差异（0.31 vs 0.09）， 这直接量化了选择偏差。语义停滞作为FN主因说明当前embedding+GRU不足以捕获
+      高阶语义等价性。在reframe中，这些发现成为"failure mode taxonomy"的实证基础， 是贡献(2)的关键数据。
+
+      '
+  - name: 跨Agent迁移评估
+    plan_id: cross-agent
+    description: SWE-agent训练的probe在OpenHands轨迹上的zero-shot迁移
+    expected_results:
+      openhands_total_trajectories: 1847
+      openhands_total_windows: 28340
+      openhands_lf_adapted_count: 3
+      cross_agent_macro_f1: 0.62
+      cross_agent_stag_f1: 0.53
+      cross_agent_prog_f1: 0.71
+      cross_agent_accuracy: 0.67
+      within_agent_macro_f1_ref: 0.74
+      transfer_drop_pp: 12.0
+      openhands_repeat3_f1: 0.61
+      cross_agent_gap_vs_repeat3_pp: 1.0
+      openhands_lf_coverage: 0.78
+      openhands_conf2_ratio: 0.22
+    result_rationale: '跨agent迁移在worst档下基本失败，F1从0.74（within-agent全量）跌至0.62（-12pp）。
+      根本原因是SWE-agent和OpenHands的行为模式差异大：(1)命令结构不同——OpenHands 更多使用Python API调用而非bash命令，command_repetition
+      LF的适配不完全； (2)轨迹长度分布不同——OpenHands轨迹更短，stagnation的表现形式不同（更多是 快速失败而非长期停滞）；(3)embedding空间的分布偏移——不同agent产生的step
+      文本风格差异导致embedding不对齐。stagnation-F1仅0.53，说明probe完全无法 识别OpenHands特有的停滞模式。更关键的是，probe在OpenHands上仅比Repeat-3
+      高1pp（0.62 vs 0.61），时序建模的迁移性基本为零。Claim 3完全不成立。
+
+      '
+    tables:
+    - name: 'Table: 跨Agent迁移性能'
+      columns:
+      - Setting
+      - Macro-F1
+      - Stag-F1
+      - Prog-F1
+      - vs Repeat-3
+      rows:
+      - - SWE-agent (conf≥2, in-domain)
+        - '0.9055'
+        - '0.8593'
+        - '0.9518'
+        - +6.24pp
+      - - SWE-agent (full, in-domain)
+        - '0.74'
+        - '0.67'
+        - '0.81'
+        - +1.2pp
+      - - OpenHands (zero-shot transfer)
+        - '0.62'
+        - '0.53'
+        - '0.71'
+        - +1.0pp
+      - - OpenHands Repeat-3
+        - '0.61'
+        - '0.52'
+        - '0.70'
+        - —
+    - name: 'Table: LF适配覆盖率（OpenHands）'
+      columns:
+      - LF
+      - Adapted
+      - Coverage
+      - Accuracy Est.
+      rows:
+      - - command_repetition
+        - Yes (regex adapted)
+        - '0.82'
+        - ~0.65
+      - - file_diff_delta
+        - Yes (API adapted)
+        - '0.71'
+        - ~0.60
+      - - outcome_backprop
+        - Yes (direct)
+        - '0.81'
+        - ~0.70
+      - - Overall LF coverage
+        - —
+        - '0.78'
+        - —
+    figures_description:
+    - Domain shift可视化：SWE-agent vs OpenHands embedding的t-SNE，标注cluster overlap
+    - Per-trajectory F1分布：SWE-agent in-domain vs OpenHands cross-agent的violin plot
+    analysis: '12pp的迁移下降和probe仅比Repeat-3高1pp直接否定Claim 3。但reframe中这成为 有价值的negative
+      result：量化了当前弱监督框架的domain-specificity，说明LF 适配是跨agent迁移的瓶颈而非embedding/model，指向未来需要agent-agnostic
+      LF 设计或meta-learning适配策略。
+
+      '
+  - name: Window Size 消融
+    plan_id: ablation-window-size
+    description: k=3,5,7窗口大小对检测性能的影响
+    expected_results:
+      k3_conf2_macro_f1: 0.88
+      k5_conf2_macro_f1: 0.9055
+      k7_conf2_macro_f1: 0.9
+      k3_fulldata_macro_f1: 0.71
+      k5_fulldata_macro_f1: 0.74
+      k7_fulldata_macro_f1: 0.73
+      k5_optimal: true
+      sensitivity_range_pp: 3.0
+    result_rationale: '窗口大小影响有限（全量数据上3pp范围），k=5略优但优势不显著。k=3信号太短， 难以积累足够的stagnation证据；k=7引入更多噪声且stagnation边界更模糊。
+      在worst档下，这个消融的意义降低——无论哪个窗口大小，probe都没有显著超越 baseline，窗口大小是一个次要超参数而非关键设计决策。
+
+      '
+    tables:
+    - name: 'Table: Window Size 消融'
+      columns:
+      - Window k
+      - conf≥2 F1
+      - Full F1
+      - vs Repeat-3 (full)
+      rows:
+      - - k=3
+        - '0.88'
+        - '0.71'
+        - -0.18pp
+      - - k=5 (default)
+        - '0.9055'
+        - '0.74'
+        - +1.2pp
+      - - k=7
+        - '0.90'
+        - '0.73'
+        - +1.0pp
+    figures_description:
+    - 'Line plot: macro-F1 vs window size k，分conf≥2和全量两条线'
+    analysis: '窗口大小敏感性低，k=5的选择合理但非关键。在reframe中这成为方法论细节， 不作为主要发现。
+
+      '
+  - name: 架构消融
+    plan_id: ablation-architecture
+    description: GRU+attention vs GRU+mean-pool vs Transformer vs MLP 对比
+    expected_results:
+      gru_attn_conf2_f1: 0.9055
+      gru_meanpool_conf2_f1: 0.895
+      transformer_conf2_f1: 0.898
+      mlp_pooled_conf2_f1: 0.882
+      gru_attn_fulldata_f1: 0.74
+      gru_meanpool_fulldata_f1: 0.73
+      transformer_fulldata_f1: 0.74
+      mlp_pooled_fulldata_f1: 0.72
+      architecture_sensitivity_pp: 2.0
+    result_rationale: '架构间差异极小（全量数据上2pp范围），在worst档下所有架构都受限于标签质量 而非模型容量。GRU+attention名义上最优但优势不显著，Transformer持平，
+      甚至MLP也只差2pp。这证实瓶颈不在模型端——更复杂的架构无法从嘈杂标签中 提取更多信号，标签质量是性能天花板。这支持reframe中"当前embedding+简单架构
+      不足以超越规则"的论点，同时也说明架构设计不是问题的关键。
+
+      '
+    tables:
+    - name: 'Table: 架构消融'
+      columns:
+      - Architecture
+      - Params
+      - conf≥2 F1
+      - Full F1
+      - Train Time
+      rows:
+      - - GRU + Attention
+        - ~530K
+        - '0.9055'
+        - '0.74'
+        - 28 min
+      - - GRU + Mean-pool
+        - ~520K
+        - '0.8950'
+        - '0.73'
+        - 25 min
+      - - Transformer (2L)
+        - ~610K
+        - '0.8980'
+        - '0.74'
+        - 35 min
+      - - MLP on pooled
+        - ~260K
+        - '0.8820'
+        - '0.72'
+        - 8 min
+    figures_description:
+    - 'Grouped bar chart: 四种架构在conf≥2和全量数据上的F1对比'
+    analysis: '架构选择影响微乎其微（≤2pp），确认标签质量是瓶颈。在reframe中这成为 负面结果的一部分："更强的模型不能弥补弱监督标签的不足"。
+
+      '
+  - name: LF Hold-One-Out 消融
+    plan_id: ablation-lf-holdout
+    description: 每次移除一个LF重新训练，量化各LF边际贡献
+    expected_results:
+      without_cmd_rep_conf2_f1: 0.875
+      without_file_diff_conf2_f1: 0.883
+      without_outcome_bp_conf2_f1: 0.892
+      all_lfs_conf2_f1: 0.9055
+      cmd_rep_marginal_pp: 3.05
+      file_diff_marginal_pp: 2.25
+      outcome_bp_marginal_pp: 1.35
+      without_cmd_rep_fulldata_f1: 0.7
+      without_file_diff_fulldata_f1: 0.71
+      without_outcome_bp_fulldata_f1: 0.73
+      all_lfs_fulldata_f1: 0.74
+    result_rationale: 'command_repetition是最关键的LF（移除后conf≥2下降3.05pp，全量下降4pp）， 因为它直接捕获最明显的stagnation信号。但在worst档下，即使最强的LF也只贡献
+      3-4pp，说明LFs之间高度冗余——它们捕获的是同一类"容易"的stagnation模式。 outcome_backpropagation贡献最小（1.35pp），因为它是lagging
+      indicator， 在窗口级别的信号密度低。在全量数据上，移除任何单个LF的影响都不超过4pp， 说明LF集合的信息量有限。但正面发现是各LF的边际贡献排序本身揭示了信号层次：
+      command_repetition > file_diff_delta > outcome_backpropagation。
+
+      '
+    tables:
+    - name: 'Table: LF Hold-One-Out'
+      columns:
+      - Held-out LF
+      - conf≥2 F1
+      - Δ (pp)
+      - Full F1
+      - Δ (pp)
+      rows:
+      - - None (all LFs)
+        - '0.9055'
+        - —
+        - '0.74'
+        - —
+      - - – command_repetition
+        - '0.8750'
+        - '-3.05'
+        - '0.70'
+        - '-4.0'
+      - - – file_diff_delta
+        - '0.8830'
+        - '-2.25'
+        - '0.71'
+        - '-3.0'
+      - - – outcome_backprop
+        - '0.8920'
+        - '-1.35'
+        - '0.73'
+        - '-1.0'
+    figures_description:
+    - 'Waterfall chart: 各LF的边际F1贡献，从baseline逐步叠加'
+    analysis: 'LF贡献排序（cmd_rep > file_diff > outcome_bp）与直觉一致：leading indicator 贡献大于lagging
+      indicator。这成为reframe中LF temporal dynamics分析的基础数据， 是贡献(1)的核心实证。
+
+      '
+  - name: SupCon 辅助损失消融
+    plan_id: ablation-supcon
+    description: Supervised contrastive loss对F1和embedding分离度的影响
+    expected_results:
+      with_supcon_conf2_f1: 0.9055
+      without_supcon_conf2_f1: 0.898
+      supcon_delta_conf2_pp: 0.75
+      with_supcon_fulldata_f1: 0.74
+      without_supcon_fulldata_f1: 0.73
+      supcon_delta_fulldata_pp: 1.0
+      embedding_separation_with: 0.42
+      embedding_separation_without: 0.38
+    result_rationale: 'SupCon在conf≥2上仅贡献0.75pp，在全量数据上1pp，在worst档下统计不显著。 原因是当标签本身噪声大时，contrastive
+      loss试图拉近同标签样本、推远异标签 样本，但标签错误导致它在推错误的方向上也施加了力——净效果接近零。 Embedding分离度从0.38提升到0.42，改善有限。这确认在低标签质量下，
+      辅助损失的价值有限。
+
+      '
+    tables:
+    - name: 'Table: SupCon 消融'
+      columns:
+      - Setting
+      - conf≥2 F1
+      - Full F1
+      - Embed Separation
+      rows:
+      - - With SupCon
+        - '0.9055'
+        - '0.74'
+        - '0.42'
+      - - Without SupCon
+        - '0.8980'
+        - '0.73'
+        - '0.38'
+      - - Δ
+        - +0.75pp
+        - +1.0pp
+        - '+0.04'
+    figures_description:
+    - 't-SNE: with vs without SupCon的embedding空间对比，按label着色'
+    analysis: 'SupCon增量不显著，确认标签噪声限制了contrastive learning的有效性。 在worst档下这是预期结果，不作为主要发现。
+
+      '
+  - name: Non-NLP Baseline
+    plan_id: non-nlp-baseline
+    description: 纯结构特征（行数改动、AST diff、test counts）分类
+    expected_results:
+      non_nlp_conf2_macro_f1: 0.83
+      non_nlp_fulldata_macro_f1: 0.7
+      non_nlp_stag_f1: 0.63
+      nlp_probe_fulldata_f1: 0.74
+      gap_nlp_vs_non_nlp_pp: 4.0
+      non_nlp_feature_count: 12
+      non_nlp_training_time_sec: 5
+    result_rationale: '非NLP baseline在conf≥2上达0.83，全量数据0.70，与probe的差距仅4pp。 在worst档下，这个差距虽然存在但不够convincing——纯结构特征已经捕获了
+      stagnation的大部分信号（file改动数=0、命令失败率高、test pass率不变等）。 NL embedding的增量价值仅4pp，且这4pp可能来自embedding中隐含的结构信息
+      而非真正的语义理解。这削弱了venue fit argument（"NL embedding是必要的"）， 但不完全否定——4pp在某些边界情况下可能是有意义的差异。
+
+      '
+    tables:
+    - name: 'Table: NLP vs Non-NLP Features'
+      columns:
+      - Method
+      - Features
+      - conf≥2 F1
+      - Full F1
+      rows:
+      - - GRU Probe (NLP)
+        - 1024-d embeddings
+        - '0.9055'
+        - '0.74'
+      - - GBM (Non-NLP)
+        - 12 structural features
+        - '0.83'
+        - '0.70'
+      - - Gap
+        - —
+        - +7.55pp
+        - +4.0pp
+    figures_description:
+    - 'Feature importance plot: non-NLP baseline的top-12结构特征重要性排序'
+    analysis: 'Non-NLP baseline竞争力较强，NL embedding增量有限。在reframe中需要弱化 "NL embedding必要性"的claim，转向"embedding提供互补信号但非压倒性优势"。
+
+      '
+  - name: Data Scaling 曲线
+    plan_id: data-scaling
+    description: 10%/25%/50%/100%训练数据 → probe F1
+    expected_results:
+      scale_10pct_f1: 0.69
+      scale_25pct_f1: 0.72
+      scale_50pct_f1: 0.73
+      scale_100pct_f1: 0.74
+      curve_shape: log-saturating
+      saturation_point_pct: 30
+      marginal_gain_50_to_100_pp: 1.0
+    result_rationale: 'Scaling曲线在~30%数据量后即饱和，50%→100%仅增1pp。在worst档下这说明两件事： (1)模型容量不是瓶颈——更多数据不能显著提升性能，因为新增数据主要是低conf噪声样本；
+      (2)当前架构+标签质量的性能天花板约在0.74-0.75。这是一个清醒的发现： 简单地收集更多弱监督数据不是解决方案，需要根本性地改善标签质量或模型能力。
+
+      '
+    tables:
+    - name: 'Table: Data Scaling'
+      columns:
+      - Train %
+      - Windows
+      - Macro-F1
+      - Δ vs previous
+      rows:
+      - - 10%
+        - ~4,380
+        - '0.69'
+        - —
+      - - 25%
+        - ~10,960
+        - '0.72'
+        - +3pp
+      - - 50%
+        - ~21,920
+        - '0.73'
+        - +1pp
+      - - 100%
+        - 43,847
+        - '0.74'
+        - +1pp
+    figures_description:
+    - 'Log-scale learning curve: x=训练数据量(log), y=macro-F1, 附95% CI band'
+    analysis: '早期饱和确认标签质量（而非数据量）是瓶颈。在reframe中这成为"data programming 在sequential data上的scaling
+      limitation"的实证。
+
+      '
+  - name: Simulated Early Termination
+    plan_id: early-termination-sim
+    description: 在held-out轨迹上模拟基于probe的early stopping，计算token节省vs成功率
+    expected_results:
+      tokens_saved_pct_probe: 18
+      tokens_saved_pct_repeat3: 16
+      tokens_saved_pct_oracle: 22
+      success_rate_drop_probe_pp: 4.5
+      success_rate_drop_repeat3_pp: 3.8
+      success_rate_drop_oracle_pp: 2.1
+      intervention_paradox_rate: 0.35
+      net_value_probe_vs_repeat3: marginal
+    result_rationale: '在worst档下，probe全量数据F1仅0.74，导致early termination的precision不足：
+      probe触发的停止中约26%是false positive（实际有进展但被判为停滞），导致 成功率下降4.5pp换取仅18%的token节省。更关键的是，Repeat-3作为简单规则也能
+      节省16%的token（仅少2pp），成功率下降还更小（3.8pp），说明probe的early termination价值相对于简单规则几乎为零。Intervention
+      paradox率0.35意味着 35%的被中止轨迹"如果继续可能会成功"，这进一步削弱了实用价值的论证。
+
+      '
+    tables:
+    - name: 'Table: Early Termination Simulation'
+      columns:
+      - Detector
+      - Tokens Saved (%)
+      - Success Rate Drop (pp)
+      - Efficiency Ratio
+      rows:
+      - - GRU Probe (full)
+        - 18%
+        - '-4.5'
+        - '4.0'
+      - - Repeat-3
+        - 16%
+        - '-3.8'
+        - '4.2'
+      - - LF Oracle
+        - 22%
+        - '-2.1'
+        - '10.5'
+      - - LLM Judge
+        - 25%
+        - '-1.5'
+        - '16.7'
+    figures_description:
+    - 'Pareto curve: tokens saved (%) vs success rate drop (pp)，标注各方法'
+    - 'Intervention paradox分析: 被中止轨迹中''如果继续会成功''的比例'
+    analysis: 'Probe的early termination价值marginally优于Repeat-3（多省2%token但多损1pp成功率），
+      净效果不具说服力。LLM judge反而是最优的早停检测器。在reframe中early termination 不再作为核心应用场景，仅在discussion中简短提及。
+
+      '
+  - name: Interpretability 可视化
+    plan_id: interpretability
+    description: GRU hidden states的t-SNE/UMAP + attention weight分析
+    expected_results:
+      cluster_separation_silhouette: 0.28
+      progress_stuck_overlap_pct: 35
+      attention_onset_concentration: 0.45
+      attention_pattern_interpretable: partial
+    result_rationale: '在worst档下，GRU hidden states的progress/stagnation聚类分离度较低 （silhouette=0.28，理想值>0.5），35%的样本在t-SNE空间上重叠。这反映了
+      两个问题：(1)标签噪声导致同一语义区域内混杂了两种标签；(2)GRU未能学到 清晰区分两类的表示。Attention weights在stagnation
+      onset位置有一定集中 （concentration=0.45），但不够sharp来讲一个清晰的"模型关注stagnation起始点" 的故事。整体可解释性分析结果是"partial"——有一些可视化上看起来合理的pattern，
+      但不够compelling来支撑一个独立的发现。
+
+      '
+    tables:
+    - name: 'Table: 表示空间质量指标'
+      columns:
+      - Metric
+      - Value
+      - Ideal
+      rows:
+      - - Silhouette score
+        - '0.28'
+        - '>0.5'
+      - - Class overlap %
+        - 35%
+        - <15%
+      - - Attention onset concentration
+        - '0.45'
+        - '>0.7'
+    figures_description:
+    - 't-SNE/UMAP: GRU final hidden states, colored by label, with conf-level as marker
+      size'
+    - 'Attention heatmap: 5个stagnation onset案例的attention weight分布'
+    analysis: '可视化结果不够compelling支撑独立发现。在reframe中降级为appendix材料， 不在正文中作为主要贡献。高overlap区域（conf=1样本主导）反而可以可视化
+      选择偏差——作为failure mode分析的补充。
+
+      '
+  - name: 人工标注 Gold Set
+    plan_id: human-annotation
+    description: 400窗口3标注者人工标注，Fleiss κ，在gold标签上重新评估所有方法
+    expected_results:
+      total_annotated: 400
+      fleiss_kappa: 0.52
+      human_majority_accuracy_vs_lf: 0.67
+      human_gold_probe_conf2_f1: 0.78
+      human_gold_probe_fulldata_f1: 0.68
+      human_gold_repeat3_f1: 0.72
+      human_gold_lf_oracle_f1: 0.65
+      human_gold_llm_judge_f1: 0.84
+      human_gold_meanpool_lr_f1: 0.66
+      disagreement_rate_3way: 0.28
+      semantic_stagnation_kappa: 0.38
+    result_rationale: 'Fleiss κ=0.52（moderate agreement）揭示stagnation本身是一个高主观性的概念——
+      标注者对"语义停滞"的判断分歧大（子类κ仅0.38）。LF majority vote与人工标签 的一致率仅67%，低于Phase 1 paper_framing.md声称的81.5%（那个数字仅在conf≥2
+      子集上测量）。在人工gold标签上重新评估：probe conf≥2的F1从0.9055跌至0.78， probe全量从0.74跌至0.68——大幅下降是因为probe优化的目标（LF标签）与真实标签
+      存在系统性偏差。更关键的是，probe全量的0.68与Repeat-3的0.72相比反而落后4pp， 意味着在真实标签上probe不如简单启发式。LLM
+      judge在gold标签上达0.84，是所有方法 中最好的——但成本高。这组结果是worst档的核心证据：弱监督标签质量不足， probe在真实标签上无法beat
+      baseline。
+
+      '
+    tables:
+    - name: 'Table: Human Gold Set 评估'
+      columns:
+      - Method
+      - Gold-F1
+      - LF-label F1
+      - Δ
+      rows:
+      - - GRU Probe (conf≥2)
+        - '0.78'
+        - '0.9055'
+        - -12.55pp
+      - - GRU Probe (full)
+        - '0.68'
+        - '0.74'
+        - -6.0pp
+      - - Repeat-3
+        - '0.72'
+        - '0.8432'
+        - -12.32pp
+      - - LF Oracle
+        - '0.65'
+        - '0.92'
+        - -27.0pp
+      - - Mean-pool + LR
+        - '0.66'
+        - '0.72'
+        - -6.0pp
+      - - LLM Judge (few-shot)
+        - '0.84'
+        - —
+        - —
+    - name: 'Table: 标注者一致性'
+      columns:
+      - Category
+      - Fleiss κ
+      - Agreement %
+      rows:
+      - - Overall
+        - '0.52'
+        - 72%
+      - - Clear progress
+        - '0.68'
+        - 84%
+      - - Clear stagnation
+        - '0.61'
+        - 78%
+      - - Semantic stagnation
+        - '0.38'
+        - 58%
+      - - Ambiguous
+        - '0.29'
+        - 45%
+    figures_description:
+    - 'Confusion matrix: LF majority vote vs human gold labels, 按conf分层'
+    - '方法对比bar chart: 所有方法在gold标签上的macro-F1，附CI'
+    - 'Inter-annotator disagreement heatmap: 按stagnation子类型的κ值'
+    analysis: '人工标注是worst档的决定性证据。LF标签准确率67%（远低于声称的81.5%）直接 否定Claim 1。Probe在gold标签上落后Repeat-3（0.68
+      vs 0.72）否定Claim 2。 但κ=0.52也揭示了任务本身的固有困难——stagnation不是二元的，未来需要更细粒度 的标注schema（如进展程度的连续评分）。这在reframe中成为方法论贡献：
+      "首次量化了agent stagnation标注的人类一致性上界"。
+
+      '
+  - name: LF Temporal Dynamics
+    plan_id: lf-temporal-dynamics
+    description: 分析各LF在stagnation onset相对时间上的激活模式
+    expected_results:
+      cmd_rep_avg_lead_steps: 1.8
+      cmd_rep_leading_indicator: true
+      file_diff_avg_lead_steps: 0.5
+      file_diff_concurrent: true
+      outcome_bp_avg_lag_steps: 2.3
+      outcome_bp_lagging_indicator: true
+      temporal_ordering_consistent_pct: 72
+      lf_transition_patterns_found: 4
+    result_rationale: 'LF temporal dynamics是worst档下最有价值的正面发现。command_repetition 平均在stagnation
+      onset前1.8步开始亮灯（leading indicator）——agent开始 重复命令是停滞的早期信号。file_diff_delta几乎同时激活（concurrent，lead
+      0.5步）， 因为命令重复很快导致文件变化停滞。outcome_backpropagation滞后2.3步 （lagging indicator），因为最终结果（test
+      failure）需要等到窗口末端才能观察到。 这个leading→concurrent→lagging的时序排列在72%的stagnation事件中一致，
+      构成一个可复现的"stagnation onset signature"。此外发现4种distinct的LF transition patterns（如"cmd_rep先亮→file_diff跟随"vs"file_diff先亮→cmd_rep不亮"），
+      揭示了不同类型的stagnation有不同的信号组合。这是reframe后论文的核心发现之一， 因为它不依赖probe性能，而是对stagnation现象本身的实证分析。
+
+      '
+    tables:
+    - name: 'Table: LF Temporal Ordering'
+      columns:
+      - LF
+      - Avg Lead/Lag (steps)
+      - Role
+      - Activation Rate at Onset
+      rows:
+      - - command_repetition
+        - -1.8 (lead)
+        - Leading
+        - '0.78'
+      - - file_diff_delta
+        - -0.5 (concurrent)
+        - Concurrent
+        - '0.71'
+      - - outcome_backprop
+        - +2.3 (lag)
+        - Lagging
+        - '0.64'
+    - name: 'Table: Stagnation Onset Transition Patterns'
+      columns:
+      - Pattern
+      - Frequency
+      - Description
+      rows:
+      - - 'Type A: cmd→file→outcome'
+        - 42%
+        - Classic repetition-driven stagnation
+      - - 'Type B: file→cmd→outcome'
+        - 18%
+        - Exploration failure (new files, same errors)
+      - - 'Type C: cmd only'
+        - 15%
+        - Pure command loop, files never change
+      - - 'Type D: outcome→file→cmd'
+        - 12%
+        - Cascading failure from bad early decision
+    figures_description:
+    - 'Timeline visualization: 5个case study的LF激活时序，显示leading/lagging关系'
+    - 'Heatmap: LF co-activation patterns across stagnation onset ±5 steps'
+    - 'Stagnation taxonomy pie chart: 4种transition pattern的分布'
+    analysis: LF temporal dynamics是worst档reframe的核心贡献。4种stagnation onset pattern 构成首个基于实证的agent
+      stagnation taxonomy。Leading/lagging排序提供了 实际的工程价值——在部署场景下可以仅监控command_repetition作为早期预警，
+      无需等待所有LF激活。这个发现不依赖probe性能，因此在worst档下仍然成立， 成为论文从"method paper"转向"empirical study"的关键支撑。
+  review_report: "---\ndream_id: dream_20260514T081656\ntier: worst\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-14T09:11:50.654089+00:00\n---\n\n# Dream Review\
+    \ Report: \"What Do Labeling Functions Reveal About Agent Stagnation?\"\n\n**Dream\
+    \ ID:** 20260514T081656\n**Review Mode:** Full (2 Reviewers + Roundtable)\n**Venue\
+    \ Standard:** Top ML venue, ~25% acceptance rate, 6-point scale\n\n---\n\n## 1.\
+    \ Paper Summary\n\nThe paper applies data programming (weak supervision via labeling\
+    \ functions) to detect stagnation in LLM agent trajectories. Three LFs—`command_repetition`,\
+    \ `file_diff_delta`, `outcome_backpropagation`—generate majority-vote labels over\
+    \ 54,809 sliding windows from SWE-bench agent traces; a GRU-based probe is trained\
+    \ on these labels. The paper is framed as an honest empirical study yielding primarily\
+    \ **negative results**: all three original claims fail (generalization beyond\
+    \ high-confidence subsets, outperforming heuristics, cross-agent transfer). The\
+    \ main positive contribution is a descriptive analysis of LF temporal dynamics\
+    \ revealing a reproducible \"stagnation onset signature\" and a 4-type stagnation\
+    \ taxonomy.\n\n---\n\n## 2. Independent Reviews\n\n### Reviewer 1 (R1): Methods\
+    \ + Experiments — Score: 4/6 (Weak Accept), Confidence: 4/5\n\n**Strengths:**\n\
+    - Exemplary intellectual honesty—the paper systematically dismantles its own original\
+    \ claims with rigorous evidence\n- Comprehensive experimental program: 16 experiments\
+    \ fully executed (full-data training, LF oracle, LLM-as-Judge, Mean-pool+LR, Non-NLP\
+    \ baseline, cross-agent transfer, error analysis, LF temporal dynamics, window\
+    \ size / architecture / SupCon / LF hold-one-out / data scaling ablations, representation\
+    \ quality, early termination, human gold evaluation)\n- The selection bias diagnosis\
+    \ is well-supported: conf=1 windows account for 71% of errors with error rate\
+    \ 0.31 vs 0.09 for conf=2, cleanly quantifying why the conf≥2 result is misleading\n\
+    - Human gold evaluation (400 windows, 3 annotators, Fleiss κ=0.52) is the right\
+    \ decisive test—and the result is damning (probe 0.68 vs Repeat-3 0.72)\n- LF\
+    \ temporal dynamics (Section 8) is a genuinely interesting descriptive finding,\
+    \ independent of probe performance\n- Proper methodology: instance-level data\
+    \ splitting, bootstrap resampling for significance, cost-accuracy Pareto analysis\n\
+    \n**Weaknesses:**\n- **LF temporal dynamics is descriptive, not prescriptive**:\
+    \ the paper discovers the leading→concurrent→lagging ordering and 4 transition\
+    \ patterns but never demonstrates that this knowledge improves any downstream\
+    \ system. No experiment shows that using temporal ordering improves early detection,\
+    \ intervention timing, or label quality. This limits the practical impact of the\
+    \ main positive finding.\n- **No multi-seed variance**: with margins as narrow\
+    \ as 1-2pp throughout the paper (probe vs oracle, probe vs mean-pool+LR, probe\
+    \ vs Repeat-3 on transfer), the absence of multi-seed runs with standard deviations\
+    \ is a significant gap. A single unlucky seed could flip most of the paper's close\
+    \ comparisons.\n- **Sentence encoder unspecified**: the paper mentions \"frozen\
+    \ sentence encoder (1024-d)\" but does not name the model. This is a reproducibility\
+    \ gap—the choice of encoder could substantially affect embedding quality and all\
+    \ downstream results.\n- **`outcome_backpropagation` leaks future information**:\
+    \ this LF propagates final trajectory outcomes backward into windows. While acknowledged\
+    \ as \"lagging,\" there is no sensitivity analysis of how much this inflates performance\
+    \ or distorts the temporal dynamics analysis. If the LF is informed by the trajectory\
+    \ endpoint, the temporal ordering analysis may be partially artifactual.\n- **GRU\
+    \ vs Mean-pool+LR gap (+2pp on full data) is not statistically significant** (p≈0.08-0.15\
+    \ by the paper's own admission), yet the paper retains the GRU as the primary\
+    \ architecture throughout. This undermines the implicit claim that temporal modeling\
+    \ adds value.\n- **No human gold evaluation on OpenHands**: the cross-agent transfer\
+    \ evaluation relies entirely on LF-derived labels adapted to OpenHands. Without\
+    \ human validation on OpenHands windows, it's impossible to distinguish \"the\
+    \ probe fails to transfer\" from \"the adapted LFs produce poor labels on OpenHands.\"\
+    \n- **Intervention paradox rate (0.35) is not validated**: the claim that 35%\
+    \ of terminated trajectories \"might have succeeded if allowed to continue\" is\
+    \ counterfactual and not empirically verifiable from the data presented.\n\n**Questions\
+    \ for Authors:**\n1. What sentence encoder was used? How sensitive are results\
+    \ to encoder choice?\n2. Could you run the LF temporal dynamics analysis with\
+    \ `outcome_backpropagation` excluded and verify the leading/concurrent ordering\
+    \ still holds?\n3. Have you considered using the temporal ordering discovery to\
+    \ actually improve label quality (e.g., only trusting LF votes that follow the\
+    \ expected temporal pattern)?\n4. What is the variance across 3-5 random seeds\
+    \ for the key comparisons (probe vs oracle, probe vs Repeat-3, probe vs mean-pool+LR)?\n\
+    \n---\n\n### Reviewer 2 (R2): Novelty + Related Work — Score: 3/6 (Weak Reject),\
+    \ Confidence: 4/5\n\n**Strengths:**\n- Practically relevant problem: semantic\
+    \ stagnation (agent acts differently but stays stuck) is a real, under-studied\
+    \ failure mode that simple cycle detection misses\n- The cost-efficiency argument\
+    \ is well-presented: probe at $4/year vs LLM Judge at $910/year for 50k windows,\
+    \ with the probe being 711x faster in latency\n- Cross-agent transfer evaluation\
+    \ (SWE-agent → OpenHands) provides genuine out-of-distribution evidence, which\
+    \ most papers in this space skip\n- Exceptional experiment coverage—all 16 planned\
+    \ experiments from the design document are present in the paper with matching\
+    \ results\n- The \"What Went Wrong\" analysis in Section 11 (LFs produce temporally\
+    \ correlated outputs violating the i.i.d. assumption of standard data programming)\
+    \ is a genuine conceptual insight about why Snorkel-style approaches fail on sequential\
+    \ data\n\n**Weaknesses:**\n- **Novelty is thin**: The technical contribution is\
+    \ vanilla majority-vote labeling (no label model, no temporal adaptation of the\
+    \ data programming step) + standard single-layer GRU classifier. The claim \"\
+    first application of data programming to sequential agent behavior data\" is undercut\
+    \ by the fact that no sequential adaptation was actually made to the data programming\
+    \ methodology. The LFs operate independently per-window; the label model is simple\
+    \ majority vote; there is no temporal label model (e.g., HMM-based label aggregation).\
+    \ This means the negative result is partially self-inflicted—the method was not\
+    \ adapted for the setting, so its failure is less surprising.\n- **Related work\
+    \ is severely incomplete**: The paper cites only **5 references** (Yang et al.\
+    \ 2024, Wang et al. 2024, Ratner et al. 2017, Zheng et al. 2024, Khosla et al.\
+    \ 2020). For a top-venue submission, this is far below the expected standard.\
+    \ Critical missing areas include:\n  - **Process Reward Models** (Lightman et\
+    \ al. 2023, Wang et al. 2024 Math-Shepherd): directly relevant—step-level reward/progress\
+    \ estimation in multi-step reasoning\n  - **RL value functions for agent monitoring**:\
+    \ V(s) as progress estimator is the natural baseline framing\n  - **Agent self-reflection**\
+    \ (Reflexion, LATS, Tree-of-Thought): alternative approaches to detecting and\
+    \ recovering from unproductive behavior\n  - **Weak supervision advances** beyond\
+    \ Snorkel: MeTaL (Ratner et al. 2019), FlyingSquid (Fu et al. 2020), which address\
+    \ LF correlation—directly relevant to the paper's finding that LF temporal correlation\
+    \ is a core failure mode\n  - **Noisy label learning** (Natarajan et al. 2013,\
+    \ Li et al. 2020): an entire literature on learning from corrupted labels that\
+    \ could inform the probe training\n  - **Active learning**: a natural alternative\
+    \ to weak supervision when label budget is limited\n  - **Domain adaptation /\
+    \ distribution shift**: relevant to the cross-agent transfer failure\n- **Domain\
+    \ specificity undermines generality**: all LFs, evaluation, and analysis are specific\
+    \ to SWE-bench software engineering tasks. The cross-agent transfer (SWE-agent\
+    \ → OpenHands) is within the same task distribution (SWE-bench issues). No evaluation\
+    \ on non-coding agent domains (web navigation, scientific discovery) is presented\
+    \ or discussed beyond the Limitations section.\n- **The stagnation taxonomy (4\
+    \ types) is data-driven but shallow**: the 4 transition patterns (Type A-D) are\
+    \ defined by LF activation order, not by behavioral semantics. They describe *how\
+    \ LFs fire*, not *why agents stagnate*. A taxonomy grounded in root causes (e.g.,\
+    \ wrong mental model, missing capability, environment misunderstanding) would\
+    \ be more useful.\n- **Venue fit concerns**: The paper is primarily about software\
+    \ engineering agent behavior with a negative-results narrative. It has limited\
+    \ methodological novelty for a top ML venue. EMNLP Findings, ICLR Workshop, or\
+    \ a software engineering venue (ICSE, FSE) might be better fits.\n\n**Questions\
+    \ for Authors:**\n1. Why was no label model (e.g., Snorkel's generative model,\
+    \ or MeTaL/FlyingSquid which handle LF correlations) used instead of simple majority\
+    \ vote? Given that LF temporal correlation is identified as the core failure mode,\
+    \ using a correlation-aware label model seems like the obvious next step.\n2.\
+    \ How do you position this work relative to Process Reward Models, which also\
+    \ assign step-level progress scores in multi-step reasoning?\n3. Would the LF\
+    \ temporal dynamics finding replicate on a different agent framework or task domain?\n\
+    4. Could you expand on whether the 4 stagnation types correspond to distinct root\
+    \ causes, or are they purely phenomenological?\n\n---\n\n## 3. Roundtable Discussion\n\
+    \n### Step 2: Cross-Sharing\n\n**R1 responds to R2's novelty concern:**\nR2's\
+    \ point about thin novelty is partially valid—the paper does not advance data\
+    \ programming methodology. However, the paper's contribution is explicitly empirical:\
+    \ documenting *where and why* an existing paradigm fails in a new setting. The\
+    \ i.i.d. violation insight (Section 11) is non-obvious and could redirect future\
+    \ work. The value of a well-executed negative-results paper should not be assessed\
+    \ on the same novelty axis as a methods paper.\n\n**R2 responds to R1's methodology\
+    \ concerns:**\nR1's concerns about multi-seed variance, unnamed encoder, and outcome_backpropagation\
+    \ leakage are well-taken and reinforce the novelty concern. If the experimental\
+    \ methodology has gaps this significant, the negative results themselves may not\
+    \ be fully trustworthy—the probe might perform better with a different encoder,\
+    \ or the LF temporal dynamics might look different without the outcome LF's backward-looking\
+    \ bias.\n\n**Shared concerns (both reviewers agree):**\n1. **Related work is inadequate**:\
+    \ 5 references is far below venue standards. Missing PRMs, noisy label learning,\
+    \ weak supervision advances, agent reflection literature.\n2. **No multi-seed\
+    \ variance**: critical given 1-2pp margins throughout.\n3. **`outcome_backpropagation`\
+    \ information leakage**: not adequately analyzed.\n4. **LF temporal dynamics is\
+    \ descriptive only**: no downstream improvement demonstrated.\n5. **Missing human\
+    \ validation on OpenHands**: weakens the cross-agent transfer conclusions.\n6.\
+    \ **Sentence encoder not specified**: reproducibility gap.\n\n**Key disagreement:**\n\
+    - R1 values the comprehensiveness and honesty of the negative results enough to\
+    \ recommend Weak Accept (4). The paper does what it sets out to do—systematically\
+    \ characterize failure—and does it thoroughly.\n- R2 argues that thin novelty\
+    \ + incomplete related work + domain specificity place this below the acceptance\
+    \ threshold (Weak Reject, 3). An empirical study of failures needs to either propose\
+    \ a fix or position within a richer literature to be publishable at a top venue.\n\
+    \n### Step 3: Convergence\n\nAfter discussion, both reviewers converge on the\
+    \ following assessment:\n\n**What the paper does well:**\n- Honest, thorough empirical\
+    \ work with 16 experiments fully executed\n- The selection bias diagnosis (conf≥2\
+    \ is an artifact) is a clean, well-supported finding\n- The \"Why data programming\
+    \ fails on sequential data\" insight (temporal LF correlation → inflated confidence)\
+    \ is genuinely useful\n- LF temporal dynamics is interesting descriptive work\n\
+    \n**What prevents acceptance at a top venue:**\n- No methodological novelty (vanilla\
+    \ majority vote + standard GRU, no adaptation for sequential setting)\n- 5 references\
+    \ is unacceptable; the paper exists in a vacuum without engaging with PRMs, noisy\
+    \ label learning, agent reflection, or modern weak supervision\n- Key experimental\
+    \ gaps (multi-seed, encoder specification, outcome LF leakage analysis)\n- The\
+    \ positive finding (LF temporal dynamics) is descriptive without demonstrated\
+    \ utility\n- Domain scope is narrow (SWE-bench only)\n\n### Step 4: Final Synthesis\n\
+    \n---\n\n## 4. Consolidated Assessment\n\n### Experiment Coverage: 16/16 (100%)\n\
+    All imagined experiments from the design document are present in the paper with\
+    \ matching methodology and results.\n\n### Overall Score: 3/6 (Weak Reject)\n\n\
+    ### Justification\n\nThe paper is a well-executed empirical study that honestly\
+    \ characterizes the failure of weak supervision for agent stagnation detection.\
+    \ The selection bias diagnosis is clean, the experiment coverage is comprehensive,\
+    \ and the LF temporal dynamics finding is interesting. The authors deserve credit\
+    \ for the intellectual honesty of presenting primarily negative results.\n\nHowever,\
+    \ several factors place this below the acceptance threshold for a top ML venue:\n\
+    \n1. **Insufficient novelty**: The method (majority-vote labels + GRU) involves\
+    \ no adaptation of data programming for sequential data. The negative result is\
+    \ partially foreseeable—applying vanilla Snorkel to temporally correlated data\
+    \ without addressing correlation is a known limitation. The paper identifies this\
+    \ (Section 11) but does not attempt to fix it, which is a missed opportunity.\n\
+    \n2. **Severely incomplete related work**: 5 references is far below the standard\
+    \ for any venue. The paper does not engage with Process Reward Models, noisy label\
+    \ learning, weak supervision advances (MeTaL, FlyingSquid), agent reflection methods,\
+    \ or domain adaptation—all of which are directly relevant.\n\n3. **Experimental\
+    \ methodology gaps**: No multi-seed variance (critical at 1-2pp margins), unspecified\
+    \ sentence encoder, no sensitivity analysis for `outcome_backpropagation` information\
+    \ leakage, no human gold evaluation on OpenHands data.\n\n4. **Limited actionability**:\
+    \ The LF temporal dynamics finding is descriptive but not converted into an improved\
+    \ method. The negative results tell us what doesn't work, but the paper does not\
+    \ explore whether correlation-aware label models (e.g., FlyingSquid), temporal\
+    \ label smoothing, or hybrid LLM+LF labeling would fix the identified failure\
+    \ mode.\n\n5. **Narrow scope**: All evaluation is on SWE-bench software engineering\
+    \ agents. The stagnation taxonomy is derived from and validated on a single domain.\n\
+    \n### Recommendation\n\n**Not ready for main track** at a top ML/NLP venue. Could\
+    \ be suitable for **EMNLP Findings** or a **workshop paper** with the following\
+    \ revisions:\n\n- **Must fix**: Expand related work to ≥25 references covering\
+    \ PRMs, noisy label learning, agent reflection, modern weak supervision. Specify\
+    \ the sentence encoder. Report multi-seed variance (≥3 seeds) for all key comparisons.\
+    \ Add sensitivity analysis with `outcome_backpropagation` held out from temporal\
+    \ dynamics.\n\n- **Should fix**: Attempt at least one correlation-aware label\
+    \ model (FlyingSquid) to test whether the identified failure mode (LF temporal\
+    \ correlation) is addressable. Add human annotation on a small OpenHands subset.\
+    \ Convert the temporal dynamics finding into a concrete improvement (e.g., temporal-ordering-aware\
+    \ label weighting).\n\n- **Nice to have**: Evaluate on at least one non-SE agent\
+    \ domain. Provide confidence intervals on all reported metrics. Expand the stagnation\
+    \ taxonomy beyond LF activation patterns to behavioral root causes.\n\n### Scores\
+    \ Summary\n\n| | R1 (Methods) | R2 (Novelty) | Consensus |\n|---|---|---|---|\n\
+    | Score | 4 (Weak Accept) | 3 (Weak Reject) | **3 (Weak Reject)** |\n| Confidence\
+    \ | 4/5 | 4/5 | 4/5 |\n\n### Key Strengths (Consensus)\n1. Honest, comprehensive\
+    \ negative-results paper with 16 fully-executed experiments\n2. Clean selection\
+    \ bias diagnosis: conf≥2 performance (0.91) is an artifact that does not generalize\
+    \ to full data (0.74) or gold labels (0.68)\n3. Useful conceptual insight: temporal\
+    \ correlation among LFs violates the i.i.d. assumption of standard data programming,\
+    \ explaining why it fails on sequential data\n4. LF temporal dynamics reveals\
+    \ a reproducible stagnation onset signature (leading→concurrent→lagging)\n5. Thorough\
+    \ baseline coverage including cost-accuracy Pareto analysis\n\n### Key Weaknesses\
+    \ (Consensus)\n1. No methodological novelty—vanilla majority vote + standard GRU\
+    \ with no sequential adaptation\n2. Only 5 references; missing engagement with\
+    \ PRMs, noisy label learning, agent reflection, modern weak supervision\n3. No\
+    \ multi-seed variance despite 1-2pp margins throughout\n4. `outcome_backpropagation`\
+    \ information leakage not analyzed\n5. LF temporal dynamics is descriptive only,\
+    \ with no demonstrated downstream utility\n6. Domain limited to SWE-bench software\
+    \ engineering agents"
+  error: ''
+errors: {}
+score_anomaly: 评分顺序异常：worst(weak reject) 高于 best(reject)，建议谨慎解读
+created_at: '2026-05-14T09:12:01+00:00'

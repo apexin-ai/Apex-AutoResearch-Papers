@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e26491899abd49b2b51c",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code phase0 run",
+  "task_key": "worker_code_phase0-run_20260519T194852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase0-run_20260519T194852_result.json",
+    "occurrence": 1,
+    "bytes": 2429,
+    "sha256": "ada7e4921a588e4992286a3c7ff60500ace709cf6828ff993e42f955c4e76df1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Phase 0 完整结果报告\n\n### 1. transformers 修复确认\n- 从 `transformers==5.8.1` 恢复为 OFT fork `transformers==4.40.1`\n- `tokenizers==0.19.1`\n- `prismatic` import 验证通过\n- 额外修复：`timm` 从 1.0.27 降级到 0.9.16（OpenVLA 模型要求）\n\n### 2. Embedding 修改说明\ndiversity_metrics.py 已经集成了双 embedding 架构（前一个 Worker 已完成）：\n- **主要 embedding**: SigLIP text encoder，从 `/root/autodl-tmp/siglip-base-local/` 加载 `SiglipTextModel`，输出 768 维归一化向量\n- **辅助参考**: `all-MiniLM-L6-v2` (sentence-transformers)\n- tier_classifier.py 优先使用 `openvla_embed_sim`\n\n额外修复：\n- `kl_divergence.py` 的 `pixel_values` dtype 不匹配（float32 vs bf16）\n- `kl_divergence.py` 的 image token 检测方式（OpenVLA 不使用 special token ID，而是直接 prepend image patch embeddings）\n\n### 3. Phase 0 完整结果\n\n| 指标 | 均值 | 标准差 | 范围 |\n|------|------|--------|------|\n| **1-BLEU** | 0.7434 | 0.1724 | [0.2139, 0.9715] |\n| **openvla_embed_sim** | 0.7912 | 0.1682 | [0.4165, 0.9999] |\n| **minilm_embed_sim** | 0.9290 | 0.0498 | [0.7082, 0.9898] |\n| **nli_entailment** | 0.0550 | 0.1432 | [0.0010, 0.8866] |\n\n**Tier 分布** (基于 openvla_embed_sim):\n| Tier | 数量 | 百分比 |\n|------|------|--------|\n| Tier-1 (trivial, sim>0.95) | 170 | 26.2% |\n| Tier-2 (moderate, 0.80-0.95) | 185 | 28.5% |\n| Tier-3 (deep, <0.80) | 295 | 45.4% |\n| **Tier-2+** | **480** | **73.8%** |\n\n**KL Divergence** (Layer 18, 20 tasks, 100 pairs):\n| 指标 | 值 |\n|------|-----|\n| Mean KL | 0.000070 nats |\n| Std KL | 0.000026 |\n| Median | 0.000065 |\n| Range | [0.000027, 0.000151] |\n\n### 综合判定: **MARGINAL**\n\n- Tier-2+ = 73.8% (>40%) ✓ paraphrase diversity 很好\n- KL = 0.0001 nats (<0.1) ✗ attention 分布几乎不变\n\nKL 极低说明在 dummy image 条件下，不同 paraphrase 对 layer-18 attention-to-image 分布的影响极小。这可能意味着需要用真实任务图片而非 dummy image 来测 KL，或模型本身对 text variation 具有较强的 invariance。\n\n### 4. 结果文件路径\n- `/root/afford_invar/results/phase0/diversity_metrics.json`\n- `/root/afford_invar/results/phase0/tier_classification.json`\n- `/root/afford_invar/results/phase0/kl_divergence.json`\n- `/root/afford_invar/results/phase0/phase0_result.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase0-run.md"
+}

@@ -1,0 +1,85 @@
+{
+  "comparison_1_rf_vs_probe_indomain": {
+    "scope": "SWE-Agent conf>=2 test split",
+    "N": 1824,
+    "class_dist": {
+      "stagnation": 485,
+      "progress": 1339
+    },
+    "model_a": "Structural RF",
+    "model_b": "ProgressProbe (GRU)",
+    "f1_a": 0.9951,
+    "f1_b": 0.9055,
+    "delta_pp": 8.96,
+    "ci_95": [
+      7.44,
+      10.57
+    ],
+    "p_value": 0.0,
+    "table2_ref": {
+      "f1_a": 0.9951,
+      "f1_b": 0.9055
+    }
+  },
+  "comparison_2_gb_vs_probe_zeroshot_oh": {
+    "scope": "OH conf>=2 test split",
+    "scope_note": "Table 2 GB=0.9674 is on all 150,652 OH windows; this bootstrap uses conf>=2 test split only. GB F1 on this subset differs from Table 2.",
+    "N": 6122,
+    "class_dist": {
+      "stagnation": 1179,
+      "progress": 4943
+    },
+    "model_a": "Structural GB",
+    "model_b": "ProgressProbe zero-shot",
+    "f1_a": 0.9929,
+    "f1_b": 0.5984,
+    "delta_pp": 39.44,
+    "ci_95": [
+      37.86,
+      41.04
+    ],
+    "p_value": 0.0,
+    "table2_ref": {
+      "f1_a_all_oh": 0.9674,
+      "f1_b": 0.598
+    }
+  },
+  "comparison_3_gb_vs_probe_finetuned_oh": {
+    "scope": "OH conf>=2 test split",
+    "scope_note": "Same scope as comparison 2. GB retrained on same SWE data.",
+    "N": 6122,
+    "class_dist": {
+      "stagnation": 1179,
+      "progress": 4943
+    },
+    "model_a": "Structural GB",
+    "model_b": "ProgressProbe fine-tuned",
+    "f1_a": 0.9929,
+    "f1_b": 0.9763,
+    "delta_pp": 1.65,
+    "ci_95": [
+      1.11,
+      2.23
+    ],
+    "p_value": 0.0,
+    "table2_ref": {
+      "f1_a_all_oh": 0.9674,
+      "f1_b": 0.976
+    }
+  },
+  "metadata": {
+    "n_bootstrap": 10000,
+    "seed": 42,
+    "timestamp": "2026-05-15T13:15:18.797052",
+    "note": "Paired bootstrap on Table 2 exact scope",
+    "rf_hp": {
+      "n_estimators": 100,
+      "max_depth": 10
+    },
+    "gb_hp": {
+      "n_estimators": 200,
+      "learning_rate": 0.05,
+      "max_depth": 5
+    }
+  }
+}

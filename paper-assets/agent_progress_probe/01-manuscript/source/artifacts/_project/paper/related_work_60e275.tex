@@ -1,0 +1,54 @@
+% Related Work: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{LLM Agent Monitoring and Evaluation}
+
+As LLM agents tackle increasingly complex tasks \citep{jimenez2024swebench,yang2024sweagent,wang2025openhands,zhou2024webarena,wang2024mint}, understanding and monitoring their failure modes has become critical.
+Taxonomic studies reveal that agent failures are often systematic: \citet{cemri2025multiagentfail} identify 14 failure modes in multi-agent systems, including step repetition as a concrete symptom, while \citet{zhu2025agentfail} show that cascading failures---where a single root cause propagates across subsequent decisions---dominate long-horizon tasks.
+\citet{orlanski2026slopcodebench} provide the most direct evidence of agent degradation, documenting structural erosion in 77\% of coding agent trajectories with no agent fully solving any benchmark task end-to-end.
+
+Existing monitoring approaches span several paradigms.
+\emph{Self-reflection} methods \citep{shinn2023reflexion,yao2023tot,zhou2024lats} rely on the agent to diagnose its own failures, but \citet{huang2024selfcorrect} and \citet{kamoi2024selfcorrection} demonstrate that LLMs cannot reliably self-correct without external feedback, motivating external monitoring.
+\citet{george2025cycledetection} propose unsupervised cycle detection combining call-stack analysis with embedding similarity, while \citet{pipis2025reasoningloop} analyze why reasoning models loop, using $n$-gram repetition as a detection heuristic.
+On the external monitoring front, \citet{chen2025monitoring} show that sequence-level context is necessary---single-step analysis misses sequentially contextual harm---and \citet{kale2025weaktostrong} demonstrate that monitor scaffolding matters more than monitor capability, with weak models reliably monitoring stronger agents.
+
+Our work differs from all of the above in its central question: rather than proposing a new monitoring \emph{method}, we conduct an empirical study asking what \emph{signals} carry stagnation information.
+We show that 30 structural features suffice for near-perfect detection (0.995 F1), without requiring another LLM, self-reflection, or embedding-based similarity.
+
+\subsection{Process Reward Models for Agents}
+
+Process reward models (PRMs) assign quality scores to individual agent steps, enabling search-time guidance and trajectory selection.
+\citet{xi2025agentprm} introduce AgentPRM, training step-level reward models via TD/GAE that evaluate both ``promise'' (long-term potential) and ``progress'' (immediate advancement), achieving 8$\times$ compute efficiency gains.
+\citet{choudhury2025prm} formalize the PRM framework and propose InversePRM, learning process rewards from expert demonstrations without outcome labels, with a 3B model surpassing GPT-4o.
+Evaluation benchmarks have emerged in parallel: \citet{li2026toolprmbench} benchmark PRMs on tool-use scenarios, finding that specialized PRMs substantially outperform general-purpose ones, while \citet{wang2026planrewardbench} evaluate trajectory-level reward models and reveal that all model categories---generative, discriminative, and LLM-as-judge---degrade significantly on long-horizon trajectories.
+\citet{fan2026agentrm} extend PRMs with structured reasoning traces and multi-dimensional critiques (Agent-RRM), and \citet{qiu2026dataprm} address data analysis agents specifically, introducing environment-aware probing to detect silent errors that standard PRMs miss.
+
+Our work is complementary to the PRM line but differs in three fundamental ways: (1)~we operate at window level rather than step level, capturing temporal patterns across consecutive actions; (2)~we require no outcome labels or reward annotations---our labeling functions use only observable structural signals; and (3)~our goal is real-time \emph{monitoring} (stagnation detection in $<$5\,ms), not \emph{training signal} generation for agent improvement.
+The degradation of trajectory-level reward models on long horizons reported by \citet{wang2026planrewardbench} further motivates our window-level approach, which avoids full-trajectory reasoning by design.
+
+\subsection{Data Programming and Weak Supervision}
+
+Data programming \citep{ratner2016dataprogramming} enables rapid training set creation through user-defined labeling functions (LFs), with a generative model learning LF accuracies to produce probabilistic labels.
+Snorkel \citep{ratner2017snorkel} operationalizes this into an end-to-end system with dependency-aware label models, and \citet{fu2020flyingsquid} accelerate label model inference via closed-form triplet methods.
+\citet{zhang2021wrench} provide a comprehensive benchmark spanning 22 datasets, though all assume i.i.d.\ data points.
+
+Extensions to sequential data relax this assumption.
+\citet{safranchik2020linkedhmm} introduce a linked HMM for weakly supervised sequence tagging (NER), incorporating linking rules that model span structure and improving over i.i.d.\ label models by 7~F1 points.
+\citet{sala2019multiresolution} handle multi-resolution LFs operating at different temporal granularities.
+In crowdsourcing, \citet{nguyen2017hmmcrowd} extend \citeauthor{dawid1979em}'s EM-based annotator model \citep{dawid1979em} with HMM structure for sequential label aggregation.
+
+We apply data programming to agent trajectory data, a novel domain where LFs exhibit systematic temporal dynamics (e.g., command repetition leads stagnation onset by 1.87 steps on SWE-Agent).
+Unlike prior sequential extensions that target token-level NER or multi-resolution alignment, our setting involves window-level binary classification with agent-specific LF role reversals.
+Critically, we test whether temporal label models---motivated by the clear i.i.d.\ violations we observe---can improve over majority vote, and report a negative finding: three implementations (TWV, HMM, lag-aware HMM) all fail to surpass simple voting in the low-conflict regime of our 3-LF framework.
+
+\subsection{Anomaly Detection in Agent Trajectories}
+
+Detecting anomalous behavior in sequential agent data connects to the broader literature on time-series anomaly detection.
+\citet{liu2026trajad} propose TrajAD, training a fine-grained verifier through synthetic perturbations (perturb-and-complete) to detect trajectory anomalies including task failure, process inefficiency, and unwarranted continuation.
+They show that general-purpose LLMs perform poorly at zero-shot trajectory anomaly detection, motivating specialized approaches.
+
+Our work differs from anomaly detection in both formulation and methodology.
+We frame stagnation as a binary classification problem over sliding windows rather than identifying rare deviations from a normal distribution.
+Stagnation is not anomalous in the statistical sense---it occurs in 28.5\% of SWE-Agent windows and 6.6\% of OpenHands windows---but rather represents a persistent behavioral regime that an agent enters and may not exit without intervention.
+Where TrajAD requires training a specialized verifier on synthetic data, our empirical analysis reveals that hand-crafted structural features achieve 0.995 F1 without any learned components, and our probe model uses a lightweight GRU \citep{cho2014gru} with attention \citep{bahdanau2015attention} rather than a full LLM verifier.

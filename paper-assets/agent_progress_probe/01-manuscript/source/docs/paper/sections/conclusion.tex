@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We compared structural features, neural probes, LLM judges, and cycle detectors for stagnation detection in LLM coding agents.
+On gold, the best LLM judge achieves the highest non-circular accuracy (0.910 vs.\ structural GB 0.839), but LLM judges collapse on cross-agent transfer (0.491 vs.\ 0.967, $-$47.6\,pp); cycle detectors likewise collapse ($-$43.7\,pp).
+Structural features uniquely enable zero-data transfer ($+$39.4\,pp over probe); with fine-tuning, the probe surpasses structural features (0.976 vs.\ 0.967).
+Five label models fail to improve over majority vote; future work includes non-SE domains, online integration, and scaling to ${>}$10 LFs.
+Code and trained models will be released upon acceptance.

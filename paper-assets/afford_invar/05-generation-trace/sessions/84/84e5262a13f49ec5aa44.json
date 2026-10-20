@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84e5262a13f49ec5aa44",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra protect checkpoint 1000",
+  "task_key": "worker_infra_protect-checkpoint-1000_20260520T011137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_protect-checkpoint-1000_20260520T011137_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "6600b5429b1b54b47c2769042329c9d06b7cdc8aba3c8c9c8b6de8fbcbd7421d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`phase1_transfer_v3` 目录尚不存在（只有 dryrun 和 dryrun2），说明 v3 训练还没正式启动。\n\n**修改内容**：在 cleanup 脚本的两个清理循环中各添加了白名单检查——当 `run_name` 匹配 `phase1_transfer_v3` 时 `continue` 跳过，不做任何删除。\n\n**验证结果**：\n- 脚本已正确写入，白名单变量 `WHITELIST=\"phase1_transfer_v3\"` 生效\n- 两个清理段（merged checkpoints 和 internal checkpoint-N）都会跳过该目录\n- cleanup daemon（PID 127525）无需重启，下次执行时自动读取新脚本\n- `phase1_transfer_v3` 目录当前不存在，训练开始后产生的所有 checkpoint 都会被保留"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-protect-checkpoint-1000.md"
+}

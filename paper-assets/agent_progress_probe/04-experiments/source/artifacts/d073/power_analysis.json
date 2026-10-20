@@ -1,0 +1,22 @@
+{
+  "observed": {
+    "n": 505,
+    "effect_pp": 4.2,
+    "p_value": 0.0001,
+    "chi2_observed": 15.1367,
+    "estimated_discordant": {
+      "b": 25.5,
+      "c": 4.3,
+      "total": 29.7
+    },
+    "p_discordant": 0.0589,
+    "pi_b": 0.8568,
+    "ncp": 15.1367,
+    "power": 0.9732
+  },
+  "required_n": {
+    "5pp_80pwr": 185,
+    "3pp_80pwr": 514,
+    "2pp_80pwr": 1155
+  }
+}

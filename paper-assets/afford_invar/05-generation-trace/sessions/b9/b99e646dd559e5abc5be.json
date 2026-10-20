@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b99e646dd559e5abc5be",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code fix finetune bugs v3",
+  "task_key": "worker_code_fix-finetune-bugs-v3_20260519T210640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-finetune-bugs-v3_20260519T210640_result.json",
+    "occurrence": 1,
+    "bytes": 1116,
+    "sha256": "d5fe529c17c27684a6d426391ce2d45218650f0d7da198ec1bb2afb106bbc89f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 3 个验证通过。\n\n---\n\n## 修复总结\n\n**文件**: `/root/afford_invar/openvla-oft/vla-scripts/finetune_afford.py`\n\n### 修改 1 — Line 363\n```python\n# 修改前\nlayer18_orig = output.hidden_states[cfg.layer_idx][:, 1:1 + NUM_PATCHES, :].to(torch.bfloat16)\n# 修改后\nlayer18_orig = output.hidden_states[cfg.layer_idx + 1][:, :NUM_PATCHES, :].to(torch.bfloat16)\n```\n\n### 修改 2 — Line 385\n```python\n# 修改前\nfeat = p_out.hidden_states[cfg.layer_idx][:, 1:1 + NUM_PATCHES, :].to(torch.bfloat16)\n# 修改后\nfeat = p_out.hidden_states[cfg.layer_idx + 1][:, :NUM_PATCHES, :].to(torch.bfloat16)\n```\n\n### 无需修改\n- `affordance_decoder.py` — 已用 GroupNorm，无 BatchNorm，无 hidden_states 引用\n- 其他文件 — 全项目搜索无同类 bug\n\n### 验证结果\n1. Unit test 索引正确性 — PASSED (`hidden_states[18+1]` = layer 18 output = value 19.0)\n2. Phase 0 一致性 — PASSED (`hs_index = layer_idx + 1`，与修复后一致)\n3. AffordanceDecoder — PASSED（无 BatchNorm，forward shape (2,256,4096)→(2,1,128,128) 正确）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-finetune-bugs-v3.md"
+}

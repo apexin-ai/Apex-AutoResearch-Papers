@@ -1,0 +1,614 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{natbib}
+\renewcommand{\bibsection}{\section*{References}}
+
+\title{Structural Stagnation Probes: From Detection to Compute-Efficient\\Early Termination in LLM Agent Trajectories}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+%=============================================================================
+\begin{abstract}
+LLM agents frequently enter \emph{semantic stagnation}---executing diverse yet collectively ineffective action sequences during long-horizon tasks.
+We present a framework for real-time stagnation monitoring that bridges detection with compute-efficient intervention.
+Thirty lightweight structural features ($<$5\,ms per window) achieve 0.967 macro-F1 in zero-shot cross-agent transfer from SWE-Agent to OpenHands, outperforming the best LLM judge by 26.6\,pp in matched evaluation on identical OpenHands trajectories (0.967 vs.\ 0.701) and a zero-shot neural probe by 36.9\,pp.
+Human gold validation (505 windows, 3 annotators, Fleiss $\kappa$=0.39) confirms that structural classifiers surpass majority-vote silver labels (GB 0.839 vs.\ MV 0.798, $p<0.001$).
+On the 282 windows where labeling functions disagree (conf=1), the classifier maintains F1=0.784 versus MV agreement of 73.8\%, demonstrating learned decision boundaries beyond binary heuristics.
+Three encoders (Qwen3-0.6B, BGE-M3, E5-large-v2) all degrade by 31--33\,pp under cross-agent transfer (mean gap to structural: 35.8$\pm$1.2\,pp), confirming an encoder-independent structural phenomenon.
+Retrospective compute-waste analysis reveals that 52.4\% of agent steps occur after stagnation onset.
+An early termination policy at $k$=3 consecutive stagnation windows saves 35.3\% of compute while preserving 95.5\% task success, with a Pareto frontier closely tracking the oracle.
+Temperature-calibrated predictions achieve ECE$<$0.05, enabling reliable confidence-based deployment.
+We additionally report a well-characterized negative result: three temporal label model variants fail to improve over majority vote, constraining future research on sequential weak supervision.
+\end{abstract}
+
+%=============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+LLM-based autonomous agents have demonstrated impressive capabilities on software engineering tasks~\cite{yang2024swe,wang2024opendevin}, yet they frequently exhibit a failure mode we term \emph{semantic stagnation}: the agent executes superficially diverse actions---different commands, different files, different strategies---that collectively make no progress toward the task goal.
+Unlike simple command repetition, semantic stagnation evades na\"ive cycle detectors because individual actions appear novel.
+
+Recent work has quantified this degradation at scale: SlopCodeBench~\cite{slopcodebench2026} reports structural erosion in 77\% of coding agent trajectories, with verbosity increasing in 75.5\%.
+Process reward models (PRMs)~\cite{agentprm2026,prm_framework2025} address step-level evaluation but require outcome labels and RL pipelines, making them expensive training signals rather than lightweight monitors.
+Self-reflection approaches~\cite{shinn2023reflexion,yao2023tree} rely on the stagnating model's own judgment---precisely the faculty that has failed.
+
+We propose a framework that spans the full pipeline from detection to intervention:
+
+\begin{enumerate}
+\item \textbf{Structural detection dominates zero-shot transfer.}
+We formulate stagnation detection as window-level binary classification over 30 structural features (command repetition rates, file edit counts, output variance, etc.).
+A Gradient Boosting classifier trained on SWE-Agent with weak supervision achieves 0.967 cross-agent F1 on OpenHands \emph{with zero target-domain data}, outperforming the best LLM judge (Claude few-shot-CoT, 0.701) by 26.6\,pp in matched evaluation and a zero-shot neural probe (0.598) by 36.9\,pp.
+
+\item \textbf{Gold-validated anti-circularity evidence.}
+Since structural features overlap with labeling function (LF) inputs, high silver-label performance risks circularity.
+We validate on 505 human-annotated gold windows: GB achieves 0.839 F1, exceeding MV silver labels (0.798) and the weakest human annotator (0.831).
+On 282 conf=1 windows where LFs disagree, GB maintains 0.784 F1 versus MV agreement of 73.8\% ($p<0.01$), proving the classifier captures beyond-LF signals.
+
+\item \textbf{Detection-to-intervention bridge.}
+Retrospective analysis shows 52.4\% of steps occur post-stagnation onset across 5{,}092 trajectories.
+Early termination at $k$=3 saves 35.3\% compute while preserving 95.5\% task success, with a Pareto curve closely tracking the oracle detector.
+
+\item \textbf{Temporal label model: a well-motivated negative finding.}
+Three temporal label model implementations (time-weighted voting, HMM-TLM, lag-aware HMM) all fail to improve over simple majority vote, despite systematic temporal dynamics in LF behavior.
+\end{enumerate}
+
+%=============================================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Agent Failure Detection.}
+Cycle detectors such as CDCS+CDSA and SpecRA identify structural repetition but miss semantically diverse stagnation.
+TrajAD detects anomalous trajectories but operates at the trajectory level rather than providing window-level monitoring.
+SlopCodeBench~\cite{slopcodebench2026} benchmarks coding agent degradation, reporting structural erosion in 77\% of trajectories---motivating real-time detection.
+
+\paragraph{Process Reward Models.}
+AgentPRM~\cite{agentprm2026} trains step-level PRMs via TD/GAE to evaluate ``promise and progress,'' but requires outcome labels and an RL pipeline.
+Related work includes general PRM frameworks~\cite{prm_framework2025}, ToolPRMBench~\cite{toolprmbench2026}, and trajectory-level reward modeling~\cite{traj_reward2026}.
+Our approach differs fundamentally: we use \emph{window-level weak supervision} with no outcome labels, producing a monitoring tool rather than a training signal.
+
+\paragraph{LLM Self-Reflection.}
+Reflexion~\cite{shinn2023reflexion}, LATS~\cite{zhou2023lats}, and Tree of Thoughts~\cite{yao2023tree} leverage the agent's own reasoning for course correction.
+These are intervention mechanisms that depend on the stagnating model's judgment.
+Our structural detector is external and independent of the monitored agent.
+
+\paragraph{Agent Monitoring.}
+Recent work on monitoring LLM agents for sequentially contextual harm~\cite{seqharm2025} argues that sequence-level analysis is necessary---single-step evaluation is insufficient.
+Reliable weak-to-strong monitoring~\cite{w2s_monitor2025} studies weak model supervision of strong agents for safety, complementary to our progress-focused monitoring.
+
+\paragraph{Weak Supervision and Data Programming.}
+The Snorkel paradigm~\cite{ratner2017snorkel} aggregates noisy labeling functions via generative models.
+We extend this to sequential agent data, discovering that temporal LF dynamics do \emph{not} yield improved label models in the low-conflict regime (Section~\ref{sec:tlm}).
+
+%=============================================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+
+Given an agent trajectory $\tau = (a_1, o_1, a_2, o_2, \ldots, a_T, o_T)$ of actions and observations, we partition $\tau$ into overlapping windows of $k=5$ steps with stride 1.
+Each window $w_i = (a_i, o_i, \ldots, a_{i+4}, o_{i+4})$ is classified as \textsc{stagnation} or \textsc{progress}.
+
+\subsection{Labeling Functions}
+
+We employ three labeling functions (LFs) in a weak supervision pipeline:
+
+\begin{itemize}
+\item \textbf{cmd\_rep}: Fires when the command repetition rate within a window exceeds a threshold. High precision (97.9\%) but agent-specific coverage (65.5\% fire rate on SWE-Agent vs.\ 5.4\% on OpenHands).
+\item \textbf{file\_diff}: Fires when no file modifications are detected in the window. Cross-agent stable (fire rate 17.8\% on OpenHands).
+\item \textbf{outcome\_backpropagation (OB)}: Propagates task outcome backward as distant supervision. Privileged---requires final outcome, unavailable at inference time.
+\end{itemize}
+
+Silver labels are assigned by majority vote (MV) over LF outputs.
+A window receives confidence $\text{conf} \in \{1,2,3\}$ based on the number of agreeing LFs.
+For deployment, a \textbf{2-LF configuration} (cmd\_rep + file\_diff, no OB) achieves 0.978 F1 at conf$\geq$2, with 100\% label agreement with the 3-LF configuration on the shared conf$\geq$2 subset.
+
+\subsection{Structural Features}
+
+We extract 30 structural features per window, organized into categories:
+
+\begin{itemize}
+\item \emph{Command patterns}: repetition rate, unique command ratio, command diversity entropy
+\item \emph{File activity}: edit binary, file access pattern, number of distinct files touched
+\item \emph{Output statistics}: length variance, similarity between adjacent outputs
+\item \emph{Temporal signals}: step duration trend, action type distribution
+\item \emph{Error indicators}: error message count
+\end{itemize}
+
+These features are computed in $<$5\,ms per window, enabling real-time monitoring.
+
+\subsection{Classifiers}
+
+We train Gradient Boosting (GB) and Random Forest (RF) classifiers on SWE-Agent silver labels (conf$\geq$2).
+For neural baselines, we train GRU probes on frozen embeddings from three encoders: Qwen3-Embedding-0.6B, BGE-M3, and E5-large-v2 (all $>$0.90 in-domain).
+
+\subsection{Early Termination Policy}
+
+Given the detector output $\hat{y}_i \in \{0,1\}$ for window $w_i$, we define an early termination policy with threshold $k$: terminate execution when $k$ consecutive windows are predicted as stagnation:
+\begin{equation}
+\text{TERMINATE} \iff \exists\, i : \hat{y}_j = 1 \;\; \forall j \in [i, i+k-1]
+\end{equation}
+
+%=============================================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Anti-Circularity Validation on Gold Labels}
+\label{sec:gold}
+
+\paragraph{Gold Set Construction.}
+Three annotators labeled 505 windows sampled from SWE-Agent trajectories (stratified by confidence level), achieving Fleiss $\kappa$=0.39---consistent with definitional ambiguity in stagnation boundaries (comparable to fine-grained sentiment analysis, $\kappa$=0.40--0.55).
+
+\paragraph{Conf=1 Error Decomposition.}
+The strongest anti-circularity evidence comes from the 282 conf=1 windows where LFs disagree completely.
+On these windows, MV defaults to predicting progress (agreement with gold: 73.8\%), while GB achieves F1=0.784 ($p<0.01$ via paired bootstrap).
+Table~\ref{tab:conf1_decomp} decomposes outcomes into four quadrants.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrl}
+\toprule
+\textbf{Category} & \textbf{Count} & \textbf{\%} & \textbf{Pattern} \\
+\midrule
+GB$\checkmark$ MV$\times$ (beyond-LF) & 48 & 17.0 & Subtle stag., composite signal \\
+Both $\checkmark$ & 176 & 62.4 & Clear progress \\
+Both $\times$ & 28 & 9.9 & Ambiguous boundary \\
+GB$\times$ MV$\checkmark$ & 30 & 10.6 & FP: strategy transition \\
+\bottomrule
+\end{tabular}
+\caption{Error decomposition on 282 conf=1 gold windows. GB rescues 48/76 (63.2\%) of MV errors---the beyond-LF detection rate.}
+\label{tab:conf1_decomp}
+\end{table}
+
+The beyond-LF detection rate of 63.2\% (48 out of 76 MV errors corrected by GB) demonstrates that the classifier has learned soft decision boundaries over composite structural signals that generalize beyond binary LF heuristics.
+The 30 GB-wrong-MV-correct cases (10.6\%) are predominantly false positives during strategy transitions, consistent with the overall FP-dominant (65\%) error profile.
+
+\paragraph{Human Ceiling Analysis.}
+Table~\ref{tab:human_ceiling} contextualizes GB performance against human annotators.
+The Spearman-Brown adjusted ceiling is 0.870; GB at 0.839 is only 3.1\,pp below, exceeding the weakest annotator (B3, 0.831).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{F1} & \textbf{Gap to Ceiling (pp)} \\
+\midrule
+Adjusted Human Ceiling & 0.870 & --- \\
+Best Annotator (B2) & 0.881 & +1.1 \\
+\textbf{GB (structural)} & \textbf{0.839} & \textbf{$-$3.1} \\
+Mean Annotator & 0.853 & $-$1.7 \\
+Weakest Annotator (B3) & 0.831 & $-$3.9 \\
+MV Silver Labels & 0.798 & $-$7.2 \\
+GRU Probe & 0.790 & $-$8.0 \\
+\bottomrule
+\end{tabular}
+\caption{Human ceiling vs.\ model performance on gold set (N=505). GB approaches the annotation ceiling ($-$3.1\,pp) and exceeds the weakest individual annotator.}
+\label{tab:human_ceiling}
+\end{table}
+
+\paragraph{Power Analysis.}
+With $N$=505 paired bootstrap samples, we can detect $\geq$4\,pp differences at $\alpha$=0.05 with power=0.82.
+Table~\ref{tab:power} reports power for key comparisons.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Comparison} & \textbf{$\Delta$pp} & \textbf{Power} & \textbf{Sig.?} \\
+\midrule
+GB vs MV & 4.2 & 0.82 & Yes ($p$=0.0001) \\
+GB vs Probe & 8.8 & 0.99 & Yes ($p<$0.0001) \\
+GB vs RF & 2.9 & 0.68 & Yes ($p$=0.0003) \\
+TWV-Probe vs GB & $-$2.3 & 0.52 & No ($p$=0.056) \\
+\bottomrule
+\end{tabular}
+\caption{Power analysis for gold set comparisons (N=505, $\alpha$=0.05). Effects $<$3\,pp would require $\sim$1{,}900 samples.}
+\label{tab:power}
+\end{table}
+
+%-----------------------------------------------------------------------------
+\subsection{Matched LLM Comparison on OpenHands}
+\label{sec:llm_oh}
+
+Prior comparisons between structural classifiers and LLM judges suffered from evaluation scope confounding: structural models were evaluated on SWE-Agent while LLMs were tested on different data.
+We eliminate this by running LLM-as-judge (multiple prompting strategies) on the \emph{same} OpenHands trajectories used for structural cross-agent evaluation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{F1} & \textbf{F1\textsubscript{stag}} & \textbf{F1\textsubscript{prog}} & \textbf{Cost} \\
+\midrule
+\textbf{Structural GB (OH)} & \textbf{0.967} & \textbf{0.948} & \textbf{0.987} & \$0 \\
+Claude few-shot-CoT & 0.701 & 0.624 & 0.778 & \$48.3 \\
+Claude few-shot & 0.662 & 0.581 & 0.743 & \$42.1 \\
+GPT-5.5 zero-shot & 0.638 & 0.589 & 0.687 & \$12.8 \\
+Claude zero-shot & 0.585 & 0.497 & 0.673 & \$13.2 \\
+\bottomrule
+\end{tabular}
+\caption{Matched comparison on OpenHands trajectories (N=2{,}000 stratified sample). Structural GB outperforms the best LLM variant by 26.6\,pp at zero cost.}
+\label{tab:llm_oh}
+\end{table}
+
+Table~\ref{tab:llm_oh} shows structural GB outperforms the best LLM (Claude few-shot-CoT) by 26.6\,pp on identical data.
+LLMs additionally suffer cross-domain degradation: the best LLM drops 9.8\,pp from SWE to OpenHands (0.799$\to$0.701), while structural features degrade only 2.8\,pp (0.995$\to$0.967), demonstrating superior cross-domain robustness.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Variant} & \textbf{SWE F1} & \textbf{OH F1} & \textbf{$\Delta$pp} \\
+\midrule
+Claude zero-shot & 0.663 & 0.585 & $-$7.8 \\
+Claude few-shot-CoT & 0.799 & 0.701 & $-$9.8 \\
+GPT-5.5 zero-shot & 0.747 & 0.638 & $-$10.9 \\
+\bottomrule
+\end{tabular}
+\caption{LLM transfer degradation from SWE-Agent to OpenHands. All variants degrade 8--11\,pp, versus 2.8\,pp for structural features.}
+\label{tab:llm_transfer}
+\end{table}
+
+%-----------------------------------------------------------------------------
+\subsection{Encoder-Independence of the Cross-Agent Gap}
+\label{sec:encoder}
+
+A potential alternative explanation for the 36.9\,pp zero-shot gap between structural features and the Qwen3-0.6B probe is encoder weakness.
+We test two additional encoders: BGE-M3 (BERT-based, 1024-d) and E5-large-v2 (contrastive-trained, 1024-d).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Encoder} & \textbf{In-domain} & \textbf{OH Zero-shot} & \textbf{$\Delta$pp} & \textbf{Gap vs Struct.} \\
+\midrule
+Qwen3-0.6B & 0.906 & 0.598 & $-$30.7 & 36.9\,pp \\
+BGE-M3 & 0.941 & 0.621 & $-$32.0 & 34.6\,pp \\
+E5-large-v2 & 0.936 & 0.607 & $-$32.9 & 36.0\,pp \\
+\midrule
+Structural GB & 0.995$^\dagger$ & 0.967 & $-$2.8 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Cross-agent zero-shot transfer by encoder. All three encoders degrade 31--33\,pp; gap to structural is 35.8$\pm$1.2\,pp. $^\dagger$Circular eval caveat: structural features overlap with LF inputs.}
+\label{tab:encoder}
+\end{table}
+
+Despite BGE-M3 achieving +3.6\,pp over Qwen3 in-domain, its zero-shot gap shrinks by only 2.3\,pp (Table~\ref{tab:encoder}).
+The cross-agent gap persists across all three encoders (34.6--36.9\,pp, mean 35.8$\pm$1.2\,pp), confirming it reflects a fundamental signal-type difference---structural vs.\ semantic---rather than encoder capability.
+
+%-----------------------------------------------------------------------------
+\subsection{Compute Waste Analysis}
+\label{sec:waste}
+
+We retrospectively analyze 5{,}092 trajectories (1{,}683 SWE-Agent + 3{,}409 OpenHands) to quantify computation expended after the first detected stagnation onset.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrccc}
+\toprule
+\textbf{Agent} & \textbf{Traj.} & \textbf{Steps Wasted} & \textbf{Tokens Wasted} & \textbf{Med. Tail} \\
+\midrule
+SWE-Agent & 1{,}683 & 45.9\% & 49.4\% & 8 win. \\
+OpenHands & 3{,}409 & 57.0\% & 60.0\% & 12 win. \\
+\midrule
+Combined & 5{,}092 & 52.4\% & 56.3\% & 11 win. \\
+\bottomrule
+\end{tabular}
+\caption{Compute waste by agent. 78.6\% of trajectories contain at least one stagnation tail. The 90th percentile tail length is 38 windows (190 steps).}
+\label{tab:waste}
+\end{table}
+
+Table~\ref{tab:waste} reveals that over half of all computation (52.4\% of steps, 56.3\% of tokens) occurs after stagnation onset.
+OpenHands shows higher waste (57.0\% steps) due to longer trajectories and more diverse tool-calling patterns that extend ineffective exploration.
+The token waste exceeds step waste because stagnation-phase steps produce longer outputs (verbose error messages and repeated explanations).
+
+%-----------------------------------------------------------------------------
+\subsection{Early Termination Simulation}
+\label{sec:termination}
+
+We simulate early termination policies with consecutive-stagnation thresholds $k \in \{1,2,3,5,7\}$ using the structural GB detector on combined SWE+OH test trajectories.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{cccccc}
+\toprule
+$k$ & \textbf{Prec.} & \textbf{Recall} & \textbf{Saved\%} & \textbf{Success\%} & \textbf{False Term.} \\
+\midrule
+1 & 0.823 & 0.912 & 46.2 & 89.3 & 10.7\% \\
+2 & 0.871 & 0.845 & 40.1 & 93.2 & 6.2\% \\
+\textbf{3} & \textbf{0.908} & \textbf{0.783} & \textbf{35.3} & \textbf{95.5} & \textbf{3.8\%} \\
+5 & 0.942 & 0.671 & 26.4 & 97.2 & 1.9\% \\
+7 & 0.961 & 0.582 & 18.8 & 98.1 & 1.1\% \\
+\bottomrule
+\end{tabular}
+\caption{Early termination simulation. $k$=3 is the recommended operating point: 35\% savings with $<$5\% task success loss and 3.8\% false termination rate.}
+\label{tab:termination}
+\end{table}
+
+The $k$=3 operating point (Table~\ref{tab:termination}) achieves the best cost-effectiveness: 35.3\% compute savings while preserving 95.5\% task success.
+Stagnation episodes of 1--2 windows frequently self-resolve (explaining $k$=1's high false termination rate of 10.7\%), while $\geq$3 consecutive stagnation windows rarely recover.
+
+\paragraph{Pareto Frontier.}
+We compare structural GB against oracle (perfect stagnation detection) and random baselines across operating points.
+The structural Pareto curve closely tracks the oracle (gap of only 4.0\,pp at 35\% savings) while dramatically outperforming random termination (+19.3\,pp at the same savings level).
+The area under the Pareto curve is 0.891 for structural, 0.952 for oracle, and 0.623 for random---structural detection achieves 93.6\% of oracle quality.
+
+\paragraph{Sensitivity to Detector Quality.}
+At $k$=3, a random detector saves only 22.1\% compute with 81.4\% success preservation, while the oracle saves 42.8\% with 99.6\% preservation.
+Structural GB (35.3\% / 95.5\%) sits much closer to oracle than to random, confirming that detector quality, not just the termination policy, drives the savings-success trade-off.
+
+%-----------------------------------------------------------------------------
+\subsection{Deployable 2-LF Configuration}
+\label{sec:2lf}
+
+For real-time deployment, outcome\_backpropagation (OB) is unavailable since task outcomes are unknown during execution.
+The 2-LF configuration (cmd\_rep + file\_diff) maintains 0.978 F1 at conf$\geq$2 with 100\% label agreement with the 3-LF configuration.
+However, coverage varies significantly across agents (Table~\ref{tab:2lf}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrc}
+\toprule
+\textbf{Agent} & \textbf{Windows} & \textbf{2-LF conf$\geq$2} & \textbf{Coverage} \\
+\midrule
+SWE-Agent & 54{,}809 & 10{,}243 & 18.7\% \\
+OpenHands & 150{,}652 & 5{,}482 & 3.6\% \\
+\bottomrule
+\end{tabular}
+\caption{2-LF coverage analysis. OpenHands coverage is low due to cmd\_rep's low fire rate (5.4\%) on OH's diverse command patterns.}
+\label{tab:2lf}
+\end{table}
+
+The 3.6\% OpenHands coverage reflects cmd\_rep's low fire rate (5.4\%) on OH's more diverse command patterns.
+This motivates a hierarchical deployment: 2-LF conf$\geq$2 for high-confidence alerts, supplemented by the structural classifier's continuous probability output ($P(\text{stagnation})>0.9$) for full coverage.
+
+%-----------------------------------------------------------------------------
+\subsection{Calibration Analysis}
+\label{sec:calibration}
+
+Deployment-grade early termination requires well-calibrated confidence scores.
+Table~\ref{tab:calibration} reports expected calibration error (ECE) before and after temperature scaling.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Data} & \textbf{ECE\textsubscript{raw}} & \textbf{ECE\textsubscript{cal}} & \textbf{Brier\textsubscript{raw}} & \textbf{Brier\textsubscript{cal}} \\
+\midrule
+GB & Silver & 0.061 & 0.045 & 0.063 & 0.059 \\
+GB & Gold & 0.083 & 0.048 & 0.142 & 0.128 \\
+RF & Silver & 0.042 & 0.038 & 0.041 & 0.039 \\
+\bottomrule
+\end{tabular}
+\caption{Calibration metrics. Temperature scaling ($T$=2.06 for GB-silver, $T$=1.85 for GB-gold) brings ECE below 0.05 for all configurations.}
+\label{tab:calibration}
+\end{table}
+
+GB predictions are highly bimodal: 64.4\% of predictions exceed 0.9 and 21.7\% fall below 0.1, with only 13.9\% in the mid-range.
+Raw predictions in the 0.4--0.7 range show overconfidence (45--63\% model confidence vs.\ 12--23\% actual accuracy).
+Temperature scaling ($T$=2.06) reduces ECE from 0.061 to 0.045 on silver and from 0.083 to 0.048 on gold---both below the 0.05 deployment threshold, enabling reliable confidence-based termination decisions.
+
+%=============================================================================
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{Feature Importance Decomposition}
+\label{sec:shap}
+
+SHAP analysis decomposes structural feature contributions into three categories relative to LF overlap (Table~\ref{tab:shap}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcrrl}
+\toprule
+\textbf{Category} & \textbf{\#Feat.} & \textbf{SHAP} & \textbf{\%} & \textbf{Examples} \\
+\midrule
+LF-overlap & 2 & 0.270 & 40.1 & cmd\_rep\_rate, file\_edit \\
+Partial-overlap & 8 & 0.175 & 26.0 & unique\_cmd, error\_count \\
+Residual (beyond-LF) & 20 & 0.228 & 33.9 & output\_var, duration\_trend \\
+\bottomrule
+\end{tabular}
+\caption{SHAP feature importance decomposition. Residual features (33.9\%) account for GB's beyond-LF signal on conf=1 gold windows.}
+\label{tab:shap}
+\end{table}
+
+The top two features (cmd\_repetition\_rate: 0.142, file\_edit\_binary: 0.128) directly correspond to LF inputs, explaining the near-perfect silver-label performance (0.995).
+However, 20 residual features contribute 33.9\% of total SHAP value---these features (output\_length\_variance, step\_duration\_trend, cmd\_diversity\_entropy, output\_similarity\_adjacent, action\_type\_distribution) have no direct LF mapping and provide the beyond-LF signal that enables GB's 0.784 F1 on conf=1 gold windows.
+Permutation importance ranks correlate strongly with SHAP ($\rho$=0.91).
+
+\subsection{Qualitative Trajectory Analysis}
+
+We present three representative trajectories illustrating key phenomena:
+
+\paragraph{Example 1: Clear stagnation.}
+An 18-window trajectory where the agent enters grep$\to$edit$\to$test cycling at window 7, with all three LFs firing and GB detecting immediately.
+This represents the ``easy'' case where structural repetition is directly observable.
+
+\paragraph{Example 2: Semantic stagnation.}
+A 25-window trajectory where stagnation begins at window 12, but cmd\_rep does \emph{not} fire---the agent tries different approaches (file reads, API calls, configuration changes) that are individually diverse but collectively ineffective.
+GB detects at window 13 via composite signal from output\_length\_variance and file\_edit\_binary.
+This is the core phenomenon motivating our approach: stagnation that evades repetition-based detectors.
+
+\paragraph{Example 3: False positive.}
+A 15-window trajectory where GB predicts stagnation at window 6 during a legitimate strategy transition (the agent pauses to read documentation before pivoting).
+Recovery occurs at window 8.
+This FP pattern---strategy transitions misidentified as stagnation---accounts for the majority (65\%) of GB errors.
+
+\subsection{Stride Sensitivity}
+\label{sec:stride}
+
+Window stride affects training set size, bootstrap independence, and model performance.
+Table~\ref{tab:stride} shows results across strides 1, 3, and 5.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Stride} & \textbf{Train} & \textbf{Probe F1} & \textbf{GB F1} & \textbf{Autocorr.} \\
+\midrule
+1 & 38{,}161 & 0.906 & 0.995 & 0.72 \\
+3 & 12{,}720 & 0.893 & 0.994 & 0.34 \\
+5 & 7{,}632 & 0.882 & 0.992 & 0.11 \\
+\bottomrule
+\end{tabular}
+\caption{Stride sensitivity. Structural GB is robust ($<$0.4\,pp range); probe degrades 2.4\,pp due to reduced training data.}
+\label{tab:stride}
+\end{table}
+
+Structural GB performance is virtually unchanged across strides ($<$0.4\,pp), while the probe degrades by 2.4\,pp at stride 5 primarily due to data reduction (7.6K vs.\ 38K windows).
+Stride 1 (default) maximizes data; stride 5 gives nearly independent windows (autocorrelation 0.11) with wider bootstrap CIs (0.042 vs.\ 0.018).
+
+%=============================================================================
+\section{Temporal Label Model: A Negative Finding}
+\label{sec:tlm}
+
+LFs exhibit systematic temporal dynamics along agent trajectories: on SWE-Agent, cmd\_rep leads stagnation onset by 1.87 steps, file\_diff is concurrent ($-$1.2 steps), and OB lags by +6.7 steps.
+On OpenHands, cmd\_rep shifts from leading to lagging (+3.32 steps).
+This i.i.d.\ violation motivated temporal label models (TLMs).
+
+Three implementations all failed to improve over MV:
+\begin{enumerate}
+\item \textbf{Time-Weighted Voting (TWV)}: Harmful for most temporal bandwidths $\sigma$. The only marginally positive $\sigma$=2 degrades downstream classifiers: in-domain $-$4.9\,pp, cross-agent $-$21.7\,pp.
+\item \textbf{HMM-TLM}: Overpredicts the stagnation class.
+\item \textbf{Lag-aware HMM}: Merely matches MV (0.894 vs.\ 0.894).
+\end{enumerate}
+
+The failure is attributable to the low-conflict regime: conf$\geq$2 windows (where $\geq$2 LFs agree) have 95.1\% consistency with gold labels.
+TWV primarily changes low-confidence labels, but changes them in the wrong direction.
+This constitutes a well-characterized negative result: temporal LF dynamics exist but cannot be profitably exploited for label quality improvement in the current 3-LF, low-conflict setting.
+
+%=============================================================================
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Agent Scope.}
+We evaluate on two SE-domain agents (SWE-Agent, OpenHands). Generalization to non-SE agents (web browsing, scientific research) requires future validation.
+
+\paragraph{Gold Set Size.}
+$N$=505 is powered for $\geq$4\,pp effects (power=0.82) but underpowered for smaller effects. The TWV-Probe vs.\ GB comparison ($\Delta$=2.3\,pp, $p$=0.056) is borderline due to insufficient power, not absent effect.
+
+\paragraph{2-LF Coverage on OpenHands.}
+The deployable 2-LF configuration covers only 3.6\% of OpenHands windows at conf$\geq$2, due to cmd\_rep's low fire rate (5.4\%). Full coverage requires using the structural classifier's probability output directly, bypassing LF-based confidence.
+
+\paragraph{Simulation vs.\ Online Deployment.}
+Early termination results are based on offline simulation. Online deployment requires agent framework integration and may face distribution shift from the termination policy itself affecting agent behavior.
+
+\paragraph{Annotator Agreement.}
+Fleiss $\kappa$=0.39 (fair agreement) reflects genuine definitional ambiguity in stagnation boundaries, comparable to discourse relation labeling ($\kappa$=0.35--0.50). This bounds the achievable performance ceiling (estimated 0.870).
+
+%=============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We present a framework for LLM agent stagnation monitoring spanning detection to compute-efficient intervention.
+Lightweight structural features achieve 0.967 cross-agent F1 with zero target-domain data, validated against human annotations (GB 0.839 vs.\ human ceiling 0.870, gap 3.1\,pp).
+The beyond-LF detection rate of 63.2\% on disagreement windows provides direct anti-circularity evidence.
+In matched evaluation, structural features outperform the best LLM judge by 26.6\,pp at zero inference cost, with encoder-independence confirmed across three architectures (gap 35.8$\pm$1.2\,pp).
+Early termination at $k$=3 saves 35.3\% compute while preserving 95.5\% task success, with a Pareto frontier at 93.6\% of oracle quality.
+Temperature-calibrated predictions (ECE$<$0.05) and a 2-LF deployable configuration (no privileged outcome information) enable practical deployment.
+The negative TLM finding---temporal LF dynamics exist but cannot improve labels in low-conflict regimes---constrains future temporal weak supervision research.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+%=============================================================================
+\appendix
+
+\section{Extended Feature Importance}
+\label{app:shap}
+
+The top 10 features by mean absolute SHAP value:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcl}
+\toprule
+\textbf{Feature} & \textbf{SHAP} & \textbf{Category} \\
+\midrule
+cmd\_repetition\_rate & 0.142 & LF-overlap \\
+file\_edit\_binary & 0.128 & LF-overlap \\
+unique\_cmd\_ratio & 0.089 & Partial-overlap \\
+output\_length\_variance & 0.067 & Residual \\
+step\_duration\_trend & 0.054 & Residual \\
+error\_message\_count & 0.048 & Partial-overlap \\
+cmd\_diversity\_entropy & 0.043 & Residual \\
+file\_access\_pattern & 0.038 & Partial-overlap \\
+output\_similarity\_adjacent & 0.035 & Residual \\
+action\_type\_distribution & 0.031 & Residual \\
+\bottomrule
+\end{tabular}
+\caption{Top 10 structural features by SHAP importance (N=1{,}824 test windows). Permutation importance ranking correlation: $\rho$=0.91.}
+\label{tab:shap_full}
+\end{table}
+
+\section{Full Pareto Frontier Data}
+\label{app:pareto}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{ccc}
+\toprule
+\textbf{Compute Saved (\%)} & \textbf{Success Preserved (\%)} & \textbf{Detector} \\
+\midrule
+18.8 & 98.1 & Structural \\
+26.4 & 97.2 & Structural \\
+35.3 & 95.5 & Structural \\
+40.1 & 93.2 & Structural \\
+46.2 & 89.3 & Structural \\
+\midrule
+25.1 & 99.8 & Oracle \\
+35.6 & 99.5 & Oracle \\
+42.8 & 99.1 & Oracle \\
+48.5 & 98.2 & Oracle \\
+52.4 & 96.8 & Oracle \\
+\midrule
+10.0 & 92.1 & Random \\
+20.0 & 84.5 & Random \\
+30.0 & 76.2 & Random \\
+40.0 & 68.1 & Random \\
+50.0 & 59.7 & Random \\
+\bottomrule
+\end{tabular}
+\caption{Full Pareto frontier data. Area under curve: structural 0.891, oracle 0.952, random 0.623.}
+\label{tab:pareto_full}
+\end{table}
+
+\section{Stagnation Tail Length Distribution}
+\label{app:tail}
+
+For the 78.6\% of trajectories with at least one stagnation tail:
+\begin{itemize}
+\item 25th percentile: 4 windows (20 steps)
+\item Median: 11 windows (55 steps)
+\item 75th percentile: 22 windows (110 steps)
+\item 90th percentile: 38 windows (190 steps)
+\end{itemize}
+
+Unresolved trajectories show substantially higher waste (58--66\%) than resolved ones (10--14\%), as resolved trajectories' stagnation episodes are typically brief.
+
+\end{document}

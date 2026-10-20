@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ab8d80384d5a43ed5a5",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code l transfer impl",
+  "task_key": "worker_code_l-transfer-impl_20260519T220356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l-transfer-impl_20260519T220356_result.json",
+    "occurrence": 1,
+    "bytes": 2123,
+    "sha256": "8d2eccbef4fca53a2b6e5994e9ea09097af4c5380bb60a9d2e7ae20f994a1bd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出总结\n\n### 实现的文件\n\n| 文件 | 位置 | 说明 |\n|------|------|------|\n| `affordance_decoder.py` | `prismatic/models/` | 添加 `forward_with_features()` 方法，返回 heatmap + 64-ch 中间特征 |\n| `pair_index.py` | `prismatic/training/` | `InstructionPairIndex`: 用 SigLIP 预计算指令对相似度矩阵，支持 build/save/load |\n| `transfer_loss.py` | `prismatic/training/` | `TransferPairMiner` (特征队列 + 正负样本挖掘) + `AffordanceTransferLoss` (InfoNCE) |\n| `finetune_afford_transfer.py` | `vla-scripts/` | Path B 训练入口，替换 L_consist 为 L_transfer |\n| `test_transfer.py` | `tests/` | 7 个单元测试，全部通过 |\n\n### L_transfer 公式\n\n```\nz_i = L2_normalize(global_avg_pool(decoder_features_i))   # (B, 64)\nz_j = L2_normalize(global_avg_pool(decoder_features_j))   # positive from queue\n\nL_transfer = -log( exp(z_i·z_j / τ) / (exp(z_i·z_j / τ) + Σ_k exp(z_i·z_k / τ)) )\n```\n- τ = 0.07, 正样本: SigLIP cosine sim > 0.85 的跨物体指令对\n- 负样本: 队列中所有非正样本特征 (queue_size=256, max_neg=64)\n- 特征来源: AffordanceDecoder 第二层 ConvTranspose 后的 64-ch 特征 (softmax 之前)\n\n### 与现有代码的兼容性\n\n- **`forward()` 完全不变** — Phase 1 训练不受影响，checkpoint 兼容\n- `forward_with_features()` 是纯新增方法，内部遍历同一个 `up_blocks` Sequential\n- 训练脚本是独立的 `finetune_afford_transfer.py`，不修改正在运行的 `finetune_afford.py`\n- 复用了 `heatmap_entropy_loss` (from consistency_loss.py)、`AffordRLDSBatchTransform`、`AffordCollator` 等\n\n### 相比 L_consist 的效率优势\n\nL_transfer **不需要额外的 VLA forward pass**。特征来自队列（detached），每步只做 1 次 VLA forward + 1 次 decoder forward_with_features，比 L_consist 的 K+1 次 VLA forward 快约 3-4 倍。\n\n### 启动 Path B\n\n```bash\ncd /root/afford_invar/openvla-oft\ntorchrun --nproc_per_node 1 vla-scripts/finetune_afford_transfer.py \\\n  --beta 0.1 --transfer_temperature 0.07 --queue_size 256\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-l-transfer-impl.md"
+}

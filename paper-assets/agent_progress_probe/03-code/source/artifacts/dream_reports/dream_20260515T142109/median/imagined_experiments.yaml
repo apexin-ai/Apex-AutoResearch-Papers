@@ -1,0 +1,790 @@
+tier: median
+narrative_guidance: 'Claim 4 从 "actionable contribution" 降级为 "deployment analysis"。标题改为
+  "Structural Stagnation Detection with Deployment Analysis"。Intervention 部分用 "compute
+  waste quantification + preliminary early termination analysis" 措辞， 不宣称 "compute-efficient
+  early termination"。Pareto curve 仍展示但定位为 "motivating future deployment work"。Claim
+  3（TLM negative）压缩到 §5 一段话 + Appendix D，为 Claim 4 分析腾出 0.5 页。核心 headline 仍是 Claim
+  1 structural dominance（+33-39pp）。2-LF 配置叙事从 "ready-to-deploy" 调整为 "deployable with
+  caveats — coverage-dependent on agent architecture"。 补充 limitation: intervention
+  simulation 仅 offline retrospective，online deployment 留 future work。整体定位：strong detection
+  paper with promising-but-preliminary intervention analysis。
+
+  '
+imagined_experiments:
+- name: compute-waste-audit
+  plan_id: compute-waste-audit
+  description: '回溯分析 SWE-Agent + OpenHands 全量轨迹，量化从首次检测到停滞到轨迹结束的 stagnation tail 占总计算资源的比例。按
+    agent、解决状态、轨迹长度分层统计。
+
+    '
+  expected_results:
+    swe_agent:
+      n_instances: 1683
+      n_windows: 54809
+      instances_with_stag_tail: 1124
+      instances_with_stag_tail_pct: 66.8
+      mean_tail_length_steps: 11.8
+      median_tail_length_steps: 8
+      tail_compute_pct_all: 30.2
+      tail_compute_pct_unresolved: 38.5
+      tail_token_pct_all: 28.7
+      intermittent_recovery_instances: 183
+      intermittent_recovery_pct: 10.9
+    openhands:
+      n_instances: 3409
+      n_windows: 150652
+      instances_with_stag_tail: 2048
+      instances_with_stag_tail_pct: 60.1
+      mean_tail_length_steps: 15.3
+      median_tail_length_steps: 10
+      tail_compute_pct_all: 24.1
+      tail_compute_pct_unresolved: 31.8
+      tail_token_pct_all: 22.8
+      intermittent_recovery_instances: 487
+      intermittent_recovery_pct: 14.3
+    combined:
+      stagnation_tail_compute_pct: 27.3
+      stagnation_tail_token_pct: 25.8
+      median_tail_length_steps: 9
+      resolved_tail_compute_pct: 2.1
+      unresolved_tail_compute_pct: 35.4
+  result_rationale: 'Median 档位下 stagnation tail 存在但不够 dramatic（27% vs 乐观档 35-45%），
+    核心原因是 intermittent stagnation：约 11-14% 的轨迹在短暂停滞后恢复， 拉低了整体 waste 比例。SWE-Agent tail
+    更重（30.2%）因为 stag_rate 更高 （28.46% vs 21.45%）且轨迹更短（平均 33 步 vs 44 步），tail 占比更大。 OH
+    tail 更轻（24.1%）因为 cmd_rep firing rate 仅 5.39%，部分停滞检测 延迟或遗漏。已解决轨迹的 tail 极小（2.1%）因为成功轨迹几乎不停滞
+    （error analysis 中 resolved error rate 仅 1.3%）。OH intermittent recovery 更高（14.3%
+    vs SWE 10.9%）反映 OH agent 架构更倾向于 tool-switching 式 的"假恢复"——切换工具后短暂产生 progress 信号，但很快再次停滞。
+    整体 27% 足以说明问题存在，但不足以支撑 "dramatic compute waste" 的强主张。
+
+    '
+  tables:
+  - name: 'Table: Compute Waste Audit by Agent and Resolution Status'
+    columns:
+    - Agent
+    - Subset
+    - N_instances
+    - Tail_pct_instances
+    - Tail_compute_pct
+    - Tail_token_pct
+    - Median_tail_steps
+    rows:
+    - - SWE-Agent
+      - All
+      - 1683
+      - 66.8%
+      - 30.2%
+      - 28.7%
+      - 8
+    - - SWE-Agent
+      - Unresolved
+      - ~1599
+      - 70.2%
+      - 38.5%
+      - 36.1%
+      - 9
+    - - SWE-Agent
+      - Resolved
+      - ~84
+      - 8.3%
+      - 2.1%
+      - 1.9%
+      - 2
+    - - OpenHands
+      - All
+      - 3409
+      - 60.1%
+      - 24.1%
+      - 22.8%
+      - 10
+    - - OpenHands
+      - Unresolved
+      - ~3239
+      - 63.2%
+      - 31.8%
+      - 30.1%
+      - 11
+    - - OpenHands
+      - Resolved
+      - ~170
+      - 5.9%
+      - 1.8%
+      - 1.6%
+      - 2
+    - - Combined
+      - All
+      - 5092
+      - 62.3%
+      - 27.3%
+      - 25.8%
+      - 9
+  figures_description:
+  - 'Histogram: stagnation tail length distribution (steps)，双峰——大量轨迹无 tail (0 步) +
+    长尾分布。标注 median=9, mean=13.2。SWE vs OH 颜色区分。
+
+    '
+  - 'CDF: cumulative compute waste 随 tail 长度的累积分布， 展示约 63% 的轨迹有非零 tail，前 20% 最长 tail
+    贡献 ~55% 的总 waste。
+
+    '
+  analysis: '27% compute waste 是 publishable 但 non-dramatic 的数字。论文中用 "approximately
+    one-quarter of agent compute is consumed after stagnation onset" 措辞，避免 "massive"
+    或 "dramatic"。Intermittent recovery 本身有叙事价值： 证明 agent stagnation 不总是单调的，early termination
+    必须处理假阳性风险。 限制：tail 定义依赖 LF labels，gold set 上可能有偏差。
+
+    '
+- name: early-termination-simulation
+  plan_id: early-termination-simulation
+  description: '在全量轨迹上模拟不同 consecutive-stagnation threshold k 的 early stopping policy，使用
+    structural GB 检测器的预测作为 trigger，量化每个 k 的 compute savings 和 task success preservation。
+
+    '
+  expected_results:
+    detector: structural_gb
+    total_trajectories: 5092
+    total_resolved: 255
+    thresholds:
+      k1:
+        compute_saved_pct: 28.3
+        task_success_preserved_pct: 77.6
+        n_trajectories_terminated: 3210
+        n_resolved_terminated: 57
+      k2:
+        compute_saved_pct: 22.1
+        task_success_preserved_pct: 84.3
+        n_trajectories_terminated: 2650
+        n_resolved_terminated: 40
+      k3:
+        compute_saved_pct: 17.8
+        task_success_preserved_pct: 89.4
+        n_trajectories_terminated: 2140
+        n_resolved_terminated: 27
+      k4:
+        compute_saved_pct: 14.6
+        task_success_preserved_pct: 91.8
+        n_trajectories_terminated: 1780
+        n_resolved_terminated: 21
+      k5:
+        compute_saved_pct: 12.2
+        task_success_preserved_pct: 93.3
+        n_trajectories_terminated: 1490
+        n_resolved_terminated: 17
+      k7:
+        compute_saved_pct: 7.8
+        task_success_preserved_pct: 96.1
+        n_trajectories_terminated: 1050
+        n_resolved_terminated: 10
+      k10:
+        compute_saved_pct: 4.1
+        task_success_preserved_pct: 98.4
+        n_trajectories_terminated: 620
+        n_resolved_terminated: 4
+    sweet_spot_k: 3-4
+    headline: 'k=3: 17.8% compute saved, 89.4% task success preserved'
+    oracle_comparison:
+      oracle_k3_saved: 22.5
+      oracle_k3_preserved: 100.0
+    random_comparison:
+      random_at_18pct_saved_preserved: 65.2
+    by_agent:
+      swe_k3:
+        compute_saved_pct: 20.4
+        task_success_preserved_pct: 91.2
+      oh_k3:
+        compute_saved_pct: 16.3
+        task_success_preserved_pct: 88.1
+  result_rationale: 'Median 核心特征是 precision-recall 曲线较陡——sweet spot 窄。三个因素决定 了这一形态：
+
+    (1) Intermittent stagnation 使低 k 假阳性飙升：约 22% 的已解决轨迹在解题 过程中经历至少 1 个停滞窗口（agent 暂时卡住后恢复），k=1
+    时这些全被终止。 k=3 仅终止有 3+ 连续停滞的已解决轨迹（~10.6%），k=5 进一步过滤到 ~6.7%。 但从 k=2 到 k=4，每增加 1 仅减少
+    ~3% 假阳性，同时损失 ~4pp savings—— 曲线在此区间非常陡。
+
+    (2) OH 上检测延迟拉低 savings：OH cmd_rep firing rate 5.39% 意味着部分停滞 检测依赖 file_diff（17.78%
+    fire rate），但 file_diff 的 temporal lag 更大 （leading -4.9 步 vs SWE -1.2 步 的差异），检测晚于实际停滞
+    onset → tail 已部分消耗后才触发终止。OH 在 k=3 时仅 16.3% savings vs SWE 20.4%。
+
+    (3) 中等长度轨迹最难判断：error analysis 显示 middle segment error rate 10.2%（vs endpoints
+    6.5%），这些正是 early termination 最频繁触发的区间。 中等长度轨迹的停滞往往是"exploration 与 stagnation 的边界"，检测器的
+    confidence 较低（mean prob 0.776 on missed stagnation）。
+
+    与 oracle 对比：oracle 在 k=3 可节省 22.5% + 保留 100%，gap 来自 检测器假阳性。Random 在 18% savings
+    下仅保留 65.2%——structural 远超随机。
+
+    '
+  tables:
+  - name: 'Table: Early Termination Simulation (Structural GB Detector)'
+    columns:
+    - k
+    - Saved_pct
+    - Preserved_pct
+    - N_Terminated
+    - Resolved_Killed
+    - False_Term_Rate
+    rows:
+    - - 1
+      - 28.3
+      - 77.6
+      - 3210
+      - 57
+      - 22.4%
+    - - 2
+      - 22.1
+      - 84.3
+      - 2650
+      - 40
+      - 15.7%
+    - - 3
+      - 17.8
+      - 89.4
+      - 2140
+      - 27
+      - 10.6%
+    - - 4
+      - 14.6
+      - 91.8
+      - 1780
+      - 21
+      - 8.2%
+    - - 5
+      - 12.2
+      - 93.3
+      - 1490
+      - 17
+      - 6.7%
+    - - 7
+      - 7.8
+      - 96.1
+      - 1050
+      - 10
+      - 3.9%
+    - - 10
+      - 4.1
+      - 98.4
+      - 620
+      - 4
+      - 1.6%
+  figures_description:
+  - 'Trade-off curve: x 轴 compute saved (%)，y 轴 task success preserved (%)。 每个 k 一个点，连线展示
+    trade-off。标注 sweet spot k=3-4 区间。 同一图上叠加 random baseline（对角线）和 oracle（近水平线）。 曲线较陡是
+    median 的视觉特征——k=2 到 k=4 之间斜率最大。
+
+    '
+  analysis: 'k=3 的 17.8% / 89.4% 需要大幅弱化措辞。原 "compute-efficient early termination"
+    改为 "preliminary analysis showing moderate savings potential"。 陡峭的 trade-off 曲线是
+    finding 而非 weakness：说明 early termination 需要 精细的 threshold 调优和 domain-specific
+    calibration，不是 drop-in solution。 论文建议呈现完整曲线并讨论 tradeoff landscape，而非宣称某个 operating
+    point。 SWE vs OH 的差异（20.4% vs 16.3% at k=3）额外说明 savings 是 agent-dependent。
+
+    '
+- name: cost-effectiveness-pareto
+  plan_id: cost-effectiveness-pareto
+  description: 'Pareto 前沿：compute saved (%) vs task success preserved (%)，对比 structural
+    detector、oracle（outcome + detector）、random、LLM judge。 计算 normalized AUC 量化各方法的
+    cost-effectiveness。
+
+    '
+  expected_results:
+    pareto_auc_normalized:
+      structural_gb: 0.7
+      oracle_outcome: 0.97
+      oracle_detector: 0.86
+      random: 0.5
+      llm_judge_best: 0.56
+      probe_zeroshot: 0.52
+    structural_pareto_points:
+    - k: 10
+      saved_pct: 4.1
+      preserved_pct: 98.4
+    - k: 7
+      saved_pct: 7.8
+      preserved_pct: 96.1
+    - k: 5
+      saved_pct: 12.2
+      preserved_pct: 93.3
+    - k: 4
+      saved_pct: 14.6
+      preserved_pct: 91.8
+    - k: 3
+      saved_pct: 17.8
+      preserved_pct: 89.4
+    - k: 2
+      saved_pct: 22.1
+      preserved_pct: 84.3
+    - k: 1
+      saved_pct: 28.3
+      preserved_pct: 77.6
+    oracle_outcome_point:
+      saved_pct: 95.0
+      preserved_pct: 100.0
+    structural_vs_random_auc_delta: 0.2
+    structural_vs_oracle_outcome_gap: 0.27
+    structural_vs_oracle_detector_gap: 0.16
+  result_rationale: 'Pareto AUC 0.70 处于 median 范围 [0.62, 0.78] 的中间，反映 structural detector
+    在 detection-to-intervention 转化上 "有价值但有限" 的定位。
+
+    AUC 0.70 的分解：(1) 在保守区间（k≥5，savings≤12%），structural 接近 oracle detector（差距 <3pp），因为只有最明显的长尾停滞被终止，假阳性极低；
+    (2) 在激进区间（k≤2，savings≥22%），structural 快速退化（与 oracle 差距 >15pp），因为 intermittent
+    stagnation 导致大量假阳性终止；(3) 在 sweet spot 区间（k=3-4），structural 在 oracle 和 random 之间偏上方——这是
+    0.70 AUC 的主要贡献区间。
+
+    与其他方法对比：(a) Oracle detector（完美停滞检测但不知结果）AUC=0.86—— 即使检测完美，k-consecutive 策略仍有损失，因为部分已解决轨迹确实经历真实
+    停滞；(b) Oracle outcome（知道结果）AUC=0.97——接近完美，gap 仅来自极端 truncation 点；(c) LLM judge
+    AUC=0.56——检测精度低（best 0.80 vs structural 0.97）导致 Pareto 前沿被压缩到接近 random；(d) Probe
+    zero-shot AUC=0.52—— cross-agent 检测能力差使其在 intervention 场景下几乎等同于 random。
+
+    Structural vs random 的 0.20 AUC gap 证明检测质量直接转化为干预质量，但 structural vs oracle detector
+    的 0.16 gap 指向改进空间：更好的 intermittent stagnation 处理（如 adaptive k 或 cooldown period）可能显著提升
+    Pareto 前沿。
+
+    '
+  tables:
+  - name: 'Table: Pareto AUC Comparison'
+    columns:
+    - Method
+    - AUC_normalized
+    - vs_Random
+    - vs_Oracle_Outcome
+    rows:
+    - - Oracle (outcome)
+      - 0.97
+      - '+0.47'
+      - '-'
+    - - Oracle (detector)
+      - 0.86
+      - '+0.36'
+      - '-0.11'
+    - - Structural GB
+      - 0.7
+      - '+0.20'
+      - '-0.27'
+    - - LLM Judge (best)
+      - 0.56
+      - '+0.06'
+      - '-0.41'
+    - - Probe (zero-shot)
+      - 0.52
+      - '+0.02'
+      - '-0.45'
+    - - Random
+      - 0.5
+      - '-'
+      - '-0.47'
+  figures_description:
+  - 'Pareto frontier figure（Claim 4 核心 figure）：x 轴 Compute Saved (%)， y 轴 Task Success
+    Preserved (%)。六条曲线/线：Oracle-outcome（近水平线， 在 x=95% 处陡降），Oracle-detector（略低曲线），Structural
+    GB（中间曲线， k 值标注），LLM Judge best（接近对角线但略高），Probe zero-shot（近乎 与 random 重合），Random（精确对角线）。阴影区域标注
+    structural vs random 的优势面积。图例标注 AUC 值。整体传达：structural 有实际价值 但远非 oracle——定位为 "motivating
+    future work"。
+
+    '
+  analysis: 'Pareto 图是 Claim 4 在 median 下的核心呈现。0.70 AUC 的定位："our structural detector
+    provides a meaningful advantage over uninformed baselines for early termination,
+    but substantial room remains between current performance and the theoretical optimum."
+    图中 LLM judge 和 probe 接近 random 的 表现反向强化 Claim 1：structural features 不仅在 detection
+    上 dominate， 在 intervention 场景下的优势更加 dramatic。建议将 Pareto 图放在 §5 而非 §4，与 compute
+    waste audit 同一小节，标题为 "Deployment Analysis"。
+
+    '
+- name: 2lf-cross-agent
+  plan_id: 2lf-cross-agent
+  description: '2-LF deployable config（cmd_rep + file_diff，无 OB）在 OH 上的跨 agent 性能评估。验证无
+    privileged outcome 信息时的部署可行性和 coverage 限制。
+
+    '
+  expected_results:
+    structural_gb:
+      oh_2lf_conf2:
+        macro_f1: 0.96
+        f1_stag: 0.941
+        f1_prog: 0.979
+        n_eval: 4017
+      oh_3lf_conf2_with_2lf_model:
+        macro_f1: 0.945
+        f1_stag: 0.918
+        f1_prog: 0.972
+        n_eval: 43376
+      oh_all_with_2lf_model:
+        macro_f1: 0.94
+        f1_stag: 0.908
+        f1_prog: 0.972
+        n_eval: 150652
+    structural_rf:
+      oh_2lf_conf2:
+        macro_f1: 0.968
+        f1_stag: 0.952
+        f1_prog: 0.984
+        n_eval: 4017
+    coverage:
+      oh_2lf_conf2_windows: 4017
+      oh_2lf_conf2_pct: 2.7
+      oh_3lf_conf2_windows: 43376
+      oh_3lf_conf2_pct: 28.8
+      coverage_ratio_2lf_vs_3lf: 0.093
+    label_consistency:
+      agreement_2lf_3lf_on_intersection: 1.0
+      n_intersection: 4017
+    swe_indomain_2lf_ref:
+      gb_macro_f1: 0.978
+      delta_vs_3lf_pp: -1.8
+    delta_vs_3lf_crossagent:
+      gb_oh_all_delta_pp: -2.7
+  result_rationale: '2-LF cross-agent 轻微退化（-2.7pp on OH all, 0.940 vs 3-LF 0.967）的
+    根因是 OH 上 cmd_rep firing rate 仅 5.39%（vs SWE 上远高覆盖率）， 导致两个连锁效应：
+
+    (1) Coverage 崩塌：2-LF conf≥2 仅覆盖 OH 的 2.7% 窗口（4017/150652）， vs 3-LF conf≥2 的 28.8%。真实部署中
+    2-LF config 对 OH 类型 agent 只能 为极少数窗口给出高置信判断。这是 agent 架构决定的——OH 使用不同的 tool-calling
+    convention，重复命令以不同方式表现，cmd_rep LF 的设计未适配。
+
+    (2) 训练数据缩减：2-LF 在 SWE 上的 conf≥2 训练窗口从 15401 降到 10243 （-33.5%）。虽然 structural features
+    非常 data-efficient（10% data 仍 0.991 in-domain），但跨 agent 场景下更少训练数据 + 更窄的 LF coverage
+    共同导致 decision boundary 略有偏移。
+
+    Label consistency 100% 是关键正面信号：在 cmd_rep 和 file_diff 都触发的 4017 窗口上，2-LF 和 3-LF
+    标签完全一致——退化纯粹是 coverage 问题。 2-LF 在 SWE in-domain（0.978, -1.8pp）几乎无退化，因为 SWE cmd_rep
+    覆盖率足够。跨 agent 退化完全是 agent 架构差异导致的 LF 行为差异。
+
+    '
+  tables:
+  - name: 'Table: 2-LF vs 3-LF Cross-Agent Performance'
+    columns:
+    - Config
+    - Eval_Set
+    - N_eval
+    - GB_F1
+    - RF_F1
+    - Coverage
+    rows:
+    - - 3-LF
+      - OH conf≥2
+      - 43376
+      - 0.992
+      - 0.996
+      - 28.8%
+    - - 2-LF
+      - OH 2-LF conf≥2
+      - 4017
+      - 0.96
+      - 0.968
+      - 2.7%
+    - - 2-LF
+      - OH 3-LF conf≥2
+      - 43376
+      - 0.945
+      - 0.938
+      - 28.8%
+    - - 2-LF
+      - OH all
+      - 150652
+      - 0.94
+      - 0.925
+      - 100%
+    - - 2-LF
+      - SWE in-domain
+      - 10243
+      - 0.978
+      - 0.978
+      - 66.5%
+  figures_description:
+  - 'Grouped bar chart：3-LF vs 2-LF cross-agent GB macro_f1，旁边标注 coverage bars（第二
+    y 轴）。视觉突出 performance 仅小幅退化但 coverage 差距巨大（28.8% vs 2.7%）。
+
+    '
+  analysis: '2-LF 叙事从 "ready-to-deploy" 改为 "deployable with caveats — coverage-dependent
+    on agent architecture"。核心 caveat：2-LF config 的 实用性取决于 cmd_rep 在目标 agent 上的 firing
+    pattern。SWE-Agent 类型 （cmd_rep 高覆盖）可近乎无损部署；OH 类型（cmd_rep 低覆盖）仅 2.7% 窗口获得高置信判断。这不是
+    detection quality 问题而是 LF design 问题—— 建议 future work 设计 agent-agnostic LFs。与 Claim
+    4 关系：early termination simulation 的 savings 数字基于 3-LF detector，真实部署用 2-LF 时 OH
+    savings 会更低——需在 limitation 中声明。
+
+    '
+- name: matched-scope-eval
+  plan_id: matched-scope-eval
+  description: 'Matched-scope 对比：GB structural 和 Probe zero-shot 在完全相同的 OH 窗口子集上评估，控制
+    prevalence 和评估条件，给出公平对比下的 delta。
+
+    '
+  expected_results:
+    matched_subset:
+      n_windows: 6122
+      stag_prevalence: 0.193
+      stag_windows: 1182
+      prog_windows: 4940
+      selection: stratified sample from OH 3-LF labeled windows, prevalence-matched
+        to OH overall
+    gb_structural:
+      macro_f1: 0.97
+      f1_stag: 0.951
+      f1_prog: 0.989
+      accuracy: 0.978
+    probe_zeroshot:
+      macro_f1: 0.598
+      f1_stag: 0.308
+      f1_prog: 0.888
+      accuracy: 0.672
+    delta_pp: 37.2
+    bootstrap_ci_95:
+    - 34.1
+    - 40.3
+    bootstrap_p: 0.0001
+    mcnemar_chi2: 1823
+    mcnemar_p: 0.0
+    ref_comparison:
+      full_oh_gb: 0.9674
+      full_oh_probe_zs: 0.5984
+      full_oh_delta_pp: 36.9
+      matched_vs_full_delta_diff_pp: 0.3
+  result_rationale: 'Matched-scope delta 37.2pp 基本确认 full-set 的 36.9pp（差异仅 0.3pp），
+    处于 median 范围 [33, 39] 偏上方。
+
+    Delta 稳定性的原因：(1) Probe zero-shot 的失败是 systematic 的——SWE 上 训练的 embedding space
+    在 OH 上无法对应 stagnation boundary，无论子集 选择如何，probe 都在 0.59-0.61 范围内波动；(2) GB 的 cross-agent
+    性能 （0.967-0.970）在不同子集上也很稳定，因为 structural features 的跨域 迁移基于 domain-invariant 模式（重复率、文件变化率等），不依赖特定窗口。
+
+    Median 档位下 delta 未达到计划中的 39.4pp（降低 2.2pp）的可能原因： matched-scope 的 prevalence matching（19.3%
+    stag）略低于 conf≥2 子集的 stag rate，使得两种方法在 majority class 上更容易获得高分，压缩了差距。 但 bootstrap
+    CI [34.1, 40.3] 不包含 0，统计显著性无悬念。McNemar chi²=1823 进一步确认差异在样本级别也高度显著（模型在不同窗口上犯错）。
+
+    '
+  tables:
+  - name: 'Table: Matched-Scope Comparison (N=6122, stag=19.3%)'
+    columns:
+    - Model
+    - Macro_F1
+    - F1_stag
+    - F1_prog
+    - Accuracy
+    rows:
+    - - Structural GB (zero-shot)
+      - 0.97
+      - 0.951
+      - 0.989
+      - 0.978
+    - - GRU Probe (zero-shot)
+      - 0.598
+      - 0.308
+      - 0.888
+      - 0.672
+    - - Δ (pp)
+      - '+37.2'
+      - '+64.3'
+      - '+10.1'
+      - '+30.6'
+  figures_description: []
+  analysis: '+37.2pp 是 Claim 1 的 primary headline number（替代原 +36.9pp 或 +39.4pp）。 Matched-scope
+    方法论本身是 minor contribution：本例中 full-set 和 matched-scope 差异很小（0.3pp），但方法论严谨性 preempt
+    reviewer 的 "unfair comparison" 质疑。论文中在 §4 Claim 1 用 matched-scope delta 作为 primary
+    comparison，footnote 说明与 full-set 一致性。 注意：f1_stag 差距（+64.3pp）远大于 macro_f1 差距，因为
+    probe 在 minority class（stagnation）上完全失效（zero-shot f1_stag 仅 0.308）。
+
+    '
+- name: llm-on-oh
+  plan_id: llm-on-oh
+  description: '将 LLM-as-judge baseline 扩展到 OpenHands 轨迹，验证 structural features 的跨
+    agent 优势在 LLM baseline 对比下是否保持或扩大。
+
+    '
+  expected_results:
+    eval_subset: 5000 OH windows (cost-controlled random sample)
+    claude_zeroshot_oh:
+      macro_f1: 0.581
+      f1_stag: 0.423
+      f1_prog: 0.739
+      parse_failures: 12
+      cost_usd: 38.5
+    claude_fewshot_cot_oh:
+      macro_f1: 0.728
+      f1_stag: 0.631
+      f1_prog: 0.825
+      parse_failures: 3
+      cost_usd: 112.4
+    gpt55_zeroshot_oh:
+      macro_f1: 0.693
+      f1_stag: 0.584
+      f1_prog: 0.802
+      parse_failures: 1089
+      parse_failure_rate: 0.218
+      n_valid: 3911
+      cost_usd: 32.8
+    structural_gb_ref:
+      oh_all_macro_f1: 0.9674
+    best_llm_vs_structural_delta_pp: 23.9
+    cross_agent_degradation:
+      claude_zs_degradation_pp: -8.2
+      claude_fscot_degradation_pp: -7.1
+      gpt55_zs_degradation_pp: -5.4
+      structural_gb_degradation_pp: -2.8
+    swe_ref:
+      best_llm_swe: 0.7994
+      structural_swe: 0.9951
+      swe_delta_pp: 16.8
+  result_rationale: 'LLM judge 在 OH 上进一步退化（best 0.728 vs SWE 0.799，-7.1pp）， structural
+    仅退化 2.8pp（0.967 vs 0.995），使优势从 +16.8pp 扩大到 +23.9pp。
+
+    LLM 退化的三个机制：(1) Prompt-distribution shift——few-shot examples 来自 SWE-Agent（bash-centric,
+    linear workflow），OH 使用不同 tool-calling convention（GUI interaction, multi-tool orchestration），prompt
+    中的停滞 模式描述不完全适用。Claude few-shot-cot 受影响最大因为其 few-shot examples 产生最强的 SWE-specific
+    偏置。(2) Context dilution——OH 轨迹 平均 44 步 vs SWE 33 步，更长的输入稀释 LLM 对关键停滞信号的注意力。 (3)
+    Stagnation diversity——OH 的停滞模式不仅是命令重复，还有不同工具间的 无效切换、配置反复修改等 subtle 模式，zero-shot
+    prompt 的覆盖面不足。
+
+    Structural features 的鲁棒性（仅 -2.8pp）来自其 domain-invariant 设计： 重复率、文件变化率、输出长度模式等特征不依赖
+    agent-specific 的 action 语义。GPT-5.5 的 21.8% parse failure rate 与 SWE（22.4%）一致——是模型
+    compliance 问题，非 domain-specific。
+
+    +23.9pp 在 OH 上的扩大进一步强化了 Claim 1 的核心论点：structural features 的迁移优势在更 diverse 的 agent
+    上更 pronounced。
+
+    '
+  tables:
+  - name: 'Table: LLM Judge Cross-Agent Extension'
+    columns:
+    - Model
+    - Config
+    - SWE_F1
+    - OH_F1
+    - Degradation_pp
+    - Cost_USD
+    rows:
+    - - Claude
+      - zero-shot
+      - 0.663
+      - 0.581
+      - -8.2
+      - 38.5
+    - - Claude
+      - few-shot-cot
+      - 0.799
+      - 0.728
+      - -7.1
+      - 112.4
+    - - GPT-5.5
+      - zero-shot
+      - 0.747
+      - 0.693
+      - -5.4
+      - 32.8
+    - - Structural GB
+      - —
+      - 0.995
+      - 0.967
+      - -2.8
+      - 0
+  figures_description: []
+  analysis: 'OH 结果建议与 SWE 合并呈现，一个表展示 cross-agent degradation pattern。 +23.9pp 可作为
+    OH-specific number，但 primary comparison 仍用 SWE +16.8pp （有完整 multi-config 消融）。OH
+    LLM 数据的主要叙事价值：证明 structural advantage 在更 diverse 的 agent 上 不减反增，排除 "structural
+    advantage is SWE-specific" 的 reviewer concern。LLM cost 论证不受 circular eval 影响——这是
+    caveat-free 的优势。
+
+    '
+- name: e4-gb-swe-gold
+  plan_id: e4-gb-swe-gold
+  description: '在 gold 3-annotator 标注集的 SWE-Agent 子集上单独评估 GB structural features，
+    验证 structural advantage 在 SWE 人工标注上是否成立。
+
+    '
+  expected_results:
+    swe_gold_subset:
+      n_windows: 328
+      n_stag: 108
+      n_prog: 220
+      stag_prevalence: 0.329
+    per_model:
+      twv_probe:
+        macro_f1: 0.835
+        f1_stag: 0.798
+        f1_prog: 0.872
+      gb:
+        macro_f1: 0.821
+        f1_stag: 0.778
+        f1_prog: 0.864
+      mv:
+        macro_f1: 0.806
+        f1_stag: 0.762
+        f1_prog: 0.85
+      rf:
+        macro_f1: 0.804
+        f1_stag: 0.758
+        f1_prog: 0.85
+      probe:
+        macro_f1: 0.788
+        f1_stag: 0.738
+        f1_prog: 0.838
+    bootstrap_tests:
+      gb_vs_mv:
+        delta_pp: 1.5
+        p: 0.18
+        significant: false
+      gb_vs_probe:
+        delta_pp: 3.3
+        p: 0.042
+        significant: true
+      twv_probe_vs_gb:
+        delta_pp: 1.4
+        p: 0.12
+        significant: false
+    ref_overall_gold_set_b:
+      gb: 0.8394
+      delta_swe_vs_overall_pp: -1.8
+  result_rationale: 'SWE-specific gold F1 0.821 在 median 范围 [0.80, 0.84] 的中间。
+
+    比 overall Set B（0.839）低 1.8pp 的原因：(1) SWE gold 子集的 stag prevalence 更高（32.9% vs
+    overall ~24.8%），更多 stagnation 样本意味着 recall_stag 受到更大考验——从 f1-stag-analysis 已知
+    recall_stag 是 performance 瓶颈（conf≥2 仅 0.77）。(2) SWE 上 MV-gold agreement 更低 （gold-set-eval-v1
+    显示 SWE 0.735 vs OH 0.778），说明 SWE 的 LF labels 与人工判断 diverge 更大——可能因为 SWE 有更多 "semantic
+    stagnation" （agent 在做不同的事但都无效），人类标注者更容易识别但 LF 难以捕获。 (3) GB 训练在 LF labels 上，SWE
+    gold 上的 1.8pp drop 反映了 LF 与人工 标注在 SWE-specific 边界案例上的分歧。
+
+    GB vs MV 差异不显著（+1.5pp, p=0.18）vs overall 上显著（+4.2pp, p=0.0001） ——primary 原因是 power
+    不足：328 vs 491 windows。Effect size 也更小 （1.5pp vs 4.2pp），可能因为 SWE 上 GB 本质更接近 LF
+    重建（circular eval 程度更高），使得 GB 和 MV 行为更趋同。GB vs Probe 仍显著（+3.3pp, p=0.042） 是积极信号：structural
+    advantage 在 SWE gold 上 against probe 成立。
+
+    TWV Probe 0.835 略优于 GB（+1.4pp, p=0.12, NS），与 overall gold pattern 一致。TWV 的优势来自
+    temporal smoothing 修正了部分 conf=1 边界标签， 这些修正恰好更贴近人工标注——但效果在小样本上不稳定。
+
+    '
+  tables:
+  - name: 'Table: SWE-Agent Gold Set Evaluation (N=328)'
+    columns:
+    - Model
+    - Macro_F1
+    - F1_stag
+    - F1_prog
+    - vs MV Δ(pp)
+    - p-value
+    rows:
+    - - TWV Probe
+      - 0.835
+      - 0.798
+      - 0.872
+      - '+2.9'
+      - 0.06
+    - - Structural GB
+      - 0.821
+      - 0.778
+      - 0.864
+      - '+1.5'
+      - 0.18
+    - - MV Labels
+      - 0.806
+      - 0.762
+      - 0.85
+      - —
+      - —
+    - - Structural RF
+      - 0.804
+      - 0.758
+      - 0.85
+      - '-0.2'
+      - 0.84
+    - - GRU Probe
+      - 0.788
+      - 0.738
+      - 0.838
+      - '-1.8'
+      - 0.21
+  figures_description: []
+  analysis: SWE gold 结果补充 overall gold 分析但不改变核心叙事。建议在论文中 以 overall Set B（N=491, power
+    更强）为主呈现，SWE-specific 作为 supplementary analysis 放 appendix。不要以 SWE 上 GB vs MV NS
+    来弱化 Claim 1——样本量不足和 circularity 效应是更合理的解释。GB vs Probe 显著（p=0.042）可在正文中简要提及，强化
+    "structural advantage holds against neural probe on gold annotations"。

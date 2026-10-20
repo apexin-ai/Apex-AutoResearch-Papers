@@ -1,0 +1,26 @@
+{
+  "method_A_mv_agreement": {
+    "description": "Average annotator agreement with majority vote",
+    "n_windows": 52,
+    "unanimous": 33,
+    "majority_21": 19,
+    "ceiling_estimate": 0.8782
+  },
+  "method_B_spearman_brown_kappa": {
+    "description": "Spearman-Brown from mean pairwise Cohen's kappa (k=3)",
+    "mean_pairwise_kappa": 0.407,
+    "composite_reliability": 0.6731
+  },
+  "method_B_spearman_brown_agreement": {
+    "description": "Spearman-Brown from mean pairwise raw agreement (k=3)",
+    "mean_pairwise_agreement": 0.7564,
+    "composite_reliability": 0.9031
+  },
+  "gb_performance": 0.839,
+  "gb_vs_ceiling": {
+    "method_A": 0.9554,
+    "method_B_kappa": 1.2465,
+    "method_B_agreement": 0.9291
+  },
+  "fleiss_kappa": 0.39
+}

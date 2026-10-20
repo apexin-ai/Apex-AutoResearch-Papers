@@ -1,0 +1,45 @@
+% Introduction: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)
+\section{Introduction}
+\label{sec:introduction}
+
+Large language model (LLM) agents are increasingly deployed for complex, long-horizon software engineering tasks---resolving GitHub issues, debugging production systems, and iterating on code across multiple rounds of edits \citep{jimenez2024swebench,yang2024sweagent,wang2025openhands}.
+As task complexity grows, a critical failure mode emerges that is qualitatively different from crashes or syntax errors: the agent \emph{stagnates}---continuing to produce actions that appear diverse on the surface while making no meaningful progress toward the task goal.
+\citet{orlanski2026slopcodebench} systematically document this degradation in long-horizon coding tasks, finding structural erosion in 77\% of agent trajectories and verbosity increases in 75.5\%, with no agent fully solving any benchmark problem end-to-end.
+Unlike overt loops, stagnation is insidious: the agent issues varied commands, edits different files, and generates plausible-looking outputs, yet its behavior is functionally stuck.
+Detecting when an agent has entered this regime is essential for reliable deployment---enabling interventions such as early termination, strategy switching, or human escalation---yet identifying \emph{what signals} carry stagnation information, and whether complex language understanding is necessary to extract them, remains an open question.
+
+Prior approaches to monitoring agent behavior address aspects of this problem but none systematically investigate what information is needed for detection.
+\emph{Repetition detectors} identify exact or near-exact loops in action sequences, catching the simplest failure mode but missing semantically diverse stagnation where the agent varies its surface behavior while remaining functionally stuck.
+\emph{Process reward models} \citep{xi2025agentprm} assign quality scores to individual actions, enabling search-time guidance, but step-level granularity cannot capture temporal patterns that distinguish transient setbacks from sustained stagnation---a distinction that requires reasoning over windows of consecutive actions \citep{chen2025monitoring}.
+\emph{Self-reflection} frameworks \citep{shinn2023reflexion,yao2023tot,zhou2024lats} rely on the agent itself to diagnose and recover from failures, but when the agent is genuinely stuck, self-diagnosis amounts to querying the failing model about its own failure---a circularity that limits reliability.
+More fundamentally, all three lines of work prescribe detection \emph{methods} without first asking what kinds of signals actually carry stagnation information: does detecting subtle agent failure require sophisticated semantic understanding, or do simpler structural patterns suffice?
+
+We present an empirical analysis that addresses this gap.
+Using a weak supervision framework \citep{ratner2016dataprogramming,ratner2017snorkel}, we construct silver-labeled datasets from trajectories of two architecturally distinct agents: SWE-Agent \citep{yang2024sweagent} on SWE-bench \citep{jimenez2024swebench} (54,809 windows) and OpenHands \citep{wang2025openhands} (150,652 windows).
+Three labeling functions (LFs)---targeting command repetition, file modification patterns, and task outcome---provide noisy votes that are aggregated via majority vote into window-level binary labels.
+Against these silver labels, we systematically compare three detection paradigms: hand-crafted structural features, neural embedding probes, and LLM-as-judge evaluation.
+
+Our central finding is that \textbf{stagnation signals are fundamentally structural, not semantic}.
+Thirty hand-crafted features capturing command repetition rates, file operation counts, and edit distances achieve 0.9951 macro-F1 in-domain and 0.967 on zero-shot cross-agent transfer, exceeding the LLM judge by 33.3 percentage points (pp).
+A GRU-based neural probe \citep{cho2014gru} over sentence embeddings reaches 0.906 in-domain but collapses to 0.528 on zero-shot transfer and recovers only to 0.751 after full fine-tuning on the target agent.
+The structural advantage is encoder-agnostic: swapping the probe's embedding backbone across three encoders (Qwen3-0.6B, BGE-M3, E5-large-v2) yields probe F1 consistently above 0.90 \citep{zhang2025qwen3embedding,chen2024bgem3,wang2024e5}, confirming that the temporal architecture rather than a specific pretrained encoder drives embedding-based performance.
+Critically, the gap between structural features and learned representations persists across agents with substantially different action distributions (28.5\% vs.\ 6.6\% stagnation rates), suggesting that stagnation manifests in action-level structure that generalizes without adaptation.
+This challenges the prevailing intuition that detecting subtle agent failures requires complex language understanding, and suggests that lightweight structural monitoring---requiring no GPU and running in under 5\,ms per window---may be more practical than neural or LLM-based approaches for real-time agent oversight.
+
+Beyond static detection, we analyze the temporal dynamics of the labeling functions that generate silver labels.
+On SWE-Agent, command repetition ($\lambda_1$) leads stagnation onset by 1.87 steps on average, serving as an early warning signal, while outcome backpropagation ($\lambda_3$) lags by 6.70 steps (Kruskal-Wallis $H{=}274.3$, $p{<}10^{-59}$).
+However, this temporal structure is agent-specific: on OpenHands, $\lambda_1$ reverses from leading to lagging ($+3.32$ steps), firing on 92.3\% of windows with a 71\% false positive rate on progress windows.
+Removing $\lambda_1$ from the OpenHands labeling pipeline improves fine-tuned probe F1 by 17.6\,pp, demonstrating that labeling functions validated on one agent architecture can become adversarial on another.
+This finding establishes that LF temporal roles must be re-validated per agent and motivates the circular evaluation methodology we develop to surface such pathologies (\S\ref{sec:cmd_rep_ablation}).
+
+We further investigate whether encoding this temporal structure into label aggregation can improve over simple majority vote.
+Three temporal label models---time-varying weights (TWV), Hidden Markov Models \citep{safranchik2020linkedhmm}, and lag-aware HMMs---all fail to surpass majority vote on downstream stagnation detection.
+TWV achieves marginally higher self-evaluated F1 (+0.57\,pp) but degrades downstream probe performance by 2.57\,pp; the standard HMM overpredicts stagnation, dropping downstream F1 to 0.656.
+This negative result demonstrates that temporal sophistication in label aggregation does not translate to better silver labels when base agreement among LFs is already high.
+
+Our contributions are:
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+    \item \textbf{Structural signal discovery.} We show that 30 structural features achieve near-perfect stagnation detection (0.9951 in-domain, 0.967 cross-agent macro-F1), outperforming neural probes and LLM judges by wide margins (+33.3\,pp over LLM-as-judge). To our knowledge, this is the first systematic comparison demonstrating that stagnation information resides in action-level structure rather than semantic content.
+    \item \textbf{Labeling function temporal dynamics.} We reveal that LFs occupy statistically distinct temporal niches relative to stagnation onset, with agent-specific reversals that corrupt silver labels. We develop a circular evaluation methodology to identify and quantify these cross-agent pathologies.
+    \item \textbf{Temporal label model negative finding.} We show that three temporal label models fail to improve over majority vote for downstream detection, despite clear temporal structure in LF firing patterns. This informs future weak supervision design for sequential agent data.
+\end{enumerate}

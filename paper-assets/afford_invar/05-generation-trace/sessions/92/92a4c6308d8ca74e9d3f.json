@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92a4c6308d8ca74e9d3f",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra disk and download",
+  "task_key": "worker_infra_disk-and-download_20260519T164506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk-and-download_20260519T164506_result.json",
+    "occurrence": 1,
+    "bytes": 2222,
+    "sha256": "12f71144e2628729fef7fc81f52ac8fd16cc771eee2008b6d952bd7f84a0b663"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen3 已完成 shard-4 和 shard-5，正在下载 shard-2 (12%)。所有下载都是长时间任务。\n\n提供当前状态报告：\n\n---\n\n## 下载状态报告\n\n### 1. 磁盘状态\n- **数据盘**: `/root/autodl-tmp` — 350GB 总量, 338GB 可用\n- **根分区**: 30GB 总量, 25GB 可用\n- **HF_HOME**: `/root/autodl-tmp/.hf_cache`\n- 磁盘充裕，无 DISK_CRITICAL\n\n### 2. 服务器环境\n- 4x NVIDIA RTX PRO 6000 Blackwell (94GB VRAM each, 376GB total)\n- torch 2.8.0+cu128, transformers 4.40.1, flash_attn 2.8.3\n- conda base 环境 (miniconda3)\n\n### 3. 下载项状态\n\n| 项目 | 路径 | 当前大小 | 目标 | 状态 | 速度 |\n|------|------|----------|------|------|------|\n| OpenVLA-7B | `/root/autodl-tmp/openvla-7b/` | ~6GB | ~14GB | 进行中 (shard-3 done, shard-1/2 downloading) | ~0.3MB/s total |\n| LIBERO hdf5 | `/root/autodl-tmp/LIBERO-datasets/` | 2.4GB | 未知 | 进行中 (3/132 files) | ~0.5MB/s |\n| LIBERO RLDS | `/root/autodl-tmp/modified_libero_rlds/` | 320MB | ~10GB | 等待中 (排在 hdf5 之后) | - |\n| Qwen3-8B | `/root/autodl-tmp/models/` | 5.6GB | ~16.5GB | 进行中 (shard-4/5 done, shard-2 at 12%) | ~0.6MB/s |\n\n### 4. 下载方式\n- **OpenVLA-7B**: wget 并行3路 from hf-mirror.com (shard-3 已完成)\n- **LIBERO hdf5 + RLDS**: wget 串行 from hf-mirror.com\n- **Qwen3-8B**: ModelScope CDN (国内镜像)\n\n### 5. 需要后续处理\n- 所有下载预计需要 **3-6 小时**完成（受网络带宽限制 ~0.3-0.6MB/s）\n- 下载进程都在 nohup 后台运行，不受 SSH 断连影响\n- 下载完成后需验证文件完整性\n- LIBERO RLDS 数据排在 hdf5 之后串行下载\n- **可通过以下命令监控进度**:\n  ```bash\n  du -sh /root/autodl-tmp/openvla-7b /root/autodl-tmp/LIBERO-datasets /root/autodl-tmp/modified_libero_rlds /root/autodl-tmp/models\n  tail -5 /tmp/wget_mirror_openvla.log /tmp/wget_mirror_libero.log /tmp/download_qwen3_ms.log\n  ```\n\n### 6. 异常记录\n- HuggingFace 官方下载在 AutoDL 上因 XET bridge 超时完全不可用\n- `HF_HUB_DISABLE_XET=1` 对 huggingface_hub 0.36.2 无效\n- hf_transfer 同样因 XET 失败\n- 最终方案：hf-mirror.com 直连 + ModelScope 中国 CDN"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-and-download.md"
+}

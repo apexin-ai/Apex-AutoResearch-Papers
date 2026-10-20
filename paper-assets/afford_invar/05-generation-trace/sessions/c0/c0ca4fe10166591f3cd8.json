@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0ca4fe10166591f3cd8",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra fix transformers fork",
+  "task_key": "worker_infra_fix-transformers-fork_20260519T192624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-transformers-fork_20260519T192624_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "ccf091db27e18187d42cb0b8cc10c76f50fbe8ee3d6f257cb3425a100ebfe7e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件中的 `tensorflow_graphics` import 都已是 lazy import（函数内部 import 而非顶层），修复未被覆盖。\n\n---\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| transformers 版本 | **4.40.1** (moojink fork) |\n| 路径 | `/root/miniconda3/lib/python3.12/site-packages/transformers/__init__.py` |\n| prismatic import | **OK** (`from prismatic.models import load_vla` 正常) |\n| tensorflow_graphics lazy import | **完好** — `droid_utils.py:7` 和 `transforms.py:422,645,709` 均为函数内 lazy import |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-transformers-fork.md"
+}

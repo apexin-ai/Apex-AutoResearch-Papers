@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a6d5af8d78e82b64542",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code kl divergence run",
+  "task_key": "worker_code_kl-divergence-run_20260519T200627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kl-divergence-run_20260519T200627_result.json",
+    "occurrence": 1,
+    "bytes": 1664,
+    "sha256": "5c1f93c4ff86bcf4340de51d1d1adac71e3a68cac537860b01fbcb83a1c0f6ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "KL divergence 脚本运行完成。结果如下：\n\n## Aggregate 统计（Layer 18, 20 tasks × 5 paraphrases = 100 comparisons）\n\n| 指标 | 值 |\n|------|-----|\n| **Mean KL** | **6.968e-05** |\n| **Std KL** | 2.647e-05 |\n| **Median KL** | 6.507e-05 |\n| **Min KL** | 2.697e-05 |\n| **Max KL** | 1.506e-04 |\n\n## Per-task Mean KL\n\n| Task | Mean KL | Std KL |\n|------|---------|--------|\n| libero_spatial_8 | 9.580e-05 | 3.051e-05 |\n| libero_spatial_6 | 8.875e-05 | 3.153e-05 |\n| libero_goal_2 | 8.255e-05 | 8.266e-06 |\n| libero_spatial_7 | 8.053e-05 | 2.329e-05 |\n| libero_90_89 | 8.049e-05 | 2.163e-05 |\n| libero_90_22 | 7.992e-05 | 2.013e-05 |\n| libero_90_17 | 7.700e-05 | 2.185e-05 |\n| libero_90_15 | 7.696e-05 | 4.155e-05 |\n| libero_90_74 | 7.614e-05 | 2.643e-05 |\n| libero_90_30 | 7.196e-05 | 2.926e-05 |\n| libero_90_16 | 7.072e-05 | 1.539e-05 |\n| libero_goal_8 | 6.950e-05 | 3.066e-05 |\n| libero_90_67 | 6.671e-05 | 6.654e-06 |\n| libero_goal_3 | 6.160e-05 | 2.331e-05 |\n| libero_90_10 | 6.039e-05 | 2.193e-05 |\n| libero_goal_6 | 5.674e-05 | 1.221e-05 |\n| libero_90_19 | 5.503e-05 | 8.534e-06 |\n| libero_90_68 | 5.109e-05 | 1.617e-05 |\n| libero_90_31 | 4.785e-05 | 1.319e-05 |\n| libero_10_5 | 4.381e-05 | 1.421e-05 |\n\n## 结论\n\n所有 KL divergence 值极小（~10⁻⁵ 量级），说明 Layer 18 的注意力分布对指令 paraphrase 高度不变——paraphrase 几乎不改变内部表征。\n\n**结果文件**: `/root/afford_invar/results/phase0/kl_divergence.json`（137KB，含 per-head 细节）\n\n**GPU**: 4×L20（96GB each），模型已卸载，当前 GPU 空闲。运行约 30 秒完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kl-divergence-run.md"
+}

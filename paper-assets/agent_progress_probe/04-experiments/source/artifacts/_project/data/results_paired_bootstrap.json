@@ -1,0 +1,7 @@
+See server file: /root/autodl-tmp/agent_progress_probe/results_paired_bootstrap.json
+
+Summary:
+1. Structural RF vs Probe: Δ=+8.89pp, 95% CI [7.37, 10.49], p<0.001
+2. Probe vs LLM-as-Judge: Δ=+24.30pp, 95% CI [21.74, 26.83], p<0.001
+3. Probe vs Cosine Sim: Δ=+34.49pp, 95% CI [31.78, 37.14], p<0.001
+4. Structural GB vs Probe (cross-agent OH): SKIPPED - unmatched eval sets

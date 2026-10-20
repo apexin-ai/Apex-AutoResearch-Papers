@@ -1,0 +1,40 @@
+{
+  "method": "cosine_similarity_cross_agent",
+  "source_agent": "SWE-Agent",
+  "target_agent": "OpenHands",
+  "threshold": 0.61,
+  "inverted": true,
+  "all_windows": {
+    "macro_f1": 0.447,
+    "accuracy": 0.4862,
+    "precision_macro": 0.4972,
+    "recall_macro": 0.4958,
+    "f1_stagnation": 0.2997,
+    "f1_progress": 0.5942,
+    "n_windows": 143057,
+    "n_progress": 112373,
+    "n_stagnation": 30684
+  },
+  "conf_ge_2": {
+    "macro_f1": 0.3933,
+    "accuracy": 0.4193,
+    "precision_macro": 0.4752,
+    "recall_macro": 0.4624,
+    "f1_stagnation": 0.2676,
+    "f1_progress": 0.5189,
+    "n_windows": 43366,
+    "n_progress": 34750,
+    "n_stagnation": 8616
+  },
+  "oracle_on_oh": {
+    "threshold": 0.56,
+    "inverted": false,
+    "macro_f1": 0.4932
+  },
+  "score_stats": {
+    "mean": 0.6127,
+    "std": 0.0744,
+    "progress_mean": 0.6134,
+    "stagnation_mean": 0.61
+  }
+}

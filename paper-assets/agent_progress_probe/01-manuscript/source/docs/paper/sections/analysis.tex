@@ -1,0 +1,25 @@
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{Circular Evaluation and Its Implications}
+\label{sec:circular}
+
+The structural RF's 0.995 macro-F1 (\S\ref{sec:main_results}) is a predictable consequence of feature--label overlap: the 30 features include repetition ratios and file operation counts---the same signals $\lambda_1$ and $\lambda_2$ consume to produce silver labels---so this score represents an upper bound on LF reverse-engineering fidelity (\S\ref{sec:feature_overlap} quantifies this decomposition).
+
+Three settings break this circularity: (1)~cross-coding-agent transfer (GB 0.967 on OH, where cmd\_rep fires on 5.4\% vs.\ 65.5\% of windows---LF memorization cannot explain this); (2)~instance isolation (removing 284 shared SWE-bench tasks changes cross-agent F1 by ${<}$0.1\,pp, Table~\ref{tab:instance_isolation}); (3)~gold validation (GB 0.839 vs.\ MV 0.798, $p{<}0.001$; \S\ref{sec:gold_set}).
+In-domain structural metrics should still be interpreted as LF-agreement scores.
+The LLM judge illustrates this danger: on silver, structural features lead the best LLM by 19.6\,pp (0.995 vs.\ 0.799), but on gold the ranking reverses (LLM 0.910 vs.\ GB 0.839)---the silver advantage was an artifact of LF-reconstructibility.
+
+\subsection{Feature Overlap Ablation}
+\label{sec:feature_overlap}
+
+We partition the 30 features into 11 \emph{LF-overlapping} and 19 \emph{residual} (Appendix~\ref{sec:app_feature_overlap}).
+On all OH windows, 11 LF-overlapping features alone achieve 0.977 cross-agent F1, exceeding the full 30-feature model by 1.0\,pp---the opposite of what leakage would predict.
+However, this reverses on conf${\geq}$2: 11-feature F1 drops to 0.985 vs.\ 0.992 for 30 features ($-$0.7\,pp), indicating that residual features provide incremental value for noise filtering on high-confidence labels.
+Residual features collapse to 0.566 cross-agent (0.952 in-domain), confirming agent-specific noise.
+We acknowledge that cross-agent transfer primarily validates the transferability of LF-encoded judgment patterns across agents, rather than demonstrating that models learn signals beyond the LFs.
+Leave-one-group-out localizes the signal: removing cmd\_rep drops cross-agent F1 by 40.6\,pp; file\_diff by 30.8\,pp; outcome\_bp by only 0.2\,pp.
+In resource-constrained settings, the 11 LF-overlapping features suffice; for high-confidence deployment, the full 30-feature set is preferred.
+
+\paragraph{GB vs.\ RF deployment trade-off.}
+GB leads RF by 5.5\,pp on all-windows cross-agent (0.967 vs.\ 0.912) but RF is more robust on conf${\geq}$2 and under 2-LF degradation (Appendix~\ref{sec:app_2lf_cross}); either enables 15--30\% compute savings (Appendix Figure~\ref{fig:pareto}).

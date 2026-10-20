@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4094ed202ae123d38b9b",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code l transfer pair validation",
+  "task_key": "worker_code_l-transfer-pair-validation_20260519T222514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l-transfer-pair-validation_20260519T222514_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "8751e307be110158cf5bc784225255fea1494ef6a4dd3f556038bc7580b55423"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**判定: MARGINAL**（阈值 0.85 下 avg_pos/anchor=4.8）\n\n关键数据：\n\n| Threshold | #Positive Pairs | Avg Pos/Anchor |\n|-----------|----------------|----------------|\n| 0.80 | 5,986 | 15.3 |\n| **0.85** | **1,867** | **4.8** |\n| 0.90 | 485 | 1.2 |\n\n三个重要发现：\n\n1. **降阈值到 0.80 即可解决** — avg_pos/anchor 从 4.8 跳到 15.3，进入 SUFFICIENT 区间\n2. **libero_90 有大量完全相同指令的不同 task** — Top-20 跨任务对全部 sim=1.0，都是 libero_90 内不同 task_id 但指令文本完全一样（如 \"pick up the book and place it in the left compartment of the caddy\" 同时出现在 libero_90_74 和 libero_90_82）。815/1867 正对来自 libero_90 内部\n3. **跨 suite 正对为零** — spatial/object/goal 之间没有任何正对。L_transfer 只在同 suite 内起作用，无法提供跨 suite 语义对齐\n\n12/130 个任务在 0.85 阈值下完全孤立（无正对）。\n\n报告已写入 `artifacts/ltransfer_positive_density.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-l-transfer-pair-validation.md"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "phase1_lconsist_v1",
+  "project": "afford_invar",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:01:25.926Z",
+    "updated_at": "2026-05-19T22:23:30.851Z",
+    "hypothesis": "L_consist (alpha=0.1, lambda_H=0) 作为 LoRA fine-tuning 正则项，引导 affordance decoder 从 Layer-18 features 学到空间 affordance 表征。预期：heatmap peak 到 gripper target 归一化距离 < 0.2，standard LIBERO SR ≥ 95%，LIBERO-Para PRIDE ≥ 63.8",
+    "spec": {
+      "command": "torchrun --nproc_per_node=1 --master_port=29501 vla-scripts/finetune_afford.py --vla_path /root/autodl-tmp/openvla-7b --data_root_dir /root/autodl-tmp/modified_libero_rlds --dataset_name libero_goal_no_noops --lora_rank 32 --batch_size 2 --learning_rate 5e-4 --max_steps 20000 --save_freq 500 --layer_idx 18 --alpha 0.1 --lambda_H 0 --num_paraphrases 3",
+      "server": "westd-19957",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "93544",
+      "log_path": "~/runs/afford_invar/phase1_lconsist_v1.log",
+      "submitted_at": "2026-05-19T22:03:21.386Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/modified_libero_rlds/libero_goal_no_noops",
+      "data_count": "~5000 demos",
+      "model_name": "openvla-7b + LoRA r=32 + AffordanceDecoder 7.87M",
+      "seed": "default"
+    }
+  },
+  "timestamp": "2026-05-19T22:23:30.856959+00:00",
+  "trigger": "update_registry"
+}

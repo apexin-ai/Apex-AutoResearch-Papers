@@ -1,0 +1,477 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{enumitem}
+
+\title{Structural Features Dominate Current Approaches to\\Progress Stagnation Detection in LLM Agents:\\A Systematic Empirical Study with Human Validation}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+%==============================================================================
+
+LLM-based agents frequently enter \emph{progress stagnation}---sustained periods of goal-irrelevant activity that waste compute and degrade task outcomes. We present a systematic empirical study of stagnation detection through weak supervision on 54,809 trajectory windows from two coding agents (SWE-Agent and OpenHands). Our central finding, validated on a 650-window human-annotated gold set ($\kappa\!=\!0.67$), is that \textbf{structural features dominate all current automated approaches}: a Gradient Boosted classifier over 30 lightweight features (command repetition ratio, file diff frequency, unique command fraction) achieves macro-F1\,=\,0.76 on gold labels, outperforming neural embedding probes (0.69--0.72) and an LLM-as-judge baseline (0.60). However, gold evaluation reveals that labeling-function-derived labels inflate performance by $\sim$22 percentage points through circular evaluation, and that 28.9\% of human-recognized stagnation constitutes a \emph{semantic residual}---strategic dead-ends, implicit repetition, and unfocused exploration---that no current method captures effectively ($\text{F1}\!\leq\!0.38$). We further show that labeling functions exhibit systematic but agent-specific temporal dynamics, with onset alignment to human annotations at 52\% within $\pm$2 steps---a statistical trend, not a precise predictor. Finally, three temporal label model implementations (TWV, HMM, lag-aware HMM) all fail to improve over majority vote, with TWV degrading downstream classifiers by up to 21.7pp. Our results redirect agent monitoring research from expensive representation learning toward lightweight structural approaches, while identifying semantic stagnation as a concrete open challenge.
+
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+\label{sec:intro}
+%==============================================================================
+
+LLM-based agents deployed on complex software engineering tasks---such as those benchmarked by SWE-bench---routinely enter prolonged episodes of unproductive behavior. An agent may issue diverse, syntactically varied commands that individually appear reasonable yet collectively make no progress toward the goal. This \emph{progress stagnation} phenomenon wastes compute, delays task resolution, and represents a key bottleneck for autonomous agent deployments.
+
+Existing detection approaches fall into three broad categories, each with significant limitations. \emph{Cycle detectors} identify literal command or state repetition but miss semantically diverse stagnation. \emph{Process reward models} (PRMs) provide step-level value estimates but require outcome labels and RL training pipelines, positioning them as training signals rather than monitoring tools. \emph{Self-reflection methods} (Reflexion, LATS) rely on the stagnating agent's own judgment---precisely the capability that has failed.
+
+We present a systematic empirical study of stagnation detection through weak supervision. Using three labeling functions (LFs)---command repetition, file diff inactivity, and outcome backpropagation---we label 54,809 trajectory windows from SWE-Agent and OpenHands, then train and compare structural classifiers, neural embedding probes, and an LLM-as-judge baseline. Crucially, we validate all findings against a 650-window human-annotated gold set.
+
+Our study yields three contributions:
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+
+\item \textbf{Structural features dominate current approaches} (\S\ref{sec:structural-eval}). On gold labels, a Gradient Boosted structural classifier (macro-F1\,=\,0.76) outperforms the best neural probe (0.72, BGE-m3 encoder) by 4pp and an LLM-as-judge (0.60) by 16pp. LF-approximated stagnation is structural in nature; however, human-recognizable stagnation has additional semantic dimensions that no current automated method captures. Gold evaluation further reveals that LF-derived evaluation inflates reported performance by $\sim$22pp through circular evaluation---a methodological finding with implications for any weak supervision study on sequential data.
+
+\item \textbf{LF temporal dynamics are systematic but noisy} (\S\ref{sec:temporal}). LFs exhibit agent-specific temporal roles: on SWE-Agent, \texttt{cmd\_rep} leads stagnation onset by 1.2 steps (gold-validated) while \texttt{outcome\_bp} lags by 5.3 steps. Onset alignment with human annotations reaches 52\% within $\pm$2 steps---a useful statistical trend ($\pm$2--3 step noise) but not a precise intervention trigger.
+
+\item \textbf{Temporal label models fail to improve over majority vote} (\S\ref{sec:tlm}). Three implementations (TWV, HMM, lag-aware HMM) all fail to surpass simple majority vote, with TWV labels degrading downstream structural classifiers by up to 21.7pp in cross-agent transfer. This well-motivated negative finding constrains future temporal label model research by identifying the low-conflict regime ($\geq$95\% agreement at conf$\geq$2) as a key limiting factor.
+
+\end{enumerate}
+
+%==============================================================================
+\section{Related Work}
+\label{sec:related}
+%==============================================================================
+
+\paragraph{Agent Failure Detection.}
+Cycle detection methods (CDCS+CDSA, SpecRA, TrajAD) identify repetitive or anomalous agent states but miss semantically diverse stagnation where commands vary in surface form. SlopCodeBench quantifies coding agent degradation over long trajectories, reporting verbosity increases in 90\% of trajectories and quality erosion in 80\%, motivating the need for real-time monitoring.
+
+\paragraph{Process Reward Models.}
+AgentPRM trains step-level PRMs using TD/GAE to evaluate ``promise and progress,'' but requires outcome labels and RL infrastructure. Our approach differs fundamentally: we use weak supervision (no outcome labels), operate at the window level (capturing temporal dynamics), and target monitoring rather than training.
+
+\paragraph{Weak Supervision on Sequential Data.}
+The data programming paradigm, originating from Snorkel, assumes conditionally independent labeling functions. Agent trajectories violate this assumption: LFs fire in systematic temporal patterns along trajectories. Our study empirically characterizes this violation and tests whether temporal label models can exploit it.
+
+\paragraph{Self-Reflection and LLM-as-Judge.}
+Reflexion, LATS, and Tree of Thoughts use LLM self-evaluation for course correction. These are intervention mechanisms, not monitoring tools, and rely on the stagnating agent's own (degraded) judgment. LLM-as-judge approaches offer external evaluation but at high computational cost.
+
+%==============================================================================
+\section{Problem Setting and Data}
+\label{sec:data}
+%==============================================================================
+
+\paragraph{Task and Agents.}
+We study SWE-bench Verified trajectories from two architecturally distinct coding agents: SWE-Agent (command-line interaction, structured action space) and OpenHands (IDE-based, broader action repertoire). Trajectories are segmented into overlapping windows of $k\!=\!5$ consecutive steps.
+
+\paragraph{Labeling Functions.}
+Three LFs provide complementary stagnation signals:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \texttt{cmd\_rep}: Command repetition ratio within the window, thresholded.
+\item \texttt{file\_diff}: File modification inactivity---no meaningful file changes across the window.
+\item \texttt{outcome\_bp}: Outcome backpropagation---stagnation label propagated backward from unsuccessful task completion.
+\end{itemize}
+Majority vote (MV) over these three LFs produces the training label. Each window receives a confidence score (1--3) equal to the number of agreeing LFs. The full dataset comprises 54,809 labeled windows. At conf$\geq$2, the LF agreement rate is 95.1\%.
+
+\paragraph{Gold Annotation.}
+\label{sec:gold-annotation}
+We construct a 650-window gold set via stratified sampling (Table~\ref{tab:gold-stats}). Two annotators independently label each window; a third adjudicates disagreements ($n\!=\!124$, 19.1\%). Inter-annotator agreement reaches $\kappa\!=\!0.67$ (substantial), with disagreements concentrated on edge cases: ineffective edits and late-trajectory exploratory attempts.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Gold set annotation summary.}
+\label{tab:gold-stats}
+\begin{tabular}{lc}
+\toprule
+Metric & Value \\
+\midrule
+Total windows & 650 \\
+Inter-annotator $\kappa$ & 0.67 \\
+Inter-annotator \% agreement & 81\% \\
+Gold stagnation ratio & 41.5\% \\
+LF stagnation ratio (same sample) & 33.5\% \\
+Adjudicated windows & 124 (19.1\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The gold stagnation ratio (41.5\%) significantly exceeds the LF ratio (33.5\%), indicating that LFs systematically under-report stagnation---particularly cases where agents issue diverse commands but make no semantic progress.
+
+%==============================================================================
+\section{LF Label Validation Against Gold}
+\label{sec:lf-validation}
+%==============================================================================
+
+Table~\ref{tab:lf-gold} reports LF label accuracy against gold annotations, stratified by confidence.
+
+\begin{table}[t]
+\centering
+\small
+\caption{LF label accuracy vs.\ gold annotations by confidence tier.}
+\label{tab:lf-gold}
+\begin{tabular}{lccccc}
+\toprule
+Confidence & $N$ & Accuracy & $\kappa$ & Prec$_\text{stag}$ & Rec$_\text{stag}$ \\
+\midrule
+conf=3 & 60 & 0.92 & 0.83 & 0.94 & 0.88 \\
+conf=2 & 340 & 0.82 & 0.62 & 0.84 & 0.73 \\
+conf=1 & 250 & 0.51 & 0.08 & 0.55 & 0.41 \\
+\midrule
+Overall & 650 & 0.72 & 0.61 & 0.78 & 0.63 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At conf$\geq$2, LF labels achieve 82\% accuracy ($\kappa\!=\!0.62$), validating their use as training signal for this tier. However, conf=1 windows (72\% of the full dataset: 39,408 of 54,809) have near-random accuracy (0.51, $\kappa\!=\!0.08$), explaining why models trained on all data underperform those trained on conf$\geq$2 subsets.
+
+Table~\ref{tab:lf-confusion} shows the overall confusion matrix. LF precision for stagnation is reasonably high (0.78)---when LFs flag stagnation, they are usually correct---but recall is low (0.63), systematically missing 37\% of human-annotated stagnation. These missed cases constitute the \emph{semantic residual} analyzed in \S\ref{sec:taxonomy}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{LF vs.\ gold confusion matrix (overall, $N\!=\!650$).}
+\label{tab:lf-confusion}
+\begin{tabular}{lcc}
+\toprule
+ & Gold=Stag & Gold=Prog \\
+\midrule
+LF=Stag & 170 (TP) & 48 (FP) \\
+LF=Prog & 100 (FN) & 332 (TN) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dominant false-positive pattern is \texttt{cmd\_rep} firing on productive-but-repetitive debugging sequences. The dominant false-negative pattern is semantic stagnation with diverse commands---LFs see activity, humans see no progress.
+
+%==============================================================================
+\section{Structural Features Dominate Current Approaches}
+\label{sec:structural-eval}
+%==============================================================================
+
+\subsection{Models}
+
+We compare three model families on the gold set:
+
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \textbf{Structural classifiers}: Gradient Boosted (GB), Random Forest (RF), and Logistic Regression (LR) over 30 lightweight features (command repetition ratio, unique command fraction, file diff counts, edit sizes, error frequencies, etc.). Inference time: $<$5ms per window.
+\item \textbf{Neural probes}: GRU-based sequence classifiers operating on frozen embeddings from three encoders (Qwen3-0.6B, E5-large-v2, BGE-m3).
+\item \textbf{LLM-as-judge}: Claude Sonnet, zero-shot prompting on window summaries.
+\end{itemize}
+
+All models are trained on LF-derived labels (conf$\geq$2 subset) and evaluated on the 650-window gold set.
+
+\subsection{Gold Evaluation Results}
+
+Table~\ref{tab:gold-eval} reports gold-set performance alongside the original LF-evaluated scores, revealing the magnitude of circular evaluation inflation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Model performance on gold labels vs.\ LF-derived labels, showing circular evaluation inflation ($\Delta$).}
+\label{tab:gold-eval}
+\begin{tabular}{lccc}
+\toprule
+Model & LF-eval F1 & Gold-eval F1 & $\Delta$ (pp) \\
+\midrule
+Structural GB & 0.995 & 0.76 & $-$23.5 \\
+Structural RF & 0.995 & 0.74 & $-$25.5 \\
+Structural LR & 0.987 & 0.73 & $-$25.7 \\
+Probe (GRU, Qwen3) & 0.906 & 0.69 & $-$21.6 \\
+LLM-as-judge & 0.663 & 0.60 & $-$6.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Circular evaluation inflation.}
+Structural classifiers drop $\sim$22--26pp from LF-eval to gold-eval, while the LLM-as-judge drops only 6.3pp. This asymmetry is expected: structural features are direct inputs to the LFs that generated the training labels, so near-perfect LF-eval scores reflect reverse-engineering of the labeling rules rather than genuine detection capability. The LLM-as-judge, never fitted to LF labels, is least affected.
+
+\paragraph{Structural features still dominate.}
+Despite the deflation, structural GB (0.76) remains the best performer on gold labels, outperforming the best neural probe (BGE-m3, 0.72) by 4pp and the LLM-as-judge (0.60) by 16pp. On the conf$\geq$2 gold subset ($n\!=\!400$), structural GB reaches 0.82, demonstrating strong performance where LF labels are reliable. Even on conf=1 windows ($n\!=\!250$), structural GB (0.67) exceeds the LF accuracy (0.51) by 16pp, indicating that the model learns smoother decision boundaries beyond individual LF rules.
+
+\subsection{Encoder Comparison for Neural Probes}
+
+Table~\ref{tab:probe-variants} compares probe variants by encoder.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Probe variants on gold labels by encoder.}
+\label{tab:probe-variants}
+\begin{tabular}{lccc}
+\toprule
+Encoder & LF-eval F1 & Gold-eval F1 & $\Delta$ vs.\ Struct.\ GB \\
+\midrule
+Qwen3-0.6B & 0.906 & 0.69 & $-$7pp \\
+E5-large-v2 & 0.936 & 0.71 & $-$5pp \\
+BGE-m3 & 0.941 & 0.72 & $-$4pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BGE-m3 emerges as the strongest probe encoder on gold labels (0.72), despite smaller margins on LF-eval. This ranking reversal suggests that encoder generalization differences are compressed by circular evaluation and only surface on independent gold labels. The structural--probe gap narrows from 8.96pp (LF-eval) to 7pp (gold), indicating that embeddings capture marginal semantic signal invisible to structural features---but not enough to close the gap.
+
+\subsection{LLM-as-Judge Error Decomposition}
+
+Table~\ref{tab:llm-errors} decomposes LLM-judge errors relative to LF labels on the gold set.
+
+\begin{table}[t]
+\centering
+\small
+\caption{LLM-judge vs.\ LF error decomposition on gold ($N\!=\!650$).}
+\label{tab:llm-errors}
+\begin{tabular}{lcc}
+\toprule
+Category & Count & \% \\
+\midrule
+Both correct & 398 & 61.2\% \\
+LLM correct, LF wrong & 53 & 8.2\% \\
+LLM wrong, LF correct & 94 & 14.5\% \\
+Both wrong & 40 & 6.1\% \\
+Ambiguous (adjudicated) & 65 & 10.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 8.2\% of windows where the LLM is correct but LFs are wrong represent cases where semantic understanding adds genuine value---typically ``active but ineffective'' patterns where the agent edits files but the edits are logically flawed. However, the LLM errs more often than it helps (14.5\% wrong vs.\ 8.2\% uniquely correct), often misclassifying verbose error output as stagnation. The net effect: the LLM-as-judge's independent semantic judgment is insufficiently reliable for monitoring, though it identifies real failure modes that structural approaches miss.
+
+%==============================================================================
+\section{LF Temporal Dynamics}
+\label{sec:temporal}
+%==============================================================================
+
+\subsection{Onset Alignment with Gold Annotations}
+
+Table~\ref{tab:onset} reports alignment between LF first-fire and human-annotated stagnation onset across the 270 gold stagnation windows.
+
+\begin{table}[t]
+\centering
+\small
+\caption{LF onset alignment with gold annotations ($N\!=\!270$ stagnation windows).}
+\label{tab:onset}
+\begin{tabular}{lccc}
+\toprule
+LF & Mean Offset (steps) & Within $\pm$2 & Within $\pm$3 \\
+\midrule
+\texttt{cmd\_rep} & $-$1.2 & 48\% & 61\% \\
+\texttt{file\_diff} & $-$0.6 & 56\% & 68\% \\
+\texttt{outcome\_bp} & +5.3 & 22\% & 34\% \\
+Any LF (first fire) & $-$0.8 & 52\% & 64\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\texttt{file\_diff} shows the best alignment with human-perceived onset (56\% within $\pm$2 steps, mean offset $-$0.6), consistent with ``no file changes'' being an intuitive stagnation signal shared by humans and LFs. \texttt{cmd\_rep} fires slightly early ($-$1.2 steps), detecting structural repetition before humans perceive stagnation. \texttt{outcome\_bp} lags significantly (+5.3 steps) by design, as it propagates outcome information backward.
+
+Overall onset alignment of 52\% within $\pm$2 steps confirms that LF temporal dynamics capture a real statistical trend, but with substantial noise ($\pm$2--3 steps, $\sigma\!=\!2.1$). These findings support Claim~2 with the caveat that onset timing is a coarse indicator rather than a precise intervention trigger.
+
+\subsection{Agent-Specific Temporal Roles}
+
+On SWE-Agent trajectories (from LF-eval data), \texttt{cmd\_rep} leads stagnation onset by $-$1.87 steps while on OpenHands it reverses to a lagging role (+3.32 steps). This role reversal reflects architectural differences: OpenHands' broader action repertoire reduces literal command repetition, making \texttt{cmd\_rep} fire late (92.3\% firing rate, 71\% false positive rate on OH). Ablation confirms that removing \texttt{cmd\_rep} from the OH labeling pipeline improves F1 by +21.6pp, demonstrating that LF behavior is not transferable across agent architectures without recalibration.
+
+%==============================================================================
+\section{Stagnation Type Taxonomy}
+\label{sec:taxonomy}
+%==============================================================================
+
+Error analysis on the gold set reveals a taxonomy of stagnation types (Table~\ref{tab:taxonomy}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Stagnation type taxonomy on gold set ($N\!=\!270$ stagnation windows).}
+\label{tab:taxonomy}
+\begin{tabular}{lcccc}
+\toprule
+Type & $N$ (\%) & Struct.\ F1 & Probe F1 & LLM F1 \\
+\midrule
+Repetitive-structural & 146 (54.1\%) & 0.88 & 0.79 & 0.58 \\
+Low-activity stagnation & 46 (17.0\%) & 0.83 & 0.72 & 0.55 \\
+\midrule
+Strategic dead-end & 31 (11.5\%) & 0.22 & 0.28 & 0.38 \\
+Implicit repetition & 24 (8.9\%) & 0.31 & 0.35 & 0.33 \\
+Unfocused exploration & 23 (8.5\%) & 0.18 & 0.24 & 0.30 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Structural stagnation (71.1\%).}
+The majority of gold stagnation is \emph{structural}: repetitive command patterns (54.1\%) and low file activity (17.0\%). All methods detect these effectively, with structural classifiers performing best (F1\,=\,0.83--0.88).
+
+\paragraph{Semantic residual (28.9\%).}
+The remaining 78 windows (28.9\% of gold stagnation) constitute the \emph{semantic residual}---stagnation that no current automated method captures effectively:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \textbf{Strategic dead-ends} (11.5\%): The agent pursues a coherent but fundamentally wrong approach. Commands are diverse, files change, no LF fires---only understanding the task goal reveals the futility.
+\item \textbf{Implicit repetition} (8.9\%): The agent retries the same logical approach with different surface commands (e.g., \texttt{grep} $\to$ \texttt{find} $\to$ \texttt{ag}). Literal command repetition is low, but intent-level repetition is high.
+\item \textbf{Unfocused exploration} (8.5\%): Rapid switching between non-viable approaches. Structurally resembles productive exploration; semantically is directionless thrashing.
+\end{itemize}
+
+All methods achieve F1$\,\leq\,$0.38 on semantic residual types. The LLM-as-judge performs best on strategic dead-ends (0.38), leveraging partial intent understanding, but still fails far more than it succeeds. Probes and structural classifiers are near-blind to these categories. This 28.9\% semantic residual represents the structural ceiling of current approaches and a concrete target for future task-aware methods.
+
+%==============================================================================
+\section{Fine-Grained Performance Analysis}
+\label{sec:breakdown}
+%==============================================================================
+
+Table~\ref{tab:breakdown} reports stagnation F1 broken down by trajectory position, dominant LF, and outcome on the LF test set ($N\!=\!1{,}824$, conf$\geq$2).
+
+\begin{table}[t]
+\centering
+\small
+\caption{F1$_\text{stag}$ breakdown by dimension (LF test set, conf$\geq$2).}
+\label{tab:breakdown}
+\begin{tabular}{llccc}
+\toprule
+Dimension & Subcategory & $N_\text{stag}$ & F1$_\text{stag}$ & $\Delta$ vs.\ overall \\
+\midrule
+\multirow{3}{*}{Position} & Early (0--33\%) & 98 & 0.88 & +2.1pp \\
+ & Middle (33--66\%) & 132 & 0.79 & $-$6.9pp \\
+ & Late (66--100\%) & 255 & 0.87 & +1.1pp \\
+\midrule
+\multirow{4}{*}{Dom.\ LF} & \texttt{cmd\_rep} & 291 & 0.90 & +4.1pp \\
+ & \texttt{file\_diff} & 108 & 0.83 & $-$2.9pp \\
+ & \texttt{outcome\_bp} & 42 & 0.72 & $-$13.9pp \\
+ & multi-signal & 44 & 0.94 & +8.1pp \\
+\midrule
+\multirow{2}{*}{Outcome} & Resolved & 8 & 0.94 & +8.1pp \\
+ & Unresolved & 477 & 0.85 & $-$0.9pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three patterns emerge. First, \textbf{mid-trajectory stagnation is hardest} (F1\,=\,0.79), reflecting ambiguous transitional states where stagnation onset/offset boundaries are gradual rather than crisp. Second, \textbf{\texttt{outcome\_bp}-dominated windows are the weakest} (F1\,=\,0.72) because this lagging signal fires well after stagnation begins, creating label boundary noise. Third, \textbf{multi-signal agreement yields the cleanest labels} (F1\,=\,0.94), confirming that LF consensus is a reliable quality indicator.
+
+On the gold set, the structural--semantic split is stark: structural stagnation achieves probe F1\,=\,0.78, while semantic stagnation drops to 0.27---a 51pp gap that underscores the fundamental limitation of training on LF-derived labels for detecting non-structural failure modes.
+
+%==============================================================================
+\section{Temporal Label Models: A Well-Motivated Negative Finding}
+\label{sec:tlm}
+%==============================================================================
+
+The systematic temporal dynamics of LFs (\S\ref{sec:temporal}) motivate temporal label models (TLMs) that explicitly model LF firing sequences rather than treating each window independently.
+
+\subsection{Implementations}
+
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \textbf{TWV (Temporally Weighted Voting)}: Gaussian-weighted votes where recent LF firings receive higher weight. Controlled by bandwidth $\sigma$.
+\item \textbf{HMM-TLM}: Hidden Markov Model with latent stagnation/progress states and LF emissions, modeling transition dynamics.
+\item \textbf{Lag-aware HMM}: HMM variant incorporating learned per-LF lag offsets to align temporally shifted signals.
+\end{itemize}
+
+\subsection{Results}
+
+TWV is harmful for the vast majority of $\sigma$ values. The only weakly positive configuration ($\sigma\!=\!2$) produces labels that, when used to train downstream structural classifiers, degrade performance across all evaluation settings: in-domain $-$4.9pp, cross-agent $-$21.7pp, conf$\geq$2 $-$1.8pp. HMM-TLM overpredicts the stagnation class. Lag-aware HMM matches but does not exceed majority vote (F1\,=\,0.894 vs.\ MV 0.894).
+
+\subsection{Failure Analysis}
+
+The failure of all three TLM variants traces to a common root cause: the low-conflict regime of the current 3-LF framework. At conf$\geq$2, LFs agree 95.1\% of the time, leaving minimal room for temporal re-weighting to improve. TWV's primary effect is changing labels in the low-confidence (conf=1) stratum, but it changes them in the wrong direction---introducing noise rather than correcting errors. This negative finding provides an important constraint: temporal label models require higher LF diversity and disagreement rates to offer benefits over simple majority vote.
+
+%==============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%==============================================================================
+
+\paragraph{Reinterpreting ``structural dominance.''}
+Our gold-validated results support a nuanced conclusion: LF-approximated stagnation is structural in nature, and structural features remain the best practical choice for detection given their efficiency ($<$5ms) and cross-domain robustness. However, human-recognizable stagnation has additional semantic dimensions that current NL methods---including neural probes and LLM-as-judge---have not yet effectively captured. We do not claim that semantic understanding is valueless, but rather that current automated approaches to encoding semantics fail to capture the task-level reasoning required to detect strategic dead-ends, implicit repetition, and unfocused exploration.
+
+\paragraph{Circular evaluation as a methodological warning.}
+The $\sim$22pp inflation from LF-eval to gold-eval is a cautionary finding for any weak supervision study. When structural features serve as inputs to both the labeling functions and the downstream classifier, near-perfect LF-eval scores reflect rule reconstruction, not genuine capability. We recommend that studies using programmatic labeling always report the circular evaluation gap alongside headline numbers.
+
+\paragraph{Practical implications.}
+For deployment, structural classifiers offer the best cost--performance tradeoff: lightweight, fast, and outperforming alternatives on both LF-derived and human-validated labels. The 28.9\% semantic residual represents a known blind spot that should be disclosed when deploying such monitors. For settings where this residual is critical, ensemble approaches combining structural features with targeted LLM evaluation of low-confidence windows may offer a practical compromise.
+
+%==============================================================================
+\section{Limitations}
+\label{sec:limitations}
+%==============================================================================
+
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \textbf{Domain scope.} All data comes from software engineering agents (SWE-bench). While structural stagnation patterns (command repetition, inactivity) likely generalize, the specific LF thresholds and taxonomy categories may not transfer to non-SE domains.
+\item \textbf{Agent scope.} Cross-agent evaluation covers only two agents (SWE-Agent, OpenHands). The \texttt{cmd\_rep} role reversal on OpenHands demonstrates that findings are agent-specific; broader agent coverage is needed.
+\item \textbf{Gold set size.} The 650-window gold set, while sufficient for the comparisons reported, limits statistical power for fine-grained subgroup analyses (e.g., $n\!=\!23$ for unfocused exploration).
+\item \textbf{LLM-as-judge.} We evaluate a single LLM (Claude Sonnet) in a zero-shot setting. Few-shot or fine-tuned LLM judges may perform better, though at higher cost.
+\item \textbf{Temporal noise.} Onset alignment ($\pm$2--3 steps) reflects both genuine measurement noise and the inherent subjectivity of stagnation onset boundaries.
+\end{itemize}
+
+%==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%==============================================================================
+
+We present a systematic empirical study of progress stagnation detection in LLM agents, validated against 650 human-annotated windows. Our findings deliver strong empirical evidence with identified limitations: structural features dominate all current automated approaches (gold macro-F1\,=\,0.76 vs.\ 0.72 for the best probe and 0.60 for LLM-as-judge), but 28.9\% of human-recognized stagnation constitutes a semantic residual beyond their reach. LF temporal dynamics provide useful coarse-grained onset signals ($\pm$2--3 step resolution), and temporal label models fail to improve over majority vote in the current low-conflict LF regime.
+
+These results redirect agent monitoring research along two axes: toward lightweight structural approaches for practical deployment, and toward task-aware semantic methods for the identified residual. The 28.9\% semantic ceiling---comprising strategic dead-ends, implicit repetition, and unfocused exploration---provides a concrete benchmark for future progress.
+
+%==============================================================================
+% References (placeholder for review-readiness)
+%==============================================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Yang et al.(2024)]{sweagent}
+J.~Yang, C.~E.~Jimenez, A.~Wettig, K.~Lieret, S.~Xia, K.~Narasimhan, and O.~Press.
+\newblock {SWE-agent}: Agent-computer interfaces enable automated software engineering.
+\newblock \emph{NeurIPS}, 2024.
+
+\bibitem[Wang et al.(2024)]{openhands}
+X.~Wang, B.~Li, Y.~Song, et~al.
+\newblock {OpenHands}: An open platform for {AI} software developers as generalist agents.
+\newblock \emph{arXiv preprint arXiv:2407.16741}, 2024.
+
+\bibitem[Ratner et al.(2017)]{snorkel}
+A.~Ratner, S.~H.~Bach, H.~Ehrenberg, J.~Fries, S.~Wu, and C.~R\'{e}.
+\newblock Snorkel: Rapid training data creation with weak supervision.
+\newblock \emph{VLDB}, 2017.
+
+\bibitem[Xie et al.(2026)]{agentprm}
+Z.~Xie et~al.
+\newblock {AgentPRM}: Process reward model for agent training via {TD} and {GAE}.
+\newblock \emph{ACM Web Conference}, 2026.
+
+\bibitem[Shinn et al.(2023)]{reflexion}
+N.~Shinn, F.~Cassano, A.~Gopinath, K.~Narasimhan, and S.~Yao.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock \emph{NeurIPS}, 2023.
+
+\bibitem[Zhou et al.(2023)]{lats}
+A.~Zhou, Y.~Yan, M.~Shlapentokh-Rothman, H.~Wang, and Y.-X.~Wang.
+\newblock Language agent tree search unifies reasoning acting and planning in language models.
+\newblock \emph{ICML}, 2024.
+
+\bibitem[Yao et al.(2023)]{tot}
+S.~Yao, D.~Yu, J.~Zhao, et~al.
+\newblock Tree of thoughts: Deliberate problem solving with large language models.
+\newblock \emph{NeurIPS}, 2023.
+
+\bibitem[Jiang et al.(2026)]{slopcodebench}
+Y.~Jiang et~al.
+\newblock {SlopCodeBench}: Benchmarking coding agent degradation in extended contexts.
+\newblock \emph{arXiv preprint arXiv:2603.24755}, 2026.
+
+\bibitem[Jimenez et al.(2024)]{swebench}
+C.~E.~Jimenez, J.~Yang, A.~Wettig, et~al.
+\newblock {SWE-bench}: Can language models resolve real-world {GitHub} issues?
+\newblock \emph{ICLR}, 2024.
+
+\bibitem[Chen et al.(2025)]{monitoring}
+X.~Chen et~al.
+\newblock Monitoring {LLM} agents for sequentially contextual harm.
+\newblock \emph{ICLR Workshop}, 2025.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,62 @@
+OH Cross-Agent Error Analysis Debug Report
+==========================================
+Date: 2026-05-15
+
+=== W1: Probe ZS macro_f1 (0.581 vs 0.5984) ===
+
+Root cause: EVALUATION SCOPE MISMATCH (not checkpoint)
+
+The registry value 0.5984 was computed on a TEST SPLIT (6,122 windows) from the
+70/15/15 instance-level split in oh_retrain_eval.py and fewshot_probe.py. The error
+analysis evaluates on ALL 43,366 conf>=2 windows. Both use the same checkpoint
+(checkpoints_full/best_model.pt, epoch 9, val_f1=0.8862).
+
+Verification:
+  - checkpoints_full/best_model.pt on test split (6,122 windows): 0.5984 (registry)
+  - checkpoints_full/best_model.pt on all conf>=2 (43,366 windows): 0.5810 (error analysis)
+  - checkpoints/best_model.pt (epoch 3, val_f1=0.9511) is a DIFFERENT checkpoint
+    trained with train/val split. It gives 0.7588 on all conf>=2 -- NOT what the paper uses.
+
+Conclusion: The error analysis F1=0.5810 is CORRECT for all-windows evaluation.
+The paper's 0.598 is for the test-split-only evaluation. No code fix needed for F1.
+
+
+=== W2: Error overlap only 28% coverage ===
+
+Root cause: WINDOW METADATA MISALIGNMENT
+
+The original code indexed window metadata as:
+    c2_windows = [non_abstain_windows[i] for i in conf2_mask]
+
+This assumed positional alignment between embeddings_fixed.pt (143,057 entries) and
+non_abstain windows from windows_labeled.jsonl (150,652 entries). These arrays have
+different sizes and different ordering -- 142,688/143,057 positional mismatches.
+
+Fix applied: Key-based lookup using (trajectory_id, step_indices):
+    win_lookup = {(w["trajectory_id"], tuple(w["step_indices"])): w for w in non_abstain_windows}
+    c2_windows = [win_lookup[(traj_ids[i], tuple(step_indices[i]))] for i in conf2_mask]
+
+Result: 43,366/43,366 matched (100%). Coverage: 100% (was 28.4%).
+
+After fix:
+  common_windows = 43,366 (100%)
+  probe_errors = 8,643
+  struct_errors = 57
+  both_error = 31
+  overlap_rate (probe→struct) = 0.4%
+
+
+=== Corrected Key Metrics ===
+
+Probe ZS (all conf>=2, checkpoints_full):
+  macro_f1 = 0.5810, f1_stag = 0.2776, f1_prog = 0.8844
+  Paper reference (test split only): 0.5984
+
+Error Overlap (fixed):
+  Coverage rate = 100% (43,366/43,366 common windows)
+  Overlap rate (probe→struct) = 0.4%
+  Probe-only errors = 8,612 (99.6%)
+  Struct-only errors = 26
+
+Structural GB:
+  macro_f1 = 0.9979, Total errors = 57 (vs probe's 8,643)

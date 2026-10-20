@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8410df04c73177a8e1f",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra install robosuite",
+  "task_key": "worker_infra_install-robosuite_20260519T225340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install-robosuite_20260519T225340_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "fea74e575869ed7d248c02b805613bce65c0b0d8cb0cace517685c4119c9fece"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 安装结果\n\n| 包 | 版本 | 状态 |\n|---|---|---|\n| mujoco | 3.8.1 | 新装 |\n| robosuite | 1.5.2 | 新装 |\n| bddl | 3.6.0 | 新装 |\n| easydict | 1.13 | 新装 |\n| cloudpickle | 3.1.2 | 新装 |\n| imageio[ffmpeg] | 2.37.3 + ffmpeg | 已有+补装 ffmpeg |\n| libero | 本地安装 | 已有 |\n| libegl1-mesa-dev | 系统包 | 新装 |\n\n### Rendering\n- **EGL** 模式正常工作\n- `export MUJOCO_GL=egl` 已写入 `/root/.bashrc`\n\n### Sanity Check\n- robosuite `Lift` 环境创建/reset/close：**通过**\n- LIBERO benchmark 访问（6 个 suite: libero_spatial, libero_object, libero_goal, libero_90, libero_10, libero_100）：**通过**\n- LIBERO config 写入 `/root/.libero/config.yaml`，datasets 目录指向 `/root/autodl-tmp/libero_datasets`\n\n### 注意\n- numpy 被降级到 1.26.4（robosuite 依赖），训练中的进程不受影响（已加载旧版本到内存）\n- LIBERO benchmark API 用 `get_num_tasks()` / `get_task(i)` 而非 `n_tasks` / `task.language`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-robosuite.md"
+}

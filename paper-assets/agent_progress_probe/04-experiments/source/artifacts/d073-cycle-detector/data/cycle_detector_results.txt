@@ -1,0 +1,8 @@
+N-gram Cycle Detector Baseline Results
+
+2-gram: threshold=0.75, silver macro_f1=0.6607, gold macro_f1=0.8397
+3-gram: threshold=0.70, silver macro_f1=0.7207, gold macro_f1=0.8410 (best)
+Combined: threshold=0.75, silver macro_f1=0.6607, gold macro_f1=0.8397
+
+Script: /root/autodl-tmp/agent_progress_probe/cycle_detector_baseline.py
+Full results: /root/autodl-tmp/agent_progress_probe/results_cycle_detector.json

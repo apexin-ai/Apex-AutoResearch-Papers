@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e4fe4830e99bc1c47ec",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "analysis lconsist cont exit check",
+  "task_key": "worker_analysis_lconsist-cont-exit-check_20260520T000905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lconsist-cont-exit-check_20260520T000905_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "ccaa249e8935dceb128599fb2ca9879dad85db05a61de61b57de341077dfffbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，cron 不存在（可能已被之前的自动检测清除）。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| 退出原因 | **磁盘满** — step 5500 保存 checkpoint 时 `OSError: [Errno 28] No space left on device` |\n| 时间线 | 原始训练 SIGTERM 杀死 @step 1168 → resumed from checkpoint-1000 → 跑到 step 5500 崩溃 |\n| 最终 step | 5500 / 20000 (27.5%) |\n| 最终 L_act | ~0.30 (波动范围 0.17-0.40) |\n| 最终 L_con | ~1e-5 (已坍缩，符合预期) |\n| 最终 hm_ent | 7.05 |\n| 最后 checkpoint | checkpoint-1000（checkpoint-5500 未保存成功） |\n| GPU 0 显存 | 已释放 (0 MiB) |\n| 当前磁盘 | runs 所在 `/dev/md0` 有 197G 可用，根分区 21G 可用 |\n\n注意：`phase1_oft_baseline` 仍在 GPU 2 上运行 (24349 MiB)，它也会写 checkpoint。如果要重跑 `phase1_lconsist_v1_cont`，需确认 save_freq 不会再次撑满磁盘——可能需要清理旧 checkpoint 或加大 save_freq。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lconsist-cont-exit-check.md"
+}

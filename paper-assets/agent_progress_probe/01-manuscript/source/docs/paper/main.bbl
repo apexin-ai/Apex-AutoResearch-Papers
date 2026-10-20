@@ -1,0 +1,399 @@
+\begin{thebibliography}{60}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Adams and MacKay(2007)}]{adams2007bayesian}
+Ryan~Prescott Adams and David~J.C. MacKay. 2007.
+\newblock Bayesian online changepoint detection.
+\newblock \emph{arXiv preprint arXiv:0710.3742}.
+
+\bibitem[{Aminikhanghahi and Cook(2017)}]{aminikhanghahi2017changepoint}
+Samaneh Aminikhanghahi and Diane~J. Cook. 2017.
+\newblock A survey of methods for time series change point detection.
+\newblock \emph{Knowledge and Information Systems}, 51(2):339--367.
+
+\bibitem[{Bahdanau et~al.(2015)Bahdanau, Cho, and
+  Bengio}]{bahdanau2015attention}
+Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. 2015.
+\newblock Neural machine translation by jointly learning to align and
+  translate.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Bengio et~al.(2009)Bengio, Louradour, Collobert, and
+  Weston}]{bengio2009curriculum}
+Yoshua Bengio, J{\'e}r{\^o}me Louradour, Ronan Collobert, and Jason Weston.
+  2009.
+\newblock Curriculum learning.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Cemri et~al.(2025)Cemri, Pan, Yang et~al.}]{cemri2025multiagentfail}
+Mert Cemri, Melissa~Z. Pan, Shuyi Yang, and 1 others. 2025.
+\newblock Why do multi-agent llm systems fail?
+\newblock \emph{arXiv preprint arXiv:2503.13657}.
+
+\bibitem[{Chandola et~al.(2009)Chandola, Banerjee, and
+  Kumar}]{chandola2009anomaly}
+Varun Chandola, Arindam Banerjee, and Vipin Kumar. 2009.
+\newblock Anomaly detection: A survey.
+\newblock \emph{ACM Computing Surveys}, 41(3).
+
+\bibitem[{Chen et~al.(2025)Chen, Joshi, Chen, He, and
+  Angell}]{chen2025monitoring}
+Yueh-Han Chen, Nitish Joshi, Yulin Chen, He~He, and Rico Angell. 2025.
+\newblock Monitoring llm agents for sequentially contextual harm.
+\newblock In \emph{ICLR 2025 Workshop on Building Trust in Language Models and
+  Applications}.
+
+\bibitem[{Cho et~al.(2014)Cho, van Merrienboer, Gulcehre et~al.}]{cho2014gru}
+Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, and 1 others. 2014.
+\newblock Learning phrase representations using rnn encoder-decoder for
+  statistical machine translation.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing}.
+
+\bibitem[{Choudhury(2025)}]{choudhury2025prm}
+Sanjiban Choudhury. 2025.
+\newblock Process reward models for llm agents: Practical framework and
+  directions.
+\newblock \emph{arXiv preprint arXiv:2502.10325}.
+
+\bibitem[{Dawid and Skene(1979)}]{dawid1979em}
+A.~P. Dawid and A.~M. Skene. 1979.
+\newblock Maximum likelihood estimation of observer error-rates using the {EM}
+  algorithm.
+\newblock \emph{Applied Statistics}, 28(1):20--28.
+
+\bibitem[{Du et~al.(2017)Du, Li, Zheng, and Srikumar}]{du2017deeplog}
+Min Du, Feifei Li, Guineng Zheng, and Vivek Srikumar. 2017.
+\newblock Deeplog: Anomaly detection and diagnosis from system logs through
+  deep learning.
+\newblock In \emph{ACM SIGSAC Conference on Computer and Communications
+  Security}.
+
+\bibitem[{Fan et~al.(2026)Fan, Feng, Zhang et~al.}]{fan2026agentrm}
+Kaixuan Fan, Kaituo Feng, Manyuan Zhang, and 1 others. 2026.
+\newblock Exploring reasoning reward model for agents.
+\newblock \emph{arXiv preprint arXiv:2601.22154}.
+
+\bibitem[{Fu et~al.(2020)Fu, Chen, Sala et~al.}]{fu2020flyingsquid}
+Daniel~Y. Fu, Mayee~F. Chen, Frederic Sala, and 1 others. 2020.
+\newblock Fast and three-rious: Speeding up weak supervision with triplet
+  methods.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{George et~al.(2025)George, Kumar, Pathak
+  et~al.}]{george2025cycledetection}
+Felix George, Harshit Kumar, Divya Pathak, and 1 others. 2025.
+\newblock Unsupervised cycle detection in agentic applications.
+\newblock \emph{arXiv preprint arXiv:2511.10650}.
+
+\bibitem[{Han et~al.(2018)Han, Yao, Yu, Niu, Xu, Hu, Tsang, and
+  Sugiyama}]{han2018coteaching}
+Bo~Han, Quanming Yao, Xingrui Yu, Gang Niu, Miao Xu, Weihua Hu, Ivor~W. Tsang,
+  and Masashi Sugiyama. 2018.
+\newblock Co-teaching: Robust training of deep neural networks with extremely
+  noisy labels.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Huang et~al.(2024)Huang, Chen, Mishra et~al.}]{huang2024selfcorrect}
+Jie Huang, Xinyun Chen, Swaroop Mishra, and 1 others. 2024.
+\newblock Large language models cannot self-correct reasoning yet.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Jimenez et~al.(2024)Jimenez, Yang, Wettig
+  et~al.}]{jimenez2024swebench}
+Carlos~E. Jimenez, John Yang, Alexander Wettig, and 1 others. 2024.
+\newblock Swe-bench: Can language models resolve real-world github issues?
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Kale et~al.(2025)Kale, Zhang, Zhu et~al.}]{kale2025weaktostrong}
+Neil Kale, Chen Bo~Calvin Zhang, Kevin Zhu, and 1 others. 2025.
+\newblock Reliable weak-to-strong monitoring of llm agents.
+\newblock \emph{arXiv preprint arXiv:2508.19461}.
+
+\bibitem[{Kamoi et~al.(2024)Kamoi, Zhang, Zhang, Han, and
+  Zhang}]{kamoi2024selfcorrection}
+Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, and Rui Zhang. 2024.
+\newblock When can llms actually correct their own mistakes? a critical survey
+  of self-correction of llms.
+\newblock \emph{Transactions of the Association for Computational Linguistics}.
+
+\bibitem[{Kaufman et~al.(2012)Kaufman, Rosset, Perlich, and
+  Stitelman}]{kaufman2012leakage}
+Shachar Kaufman, Saharon Rosset, Claudia Perlich, and Ori Stitelman. 2012.
+\newblock Leakage in data mining: Formulation, detection, and avoidance.
+\newblock \emph{ACM Transactions on Knowledge Discovery from Data}, 6(4).
+
+\bibitem[{Leucker and Schallhart(2009)}]{leucker2009runtime}
+Martin Leucker and Christian Schallhart. 2009.
+\newblock A brief account of runtime verification.
+\newblock \emph{The Journal of Logic and Algebraic Programming},
+  78(5):293--303.
+
+\bibitem[{Li et~al.(2026)Li, Yao, Tan, Liu, and Guo}]{li2026toolprmbench}
+Dawei Li, Yuguang Yao, Zhen Tan, Huan Liu, and Ruocheng Guo. 2026.
+\newblock Toolprmbench: Evaluating and advancing process reward models for
+  tool-using agents.
+\newblock \emph{arXiv preprint arXiv:2601.12294}.
+
+\bibitem[{Li et~al.(2020)Li, Socher, and Hoi}]{li2020dividemix}
+Junnan Li, Richard Socher, and Steven~C.H. Hoi. 2020.
+\newblock Dividemix: Learning with noisy labels as semi-supervised learning.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Lightman et~al.(2024)Lightman, Kosaraju, Burda, Edwards, Baker, Lee,
+  Leike, Schulman, Sutskever, and Cobbe}]{lightman2024letsverify}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy
+  Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2024.
+\newblock Let's verify step by step.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Liu et~al.(2008)Liu, Ting, and Zhou}]{liu2008isolationforest}
+Fei~Tony Liu, Kai~Ming Ting, and Zhi-Hua Zhou. 2008.
+\newblock Isolation forest.
+\newblock In \emph{IEEE International Conference on Data Mining}.
+
+\bibitem[{Liu et~al.(2024)Liu, Yu, Zhang, Xu, Lei, Lai, Gu, Ding, Men, Yang,
+  Zhang, Deng, Zeng, Du, Zhang, Shen, Zhang, Su, Sun, Huang, Dong, and
+  Tang}]{liu2024agentbench}
+Xiao Liu, Hao Yu, Hanchen Zhang, Yifan Xu, Xuanyu Lei, Hanyu Lai, Yu~Gu,
+  Hangliang Ding, Kaiwen Men, Kejuan Yang, Shudan Zhang, Xiang Deng, Aohan
+  Zeng, Zhengxiao Du, Chenhui Zhang, Sheng Shen, Tianjun Zhang, Yu~Su, Huan
+  Sun, and 3 others. 2024.
+\newblock Agentbench: Evaluating llms as agents.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Liu et~al.(2026)Liu, Zhang, Han et~al.}]{liu2026trajad}
+Yibing Liu, Chong Zhang, Zhongyi Han, and 1 others. 2026.
+\newblock Trajad: Trajectory anomaly detection for trustworthy llm agents.
+\newblock \emph{arXiv preprint arXiv:2602.06443}.
+
+\bibitem[{Manheim and Garrabrant(2018)}]{manheim2018goodhart}
+David Manheim and Scott Garrabrant. 2018.
+\newblock Categorizing variants of goodhart's law.
+\newblock \emph{arXiv preprint arXiv:1803.04585}.
+
+\bibitem[{Meng et~al.(2019)Meng, Liu, Zhu, Zhang, Pei, Liu, Chen, Zhang, Tao,
+  Sun, and Zhou}]{meng2019loganomaly}
+Weibin Meng, Ying Liu, Yichen Zhu, Shenglin Zhang, Dan Pei, Yuqing Liu, Yihao
+  Chen, Ruizhi Zhang, Shimin Tao, Pei Sun, and Rong Zhou. 2019.
+\newblock Loganomaly: Unsupervised detection of sequential and quantitative
+  anomalies in unstructured logs.
+\newblock In \emph{International Joint Conference on Artificial Intelligence}.
+
+\bibitem[{Orlanski et~al.(2026)Orlanski, Roy, Yun
+  et~al.}]{orlanski2026slopcodebench}
+Gabriel Orlanski, Devjeet Roy, Alexander Yun, and 1 others. 2026.
+\newblock Slopcodebench: Benchmarking how coding agents degrade over
+  long-horizon iterative tasks.
+\newblock \emph{arXiv preprint arXiv:2603.24755}.
+
+\bibitem[{Pipis et~al.(2025)Pipis, Garg, Kontonis
+  et~al.}]{pipis2025reasoningloop}
+Charilaos Pipis, Shivam Garg, Vasilis Kontonis, and 1 others. 2025.
+\newblock Wait, wait, wait... why do reasoning models loop?
+\newblock \emph{arXiv preprint arXiv:2512.12895}.
+
+\bibitem[{Qin et~al.(2024)Qin, Liang, Ye, Zhu, Yan, Lu, Lin, Cong, Tang, Qian,
+  Zhao, Hong, Tian, Xie, Zhou, Gerstein, Li, Liu, and Sun}]{qin2024toolllm}
+Yujia Qin, Shihao Liang, Yining Ye, Kunlun Zhu, Lan Yan, Yaxi Lu, Yankai Lin,
+  Xin Cong, Xiangru Tang, Bill Qian, Sihan Zhao, Lauren Hong, Runchu Tian,
+  Ruobing Xie, Jie Zhou, Mark Gerstein, Dahai Li, Zhiyuan Liu, and Maosong Sun.
+  2024.
+\newblock Toolllm: Facilitating large language models to master 16000+
+  real-world apis.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Rath et~al.(2026)}]{rath2026agentdrift}
+Rath and 1 others. 2026.
+\newblock Agent drift: Quantifying behavioral degradation in multi-agent {LLM}
+  systems.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Ratner et~al.(2019{\natexlab{a}})Ratner, Bach, Ehrenberg
+  et~al.}]{ratner2019snorkel}
+Alexander Ratner, Stephen~H. Bach, Henry Ehrenberg, and 1 others.
+  2019{\natexlab{a}}.
+\newblock Snorkel: Rapid training data creation with weak supervision.
+\newblock \emph{Proceedings of the VLDB Endowment}.
+
+\bibitem[{Ratner et~al.(2019{\natexlab{b}})Ratner, Hancock, Dunnmon
+  et~al.}]{ratner2019snorkelmetal}
+Alexander Ratner, Braden Hancock, Jared Dunnmon, and 1 others.
+  2019{\natexlab{b}}.
+\newblock Training complex models with multi-task weak supervision.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Ratner et~al.(2016)Ratner, Sa, Wu, Selsam, and
+  Re}]{ratner2016dataprogramming}
+Alexander Ratner, Christopher~De Sa, Sen Wu, Daniel Selsam, and Christopher Re.
+  2016.
+\newblock Data programming: Creating large training sets, quickly.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Rebedea et~al.(2023)Rebedea, Dinu, Sreedhar, Parisien, and
+  Cohen}]{rebedea2023nemo}
+Traian Rebedea, Razvan Dinu, Makesh~Narsimhan Sreedhar, Christopher Parisien,
+  and Jonathan Cohen. 2023.
+\newblock Nemo guardrails: A toolkit for controllable and safe llm applications
+  with programmable rails.
+\newblock In \emph{Conference on Empirical Methods in Natural Language
+  Processing: System Demonstrations}.
+
+\bibitem[{Safranchik et~al.(2020)Safranchik, Luo, and
+  Bach}]{safranchik2020linkedhmm}
+Esteban Safranchik, Shiying Luo, and Stephen~H. Bach. 2020.
+\newblock Weakly supervised sequence tagging from noisy rules.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Schwartz et~al.(2020)Schwartz, Stanovsky, Swayamdipta, Dodge, and
+  Smith}]{schwartz2020righttool}
+Roy Schwartz, Gabriel Stanovsky, Swabha Swayamdipta, Jesse Dodge, and Noah~A.
+  Smith. 2020.
+\newblock The right tool for the job: Matching model and instance complexities.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{Shinn et~al.(2023)Shinn, Cassano, Gopinath, Narasimhan, and
+  Yao}]{shinn2023reflexion}
+Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu
+  Yao. 2023.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Teerapittayanon et~al.(2016)Teerapittayanon, McDanel, and
+  Kung}]{teerapittayanon2016branchynet}
+Surat Teerapittayanon, Bradley McDanel, and H.~T. Kung. 2016.
+\newblock Branchynet: Fast inference via early exiting from deep neural
+  networks.
+\newblock In \emph{International Conference on Pattern Recognition}.
+
+\bibitem[{Tian et~al.(2024)Tian, Ye, Qin, Cong, Lin, Pan, Wu, Liu, Liu, Liu,
+  and Sun}]{tian2024debugbench}
+Runchu Tian, Yining Ye, Yujia Qin, Xin Cong, Yankai Lin, Yinxu Pan, Yesai Wu,
+  Haotian Liu, Shuo Liu, Zhiyuan Liu, and Maosong Sun. 2024.
+\newblock Debugbench: Evaluating debugging capability of large language models.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2024}.
+
+\bibitem[{Uesato et~al.(2022)Uesato, Kushman, Kumar, Song, Siegel, Wang,
+  Creswell, Irving, and Higgins}]{uesato2022processfeedback}
+Jonathan Uesato, Nate Kushman, Ramana Kumar, Francis Song, Noah Siegel, Lisa
+  Wang, Antonia Creswell, Geoffrey Irving, and Irina Higgins. 2022.
+\newblock Solving math word problems with process- and outcome-based feedback.
+\newblock \emph{arXiv preprint arXiv:2211.14275}.
+
+\bibitem[{van~der Aalst(2016)}]{vanderaalst2016processmining}
+Wil M.~P. van~der Aalst. 2016.
+\newblock \emph{Process Mining: Data Science in Action}, 2nd edition.
+\newblock Springer.
+
+\bibitem[{Varma et~al.(2019)Varma, Sala, Sagawa, Fries, Fu, Khattar,
+  Ramamoorthy, Xiao, Fatahalian, Priest, and R{\'e}}]{sala2019multiresolution}
+Paroma Varma, Frederic Sala, Shiori Sagawa, Jason Fries, Daniel~Y. Fu, Saelig
+  Khattar, Ashwini Ramamoorthy, Ke~Xiao, Kayvon Fatahalian, James Priest, and
+  Christopher R{\'e}. 2019.
+\newblock Multi-resolution weak supervision for sequential data.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Wang et~al.(2026)Wang, Hu, Yang et~al.}]{wang2026planrewardbench}
+Jiaxuan Wang, Yulan Hu, Wenjin Yang, and 1 others. 2026.
+\newblock Aligning agents via planning: A benchmark for trajectory-level reward
+  modeling.
+\newblock \emph{arXiv preprint arXiv:2604.08178}.
+
+\bibitem[{Wang et~al.(2025{\natexlab{a}})Wang, Li, Song
+  et~al.}]{wang2025openhands}
+Xingyao Wang, Boxuan Li, Yufan Song, and 1 others. 2025{\natexlab{a}}.
+\newblock Openhands: An open platform for ai software developers as generalist
+  agents.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Wang et~al.(2025{\natexlab{b}})}]{wang2025probguard}
+Zijian Wang and 1 others. 2025{\natexlab{b}}.
+\newblock Probguard: Probabilistic runtime monitoring for {LLM} agent safety.
+\newblock \emph{arXiv preprint arXiv:2508.00500}.
+
+\bibitem[{Xi et~al.(2025)Xi, Liao, Li et~al.}]{xi2025agentprm}
+Zhiheng Xi, Chenyang Liao, Guanyu Li, and 1 others. 2025.
+\newblock Agentprm: Process reward models for llm agents via step-wise promise
+  and progress.
+\newblock \emph{arXiv preprint arXiv:2511.08325}.
+
+\bibitem[{Xiang et~al.(2024)Xiang, Zheng, Li, Hong, Li, Xie, Zhang, Xiong, Xie,
+  Yang, Song, and Li}]{xiang2024guardagent}
+Zhen Xiang, Linzhi Zheng, Yanjie Li, Junyuan Hong, Qinbin Li, Han Xie, Jiawei
+  Zhang, Zidi Xiong, Chulin Xie, Carl Yang, Dawn Song, and Bo~Li. 2024.
+\newblock Guardagent: Safeguard llm agents by a guard agent via
+  knowledge-enabled reasoning.
+\newblock \emph{arXiv preprint arXiv:2406.09187}.
+
+\bibitem[{Yang et~al.(2024{\natexlab{a}})Yang, Jimenez, Wettig
+  et~al.}]{yang2024sweagent}
+John Yang, Carlos~E. Jimenez, Alexander Wettig, and 1 others.
+  2024{\natexlab{a}}.
+\newblock Swe-agent: Agent-computer interfaces enable automated software
+  engineering.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Yang et~al.(2024{\natexlab{b}})Yang, Prabhakar, Narasimhan, and
+  Yao}]{yang2024intercode}
+John Yang, Akshara Prabhakar, Karthik Narasimhan, and Shunyu Yao.
+  2024{\natexlab{b}}.
+\newblock Intercode: Standardizing and benchmarking interactive coding with
+  execution feedback.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Yao et~al.(2023{\natexlab{a}})Yao, Yu, Zhao et~al.}]{yao2023tot}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, and 1 others. 2023{\natexlab{a}}.
+\newblock Tree of thoughts: Deliberate problem solving with large language
+  models.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Yao et~al.(2023{\natexlab{b}})Yao, Zhao, Yu, Du, Shafran, Narasimhan,
+  and Cao}]{yao2023react}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao. 2023{\natexlab{b}}.
+\newblock React: Synergizing reasoning and acting in language models.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Zhan et~al.(2019)Zhan, Zheng, Yue, Sha, and Lucey}]{zhan2019multi}
+Eric Zhan, Stephan Zheng, Yisong Yue, Long Sha, and Patrick Lucey. 2019.
+\newblock Generating multi-agent trajectories using programmatic weak
+  supervision.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Zhang et~al.(2021)Zhang, Yu, Li et~al.}]{zhang2021wrench}
+Jieyu Zhang, Yue Yu, Yinghao Li, and 1 others. 2021.
+\newblock Wrench: A comprehensive benchmark for weak supervision.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Zhang et~al.(2025)Zhang, Li, Long et~al.}]{zhang2025qwen3embedding}
+Yanzhao Zhang, Mingxin Li, Dingkun Long, and 1 others. 2025.
+\newblock Qwen3 embedding: Advancing text embedding and reranking through
+  foundation models.
+\newblock \emph{arXiv preprint arXiv:2506.05176}.
+
+\bibitem[{Zhou et~al.(2024{\natexlab{a}})Zhou, Yan, Shlapentokh-Rothman, Wang,
+  and Wang}]{zhou2024lats}
+Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, and Yu-Xiong Wang.
+  2024{\natexlab{a}}.
+\newblock Language agent tree search unifies reasoning, acting, and planning in
+  language models.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Zhou et~al.(2024{\natexlab{b}})Zhou, Xu, Zhu, Zhou, Lo, Sridhar,
+  Cheng, Ou, Bisk, Fried, Alon, and Neubig}]{zhou2024webarena}
+Shuyan Zhou, Frank~F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar,
+  Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, and Graham
+  Neubig. 2024{\natexlab{b}}.
+\newblock Webarena: A realistic web environment for building autonomous agents.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Zhu et~al.(2025)Zhu, Liu, Li et~al.}]{zhu2025agentfail}
+Kunlun Zhu, Zijia Liu, Bingxuan Li, and 1 others. 2025.
+\newblock Where llm agents fail and how they can learn from failures.
+\newblock \emph{arXiv preprint arXiv:2509.25370}.
+
+\end{thebibliography}

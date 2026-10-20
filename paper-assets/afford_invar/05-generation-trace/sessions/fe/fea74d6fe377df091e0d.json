@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fea74d6fe377df091e0d",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "infra restart lconsist training",
+  "task_key": "worker_infra_restart-lconsist-training_20260519T231922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_restart-lconsist-training_20260519T231922_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "21a39c1adb6b07bcfaa6ccb421ba28e35d7b69c4006be38a33523c0e917cfd01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功恢复，汇总：\n\n1. **Resume 机制**：脚本原本只有 `--resume` / `--resume_step` 调整 log_step 计数器，不加载权重。已 patch 添加了 checkpoint 加载逻辑：LoRA adapter 用 `PeftModel.from_pretrained`，action_head/afford_decoder 用 `load_state_dict`。optimizer state 未保存，从头初始化。\n2. **新 PID**：116255（torchrun 主进程）\n3. **从 step 1000 开始**：日志显示 `[Step 1000]` 起步，当前已到 1039\n4. **无错误**：日志正常，loss 合理（L_act ≈ 0.27-0.53, L_consist ≈ 0.0003-0.0006, para_hit=100%）\n5. **GPU 0 显存**：24917 MiB 已占用\n6. **预计时长**：~2h40m 完成剩余 19000 步（~2.1 it/s）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-restart-lconsist-training.md"
+}

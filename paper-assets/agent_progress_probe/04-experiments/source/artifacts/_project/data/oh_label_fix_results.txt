@@ -1,0 +1,10 @@
+see server path: /root/autodl-tmp/agent_progress_probe/results/oh_label_fix_results.json
+
+SUMMARY:
+- Label fix: 21898/143057 flipped, stag 6.56% -> 21.45%
+- Probe FT: macro_f1=0.9763, f1_stag=0.9617, f1_prog=0.9909
+- Probe scratch: macro_f1=0.9785, f1_stag=0.9654, f1_prog=0.9917
+- Zero-shot SWE->OH: macro_f1=0.5984
+- GB structural: macro_f1=0.9984
+- Bootstrap GB vs FT: delta=+0.0221, CI=[0.0173,0.0272], p=0.0
+- All prior OH probe results on stale labels are INVALID

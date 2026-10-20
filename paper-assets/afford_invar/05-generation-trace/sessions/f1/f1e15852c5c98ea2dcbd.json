@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1e15852c5c98ea2dcbd",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "analysis heatmap eval v2 1000step",
+  "task_key": "worker_analysis_heatmap-eval-v2-1000step_20260520T002728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_heatmap-eval-v2-1000step_20260520T002728_result.json",
+    "occurrence": 1,
+    "bytes": 1523,
+    "sha256": "ebec480ee39eb85589309e62e50127b4b9f62153a98bef69bd2ee9f1b07d31ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Heatmap Eval 结果 (phase1_transfer_v2, checkpoint-9000)\n\n**注意：checkpoint-1000 不存在**（训练仅保留最近 4 个 checkpoint，save_steps=500，当前已轮换到 9000-10500）。使用最早可用的 checkpoint-9000 评估。\n\n| 指标 | 值 | 判定阈值 | PASS/FAIL |\n|------|-----|---------|-----------|\n| hm_ent | **11.54 ± 0.16** | < 7.0 | **FAIL** |\n| peak_dist | **82.9 ± 44.5 px** | < 40 px | **FAIL** |\n| mass_ratio | **0.97 ± 0.26x** | > 1.5x | **FAIL** |\n| topk_contain | 0.020 | — | ≈ random (0.019) |\n\n样本数: 57 张, 覆盖 3 个 suite (libero_10/spatial/object), 每 task 3 demos  \nLoRA: 已通过 PeftModel 正确加载并 merge（确认 transfer_proj 18688 params）\n\n### 训练 hm_ent 轨迹佐证\n\n| Step | hm_ent (训练) | 说明 |\n|------|--------------|------|\n| ~10 | 8.74 | 初始化 |\n| ~200 | 5.33 | 瞬态尖峰 |\n| **~1000** | **6.51** | Director 观察到的值 |\n| 7500+ | 7.8-8.0 | 已回升 |\n| 9000 eval | 11.54 | 接近 uniform (max=14) |\n\n### 结论: **Overfitting → Path C**\n\nhm_ent=6.5 在 step ~1000 是瞬态训练 artifact：\n1. **不可持续** — 到 step 7500+ 训练 hm_ent 已回升到 7.8-8.0\n2. **不可泛化** — held-out eval 的 11.54 接近 uniform（完全无空间结构）\n3. **train/eval gap 巨大** — 训练 7.8 vs eval 11.5，decoder 记住了训练样本的模式但无法迁移\n\n可视化路径: `/root/afford_invar/results/heatmap_eval_transfer_v2_ckpt9000/heatmap_viz_{0-5}.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-heatmap-eval-v2-1000step.md"
+}

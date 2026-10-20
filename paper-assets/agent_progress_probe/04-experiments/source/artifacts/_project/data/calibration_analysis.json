@@ -1,0 +1,9 @@
+See full JSON at server: /root/autodl-tmp/agent_progress_probe/results/calibration_analysis.json
+
+Key results:
+- Test set: 2206 windows (1478 pos, 728 neg), conf>=2
+- ECE: 0.0606, MCE: 0.4965, Brier: 0.0632
+- Bimodal confidence: 64.4% in [0.9,1.0], 21.7% in [0.0,0.1]
+- Mid-range bins severely overconfident (0.4-0.7 conf, ~12-23% accuracy)
+- Temperature scaling: T=2.0557 (val set 2426), ECE drops to 0.0451, Brier to 0.0586
+- Positive class mean prob: 0.969, Negative class: 0.225

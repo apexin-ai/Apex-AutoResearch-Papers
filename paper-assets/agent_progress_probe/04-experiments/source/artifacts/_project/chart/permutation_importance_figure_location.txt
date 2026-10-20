@@ -1,0 +1,3 @@
+Figure saved on server bjb2-23165 at:
+- PDF: /root/autodl-tmp/agent_progress_probe/figures/permutation_importance.pdf
+- PNG: /root/autodl-tmp/agent_progress_probe/figures/permutation_importance.png

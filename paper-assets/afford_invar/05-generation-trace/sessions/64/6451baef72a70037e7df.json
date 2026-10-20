@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "6451baef72a70037e7df",
+  "project": "afford_invar",
+  "kind": "worker",
+  "title": "infra disk and download",
+  "task_key": "worker_infra_disk-and-download_20260519T164506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk-and-download_20260519T164506.log",
+    "occurrence": 1,
+    "bytes": 782300,
+    "sha256": "fc4cc2a7153f34b18099af4c72f47e12d27728bab766acef84a98d5afbb1675d"
+  },
+  "statistics": {
+    "messages": 454,
+    "user_turns": 0,
+    "tool_calls": 164,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 121,
+      "tool_call": 164,
+      "tool_result": 164,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 454,
+      "chunks": [
+        {
+          "path": "6451baef72a70037e7df-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6451baef72a70037e7df-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6451baef72a70037e7df-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-disk-and-download.md"
+}

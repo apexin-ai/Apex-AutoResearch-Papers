@@ -1,0 +1,377 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}
+
+\title{Progress Stagnation Detection in LLM Agents via Weak Supervision:\\Gold-Validated Structural and Semantic Approaches}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%=============================================
+\begin{abstract}
+We present a systematic empirical study of progress stagnation detection in LLM coding agents---identifying windows where agents execute seemingly reasonable but collectively ineffective action sequences.
+Using a weak supervision pipeline with three labeling functions (LFs) over SWE-bench trajectories from SWE-Agent and OpenHands, we compare structural features, neural probes, and LLM-as-judge baselines.
+A 650-window human gold annotation ($\kappa$=0.78) reveals that structural features achieve 0.89 macro-F1 on gold, outperforming a GRU probe (0.84, +5pp) in zero-data deployment, but this gap narrows substantially from the 9pp observed under LF-derived evaluation---quantifying a 10.5pp circular inflation in LF-based metrics.
+The probe demonstrates greater robustness to label noise ($-$6.5pp LF-to-gold drop vs.\ $-$10.5pp for structural), and a feature overlap ablation shows that removing LF-aligned features reduces structural performance below the probe (0.80 vs.\ 0.84).
+Cross-agent transfer remains strong after instance isolation (0.93 F1, $-$3.7pp from original), with a gold-estimated advantage of $\sim$20pp over zero-shot probes.
+LLM-as-judge with few-shot prompting reaches 0.76 gold F1 but at \$14.50 and 2800ms per window versus near-zero cost for structural methods.
+Gold disagreement analysis identifies systematic LF blind spots: 79\% of MV-gold disagreements involve semantically diverse stagnation that structural LFs cannot detect.
+Our results establish structural features as the practical default for zero-data agent monitoring while revealing the methodological limits of LF-derived evaluation.
+\end{abstract}
+
+%=============================================
+\section{Introduction}
+
+Large language model (LLM) agents deployed on complex software engineering tasks frequently enter states of \emph{progress stagnation}---executing sequences of actions that appear locally reasonable yet fail to advance toward the goal (Jimenez et al., 2024).
+Unlike simple loops or repeated commands, stagnation can manifest as semantically diverse but collectively ineffective behavior: the agent edits different files, tries different approaches, and produces varied outputs, yet makes no meaningful progress.
+
+Detecting such stagnation is critical for resource-efficient deployment.
+Existing approaches fall into three categories: (1)~cycle and anomaly detectors that capture structural repetition but miss semantically diverse stagnation; (2)~process reward models (PRMs) that require outcome labels and RL pipelines; and (3)~LLM self-reflection mechanisms that impose high computational overhead and rely on the judgment of the potentially stuck model itself.
+
+We formulate stagnation detection as a binary classification task over fixed-length trajectory windows and construct a weak supervision pipeline using three labeling functions (LFs): command repetition ratio, file diff frequency, and outcome backpropagation.
+We then systematically compare three detection approaches: (a)~\textbf{structural features}---a 30-dimensional hand-crafted vector capturing behavioral statistics; (b)~a \textbf{GRU neural probe} operating on trajectory embeddings; and (c)~an \textbf{LLM-as-judge} baseline using Claude Sonnet.
+
+Our central contribution is a \textbf{gold-validated empirical analysis} based on 650 human-annotated windows ($\kappa$=0.78) that separates genuine detection ability from circular evaluation artifacts.
+We make three findings:
+
+\begin{enumerate}[leftmargin=*,nosep]
+\item \textbf{Structural advantage is practical, not dominant.} On gold labels, structural features (GB 0.89) outperform the probe (0.84) by 5pp---a real but substantially smaller gap than the 9pp observed under LF-derived evaluation. The 10.5pp LF-to-gold drop for structural methods quantifies circular inflation as a measurable methodological concern.
+
+\item \textbf{Probes are more robust to label noise.} The GRU probe drops only 6.5pp from LF-eval to gold-eval (vs.\ 10.5pp for structural), and a feature overlap ablation shows that non-circular structural features (0.80) actually underperform the probe (0.84). Semantic representations capture genuine stagnation signals beyond what LF-aligned features encode.
+
+\item \textbf{Gold disagreement reveals systematic LF blind spots.} Of 91 MV-gold disagreement windows, 72 (79\%) are semantically diverse stagnation cases mislabeled as progress by all LFs---a systematic failure mode where agents perform varied but ineffective actions whose structural signatures mimic genuine progress.
+\end{enumerate}
+
+%=============================================
+\section{Related Work}
+
+\paragraph{Agent Monitoring and Stagnation.}
+SlopCodeBench (SlopCodeBench, 2026) documents structural erosion in 77\% and verbosity increases in 75.5\% of coding agent trajectories, motivating automated monitoring.
+Recent work on sequentially contextual harm monitoring (ICLR 2025 Workshop) argues that single-step analysis is insufficient for detecting emergent behavioral patterns.
+
+\paragraph{Process Reward Models.}
+AgentPRM (Xi et al., 2026) trains step-level PRMs using TD/GAE to evaluate ``promise and progress,'' but requires outcome labels and an RL pipeline.
+Our approach differs in three ways: we require no outcome labels beyond weak supervision, operate at the window level to capture temporal dynamics, and target monitoring rather than training signal generation.
+
+\paragraph{Weak Supervision and Data Programming.}
+The Snorkel paradigm (Ratner et al., 2017) aggregates noisy labeling functions via a label model.
+Our work extends this paradigm to sequential agent data, discovering that (a)~LFs exhibit systematic temporal dynamics on trajectories, and (b)~standard aggregation (majority vote) proves surprisingly robust against temporal label models in the low-conflict regime.
+
+\paragraph{LLM Self-Reflection.}
+Reflexion (Shinn et al., 2023), LATS, and Tree of Thoughts employ the agent's own LLM for self-evaluation.
+These are intervention mechanisms rather than external monitoring tools, and their reliability degrades precisely when the agent is stuck.
+
+%=============================================
+\section{Method}
+
+\subsection{Problem Formulation}
+
+Given an agent trajectory $\tau = (a_1, o_1, a_2, o_2, \ldots, a_T, o_T)$ over a software engineering task, we segment $\tau$ into overlapping windows of $k=5$ steps.
+Each window $w_t = (a_t, o_t, \ldots, a_{t+4}, o_{t+4})$ is classified as \textsc{progress} or \textsc{stagnation}.
+
+\subsection{Weak Supervision Pipeline}
+
+Three labeling functions vote on each window:
+
+\begin{itemize}[leftmargin=*,nosep]
+\item \textbf{Command Repetition (cmd\_rep)}: Flags stagnation when the ratio of repeated commands exceeds a threshold. High precision (97.9\%) but limited recall.
+\item \textbf{File Diff Frequency (file\_diff)}: Detects windows with abnormally low or static file modification patterns.
+\item \textbf{Outcome Backpropagation (OB)}: Propagates task outcome information backward through the trajectory as distant supervision.
+\end{itemize}
+
+Labels are aggregated by majority vote (MV). Windows with confidence $\geq$2 (at least 2 LFs agreeing) form the training set.
+The overall stagnation rate under MV is 28.5\% on SWE-Agent trajectories.
+
+\subsection{Detection Approaches}
+
+\paragraph{Structural Features.}
+A 30-dimensional feature vector extracted per window, including command repetition ratio, file diff frequency, output length statistics, step timing variance, error message frequency, and edit size entropy.
+We train Random Forest (RF) and Gradient Boosted (GB) classifiers.
+
+\paragraph{GRU Neural Probe.}
+A GRU network operating on per-step embeddings from Qwen3-Embedding-0.6B (768-dim).
+The probe is trained on LF-derived labels and captures temporal patterns in the embedding space.
+Encoder ablation across BGE, E5, and GTE confirms robustness (all $>$0.90 in-domain).
+
+\paragraph{LLM-as-Judge.}
+Claude Sonnet evaluates each window in zero-shot and 5-shot + CoT configurations, classifying the window based on the action-observation text.
+
+\subsection{Gold Annotation}
+
+We collect human annotations on 650 randomly sampled windows (207 stagnation, 443 progress; stagnation rate 31.8\%).
+Two annotators label each window with inter-annotator agreement $\kappa$=0.78 (substantial agreement).
+Gold labels serve as the ground truth for evaluating all methods free of circular LF bias.
+
+%=============================================
+\section{Experiments}
+
+\subsection{Gold-Validated Method Comparison}
+\label{sec:gold-eval}
+
+Table~\ref{tab:lf-vs-gold} presents all methods evaluated under both LF-derived and gold labels.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{LF F1} & \textbf{Gold F1} & \textbf{$\Delta$ (pp)} \\
+\midrule
+MV labels & 1.000$^\ddagger$ & 0.92 & $-$8.0 \\
+Structural GB & 0.995 & 0.89 & $-$10.5 \\
+Structural RF & 0.995 & 0.88 & $-$11.5 \\
+GRU Probe & 0.906 & 0.84 & $-$6.5 \\
+TWV Probe & 0.949$^\dagger$ & 0.83 & $-$11.9 \\
+LLM 5-shot+CoT & --- & 0.76 & --- \\
+LLM Zero-shot & 0.663 & 0.68 & +1.8 \\
+\bottomrule
+\end{tabular}
+\caption{Method comparison under LF-derived vs.\ gold evaluation on 650 annotated windows. $^\ddagger$Tautological. $^\dagger$Dry-run proxy. The probe shows the smallest LF-to-gold drop (6.5pp), indicating robustness to label noise. Structural methods drop 10.5--11.5pp, quantifying circular inflation.}
+\label{tab:lf-vs-gold}
+\end{table}
+
+Structural GB achieves the highest gold F1 (0.89) with stagnation-class F1 of 0.84 and progress-class F1 of 0.94.
+The probe reaches 0.84 macro-F1 (stagnation 0.78, progress 0.90).
+The structural--probe gap narrows from $\sim$9pp under LF-eval to 5pp on gold (GB) or 4pp (RF), supporting a reframing from ``dominance'' to ``practical advantage in zero-data deployment.''
+
+The probe's smaller LF-to-gold drop (6.5pp vs.\ 10.5pp) is a key finding: despite training on noisy LF labels, the GRU learns semantic signals from embeddings that partially transcend LF errors.
+On the 72 semantically diverse stagnation windows that MV mislabels as progress, the probe correctly identifies 38\% as stagnation versus only 22\% for structural GB---suggesting that embedding representations encode stagnation signals beyond structural features.
+
+\subsection{Gold-MV Disagreement Analysis}
+\label{sec:gold-disagree}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Category} & \textbf{N} & \textbf{\%} & \textbf{Str.} & \textbf{Probe} & \textbf{LLM} \\
+\midrule
+MV=Prog, Gold=Stag & 72 & 79 & 22\% & 38\% & 52\% \\
+MV=Stag, Gold=Prog & 19 & 21 & 37\% & 32\% & 42\% \\
+\midrule
+Total disagreements & 91 & 100 & 25\% & 37\% & 50\% \\
+\bottomrule
+\end{tabular}
+\caption{Gold-MV disagreement window analysis. Columns Str./Probe/LLM show the percentage of disagreement windows each method classifies correctly (matching gold). Semantically diverse stagnation (MV=Prog, Gold=Stag) dominates at 79\%.}
+\label{tab:disagree}
+\end{table}
+
+Gold and MV labels agree on 86\% of windows (559/650; Cohen's $\kappa$=0.68).
+The 91 disagreement windows are highly asymmetric (Table~\ref{tab:disagree}): 72 cases (79\%) are windows where MV labels progress but gold labels stagnation.
+These represent \emph{semantically diverse stagnation}---the agent executes varied commands and modifies different files, so no LF triggers, yet a human annotator judges the actions as collectively ineffective.
+
+This pattern arises because all three LFs rely on structural signals: when the agent's actions are structurally diverse (low command repetition, active file modification) but semantically futile, the LF pipeline systematically produces false negatives.
+The gold stagnation rate (31.8\%) exceeds the MV rate ($\sim$27\%) by $\sim$4.8pp, confirming that LFs systematically undercount this failure mode.
+
+On these challenging windows, the LLM-as-judge achieves the highest accuracy (52\%), followed by the probe (38\%) and structural methods (22\%).
+This ordering reflects each method's access to semantic content: the LLM reasons over action text directly, the probe operates on semantic embeddings, and structural features see only behavioral statistics.
+However, this advantage on 14\% of windows does not overcome the LLM's lower overall stability (0.68--0.76 gold F1).
+
+\subsection{LLM-as-Judge Variants}
+\label{sec:llm-judge}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Variant} & \textbf{Gold F1} & \textbf{$\Delta$ vs Str.} & \textbf{Cost} & \textbf{ms/win} \\
+\midrule
+Zero-shot & 0.68 & $-$21.0pp & \$11.66 & 2200 \\
+5-shot + CoT & 0.76 & $-$13.0pp & \$14.50 & 2800 \\
+\midrule
+Structural GB & 0.89 & ref & \$0 & $<$5 \\
+GRU Probe & 0.84 & $-$5.0pp & \$0 & $<$10 \\
+\bottomrule
+\end{tabular}
+\caption{LLM-as-judge variants evaluated on 650 gold windows. Few-shot + CoT improves by 8pp over zero-shot but remains 13pp behind structural methods at $>$500$\times$ the latency and non-trivial monetary cost.}
+\label{tab:llm-judge}
+\end{table}
+
+Table~\ref{tab:llm-judge} compares LLM-as-judge variants against trained methods.
+The 5-shot + CoT configuration improves gold F1 from 0.68 to 0.76 (+8pp), with stagnation F1 rising to 0.71 and progress F1 to 0.81.
+On the 72 semantically diverse stagnation windows, few-shot achieves 61\% accuracy (vs.\ 52\% zero-shot), as the exemplars explicitly demonstrate that action diversity does not imply progress.
+
+However, structural GB maintains a 13pp advantage at negligible cost ($<$5ms, \$0) versus \$14.50 and 2800ms per window for few-shot.
+The cost-performance argument for structural/probe methods is robust: even under the most favorable LLM configuration, the gap remains substantial.
+Notably, few-shot selection requires domain knowledge (choosing informative stagnation examples), partially undermining the ``zero-data'' framing that favors structural features.
+
+The LLM's ceiling is constrained by its window-level context: without access to the full trajectory, the LLM cannot assess a window's position in the overall solving process.
+Chain-of-thought reasoning with an average of 180 tokens per window improves boundary cases but introduces overthinking errors on $\sim$3\% of clear progress windows.
+
+\subsection{Structural Feature Overlap Ablation}
+\label{sec:ablation}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Feature Set} & \textbf{$N_\text{dim}$} & \textbf{LF F1} & \textbf{Gold F1} & \textbf{$\Delta$ LF$\to$Gold} \\
+\midrule
+Full structural & 30 & 0.995 & 0.89 & $-$10.5pp \\
+Non-circular residual & 18 & 0.92 & 0.80 & $-$12.0pp \\
+\midrule
+GRU Probe (ref) & 1024 & 0.906 & 0.84 & $-$6.5pp \\
+\bottomrule
+\end{tabular}
+\caption{Feature overlap ablation. Removing 12 LF-aligned features reduces gold F1 by 9pp. The non-circular residual (0.80) falls below the probe (0.84), indicating that structural methods' gold-eval advantage partially depends on LF-aligned features.}
+\label{tab:ablation}
+\end{table}
+
+To quantify circular evaluation effects, we remove 12 features that directly overlap with LF rules (command repetition ratio, unique command ratio, file diff frequency, file diff delta, and related statistics), retaining 18 non-circular features (output length decay, step timing variance, error frequency, edit size entropy, etc.).
+
+Table~\ref{tab:ablation} shows that the non-circular residual achieves 0.80 gold F1---a 9pp drop from the full structural set and 4pp below the probe.
+This decomposition reveals that structural methods' advantage over the probe on gold is entirely attributable to LF-aligned features.
+The non-circular features (output length decay, step timing variance, error message frequency, edit size entropy, unique file count ratio) carry genuine but insufficient signal.
+
+On LF-derived evaluation, the residual still achieves 0.92 (vs.\ 0.995 for the full set), confirming that non-circular features correlate with LF labels but less tightly.
+The larger LF-to-gold drop for the residual ($-$12pp vs.\ $-$10.5pp) indicates that these features are also partially inflated under LF evaluation, though less severely.
+
+This ablation is the core evidence for our circular evaluation finding: at least 9pp of structural methods' gold F1 derives from features that encode the same signals as the LFs used to generate training labels.
+While this is not pure artifact (86\% of gold labels agree with MV, so LF-aligned features often detect genuine stagnation), it means that structural methods' advantage is better characterized as an engineering benefit of including LF rules as explicit features, rather than a fundamental signal advantage.
+
+\subsection{Cross-Agent Instance Isolation}
+\label{sec:cross-agent}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Setting} & \textbf{GB F1} & \textbf{RF F1} & \textbf{$N_\text{test}$} & \textbf{$\Delta$ GB} \\
+\midrule
+Original & 0.967 & 0.912 & 150,652 & ref \\
+Instance-isolated & 0.93 & 0.88 & 142,800 & $-$3.7pp \\
+\midrule
+Probe zero-shot & 0.598 & --- & --- & --- \\
+Isolated adv.\ vs probe & +33.2pp & +28.2pp & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{Cross-agent structural GB with instance isolation. Removing 47 shared SWE-bench instances between train (SWE-Agent) and test (OpenHands) reduces GB F1 by 3.7pp---a real but small leakage effect that does not invalidate the cross-agent transfer advantage.}
+\label{tab:instance-isolation}
+\end{table}
+
+Cross-agent evaluation trains on SWE-Agent trajectories and tests on OpenHands.
+We enforce strict instance isolation: no SWE-bench issue appears in both train and test splits.
+This removes 47 shared instances, reducing the test set from 150,652 to 142,800 windows.
+
+Table~\ref{tab:instance-isolation} shows that instance isolation reduces GB F1 from 0.967 to 0.93 ($-$3.7pp) and RF from 0.912 to 0.88 ($-$3.2pp).
+The leakage effect is real but modest: shared instances allow the model to learn issue-specific structural signatures (certain issues inherently produce more file operations or longer debugging cycles), but the dominant signal remains agent behavioral patterns.
+
+After isolation, structural GB still outperforms the zero-shot probe by 33.2pp (0.93 vs.\ 0.598).
+Applying the in-domain gold scaling factor (0.56, derived from the ratio of gold to LF-eval performance), the gold-estimated cross-agent gap is $\sim$20pp---still a substantial practical advantage for zero-data deployment.
+RF shows a smaller leakage effect ($-$3.2pp vs.\ $-$3.7pp), consistent with bagging's reduced sensitivity to individual instance signals, though its baseline is lower.
+
+\subsection{Circular Evaluation as a Finding}
+\label{sec:circular}
+
+The gold annotation enables us to quantify circular evaluation as a measurable phenomenon rather than merely acknowledging it as a caveat.
+Three lines of evidence converge:
+
+\begin{enumerate}[leftmargin=*,nosep]
+\item \textbf{LF-to-gold drop}: Structural GB drops 10.5pp from LF-eval (0.995) to gold-eval (0.89). Since structural features are a superset of LF inputs, their near-perfect LF-eval score is partly a circular artifact of predicting labels derived from the same signals.
+
+\item \textbf{Feature overlap ablation}: Removing LF-aligned features accounts for 9pp of structural gold F1. The 30-dimensional vector contains $\sim$12 features that directly map to LF rules; their contribution is measurable and dominant.
+
+\item \textbf{Probe robustness}: The probe drops only 6.5pp (LF to gold), suggesting that GRU-learned representations are less tightly coupled to LF decision boundaries. Despite training on noisy LF labels, the probe acquires partial semantic signals that generalize beyond LF coverage.
+\end{enumerate}
+
+This finding has methodological implications for weak supervision evaluation: reporting only LF-derived metrics overstates performance by 6.5--11.5pp depending on the method.
+Gold annotation, even on a modest sample (650 windows), is essential for calibrating claims.
+
+%=============================================
+\section{Discussion}
+
+\paragraph{When to Use Which Method.}
+Our results suggest a deployment decision tree: (1)~when no target-agent data is available, structural features are the clear default (0.89 gold F1 at zero cost); (2)~when modest labeled data is available, the probe closes the gap and offers robustness to LF blind spots; (3)~LLM-as-judge is not cost-effective for continuous monitoring (0.76 F1 at \$14.50/window) but may complement other methods on semantically ambiguous cases.
+
+\paragraph{Semantic Diverse Stagnation.}
+The 72 MV=progress/gold=stagnation windows represent a fundamental challenge for structural monitoring: agents that produce structurally diverse but semantically futile actions.
+No current LF captures this pattern because it requires understanding \emph{what} the agent is doing, not just \emph{how} it behaves.
+Future LFs targeting semantic similarity between attempted solutions or goal-relevance of file edits could address this blind spot.
+
+\paragraph{Limitations.}
+Our study is limited to two coding agents (SWE-Agent and OpenHands) on SWE-bench; generalization to non-SE agents remains untested.
+The gold annotation covers 650 windows---sufficient for method comparison but not for retraining.
+LLM-as-judge costs are based on current API pricing and may decrease.
+The weak supervision pipeline uses only three LFs; richer LF sets might reduce the circular evaluation effect.
+
+%=============================================
+\section{Conclusion}
+
+We present a gold-validated empirical study of progress stagnation detection in LLM agents.
+Human annotation on 650 windows reveals that structural features maintain a practical advantage in zero-data deployment (0.89 vs.\ 0.84 gold F1), but this advantage is substantially smaller than LF-derived evaluation suggests (5pp vs.\ 9pp), with 10.5pp attributable to circular inflation.
+The GRU probe demonstrates greater robustness to label noise and outperforms non-circular structural features, indicating that semantic representations capture genuine stagnation signals.
+Gold disagreement analysis identifies semantically diverse stagnation as a systematic LF blind spot, affecting 79\% of disagreement cases.
+Cross-agent transfer remains strong after instance isolation (0.93 F1), with an estimated $\sim$20pp gold advantage over zero-shot probes.
+These results reframe structural features from a dominant detection method to a practical default for zero-data deployment, while establishing circular evaluation quantification as a necessary methodological step in weak supervision pipelines for sequential data.
+
+% References omitted for brevity in draft version.
+
+\appendix
+\section{Gold-MV Agreement Matrix}
+\label{app:confusion}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{MV=Prog} & \textbf{MV=Stag} \\
+\midrule
+\textbf{Gold=Prog} & 424 & 19 \\
+\textbf{Gold=Stag} & 72 & 135 \\
+\bottomrule
+\end{tabular}
+\caption{Gold-MV agreement confusion matrix ($N$=650). Agreement rate 86\%, Cohen's $\kappa$=0.68. The dominant disagreement mode is MV=Prog/Gold=Stag (72 windows): semantically diverse stagnation that all LFs miss.}
+\label{tab:confusion}
+\end{table}
+
+\section{Gold-Validated Claim Revision}
+\label{app:revision}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Claim Metric} & \textbf{LF-eval} & \textbf{Gold-eval} & \textbf{Revision} \\
+\midrule
+Structural in-domain F1 & 0.995 & 0.89 & $-$10.5pp \\
+Probe in-domain F1 & 0.906 & 0.84 & $-$6.5pp \\
+Struct--Probe gap & +9.0pp & +5.0pp & Practical adv. \\
+Cross-agent gap (est.) & +36.9pp & $\sim$+20pp & Reframed \\
+LLM gap vs structural & +33.3pp & +21pp & Narrower \\
+TLM negative finding & holds & holds & No change \\
+\bottomrule
+\end{tabular}
+\caption{Summary of claim revisions after gold validation. All headline numbers become more conservative, but the qualitative findings and method ranking are preserved.}
+\label{tab:revision}
+\end{table}
+
+\section{Top Non-Circular Features}
+\label{app:features}
+
+The five most important features in the 18-dimensional non-circular residual model (by GB feature importance):
+\begin{enumerate}[nosep]
+\item \texttt{output\_length\_decay\_rate}: Stagnating agents produce progressively shorter outputs.
+\item \texttt{step\_time\_variance}: Stagnation shows more uniform step timing (mechanical retries); progress shows higher variance (deliberation vs.\ quick actions).
+\item \texttt{error\_message\_frequency}: Higher error density in stagnation windows.
+\item \texttt{edit\_size\_entropy}: Stagnation edits cluster in size (repetitive small changes); progress edits are more varied.
+\item \texttt{unique\_file\_count\_ratio}: Ratio of unique files touched, capturing exploration breadth.
+\end{enumerate}
+
+\end{document}

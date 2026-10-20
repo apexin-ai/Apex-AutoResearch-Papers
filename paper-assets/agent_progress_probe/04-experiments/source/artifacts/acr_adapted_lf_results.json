@@ -1,0 +1,57 @@
+{
+  "experiment": "d073-s1b-acr-adapted",
+  "description": "ACR adapted LF relabeling + cross-agent transfer evaluation",
+  "acr_lf_stats": {
+    "command_repetition": {"stag": 29, "prog": 1561, "abstain": 356, "coverage": 0.8171, "trigger_rate": 0.0149},
+    "action_entropy": {"stag": 771, "prog": 0, "abstain": 1175, "coverage": 0.3962, "trigger_rate": 0.3962},
+    "output_stagnation": {"stag": 0, "prog": 0, "abstain": 1946, "coverage": 0.0, "trigger_rate": 0.0},
+    "error_repetition": {"stag": 0, "prog": 0, "abstain": 1946, "coverage": 0.0, "trigger_rate": 0.0}
+  },
+  "label_comparison": {
+    "original_3lf": {"nonabstain": 1904, "stag": 193, "stag_rate": 0.1014},
+    "adapted_3lf": {"nonabstain": 1809, "stag": 248, "stag_rate": 0.1371},
+    "adapted_4lf": {"nonabstain": 1809, "stag": 248, "stag_rate": 0.1371}
+  },
+  "cross_agent_results": {
+    "original_3lf": {
+      "all": {
+        "n": 1904, "stag": 193, "prog": 1711,
+        "GB": {"macro_f1": 0.6078, "f1_stagnation": 0.2613, "f1_progress": 0.9543, "accuracy": 0.9139},
+        "RF": {"macro_f1": 0.6645, "f1_stagnation": 0.4155, "f1_progress": 0.9135, "accuracy": 0.8493},
+        "LR": {"macro_f1": 0.6561, "f1_stagnation": 0.363, "f1_progress": 0.9492, "accuracy": 0.906}
+      },
+      "conf2": {
+        "n": 262, "stag": 5, "prog": 257,
+        "GB": {"macro_f1": 1.0, "f1_stagnation": 1.0, "f1_progress": 1.0, "accuracy": 1.0},
+        "RF": {"macro_f1": 0.8817, "f1_stagnation": 0.7692, "f1_progress": 0.9941, "accuracy": 0.9885},
+        "LR": {"macro_f1": 0.8817, "f1_stagnation": 0.7692, "f1_progress": 0.9941, "accuracy": 0.9885}
+      }
+    },
+    "adapted_3lf": {
+      "all": {
+        "n": 1809, "stag": 248, "prog": 1561,
+        "GB": {"macro_f1": 0.5719, "f1_stagnation": 0.2094, "f1_progress": 0.9345, "accuracy": 0.8789},
+        "RF": {"macro_f1": 0.7686, "f1_stagnation": 0.6049, "f1_progress": 0.9323, "accuracy": 0.8845},
+        "LR": {"macro_f1": 0.6746, "f1_stagnation": 0.4074, "f1_progress": 0.9417, "accuracy": 0.8939}
+      },
+      "conf2": {
+        "n": 27, "stag": 27, "prog": 0,
+        "GB": {"macro_f1": 1.0, "f1_stagnation": 1.0, "accuracy": 1.0},
+        "RF": {"macro_f1": 1.0, "f1_stagnation": 1.0, "accuracy": 1.0},
+        "LR": {"macro_f1": 0.4906, "f1_stagnation": 0.9811, "accuracy": 0.963}
+      }
+    },
+    "adapted_4lf": "identical to adapted_3lf (error_repetition has 0 coverage)"
+  },
+  "delta_table_all": {
+    "GB": {"macro_f1_orig": 0.6078, "macro_f1_adapted": 0.5719, "delta": -0.0359, "f1_stag_orig": 0.2613, "f1_stag_adapted": 0.2094, "delta_stag": -0.0519},
+    "RF": {"macro_f1_orig": 0.6645, "macro_f1_adapted": 0.7686, "delta": 0.1041, "f1_stag_orig": 0.4155, "f1_stag_adapted": 0.6049, "delta_stag": 0.1894},
+    "LR": {"macro_f1_orig": 0.6561, "macro_f1_adapted": 0.6746, "delta": 0.0185, "f1_stag_orig": 0.363, "f1_stag_adapted": 0.4074, "delta_stag": 0.0444}
+  },
+  "phase4_lf_contribution": {
+    "stag_windows": 248,
+    "fires_on_stag": {"command_repetition": 29, "action_entropy": 246, "output_stagnation": 0},
+    "sole_stag_trigger": {"command_repetition": 2, "action_entropy": 219, "output_stagnation": 0}
+  },
+  "swe_train": {"n": 15401, "stag_rate": 0.3796}
+}

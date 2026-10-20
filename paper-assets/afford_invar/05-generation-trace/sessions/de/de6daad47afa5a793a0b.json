@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de6daad47afa5a793a0b",
+  "project": "afford_invar",
+  "kind": "result",
+  "title": "code paraphrase hit rate",
+  "task_key": "worker_code_paraphrase-hit-rate_20260519T222554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paraphrase-hit-rate_20260519T222554_result.json",
+    "occurrence": 1,
+    "bytes": 2376,
+    "sha256": "7b84812c2ed36b482cd1cd24de7e4c5863dadcda58f7f4fea6103621ef7fd1f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n---\n\n## 1. 训练状态\n\n**Phase 1 训练已崩溃，未进入训练循环。**\n\n- 错误：`unrecognized arguments: --adapter_tmp_dir /root/afford_invar/adapter_tmp`\n- 崩溃时间：2026-05-20 06:03:30\n- `FinetuneAffordConfig` 没有 `adapter_tmp_dir` 参数，启动命令传了一个脚本不认识的参数\n\n之前的 **dryrun_v3** 成功跑了 10 步（max_steps=10），数据集为 `libero_goal_no_noops`。\n\n## 2. Paraphrase Hit/Miss Rate\n\n**日志中没有 hit/miss rate 信息。** 代码没有打印匹配统计。\n\n### 匹配逻辑分析（`finetune_afford.py:150-162`）\n\n```python\n# load_paraphrases: key = entry[\"original\"].lower().strip()\n# AffordRLDSBatchTransform: instruction_text = rlds_batch[\"task\"][\"language_instruction\"].decode().lower()\n# 查找: paraphrase_map.get(instruction_texts[b].strip(), [])\n# 未命中时: fallback 到 instruction_texts[b] (即重复原始指令)\n```\n\n- 匹配方式：**精确字符串匹配**（lowercase + strip）\n- paraphrases.json 共 130 个 task（libero_goal 10 个、libero_spatial 10 个、libero_object 10 个等）\n- dryrun_v3 日志显示 \"Loaded paraphrases for 112 tasks\"——这是去重后的 unique original instructions 数量\n\n由于 `load_paraphrases` 和 `AffordRLDSBatchTransform` 都做了 `.lower().strip()`，只要 RLDS 数据中的 `language_instruction` 与 paraphrases.json 的 `original` 字段文本一致（不区分大小写），就能命中。LIBERO 数据集的指令文本是固定的，**理论上 hit rate 应为 100%**（前提是 paraphrases.json 覆盖了所有 task）。\n\n## 3. Dryrun Loss 趋势（最近成功的 10 步）\n\n| Step | L_act | L_consist | L_total |\n|------|-------|-----------|---------|\n| 0 | 0.5156 | 0.3518 | 0.4616 |\n| 5 | 1.2891 | 0.0247 | 1.2074 |\n| 10 | 0.9531 | 0.0045 | 0.8642 |\n\nL_consist 快速下降（0.35 → 0.005），说明 paraphrase consistency loss 正常工作，间接验证 paraphrase 匹配在生效。\n\n## 4. 建议\n\n1. **修复启动错误**：从启动命令中移除 `--adapter_tmp_dir` 参数，或在 `FinetuneAffordConfig` 中添加该字段\n2. **添加 hit rate 监控**：在 `build_paraphrase_inputs` 中加一个计数器统计 miss 次数，每 N 步打印一次 hit rate，可以明确回答 reviewer 的问题\n3. **重新启动训练**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paraphrase-hit-rate.md"
+}

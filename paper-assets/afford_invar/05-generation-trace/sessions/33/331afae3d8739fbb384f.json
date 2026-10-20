@@ -1,0 +1,875 @@
+{
+  "schema_version": "1.0",
+  "id": "331afae3d8739fbb384f",
+  "project": "afford_invar",
+  "kind": "conversation",
+  "title": "research pride formula verify",
+  "task_key": "worker_research_pride-formula-verify_20260519T232737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_pride-formula-verify_20260519T232737.jsonl",
+    "occurrence": 1,
+    "bytes": 38530,
+    "sha256": "ba7266f44c0ce6ad249f6f888734c64990b514ebbae2a54933aed46a3df06fdc"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "tool_call": 21,
+      "tool_result": 21,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T23:31:00.785187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T23:31:00.785607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T23:31:00.785841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "PRIDE metric LIBERO paraphrase robustness VLA"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T23:31:00.785978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arXiv 2603.28301"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T23:31:00.786142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"PRIDE metric LIBERO paraphrase robustness VLA\"\n\nLinks: [{\"title\":\"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://arxiv.org/html/2603.28301v1\"},{\"title\":\"[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://arxiv.org/abs/2603.28301\"},{\"title\":\"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://cau-hai-lab.github.io/LIBERO-Para/\"},{\"title\":\"GitHub - cau-hai-lab/LIBERO-Para · GitHub\",\"url\":\"https://github.com/cau-hai-lab/LIBERO-Para\"},{\"title\":\"Paper page - LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://huggingface.co/papers/2603.28301\"},{\"title\":\"paraphrase · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/paraphrase\"}]\n\nBased on the search results, here's what I found:\n\nPRIDE (Paraphrase Robustness Index in Robotic Instructional DEviation) is a metric that combines keyword similarity (lexical shift) and structural similarity (syntactic variation) with task success to enable fine-grained robustness analysis.\n\nPRIDE quantifies paraphrase difficulty using semantic and syntactic factors, and it is a difficulty-aware metric that goes beyond binary success rate, giving more credit for succeeding on harder paraphrases.\n\nPRIDE was introduced as part of LIBERO-Para, a controlled benchmark for evaluating paraphrase robustness in VLA (Vision-Language-Action) models. LIBERO-Para is grounded in the linguistic structure of robotic manipulation instructions—where actions and objects serve as core semantic elements—and adopts a two-axis design that independently varies action expressions and object references.\n\nThe research addresses a key finding: degradation is primarily driven by object-level lexical variation; even simple synonym substitutions cause large drops, indicating reliance on surface-level matching rathe\n…[truncated 129 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T23:31:00.786349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arXiv 2603.28301\"\n\nLinks: [{\"title\":\"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://arxiv.org/html/2603.28301\"},{\"title\":\"Immune escape and attenuated severity associated with the SARS-CoV-2 BA.2.86/JN.1 lineage\",\"url\":\"https://www.medrxiv.org/content/10.1101/2024.04.17.24305964.full.pdf\"},{\"title\":\"my_arXiv_daily/README.md at main · BaiShuanghao/my_arXiv_daily\",\"url\":\"https://github.com/BaiShuanghao/my_arXiv_daily/blob/main/README.md\"},{\"title\":\"Evolution and neutralization escape of the SARS-CoV-2 BA.2.86 subvariant\",\"url\":\"https://www.medrxiv.org/content/10.1101/2023.09.08.23295250.full.pdf\"},{\"title\":\"Symphonizing pileup and full-alignment for deep learning-based long-read variant calling\",\"url\":\"https://www.biorxiv.org/content/10.1101/2021.12.29.474431.full.pdf\"}]\n\nBased on the search results, arXiv 2603.28301 is a paper titled \"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\" by Chanyoung Kim, Minwoo Kim, Minseok Kang, Hyunwoo Kim, and Dahuin Jung, from Soongsil University and Chung-Ang University, published on March 30, 2026.\n\nThe paper introduces LIBERO-Para, a controlled benchmark that independently varies action expressions and object references for fine-grained analysis of linguistic generalization. The research addresses a gap in Vision-Language-Action (VLA) models, which are typically fine-tuned with limited data in downstream robotic settings, leading to overfitting to specific instruction formulations and leaving robustness to paraphrased instructions underexplored. The study found consistent performance degradation of 22–52 percentage points under paraphrasing across seven VLA configurations ranging from 0.6B–7.5B parameters.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T23:31:00.786542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "PRIDE formula \"Paraphrase Robustness\" site:arxiv.org 2603.28301 SK ST alpha"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T23:31:00.786703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"PRIDE\" \"paraphrase difficulty\" formula definition arxiv LIBERO-Para 2026"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T23:31:00.786878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"PRIDE\" \"paraphrase difficulty\" formula definition arxiv LIBERO-Para 2026\"\n\nLinks: [{\"title\":\"[2603.28301] LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://arxiv.org/abs/2603.28301\"},{\"title\":\"Paper page - LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://huggingface.co/papers/2603.28301\"},{\"title\":\"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://cau-hai-lab.github.io/LIBERO-Para/\"},{\"title\":\"GitHub - cau-hai-lab/LIBERO-Para · GitHub\",\"url\":\"https://github.com/cau-hai-lab/LIBERO-Para\"},{\"title\":\"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://arxiv.org/html/2603.28301v1\"},{\"title\":\"cau-hai-lab · GitHub\",\"url\":\"https://github.com/cau-hai-lab\"},{\"title\":\"paraphrase · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/paraphrase\"}]\n\nBased on the search results, I found detailed information about PRIDE and the LIBERO-Para benchmark.\n\nPRIDE is a metric that quantifies paraphrase difficulty using semantic and syntactic factors. More specifically, PRIDE (Paraphrase Robustness Index in Robotic Instructional DEviation) evaluates how robustly a VLA model handles paraphrased instructions by computing a Paraphrase Distance (PD) from keyword similarity (SK) and structural similarity (ST), then measuring the ratio of PD-weighted successes to total possible PD, normalized to 0–100.\n\nPRIDE combines keyword similarity (lexical shift) and structural similarity (syntactic variation) with task success to enable fine-grained robustness analysis. Unlike plain success rate, PRIDE gives more credit for succeeding on harder, more deviated paraphrases.\n\nThis metric was introduced as part of the LIBERO-Para benchmark, a controlled benchmark that independently varies action expressions and object references for fine-grained analysis of ling\n…[truncated 231 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T23:31:00.787068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"PRIDE formula \"Paraphrase Robustness\" site:arxiv.org 2603.28301 SK ST alpha\"\n\nLinks: [{\"title\":\"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\",\"url\":\"https://arxiv.org/html/2603.28301v1\"},{\"title\":\"Robustness to Modification with Shared Words in Paraphrase   Identification\",\"url\":\"https://arxiv.org/pdf/1909.02560\"},{\"title\":\"Evaluating Paraphrastic Robustness in Textual Entailment Models\",\"url\":\"https://arxiv.org/pdf/2306.16722\"},{\"title\":\"RoParQ: Paraphrase-Aware Alignment of Large Language Models Towards Robustness to Paraphrased Questions\",\"url\":\"https://arxiv.org/pdf/2511.21568\"},{\"title\":\"Evaluating Autoformalization Robustness via Semantically Similar Paraphrasing\",\"url\":\"https://arxiv.org/pdf/2511.12784\"}]\n\nBased on the search results, I found information about the PRIDE formula from the arxiv paper 2603.28301:\n\nPRIDE is a metric that quantifies the linguistic deviation between an original instruction and its paraphrase. PRIDE is a metric that quantifies paraphrase difficulty using semantic and syntactic factors.\n\nThe paper is titled \"LIBERO-Para: A Diagnostic Benchmark and Metrics for Paraphrase Robustness in VLA Models\" and was published on March 30, 2026. However, the search results don't contain detailed information about the specific formula components you mentioned (SK, ST, alpha). To get the complete mathematical definition of the PRIDE formula with those specific parameters, you would need to access the full paper at https://arxiv.org/html/2603.28301v1 or https://arxiv.org/pdf/2603.28301.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T23:31:00.787247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T23:31:00.787385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T23:31:00.787534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2603.28301v1",
+              "prompt": "Extract the EXACT mathematical formula/definition of PRIDE metric, including:\n1. The full formula for Paraphrase Distance (PD) - what is SK, ST, alpha, and how they combine\n2. The full formula for PRIDE score itself\n3. The default value of alpha\n4. Whether PRIDE is higher=better or lower=better\n5. What SK (keyword similarity) and ST (structural similarity) precisely measure and how they are computed\n6. The OFT baseline PRIDE score reported in the paper\n7. Any other baseline PRIDE scores reported\n\nBe very precise about the math - extract exact equations, not paraphrases."
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T23:31:00.787684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://github.com/cau-hai-lab/LIBERO-Para",
+              "prompt": "Find the implementation of the PRIDE metric. Look for:\n1. The code that computes PD (Paraphrase Distance) from SK and ST\n2. The code that computes the final PRIDE score\n3. The default alpha value\n4. Any constants or thresholds used\nExtract the relevant code snippets."
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T23:31:00.787838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# PRIDE Metric Implementation\n\nBased on the GitHub repository content provided, I can confirm that **PRIDE metric implementation details are documented but the actual code snippets are not included in the web page content you've shared**.\n\n## What the Repository Indicates:\n\nThe README states that PRIDE computes a **Paraphrase Distance (PD)** from two components:\n- **SK** (keyword similarity)\n- **ST** (structural similarity)\n\nThe metric then \"measures the ratio of PD-weighted successes to total possible PD, normalized to 0–100.\"\n\n## Where to Find the Implementation:\n\nThe actual code is located in:\n1. **`metrics/README.md`** - Contains detailed metric documentation\n2. **`metrics/PRIDE_metric_playground.ipynb`** - Interactive notebook with implementation\n3. **`metrics/analyze_results.py`** - Analysis script using the metric\n4. **`metrics/libero_para_metadata.csv`** - Supporting data\n\n## Next Steps:\n\nTo access the actual code implementation including:\n- PD computation formula\n- SK and ST calculation methods\n- Default alpha values\n- Specific thresholds\n\nYou'll need to visit the GitHub repository directly and examine the files in the `metrics/` directory, which aren't rendered in this web page excerpt."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T23:31:00.788032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# PRIDE Metric: Mathematical Formulation\n\n## Paraphrase Distance (PD) Formula\n\n**Equation 3** from the paper defines PD as:\n\n```\nPD = 1 - (α·S_K(O,P) + (1-α)·S_T(T_O, T_P))\n```\n\nWhere:\n- **S_K(O,P)**: Keyword similarity (ranges 0-1, higher = more similar)\n- **S_T(T_O, T_P)**: Structural similarity (ranges 0-1, higher = more similar)\n- **α**: Weighting parameter, **default value = 0.5**\n\n## PRIDE Score Formula\n\n**Equation 4** defines PRIDE as:\n\n```\nPRIDE = { PD,  if success\n        { 0,   if failure\n```\n\n**Interpretation**: Higher PRIDE = better robustness (more difficult paraphrases successfully handled). When a task fails, PRIDE = 0 regardless of paraphrase difficulty.\n\n## S_K (Keyword Similarity) Computation\n\n**Equation 1**:\n\n```\nS_K(O,P) = (1/n) Σ(i=1 to n) max(j∈{1,...,m}) cos(e(o_i), e(p_j))\n```\n\nMeasures semantic preservation of task-critical content words via embedding cosine similarity from Sentence-BERT.\n\n## S_T (Structural Similarity) Computation\n\n**Equation 2**:\n\n```\nS_T(T_O, T_P) = 1 - TED(T_O, T_P) / (|T_O| + |T_P|)\n```\n\nUses tree edit distance (TED) on dependency parse trees with POS tags as node labels. Normalized by combined tree sizes.\n\n## Reported PRIDE Scores (Table 3)\n\n| Model | PRIDE Score |\n|-------|------------|\n| OpenVLA-OFTgoal | 58.8 |\n| π₀.₅ (expert-only) | 32.0 |\n| X-VLA | 52.7 |\n| OpenVLA-OFTmixed | 56.3 |\n| Xiaomi-Robotics-0 | 69.2 |\n| π₀.₅ | 65.4 |\n| VLA-Adapter | 36.1 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T23:31:00.788204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://cau-hai-lab.github.io/LIBERO-Para/",
+              "prompt": "Extract the PRIDE metric formula and definition. Specifically look for:\n1. How PRIDE is aggregated across multiple tasks/paraphrases (is it averaged? summed? ratio?)\n2. The exact aggregation formula - is it sum of PD for successes divided by sum of all PD?\n3. Any normalization (e.g., multiplied by 100)\n4. The OFT baseline PRIDE value"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T23:31:00.788332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://raw.githubusercontent.com/cau-hai-lab/LIBERO-Para/main/metrics/analyze_results.py",
+              "prompt": "Extract the complete PRIDE metric computation code. Show the exact formulas used for:\n1. PD (Paraphrase Distance) computation from SK and ST\n2. PRIDE score computation from PD and success\n3. How PRIDE is aggregated across multiple samples\n4. The default alpha value\n5. Any normalization steps"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T23:31:00.788449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 404"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T23:31:00.788574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# PRIDE Metric Extraction\n\nBased on the provided content, here's what can be determined about the PRIDE metric:\n\n## Definition\n\"PRIDE (Paraphrase Robustness Index in Robotic Instructional DEviation) addresses this by computing a Paraphrase Distance (PD) from keyword similarity (SK) and structural similarity (ST), then weighting success by difficulty.\"\n\n## Components\n- **Paraphrase Distance (PD)**: Derived from keyword similarity (SK) and structural similarity (ST)\n- **SK**: Measures semantic similarity between task-critical content words\n- **ST**: Uses dependency-tree edit distance to capture structural variation\n\n## Aggregation Method\nThe document does not explicitly specify the exact aggregation formula (e.g., whether PD values are summed, averaged, or used in a ratio calculation). It only states that \"success by difficulty\" is weighted, with harder paraphrases receiving more credit than easier ones.\n\n## Normalization\nThe document does not clearly specify if results are normalized (e.g., multiplied by 100).\n\n## Baseline Values\nFor the OFT models:\n- OpenVLA-OFTmixed PRIDE: **56.3**\n- OpenVLA-OFTgoal PRIDE: **58.8**\n\nThe precise mathematical formula for aggregating PD across all paraphrases is not provided in this webpage content."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T23:31:00.788732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://raw.githubusercontent.com/cau-hai-lab/LIBERO-Para/main/metrics/PRIDE_metric_playground.ipynb",
+              "prompt": "Extract the exact PRIDE metric implementation code. Show:\n1. How PD is computed from SK and ST (the formula)\n2. How PRIDE is computed from PD values and success indicators\n3. The aggregation formula across tasks\n4. Default alpha value\n5. Any normalization (e.g. multiply by 100)"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T23:31:00.788863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 404"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T23:31:00.788979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp && git clone --depth 1 https://github.com/cau-hai-lab/LIBERO-Para.git 2>&1 | tail -5",
+              "description": "Clone LIBERO-Para repo to inspect PRIDE implementation",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T23:31:00.789125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cloning into 'LIBERO-Para'...\nUpdating files:   8% (432/5241)\rUpdating files:   9% (472/5241)\rUpdating files:  10% (525/5241)\rUpdating files:  11% (577/5241)\rUpdating files:  12% (629/5241)\rUpdating files:  13% (682/5241)\rUpdating files:  14% (734/5241)\rUpdating files:  15% (787/5241)\rUpdating files:  16% (839/5241)\rUpdating files:  17% (891/5241)\rUpdating files:  18% (944/5241)\rUpdating files:  19% (996/5241)\rUpdating files:  20% (1049/5241)\rUpdating files:  21% (1101/5241)\rUpdating files:  22% (1154/5241)\rUpdating files:  23% (1206/5241)\rUpdating files:  24% (1258/5241)\rUpdating files:  25% (1311/5241)\rUpdating files:  26% (1363/5241)\rUpdating files:  27% (1416/5241)\rUpdating files:  28% (1468/5241)\rUpdating files:  29% (1520/5241)\rUpdating files:  30% (1573/5241)\rUpdating files:  31% (1625/5241)\rUpdating files:  32% (1678/5241)\rUpdating files:  33% (1730/5241)\rUpdating files:  34% (1782/5241)\rUpdating files:  35% (1835/5241)\rUpdating files:  36% (1887/5241)\rUpdating files:  37% (1940/5241)\rUpdating files:  38% (1992/5241)\rUpdating files:  39% (2044/5241)\rUpdating files:  40% (2097/5241)\rUpdating files:  41% (2149/5241)\rUpdating files:  42% (2202/5241)\rUpdating files:  43% (2254/5241)\rUpdating files:  44% (2307/5241)\rUpdating files:  45% (2359/5241)\rUpdating files:  46% (2411/5241)\rUpdating files:  47% (2464/5241)\rUpdating files:  48% (2516/5241)\rUpdating files:  49% (2569/5241)\rUpdating files:  50% (2621/5241)\rUpdating files:  51% (2673/5241)\rUpdating files:  52% (2726/5241)\rUpdating files:  53% (2778/5241)\rUpdating files:  54% (2831/5241)\rUpdating files:  55% (2883/5241)\rUpdating files:  56% (2935/5241)\rUpdating files:  57% (2988/5241)\rUpdating files:  58% (3040/5241)\rUpdating files:  59% (3093/5241)\rUpdating files:  60% (3145/5241)\rUpdating files:  61% (3198/5241)\rUpdating files:  62% (3250/5241)\rUpdating files:  63% (3302/5241)\rUpdating files:  64% (3355/5241)\rUpdating files:  65% (3407/5241)\rUpdating files:  66% (3460/5241)\rUpdating files:  67% (3512/5241)\rUp\n…[truncated 1217 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T23:31:00.789269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /tmp/LIBERO-Para/metrics -type f -name \"*.py\" -o -name \"*.ipynb\" | head -20",
+              "description": "List metric implementation files"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T23:31:00.789388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/tmp/LIBERO-Para/metrics/compute_pride_score_example.py\n/tmp/LIBERO-Para/metrics/analyze_results.py\n/tmp/LIBERO-Para/metrics/PRIDE_metric_playground.ipynb"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T23:31:00.789501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/LIBERO-Para/metrics/compute_pride_score_example.py"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T23:31:00.789750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tAdd similarity scores to verified CSV\n4\t\n5\t기존 compute_similarity.py의 로직을 사용해서 verified_csv에 \n6\tstructural_similarity, keyword_similarity 등을 추가해서 저장.\n7\t\n8\tUsage:\n9\t    python add_similarity_to_verified.py --verified_csv /path/to/verified.csv --output_csv /path/to/output.csv\n10\t\n11\tRequirements:\n12\t    pip install spacy sentence-transformers pandas numpy tqdm\n13\t    python -m spacy download en_core_web_sm\n14\t\"\"\"\n15\t\n16\timport argparse\n17\timport pandas as pd\n18\timport numpy as np\n19\tfrom pathlib import Path\n20\tfrom datetime import datetime\n21\timport warnings\n22\twarnings.filterwarnings('ignore')\n23\t\n24\t\n25\t# =============================================================================\n26\t# Dependency Check\n27\t# =============================================================================\n28\t\n29\tdef check_dependencies():\n30\t    missing = []\n31\t    try:\n32\t        import spacy\n33\t    except ImportError:\n34\t        missing.append(\"spacy\")\n35\t    try:\n36\t        from sentence_transformers import SentenceTransformer\n37\t    except ImportError:\n38\t        missing.append(\"sentence-transformers\")\n39\t    try:\n40\t        from tqdm import tqdm\n41\t    except ImportError:\n42\t        missing.append(\"tqdm\")\n43\t    \n44\t    if missing:\n45\t        print(\"Missing dependencies. Please install:\")\n46\t        print(f\"  pip install {' '.join(missing)}\")\n47\t        if \"spacy\" not in missing:\n48\t            print(\"  python -m spacy download en_core_web_sm\")\n49\t        exit(1)\n50\t\n51\t\n52\t# =============================================================================\n53\t# 1. Tree Edit Distance (Zhang-Shasha Algorithm)\n54\t# =============================================================================\n55\t\n56\tclass TreeNode:\n57\t    def __init__(self, label, children=None):\n58\t        self.label = label\n59\t        self.children = children or []\n60\t\n61\t\n62\tdef build_dependency_tree(doc) -> TreeNode:\n63\t    root_token = None\n64\t    for token in doc:\n65\t        if token.de\n…[truncated 14127 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T23:31:00.789923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/LIBERO-Para/metrics/analyze_results.py"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T23:31:00.790524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tgenerate_paraphrase_table.py\n4\t\n5\tGenerates a 4x11 (obj x act) paraphrase success rate heatmap from\n6\tstructured JSON eval logs.\n7\t\n8\tDirectory structure expected:\n9\t    model_path/\n10\t        seed7/\n11\t            eval0.json  ... eval9.json\n12\t            meta.json\n13\t            summary.json\n14\t        seed8/\n15\t        ...\n16\t        seed11/\n17\t\n18\tEach eval{N}.json has:\n19\t    {\n20\t      \"eval_id\": N,\n21\t      \"original_instruction\": ...,\n22\t      \"episodes\": [\n23\t        {\n24\t          \"paraphrase_type\": \"act\" | \"obj\" | \"comp\",\n25\t          \"categories\": [...],\n26\t          \"subcategories\": [...],  # comp: [obj_subcat, act_subcat]\n27\t          \"success\": true/false,\n28\t          ...\n29\t        }, ...\n30\t      ]\n31\t    }\n32\t\n33\tUsage:\n34\t    python generate_paraphrase_table.py \\\n35\t        --model_path ../logs_para/xiaomi \\\n36\t        --model_name \"OpenVLA-OFT\" \\\n37\t        --output_dir ./metrics/output\n38\t\"\"\"\n39\t\n40\timport argparse\n41\timport json\n42\timport glob\n43\timport os\n44\timport sys\n45\tfrom collections import defaultdict\n46\tfrom typing import Dict, List, Tuple, Optional\n47\t\n48\timport numpy as np\n49\timport pandas as pd\n50\timport matplotlib.pyplot as plt\n51\timport seaborn as sns\n52\tfrom matplotlib.colors import LinearSegmentedColormap\n53\t\n54\t\n55\t# ============================================================================\n56\t# Constants\n57\t# ============================================================================\n58\t\n59\t# Y-axis (obj paraphrase types)\n60\tOBJ_TYPES_ORDER = [\n61\t    \"None\",\n62\t    \"addition_deletion\",\n63\t    \"same_polarity_contextual\",\n64\t    \"same_polarity_habitual\",\n65\t]\n66\t\n67\t# X-axis (act paraphrase types)\n68\tACT_TYPES_ORDER = [\n69\t    \"None\",\n70\t    \"addition_deletion\",\n71\t    \"same_polarity_contextual\",\n72\t    \"same_polarity_habitual\",\n73\t    \"coordination\",\n74\t    \"subordination\",\n75\t    \"need_statement\",\n76\t    \"embedded_imperative\",\n77\t    \"permission_directive\",\n78\t    \"question_directive\",\n79\t \n…[truncated 52045 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T23:31:00.790754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "PRIDE|pride|paraphrase_distance|PD",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/afford_invar",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T23:31:00.790928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 80 files\nlogs/workers/worker_research_pride-formula-verify_20260519T232737.log\nlogs/chats/feishu_group_oc_e0fe8d2f0d417545f5bf6f650173c34c_reviewer.jsonl\nlogs/chats/feishu_group_oc_bfa3708ecf42097843150f45348b3760_director.jsonl\n.claude/sessions/director_21ca1cc3/AGENTS.md\n.claude/sessions/director_21ca1cc3/CLAUDE.md\nAGENTS.md\n.claude/CLAUDE.md\nlogs/chats/feishu_group_oc_e0fe8d2f0d417545f5bf6f650173c34c.jsonl\nreport.md\ncheckpoints/phase1_lconsist_v1_cont_RUNNING_20260519T232658.json\nregistry.yaml\ncheckpoints/phase1_lconsist_v1_cont_ALLOCATED_20260519T232652.json\ncheckpoints/phase1_lconsist_v1_cont_QUEUED_20260519T232647.json\ncheckpoints/phase1_lconsist_v1_cont_PENDING_20260519T232644.json\ncheckpoints/phase1_lconsist_v1_DONE_20260519T232445.json\n.claude/sessions/reviewer_8c7bb198/AGENTS.md\n.claude/sessions/reviewer_8c7bb198/CLAUDE.md\nlogs/workers/worker_infra_restart-lconsist-training_20260519T231922.log\nlogs/workers/worker_code_merge-consist-transfer_20260519T232011.log\n.claude/sessions/agent_413a00de/AGENTS.md\n.claude/sessions/agent_413a00de/CLAUDE.md\nROADMAP.md\ndecisions.yaml\nlogs/workers/worker_code_l-transfer-dryrun_20260519T225748.log\ncheckpoints/phase1_lconsist_v1_ANALYZING_20260519T225818.json\nmemory.md\nlogs/workers/worker_analysis_phase1_lconsist_v1_20260519T225345.log\nlogs/chats/cron_hook_phase1_lconsist_v1.jsonl\n.claude/sessions/agent_56997cc0/AGENTS.md\n.claude/sessions/agent_56997cc0/CLAUDE.md\ncheckpoints/phase1_lconsist_v1_ANALYZING_20260519T225208.json\nlogs/workers/worker_code_eval-fixes_20260519T224913_result.json\nlogs/workers/worker_code_eval-fixes_20260519T224913.log\nlogs/workers/worker_code_training-status-fix_20260519T224853.log\nlogs/workers/worker_code_fix-and-relaunch_20260519T222907.log\nlogs/workers/worker_code_eval-pipeline-prep_20260519T222535_result.json\nlogs/workers/worker_code_eval-pipeline-prep_20260519T222535.log\nlogs/workers/worker_code_l-transfer-pair-validation_20260519T222514.log\nlogs/workers/worker_code_paraphrase-hit-rate_2026\n…[truncated 2575 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T23:31:00.791086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "PRIDE|pride|paraphrase_distance",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/afford_invar",
+              "glob": "*.{py,md,yaml}",
+              "output_mode": "content",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T23:31:00.791231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "decisions.yaml:6:    → LIBERO-Para PRIDE 评估\ndecisions.yaml:16:    bias。W2: PRIDE 阈值从 \"any improvement\" 提升到 ≥5pp（单 seed），统计上更可靠。W3: 增加 Phase 0.5\ndecisions.yaml:18:    无选择性 / PRIDE < +2pp → kill）。MVP 预算从 25h 调至 30-35h。'\ndecisions.yaml:24:  summary: Phase 0.5 跳过：LIBERO-Para 已公布 OFT baseline PRIDE 分数（Goal 58.8, Mixed 56.3），无需自行跑\ndecisions.yaml:26:  rationale: LIBERO-Para 论文公开了 OFT 在 Goal suite 的 PRIDE=58.8。我们 MVP pass 目标 ≥63.8（+5pp）。节省\nreport.md:8:| phase1_lconsist_v1_cont | 从 phase1_lconsist_v1 checkpoint-1000 继续 L_action 训练至 20000 步，获取 OFT baseline SR 数据用于对比。Affordance decoder 已确认 NEGATIVE（不期望 heatmap 改善），但 L_action LoRA 正常收敛，需要完整训练的 checkpoint 做 LIBERO SR/PRIDE 评估基线。 | — | — | — |\nreport.md:15:- **phase1_lconsist_v1** (negative): L_consist (alpha=0.1, lambda_H=0) 作为 LoRA fine-tuning 正则项，引导 affordance decoder 从 Layer-18 features 学到空间 affordance 表征。预期：heatmap peak 到 gripper target 归一化距离 < 0.2，standard LIBERO SR ≥ 95%，LIBERO-Para PRIDE ≥ 63.8\nROADMAP.md:37:3. LIBERO-Para PRIDE ≥ 63.8\nROADMAP.md:42:- PRIDE < 60.8 → kill\nROADMAP.md:46:- [ ] PRIDE 公式：eval_pride.py 与 ROADMAP 阈值矛盾，需查 LIBERO-Para 论文确认定义\nROADMAP.md:47:- [ ] robosuite/mujoco 安装（LIBERO SR 和 PRIDE 评估依赖）\nROADMAP.md:55:- [ ] Phase 1b: 训练完成后 heatmap eval + LIBERO SR + PRIDE\nROADMAP.md:56:- [ ] PRIDE 公式校正\nROADMAP.md:76:| D003 | 2026-05-19 | Phase 0.5 跳过：LIBERO-Para 已公布 OFT baseline PRIDE 分数 | — |\nregistry.yaml:10:      归一化距离 < 0.2，standard LIBERO SR ≥ 95%，LIBERO-Para PRIDE ≥ 63.8\nregistry.yaml:87:      LoRA 正常收敛，需要完整训练的 checkpoint 做 LIBERO SR/PRIDE 评估基线。\nregistry.yaml:106:      eval_data: LIBERO SR + PRIDE evaluation after training completes\nmemory.md:70:6. **Heatmap 评估** (`scripts/evaluation/`): extract_ground_truth.py + heatmap_metrics.py + run_heatmap_eval.py + eval_pride.py\nmemory.md:89:- PRIDE 公式: PD = 1 - (α·SK + (1-α)·ST), α=0.5\nmemory.md:90:- OFT baseline PRIDE: OFT_goal=58.8 (SR 64.7%), OFT_mixed=56.3 (SR 63.7%)\ndocs/IDEA_BRIEF.md:123:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:143:- LIBERO-Para: A Diagn\n…[truncated 147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T23:31:00.791383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "pride|PRIDE|paraphrase_distance",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/afford_invar",
+              "glob": "*.py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T23:31:00.791504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T23:31:00.791621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_pride",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/afford_invar",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T23:31:00.791765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 11 files\nlogs/workers/worker_research_pride-formula-verify_20260519T232737.log\nlogs/chats/feishu_group_oc_e0fe8d2f0d417545f5bf6f650173c34c_reviewer.jsonl\nlogs/chats/feishu_group_oc_bfa3708ecf42097843150f45348b3760_director.jsonl\nlogs/chats/feishu_group_oc_e0fe8d2f0d417545f5bf6f650173c34c.jsonl\nlogs/workers/worker_code_merge-consist-transfer_20260519T232011.log\nROADMAP.md\nmemory.md\nlogs/workers/worker_code_eval-fixes_20260519T224913_result.json\nlogs/workers/worker_code_eval-fixes_20260519T224913.log\nlogs/workers/worker_code_eval-pipeline-prep_20260519T222535_result.json\nlogs/workers/worker_code_eval-pipeline-prep_20260519T222535.log"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T23:31:00.791899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/afford_invar/memory.md",
+              "offset": "85",
+              "limit": "15"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T23:31:00.792030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "85\t- Total trainable: ~263M (LoRA 111M + action_head 151M + decoder 1.7M)\n86\t\n87\t## LIBERO-Para 调研结论 (2026-05-19)\n88\t\n89\t- PRIDE 公式: PD = 1 - (α·SK + (1-α)·ST), α=0.5\n90\t- OFT baseline PRIDE: OFT_goal=58.8 (SR 64.7%), OFT_mixed=56.3 (SR 63.7%)\n91\t- 原始 LIBERO-Goal SR: OFT_goal 97.9%, OFT_mixed 96.1% → paraphrase 退化 ~33pp\n92\t- 80-96% 失败来自 planning-level trajectory divergence\n93\t\n94\t## 环境信息 (2026-05-19)\n95\t\n96\t- 服务器: westd-19957, 4x RTX PRO 6000 Blackwell (94GB each)\n97\t- conda base: Python 3.12.3, PyTorch 2.8.0+cu128\n98\t- transformers: OFT fork 4.40.1 (moojink/transformers-openvla-oft)\n99\t- timm: 0.9.16"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T23:31:00.792169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "rm -rf /tmp/LIBERO-Para",
+              "description": "Clean up cloned repo"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T23:31:00.792282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T23:31:00.792439+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## PRIDE 指标验证报告\n\n### 论文原始定义 (arXiv:2603.28301)\n\n**PD (Paraphrase Distance):**\n```\nPD = 1 - (α·S_K + (1-α)·S_T),  α=0.5\n```\n\n- **S_K** (Keyword Similarity): 对原始指令的 content words (NOUN/VERB/ADJ/ADV) 用 Sentence-BERT (all-MiniLM-L6-v2) 编码，每个原始词与所有 paraphrase 词取 max cosine similarity，再取平均：`S_K = (1/n) Σ max_j cos(e(o_i), e(p_j))`\n- **S_T** (Structural Similarity): 依赖解析树的 Zhang-Shasha tree edit distance (TED)，节点标签为 (dep, POS)：`S_T = 1 - TED(T_O, T_P) / (|T_O| + |T_P|)`\n\n**PRIDE 聚合公式（关键）:**\n```\nPRIDE(α) = Σ(success_i × PD_i) / Σ(PD_i) × 100\n```\n\n即 **PD 加权成功率**——成功 episode 的 PD 之和除以所有 episode 的 PD 之和，乘 100。Higher = better。\n\n### 与我们当前实现的对比\n\n| 要素 | 论文定义 | 我们 memory.md 记录 | 一致？ |\n|------|---------|-------------------|--------|\n| PD 公式 | `1 - (α·SK + (1-α)·ST)` | `1 - (α·SK + (1-α)·ST)` | **一致** |\n| α 默认值 | 0.5 | 0.5 | **一致** |\n| PRIDE 聚合 | `Σ(success×PD) / Σ(PD) × 100` | memory.md 未记录聚合公式 | **需确认** |\n| 方向 | Higher = more robust | 未明确 | **需确认** |\n| OFT_goal PRIDE | 58.8 | 58.8 | **一致** |\n| OFT_mixed PRIDE | 56.3 | 56.3 | **一致** |\n\n### 关键发现\n\n1. **PD 单 episode 公式正确**——与论文 Eq.3 完全一致。\n\n2. **PRIDE 不是简单的 per-episode PD 值**。论文 HTML (Eq.4) 简写为 \"PRIDE = PD if success, 0 if failure\"，但代码实现的聚合是 **加权比率**：`Σ(success_i × PD_i) / Σ(PD_i) × 100`。这不是简单平均，而是 PD 加权的成功率。更难的 paraphrase（PD 大）在分母中权重更大，成功则在分子中贡献更多。\n\n3. **我们的 eval_pride.py 尚未实现**（项目中无 .py 文件包含 PRIDE 计算）。ROADMAP.md 已标注此为待办项。\n\n4. **实现时需注意**：论文官方代码使用 `paraphrased_instruction` 字段匹配 pre-computed SK/ST CSV，而非实时计算。可直接复用论文的 `libero_para_metadata.csv`。\n\n### 结论\n\nPD 公式和 baseline 数值与论文完全一致，无需修改。实现 eval_pride.py 时需用 **加权比率公式** `Σ(success×PD)/Σ(PD)×100`，不能简单取均值。\n\nSources:\n- [LIBERO-Para Paper (HTML)](https://arxiv.org/html/2603.28301v1)\n- [LIBERO-Para Paper (Abstract)](https://arxiv.org/abs/2603.28301)\n- [LIBERO-Para GitHub](https://github.com/cau-hai-lab/LIBERO-Para)\n- [LIBERO-Para Project Page](https://cau-hai-lab.github.io/LIBERO-Para/)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_pride-formula-verify_20260519T232737"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/research-pride-formula-verify.md"
+}

@@ -1,0 +1,5 @@
+E5-large 3-seed results:
+Seed 42:  macro_f1=0.9363, f1_stag=0.9067, f1_prog=0.9660
+Seed 123: macro_f1=0.9403, f1_stag=0.9272, f1_prog=0.9534
+Seed 456: macro_f1=0.9378, f1_stag=0.9179, f1_prog=0.9577
+Mean:     macro_f1=0.9381±0.0020, f1_stag=0.9173±0.0103, f1_prog=0.9590±0.0064

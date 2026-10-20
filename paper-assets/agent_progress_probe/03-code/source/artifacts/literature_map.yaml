@@ -1,0 +1,365 @@
+# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)
+# Generated: 2026-05-14
+# Paper: Temporal Label Model for Progress Stagnation Detection in LLM Agents
+#
+# Novelty check result: "temporal label model" as a general-purpose extension
+# of data programming to sequential data appears NOVEL. Closest works are
+# Safranchik AAAI 2020 (NER-specific linked HMM) and Sala NeurIPS 2019
+# (multi-resolution WS, not temporal transitions).
+
+papers:
+
+  # ============================================================
+  # CATEGORY: direct-competitor
+  # ============================================================
+
+  - id: "xi2025agentprm"
+    title: "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress"
+    authors: "Zhiheng Xi, Chenyang Liao, Guanyu Li, Yajie Yang, Wenxiang Chen, Zhihao Zhang, Binghai Wang, Senjie Jin, Yuhao Zhou, Jian Guan, Wei Wu, Tao Ji, Tao Gui, Qi Zhang, Xuanjing Huang"
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2511.08325"
+    category: "direct-competitor"
+    role: "主要竞争者：step-level PRM for agent guidance"
+    key_finding: "用 promise（长期潜力）和 progress（即时进展）两个维度评估 agent 每步决策，实现 8x 计算效率提升"
+    our_differentiation: "我们是 window-level monitoring（不是 step-level guidance），不需要 outcome labels，目标是 stagnation detection 不是 reward shaping"
+
+  - id: "choudhury2025prm"
+    title: "Process Reward Models for LLM Agents: Practical Framework and Directions"
+    authors: "Sanjiban Choudhury"
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2502.10325"
+    category: "direct-competitor"
+    role: "PRM 框架综述 + InversePRM 方法"
+    key_finding: "提出 AgentPRM（Monte Carlo rollout actor-critic）和 InversePRM（从 demonstrations 学习 process reward），3B 模型超越 GPT-4o"
+    our_differentiation: "InversePRM 仍需 demonstration trajectories，我们用 programmatic LFs 替代人工标注；我们关注 monitoring 而非 training signal"
+
+  - id: "li2026toolprmbench"
+    title: "ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents"
+    authors: "Dawei Li, Yuguang Yao, Zhen Tan, Huan Liu, Ruocheng Guo"
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2601.12294"
+    category: "direct-competitor"
+    role: "Tool-use PRM 评测基准"
+    key_finding: "大规模 benchmark 评测 PRM 在 tool-use 场景的效果，发现专用 PRM 显著优于通用 PRM"
+    our_differentiation: "我们的 TLM 是 unsupervised（不需要 step-level reward labels），且关注 stagnation pattern 而非 step correctness"
+
+  - id: "wang2026planrewardbench"
+    title: "Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling"
+    authors: "Jiaxuan Wang, Yulan Hu, Wenjin Yang, Zheng Pan, Xin Li, Lan-Zhe Guo"
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2604.08178"
+    category: "direct-competitor"
+    role: "Trajectory-level reward model 评测"
+    key_finding: "所有 reward model 类别（generative, discriminative, LLM-as-Judge）在长 horizon trajectory 上性能显著下降"
+    our_differentiation: "验证了长 trajectory 评估的难度——我们的 window-level 方法通过局部化避免了这个问题"
+
+  - id: "chen2025monitoring"
+    title: "Monitoring LLM Agents for Sequentially Contextual Harm"
+    authors: "Yueh-Han Chen, Neelay Joshi, Yulin Chen, He He, Rico Angell"
+    venue: "ICLR 2025 Workshop on Building Trust in Language Models and Applications"
+    year: 2025
+    arxiv: null
+    openreview: "LC0XQ6ufbr"
+    category: "direct-competitor"
+    role: "Agent monitoring 安全方向"
+    key_finding: "将有害任务分解为单独无害的子任务可将 refusal rate 从 50% 降至 10%，现有 monitor 难以检测 sequentially contextual harm"
+    our_differentiation: "他们关注 safety monitoring（harmful behavior），我们关注 progress monitoring（stagnation）；互补方向"
+
+  - id: "kale2025weaktostrong"
+    title: "Reliable Weak-to-Strong Monitoring of LLM Agents"
+    authors: "Neil Kale, Chen Bo Calvin Zhang, Kevin Zhu, Ankit Aich, Paula Rodriguez, Scale Red Team, Christina Q. Knight, Zifan Wang"
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2508.19461"
+    category: "direct-competitor"
+    role: "Weak-to-strong agent monitoring 方法论"
+    key_finding: "Monitor scaffolding 比 monitor 能力更重要，弱模型可以可靠监控强模型；targeted human-in-the-loop 提升 TPR ~15%"
+    our_differentiation: "他们用 LLM 作为 monitor，我们用 structural LFs + TLM，不依赖另一个 LLM；我们的方法更轻量且可解释"
+
+  # ============================================================
+  # CATEGORY: method-component
+  # ============================================================
+
+  - id: "ratner2016dataprogramming"
+    title: "Data Programming: Creating Large Training Sets, Quickly"
+    authors: "Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Re"
+    venue: "NeurIPS 2016"
+    year: 2016
+    arxiv: "1605.07723"
+    category: "method-component"
+    role: "核心方法论基础：data programming 范式"
+    key_finding: "用户编写 labeling functions（噪声启发式），generative model 学习 LF 准确率生成概率训练标签"
+    our_differentiation: "我们扩展 data programming 到时序数据，加入 temporal transition structure"
+
+  - id: "ratner2017snorkel"
+    title: "Snorkel: Rapid Training Data Creation with Weak Supervision"
+    authors: "Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Re"
+    venue: "VLDB 2018"
+    year: 2018
+    arxiv: "1711.10160"
+    category: "method-component"
+    role: "Data programming 系统实现，label model 基础"
+    key_finding: "端到端弱监督系统：LFs → generative label model（建模 LF dependency）→ discriminative end model"
+    our_differentiation: "Snorkel 假设数据点 i.i.d.，我们的 TLM 显式建模相邻 window 间的 label transition"
+
+  - id: "fu2020flyingsquid"
+    title: "Fast and Three-rious: Speeding Up Weak Supervision with Triplet Methods"
+    authors: "Daniel Y. Fu, Mayee F. Chen, Frederic Sala, Sarah M. Hooper, Kayvon Fatahalian, Christopher Re"
+    venue: "ICML 2020"
+    year: 2020
+    arxiv: "2002.11955"
+    category: "method-component"
+    role: "快速 label model，triplet method of moments"
+    key_finding: "用 triplet method 闭式求解 label model 参数，比 SGD 快 170x"
+    our_differentiation: "FlyingSquid 同样假设 i.i.d.；我们的 TLM 需要不同的参数估计方法来处理时序依赖"
+
+  - id: "zhang2021wrench"
+    title: "WRENCH: A Comprehensive Benchmark for Weak Supervision"
+    authors: "Jieyu Zhang, Yue Yu, Yinghao Li, Yujing Wang, Yaming Yang, Mao Yang, Alexander Ratner"
+    venue: "NeurIPS 2021 Datasets and Benchmarks Track"
+    year: 2021
+    arxiv: "2109.11377"
+    category: "method-component"
+    role: "弱监督评测基准"
+    key_finding: "22 个真实数据集 + 120+ 方法变体评测，标准化弱监督研究"
+    our_differentiation: "WRENCH 数据集全是 i.i.d. 分类/序列标注，没有 temporal stagnation detection 任务"
+
+  - id: "safranchik2020linkedhmm"
+    title: "Weakly Supervised Sequence Tagging from Noisy Rules"
+    authors: "Esteban Safranchik, Shiying Luo, Stephen H. Bach"
+    venue: "AAAI 2020"
+    year: 2020
+    arxiv: null
+    category: "method-component"
+    role: "最近的方法论前驱：linked HMM for sequence tagging weak supervision"
+    key_finding: "将 HMM 引入弱监督序列标注（NER），加入 linking rules 建模 span 结构，比 i.i.d. label model +7 F1"
+    our_differentiation: "他们是 token-level NER（BIO 约束），我们是 window-level temporal classification；我们建模的是 stagnation temporal dynamics 而非 entity boundary"
+
+  - id: "sala2019multiresolution"
+    title: "Multi-Resolution Weak Supervision for Sequential Data"
+    authors: "Frederic Sala, Paroma Varma, Jason Fries, Daniel Y. Fu, Stefano Sagawa, Christopher Re"
+    venue: "NeurIPS 2019"
+    year: 2019
+    arxiv: "1910.09505"
+    category: "method-component"
+    role: "最近的方法论前驱：multi-resolution WS for sequential data"
+    key_finding: "处理不同时间分辨率的 LFs（如 frame-level vs span-level），建模 multi-resolution LF correlations"
+    our_differentiation: "他们关注 resolution mismatch，我们关注 temporal label transitions；互补视角"
+
+  - id: "dawid1979em"
+    title: "Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm"
+    authors: "A. P. Dawid, A. M. Skene"
+    venue: "Journal of the Royal Statistical Society, Series C"
+    year: 1979
+    arxiv: null
+    category: "method-component"
+    role: "Label aggregation 奠基工作"
+    key_finding: "用 EM 算法估计标注者混淆矩阵，无需 ground truth"
+    our_differentiation: "经典 i.i.d. 假设；我们的 TLM 可视为 temporal extension of Dawid-Skene for programmatic LFs"
+
+  - id: "nguyen2017hmmcrowd"
+    title: "Aggregating and Predicting Sequence Labels from Crowd Annotations"
+    authors: "An Thanh Nguyen, Byron C. Wallace, Junyi Jessy Li, Ani Nenkova, Matthew Lease"
+    venue: "ACL 2017"
+    year: 2017
+    arxiv: null
+    category: "method-component"
+    role: "HMM + crowdsourcing label aggregation"
+    key_finding: "HMM-Crowd：扩展 Dawid-Skene 到序列数据，加入 one-step Markov structure over true labels"
+    our_differentiation: "他们用于 crowdsourcing（人类标注者），我们用于 programmatic LFs（自动化）；他们是 NER/IE，我们是 agent progress monitoring"
+
+  # ============================================================
+  # CATEGORY: evaluation
+  # ============================================================
+
+  - id: "orlanski2026slopcodebench"
+    title: "SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks"
+    authors: "Gabriel Orlanski, Devjeet Roy, Alexander Yun, Changho Shin, Alex Gu, Albert Ge, Dyah Adila, Nicholas Roberts, Frederic Sala, Aws Albarghouthi"
+    venue: "arXiv preprint"
+    year: 2026
+    arxiv: "2603.24755"
+    category: "evaluation"
+    role: "Agent degradation 基准——直接支持我们的 problem motivation"
+    key_finding: "Agent 代码质量在迭代任务中持续退化：比人类代码 2.3x 更冗余、2.0x 更结构侵蚀，75-77% trajectory 呈现退化趋势"
+    our_differentiation: "SlopCodeBench 量化了 degradation 现象，我们提供了检测方法；他们是 post-hoc 评测，我们是 online monitoring"
+
+  - id: "jimenez2024swebench"
+    title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
+    authors: "Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan"
+    venue: "ICLR 2024"
+    year: 2024
+    arxiv: "2310.06770"
+    category: "evaluation"
+    role: "Agent 数据来源之一"
+    key_finding: "2294 个真实 GitHub issue 任务，标准化 agent 评测"
+    our_differentiation: "我们使用 SWE-bench agent trajectories 作为实验数据源之一"
+
+  - id: "yang2024sweagent"
+    title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"
+    authors: "John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press"
+    venue: "NeurIPS 2024"
+    year: 2024
+    arxiv: "2405.15793"
+    category: "evaluation"
+    role: "Agent 系统——trajectory 数据来源"
+    key_finding: "提出 agent-computer interface (ACI)，GPT-4 Turbo 在 SWE-bench 达 12.47% resolve rate"
+    our_differentiation: "SWE-agent trajectories 是我们分析 stagnation 的数据来源之一"
+
+  - id: "wang2025openhands"
+    title: "OpenHands: An Open Platform for AI Software Developers as Generalist Agents"
+    authors: "Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al."
+    venue: "ICLR 2025"
+    year: 2025
+    arxiv: "2407.16741"
+    category: "evaluation"
+    role: "Agent 平台——主要数据来源"
+    key_finding: "开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测"
+    our_differentiation: "OpenHands trajectories 是我们的主要实验数据来源"
+
+  # ============================================================
+  # CATEGORY: background
+  # ============================================================
+
+  - id: "shinn2023reflexion"
+    title: "Reflexion: Language Agents with Verbal Reinforcement Learning"
+    authors: "Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao"
+    venue: "NeurIPS 2023"
+    year: 2023
+    arxiv: "2303.11366"
+    category: "background"
+    role: "Agent self-reflection 代表工作"
+    key_finding: "通过 verbal feedback 强化 agent，反思文本存入 episodic memory 用于后续 trial"
+    our_differentiation: "Reflexion 是 agent 自我改进机制，我们是外部 monitoring；self-reflection 可能失效时我们的 monitor 仍能检测 stagnation"
+
+  - id: "zhou2024lats"
+    title: "Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models"
+    authors: "Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, Yu-Xiong Wang"
+    venue: "ICML 2024"
+    year: 2024
+    arxiv: "2310.04406"
+    category: "background"
+    role: "Agent planning + self-reflection"
+    key_finding: "结合 MCTS 与 LM value function 和 self-reflection，支持 backtracking"
+    our_differentiation: "LATS 通过搜索避免 stagnation，但计算开销大；我们的 monitor 可作为 LATS 的早期终止信号"
+
+  - id: "yao2023tot"
+    title: "Tree of Thoughts: Deliberate Problem Solving with Large Language Models"
+    authors: "Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas L. Griffiths, Yuan Cao, Karthik Narasimhan"
+    venue: "NeurIPS 2023"
+    year: 2023
+    arxiv: "2305.10601"
+    category: "background"
+    role: "Deliberate reasoning 框架"
+    key_finding: "将 CoT 泛化为树结构，LM 自我评估中间 thought 并 backtrack"
+    our_differentiation: "ToT 的自评估是 single-step 的；我们捕捉 multi-step temporal patterns"
+
+  - id: "cemri2025multiagentfail"
+    title: "Why Do Multi-Agent LLM Systems Fail?"
+    authors: "Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A. Agrawal, et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2503.13657"
+    category: "background"
+    role: "Agent failure taxonomy——problem motivation"
+    key_finding: "MAST taxonomy：14 种失败模式，其中 Step Repetition 被识别为具体失败症状"
+    our_differentiation: "他们提供 taxonomy（what fails），我们提供 detection method（how to detect）"
+
+  - id: "zhu2025agentfail"
+    title: "Where LLM Agents Fail and How They Can Learn From Failures"
+    authors: "Kunlun Zhu, Zijia Liu, Bingxuan Li, et al."
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2509.25370"
+    category: "background"
+    role: "Agent failure 分析 + cascading failure 发现"
+    key_finding: "Cascading failures（单一 root cause 传播到后续决策）是长 horizon 任务的主要失败模式"
+    our_differentiation: "Cascading failure 正是我们 temporal model 可以捕捉的 pattern——stagnation 往往是 cascade 的表现"
+
+  - id: "george2025cycledetection"
+    title: "Unsupervised Cycle Detection in Agentic Applications"
+    authors: "Felix George, Harshit Kumar, Divya Pathak, Kaustabha Ray, Mudit Verma, Pratibha Moogi"
+    venue: "arXiv preprint (IBM Research)"
+    year: 2025
+    arxiv: "2511.10650"
+    category: "background"
+    role: "Cycle detection——最相关的 stagnation detection 前驱"
+    key_finding: "混合方法：call-stack 分析（结构重复）+ embedding 语义相似度确认"
+    our_differentiation: "他们只检测 exact/near-exact cycles，我们检测更广义的 stagnation（包括非重复性的停滞）；他们是 unsupervised rule-based，我们是 learned temporal model"
+
+  - id: "pipis2025reasoningloop"
+    title: "Wait, Wait, Wait... Why Do Reasoning Models Loop?"
+    authors: "Charilaos Pipis, Shivam Garg, Vasilis Kontonis, Vaishnavi Shrivastava, Akshay Krishnamurthy, Dimitris Papailiopoulos"
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2512.12895"
+    category: "background"
+    role: "Reasoning model looping 分析"
+    key_finding: "Looping 是 risk-aversion 的表现：模型选择简单循环动作而非推进；用 30-gram 重复检测"
+    our_differentiation: "他们分析 reasoning model 内部循环的原因，我们检测 agent trajectory 级别的 stagnation；n-gram 是我们 LFs 之一"
+
+  # ============================================================
+  # CATEGORY: technique
+  # ============================================================
+
+  - id: "cho2014gru"
+    title: "Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation"
+    authors: "Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio"
+    venue: "EMNLP 2014"
+    year: 2014
+    arxiv: "1406.1078"
+    category: "technique"
+    role: "GRU 原始论文——我们 probe model 的序列编码器"
+    key_finding: "提出 GRU hidden unit，自适应门控信息流"
+
+  - id: "bahdanau2015attention"
+    title: "Neural Machine Translation by Jointly Learning to Align and Translate"
+    authors: "Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio"
+    venue: "ICLR 2015"
+    year: 2015
+    arxiv: "1409.0473"
+    category: "technique"
+    role: "Attention mechanism——我们 probe model 的 attention 组件"
+    key_finding: "注意力机制允许 decoder 选择性关注输入序列不同位置"
+
+  - id: "khosla2020supcon"
+    title: "Supervised Contrastive Learning"
+    authors: "Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip Isola, Aaron Maschinot, Ce Liu, Dilip Krishnan"
+    venue: "NeurIPS 2020"
+    year: 2020
+    arxiv: "2004.11362"
+    category: "technique"
+    role: "SupCon loss——我们的辅助训练目标"
+    key_finding: "扩展自监督对比学习到有监督设置，同类样本拉近、异类推远，提升鲁棒性"
+
+  - id: "zhang2025qwen3embedding"
+    title: "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models"
+    authors: "Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou"
+    venue: "arXiv preprint"
+    year: 2025
+    arxiv: "2506.05176"
+    category: "technique"
+    role: "Embedding model——我们用于生成 trajectory window embeddings"
+    key_finding: "基于 Qwen3 的 embedding 模型（0.6B/4B/8B），多阶段训练，MTEB 多语言 SOTA"
+
+# ============================================================
+# NOVELTY ANALYSIS SUMMARY
+# ============================================================
+#
+# Key finding: "Temporal Label Model" 作为通用方法论是 NOVEL。
+#
+# 最近的前驱工作：
+# 1. Safranchik AAAI 2020 (linked HMM) — NER-specific，BIO 约束，token-level
+# 2. Sala NeurIPS 2019 (multi-resolution WS) — 处理分辨率不匹配，不建模 label transition
+# 3. Nguyen ACL 2017 (HMM-Crowd) — crowdsourcing 场景，不是 programmatic LFs
+#
+# 没有人将 data programming + HMM-style temporal transitions 用于：
+# - 通用序列分类（非 NER）
+# - Agent trajectory monitoring
+# - Stagnation detection
+#
+# 我们的 TLM 填补的空白：general-purpose temporal extension of
+# data programming label models for sequential classification tasks.
