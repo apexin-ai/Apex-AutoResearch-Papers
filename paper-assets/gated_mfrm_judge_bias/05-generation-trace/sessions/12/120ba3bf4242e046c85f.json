@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "120ba3bf4242e046c85f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh launch exp006",
+  "task_key": "worker_ssh_launch_exp006_20260522T200900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_exp006_20260522T200900_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "c96f762fff4b7f69d155630b431833964287da61cfc8ce691fc846a506c7424f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，运行非常快（几分钟内）。\n\n## 结果汇报\n\n**启动命令**：\n```bash\ntmux new-session -d -s exp006 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp006 && CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda,cpu XLA_PYTHON_CLIENT_PREALLOCATE=false XLA_PYTHON_CLIENT_MEM_FRACTION=0.25 python run_exp006.py --run-loocv 2>&1 | tee /tmp/exp006.log\"\n```\n\n**状态**：已完成（40 subsets 全部跑完 + leave-one-out 分析 + 图表生成）\n\n**产出文件**（`/root/gated_mfrm_judge_bias/exp006/results/`）：\n| 文件 | 大小 |\n|------|------|\n| `sensitivity_results.csv` | 6.4 KB (40 rows) |\n| `leave_one_out_results.csv` | 756 B |\n| `results.json` | 991 B |\n| `tau_vs_judge_count.{png,pdf}` | 图表 |\n| `leave_one_out.{png,pdf}` | 图表 |\n\n**核心结果 (Kendall-τ vs Arena, raw_average)**：\n| k (judge count) | τ mean ± std |\n|---|---|\n| 2 | 0.7547 ± 0.0878 |\n| 4 | 0.7786 ± 0.0405 |\n| 6 | 0.8000 ± 0.0301 |\n| 8 | 0.7857 ± 0.0000 |\n| 9 | 0.7857 |\n\n**注意**：只跑了 `raw_average` 一种方法，crossover 分析报 `insufficient data`。脚本只用了 raw_average 做 baseline，没有跑 G-MFRM 等方法（`--methods` 默认值只包含 `raw_average`）。如果需要对比 G-MFRM vs baseline 的 crossover point，需要重新运行并指定 `--methods raw_average mfrm_only sequential joint_gmfrm`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-exp006.md"
+}

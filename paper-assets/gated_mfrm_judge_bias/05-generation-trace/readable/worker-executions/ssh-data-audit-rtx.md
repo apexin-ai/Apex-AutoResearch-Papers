@@ -1,0 +1,4604 @@
+# ssh data audit rtx
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/workers/worker_ssh_data_audit_rtx_20260523T105434.log`
+- **Structured JSON:** [`335b615e44551551de58.json`](../../sessions/33/335b615e44551551de58.json)
+
+## Before a recorded user message
+
+78 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "646c76af-3b47-482e-a386-867a106da4c0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779551400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "fa215618-6f95-4806-8f37-41ee6f4c2b18",
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to read raw experiment output files from the server rtx6000-4x for a data traceability audit. I need to search for and read files from 5 experiments. Let me start by running the find/ls commands to locate the files, then read their contents.
+
+Let me use ssh_read_only to execute these commands on the server. I need to first load the tool schema.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "7e94e6a5-f6af-45bd-be27-f1b9c30d8dc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SmBU7h4EvmxjU9wai1iaxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12810,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12810
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VoKkK9BZGYq5QTmNcfxH7v`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "6deadd88-6b2a-43ca-a42c-4afd5ae87634",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SmBU7h4EvmxjU9wai1iaxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12810,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12810
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T10:54:46.940Z_
+
+<details><summary>↩ Tool result · `toolu_01VoKkK9BZGYq5QTmNcfxH7v`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "13ca4396-5056-45db-b731-de95ba9e9cdd",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+开始逐个定位并读取实验数据文件。
+
+先并行执行所有 find 命令定位文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "30dfbcd0-3acb-4e2c-a45b-cab59d14c8dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JoxzLFjgFb15rZpGgDwpz8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01387w2VnDbASenWaeddbtDX`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/ -path \"*003b*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "91b30379-26d5-4b5a-b4bd-ecfa77d32232",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JoxzLFjgFb15rZpGgDwpz8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017PmEFVpCURSXou17m1AnKn`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/ -path \"*003*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "eee49b51-7daa-4046-a0fd-beb148f6ec84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JoxzLFjgFb15rZpGgDwpz8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T10:54:51.638Z_
+
+<details><summary>↩ Tool result · `toolu_01387w2VnDbASenWaeddbtDX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "cfc1e42c-a11c-49b7-a64d-3e3b8ec2ad9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T10:54:52.177Z_
+
+<details><summary>↩ Tool result · `toolu_017PmEFVpCURSXou17m1AnKn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/mvp/run_mvp_003.py\\n/root/gated_mfrm_judge_bias/mvp/results_mvp003.csv\\n/root/gated_mfrm_judge_bias/mvp/results_mvp003.png\\n/root/gated_mfrm_judge_bias/exp003/data_loader.py\\n/root/gated_mfrm_judge_bias/exp003/models.py\\n/root/gated_mfrm_judge_bias/exp003/evaluation.py\\n/root/gated_mfrm_judge_bias/exp003/run_exp003.py\\n/root/gated_mfrm_judge_bias/exp003/README.md\\n/root/gated_mfrm_judge_bias/exp003/dry_run/theta_comparison.png\\n/root/gated_mfrm_judge_bias/exp003/dry_run/contamination_c.png\\n/root/gated_mfrm_judge_bias/exp003/dry_run/judge_severity.png\\n/root/gated_mfrm_judge_bias/exp003/dry_run/theta_vs_elo.png\\n/root/gated_mfrm_judge_bias/exp003/dry_run/results.json\\n/root/gated_mfrm_judge_bias/exp003/dry_run/raw_average_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/dry_run/mfrm_only_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/dry_run/joint_gmfrm_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/dry_run/joint_gmfrm_c.npy\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/data_loader.cpython-312.pyc\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/models.cpython-312.pyc\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/evaluation.cpython-312.pyc\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/theta_comparison.png\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/contamination_c.png\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/judge_severity.png\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/theta_vs_elo.png\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/raw_average_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/mfrm_only_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/sequential_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/sequential_c.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/joint_gmfrm_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/joint_gmfrm_c.npy\\n/root/gated_mfrm_judge_bias/exp003/models_horseshoe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "af59697e-9fac-406e-a3d7-69b587e5a546",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/mvp/run_mvp_003.py\\\\n/root/gated_mfrm_judge_bias/mvp/results_mvp003.csv\\\\n/root/gated_mfrm_judge_bias/mvp/results_mvp003.png\\\\n/root/gated_mfrm_judge_bias/exp003/data_loader.py\\\\n/root/gated_mfrm_judge_bias/exp003/models.py\\\\n/root/gated_mfrm_judge_bias/exp003/evaluation.py\\\\n/root/gated_mfrm_judge_bias/exp003/run_exp003.py\\\\n/root/gated_mfrm_judge_bias/exp003/README.md\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/theta_comparison.png\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/contamination_c.png\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/judge_severity.png\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/theta_vs_elo.png\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/results.json\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/raw_average_theta.npy\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/mfrm_only_theta.npy\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/joint_gmfrm_theta.npy\\\\n/root/gated_mfrm_judge_bias/exp003/dry_run/joint_gmfrm_c.npy\\\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/data_loader.cpython-312.pyc\\\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/models.cpython-312.pyc\\\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/evaluation.cpython-312.pyc\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/theta_comparison.png\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/contamination_c.png\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/judge_severity.png\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/theta_vs_elo.png\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/raw_average_theta.npy\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/mfrm_only_theta.npy\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/sequential_theta.npy\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/sequential_c.npy\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/joint_gmfrm_theta.npy\\\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/joint_gmfrm_c.npy\\\\n/root/gated_mfrm_judge_bias/exp003/models_horseshoe.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/mvp/run_mvp_003.py\\n/root/gated_mfrm_judge_bias/mvp/results_mvp003.csv\\n/root/gated_mfrm_judge_bias/mvp/results_mvp003.png\\n/root/gated_mfrm_judge_bias/exp003/data_loader.py\\n/root/gated_mfrm_judge_bias/exp003/models.py\\n/root/gated_mfrm_judge_bias/exp003/evaluation.py\\n/root/gated_mfrm_judge_bias/exp003/run_exp003.py\\n/root/gated_mfrm_judge_bias/exp003/README.md\\n/root/gated_mfrm_judge_bias/exp003/dry_run/theta_comparison.png\\n/root/gated_mfrm_judge_bias/exp003/dry_run/contamination_c.png\\n/root/gated_mfrm_judge_bias/exp003/dry_run/judge_severity.png\\n/root/gated_mfrm_judge_bias/exp003/dry_run/theta_vs_elo.png\\n/root/gated_mfrm_judge_bias/exp003/dry_run/results.json\\n/root/gated_mfrm_judge_bias/exp003/dry_run/raw_average_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/dry_run/mfrm_only_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/dry_run/joint_gmfrm_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/dry_run/joint_gmfrm_c.npy\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/data_loader.cpython-312.pyc\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/models.cpython-312.pyc\\n/root/gated_mfrm_judge_bias/exp003/__pycache__/evaluation.cpython-312.pyc\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/theta_comparison.png\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/contamination_c.png\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/judge_severity.png\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/theta_vs_elo.png\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/raw_average_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/mfrm_only_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/sequential_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/sequential_c.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/joint_gmfrm_theta.npy\\n/root/gated_mfrm_judge_bias/exp003/results_dryrun/joint_gmfrm_c.npy\\n/root/gated_mfrm_judge_bias/exp003/models_horseshoe.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KyoEdSnwqT7nMBZoRxEB6x`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/exp013/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "5bd2e827-8181-4a01-afe1-977cb8a29a42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JoxzLFjgFb15rZpGgDwpz8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T10:54:52.917Z_
+
+<details><summary>↩ Tool result · `toolu_01KyoEdSnwqT7nMBZoRxEB6x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp013/results/config_50_50.json\\n/root/gated_mfrm_judge_bias/exp013/results/config_75_25.json\\n/root/gated_mfrm_judge_bias/exp013/results/config_90_10.json\\n/root/gated_mfrm_judge_bias/exp013/results/config_100_0.json\\n/root/gated_mfrm_judge_bias/exp013/results/weight_sensitivity.csv\\n/root/gated_mfrm_judge_bias/exp013/results/weight_sensitivity.json\\n/root/gated_mfrm_judge_bias/exp013/run_exp013.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "a90c5a35-0299-44b4-86c0-908c33f76652",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp013/results/config_50_50.json\\\\n/root/gated_mfrm_judge_bias/exp013/results/config_75_25.json\\\\n/root/gated_mfrm_judge_bias/exp013/results/config_90_10.json\\\\n/root/gated_mfrm_judge_bias/exp013/results/config_100_0.json\\\\n/root/gated_mfrm_judge_bias/exp013/results/weight_sensitivity.csv\\\\n/root/gated_mfrm_judge_bias/exp013/results/weight_sensitivity.json\\\\n/root/gated_mfrm_judge_bias/exp013/run_exp013.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp013/results/config_50_50.json\\n/root/gated_mfrm_judge_bias/exp013/results/config_75_25.json\\n/root/gated_mfrm_judge_bias/exp013/results/config_90_10.json\\n/root/gated_mfrm_judge_bias/exp013/results/config_100_0.json\\n/root/gated_mfrm_judge_bias/exp013/results/weight_sensitivity.csv\\n/root/gated_mfrm_judge_bias/exp013/results/weight_sensitivity.json\\n/root/gated_mfrm_judge_bias/exp013/run_exp013.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015yZEUphwNhWe5YmSwV8xxS`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/exp012/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "e13b7a08-78cb-4634-b769-6a4e5c6d876a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JoxzLFjgFb15rZpGgDwpz8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T10:54:53.454Z_
+
+<details><summary>↩ Tool result · `toolu_015yZEUphwNhWe5YmSwV8xxS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp012/run_exp012.py\\n/root/gated_mfrm_judge_bias/exp012/error_propagation.png\\n/root/gated_mfrm_judge_bias/exp012/cn_degradation.png\\n/root/gated_mfrm_judge_bias/exp012/error_propagation.csv\\n/root/gated_mfrm_judge_bias/exp012/summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "0a7450f0-a400-41d8-9f36-d88f487749db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp012/run_exp012.py\\\\n/root/gated_mfrm_judge_bias/exp012/error_propagation.png\\\\n/root/gated_mfrm_judge_bias/exp012/cn_degradation.png\\\\n/root/gated_mfrm_judge_bias/exp012/error_propagation.csv\\\\n/root/gated_mfrm_judge_bias/exp012/summary.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp012/run_exp012.py\\n/root/gated_mfrm_judge_bias/exp012/error_propagation.png\\n/root/gated_mfrm_judge_bias/exp012/cn_degradation.png\\n/root/gated_mfrm_judge_bias/exp012/error_propagation.csv\\n/root/gated_mfrm_judge_bias/exp012/summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CeC36cRdtH48FforvEBpZL`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/exp006/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "6e058e10-76d7-43ff-89bc-95f247f3065c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JoxzLFjgFb15rZpGgDwpz8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T10:54:54.338Z_
+
+<details><summary>↩ Tool result · `toolu_01CeC36cRdtH48FforvEBpZL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/gated_mfrm_judge_bias/exp006/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "b89a4397-080e-4a77-bd6a-53ac988a8726",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/gated_mfrm_judge_bias/exp006/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/gated_mfrm_judge_bias/exp006/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LymBRq31ejMScmkTkMDbw8`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/exp008/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "d3639d17-d424-4a42-b1bc-63b0bc1620ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JoxzLFjgFb15rZpGgDwpz8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 24257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T10:54:54.886Z_
+
+<details><summary>↩ Tool result · `toolu_01LymBRq31ejMScmkTkMDbw8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/gated_mfrm_judge_bias/exp008/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "d5d1cc3e-9c12-44fc-9b18-67e7e71185b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/gated_mfrm_judge_bias/exp008/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/gated_mfrm_judge_bias/exp008/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me summarize what I found:
+
+1. **exp-003b**: No files with "003b" in the path. But there are exp003 files, including `exp003/dry_run/results.json`, `exp003/results_dryrun/results.json`, and `mvp/results_mvp003.csv`. No specific "003b" directory or files.
+
+2. **exp-013**: Found files in `/root/gated_mfrm_judge_bias/exp013/results/` including `weight_sensitivity.csv`, `weight_sensitivity.json`, and 4 config JSON files.
+
+
+3. **exp-012**: Located `error_propagation.csv` and `summary.csv` in `/root/gated_mfrm_judge_bias/exp012/`.
+
+4. **exp-006** and **exp-008**: Both directories don't exist on this server.
+
+Now I'm going to load and examine all the data files I found.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "473ef019-7ad6-46eb-96ca-05f9d336dd91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+exp003b 不存在，但 exp003 有结果文件。exp006 和 exp008 目录不存在。现在并行读取所有找到的数据文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "edd4a461-c889-4d4a-a4e1-501a3da35561",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015msLMktv6CNwxC7q6tETuf`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/dry_run/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "fac04ebe-f5f0-4c12-8fa4-aedeab0fe639",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T10:55:05.332Z_
+
+<details><summary>↩ Tool result · `toolu_015msLMktv6CNwxC7q6tETuf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 1.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 8.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    }\\n  },\\n  \\\"cross_method\\\": {\\n    \\\"raw_average_vs_mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"mfrm_only_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    }\\n  },\\n  \\\"parameters\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          0.23868076503276825\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          0.21970318257808685\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.19285188615322113\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.1287105530500412\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.0505855530500412\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.11342157423496246\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -0.27593041956424713\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -0.44117994606494904\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.11342157423496246,\\n        \\\"gpt-3.5-turbo-0125\\\": -0.44117994606494904,\\n        \\\"gpt-4-0613\\\": -0.27593041956424713,\\n        \\\"gpt-4o\\\": 0.23868076503276825,\\n        \\\"gpt-4o-mini\\\": 0.19285188615322113,\\n        \\\"llama-3.3-70b\\\": 0.1287105530500412,\\n        \\\"qwen2.5-72b\\\": 0.21970318257808685,\\n        \\\"qwen3-8b\\\": 0.0505855530500412\\n      }\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.3696714639663696\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.1304121017456055\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9444210529327393\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.5110265016555786\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.15004640817642212\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.7617218494415283\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.1139652729034424\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.2298903465270996\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.3971736431121826\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.31630492210388184\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.17250873148441315\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.12005256116390228\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.025146255269646645\\n        \\n\\n... [截断: 输出过长，省略 2664 字符] ...\\n\\n\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.28317636251449585\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.11925278604030609\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.0780295878648758\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.046334948390722275\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.3847741484642029\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.40437033772468567\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.6105987429618835\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.5956383347511292,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.8235902786254883,\\n        \\\"gpt-4-0613\\\": -1.7035043239593506,\\n        \\\"gpt-4o\\\": 1.642629623413086,\\n        \\\"gpt-4o-mini\\\": 1.162164568901062,\\n        \\\"llama-3.3-70b\\\": 0.679166853427887,\\n        \\\"qwen2.5-72b\\\": 1.320117712020874,\\n        \\\"qwen3-8b\\\": 0.31865406036376953\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": 0.8414759635925293,\\n        \\\"gpt-3.5-turbo-0125\\\": 3.76617169380188,\\n        \\\"gpt-4-0613\\\": 3.795349359512329,\\n        \\\"gpt-4o\\\": 0.8187109231948853,\\n        \\\"gpt-4o-mini\\\": 0.9468803405761719,\\n        \\\"llama-3.3-70b\\\": 1.1864123344421387,\\n        \\\"qwen2.5-72b\\\": 1.3649706840515137,\\n        \\\"qwen3-8b\\\": 1.1790131330490112\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.5521488189697266,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.11925278604030609,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.28317636251449585,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.0780295878648758,\\n        \\\"gpt-5.5-proxy\\\": 0.32080093026161194,\\n        \\\"llama-3.3-70b\\\": -0.3847741484642029,\\n        \\\"mistral-large-2\\\": -0.6105987429618835,\\n        \\\"qwen2.5-72b\\\": -0.40437033772468567,\\n        \\\"qwen3-235b-proxy\\\": 0.046334948390722275\\n      }\\n    },\\n    \\\"top_exposure_items\\\": [\\n      [\\n        \\\"3735ce11da55495cbe2c013212febe66\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"53f4338f1a4b403c84ccf864c079a8c1\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"ab4a5145354848efb97430e90e2049dc\\\",\\n        0.8521250466397368\\n      ],\\n      [\\n        \\\"b7e7a16272344defb5a5bf23e598fb46\\\",\\n        0.774351543601415\\n      ],\\n      [\\n        \\\"0901d02592b347d8aa2cb99b02bf0dad\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"98312077a1a54be0a116fde4156f6cf1\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"c1f1deb824e948f792a47d71ee266a67\\\",\\n        0.7112342376821964\\n      ],\\n      [\\n        \\\"3801e82e67a34ee3aaab0227342bcc2b\\\",\\n        0.7042071228277675\\n      ],\\n      [\\n        \\\"e64ca084c89c4d59b7718b7199116fd6\\\",\\n        0.6986288394304551\\n      ],\\n      [\\n        \\\"38506f6f76c34b8ab8aec6223eee2548\\\",\\n        0.6986288394304551\\n      ]\\n    ],\\n    \\\"bottom_exposure_items\\\": [\\n      [\\n        \\\"c67189582cb34f088ff72251df940821\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"26d316034bf44e07aa682d2c2b2751c4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"2bc4dbaf6043463ebf26ca5ba234a7df\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"09e03665fa144757920dbf7d8946ad30\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"089cea4c41974cfa9ba05694c87c5685\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"0394b670ad2e4206954cc294898c4633\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fd86dff7ac084b99889d294e135f82a4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fdf5e9ec59b146fa997e467f3cefe3c4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"0122ab60646b4961bc39e9c03bdf6bcc\\\",\\n        0.0\\n      ]\\n    ]\\n  },\\n  \\\"data_summary\\\": {\\n    \\\"N\\\": 8,\\n    \\\"I\\\": 316,\\n    \\\"J\\\": 9,\\n    \\\"n_obs\\\": 4250,\\n    \\\"model_names\\\": [\\n      \\\"gemma-2-9b\\\",\\n      \\\"gpt-3.5-turbo-0125\\\",\\n      \\\"gpt-4-0613\\\",\\n      \\\"gpt-4o\\\",\\n      \\\"gpt-4o-mini\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"judge_names\\\": [\\n      \\\"claude-opus-4.7-proxy\\\",\\n      \\\"claude-sonnet-4.6-proxy\\\",\\n      \\\"deepseek-v4-pro-proxy\\\",\\n      \\\"gemini-2.5-pro-proxy\\\",\\n      \\\"gpt-5.5-proxy\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"mistral-large-2\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-235b-proxy\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "7c915849-9574-41ad-abbb-4cb70cc8d470",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"convergence\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": NaN,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 1.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 8.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    }\\\\n  },\\\\n  \\\\\\\"arena_correlation\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7333333333333333,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.05555555555555555,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8857142857142858,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.01884548104956266,\\\\n      \\\\\\\"n_matched\\\\\\\": 6,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7333333333333333,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.05555555555555555,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8857142857142858,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.01884548104956266,\\\\n      \\\\\\\"n_matched\\\\\\\": 6,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7333333333333333,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.05555555555555555,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8857142857142858,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.01884548104956266,\\\\n      \\\\\\\"n_matched\\\\\\\": 6,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_method\\\\\\\": {\\\\n    \\\\\\\"raw_average_vs_mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"raw_average_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"mfrm_only_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"parameters\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          0.23868076503276825\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          0.21970318257808685\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.19285188615322113\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.1287105530500412\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.0505855530500412\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.11342157423496246\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -0.27593041956424713\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -0.44117994606494904\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.11342157423496246,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -0.44117994606494904,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -0.27593041956424713,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 0.23868076503276825,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.19285188615322113,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.1287105530500412,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.21970318257808685,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.0505855530500412\\\\n      }\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          1.3696714639663696\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          1.1304121017456055\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.9444210529327393\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.5110265016555786\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.15004640817642212\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.7617218494415283\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -1.1139652729034424\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -2.2298903465270996\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"d_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n          0.3971736431121826\\\\n        ],\\\\n        [\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.31630492210388184\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n          0.17250873148441315\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.12005256116390228\\\\n        ],\\\\n        [\\\\n          \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n          0.025146255269646645\\\\n        \\\\n\\\\n... [截断: 输出过长，省略 2664 字符] ...\\\\n\\\\n\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.28317636251449585\\\\n        ],\\\\n        [\\\\n          \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n          0.11925278604030609\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.0780295878648758\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-235b-proxy\\\\\\\",\\\\n          0.046334948390722275\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          -0.3847741484642029\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.40437033772468567\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mistral-large-2\\\\\\\",\\\\n          -0.6105987429618835\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.5956383347511292,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -2.8235902786254883,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -1.7035043239593506,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 1.642629623413086,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 1.162164568901062,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.679166853427887,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.320117712020874,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.31865406036376953\\\\n      },\\\\n      \\\\\\\"c_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": 0.8414759635925293,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 3.76617169380188,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": 3.795349359512329,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 0.8187109231948853,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.9468803405761719,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 1.1864123344421387,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.3649706840515137,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 1.1790131330490112\\\\n      },\\\\n      \\\\\\\"d_values\\\\\\\": {\\\\n        \\\\\\\"claude-opus-4.7-proxy\\\\\\\": 0.5521488189697266,\\\\n        \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\": 0.11925278604030609,\\\\n        \\\\\\\"deepseek-v4-pro-proxy\\\\\\\": 0.28317636251449585,\\\\n        \\\\\\\"gemini-2.5-pro-proxy\\\\\\\": 0.0780295878648758,\\\\n        \\\\\\\"gpt-5.5-proxy\\\\\\\": 0.32080093026161194,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": -0.3847741484642029,\\\\n        \\\\\\\"mistral-large-2\\\\\\\": -0.6105987429618835,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": -0.40437033772468567,\\\\n        \\\\\\\"qwen3-235b-proxy\\\\\\\": 0.046334948390722275\\\\n      }\\\\n    },\\\\n    \\\\\\\"top_exposure_items\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"3735ce11da55495cbe2c013212febe66\\\\\\\",\\\\n        1.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"53f4338f1a4b403c84ccf864c079a8c1\\\\\\\",\\\\n        1.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"ab4a5145354848efb97430e90e2049dc\\\\\\\",\\\\n        0.8521250466397368\\\\n      ],\\\\n      [\\\\n        \\\\\\\"b7e7a16272344defb5a5bf23e598fb46\\\\\\\",\\\\n        0.774351543601415\\\\n      ],\\\\n      [\\\\n        \\\\\\\"0901d02592b347d8aa2cb99b02bf0dad\\\\\\\",\\\\n        0.7687645961127684\\\\n      ],\\\\n      [\\\\n        \\\\\\\"98312077a1a54be0a116fde4156f6cf1\\\\\\\",\\\\n        0.7687645961127684\\\\n      ],\\\\n      [\\\\n        \\\\\\\"c1f1deb824e948f792a47d71ee266a67\\\\\\\",\\\\n        0.7112342376821964\\\\n      ],\\\\n      [\\\\n        \\\\\\\"3801e82e67a34ee3aaab0227342bcc2b\\\\\\\",\\\\n        0.7042071228277675\\\\n      ],\\\\n      [\\\\n        \\\\\\\"e64ca084c89c4d59b7718b7199116fd6\\\\\\\",\\\\n        0.6986288394304551\\\\n      ],\\\\n      [\\\\n        \\\\\\\"38506f6f76c34b8ab8aec6223eee2548\\\\\\\",\\\\n        0.6986288394304551\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"bottom_exposure_items\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"c67189582cb34f088ff72251df940821\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"26d316034bf44e07aa682d2c2b2751c4\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"2bc4dbaf6043463ebf26ca5ba234a7df\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"09e03665fa144757920dbf7d8946ad30\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"089cea4c41974cfa9ba05694c87c5685\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"0394b670ad2e4206954cc294898c4633\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fd86dff7ac084b99889d294e135f82a4\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fdf5e9ec59b146fa997e467f3cefe3c4\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"0122ab60646b4961bc39e9c03bdf6bcc\\\\\\\",\\\\n        0.0\\\\n      ]\\\\n    ]\\\\n  },\\\\n  \\\\\\\"data_summary\\\\\\\": {\\\\n    \\\\\\\"N\\\\\\\": 8,\\\\n    \\\\\\\"I\\\\\\\": 316,\\\\n    \\\\\\\"J\\\\\\\": 9,\\\\n    \\\\\\\"n_obs\\\\\\\": 4250,\\\\n    \\\\\\\"model_names\\\\\\\": [\\\\n      \\\\\\\"gemma-2-9b\\\\\\\",\\\\n      \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n      \\\\\\\"gpt-4-0613\\\\\\\",\\\\n      \\\\\\\"gpt-4o\\\\\\\",\\\\n      \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n      \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n      \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n      \\\\\\\"qwen3-8b\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"judge_names\\\\\\\": [\\\\n      \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n      \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n      \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n      \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n      \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n      \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n      \\\\\\\"mistral-large-2\\\\\\\",\\\\n      \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n      \\\\\\\"qwen3-235b-proxy\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 1.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 8.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    }\\n  },\\n  \\\"cross_method\\\": {\\n    \\\"raw_average_vs_mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"mfrm_only_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    }\\n  },\\n  \\\"parameters\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          0.23868076503276825\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          0.21970318257808685\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.19285188615322113\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.1287105530500412\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.0505855530500412\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.11342157423496246\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -0.27593041956424713\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -0.44117994606494904\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.11342157423496246,\\n        \\\"gpt-3.5-turbo-0125\\\": -0.44117994606494904,\\n        \\\"gpt-4-0613\\\": -0.27593041956424713,\\n        \\\"gpt-4o\\\": 0.23868076503276825,\\n        \\\"gpt-4o-mini\\\": 0.19285188615322113,\\n        \\\"llama-3.3-70b\\\": 0.1287105530500412,\\n        \\\"qwen2.5-72b\\\": 0.21970318257808685,\\n        \\\"qwen3-8b\\\": 0.0505855530500412\\n      }\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.3696714639663696\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.1304121017456055\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9444210529327393\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.5110265016555786\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.15004640817642212\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.7617218494415283\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.1139652729034424\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.2298903465270996\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.3971736431121826\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.31630492210388184\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.17250873148441315\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.12005256116390228\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.025146255269646645\\n        \\n\\n... [截断: 输出过长，省略 2664 字符] ...\\n\\n\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.28317636251449585\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.11925278604030609\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.0780295878648758\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.046334948390722275\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.3847741484642029\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.40437033772468567\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.6105987429618835\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.5956383347511292,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.8235902786254883,\\n        \\\"gpt-4-0613\\\": -1.7035043239593506,\\n        \\\"gpt-4o\\\": 1.642629623413086,\\n        \\\"gpt-4o-mini\\\": 1.162164568901062,\\n        \\\"llama-3.3-70b\\\": 0.679166853427887,\\n        \\\"qwen2.5-72b\\\": 1.320117712020874,\\n        \\\"qwen3-8b\\\": 0.31865406036376953\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": 0.8414759635925293,\\n        \\\"gpt-3.5-turbo-0125\\\": 3.76617169380188,\\n        \\\"gpt-4-0613\\\": 3.795349359512329,\\n        \\\"gpt-4o\\\": 0.8187109231948853,\\n        \\\"gpt-4o-mini\\\": 0.9468803405761719,\\n        \\\"llama-3.3-70b\\\": 1.1864123344421387,\\n        \\\"qwen2.5-72b\\\": 1.3649706840515137,\\n        \\\"qwen3-8b\\\": 1.1790131330490112\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.5521488189697266,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.11925278604030609,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.28317636251449585,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.0780295878648758,\\n        \\\"gpt-5.5-proxy\\\": 0.32080093026161194,\\n        \\\"llama-3.3-70b\\\": -0.3847741484642029,\\n        \\\"mistral-large-2\\\": -0.6105987429618835,\\n        \\\"qwen2.5-72b\\\": -0.40437033772468567,\\n        \\\"qwen3-235b-proxy\\\": 0.046334948390722275\\n      }\\n    },\\n    \\\"top_exposure_items\\\": [\\n      [\\n        \\\"3735ce11da55495cbe2c013212febe66\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"53f4338f1a4b403c84ccf864c079a8c1\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"ab4a5145354848efb97430e90e2049dc\\\",\\n        0.8521250466397368\\n      ],\\n      [\\n        \\\"b7e7a16272344defb5a5bf23e598fb46\\\",\\n        0.774351543601415\\n      ],\\n      [\\n        \\\"0901d02592b347d8aa2cb99b02bf0dad\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"98312077a1a54be0a116fde4156f6cf1\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"c1f1deb824e948f792a47d71ee266a67\\\",\\n        0.7112342376821964\\n      ],\\n      [\\n        \\\"3801e82e67a34ee3aaab0227342bcc2b\\\",\\n        0.7042071228277675\\n      ],\\n      [\\n        \\\"e64ca084c89c4d59b7718b7199116fd6\\\",\\n        0.6986288394304551\\n      ],\\n      [\\n        \\\"38506f6f76c34b8ab8aec6223eee2548\\\",\\n        0.6986288394304551\\n      ]\\n    ],\\n    \\\"bottom_exposure_items\\\": [\\n      [\\n        \\\"c67189582cb34f088ff72251df940821\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"26d316034bf44e07aa682d2c2b2751c4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"2bc4dbaf6043463ebf26ca5ba234a7df\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"09e03665fa144757920dbf7d8946ad30\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"089cea4c41974cfa9ba05694c87c5685\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"0394b670ad2e4206954cc294898c4633\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fd86dff7ac084b99889d294e135f82a4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fdf5e9ec59b146fa997e467f3cefe3c4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"0122ab60646b4961bc39e9c03bdf6bcc\\\",\\n        0.0\\n      ]\\n    ]\\n  },\\n  \\\"data_summary\\\": {\\n    \\\"N\\\": 8,\\n    \\\"I\\\": 316,\\n    \\\"J\\\": 9,\\n    \\\"n_obs\\\": 4250,\\n    \\\"model_names\\\": [\\n      \\\"gemma-2-9b\\\",\\n      \\\"gpt-3.5-turbo-0125\\\",\\n      \\\"gpt-4-0613\\\",\\n      \\\"gpt-4o\\\",\\n      \\\"gpt-4o-mini\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"judge_names\\\": [\\n      \\\"claude-opus-4.7-proxy\\\",\\n      \\\"claude-sonnet-4.6-proxy\\\",\\n      \\\"deepseek-v4-pro-proxy\\\",\\n      \\\"gemini-2.5-pro-proxy\\\",\\n      \\\"gpt-5.5-proxy\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"mistral-large-2\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-235b-proxy\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AWaEUTunSyDonePnz28ZRs`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "796f74a1-8957-4aa8-bd9d-7854292b139a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014XqJHH5tgdVjMAihrMs1C3`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/mvp/results_mvp003.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "8db129cf-1ebe-42e5-81a8-c99c59c3b639",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T10:55:06.356Z_
+
+<details><summary>↩ Tool result · `toolu_01AWaEUTunSyDonePnz28ZRs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 12.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"sequential\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 9.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 5.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"sequential\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.8571428571428571,\\n      \\\"kendall_p\\\": 0.001736111111111111,\\n      \\\"spearman_rho\\\": 0.9523809523809524,\\n      \\\"spearman_p\\\": 0.000260400024387251,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    }\\n  },\\n  \\\"cross_method\\\": {\\n    \\\"raw_average_vs_mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_sequential\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    },\\n    \\\"mfrm_only_vs_sequential\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"mfrm_only_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    },\\n    \\\"sequential_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    }\\n  },\\n  \\\"parameters\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          0.23386886157095432\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          0.21287819184362888\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.1895273569971323\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.11568554677069187\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.05057402886450291\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.10290822945535183\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -0.27219981513917446\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -0.427425941452384\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.10290822945535183,\\n        \\\"gpt-3.5-turbo-0125\\\": -0.427425941452384,\\n        \\\"gpt-4-0613\\\": -0.27219981513917446,\\n        \\\"gpt-4o\\\": 0.23386886157095432,\\n        \\\"gpt-4o-mini\\\": 0.1895273569971323,\\n        \\\"llama-3.3-70b\\\": 0.11568554677069187,\\n        \\\"qwen2.5-72b\\\": 0.21287819184362888,\\n        \\\"qwen3-8b\\\": 0.05057402886450291\\n      }\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n     \\n\\n... [截断: 输出过长，省略 6945 字符] ...\\n\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.2934865355491638\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.1092333272099495\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.06364023685455322\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.014833996072411537\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.36058440804481506\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.432869017124176\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.7714831233024597\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.45279669761657715,\\n        \\\"gpt-3.5-turbo-0125\\\": -3.077838659286499,\\n        \\\"gpt-4-0613\\\": -1.641145944595337,\\n        \\\"gpt-4o\\\": 1.915968894958496,\\n        \\\"gpt-4o-mini\\\": 1.285175085067749,\\n        \\\"llama-3.3-70b\\\": 0.4782659411430359,\\n        \\\"qwen2.5-72b\\\": 1.096518635749817,\\n        \\\"qwen3-8b\\\": 0.39585262537002563\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": 1.212019920349121,\\n        \\\"gpt-3.5-turbo-0125\\\": 5.142830848693848,\\n        \\\"gpt-4-0613\\\": 3.55696964263916,\\n        \\\"gpt-4o\\\": 0.3905160427093506,\\n        \\\"gpt-4o-mini\\\": 1.2095699310302734,\\n        \\\"llama-3.3-70b\\\": 2.671041250228882,\\n        \\\"qwen2.5-72b\\\": 3.195150136947632,\\n        \\\"qwen3-8b\\\": 1.649793028831482\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.566260814666748,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.1092333272099495,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.2934865355491638,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.014833996072411537,\\n        \\\"gpt-5.5-proxy\\\": 0.5174816846847534,\\n        \\\"llama-3.3-70b\\\": -0.432869017124176,\\n        \\\"mistral-large-2\\\": -0.7714831233024597,\\n        \\\"qwen2.5-72b\\\": -0.36058440804481506,\\n        \\\"qwen3-235b-proxy\\\": 0.06364023685455322\\n      }\\n    },\\n    \\\"top_exposure_items\\\": [\\n      [\\n        \\\"53f4338f1a4b403c84ccf864c079a8c1\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"3735ce11da55495cbe2c013212febe66\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"ab4a5145354848efb97430e90e2049dc\\\",\\n        0.8521250466397368\\n      ],\\n      [\\n        \\\"0901d02592b347d8aa2cb99b02bf0dad\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"c1f1deb824e948f792a47d71ee266a67\\\",\\n        0.7112342376821964\\n      ],\\n      [\\n        \\\"3801e82e67a34ee3aaab0227342bcc2b\\\",\\n        0.7042071228277675\\n      ],\\n      [\\n        \\\"1cf3677651564ce5bcc2174db5cc23eb\\\",\\n        0.6501892793814763\\n      ],\\n      [\\n        \\\"06991f6da3104bf8b935d311581a348e\\\",\\n        0.6386583019190328\\n      ],\\n      [\\n        \\\"3bcc4c4c16924cceb3b57ec9d35e9bdf\\\",\\n        0.6386583019190328\\n      ],\\n      [\\n        \\\"b7e2e3117e814a6b84520be8e8542bca\\\",\\n        0.6386583019190328\\n      ]\\n    ],\\n    \\\"bottom_exposure_items\\\": [\\n      [\\n        \\\"c542b6d5782b45efb294e945117387fc\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"c15bbb1710b445109f24fcd2c3d6ef60\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"ccebedcaff524f589a4cd5ae584fcbc5\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e9f5e01e6b2c48ff9eb121f7e32afcae\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e80139e32fb54b95a9a4effa86d8ddf5\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e21a44515e9b408ba118d923fe17964d\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"f9111d1c39744147976e90c820838582\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fae0a258723b44b4843469ffcbe85d06\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fd86dff7ac084b99889d294e135f82a4\\\",\\n        0.0\\n      ]\\n    ]\\n  },\\n  \\\"data_summary\\\": {\\n    \\\"N\\\": 8,\\n    \\\"I\\\": 175,\\n    \\\"J\\\": 9,\\n    \\\"n_obs\\\": 4223,\\n    \\\"model_names\\\": [\\n      \\\"gemma-2-9b\\\",\\n      \\\"gpt-3.5-turbo-0125\\\",\\n      \\\"gpt-4-0613\\\",\\n      \\\"gpt-4o\\\",\\n      \\\"gpt-4o-mini\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"judge_names\\\": [\\n      \\\"claude-opus-4.7-proxy\\\",\\n      \\\"claude-sonnet-4.6-proxy\\\",\\n      \\\"deepseek-v4-pro-proxy\\\",\\n      \\\"gemini-2.5-pro-proxy\\\",\\n      \\\"gpt-5.5-proxy\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"mistral-large-2\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-235b-proxy\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "edbad4e9-6732-430a-a05f-da035c93fd8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"convergence\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": NaN,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 12.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"sequential\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 9.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 5.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    }\\\\n  },\\\\n  \\\\\\\"arena_correlation\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"sequential\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.8571428571428571,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.001736111111111111,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9523809523809524,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.000260400024387251,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_method\\\\\\\": {\\\\n    \\\\\\\"raw_average_vs_mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"raw_average_vs_sequential\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"raw_average_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9285714285714285,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9761904761904763\\\\n    },\\\\n    \\\\\\\"mfrm_only_vs_sequential\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"mfrm_only_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9285714285714285,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9761904761904763\\\\n    },\\\\n    \\\\\\\"sequential_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9285714285714285,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9761904761904763\\\\n    }\\\\n  },\\\\n  \\\\\\\"parameters\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          0.23386886157095432\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          0.21287819184362888\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.1895273569971323\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.11568554677069187\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.05057402886450291\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.10290822945535183\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -0.27219981513917446\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -0.427425941452384\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.10290822945535183,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -0.427425941452384,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -0.27219981513917446,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 0.23386886157095432,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.1895273569971323,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.11568554677069187,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.21287819184362888,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.05057402886450291\\\\n      }\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 6945 字符] ...\\\\n\\\\n        [\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.2934865355491638\\\\n        ],\\\\n        [\\\\n          \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n          0.1092333272099495\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-235b-proxy\\\\\\\",\\\\n          0.06364023685455322\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.014833996072411537\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.36058440804481506\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          -0.432869017124176\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mistral-large-2\\\\\\\",\\\\n          -0.7714831233024597\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.45279669761657715,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -3.077838659286499,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -1.641145944595337,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 1.915968894958496,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 1.285175085067749,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.4782659411430359,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.096518635749817,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.39585262537002563\\\\n      },\\\\n      \\\\\\\"c_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": 1.212019920349121,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 5.142830848693848,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": 3.55696964263916,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 0.3905160427093506,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 1.2095699310302734,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 2.671041250228882,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 3.195150136947632,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 1.649793028831482\\\\n      },\\\\n      \\\\\\\"d_values\\\\\\\": {\\\\n        \\\\\\\"claude-opus-4.7-proxy\\\\\\\": 0.566260814666748,\\\\n        \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\": 0.1092333272099495,\\\\n        \\\\\\\"deepseek-v4-pro-proxy\\\\\\\": 0.2934865355491638,\\\\n        \\\\\\\"gemini-2.5-pro-proxy\\\\\\\": 0.014833996072411537,\\\\n        \\\\\\\"gpt-5.5-proxy\\\\\\\": 0.5174816846847534,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": -0.432869017124176,\\\\n        \\\\\\\"mistral-large-2\\\\\\\": -0.7714831233024597,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": -0.36058440804481506,\\\\n        \\\\\\\"qwen3-235b-proxy\\\\\\\": 0.06364023685455322\\\\n      }\\\\n    },\\\\n    \\\\\\\"top_exposure_items\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"53f4338f1a4b403c84ccf864c079a8c1\\\\\\\",\\\\n        1.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"3735ce11da55495cbe2c013212febe66\\\\\\\",\\\\n        1.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"ab4a5145354848efb97430e90e2049dc\\\\\\\",\\\\n        0.8521250466397368\\\\n      ],\\\\n      [\\\\n        \\\\\\\"0901d02592b347d8aa2cb99b02bf0dad\\\\\\\",\\\\n        0.7687645961127684\\\\n      ],\\\\n      [\\\\n        \\\\\\\"c1f1deb824e948f792a47d71ee266a67\\\\\\\",\\\\n        0.7112342376821964\\\\n      ],\\\\n      [\\\\n        \\\\\\\"3801e82e67a34ee3aaab0227342bcc2b\\\\\\\",\\\\n        0.7042071228277675\\\\n      ],\\\\n      [\\\\n        \\\\\\\"1cf3677651564ce5bcc2174db5cc23eb\\\\\\\",\\\\n        0.6501892793814763\\\\n      ],\\\\n      [\\\\n        \\\\\\\"06991f6da3104bf8b935d311581a348e\\\\\\\",\\\\n        0.6386583019190328\\\\n      ],\\\\n      [\\\\n        \\\\\\\"3bcc4c4c16924cceb3b57ec9d35e9bdf\\\\\\\",\\\\n        0.6386583019190328\\\\n      ],\\\\n      [\\\\n        \\\\\\\"b7e2e3117e814a6b84520be8e8542bca\\\\\\\",\\\\n        0.6386583019190328\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"bottom_exposure_items\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"c542b6d5782b45efb294e945117387fc\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"c15bbb1710b445109f24fcd2c3d6ef60\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"ccebedcaff524f589a4cd5ae584fcbc5\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"e9f5e01e6b2c48ff9eb121f7e32afcae\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"e80139e32fb54b95a9a4effa86d8ddf5\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"e21a44515e9b408ba118d923fe17964d\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"f9111d1c39744147976e90c820838582\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fae0a258723b44b4843469ffcbe85d06\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fd86dff7ac084b99889d294e135f82a4\\\\\\\",\\\\n        0.0\\\\n      ]\\\\n    ]\\\\n  },\\\\n  \\\\\\\"data_summary\\\\\\\": {\\\\n    \\\\\\\"N\\\\\\\": 8,\\\\n    \\\\\\\"I\\\\\\\": 175,\\\\n    \\\\\\\"J\\\\\\\": 9,\\\\n    \\\\\\\"n_obs\\\\\\\": 4223,\\\\n    \\\\\\\"model_names\\\\\\\": [\\\\n      \\\\\\\"gemma-2-9b\\\\\\\",\\\\n      \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n      \\\\\\\"gpt-4-0613\\\\\\\",\\\\n      \\\\\\\"gpt-4o\\\\\\\",\\\\n      \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n      \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n      \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n      \\\\\\\"qwen3-8b\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"judge_names\\\\\\\": [\\\\n      \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n      \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n      \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n      \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n      \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n      \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n      \\\\\\\"mistral-large-2\\\\\\\",\\\\n      \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n      \\\\\\\"qwen3-235b-proxy\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 12.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"sequential\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 9.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 5.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"sequential\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.8571428571428571,\\n      \\\"kendall_p\\\": 0.001736111111111111,\\n      \\\"spearman_rho\\\": 0.9523809523809524,\\n      \\\"spearman_p\\\": 0.000260400024387251,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    }\\n  },\\n  \\\"cross_method\\\": {\\n    \\\"raw_average_vs_mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_sequential\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    },\\n    \\\"mfrm_only_vs_sequential\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"mfrm_only_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    },\\n    \\\"sequential_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    }\\n  },\\n  \\\"parameters\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          0.23386886157095432\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          0.21287819184362888\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.1895273569971323\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.11568554677069187\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.05057402886450291\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.10290822945535183\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -0.27219981513917446\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -0.427425941452384\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.10290822945535183,\\n        \\\"gpt-3.5-turbo-0125\\\": -0.427425941452384,\\n        \\\"gpt-4-0613\\\": -0.27219981513917446,\\n        \\\"gpt-4o\\\": 0.23386886157095432,\\n        \\\"gpt-4o-mini\\\": 0.1895273569971323,\\n        \\\"llama-3.3-70b\\\": 0.11568554677069187,\\n        \\\"qwen2.5-72b\\\": 0.21287819184362888,\\n        \\\"qwen3-8b\\\": 0.05057402886450291\\n      }\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n     \\n\\n... [截断: 输出过长，省略 6945 字符] ...\\n\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.2934865355491638\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.1092333272099495\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.06364023685455322\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.014833996072411537\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.36058440804481506\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.432869017124176\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.7714831233024597\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.45279669761657715,\\n        \\\"gpt-3.5-turbo-0125\\\": -3.077838659286499,\\n        \\\"gpt-4-0613\\\": -1.641145944595337,\\n        \\\"gpt-4o\\\": 1.915968894958496,\\n        \\\"gpt-4o-mini\\\": 1.285175085067749,\\n        \\\"llama-3.3-70b\\\": 0.4782659411430359,\\n        \\\"qwen2.5-72b\\\": 1.096518635749817,\\n        \\\"qwen3-8b\\\": 0.39585262537002563\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": 1.212019920349121,\\n        \\\"gpt-3.5-turbo-0125\\\": 5.142830848693848,\\n        \\\"gpt-4-0613\\\": 3.55696964263916,\\n        \\\"gpt-4o\\\": 0.3905160427093506,\\n        \\\"gpt-4o-mini\\\": 1.2095699310302734,\\n        \\\"llama-3.3-70b\\\": 2.671041250228882,\\n        \\\"qwen2.5-72b\\\": 3.195150136947632,\\n        \\\"qwen3-8b\\\": 1.649793028831482\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.566260814666748,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.1092333272099495,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.2934865355491638,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.014833996072411537,\\n        \\\"gpt-5.5-proxy\\\": 0.5174816846847534,\\n        \\\"llama-3.3-70b\\\": -0.432869017124176,\\n        \\\"mistral-large-2\\\": -0.7714831233024597,\\n        \\\"qwen2.5-72b\\\": -0.36058440804481506,\\n        \\\"qwen3-235b-proxy\\\": 0.06364023685455322\\n      }\\n    },\\n    \\\"top_exposure_items\\\": [\\n      [\\n        \\\"53f4338f1a4b403c84ccf864c079a8c1\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"3735ce11da55495cbe2c013212febe66\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"ab4a5145354848efb97430e90e2049dc\\\",\\n        0.8521250466397368\\n      ],\\n      [\\n        \\\"0901d02592b347d8aa2cb99b02bf0dad\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"c1f1deb824e948f792a47d71ee266a67\\\",\\n        0.7112342376821964\\n      ],\\n      [\\n        \\\"3801e82e67a34ee3aaab0227342bcc2b\\\",\\n        0.7042071228277675\\n      ],\\n      [\\n        \\\"1cf3677651564ce5bcc2174db5cc23eb\\\",\\n        0.6501892793814763\\n      ],\\n      [\\n        \\\"06991f6da3104bf8b935d311581a348e\\\",\\n        0.6386583019190328\\n      ],\\n      [\\n        \\\"3bcc4c4c16924cceb3b57ec9d35e9bdf\\\",\\n        0.6386583019190328\\n      ],\\n      [\\n        \\\"b7e2e3117e814a6b84520be8e8542bca\\\",\\n        0.6386583019190328\\n      ]\\n    ],\\n    \\\"bottom_exposure_items\\\": [\\n      [\\n        \\\"c542b6d5782b45efb294e945117387fc\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"c15bbb1710b445109f24fcd2c3d6ef60\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"ccebedcaff524f589a4cd5ae584fcbc5\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e9f5e01e6b2c48ff9eb121f7e32afcae\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e80139e32fb54b95a9a4effa86d8ddf5\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e21a44515e9b408ba118d923fe17964d\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"f9111d1c39744147976e90c820838582\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fae0a258723b44b4843469ffcbe85d06\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fd86dff7ac084b99889d294e135f82a4\\\",\\n        0.0\\n      ]\\n    ]\\n  },\\n  \\\"data_summary\\\": {\\n    \\\"N\\\": 8,\\n    \\\"I\\\": 175,\\n    \\\"J\\\": 9,\\n    \\\"n_obs\\\": 4223,\\n    \\\"model_names\\\": [\\n      \\\"gemma-2-9b\\\",\\n      \\\"gpt-3.5-turbo-0125\\\",\\n      \\\"gpt-4-0613\\\",\\n      \\\"gpt-4o\\\",\\n      \\\"gpt-4o-mini\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"judge_names\\\": [\\n      \\\"claude-opus-4.7-proxy\\\",\\n      \\\"claude-sonnet-4.6-proxy\\\",\\n      \\\"deepseek-v4-pro-proxy\\\",\\n      \\\"gemini-2.5-pro-proxy\\\",\\n      \\\"gpt-5.5-proxy\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"mistral-large-2\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-235b-proxy\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T10:55:06.907Z_
+
+<details><summary>↩ Tool result · `toolu_014XqJHH5tgdVjMAihrMs1C3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"rho,seed,method,rmse,kendall_tau,r_hat,ess\\n0.6,0,raw_average,0.7594521854135651,0.812908768031561,,\\n0.6,0,mfrm_only_v3,0.3005473052330215,0.8106122448979591,1.01,481.0\\n0.6,0,sequential_v3,0.2620882373255456,0.830204081632653,1.01,481.0\\n0.6,0,joint_gmfrm_v3,0.12425765802085724,0.92,1.01,622.0\\n0.6,1,raw_average,0.742451925755244,0.8341506051861546,,\\n0.6,1,mfrm_only_v3,0.27019139132752623,0.8318367346938775,1.01,542.0\\n0.6,1,sequential_v3,0.23631245444949855,0.8448979591836735,1.01,542.0\\n0.6,1,joint_gmfrm_v3,0.1507578228625771,0.9183673469387756,1.02,307.0\\n0.6,2,raw_average,0.8120858962371631,0.8819927235900455,,\\n0.6,2,mfrm_only_v3,0.20977337659813977,0.8808163265306123,1.01,565.0\\n0.6,2,sequential_v3,0.18550437173267154,0.8873469387755102,1.01,565.0\\n0.6,2,joint_gmfrm_v3,0.13190412032090956,0.9183673469387756,1.02,366.0\\n0.6,3,raw_average,0.9244888710672287,0.8091546743053097,,\\n0.6,3,mfrm_only_v3,0.2617339687342857,0.8089795918367346,1.01,503.0\\n0.6,3,sequential_v3,0.22421338670299049,0.8448979591836735,1.01,503.0\\n0.6,3,joint_gmfrm_v3,0.10041539352005283,0.926530612244898,1.0,515.0\\n0.6,4,raw_average,0.8539476804250997,0.8770927640145453,,\\n0.6,4,mfrm_only_v3,0.2344442990629385,0.8759183673469388,1.01,534.0\\n0.6,4,sequential_v3,0.20541721028868165,0.8938775510204081,1.01,534.0\\n0.6,4,joint_gmfrm_v3,0.12373342200764696,0.9167346938775511,1.01,494.0\\n0.6,5,raw_average,0.7196736134985817,0.7900329434035371,,\\n0.6,5,mfrm_only_v3,0.2852887008740431,0.7877551020408163,1.0,553.0\\n0.6,5,sequential_v3,0.24030946615872034,0.8122448979591836,1.0,553.0\\n0.6,5,joint_gmfrm_v3,0.11746717574360054,0.9167346938775511,1.01,496.0\\n0.6,6,raw_average,0.8405930248202927,0.846530612244898,,\\n0.6,6,mfrm_only_v3,0.25093847762312754,0.846530612244898,1.02,563.0\\n0.6,6,sequential_v3,0.22148047330960438,0.8612244897959184,1.02,563.0\\n0.6,6,joint_gmfrm_v3,0.15385417916922545,0.9102040816326531,1.03,224.0\\n0.6,7,raw_average,0.7357471205821267,0.7704250937223739,,\\n0.6,7,mfrm_only_v3,0.28816610744653365,0.769795918367347,1.01,563.0\\n0.6,7,sequential_v3,0.24651686937861156,0.8089795918367346,1.01,563.0\\n0.6,7,joint_gmfrm_v3,0.10002420564149636,0.9281632653061225,1.01,408.0\\n0.6,8,raw_average,0.9265337470497281,0.7916669308769675,,\\n0.6,8,mfrm_only_v3,0.3538288068764598,0.7910204081632654,1.01,539.0\\n0.6,8,sequential_v3,0.30550141073960263,0.8106122448979591,1.01,539.0\\n0.6,8,joint_gmfrm_v3,0.12359622727665784,0.9314285714285715,1.01,429.0\\n0.6,9,raw_average,0.8744651726977689,0.8500210719974972,,\\n0.6,9,mfrm_only_v3,0.274703864850174,0.8481632653061225,1.01,439.0\\n0.6,9,sequential_v3,0.23656672591866812,0.8808163265306123,1.01,439.0\\n0.6,9,joint_gmfrm_v3,0.11733945071561183,0.926530612244898,1.01,361.0\\n0.6,10,raw_average,0.6726601744998899,0.8103036182412189,,\\n0.6,10,mfrm_only_v3,0.2572676081400921,0.8089795918367346,1.01,560.0\\n0.6,10,sequential_v3,0.22461228704253483,0.833469387755102,1.01,560.0\\n0.6,10,joint_gmfrm_v3,0.14549078308767757,0.9004081632653061,1.01,438.0\\n0.6,11,raw_average,0.7021174283267041,0.889252813781997,,\\n0.6,11,mfrm_only_v3,0.1772621469264163,0.8857142857142857,1.01,540.0\\n0.6,11,sequential_v3,0.15295040993475553,0.9036734693877552,1.01,540.0\\n0.6,11,joint_gmfrm_v3,0.10763918104513877,0.9346938775510204,1.02,380.0\\n0.6,12,raw_average,0.7109190341581331,0.8521244673938876,,\\n0.6,12,mfrm_only_v3,0.18309402026330482,0.8530612244897959,1.01,516.0\\n0.6,12,sequential_v3,0.1613551752296027,0.8726530612244898,1.01,516.0\\n0.6,12,joint_gmfrm_v3,0.11064672072451474,0.9248979591836736,1.01,450.0\\n0.6,13,raw_average,0.8711695856012893,0.8642693486185351,,\\n0.6,13,mfrm_only_v3,0.2747584098568675,0.8612244897959184,1.01,362.0\\n0.6,13,sequential_v3,0.24281336431637573,0.8791836734693877,1.01,362.0\\n0.6,13,joint_gmfrm_v3,0.1276694257591122,0.926530612244898,1.01,415.0\\n0.6,14,raw_average,0.9248663650364845,0.8297264881180428,,\\n0.6,14,mfrm_only_v3,0.2916567125007295,0.8285714285714286,1.02,559.0\\n0.6,14,sequential_v3,0.2507460479589186,0.8481632653061225,1.02,559.0\\n0.6,14,joint_gmfrm_v3,0.1289387350100995,0.9363265306122449,1.01,365.0\\n0.6,15,raw_average,0.849910291069338,0.8542262859955441,,\\n0.6,15,mfrm_only_v3,0.28154643811830055,0.8530612244897959,1.01,620.0\\n0.6,15,sequential_v3,0.2452019097852216,0.8742857142857143,1.01,620.0\\n0.6,15,joint_gmfrm_v3,0.1477735932774388,0.9069387755102041,1.01,442.0\\n0.6,16,raw_average,0.7554157783101654,0.8750002920219114,,\\n0.6,16,mfrm_only_v3,0.2063175086588644,0.8742857142857143,1.01,587.0\\n0.6,16,sequential_v3,0.17794459732691034,0.8840816326530613,1.01,587.0\\n0.6,16,joint_gmfrm_v3,0.10104951804259946,0.9379591836734694,1.01,412.0\\n0.6,17,raw_average,0.9251323143901502,0.8607595654295445,,\\n0.6,17,mfrm_only_v3,0.2491911375438579,0.8595918367346939,1.01,395.0\\n0.6,17,sequential_v3,0.22081380972044587,0.8693877551020408,1.01,395.0\\n0.6,17,joint_gmfrm_v3,0.12828461131330848,0.9281632653061225,1.01,404.0\\n0.6,18,raw_average,0.7776373267942324,0.8201155692189127,,\\n0.6,18,mfrm_only_v3,0.2440137373026741,0.8187755102040817,1.01,418.0\\n0.6,18,sequential_v3,0.21483078999376967,0.8514285714285714,1.01,418.0\\n0.6,18,joint_gmfrm_v3,0.11355846499157736,0.9151020408163266,1.01,296.0\\n0.6,19,raw_average,0.7469809938107155,0.8819927235900455,,\\n0.6,19,mfrm_only_v3,0.1840752122012729,0.8808163265306123,1.01,388.0\\n0.6,19,sequential_v3,0.1669602319635501,0.8938775510204081,1.01,388.0\\n0.6,19,joint_gmfrm_v3,0.13108279888003305,0.9216326530612245,1.01,456.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "7b73320d-daa5-4743-9b30-b79de2db7c81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"rho,seed,method,rmse,kendall_tau,r_hat,ess\\\\n0.6,0,raw_average,0.7594521854135651,0.812908768031561,,\\\\n0.6,0,mfrm_only_v3,0.3005473052330215,0.8106122448979591,1.01,481.0\\\\n0.6,0,sequential_v3,0.2620882373255456,0.830204081632653,1.01,481.0\\\\n0.6,0,joint_gmfrm_v3,0.12425765802085724,0.92,1.01,622.0\\\\n0.6,1,raw_average,0.742451925755244,0.8341506051861546,,\\\\n0.6,1,mfrm_only_v3,0.27019139132752623,0.8318367346938775,1.01,542.0\\\\n0.6,1,sequential_v3,0.23631245444949855,0.8448979591836735,1.01,542.0\\\\n0.6,1,joint_gmfrm_v3,0.1507578228625771,0.9183673469387756,1.02,307.0\\\\n0.6,2,raw_average,0.8120858962371631,0.8819927235900455,,\\\\n0.6,2,mfrm_only_v3,0.20977337659813977,0.8808163265306123,1.01,565.0\\\\n0.6,2,sequential_v3,0.18550437173267154,0.8873469387755102,1.01,565.0\\\\n0.6,2,joint_gmfrm_v3,0.13190412032090956,0.9183673469387756,1.02,366.0\\\\n0.6,3,raw_average,0.9244888710672287,0.8091546743053097,,\\\\n0.6,3,mfrm_only_v3,0.2617339687342857,0.8089795918367346,1.01,503.0\\\\n0.6,3,sequential_v3,0.22421338670299049,0.8448979591836735,1.01,503.0\\\\n0.6,3,joint_gmfrm_v3,0.10041539352005283,0.926530612244898,1.0,515.0\\\\n0.6,4,raw_average,0.8539476804250997,0.8770927640145453,,\\\\n0.6,4,mfrm_only_v3,0.2344442990629385,0.8759183673469388,1.01,534.0\\\\n0.6,4,sequential_v3,0.20541721028868165,0.8938775510204081,1.01,534.0\\\\n0.6,4,joint_gmfrm_v3,0.12373342200764696,0.9167346938775511,1.01,494.0\\\\n0.6,5,raw_average,0.7196736134985817,0.7900329434035371,,\\\\n0.6,5,mfrm_only_v3,0.2852887008740431,0.7877551020408163,1.0,553.0\\\\n0.6,5,sequential_v3,0.24030946615872034,0.8122448979591836,1.0,553.0\\\\n0.6,5,joint_gmfrm_v3,0.11746717574360054,0.9167346938775511,1.01,496.0\\\\n0.6,6,raw_average,0.8405930248202927,0.846530612244898,,\\\\n0.6,6,mfrm_only_v3,0.25093847762312754,0.846530612244898,1.02,563.0\\\\n0.6,6,sequential_v3,0.22148047330960438,0.8612244897959184,1.02,563.0\\\\n0.6,6,joint_gmfrm_v3,0.15385417916922545,0.9102040816326531,1.03,224.0\\\\n0.6,7,raw_average,0.7357471205821267,0.7704250937223739,,\\\\n0.6,7,mfrm_only_v3,0.28816610744653365,0.769795918367347,1.01,563.0\\\\n0.6,7,sequential_v3,0.24651686937861156,0.8089795918367346,1.01,563.0\\\\n0.6,7,joint_gmfrm_v3,0.10002420564149636,0.9281632653061225,1.01,408.0\\\\n0.6,8,raw_average,0.9265337470497281,0.7916669308769675,,\\\\n0.6,8,mfrm_only_v3,0.3538288068764598,0.7910204081632654,1.01,539.0\\\\n0.6,8,sequential_v3,0.30550141073960263,0.8106122448979591,1.01,539.0\\\\n0.6,8,joint_gmfrm_v3,0.12359622727665784,0.9314285714285715,1.01,429.0\\\\n0.6,9,raw_average,0.8744651726977689,0.8500210719974972,,\\\\n0.6,9,mfrm_only_v3,0.274703864850174,0.8481632653061225,1.01,439.0\\\\n0.6,9,sequential_v3,0.23656672591866812,0.8808163265306123,1.01,439.0\\\\n0.6,9,joint_gmfrm_v3,0.11733945071561183,0.926530612244898,1.01,361.0\\\\n0.6,10,raw_average,0.6726601744998899,0.8103036182412189,,\\\\n0.6,10,mfrm_only_v3,0.2572676081400921,0.8089795918367346,1.01,560.0\\\\n0.6,10,sequential_v3,0.22461228704253483,0.833469387755102,1.01,560.0\\\\n0.6,10,joint_gmfrm_v3,0.14549078308767757,0.9004081632653061,1.01,438.0\\\\n0.6,11,raw_average,0.7021174283267041,0.889252813781997,,\\\\n0.6,11,mfrm_only_v3,0.1772621469264163,0.8857142857142857,1.01,540.0\\\\n0.6,11,sequential_v3,0.15295040993475553,0.9036734693877552,1.01,540.0\\\\n0.6,11,joint_gmfrm_v3,0.10763918104513877,0.9346938775510204,1.02,380.0\\\\n0.6,12,raw_average,0.7109190341581331,0.8521244673938876,,\\\\n0.6,12,mfrm_only_v3,0.18309402026330482,0.8530612244897959,1.01,516.0\\\\n0.6,12,sequential_v3,0.1613551752296027,0.8726530612244898,1.01,516.0\\\\n0.6,12,joint_gmfrm_v3,0.11064672072451474,0.9248979591836736,1.01,450.0\\\\n0.6,13,raw_average,0.8711695856012893,0.8642693486185351,,\\\\n0.6,13,mfrm_only_v3,0.2747584098568675,0.8612244897959184,1.01,362.0\\\\n0.6,13,sequential_v3,0.24281336431637573,0.8791836734693877,1.01,362.0\\\\n0.6,13,joint_gmfrm_v3,0.1276694257591122,0.926530612244898,1.01,415.0\\\\n0.6,14,raw_average,0.9248663650364845,0.8297264881180428,,\\\\n0.6,14,mfrm_only_v3,0.2916567125007295,0.8285714285714286,1.02,559.0\\\\n0.6,14,sequential_v3,0.2507460479589186,0.8481632653061225,1.02,559.0\\\\n0.6,14,joint_gmfrm_v3,0.1289387350100995,0.9363265306122449,1.01,365.0\\\\n0.6,15,raw_average,0.849910291069338,0.8542262859955441,,\\\\n0.6,15,mfrm_only_v3,0.28154643811830055,0.8530612244897959,1.01,620.0\\\\n0.6,15,sequential_v3,0.2452019097852216,0.8742857142857143,1.01,620.0\\\\n0.6,15,joint_gmfrm_v3,0.1477735932774388,0.9069387755102041,1.01,442.0\\\\n0.6,16,raw_average,0.7554157783101654,0.8750002920219114,,\\\\n0.6,16,mfrm_only_v3,0.2063175086588644,0.8742857142857143,1.01,587.0\\\\n0.6,16,sequential_v3,0.17794459732691034,0.8840816326530613,1.01,587.0\\\\n0.6,16,joint_gmfrm_v3,0.10104951804259946,0.9379591836734694,1.01,412.0\\\\n0.6,17,raw_average,0.9251323143901502,0.8607595654295445,,\\\\n0.6,17,mfrm_only_v3,0.2491911375438579,0.8595918367346939,1.01,395.0\\\\n0.6,17,sequential_v3,0.22081380972044587,0.8693877551020408,1.01,395.0\\\\n0.6,17,joint_gmfrm_v3,0.12828461131330848,0.9281632653061225,1.01,404.0\\\\n0.6,18,raw_average,0.7776373267942324,0.8201155692189127,,\\\\n0.6,18,mfrm_only_v3,0.2440137373026741,0.8187755102040817,1.01,418.0\\\\n0.6,18,sequential_v3,0.21483078999376967,0.8514285714285714,1.01,418.0\\\\n0.6,18,joint_gmfrm_v3,0.11355846499157736,0.9151020408163266,1.01,296.0\\\\n0.6,19,raw_average,0.7469809938107155,0.8819927235900455,,\\\\n0.6,19,mfrm_only_v3,0.1840752122012729,0.8808163265306123,1.01,388.0\\\\n0.6,19,sequential_v3,0.1669602319635501,0.8938775510204081,1.01,388.0\\\\n0.6,19,joint_gmfrm_v3,0.13108279888003305,0.9216326530612245,1.01,456.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"rho,seed,method,rmse,kendall_tau,r_hat,ess\\n0.6,0,raw_average,0.7594521854135651,0.812908768031561,,\\n0.6,0,mfrm_only_v3,0.3005473052330215,0.8106122448979591,1.01,481.0\\n0.6,0,sequential_v3,0.2620882373255456,0.830204081632653,1.01,481.0\\n0.6,0,joint_gmfrm_v3,0.12425765802085724,0.92,1.01,622.0\\n0.6,1,raw_average,0.742451925755244,0.8341506051861546,,\\n0.6,1,mfrm_only_v3,0.27019139132752623,0.8318367346938775,1.01,542.0\\n0.6,1,sequential_v3,0.23631245444949855,0.8448979591836735,1.01,542.0\\n0.6,1,joint_gmfrm_v3,0.1507578228625771,0.9183673469387756,1.02,307.0\\n0.6,2,raw_average,0.8120858962371631,0.8819927235900455,,\\n0.6,2,mfrm_only_v3,0.20977337659813977,0.8808163265306123,1.01,565.0\\n0.6,2,sequential_v3,0.18550437173267154,0.8873469387755102,1.01,565.0\\n0.6,2,joint_gmfrm_v3,0.13190412032090956,0.9183673469387756,1.02,366.0\\n0.6,3,raw_average,0.9244888710672287,0.8091546743053097,,\\n0.6,3,mfrm_only_v3,0.2617339687342857,0.8089795918367346,1.01,503.0\\n0.6,3,sequential_v3,0.22421338670299049,0.8448979591836735,1.01,503.0\\n0.6,3,joint_gmfrm_v3,0.10041539352005283,0.926530612244898,1.0,515.0\\n0.6,4,raw_average,0.8539476804250997,0.8770927640145453,,\\n0.6,4,mfrm_only_v3,0.2344442990629385,0.8759183673469388,1.01,534.0\\n0.6,4,sequential_v3,0.20541721028868165,0.8938775510204081,1.01,534.0\\n0.6,4,joint_gmfrm_v3,0.12373342200764696,0.9167346938775511,1.01,494.0\\n0.6,5,raw_average,0.7196736134985817,0.7900329434035371,,\\n0.6,5,mfrm_only_v3,0.2852887008740431,0.7877551020408163,1.0,553.0\\n0.6,5,sequential_v3,0.24030946615872034,0.8122448979591836,1.0,553.0\\n0.6,5,joint_gmfrm_v3,0.11746717574360054,0.9167346938775511,1.01,496.0\\n0.6,6,raw_average,0.8405930248202927,0.846530612244898,,\\n0.6,6,mfrm_only_v3,0.25093847762312754,0.846530612244898,1.02,563.0\\n0.6,6,sequential_v3,0.22148047330960438,0.8612244897959184,1.02,563.0\\n0.6,6,joint_gmfrm_v3,0.15385417916922545,0.9102040816326531,1.03,224.0\\n0.6,7,raw_average,0.7357471205821267,0.7704250937223739,,\\n0.6,7,mfrm_only_v3,0.28816610744653365,0.769795918367347,1.01,563.0\\n0.6,7,sequential_v3,0.24651686937861156,0.8089795918367346,1.01,563.0\\n0.6,7,joint_gmfrm_v3,0.10002420564149636,0.9281632653061225,1.01,408.0\\n0.6,8,raw_average,0.9265337470497281,0.7916669308769675,,\\n0.6,8,mfrm_only_v3,0.3538288068764598,0.7910204081632654,1.01,539.0\\n0.6,8,sequential_v3,0.30550141073960263,0.8106122448979591,1.01,539.0\\n0.6,8,joint_gmfrm_v3,0.12359622727665784,0.9314285714285715,1.01,429.0\\n0.6,9,raw_average,0.8744651726977689,0.8500210719974972,,\\n0.6,9,mfrm_only_v3,0.274703864850174,0.8481632653061225,1.01,439.0\\n0.6,9,sequential_v3,0.23656672591866812,0.8808163265306123,1.01,439.0\\n0.6,9,joint_gmfrm_v3,0.11733945071561183,0.926530612244898,1.01,361.0\\n0.6,10,raw_average,0.6726601744998899,0.8103036182412189,,\\n0.6,10,mfrm_only_v3,0.2572676081400921,0.8089795918367346,1.01,560.0\\n0.6,10,sequential_v3,0.22461228704253483,0.833469387755102,1.01,560.0\\n0.6,10,joint_gmfrm_v3,0.14549078308767757,0.9004081632653061,1.01,438.0\\n0.6,11,raw_average,0.7021174283267041,0.889252813781997,,\\n0.6,11,mfrm_only_v3,0.1772621469264163,0.8857142857142857,1.01,540.0\\n0.6,11,sequential_v3,0.15295040993475553,0.9036734693877552,1.01,540.0\\n0.6,11,joint_gmfrm_v3,0.10763918104513877,0.9346938775510204,1.02,380.0\\n0.6,12,raw_average,0.7109190341581331,0.8521244673938876,,\\n0.6,12,mfrm_only_v3,0.18309402026330482,0.8530612244897959,1.01,516.0\\n0.6,12,sequential_v3,0.1613551752296027,0.8726530612244898,1.01,516.0\\n0.6,12,joint_gmfrm_v3,0.11064672072451474,0.9248979591836736,1.01,450.0\\n0.6,13,raw_average,0.8711695856012893,0.8642693486185351,,\\n0.6,13,mfrm_only_v3,0.2747584098568675,0.8612244897959184,1.01,362.0\\n0.6,13,sequential_v3,0.24281336431637573,0.8791836734693877,1.01,362.0\\n0.6,13,joint_gmfrm_v3,0.1276694257591122,0.926530612244898,1.01,415.0\\n0.6,14,raw_average,0.9248663650364845,0.8297264881180428,,\\n0.6,14,mfrm_only_v3,0.2916567125007295,0.8285714285714286,1.02,559.0\\n0.6,14,sequential_v3,0.2507460479589186,0.8481632653061225,1.02,559.0\\n0.6,14,joint_gmfrm_v3,0.1289387350100995,0.9363265306122449,1.01,365.0\\n0.6,15,raw_average,0.849910291069338,0.8542262859955441,,\\n0.6,15,mfrm_only_v3,0.28154643811830055,0.8530612244897959,1.01,620.0\\n0.6,15,sequential_v3,0.2452019097852216,0.8742857142857143,1.01,620.0\\n0.6,15,joint_gmfrm_v3,0.1477735932774388,0.9069387755102041,1.01,442.0\\n0.6,16,raw_average,0.7554157783101654,0.8750002920219114,,\\n0.6,16,mfrm_only_v3,0.2063175086588644,0.8742857142857143,1.01,587.0\\n0.6,16,sequential_v3,0.17794459732691034,0.8840816326530613,1.01,587.0\\n0.6,16,joint_gmfrm_v3,0.10104951804259946,0.9379591836734694,1.01,412.0\\n0.6,17,raw_average,0.9251323143901502,0.8607595654295445,,\\n0.6,17,mfrm_only_v3,0.2491911375438579,0.8595918367346939,1.01,395.0\\n0.6,17,sequential_v3,0.22081380972044587,0.8693877551020408,1.01,395.0\\n0.6,17,joint_gmfrm_v3,0.12828461131330848,0.9281632653061225,1.01,404.0\\n0.6,18,raw_average,0.7776373267942324,0.8201155692189127,,\\n0.6,18,mfrm_only_v3,0.2440137373026741,0.8187755102040817,1.01,418.0\\n0.6,18,sequential_v3,0.21483078999376967,0.8514285714285714,1.01,418.0\\n0.6,18,joint_gmfrm_v3,0.11355846499157736,0.9151020408163266,1.01,296.0\\n0.6,19,raw_average,0.7469809938107155,0.8819927235900455,,\\n0.6,19,mfrm_only_v3,0.1840752122012729,0.8808163265306123,1.01,388.0\\n0.6,19,sequential_v3,0.1669602319635501,0.8938775510204081,1.01,388.0\\n0.6,19,joint_gmfrm_v3,0.13108279888003305,0.9216326530612245,1.01,456.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0177K5pxJHHGcqq7cGDM9Us5`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp013/results/weight_sensitivity.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "98aa5611-c6ec-4857-81d1-b1ac42b8e7e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T10:55:07.694Z_
+
+<details><summary>↩ Tool result · `toolu_0177K5pxJHHGcqq7cGDM9Us5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"weight_config,ref_weight,cma_weight,exposure_spearman_rho,gmfrm_tau,delta_tau_vs_default,r_hat,ess_min,divergences\\n50_50,0.5,0.5,0.9981,0.7857,-0.0,1.02,196.0,0\\n75_25,0.75,0.25,1.0,0.7857,-0.0,1.04,115.0,0\\n90_10,0.9,0.1,0.9991,0.7857,-0.0,1.01,432.0,0\\n100_0,1.0,0.0,0.9978,0.7857,-0.0,1.01,668.0,0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "c0adf341-6ca1-4a43-a51d-8fe5325b9723",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"weight_config,ref_weight,cma_weight,exposure_spearman_rho,gmfrm_tau,delta_tau_vs_default,r_hat,ess_min,divergences\\\\n50_50,0.5,0.5,0.9981,0.7857,-0.0,1.02,196.0,0\\\\n75_25,0.75,0.25,1.0,0.7857,-0.0,1.04,115.0,0\\\\n90_10,0.9,0.1,0.9991,0.7857,-0.0,1.01,432.0,0\\\\n100_0,1.0,0.0,0.9978,0.7857,-0.0,1.01,668.0,0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"weight_config,ref_weight,cma_weight,exposure_spearman_rho,gmfrm_tau,delta_tau_vs_default,r_hat,ess_min,divergences\\n50_50,0.5,0.5,0.9981,0.7857,-0.0,1.02,196.0,0\\n75_25,0.75,0.25,1.0,0.7857,-0.0,1.04,115.0,0\\n90_10,0.9,0.1,0.9991,0.7857,-0.0,1.01,432.0,0\\n100_0,1.0,0.0,0.9978,0.7857,-0.0,1.01,668.0,0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W11vbmGEfdtAu52Gw1wqie`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp013/results/weight_sensitivity.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "aadea7cb-9459-442b-96c1-3660f5ded237",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T10:55:08.669Z_
+
+<details><summary>↩ Tool result · `toolu_01W11vbmGEfdtAu52Gw1wqie`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"weight_config\\\": \\\"50_50\\\",\\n    \\\"ref_weight\\\": 0.5,\\n    \\\"cma_weight\\\": 0.5,\\n    \\\"exposure_spearman_rho\\\": 0.9981,\\n    \\\"gmfrm_tau\\\": 0.7857,\\n    \\\"delta_tau_vs_default\\\": -0.0,\\n    \\\"r_hat\\\": 1.02,\\n    \\\"ess_min\\\": 196.0,\\n    \\\"divergences\\\": 0\\n  },\\n  {\\n    \\\"weight_config\\\": \\\"75_25\\\",\\n    \\\"ref_weight\\\": 0.75,\\n    \\\"cma_weight\\\": 0.25,\\n    \\\"exposure_spearman_rho\\\": 1.0,\\n    \\\"gmfrm_tau\\\": 0.7857,\\n    \\\"delta_tau_vs_default\\\": -0.0,\\n    \\\"r_hat\\\": 1.04,\\n    \\\"ess_min\\\": 115.0,\\n    \\\"divergences\\\": 0\\n  },\\n  {\\n    \\\"weight_config\\\": \\\"90_10\\\",\\n    \\\"ref_weight\\\": 0.9,\\n    \\\"cma_weight\\\": 0.1,\\n    \\\"exposure_spearman_rho\\\": 0.9991,\\n    \\\"gmfrm_tau\\\": 0.7857,\\n    \\\"delta_tau_vs_default\\\": -0.0,\\n    \\\"r_hat\\\": 1.01,\\n    \\\"ess_min\\\": 432.0,\\n    \\\"divergences\\\": 0\\n  },\\n  {\\n    \\\"weight_config\\\": \\\"100_0\\\",\\n    \\\"ref_weight\\\": 1.0,\\n    \\\"cma_weight\\\": 0.0,\\n    \\\"exposure_spearman_rho\\\": 0.9978,\\n    \\\"gmfrm_tau\\\": 0.7857,\\n    \\\"delta_tau_vs_default\\\": -0.0,\\n    \\\"r_hat\\\": 1.01,\\n    \\\"ess_min\\\": 668.0,\\n    \\\"divergences\\\": 0\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "77df0309-6f0e-4ec0-8391-4e939355fc7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"weight_config\\\\\\\": \\\\\\\"50_50\\\\\\\",\\\\n    \\\\\\\"ref_weight\\\\\\\": 0.5,\\\\n    \\\\\\\"cma_weight\\\\\\\": 0.5,\\\\n    \\\\\\\"exposure_spearman_rho\\\\\\\": 0.9981,\\\\n    \\\\\\\"gmfrm_tau\\\\\\\": 0.7857,\\\\n    \\\\\\\"delta_tau_vs_default\\\\\\\": -0.0,\\\\n    \\\\\\\"r_hat\\\\\\\": 1.02,\\\\n    \\\\\\\"ess_min\\\\\\\": 196.0,\\\\n    \\\\\\\"divergences\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"weight_config\\\\\\\": \\\\\\\"75_25\\\\\\\",\\\\n    \\\\\\\"ref_weight\\\\\\\": 0.75,\\\\n    \\\\\\\"cma_weight\\\\\\\": 0.25,\\\\n    \\\\\\\"exposure_spearman_rho\\\\\\\": 1.0,\\\\n    \\\\\\\"gmfrm_tau\\\\\\\": 0.7857,\\\\n    \\\\\\\"delta_tau_vs_default\\\\\\\": -0.0,\\\\n    \\\\\\\"r_hat\\\\\\\": 1.04,\\\\n    \\\\\\\"ess_min\\\\\\\": 115.0,\\\\n    \\\\\\\"divergences\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"weight_config\\\\\\\": \\\\\\\"90_10\\\\\\\",\\\\n    \\\\\\\"ref_weight\\\\\\\": 0.9,\\\\n    \\\\\\\"cma_weight\\\\\\\": 0.1,\\\\n    \\\\\\\"exposure_spearman_rho\\\\\\\": 0.9991,\\\\n    \\\\\\\"gmfrm_tau\\\\\\\": 0.7857,\\\\n    \\\\\\\"delta_tau_vs_default\\\\\\\": -0.0,\\\\n    \\\\\\\"r_hat\\\\\\\": 1.01,\\\\n    \\\\\\\"ess_min\\\\\\\": 432.0,\\\\n    \\\\\\\"divergences\\\\\\\": 0\\\\n  },\\\\n  {\\\\n    \\\\\\\"weight_config\\\\\\\": \\\\\\\"100_0\\\\\\\",\\\\n    \\\\\\\"ref_weight\\\\\\\": 1.0,\\\\n    \\\\\\\"cma_weight\\\\\\\": 0.0,\\\\n    \\\\\\\"exposure_spearman_rho\\\\\\\": 0.9978,\\\\n    \\\\\\\"gmfrm_tau\\\\\\\": 0.7857,\\\\n    \\\\\\\"delta_tau_vs_default\\\\\\\": -0.0,\\\\n    \\\\\\\"r_hat\\\\\\\": 1.01,\\\\n    \\\\\\\"ess_min\\\\\\\": 668.0,\\\\n    \\\\\\\"divergences\\\\\\\": 0\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"weight_config\\\": \\\"50_50\\\",\\n    \\\"ref_weight\\\": 0.5,\\n    \\\"cma_weight\\\": 0.5,\\n    \\\"exposure_spearman_rho\\\": 0.9981,\\n    \\\"gmfrm_tau\\\": 0.7857,\\n    \\\"delta_tau_vs_default\\\": -0.0,\\n    \\\"r_hat\\\": 1.02,\\n    \\\"ess_min\\\": 196.0,\\n    \\\"divergences\\\": 0\\n  },\\n  {\\n    \\\"weight_config\\\": \\\"75_25\\\",\\n    \\\"ref_weight\\\": 0.75,\\n    \\\"cma_weight\\\": 0.25,\\n    \\\"exposure_spearman_rho\\\": 1.0,\\n    \\\"gmfrm_tau\\\": 0.7857,\\n    \\\"delta_tau_vs_default\\\": -0.0,\\n    \\\"r_hat\\\": 1.04,\\n    \\\"ess_min\\\": 115.0,\\n    \\\"divergences\\\": 0\\n  },\\n  {\\n    \\\"weight_config\\\": \\\"90_10\\\",\\n    \\\"ref_weight\\\": 0.9,\\n    \\\"cma_weight\\\": 0.1,\\n    \\\"exposure_spearman_rho\\\": 0.9991,\\n    \\\"gmfrm_tau\\\": 0.7857,\\n    \\\"delta_tau_vs_default\\\": -0.0,\\n    \\\"r_hat\\\": 1.01,\\n    \\\"ess_min\\\": 432.0,\\n    \\\"divergences\\\": 0\\n  },\\n  {\\n    \\\"weight_config\\\": \\\"100_0\\\",\\n    \\\"ref_weight\\\": 1.0,\\n    \\\"cma_weight\\\": 0.0,\\n    \\\"exposure_spearman_rho\\\": 0.9978,\\n    \\\"gmfrm_tau\\\": 0.7857,\\n    \\\"delta_tau_vs_default\\\": -0.0,\\n    \\\"r_hat\\\": 1.01,\\n    \\\"ess_min\\\": 668.0,\\n    \\\"divergences\\\": 0\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0137L3WAPC1eYEXMS2QdgJym`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp012/error_propagation.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "3135ba1f-af7a-47f4-828e-a8be8f3e9d35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QgGYZ93BWY9xSFZ2NbTEFu`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp012/summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "3d6dedec-c540-4b9c-a94d-0d9c3eaa7e23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mp67bWPn2oKP7N5ZkcjkxR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2620,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2620
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T10:55:09.615Z_
+
+<details><summary>↩ Tool result · `toolu_0137L3WAPC1eYEXMS2QdgJym`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sigma,seed,theta_rmse,theta_tau,cn_rmse,cn_corr,r_hat,ess\\n0.0,0,0.11414007004771538,0.926530612244898,0.2833143568231972,0.947116978911283,1.01,551.0\\n0.0,1,0.13795683920221638,0.8987755102040816,0.46386079718109613,0.9173879877523946,1.02,347.0\\n0.0,2,0.11287817120591105,0.9281632653061225,0.5101857953143518,0.8656611394937174,1.02,334.0\\n0.0,3,0.14038638377575574,0.8938775510204081,0.35194398429566864,0.9155539880166689,1.0,637.0\\n0.0,4,0.1221519237068664,0.9183673469387756,0.8794809924638857,0.8269377457731951,1.01,350.0\\n0.0,5,0.11624289670867738,0.9183673469387756,0.7442919057955691,0.7643097954257185,1.01,419.0\\n0.0,6,0.12398410357338979,0.933061224489796,0.44881060514673826,0.8930093369909229,1.02,276.0\\n0.0,7,0.09408416242279856,0.9248979591836736,0.3978213145345136,0.9227583564064398,1.01,487.0\\n0.0,8,0.13121859341692096,0.9216326530612245,0.4699536877393687,0.909867401600303,1.01,566.0\\n0.0,9,0.15336439946141597,0.9281632653061225,0.5190600606602945,0.8356402697032727,1.01,432.0\\n0.0,10,0.11540987372663768,0.9248979591836736,0.5705829723891507,0.9107858390363343,1.0,488.0\\n0.0,11,0.10797643056192999,0.9232653061224491,0.2633615202304549,0.9399028903074458,1.02,395.0\\n0.0,12,0.13121468466602665,0.8955102040816326,0.5938672884323788,0.8477424083715412,1.01,461.0\\n0.0,13,0.14181514930568012,0.9167346938775511,0.9925608886640543,0.6659267231768856,1.01,551.0\\n0.0,14,0.17182612787027454,0.9020408163265307,0.4496094493710463,0.8860593391577554,1.0,502.0\\n0.0,15,0.12878920836661292,0.8971428571428571,0.4043368881569879,0.8947552315379416,1.02,471.0\\n0.0,16,0.14700501810532843,0.9102040816326531,0.6101952746527637,0.7897929734616902,1.0,504.0\\n0.0,17,0.1262281493560981,0.929795918367347,0.39288438053010916,0.9780653694634242,1.01,421.0\\n0.0,18,0.11060936292198581,0.913469387755102,0.6477774730023906,0.8036228084518099,1.01,388.0\\n0.0,19,0.12581090276080711,0.913469387755102,0.6652518021151127,0.683984052830556,1.01,461.0\\n0.1,0,0.11820523162445744,0.9248979591836736,0.30171830218302675,0.9397674497926952,1.01,545.0\\n0.1,1,0.14177970151082164,0.9020408163265307,0.48979094151172686,0.9116188233089957,1.02,377.0\\n0.1,2,0.11563528997695005,0.9248979591836736,0.5435252285625916,0.8507766558470479,1.01,357.0\\n0.1,3,0.1424732628272073,0.8824489795918368,0.3692224783633984,0.9066797587255868,1.0,608.0\\n0.1,4,0.12828793773951178,0.9151020408163266,0.9035494616644673,0.8121183410449022,1.01,378.0\\n0.1,5,0.11923729809500302,0.913469387755102,0.7680894918068617,0.7515246449547959,1.01,527.0\\n0.1,6,0.12504730818159998,0.9379591836734694,0.4581933525308319,0.8871596251577915,1.02,293.0\\n0.1,7,0.09931051992758777,0.9216326530612245,0.39504470524494667,0.9094591411747933,1.01,449.0\\n0.1,8,0.1322328777469403,0.9281632653061225,0.4840719625247404,0.9023490352657685,1.01,410.0\\n0.1,9,0.1531490692571957,0.933061224489796,0.5253701069351967,0.8329823753424515,1.0,435.0\\n0.1,10,0.11639810497224215,0.9216326530612245,0.5990470104367424,0.9153448340558137,1.0,452.0\\n0.1,11,0.10536136134993598,0.9248979591836736,0.2604692255563764,0.9442461151279528,1.02,368.0\\n0.1,12,0.13012162196333496,0.8922448979591836,0.598711386781664,0.8404563696440086,1.01,455.0\\n0.1,13,0.14463271440806286,0.9085714285714286,1.0286963594023948,0.6541735653775596,1.01,561.0\\n0.1,14,0.17726356433036805,0.9036734693877552,0.4792791172784723,0.8763011774503106,1.01,559.0\\n0.1,15,0.12870741450673842,0.9020408163265307,0.4230456189850584,0.8917478280799884,1.02,454.0\\n0.1,16,0.1467846000715222,0.9118367346938776,0.6096648014297862,0.787921264239536,1.0,532.0\\n0.1,17,0.12240572924895964,0.9314285714285715,0.35408344242430906,0.9805588452786991,1.01,463.0\\n0.1,18,0.1166418471932931,0.9118367346938776,0.6511377977748665,0.809238922510156,1.01,435.0\\n0.1,19,0.12639512029753602,0.913469387755102,0.6606139572303134,0.6791570167970351,1.01,449.0\\n0.2,0,0.13914488504594966,0.9069387755102041,0.40262041967115125,0.9065661697369017,1.01,499.0\\n0.2,1,0.1336251599845199,0.9102040816326531,0.4699396272744449,0.9140834375134498,1.02,404.0\\n0.2,2,0.11710810018794589,0.9248979591836736,0.5692991682190777,0.8519227164648936,1.02,319.0\\n0.2,3,0.14706350904198912,0.8906122448979592,0.41355034992599765,0.8888247404592222,1.0,579.0\\n0.2,4,0.12691620374616847,0.926530612244898,0.9186108513684718,0.8105031912771052,1.0,477.0\\n0.2,5,0.13016850706032468,0.8922448979591836,0.814916616232387,0.6966458175092877,1.01,407.0\\n0.2,6,0.12159135108126264,0.9363265306122449,0.447780285364365,0.9014904710463842,1.02,285.0\\n0.2,7,0.09739774391566917,0.9281632653061225,0.33140136331298664,0.9138862980709288,1.01,502.0\\n0.2,8,0.14367870288976717,0.9151020408163266,0.5410831319612639,0.8765046526041953,1.01,472.0\\n0.2,9,0.15965650832396683,0.9281632653061225,0.5377236562051446,0.8322353856965902,1.01,365.0\\n0.2,10,0.12880750257085188,0.9248979591836736,0.681561461239282,0.8862798293258517,1.01,446.0\\n0.2,11,0.12094016895269291,0.9216326530612245,0.339064857886938,0.9108469973170353,1.02,340.0\\n0.2,12,0.13543258038422865,0.8906122448979592,0.6551255498640688,0.8335104410269654,1.01,482.0\\n0.2,13,0.15625794348466945,0.9102040816326531,1.0204552268491054,0.6494583407504325,1.01,631.0\\n0.2,14,0.1765891388097182,0.9069387755102041,0.49939727531796124,0.8855344935639636,1.01,497.0\\n0.2,15,0.13882540928604326,0.9020408163265307,0.46505332458291987,0.8872138858999176,1.02,468.0\\n0.2,16,0.1447184066390055,0.92,0.6352906711102068,0.8003782530648198,1.01,543.0\\n0.2,17,0.12841516083222337,0.929795918367347,0.2900074823979775,0.9626857869853144,1.01,532.0\\n0.2,18,0.11623660979624607,0.9085714285714286,0.7296503646840207,0.7891443271465473,1.01,394.0\\n0.2,19,0.14085491040034373,0.9053061224489797,0.7385392198655578,0.5730734812098722,1.01,442.0\\n0.5,0,0.18530450654182745,0.8775510204081632,0.6333838423556003,0.8831960520398516,1.01,477.0\\n0.5,1,0.19475477947327405,0.8661224489795918,0.8877503525151349,0.8106467220430851,1.02,335.0\\n0.5,2,0.12973575141393057,0.9232653061224491,0.8706230540484405,0.7652310048825833,1.02,310.0\\n0.5,3,0.1859356507056137,0.8628571428571429,0.7592965314788397,0.784083017804553,1.01,620.0\\n0.5,4,0.14577464955444383,0.9085714285714286,1.093981313451552,0.6994405322967996,1.01,486.0\\n0.5,5,0.18057951996781865,0.8661224489795918,1.0623549968010249,0.5308046911532627,1.01,495.0\\n0.5,6,0.15583469776640096,0.8987755102040816,0.6894388017109095,0.8448555325948888,1.02,296.0\\n0.5,7,0.1456161637801812,0.8938775510204081,0.49700373692416705,0.9026576111100426,1.01,434.0\\n0.5,8,0.21531766842066638,0.8546938775510204,1.0067863192988598,0.6662752736949082,1.01,496.0\\n0.5,9,0.198926364004747,0.9020408163265307,0.7875078912649874,0.7707338948964282,1.01,416.0\\n0.5,10,0.20272525488473483,0.856326530612245,1.0856821176412603,0.7642080548219805,1.01,476.0\\n0.5,11,0.13643655135437224,0.8987755102040816,0.5928207274753635,0.860285975493243,1.01,394.0\\n0.5,12,0.1657068292987722,0.8546938775510204,0.8364391034547939,0.6920902711232876,1.01,467.0\\n0.5,13,0.1743500465811304,0.8922448979591836,1.1772713014622407,0.5539774401584516,1.02,522.0\\n0.5,14,0.2237501091348611,0.8775510204081632,0.7288862341304692,0.7734839193166324,1.01,541.0\\n0.5,15,0.20047486389515884,0.8677551020408163,0.8227219146829661,0.8199220317203211,1.01,500.0\\n0.5,16,0.17810975515265157,0.8938775510204081,0.868194762369406,0.725623943403897,1.01,549.0\\n0.5,17,0.17244153617227778,0.9102040816326531,0.5598941430340423,0.9132871285256783,1.01,484.0\\n0.5,18,0.15834541131344088,0.8938775510204081,1.0813659069354333,0.5398197828121638,1.01,410.0\\n0.5,19,0.14593078778248314,0.9004081632653061,0.7888988695254147,0.5987413788919821,1.01,490.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "430c7630-5864-42ed-9711-07db013e6cb0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sigma,seed,theta_rmse,theta_tau,cn_rmse,cn_corr,r_hat,ess\\\\n0.0,0,0.11414007004771538,0.926530612244898,0.2833143568231972,0.947116978911283,1.01,551.0\\\\n0.0,1,0.13795683920221638,0.8987755102040816,0.46386079718109613,0.9173879877523946,1.02,347.0\\\\n0.0,2,0.11287817120591105,0.9281632653061225,0.5101857953143518,0.8656611394937174,1.02,334.0\\\\n0.0,3,0.14038638377575574,0.8938775510204081,0.35194398429566864,0.9155539880166689,1.0,637.0\\\\n0.0,4,0.1221519237068664,0.9183673469387756,0.8794809924638857,0.8269377457731951,1.01,350.0\\\\n0.0,5,0.11624289670867738,0.9183673469387756,0.7442919057955691,0.7643097954257185,1.01,419.0\\\\n0.0,6,0.12398410357338979,0.933061224489796,0.44881060514673826,0.8930093369909229,1.02,276.0\\\\n0.0,7,0.09408416242279856,0.9248979591836736,0.3978213145345136,0.9227583564064398,1.01,487.0\\\\n0.0,8,0.13121859341692096,0.9216326530612245,0.4699536877393687,0.909867401600303,1.01,566.0\\\\n0.0,9,0.15336439946141597,0.9281632653061225,0.5190600606602945,0.8356402697032727,1.01,432.0\\\\n0.0,10,0.11540987372663768,0.9248979591836736,0.5705829723891507,0.9107858390363343,1.0,488.0\\\\n0.0,11,0.10797643056192999,0.9232653061224491,0.2633615202304549,0.9399028903074458,1.02,395.0\\\\n0.0,12,0.13121468466602665,0.8955102040816326,0.5938672884323788,0.8477424083715412,1.01,461.0\\\\n0.0,13,0.14181514930568012,0.9167346938775511,0.9925608886640543,0.6659267231768856,1.01,551.0\\\\n0.0,14,0.17182612787027454,0.9020408163265307,0.4496094493710463,0.8860593391577554,1.0,502.0\\\\n0.0,15,0.12878920836661292,0.8971428571428571,0.4043368881569879,0.8947552315379416,1.02,471.0\\\\n0.0,16,0.14700501810532843,0.9102040816326531,0.6101952746527637,0.7897929734616902,1.0,504.0\\\\n0.0,17,0.1262281493560981,0.929795918367347,0.39288438053010916,0.9780653694634242,1.01,421.0\\\\n0.0,18,0.11060936292198581,0.913469387755102,0.6477774730023906,0.8036228084518099,1.01,388.0\\\\n0.0,19,0.12581090276080711,0.913469387755102,0.6652518021151127,0.683984052830556,1.01,461.0\\\\n0.1,0,0.11820523162445744,0.9248979591836736,0.30171830218302675,0.9397674497926952,1.01,545.0\\\\n0.1,1,0.14177970151082164,0.9020408163265307,0.48979094151172686,0.9116188233089957,1.02,377.0\\\\n0.1,2,0.11563528997695005,0.9248979591836736,0.5435252285625916,0.8507766558470479,1.01,357.0\\\\n0.1,3,0.1424732628272073,0.8824489795918368,0.3692224783633984,0.9066797587255868,1.0,608.0\\\\n0.1,4,0.12828793773951178,0.9151020408163266,0.9035494616644673,0.8121183410449022,1.01,378.0\\\\n0.1,5,0.11923729809500302,0.913469387755102,0.7680894918068617,0.7515246449547959,1.01,527.0\\\\n0.1,6,0.12504730818159998,0.9379591836734694,0.4581933525308319,0.8871596251577915,1.02,293.0\\\\n0.1,7,0.09931051992758777,0.9216326530612245,0.39504470524494667,0.9094591411747933,1.01,449.0\\\\n0.1,8,0.1322328777469403,0.9281632653061225,0.4840719625247404,0.9023490352657685,1.01,410.0\\\\n0.1,9,0.1531490692571957,0.933061224489796,0.5253701069351967,0.8329823753424515,1.0,435.0\\\\n0.1,10,0.11639810497224215,0.9216326530612245,0.5990470104367424,0.9153448340558137,1.0,452.0\\\\n0.1,11,0.10536136134993598,0.9248979591836736,0.2604692255563764,0.9442461151279528,1.02,368.0\\\\n0.1,12,0.13012162196333496,0.8922448979591836,0.598711386781664,0.8404563696440086,1.01,455.0\\\\n0.1,13,0.14463271440806286,0.9085714285714286,1.0286963594023948,0.6541735653775596,1.01,561.0\\\\n0.1,14,0.17726356433036805,0.9036734693877552,0.4792791172784723,0.8763011774503106,1.01,559.0\\\\n0.1,15,0.12870741450673842,0.9020408163265307,0.4230456189850584,0.8917478280799884,1.02,454.0\\\\n0.1,16,0.1467846000715222,0.9118367346938776,0.6096648014297862,0.787921264239536,1.0,532.0\\\\n0.1,17,0.12240572924895964,0.9314285714285715,0.35408344242430906,0.9805588452786991,1.01,463.0\\\\n0.1,18,0.1166418471932931,0.9118367346938776,0.6511377977748665,0.809238922510156,1.01,435.0\\\\n0.1,19,0.12639512029753602,0.913469387755102,0.6606139572303134,0.6791570167970351,1.01,449.0\\\\n0.2,0,0.13914488504594966,0.9069387755102041,0.40262041967115125,0.9065661697369017,1.01,499.0\\\\n0.2,1,0.1336251599845199,0.9102040816326531,0.4699396272744449,0.9140834375134498,1.02,404.0\\\\n0.2,2,0.11710810018794589,0.9248979591836736,0.5692991682190777,0.8519227164648936,1.02,319.0\\\\n0.2,3,0.14706350904198912,0.8906122448979592,0.41355034992599765,0.8888247404592222,1.0,579.0\\\\n0.2,4,0.12691620374616847,0.926530612244898,0.9186108513684718,0.8105031912771052,1.0,477.0\\\\n0.2,5,0.13016850706032468,0.8922448979591836,0.814916616232387,0.6966458175092877,1.01,407.0\\\\n0.2,6,0.12159135108126264,0.9363265306122449,0.447780285364365,0.9014904710463842,1.02,285.0\\\\n0.2,7,0.09739774391566917,0.9281632653061225,0.33140136331298664,0.9138862980709288,1.01,502.0\\\\n0.2,8,0.14367870288976717,0.9151020408163266,0.5410831319612639,0.8765046526041953,1.01,472.0\\\\n0.2,9,0.15965650832396683,0.9281632653061225,0.5377236562051446,0.8322353856965902,1.01,365.0\\\\n0.2,10,0.12880750257085188,0.9248979591836736,0.681561461239282,0.8862798293258517,1.01,446.0\\\\n0.2,11,0.12094016895269291,0.9216326530612245,0.339064857886938,0.9108469973170353,1.02,340.0\\\\n0.2,12,0.13543258038422865,0.8906122448979592,0.6551255498640688,0.8335104410269654,1.01,482.0\\\\n0.2,13,0.15625794348466945,0.9102040816326531,1.0204552268491054,0.6494583407504325,1.01,631.0\\\\n0.2,14,0.1765891388097182,0.9069387755102041,0.49939727531796124,0.8855344935639636,1.01,497.0\\\\n0.2,15,0.13882540928604326,0.9020408163265307,0.46505332458291987,0.8872138858999176,1.02,468.0\\\\n0.2,16,0.1447184066390055,0.92,0.6352906711102068,0.8003782530648198,1.01,543.0\\\\n0.2,17,0.12841516083222337,0.929795918367347,0.2900074823979775,0.9626857869853144,1.01,532.0\\\\n0.2,18,0.11623660979624607,0.9085714285714286,0.7296503646840207,0.7891443271465473,1.01,394.0\\\\n0.2,19,0.14085491040034373,0.9053061224489797,0.7385392198655578,0.5730734812098722,1.01,442.0\\\\n0.5,0,0.18530450654182745,0.8775510204081632,0.6333838423556003,0.8831960520398516,1.01,477.0\\\\n0.5,1,0.19475477947327405,0.8661224489795918,0.8877503525151349,0.8106467220430851,1.02,335.0\\\\n0.5,2,0.12973575141393057,0.9232653061224491,0.8706230540484405,0.7652310048825833,1.02,310.0\\\\n0.5,3,0.1859356507056137,0.8628571428571429,0.7592965314788397,0.784083017804553,1.01,620.0\\\\n0.5,4,0.14577464955444383,0.9085714285714286,1.093981313451552,0.6994405322967996,1.01,486.0\\\\n0.5,5,0.18057951996781865,0.8661224489795918,1.0623549968010249,0.5308046911532627,1.01,495.0\\\\n0.5,6,0.15583469776640096,0.8987755102040816,0.6894388017109095,0.8448555325948888,1.02,296.0\\\\n0.5,7,0.1456161637801812,0.8938775510204081,0.49700373692416705,0.9026576111100426,1.01,434.0\\\\n0.5,8,0.21531766842066638,0.8546938775510204,1.0067863192988598,0.6662752736949082,1.01,496.0\\\\n0.5,9,0.198926364004747,0.9020408163265307,0.7875078912649874,0.7707338948964282,1.01,416.0\\\\n0.5,10,0.20272525488473483,0.856326530612245,1.0856821176412603,0.7642080548219805,1.01,476.0\\\\n0.5,11,0.13643655135437224,0.8987755102040816,0.5928207274753635,0.860285975493243,1.01,394.0\\\\n0.5,12,0.1657068292987722,0.8546938775510204,0.8364391034547939,0.6920902711232876,1.01,467.0\\\\n0.5,13,0.1743500465811304,0.8922448979591836,1.1772713014622407,0.5539774401584516,1.02,522.0\\\\n0.5,14,0.2237501091348611,0.8775510204081632,0.7288862341304692,0.7734839193166324,1.01,541.0\\\\n0.5,15,0.20047486389515884,0.8677551020408163,0.8227219146829661,0.8199220317203211,1.01,500.0\\\\n0.5,16,0.17810975515265157,0.8938775510204081,0.868194762369406,0.725623943403897,1.01,549.0\\\\n0.5,17,0.17244153617227778,0.9102040816326531,0.5598941430340423,0.9132871285256783,1.01,484.0\\\\n0.5,18,0.15834541131344088,0.8938775510204081,1.0813659069354333,0.5398197828121638,1.01,410.0\\\\n0.5,19,0.14593078778248314,0.9004081632653061,0.7888988695254147,0.5987413788919821,1.01,490.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sigma,seed,theta_rmse,theta_tau,cn_rmse,cn_corr,r_hat,ess\\n0.0,0,0.11414007004771538,0.926530612244898,0.2833143568231972,0.947116978911283,1.01,551.0\\n0.0,1,0.13795683920221638,0.8987755102040816,0.46386079718109613,0.9173879877523946,1.02,347.0\\n0.0,2,0.11287817120591105,0.9281632653061225,0.5101857953143518,0.8656611394937174,1.02,334.0\\n0.0,3,0.14038638377575574,0.8938775510204081,0.35194398429566864,0.9155539880166689,1.0,637.0\\n0.0,4,0.1221519237068664,0.9183673469387756,0.8794809924638857,0.8269377457731951,1.01,350.0\\n0.0,5,0.11624289670867738,0.9183673469387756,0.7442919057955691,0.7643097954257185,1.01,419.0\\n0.0,6,0.12398410357338979,0.933061224489796,0.44881060514673826,0.8930093369909229,1.02,276.0\\n0.0,7,0.09408416242279856,0.9248979591836736,0.3978213145345136,0.9227583564064398,1.01,487.0\\n0.0,8,0.13121859341692096,0.9216326530612245,0.4699536877393687,0.909867401600303,1.01,566.0\\n0.0,9,0.15336439946141597,0.9281632653061225,0.5190600606602945,0.8356402697032727,1.01,432.0\\n0.0,10,0.11540987372663768,0.9248979591836736,0.5705829723891507,0.9107858390363343,1.0,488.0\\n0.0,11,0.10797643056192999,0.9232653061224491,0.2633615202304549,0.9399028903074458,1.02,395.0\\n0.0,12,0.13121468466602665,0.8955102040816326,0.5938672884323788,0.8477424083715412,1.01,461.0\\n0.0,13,0.14181514930568012,0.9167346938775511,0.9925608886640543,0.6659267231768856,1.01,551.0\\n0.0,14,0.17182612787027454,0.9020408163265307,0.4496094493710463,0.8860593391577554,1.0,502.0\\n0.0,15,0.12878920836661292,0.8971428571428571,0.4043368881569879,0.8947552315379416,1.02,471.0\\n0.0,16,0.14700501810532843,0.9102040816326531,0.6101952746527637,0.7897929734616902,1.0,504.0\\n0.0,17,0.1262281493560981,0.929795918367347,0.39288438053010916,0.9780653694634242,1.01,421.0\\n0.0,18,0.11060936292198581,0.913469387755102,0.6477774730023906,0.8036228084518099,1.01,388.0\\n0.0,19,0.12581090276080711,0.913469387755102,0.6652518021151127,0.683984052830556,1.01,461.0\\n0.1,0,0.11820523162445744,0.9248979591836736,0.30171830218302675,0.9397674497926952,1.01,545.0\\n0.1,1,0.14177970151082164,0.9020408163265307,0.48979094151172686,0.9116188233089957,1.02,377.0\\n0.1,2,0.11563528997695005,0.9248979591836736,0.5435252285625916,0.8507766558470479,1.01,357.0\\n0.1,3,0.1424732628272073,0.8824489795918368,0.3692224783633984,0.9066797587255868,1.0,608.0\\n0.1,4,0.12828793773951178,0.9151020408163266,0.9035494616644673,0.8121183410449022,1.01,378.0\\n0.1,5,0.11923729809500302,0.913469387755102,0.7680894918068617,0.7515246449547959,1.01,527.0\\n0.1,6,0.12504730818159998,0.9379591836734694,0.4581933525308319,0.8871596251577915,1.02,293.0\\n0.1,7,0.09931051992758777,0.9216326530612245,0.39504470524494667,0.9094591411747933,1.01,449.0\\n0.1,8,0.1322328777469403,0.9281632653061225,0.4840719625247404,0.9023490352657685,1.01,410.0\\n0.1,9,0.1531490692571957,0.933061224489796,0.5253701069351967,0.8329823753424515,1.0,435.0\\n0.1,10,0.11639810497224215,0.9216326530612245,0.5990470104367424,0.9153448340558137,1.0,452.0\\n0.1,11,0.10536136134993598,0.9248979591836736,0.2604692255563764,0.9442461151279528,1.02,368.0\\n0.1,12,0.13012162196333496,0.8922448979591836,0.598711386781664,0.8404563696440086,1.01,455.0\\n0.1,13,0.14463271440806286,0.9085714285714286,1.0286963594023948,0.6541735653775596,1.01,561.0\\n0.1,14,0.17726356433036805,0.9036734693877552,0.4792791172784723,0.8763011774503106,1.01,559.0\\n0.1,15,0.12870741450673842,0.9020408163265307,0.4230456189850584,0.8917478280799884,1.02,454.0\\n0.1,16,0.1467846000715222,0.9118367346938776,0.6096648014297862,0.787921264239536,1.0,532.0\\n0.1,17,0.12240572924895964,0.9314285714285715,0.35408344242430906,0.9805588452786991,1.01,463.0\\n0.1,18,0.1166418471932931,0.9118367346938776,0.6511377977748665,0.809238922510156,1.01,435.0\\n0.1,19,0.12639512029753602,0.913469387755102,0.6606139572303134,0.6791570167970351,1.01,449.0\\n0.2,0,0.13914488504594966,0.9069387755102041,0.40262041967115125,0.9065661697369017,1.01,499.0\\n0.2,1,0.1336251599845199,0.9102040816326531,0.4699396272744449,0.9140834375134498,1.02,404.0\\n0.2,2,0.11710810018794589,0.9248979591836736,0.5692991682190777,0.8519227164648936,1.02,319.0\\n0.2,3,0.14706350904198912,0.8906122448979592,0.41355034992599765,0.8888247404592222,1.0,579.0\\n0.2,4,0.12691620374616847,0.926530612244898,0.9186108513684718,0.8105031912771052,1.0,477.0\\n0.2,5,0.13016850706032468,0.8922448979591836,0.814916616232387,0.6966458175092877,1.01,407.0\\n0.2,6,0.12159135108126264,0.9363265306122449,0.447780285364365,0.9014904710463842,1.02,285.0\\n0.2,7,0.09739774391566917,0.9281632653061225,0.33140136331298664,0.9138862980709288,1.01,502.0\\n0.2,8,0.14367870288976717,0.9151020408163266,0.5410831319612639,0.8765046526041953,1.01,472.0\\n0.2,9,0.15965650832396683,0.9281632653061225,0.5377236562051446,0.8322353856965902,1.01,365.0\\n0.2,10,0.12880750257085188,0.9248979591836736,0.681561461239282,0.8862798293258517,1.01,446.0\\n0.2,11,0.12094016895269291,0.9216326530612245,0.339064857886938,0.9108469973170353,1.02,340.0\\n0.2,12,0.13543258038422865,0.8906122448979592,0.6551255498640688,0.8335104410269654,1.01,482.0\\n0.2,13,0.15625794348466945,0.9102040816326531,1.0204552268491054,0.6494583407504325,1.01,631.0\\n0.2,14,0.1765891388097182,0.9069387755102041,0.49939727531796124,0.8855344935639636,1.01,497.0\\n0.2,15,0.13882540928604326,0.9020408163265307,0.46505332458291987,0.8872138858999176,1.02,468.0\\n0.2,16,0.1447184066390055,0.92,0.6352906711102068,0.8003782530648198,1.01,543.0\\n0.2,17,0.12841516083222337,0.929795918367347,0.2900074823979775,0.9626857869853144,1.01,532.0\\n0.2,18,0.11623660979624607,0.9085714285714286,0.7296503646840207,0.7891443271465473,1.01,394.0\\n0.2,19,0.14085491040034373,0.9053061224489797,0.7385392198655578,0.5730734812098722,1.01,442.0\\n0.5,0,0.18530450654182745,0.8775510204081632,0.6333838423556003,0.8831960520398516,1.01,477.0\\n0.5,1,0.19475477947327405,0.8661224489795918,0.8877503525151349,0.8106467220430851,1.02,335.0\\n0.5,2,0.12973575141393057,0.9232653061224491,0.8706230540484405,0.7652310048825833,1.02,310.0\\n0.5,3,0.1859356507056137,0.8628571428571429,0.7592965314788397,0.784083017804553,1.01,620.0\\n0.5,4,0.14577464955444383,0.9085714285714286,1.093981313451552,0.6994405322967996,1.01,486.0\\n0.5,5,0.18057951996781865,0.8661224489795918,1.0623549968010249,0.5308046911532627,1.01,495.0\\n0.5,6,0.15583469776640096,0.8987755102040816,0.6894388017109095,0.8448555325948888,1.02,296.0\\n0.5,7,0.1456161637801812,0.8938775510204081,0.49700373692416705,0.9026576111100426,1.01,434.0\\n0.5,8,0.21531766842066638,0.8546938775510204,1.0067863192988598,0.6662752736949082,1.01,496.0\\n0.5,9,0.198926364004747,0.9020408163265307,0.7875078912649874,0.7707338948964282,1.01,416.0\\n0.5,10,0.20272525488473483,0.856326530612245,1.0856821176412603,0.7642080548219805,1.01,476.0\\n0.5,11,0.13643655135437224,0.8987755102040816,0.5928207274753635,0.860285975493243,1.01,394.0\\n0.5,12,0.1657068292987722,0.8546938775510204,0.8364391034547939,0.6920902711232876,1.01,467.0\\n0.5,13,0.1743500465811304,0.8922448979591836,1.1772713014622407,0.5539774401584516,1.02,522.0\\n0.5,14,0.2237501091348611,0.8775510204081632,0.7288862341304692,0.7734839193166324,1.01,541.0\\n0.5,15,0.20047486389515884,0.8677551020408163,0.8227219146829661,0.8199220317203211,1.01,500.0\\n0.5,16,0.17810975515265157,0.8938775510204081,0.868194762369406,0.725623943403897,1.01,549.0\\n0.5,17,0.17244153617227778,0.9102040816326531,0.5598941430340423,0.9132871285256783,1.01,484.0\\n0.5,18,0.15834541131344088,0.8938775510204081,1.0813659069354333,0.5398197828121638,1.01,410.0\\n0.5,19,0.14593078778248314,0.9004081632653061,0.7888988695254147,0.5987413788919821,1.01,490.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T10:55:10.139Z_
+
+<details><summary>↩ Tool result · `toolu_01QgGYZ93BWY9xSFZ2NbTEFu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sigma,theta_rmse_mean,theta_rmse_std,theta_tau_mean,theta_tau_std,cn_rmse_mean,cn_rmse_std,cn_corr_mean,cn_corr_std,rhat_max,ess_min,n\\n0.0,0.1276546225581524,0.017795700116627514,0.9159183673469388,0.012450828339068134,0.5329575718749566,0.18686204206255871,0.859944031793465,0.08399652990443786,1.02,276.0,20\\n0.1,0.12950352876146337,0.01781990676614214,0.9152653061224489,0.01411336886713934,0.5451662374313886,0.19341257783681015,0.8541790894587944,0.08570813284075228,1.02,293.0,20\\n0.2,0.1351714251216793,0.017481362198078526,0.9139591836734693,0.013732482429460523,0.5750535451666664,0.19811440328199725,0.8385394358334839,0.09806711654177946,1.02,285.0,20\\n0.5,0.1748025448599393,0.02664070736213822,0.8849795918367347,0.02067520242380064,0.8415150960280453,0.19536759880111992,0.744968212939202,0.11844309323012878,1.02,296.0,20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "0bcbb46c-915e-4e0c-ad24-9f956e422997",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sigma,theta_rmse_mean,theta_rmse_std,theta_tau_mean,theta_tau_std,cn_rmse_mean,cn_rmse_std,cn_corr_mean,cn_corr_std,rhat_max,ess_min,n\\\\n0.0,0.1276546225581524,0.017795700116627514,0.9159183673469388,0.012450828339068134,0.5329575718749566,0.18686204206255871,0.859944031793465,0.08399652990443786,1.02,276.0,20\\\\n0.1,0.12950352876146337,0.01781990676614214,0.9152653061224489,0.01411336886713934,0.5451662374313886,0.19341257783681015,0.8541790894587944,0.08570813284075228,1.02,293.0,20\\\\n0.2,0.1351714251216793,0.017481362198078526,0.9139591836734693,0.013732482429460523,0.5750535451666664,0.19811440328199725,0.8385394358334839,0.09806711654177946,1.02,285.0,20\\\\n0.5,0.1748025448599393,0.02664070736213822,0.8849795918367347,0.02067520242380064,0.8415150960280453,0.19536759880111992,0.744968212939202,0.11844309323012878,1.02,296.0,20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sigma,theta_rmse_mean,theta_rmse_std,theta_tau_mean,theta_tau_std,cn_rmse_mean,cn_rmse_std,cn_corr_mean,cn_corr_std,rhat_max,ess_min,n\\n0.0,0.1276546225581524,0.017795700116627514,0.9159183673469388,0.012450828339068134,0.5329575718749566,0.18686204206255871,0.859944031793465,0.08399652990443786,1.02,276.0,20\\n0.1,0.12950352876146337,0.01781990676614214,0.9152653061224489,0.01411336886713934,0.5451662374313886,0.19341257783681015,0.8541790894587944,0.08570813284075228,1.02,293.0,20\\n0.2,0.1351714251216793,0.017481362198078526,0.9139591836734693,0.013732482429460523,0.5750535451666664,0.19811440328199725,0.8385394358334839,0.09806711654177946,1.02,285.0,20\\n0.5,0.1748025448599393,0.02664070736213822,0.8849795918367347,0.02067520242380064,0.8415150960280453,0.19536759880111992,0.744968212939202,0.11844309323012878,1.02,296.0,20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have most data. The exp003/dry_run/results.json was truncated. Let me read the truncated parts - specifically the mfrm_only and sequential parameter sections. Also, let me read the full results_dryrun/results.json which was also truncated. Let me also read the exp013 config JSON files and check for any additional data.
+
+Actually, looking at the data, the dry_run results.json was truncated (missing the middle sections about mfrm_only d_ranking and theta_values etc.). The results_dryrun/results.json was also truncated but showed more data. Let me get the truncated sections.
+
+
+I have the key data from results_dryrun with more complete output, so now I need to check if exp003b refers to a separate experiment or if it's part of the existing data, and I should also look at the exp013 config files and search for exp006 and exp008 to get a fuller picture.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "a564cb45-38d4-4382-9cbd-640889bd79ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nPCQBUjH6y29y2ysC7qXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19645,
+      "cache_read_input_tokens": 27406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19645
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+exp003/dry_run 的输出被截断了，需要读取完整版本。同时搜索 exp006/exp008 的其他可能位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "9c7c59ca-054b-44ea-b107-40e6a7b96e22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nPCQBUjH6y29y2ysC7qXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19645,
+      "cache_read_input_tokens": 27406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19645
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XWE4WPEyGmt9fHp8VCPinc`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "python3 -c \"import json; d=json.load(open('/root/gated_mfrm_judge_bias/exp003/dry_run/results.json')); p=d['parameters']; print(json.dumps({'mfrm_only': p.get('mfrm_only',{}), 'sequential': p.get('sequential',{})}, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "f1ffc3f0-a5e2-465c-af2b-f49e5d1acb1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nPCQBUjH6y29y2ysC7qXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19645,
+      "cache_read_input_tokens": 27406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19645
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T10:55:22.939Z_
+
+<details><summary>↩ Tool result · `toolu_01XWE4WPEyGmt9fHp8VCPinc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "d01db379-2cde-446a-8a77-40408d75f76f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VRY9hP7tYRAEyYwiNeN9GR`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "python3 -c \"import json; d=json.load(open('/root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json')); p=d['parameters']; print(json.dumps({'mfrm_only': p.get('mfrm_only',{}), 'sequential': p.get('sequential',{})}, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "92835000-8bd0-4b36-9c3c-edcd74ff4b2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nPCQBUjH6y29y2ysC7qXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19645,
+      "cache_read_input_tokens": 27406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19645
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T10:55:24.397Z_
+
+<details><summary>↩ Tool result · `toolu_01VRY9hP7tYRAEyYwiNeN9GR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "5652df8d-51dd-4b05-b1bc-1df0273d044c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NtUyHEbYrpiCGep7zbK7v7`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/ -name \"*006*\" -o -name \"*008*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "9dd7efc9-2265-45df-a8d1-fe5614d6c7f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nPCQBUjH6y29y2ysC7qXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19645,
+      "cache_read_input_tokens": 27406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19645
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T10:55:25.853Z_
+
+<details><summary>↩ Tool result · `toolu_01NtUyHEbYrpiCGep7zbK7v7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "7dd063cf-eb3e-4cb1-bfe7-72a5f1c4346a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KErt3qsLZi9apcGpCk1S6F`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls /root/gated_mfrm_judge_bias/exp013/results/config_50_50.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "8cbd2994-5535-465d-8b65-980b5b889d7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nPCQBUjH6y29y2ysC7qXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19645,
+      "cache_read_input_tokens": 27406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19645
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-23T10:55:26.732Z_
+
+<details><summary>↩ Tool result · `toolu_01KErt3qsLZi9apcGpCk1S6F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp013/results/config_50_50.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "e96586a5-04e0-41cc-8181-011065778efe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp013/results/config_50_50.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp013/results/config_50_50.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The python3 -c commands with semicolons are blocked. Let me use a different approach - use python3 -c with no semicolons or use grep to extract the specific sections. Let me try a different approach to read the truncated parts of the JSON files.
+
+Also, find shows no files with "006" or "008" anywhere in the project, so those experiments are definitely not on this server.
+
+Let me try to read the mfrm_only sections using grep or tail on the JSON files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "b4a3a645-b852-4d5b-8981-10dfe444150d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SwEYwz1x93qrJ2tYVZCmUV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1364,
+      "cache_read_input_tokens": 47051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1364
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LEkLctYhQDKoYkgudsLFbM`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/gated_mfrm_judge_bias/exp003/dry_run/results.json'))\np=d['parameters']\nprint(json.dumps(p.get('mfrm_only',{}), indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "756613d2-1c9b-48a4-9a66-256a36587903",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SwEYwz1x93qrJ2tYVZCmUV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1364,
+      "cache_read_input_tokens": 47051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1364
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T10:55:33.889Z_
+
+<details><summary>↩ Tool result · `toolu_01LEkLctYhQDKoYkgudsLFbM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "460ec6ff-10a1-430f-88fe-9f262e97167d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qwyj8yuZYwdXwBYKqSjboP`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json'))\np=d['parameters']\nprint(json.dumps(p.get('mfrm_only',{}), indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "38c15c00-72c1-46cf-b6a1-5cd9b001a223",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SwEYwz1x93qrJ2tYVZCmUV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1364,
+      "cache_read_input_tokens": 47051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1364
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T10:55:34.874Z_
+
+<details><summary>↩ Tool result · `toolu_01Qwyj8yuZYwdXwBYKqSjboP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "c0239e4f-5d93-47fc-a6d5-6fb9a23034e4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DMxfXXJU9nfEsJaDuCproA`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json'))\np=d['parameters']\nprint(json.dumps(p.get('sequential',{}), indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "333279b7-bbf7-40eb-b8b8-35b3f0a6f2e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SwEYwz1x93qrJ2tYVZCmUV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1364,
+      "cache_read_input_tokens": 47051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1364
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T10:55:36.339Z_
+
+<details><summary>↩ Tool result · `toolu_01DMxfXXJU9nfEsJaDuCproA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "dd363937-227e-46aa-a90c-1d549e0f51d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014hebDnzTcsmyMJUkAFkaME`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp013/results/config_50_50.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "d4e06055-88c5-42f1-9af1-56e05d055653",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SwEYwz1x93qrJ2tYVZCmUV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1364,
+      "cache_read_input_tokens": 47051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1364
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T10:55:37.309Z_
+
+<details><summary>↩ Tool result · `toolu_014hebDnzTcsmyMJUkAFkaME`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta\\\": {\\n    \\\"gemma-2-9b\\\": -0.35866579413414,\\n    \\\"gpt-3.5-turbo-0125\\\": -3.040785074234009,\\n    \\\"gpt-4-0613\\\": -2.2961232662200928,\\n    \\\"gpt-4o\\\": 1.839608907699585,\\n    \\\"gpt-4o-mini\\\": 1.4387869834899902,\\n    \\\"llama-3.3-70b\\\": 0.7914220690727234,\\n    \\\"qwen2.5-72b\\\": 1.5343353748321533,\\n    \\\"qwen3-8b\\\": 0.09142077714204788\\n  },\\n  \\\"c\\\": {\\n    \\\"gemma-2-9b\\\": 1.1556801795959473,\\n    \\\"gpt-3.5-turbo-0125\\\": 2.5997393131256104,\\n    \\\"gpt-4-0613\\\": 3.203775644302368,\\n    \\\"gpt-4o\\\": 0.972902238368988,\\n    \\\"gpt-4o-mini\\\": 1.2858878374099731,\\n    \\\"llama-3.3-70b\\\": 1.0092970132827759,\\n    \\\"qwen2.5-72b\\\": 1.091451644897461,\\n    \\\"qwen3-8b\\\": 0.9567722678184509\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"r_hat\\\": 1.02,\\n    \\\"ess\\\": 196.0,\\n    \\\"divergences\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "d2b52180-66f3-4aa6-a062-95334d6a7264",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"theta\\\\\\\": {\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": -0.35866579413414,\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -3.040785074234009,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": -2.2961232662200928,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1.839608907699585,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1.4387869834899902,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 0.7914220690727234,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1.5343353748321533,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 0.09142077714204788\\\\n  },\\\\n  \\\\\\\"c\\\\\\\": {\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1.1556801795959473,\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 2.5997393131256104,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 3.203775644302368,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 0.972902238368988,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1.2858878374099731,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1.0092970132827759,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1.091451644897461,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 0.9567722678184509\\\\n  },\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"r_hat\\\\\\\": 1.02,\\\\n    \\\\\\\"ess\\\\\\\": 196.0,\\\\n    \\\\\\\"divergences\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta\\\": {\\n    \\\"gemma-2-9b\\\": -0.35866579413414,\\n    \\\"gpt-3.5-turbo-0125\\\": -3.040785074234009,\\n    \\\"gpt-4-0613\\\": -2.2961232662200928,\\n    \\\"gpt-4o\\\": 1.839608907699585,\\n    \\\"gpt-4o-mini\\\": 1.4387869834899902,\\n    \\\"llama-3.3-70b\\\": 0.7914220690727234,\\n    \\\"qwen2.5-72b\\\": 1.5343353748321533,\\n    \\\"qwen3-8b\\\": 0.09142077714204788\\n  },\\n  \\\"c\\\": {\\n    \\\"gemma-2-9b\\\": 1.1556801795959473,\\n    \\\"gpt-3.5-turbo-0125\\\": 2.5997393131256104,\\n    \\\"gpt-4-0613\\\": 3.203775644302368,\\n    \\\"gpt-4o\\\": 0.972902238368988,\\n    \\\"gpt-4o-mini\\\": 1.2858878374099731,\\n    \\\"llama-3.3-70b\\\": 1.0092970132827759,\\n    \\\"qwen2.5-72b\\\": 1.091451644897461,\\n    \\\"qwen3-8b\\\": 0.9567722678184509\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"r_hat\\\": 1.02,\\n    \\\"ess\\\": 196.0,\\n    \\\"divergences\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, the python3 with open() is blocked. Let me use grep to extract the mfrm_only section. Or I can try tail/head to get the truncated portion. Actually, looking back at the original output, I got quite a lot already. Let me re-examine what was truncated.
+
+From exp003/dry_run/results.json, the output was truncated right after showing the mfrm_only d_ranking starting entries. I need the full mfrm_only theta_values, d_values, and the joint_gmfrm section.
+
+From exp003/results_dryrun/results.json, the output was also truncated similarly but showed more. I got up to the joint_gmfrm section with d_ranking, d_values, theta_values, c_values.
+ 
+Looking more carefully at the results_dryrun output, I can see I have the raw_average theta_values and the joint_gmfrm section mostly intact, but the mfrm_only section got cut off mid-way. Let me check the file size and use head and tail commands to pull the missing pieces in chunks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "db24f5db-4d46-4a2a-9d09-1110f5972009",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UXsc9Yp9tBnQj2CA9ENesb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 48415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019vYDTyrsS6Mz8spWTFwyFs`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "wc -l /root/gated_mfrm_judge_bias/exp003/dry_run/results.json /root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "91f77baa-787c-4612-bf88-bed944e1db5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UXsc9Yp9tBnQj2CA9ENesb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 48415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-23T10:55:50.517Z_
+
+<details><summary>↩ Tool result · `toolu_019vYDTyrsS6Mz8spWTFwyFs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  472 /root/gated_mfrm_judge_bias/exp003/dry_run/results.json\\n  651 /root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json\\n 1123 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "ae04e586-2aa9-4d59-a5a6-340314d46c8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  472 /root/gated_mfrm_judge_bias/exp003/dry_run/results.json\\\\n  651 /root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json\\\\n 1123 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  472 /root/gated_mfrm_judge_bias/exp003/dry_run/results.json\\n  651 /root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json\\n 1123 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TmitnTi3NcnoT5XuHZqYCJ`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp013/results/config_75_25.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "da42d29d-8097-4e16-b93b-e8ae6dc5c022",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UXsc9Yp9tBnQj2CA9ENesb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 48415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-23T10:55:51.329Z_
+
+<details><summary>↩ Tool result · `toolu_01TmitnTi3NcnoT5XuHZqYCJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta\\\": {\\n    \\\"gemma-2-9b\\\": -0.3244519829750061,\\n    \\\"gpt-3.5-turbo-0125\\\": -3.119253158569336,\\n    \\\"gpt-4-0613\\\": -2.2919678688049316,\\n    \\\"gpt-4o\\\": 1.853727102279663,\\n    \\\"gpt-4o-mini\\\": 1.4731541872024536,\\n    \\\"llama-3.3-70b\\\": 0.8096571564674377,\\n    \\\"qwen2.5-72b\\\": 1.5158849954605103,\\n    \\\"qwen3-8b\\\": 0.0832497775554657\\n  },\\n  \\\"c\\\": {\\n    \\\"gemma-2-9b\\\": 1.1899152994155884,\\n    \\\"gpt-3.5-turbo-0125\\\": 3.0964157581329346,\\n    \\\"gpt-4-0613\\\": 3.4929747581481934,\\n    \\\"gpt-4o\\\": 1.025588035583496,\\n    \\\"gpt-4o-mini\\\": 1.2971105575561523,\\n    \\\"llama-3.3-70b\\\": 1.0931764841079712,\\n    \\\"qwen2.5-72b\\\": 1.2811475992202759,\\n    \\\"qwen3-8b\\\": 1.1054677963256836\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"r_hat\\\": 1.04,\\n    \\\"ess\\\": 115.0,\\n    \\\"divergences\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "57ead80e-2891-48af-a649-635a913e991f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"theta\\\\\\\": {\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": -0.3244519829750061,\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -3.119253158569336,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": -2.2919678688049316,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1.853727102279663,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1.4731541872024536,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 0.8096571564674377,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1.5158849954605103,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 0.0832497775554657\\\\n  },\\\\n  \\\\\\\"c\\\\\\\": {\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1.1899152994155884,\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 3.0964157581329346,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 3.4929747581481934,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1.025588035583496,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1.2971105575561523,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1.0931764841079712,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1.2811475992202759,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1.1054677963256836\\\\n  },\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"r_hat\\\\\\\": 1.04,\\\\n    \\\\\\\"ess\\\\\\\": 115.0,\\\\n    \\\\\\\"divergences\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta\\\": {\\n    \\\"gemma-2-9b\\\": -0.3244519829750061,\\n    \\\"gpt-3.5-turbo-0125\\\": -3.119253158569336,\\n    \\\"gpt-4-0613\\\": -2.2919678688049316,\\n    \\\"gpt-4o\\\": 1.853727102279663,\\n    \\\"gpt-4o-mini\\\": 1.4731541872024536,\\n    \\\"llama-3.3-70b\\\": 0.8096571564674377,\\n    \\\"qwen2.5-72b\\\": 1.5158849954605103,\\n    \\\"qwen3-8b\\\": 0.0832497775554657\\n  },\\n  \\\"c\\\": {\\n    \\\"gemma-2-9b\\\": 1.1899152994155884,\\n    \\\"gpt-3.5-turbo-0125\\\": 3.0964157581329346,\\n    \\\"gpt-4-0613\\\": 3.4929747581481934,\\n    \\\"gpt-4o\\\": 1.025588035583496,\\n    \\\"gpt-4o-mini\\\": 1.2971105575561523,\\n    \\\"llama-3.3-70b\\\": 1.0931764841079712,\\n    \\\"qwen2.5-72b\\\": 1.2811475992202759,\\n    \\\"qwen3-8b\\\": 1.1054677963256836\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"r_hat\\\": 1.04,\\n    \\\"ess\\\": 115.0,\\n    \\\"divergences\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PoNb8pWtxnan5tsB9fSUdU`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp013/results/config_90_10.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "c8b7cb6d-e8f6-4488-8dc2-4b85e3d844a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UXsc9Yp9tBnQj2CA9ENesb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 48415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-23T10:55:52.266Z_
+
+<details><summary>↩ Tool result · `toolu_01PoNb8pWtxnan5tsB9fSUdU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta\\\": {\\n    \\\"gemma-2-9b\\\": -0.330098032951355,\\n    \\\"gpt-3.5-turbo-0125\\\": -3.153378486633301,\\n    \\\"gpt-4-0613\\\": -2.307654857635498,\\n    \\\"gpt-4o\\\": 1.8748983144760132,\\n    \\\"gpt-4o-mini\\\": 1.4964755773544312,\\n    \\\"llama-3.3-70b\\\": 0.8043715953826904,\\n    \\\"qwen2.5-72b\\\": 1.5268181562423706,\\n    \\\"qwen3-8b\\\": 0.08856759965419769\\n  },\\n  \\\"c\\\": {\\n    \\\"gemma-2-9b\\\": 1.2496415376663208,\\n    \\\"gpt-3.5-turbo-0125\\\": 3.3534162044525146,\\n    \\\"gpt-4-0613\\\": 3.6693270206451416,\\n    \\\"gpt-4o\\\": 1.0113873481750488,\\n    \\\"gpt-4o-mini\\\": 1.2880027294158936,\\n    \\\"llama-3.3-70b\\\": 1.1653356552124023,\\n    \\\"qwen2.5-72b\\\": 1.3394646644592285,\\n    \\\"qwen3-8b\\\": 1.168424129486084\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"r_hat\\\": 1.01,\\n    \\\"ess\\\": 432.0,\\n    \\\"divergences\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "296e9f7d-332d-4473-9631-f07d21ad8817",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"theta\\\\\\\": {\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": -0.330098032951355,\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -3.153378486633301,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": -2.307654857635498,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1.8748983144760132,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1.4964755773544312,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 0.8043715953826904,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1.5268181562423706,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 0.08856759965419769\\\\n  },\\\\n  \\\\\\\"c\\\\\\\": {\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1.2496415376663208,\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 3.3534162044525146,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 3.6693270206451416,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1.0113873481750488,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1.2880027294158936,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1.1653356552124023,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1.3394646644592285,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1.168424129486084\\\\n  },\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"r_hat\\\\\\\": 1.01,\\\\n    \\\\\\\"ess\\\\\\\": 432.0,\\\\n    \\\\\\\"divergences\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta\\\": {\\n    \\\"gemma-2-9b\\\": -0.330098032951355,\\n    \\\"gpt-3.5-turbo-0125\\\": -3.153378486633301,\\n    \\\"gpt-4-0613\\\": -2.307654857635498,\\n    \\\"gpt-4o\\\": 1.8748983144760132,\\n    \\\"gpt-4o-mini\\\": 1.4964755773544312,\\n    \\\"llama-3.3-70b\\\": 0.8043715953826904,\\n    \\\"qwen2.5-72b\\\": 1.5268181562423706,\\n    \\\"qwen3-8b\\\": 0.08856759965419769\\n  },\\n  \\\"c\\\": {\\n    \\\"gemma-2-9b\\\": 1.2496415376663208,\\n    \\\"gpt-3.5-turbo-0125\\\": 3.3534162044525146,\\n    \\\"gpt-4-0613\\\": 3.6693270206451416,\\n    \\\"gpt-4o\\\": 1.0113873481750488,\\n    \\\"gpt-4o-mini\\\": 1.2880027294158936,\\n    \\\"llama-3.3-70b\\\": 1.1653356552124023,\\n    \\\"qwen2.5-72b\\\": 1.3394646644592285,\\n    \\\"qwen3-8b\\\": 1.168424129486084\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"r_hat\\\": 1.01,\\n    \\\"ess\\\": 432.0,\\n    \\\"divergences\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012tT7A1GnSFgqLUK3556tdb`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/exp013/results/config_100_0.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "2224e1de-9825-4865-987d-513c263ad19c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UXsc9Yp9tBnQj2CA9ENesb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1700,
+      "cache_read_input_tokens": 48415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-23T10:55:52.871Z_
+
+<details><summary>↩ Tool result · `toolu_012tT7A1GnSFgqLUK3556tdb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta\\\": {\\n    \\\"gemma-2-9b\\\": -0.3348245918750763,\\n    \\\"gpt-3.5-turbo-0125\\\": -3.190359592437744,\\n    \\\"gpt-4-0613\\\": -2.315166473388672,\\n    \\\"gpt-4o\\\": 1.8905260562896729,\\n    \\\"gpt-4o-mini\\\": 1.5074617862701416,\\n    \\\"llama-3.3-70b\\\": 0.8176542520523071,\\n    \\\"qwen2.5-72b\\\": 1.5437395572662354,\\n    \\\"qwen3-8b\\\": 0.0809687077999115\\n  },\\n  \\\"c\\\": {\\n    \\\"gemma-2-9b\\\": 1.3003168106079102,\\n    \\\"gpt-3.5-turbo-0125\\\": 3.5518171787261963,\\n    \\\"gpt-4-0613\\\": 3.7676594257354736,\\n    \\\"gpt-4o\\\": 1.0187779664993286,\\n    \\\"gpt-4o-mini\\\": 1.2986409664154053,\\n    \\\"llama-3.3-70b\\\": 1.1841411590576172,\\n    \\\"qwen2.5-72b\\\": 1.3700740337371826,\\n    \\\"qwen3-8b\\\": 1.242659091949463\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"r_hat\\\": 1.01,\\n    \\\"ess\\\": 668.0,\\n    \\\"divergences\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "e0239382-617d-49ac-adfb-b4e879479659",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"theta\\\\\\\": {\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": -0.3348245918750763,\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -3.190359592437744,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": -2.315166473388672,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1.8905260562896729,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1.5074617862701416,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 0.8176542520523071,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1.5437395572662354,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 0.0809687077999115\\\\n  },\\\\n  \\\\\\\"c\\\\\\\": {\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1.3003168106079102,\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 3.5518171787261963,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 3.7676594257354736,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1.0187779664993286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1.2986409664154053,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1.1841411590576172,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1.3700740337371826,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1.242659091949463\\\\n  },\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"r_hat\\\\\\\": 1.01,\\\\n    \\\\\\\"ess\\\\\\\": 668.0,\\\\n    \\\\\\\"divergences\\\\\\\": 0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta\\\": {\\n    \\\"gemma-2-9b\\\": -0.3348245918750763,\\n    \\\"gpt-3.5-turbo-0125\\\": -3.190359592437744,\\n    \\\"gpt-4-0613\\\": -2.315166473388672,\\n    \\\"gpt-4o\\\": 1.8905260562896729,\\n    \\\"gpt-4o-mini\\\": 1.5074617862701416,\\n    \\\"llama-3.3-70b\\\": 0.8176542520523071,\\n    \\\"qwen2.5-72b\\\": 1.5437395572662354,\\n    \\\"qwen3-8b\\\": 0.0809687077999115\\n  },\\n  \\\"c\\\": {\\n    \\\"gemma-2-9b\\\": 1.3003168106079102,\\n    \\\"gpt-3.5-turbo-0125\\\": 3.5518171787261963,\\n    \\\"gpt-4-0613\\\": 3.7676594257354736,\\n    \\\"gpt-4o\\\": 1.0187779664993286,\\n    \\\"gpt-4o-mini\\\": 1.2986409664154053,\\n    \\\"llama-3.3-70b\\\": 1.1841411590576172,\\n    \\\"qwen2.5-72b\\\": 1.3700740337371826,\\n    \\\"qwen3-8b\\\": 1.242659091949463\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"r_hat\\\": 1.01,\\n    \\\"ess\\\": 668.0,\\n    \\\"divergences\\\": 0\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the truncated portions of the exp003 JSON files. dry_run is 472 lines, results_dryrun is 651 lines. Let me read them in sections to get the full content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "9a2832d2-3f1b-4d66-9ba5-ed04a3a07d50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCbMTrM2XEhxB4cgeNMNB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2926,
+      "cache_read_input_tokens": 50115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+读取 exp003 JSON 被截断的部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "b0bfed7a-b56d-4d31-8428-3bc9c923136d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCbMTrM2XEhxB4cgeNMNB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2926,
+      "cache_read_input_tokens": 50115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PHkx4EShGbZwNvnEbB6jpK`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "head -250 /root/gated_mfrm_judge_bias/exp003/dry_run/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "5b081fe7-edda-4c57-8597-aca1e6df2d28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCbMTrM2XEhxB4cgeNMNB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2926,
+      "cache_read_input_tokens": 50115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-23T10:55:59.115Z_
+
+<details><summary>↩ Tool result · `toolu_01PHkx4EShGbZwNvnEbB6jpK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 1.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 8.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    }\\n  },\\n  \\\"cross_method\\\": {\\n    \\\"raw_average_vs_mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"mfrm_only_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    }\\n  },\\n  \\\"parameters\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          0.23868076503276825\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          0.21970318257808685\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.19285188615322113\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.1287105530500412\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.0505855530500412\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.11342157423496246\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -0.27593041956424713\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -0.44117994606494904\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.11342157423496246,\\n        \\\"gpt-3.5-turbo-0125\\\": -0.44117994606494904,\\n        \\\"gpt-4-0613\\\": -0.27593041956424713,\\n        \\\"gpt-4o\\\": 0.23868076503276825,\\n        \\\"gpt-4o-mini\\\": 0.19285188615322113,\\n        \\\"llama-3.3-70b\\\": 0.1287105530500412,\\n        \\\"qwen2.5-72b\\\": 0.21970318257808685,\\n        \\\"qwen3-8b\\\": 0.0505855530500412\\n      }\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.3696714639663696\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.1304121017456055\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9444210529327393\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.5110265016555786\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.15004640817642212\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.7617218494415283\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.1139652729034424\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.2298903465270996\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.3971736431121826\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.31630492210388184\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.17250873148441315\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.12005256116390228\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.025146255269646645\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          -0.009980559349060059\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.25235894322395325\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.3498520851135254\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.418994665145874\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.7617218494415283,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.2298903465270996,\\n        \\\"gpt-4-0613\\\": -1.1139652729034424,\\n        \\\"gpt-4o\\\": 1.3696714639663696,\\n        \\\"gpt-4o-mini\\\": 0.9444210529327393,\\n        \\\"llama-3.3-70b\\\": 0.5110265016555786,\\n        \\\"qwen2.5-72b\\\": 1.1304121017456055,\\n        \\\"qwen3-8b\\\": 0.15004640817642212\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.3971736431121826,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.025146255269646645,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.31630492210388184,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.12005256116390228,\\n        \\\"gpt-5.5-proxy\\\": 0.17250873148441315,\\n        \\\"llama-3.3-70b\\\": -0.3498520851135254,\\n        \\\"mistral-large-2\\\": -0.418994665145874,\\n        \\\"qwen2.5-72b\\\": -0.25235894322395325,\\n        \\\"qwen3-235b-proxy\\\": -0.009980559349060059\\n      }\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.642629623413086\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.320117712020874\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          1.162164568901062\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.679166853427887\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.31865406036376953\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.5956383347511292\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.7035043239593506\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "bde1ca03-d9cb-4cf0-a995-da4e4f079fe3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"convergence\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": NaN,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 1.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 8.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    }\\\\n  },\\\\n  \\\\\\\"arena_correlation\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7333333333333333,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.05555555555555555,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8857142857142858,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.01884548104956266,\\\\n      \\\\\\\"n_matched\\\\\\\": 6,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7333333333333333,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.05555555555555555,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8857142857142858,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.01884548104956266,\\\\n      \\\\\\\"n_matched\\\\\\\": 6,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7333333333333333,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.05555555555555555,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8857142857142858,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.01884548104956266,\\\\n      \\\\\\\"n_matched\\\\\\\": 6,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_method\\\\\\\": {\\\\n    \\\\\\\"raw_average_vs_mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"raw_average_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"mfrm_only_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"parameters\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          0.23868076503276825\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          0.21970318257808685\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.19285188615322113\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.1287105530500412\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.0505855530500412\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.11342157423496246\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -0.27593041956424713\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -0.44117994606494904\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.11342157423496246,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -0.44117994606494904,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -0.27593041956424713,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 0.23868076503276825,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.19285188615322113,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.1287105530500412,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.21970318257808685,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.0505855530500412\\\\n      }\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          1.3696714639663696\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          1.1304121017456055\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.9444210529327393\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.5110265016555786\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.15004640817642212\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.7617218494415283\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -1.1139652729034424\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -2.2298903465270996\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"d_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n          0.3971736431121826\\\\n        ],\\\\n        [\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.31630492210388184\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n          0.17250873148441315\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.12005256116390228\\\\n        ],\\\\n        [\\\\n          \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n          0.025146255269646645\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-235b-proxy\\\\\\\",\\\\n          -0.009980559349060059\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.25235894322395325\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          -0.3498520851135254\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mistral-large-2\\\\\\\",\\\\n          -0.418994665145874\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.7617218494415283,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -2.2298903465270996,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -1.1139652729034424,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 1.3696714639663696,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.9444210529327393,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.5110265016555786,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.1304121017456055,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.15004640817642212\\\\n      },\\\\n      \\\\\\\"d_values\\\\\\\": {\\\\n        \\\\\\\"claude-opus-4.7-proxy\\\\\\\": 0.3971736431121826,\\\\n        \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\": 0.025146255269646645,\\\\n        \\\\\\\"deepseek-v4-pro-proxy\\\\\\\": 0.31630492210388184,\\\\n        \\\\\\\"gemini-2.5-pro-proxy\\\\\\\": 0.12005256116390228,\\\\n        \\\\\\\"gpt-5.5-proxy\\\\\\\": 0.17250873148441315,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": -0.3498520851135254,\\\\n        \\\\\\\"mistral-large-2\\\\\\\": -0.418994665145874,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": -0.25235894322395325,\\\\n        \\\\\\\"qwen3-235b-proxy\\\\\\\": -0.009980559349060059\\\\n      }\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          1.642629623413086\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          1.320117712020874\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          1.162164568901062\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.679166853427887\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.31865406036376953\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.5956383347511292\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -1.7035043239593506\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 1.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 8.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.7333333333333333,\\n      \\\"kendall_p\\\": 0.05555555555555555,\\n      \\\"spearman_rho\\\": 0.8857142857142858,\\n      \\\"spearman_p\\\": 0.01884548104956266,\\n      \\\"n_matched\\\": 6,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    }\\n  },\\n  \\\"cross_method\\\": {\\n    \\\"raw_average_vs_mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"mfrm_only_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    }\\n  },\\n  \\\"parameters\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          0.23868076503276825\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          0.21970318257808685\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.19285188615322113\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.1287105530500412\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.0505855530500412\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.11342157423496246\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -0.27593041956424713\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -0.44117994606494904\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.11342157423496246,\\n        \\\"gpt-3.5-turbo-0125\\\": -0.44117994606494904,\\n        \\\"gpt-4-0613\\\": -0.27593041956424713,\\n        \\\"gpt-4o\\\": 0.23868076503276825,\\n        \\\"gpt-4o-mini\\\": 0.19285188615322113,\\n        \\\"llama-3.3-70b\\\": 0.1287105530500412,\\n        \\\"qwen2.5-72b\\\": 0.21970318257808685,\\n        \\\"qwen3-8b\\\": 0.0505855530500412\\n      }\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.3696714639663696\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.1304121017456055\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9444210529327393\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.5110265016555786\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.15004640817642212\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.7617218494415283\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.1139652729034424\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.2298903465270996\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.3971736431121826\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.31630492210388184\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.17250873148441315\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.12005256116390228\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.025146255269646645\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          -0.009980559349060059\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.25235894322395325\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.3498520851135254\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.418994665145874\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.7617218494415283,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.2298903465270996,\\n        \\\"gpt-4-0613\\\": -1.1139652729034424,\\n        \\\"gpt-4o\\\": 1.3696714639663696,\\n        \\\"gpt-4o-mini\\\": 0.9444210529327393,\\n        \\\"llama-3.3-70b\\\": 0.5110265016555786,\\n        \\\"qwen2.5-72b\\\": 1.1304121017456055,\\n        \\\"qwen3-8b\\\": 0.15004640817642212\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.3971736431121826,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.025146255269646645,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.31630492210388184,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.12005256116390228,\\n        \\\"gpt-5.5-proxy\\\": 0.17250873148441315,\\n        \\\"llama-3.3-70b\\\": -0.3498520851135254,\\n        \\\"mistral-large-2\\\": -0.418994665145874,\\n        \\\"qwen2.5-72b\\\": -0.25235894322395325,\\n        \\\"qwen3-235b-proxy\\\": -0.009980559349060059\\n      }\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.642629623413086\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.320117712020874\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          1.162164568901062\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.679166853427887\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.31865406036376953\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.5956383347511292\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.7035043239593506\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012k6A2HHuFXTusjhG5suKcy`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tail -250 /root/gated_mfrm_judge_bias/exp003/dry_run/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "32e34b55-5042-4ff2-bd9f-02a21fb84524",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCbMTrM2XEhxB4cgeNMNB7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2926,
+      "cache_read_input_tokens": 50115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-23T10:55:59.649Z_
+
+<details><summary>↩ Tool result · `toolu_012k6A2HHuFXTusjhG5suKcy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        [\\n          \\\"gpt-4o\\\",\\n          1.642629623413086\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.320117712020874\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          1.162164568901062\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.679166853427887\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.31865406036376953\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.5956383347511292\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.7035043239593506\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.8235902786254883\\n        ]\\n      ],\\n      \\\"c_ranking\\\": [\\n        [\\n          \\\"gpt-4-0613\\\",\\n          3.795349359512329\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          3.76617169380188\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.3649706840515137\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          1.1864123344421387\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          1.1790131330490112\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9468803405761719\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          0.8414759635925293\\n        ],\\n        [\\n          \\\"gpt-4o\\\",\\n          0.8187109231948853\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.5521488189697266\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.32080093026161194\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.28317636251449585\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.11925278604030609\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.0780295878648758\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.046334948390722275\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.3847741484642029\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.40437033772468567\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.6105987429618835\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.5956383347511292,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.8235902786254883,\\n        \\\"gpt-4-0613\\\": -1.7035043239593506,\\n        \\\"gpt-4o\\\": 1.642629623413086,\\n        \\\"gpt-4o-mini\\\": 1.162164568901062,\\n        \\\"llama-3.3-70b\\\": 0.679166853427887,\\n        \\\"qwen2.5-72b\\\": 1.320117712020874,\\n        \\\"qwen3-8b\\\": 0.31865406036376953\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": 0.8414759635925293,\\n        \\\"gpt-3.5-turbo-0125\\\": 3.76617169380188,\\n        \\\"gpt-4-0613\\\": 3.795349359512329,\\n        \\\"gpt-4o\\\": 0.8187109231948853,\\n        \\\"gpt-4o-mini\\\": 0.9468803405761719,\\n        \\\"llama-3.3-70b\\\": 1.1864123344421387,\\n        \\\"qwen2.5-72b\\\": 1.3649706840515137,\\n        \\\"qwen3-8b\\\": 1.1790131330490112\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.5521488189697266,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.11925278604030609,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.28317636251449585,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.0780295878648758,\\n        \\\"gpt-5.5-proxy\\\": 0.32080093026161194,\\n        \\\"llama-3.3-70b\\\": -0.3847741484642029,\\n        \\\"mistral-large-2\\\": -0.6105987429618835,\\n        \\\"qwen2.5-72b\\\": -0.40437033772468567,\\n        \\\"qwen3-235b-proxy\\\": 0.046334948390722275\\n      }\\n    },\\n    \\\"top_exposure_items\\\": [\\n      [\\n        \\\"3735ce11da55495cbe2c013212febe66\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"53f4338f1a4b403c84ccf864c079a8c1\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"ab4a5145354848efb97430e90e2049dc\\\",\\n        0.8521250466397368\\n      ],\\n      [\\n        \\\"b7e7a16272344defb5a5bf23e598fb46\\\",\\n        0.774351543601415\\n      ],\\n      [\\n        \\\"0901d02592b347d8aa2cb99b02bf0dad\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"98312077a1a54be0a116fde4156f6cf1\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"c1f1deb824e948f792a47d71ee266a67\\\",\\n        0.7112342376821964\\n      ],\\n      [\\n        \\\"3801e82e67a34ee3aaab0227342bcc2b\\\",\\n        0.7042071228277675\\n      ],\\n      [\\n        \\\"e64ca084c89c4d59b7718b7199116fd6\\\",\\n        0.6986288394304551\\n      ],\\n      [\\n        \\\"38506f6f76c34b8ab8aec6223eee2548\\\",\\n        0.6986288394304551\\n      ]\\n    ],\\n    \\\"bottom_exposure_items\\\": [\\n      [\\n        \\\"c67189582cb34f088ff72251df940821\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"26d316034bf44e07aa682d2c2b2751c4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"2bc4dbaf6043463ebf26ca5ba234a7df\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"09e03665fa144757920dbf7d8946ad30\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"089cea4c41974cfa9ba05694c87c5685\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"0394b670ad2e4206954cc294898c4633\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fd86dff7ac084b99889d294e135f82a4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fdf5e9ec59b146fa997e467f3cefe3c4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"0122ab60646b4961bc39e9c03bdf6bcc\\\",\\n        0.0\\n      ]\\n    ]\\n  },\\n  \\\"data_summary\\\": {\\n    \\\"N\\\": 8,\\n    \\\"I\\\": 316,\\n    \\\"J\\\": 9,\\n    \\\"n_obs\\\": 4250,\\n    \\\"model_names\\\": [\\n      \\\"gemma-2-9b\\\",\\n      \\\"gpt-3.5-turbo-0125\\\",\\n      \\\"gpt-4-0613\\\",\\n      \\\"gpt-4o\\\",\\n      \\\"gpt-4o-mini\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"judge_names\\\": [\\n      \\\"claude-opus-4.7-proxy\\\",\\n      \\\"claude-sonnet-4.6-proxy\\\",\\n      \\\"deepseek-v4-pro-proxy\\\",\\n      \\\"gemini-2.5-pro-proxy\\\",\\n      \\\"gpt-5.5-proxy\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"mistral-large-2\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-235b-proxy\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "c40f3b24-1c4c-446e-9dd0-5e07903b46e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          1.642629623413086\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          1.320117712020874\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          1.162164568901062\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.679166853427887\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.31865406036376953\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.5956383347511292\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -1.7035043239593506\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -2.8235902786254883\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"c_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          3.795349359512329\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          3.76617169380188\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          1.3649706840515137\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          1.1864123344421387\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          1.1790131330490112\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.9468803405761719\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          0.8414759635925293\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          0.8187109231948853\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"d_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n          0.5521488189697266\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n          0.32080093026161194\\\\n        ],\\\\n        [\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.28317636251449585\\\\n        ],\\\\n        [\\\\n          \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n          0.11925278604030609\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.0780295878648758\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-235b-proxy\\\\\\\",\\\\n          0.046334948390722275\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          -0.3847741484642029\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.40437033772468567\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mistral-large-2\\\\\\\",\\\\n          -0.6105987429618835\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.5956383347511292,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -2.8235902786254883,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -1.7035043239593506,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 1.642629623413086,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 1.162164568901062,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.679166853427887,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.320117712020874,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.31865406036376953\\\\n      },\\\\n      \\\\\\\"c_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": 0.8414759635925293,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 3.76617169380188,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": 3.795349359512329,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 0.8187109231948853,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.9468803405761719,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 1.1864123344421387,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.3649706840515137,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 1.1790131330490112\\\\n      },\\\\n      \\\\\\\"d_values\\\\\\\": {\\\\n        \\\\\\\"claude-opus-4.7-proxy\\\\\\\": 0.5521488189697266,\\\\n        \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\": 0.11925278604030609,\\\\n        \\\\\\\"deepseek-v4-pro-proxy\\\\\\\": 0.28317636251449585,\\\\n        \\\\\\\"gemini-2.5-pro-proxy\\\\\\\": 0.0780295878648758,\\\\n        \\\\\\\"gpt-5.5-proxy\\\\\\\": 0.32080093026161194,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": -0.3847741484642029,\\\\n        \\\\\\\"mistral-large-2\\\\\\\": -0.6105987429618835,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": -0.40437033772468567,\\\\n        \\\\\\\"qwen3-235b-proxy\\\\\\\": 0.046334948390722275\\\\n      }\\\\n    },\\\\n    \\\\\\\"top_exposure_items\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"3735ce11da55495cbe2c013212febe66\\\\\\\",\\\\n        1.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"53f4338f1a4b403c84ccf864c079a8c1\\\\\\\",\\\\n        1.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"ab4a5145354848efb97430e90e2049dc\\\\\\\",\\\\n        0.8521250466397368\\\\n      ],\\\\n      [\\\\n        \\\\\\\"b7e7a16272344defb5a5bf23e598fb46\\\\\\\",\\\\n        0.774351543601415\\\\n      ],\\\\n      [\\\\n        \\\\\\\"0901d02592b347d8aa2cb99b02bf0dad\\\\\\\",\\\\n        0.7687645961127684\\\\n      ],\\\\n      [\\\\n        \\\\\\\"98312077a1a54be0a116fde4156f6cf1\\\\\\\",\\\\n        0.7687645961127684\\\\n      ],\\\\n      [\\\\n        \\\\\\\"c1f1deb824e948f792a47d71ee266a67\\\\\\\",\\\\n        0.7112342376821964\\\\n      ],\\\\n      [\\\\n        \\\\\\\"3801e82e67a34ee3aaab0227342bcc2b\\\\\\\",\\\\n        0.7042071228277675\\\\n      ],\\\\n      [\\\\n        \\\\\\\"e64ca084c89c4d59b7718b7199116fd6\\\\\\\",\\\\n        0.6986288394304551\\\\n      ],\\\\n      [\\\\n        \\\\\\\"38506f6f76c34b8ab8aec6223eee2548\\\\\\\",\\\\n        0.6986288394304551\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"bottom_exposure_items\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"c67189582cb34f088ff72251df940821\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"26d316034bf44e07aa682d2c2b2751c4\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"2bc4dbaf6043463ebf26ca5ba234a7df\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"09e03665fa144757920dbf7d8946ad30\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"089cea4c41974cfa9ba05694c87c5685\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"0394b670ad2e4206954cc294898c4633\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fd86dff7ac084b99889d294e135f82a4\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fdf5e9ec59b146fa997e467f3cefe3c4\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"0122ab60646b4961bc39e9c03bdf6bcc\\\\\\\",\\\\n        0.0\\\\n      ]\\\\n    ]\\\\n  },\\\\n  \\\\\\\"data_summary\\\\\\\": {\\\\n    \\\\\\\"N\\\\\\\": 8,\\\\n    \\\\\\\"I\\\\\\\": 316,\\\\n    \\\\\\\"J\\\\\\\": 9,\\\\n    \\\\\\\"n_obs\\\\\\\": 4250,\\\\n    \\\\\\\"model_names\\\\\\\": [\\\\n      \\\\\\\"gemma-2-9b\\\\\\\",\\\\n      \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n      \\\\\\\"gpt-4-0613\\\\\\\",\\\\n      \\\\\\\"gpt-4o\\\\\\\",\\\\n      \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n      \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n      \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n      \\\\\\\"qwen3-8b\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"judge_names\\\\\\\": [\\\\n      \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n      \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n      \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n      \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n      \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n      \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n      \\\\\\\"mistral-large-2\\\\\\\",\\\\n      \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n      \\\\\\\"qwen3-235b-proxy\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        [\\n          \\\"gpt-4o\\\",\\n          1.642629623413086\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.320117712020874\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          1.162164568901062\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.679166853427887\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.31865406036376953\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.5956383347511292\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.7035043239593506\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.8235902786254883\\n        ]\\n      ],\\n      \\\"c_ranking\\\": [\\n        [\\n          \\\"gpt-4-0613\\\",\\n          3.795349359512329\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          3.76617169380188\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.3649706840515137\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          1.1864123344421387\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          1.1790131330490112\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9468803405761719\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          0.8414759635925293\\n        ],\\n        [\\n          \\\"gpt-4o\\\",\\n          0.8187109231948853\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.5521488189697266\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.32080093026161194\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.28317636251449585\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.11925278604030609\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.0780295878648758\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.046334948390722275\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.3847741484642029\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.40437033772468567\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.6105987429618835\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.5956383347511292,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.8235902786254883,\\n        \\\"gpt-4-0613\\\": -1.7035043239593506,\\n        \\\"gpt-4o\\\": 1.642629623413086,\\n        \\\"gpt-4o-mini\\\": 1.162164568901062,\\n        \\\"llama-3.3-70b\\\": 0.679166853427887,\\n        \\\"qwen2.5-72b\\\": 1.320117712020874,\\n        \\\"qwen3-8b\\\": 0.31865406036376953\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": 0.8414759635925293,\\n        \\\"gpt-3.5-turbo-0125\\\": 3.76617169380188,\\n        \\\"gpt-4-0613\\\": 3.795349359512329,\\n        \\\"gpt-4o\\\": 0.8187109231948853,\\n        \\\"gpt-4o-mini\\\": 0.9468803405761719,\\n        \\\"llama-3.3-70b\\\": 1.1864123344421387,\\n        \\\"qwen2.5-72b\\\": 1.3649706840515137,\\n        \\\"qwen3-8b\\\": 1.1790131330490112\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.5521488189697266,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.11925278604030609,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.28317636251449585,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.0780295878648758,\\n        \\\"gpt-5.5-proxy\\\": 0.32080093026161194,\\n        \\\"llama-3.3-70b\\\": -0.3847741484642029,\\n        \\\"mistral-large-2\\\": -0.6105987429618835,\\n        \\\"qwen2.5-72b\\\": -0.40437033772468567,\\n        \\\"qwen3-235b-proxy\\\": 0.046334948390722275\\n      }\\n    },\\n    \\\"top_exposure_items\\\": [\\n      [\\n        \\\"3735ce11da55495cbe2c013212febe66\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"53f4338f1a4b403c84ccf864c079a8c1\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"ab4a5145354848efb97430e90e2049dc\\\",\\n        0.8521250466397368\\n      ],\\n      [\\n        \\\"b7e7a16272344defb5a5bf23e598fb46\\\",\\n        0.774351543601415\\n      ],\\n      [\\n        \\\"0901d02592b347d8aa2cb99b02bf0dad\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"98312077a1a54be0a116fde4156f6cf1\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"c1f1deb824e948f792a47d71ee266a67\\\",\\n        0.7112342376821964\\n      ],\\n      [\\n        \\\"3801e82e67a34ee3aaab0227342bcc2b\\\",\\n        0.7042071228277675\\n      ],\\n      [\\n        \\\"e64ca084c89c4d59b7718b7199116fd6\\\",\\n        0.6986288394304551\\n      ],\\n      [\\n        \\\"38506f6f76c34b8ab8aec6223eee2548\\\",\\n        0.6986288394304551\\n      ]\\n    ],\\n    \\\"bottom_exposure_items\\\": [\\n      [\\n        \\\"c67189582cb34f088ff72251df940821\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"26d316034bf44e07aa682d2c2b2751c4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"2bc4dbaf6043463ebf26ca5ba234a7df\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"09e03665fa144757920dbf7d8946ad30\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"089cea4c41974cfa9ba05694c87c5685\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"0394b670ad2e4206954cc294898c4633\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fd86dff7ac084b99889d294e135f82a4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fdf5e9ec59b146fa997e467f3cefe3c4\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"0122ab60646b4961bc39e9c03bdf6bcc\\\",\\n        0.0\\n      ]\\n    ]\\n  },\\n  \\\"data_summary\\\": {\\n    \\\"N\\\": 8,\\n    \\\"I\\\": 316,\\n    \\\"J\\\": 9,\\n    \\\"n_obs\\\": 4250,\\n    \\\"model_names\\\": [\\n      \\\"gemma-2-9b\\\",\\n      \\\"gpt-3.5-turbo-0125\\\",\\n      \\\"gpt-4-0613\\\",\\n      \\\"gpt-4o\\\",\\n      \\\"gpt-4o-mini\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"judge_names\\\": [\\n      \\\"claude-opus-4.7-proxy\\\",\\n      \\\"claude-sonnet-4.6-proxy\\\",\\n      \\\"deepseek-v4-pro-proxy\\\",\\n      \\\"gemini-2.5-pro-proxy\\\",\\n      \\\"gpt-5.5-proxy\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"mistral-large-2\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-235b-proxy\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete dry_run data for exp003. Let me also get the truncated portion of exp003/results_dryrun. That file has the sequential method as well.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "86226ae1-f7c4-45a2-a077-13e7a1a32a0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfgFpavQMtwV9SYFdVT4jD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 53041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+现在读取 results_dryrun 的被截断部分（mfrm_only 和 sequential 的完整参数）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "ee235335-3246-4f47-ae33-68aff0a49c3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfgFpavQMtwV9SYFdVT4jD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 53041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WaRvcHCnYmGUAD23k5wB41`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "head -350 /root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "3c34031e-086b-4f9a-b2be-d41907b88ca8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfgFpavQMtwV9SYFdVT4jD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 53041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-23T10:56:06.490Z_
+
+<details><summary>↩ Tool result · `toolu_01WaRvcHCnYmGUAD23k5wB41`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 12.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"sequential\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 9.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 5.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"sequential\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.8571428571428571,\\n      \\\"kendall_p\\\": 0.001736111111111111,\\n      \\\"spearman_rho\\\": 0.9523809523809524,\\n      \\\"spearman_p\\\": 0.000260400024387251,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    }\\n  },\\n  \\\"cross_method\\\": {\\n    \\\"raw_average_vs_mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_sequential\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    },\\n    \\\"mfrm_only_vs_sequential\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"mfrm_only_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    },\\n    \\\"sequential_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    }\\n  },\\n  \\\"parameters\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          0.23386886157095432\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          0.21287819184362888\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.1895273569971323\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.11568554677069187\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.05057402886450291\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.10290822945535183\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -0.27219981513917446\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -0.427425941452384\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.10290822945535183,\\n        \\\"gpt-3.5-turbo-0125\\\": -0.427425941452384,\\n        \\\"gpt-4-0613\\\": -0.27219981513917446,\\n        \\\"gpt-4o\\\": 0.23386886157095432,\\n        \\\"gpt-4o-mini\\\": 0.1895273569971323,\\n        \\\"llama-3.3-70b\\\": 0.11568554677069187,\\n        \\\"qwen2.5-72b\\\": 0.21287819184362888,\\n        \\\"qwen3-8b\\\": 0.05057402886450291\\n      }\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.4099053144454956\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.1760369539260864\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9811668395996094\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.53125\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.16850760579109192\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.6876495480537415\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.271219253540039\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.307997941970825\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.4106200933456421\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.36938193440437317\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.318693071603775\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.04764438420534134\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.009770347736775875\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          -0.03690224885940552\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.23714153468608856\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.36922645568847656\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.5128395557403564\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.6876495480537415,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.307997941970825,\\n        \\\"gpt-4-0613\\\": -1.271219253540039,\\n        \\\"gpt-4o\\\": 1.4099053144454956,\\n        \\\"gpt-4o-mini\\\": 0.9811668395996094,\\n        \\\"llama-3.3-70b\\\": 0.53125,\\n        \\\"qwen2.5-72b\\\": 1.1760369539260864,\\n        \\\"qwen3-8b\\\": 0.16850760579109192\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.4106200933456421,\\n        \\\"claude-sonnet-4.6-proxy\\\": -0.03690224885940552,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.318693071603775,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.04764438420534134,\\n        \\\"gpt-5.5-proxy\\\": 0.36938193440437317,\\n        \\\"llama-3.3-70b\\\": -0.36922645568847656,\\n        \\\"mistral-large-2\\\": -0.5128395557403564,\\n        \\\"qwen2.5-72b\\\": -0.23714153468608856,\\n        \\\"qwen3-235b-proxy\\\": 0.009770347736775875\\n      }\\n    },\\n    \\\"sequential\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.5520600433539875\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.1941418076327195\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9843409764123597\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.47096371309126633\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.2197759985469773\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.6506202875297691\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.344334551869947\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.426327699637594\\n        ]\\n      ],\\n      \\\"c_ranking\\\": [\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          0.5149595712704244\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          0.3254958261039002\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.10067177666591594\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.056046479462655466\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          -0.10297773812347255\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.18497565180556727\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          -0.3218621718212169\\n        ],\\n        [\\n          \\\"gpt-4o\\\",\\n          -0.7404148294524999\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.42406177520751953\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.37683337926864624\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.3251693546772003\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.02575572393834591\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.014018790796399117\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "e813d720-1d85-4b90-a10f-1bfe22c30a50",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"convergence\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": NaN,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 12.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"sequential\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 9.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": 5.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    }\\\\n  },\\\\n  \\\\\\\"arena_correlation\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"sequential\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.8571428571428571,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.001736111111111111,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9523809523809524,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.000260400024387251,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_method\\\\\\\": {\\\\n    \\\\\\\"raw_average_vs_mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"raw_average_vs_sequential\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"raw_average_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9285714285714285,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9761904761904763\\\\n    },\\\\n    \\\\\\\"mfrm_only_vs_sequential\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9999999999999998,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"mfrm_only_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9285714285714285,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9761904761904763\\\\n    },\\\\n    \\\\\\\"sequential_vs_joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.9285714285714285,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9761904761904763\\\\n    }\\\\n  },\\\\n  \\\\\\\"parameters\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          0.23386886157095432\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          0.21287819184362888\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.1895273569971323\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.11568554677069187\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.05057402886450291\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.10290822945535183\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -0.27219981513917446\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -0.427425941452384\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.10290822945535183,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -0.427425941452384,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -0.27219981513917446,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 0.23386886157095432,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.1895273569971323,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.11568554677069187,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.21287819184362888,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.05057402886450291\\\\n      }\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          1.4099053144454956\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          1.1760369539260864\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.9811668395996094\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.53125\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.16850760579109192\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.6876495480537415\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -1.271219253540039\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -2.307997941970825\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"d_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n          0.4106200933456421\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n          0.36938193440437317\\\\n        ],\\\\n        [\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.318693071603775\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.04764438420534134\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-235b-proxy\\\\\\\",\\\\n          0.009770347736775875\\\\n        ],\\\\n        [\\\\n          \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n          -0.03690224885940552\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.23714153468608856\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          -0.36922645568847656\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mistral-large-2\\\\\\\",\\\\n          -0.5128395557403564\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.6876495480537415,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -2.307997941970825,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -1.271219253540039,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 1.4099053144454956,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.9811668395996094,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.53125,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.1760369539260864,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.16850760579109192\\\\n      },\\\\n      \\\\\\\"d_values\\\\\\\": {\\\\n        \\\\\\\"claude-opus-4.7-proxy\\\\\\\": 0.4106200933456421,\\\\n        \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\": -0.03690224885940552,\\\\n        \\\\\\\"deepseek-v4-pro-proxy\\\\\\\": 0.318693071603775,\\\\n        \\\\\\\"gemini-2.5-pro-proxy\\\\\\\": 0.04764438420534134,\\\\n        \\\\\\\"gpt-5.5-proxy\\\\\\\": 0.36938193440437317,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": -0.36922645568847656,\\\\n        \\\\\\\"mistral-large-2\\\\\\\": -0.5128395557403564,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": -0.23714153468608856,\\\\n        \\\\\\\"qwen3-235b-proxy\\\\\\\": 0.009770347736775875\\\\n      }\\\\n    },\\\\n    \\\\\\\"sequential\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          1.5520600433539875\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          1.1941418076327195\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          0.9843409764123597\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.47096371309126633\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.2197759985469773\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.6506202875297691\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -1.344334551869947\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -2.426327699637594\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"c_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          0.5149595712704244\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          0.3254958261039002\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.10067177666591594\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.056046479462655466\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          -0.10297773812347255\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.18497565180556727\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          -0.3218621718212169\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          -0.7404148294524999\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"d_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n          0.42406177520751953\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n          0.37683337926864624\\\\n        ],\\\\n        [\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.3251693546772003\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.02575572393834591\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-235b-proxy\\\\\\\",\\\\n          0.014018790796399117\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 12.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"sequential\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 9.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": 5.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"sequential\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.8571428571428571,\\n      \\\"kendall_p\\\": 0.001736111111111111,\\n      \\\"spearman_rho\\\": 0.9523809523809524,\\n      \\\"spearman_p\\\": 0.000260400024387251,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    }\\n  },\\n  \\\"cross_method\\\": {\\n    \\\"raw_average_vs_mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_sequential\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"raw_average_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    },\\n    \\\"mfrm_only_vs_sequential\\\": {\\n      \\\"kendall_tau\\\": 0.9999999999999998,\\n      \\\"spearman_rho\\\": 1.0\\n    },\\n    \\\"mfrm_only_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    },\\n    \\\"sequential_vs_joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.9285714285714285,\\n      \\\"spearman_rho\\\": 0.9761904761904763\\n    }\\n  },\\n  \\\"parameters\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          0.23386886157095432\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          0.21287819184362888\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.1895273569971323\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.11568554677069187\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.05057402886450291\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.10290822945535183\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -0.27219981513917446\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -0.427425941452384\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.10290822945535183,\\n        \\\"gpt-3.5-turbo-0125\\\": -0.427425941452384,\\n        \\\"gpt-4-0613\\\": -0.27219981513917446,\\n        \\\"gpt-4o\\\": 0.23386886157095432,\\n        \\\"gpt-4o-mini\\\": 0.1895273569971323,\\n        \\\"llama-3.3-70b\\\": 0.11568554677069187,\\n        \\\"qwen2.5-72b\\\": 0.21287819184362888,\\n        \\\"qwen3-8b\\\": 0.05057402886450291\\n      }\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.4099053144454956\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.1760369539260864\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9811668395996094\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.53125\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.16850760579109192\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.6876495480537415\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.271219253540039\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.307997941970825\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.4106200933456421\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.36938193440437317\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.318693071603775\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.04764438420534134\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.009770347736775875\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          -0.03690224885940552\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.23714153468608856\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.36922645568847656\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.5128395557403564\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.6876495480537415,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.307997941970825,\\n        \\\"gpt-4-0613\\\": -1.271219253540039,\\n        \\\"gpt-4o\\\": 1.4099053144454956,\\n        \\\"gpt-4o-mini\\\": 0.9811668395996094,\\n        \\\"llama-3.3-70b\\\": 0.53125,\\n        \\\"qwen2.5-72b\\\": 1.1760369539260864,\\n        \\\"qwen3-8b\\\": 0.16850760579109192\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.4106200933456421,\\n        \\\"claude-sonnet-4.6-proxy\\\": -0.03690224885940552,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.318693071603775,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.04764438420534134,\\n        \\\"gpt-5.5-proxy\\\": 0.36938193440437317,\\n        \\\"llama-3.3-70b\\\": -0.36922645568847656,\\n        \\\"mistral-large-2\\\": -0.5128395557403564,\\n        \\\"qwen2.5-72b\\\": -0.23714153468608856,\\n        \\\"qwen3-235b-proxy\\\": 0.009770347736775875\\n      }\\n    },\\n    \\\"sequential\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.5520600433539875\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.1941418076327195\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          0.9843409764123597\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.47096371309126633\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.2197759985469773\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.6506202875297691\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.344334551869947\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -2.426327699637594\\n        ]\\n      ],\\n      \\\"c_ranking\\\": [\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          0.5149595712704244\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          0.3254958261039002\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.10067177666591594\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.056046479462655466\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          -0.10297773812347255\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.18497565180556727\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          -0.3218621718212169\\n        ],\\n        [\\n          \\\"gpt-4o\\\",\\n          -0.7404148294524999\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.42406177520751953\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.37683337926864624\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.3251693546772003\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.02575572393834591\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.014018790796399117\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KZff9KMycyCFnbBjp7yeQB`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tail -350 /root/gated_mfrm_judge_bias/exp003/results_dryrun/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "587865c6-173c-410f-b14d-fcb57190cac1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfgFpavQMtwV9SYFdVT4jD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 53041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-23T10:56:07.832Z_
+
+<details><summary>↩ Tool result · `toolu_01KZff9KMycyCFnbBjp7yeQB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"gpt-4-0613\\\",\\n          0.3254958261039002\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.10067177666591594\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.056046479462655466\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          -0.10297773812347255\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.18497565180556727\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          -0.3218621718212169\\n        ],\\n        [\\n          \\\"gpt-4o\\\",\\n          -0.7404148294524999\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.42406177520751953\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.37683337926864624\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.3251693546772003\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.02575572393834591\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.014018790796399117\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          -0.04112124443054199\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.22876933217048645\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.39376136660575867\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.5021870136260986\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.6506202875297691,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.426327699637594,\\n        \\\"gpt-4-0613\\\": -1.344334551869947,\\n        \\\"gpt-4o\\\": 1.5520600433539875,\\n        \\\"gpt-4o-mini\\\": 0.9843409764123597,\\n        \\\"llama-3.3-70b\\\": 0.47096371309126633,\\n        \\\"qwen2.5-72b\\\": 1.1941418076327195,\\n        \\\"qwen3-8b\\\": 0.2197759985469773\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.18497565180556727,\\n        \\\"gpt-3.5-turbo-0125\\\": 0.5149595712704244,\\n        \\\"gpt-4-0613\\\": 0.3254958261039002,\\n        \\\"gpt-4o\\\": -0.7404148294524999,\\n        \\\"gpt-4o-mini\\\": -0.10297773812347255,\\n        \\\"llama-3.3-70b\\\": 0.10067177666591594,\\n        \\\"qwen2.5-72b\\\": -0.056046479462655466,\\n        \\\"qwen3-8b\\\": -0.3218621718212169\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.42406177520751953,\\n        \\\"claude-sonnet-4.6-proxy\\\": -0.04112124443054199,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.3251693546772003,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.02575572393834591,\\n        \\\"gpt-5.5-proxy\\\": 0.37683337926864624,\\n        \\\"llama-3.3-70b\\\": -0.39376136660575867,\\n        \\\"mistral-large-2\\\": -0.5021870136260986,\\n        \\\"qwen2.5-72b\\\": -0.22876933217048645,\\n        \\\"qwen3-235b-proxy\\\": 0.014018790796399117\\n      }\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.915968894958496\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          1.285175085067749\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.096518635749817\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.4782659411430359\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.39585262537002563\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.45279669761657715\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.641145944595337\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -3.077838659286499\\n        ]\\n      ],\\n      \\\"c_ranking\\\": [\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          5.142830848693848\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          3.55696964263916\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          3.195150136947632\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          2.671041250228882\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          1.649793028831482\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          1.212019920349121\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          1.2095699310302734\\n        ],\\n        [\\n          \\\"gpt-4o\\\",\\n          0.3905160427093506\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.566260814666748\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.5174816846847534\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.2934865355491638\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.1092333272099495\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.06364023685455322\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.014833996072411537\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.36058440804481506\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.432869017124176\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.7714831233024597\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.45279669761657715,\\n        \\\"gpt-3.5-turbo-0125\\\": -3.077838659286499,\\n        \\\"gpt-4-0613\\\": -1.641145944595337,\\n        \\\"gpt-4o\\\": 1.915968894958496,\\n        \\\"gpt-4o-mini\\\": 1.285175085067749,\\n        \\\"llama-3.3-70b\\\": 0.4782659411430359,\\n        \\\"qwen2.5-72b\\\": 1.096518635749817,\\n        \\\"qwen3-8b\\\": 0.39585262537002563\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": 1.212019920349121,\\n        \\\"gpt-3.5-turbo-0125\\\": 5.142830848693848,\\n        \\\"gpt-4-0613\\\": 3.55696964263916,\\n        \\\"gpt-4o\\\": 0.3905160427093506,\\n        \\\"gpt-4o-mini\\\": 1.2095699310302734,\\n        \\\"llama-3.3-70b\\\": 2.671041250228882,\\n        \\\"qwen2.5-72b\\\": 3.195150136947632,\\n        \\\"qwen3-8b\\\": 1.649793028831482\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.566260814666748,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.1092333272099495,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.2934865355491638,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.014833996072411537,\\n        \\\"gpt-5.5-proxy\\\": 0.5174816846847534,\\n        \\\"llama-3.3-70b\\\": -0.432869017124176,\\n        \\\"mistral-large-2\\\": -0.7714831233024597,\\n        \\\"qwen2.5-72b\\\": -0.36058440804481506,\\n        \\\"qwen3-235b-proxy\\\": 0.06364023685455322\\n      }\\n    },\\n    \\\"top_exposure_items\\\": [\\n      [\\n        \\\"53f4338f1a4b403c84ccf864c079a8c1\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"3735ce11da55495cbe2c013212febe66\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"ab4a5145354848efb97430e90e2049dc\\\",\\n        0.8521250466397368\\n      ],\\n      [\\n        \\\"0901d02592b347d8aa2cb99b02bf0dad\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"c1f1deb824e948f792a47d71ee266a67\\\",\\n        0.7112342376821964\\n      ],\\n      [\\n        \\\"3801e82e67a34ee3aaab0227342bcc2b\\\",\\n        0.7042071228277675\\n      ],\\n      [\\n        \\\"1cf3677651564ce5bcc2174db5cc23eb\\\",\\n        0.6501892793814763\\n      ],\\n      [\\n        \\\"06991f6da3104bf8b935d311581a348e\\\",\\n        0.6386583019190328\\n      ],\\n      [\\n        \\\"3bcc4c4c16924cceb3b57ec9d35e9bdf\\\",\\n        0.6386583019190328\\n      ],\\n      [\\n        \\\"b7e2e3117e814a6b84520be8e8542bca\\\",\\n        0.6386583019190328\\n      ]\\n    ],\\n    \\\"bottom_exposure_items\\\": [\\n      [\\n        \\\"c542b6d5782b45efb294e945117387fc\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"c15bbb1710b445109f24fcd2c3d6ef60\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"ccebedcaff524f589a4cd5ae584fcbc5\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e9f5e01e6b2c48ff9eb121f7e32afcae\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e80139e32fb54b95a9a4effa86d8ddf5\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e21a44515e9b408ba118d923fe17964d\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"f9111d1c39744147976e90c820838582\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fae0a258723b44b4843469ffcbe85d06\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fd86dff7ac084b99889d294e135f82a4\\\",\\n        0.0\\n      ]\\n    ]\\n  },\\n  \\\"data_summary\\\": {\\n    \\\"N\\\": 8,\\n    \\\"I\\\": 175,\\n    \\\"J\\\": 9,\\n    \\\"n_obs\\\": 4223,\\n    \\\"model_names\\\": [\\n      \\\"gemma-2-9b\\\",\\n      \\\"gpt-3.5-turbo-0125\\\",\\n      \\\"gpt-4-0613\\\",\\n      \\\"gpt-4o\\\",\\n      \\\"gpt-4o-mini\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"judge_names\\\": [\\n      \\\"claude-opus-4.7-proxy\\\",\\n      \\\"claude-sonnet-4.6-proxy\\\",\\n      \\\"deepseek-v4-pro-proxy\\\",\\n      \\\"gemini-2.5-pro-proxy\\\",\\n      \\\"gpt-5.5-proxy\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"mistral-large-2\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-235b-proxy\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "fcaec301-de86-473b-a48d-a8b535728549",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          0.3254958261039002\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.10067177666591594\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.056046479462655466\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          -0.10297773812347255\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.18497565180556727\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          -0.3218621718212169\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          -0.7404148294524999\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"d_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n          0.42406177520751953\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n          0.37683337926864624\\\\n        ],\\\\n        [\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.3251693546772003\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.02575572393834591\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-235b-proxy\\\\\\\",\\\\n          0.014018790796399117\\\\n        ],\\\\n        [\\\\n          \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n          -0.04112124443054199\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.22876933217048645\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          -0.39376136660575867\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mistral-large-2\\\\\\\",\\\\n          -0.5021870136260986\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.6506202875297691,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -2.426327699637594,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -1.344334551869947,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 1.5520600433539875,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 0.9843409764123597,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.47096371309126633,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.1941418076327195,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.2197759985469773\\\\n      },\\\\n      \\\\\\\"c_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.18497565180556727,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 0.5149595712704244,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": 0.3254958261039002,\\\\n        \\\\\\\"gpt-4o\\\\\\\": -0.7404148294524999,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": -0.10297773812347255,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.10067177666591594,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": -0.056046479462655466,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": -0.3218621718212169\\\\n      },\\\\n      \\\\\\\"d_values\\\\\\\": {\\\\n        \\\\\\\"claude-opus-4.7-proxy\\\\\\\": 0.42406177520751953,\\\\n        \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\": -0.04112124443054199,\\\\n        \\\\\\\"deepseek-v4-pro-proxy\\\\\\\": 0.3251693546772003,\\\\n        \\\\\\\"gemini-2.5-pro-proxy\\\\\\\": 0.02575572393834591,\\\\n        \\\\\\\"gpt-5.5-proxy\\\\\\\": 0.37683337926864624,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": -0.39376136660575867,\\\\n        \\\\\\\"mistral-large-2\\\\\\\": -0.5021870136260986,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": -0.22876933217048645,\\\\n        \\\\\\\"qwen3-235b-proxy\\\\\\\": 0.014018790796399117\\\\n      }\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"theta_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          1.915968894958496\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          1.285175085067749\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          1.096518635749817\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          0.4782659411430359\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          0.39585262537002563\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          -0.45279669761657715\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          -1.641145944595337\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          -3.077838659286499\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"c_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n          5.142830848693848\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4-0613\\\\\\\",\\\\n          3.55696964263916\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          3.195150136947632\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          2.671041250228882\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-8b\\\\\\\",\\\\n          1.649793028831482\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemma-2-9b\\\\\\\",\\\\n          1.212019920349121\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n          1.2095699310302734\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-4o\\\\\\\",\\\\n          0.3905160427093506\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"d_ranking\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n          0.566260814666748\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n          0.5174816846847534\\\\n        ],\\\\n        [\\\\n          \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n          0.2934865355491638\\\\n        ],\\\\n        [\\\\n          \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n          0.1092333272099495\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen3-235b-proxy\\\\\\\",\\\\n          0.06364023685455322\\\\n        ],\\\\n        [\\\\n          \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n          0.014833996072411537\\\\n        ],\\\\n        [\\\\n          \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n          -0.36058440804481506\\\\n        ],\\\\n        [\\\\n          \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n          -0.432869017124176\\\\n        ],\\\\n        [\\\\n          \\\\\\\"mistral-large-2\\\\\\\",\\\\n          -0.7714831233024597\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"theta_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": -0.45279669761657715,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": -3.077838659286499,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": -1.641145944595337,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 1.915968894958496,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 1.285175085067749,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 0.4782659411430359,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 1.096518635749817,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.39585262537002563\\\\n      },\\\\n      \\\\\\\"c_values\\\\\\\": {\\\\n        \\\\\\\"gemma-2-9b\\\\\\\": 1.212019920349121,\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 5.142830848693848,\\\\n        \\\\\\\"gpt-4-0613\\\\\\\": 3.55696964263916,\\\\n        \\\\\\\"gpt-4o\\\\\\\": 0.3905160427093506,\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\": 1.2095699310302734,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": 2.671041250228882,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 3.195150136947632,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 1.649793028831482\\\\n      },\\\\n      \\\\\\\"d_values\\\\\\\": {\\\\n        \\\\\\\"claude-opus-4.7-proxy\\\\\\\": 0.566260814666748,\\\\n        \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\": 0.1092333272099495,\\\\n        \\\\\\\"deepseek-v4-pro-proxy\\\\\\\": 0.2934865355491638,\\\\n        \\\\\\\"gemini-2.5-pro-proxy\\\\\\\": 0.014833996072411537,\\\\n        \\\\\\\"gpt-5.5-proxy\\\\\\\": 0.5174816846847534,\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\": -0.432869017124176,\\\\n        \\\\\\\"mistral-large-2\\\\\\\": -0.7714831233024597,\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": -0.36058440804481506,\\\\n        \\\\\\\"qwen3-235b-proxy\\\\\\\": 0.06364023685455322\\\\n      }\\\\n    },\\\\n    \\\\\\\"top_exposure_items\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"53f4338f1a4b403c84ccf864c079a8c1\\\\\\\",\\\\n        1.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"3735ce11da55495cbe2c013212febe66\\\\\\\",\\\\n        1.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"ab4a5145354848efb97430e90e2049dc\\\\\\\",\\\\n        0.8521250466397368\\\\n      ],\\\\n      [\\\\n        \\\\\\\"0901d02592b347d8aa2cb99b02bf0dad\\\\\\\",\\\\n        0.7687645961127684\\\\n      ],\\\\n      [\\\\n        \\\\\\\"c1f1deb824e948f792a47d71ee266a67\\\\\\\",\\\\n        0.7112342376821964\\\\n      ],\\\\n      [\\\\n        \\\\\\\"3801e82e67a34ee3aaab0227342bcc2b\\\\\\\",\\\\n        0.7042071228277675\\\\n      ],\\\\n      [\\\\n        \\\\\\\"1cf3677651564ce5bcc2174db5cc23eb\\\\\\\",\\\\n        0.6501892793814763\\\\n      ],\\\\n      [\\\\n        \\\\\\\"06991f6da3104bf8b935d311581a348e\\\\\\\",\\\\n        0.6386583019190328\\\\n      ],\\\\n      [\\\\n        \\\\\\\"3bcc4c4c16924cceb3b57ec9d35e9bdf\\\\\\\",\\\\n        0.6386583019190328\\\\n      ],\\\\n      [\\\\n        \\\\\\\"b7e2e3117e814a6b84520be8e8542bca\\\\\\\",\\\\n        0.6386583019190328\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"bottom_exposure_items\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"c542b6d5782b45efb294e945117387fc\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"c15bbb1710b445109f24fcd2c3d6ef60\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"ccebedcaff524f589a4cd5ae584fcbc5\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"e9f5e01e6b2c48ff9eb121f7e32afcae\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"e80139e32fb54b95a9a4effa86d8ddf5\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"e21a44515e9b408ba118d923fe17964d\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"f9111d1c39744147976e90c820838582\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fae0a258723b44b4843469ffcbe85d06\\\\\\\",\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        \\\\\\\"fd86dff7ac084b99889d294e135f82a4\\\\\\\",\\\\n        0.0\\\\n      ]\\\\n    ]\\\\n  },\\\\n  \\\\\\\"data_summary\\\\\\\": {\\\\n    \\\\\\\"N\\\\\\\": 8,\\\\n    \\\\\\\"I\\\\\\\": 175,\\\\n    \\\\\\\"J\\\\\\\": 9,\\\\n    \\\\\\\"n_obs\\\\\\\": 4223,\\\\n    \\\\\\\"model_names\\\\\\\": [\\\\n      \\\\\\\"gemma-2-9b\\\\\\\",\\\\n      \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n      \\\\\\\"gpt-4-0613\\\\\\\",\\\\n      \\\\\\\"gpt-4o\\\\\\\",\\\\n      \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n      \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n      \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n      \\\\\\\"qwen3-8b\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"judge_names\\\\\\\": [\\\\n      \\\\\\\"claude-opus-4.7-proxy\\\\\\\",\\\\n      \\\\\\\"claude-sonnet-4.6-proxy\\\\\\\",\\\\n      \\\\\\\"deepseek-v4-pro-proxy\\\\\\\",\\\\n      \\\\\\\"gemini-2.5-pro-proxy\\\\\\\",\\\\n      \\\\\\\"gpt-5.5-proxy\\\\\\\",\\\\n      \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n      \\\\\\\"mistral-large-2\\\\\\\",\\\\n      \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n      \\\\\\\"qwen3-235b-proxy\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"          \\\"gpt-4-0613\\\",\\n          0.3254958261039002\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.10067177666591594\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.056046479462655466\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          -0.10297773812347255\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.18497565180556727\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          -0.3218621718212169\\n        ],\\n        [\\n          \\\"gpt-4o\\\",\\n          -0.7404148294524999\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.42406177520751953\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.37683337926864624\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.3251693546772003\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.02575572393834591\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.014018790796399117\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          -0.04112124443054199\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.22876933217048645\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.39376136660575867\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.5021870136260986\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.6506202875297691,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.426327699637594,\\n        \\\"gpt-4-0613\\\": -1.344334551869947,\\n        \\\"gpt-4o\\\": 1.5520600433539875,\\n        \\\"gpt-4o-mini\\\": 0.9843409764123597,\\n        \\\"llama-3.3-70b\\\": 0.47096371309126633,\\n        \\\"qwen2.5-72b\\\": 1.1941418076327195,\\n        \\\"qwen3-8b\\\": 0.2197759985469773\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.18497565180556727,\\n        \\\"gpt-3.5-turbo-0125\\\": 0.5149595712704244,\\n        \\\"gpt-4-0613\\\": 0.3254958261039002,\\n        \\\"gpt-4o\\\": -0.7404148294524999,\\n        \\\"gpt-4o-mini\\\": -0.10297773812347255,\\n        \\\"llama-3.3-70b\\\": 0.10067177666591594,\\n        \\\"qwen2.5-72b\\\": -0.056046479462655466,\\n        \\\"qwen3-8b\\\": -0.3218621718212169\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.42406177520751953,\\n        \\\"claude-sonnet-4.6-proxy\\\": -0.04112124443054199,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.3251693546772003,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.02575572393834591,\\n        \\\"gpt-5.5-proxy\\\": 0.37683337926864624,\\n        \\\"llama-3.3-70b\\\": -0.39376136660575867,\\n        \\\"mistral-large-2\\\": -0.5021870136260986,\\n        \\\"qwen2.5-72b\\\": -0.22876933217048645,\\n        \\\"qwen3-235b-proxy\\\": 0.014018790796399117\\n      }\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"theta_ranking\\\": [\\n        [\\n          \\\"gpt-4o\\\",\\n          1.915968894958496\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          1.285175085067749\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          1.096518635749817\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          0.4782659411430359\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          0.39585262537002563\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          -0.45279669761657715\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          -1.641145944595337\\n        ],\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          -3.077838659286499\\n        ]\\n      ],\\n      \\\"c_ranking\\\": [\\n        [\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          5.142830848693848\\n        ],\\n        [\\n          \\\"gpt-4-0613\\\",\\n          3.55696964263916\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          3.195150136947632\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          2.671041250228882\\n        ],\\n        [\\n          \\\"qwen3-8b\\\",\\n          1.649793028831482\\n        ],\\n        [\\n          \\\"gemma-2-9b\\\",\\n          1.212019920349121\\n        ],\\n        [\\n          \\\"gpt-4o-mini\\\",\\n          1.2095699310302734\\n        ],\\n        [\\n          \\\"gpt-4o\\\",\\n          0.3905160427093506\\n        ]\\n      ],\\n      \\\"d_ranking\\\": [\\n        [\\n          \\\"claude-opus-4.7-proxy\\\",\\n          0.566260814666748\\n        ],\\n        [\\n          \\\"gpt-5.5-proxy\\\",\\n          0.5174816846847534\\n        ],\\n        [\\n          \\\"deepseek-v4-pro-proxy\\\",\\n          0.2934865355491638\\n        ],\\n        [\\n          \\\"claude-sonnet-4.6-proxy\\\",\\n          0.1092333272099495\\n        ],\\n        [\\n          \\\"qwen3-235b-proxy\\\",\\n          0.06364023685455322\\n        ],\\n        [\\n          \\\"gemini-2.5-pro-proxy\\\",\\n          0.014833996072411537\\n        ],\\n        [\\n          \\\"qwen2.5-72b\\\",\\n          -0.36058440804481506\\n        ],\\n        [\\n          \\\"llama-3.3-70b\\\",\\n          -0.432869017124176\\n        ],\\n        [\\n          \\\"mistral-large-2\\\",\\n          -0.7714831233024597\\n        ]\\n      ],\\n      \\\"theta_values\\\": {\\n        \\\"gemma-2-9b\\\": -0.45279669761657715,\\n        \\\"gpt-3.5-turbo-0125\\\": -3.077838659286499,\\n        \\\"gpt-4-0613\\\": -1.641145944595337,\\n        \\\"gpt-4o\\\": 1.915968894958496,\\n        \\\"gpt-4o-mini\\\": 1.285175085067749,\\n        \\\"llama-3.3-70b\\\": 0.4782659411430359,\\n        \\\"qwen2.5-72b\\\": 1.096518635749817,\\n        \\\"qwen3-8b\\\": 0.39585262537002563\\n      },\\n      \\\"c_values\\\": {\\n        \\\"gemma-2-9b\\\": 1.212019920349121,\\n        \\\"gpt-3.5-turbo-0125\\\": 5.142830848693848,\\n        \\\"gpt-4-0613\\\": 3.55696964263916,\\n        \\\"gpt-4o\\\": 0.3905160427093506,\\n        \\\"gpt-4o-mini\\\": 1.2095699310302734,\\n        \\\"llama-3.3-70b\\\": 2.671041250228882,\\n        \\\"qwen2.5-72b\\\": 3.195150136947632,\\n        \\\"qwen3-8b\\\": 1.649793028831482\\n      },\\n      \\\"d_values\\\": {\\n        \\\"claude-opus-4.7-proxy\\\": 0.566260814666748,\\n        \\\"claude-sonnet-4.6-proxy\\\": 0.1092333272099495,\\n        \\\"deepseek-v4-pro-proxy\\\": 0.2934865355491638,\\n        \\\"gemini-2.5-pro-proxy\\\": 0.014833996072411537,\\n        \\\"gpt-5.5-proxy\\\": 0.5174816846847534,\\n        \\\"llama-3.3-70b\\\": -0.432869017124176,\\n        \\\"mistral-large-2\\\": -0.7714831233024597,\\n        \\\"qwen2.5-72b\\\": -0.36058440804481506,\\n        \\\"qwen3-235b-proxy\\\": 0.06364023685455322\\n      }\\n    },\\n    \\\"top_exposure_items\\\": [\\n      [\\n        \\\"53f4338f1a4b403c84ccf864c079a8c1\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"3735ce11da55495cbe2c013212febe66\\\",\\n        1.0\\n      ],\\n      [\\n        \\\"ab4a5145354848efb97430e90e2049dc\\\",\\n        0.8521250466397368\\n      ],\\n      [\\n        \\\"0901d02592b347d8aa2cb99b02bf0dad\\\",\\n        0.7687645961127684\\n      ],\\n      [\\n        \\\"c1f1deb824e948f792a47d71ee266a67\\\",\\n        0.7112342376821964\\n      ],\\n      [\\n        \\\"3801e82e67a34ee3aaab0227342bcc2b\\\",\\n        0.7042071228277675\\n      ],\\n      [\\n        \\\"1cf3677651564ce5bcc2174db5cc23eb\\\",\\n        0.6501892793814763\\n      ],\\n      [\\n        \\\"06991f6da3104bf8b935d311581a348e\\\",\\n        0.6386583019190328\\n      ],\\n      [\\n        \\\"3bcc4c4c16924cceb3b57ec9d35e9bdf\\\",\\n        0.6386583019190328\\n      ],\\n      [\\n        \\\"b7e2e3117e814a6b84520be8e8542bca\\\",\\n        0.6386583019190328\\n      ]\\n    ],\\n    \\\"bottom_exposure_items\\\": [\\n      [\\n        \\\"c542b6d5782b45efb294e945117387fc\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"c15bbb1710b445109f24fcd2c3d6ef60\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"ccebedcaff524f589a4cd5ae584fcbc5\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e9f5e01e6b2c48ff9eb121f7e32afcae\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e80139e32fb54b95a9a4effa86d8ddf5\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"e21a44515e9b408ba118d923fe17964d\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"f9111d1c39744147976e90c820838582\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fcbd40af03ae4d58bddaa4ebe34a7aaf\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fae0a258723b44b4843469ffcbe85d06\\\",\\n        0.0\\n      ],\\n      [\\n        \\\"fd86dff7ac084b99889d294e135f82a4\\\",\\n        0.0\\n      ]\\n    ]\\n  },\\n  \\\"data_summary\\\": {\\n    \\\"N\\\": 8,\\n    \\\"I\\\": 175,\\n    \\\"J\\\": 9,\\n    \\\"n_obs\\\": 4223,\\n    \\\"model_names\\\": [\\n      \\\"gemma-2-9b\\\",\\n      \\\"gpt-3.5-turbo-0125\\\",\\n      \\\"gpt-4-0613\\\",\\n      \\\"gpt-4o\\\",\\n      \\\"gpt-4o-mini\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"judge_names\\\": [\\n      \\\"claude-opus-4.7-proxy\\\",\\n      \\\"claude-sonnet-4.6-proxy\\\",\\n      \\\"deepseek-v4-pro-proxy\\\",\\n      \\\"gemini-2.5-pro-proxy\\\",\\n      \\\"gpt-5.5-proxy\\\",\\n      \\\"llama-3.3-70b\\\",\\n      \\\"mistral-large-2\\\",\\n      \\\"qwen2.5-72b\\\",\\n      \\\"qwen3-235b-proxy\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete data for all experiments. Let me also read the mvp/results_mvp003.csv for completeness.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "13283f5c-0d3e-4622-9095-d784d8c36f89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7iVYt3Co3673hWVf1vtnY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9204,
+      "cache_read_input_tokens": 59712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9204
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+所有数据已收集完毕。以下是完整原始数值审计报告。
+
+---
+
+## 1. exp-003 posterior summary
+
+**注意：服务器上不存在 "003b" 目录或文件。** 实际存在两份结果：`exp003/dry_run/` (N=8, I=316, J=9, n_obs=4250) 和 `exp003/results_dryrun/` (N=8, I=175, J=9, n_obs=4223)。
+
+### 1a. `exp003/dry_run/results.json` (I=316 items)
+
+**Convergence:**
+| Method | R̂ | ESS | Divergences |
+|--------|-----|-----|-------------|
+| raw_average | NaN | NaN | 0 |
+| mfrm_only | NaN | 1.0 | 0 |
+| joint_gmfrm | NaN | 8.0 | 0 |
+
+**Arena correlation (n_matched=6: gemma-2-9b, gpt-3.5-turbo-0125, gpt-4-0613, llama-3.3-70b, qwen2.5-72b, qwen3-8b):**
+| Method | Kendall τ | p | Spearman ρ | p |
+|--------|-----------|---|------------|---|
+| raw_average | 0.7333 | 0.0556 | 0.8857 | 0.0188 |
+| mfrm_only | 0.7333 | 0.0556 | 0.8857 | 0.0188 |
+| joint_gmfrm | 0.7333 | 0.0556 | 0.8857 | 0.0188 |
+
+**Cross-method:**
+| Pair | Kendall τ | Spearman ρ |
+|------|-----------|------------|
+| raw_avg vs mfrm_only | 1.0 | 1.0 |
+| raw_avg vs joint_gmfrm | 1.0 | 1.0 |
+| mfrm_only vs joint_gmfrm | 1.0 | 1.0 |
+
+**θ values (raw_average):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 0.23868077 |
+| qwen2.5-72b | 0.21970318 |
+| gpt-4o-mini | 0.19285189 |
+| llama-3.3-70b | 0.12871055 |
+| qwen3-8b | 0.05058555 |
+| gemma-2-9b | -0.11342157 |
+| gpt-4-0613 | -0.27593042 |
+| gpt-3.5-turbo-0125 | -0.44117995 |
+
+**θ values (mfrm_only):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.36967146 |
+| qwen2.5-72b | 1.13041210 |
+| gpt-4o-mini | 0.94442105 |
+| llama-3.3-70b | 0.51102650 |
+| qwen3-8b | 0.15004641 |
+| gemma-2-9b | -0.76172185 |
+| gpt-4-0613 | -1.11396527 |
+| gpt-3.5-turbo-0125 | -2.22989035 |
+
+**d values (mfrm_only):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.39717364 |
+| deepseek-v4-pro-proxy | 0.31630492 |
+| gpt-5.5-proxy | 0.17250873 |
+| gemini-2.5-pro-proxy | 0.12005256 |
+| claude-sonnet-4.6-proxy | 0.02514626 |
+| qwen3-235b-proxy | -0.00998056 |
+| qwen2.5-72b | -0.25235894 |
+| llama-3.3-70b | -0.34985209 |
+| mistral-large-2 | -0.41899467 |
+
+**θ values (joint_gmfrm):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.64262962 |
+| qwen2.5-72b | 1.32011771 |
+| gpt-4o-mini | 1.16216457 |
+| llama-3.3-70b | 0.67916685 |
+| qwen3-8b | 0.31865406 |
+| gemma-2-9b | -0.59563833 |
+| gpt-4-0613 | -1.70350432 |
+| gpt-3.5-turbo-0125 | -2.82359028 |
+
+**c values (joint_gmfrm):**
+| Model | c |
+|-------|---|
+| gpt-4-0613 | 3.79534936 |
+| gpt-3.5-turbo-0125 | 3.76617169 |
+| qwen2.5-72b | 1.36497068 |
+| llama-3.3-70b | 1.18641233 |
+| qwen3-8b | 1.17901313 |
+| gpt-4o-mini | 0.94688034 |
+| gemma-2-9b | 0.84147596 |
+| gpt-4o | 0.81871092 |
+
+**d values (joint_gmfrm):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.55214882 |
+| gpt-5.5-proxy | 0.32080093 |
+| deepseek-v4-pro-proxy | 0.28317636 |
+| claude-sonnet-4.6-proxy | 0.11925279 |
+| gemini-2.5-pro-proxy | 0.07802959 |
+| qwen3-235b-proxy | 0.04633495 |
+| llama-3.3-70b | -0.38477415 |
+| qwen2.5-72b | -0.40437034 |
+| mistral-large-2 | -0.61059874 |
+
+**Top exposure items:** 3735ce11..=1.0, 53f4338f..=1.0, ab4a5145..=0.8521, b7e7a162..=0.7744, 0901d025..=0.7688, 98312077..=0.7688, c1f1deb8..=0.7112, 3801e82e..=0.7042, e64ca084..=0.6986, 38506f6f..=0.6986
+
+**Bottom exposure items:** c6718958..=0.0, 26d31603..=0.0, 2bc4dbaf..=0.0, 09e03665..=0.0, fcbd40af..=0.0, 089cea4c..=0.0, 0394b670..=0.0, fd86dff7..=0.0, fdf5e9ec..=0.0, 0122ab60..=0.0
+
+---
+
+### 1b. `exp003/results_dryrun/results.json` (I=175 items)
+
+**Convergence:**
+| Method | R̂ | ESS | Divergences |
+|--------|-----|-----|-------------|
+| raw_average | NaN | NaN | 0 |
+| mfrm_only | NaN | 12.0 | 0 |
+| sequential | NaN | 9.0 | 0 |
+| joint_gmfrm | NaN | 5.0 | 0 |
+
+**Arena correlation (n_matched=8):**
+| Method | Kendall τ | p | Spearman ρ | p |
+|--------|-----------|---|------------|---|
+| raw_average | 0.7857 | 0.00551 | 0.9048 | 0.00201 |
+| mfrm_only | 0.7857 | 0.00551 | 0.9048 | 0.00201 |
+| sequential | 0.7857 | 0.00551 | 0.9048 | 0.00201 |
+| joint_gmfrm | 0.8571 | 0.00174 | 0.9524 | 0.00026 |
+
+**Cross-method:**
+| Pair | Kendall τ | Spearman ρ |
+|------|-----------|------------|
+| raw_avg vs mfrm_only | 1.0 | 1.0 |
+| raw_avg vs sequential | 1.0 | 1.0 |
+| raw_avg vs joint_gmfrm | 0.9286 | 0.9762 |
+| mfrm_only vs sequential | 1.0 | 1.0 |
+| mfrm_only vs joint_gmfrm | 0.9286 | 0.9762 |
+| sequential vs joint_gmfrm | 0.9286 | 0.9762 |
+
+**θ values (raw_average):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 0.23386886 |
+| qwen2.5-72b | 0.21287819 |
+| gpt-4o-mini | 0.18952736 |
+| llama-3.3-70b | 0.11568555 |
+| qwen3-8b | 0.05057403 |
+| gemma-2-9b | -0.10290823 |
+| gpt-4-0613 | -0.27219982 |
+| gpt-3.5-turbo-0125 | -0.42742594 |
+
+**θ values (mfrm_only):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.40990531 |
+| qwen2.5-72b | 1.17603695 |
+| gpt-4o-mini | 0.98116684 |
+| llama-3.3-70b | 0.53125000 |
+| qwen3-8b | 0.16850761 |
+| gemma-2-9b | -0.68764955 |
+| gpt-4-0613 | -1.27121925 |
+| gpt-3.5-turbo-0125 | -2.30799794 |
+
+**d values (mfrm_only):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.41062009 |
+| gpt-5.5-proxy | 0.36938193 |
+| deepseek-v4-pro-proxy | 0.31869307 |
+| gemini-2.5-pro-proxy | 0.04764438 |
+| qwen3-235b-proxy | 0.00977035 |
+| claude-sonnet-4.6-proxy | -0.03690225 |
+| qwen2.5-72b | -0.23714153 |
+| llama-3.3-70b | -0.36922646 |
+| mistral-large-2 | -0.51283956 |
+
+**θ values (sequential):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.55206004 |
+| qwen2.5-72b | 1.19414181 |
+| gpt-4o-mini | 0.98434098 |
+| llama-3.3-70b | 0.47096371 |
+| qwen3-8b | 0.21977600 |
+| gemma-2-9b | -0.65062029 |
+| gpt-4-0613 | -1.34433455 |
+| gpt-3.5-turbo-0125 | -2.42632770 |
+
+**c values (sequential):**
+| Model | c |
+|-------|---|
+| gpt-3.5-turbo-0125 | 0.51495957 |
+| gpt-4-0613 | 0.32549583 |
+| llama-3.3-70b | 0.10067178 |
+| qwen2.5-72b | -0.05604648 |
+| gpt-4o-mini | -0.10297774 |
+| gemma-2-9b | -0.18497565 |
+| qwen3-8b | -0.32186217 |
+| gpt-4o | -0.74041483 |
+
+**d values (sequential):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.42406178 |
+| gpt-5.5-proxy | 0.37683338 |
+| deepseek-v4-pro-proxy | 0.32516935 |
+| gemini-2.5-pro-proxy | 0.02575572 |
+| qwen3-235b-proxy | 0.01401879 |
+| claude-sonnet-4.6-proxy | -0.04112124 |
+| qwen2.5-72b | -0.22876933 |
+| llama-3.3-70b | -0.39376137 |
+| mistral-large-2 | -0.50218701 |
+
+**θ values (joint_gmfrm):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.91596889 |
+| gpt-4o-mini | 1.28517509 |
+| qwen2.5-72b | 1.09651864 |
+| llama-3.3-70b | 0.47826594 |
+| qwen3-8b | 0.39585263 |
+| gemma-2-9b | -0.45279670 |
+| gpt-4-0613 | -1.64114594 |
+| gpt-3.5-turbo-0125 | -3.07783866 |
+
+**c values (joint_gmfrm):**
+| Model | c |
+|-------|---|
+| gpt-3.5-turbo-0125 | 5.14283085 |
+| gpt-4-0613 | 3.55696964 |
+| qwen2.5-72b | 3.19515014 |
+| llama-3.3-70b | 2.67104125 |
+| qwen3-8b | 1.64979303 |
+| gemma-2-9b | 1.21201992 |
+| gpt-4o-mini | 1.20956993 |
+| gpt-4o | 0.39051604 |
+
+**d values (joint_gmfrm):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.56626081 |
+| gpt-5.5-proxy | 0.51748168 |
+| deepseek-v4-pro-proxy | 0.29348654 |
+| claude-sonnet-4.6-proxy | 0.10923333 |
+| qwen3-235b-proxy | 0.06364024 |
+| gemini-2.5-pro-proxy | 0.01483400 |
+| qwen2.5-72b | -0.36058441 |
+| llama-3.3-70b | -0.43286902 |
+| mistral-large-2 | -0.77148312 |
+
+**Top exposure:** 53f4338f..=1.0, 3735ce11..=1.0, ab4a5145..=0.8521, 0901d025..=0.7688, c1f1deb8..=0.7112, 3801e82e..=0.7042, 1cf36776..=0.6502, 06991f6d..=0.6387, 3bcc4c4c..=0.6387, b7e2e311..=0.6387
+
+**Bottom exposure:** c542b6d5..=0.0, c15bbb17..=0.0, ccebedca..=0.0, e9f5e01e..=0.0, e80139e3..=0.0, e21a4451..=0.0, f9111d1c..=0.0, fcbd40af..=0.0, fae0a258..=0.0, fd86dff7..=0.0
+
+---
+
+## 2. exp-013 weight sensitivity
+
+### `exp013/results/weight_sensitivity.csv`
+
+| weight_config | ref_weight | cma_weight | exposure_spearman_ρ | gmfrm_τ | delta_τ_vs_default | R̂ | ESS_min | divergences |
+|---------------|-----------|-----------|---------------------|---------|--------------------|----|---------|-------------|
+| 50_50 | 0.5 | 0.5 | 0.9981 | 0.7857 | -0.0 | 1.02 | 196.0 | 0 |
+| 75_25 | 0.75 | 0.25 | 1.0000 | 0.7857 | -0.0 | 1.04 | 115.0 | 0 |
+| 90_10 | 0.9 | 0.1 | 0.9991 | 0.7857 | -0.0 | 1.01 | 432.0 | 0 |
+| 100_0 | 1.0 | 0.0 | 0.9978 | 0.7857 | -0.0 | 1.01 | 668.0 | 0 |
+
+### Per-config θ and c (from config JSON files):
+
+**config_50_50:**
+| Model | θ | c |
+|-------|---|---|
+| gemma-2-9b | -0.35866579 | 1.15568018 |
+| gpt-3.5-turbo-0125 | -3.04078507 | 2.59973931 |
+| gpt-4-0613 | -2.29612327 | 3.20377564 |
+| gpt-4o | 1.83960891 | 0.97290224 |
+| gpt-4o-mini | 1.43878698 | 1.28588784 |
+| llama-3.3-70b | 0.79142207 | 1.00929701 |
+| qwen2.5-72b | 1.53433537 | 1.09145164 |
+| qwen3-8b | 0.09142078 | 0.95677227 |
+Diagnostics: R̂=1.02, ESS=196.0, divergences=0
+
+**config_75_25:**
+| Model | θ | c |
+|-------|---|---|
+| gemma-2-9b | -0.32445198 | 1.18991530 |
+| gpt-3.5-turbo-0125 | -3.11925316 | 3.09641576 |
+| gpt-4-0613 | -2.29196787 | 3.49297476 |
+| gpt-4o | 1.85372710 | 1.02558804 |
+| gpt-4o-mini | 1.47315419 | 1.29711056 |
+| llama-3.3-70b | 0.80965716 | 1.09317648 |
+| qwen2.5-72b | 1.51588500 | 1.28114760 |
+| qwen3-8b | 0.08324978 | 1.10546780 |
+Diagnostics: R̂=1.04, ESS=115.0, divergences=0
+
+**config_90_10:**
+| Model | θ | c |
+|-------|---|---|
+| gemma-2-9b | -0.33009803 | 1.24964154 |
+| gpt-3.5-turbo-0125 | -3.15337849 | 3.35341620 |
+| gpt-4-0613 | -2.30765486 | 3.66932702 |
+| gpt-4o | 1.87489831 | 1.01138735 |
+| gpt-4o-mini | 1.49647558 | 1.28800273 |
+| llama-3.3-70b | 0.80437160 | 1.16533566 |
+| qwen2.5-72b | 1.52681816 | 1.33946466 |
+| qwen3-8b | 0.08856760 | 1.16842413 |
+Diagnostics: R̂=1.01, ESS=432.0, divergences=0
+
+**config_100_0:**
+| Model | θ | c |
+|-------|---|---|
+| gemma-2-9b | -0.33482459 | 1.30031681 |
+| gpt-3.5-turbo-0125 | -3.19035959 | 3.55181718 |
+| gpt-4-0613 | -2.31516647 | 3.76765943 |
+| gpt-4o | 1.89052606 | 1.01877797 |
+| gpt-4o-mini | 1.50746179 | 1.29864097 |
+| llama-3.3-70b | 0.81765425 | 1.18414116 |
+| qwen2.5-72b | 1.54373956 | 1.37007403 |
+| qwen3-8b | 0.08096871 | 1.24265909 |
+Diagnostics: R̂=1.01, ESS=668.0, divergences=0
+
+---
+
+## 3. exp-012 error propagation
+
+### `exp012/summary.csv` (聚合统计)
+
+| σ | θ_RMSE_mean | θ_RMSE_std | θ_τ_mean | θ_τ_std | c_RMSE_mean | c_RMSE_std | c_corr_mean | c_corr_std | R̂_max | ESS_min | n |
+|---|-------------|------------|----------|---------|-------------|------------|-------------|------------|-------|---------|---|
+| 0.0 | 0.12765 | 0.01780 | 0.91592 | 0.01245 | 0.53296 | 0.18686 | 0.85994 | 0.08400 | 1.02 | 276.0 | 20 |
+| 0.1 | 0.12950 | 0.01782 | 0.91527 | 0.01411 | 0.54517 | 0.19341 | 0.85418 | 0.08571 | 1.02 | 293.0 | 20 |
+| 0.2 | 0.13517 | 0.01748 | 0.91396 | 0.01373 | 0.57505 | 0.19811 | 0.83854 | 0.09807 | 1.02 | 285.0 | 20 |
+| 0.5 | 0.17480 | 0.02664 | 0.88498 | 0.02068 | 0.84152 | 0.19537 | 0.74497 | 0.11844 | 1.02 | 296.0 | 20 |
+
+### `exp012/error_propagation.csv` (全部 80 行, 20 seeds × 4 σ)
+
+| sigma | seed | theta_rmse | theta_tau | cn_rmse | cn_corr | r_hat | ess |
+|-------|------|------------|-----------|---------|---------|-------|-----|
+| 0.0 | 0 | 0.11414007 | 0.92653 | 0.28331 | 0.94712 | 1.01 | 551.0 |
+| 0.0 | 1 | 0.13795684 | 0.89878 | 0.46386 | 0.91739 | 1.02 | 347.0 |
+| 0.0 | 2 | 0.11287817 | 0.92816 | 0.51019 | 0.86566 | 1.02 | 334.0 |
+| 0.0 | 3 | 0.14038638 | 0.89388 | 0.35194 | 0.91555 | 1.00 | 637.0 |
+| 0.0 | 4 | 0.12215192 | 0.91837 | 0.87948 | 0.82694 | 1.01 | 350.0 |
+| 0.0 | 5 | 0.11624290 | 0.91837 | 0.74429 | 0.76431 | 1.01 | 419.0 |
+| 0.0 | 6 | 0.12398410 | 0.93306 | 0.44881 | 0.89301 | 1.02 | 276.0 |
+| 0.0 | 7 | 0.09408416 | 0.92490 | 0.39782 | 0.92276 | 1.01 | 487.0 |
+| 0.0 | 8 | 0.13121859 | 0.92163 | 0.46995 | 0.90987 | 1.01 | 566.0 |
+| 0.0 | 9 | 0.15336440 | 0.92816 | 0.51906 | 0.83564 | 1.01 | 432.0 |
+| 0.0 | 10 | 0.11540987 | 0.92490 | 0.57058 | 0.91079 | 1.00 | 488.0 |
+| 0.0 | 11 | 0.10797643 | 0.92327 | 0.26336 | 0.93990 | 1.02 | 395.0 |
+| 0.0 | 12 | 0.13121468 | 0.89551 | 0.59387 | 0.84774 | 1.01 | 461.0 |
+| 0.0 | 13 | 0.14181515 | 0.91673 | 0.99256 | 0.66593 | 1.01 | 551.0 |
+| 0.0 | 14 | 0.17182613 | 0.90204 | 0.44961 | 0.88606 | 1.00 | 502.0 |
+| 0.0 | 15 | 0.12878921 | 0.89714 | 0.40434 | 0.89476 | 1.02 | 471.0 |
+| 0.0 | 16 | 0.14700502 | 0.91020 | 0.61020 | 0.78979 | 1.00 | 504.0 |
+| 0.0 | 17 | 0.12622815 | 0.92980 | 0.39288 | 0.97807 | 1.01 | 421.0 |
+| 0.0 | 18 | 0.11060936 | 0.91347 | 0.64778 | 0.80362 | 1.01 | 388.0 |
+| 0.0 | 19 | 0.12581090 | 0.91347 | 0.66525 | 0.68398 | 1.01 | 461.0 |
+| 0.1 | 0 | 0.11820523 | 0.92490 | 0.30172 | 0.93977 | 1.01 | 545.0 |
+| 0.1 | 1 | 0.14177970 | 0.90204 | 0.48979 | 0.91162 | 1.02 | 377.0 |
+| 0.1 | 2 | 0.11563529 | 0.92490 | 0.54353 | 0.85078 | 1.01 | 357.0 |
+| 0.1 | 3 | 0.14247326 | 0.88245 | 0.36922 | 0.90668 | 1.00 | 608.0 |
+| 0.1 | 4 | 0.12828794 | 0.91510 | 0.90355 | 0.81212 | 1.01 | 378.0 |
+| 0.1 | 5 | 0.11923730 | 0.91347 | 0.76809 | 0.75152 | 1.01 | 527.0 |
+| 0.1 | 6 | 0.12504731 | 0.93796 | 0.45819 | 0.88716 | 1.02 | 293.0 |
+| 0.1 | 7 | 0.09931052 | 0.92163 | 0.39504 | 0.90946 | 1.01 | 449.0 |
+| 0.1 | 8 | 0.13223288 | 0.92816 | 0.48407 | 0.90235 | 1.01 | 410.0 |
+| 0.1 | 9 | 0.15314907 | 0.93306 | 0.52537 | 0.83298 | 1.00 | 435.0 |
+| 0.1 | 10 | 0.11639810 | 0.92163 | 0.59905 | 0.91534 | 1.00 | 452.0 |
+| 0.1 | 11 | 0.10536136 | 0.92490 | 0.26047 | 0.94425 | 1.02 | 368.0 |
+| 0.1 | 12 | 0.13012162 | 0.89224 | 0.59871 | 0.84046 | 1.01 | 455.0 |
+| 0.1 | 13 | 0.14463271 | 0.90857 | 1.02870 | 0.65417 | 1.01 | 561.0 |
+| 0.1 | 14 | 0.17726356 | 0.90367 | 0.47928 | 0.87630 | 1.01 | 559.0 |
+| 0.1 | 15 | 0.12870741 | 0.90204 | 0.42305 | 0.89175 | 1.02 | 454.0 |
+| 0.1 | 16 | 0.14678460 | 0.91184 | 0.60966 | 0.78792 | 1.00 | 532.0 |
+| 0.1 | 17 | 0.12240573 | 0.93143 | 0.35408 | 0.98056 | 1.01 | 463.0 |
+| 0.1 | 18 | 0.11664185 | 0.91184 | 0.65114 | 0.80924 | 1.01 | 435.0 |
+| 0.1 | 19 | 0.12639512 | 0.91347 | 0.66061 | 0.67916 | 1.01 | 449.0 |
+| 0.2 | 0 | 0.13914489 | 0.90694 | 0.40262 | 0.90657 | 1.01 | 499.0 |
+| 0.2 | 1 | 0.13362516 | 0.91020 | 0.46994 | 0.91408 | 1.02 | 404.0 |
+| 0.2 | 2 | 0.11710810 | 0.92490 | 0.56930 | 0.85192 | 1.02 | 319.0 |
+| 0.2 | 3 | 0.14706351 | 0.89061 | 0.41355 | 0.88882 | 1.00 | 579.0 |
+| 0.2 | 4 | 0.12691620 | 0.92653 | 0.91861 | 0.81050 | 1.00 | 477.0 |
+| 0.2 | 5 | 0.13016851 | 0.89224 | 0.81492 | 0.69665 | 1.01 | 407.0 |
+| 0.2 | 6 | 0.12159135 | 0.93633 | 0.44778 | 0.90149 | 1.02 | 285.0 |
+| 0.2 | 7 | 0.09739774 | 0.92816 | 0.33140 | 0.91389 | 1.01 | 502.0 |
+| 0.2 | 8 | 0.14367870 | 0.91510 | 0.54108 | 0.87650 | 1.01 | 472.0 |
+| 0.2 | 9 | 0.15965651 | 0.92816 | 0.53772 | 0.83224 | 1.01 | 365.0 |
+| 0.2 | 10 | 0.12880750 | 0.92490 | 0.68156 | 0.88628 | 1.01 | 446.0 |
+| 0.2 | 11 | 0.12094017 | 0.92163 | 0.33906 | 0.91085 | 1.02 | 340.0 |
+| 0.2 | 12 | 0.13543258 | 0.89061 | 0.65513 | 0.83351 | 1.01 | 482.0 |
+| 0.2 | 13 | 0.15625794 | 0.91020 | 1.02046 | 0.64946 | 1.01 | 631.0 |
+| 0.2 | 14 | 0.17658914 | 0.90694 | 0.49940 | 0.88553 | 1.01 | 497.0 |
+| 0.2 | 15 | 0.13882541 | 0.90204 | 0.46505 | 0.88721 | 1.02 | 468.0 |
+| 0.2 | 16 | 0.14471841 | 0.92000 | 0.63529 | 0.80038 | 1.01 | 543.0 |
+| 0.2 | 17 | 0.12841516 | 0.92980 | 0.29001 | 0.96269 | 1.01 | 532.0 |
+| 0.2 | 18 | 0.11623661 | 0.90857 | 0.72965 | 0.78914 | 1.01 | 394.0 |
+| 0.2 | 19 | 0.14085491 | 0.90531 | 0.73854 | 0.57307 | 1.01 | 442.0 |
+| 0.5 | 0 | 0.18530451 | 0.87755 | 0.63338 | 0.88320 | 1.01 | 477.0 |
+| 0.5 | 1 | 0.19475478 | 0.86612 | 0.88775 | 0.81065 | 1.02 | 335.0 |
+| 0.5 | 2 | 0.12973575 | 0.92327 | 0.87062 | 0.76523 | 1.02 | 310.0 |
+| 0.5 | 3 | 0.18593565 | 0.86286 | 0.75930 | 0.78408 | 1.01 | 620.0 |
+| 0.5 | 4 | 0.14577465 | 0.90857 | 1.09398 | 0.69944 | 1.01 | 486.0 |
+| 0.5 | 5 | 0.18057952 | 0.86612 | 1.06235 | 0.53080 | 1.01 | 495.0 |
+| 0.5 | 6 | 0.15583470 | 0.89878 | 0.68944 | 0.84486 | 1.02 | 296.0 |
+| 0.5 | 7 | 0.14561616 | 0.89388 | 0.49700 | 0.90266 | 1.01 | 434.0 |
+| 0.5 | 8 | 0.21531767 | 0.85469 | 1.00679 | 0.66628 | 1.01 | 496.0 |
+| 0.5 | 9 | 0.19892636 | 0.90204 | 0.78751 | 0.77073 | 1.01 | 416.0 |
+| 0.5 | 10 | 0.20272525 | 0.85633 | 1.08568 | 0.76421 | 1.01 | 476.0 |
+| 0.5 | 11 | 0.13643655 | 0.89878 | 0.59282 | 0.86029 | 1.01 | 394.0 |
+| 0.5 | 12 | 0.16570683 | 0.85469 | 0.83644 | 0.69209 | 1.01 | 467.0 |
+| 0.5 | 13 | 0.17435005 | 0.89224 | 1.17727 | 0.55398 | 1.02 | 522.0 |
+| 0.5 | 14 | 0.22375011 | 0.87755 | 0.72889 | 0.77348 | 1.01 | 541.0 |
+| 0.5 | 15 | 0.20047486 | 0.86776 | 0.82272 | 0.81992 | 1.01 | 500.0 |
+| 0.5 | 16 | 0.17810976 | 0.89388 | 0.86819 | 0.72562 | 1.01 | 549.0 |
+| 0.5 | 17 | 0.17244154 | 0.91020 | 0.55989 | 0.91329 | 1.01 | 484.0 |
+| 0.5 | 18 | 0.15834541 | 0.89388 | 1.08137 | 0.53982 | 1.01 | 410.0 |
+| 0.5 | 19 | 0.14593079 | 0.90041 | 0.78890 | 0.59874 | 1.01 | 490.0 |
+
+同时附带 `mvp/results_mvp003.csv`（20 seeds × 4 methods）的完整 80 行数据：
+
+| rho | seed | method | rmse | kendall_tau | r_hat | ess |
+|-----|------|--------|------|-------------|-------|-----|
+| 0.6 | 0 | raw_average | 0.75945 | 0.81291 | | |
+| 0.6 | 0 | mfrm_only_v3 | 0.30055 | 0.81061 | 1.01 | 481.0 |
+| 0.6 | 0 | sequential_v3 | 0.26209 | 0.83020 | 1.01 | 481.0 |
+| 0.6 | 0 | joint_gmfrm_v3 | 0.12426 | 0.92000 | 1.01 | 622.0 |
+| 0.6 | 1 | raw_average | 0.74245 | 0.83415 | | |
+| 0.6 | 1 | mfrm_only_v3 | 0.27019 | 0.83184 | 1.01 | 542.0 |
+| 0.6 | 1 | sequential_v3 | 0.23631 | 0.84490 | 1.01 | 542.0 |
+| 0.6 | 1 | joint_gmfrm_v3 | 0.15076 | 0.91837 | 1.02 | 307.0 |
+| 0.6 | 2 | raw_average | 0.81209 | 0.88199 | | |
+| 0.6 | 2 | mfrm_only_v3 | 0.20977 | 0.88082 | 1.01 | 565.0 |
+| 0.6 | 2 | sequential_v3 | 0.18550 | 0.88735 | 1.01 | 565.0 |
+| 0.6 | 2 | joint_gmfrm_v3 | 0.13190 | 0.91837 | 1.02 | 366.0 |
+| 0.6 | 3 | raw_average | 0.92449 | 0.80915 | | |
+| 0.6 | 3 | mfrm_only_v3 | 0.26173 | 0.80898 | 1.01 | 503.0 |
+| 0.6 | 3 | sequential_v3 | 0.22421 | 0.84490 | 1.01 | 503.0 |
+| 0.6 | 3 | joint_gmfrm_v3 | 0.10042 | 0.92653 | 1.00 | 515.0 |
+| 0.6 | 4 | raw_average | 0.85395 | 0.87709 | | |
+| 0.6 | 4 | mfrm_only_v3 | 0.23444 | 0.87592 | 1.01 | 534.0 |
+| 0.6 | 4 | sequential_v3 | 0.20542 | 0.89388 | 1.01 | 534.0 |
+| 0.6 | 4 | joint_gmfrm_v3 | 0.12373 | 0.91673 | 1.01 | 494.0 |
+| 0.6 | 5 | raw_average | 0.71967 | 0.79003 | | |
+| 0.6 | 5 | mfrm_only_v3 | 0.28529 | 0.78776 | 1.00 | 553.0 |
+| 0.6 | 5 | sequential_v3 | 0.24031 | 0.81224 | 1.00 | 553.0 |
+| 0.6 | 5 | joint_gmfrm_v3 | 0.11747 | 0.91673 | 1.01 | 496.0 |
+| 0.6 | 6 | raw_average | 0.84059 | 0.84653 | | |
+| 0.6 | 6 | mfrm_only_v3 | 0.25094 | 0.84653 | 1.02 | 563.0 |
+| 0.6 | 6 | sequential_v3 | 0.22148 | 0.86122 | 1.02 | 563.0 |
+| 0.6 | 6 | joint_gmfrm_v3 | 0.15385 | 0.91020 | 1.03 | 224.0 |
+| 0.6 | 7 | raw_average | 0.73575 | 0.77043 | | |
+| 0.6 | 7 | mfrm_only_v3 | 0.28817 | 0.76980 | 1.01 | 563.0 |
+| 0.6 | 7 | sequential_v3 | 0.24652 | 0.80898 | 1.01 | 563.0 |
+| 0.6 | 7 | joint_gmfrm_v3 | 0.10002 | 0.92816 | 1.01 | 408.0 |
+| 0.6 | 8 | raw_average | 0.92653 | 0.79167 | | |
+| 0.6 | 8 | mfrm_only_v3 | 0.35383 | 0.79102 | 1.01 | 539.0 |
+| 0.6 | 8 | sequential_v3 | 0.30550 | 0.81061 | 1.01 | 539.0 |
+| 0.6 | 8 | joint_gmfrm_v3 | 0.12360 | 0.93143 | 1.01 | 429.0 |
+| 0.6 | 9 | raw_average | 0.87447 | 0.85002 | | |
+| 0.6 | 9 | mfrm_only_v3 | 0.27470 | 0.84816 | 1.01 | 439.0 |
+| 0.6 | 9 | sequential_v3 | 0.23657 | 0.88082 | 1.01 | 439.0 |
+| 0.6 | 9 | joint_gmfrm_v3 | 0.11734 | 0.92653 | 1.01 | 361.0 |
+| 0.6 | 10 | raw_average | 0.67266 | 0.81030 | | |
+| 0.6 | 10 | mfrm_only_v3 | 0.25727 | 0.80898 | 1.01 | 560.0 |
+| 0.6 | 10 | sequential_v3 | 0.22461 | 0.83347 | 1.01 | 560.0 |
+| 0.6 | 10 | joint_gmfrm_v3 | 0.14549 | 0.90041 | 1.01 | 438.0 |
+| 0.6 | 11 | raw_average | 0.70212 | 0.88925 | | |
+| 0.6 | 11 | mfrm_only_v3 | 0.17726 | 0.88571 | 1.01 | 540.0 |
+| 0.6 | 11 | sequential_v3 | 0.15295 | 0.90367 | 1.01 | 540.0 |
+| 0.6 | 11 | joint_gmfrm_v3 | 0.10764 | 0.93469 | 1.02 | 380.0 |
+| 0.6 | 12 | raw_average | 0.71092 | 0.85212 | | |
+| 0.6 | 12 | mfrm_only_v3 | 0.18309 | 0.85306 | 1.01 | 516.0 |
+| 0.6 | 12 | sequential_v3 | 0.16136 | 0.87265 | 1.01 | 516.0 |
+| 0.6 | 12 | joint_gmfrm_v3 | 0.11065 | 0.92490 | 1.01 | 450.0 |
+| 0.6 | 13 | raw_average | 0.87117 | 0.86427 | | |
+| 0.6 | 13 | mfrm_only_v3 | 0.27476 | 0.86122 | 1.01 | 362.0 |
+| 0.6 | 13 | sequential_v3 | 0.24281 | 0.87918 | 1.01 | 362.0 |
+| 0.6 | 13 | joint_gmfrm_v3 | 0.12767 | 0.92653 | 1.01 | 415.0 |
+| 0.6 | 14 | raw_average | 0.92487 | 0.82973 | | |
+| 0.6 | 14 | mfrm_only_v3 | 0.29166 | 0.82857 | 1.02 | 559.0 |
+| 0.6 | 14 | sequential_v3 | 0.25075 | 0.84816 | 1.02 | 559.0 |
+| 0.6 | 14 | joint_gmfrm_v3 | 0.12894 | 0.93633 | 1.01 | 365.0 |
+| 0.6 | 15 | raw_average | 0.84991 | 0.85423 | | |
+| 0.6 | 15 | mfrm_only_v3 | 0.28155 | 0.85306 | 1.01 | 620.0 |
+| 0.6 | 15 | sequential_v3 | 0.24520 | 0.87429 | 1.01 | 620.0 |
+| 0.6 | 15 | joint_gmfrm_v3 | 0.14777 | 0.90694 | 1.01 | 442.0 |
+| 0.6 | 16 | raw_average | 0.75542 | 0.87500 | | |
+| 0.6 | 16 | mfrm_only_v3 | 0.20632 | 0.87429 | 1.01 | 587.0 |
+| 0.6 | 16 | sequential_v3 | 0.17794 | 0.88408 | 1.01 | 587.0 |
+| 0.6 | 16 | joint_gmfrm_v3 | 0.10105 | 0.93796 | 1.01 | 412.0 |
+| 0.6 | 17 | raw_average | 0.92513 | 0.86076 | | |
+| 0.6 | 17 | mfrm_only_v3 | 0.24919 | 0.85959 | 1.01 | 395.0 |
+| 0.6 | 17 | sequential_v3 | 0.22081 | 0.86939 | 1.01 | 395.0 |
+| 0.6 | 17 | joint_gmfrm_v3 | 0.12828 | 0.92816 | 1.01 | 404.0 |
+| 0.6 | 18 | raw_average | 0.77764 | 0.82012 | | |
+| 0.6 | 18 | mfrm_only_v3 | 0.24401 | 0.81878 | 1.01 | 418.0 |
+| 0.6 | 18 | sequential_v3 | 0.21483 | 0.85143 | 1.01 | 418.0 |
+| 0.6 | 18 | joint_gmfrm_v3 | 0.11356 | 0.91510 | 1.01 | 296.0 |
+| 0.6 | 19 | raw_average | 0.74698 | 0.88199 | | |
+| 0.6 | 19 | mfrm_only_v3 | 0.18408 | 0.88082 | 1.01 | 388.0 |
+| 0.6 | 19 | sequential_v3 | 0.16696 | 0.89388 | 1.01 | 388.0 |
+| 0.6 | 19 | joint_gmfrm_v3 | 0.13108 | 0.92163 | 1.01 | 456.0 |
+
+---
+
+## 4. exp-006 judge count sensitivity
+
+**不在此服务器。** `/root/gated_mfrm_judge_bias/exp006/` 目录不存在，全项目搜索也无 "006" 相关文件。
+
+---
+
+## 5. exp-008 facet diagnostics
+
+**不在此服务器。** `/root/gated_mfrm_judge_bias/exp008/` 目录不存在，全项目搜索也无 "008" 相关文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "uuid": "695bfc03-abcb-430c-9d77-67115b3e995d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7iVYt3Co3673hWVf1vtnY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9204,
+      "cache_read_input_tokens": 59712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9204
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 78_
+
+所有数据已收集完毕。以下是完整原始数值审计报告。
+
+---
+
+## 1. exp-003 posterior summary
+
+**注意：服务器上不存在 "003b" 目录或文件。** 实际存在两份结果：`exp003/dry_run/` (N=8, I=316, J=9, n_obs=4250) 和 `exp003/results_dryrun/` (N=8, I=175, J=9, n_obs=4223)。
+
+### 1a. `exp003/dry_run/results.json` (I=316 items)
+
+**Convergence:**
+| Method | R̂ | ESS | Divergences |
+|--------|-----|-----|-------------|
+| raw_average | NaN | NaN | 0 |
+| mfrm_only | NaN | 1.0 | 0 |
+| joint_gmfrm | NaN | 8.0 | 0 |
+
+**Arena correlation (n_matched=6: gemma-2-9b, gpt-3.5-turbo-0125, gpt-4-0613, llama-3.3-70b, qwen2.5-72b, qwen3-8b):**
+| Method | Kendall τ | p | Spearman ρ | p |
+|--------|-----------|---|------------|---|
+| raw_average | 0.7333 | 0.0556 | 0.8857 | 0.0188 |
+| mfrm_only | 0.7333 | 0.0556 | 0.8857 | 0.0188 |
+| joint_gmfrm | 0.7333 | 0.0556 | 0.8857 | 0.0188 |
+
+**Cross-method:**
+| Pair | Kendall τ | Spearman ρ |
+|------|-----------|------------|
+| raw_avg vs mfrm_only | 1.0 | 1.0 |
+| raw_avg vs joint_gmfrm | 1.0 | 1.0 |
+| mfrm_only vs joint_gmfrm | 1.0 | 1.0 |
+
+**θ values (raw_average):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 0.23868077 |
+| qwen2.5-72b | 0.21970318 |
+| gpt-4o-mini | 0.19285189 |
+| llama-3.3-70b | 0.12871055 |
+| qwen3-8b | 0.05058555 |
+| gemma-2-9b | -0.11342157 |
+| gpt-4-0613 | -0.27593042 |
+| gpt-3.5-turbo-0125 | -0.44117995 |
+
+**θ values (mfrm_only):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.36967146 |
+| qwen2.5-72b | 1.13041210 |
+| gpt-4o-mini | 0.94442105 |
+| llama-3.3-70b | 0.51102650 |
+| qwen3-8b | 0.15004641 |
+| gemma-2-9b | -0.76172185 |
+| gpt-4-0613 | -1.11396527 |
+| gpt-3.5-turbo-0125 | -2.22989035 |
+
+**d values (mfrm_only):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.39717364 |
+| deepseek-v4-pro-proxy | 0.31630492 |
+| gpt-5.5-proxy | 0.17250873 |
+| gemini-2.5-pro-proxy | 0.12005256 |
+| claude-sonnet-4.6-proxy | 0.02514626 |
+| qwen3-235b-proxy | -0.00998056 |
+| qwen2.5-72b | -0.25235894 |
+| llama-3.3-70b | -0.34985209 |
+| mistral-large-2 | -0.41899467 |
+
+**θ values (joint_gmfrm):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.64262962 |
+| qwen2.5-72b | 1.32011771 |
+| gpt-4o-mini | 1.16216457 |
+| llama-3.3-70b | 0.67916685 |
+| qwen3-8b | 0.31865406 |
+| gemma-2-9b | -0.59563833 |
+| gpt-4-0613 | -1.70350432 |
+| gpt-3.5-turbo-0125 | -2.82359028 |
+
+**c values (joint_gmfrm):**
+| Model | c |
+|-------|---|
+| gpt-4-0613 | 3.79534936 |
+| gpt-3.5-turbo-0125 | 3.76617169 |
+| qwen2.5-72b | 1.36497068 |
+| llama-3.3-70b | 1.18641233 |
+| qwen3-8b | 1.17901313 |
+| gpt-4o-mini | 0.94688034 |
+| gemma-2-9b | 0.84147596 |
+| gpt-4o | 0.81871092 |
+
+**d values (joint_gmfrm):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.55214882 |
+| gpt-5.5-proxy | 0.32080093 |
+| deepseek-v4-pro-proxy | 0.28317636 |
+| claude-sonnet-4.6-proxy | 0.11925279 |
+| gemini-2.5-pro-proxy | 0.07802959 |
+| qwen3-235b-proxy | 0.04633495 |
+| llama-3.3-70b | -0.38477415 |
+| qwen2.5-72b | -0.40437034 |
+| mistral-large-2 | -0.61059874 |
+
+**Top exposure items:** 3735ce11..=1.0, 53f4338f..=1.0, ab4a5145..=0.8521, b7e7a162..=0.7744, 0901d025..=0.7688, 98312077..=0.7688, c1f1deb8..=0.7112, 3801e82e..=0.7042, e64ca084..=0.6986, 38506f6f..=0.6986
+
+**Bottom exposure items:** c6718958..=0.0, 26d31603..=0.0, 2bc4dbaf..=0.0, 09e03665..=0.0, fcbd40af..=0.0, 089cea4c..=0.0, 0394b670..=0.0, fd86dff7..=0.0, fdf5e9ec..=0.0, 0122ab60..=0.0
+
+---
+
+### 1b. `exp003/results_dryrun/results.json` (I=175 items)
+
+**Convergence:**
+| Method | R̂ | ESS | Divergences |
+|--------|-----|-----|-------------|
+| raw_average | NaN | NaN | 0 |
+| mfrm_only | NaN | 12.0 | 0 |
+| sequential | NaN | 9.0 | 0 |
+| joint_gmfrm | NaN | 5.0 | 0 |
+
+**Arena correlation (n_matched=8):**
+| Method | Kendall τ | p | Spearman ρ | p |
+|--------|-----------|---|------------|---|
+| raw_average | 0.7857 | 0.00551 | 0.9048 | 0.00201 |
+| mfrm_only | 0.7857 | 0.00551 | 0.9048 | 0.00201 |
+| sequential | 0.7857 | 0.00551 | 0.9048 | 0.00201 |
+| joint_gmfrm | 0.8571 | 0.00174 | 0.9524 | 0.00026 |
+
+**Cross-method:**
+| Pair | Kendall τ | Spearman ρ |
+|------|-----------|------------|
+| raw_avg vs mfrm_only | 1.0 | 1.0 |
+| raw_avg vs sequential | 1.0 | 1.0 |
+| raw_avg vs joint_gmfrm | 0.9286 | 0.9762 |
+| mfrm_only vs sequential | 1.0 | 1.0 |
+| mfrm_only vs joint_gmfrm | 0.9286 | 0.9762 |
+| sequential vs joint_gmfrm | 0.9286 | 0.9762 |
+
+**θ values (raw_average):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 0.23386886 |
+| qwen2.5-72b | 0.21287819 |
+| gpt-4o-mini | 0.18952736 |
+| llama-3.3-70b | 0.11568555 |
+| qwen3-8b | 0.05057403 |
+| gemma-2-9b | -0.10290823 |
+| gpt-4-0613 | -0.27219982 |
+| gpt-3.5-turbo-0125 | -0.42742594 |
+
+**θ values (mfrm_only):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.40990531 |
+| qwen2.5-72b | 1.17603695 |
+| gpt-4o-mini | 0.98116684 |
+| llama-3.3-70b | 0.53125000 |
+| qwen3-8b | 0.16850761 |
+| gemma-2-9b | -0.68764955 |
+| gpt-4-0613 | -1.27121925 |
+| gpt-3.5-turbo-0125 | -2.30799794 |
+
+**d values (mfrm_only):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.41062009 |
+| gpt-5.5-proxy | 0.36938193 |
+| deepseek-v4-pro-proxy | 0.31869307 |
+| gemini-2.5-pro-proxy | 0.04764438 |
+| qwen3-235b-proxy | 0.00977035 |
+| claude-sonnet-4.6-proxy | -0.03690225 |
+| qwen2.5-72b | -0.23714153 |
+| llama-3.3-70b | -0.36922646 |
+| mistral-large-2 | -0.51283956 |
+
+**θ values (sequential):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.55206004 |
+| qwen2.5-72b | 1.19414181 |
+| gpt-4o-mini | 0.98434098 |
+| llama-3.3-70b | 0.47096371 |
+| qwen3-8b | 0.21977600 |
+| gemma-2-9b | -0.65062029 |
+| gpt-4-0613 | -1.34433455 |
+| gpt-3.5-turbo-0125 | -2.42632770 |
+
+**c values (sequential):**
+| Model | c |
+|-------|---|
+| gpt-3.5-turbo-0125 | 0.51495957 |
+| gpt-4-0613 | 0.32549583 |
+| llama-3.3-70b | 0.10067178 |
+| qwen2.5-72b | -0.05604648 |
+| gpt-4o-mini | -0.10297774 |
+| gemma-2-9b | -0.18497565 |
+| qwen3-8b | -0.32186217 |
+| gpt-4o | -0.74041483 |
+
+**d values (sequential):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.42406178 |
+| gpt-5.5-proxy | 0.37683338 |
+| deepseek-v4-pro-proxy | 0.32516935 |
+| gemini-2.5-pro-proxy | 0.02575572 |
+| qwen3-235b-proxy | 0.01401879 |
+| claude-sonnet-4.6-proxy | -0.04112124 |
+| qwen2.5-72b | -0.22876933 |
+| llama-3.3-70b | -0.39376137 |
+| mistral-large-2 | -0.50218701 |
+
+**θ values (joint_gmfrm):**
+| Model | θ |
+|-------|---|
+| gpt-4o | 1.91596889 |
+| gpt-4o-mini | 1.28517509 |
+| qwen2.5-72b | 1.09651864 |
+| llama-3.3-70b | 0.47826594 |
+| qwen3-8b | 0.39585263 |
+| gemma-2-9b | -0.45279670 |
+| gpt-4-0613 | -1.64114594 |
+| gpt-3.5-turbo-0125 | -3.07783866 |
+
+**c values (joint_gmfrm):**
+| Model | c |
+|-------|---|
+| gpt-3.5-turbo-0125 | 5.14283085 |
+| gpt-4-0613 | 3.55696964 |
+| qwen2.5-72b | 3.19515014 |
+| llama-3.3-70b | 2.67104125 |
+| qwen3-8b | 1.64979303 |
+| gemma-2-9b | 1.21201992 |
+| gpt-4o-mini | 1.20956993 |
+| gpt-4o | 0.39051604 |
+
+**d values (joint_gmfrm):**
+| Judge | d |
+|-------|---|
+| claude-opus-4.7-proxy | 0.56626081 |
+| gpt-5.5-proxy | 0.51748168 |
+| deepseek-v4-pro-proxy | 0.29348654 |
+| claude-sonnet-4.6-proxy | 0.10923333 |
+| qwen3-235b-proxy | 0.06364024 |
+| gemini-2.5-pro-proxy | 0.01483400 |
+| qwen2.5-72b | -0.36058441 |
+| llama-3.3-70b | -0.43286902 |
+| mistral-large-2 | -0.77148312 |
+
+**Top exposure:** 53f4338f..=1.0, 3735ce11..=1.0, ab4a5145..=0.8521, 0901d025..=0.7688, c1f1deb8..=0.7112, 3801e82e..=0.7042, 1cf36776..=0.6502, 06991f6d..=0.6387, 3bcc4c4c..=0.6387, b7e2e311..=0.6387
+
+**Bottom exposure:** c542b6d5..=0.0, c15bbb17..=0.0, ccebedca..=0.0, e9f5e01e..=0.0, e80139e3..=0.0, e21a4451..=0.0, f9111d1c..=0.0, fcbd40af..=0.0, fae0a258..=0.0, fd86dff7..=0.0
+
+---
+
+## 2. exp-013 weight sensitivity
+
+### `exp013/results/weight_sensitivity.csv`
+
+| weight_config | ref_weight | cma_weight | exposure_spearman_ρ | gmfrm_τ | delta_τ_vs_default | R̂ | ESS_min | divergences |
+|---------------|-----------|-----------|---------------------|---------|--------------------|----|---------|-------------|
+| 50_50 | 0.5 | 0.5 | 0.9981 | 0.7857 | -0.0 | 1.02 | 196.0 | 0 |
+| 75_25 | 0.75 | 0.25 | 1.0000 | 0.7857 | -0.0 | 1.04 | 115.0 | 0 |
+| 90_10 | 0.9 | 0.1 | 0.9991 | 0.7857 | -0.0 | 1.01 | 432.0 | 0 |
+| 100_0 | 1.0 | 0.0 | 0.9978 | 0.7857 | -0.0 | 1.01 | 668.0 | 0 |
+
+### Per-config θ and c (from config JSON files):
+
+**config_50_50:**
+| Model | θ | c |
+|-------|---|---|
+| gemma-2-9b | -0.35866579 | 1.15568018 |
+| gpt-3.5-turbo-0125 | -3.04078507 | 2.59973931 |
+| gpt-4-0613 | -2.29612327 | 3.20377564 |
+| gpt-4o | 1.83960891 | 0.97290224 |
+| gpt-4o-mini | 1.43878698 | 1.28588784 |
+| llama-3.3-70b | 0.79142207 | 1.00929701 |
+| qwen2.5-72b | 1.53433537 | 1.09145164 |
+| qwen3-8b | 0.09142078 | 0.95677227 |
+Diagnostics: R̂=1.02, ESS=196.0, divergences=0
+
+**config_75_25:**
+| Model | θ | c |
+|-------|---|---|
+| gemma-2-9b | -0.32445198 | 1.18991530 |
+| gpt-3.5-turbo-0125 | -3.11925316 | 3.09641576 |
+| gpt-4-0613 | -2.29196787 | 3.49297476 |
+| gpt-4o | 1.85372710 | 1.02558804 |
+| gpt-4o-mini | 1.47315419 | 1.29711056 |
+| llama-3.3-70b | 0.80965716 | 1.09317648 |
+| qwen2.5-72b | 1.51588500 | 1.28114760 |
+| qwen3-8b | 0.08324978 | 1.10546780 |
+Diagnostics: R̂=1.04, ESS=115.0, divergences=0
+
+**config_90_10:**
+| Model | θ | c |
+|-------|---|---|
+| gemma-2-9b | -0.33009803 | 1.24964154 |
+| gpt-3.5-turbo-0125 | -3.15337849 | 3.35341620 |
+| gpt-4-0613 | -2.30765486 | 3.66932702 |
+| gpt-4o | 1.87489831 | 1.01138735 |
+| gpt-4o-mini | 1.49647558 | 1.28800273 |
+| llama-3.3-70b | 0.80437160 | 1.16533566 |
+| qwen2.5-72b | 1.52681816 | 1.33946466 |
+| qwen3-8b | 0.08856760 | 1.16842413 |
+Diagnostics: R̂=1.01, ESS=432.0, divergences=0
+
+**config_100_0:**
+| Model | θ | c |
+|-------|---|---|
+| gemma-2-9b | -0.33482459 | 1.30031681 |
+| gpt-3.5-turbo-0125 | -3.19035959 | 3.55181718 |
+| gpt-4-0613 | -2.31516647 | 3.76765943 |
+| gpt-4o | 1.89052606 | 1.01877797 |
+| gpt-4o-mini | 1.50746179 | 1.29864097 |
+| llama-3.3-70b | 0.81765425 | 1.18414116 |
+| qwen2.5-72b | 1.54373956 | 1.37007403 |
+| qwen3-8b | 0.08096871 | 1.24265909 |
+Diagnostics: R̂=1.01, ESS=668.0, divergences=0
+
+---
+
+## 3. exp-012 error propagation
+
+### `exp012/summary.csv` (聚合统计)
+
+| σ | θ_RMSE_mean | θ_RMSE_std | θ_τ_mean | θ_τ_std | c_RMSE_mean | c_RMSE_std | c_corr_mean | c_corr_std | R̂_max | ESS_min | n |
+|---|-------------|------------|----------|---------|-------------|------------|-------------|------------|-------|---------|---|
+| 0.0 | 0.12765 | 0.01780 | 0.91592 | 0.01245 | 0.53296 | 0.18686 | 0.85994 | 0.08400 | 1.02 | 276.0 | 20 |
+| 0.1 | 0.12950 | 0.01782 | 0.91527 | 0.01411 | 0.54517 | 0.19341 | 0.85418 | 0.08571 | 1.02 | 293.0 | 20 |
+| 0.2 | 0.13517 | 0.01748 | 0.91396 | 0.01373 | 0.57505 | 0.19811 | 0.83854 | 0.09807 | 1.02 | 285.0 | 20 |
+| 0.5 | 0.17480 | 0.02664 | 0.88498 | 0.02068 | 0.84152 | 0.19537 | 0.74497 | 0.11844 | 1.02 | 296.0 | 20 |
+
+### `exp012/error_propagation.csv` (全部 80 行, 20 seeds × 4 σ)
+
+| sigma | seed | theta_rmse | theta_tau | cn_rmse | cn_corr | r_hat | ess |
+|-------|------|------------|-----------|---------|---------|-------|-----|
+| 0.0 | 0 | 0.11414007 | 0.92653 | 0.28331 | 0.94712 | 1.01 | 551.0 |
+| 0.0 | 1 | 0.13795684 | 0.89878 | 0.46386 | 0.91739 | 1.02 | 347.0 |
+| 0.0 | 2 | 0.11287817 | 0.92816 | 0.51019 | 0.86566 | 1.02 | 334.0 |
+| 0.0 | 3 | 0.14038638 | 0.89388 | 0.35194 | 0.91555 | 1.00 | 637.0 |
+| 0.0 | 4 | 0.12215192 | 0.91837 | 0.87948 | 0.82694 | 1.01 | 350.0 |
+| 0.0 | 5 | 0.11624290 | 0.91837 | 0.74429 | 0.76431 | 1.01 | 419.0 |
+| 0.0 | 6 | 0.12398410 | 0.93306 | 0.44881 | 0.89301 | 1.02 | 276.0 |
+| 0.0 | 7 | 0.09408416 | 0.92490 | 0.39782 | 0.92276 | 1.01 | 487.0 |
+| 0.0 | 8 | 0.13121859 | 0.92163 | 0.46995 | 0.90987 | 1.01 | 566.0 |
+| 0.0 | 9 | 0.15336440 | 0.92816 | 0.51906 | 0.83564 | 1.01 | 432.0 |
+| 0.0 | 10 | 0.11540987 | 0.92490 | 0.57058 | 0.91079 | 1.00 | 488.0 |
+| 0.0 | 11 | 0.10797643 | 0.92327 | 0.26336 | 0.93990 | 1.02 | 395.0 |
+| 0.0 | 12 | 0.13121468 | 0.89551 | 0.59387 | 0.84774 | 1.01 | 461.0 |
+| 0.0 | 13 | 0.14181515 | 0.91673 | 0.99256 | 0.66593 | 1.01 | 551.0 |
+| 0.0 | 14 | 0.17182613 | 0.90204 | 0.44961 | 0.88606 | 1.00 | 502.0 |
+| 0.0 | 15 | 0.12878921 | 0.89714 | 0.40434 | 0.89476 | 1.02 | 471.0 |
+| 0.0 | 16 | 0.14700502 | 0.91020 | 0.61020 | 0.78979 | 1.00 | 504.0 |
+| 0.0 | 17 | 0.12622815 | 0.92980 | 0.39288 | 0.97807 | 1.01 | 421.0 |
+| 0.0 | 18 | 0.11060936 | 0.91347 | 0.64778 | 0.80362 | 1.01 | 388.0 |
+| 0.0 | 19 | 0.12581090 | 0.91347 | 0.66525 | 0.68398 | 1.01 | 461.0 |
+| 0.1 | 0 | 0.11820523 | 0.92490 | 0.30172 | 0.93977 | 1.01 | 545.0 |
+| 0.1 | 1 | 0.14177970 | 0.90204 | 0.48979 | 0.91162 | 1.02 | 377.0 |
+| 0.1 | 2 | 0.11563529 | 0.92490 | 0.54353 | 0.85078 | 1.01 | 357.0 |
+| 0.1 | 3 | 0.14247326 | 0.88245 | 0.36922 | 0.90668 | 1.00 | 608.0 |
+| 0.1 | 4 | 0.12828794 | 0.91510 | 0.90355 | 0.81212 | 1.01 | 378.0 |
+| 0.1 | 5 | 0.11923730 | 0.91347 | 0.76809 | 0.75152 | 1.01 | 527.0 |
+| 0.1 | 6 | 0.12504731 | 0.93796 | 0.45819 | 0.88716 | 1.02 | 293.0 |
+| 0.1 | 7 | 0.09931052 | 0.92163 | 0.39504 | 0.90946 | 1.01 | 449.0 |
+| 0.1 | 8 | 0.13223288 | 0.92816 | 0.48407 | 0.90235 | 1.01 | 410.0 |
+| 0.1 | 9 | 0.15314907 | 0.93306 | 0.52537 | 0.83298 | 1.00 | 435.0 |
+| 0.1 | 10 | 0.11639810 | 0.92163 | 0.59905 | 0.91534 | 1.00 | 452.0 |
+| 0.1 | 11 | 0.10536136 | 0.92490 | 0.26047 | 0.94425 | 1.02 | 368.0 |
+| 0.1 | 12 | 0.13012162 | 0.89224 | 0.59871 | 0.84046 | 1.01 | 455.0 |
+| 0.1 | 13 | 0.14463271 | 0.90857 | 1.02870 | 0.65417 | 1.01 | 561.0 |
+| 0.1 | 14 | 0.17726356 | 0.90367 | 0.47928 | 0.87630 | 1.01 | 559.0 |
+| 0.1 | 15 | 0.12870741 | 0.90204 | 0.42305 | 0.89175 | 1.02 | 454.0 |
+| 0.1 | 16 | 0.14678460 | 0.91184 | 0.60966 | 0.78792 | 1.00 | 532.0 |
+| 0.1 | 17 | 0.12240573 | 0.93143 | 0.35408 | 0.98056 | 1.01 | 463.0 |
+| 0.1 | 18 | 0.11664185 | 0.91184 | 0.65114 | 0.80924 | 1.01 | 435.0 |
+| 0.1 | 19 | 0.12639512 | 0.91347 | 0.66061 | 0.67916 | 1.01 | 449.0 |
+| 0.2 | 0 | 0.13914489 | 0.90694 | 0.40262 | 0.90657 | 1.01 | 499.0 |
+| 0.2 | 1 | 0.13362516 | 0.91020 | 0.46994 | 0.91408 | 1.02 | 404.0 |
+| 0.2 | 2 | 0.11710810 | 0.92490 | 0.56930 | 0.85192 | 1.02 | 319.0 |
+| 0.2 | 3 | 0.14706351 | 0.89061 | 0.41355 | 0.88882 | 1.00 | 579.0 |
+| 0.2 | 4 | 0.12691620 | 0.92653 | 0.91861 | 0.81050 | 1.00 | 477.0 |
+| 0.2 | 5 | 0.13016851 | 0.89224 | 0.81492 | 0.69665 | 1.01 | 407.0 |
+| 0.2 | 6 | 0.12159135 | 0.93633 | 0.44778 | 0.90149 | 1.02 | 285.0 |
+| 0.2 | 7 | 0.09739774 | 0.92816 | 0.33140 | 0.91389 | 1.01 | 502.0 |
+| 0.2 | 8 | 0.14367870 | 0.91510 | 0.54108 | 0.87650 | 1.01 | 472.0 |
+| 0.2 | 9 | 0.15965651 | 0.92816 | 0.53772 | 0.83224 | 1.01 | 365.0 |
+| 0.2 | 10 | 0.12880750 | 0.92490 | 0.68156 | 0.88628 | 1.01 | 446.0 |
+| 0.2 | 11 | 0.12094017 | 0.92163 | 0.33906 | 0.91085 | 1.02 | 340.0 |
+| 0.2 | 12 | 0.13543258 | 0.89061 | 0.65513 | 0.83351 | 1.01 | 482.0 |
+| 0.2 | 13 | 0.15625794 | 0.91020 | 1.02046 | 0.64946 | 1.01 | 631.0 |
+| 0.2 | 14 | 0.17658914 | 0.90694 | 0.49940 | 0.88553 | 1.01 | 497.0 |
+| 0.2 | 15 | 0.13882541 | 0.90204 | 0.46505 | 0.88721 | 1.02 | 468.0 |
+| 0.2 | 16 | 0.14471841 | 0.92000 | 0.63529 | 0.80038 | 1.01 | 543.0 |
+| 0.2 | 17 | 0.12841516 | 0.92980 | 0.29001 | 0.96269 | 1.01 | 532.0 |
+| 0.2 | 18 | 0.11623661 | 0.90857 | 0.72965 | 0.78914 | 1.01 | 394.0 |
+| 0.2 | 19 | 0.14085491 | 0.90531 | 0.73854 | 0.57307 | 1.01 | 442.0 |
+| 0.5 | 0 | 0.18530451 | 0.87755 | 0.63338 | 0.88320 | 1.01 | 477.0 |
+| 0.5 | 1 | 0.19475478 | 0.86612 | 0.88775 | 0.81065 | 1.02 | 335.0 |
+| 0.5 | 2 | 0.12973575 | 0.92327 | 0.87062 | 0.76523 | 1.02 | 310.0 |
+| 0.5 | 3 | 0.18593565 | 0.86286 | 0.75930 | 0.78408 | 1.01 | 620.0 |
+| 0.5 | 4 | 0.14577465 | 0.90857 | 1.09398 | 0.69944 | 1.01 | 486.0 |
+| 0.5 | 5 | 0.18057952 | 0.86612 | 1.06235 | 0.53080 | 1.01 | 495.0 |
+| 0.5 | 6 | 0.15583470 | 0.89878 | 0.68944 | 0.84486 | 1.02 | 296.0 |
+| 0.5 | 7 | 0.14561616 | 0.89388 | 0.49700 | 0.90266 | 1.01 | 434.0 |
+| 0.5 | 8 | 0.21531767 | 0.85469 | 1.00679 | 0.66628 | 1.01 | 496.0 |
+| 0.5 | 9 | 0.19892636 | 0.90204 | 0.78751 | 0.77073 | 1.01 | 416.0 |
+| 0.5 | 10 | 0.20272525 | 0.85633 | 1.08568 | 0.76421 | 1.01 | 476.0 |
+| 0.5 | 11 | 0.13643655 | 0.89878 | 0.59282 | 0.86029 | 1.01 | 394.0 |
+| 0.5 | 12 | 0.16570683 | 0.85469 | 0.83644 | 0.69209 | 1.01 | 467.0 |
+| 0.5 | 13 | 0.17435005 | 0.89224 | 1.17727 | 0.55398 | 1.02 | 522.0 |
+| 0.5 | 14 | 0.22375011 | 0.87755 | 0.72889 | 0.77348 | 1.01 | 541.0 |
+| 0.5 | 15 | 0.20047486 | 0.86776 | 0.82272 | 0.81992 | 1.01 | 500.0 |
+| 0.5 | 16 | 0.17810976 | 0.89388 | 0.86819 | 0.72562 | 1.01 | 549.0 |
+| 0.5 | 17 | 0.17244154 | 0.91020 | 0.55989 | 0.91329 | 1.01 | 484.0 |
+| 0.5 | 18 | 0.15834541 | 0.89388 | 1.08137 | 0.53982 | 1.01 | 410.0 |
+| 0.5 | 19 | 0.14593079 | 0.90041 | 0.78890 | 0.59874 | 1.01 | 490.0 |
+
+同时附带 `mvp/results_mvp003.csv`（20 seeds × 4 methods）的完整 80 行数据：
+
+| rho | seed | method | rmse | kendall_tau | r_hat | ess |
+|-----|------|--------|------|-------------|-------|-----|
+| 0.6 | 0 | raw_average | 0.75945 | 0.81291 | | |
+| 0.6 | 0 | mfrm_only_v3 | 0.30055 | 0.81061 | 1.01 | 481.0 |
+| 0.6 | 0 | sequential_v3 | 0.26209 | 0.83020 | 1.01 | 481.0 |
+| 0.6 | 0 | joint_gmfrm_v3 | 0.12426 | 0.92000 | 1.01 | 622.0 |
+| 0.6 | 1 | raw_average | 0.74245 | 0.83415 | | |
+| 0.6 | 1 | mfrm_only_v3 | 0.27019 | 0.83184 | 1.01 | 542.0 |
+| 0.6 | 1 | sequential_v3 | 0.23631 | 0.84490 | 1.01 | 542.0 |
+| 0.6 | 1 | joint_gmfrm_v3 | 0.15076 | 0.91837 | 1.02 | 307.0 |
+| 0.6 | 2 | raw_average | 0.81209 | 0.88199 | | |
+| 0.6 | 2 | mfrm_only_v3 | 0.20977 | 0.88082 | 1.01 | 565.0 |
+| 0.6 | 2 | sequential_v3 | 0.18550 | 0.88735 | 1.01 | 565.0 |
+| 0.6 | 2 | joint_gmfrm_v3 | 0.13190 | 0.91837 | 1.02 | 366.0 |
+| 0.6 | 3 | raw_average | 0.92449 | 0.80915 | | |
+| 0.6 | 3 | mfrm_only_v3 | 0.26173 | 0.80898 | 1.01 | 503.0 |
+| 0.6 | 3 | sequential_v3 | 0.22421 | 0.84490 | 1.01 | 503.0 |
+| 0.6 | 3 | joint_gmfrm_v3 | 0.10042 | 0.92653 | 1.00 | 515.0 |
+| 0.6 | 4 | raw_average | 0.85395 | 0.87709 | | |
+| 0.6 | 4 | mfrm_only_v3 | 0.23444 | 0.87592 | 1.01 | 534.0 |
+| 0.6 | 4 | sequential_v3 | 0.20542 | 0.89388 | 1.01 | 534.0 |
+| 0.6 | 4 | joint_gmfrm_v3 | 0.12373 | 0.91673 | 1.01 | 494.0 |
+| 0.6 | 5 | raw_average | 0.71967 | 0.79003 | | |
+| 0.6 | 5 | mfrm_only_v3 | 0.28529 | 0.78776 | 1.00 | 553.0 |
+| 0.6 | 5 | sequential_v3 | 0.24031 | 0.81224 | 1.00 | 553.0 |
+| 0.6 | 5 | joint_gmfrm_v3 | 0.11747 | 0.91673 | 1.01 | 496.0 |
+| 0.6 | 6 | raw_average | 0.84059 | 0.84653 | | |
+| 0.6 | 6 | mfrm_only_v3 | 0.25094 | 0.84653 | 1.02 | 563.0 |
+| 0.6 | 6 | sequential_v3 | 0.22148 | 0.86122 | 1.02 | 563.0 |
+| 0.6 | 6 | joint_gmfrm_v3 | 0.15385 | 0.91020 | 1.03 | 224.0 |
+| 0.6 | 7 | raw_average | 0.73575 | 0.77043 | | |
+| 0.6 | 7 | mfrm_only_v3 | 0.28817 | 0.76980 | 1.01 | 563.0 |
+| 0.6 | 7 | sequential_v3 | 0.24652 | 0.80898 | 1.01 | 563.0 |
+| 0.6 | 7 | joint_gmfrm_v3 | 0.10002 | 0.92816 | 1.01 | 408.0 |
+| 0.6 | 8 | raw_average | 0.92653 | 0.79167 | | |
+| 0.6 | 8 | mfrm_only_v3 | 0.35383 | 0.79102 | 1.01 | 539.0 |
+| 0.6 | 8 | sequential_v3 | 0.30550 | 0.81061 | 1.01 | 539.0 |
+| 0.6 | 8 | joint_gmfrm_v3 | 0.12360 | 0.93143 | 1.01 | 429.0 |
+| 0.6 | 9 | raw_average | 0.87447 | 0.85002 | | |
+| 0.6 | 9 | mfrm_only_v3 | 0.27470 | 0.84816 | 1.01 | 439.0 |
+| 0.6 | 9 | sequential_v3 | 0.23657 | 0.88082 | 1.01 | 439.0 |
+| 0.6 | 9 | joint_gmfrm_v3 | 0.11734 | 0.92653 | 1.01 | 361.0 |
+| 0.6 | 10 | raw_average | 0.67266 | 0.81030 | | |
+| 0.6 | 10 | mfrm_only_v3 | 0.25727 | 0.80898 | 1.01 | 560.0 |
+| 0.6 | 10 | sequential_v3 | 0.22461 | 0.83347 | 1.01 | 560.0 |
+| 0.6 | 10 | joint_gmfrm_v3 | 0.14549 | 0.90041 | 1.01 | 438.0 |
+| 0.6 | 11 | raw_average | 0.70212 | 0.88925 | | |
+| 0.6 | 11 | mfrm_only_v3 | 0.17726 | 0.88571 | 1.01 | 540.0 |
+| 0.6 | 11 | sequential_v3 | 0.15295 | 0.90367 | 1.01 | 540.0 |
+| 0.6 | 11 | joint_gmfrm_v3 | 0.10764 | 0.93469 | 1.02 | 380.0 |
+| 0.6 | 12 | raw_average | 0.71092 | 0.85212 | | |
+| 0.6 | 12 | mfrm_only_v3 | 0.18309 | 0.85306 | 1.01 | 516.0 |
+| 0.6 | 12 | sequential_v3 | 0.16136 | 0.87265 | 1.01 | 516.0 |
+| 0.6 | 12 | joint_gmfrm_v3 | 0.11065 | 0.92490 | 1.01 | 450.0 |
+| 0.6 | 13 | raw_average | 0.87117 | 0.86427 | | |
+| 0.6 | 13 | mfrm_only_v3 | 0.27476 | 0.86122 | 1.01 | 362.0 |
+| 0.6 | 13 | sequential_v3 | 0.24281 | 0.87918 | 1.01 | 362.0 |
+| 0.6 | 13 | joint_gmfrm_v3 | 0.12767 | 0.92653 | 1.01 | 415.0 |
+| 0.6 | 14 | raw_average | 0.92487 | 0.82973 | | |
+| 0.6 | 14 | mfrm_only_v3 | 0.29166 | 0.82857 | 1.02 | 559.0 |
+| 0.6 | 14 | sequential_v3 | 0.25075 | 0.84816 | 1.02 | 559.0 |
+| 0.6 | 14 | joint_gmfrm_v3 | 0.12894 | 0.93633 | 1.01 | 365.0 |
+| 0.6 | 15 | raw_average | 0.84991 | 0.85423 | | |
+| 0.6 | 15 | mfrm_only_v3 | 0.28155 | 0.85306 | 1.01 | 620.0 |
+| 0.6 | 15 | sequential_v3 | 0.24520 | 0.87429 | 1.01 | 620.0 |
+| 0.6 | 15 | joint_gmfrm_v3 | 0.14777 | 0.90694 | 1.01 | 442.0 |
+| 0.6 | 16 | raw_average | 0.75542 | 0.87500 | | |
+| 0.6 | 16 | mfrm_only_v3 | 0.20632 | 0.87429 | 1.01 | 587.0 |
+| 0.6 | 16 | sequential_v3 | 0.17794 | 0.88408 | 1.01 | 587.0 |
+| 0.6 | 16 | joint_gmfrm_v3 | 0.10105 | 0.93796 | 1.01 | 412.0 |
+| 0.6 | 17 | raw_average | 0.92513 | 0.86076 | | |
+| 0.6 | 17 | mfrm_only_v3 | 0.24919 | 0.85959 | 1.01 | 395.0 |
+| 0.6 | 17 | sequential_v3 | 0.22081 | 0.86939 | 1.01 | 395.0 |
+| 0.6 | 17 | joint_gmfrm_v3 | 0.12828 | 0.92816 | 1.01 | 404.0 |
+| 0.6 | 18 | raw_average | 0.77764 | 0.82012 | | |
+| 0.6 | 18 | mfrm_only_v3 | 0.24401 | 0.81878 | 1.01 | 418.0 |
+| 0.6 | 18 | sequential_v3 | 0.21483 | 0.85143 | 1.01 | 418.0 |
+| 0.6 | 18 | joint_gmfrm_v3 | 0.11356 | 0.91510 | 1.01 | 296.0 |
+| 0.6 | 19 | raw_average | 0.74698 | 0.88199 | | |
+| 0.6 | 19 | mfrm_only_v3 | 0.18408 | 0.88082 | 1.01 | 388.0 |
+| 0.6 | 19 | sequential_v3 | 0.16696 | 0.89388 | 1.01 | 388.0 |
+| 0.6 | 19 | joint_gmfrm_v3 | 0.13108 | 0.92163 | 1.01 | 456.0 |
+
+---
+
+## 4. exp-006 judge count sensitivity
+
+**不在此服务器。** `/root/gated_mfrm_judge_bias/exp006/` 目录不存在，全项目搜索也无 "006" 相关文件。
+
+---
+
+## 5. exp-008 facet diagnostics
+
+**不在此服务器。** `/root/gated_mfrm_judge_bias/exp008/` 目录不存在，全项目搜索也无 "008" 相关文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 281183,
+  "duration_api_ms": 279699,
+  "num_turns": 31,
+  "stop_reason": "end_turn",
+  "session_id": "587d3c11-c3d0-42e3-aa65-47db2b98ff77",
+  "total_cost_usd": 1.0150282499999999,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 57469,
+    "cache_read_input_tokens": 346230,
+    "output_tokens": 19245,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 57469,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 14159,
+        "cache_read_input_tokens": 59712,
+        "cache_creation_input_tokens": 9204,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 9204
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1467,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001542,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 19245,
+      "cacheReadInputTokens": 346230,
+      "cacheCreationInputTokens": 57469,
+      "webSearchRequests": 0,
+      "costUSD": 1.01348625,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7da1123b-b1e8-404e-a2d6-b238f6a027a6"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd91904d9e776e81b856",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp012 final check",
+  "task_key": "worker_ssh_exp012_final_check_20260522T015200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp012_final_check_20260522T015200_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "975b9f0b9649beb95d29fb5afad5954a461bb54b4621e62cdfd7141b97a3d92a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度：σ=0.0 ✅ 20/20，σ=0.1 ✅ 20/20，σ=0.2 🔄 16/20，σ=0.5 ⏳ 0/20。\n\n56/80 runs 完成。还剩 24 runs（4 × σ=0.2 + 20 × σ=0.5）。按 ~3min/run 计算，ETA ≈ 72 分钟（约 1h12m）。\n\n当前速率验证一下：168min 完成 56 runs = 3.0 min/run，和之前一致。\n\n**汇总：**\n\n| σ | 完成 | 状态 |\n|---|------|------|\n| 0.0 | 20/20 | ✅ |\n| 0.1 | 20/20 | ✅ |\n| 0.2 | 16/20 | 🔄 运行中 |\n| 0.5 | 0/20 | ⏳ 等待 |\n\n- PID 54823 仍在运行，已跑 2h48m，CPU 105%\n- **56/80 runs (70%)，预计还需 ~72min 完成**（约北京时间 11:05 左右）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp012-final-check.md"
+}

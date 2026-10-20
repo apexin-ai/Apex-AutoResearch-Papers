@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a214193ec86de59ef08",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh kill 403 restart deepseek",
+  "task_key": "worker_ssh_kill-403-restart-deepseek_20260524T174640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-403-restart-deepseek_20260524T174640_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "19ce866519cd41e55d5203e270183060f0c4f6c46c36ee6bfe5a7dd5d39ecef2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both tasks are already in the desired state. Here's the full status:\n\n```\n=== Sonnet/Gemini Kill ===\nSonnet 进程: 已自行退出（全部 403 地域封锁）\nSonnet 最终行数: 14,255 行 (arena_hard_judgments.jsonl)\n  - 启动时已有 10,522 completed，之后全部 403 未新增有效数据\n\nGemini 进程: 已自行退出（全部 403 地域封锁）\nGemini 最终行数: 11,253 行 (arena_hard_judgments.jsonl)\n  - 启动时已有 6,633 completed，之后全部 403 未新增有效数据\n\n无需手动 kill，进程均已退出。\n\n=== DeepSeek 状态 ===\n已在 workers=10 运行，无需重启。\nPID: 592328\n进度: [2890/12057], 0.3 items/s, ETA ~531 min (~9h)\n\n=== 最终状态 ===\nActive collect processes:\n  1. Qwen local  (PID 584197) — workers=64, [11940/13590], ETA ~42 min\n  2. DeepSeek    (PID 592328) — workers=10, [2890/12057],  ETA ~531 min\n  3. Qwen3       (PID 592432) — workers=10, [4930/9969],   ETA ~170 min\n\nGPU usage:\n  GPU 0: 空闲 (0 MiB / 97887 MiB)\n  GPU 1: 空闲 (0 MiB / 97887 MiB)\n  GPU 2: Qwen vLLM (89083 MiB / 97887 MiB)\n  GPU 3: Qwen vLLM (89083 MiB / 97887 MiB)\n```\n\nSonnet/Gemini 已因 403 自行退出，DeepSeek 已经是 workers=10，均无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-403-restart-deepseek.md"
+}

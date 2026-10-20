@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42d6b07e55c5107084f9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh install tmux",
+  "task_key": "worker_ssh_install_tmux_20260521T230259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_install_tmux_20260521T230259_result.json",
+    "occurrence": 1,
+    "bytes": 55,
+    "sha256": "745bd4c8aff103c2a3fc4cb267122b263bac9e523479cca1eb4e8f6531186548"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "安装完成。tmux 版本：**3.2a**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-install-tmux.md"
+}

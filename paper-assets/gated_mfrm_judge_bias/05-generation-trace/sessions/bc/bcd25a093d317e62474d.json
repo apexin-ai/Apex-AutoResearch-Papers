@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "id": "bcd25a093d317e62474d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "conversation",
+  "title": "ssh power analysis delta tau",
+  "task_key": "worker_ssh_power_analysis_delta_tau_20260523T012958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_power_analysis_delta_tau_20260523T012958.jsonl",
+    "occurrence": 1,
+    "bytes": 4278,
+    "sha256": "a914a4c21da4419e3777809bbc60c61a2adc6520599d195df91784c2ced11471"
+  },
+  "statistics": {
+    "messages": 3,
+    "user_turns": 0,
+    "tool_calls": 1,
+    "roles": {
+      "tool_call": 1,
+      "tool_result": 1,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T01:30:30.931337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_power_analysis_delta_tau_20260523T012958",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nfrom scipy import stats\n\neffect_size = 0.071\nbootstrap_std = 0.036\nalpha = 0.05\ntarget_power = 0.80\n\n# Power table for selected N values\ntable_Ns = [8, 10, 12, 15, 20, 25, 30, 40, 50, 75, 100]\nprint('Power Analysis for Δτ = 0.071')\nprint(f'Bootstrap empirical std (N=8): {bootstrap_std:.4f}')\nprint(f'Scaling assumption: std(N) = std(8) * sqrt(8/N)')\nprint()\n\n# Binary search for minimum N\nmin_N = None\nfor N in range(8, 500):\n    std_N = bootstrap_std * np.sqrt(8.0 / N)\n    z = effect_size / std_N\n    z_crit = stats.norm.ppf(1 - alpha/2)\n    power = 1 - stats.norm.cdf(z_crit - z) + stats.norm.cdf(-z_crit - z)\n    if power >= target_power and min_N is None:\n        min_N = N\n        min_power = power\n\nprint(f'Minimum N for 80% power (α=0.05, two-sided): {min_N} (power={min_power:.3f})')\nprint()\n\nprint('Power table:')\nfor N in table_Ns:\n    std_N = bootstrap_std * np.sqrt(8.0 / N)\n    z = effect_size / std_N\n    z_crit = stats.norm.ppf(1 - alpha/2)\n    power = 1 - stats.norm.cdf(z_crit - z) + stats.norm.cdf(-z_crit - z)\n    marker = ' <-- current' if N == 8 else (' <-- min 80%' if N == min_N else '')\n    print(f'  N={N:3d}: std={std_N:.4f}, power={power:.3f}{marker}')\n\n# Also verify with exact Kendall tau variance formula\nprint()\nprint('Verification with Kendall τ exact variance (independent obs):')\nfor N in [8, 20, 30, 50]:\n    var_exact = 2*(2*N+5) / (9*N*(N-1))\n    std_exact = np.sqrt(var_exact)\n    print(f'  N={N:3d}: exact std(τ)={std_exact:.4f}  (vs scaled bootstrap: {bootstrap_std * np.sqrt(8.0/N):.4f})')\n\"\n",
+              "description": "Run power analysis computation"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T01:30:30.931715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Power Analysis for Δτ = 0.071\nBootstrap empirical std (N=8): 0.0360\nScaling assumption: std(N) = std(8) * sqrt(8/N)\n\nMinimum N for 80% power (α=0.05, two-sided): 17 (power=0.820)\n\nPower table:\n  N=  8: std=0.0360, power=0.505 <-- current\n  N= 10: std=0.0322, power=0.597\n  N= 12: std=0.0294, power=0.676\n  N= 15: std=0.0263, power=0.771\n  N= 20: std=0.0228, power=0.877\n  N= 25: std=0.0204, power=0.937\n  N= 30: std=0.0186, power=0.969\n  N= 40: std=0.0161, power=0.993\n  N= 50: std=0.0144, power=0.999\n  N= 75: std=0.0118, power=1.000\n  N=100: std=0.0102, power=1.000\n\nVerification with Kendall τ exact variance (independent obs):\n  N=  8: exact std(τ)=0.2887  (vs scaled bootstrap: 0.0360)\n  N= 20: exact std(τ)=0.1622  (vs scaled bootstrap: 0.0228)\n  N= 30: exact std(τ)=0.1289  (vs scaled bootstrap: 0.0186)\n  N= 50: exact std(τ)=0.0976  (vs scaled bootstrap: 0.0144)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_power_analysis_delta_tau_20260523T012958",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T01:30:30.931929+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPower Analysis for Δτ = 0.071:\n\nBootstrap empirical std (N=8): 0.0360\nScaling assumption: std(N) = std(8) * sqrt(8/N)\n\nMinimum N for 80% power (α=0.05, two-sided): 17\n\nPower table:\n  N=  8: std=0.0360, power=0.505  <-- current\n  N= 10: std=0.0322, power=0.597\n  N= 12: std=0.0294, power=0.676\n  N= 15: std=0.0263, power=0.771\n  N= 20: std=0.0228, power=0.877\n  N= 25: std=0.0204, power=0.937\n  N= 30: std=0.0186, power=0.969\n  N= 40: std=0.0161, power=0.993\n  N= 50: std=0.0144, power=0.999\n\nNote: The exact Kendall τ variance formula gives much larger std values (0.289 at N=8 vs 0.036),\nconfirming that the bootstrap std reflects the variance of the *difference* in posterior-mean τ\n(not a single τ), which is heavily reduced by the paired/dependent structure.\nThe 1/sqrt(N) scaling is an approximation — actual scaling depends on how adding models\naffects the posterior mean correlation structure. This estimate is likely optimistic\n(true minimum N may be somewhat higher).\n```\n\n**Minimum N = 17 target models** to detect Δτ=0.071 at 80% power. Current N=8 only has ~50% power, explaining the non-significant result. Doubling to N≈20 would give ~88% power with comfortable margin."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_power_analysis_delta_tau_20260523T012958"
+          },
+          "id": "event-000003"
+        }
+      ],
+      "message_count": 3
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-power-analysis-delta-tau.md"
+}

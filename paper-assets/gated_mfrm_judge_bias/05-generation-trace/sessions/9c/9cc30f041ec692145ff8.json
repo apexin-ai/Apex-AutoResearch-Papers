@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cc30f041ec692145ff8",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh llama deploy and verify configs",
+  "task_key": "worker_ssh_llama_deploy_and_verify_configs_20260524T013458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama_deploy_and_verify_configs_20260524T013458_result.json",
+    "occurrence": 1,
+    "bytes": 1466,
+    "sha256": "294a1a712fb110518bc4810de60a45182147904a7ea3ed3ef088ceb0540516a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇总报告\n\n### 任务 A: LLaMA vLLM 部署\n\n| 步骤 | 状态 |\n|------|------|\n| A1 模型下载 | 9 safetensors, 0 incomplete, config.json 存在 |\n| A2 cuda:1 | 空闲 → 已占用 42865 MiB |\n| A3 vLLM 部署 | PID 502063, 端口 8001, HTTP 200 健康 |\n| A5 Config | 已重写为正确格式（`benchmarks` key + `base_url: http://localhost:8001` + `model_name: /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/`） |\n| A6 Response 文件 | 全部 18 个模型存在（平铺格式 `{model}.jsonl`，非子目录格式） |\n| A7 collect.py | PID 503734, 18000 total judgments, 已产出 3 条，持续运行中 |\n\n**注意**：你提供的 config 格式与 `collect.py` 不匹配（缺少 `benchmarks` key），已自动修正为正确格式。\n\n### 任务 B: API judges configs 验证\n\n4 个 config 文件位于 `/root/gated_mfrm_judge_bias/exp001/`（不在 `configs/` 子目录），**target_models 全部精确匹配 18 个模型名**，无拼写差异。\n\n| Config | target_models | 进度 |\n|--------|--------------|------|\n| claude-sonnet-4.6-proxy | 18/18 匹配 | 1830/18000 |\n| gemini-2.5-pro-proxy | 18/18 匹配 | 1118/18000 |\n| deepseek-v4-pro-proxy | 18/18 匹配 | 905/18000 |\n| qwen3-235b-proxy | 18/18 匹配 | 1061/18000 |\n\n### 任务 C: Qwen 下载\n\n**已完成。** 11 safetensors, 39GB, `/root/autodl-tmp/models/Qwen/Qwen2.5-72B-Instruct-AWQ/`。日志显示 `DOWNLOAD_COMPLETE`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-deploy-and-verify-configs.md"
+}

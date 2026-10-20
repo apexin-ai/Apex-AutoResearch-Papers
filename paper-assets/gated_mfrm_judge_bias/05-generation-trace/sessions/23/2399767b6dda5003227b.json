@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2399767b6dda5003227b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check autodl 8gpu inference",
+  "task_key": "worker_ssh_check_autodl_8gpu_inference_20260522T103649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_autodl_8gpu_inference_20260522T103649_result.json",
+    "occurrence": 1,
+    "bytes": 1593,
+    "sha256": "1369464d0a44c97819059685fc56703bc510c123238f0506f3d042a436ebff65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## 推理状态\n\n| 模型 | 状态 | 详情 |\n|------|------|------|\n| **Llama-3.3-70B** (judge) | **已完成** | `arena_hard_judgments.jsonl` 296 条结果，时间戳 10:05-10:06 |\n| **gemma-2-9b-it** | **下载中 (~74%)** | 3/4 个 safetensors shard 各下载到 74%，速度 ~870KB/s，预计还需 ~24 min |\n| **Qwen2.5-7B-Instruct** | **未开始下载权重** | 仅有 tokenizer/config (12MB)，权重 safetensors 未下载 |\n| **Mistral-7B-Instruct-v0.3** | **排队中** | 锁文件已创建，等 Qwen 下载完才开始 |\n| **Llama-3.1-8B-Instruct** | **排队中** | 在第一个 ModelScope 下载脚本中，排在 gemma 后面 |\n| **Qwen3-8B** | **已完成下载** | 5/5 safetensors 已就绪 (16GB under `/root/autodl-tmp/models/Qwen/Qwen3-8B/`) |\n\n## 推理进度\n\n所有小模型的批推理 **均未开始**。Orchestrator tmux session 在等 gemma-2-9b-it 权重下载完毕后才会启动推理。\n\n## GPU 使用\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0-3 | RTX PRO 6000 Blackwell (98GB) | 0% | 0 MiB / 97887 MiB |\n\n4 张卡全部空闲，无推理进程运行。\n\n## 磁盘\n\n| 分区 | 已用 | 可用 | 占比 |\n|------|------|------|------|\n| / (30G) | 14G | 17G | 46% |\n| /root/autodl-tmp (250G) | 101G | 150G | 41% |\n\n磁盘空间充足。\n\n**瓶颈**：ModelScope 下载速度极慢（~870KB/s），gemma-2-9b-it 还需 ~24 分钟，之后 Llama-3.1-8B、Qwen2.5-7B、Mistral-7B 还要依次下载。按当前速度，全部模型下载完可能还需 2-3 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-autodl-8gpu-inference.md"
+}

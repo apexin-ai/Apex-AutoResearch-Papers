@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74d14668e2355026fb9c",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mcmc prep dedup logfix",
+  "task_key": "worker_ssh_mcmc_prep_dedup_logfix_20260523T214338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mcmc_prep_dedup_logfix_20260523T214338_result.json",
+    "occurrence": 1,
+    "bytes": 4516,
+    "sha256": "021f64389d0e2583bd1ae7ecf26c3d5469eea059d79f331d390d0b5466e98e17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。以下是产出报告。\n\n---\n\n## 产出报告\n\n### 1. Opus JSONL dedup ✅\n\n| 指标 | 值 |\n|------|-----|\n| 原始行数 | 9486 |\n| 去重后 | 9000 |\n| 移除重复 | 486 |\n| 备份文件 | `arena_hard_judgments.jsonl.bak_dedup` |\n\nOpus 覆盖率 9000/9000 = **100%**，collection 已完成。\n\n**⚠️ Opus collector PID 659677 仍在运行**，会继续追加重复行。建议 kill。\n\n---\n\n### 2. MCMC 脚本 partial judge 支持\n\n**结论：原生支持，无需修改脚本。**\n\n`data_loader.py` 通过 `glob(\"*/arena_hard_judgments.jsonl\")` 自动发现 judge，没有硬编码 judge 列表。Partial judge 只是该 judge 的观测数少。`min_judges=3` 过滤器不会丢数据（6 个 full judge 保证每个 item ≥ 6 judges）。\n\n**但有 3 个需注意的问题（不改代码，汇报等指令）：**\n\n1. **judgment-dir 路径不对**：脚本默认 `--judgment-dir exp001_n17/results`，但此目录不存在。实际数据在 `exp001/results/`。\n2. **结果目录有多余 judge**：`deepseek-v4-pro-proxy` 和 `llama-3.3-70b-shard2` 不在 6+2 列表中但会被 auto-scan 包含。需要创建干净的 judgment dir（只含 8 个正确 judge 的 symlink/copy），或手动排除。\n3. **Full judge 收集远未完成**：\n\n| Judge | unique/expected | 完成度 |\n|-------|----------------|--------|\n| claude-sonnet-4.6-proxy | 11798/18000 | 66% |\n| qwen2.5-72b | 9686/18000 | 54% |\n| mistral-large-2 | 9359/18000 | 52% |\n| qwen3-235b-proxy | 8625/18000 | 48% |\n| gemini-2.5-pro-proxy | 7358/18000 | 41% |\n| llama-3.3-70b | 7201/18000 | 40% |\n| gpt-5.5-proxy | 8373/9000 | 93% |\n| **claude-opus-4.7-proxy** | **9000/9000** | **100%** ✅ |\n\nMay 25 16:00 UTC 前 full judges 需从当前 ~50% 涨到 100%，需要确认收集速率是否来得及。\n\n18 个 model 列表（含 baseline）：\n`claude-3-5-sonnet-20241022, claude-3-haiku-20240307, claude-3-opus-20240229, gemma-2-27b-it, gemma-2-9b, gpt-3.5-turbo-0125, gpt-4-0314 (baseline), gpt-4-0613, gpt-4-turbo-2024-04-09, gpt-4o, gpt-4o-mini, llama-3-70b-instruct, llama-3-8b-instruct, llama-3.1-70b-instruct, llama-3.3-70b, mixtral-8x22b-instruct-v0.1, qwen2.5-72b, qwen3-8b`\n\n---\n\n### 3. 日志重定向失败原因\n\nfd/1 和 fd/2 **正确指向** log 文件。日志 0 字节不是重定向失败。\n\n**根因：Python stdout 全缓冲。** 当 stdout 被重定向到文件（非 tty），Python 默认使用 full buffering（~8KB buffer）。collect.py 的 print() 输出缓存在进程内存中，尚未 flush 到磁盘。\n\n修复方案：启动时用 `python -u collect.py` 或设 `PYTHONUNBUFFERED=1`。\n\n---\n\n### 4. MCMC 环境状态\n\n| 组件 | 状态 |\n|------|------|\n| JAX | 0.10.1 ✅ |\n| NumPyro | 0.21.0 ✅ |\n| GPU | 4× CUDA devices ✅ |\n| CUDA_VISIBLE_DEVICES=2 | 可用 ✅ |\n| output_n17 目录 | **不存在，需 mkdir -p** |\n\n---\n\n### 5. 数据传输需求\n\nautodl-8gpu 上的 judgment 数据是旧副本，严重滞后：\n\n| Judge | rtx6000-4x | autodl-8gpu | 差异 |\n|-------|-----------|-------------|------|\n| sonnet | 11922 | 2961 | -75% |\n| qwen3-235b | 8750 | 2091 | -76% |\n| llama-3.3-70b | 7218 | 1238 | -83% |\n| gemini-2.5-pro | 8188 | 1916 | -77% |\n| qwen2.5-72b | 9980 | 915 | -91% |\n| mistral-large-2 | 9457 | 583 | -94% |\n| gpt-5.5 | 8808 | 3437 | -61% |\n| opus | 9000 | 3389 | -62% |\n\n传输规模：**~130MB** 整个 results 目录。需要在 collection 完成后做一次完整 SCP：\n```bash\nscp -r rtx6000-4x:/root/gated_mfrm_judge_bias/exp001/results/ /root/gated_mfrm_judge_bias/exp001/results/\n```\n\n---\n\n### 6. MCMC 启动命令（待 collection 完成 + 数据传输后）\n\n```bash\nCUDA_VISIBLE_DEVICES=2 python run_exp003_n17.py \\\n  --judgment-dir /root/gated_mfrm_judge_bias/exp001_n17/results \\\n  --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\n  --output-dir /root/gated_mfrm_judge_bias/exp003/output_n17 \\\n  --warmup 6000 --samples 4000 --chains 4 --target-accept 0.95 \\\n  --device gpu\n```\n\n前提条件：\n1. ❌ Full judge collection 完成（当前 ~50%）\n2. ❌ 创建 `exp001_n17/results/` 目录，只含 8 个正确 judge 的数据（排除 deepseek 和 llama-shard2）\n3. ❌ SCP 数据从 rtx6000-4x → autodl-8gpu\n4. ❌ 各 judge JSONL dedup（至少 opus 已完成，其余也有 17-830 个重复）\n5. ❌ `mkdir -p exp003/output_n17`\n6. ✅ JAX/NumPyro/GPU 环境就绪"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mcmc-prep-dedup-logfix.md"
+}

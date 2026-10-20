@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19b8c3ed1b70790494a9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mistral collect final",
+  "task_key": "worker_ssh_mistral_collect_final_20260524T060040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mistral_collect_final_20260524T060040_result.json",
+    "occurrence": 1,
+    "bytes": 158,
+    "sha256": "2b0270c7a4b8ef74c99f3d22ca090ef201f9788ee8beaac52b69f9b61d918f54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 3 分钟后自动轮询。当前进度：11/14 分片，预计还需几分钟完成下载，之后部署脚本会自动启动 vLLM。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mistral-collect-final.md"
+}

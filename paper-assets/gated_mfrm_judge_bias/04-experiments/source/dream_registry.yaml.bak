@@ -1,0 +1,76 @@
+dreams:
+  dream_20260521T204917:
+    dream_id: dream_20260521T204917
+    project: gated_mfrm_judge_bias
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 核心关注：(1) confounding claim 的实证强度是否足够支撑 AAAI 投稿 (2) 真实数据 contamination 量级若接近
+      mvp_001 (弱) 而非 mvp_002 (强) 时论文 story 是否仍站得住 (3) DG-IRT 迁移的 novelty 是否被 reviewer
+      认可 (4) 7 个 baselines 的覆盖是否充分
+    what_if: []
+    pid: 980710
+    chat_id: oc_0cbc280bd5cb8937b8ac82690c3c5283
+    card_message_id: om_x100b6fc2b2165ca4b4aefe7e9cd965d
+    started_at: '2026-05-21T20:49:17+00:00'
+    updated_at: '2026-05-21T21:37:10+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: c7346726be7d017c80520db458501385847d13fa453cf0683ec96abd5a68dd74
+    review_quality:
+      best: simulated
+      worst: simulated
+  dream_20260521T215715:
+    dream_id: dream_20260521T215715
+    project: gated_mfrm_judge_bias
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'Verify framing improvements: (1) Claim 2 now says "staged joint calibration"
+      not "joint estimation", (2) Proposition 1 downgraded to Observation citing OVB,
+      (3) new exp-012 error propagation sensitivity added, (4) expanded exp-004 rank
+      change analysis, (5) new Reviewer Concerns 6-8 added. Check if these changes
+      resolve the prior round''s critical issues R1-N1 and R1-N2.'
+    what_if: []
+    pid: 1111169
+    chat_id: oc_0cbc280bd5cb8937b8ac82690c3c5283
+    card_message_id: om_x100b6fc3b509f130b2f5b0f2ffdd0e1
+    started_at: '2026-05-21T21:57:15+00:00'
+    updated_at: '2026-05-21T22:45:35+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: db7336150fd61611259fd419f17352ab0ce950b9a873b4c692092faf86633724
+  dream_20260522T041217:
+    dream_id: dream_20260522T041217
+    project: gated_mfrm_judge_bias
+    status: reviewing
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 1864010
+    chat_id: oc_0cbc280bd5cb8937b8ac82690c3c5283
+    card_message_id: om_x100b6fc934d5a0bcb12d868ebe6adc4
+    started_at: '2026-05-22T04:12:17+00:00'
+    updated_at: '2026-05-22T05:03:07+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 5853ebf55ef41c68bee50949348044dd5b4820bc9a0829943f5ebf8a50ddb155
+    review_quality:
+      best: simulated
+      median: simulated

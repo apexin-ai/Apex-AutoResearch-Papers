@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93ef55e08e3b31d4485a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp015 synthetic n8",
+  "task_key": "worker_ssh_exp015_synthetic_n8_20260523T054716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp015_synthetic_n8_20260523T054716_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "837e1d8e5387e90f38823dd98957bb5e9124bb5fc37c10854220d0ca0429cb77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-015 已提交。\n\n- **Server**: autodl-8gpu, cuda:1\n- **tmux session**: `exp-015`\n- **Log**: `~/runs/gated_mfrm_judge_bias/exp-015.log`\n- **配置**: N=8, I=176, J=9, 20 seeds, MCMC (warmup=2000, samples=4000, chains=4, target_accept=0.95)\n- **输出**: `/root/gated_mfrm_judge_bias/exp015/results/synthetic_n8.csv`\n\n脚本支持断点续跑（按 seed+method 去重），每个 seed 完成后立即 flush CSV。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp015-synthetic-n8.md"
+}

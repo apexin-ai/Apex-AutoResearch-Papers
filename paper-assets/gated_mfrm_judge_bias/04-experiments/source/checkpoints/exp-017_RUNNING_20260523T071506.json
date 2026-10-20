@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp-017",
+  "project": "gated_mfrm_judge_bias",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-23T06:44:30.360Z",
+    "updated_at": "2026-05-23T07:15:06.525Z",
+    "hypothesis": "Murphy-Topel 渐近校正在 N=8 下 CI coverage 显著低于 95% nominal（与论文报告的 71% 一致），随 N 增大（20, 50, 100）coverage 逐渐趋近 95%，确认 71% 是 small-sample asymptotic breakdown 而非方法缺陷。",
+    "parent": "exp-009",
+    "notes": "PID 314680 (CPU mode, cuda:3) was intentionally killed for GPU migration. Director ordered switch from JAX_PLATFORMS=cpu to GPU mode on cuda:0. GPU switch worker is resubmitting. This is NOT a failure.",
+    "reproduce": {
+      "finished_at": "2026-05-23T07:11:56.865Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-23T07:11:57.278Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T07:12:03.087169+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "PID 314680 (CPU mode, cuda:3) was intentionally killed for GPU migration. Director ordered switch from JAX_PLATFORMS=cpu to GPU mode on cuda:0. GPU switch worker is resubmitting. This is NOT a failure."
+      }
+    },
+    "spec": {
+      "server": "autodl-8gpu",
+      "gpu": "cuda:0",
+      "pid": 318082,
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_exp017.py",
+      "data_path": "synthetic DGP (N∈{8,20,50,100}×200 seeds)",
+      "data_count": "800 fits total",
+      "model_name": "G-MFRM Murphy-Topel coverage simulation",
+      "seed": "0-199 per N",
+      "checkpoint_source": "exp-009 DGP code",
+      "eval_data": "synthetic DGP with known ground truth"
+    }
+  },
+  "timestamp": "2026-05-23T07:15:06.583363+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1065914144049b6eedd1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mvp diagnosis",
+  "task_key": "worker_ssh_mvp_diagnosis_20260521T184129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp_diagnosis_20260521T184129_result.json",
+    "occurrence": 1,
+    "bytes": 82,
+    "sha256": "3d9c25cac3178e1020c55494dc46e7db2c5ab38d9db3cfae83b5a55408a3ac64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个后台任务已并行启动，2 分钟后检查初始日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mvp-diagnosis.md"
+}

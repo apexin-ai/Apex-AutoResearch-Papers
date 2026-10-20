@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23dbfc8c9f62252dc3b9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx llama status",
+  "task_key": "worker_ssh_rtx_llama_status_20260523T021114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx_llama_status_20260523T021114_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "a0eca356b6c74a4b755a3d8d35d85c295f9e7324b6769631c2324445383d89cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Llama Collection Status:**\n\n```\nShard A (cuda:2, port 8001, judge-llama-a):\n  Progress: 850/2664 (31.9%)\n  Speed: 0.1 items/s\n  ETA: ~334 min ≈ 5.6h\n\nShard B (cuda:1, port 8004, judge-llama-b):\n  Progress: 740/2135 (34.7%)\n  Speed: 0.1 items/s\n  ETA: ~294 min ≈ 4.9h\n\nInfrastructure:\n  vLLM instances: 2× running (AWQ, cuda:1 + cuda:2, 91GB each)\n  GPU util: 100% on both GPUs\n  tmux sessions: judge-llama-a, judge-llama-b, vllm-llama, vllm-llama-2\n  Started: 07:37 today\n\nBottleneck: Shard A (finishes last)\nOverall ETA: ~5.6h from now\n```\n\n两个 shard 都在正常运行，各约完成 1/3。Shard A 因 target_models 多（5 vs 4），预计比 Shard B 晚约 40 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx-llama-status.md"
+}

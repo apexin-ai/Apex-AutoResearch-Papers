@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5aed38d0dc96f6dfa3a3",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "research error propagation theory",
+  "task_key": "worker_research_error_propagation_theory_20260522T035809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_error_propagation_theory_20260522T035809_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "1f29bcc0bd6a54287bb3127f21f3b47e651f57f31ba23c4911ca966debdc2261"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "理论推导笔记已完成，保存在 `artifacts/error_propagation_theory.md`。\n\n核心结果：\n\n1. **EIV 衰减因子**: $\\lambda = \\text{Var}_I(e)/(\\text{Var}_I(e) + \\sigma^2)$。噪声使 $c_n$ 估计系统性地向零偏移，偏移量 $\\propto 1-\\lambda$。\n\n2. **相变阈值**: $\\sigma_{\\text{crit}} = \\sqrt{\\text{Var}_I(e)} \\approx 0.20$。对应 exp-012 DGP 中 $e = \\text{sigmoid}(\\mathcal{N}(0,1))$ 的跨 item 方差 $\\approx 0.04$。σ=0.2 恰好是转折点——与实验完全吻合。\n\n3. **$c_n$ 比 $\\theta$ 更敏感的三重机制**: (a) 直接乘法耦合 $c_n \\cdot e_i$；(b) EIV 衰减只作用于 $c_n$（$\\theta$ 是截距项）；(c) HalfNormal 先验与衰减方向一致（都推向零），对被污染模型双重夹击。\n\n4. **非线性退化**: 来自衰减偏差的 harmonic 结构 $(1-\\lambda)^2 = \\sigma^4/(V_e + \\sigma^2)^2$，在 $\\sigma < \\sigma_{\\text{crit}}$ 时凸增（加速），$\\sigma > \\sigma_{\\text{crit}}$ 时凹减（趋向饱和）。\n\n5. **实际含义**: Stage 2 估计精度需满足 $\\sigma_e < \\sigma_{\\text{crit}} \\approx 0.2$，此范围内 $\\theta$ RMSE 退化 <6%，$c_n$ RMSE 退化 <8%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-error-propagation-theory.md"
+}

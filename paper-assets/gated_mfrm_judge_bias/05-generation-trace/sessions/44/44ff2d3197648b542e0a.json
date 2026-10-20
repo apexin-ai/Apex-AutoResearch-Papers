@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44ff2d3197648b542e0a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh api judges reduce workers",
+  "task_key": "worker_ssh_api_judges_reduce_workers_20260524T011357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_api_judges_reduce_workers_20260524T011357_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "d2eecbd1a54d41ef0286ff61db9d93f0985bedaed07392eac7b269eaeb055224"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 15 分钟后自动检查。\n\n**当前进度汇总：**\n- Step 1 ✅ Baseline 已记录\n- Step 2 ✅ 旧进程 (--workers 10) 已全部 kill\n- Step 3 ✅ 4 个 judges 已以 --workers 5 重启\n- Step 4 ⏳ 15 分钟后 (约 09:34 UTC) 自动检查\n\n**Baseline (09:15 UTC, --workers 10):**\n\n| Judge | JSONL | 500 errors / log lines | Speed | ETA |\n|-------|-------|----------------------|-------|-----|\n| sonnet | 1324 | 42/176 (23.9%) | 0.2 items/s | ~1237 min |\n| gemini | 944 | 30/125 (24.0%) | 0.2 items/s | ~1759 min |\n| deepseek | 779 | 26/105 (24.8%) | 0.1 items/s | ~2144 min |\n| qwen3 | 917 | 24/119 (20.2%) | 0.2 items/s | ~1797 min |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-api-judges-reduce-workers.md"
+}

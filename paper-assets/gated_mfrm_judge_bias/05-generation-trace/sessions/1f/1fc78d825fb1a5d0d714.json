@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fc78d825fb1a5d0d714",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp018 synthetic n20",
+  "task_key": "worker_ssh_exp018_synthetic_n20_20260523T085406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp018_synthetic_n20_20260523T085406_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "71557cddb5fffadc23196d83f02eff5352dc3a883ef87454eec7836ba55ec9cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-018 已提交并运行中。\n\n**汇总：**\n- 脚本：`/root/gated_mfrm_judge_bias/exp018/run_exp018.py`\n- 改动：`N_MODELS=20`（exp-015 为 8），输出 `synthetic_n20.csv`/`summary_n20.json`，GPU `cuda:2`，新增 Wilcoxon Δτ 检验\n- DGP 分布与 exp-015 完全一致：`θ~N(0,1)`, `c~|N(0,1.5)|`, `b~N(0,1)`, `d~N(0,0.5)`, `e` 30%/70% 分布, `ρ=0.6`\n- 支持 resume（已完成的 seed 自动跳过）\n- tmux 会话：`exp018`，服务器 `autodl-8gpu`，GPU 2\n- Registry 状态：RUNNING，spec 已填充 provenance 信息"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp018-synthetic-n20.md"
+}

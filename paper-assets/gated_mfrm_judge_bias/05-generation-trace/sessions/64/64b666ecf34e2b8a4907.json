@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64b666ecf34e2b8a4907",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh gpu check",
+  "task_key": "worker_ssh_gpu_check_20260521T190220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_check_20260521T190220_result.json",
+    "occurrence": 1,
+    "bytes": 1551,
+    "sha256": "7beaa7ed5ebd9da5ff8344b6766b6ece379a8a675d6efa0c14d21aea4ddd66de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. GPU 占用\n\n| GPU | 型号 | 显存占用 | 利用率 | 计算进程 |\n|-----|------|---------|--------|---------|\n| cuda:0 | RTX PRO 6000 Blackwell (96GB) | 0 MiB | 0% | 无 |\n| **cuda:1** | RTX PRO 6000 Blackwell (96GB) | **0 MiB** | **100%** | **无** |\n| cuda:2 | RTX PRO 6000 Blackwell (96GB) | 0 MiB | 0% | 无 |\n| **cuda:3** | RTX PRO 6000 Blackwell (96GB) | **0 MiB** | **100%** | **无** |\n\n**异常：cuda:1 和 cuda:3 显示 100% 利用率，但显存占用为 0 且无任何计算进程。** 这是 phantom GPU utilization——可能是驱动级别的残留状态或硬件异常，没有实际用户进程在用这两块卡。\n\n### 2. 后台任务状态\n\n| 任务 | PID | 状态 | 说明 |\n|------|-----|------|------|\n| `run_mvp_002.py` | 15291 | **运行中** (seed 12/20) | CPU 459%, 已跑 82 min |\n| `bias_scatter.py` | 18203 | **运行中** (seed 1/20) | CPU 568%, 刚启动 |\n| `diag_a` | — | **失败** | `nohup: failed to run command 'python3': No such file or directory` |\n| `diag_b` | — | **失败** | 同上 |\n| `diag_c` | — | **失败** | 同上 |\n\n### 3. 关键问题\n\n**两个运行中的任务都在用 CPU，没用 GPU：**\n> \"An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.\"\n\n三个 diag 任务全部因 `python3` 路径未找到而失败——nohup 启动时 PATH 中没有 `/root/miniconda3/bin/`。\n\ntmux 状态无法通过 ssh_read_only 查询（命令被白名单拦截）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0efef12de24822aade18",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003b check and analyze",
+  "task_key": "worker_ssh_exp003b_check_and_analyze_20260522T194135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003b_check_and_analyze_20260522T194135_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "73e653d4b45b648aff55aa30fee9919d3a071ea22016d37ecc48175f717d150a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-003b 仍在运行中。**\n\n| 指标 | 值 |\n|------|-----|\n| 阶段 | Sampling |\n| 进度 | 82% (6579/8000) |\n| 速度 | ~4.16 it/s |\n| 剩余迭代 | 1421 |\n| 预估剩余 | ~5 min 42 sec（当前 chain） |\n| 接受概率 | 0.93（target 0.95） |\n| 已运行 | ~122 min |\n| 配置 | warmup=4000, samples=4000, chains=4, joint_gmfrm, GPU |\n\n当前 progress bar 显示 25:32 elapsed，对应一条 chain 的进度。进程已运行 122 分钟，预计这是最后一条 chain，**约 6 分钟后整体完成**。\n\n接受概率 0.93 接近 target 0.95，step size 合理（1023 steps of size 4），采样状态正常。\n\n需要我过几分钟后再查一次并自动运行分析吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003b-check-and-analyze.md"
+}

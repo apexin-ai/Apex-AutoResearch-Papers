@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e160971732fc6a4b173f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp013 final results",
+  "task_key": "worker_ssh_exp013_final_results_20260523T052707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp013_final_results_20260523T052707_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "737514b85f888fd91452e5f9027473ef3fc11438663b916f9140f3f24f39157e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 已生成。结果：\n\n| weight_config | exposure_spearman_rho | gmfrm_tau | delta_tau_vs_default (75/25) |\n|---|---|---|---|\n| 50_50 (ref=0.5, cma=0.5) | 0.9981 | 0.7857 | 0.0 |\n| **75_25 (ref=0.75, cma=0.25)** | **1.0** | **0.7857** | **0.0 (baseline)** |\n| 90_10 (ref=0.9, cma=0.1) | 0.9991 | 0.7857 | 0.0 |\n| 100_0 (ref=1.0, cma=0.0) | 0.9978 | 0.7857 | 0.0 |\n\n关键发现：**GMFRM tau 在所有权重配置下完全一致（0.7857），delta 全为 0。** 模型排名对 ref/cma 权重分配不敏感。exposure_spearman_rho 在 75/25 时达到完美 1.0，其余配置略低但差异极小（<0.003）。\n\n诊断指标均正常：r_hat 均 ≤1.04，无 divergence，ESS 最低 115（75/25 配置）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp013-final-results.md"
+}

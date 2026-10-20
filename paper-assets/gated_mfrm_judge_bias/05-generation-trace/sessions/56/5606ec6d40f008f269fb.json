@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5606ec6d40f008f269fb",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "validation ref audit B",
+  "task_key": "worker_validation_ref-audit-B_20260526T104735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validation_ref-audit-B_20260526T104735_result.json",
+    "occurrence": 1,
+    "bytes": 4075,
+    "sha256": "3469b090b596e6bfe672716e5c172a3258116fa06fbd39b5b48e6f94e1aef1e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 45 entries verified. Here are the results:\n\n```\n总条数: 45\n问题条数: 1\n\n逐条结果:\n1.  panickssery2024selffavor — ✅ NeurIPS 2024 confirmed. Authors (Panickssery, Bowman, Feng) correct.\n2.  ye2024justice — ❌ **Venue 和年份错误**。Bib 写 \"EMNLP 2024\"，实际发表于 **ICLR 2025**（poster）。应修正 venue 为 ICLR，年份为 2025。\n3.  polo2024tinybenchmarks — ✅ ICML 2024 (PMLR 235). Felipe Maia Polo et al. confirmed.\n4.  choi2026irt_judge — ✅ arXiv:2602.00521, 2026. Choi et al. confirmed.\n5.  truce2024 — ✅ arXiv:2403.00393, 2024. Rajore et al. confirmed.\n6.  livebench2025 — ✅ ICLR 2025 (Spotlight). Colin White et al. confirmed.\n7.  vehtari2021rhat — ✅ Bayesian Analysis 16(2), 2021. Vehtari, Gelman, Simpson, Carpenter, Bürkner. confirmed.\n8.  gelman2013bda — ✅ CRC 2013, 3rd edition. confirmed.\n9.  vehtari2017loo — ✅ Statistics and Computing 27(5), 2017. confirmed.\n10. wooldridge2010 — ✅ MIT Press 2010, 2nd edition. confirmed.\n11. pagan1984 — ✅ International Economic Review 25(1), 1984. confirmed.\n12. murphy1985 — ✅ JBES 3(4), 1985. Murphy & Topel. confirmed.\n13. angrist2009mostly — ✅ Princeton 2009. Angrist & Pischke. confirmed.\n14. talts2018sbc — ✅ arXiv:1804.06788, 2018. Talts, Betancourt, Simpson, Vehtari, Gelman. confirmed.\n15. zheng2023mtbench — ✅ NeurIPS 2023 (Datasets & Benchmarks). Lianmin Zheng et al. confirmed.\n16. li2024arenahard — ✅ arXiv:2406.11939, 2024. Tianle Li et al. confirmed.\n17. preference_leakage2026 — ✅ ICLR 2026 (poster). Dawei Li et al. confirmed.\n18. mink2024 — ✅ ICLR 2024. Weijia Shi et al. \"Detecting Pretraining Data\" (Min-K% method). confirmed.\n19. logprober2024 — ✅ arXiv:2408.14352, 2024. Nicolas Yax, Oudeyer, Palminteri. 标题和作者均正确。\n20. dcr2025 — ✅ EMNLP 2025. Cheng Xu et al. confirmed.\n21. constat2024 — ✅ NeurIPS 2024. Dekoninck, Müller, Vechev. confirmed.\n22. sainz2023contamination — ✅ Findings EMNLP 2023. Oscar Sainz et al. confirmed.\n23. deng2024contamination — ✅ NAACL 2024. Chunyuan Deng et al. confirmed.\n24. oren2024proving — ✅ ICLR 2024 (Outstanding Paper Honorable Mention). Oren et al. confirmed.\n25. golchin2024timetravel — ✅ ICLR 2024 (Spotlight). Golchin & Surdeanu. confirmed.\n26. fiedler2026bias_uncertainty — ✅ arXiv:2605.06939, 2026. James Fiedler. confirmed.\n27. uda2026 — ✅ AAAI 2026. Zhang et al. confirmed.\n28. cyclicjudge2026 — ✅ arXiv:2603.01865, 2026. Zhu et al. confirmed.\n29. bavaresco2025judgebench — ✅ ACL 2025 Short. Bavaresco et al. confirmed.\n30. koo2024cobbler — ✅ Findings ACL 2024. Ryan Koo et al. COBBLER benchmark. confirmed.\n31. li2024splitmerge — ✅ EMNLP 2024. Zongjie Li et al. confirmed.\n32. wang2024positionbias — ✅ ACL 2024. Wang et al. confirmed.\n33. vania2021irt — ✅ ACL 2021. Clara Vania et al. confirmed.\n34. rodriguez2021irt — ✅ ACL 2021. Pedro Rodriguez et al. confirmed.\n35. lalor2019irt — ✅ EMNLP 2019. Lalor, Wu, Yu. confirmed.\n36. uto2020generalized — ✅ Behaviormetrika 47(2), 2020. Uto & Ueno. confirmed.\n37. betancourt2015 — ✅ CRC 2015. Betancourt & Girolami. confirmed.\n38. sanmartin2016 — ✅ Handbook IRT Vol 2, CRC 2016. San Martín. confirmed.\n39. rothenberg1971 — ✅ Econometrica 39(3), 1971. confirmed.\n40. zhou2025psnirt — ✅ AAAI 2026 (Oral). arXiv:2505.15055. Zhou et al. confirmed.\n41. jiao2025mfrm_llm — ✅ arXiv:2505.18486, 2025. Jiao, Song, Lee. confirmed.\n42. shu2013dgirt — ✅ Psychometrika 78(3), 2013. Shu, Henson, Luecht. confirmed.\n43. linacre1994mfrm — ✅ MESA Press 1994, 2nd edition. confirmed.\n44. linacre1989mfrm — ✅ MESA Press 1989, 1st edition. confirmed.\n45. piironen2017horseshoe — ✅ EJS 11(2), 2017. Piironen & Vehtari. confirmed.\n```\n\n**唯一问题：`ye2024justice`** — venue 写成 EMNLP 2024，实际是 **ICLR 2025**。bib key 的年份 2024 也应改为 2025。这篇论文 2024 年 10 月上 arXiv，2025 年被 ICLR 接收。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validation-ref-audit-b.md"
+}

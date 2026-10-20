@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b6b9e7072c4b0df38d1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh llama done check others",
+  "task_key": "worker_ssh_llama-done-check-others_20260524T160714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama-done-check-others_20260524T160714_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "8916841e587107cbee1eecda87516e93a976ba27a0cdd067d2180326c866f788"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### LLaMA local (PID 584106) — 已完成 ✅\n- **18,093 行**（目标 18,000）— 采满\n- 日志: `Done. 11443 pairwise judgments in 209.5min`\n- 最后写入: May 25 00:03\n\n### 其余 3 个 judge — 全部在跑\n\n| Judge | PID | 状态 | 运行时长 | 当前行数 | 进度 | 最后写入 |\n|-------|-----|------|----------|----------|------|----------|\n| Qwen local | 584197 | ALIVE | 3h33m | 12,630 | 70% | 00:08 |\n| DeepSeek API | 592328 | ALIVE | 1h08m | 10,790 | 60% | 00:08 |\n| Qwen3 API | 592432 | ALIVE | 1h06m | 13,457 | 75% | 00:08 |\n\n### vLLM 进程 — 全部在跑\n- LLaMA vLLM (582367): 3h37m — LLaMA collect 已结束但 vLLM 还在，Qwen local 仍需要 Qwen vLLM\n- Qwen vLLM (583073): 3h36m\n\n### 预估剩余时间\n- **Qwen3 API** 最快完成，约 75% 进度，~30-40min\n- **Qwen local** ~70%，按当前速率约 1.5h\n- **DeepSeek API** ~60%，约 1-1.5h\n\nLLaMA vLLM 进程可以关掉释放 GPU 0,1，但如果不需要这两张卡做别的事可以先留着。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-done-check-others.md"
+}

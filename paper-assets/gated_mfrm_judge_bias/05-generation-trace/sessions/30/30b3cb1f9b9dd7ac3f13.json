@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30b3cb1f9b9dd7ac3f13",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx mistral cleanup",
+  "task_key": "worker_ssh_rtx_mistral_cleanup_20260523T003640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx_mistral_cleanup_20260523T003640_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "10f55e91579e4603bdf5d871d877a270ab5ac2d63e06f3af6efda2af993cf503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n```\nMistral Status: collect.py 已正常退出 — 9021 responses collected\n  文件: exp001/results/mistral-large-2/arena_hard_judgments.jsonl (13MB, 最后写入 08:02)\nvLLM Server: killed — GPU 3 显存已释放 (0MiB / 97887MiB)\ntmux session: vllm-mistral 已清理\n\n当前 GPU 状态:\n  GPU 0: 空闲 (0MiB)\n  GPU 1: Llama vLLM (port 8004) — 100% util, 91GB, serving judge-llama-a/b collect.py\n  GPU 2: Llama vLLM (port 8001) — 100% util, 91GB\n  GPU 3: 空闲 (0MiB) ← 已释放\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx-mistral-cleanup.md"
+}

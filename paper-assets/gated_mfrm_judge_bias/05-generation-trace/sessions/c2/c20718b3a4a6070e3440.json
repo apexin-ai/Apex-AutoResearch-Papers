@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c20718b3a4a6070e3440",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code mcmc n17 missing data check",
+  "task_key": "worker_code_mcmc-n17-missing-data-check_20260524T152301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mcmc-n17-missing-data-check_20260524T152301_result.json",
+    "occurrence": 1,
+    "bytes": 2028,
+    "sha256": "4e5dba4c95f3d1f9a557c98fcb47642cd84d30ca6279e10ed9f28b32ce391299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MFRM 跑通了，G-MFRM 也在正常采样只是超时了（30s 限制）。结论已清楚。\n\n---\n\n## 结论\n\n### 当前代码是否支持不平衡数据：**Yes**\n\n**原因：整个 pipeline 使用稀疏观测格式，天然支持不平衡数据。**\n\n核心证据：\n\n1. **`models.py` — NumPyro 模型使用 index-based 向量化**（非密集张量）：\n   ```python\n   logits = theta[model_idx] - b[item_idx] - d[judge_idx]\n   numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=y)\n   ```\n   模型只对实际存在的观测计算似然，不假设完整交叉。\n\n2. **`data_loader.py` — 返回平行数组 `(model_idx, item_idx, judge_idx, y)`**，从 JSONL 逐条读取，缺失的 judge×item 组合根本不会出现在数组中。\n\n3. **唯一的过滤条件**：`items judged by >= 3 judges`（合理阈值，确保每个 item 有足够信息估计 b_i）。\n\n4. **Dry-run 验证通过**：\n   - 数据加载：7 个 judge，观测量从 43（Mistral）到 4374（Sonnet）不等，sparsity = 59.1%\n   - MFRM fitting：`theta_hat.shape = (18,)`，无报错\n   - G-MFRM fitting：正常采样中（仅因 SSH 30s 超时截断，非代码错误）\n\n5. **`run_baselines_n17.py` 同样支持**：通过 `filter_excluded_judges()` 函数排除 Mistral 后，用相同的稀疏格式计算 baseline。\n\n### 无需修改\n\n代码设计之初就选择了观测列表格式而非密集张量，docstring 明确写了 \"Adapted from mvp/models.py for sparse observation format\"。Sonnet（4374 obs）、DeepSeek（2501 obs）、Gemini（3009 obs）等不平衡 judge 可直接使用。\n\n### 建议\n\n运行时排除 Mistral（118 行 → 43 obs after preprocessing，仅覆盖 4 items），`run_baselines_n17.py` 已有 `EXCLUDE_JUDGES = [\"mistral-large-2\"]` 配置。`run_exp003_n17.py` 可加相同过滤，或在 `judgment_data_n17/` 中移除 Mistral 的 symlink：\n```bash\nrm -rf /root/gated_mfrm_judge_bias/exp003/judgment_data_n17/mistral-large-2\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mcmc-n17-missing-data-check.md"
+}

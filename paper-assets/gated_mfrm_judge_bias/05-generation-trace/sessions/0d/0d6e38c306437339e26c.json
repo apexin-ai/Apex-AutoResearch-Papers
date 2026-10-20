@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d6e38c306437339e26c",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp 012 error propagation",
+  "task_key": "worker_code_exp_012_error_propagation_20260521T223117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_012_error_propagation_20260521T223117_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "c0586c310ff3c4fcd9a7ffc18ddb71c736f495d13e102c7fc2d87970c8a9ae4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，全流程通过。结果：\n\n| σ | θ-RMSE | Δ% | c_n-RMSE | Δ% | θ-τ | c_n-corr |\n|---|--------|-----|----------|-----|-----|----------|\n| 0.0 | 0.2078 | baseline | 0.5832 | baseline | 0.884 | 0.832 |\n| 0.5 | 0.3005 | +44.6% | 0.9393 | +61.1% | 0.814 | 0.624 |\n\n**汇报：**\n\n- **代码路径**: `/root/gated_mfrm_judge_bias/exp012/run_exp012.py`\n- **行数**: ~230 行\n- **文件列表**: `run_exp012.py`, `error_propagation.csv`, `summary.csv`, `error_propagation.png`, `cn_degradation.png`\n- **Dry-run 输出**: 4 fits × ~25s = 110s 总时间，全部指标正常计算，summary 表和两张图正常生成\n- **Dry-run 观察**: σ=0.5 导致 θ-RMSE 退化 +44.6%，c_n-RMSE 退化 +61.1%——噪声传播效应显著\n\n**全量运行预估**:\n- Dry-run (chains=2, warmup=200, samples=400): ~25s/fit\n- 全量 (chains=4, warmup=2000, samples=4000): 约 10× 更长 → ~250s/fit\n- 80 fits × 250s = ~5.6 小时 (CPU only)\n- 如安装 CUDA jaxlib，预估可缩短到 1-2 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-012-error-propagation.md"
+}

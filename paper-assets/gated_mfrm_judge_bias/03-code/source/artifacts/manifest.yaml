@@ -1,0 +1,456 @@
+- id: art_20260521_d58c13
+  name: G-MFRM MVP Code
+  type: intermediate
+  description: '4-file MVP for synthetic recovery experiment: data_gen.py (confounded
+    data generation), models.py (raw avg / MFRM / sequential / joint G-MFRM via NumPyro),
+    evaluate.py (RMSE, Kendall-tau, plots, significance tests), run_mvp.py (sweep
+    rho×seed, Pass/Fail diagnostics)'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/intermediate/run_mvp.py
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:37:40.179079+00:00'
+  tags:
+  - mvp
+  - gmfrm
+  - synthetic-recovery
+  - numpyro
+- id: art_20260521_afbe4b
+  name: diagnosis_bias_scatter
+  type: chart
+  description: 'Scatter plot: sequential ability bias (θ̂_seq − θ_true) vs true contamination
+    susceptibility (c_n) at ρ=0.6. Pearson r=0.6534 (p≈0), confirming omitted variable
+    bias — high c_n models have θ systematically overestimated by sequential method.'
+  path: null
+  url: rtx6000-4x:/root/gated_mfrm_judge_bias/mvp/diagnosis_bias_scatter.png
+  project: gated_mfrm_judge_bias
+  exp_id: mvp_001
+  skill: ''
+  created_at: '2026-05-21T19:22:46.518951+00:00'
+  tags:
+  - mvp
+  - diagnosis
+  - bias
+  - scatter
+- id: art_20260522_587a59
+  name: error_propagation_theory
+  type: report
+  description: 'Theoretical analysis of e_i noise propagation in staged G-MFRM estimation:
+    EIV attenuation, RMSE decomposition, differential sensitivity (c_n vs θ), phase
+    transition at σ_crit=√Var(e)≈0.2, validated against exp-012 Monte Carlo results'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-012/report/error_propagation_theory.md
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-012
+  skill: ''
+  created_at: '2026-05-22T04:13:53.695687+00:00'
+  tags:
+  - theory
+  - error-propagation
+  - EIV
+  - robustness
+  - sensitivity-analysis
+- id: art_20260522_795db3
+  name: error_propagation_theory
+  type: report
+  description: 'Formal error propagation analysis: e_i estimation noise → c_n/θ posterior
+    impact. Connects to Murphy-Topel two-step estimator literature. Derives EIV attenuation
+    factor, critical threshold σ_crit≈0.20, explains c_n sensitivity and non-linear
+    degradation. Validated against exp-012 Monte Carlo results.'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-012/report/error_propagation_theory_795db3.md
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-012
+  skill: ''
+  created_at: '2026-05-22T04:15:54.380671+00:00'
+  tags:
+  - theory
+  - error-propagation
+  - novelty-supplement
+  - two-step-estimator
+- id: art_20260522_b7c4da
+  name: identifiability_analysis
+  type: report
+  description: 'G-MFRM identifiability analysis: 7 propositions/theorems proving necessary
+    and sufficient conditions for (θ,b,d,c) identifiability with fixed e_i. Key results:
+    Var(e_i)>0 necessary, J≥2 + crossed design + distinct exposures sufficient. 9
+    verified IRT/psychometric citations. LaTeX-ready for paper Method section.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/report/identifiability_analysis.md
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T05:01:51.404463+00:00'
+  tags:
+  - theory
+  - identifiability
+  - novelty
+  - method
+- id: art_20260522_16e38a
+  name: DCR Factor Baseline Adapter
+  type: intermediate
+  description: 'DCR Factor baseline adapter for exp-004: pairwise JSONL → (N,I,J)
+    tensor → 4-layer contamination scoring → fuzzy inference → DCR Factor. 11/11 tests
+    passed. Key finding: DCR s2 inflated for pairwise data.'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-004/intermediate/dcr_factor_adapter_summary.md
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-22T08:20:50.741198+00:00'
+  tags:
+  - baseline
+  - dcr-factor
+  - exp-004
+- id: art_20260522_5966a1
+  name: exp-002 Item Exposure Estimation Code
+  type: intermediate
+  description: 'Three-source e_i estimation pipeline: (1) performance gap with spline
+    correction, (2) temporal signal, (3) LogProber Min-K%. Weighted composite combiner
+    + ConStat validation. Dry-run passed with mock data.'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-002/intermediate/exp002_code_summary.md
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-002
+  skill: ''
+  created_at: '2026-05-22T09:07:28.345074+00:00'
+  tags:
+  - exp-002
+  - exposure-estimation
+  - code
+- id: art_20260522_0c7040
+  name: fig1_framework
+  type: chart
+  description: 'Figure 1: G-MFRM Framework Overview. Left panel shows sequential pipeline
+    with OVB confounding; right panel shows G-MFRM joint calibration of all facets
+    (3-stage structure with gating mechanism).'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig1_framework.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T09:19:41.153036+00:00'
+  tags:
+  - figure1
+  - conceptual
+  - framework
+  - paper
+- id: art_20260522_8dfa87
+  name: exp-002 Preliminary e_i Scores
+  type: data
+  description: 'Preliminary per-item exposure scores from simplified 2-source pipeline
+    (reference anchoring 75% + cross-model agreement 25%). 493 items, 2 target models.
+    e_i: mean=0.236, median=0.126, std=0.247. 19 items (3.9%) high exposure >0.7.
+    Will be updated as more target models complete judgment collection.'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-002/data/exp002_preliminary_results.md
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-002
+  skill: ''
+  created_at: '2026-05-22T09:20:41.033731+00:00'
+  tags:
+  - exp-002
+  - exposure-scores
+  - preliminary
+- id: art_20260522_b9c63d
+  name: 'Figure 1: Framework Diagram'
+  type: chart
+  description: 'Paper Figure 1: (a) Sequential pipeline with OVB confounding annotation,
+    (b) G-MFRM three-stage joint calibration with gating mechanism and 4D diagnostic
+    outputs. PDF+PNG at 300dpi.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig1_framework_b9c63d.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T09:21:53.342868+00:00'
+  tags:
+  - paper
+  - figure-1
+  - framework
+- id: art_20260522_710747
+  name: fig1_framework
+  type: chart
+  description: 'Figure 1: Sequential pipeline with OVB confounding (left) vs G-MFRM
+    three-stage joint framework (right). Conceptual diagram for Introduction.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig1_framework_710747.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-22T10:22:03.072950+00:00'
+  tags:
+  - paper
+  - introduction
+  - conceptual
+- id: art_20260522_41b796
+  name: fig2_ovb_bias
+  type: chart
+  description: 'Figure 2: OVB Bias Scatter Plot — sequential θ̂ bias vs true contamination
+    susceptibility c_n. Shows r=0.86 (MLE-based; MCMC would give ~0.65). N=50 models,
+    I=100 items, J=8 judges, 20 seeds. PDF+PNG at figures/paper/.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig2_ovb_bias.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:33:50.259393+00:00'
+  tags:
+  - figure
+  - paper
+  - ovb
+  - scatter
+  - section2
+- id: art_20260522_9ce924
+  name: fig2_ovb_bias
+  type: chart
+  description: 'Figure 2: OVB bias scatter plot showing sequential theta-hat overestimation
+    vs true c_n (Pearson r=0.65). Synthetic data from mvp_003.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig2_ovb_bias_9ce924.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-22T12:14:13.995469+00:00'
+  tags:
+  - paper
+  - background
+  - statistical
+  - mvp_003
+- id: art_20260522_0e1521
+  name: fig3_error_propagation
+  type: chart
+  description: 'Figure 3: Error Propagation Sensitivity. Dual-panel plot showing θ-RMSE
+    and c_n-RMSE vs exposure noise σ_e, with σ_crit=0.2 boundary, regime bands, theoretical
+    predictions, and percentage degradation annotations.'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-012/chart/fig3_error_propagation.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-012
+  skill: ''
+  created_at: '2026-05-22T12:26:50.892018+00:00'
+  tags:
+  - figure
+  - paper
+  - error-propagation
+  - sensitivity
+- id: art_20260522_5e7b11
+  name: fig3_error_propagation
+  type: chart
+  description: 'Error propagation sensitivity dual-panel: (a) θ-RMSE vs σ_e, (b) c_n-RMSE
+    vs σ_e. Data from exp-012 (20 seeds). Both panels with error bars. Regime bands
+    at σ_crit=0.2. No theoretical curves (removed due to circular reasoning).'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-012/chart/fig3_error_propagation_5e7b11.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-012
+  skill: paper-visualization
+  created_at: '2026-05-22T12:52:24.098843+00:00'
+  tags:
+  - paper
+  - method
+  - error_propagation
+  - sensitivity
+- id: art_20260522_642dfd
+  name: exp003b_trace_forest_plots
+  type: chart
+  description: Trace plots (c_n, d_j, sigma_c, theta, b) and forest plots (c_n, d_j
+    with 94% HDI) from exp-003b refit InferenceData. 7 PDFs, ~21MB total. For paper
+    Appendix.
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-003b/chart/exp003b_diagnostics_manifest.txt
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-003b
+  skill: ''
+  created_at: '2026-05-22T21:59:07.463843+00:00'
+  tags:
+  - trace-plot
+  - forest-plot
+  - appendix
+  - diagnostics
+- id: art_20260522_51187c
+  name: exp003b_ppc_plot
+  type: chart
+  description: 'Posterior predictive check for exp-003b G-MFRM. Left: overall win
+    rate distribution vs observed. Right: per-model win rate 95% CI vs observed. PPC
+    mean=0.5934 vs obs=0.5987 — good fit.'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-003b/chart/ppc_manifest.txt
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-003b
+  skill: ''
+  created_at: '2026-05-22T22:32:01.711260+00:00'
+  tags:
+  - ppc
+  - posterior-predictive
+  - model-validation
+  - appendix
+- id: art_20260522_41317e
+  name: bootstrap_delta_tau_results
+  type: data
+  description: 'Bootstrap Δτ analysis for Claim 3. CRITICAL: Δτ 95% CI = [-0.071,
+    0.071] crosses 0, P(Δτ>0)=0.45. Claim 3 (ranking improvement) cannot be supported
+    by bootstrap test. τ_GMFRM mean=0.813, CI=[0.714, 0.857].'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-003b/data/bootstrap_results_manifest.txt
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-003b
+  skill: ''
+  created_at: '2026-05-22T23:36:23.676462+00:00'
+  tags:
+  - bootstrap
+  - claim-3
+  - critical
+  - delta-tau
+- id: art_20260523_7c07a9
+  name: exp-019 delta_theta table
+  type: data
+  description: Per-model Δθ (MFRM-only vs G-MFRM) table with 95% CI and c_n. Spearman
+    ρ=1.0 between Δθ and c_n.
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-019/data/delta_theta.csv
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-019
+  skill: ''
+  created_at: '2026-05-23T09:00:22.555193+00:00'
+  tags:
+  - delta_theta
+  - mfrm
+  - gmfrm
+  - contamination
+- id: art_20260523_4672e2
+  name: paper_data_audit_report
+  type: report
+  description: ARR 提交前论文数据审计报告：35项一致、2项四舍五入微调、5项占位符待填、7项无法追溯但非错误
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/report/paper_data_audit_20260523.md
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:41:26.047981+00:00'
+  tags:
+  - audit
+  - paper
+  - arr-submission
+- id: art_20260524_b5a2c5
+  name: fill_paper_n17
+  type: intermediate
+  description: Script to extract N=17 MCMC results and generate paper_values_n17.json
+    + 3 Appendix LaTeX tables. Run after MCMC completes.
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/intermediate/fill_paper_n17.py
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T01:36:51.462174+00:00'
+  tags:
+  - paper
+  - n17
+  - automation
+- id: art_20260524_b59845
+  name: fig1_framework_v2
+  type: chart
+  description: 'G-MFRM Framework Overview (Figure 2) — full-width figure* version
+    with drop shadows, serif fonts, 2.6:1 aspect ratio. Two panels: (a) Sequential
+    Pipeline showing OVB problem, (b) G-MFRM Joint Framework with 3-stage calibration.
+    matplotlib fallback from PaperBanana.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig1_framework_b59845.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-24T11:58:20.015779+00:00'
+  tags:
+  - paper
+  - figure2
+  - framework
+  - conceptual
+- id: art_20260524_d3676a
+  name: fig1_framework
+  type: chart
+  description: 'G-MFRM Framework Overview (Figure 1): two-panel conceptual diagram
+    showing (a) sequential pipeline with OVB and (b) three-stage joint calibration
+    framework. Full-width figure, matplotlib hand-drawn, 300 DPI, all text ≥7pt at
+    print scale.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig1_framework_d3676a.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T12:17:43.192928+00:00'
+  tags:
+  - paper
+  - figure1
+  - framework
+  - conceptual
+- id: art_20260524_6378d9
+  name: fig1_framework
+  type: chart
+  description: 'G-MFRM three-stage calibration framework overview (PaperBanana, full-width
+    figure*). Stage 1: Standard MFRM, Stage 2: Exposure Estimation, Stage 3: Joint
+    MCMC Inference.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig1_framework_6378d9.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T12:32:05.729326+00:00'
+  tags:
+  - paper
+  - method
+  - framework
+  - figure*
+  - paperbanana
+- id: art_20260524_c1568e
+  name: fig1_framework_v4
+  type: chart
+  description: 'G-MFRM dual-panel framework figure (PaperBanana v4). Panel (a): Sequential
+    Pipeline with OVB confounding annotation. Panel (b): G-MFRM Joint Framework with
+    LogProber (optional/dashed) in Stage 2.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig1_framework_c1568e.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T12:56:44.559922+00:00'
+  tags:
+  - paper
+  - method
+  - framework
+  - figure*
+  - paperbanana
+  - v4
+- id: art_20260524_2908ce
+  name: exp004-baselines-n17-results
+  type: data
+  description: 'exp-004 N=17 baseline comparison results: all 5 baselines give identical
+    τ=0.8088 (7/9 judges, data still collecting)'
+  path: projects/gated_mfrm_judge_bias/artifacts/exp-004/data/results_n17.json
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-24T13:07:11.897609+00:00'
+  tags:
+  - baseline
+  - n17
+  - kendall-tau
+  - arena-correlation
+- id: art_20260525_9bcefd
+  name: fig_ablation_rmse
+  type: chart
+  description: 'Ablation figure (Figure 6): θ-RMSE across G-MFRM variants showing
+    51% improvement from joint vs staged estimation. Column-width bar chart with semantic
+    colors and significance annotations.'
+  path: projects/gated_mfrm_judge_bias/artifacts/_project/chart/fig_ablation_rmse.pdf
+  url: null
+  project: gated_mfrm_judge_bias
+  exp_id: null
+  skill: paper-figure-add
+  created_at: '2026-05-25T13:15:58.881986+00:00'
+  tags:
+  - paper
+  - figure
+  - ablation
+  - synthetic

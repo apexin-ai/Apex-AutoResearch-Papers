@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df9451227b11a5a5cf5a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl cuda2 w7 check",
+  "task_key": "worker_ssh_autodl_cuda2_w7_check_20260523T040544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_cuda2_w7_check_20260523T040544_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "0ca980d9080d73a5a4784cc443e64e4c9e2efb8b1204dc10beec3e6409907e69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n**1. cuda:2 上无进程在跑**\n- 全部 4 张 GPU（RTX PRO 6000 Blackwell 96GB）显存占用均为 0 MiB，利用率 0%。cuda:2 完全空闲。\n- `/proc/*/comm` 中无任何 ablation 相关进程。\n\n**2. W7 结果文件状态**\n- 4 个结果 CSV 文件，每个 81 行（含 header = 80 条数据），大小均为 9958 bytes：\n  - `results_w7_ablation.csv` — 最后修改 May 23 08:44\n  - `results_w7_ablation_original_20seeds.csv` — May 23 09:12\n  - `results_w7_ablation_partial.csv` — May 23 08:44\n  - `results_w7_ablation_partial_backup.csv` — May 23 09:12\n\n**3. 结论：W7 rerun 已终止，无残留进程。** GPU 完全空闲，结果文件自今早 09:12 后未再更新，与 registry 中 DONE/success 状态一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-cuda2-w7-check.md"
+}

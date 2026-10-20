@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77ce94cc2fd82509c5ad",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp009 reduce seeds restart",
+  "task_key": "worker_ssh_exp009_reduce_seeds_restart_20260522T005725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp009_reduce_seeds_restart_20260522T005725_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "0ab0e80c0b2b726a57200dd0914ed2e4ccc49027ba3d4119d561f48230a3ef7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 项目 | 详情 |\n|------|------|\n| **旧 CSV 进度** | `bias_vs_rho.csv` 20 行数据（rho=0.0, seed 0-9, 2 methods），Part A 刚起步，Part B 未开始 |\n| **修改内容** | 第 133 行 `N_SEEDS_A = 100` → `N_SEEDS_A = 50`，Part B 的 `N_SEEDS_B = 50` 未动 |\n| **新进程** | PID 108506，GPU 0 占用 73530MiB，GPU-Util 62%，正常运行 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp009-reduce-seeds-restart.md"
+}

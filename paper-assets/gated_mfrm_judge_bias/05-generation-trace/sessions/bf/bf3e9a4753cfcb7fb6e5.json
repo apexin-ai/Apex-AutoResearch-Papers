@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf3e9a4753cfcb7fb6e5",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003 definitive fix relaunch",
+  "task_key": "worker_ssh_exp003_definitive_fix_relaunch_20260522T140738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003_definitive_fix_relaunch_20260522T140738_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "6778d61acdac5c2114989acaf9028531d4b2fd02fee19c646d6dee1a57a987c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n**结果：**\n- **PID**: 137389\n- **GPU**: 4 卡全部在用，利用率 63-69%，显存 ~73.5GB/卡\n- **Log**: 数据加载完成，MCMC 正在编译/采样中\n- **错误**: 无\n\n**根因总结**：`numpyro.set_platform(\"cuda\")` 内部调用 `jax.config.update(\"jax_platforms\", \"cuda\")`，覆盖了 `JAX_PLATFORMS=cuda,cpu`，彻底删除了 CPU backend。`io_callback` 和 `device_get` 都需要 CPU backend 来做 GPU→host 数据传输。\n\n**修复两处**：\n1. `run_exp003.py`: `numpyro.set_platform(\"cuda\")` → `jax.config.update(\"jax_default_device\", jax.devices(\"cuda\")[0])`\n2. `models.py`: `np.asarray(jax.device_get(...))` → `_to_numpy(...)` (通过 `jax.device_put(x, cpu_device)` 显式转移到 CPU)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003-definitive-fix-relaunch.md"
+}

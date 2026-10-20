@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecc08228f41adc14e13d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh p1 autodl kill unnecessary download",
+  "task_key": "worker_ssh_p1_autodl_kill_unnecessary_download_20260522T131343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_autodl_kill_unnecessary_download_20260522T131343_result.json",
+    "occurrence": 1,
+    "bytes": 270,
+    "sha256": "7f40dd11f15b5b2f2ff15267c4c5fc0a804e5fbbca7c41578e5a9b2384600eb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：\n- 旧进程 98593 已不存在\n- 新进程 123912 没有 consolidated.00.pth 的 fd（`ignore_file_pattern` 生效）\n- Mistral 下载 (PID 102451) 仍在正常运行，未受影响\n\n带宽已释放，safetensors 下载速度大幅提升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-autodl-kill-unnecessary-download-copy-2.md"
+}

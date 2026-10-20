@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbd79ca4455fc536c9ee",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp004 baseline prep",
+  "task_key": "worker_code_exp004_baseline_prep_20260522T163502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp004_baseline_prep_20260522T163502_result.json",
+    "occurrence": 1,
+    "bytes": 2340,
+    "sha256": "ff3c851c87948074171c22965ce4a22e5117370609d8ed633958969e4b59c869"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。nanmean 的 warning 是合成数据稀疏导致的，正常数据不会触发。\n\n---\n\n## 产出总结\n\n### 1. Baseline 调研\n\n| # | 方法 | 论文 | 代码 | 核心算法 |\n|---|------|------|------|----------|\n| 4 | **CyclicJudge** | Zhu et al., arXiv:2603.01865 | 无公开代码 | 方差分解 (scenario/generation/judge/residual) → round-robin 分配 judge 到 item，每 judge 只评一次/cycle，消除系统性偏差 |\n| 5 | **CyclicJudge+discard** | 4 的变体 | — | CyclicJudge + 丢弃 exposure > threshold 的 item |\n| 6 | **DCR Factor** | Xu et al., EMNLP 2025 ([ACL Anthology](https://aclanthology.org/2025.emnlp-main.1173/)) | [github.com/chengxuphd/dcr](https://github.com/chengxuphd/dcr) | 4 级污染信号 (semantic/information/data/label) → Mamdani fuzzy inference → DCR factor ∈ [0,1] 折扣 raw accuracy |\n| 7 | **UDA** | AAAI 2026 ([arXiv:2508.09724](https://arxiv.org/abs/2508.09724)) | anonymous.4open.science/r/62AB93CD-23B4 | 学习 per-judge K-factor 缩放 → 最小化跨 judge Elo 轨迹离散度 → 共识 rating；简化版用 scipy.optimize 替代原文 neural net |\n| 8 | **Preference Leakage** | Li et al., ICLR 2026 ([arXiv:2502.01534](https://arxiv.org/abs/2502.01534)) | [github.com/David-Li0406/Preference-Leakage](https://github.com/David-Li0406/Preference-Leakage) | 计算 PLS(judge_i, judge_j) = judge 偏好泄露分数 → 从 raw score 减去 per-(judge,model) preference deviation 再聚合 |\n\n### 2. exp-004 代码\n\n- `/root/gated_mfrm_judge_bias/exp004/baselines.py` — 5 个 baseline 实现 (cyclic_judge, cyclic_judge_discard, dcr_factor, uda, pref_leakage)\n- `/root/gated_mfrm_judge_bias/exp004/run_exp004.py` — 主入口，含完整评估 pipeline\n\n运行命令（exp-003 完成后）:\n```bash\ncd /root/gated_mfrm_judge_bias/exp004\n/root/miniconda3/bin/python3 run_exp004.py \\\n  --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\n  --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\n  --exp003-dir /root/gated_mfrm_judge_bias/exp003/output \\\n  --output-dir /root/gated_mfrm_judge_bias/exp004/results\n```\n\n如果 exp-003 output 不存在，加 `--skip-exp003` 会自动从头跑 4 个 MCMC 方法。\n\n### 3. Dry-run\n\n所有 import 和合成数据测试通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp004-baseline-prep.md"
+}

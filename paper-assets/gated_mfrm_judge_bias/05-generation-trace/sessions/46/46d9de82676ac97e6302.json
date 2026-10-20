@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46d9de82676ac97e6302",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003b run",
+  "task_key": "worker_ssh_exp003b_run_20260522T173806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003b_run_20260522T173806_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "2e1ba62722db00e9d46a023c4bcb7d4abdcf03059ec4cb4c8bf763108fdd71be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，MCMC warmup 已开始采样。\n\n**models.py 修改 diff:**\n```diff\n- from lib.priors import reg_horseshoe_prior_cn\n  (removed)\n\n-     # Regularized Horseshoe prior for c_n (Piironen & Vehtari, 2017)\n-     c = reg_horseshoe_prior_cn(N)\n+     # Hierarchical half-normal prior for contamination susceptibility\n+     sigma_c = numpyro.sample(\"sigma_c\", dist.HalfNormal(1.0))\n+     c_raw = numpyro.sample(\"c_raw\", dist.HalfNormal(jnp.ones(N) * 1.0))\n+     c = numpyro.deterministic(\"c\", c_raw * sigma_c)\n\n-     c_hat = _to_numpy(samples_dict[\"c_n\"].mean(axis=0))\n+     c_hat = _to_numpy(samples_dict[\"c\"].mean(axis=0))\n```\n\n**run_exp003.py:** 无需修改，`--methods` 参数已存在。\n\n**运行状态:**\n- tmux session: `exp003b`\n- GPU 0: 667 MiB, 74% utilization\n- MCMC chain 1/4 warmup 进行中 (4000 warmup + 4000 samples × 4 chains sequential)\n- 日志: `/tmp/exp003b.log`\n- 输出目录: `/root/gated_mfrm_judge_bias/exp003/output_003b`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003b-run.md"
+}

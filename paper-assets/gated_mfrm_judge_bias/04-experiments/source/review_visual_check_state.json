@@ -1,0 +1,32 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:18.656946+00:00",
+  "completed_at": "2026-05-25T21:18:59.088473+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 18",
+      "message": "近空白页——\"Use of AI Assistants\" 节最后 1 个 bullet point 溢出到第 18 页，仅 2 行内容，~95% 页面空白。建议压缩该节内容使其完全收入第 17 页，或将 AI Assistants 声明移至更早位置与其他短节合并，消除空白末页。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 14",
+      "message": "Appendix 中 3 个 figure（8/9/10）+ 1 个 table（3）堆积在同一页，Figure 10（Pareto k diagnostics）尺寸偏小，建议适当放大或调整布局。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 16",
+      "message": "5 个 table（7-11）密集排列在同一页，视觉上较拥挤，但作为 appendix 附加实验数据可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item（Figure 1 在第 2 页顶部），审稿人需翻页才能看到视觉锚点。非硬伤——该论文类型（理论+实证混合）的标准布局。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 1,
+    "info": 3
+  }
+}

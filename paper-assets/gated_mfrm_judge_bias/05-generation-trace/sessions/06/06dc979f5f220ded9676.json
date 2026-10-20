@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06dc979f5f220ded9676",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mvp 001 check result",
+  "task_key": "worker_ssh_mvp_001_check_result_20260521T183649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp_001_check_result_20260521T183649_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "ae9cb7ca8e6f6475097669a835f6f2019b89773605fc6e1bd57e0cdc190f3f23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp_001 实验结果\n\n**VERDICT: FAIL** — 假设被否定。\n\n### 完整结果表\n\n| ρ | method | RMSE mean±std | τ mean±std | p-value |\n|---|--------|--------------|------------|---------|\n| 0.0 | joint_gmfrm | 0.1540±0.0269 | 0.9042±0.0445 | 0.4782 |\n| 0.0 | mfrm_only | 0.1642±0.0255 | 0.8942±0.0482 | — |\n| 0.0 | raw_average | 0.8002±0.1643 | 0.8951±0.0468 | — |\n| 0.0 | sequential | 0.1540±0.0242 | 0.9016±0.0467 | ref |\n| 0.3 | joint_gmfrm | 0.1521±0.0283 | 0.9068±0.0419 | 0.3506 |\n| 0.3 | mfrm_only | 0.1635±0.0233 | 0.8989±0.0448 | — |\n| 0.3 | raw_average | 0.8014±0.1644 | 0.8999±0.0445 | — |\n| 0.3 | sequential | 0.1527±0.0236 | 0.9011±0.0452 | ref |\n| 0.6 | joint_gmfrm | 0.1529±0.0285 | 0.9047±0.0418 | 0.3921 |\n| 0.6 | mfrm_only | 0.1641±0.0229 | 0.8984±0.0456 | — |\n| 0.6 | raw_average | 0.8025±0.1644 | 0.8995±0.0444 | — |\n| 0.6 | sequential | 0.1537±0.0237 | 0.9037±0.0419 | ref |\n\n### 诊断细项\n\n| 检查项 | 结果 |\n|--------|------|\n| 收敛性 (R̂<1.05, ESS>100) | **PASS** |\n| ρ=0.3 joint > sequential | p=0.3506 **FAIL** |\n| ρ=0.6 joint > sequential | p=0.3921 **FAIL** |\n| ρ=0.0 无退化 | p=0.9563 **PASS** |\n\n### 关键发现\n\njoint_gmfrm 在所有 ρ 下 RMSE 略优于 sequential（差异在第3-4位小数），τ 也略高，但**效果量太小、p-value 远未达显著**。confounding 强度从 0→0.6 并未拉大两者差距——说明当前模拟设定下 confounding 信号不够强，或 sequential pipeline 本身已足够 robust。\n\n### Registry 更新\n\n- status: DONE\n- conclusion: negative\n- metrics: 含所有 ρ 的 RMSE/τ/p-value 和 verdict\n- log_path: `/tmp/mvp_run.log`\n- checkpoint_path: `/root/gated_mfrm_judge_bias/mvp/results.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mvp-001-check-result.md"
+}

@@ -1,0 +1,86 @@
+{
+  "exp_id": "exp-013",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:06:39.679Z",
+    "updated_at": "2026-05-23T05:27:15.610Z",
+    "hypothesis": "Stage 2 exposure estimation 的 reference-anchoring vs cross-model-agreement 权重配置（50/50, 75/25, 90/10, 100/0）对 downstream G-MFRM τ 的影响有限，当前 75/25 默认配置是合理的（τ 变化 < 0.02）。",
+    "parent": "exp-003b",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp013 && python run_exp013.py",
+      "server": "rtx6000-4x",
+      "gpu": "cuda:0",
+      "pid": 558426,
+      "log_path": "~/runs/gated_mfrm_judge_bias/exp-013.log",
+      "submitted_at": "2026-05-23T04:10:02.611Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/gated_mfrm_judge_bias/exp001/results/ + exp002/results/exposure_scores.csv",
+      "data_count": "4 weight configs x full G-MFRM MCMC",
+      "model_name": "G-MFRM Stage 2 weight sensitivity",
+      "seed": 0,
+      "checkpoint_source": "exp-003b G-MFRM model code + exp-001/002 data",
+      "eval_data": "Arena-Hard judgments (8 models x 9 judges x 176 items) + Arena Elo ground truth",
+      "wall_clock_seconds": 4633.0,
+      "gpu_hours": 1.29
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T05:25:27.788Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T05:25:30.254497+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "weight_configs": {
+        "50_50": {
+          "gmfrm_tau": 0.7857,
+          "exposure_spearman_rho": 0.9981,
+          "r_hat": 1.02,
+          "ess_min": 196,
+          "divergences": 0
+        },
+        "75_25": {
+          "gmfrm_tau": 0.7857,
+          "exposure_spearman_rho": 1,
+          "r_hat": 1.04,
+          "ess_min": 115,
+          "divergences": 0
+        },
+        "90_10": {
+          "gmfrm_tau": 0.7857,
+          "exposure_spearman_rho": 0.9991,
+          "r_hat": 1.01,
+          "ess_min": 432,
+          "divergences": 0
+        },
+        "100_0": {
+          "gmfrm_tau": 0.7857,
+          "exposure_spearman_rho": 0.9978,
+          "r_hat": 1.01,
+          "ess_min": 668,
+          "divergences": 0
+        }
+      },
+      "tau_range": 0,
+      "tau_all_configs": 0.7857,
+      "hypothesis_threshold": 0.02,
+      "hypothesis_met": true
+    },
+    "checkpoint_path": "/root/gated_mfrm_judge_bias/exp013/results/",
+    "completed_at": "2026-05-23T05:27:15.610Z"
+  },
+  "timestamp": "2026-05-23T05:27:15.688785+00:00",
+  "trigger": "update_registry"
+}

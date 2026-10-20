@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93c9fbac10c4272ef909",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "research exp 001 target data",
+  "task_key": "worker_research_exp_001_target_data_20260521T231719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp_001_target_data_20260521T231719_result.json",
+    "occurrence": 1,
+    "bytes": 1746,
+    "sha256": "d7e466d1a3b4ba98e380bda5a191c4eea66fcdacb6c42801e93aa1b07fbab7f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/exp001_target_models_data_sources.md`。\n\n---\n\n## 调研结论\n\n### 公开数据可用性\n\n| Benchmark | Prompts | Models w/ outputs | License | 适用性 |\n|-----------|---------|-------------------|---------|--------|\n| **Arena-Hard v0.1** | 500 | ~28 (HF full) | 未明确 | ⭐ 最适合 — 难度高、模型较新 |\n| **WildBench V2** | 1,024 | 64 | Apache 2.0 | ⭐ 次选 — 模型多、许可好 |\n| **AlpacaEval 2** | 805 | 228 | CC BY-NC 4.0 | 模型最多，但非商用限制 |\n| **MT-Bench** | 80 | 34 | 公开 | 模型偏旧 (2023), multi-turn |\n| **Chatbot Arena** | 33K convs | 20 | CC BY-NC, Gated | Pairwise 格式不直接适用 |\n\n### 推荐策略\n\n**Primary benchmark: Arena-Hard v0.1 (500 prompts)**\n- 从 HF dataset `lmarena-ai/arena-hard-auto` 下载已有 ~28 models 的 responses\n- 对缺失的 frontier 2025-2026 models (GPT-5.5, Claude Opus 4.7, DeepSeek V4 Pro 等) 自行生成\n- API 成本 < $5，本地推理 1-2h\n\n### Target Models: 22 个，覆盖 4 个 tier\n\n- **Frontier** (5): GPT-4o, GPT-5.5, Claude Opus 4.7, Gemini 2.5 Pro, DeepSeek V4 Pro\n- **Mid** (5): Claude Sonnet 4.6, GPT-4o-mini, Gemini 2.5 Flash, Qwen3-235B-A22B, Mistral Large 3\n- **Open Strong** (4): Llama-3.3-70B, Qwen2.5-72B, DeepSeek-V3, Mistral Medium 3.5 (128B)\n- **Open Mid/Weak** (8): Llama-3.1-8B, Qwen2.5-7B, Mistral-7B-v0.3, Phi-4, Gemma-2-27B, Llama-3.1-70B, Qwen2.5-14B, Gemma-2-9B\n\n### 关键修正\n- ~~GPT-4.5~~ → GPT-5.5 (correct as of May 2026)\n- Qwen3-235B 正确 HF ID: `Qwen/Qwen3-235B-A22B-Instruct` (含 A22B 后缀)\n- Mistral Large 3: `mistral-large-2512` (675B MoE)\n- \"Mistral Medium 3\" 不存在 → **Mistral Medium 3.5** (128B dense)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-exp-001-target-data.md"
+}

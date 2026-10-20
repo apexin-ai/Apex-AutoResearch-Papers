@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "71aeab3cc9f4cc278998",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh mistral deploy continue",
+  "task_key": "worker_ssh_mistral_deploy_continue_20260524T051833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mistral_deploy_continue_20260524T051833.log",
+    "occurrence": 1,
+    "bytes": 1062522,
+    "sha256": "825da2bbfffcc4fda5120d223fb0eeafe7513130b65aeb0f2db4f69d0a63220a"
+  },
+  "statistics": {
+    "messages": 863,
+    "user_turns": 0,
+    "tool_calls": 406,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 46,
+      "tool_call": 406,
+      "tool_result": 406,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 863,
+      "chunks": [
+        {
+          "path": "71aeab3cc9f4cc278998-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "71aeab3cc9f4cc278998-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "71aeab3cc9f4cc278998-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "71aeab3cc9f4cc278998-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "71aeab3cc9f4cc278998-part-0005.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-mistral-deploy-continue.md"
+}

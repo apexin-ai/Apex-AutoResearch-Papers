@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6af6d0d8990c05e3ad7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix vllm maxlen",
+  "task_key": "worker_ssh_fix_vllm_maxlen_20260522T161646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_vllm_maxlen_20260522T161646_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "c27a50a4a058c75c217b0a3a5faabedb0ac5da6c220abc24780fcf1563e9e283"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n| Port | Model | Change | Status |\n|------|-------|--------|--------|\n| 8001 | llama-3.3-70b | untouched | ✅ running |\n| 8002 | qwen2.5-72b (PID 405118) | max-model-len 4096→8192, +enforce-eager | ✅ serving, 0 context length errors |\n| 8003 | mistral-large-2 (PID 405185) | max-model-len 4096→8192, +enforce-eager | ✅ serving, 0 context length errors |\n\nBoth restarted with `VLLM_USE_FLASHINFER_SAMPLER=0`, `--enforce-eager`, `--max-model-len 8192`. Judge collector processes recovered and are actively writing results. No more context length errors.\n\nNote: `generate_vllm_online.py` (PID 247295) was already dead before the restart — not caused by this change."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-vllm-maxlen.md"
+}

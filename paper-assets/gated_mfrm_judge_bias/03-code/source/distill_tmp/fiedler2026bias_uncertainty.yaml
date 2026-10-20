@@ -1,0 +1,26 @@
+paper_key: "fiedler2026bias_uncertainty"
+title: "Bias and Uncertainty in LLM-as-a-Judge Estimation"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["Naive estimator (raw judge outputs)", "Corrected estimators"]
+  metrics:
+    - {name: "J (judge quality diagnostic)", direction: "higher_better"}
+    - {name: "ΔJ (calibration instability)", direction: "lower_better"}
+    - {name: "Sign-reversal detection rate", direction: "higher_better"}
+  datasets:
+    - {name: "MMLU-Pro", size: "not specified"}
+  ablation_dimensions: ["Shared vs independent calibration", "Judge quality levels"]
+  training_recipe: {optimizer: "N/A (analytical/simulation study)", lr: "N/A", hardware: "N/A"}
+  method_family: "Statistical estimation / bias correction diagnostics"
+
+positioning:
+  core_claim: "共享校准（shared calibration）在模型对比时会引入严重偏差甚至符号反转，提出J/ΔJ诊断指标"
+  key_results: "Sign-reversal at high confidence under shared calibration"
+  limitations: ["仅理论分析+仿真，未在大规模real数据验证"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

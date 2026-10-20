@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e88482005dacc0ae2ac",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp017 crash investigate",
+  "task_key": "worker_ssh_exp017_crash_investigate_20260523T070536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp017_crash_investigate_20260523T070536_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "8869b099c332c659253c6b2b7d0cfa813631b68e607422083942ab8c4adee590"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结果\n\n**进程仍在运行，未退出。**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | PID 318082，`python run_exp017.py`，CPU 111%，内存 ~4GB，正在运行 |\n| tmux | `exp-017` session 存在，创建于 15:04:02 |\n| OOM | dmesg 无权限读取，但进程活着说明没被 kill |\n| 错误 | 日志无任何 error/traceback/segfault |\n\n**已完成进度：** 8/800 iterations（7 条结果已写入 CSV，当前正在跑 N=8 seed=7）。每个 iteration 约 63-70 秒（MCMC 4 chains × 6000 samples），日志输出被缓冲所以看起来\"停了\"，实际是 stdout 还没 flush。\n\n**预估剩余时间：** ~793 iterations × ~65s ≈ **14.3 小时**。\n\n**注意事项：** 日志中有 UserWarning——MCMC 4 chains 在单 GPU 上串行执行（非并行），这是速度慢的原因。如果想加速，可以在脚本开头加 `numpyro.set_host_device_count(4)` 让 CPU chains 并行，但当前进程不需要重启，它在正常跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp017-crash-investigate.md"
+}

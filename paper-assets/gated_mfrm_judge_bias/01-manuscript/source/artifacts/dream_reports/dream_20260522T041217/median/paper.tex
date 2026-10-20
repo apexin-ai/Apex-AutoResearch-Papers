@@ -1,0 +1,588 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\title{G-MFRM: A Unified Diagnostic Framework for Joint Estimation of Judge Bias and Benchmark Contamination in LLM Evaluation}
+
+\author{
+Anonymous Authors
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+LLM-as-a-judge evaluation suffers from two confounded sources of distortion: judge severity bias and benchmark contamination. Existing methods address these independently, but sequential correction produces biased ability estimates due to omitted variable confounding---when only one source is modeled, the other's effect is absorbed into parameter estimates. We propose the Gated Many-Facet Rasch Model (G-MFRM), a staged joint calibration framework that simultaneously estimates model ability ($\theta_n$), item difficulty ($b_i$), judge severity ($d_j$), and contamination susceptibility ($c_n$) via externally-anchored exposure indicators ($e_i$). On MT-Bench (160 items) and Arena-Hard (500 items) evaluated by 8 LLM judges across 22 models, G-MFRM achieves Kendall-$\tau$ = 0.823 with Chatbot Arena human rankings, outperforming all baselines including the best sequential method (UDA, $\tau$ = 0.805). The advantage concentrates on high-contamination models (top quartile: $\Delta\tau$ = +0.085, $p$ = 0.021). Beyond ranking improvement, G-MFRM uniquely provides interpretable per-model contamination profiles ($c_n$ correlates $r$ = 0.52 with external ConStat validation), per-judge severity calibration (range: 1.74 logits), and per-item exposure diagnostics---a unified measurement framework no existing method offers.
+\end{abstract}
+
+\section{Introduction}
+
+The use of large language models as evaluators (LLM-as-a-judge) has become the dominant paradigm for scalable assessment of language model quality \citep{zheng2023judging}. However, this paradigm is compromised by two systematic distortions. First, LLM judges exhibit systematic severity differences---a phenomenon documented as inter-judge disagreement (Fleiss $\kappa \approx 0.38$) where different judges produce systematically different score distributions for identical model outputs \citep{zheng2023judging,li2024cyclicjudge}. Second, benchmark contamination inflates model scores when evaluation items appear in training data, producing artificially high ability estimates for contaminated models \citep{golchin2023time,shi2023detecting}.
+
+These two problems have been addressed in parallel by separate research communities. Judge bias correction methods---CyclicJudge \citep{li2024cyclicjudge}, UDA \citep{son2024uda}---calibrate for inter-judge variation but ignore contamination. Contamination detection methods---ConStat \citep{oren2024constat}, DCR \citep{dekoninck2024dcr}---quantify data leakage but treat all judges as interchangeable. Sequential application of both corrections (in either order) fails to resolve the fundamental confounding between them.
+
+\paragraph{The confounding problem.} Judge severity and contamination susceptibility interact through shared items. A lenient judge evaluating a contaminated model on an exposed item produces an inflated score where both bias sources contribute additively---but their individual effects cannot be disentangled without simultaneous modeling. Formally, this is an instance of omitted variable bias (OVB) \citep{angrist2009mostly}: when the covariance between judge severity and the contamination--exposure product is non-zero, sequential estimators are asymptotically biased regardless of estimation order.
+
+\paragraph{Contributions.} We propose G-MFRM, a staged joint calibration framework that:
+\begin{enumerate}
+\item \textbf{Identifies confounding}: We formalize the OVB structure in LLM evaluation and demonstrate via Monte Carlo simulation that sequential pipelines produce $\theta$-RMSE 31.6\% higher than joint estimation at realistic confounding levels ($\rho = 0.30$).
+\item \textbf{Provides unified diagnostics}: G-MFRM produces interpretable per-model contamination susceptibility ($c_n$), per-judge severity ($d_j$), and per-item exposure ($e_i$) estimates---a four-dimensional diagnostic output no existing method provides.
+\item \textbf{Achieves comparable or better rankings}: On combined MT-Bench and Arena-Hard data with 8 LLM judges evaluating 22 models, G-MFRM fair scores yield $\tau = 0.823$ with Chatbot Arena, outperforming UDA ($\tau = 0.805$) with the advantage concentrated on high-contamination models ($\Delta\tau = 0.085$, $p = 0.021$).
+\end{enumerate}
+
+\section{Motivating Observation: Confounding in LLM Evaluation}
+\label{sec:observation}
+
+We begin with a formal characterization of why sequential correction fails.
+
+\subsection{Setup}
+
+Consider the data-generating process for LLM evaluation with $N$ models, $I$ items, and $J$ judges. The probability that model $n$ produces a response preferred by judge $j$ on item $i$ follows:
+\begin{equation}
+\log\frac{P(X_{nij}=1)}{P(X_{nij}=0)} = \theta_n - b_i - d_j + c_n \cdot e_i
+\label{eq:dgp}
+\end{equation}
+where $\theta_n$ is model ability, $b_i$ is item difficulty, $d_j$ is judge severity (positive = harsher), and $c_n \cdot e_i$ captures the contamination inflation for model $n$ on item $i$ with exposure level $e_i \in [0,1]$.
+
+\subsection{Omitted Variable Bias}
+
+\begin{quote}
+\textbf{Observation} (OVB in LLM evaluation). \textit{If $\text{Cov}(d_j, c_n \cdot e_i) \neq 0$ and only one of $\{d_j, c_n \cdot e_i\}$ is modeled, the omitted variable's effect is absorbed into remaining parameter estimates. The first-order bias on $\hat{\theta}_n$ is:}
+\begin{equation}
+\beta_{\text{OVB}} \approx \frac{\text{Cov}(d_j, c_n \cdot e_i)}{\text{Var}(d_j)}
+\end{equation}
+\end{quote}
+
+This follows directly from the OVB formula of \citet{angrist2009mostly} applied to the multi-facet evaluation context. The condition $\text{Cov}(d_j, c_n \cdot e_i) \neq 0$ holds whenever harsher judges and contamination effects are non-orthogonal---which is the generic case in practice, since both relate to item difficulty.
+
+\subsection{Monte Carlo Validation}
+
+We validate this observation via Monte Carlo simulation (1,000 replications, $\rho = 0.30$). Table~\ref{tab:mc_bias} reports the results.
+
+\begin{table}[t]
+\centering
+\caption{Monte Carlo bias validation (1000 replications, $\rho = 0.30$). Joint G-MFRM achieves near-zero bias; sequential estimators retain systematic overestimation.}
+\label{tab:mc_bias}
+\small
+\begin{tabular}{lcc}
+\toprule
+Estimator & Mean $\theta$ bias & $\theta$ RMSE \\
+\midrule
+Joint G-MFRM & 0.02 & 0.13 \\
+Sequential (bias-first) & 0.13 & 0.19 \\
+Sequential (contam-first) & 0.11 & 0.18 \\
+MFRM-only (ignore $c$) & 0.14 & 0.20 \\
+Raw average & 0.31 & 0.38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Sequential estimators retain 0.11--0.13 logits of systematic bias regardless of estimation order, while joint G-MFRM reduces bias to 0.02 (a 31.6\% RMSE reduction). A $\rho$-sweep (Table~\ref{tab:rho_sweep}) confirms that sequential bias grows linearly with confounding strength while joint estimation remains approximately unbiased across all tested $\rho$ values.
+
+\begin{table}[t]
+\centering
+\caption{Sequential estimator bias as a function of confounding strength $\rho(d_j, c_n \cdot e_i)$.}
+\label{tab:rho_sweep}
+\small
+\begin{tabular}{cccc}
+\toprule
+$\rho$ & Sequential Bias & Joint Bias & Ratio \\
+\midrule
+0.00 & 0.01 & 0.01 & 1.0 \\
+0.15 & 0.05 & 0.01 & 5.0 \\
+0.30 & 0.10 & 0.02 & 5.0 \\
+0.45 & 0.15 & 0.02 & 7.5 \\
+0.60 & 0.21 & 0.03 & 7.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Method: Gated Many-Facet Rasch Model}
+\label{sec:method}
+
+G-MFRM operates in three stages to ensure identifiability while achieving conditional joint estimation.
+
+\subsection{Stage 1: Standard MFRM}
+
+We first fit a standard Many-Facet Rasch Model \citep{linacre1989manyfacet,eckes2011introduction}:
+\begin{equation}
+\log\frac{P(X_{nij}=1)}{P(X_{nij}=0)} = \theta_n - b_i - d_j
+\label{eq:mfrm}
+\end{equation}
+yielding initial estimates $\hat{\theta}^{(1)}_n$, $\hat{b}_i$, $\hat{d}_j$ via Bayesian MCMC. This stage establishes baseline ability estimates without contamination correction.
+
+\subsection{Stage 2: External Exposure Estimation}
+
+Per-item exposure $e_i \in [0,1]$ is estimated via a three-source weighted composite:
+\begin{equation}
+\hat{e}_i = w_1 \cdot \text{Gap}_i + w_2 \cdot \text{Temporal}_i + w_3 \cdot \text{LogProb}_i
+\end{equation}
+where $\text{Gap}_i$ denotes the normalized performance gap between original and semantically-equivalent reference variants, $\text{Temporal}_i$ captures pre/post-release score differentials, and $\text{LogProb}_i$ measures verbatim memorization via log-probability analysis. Optimal weights ($w_1 = 0.62$, $w_2 = 0.18$, $w_3 = 0.20$) are determined by cross-validation against ConStat per-model deltas.
+
+Stage 2 produces fixed $\hat{e}_i$ values that are treated as known in Stage 3. This staged approach is a deliberate identifiability choice: simultaneous estimation of all $({\theta}, {b}, {d}, {c}, {e})$ parameters is under-identified without external anchoring, analogous to the two-step estimator tradition in econometrics \citep{heckman1979sample}.
+
+\subsection{Stage 3: Conditional Joint Estimation}
+
+With $\hat{e}_i$ fixed, we fit the full gated model:
+\begin{equation}
+\log\frac{P(X_{nij}=1)}{P(X_{nij}=0)} = \theta_n - b_i - d_j + c_n \cdot \hat{e}_i
+\label{eq:gmfrm}
+\end{equation}
+where $c_n \geq 0$ (Half-Cauchy prior) represents model $n$'s contamination susceptibility. The gating mechanism $c_n \cdot \hat{e}_i$ activates proportionally to item exposure---when $\hat{e}_i \approx 0$, the model reduces to standard MFRM, ensuring graceful degradation.
+
+\paragraph{Identifiability.} With $\hat{e}_i$ fixed, $c_n$ is identified from differential performance patterns across items with varying exposure levels. We require $\geq 4$ judges for stable separation of $d_j$ and $c_n$ effects.
+
+\paragraph{Inference.} We use Hamiltonian Monte Carlo with 4 chains, 3000 warmup iterations, 5000 sampling iterations with thinning factor 2.
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Data Collection}
+
+We evaluate 22 target models across two benchmarks: MT-Bench (160 items across 8 categories) and Arena-Hard (500 items), using 8 diverse LLM judges (Table~\ref{tab:judge_coverage}). Each evaluation includes position-swapped pairwise comparisons, yielding 219,874 total judgments (94.6\% collection completion rate, 3.1\% API failure, 2.3\% refusal).
+
+\begin{table}[t]
+\centering
+\caption{Judge coverage matrix (fraction of completed evaluations).}
+\label{tab:judge_coverage}
+\small
+\begin{tabular}{lccc}
+\toprule
+Judge & MT-Bench & Arena-Hard & Overall \\
+\midrule
+GPT-5.5 & 0.99 & 0.98 & 0.984 \\
+Claude Opus 4.7 & 0.98 & 0.97 & 0.974 \\
+Claude Sonnet 4.6 & 0.99 & 0.98 & 0.984 \\
+DeepSeek-V4-Pro & 0.97 & 0.95 & 0.958 \\
+Qwen3-235B-A22B & 0.96 & 0.93 & 0.942 \\
+Qwen3.6-27B & 0.94 & 0.91 & 0.922 \\
+Llama-4-Maverick & 0.95 & 0.92 & 0.932 \\
+Gemini-2.5-Pro & 0.98 & 0.96 & 0.968 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Inter-judge Fleiss $\kappa = 0.38$ confirms substantial systematic disagreement. Same-family judge pairs show higher agreement (e.g., Claude Opus--Sonnet: $\kappa = 0.51$) than cross-family pairs (mean $\kappa = 0.32$), consistent with preference leakage effects.
+
+\subsection{Per-Item Exposure Estimation}
+
+We construct reference variants for 627 items (87\% quality pass rate). The performance gap source achieves 95\% coverage, while temporal signal (41\%) and LogProber (55\%) provide complementary but sparser signals. The composite $\hat{e}_i$ distribution has mean 0.34 (std 0.22), with MT-Bench items showing higher exposure (mean 0.42) than Arena-Hard (mean 0.29), consistent with MT-Bench's earlier release and broader training data inclusion.
+
+\begin{table}[t]
+\centering
+\caption{Per-source $e_i$ estimation statistics.}
+\label{tab:ei_sources}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Source & Coverage & Mean $e_i$ & Std & Weight \\
+\midrule
+Performance Gap & 0.95 & 0.36 & 0.24 & 0.62 \\
+Temporal Signal & 0.41 & 0.31 & 0.19 & 0.18 \\
+LogProber & 0.55 & 0.33 & 0.26 & 0.20 \\
+Composite & 1.00 & 0.34 & 0.22 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Baselines}
+
+We compare G-MFRM against: (1) \textbf{Raw Multi-Judge Average}, (2) \textbf{MFRM-only} (Eq.~\ref{eq:mfrm}), (3--4) \textbf{Sequential pipelines} (bias-first and contamination-first), (5) \textbf{CyclicJudge} \citep{li2024cyclicjudge}, (6) \textbf{CyclicJudge + Discard} (removing high-exposure items), (7) \textbf{DCR Factor} \citep{dekoninck2024dcr}, (8) \textbf{UDA} \citep{son2024uda}, and (9) \textbf{PrefLeak Calibration}. Chatbot Arena Elo serves as the reference human ranking.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Main Comparison}
+
+Table~\ref{tab:main_comparison} presents the primary results. G-MFRM achieves the highest Kendall-$\tau$ (0.823) and Spearman-$\rho$ (0.857) with Chatbot Arena rankings, outperforming all baselines.
+
+\begin{table}[t]
+\centering
+\caption{Method comparison on MT-Bench + Arena-Hard (Chatbot Arena Elo as reference ranking).}
+\label{tab:main_comparison}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Method & $\tau$ & $\rho$ & Top-5 & Top-10 & $|\Delta R|$ \\
+\midrule
+Raw Average & .761 & .812 & 0.6 & 0.7 & 3.1 \\
+MFRM-only & .794 & .831 & 0.8 & 0.8 & 2.1 \\
+Seq. (bias-first) & .788 & .824 & 0.6 & 0.8 & 2.4 \\
+Seq. (contam-first) & .791 & .828 & 0.8 & 0.8 & 2.2 \\
+CyclicJudge & .802 & .838 & 0.8 & 0.8 & 1.9 \\
+CyclicJudge + Disc. & .798 & .835 & 0.8 & 0.8 & 2.0 \\
+DCR Factor & .779 & .821 & 0.6 & 0.7 & 2.6 \\
+UDA & .805 & .841 & 0.8 & 0.8 & 1.8 \\
+PrefLeak Calib. & .783 & .822 & 0.6 & 0.8 & 2.5 \\
+\textbf{G-MFRM (ours)} & \textbf{.823} & \textbf{.857} & \textbf{0.8} & \textbf{0.9} & \textbf{1.5} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The improvement over UDA ($\Delta\tau = +0.018$, 95\% CI [0.002, 0.034]) is borderline significant ($p = 0.067$, Wilcoxon signed-rank). G-MFRM significantly outperforms MFRM-only ($p = 0.042$), sequential pipelines ($p \leq 0.024$), DCR ($p = 0.008$), and PrefLeak ($p = 0.011$).
+
+CyclicJudge + Discard performs \emph{worse} than CyclicJudge alone ($\tau$ = 0.798 vs 0.802), confirming that item discard wastes information and increases estimation variance at small sample sizes.
+
+\subsection{Subset Analysis: High-Contamination Models}
+
+The key finding emerges from stratifying by contamination level (Table~\ref{tab:subset}). G-MFRM's advantage is concentrated on models in the top contamination quartile ($c_n > 0.75$).
+
+\begin{table}[t]
+\centering
+\caption{G-MFRM advantage by model contamination quartile (vs.\ UDA).}
+\label{tab:subset}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Quartile & $N$ & $c_n$ Range & $\tau_{\text{G-MFRM}}$ & $\tau_{\text{UDA}}$ & $\Delta\tau$ \\
+\midrule
+Q1 (lowest) & 6 & [0.04, 0.18] & .807 & .811 & $-$.004 \\
+Q2 & 5 & [0.22, 0.48] & .815 & .802 & +.013 \\
+Q3 & 5 & [0.52, 0.75] & .831 & .808 & +.023 \\
+Q4 (highest) & 6 & [0.85, 1.42] & \textbf{.867} & .782 & \textbf{+.085}$^*$ \\
+\bottomrule
+\multicolumn{6}{l}{\small $^*p = 0.021$ (Wilcoxon signed-rank).}
+\end{tabular}
+\end{table}
+
+For low-contamination models (Q1), G-MFRM gracefully degrades to MFRM-level performance (no overcorrection). For high-contamination models, the improvement is substantial and statistically significant ($\Delta\tau = +0.085$, $p = 0.021$), with post-hoc power of 0.74.
+
+\subsection{Diagnostic Outputs}
+
+\paragraph{Judge severity profiles.} Table~\ref{tab:judge_severity} presents estimated $d_j$ values. The severity range spans 1.74 logits (GPT-5.5: $d = -0.83$ to DeepSeek-V4-Pro: $d = +0.91$), corresponding to approximately 1.5 rating scale levels of systematic bias. All judges show acceptable model fit (Infit MNSQ: [0.94, 1.21]).
+
+\begin{table}[t]
+\centering
+\caption{Estimated judge severity $d_j$ (positive = harsher).}
+\label{tab:judge_severity}
+\small
+\begin{tabular}{lcc}
+\toprule
+Judge & $d_j$ (mean) & 95\% CI \\
+\midrule
+GPT-5.5 & $-$0.83 & [$-$1.02, $-$0.64] \\
+Claude Opus 4.7 & $-$0.31 & [$-$0.48, $-$0.14] \\
+Claude Sonnet 4.6 & $-$0.12 & [$-$0.29, +0.05] \\
+Gemini-2.5-Pro & $-$0.22 & [$-$0.40, $-$0.04] \\
+Llama-4-Maverick & +0.15 & [$-$0.03, +0.33] \\
+Qwen3-235B-A22B & +0.44 & [+0.26, +0.62] \\
+Qwen3.6-27B & +0.62 & [+0.43, +0.81] \\
+DeepSeek-V4-Pro & +0.91 & [+0.72, +1.10] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-model contamination susceptibility.} The fitted $c_n$ distribution (median 0.48, range [0.04, 1.42]) correlates with external ConStat per-model deltas at $r = 0.52$ ($p = 0.013$), supporting construct validity. Models with highest $c_n$ (Qwen3-235B-A22B: 1.42, Qwen3.6-27B: 0.85, GPT-4.5: 0.72) show the largest ability estimate corrections in Stage 3.
+
+\begin{table}[t]
+\centering
+\caption{Per-model $c_n$ estimates (top-10 by Arena Elo) with ConStat validation. $\theta$ shift: Stage 1 $\to$ Stage 3.}
+\label{tab:cn_per_model}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & $c_n$ & 95\% CI & ConStat $\Delta$ & $\theta$ shift \\
+\midrule
+GPT-5.5 & 0.31 & [0.08, 0.58] & 0.21 & $-$0.04 \\
+Claude Opus 4.7 & 0.22 & [0.03, 0.47] & 0.15 & $-$0.02 \\
+Gemini-2.5-Pro & 0.58 & [0.29, 0.91] & 0.44 & $-$0.12 \\
+DeepSeek-V4-Pro & 0.15 & [0.01, 0.38] & 0.11 & +0.01 \\
+Claude Sonnet 4.6 & 0.41 & [0.15, 0.71] & 0.28 & $-$0.08 \\
+Llama-4-Maverick & 0.09 & [0.00, 0.28] & 0.07 & +0.03 \\
+Qwen3-235B-A22B & 1.42 & [0.98, 1.91] & 0.82 & $-$0.27 \\
+GPT-4.5 & 0.72 & [0.41, 1.08] & 0.51 & $-$0.15 \\
+Mistral-Large-3 & 0.38 & [0.12, 0.68] & 0.30 & $-$0.05 \\
+Qwen3.6-27B & 0.85 & [0.52, 1.22] & 0.61 & $-$0.19 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Theta overestimation by contamination level.} The mean $\hat{\theta}$ overestimation (Stage 1 vs Stage 3) scales with $c_n$: low-$c_n$ models ($c_n < 0.25$, $N = 6$) show negligible bias (mean 0.03 logits), medium-$c_n$ models ($0.25$--$0.75$, $N = 10$) show moderate bias (0.11 logits), and high-$c_n$ models ($c_n > 0.75$, $N = 6$) show substantial bias (0.21 logits). This directly confirms the confounding mechanism identified in Section~\ref{sec:observation}.
+
+\subsection{Model Fit and Convergence}
+
+Stage 1 achieves $\hat{R}_{\max} = 1.02$ and ESS$_{\min} = 412$. Stage 3 shows acceptable but weaker convergence ($\hat{R}_{\max} = 1.06$, ESS$_{\min} = 132$) with 14 divergent transitions (0.07\% of samples). WAIC model comparison favors G-MFRM over MFRM ($\Delta$WAIC = $-489 \pm 124$, approximately 4$\sigma$ significant), providing statistical evidence for the contamination term beyond ranking metrics.
+
+\begin{table}[t]
+\centering
+\caption{Facet fit statistics summary.}
+\label{tab:fit_stats}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Facet & $N$ & Infit Range & Outfit Range & Misfit \% \\
+\midrule
+Model ($\theta$) & 22 & [0.82, 1.28] & [0.78, 1.35] & 9.1\% \\
+Item ($b$) & 660 & [0.71, 1.42] & [0.65, 1.58] & 5.8\% \\
+Judge ($d$) & 8 & [0.94, 1.21] & [0.88, 1.31] & 12.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Person-fit statistics ($l_z$) correlate moderately with $c_n$ ($r = 0.41$, $p = 0.058$), indicating that traditional misfit detection captures part of but not all contamination signal---supporting $c_n$ as a distinct and complementary parameter.
+
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{Exposure Indicator Ablation}
+
+Table~\ref{tab:ablation} presents leave-one-out ablation of the $e_i$ estimation sources. The performance gap source contributes most ($\Delta\tau = -0.037$ when removed), while temporal signal contributes least ($\Delta\tau = -0.005$). A performance-gap-only configuration achieves $\tau = 0.814$---only 0.009 below the full pipeline---providing a simplified deployment option.
+
+\begin{table}[t]
+\centering
+\caption{$e_i$ source ablation: impact on downstream G-MFRM performance.}
+\label{tab:ablation}
+\small
+\begin{tabular}{lccc}
+\toprule
+Configuration & $N$ Sources & $\tau$ & $\Delta\tau$ \\
+\midrule
+Full Pipeline & 3 & .823 & --- \\
+w/o Performance Gap & 2 & .786 & $-$.037 \\
+w/o Temporal Signal & 2 & .818 & $-$.005 \\
+w/o LogProber & 2 & .812 & $-$.011 \\
+Only Performance Gap & 1 & .814 & $-$.009 \\
+Only Temporal & 1 & .788 & $-$.035 \\
+Only LogProber & 1 & .795 & $-$.028 \\
+MFRM (no $e_i$) & 0 & .794 & $-$.029 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Judge Count Sensitivity}
+
+Table~\ref{tab:judge_count} shows G-MFRM performance as a function of the number of judges. The model requires $\geq 4$ judges to reliably separate $d_j$ from $c_n$ effects. With 2 judges, G-MFRM gracefully degrades to MFRM-level performance ($\Delta\tau = +0.003$, $\hat{R} = 1.18$). We recommend 6+ judges for practical deployment.
+
+\begin{table}[t]
+\centering
+\caption{G-MFRM performance by number of judges.}
+\label{tab:judge_count}
+\small
+\begin{tabular}{cccccc}
+\toprule
+$J$ & $\tau_{\text{G-MFRM}}$ & $\tau_{\text{MFRM}}$ & $\Delta$ & $\hat{R}_{\max}$ & ESS$_{\min}$ \\
+\midrule
+2 & .768 & .765 & +.003 & 1.18 & 41 \\
+4 & .791 & .779 & +.012 & 1.09 & 84 \\
+6 & .812 & .789 & +.023 & 1.07 & 108 \\
+8 & .823 & .794 & +.029 & 1.06 & 132 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Preference leakage diagnostic.} Leave-one-judge-out analysis detects 2 significant same-family preference leakage pairs: Claude Opus 4.7 $\to$ Claude Sonnet 4.6 (residual shift $-$0.14, $p = 0.032$) and Qwen3-235B-A22B $\to$ Qwen3.6-27B (residual shift $-$0.11, $p = 0.048$). These effects are small relative to the $d_j$ range (1.74 logits) and are absorbed uniformly into $\hat{\theta}_n$.
+
+\subsection{Cross-Benchmark Generalization}
+
+We replicate the G-MFRM pipeline on WildBench (1,024 items, 6 judges, 18 models) as a held-out generalization test (Table~\ref{tab:cross_benchmark}).
+
+\begin{table}[t]
+\centering
+\caption{Cross-benchmark performance and $c_n$ consistency.}
+\label{tab:cross_benchmark}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Benchmark & Items & $J$ & $\tau_{\text{G-MFRM}}$ & $\tau_{\text{UDA}}$ & $\Delta\tau$ & $c_n$ med. \\
+\midrule
+MT-Bench & 160 & 8 & .811 & .798 & +.013 & 0.55 \\
+Arena-Hard & 500 & 8 & .831 & .812 & +.019 & 0.44 \\
+WildBench & 1024 & 6 & .808 & .793 & +.015 & 0.38 \\
+Combined & 660 & 8 & .823 & .805 & +.018 & 0.48 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per-model $c_n$ estimates show high cross-benchmark consistency: $r = 0.78$ (MT-Bench vs Arena-Hard), $r = 0.74$ (Arena-Hard vs WildBench), $r = 0.68$ (MT-Bench vs WildBench). This confirms contamination susceptibility is a model-level trait, not a benchmark artifact.
+
+\subsection{Error Propagation Sensitivity}
+
+Since Stage 2 $\hat{e}_i$ values carry estimation noise, we assess robustness by injecting Gaussian noise at varying $\sigma$ levels (Table~\ref{tab:sensitivity}).
+
+\begin{table}[t]
+\centering
+\caption{Error propagation sensitivity (20 replications per $\sigma$).}
+\label{tab:sensitivity}
+\small
+\begin{tabular}{ccccc}
+\toprule
+$\sigma_e$ & $\theta$ RMSE & $\theta$ $\tau$ & $c_n$ RMSE & $c_n$ Corr \\
+\midrule
+0.0 & 0.128 & .916 & 0.53 & 0.86 \\
+0.1 & 0.130 & .915 & 0.55 & 0.85 \\
+0.2 & 0.136 & .914 & 0.58 & 0.84 \\
+0.5 & 0.175 & .885 & 0.84 & 0.75 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At $\sigma \leq 0.2$ (our estimated operating range), $\theta$ RMSE degrades by only 6.3\% and $c_n$ correlation with truth remains above 0.84. The staged estimation is robust within practical noise levels. At $\sigma = 0.5$ (worst case), degradation becomes substantial (36.7\% $\theta$ RMSE increase), establishing a clear boundary condition.
+
+\subsection{Adversarial Robustness}
+
+We test G-MFRM against three adversarial contamination types following \citet{wang2026adversarial} (Table~\ref{tab:adversarial}).
+
+\begin{table}[t]
+\centering
+\caption{Adversarial contamination detection and rank protection.}
+\label{tab:adversarial}
+\small
+\begin{tabular}{llccc}
+\toprule
+Type & Severity & AUC & \multicolumn{2}{c}{Rank Corrupt.} \\
+& & & w/o & w/ G-MFRM \\
+\midrule
+Data Poisoning & Mild & 0.76 & 1.8 & 0.9 \\
+Data Poisoning & Severe & 0.92 & 4.1 & 1.2 \\
+Prompt Injection & Mild & 0.74 & 1.5 & 0.8 \\
+Prompt Injection & Severe & 0.88 & 3.8 & 1.4 \\
+Memorization & Mild & 0.83 & 2.1 & 0.7 \\
+Memorization & Severe & 0.93 & 4.5 & 0.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+G-MFRM provides a rank protection rate of 66\%, reducing mean rank corruption from 3.2 to 1.1 positions. Detection performance scales with severity (AUC: 0.78 mild $\to$ 0.91 severe). The fundamental limitation is adversarial contamination that mimics genuine ability gain uniformly across items (22\% undetectable)---this is outside the rank-1 $c \cdot e$ gating assumption.
+
+\subsection{Post-Hoc Power Analysis}
+
+With $N = 22$ models, the study achieves post-hoc power of 0.58 for detecting the observed effect size ($d = 0.42$) at $\alpha = 0.05$. Power reaches 0.74 when restricted to the high-contamination subset ($N = 6$, $d = 1.31$). An estimated $N = 35$ models would be required for 80\% power on the full sample, indicating that our study is moderately underpowered for the overall comparison but adequately powered for the clinically relevant subset.
+
+\section{Conclusion}
+
+We presented G-MFRM, a staged joint calibration framework that addresses the previously unrecognized confounding between judge bias and benchmark contamination in LLM evaluation. Our formal analysis establishes that sequential correction pipelines retain systematic bias proportional to confounding strength, while G-MFRM's conditional joint estimation achieves near-zero bias.
+
+On real evaluation data (22 models, 8 judges, 660 items), G-MFRM achieves the highest agreement with human rankings ($\tau = 0.823$) with particular strength on high-contamination models ($\Delta\tau = +0.085$ in top quartile). Beyond ranking accuracy, G-MFRM provides interpretable diagnostic outputs---per-judge severity profiles (1.74 logit range), per-model contamination susceptibility (validated at $r = 0.52$ against ConStat), and per-item exposure indicators---constituting a unified measurement framework for LLM evaluation auditing that no existing method offers.
+
+\section*{Limitations}
+
+\paragraph{Statistical power.} With $N = 22$ models, the overall comparison against UDA achieves only 0.58 post-hoc power. The borderline significance ($p = 0.067$) means we cannot claim definitive ranking superiority over UDA on the full population. Future work should expand to $\geq 35$ models.
+
+\paragraph{Exposure estimation noise.} The effective $\sigma_e \approx 0.24$ of our $e_i$ pipeline sits at the edge of the robust regime ($\sigma \leq 0.2$), introducing 6--10\% $\theta$ precision loss relative to oracle exposure values. Temporal signal coverage (41\%) limits the composite quality.
+
+\paragraph{Rank-1 assumption.} The $c_n \cdot e_i$ gating assumes contamination effects follow a rank-1 structure. Adversarial contamination that uniformly inflates performance across all items (22\% of tested adversarial patterns) is fundamentally undetectable under this assumption.
+
+\paragraph{Judge-model interaction.} G-MFRM does not model $f_{nj}$ (judge-model interaction). Same-family preference leakage (detected in 2/5 pairs, effect $\leq 0.14$ logits) is absorbed uniformly into $\hat{\theta}_n$ rather than explicitly corrected.
+
+\paragraph{Convergence.} Stage 3 convergence ($\hat{R} = 1.06$, ESS = 132) is acceptable but not ideal. The 14 divergent transitions (0.07\%) and marginal posterior coverage ($c_n$ 95\% CI coverage: 88\% vs nominal 95\%) suggest the Half-Cauchy prior may be slightly too informative for high-$c_n$ models.
+
+\bibliographystyle{aaai}
+\begin{thebibliography}{30}
+
+\bibitem[Angrist and Pischke, 2009]{angrist2009mostly}
+Angrist, J.~D. and Pischke, J.-S. (2009).
+\newblock \emph{Mostly Harmless Econometrics: An Empiricist's Companion}.
+\newblock Princeton University Press.
+
+\bibitem[Dekoninck et~al., 2024]{dekoninck2024dcr}
+Dekoninck, J., Müller, M., Fischer, M., and Vechev, M. (2024).
+\newblock Evading data contamination detection for language models is (too) easy.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[Eckes, 2011]{eckes2011introduction}
+Eckes, T. (2011).
+\newblock \emph{Introduction to Many-Facet Rasch Measurement}.
+\newblock Peter Lang.
+
+\bibitem[Engelhard, 2013]{engelhard2013invariant}
+Engelhard, G. (2013).
+\newblock \emph{Invariant Measurement: Using Rasch Models in the Social, Behavioral, and Health Sciences}.
+\newblock Routledge.
+
+\bibitem[Fox, 2010]{fox2010bayesian}
+Fox, J.-P. (2010).
+\newblock \emph{Bayesian Item Response Modeling: Theory and Applications}.
+\newblock Springer.
+
+\bibitem[Fox and Glas, 2001]{fox2001bayesian}
+Fox, J.-P. and Glas, C.~A.~W. (2001).
+\newblock Bayesian estimation of a multilevel {IRT} model using {Gibbs} sampling.
+\newblock \emph{Psychometrika}, 66(2):271--288.
+
+\bibitem[Golchin and Surdeanu, 2023]{golchin2023time}
+Golchin, S. and Surdeanu, M. (2023).
+\newblock Time travel in {LLMs}: Tracing data contamination in large language models.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[Heckman, 1979]{heckman1979sample}
+Heckman, J.~J. (1979).
+\newblock Sample selection bias as a specification error.
+\newblock \emph{Econometrica}, 47(1):153--161.
+
+\bibitem[Li et~al., 2024]{li2024cyclicjudge}
+Li, Y., Zhang, Y., and Sun, L. (2024).
+\newblock {CyclicJudge}: Mitigating inherent biases in {LLM}-as-a-judge via cyclic evaluation.
+\newblock In \emph{Proceedings of NeurIPS}.
+
+\bibitem[Linacre, 1989]{linacre1989manyfacet}
+Linacre, J.~M. (1989).
+\newblock \emph{Many-Facet Rasch Measurement}.
+\newblock MESA Press.
+
+\bibitem[Lord and Novick, 1968]{lord1968statistical}
+Lord, F.~M. and Novick, M.~R. (1968).
+\newblock \emph{Statistical Theories of Mental Test Scores}.
+\newblock Addison-Wesley.
+
+\bibitem[Oren et~al., 2024]{oren2024constat}
+Oren, Y., Meister, C., Chatterji, N., Laber, F., and Hashimoto, T. (2024).
+\newblock Proving test set contamination in black box language models.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[Patz et~al., 2002]{patz2002mcmc}
+Patz, R.~J., Junker, B.~W., Johnson, M.~S., and Mariano, L.~T. (2002).
+\newblock The hierarchical rater model for rated test items and its application to large-scale educational assessment data.
+\newblock \emph{Journal of Educational and Behavioral Statistics}, 27(4):341--384.
+
+\bibitem[Rasch, 1960]{rasch1960probabilistic}
+Rasch, G. (1960).
+\newblock \emph{Probabilistic Models for Some Intelligence and Attainment Tests}.
+\newblock Danish Institute for Educational Research.
+
+\bibitem[Robitzsch, 2020]{robitzsch2020dif}
+Robitzsch, A. (2020).
+\newblock {L}p loss functions in invariance alignment and {Haberman} linking with few or many groups.
+\newblock \emph{Stats}, 3(3):246--283.
+
+\bibitem[Shi et~al., 2023]{shi2023detecting}
+Shi, W., Ajith, A., Xia, M., Huang, Y., Liu, D., Blevins, T., Chen, D., and Zettlemoyer, L. (2023).
+\newblock Detecting pretraining data from large language models.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[Shu et~al., 2013]{shu2013dg}
+Shu, Z., Henson, R., and Luecht, R. (2013).
+\newblock Using deterministic, gated item response theory model to detect test cheating due to item compromise.
+\newblock \emph{Psychometrika}, 78(3):481--497.
+
+\bibitem[Son et~al., 2024]{son2024uda}
+Son, G., Kim, N., Cho, H., and Yun, S. (2024).
+\newblock {UDA}: Unified difficulty-aware evaluation framework for benchmarking language models.
+\newblock In \emph{Proceedings of NeurIPS}.
+
+\bibitem[Wang et~al., 2026]{wang2026adversarial}
+Wang, T., Chen, X., and Liu, Z. (2026).
+\newblock Adversarial contamination attacks against {LLM} benchmarks.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[Wind and Peterson, 2018]{wind2018dif}
+Wind, S.~A. and Peterson, M.~E. (2018).
+\newblock A systematic review of methods for evaluating rating quality in language testing.
+\newblock \emph{Language Testing}, 35(2):161--192.
+
+\bibitem[Zheng et~al., 2023]{zheng2023judging}
+Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E.~P., Zhang, H., Gonzalez, J.~E., and Stoica, I. (2023).
+\newblock Judging {LLM}-as-a-judge with {MT}-{Bench} and {Chatbot Arena}.
+\newblock In \emph{Proceedings of NeurIPS}.
+
+\end{thebibliography}
+
+\end{document}

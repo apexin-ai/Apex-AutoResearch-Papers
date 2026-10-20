@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-001",
+  "project": "gated_mfrm_judge_bias",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:57:28.189Z",
+    "updated_at": "2026-05-22T02:57:50.985Z",
+    "hypothesis": "8+ diverse LLM judges (proprietary + open-source) on MT-Bench and Arena-Hard with position-swapped pairwise evaluation will produce sufficient multi-facet data to detect and quantify judge-specific severity (d_j) and item-level contamination effects (c_n·e_i), enabling G-MFRM joint calibration to outperform sequential pipelines on real data."
+  },
+  "timestamp": "2026-05-22T02:57:51.001520+00:00",
+  "trigger": "update_registry"
+}

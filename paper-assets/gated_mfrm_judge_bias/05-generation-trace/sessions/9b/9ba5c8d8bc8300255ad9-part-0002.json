@@ -1,0 +1,1189 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9ba5c8d8bc8300255ad9",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusion starts at 55% of page 8, Limitations at 69%. So the main text (Abstract through Conclusion) occupies about 7.6 pages — well within the 8-page limit. Limitations is on page 8 which doesn't count toward the limit.\n\nLet me check for undefined references and warnings:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "d3dda153-6e40-491c-9392-49818ff14e61",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017S2X3PtMAQP2hptuAQanWd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 327,
+                "cache_read_input_tokens": 81100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 327
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ST12dridgUSm4G7TAXNci",
+              "name": "Bash",
+              "input": {
+                "command": "grep -c \"undefined\" main.log; grep \"LaTeX Warning.*undefined\" main.log | head -10; grep \"LaTeX Warning.*Citation\" main.log | head -10"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "33d67d72-2c9c-4a4e-8392-229b6bbcddfe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017S2X3PtMAQP2hptuAQanWd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 327,
+                "cache_read_input_tokens": 81100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 327
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-25T08:16:42.917Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ST12dridgUSm4G7TAXNci",
+              "type": "tool_result",
+              "content": "0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "1e5b435d-3b64-447b-81db-b0ce2eceaaa2",
+            "tool_use_result": {
+              "stdout": "0",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No undefined references or citation warnings. Let me verify the final state of all edited files:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "cdbbd3a4-3871-4a28-8ba0-a0c6ad17412d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K617WU6Yp729s9qXNcqaLy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 179,
+                "cache_read_input_tokens": 81427,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 179
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WZ1BMpoFpWtMcDUBcg28nH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "209c0051-9c70-425e-97ab-4ffd74855ed3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K617WU6Yp729s9qXNcqaLy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 179,
+                "cache_read_input_tokens": 81427,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 179
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-25T08:16:46.078Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WZ1BMpoFpWtMcDUBcg28nH",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{forest_dj}\n7\t\\caption{Judge severity estimates ($d_j$) for all nine judges with 94\\% credible intervals. Positive values indicate stricter scoring. Proprietary judges (Claude Opus, GPT-5.5) cluster at the strict end; open-source judges (Mistral, LLaMA) are more lenient. The severity range spans 1.34 logits.}\n8\t\\label{fig:judge_severity}\n9\t\\end{figure}\n10\t\n11\t\\subsection{Setup}\n12\t\\label{sec:setup}\n13\t\n14\t\\paragraph{Data and models.} We evaluate on Arena-Hard \\citep{li2024arenahard}, a benchmark of 316 multi-turn conversational items selected for high separability among frontier models. After filtering for coverage, the evaluation set comprises 176 items in a connected incomplete design (XX{,}XXX observations; XX.X\\% fill rate of the full $N \\times I \\times J$ tensor). Seventeen target models spanning proprietary and open-source families are evaluated: the original 8 models (GPT-4o, GPT-4o-mini, Qwen2.5-72B, LLaMA-3.3-70B, Qwen3-8B, Gemma-2-9B, GPT-4-0613, GPT-3.5-Turbo) plus 9 additional models (Claude-3.5-Sonnet, GPT-4-Turbo, LLaMA-3.1-70B, Gemma-2-27B, Claude-3-Opus, LLaMA-3-70B, Mixtral-8x22B, Claude-3-Haiku, LLaMA-3-8B). Ground-truth rankings are derived from Chatbot Arena human preference data \\citep{zheng2023mtbench}.\n15\t\n16\t\\paragraph{Judges.} Nine LLM judges score model responses in position-swapped pairwise mode: GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini-2.5-Pro, Mistral-Large-2, LLaMA-3.3-70B, Qwen2.5-72B, and Qwen3-235B. Seven judges cover all 17 target models; two judges (GPT-5.5 and Claude Opus 4.7) cover only the original 8 models, yielding an asymmetric connected design---Theorem~\\ref{thm:sufficient} requires only connectivity, not full crossing. Position swapping controls for position bias and doubles the effective observation count. Two models---Qwen2.5-72B and LLaMA-3.3-70B---serve as both judge and target; $d_j$ absorbs systematic self-evaluation bias, and excluding self-judging observations leaves rankings unchanged ($\\tau = 0.857$; Appendix~\\ref{app:self_eval}).\n17\t\n18\t\\paragraph{Exposure estimation.} Per-item exposure $e_i$ is estimated via a two-source pipeline (\\S\\ref{sec:staged}): reference model anchoring with gpt-4-0314 as anchor (75\\% weight) and cross-model agreement (25\\% weight). The pipeline is robust to weight configuration (Spearman $\\rho \\geq 0.998$ across all configurations tested).\n19\t\n20\t\\paragraph{MCMC.} We use NumPyro's NUTS sampler with 4{,}000 warmup and 4{,}000 sampling iterations across 4 chains (target acceptance 0.95). The contamination prior follows the hierarchical HalfNormal specification (Eq.~\\ref{eq:contam_prior}). Convergence is assessed via rank-normalized split-$\\hat{R}$ \\citep{vehtari2021rhat} with conventional $\\hat{R} < 1.05$ and ESS $> 100$ thresholds \\citep{gelman2013bda}.\n21\t\n22\t\\subsection{Baselines and Main Results}\n23\t\\label{sec:main_results}\n24\t\n25\tWe compare G-MFRM against seven methods that address judge bias or contamination separately: (1) Raw Average, (2) MFRM-only (Eq.~\\ref{eq:mfrm}), (3) Sequential pipeline (MFRM then contamination adjustment), (4) CyclicJudge \\citep{cyclicjudge2026}, (5) CyclicJudge+discard (exposed items removed), (6) DCR Factor \\citep{dcr2025}, and (7) Preference Leakage calibration \\citep{preference_leakage2026}. All methods are evaluated by Kendall $\\tau$ and Spearman $\\rho$ against Chatbot Arena human rankings.\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\small\n30\t\\begin{tabular}{lcccc}\n31\t\\toprule\n32\t& \\multicolumn{2}{c}{\\textbf{8 models}} & \\multicolumn{2}{c}{\\textbf{17 models}} \\\\\n33\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n34\t\\textbf{Method} & $\\tau$ & $\\rho$ & $\\tau$ & $\\rho$ \\\\\n35\t\\midrule\n36\tRaw Average & 0.786 & 0.905 & 0.838 & 0.949 \\\\\n37\tMFRM-only & 0.786 & 0.905 & TBD & TBD \\\\\n38\tSequential & 0.786 & 0.905 & TBD & TBD \\\\\n39\tCyclicJudge & 0.786 & 0.905 & 0.838 & 0.949 \\\\\n40\tCyclicJudge+discard & 0.786 & 0.905 & 0.824 & 0.934 \\\\\n41\tDCR Factor & 0.786 & 0.905 & 0.824 & 0.946 \\\\\n42\tPref.\\ Leakage & 0.786 & 0.905 & 0.838 & 0.949 \\\\\n43\t\\midrule\n44\tG-MFRM (ours) & \\textbf{0.857} & \\textbf{0.952} & \\textbf{TBD} & \\textbf{TBD} \\\\\n45\t\\bottomrule\n46\t\\end{tabular}\n47\t\\caption{Correlation with Chatbot Arena human rankings on Arena-Hard (9 judges). All seven baselines produce identical rankings at $N = 8$ ($\\tau = 0.786$). G-MFRM yields nominally higher point-estimate rank agreement ($+$7.1pp; bootstrap $\\Delta\\tau$ CI includes zero). Right columns report the 17-model evaluation (TBD).}\n48\t\\label{tab:main_results}\n49\t\\end{table}\n50\t\n51\t\\begin{figure*}[t]\n52\t\\centering\n53\t\\includegraphics[width=\\textwidth]{fig6_cn_profile}\n54\t\\caption{Per-model contamination diagnostics from G-MFRM. (a)~Posterior estimates of contamination susceptibility $\\hat{c}_n$ with 95\\% credible intervals, ordered by magnitude. Older models (GPT-3.5-Turbo, GPT-4-0613) show 4--6$\\times$ higher susceptibility than recent models (GPT-4o). (b)~Ability bias absorbed by MFRM-only estimation: $\\Delta\\theta = \\hat{\\theta}_{\\mathrm{MFRM}} - \\hat{\\theta}_{\\mathrm{G\\text{-}MFRM}}$. The perfect rank correlation (Spearman $\\rho = 1.0$) confirms that contamination inflates MFRM ability estimates for high-$c_n$ models and deflates them for low-$c_n$ models, as predicted by the OVB analysis (Section~\\ref{sec:confounding}).}\n55\t\\label{fig:cn_profile}\n56\t\\end{figure*}\n57\t\n58\tAll seven baselines produce identical rankings ($\\tau = 0.786$, $\\rho = 0.905$; raw ability scores differ by $< 0.03$ logits, Table~\\ref{tab:raw_scores}). G-MFRM achieves nominally higher rank agreement ($\\tau = 0.857$, $\\rho = 0.952$), but bootstrap $\\Delta\\tau$ 95\\% CI $[-0.071, 0.071]$ includes zero at $N = 8$, though $P(\\Delta\\tau \\geq 0) = 0.927$. On synthetic data ($N = 50$), the improvement is significant ($\\tau = 0.922$ vs.\\ $0.839$, Wilcoxon $p < 0.001$), confirming the effect is real but below detection at this sample size.\n59\t\n60\t\\paragraph{Predictive fit.} LOO cross-validation strongly favors G-MFRM ($\\Delta\\mathrm{ELPD}_{\\mathrm{LOO}} = -55.7$, SE $= 9.4$, $|\\Delta/\\mathrm{SE}| = 5.9$; \\citealp{vehtari2017loo}), with stacking weight 1.0 and all Pareto $\\hat{k} < 0.7$.\n61\t\n62\t\\paragraph{Ranking accuracy.} The $\\Delta\\tau = +0.071$ improvement is not statistically significant at $N = 8$ (bootstrap 95\\% CI crosses zero; post-hoc power ${\\sim}$50\\%). Power analysis indicates $N \\approx 17$ for 80\\% power (Appendix~\\ref{app:power}), validated at $N = 20$ where the improvement reaches significance ($p < 0.001$; Appendix~\\ref{app:synthetic_calibration}).\n63\t\n64\tAll parameters achieve $\\hat{R} \\leq 1.03$ with ESS $\\geq 174$ and zero divergent transitions; model- and judge-level fit statistics fall within acceptable ranges (MNSQ $\\in [0.63, 1.07]$; full diagnostics in Appendices~\\ref{app:item_diagnostics} and~\\ref{app:ppc}). Contamination susceptibility $\\hat{c}_n$ exhibits a gradient by model age (Figure~\\ref{fig:cn_profile}a): the four oldest models show $\\hat{c}_n > 1.0$ (GPT-3.5-Turbo: $5.60$; GPT-4-0613: $4.20$; Qwen2.5-72B: $3.00$; LLaMA-3.3-70B: $2.50$), while recent models show low contamination (GPT-4o: $0.88$; GPT-4o-mini: $0.93$). MFRM-only inflates ability estimates for the most contaminated models by up to 0.79 logits (Figure~\\ref{fig:cn_profile}b; Table~\\ref{tab:bias_absorption}). Judge severity $d_j$ separates by provenance: proprietary judges score more strictly, spanning 1.34 logits (Figure~\\ref{fig:judge_severity}; Table~\\ref{tab:judge_severity}). Results are robust to prior specification and judge panel size ($k \\geq 4$ suffices; Appendices~\\ref{app:prior_robustness} and~\\ref{app:judge_count}).\n65\t\n66\t\\subsection{Error Propagation Robustness}\n67\t\\label{sec:error_prop_results}\n68\t\n69\tTable~\\ref{tab:error_prop} validates the theoretical prediction (\\S\\ref{sec:error_prop}): below $\\sigma = 0.2$, ability RMSE increases by 5.9\\% and contamination RMSE by 7.9\\%; beyond the threshold ($\\sigma = 0.5$), degradation becomes substantial. Ablation (Table~\\ref{tab:ablation}, Appendix~\\ref{app:ablation}) confirms joint estimation as the dominant contributor ($2.0\\times$ $\\theta$-RMSE increase under staged estimation, $p < 0.001$) and continuous gating over binary ($c_n$-RMSE $-$40\\%, $p < 0.001$).\n70\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "37bfc8b3-62f7-4a04-845c-b88dae4ea49f",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{forest_dj}\n\\caption{Judge severity estimates ($d_j$) for all nine judges with 94\\% credible intervals. Positive values indicate stricter scoring. Proprietary judges (Claude Opus, GPT-5.5) cluster at the strict end; open-source judges (Mistral, LLaMA) are more lenient. The severity range spans 1.34 logits.}\n\\label{fig:judge_severity}\n\\end{figure}\n\n\\subsection{Setup}\n\\label{sec:setup}\n\n\\paragraph{Data and models.} We evaluate on Arena-Hard \\citep{li2024arenahard}, a benchmark of 316 multi-turn conversational items selected for high separability among frontier models. After filtering for coverage, the evaluation set comprises 176 items in a connected incomplete design (XX{,}XXX observations; XX.X\\% fill rate of the full $N \\times I \\times J$ tensor). Seventeen target models spanning proprietary and open-source families are evaluated: the original 8 models (GPT-4o, GPT-4o-mini, Qwen2.5-72B, LLaMA-3.3-70B, Qwen3-8B, Gemma-2-9B, GPT-4-0613, GPT-3.5-Turbo) plus 9 additional models (Claude-3.5-Sonnet, GPT-4-Turbo, LLaMA-3.1-70B, Gemma-2-27B, Claude-3-Opus, LLaMA-3-70B, Mixtral-8x22B, Claude-3-Haiku, LLaMA-3-8B). Ground-truth rankings are derived from Chatbot Arena human preference data \\citep{zheng2023mtbench}.\n\n\\paragraph{Judges.} Nine LLM judges score model responses in position-swapped pairwise mode: GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini-2.5-Pro, Mistral-Large-2, LLaMA-3.3-70B, Qwen2.5-72B, and Qwen3-235B. Seven judges cover all 17 target models; two judges (GPT-5.5 and Claude Opus 4.7) cover only the original 8 models, yielding an asymmetric connected design---Theorem~\\ref{thm:sufficient} requires only connectivity, not full crossing. Position swapping controls for position bias and doubles the effective observation count. Two models---Qwen2.5-72B and LLaMA-3.3-70B---serve as both judge and target; $d_j$ absorbs systematic self-evaluation bias, and excluding self-judging observations leaves rankings unchanged ($\\tau = 0.857$; Appendix~\\ref{app:self_eval}).\n\n\\paragraph{Exposure estimation.} Per-item exposure $e_i$ is estimated via a two-source pipeline (\\S\\ref{sec:staged}): reference model anchoring with gpt-4-0314 as anchor (75\\% weight) and cross-model agreement (25\\% weight). The pipeline is robust to weight configuration (Spearman $\\rho \\geq 0.998$ across all configurations tested).\n\n\\paragraph{MCMC.} We use NumPyro's NUTS sampler with 4{,}000 warmup and 4{,}000 sampling iterations across 4 chains (target acceptance 0.95). The contamination prior follows the hierarchical HalfNormal specification (Eq.~\\ref{eq:contam_prior}). Convergence is assessed via rank-normalized split-$\\hat{R}$ \\citep{vehtari2021rhat} with conventional $\\hat{R} < 1.05$ and ESS $> 100$ thresholds \\citep{gelman2013bda}.\n\n\\subsection{Baselines and Main Results}\n\\label{sec:main_results}\n\nWe compare G-MFRM against seven methods that address judge bias or contamination separately: (1) Raw Average, (2) MFRM-only (Eq.~\\ref{eq:mfrm}), (3) Sequential pipeline (MFRM then contamination adjustment), (4) CyclicJudge \\citep{cyclicjudge2026}, (5) CyclicJudge+discard (exposed items removed), (6) DCR Factor \\citep{dcr2025}, and (7) Preference Leakage calibration \\citep{preference_leakage2026}. All methods are evaluated by Kendall $\\tau$ and Spearman $\\rho$ against Chatbot Arena human rankings.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{8 models}} & \\multicolumn{2}{c}{\\textbf{17 models}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n\\textbf{Method} & $\\tau$ & $\\rho$ & $\\tau$ & $\\rho$ \\\\\n\\midrule\nRaw Average & 0.786 & 0.905 & 0.838 & 0.949 \\\\\nMFRM-only & 0.786 & 0.905 & TBD & TBD \\\\\nSequential & 0.786 & 0.905 & TBD & TBD \\\\\nCyclicJudge & 0.786 & 0.905 & 0.838 & 0.949 \\\\\nCyclicJudge+discard & 0.786 & 0.905 & 0.824 & 0.934 \\\\\nDCR Factor & 0.786 & 0.905 & 0.824 & 0.946 \\\\\nPref.\\ Leakage & 0.786 & 0.905 & 0.838 & 0.949 \\\\\n\\midrule\nG-MFRM (ours) & \\textbf{0.857} & \\textbf{0.952} & \\textbf{TBD} & \\textbf{TBD} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Correlation with Chatbot Arena human rankings on Arena-Hard (9 judges). All seven baselines produce identical rankings at $N = 8$ ($\\tau = 0.786$). G-MFRM yields nominally higher point-estimate rank agreement ($+$7.1pp; bootstrap $\\Delta\\tau$ CI includes zero). Right columns report the 17-model evaluation (TBD).}\n\\label{tab:main_results}\n\\end{table}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{fig6_cn_profile}\n\\caption{Per-model contamination diagnostics from G-MFRM. (a)~Posterior estimates of contamination susceptibility $\\hat{c}_n$ with 95\\% credible intervals, ordered by magnitude. Older models (GPT-3.5-Turbo, GPT-4-0613) show 4--6$\\times$ higher susceptibility than recent models (GPT-4o). (b)~Ability bias absorbed by MFRM-only estimation: $\\Delta\\theta = \\hat{\\theta}_{\\mathrm{MFRM}} - \\hat{\\theta}_{\\mathrm{G\\text{-}MFRM}}$. The perfect rank correlation (Spearman $\\rho = 1.0$) confirms that contamination inflates MFRM ability estimates for high-$c_n$ models and deflates them for low-$c_n$ models, as predicted by the OVB analysis (Section~\\ref{sec:confounding}).}\n\\label{fig:cn_profile}\n\\end{figure*}\n\nAll seven baselines produce identical rankings ($\\tau = 0.786$, $\\rho = 0.905$; raw ability scores differ by $< 0.03$ logits, Table~\\ref{tab:raw_scores}). G-MFRM achieves nominally higher rank agreement ($\\tau = 0.857$, $\\rho = 0.952$), but bootstrap $\\Delta\\tau$ 95\\% CI $[-0.071, 0.071]$ includes zero at $N = 8$, though $P(\\Delta\\tau \\geq 0) = 0.927$. On synthetic data ($N = 50$), the improvement is significant ($\\tau = 0.922$ vs.\\ $0.839$, Wilcoxon $p < 0.001$), confirming the effect is real but below detection at this sample size.\n\n\\paragraph{Predictive fit.} LOO cross-validation strongly favors G-MFRM ($\\Delta\\mathrm{ELPD}_{\\mathrm{LOO}} = -55.7$, SE $= 9.4$, $|\\Delta/\\mathrm{SE}| = 5.9$; \\citealp{vehtari2017loo}), with stacking weight 1.0 and all Pareto $\\hat{k} < 0.7$.\n\n\\paragraph{Ranking accuracy.} The $\\Delta\\tau = +0.071$ improvement is not statistically significant at $N = 8$ (bootstrap 95\\% CI crosses zero; post-hoc power ${\\sim}$50\\%). Power analysis indicates $N \\approx 17$ for 80\\% power (Appendix~\\ref{app:power}), validated at $N = 20$ where the improvement reaches significance ($p < 0.001$; Appendix~\\ref{app:synthetic_calibration}).\n\nAll parameters achieve $\\hat{R} \\leq 1.03$ with ESS $\\geq 174$ and zero divergent transitions; model- and judge-level fit statistics fall within acceptable ranges (MNSQ $\\in [0.63, 1.07]$; full diagnostics in Appendices~\\ref{app:item_diagnostics} and~\\ref{app:ppc}). Contamination susceptibility $\\hat{c}_n$ exhibits a gradient by model age (Figure~\\ref{fig:cn_profile}a): the four oldest models show $\\hat{c}_n > 1.0$ (GPT-3.5-Turbo: $5.60$; GPT-4-0613: $4.20$; Qwen2.5-72B: $3.00$; LLaMA-3.3-70B: $2.50$), while recent models show low contamination (GPT-4o: $0.88$; GPT-4o-mini: $0.93$). MFRM-only inflates ability estimates for the most contaminated models by up to 0.79 logits (Figure~\\ref{fig:cn_profile}b; Table~\\ref{tab:bias_absorption}). Judge severity $d_j$ separates by provenance: proprietary judges score more strictly, spanning 1.34 logits (Figure~\\ref{fig:judge_severity}; Table~\\ref{tab:judge_severity}). Results are robust to prior specification and judge panel size ($k \\geq 4$ suffices; Appendices~\\ref{app:prior_robustness} and~\\ref{app:judge_count}).\n\n\\subsection{Error Propagation Robustness}\n\\label{sec:error_prop_results}\n\nTable~\\ref{tab:error_prop} validates the theoretical prediction (\\S\\ref{sec:error_prop}): below $\\sigma = 0.2$, ability RMSE increases by 5.9\\% and contamination RMSE by 7.9\\%; beyond the threshold ($\\sigma = 0.5$), degradation becomes substantial. Ablation (Table~\\ref{tab:ablation}, Appendix~\\ref{app:ablation}) confirms joint estimation as the dominant contributor ($2.0\\times$ $\\theta$-RMSE increase under staged estimation, $p < 0.001$) and continuous gating over binary ($c_n$-RMSE $-$40\\%, $p < 0.001$).\n",
+                "numLines": 70,
+                "startLine": 1,
+                "totalLines": 70
+              }
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file looks good. Let me verify the final versions of all other edited files and check for any cross-reference issues:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "6c2eff12-4a2f-40d8-a352-efbb777c13a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011FMrGWShNbRiFtfADMKszb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3319,
+                "cache_read_input_tokens": 81606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3319
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VR7Wa5mrX61RiWsDTo1MFq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "10b1bea0-390f-4609-8b4c-635a3ca79384",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011FMrGWShNbRiFtfADMKszb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3319,
+                "cache_read_input_tokens": 81606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3319
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-25T08:16:51.145Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VR7Wa5mrX61RiWsDTo1MFq",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Judge Bias in LLM Evaluation.}\n5\tLLM-as-a-judge evaluations exhibit position bias \\citep{wang2024positionbias}, self-preference \\citep{panickssery2024selffavor}, and other cognitive biases \\citep{koo2024cobbler, ye2024justice, bavaresco2025judgebench}; see also \\citet{li2024splitmerge} and \\citet{fiedler2026bias_uncertainty}. On the correction side, CyclicJudge \\citep{cyclicjudge2026} eliminates average bias via round-robin assignment, and UDA \\citep{uda2026} learns a neural K-factor reducing inter-judge deviation by 63.4\\%. All of these methods model only the judge facet, absorbing contamination effects into ability estimates (Section~\\ref{sec:confounding}).\n6\t\n7\t\\paragraph{Benchmark Contamination Detection and Avoidance.}\n8\tDetection methods include performance-based tests \\citep{constat2024}, unified contamination metrics \\citep{dcr2025}, token-level log-probability probes \\citep{logprober2024, mink2024}, and guided prompting \\citep{golchin2024timetravel, oren2024proving}; see also \\citet{deng2024contamination, sainz2023contamination}. \\citet{preference_leakage2026} identify judge-side preference leakage, complementary to G-MFRM's examinee-side focus. Avoidance strategies include dynamic benchmarks \\citep{livebench2025}, private evaluation \\citep{truce2024}, and subset selection \\citep{polo2024tinybenchmarks}. G-MFRM instead corrects for residual contamination while simultaneously modeling judge effects.\n9\t\n10\t\\paragraph{Item Response Theory (IRT) and MFRM for LLM Evaluation.}\n11\tIRT has been applied to NLP leaderboards for ranking and benchmark analysis \\citep{lalor2019irt, rodriguez2021irt, vania2021irt}. The Many-Facet Rasch Model (MFRM) \\citep{linacre1989mfrm, linacre1994mfrm} extends IRT to multi-rater settings; \\citet{jiao2025mfrm_llm} apply it to LLM judge panels, and \\citet{uto2020generalized} and \\citet{choi2026irt_judge} propose Bayesian variants; see also \\citet{zhou2025psnirt}. The Doubly-Gated IRT (DG-IRT) model of \\citet{shu2013dgirt} is the closest antecedent, introducing binary gating for item preknowledge; G-MFRM extends this to continuous exposure, multi-rater designs, and formal identifiability analysis (Section~\\ref{sec:model_spec}).\n12\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "fcb6eea4-c0d2-4fc5-ac0a-79db18df145b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Judge Bias in LLM Evaluation.}\nLLM-as-a-judge evaluations exhibit position bias \\citep{wang2024positionbias}, self-preference \\citep{panickssery2024selffavor}, and other cognitive biases \\citep{koo2024cobbler, ye2024justice, bavaresco2025judgebench}; see also \\citet{li2024splitmerge} and \\citet{fiedler2026bias_uncertainty}. On the correction side, CyclicJudge \\citep{cyclicjudge2026} eliminates average bias via round-robin assignment, and UDA \\citep{uda2026} learns a neural K-factor reducing inter-judge deviation by 63.4\\%. All of these methods model only the judge facet, absorbing contamination effects into ability estimates (Section~\\ref{sec:confounding}).\n\n\\paragraph{Benchmark Contamination Detection and Avoidance.}\nDetection methods include performance-based tests \\citep{constat2024}, unified contamination metrics \\citep{dcr2025}, token-level log-probability probes \\citep{logprober2024, mink2024}, and guided prompting \\citep{golchin2024timetravel, oren2024proving}; see also \\citet{deng2024contamination, sainz2023contamination}. \\citet{preference_leakage2026} identify judge-side preference leakage, complementary to G-MFRM's examinee-side focus. Avoidance strategies include dynamic benchmarks \\citep{livebench2025}, private evaluation \\citep{truce2024}, and subset selection \\citep{polo2024tinybenchmarks}. G-MFRM instead corrects for residual contamination while simultaneously modeling judge effects.\n\n\\paragraph{Item Response Theory (IRT) and MFRM for LLM Evaluation.}\nIRT has been applied to NLP leaderboards for ranking and benchmark analysis \\citep{lalor2019irt, rodriguez2021irt, vania2021irt}. The Many-Facet Rasch Model (MFRM) \\citep{linacre1989mfrm, linacre1994mfrm} extends IRT to multi-rater settings; \\citet{jiao2025mfrm_llm} apply it to LLM judge panels, and \\citet{uto2020generalized} and \\citet{choi2026irt_judge} propose Bayesian variants; see also \\citet{zhou2025psnirt}. The Doubly-Gated IRT (DG-IRT) model of \\citet{shu2013dgirt} is the closest antecedent, introducing binary gating for item preknowledge; G-MFRM extends this to continuous exposure, multi-rater designs, and formal identifiability analysis (Section~\\ref{sec:model_spec}).\n",
+                "numLines": 12,
+                "startLine": 1,
+                "totalLines": 12
+              }
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U73YJ23aTsrLYZy3aeAmtF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "49f7e6d3-76b0-4695-9a26-62efe3462d1b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LK5LNdPf4vk9dMzdKmvPXH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 869,
+                "cache_read_input_tokens": 84925,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 869
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-25T08:16:54.085Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U73YJ23aTsrLYZy3aeAmtF",
+              "type": "tool_result",
+              "content": "1\t\\section{Confounding in LLM Evaluation}\n2\t\\label{sec:confounding}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{fig2_ovb_bias}\n7\t\\caption{Sequential estimation bias ($\\hat{\\theta}_{\\mathrm{seq}} - \\theta_{\\mathrm{true}}$) versus true contamination susceptibility $c_n$. Pearson $r = 0.86$ ($p < 0.001$) confirms systematic overestimation of contaminated models. Synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds).}\n8\t\\label{fig:ovb_bias}\n9\t\\end{figure}\n10\t\n11\tThe Many-Facet Rasch Model (MFRM) extends classical Rasch measurement to settings with multiple rater facets \\citep{linacre1989mfrm, linacre1994mfrm}. Originating in educational measurement, the model treats rater variation as a nuisance facet to be estimated and removed rather than a source of noise to be averaged over. In the LLM evaluation context, where $J$ judges score $N$ models across $I$ items, the MFRM specifies\n12\t%\n13\t\\begin{equation}\n14\t\\label{eq:mfrm}\n15\t\\log \\frac{P(Y_{nij} \\geq k \\mid \\theta_n, b_i, d_j, \\tau_k)}{P(Y_{nij} < k \\mid \\theta_n, b_i, d_j, \\tau_k)} = \\theta_n - b_i - d_j - \\tau_k,\n16\t\\end{equation}\n17\t%\n18\twhere $Y_{nij}$ is the ordinal rating by judge $j$ for model $n$ on item $i$, $\\theta_n$ is the ability of model $n$ ($n = 1, \\ldots, N$), $b_i$ is the difficulty of item $i$ ($i = 1, \\ldots, I$), $d_j$ is the severity of judge $j$ ($j = 1, \\ldots, J$), and $\\tau_k$ is the threshold for category $k$. All facets reside on a common logit scale, so model ability is directly comparable after adjustment for item difficulty and judge severity. \\citet{jiao2025mfrm_llm} applied this framework to compare ten LLM raters with human experts, showing that MFRM separates genuine ability from systematic judge effects in multi-judge panels.\n19\t\n20\tHowever, standard MFRM assumes that all systematic sources of score variation are captured by the modeled facets. This assumption breaks down when some models have been exposed to benchmark items during training \\citep{dcr2025}. Such contamination inflates scores on exposed items through memorization rather than genuine ability. We represent this effect as an interaction $c_n \\cdot e_i$, where $c_n \\geq 0$ is the contamination susceptibility of model $n$ and $e_i \\in [0, 1]$ is the exposure level of item $i$. The complete data-generating process becomes\n21\t%\n22\t\\begin{equation}\n23\t\\label{eq:full}\n24\t\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i.\n25\t\\end{equation}\n26\t\n27\t\\begin{figure}[t]\n28\t\\centering\n29\t\\includegraphics[width=\\columnwidth]{fig4_bias_vs_rho}\n30\t\\caption{Sequential estimator bias remains approximately constant across confounding levels ($\\rho$), confirming omission-driven rather than confounding-strength-dependent bias. Joint G-MFRM estimation reduces bias by approximately 70\\% at all $\\rho$ levels. Synthetic data: $N = 50$, $I = 100$, $J = 8$, 50 seeds.}\n31\t\\label{fig:bias_vs_rho}\n32\t\\end{figure}\n33\t\n34\tWhen a practitioner fits the standard MFRM (Eq.~\\ref{eq:mfrm}) to data generated by Eq.~\\ref{eq:full}, the contamination term is absent from the estimated model. Its influence does not vanish but is absorbed into the estimated parameters $\\tilde{\\theta}_n$, $\\tilde{b}_i$, and $\\tilde{d}_j$, which distorts all downstream inferences.\n35\t\n36\tThe consequence of this omission can be stated precisely.\n37\t\n38\t\\begin{observation}[Omitted Variable Bias in MFRM]\n39\t\\label{obs:ovb}\n40\tLet the full model be $\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i$ and the short model omit the contamination term: $\\tilde{\\eta}_{nijk} = \\tilde{\\theta}_n - \\tilde{b}_i - \\tilde{d}_j - \\tau_k$. Under a linear approximation to the ordinal logit link \\citep{wooldridge2010, angrist2009mostly},\\footnote{The OVB formula is exact for linear models. We apply it to the MFRM linear predictor $\\eta$, which is an approximation. Synthetic validation confirms the approximation quality: the Pearson correlation between the predicted bias direction and empirical bias reaches $r = 0.86$ ($p < 0.001$), indicating that the linear result accurately characterizes bias direction and relative magnitude.}\n41\t\\begin{equation}\n42\t\\label{eq:ovb}\n43\t\\mathrm{plim}(\\tilde{\\theta}_n - \\theta_n) = \\gamma_n \\cdot c_n,\n44\t\\end{equation}\n45\twhere $\\gamma_n$ depends on the projection of the exposure vector $(e_i)$ onto the design matrix of the short model (explicit form in Appendix~\\ref{app:gamma}). The bias is non-zero whenever $\\mathrm{Cov}(d_j,\\, c_n \\cdot e_i) \\neq 0$. This captures the confounding component; in the nonlinear MFRM, a specification bias from omitting $c_n \\cdot e_i$ persists even at zero covariance (Section~\\ref{sec:experiments}).\n46\t\\end{observation}\n47\t\n48\tG-MFRM's Stage~3 inference (Eq.~\\ref{eq:gmfrm}) uses the full nonlinear ordinal logistic likelihood; the linear approximation serves only as directional motivation. Monte Carlo simulation confirms that bias magnitude is approximately constant across confounding levels $\\rho$ (Figure~\\ref{fig:bias_vs_rho}), indicating that omission of $c_n \\cdot e_i$---not its correlation with $d_j$---is the primary driver. Neither sequential ordering resolves this: bias-first approaches \\citep{cyclicjudge2026} absorb contamination into $\\hat{\\theta}$, while contamination-first approaches \\citep{dcr2025} misattribute judge severity as contamination. Synthetic validation ($N = 50$, $I = 100$, $J = 8$, 20 seeds) confirms directional bias ($r = 0.86$, $p < 0.001$; Figure~\\ref{fig:ovb_bias})."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "e27d6b1c-5426-4303-ae79-f1789ab53438",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex",
+                "content": "\\section{Confounding in LLM Evaluation}\n\\label{sec:confounding}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig2_ovb_bias}\n\\caption{Sequential estimation bias ($\\hat{\\theta}_{\\mathrm{seq}} - \\theta_{\\mathrm{true}}$) versus true contamination susceptibility $c_n$. Pearson $r = 0.86$ ($p < 0.001$) confirms systematic overestimation of contaminated models. Synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds).}\n\\label{fig:ovb_bias}\n\\end{figure}\n\nThe Many-Facet Rasch Model (MFRM) extends classical Rasch measurement to settings with multiple rater facets \\citep{linacre1989mfrm, linacre1994mfrm}. Originating in educational measurement, the model treats rater variation as a nuisance facet to be estimated and removed rather than a source of noise to be averaged over. In the LLM evaluation context, where $J$ judges score $N$ models across $I$ items, the MFRM specifies\n%\n\\begin{equation}\n\\label{eq:mfrm}\n\\log \\frac{P(Y_{nij} \\geq k \\mid \\theta_n, b_i, d_j, \\tau_k)}{P(Y_{nij} < k \\mid \\theta_n, b_i, d_j, \\tau_k)} = \\theta_n - b_i - d_j - \\tau_k,\n\\end{equation}\n%\nwhere $Y_{nij}$ is the ordinal rating by judge $j$ for model $n$ on item $i$, $\\theta_n$ is the ability of model $n$ ($n = 1, \\ldots, N$), $b_i$ is the difficulty of item $i$ ($i = 1, \\ldots, I$), $d_j$ is the severity of judge $j$ ($j = 1, \\ldots, J$), and $\\tau_k$ is the threshold for category $k$. All facets reside on a common logit scale, so model ability is directly comparable after adjustment for item difficulty and judge severity. \\citet{jiao2025mfrm_llm} applied this framework to compare ten LLM raters with human experts, showing that MFRM separates genuine ability from systematic judge effects in multi-judge panels.\n\nHowever, standard MFRM assumes that all systematic sources of score variation are captured by the modeled facets. This assumption breaks down when some models have been exposed to benchmark items during training \\citep{dcr2025}. Such contamination inflates scores on exposed items through memorization rather than genuine ability. We represent this effect as an interaction $c_n \\cdot e_i$, where $c_n \\geq 0$ is the contamination susceptibility of model $n$ and $e_i \\in [0, 1]$ is the exposure level of item $i$. The complete data-generating process becomes\n%\n\\begin{equation}\n\\label{eq:full}\n\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i.\n\\end{equation}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig4_bias_vs_rho}\n\\caption{Sequential estimator bias remains approximately constant across confounding levels ($\\rho$), confirming omission-driven rather than confounding-strength-dependent bias. Joint G-MFRM estimation reduces bias by approximately 70\\% at all $\\rho$ levels. Synthetic data: $N = 50$, $I = 100$, $J = 8$, 50 seeds.}\n\\label{fig:bias_vs_rho}\n\\end{figure}\n\nWhen a practitioner fits the standard MFRM (Eq.~\\ref{eq:mfrm}) to data generated by Eq.~\\ref{eq:full}, the contamination term is absent from the estimated model. Its influence does not vanish but is absorbed into the estimated parameters $\\tilde{\\theta}_n$, $\\tilde{b}_i$, and $\\tilde{d}_j$, which distorts all downstream inferences.\n\nThe consequence of this omission can be stated precisely.\n\n\\begin{observation}[Omitted Variable Bias in MFRM]\n\\label{obs:ovb}\nLet the full model be $\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i$ and the short model omit the contamination term: $\\tilde{\\eta}_{nijk} = \\tilde{\\theta}_n - \\tilde{b}_i - \\tilde{d}_j - \\tau_k$. Under a linear approximation to the ordinal logit link \\citep{wooldridge2010, angrist2009mostly},\\footnote{The OVB formula is exact for linear models. We apply it to the MFRM linear predictor $\\eta$, which is an approximation. Synthetic validation confirms the approximation quality: the Pearson correlation between the predicted bias direction and empirical bias reaches $r = 0.86$ ($p < 0.001$), indicating that the linear result accurately characterizes bias direction and relative magnitude.}\n\\begin{equation}\n\\label{eq:ovb}\n\\mathrm{plim}(\\tilde{\\theta}_n - \\theta_n) = \\gamma_n \\cdot c_n,\n\\end{equation}\nwhere $\\gamma_n$ depends on the projection of the exposure vector $(e_i)$ onto the design matrix of the short model (explicit form in Appendix~\\ref{app:gamma}). The bias is non-zero whenever $\\mathrm{Cov}(d_j,\\, c_n \\cdot e_i) \\neq 0$. This captures the confounding component; in the nonlinear MFRM, a specification bias from omitting $c_n \\cdot e_i$ persists even at zero covariance (Section~\\ref{sec:experiments}).\n\\end{observation}\n\nG-MFRM's Stage~3 inference (Eq.~\\ref{eq:gmfrm}) uses the full nonlinear ordinal logistic likelihood; the linear approximation serves only as directional motivation. Monte Carlo simulation confirms that bias magnitude is approximately constant across confounding levels $\\rho$ (Figure~\\ref{fig:bias_vs_rho}), indicating that omission of $c_n \\cdot e_i$---not its correlation with $d_j$---is the primary driver. Neither sequential ordering resolves this: bias-first approaches \\citep{cyclicjudge2026} absorb contamination into $\\hat{\\theta}$, while contamination-first approaches \\citep{dcr2025} misattribute judge severity as contamination. Synthetic validation ($N = 50$, $I = 100$, $J = 8$, 20 seeds) confirms directional bias ($r = 0.86$, $p < 0.001$; Figure~\\ref{fig:ovb_bias}).",
+                "numLines": 48,
+                "startLine": 1,
+                "totalLines": 48
+              }
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Everything looks correct. Let me do a final clean compilation to make sure:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "6ce2c70b-4403-46f8-a5c6-3af119f6e93c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YSYJbYeHj4AWDTvfRjYFzB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1963,
+                "cache_read_input_tokens": 85794,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1963
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P6Qn7ByDZjeop7hpv5gC7M",
+              "name": "Bash",
+              "input": {
+                "command": "rm -f main.aux main.bbl main.blg main.fls main.fdb_latexmk main.out main.log && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"(Error|Warning|undefined|Pages)\" | grep -v \"Font\" | grep -v \"pdf\" | head -20",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "9e56d0d8-e58f-4cbb-ba45-66cd53f362f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YSYJbYeHj4AWDTvfRjYFzB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1963,
+                "cache_read_input_tokens": 85794,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1963
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b79e5jgjp",
+                "tool_use_id": "toolu_01P6Qn7ByDZjeop7hpv5gC7M",
+                "description": "rm -f main.aux main.bbl main.blg main.fls main.fdb_latexmk main.out main.log && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"(Error|Warning|undefined|Pages)\" | grep -v \"Font\" | grep -v \"pdf\" | head -20",
+                "task_type": "local_bash",
+                "uuid": "7764fbf4-bcfd-4351-b278-bbcbd11a6884",
+                "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc"
+              }
+            }
+          ],
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b79e5jgjp",
+                "tool_use_id": "toolu_01P6Qn7ByDZjeop7hpv5gC7M",
+                "status": "completed",
+                "output_file": "",
+                "summary": "rm -f main.aux main.bbl main.blg main.fls main.fdb_latexmk main.out main.log && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"(Error|Warning|undefined|Pages)\" | grep -v \"Font\" | grep -v \"pdf\" | head -20",
+                "uuid": "deec3931-a8d8-4f99-b37e-f20e9c626e8e",
+                "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc"
+              }
+            }
+          ],
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-25T08:17:07.701Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P6Qn7ByDZjeop7hpv5gC7M",
+              "type": "tool_result",
+              "content": "Package lineno Warning: Line number reference failed, re-run to get it right.\nPackage natbib Warning: Citation `zheng2023mtbench' on page 1 undefined on inpu\nPackage natbib Warning: Citation `wang2024positionbias' on page 1 undefined on \nPackage natbib Warning: Citation `ye2024justice' on page 1 undefined on input l\nPackage natbib Warning: Citation `panickssery2024selffavor' on page 1 undefined\nPackage natbib Warning: Citation `dcr2025' on page 1 undefined on input line 4.\nPackage natbib Warning: Citation `mink2024' on page 1 undefined on input line 4\nPackage natbib Warning: Citation `cyclicjudge2026' on page 1 undefined on input\nPackage natbib Warning: Citation `uda2026' on page 1 undefined on input line 4.\nPackage natbib Warning: Citation `constat2024' on page 1 undefined on input lin\nPackage natbib Warning: Citation `dcr2025' on page 1 undefined on input line 4.\nPackage natbib Warning: Citation `logprober2024' on page 1 undefined on input l\nPackage natbib Warning: Citation `angrist2009mostly' on page 1 undefined on inp\nPackage natbib Warning: Citation `linacre1989mfrm' on page 1 undefined on input\nLaTeX Warning: Reference `sec:confounding' on page 1 undefined on input line 13\nPackage natbib Warning: Citation `shu2013dgirt' on page 1 undefined on input li\nLaTeX Warning: Reference `fig:framework' on page 1 undefined on input line 15.\nLaTeX Warning: Reference `thm:sufficient' on page 1 undefined on input line 15.\nLaTeX Warning: Reference `sec:method' on page 2 undefined on input line 17.\nLaTeX Warning: Reference `sec:experiments' on page 2 undefined on input line 18",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "f4c0660e-8a8a-4e53-8398-dac24bdc4528",
+            "tool_use_result": {
+              "stdout": "Package lineno Warning: Line number reference failed, re-run to get it right.\nPackage natbib Warning: Citation `zheng2023mtbench' on page 1 undefined on inpu\nPackage natbib Warning: Citation `wang2024positionbias' on page 1 undefined on \nPackage natbib Warning: Citation `ye2024justice' on page 1 undefined on input l\nPackage natbib Warning: Citation `panickssery2024selffavor' on page 1 undefined\nPackage natbib Warning: Citation `dcr2025' on page 1 undefined on input line 4.\nPackage natbib Warning: Citation `mink2024' on page 1 undefined on input line 4\nPackage natbib Warning: Citation `cyclicjudge2026' on page 1 undefined on input\nPackage natbib Warning: Citation `uda2026' on page 1 undefined on input line 4.\nPackage natbib Warning: Citation `constat2024' on page 1 undefined on input lin\nPackage natbib Warning: Citation `dcr2025' on page 1 undefined on input line 4.\nPackage natbib Warning: Citation `logprober2024' on page 1 undefined on input l\nPackage natbib Warning: Citation `angrist2009mostly' on page 1 undefined on inp\nPackage natbib Warning: Citation `linacre1989mfrm' on page 1 undefined on input\nLaTeX Warning: Reference `sec:confounding' on page 1 undefined on input line 13\nPackage natbib Warning: Citation `shu2013dgirt' on page 1 undefined on input li\nLaTeX Warning: Reference `fig:framework' on page 1 undefined on input line 15.\nLaTeX Warning: Reference `thm:sufficient' on page 1 undefined on input line 15.\nLaTeX Warning: Reference `sec:method' on page 2 undefined on input line 17.\nLaTeX Warning: Reference `sec:experiments' on page 2 undefined on input line 18",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "These are first-pass warnings that will resolve on subsequent runs. latexmk handles multi-pass. Let me check:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "e0c42e72-4a46-4da4-a0a9-3d1a02b87e0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XEgeVKdLTxSuXbabPWUjq1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 665,
+                "cache_read_input_tokens": 87757,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 665
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0171B5foRKz2D1VNR31RKTon",
+              "name": "Bash",
+              "input": {
+                "command": "latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -3",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "11c2f67a-17c6-4f9a-b1d3-547d646c5e6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XEgeVKdLTxSuXbabPWUjq1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 665,
+                "cache_read_input_tokens": 87757,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 665
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-25T08:17:16.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0171B5foRKz2D1VNR31RKTon",
+              "type": "tool_result",
+              "content": "Latexmk: Nothing to do for 'main.tex'.\nLatexmk: All targets (main.pdf) are up-to-date",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "861ec6b9-f550-4631-956e-7097890bd969",
+            "tool_use_result": {
+              "stdout": "Latexmk: Nothing to do for 'main.tex'.\nLatexmk: All targets (main.pdf) are up-to-date",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DupWSTXEnb7VXY3Uh8TCf7",
+              "name": "Bash",
+              "input": {
+                "command": "grep \"undefined\" main.log | grep -v \"Font\" | head -10"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "962cf96a-213d-450e-a2e1-a6df54dda5fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qnsn7XsCtTsHdzZZHEamKv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 272,
+                "cache_read_input_tokens": 88422,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 272
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-25T08:17:24.698Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DupWSTXEnb7VXY3Uh8TCf7",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "0f8f67c4-b938-4a66-9ce8-f1d33580176e",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bk8Zy3wJtrR3kPZ5o39uQH",
+              "name": "Bash",
+              "input": {
+                "command": "grep \"LaTeX Warning\" main.log | head -10"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "329be18f-0a70-463e-bc78-7926d8a2bd00",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EMTajb8ydDE7xdpoEhxxZL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 88694,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 87
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-25T08:17:27.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bk8Zy3wJtrR3kPZ5o39uQH",
+              "type": "tool_result",
+              "content": "LaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "d6d50d00-dc4f-43c8-82d5-5a2d494e3ffb",
+            "tool_use_result": {
+              "stdout": "LaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No undefined references. Only benign float placement warnings in the appendix.\n\nFinal page count verification:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "e8cb9370-07a9-4d91-8a37-ed35ae59f8f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013wZ4vce8eQrcWuVKzYwnkU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 160,
+                "cache_read_input_tokens": 88781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 160
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T4gCStixvgDfApk98waFrS",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport fitz\ndoc = fitz.open('main.pdf')\nprint(f'Total pages: {len(doc)}')\nfor page_num in range(min(12, len(doc))):\n    page = doc[page_num]\n    text = page.get_text()\n    for kw in ['Introduction', 'Related Work', 'Confounding', 'The G-MFRM', 'Experiments', 'Conclusion', 'Limitations', 'References']:\n        lines = text.split('\\n')\n        for line in lines:\n            s = line.strip()\n            # Match section headers\n            if s == kw or s.endswith(kw):\n                if len(s) < 40:\n                    idx = text.index(s)\n                    pct = idx / len(text) * 100\n                    print(f'  Page {page_num+1} ({pct:.0f}%): {s}')\n\" 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "d312888d-90b4-4723-a7b2-3e74bc6afb62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013wZ4vce8eQrcWuVKzYwnkU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 160,
+                "cache_read_input_tokens": 88781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 160
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-25T08:17:36.577Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T4gCStixvgDfApk98waFrS",
+              "type": "tool_result",
+              "content": "Total pages: 17\n  Page 1 (43%): Introduction\n  Page 2 (56%): Related Work\n  Page 6 (93%): Experiments\n  Page 8 (55%): Conclusion\n  Page 8 (69%): Limitations\n  Page 9 (23%): References",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "d99e5401-8329-468b-b7ba-c0ca0ea9601f",
+            "tool_use_result": {
+              "stdout": "Total pages: 17\n  Page 1 (43%): Introduction\n  Page 2 (56%): Related Work\n  Page 6 (93%): Experiments\n  Page 8 (55%): Conclusion\n  Page 8 (69%): Limitations\n  Page 9 (23%): References",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SHiXhJqSW3Ai1svCkjMkVH",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport fitz\ndoc = fitz.open('main.pdf')\n# Find sections more carefully\nfor page_num in range(min(12, len(doc))):\n    page = doc[page_num]\n    text = page.get_text()\n    for kw in ['Confounding in LLM', 'The G-MFRM', 'Appendix', 'Proof of']:\n        if kw in text:\n            idx = text.index(kw)\n            pct = idx / len(text) * 100\n            line = text[idx:idx+40].split('\\n')[0]\n            print(f'  Page {page_num+1} ({pct:.0f}%): {line}')\n\" 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "3b80345c-ebc1-48b7-b204-ca2149ce4b13",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Trrh495k6jYE5u7ZJQvR3H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 403,
+                "cache_read_input_tokens": 88941,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 403
+                },
+                "output_tokens": 55,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-25T08:17:42.210Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SHiXhJqSW3Ai1svCkjMkVH",
+              "type": "tool_result",
+              "content": "  Page 2 (40%): The G-MFRM framework with formal identi-\n  Page 3 (37%): Confounding in LLM Evaluation\n  Page 4 (62%): The G-MFRM Framework\n  Page 4 (15%): Appendix C). The bias is\n  Page 5 (55%): Appendix N).\n  Page 6 (9%): The G-MFRM is locally identifiable, up\n  Page 6 (19%): Appendix B) follows Rothen-\n  Page 7 (30%): Appendix K).\n  Page 8 (49%): Appendix E) con-\n  Page 9 (5%): Appendix U), with recali-\n  Page 11 (61%): The G-MFRM parameter vector is ψ =\n  Page 11 (39%): Proof of Proposition 1. Suppose c′",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "0b15c52f-b623-4259-a891-e8320164d84a",
+            "tool_use_result": {
+              "stdout": "  Page 2 (40%): The G-MFRM framework with formal identi-\n  Page 3 (37%): Confounding in LLM Evaluation\n  Page 4 (62%): The G-MFRM Framework\n  Page 4 (15%): Appendix C). The bias is\n  Page 5 (55%): Appendix N).\n  Page 6 (9%): The G-MFRM is locally identifiable, up\n  Page 6 (19%): Appendix B) follows Rothen-\n  Page 7 (30%): Appendix K).\n  Page 8 (49%): Appendix E) con-\n  Page 9 (5%): Appendix U), with recali-\n  Page 11 (61%): The G-MFRM parameter vector is ψ =\n  Page 11 (39%): Proof of Proposition 1. Suppose c′",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sections layout:\n- Page 1: Abstract, Introduction (starts ~43%)\n- Page 2: Introduction cont., Related Work (starts ~56%)\n- Page 3: Confounding/Background (starts ~37%)\n- Page 4: G-MFRM Method (starts ~62%)\n- Page 5-6: Method cont. (Identifiability, Error Propagation)\n- Page 6-7: Experiments (starts ~93% of p6)\n- Page 8: Experiments cont., Conclusion (~55%), Limitations (~69%)\n- Page 9: Limitations cont., References (~23%)\n- Pages 10+: References cont., Appendix\n\n---\n\n**Summary:**\n\n**Final page count:** Main text (Abstract through Conclusion) = ~7.6 pages (Conclusion ends near top of page 8 at ~69%). Total PDF = 17 pages.\n\n**Section layout (approximate):**\n| Section | Pages |\n|---------|-------|\n| Abstract + Introduction | ~1.5 |\n| Related Work | ~0.8 |\n| Background (Confounding) | ~1.3 |\n| Method (G-MFRM) | ~2.0 |\n| Experiments | ~1.7 |\n| Conclusion | ~0.3 |\n\n**Content moved to appendix:**\n- Proposition 1 and 2 proofs → new `\\ref{app:prop_proofs}` section in appendix\n\n**Compressed in place (not moved):**\n- experiments.tex: Main results paragraph (deleted discretization artifact discussion, structural confounding cross-reference, CyclicJudge+discard interpretation), convergence diagnostics (compressed to 1 sentence), contamination/prior robustness/judge count details (1 sentence each), error propagation subsection (3 sentences), predictive fit/ranking accuracy paragraphs\n- method.tex: DG-IRT comparison (2 sentences), Stage 2 exposure (removed LogProber sentence, merged non-circularity), Theorem 1 explanation, error propagation numerical details, Murphy-Topel paragraph\n- background.tex: Last two paragraphs (linear approximation caveat + sequential estimation failure) merged and compressed\n- related_work.tex: All three paragraphs compressed, detailed per-citation descriptions → grouped citations\n\n**N=17 data filled in:** Raw Average, CyclicJudge, CyclicJudge+discard, DCR Factor, Pref. Leakage columns populated. MFRM-only/Sequential/G-MFRM remain TBD (awaiting MCMC).\n\n**LaTeX warnings:** No undefined references. Only benign `h→ht` float specifier changes in appendix."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "uuid": "318ae260-8109-4827-b66e-a469a5ce3822",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Vih8LhADCErprwJNAJ6sib",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 484,
+                "cache_read_input_tokens": 89344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 484
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sections layout:\n- Page 1: Abstract, Introduction (starts ~43%)\n- Page 2: Introduction cont., Related Work (starts ~56%)\n- Page 3: Confounding/Background (starts ~37%)\n- Page 4: G-MFRM Method (starts ~62%)\n- Page 5-6: Method cont. (Identifiability, Error Propagation)\n- Page 6-7: Experiments (starts ~93% of p6)\n- Page 8: Experiments cont., Conclusion (~55%), Limitations (~69%)\n- Page 9: Limitations cont., References (~23%)\n- Pages 10+: References cont., Appendix\n\n---\n\n**Summary:**\n\n**Final page count:** Main text (Abstract through Conclusion) = ~7.6 pages (Conclusion ends near top of page 8 at ~69%). Total PDF = 17 pages.\n\n**Section layout (approximate):**\n| Section | Pages |\n|---------|-------|\n| Abstract + Introduction | ~1.5 |\n| Related Work | ~0.8 |\n| Background (Confounding) | ~1.3 |\n| Method (G-MFRM) | ~2.0 |\n| Experiments | ~1.7 |\n| Conclusion | ~0.3 |\n\n**Content moved to appendix:**\n- Proposition 1 and 2 proofs → new `\\ref{app:prop_proofs}` section in appendix\n\n**Compressed in place (not moved):**\n- experiments.tex: Main results paragraph (deleted discretization artifact discussion, structural confounding cross-reference, CyclicJudge+discard interpretation), convergence diagnostics (compressed to 1 sentence), contamination/prior robustness/judge count details (1 sentence each), error propagation subsection (3 sentences), predictive fit/ranking accuracy paragraphs\n- method.tex: DG-IRT comparison (2 sentences), Stage 2 exposure (removed LogProber sentence, merged non-circularity), Theorem 1 explanation, error propagation numerical details, Murphy-Topel paragraph\n- background.tex: Last two paragraphs (linear approximation caveat + sequential estimation failure) merged and compressed\n- related_work.tex: All three paragraphs compressed, detailed per-citation descriptions → grouped citations\n\n**N=17 data filled in:** Raw Average, CyclicJudge, CyclicJudge+discard, DCR Factor, Pref. Leakage columns populated. MFRM-only/Sequential/G-MFRM remain TBD (awaiting MCMC).\n\n**LaTeX warnings:** No undefined references. Only benign `h→ht` float specifier changes in appendix."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 539031,
+            "duration_api_ms": 508330,
+            "num_turns": 61,
+            "stop_reason": "end_turn",
+            "session_id": "ac29f00a-331e-4fdd-ac07-6fee508aa5bc",
+            "total_cost_usd": 2.81758075,
+            "usage": {
+              "input_tokens": 54,
+              "cache_creation_input_tokens": 78381,
+              "cache_read_input_tokens": 3653403,
+              "output_tokens": 19926,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 78381,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 640,
+                  "cache_read_input_tokens": 89344,
+                  "cache_creation_input_tokens": 484,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 484
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2468,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002578,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 54,
+                "outputTokens": 19926,
+                "cacheReadInputTokens": 3653403,
+                "cacheCreationInputTokens": 78381,
+                "webSearchRequests": 0,
+                "costUSD": 2.8150027499999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f33d6a1c-9a14-4aa0-be5f-6063b4acb6b2"
+          },
+          "id": "event-000168"
+        }
+      ]
+    }
+  ]
+}

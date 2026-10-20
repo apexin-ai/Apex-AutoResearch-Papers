@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "745c2ac6fe73cc039d31",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh cuda3 qwen or exp009",
+  "task_key": "worker_ssh_cuda3_qwen_or_exp009_20260522T215849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cuda3_qwen_or_exp009_20260522T215849_result.json",
+    "occurrence": 1,
+    "bytes": 1881,
+    "sha256": "c4423108f6af481e069408c498c201f973a163d427bd5a67c0e73a94a4c90069"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full status:\n\n## Qwen2.5-7B Responses\n- **COMPLETE**: 500 lines, 1.67MB on autodl-8gpu ✓\n\n## Qwen2.5-7B Judge Evaluation\n- **NOT configured**: `qwen2.5-7b` is not in `target_models` of any judge config (llama/mistral/qwen). All three configs only judge: gpt-3.5-turbo-0125, gpt-4-0314, gpt-4-0613, gpt-4o, gpt-4o-mini, llama-3.3-70b, qwen2.5-72b, gemma-2-9b, qwen3-8b.\n- Need to add `qwen2.5-7b` to target_models and re-run collection on **rtx6000-4x** (where vLLM judge servers are running).\n\n## exp-009 (rtx6000-4x)\n- **Part A**: COMPLETE (401 lines = 4 rhos × 50 seeds × 2 methods)\n- **Part B**: 24/50 seeds done (1201 lines), still running (PID 112925)\n- **CPU-bound** (NumPyro MCMC with `XLA_FLAGS=--xla_force_host_platform_device_count=4`). cuda:3 won't help.\n\n## Judge Collection on rtx6000-4x\n| Judge | Progress | ETA |\n|-------|----------|-----|\n| Llama-3.3-70B | 1980/8311 | ~21h |\n| Mistral-Large-2 | 5460/8742 | ~5h |\n| Qwen2.5-72B | 915 lines, collect.py **not running** | — |\n\nAll 4 rtx6000 GPUs fully loaded (75-91GB VRAM) with vLLM servers.\n\n## cuda:3 on autodl-8gpu\n**No useful GPU task available:**\n- exp-009 is CPU-only\n- No large judge models on autodl (only small models: Llama-3.1-8B, Mistral-7B, Qwen2.5-7B, Gemma-2-9B)\n\n## Director Decisions Needed\n1. **Add qwen2.5-7b to judge configs on rtx6000?** The vLLM servers are already there; just need to update configs and restart/supplement the collect.py runs.\n2. **Restart Qwen2.5-72B judge collection on rtx6000?** It stopped at 915 items. The vLLM server at port 8002 is running.\n3. **Run exp-009 Part B on autodl CPU** to supplement rtx6000? Would need seed coordination (copy cn_recovery.csv from rtx6000 to avoid duplicating seeds 0-23).\n4. Or: **download a large judge model** (e.g. Qwen2.5-72B-AWQ) to autodl and run judge eval on cuda:3?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cuda3-qwen-or-exp009.md"
+}

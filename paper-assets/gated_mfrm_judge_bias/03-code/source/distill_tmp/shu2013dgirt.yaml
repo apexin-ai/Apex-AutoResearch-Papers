@@ -1,0 +1,26 @@
+paper_key: "shu2013dgirt"
+title: "Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating due to Item Compromise"
+venue: "Psychometrika 2013"
+full_text_available: false
+
+research:
+  baselines: ["Standard IRT models (2PL/3PL)"]
+  metrics:
+    - {name: "Model fit", direction: "higher_better"}
+    - {name: "Examinee classification (cheater vs non-cheater)", direction: "higher_accuracy_better"}
+    - {name: "Score gain on exposed vs unexposed items", direction: "diagnostic"}
+  datasets:
+    - {name: "Operational exam data", size: "not publicly available"}
+  ablation_dimensions: ["Exposed vs unexposed items", "Cheater vs non-cheater examinees"]
+  training_recipe: {optimizer: "Hierarchical MCMC (HMCMC)", lr: "N/A", hardware: "N/A"}
+  method_family: "Bayesian psychometric modeling — Deterministic Gated IRT (DGM)"
+
+positioning:
+  core_claim: "通过gating机制将观测响应分解为真实能力和作弊能力两个潜在分布，实现item compromise的检测和作弊者分类"
+  key_results: "成功分离exposed/unexposed items上的score gain patterns"
+  limitations: ["需要已知哪些items被泄露", "样本量需求较大"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

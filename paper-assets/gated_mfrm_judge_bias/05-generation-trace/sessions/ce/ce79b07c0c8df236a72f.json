@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce79b07c0c8df236a72f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl launch api judges fix download",
+  "task_key": "worker_ssh_autodl_launch_api_judges_fix_download_20260523T230156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_launch_api_judges_fix_download_20260523T230156_result.json",
+    "occurrence": 1,
+    "bytes": 1901,
+    "sha256": "b9110404af1092851644f21e3b13b02258117a0e0e4dd19765c80c26df432209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出报告\n\n### 1. API Judges — ❌ 全部崩溃\n\n**原因**: config 中的 `target_models` 包含 **9 个没有 response 文件的模型**。`data_loader.py` 尝试加载时触发 `FileNotFoundError`。\n\n**缺失的模型**（config 里有，responses/ 目录里没有）:\n| 模型 | 缺失文件 |\n|------|----------|\n| claude-3-5-sonnet-20241022 | ✗ |\n| gpt-4-turbo-2024-04-09 | ✗ |\n| llama-3.1-70b-instruct | ✗ |\n| gemma-2-27b-it | ✗ |\n| claude-3-opus-20240229 | ✗ |\n| llama-3-70b-instruct | ✗ |\n| mixtral-8x22b-instruct-v0.1 | ✗ |\n| claude-3-haiku-20240307 | ✗ |\n| llama-3-8b-instruct | ✗ |\n\n**responses/ 目录实际有的 15 个模型**: claude-opus-4.7, gemma-2-9b, gpt-3.5-turbo-0125, gpt-4-0314, gpt-4-0613, gpt-4o-mini, gpt-4o, gpt-5.5, llama-3.1-8b, llama-3.3-70b, mistral-7b-v0.3, mistral-large-2, qwen2.5-72b, qwen2.5-7b, qwen3-8b\n\n**RPM 修改已完成**: sonnet=150, gemini/deepseek/qwen3=100。需要修复 config 的 target_models 后重新启动。\n\n---\n\n### 2. LLaMA 下载 — 🔄 进行中 (HuggingFace)\n\n| 项目 | 值 |\n|------|-----|\n| ModelScope | ❌ 两个 ID 都 404 |\n| 当前方式 | HuggingFace (autodl 代理) |\n| model_id | `casperhansen/Llama-3.3-70B-Instruct-AWQ` |\n| PID | 480640 |\n| 已下载 | 5.1 GB / ~36 GB |\n| 速度 | ~30 MB/s |\n| ETA | ~17 分钟 |\n| 磁盘 | 110 GB 可用 |\n\n---\n\n### 3. rtx6000-4x — ❌ 不可达\n\n连接被拒（port 23687）。如果是 AutoDL 实例，重启后端口可能已变，需去控制台查新端口并更新 `~/.ssh/config`。\n\n---\n\n**需要你决定**：config 中的 target_models 要怎么改？两个方案：\n- **A**: 删掉 9 个缺失模型，只用现有 15 个 response 文件中的模型（去掉 reference_model gpt-4-0314 后是 14 个 target）\n- **B**: 先生成缺失模型的 response 数据，再启动 judge"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-launch-api-judges-fix-download.md"
+}

@@ -1,0 +1,1851 @@
+{
+  "schema_version": "1.0",
+  "id": "214754eac8c745d3ee65",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "conversation",
+  "title": "ssh exp003b analysis script",
+  "task_key": "worker_ssh_exp003b_analysis_script_20260522T185021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_exp003b_analysis_script_20260522T185021.jsonl",
+    "occurrence": 1,
+    "bytes": 123408,
+    "sha256": "0c328b88c9d9776e608ccb9cc3f9f12f6c127bb44e45c68c0c0136b76bbb3c27"
+  },
+  "statistics": {
+    "messages": 91,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "tool_call": 45,
+      "tool_result": 45,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T19:06:03.107174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T19:06:03.107558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T19:06:03.107733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "head -200 /root/gated_mfrm_judge_bias/exp003/run_exp003.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T19:06:03.107868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ls -la /root/gated_mfrm_judge_bias/exp003/output_003b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T19:06:03.108070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\nos.environ[\\\\\\\"JAX_PLATFORMS\\\\\\\"] = \\\\\\\"cuda,cpu\\\\\\\"\\\\nos.environ[\\\\\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\\\\\"] = \\\\\\\"0.25\\\\\\\"\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"0\\\\\\\"\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-003: Fit G-MFRM on real Arena-Hard judgment data.\\\\n\\\\nUsage:\\\\n  python run_exp003.py \\\\\\\\\\\\n    --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n    --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n    --output-dir /root/gated_mfrm_judge_bias/exp003/output \\\\\\\\\\\\n    --warmup 2000 --samples 4000 --chains 4 --target-accept 0.95 \\\\\\\\\\\\n    --device gpu\\\\n\\\\nDependencies: jax, numpyro, arviz, numpy, pandas, scipy, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"exp-003: G-MFRM real data fitting\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--judgment-dir\\\\\\\", required=True, help=\\\\\\\"exp-001 results directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--exposure-csv\\\\\\\", required=True, help=\\\\\\\"exp-002 exposure_scores.csv\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True, help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=2000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=4000)\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--target-accept\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", choices=[\\\\\\\"cpu\\\\\\\", \\\\\\\"gpu\\\\\\\", \\\\\\\"cuda\\\\\\\"], default=\\\\\\\"gpu\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--methods\\\\\\\", nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"raw_average\\\\\\\", \\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"],\\\\n               \n…[truncated 2632 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T19:06:03.108268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ls -la /root/gated_mfrm_judge_bias/exp003/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T19:06:03.108449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 2 root root   10 May 23 01:40 .\\\\ndrwxr-xr-x 7 root root 4096 May 23 01:40 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T19:06:03.108615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 264\\\\ndrwxr-xr-x 2 root root  4096 May 23 01:22 .\\\\ndrwxr-xr-x 7 root root  4096 May 23 01:40 ..\\\\n-rw-r--r-- 1 root root 46374 May 23 01:22 contamination_c.png\\\\n-rw-r--r-- 1 root root   160 May 23 01:22 joint_gmfrm_c.npy\\\\n-rw-r--r-- 1 root root   160 May 23 01:22 joint_gmfrm_theta.npy\\\\n-rw-r--r-- 1 root root 56172 May 23 01:22 judge_severity.png\\\\n-rw-r--r-- 1 root root   160 May 23 01:22 mfrm_only_theta.npy\\\\n-rw-r--r-- 1 root root   192 May 23 01:22 raw_average_theta.npy\\\\n-rw-r--r-- 1 root root 14999 May 23 01:22 results.json\\\\n-rw-r--r-- 1 root root   192 May 23 01:22 sequential_c.npy\\\\n-rw-r--r-- 1 root root   192 May 23 01:22 sequential_theta.npy\\\\n-rw-r--r-- 1 root root 67986 May 23 01:22 theta_comparison.png\\\\n-rw-r--r-- 1 root root 44951 May 23 01:22 theta_vs_elo.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T19:06:03.108781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "cat /root/gated_mfrm_judge_bias/exp003/results/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T19:06:03.109109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"convergence\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": NaN,\\\\n      \\\\\\\"ess\\\\\\\": NaN,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": 1.0,\\\\n      \\\\\\\"ess\\\\\\\": 2220.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"sequential\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": 1.01,\\\\n      \\\\\\\"ess\\\\\\\": 395.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n      \\\\\\\"r_hat\\\\\\\": 1.73,\\\\n      \\\\\\\"ess\\\\\\\": 6.0,\\\\n      \\\\\\\"divergences\\\\\\\": 0\\\\n    }\\\\n  },\\\\n  \\\\\\\"arena_correlation\\\\\\\": {\\\\n    \\\\\\\"raw_average\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"mfrm_only\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"matched_models\\\\\\\": [\\\\n        \\\\\\\"gemma-2-9b\\\\\\\",\\\\n        \\\\\\\"gpt-3.5-turbo-0125\\\\\\\",\\\\n        \\\\\\\"gpt-4-0613\\\\\\\",\\\\n        \\\\\\\"gpt-4o\\\\\\\",\\\\n        \\\\\\\"gpt-4o-mini\\\\\\\",\\\\n        \\\\\\\"llama-3.3-70b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen3-8b\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"sequential\\\\\\\": {\\\\n      \\\\\\\"kendall_tau\\\\\\\": 0.7857142857142856,\\\\n      \\\\\\\"kendall_p\\\\\\\": 0.005505952380952381,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.9047619047619048,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.002008275505429469,\\\\n      \\\\\\\"n_matched\\\\\\\": 8,\\\\n      \\\\\\\"ma\n…[truncated 8085 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T19:06:03.109286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "cat /root/gated_mfrm_judge_bias/exp003/models.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T19:06:03.109563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"G-MFRM fitting methods for sparse real-data observations.\\\\n\\\\nAdapted from mvp/models.py for sparse observation format:\\\\n  instead of a dense Y[N, I, J] tensor, observations are represented as\\\\n  parallel arrays (model_idx, item_idx, judge_idx, y).\\\\n\\\\nFour methods:\\\\n  1. raw_average — mean win rate per model (no MCMC)\\\\n  2. mfrm_only — standard 3-facet Rasch via NUTS\\\\n  3. sequential — MFRM then OLS residual regression on exposure\\\\n  4. joint_gmfrm — full G-MFRM with contamination term\\\\n\\\\nModel: logit(P(Y=1)) = theta_n - b_i - d_j + c_n * e_i\\\\n  theta_n: model ability, Normal(0,1), centered (sum-to-zero)\\\\n  b_i: item difficulty, Normal(0,1)\\\\n  d_j: judge severity, Normal(0,0.5), sum-to-zero via centering\\\\n  c_n: contamination susceptibility, Hierarchical HalfNormal\\\\n  e_i: item exposure (fixed, from exp-002)\\\\n\\\\nDependencies: numpy, jax, numpyro, arviz, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\n\\\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\\\\\"..\\\\\\\"))\\\\n\\\\nos.environ.setdefault(\\\\\\\"JAX_PLATFORMS\\\\\\\", \\\\\\\"cuda,cpu\\\\\\\")\\\\n\\\\nimport arviz as az\\\\nimport jax\\\\nimport jax.numpy as jnp\\\\nimport numpy as np\\\\nimport numpyro\\\\nimport numpyro.distributions as dist\\\\nfrom numpyro.infer import MCMC, NUTS\\\\nfrom scipy.special import expit\\\\n\\\\n\\\\n_CPU = None\\\\ndef _to_numpy(x):\\\\n    global _CPU\\\\n    if _CPU is None:\\\\n        _CPU = jax.devices('cpu')[0]\\\\n    return np.asarray(jax.device_put(x, _CPU))\\\\n\\\\n\\\\ndef _mcmc_diagnostics(mcmc: MCMC) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return convergence diagnostics: max R-hat, min ESS, n_divergences.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idata = az.from_numpyro(mcmc)\\\\n    summary = az.summary(idata)\\\\n    max_rhat = float(summary[\\\\\\\"r_hat\\\\\\\"].max())\\\\n    min_ess = float(summary[\\\\\\\"ess_bulk\\\\\\\"].min())\\\\n    n_div = int(idata.sample_stats[\\\\\\\"diverging\\\\\\\"].sum().values)\\\\n    return {\\\\\\\"r_hat\\\\\\\": max_rhat, \\\\\\\n…[truncated 7186 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T19:06:03.109736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ls -la /root/gated_mfrm_judge_bias/exp003/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T19:06:03.109889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 5868\\\\ndrwxr-xr-x  7 root root    4096 May 23 01:40 .\\\\ndrwxr-xr-x 15 root root    4096 May 23 02:34 ..\\\\n-rw-r--r--  1 root root    1913 May 22 20:41 README.md\\\\ndrwxr-xr-x  2 root root     121 May 23 01:40 __pycache__\\\\n-rw-r--r--  1 root root    7824 May 22 20:56 data_loader.py\\\\ndrwxr-xr-x  2 root root    4096 May 22 20:46 dry_run\\\\n-rw-r--r--  1 root root   11341 May 22 20:56 evaluation.py\\\\n-rw-r--r--  1 root root    8620 May 23 01:39 models.py\\\\n-rw-r--r--  1 root root    8480 May 22 22:11 models.py.bak\\\\n-rw-r--r--  1 root root    8540 May 23 01:39 models.py.bak.horseshoe\\\\ndrwxr-xr-x  2 root root      10 May 23 01:40 output_003b\\\\ndrwxr-xr-x  2 root root    4096 May 23 01:22 results\\\\ndrwxr-xr-x  2 root root    4096 May 22 21:06 results_dryrun\\\\n-rw-r--r--  1 root root 5914769 May 23 01:22 run.log\\\\n-rw-r--r--  1 root root    3816 May 22 22:29 run_exp003.py\\\\n-rw-r--r--  1 root root    3590 May 22 22:01 run_exp003.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T19:06:03.110049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "find /root/gated_mfrm_judge_bias/exp003/ -name \"*003b*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T19:06:03.110177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T19:06:03.110297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "head -100 /root/gated_mfrm_judge_bias/exp003/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T19:06:03.110503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation and comparison of G-MFRM fitting methods on real data.\\\\n\\\\nNo ground-truth theta available. Instead we use:\\\\n  a) Convergence diagnostics: R-hat, ESS, divergences\\\\n  b) Model comparison: WAIC, LOO-CV via ArviZ\\\\n  c) External validity: Kendall-tau with Chatbot Arena Elo (if available)\\\\n  d) Parameter interpretation: c_n per model, d_j per judge\\\\n  e) Cross-method comparison: rank correlation between methods\\\\n\\\\nDependencies: numpy, scipy, arviz, matplotlib, json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nfrom pathlib import Path\\\\n\\\\nimport arviz as az\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\n\\\\n# Chatbot Arena Elo scores (approximate, May 2026)\\\\n# Used for external validity check — update as needed\\\\nARENA_ELO = {\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 1105,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 1163,\\\\n    \\\\\\\"gpt-4-0314\\\\\\\": 1152,\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1130,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1170,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1208,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1187,\\\\n    \\\\\\\"mistral-large-2\\\\\\\": 1158,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1272,\\\\n}\\\\n\\\\n\\\\ndef convergence_report(results: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Summarize convergence diagnostics across methods.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    report = {}\\\\n    for name, res in results.items():\\\\n        diag = res.get(\\\\\\\"diagnostics\\\\\\\", {})\\\\n        report[name] = {\\\\n            \\\\\\\"r_hat\\\\\\\": diag.get(\\\\\\\"r_hat\\\\\\\", float(\\\\\\\"nan\\\\\\\")),\\\\n            \\\\\\\"ess\\\\\\\": diag.get(\\\\\\\"ess\\\\\\\", float(\\\\\\\"nan\\\\\\\")),\\\\n            \\\\\\\"divergences\\\\\\\": diag.get(\\\\\\\"divergences\\\\\\\", 0),\\\\n        }\\\\n    return report\\\\n\\\\n\\\\ndef compute_waic(results: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute WAIC for methods that have MCMC objects.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    waic_results = {}\\\\n    for name, res in results.items():\\\\n        mcmc = res.get(\\\\\\\"mcmc\\\\\\\")\n…[truncated 1859 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T19:06:03.110675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -n \"arena\\|elo\\|Arena\\|Elo\" /root/gated_mfrm_judge_bias/exp003/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T19:06:03.110808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T19:06:03.110978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -rn \"003b\" /root/gated_mfrm_judge_bias/exp003/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T19:06:03.111114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T19:06:03.111235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "tail -50 /root/gated_mfrm_judge_bias/exp003/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T19:06:03.111393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                print(f\\\\\\\"    {m}: {t:.3f}\\\\\\\")\\\\n            if \\\\\\\"c_ranking\\\\\\\" in entry:\\\\n                print(f\\\\\\\"  {name} contamination (c):\\\\\\\")\\\\n                for m, c in entry[\\\\\\\"c_ranking\\\\\\\"]:\\\\n                    print(f\\\\\\\"    {m}: {c:.3f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n5. Generating plots...\\\\\\\")\\\\n    plot_diagnostics(results, model_names, judge_names, str(output_dir))\\\\n\\\\n    # Save JSON report\\\\n    report = {\\\\n        \\\\\\\"convergence\\\\\\\": conv,\\\\n        \\\\\\\"arena_correlation\\\\\\\": arena_corr,\\\\n        \\\\\\\"cross_method\\\\\\\": cross,\\\\n        \\\\\\\"parameters\\\\\\\": {},\\\\n        \\\\\\\"data_summary\\\\\\\": {\\\\n            \\\\\\\"N\\\\\\\": data[\\\\\\\"N\\\\\\\"], \\\\\\\"I\\\\\\\": data[\\\\\\\"I\\\\\\\"], \\\\\\\"J\\\\\\\": data[\\\\\\\"J\\\\\\\"],\\\\n            \\\\\\\"n_obs\\\\\\\": data[\\\\\\\"n_obs\\\\\\\"],\\\\n            \\\\\\\"model_names\\\\\\\": model_names,\\\\n            \\\\\\\"judge_names\\\\\\\": judge_names,\\\\n        },\\\\n    }\\\\n    # Convert parameter summary (make JSON-serializable)\\\\n    for name, entry in param_sum.items():\\\\n        if isinstance(entry, dict):\\\\n            report[\\\\\\\"parameters\\\\\\\"][name] = entry\\\\n        elif isinstance(entry, list):\\\\n            report[\\\\\\\"parameters\\\\\\\"][name] = entry\\\\n\\\\n    # Save per-method theta/c arrays\\\\n    for name, res in results.items():\\\\n        report[\\\\\\\"parameters\\\\\\\"].setdefault(name, {})\\\\n        report[\\\\\\\"parameters\\\\\\\"][name][\\\\\\\"theta_values\\\\\\\"] = {\\\\n            model_names[i]: float(res[\\\\\\\"theta_hat\\\\\\\"][i]) for i in range(len(model_names))\\\\n        }\\\\n        if \\\\\\\"c_hat\\\\\\\" in res:\\\\n            report[\\\\\\\"parameters\\\\\\\"][name][\\\\\\\"c_values\\\\\\\"] = {\\\\n                model_names[i]: float(res[\\\\\\\"c_hat\\\\\\\"][i]) for i in range(len(model_names))\\\\n            }\\\\n        if \\\\\\\"d_hat\\\\\\\" in res:\\\\n            report[\\\\\\\"parameters\\\\\\\"][name][\\\\\\\"d_values\\\\\\\"] = {\\\\n                judge_names[i]: float(res[\\\\\\\"d_hat\\\\\\\"][i]) for i in range(len(judge_names))\\\\n            }\\\\n\\\\n  \n…[truncated 339 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T19:06:03.111596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "cat /root/gated_mfrm_judge_bias/exp003/data_loader.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T19:06:03.111852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Load and preprocess Arena-Hard pairwise judgments for G-MFRM fitting.\\\\n\\\\nInputs:\\\\n  - judgment_dir: directory containing per-judge subdirs, each with arena_hard_judgments.jsonl\\\\n  - exposure_csv: exp-002 exposure_scores.csv (columns: item_id, e_i, ...)\\\\n\\\\nOutputs:\\\\n  - obs dict with sparse observation arrays (model_idx, item_idx, judge_idx, y)\\\\n  - index mappings (model_names, item_ids, judge_names)\\\\n  - exposure array e_i aligned to item indices\\\\n\\\\nDesign decisions (Director-defined):\\\\n  1. Ties (score=0.5) are discarded — binary MFRM only\\\\n  2. AB/BA position pairs are averaged; if average=0.5 (conflicting), treated as tie and discarded\\\\n  3. gpt-4-0314 self-comparison (model_a == baseline) is excluded\\\\n\\\\nDependencies: pandas, numpy, pathlib, json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\n\\\\nBASELINE_MODEL = \\\\\\\"gpt-4-0314\\\\\\\"\\\\n\\\\n\\\\ndef load_judgments(judgment_dir: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Read all per-judge JSONL files from subdirectories.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    judgment_dir = Path(judgment_dir)\\\\n    records = []\\\\n    jsonl_files = sorted(judgment_dir.glob(\\\\\\\"*/arena_hard_judgments.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        jsonl_files = sorted(judgment_dir.glob(\\\\\\\"arena_hard_judgments.jsonl\\\\\\\"))\\\\n\\\\n    for fpath in jsonl_files:\\\\n        with open(fpath) as f:\\\\n            for line in f:\\\\n                line = line.strip()\\\\n                if not line:\\\\n                    continue\\\\n                rec = json.loads(line)\\\\n                if rec.get(\\\\\\\"status\\\\\\\") != \\\\\\\"ok\\\\\\\":\\\\n                    continue\\\\n                score = rec.get(\\\\\\\"score\\\\\\\")\\\\n                if score is None or score == \\\\\\\"\\\\\\\":\\\\n                    continue\\\\n                score = float(score)\\\\n                records.append({\\\\n                    \\\\\\\"item_\n…[truncated 6983 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T19:06:03.112042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "tail -100 /root/gated_mfrm_judge_bias/exp003/run.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T19:06:03.112201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "find /root/gated_mfrm_judge_bias/ -name \"run*003b*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T19:06:03.112335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "find /root/gated_mfrm_judge_bias/ -name \"*003b*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T19:06:03.112558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r  0%|          | 0/6000 [00:00<?, ?it/s]\\\\rwarmup:   0%|          | 0/6000 [00:15<?, ?it/s, 1023 steps of size 1.58e-03. acc. prob=0.89]\\\\rwarmup:   1%|          | 71/6000 [00:15<22:04,  4.48it/s, 1023 steps of size 1.68e-03. acc. prob=0.89]\\\\rwarmup:   1%|          | 72/6000 [00:16<22:10,  4.46it/s, 1023 steps of size 1.91e-03. acc. prob=0.89]\\\\rwarmup:   1%|          | 73/6000 [00:16<22:18,  4.43it/s, 1023 steps of size 2.11e-03. acc. prob=0.89]\\\\rwarmup:   1%|          | 74/6000 [00:16<22:29,  4.39it/s, 1023 steps of size 2.39e-03. acc. prob=0.89]\\\\rwarmup:   1%|▏         | 75/6000 [00:16<22:43,  4.34it/s, 1023 steps of size 1.80e-03. acc. prob=0.89]\\\\rwarmup:   1%|▏         | 76/6000 [00:17<23:02,  4.29it/s, 1023 steps of size 1.18e-03. acc. prob=0.89]\\\\rwarmup:   1%|▏         | 77/6000 [00:17<23:24,  4.22it/s, 1023 steps of size 1.36e-03. acc. prob=0.89]\\\\rwarmup:   1%|▏         | 78/6000 [00:17<23:49,  4.14it/s, 1023 steps of size 1.49e-03. acc. prob=0.89]\\\\rwarmup:   1%|▏         | 79/6000 [00:18<24:17,  4.06it/s, 1023 steps of size 1.72e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏         | 80/6000 [00:18<24:46,  3.98it/s, 1023 steps of size 1.62e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏         | 81/6000 [00:18<25:15,  3.91it/s, 1023 steps of size 1.73e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏         | 82/6000 [00:18<25:41,  3.84it/s, 1023 steps of size 1.91e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏         | 83/6000 [00:19<26:04,  3.78it/s, 1023 steps of size 2.16e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏         | 84/6000 [00:19<26:23,  3.74it/s, 1023 steps of size 1.80e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏         | 85/6000 [00:19<26:36,  3.71it/s, 1023 steps of size 2.05e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏         | 86/6000 [00:20<26:44,  3.69it/s, 1023 steps of size 2.06e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏         | 87/6000 [00:20<26:51,  3.67it/s, 1023 steps of size 1.80e-03. acc. prob=0.90]\\\\rwarmup:   1%|▏   \n…[truncated 6504 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T19:06:03.112723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T19:06:03.112857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp003/output_003b\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T19:06:03.113007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "find /root/gated_mfrm_judge_bias/ -name \"*.log\" -newer /root/gated_mfrm_judge_bias/exp003/run.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T19:06:03.113137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T19:06:03.113258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "find /root/gated_mfrm_judge_bias/ -name \"nohup*\" -o -name \"*.out\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T19:06:03.113380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T19:06:03.113522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "find /root/gated_mfrm_judge_bias/exp003/ -name \"*.py\" -newer /root/gated_mfrm_judge_bias/exp003/run_exp003.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T19:06:03.113647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp003/models.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T19:06:03.113891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "python3 -c \"import arviz; print(arviz.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T19:06:03.114032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T19:06:03.114157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "python3 -c \"import numpyro; print(numpyro.__version__); import jax; print('jax', jax.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T19:06:03.114286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T19:06:03.114468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "cat /root/gated_mfrm_judge_bias/exp003/models.py.bak.horseshoe",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T19:06:03.114751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"G-MFRM fitting methods for sparse real-data observations.\\\\n\\\\nAdapted from mvp/models.py for sparse observation format:\\\\n  instead of a dense Y[N, I, J] tensor, observations are represented as\\\\n  parallel arrays (model_idx, item_idx, judge_idx, y).\\\\n\\\\nFour methods:\\\\n  1. raw_average — mean win rate per model (no MCMC)\\\\n  2. mfrm_only — standard 3-facet Rasch via NUTS\\\\n  3. sequential — MFRM then OLS residual regression on exposure\\\\n  4. joint_gmfrm — full G-MFRM with contamination term\\\\n\\\\nModel: logit(P(Y=1)) = theta_n - b_i - d_j + c_n * e_i\\\\n  theta_n: model ability, Normal(0,1), centered (sum-to-zero)\\\\n  b_i: item difficulty, Normal(0,1)\\\\n  d_j: judge severity, Normal(0,0.5), sum-to-zero via centering\\\\n  c_n: contamination susceptibility, Regularized Horseshoe (Piironen & Vehtari, 2017)\\\\n  e_i: item exposure (fixed, from exp-002)\\\\n\\\\nDependencies: numpy, jax, numpyro, arviz, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\n\\\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\\\\\"..\\\\\\\"))\\\\n\\\\nos.environ.setdefault(\\\\\\\"JAX_PLATFORMS\\\\\\\", \\\\\\\"cuda,cpu\\\\\\\")\\\\n\\\\nimport arviz as az\\\\nimport jax\\\\nimport jax.numpy as jnp\\\\nimport numpy as np\\\\nimport numpyro\\\\nimport numpyro.distributions as dist\\\\nfrom numpyro.infer import MCMC, NUTS\\\\nfrom scipy.special import expit\\\\n\\\\nfrom lib.priors import reg_horseshoe_prior_cn\\\\n\\\\n_CPU = None\\\\ndef _to_numpy(x):\\\\n    global _CPU\\\\n    if _CPU is None:\\\\n        _CPU = jax.devices('cpu')[0]\\\\n    return np.asarray(jax.device_put(x, _CPU))\\\\n\\\\n\\\\ndef _mcmc_diagnostics(mcmc: MCMC) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return convergence diagnostics: max R-hat, min ESS, n_divergences.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idata = az.from_numpyro(mcmc)\\\\n    summary = az.summary(idata)\\\\n    max_rhat = float(summary[\\\\\\\"r_hat\\\\\\\"].max())\\\\n    min_ess = float(summary[\\\\\\\"ess_bulk\\\\\\\"].min())\\\\n    n_div = int(idata.sample_stats[\\\\\n…[truncated 7154 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T19:06:03.114942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "python3 -c \"import arviz; print(arviz.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T19:06:03.115075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T19:06:03.115209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "python3 -c \"import numpyro; print(numpyro.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T19:06:03.115336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T19:06:03.115493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "head -50 /root/gated_mfrm_judge_bias/exp003/models.py.bak",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T19:06:03.115670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"G-MFRM fitting methods for sparse real-data observations.\\\\n\\\\nAdapted from mvp/models.py for sparse observation format:\\\\n  instead of a dense Y[N, I, J] tensor, observations are represented as\\\\n  parallel arrays (model_idx, item_idx, judge_idx, y).\\\\n\\\\nFour methods:\\\\n  1. raw_average — mean win rate per model (no MCMC)\\\\n  2. mfrm_only — standard 3-facet Rasch via NUTS\\\\n  3. sequential — MFRM then OLS residual regression on exposure\\\\n  4. joint_gmfrm — full G-MFRM with contamination term\\\\n\\\\nModel: logit(P(Y=1)) = theta_n - b_i - d_j + c_n * e_i\\\\n  theta_n: model ability, Normal(0,1), centered (sum-to-zero)\\\\n  b_i: item difficulty, Normal(0,1)\\\\n  d_j: judge severity, Normal(0,0.5), sum-to-zero via centering\\\\n  c_n: contamination susceptibility, Regularized Horseshoe (Piironen & Vehtari, 2017)\\\\n  e_i: item exposure (fixed, from exp-002)\\\\n\\\\nDependencies: numpy, jax, numpyro, arviz, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\n\\\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\\\\\"..\\\\\\\"))\\\\n\\\\nos.environ.setdefault(\\\\\\\"JAX_PLATFORMS\\\\\\\", \\\\\\\"cuda,cpu\\\\\\\")\\\\n\\\\nimport arviz as az\\\\nimport jax\\\\nimport jax.numpy as jnp\\\\nimport numpy as np\\\\nimport numpyro\\\\nimport numpyro.distributions as dist\\\\nfrom numpyro.infer import MCMC, NUTS\\\\nfrom scipy.special import expit\\\\n\\\\nfrom lib.priors import reg_horseshoe_prior_cn\\\\n\\\\n\\\\ndef _mcmc_diagnostics(mcmc: MCMC) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return convergence diagnostics: max R-hat, min ESS, n_divergences.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idata = az.from_numpyro(mcmc)\\\\n    summary = az.summary(idata)\\\\n    max_rhat = float(summary[\\\\\\\"r_hat\\\\\\\"].max())\\\\n    min_ess = float(summary[\\\\\\\"ess_bulk\\\\\\\"].min())\\\\n    n_div = int(idata.sample_stats[\\\\\\\"diverging\\\\\\\"].sum().values)\\\\n    return {\\\\\\\"r_hat\\\\\\\": max_rhat, \\\\\\\"ess\\\\\\\": min_ess, \\\\\\\"divergences\\\\\\\": n_div}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\n…[truncated 60 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T19:06:03.115820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "python3 -c \"import arviz; print('arviz', arviz.__version__); import numpyro; print('numpyro', numpyro.__version__); import jax; print('jax', jax.__version__); import matplotlib; print('matplotlib', matplotlib.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T19:06:03.115963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import arviz; print(\\\\\\\\'arviz\\\\\\\\', arviz.__version__); import numpyro; print(\\\\\\\\'numpyro\\\\\\\\', numpyro.__version__); import jax; print(\\\\\\\\'jax\\\\\\\\', jax.__version__); import matplotlib; print(\\\\\\\\'matplotlib\\\\\\\\', matplotlib.__version__)\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T19:06:03.116104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "find /root -name \"conda.sh\" -maxdepth 4",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T19:06:03.116265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ls /root/miniconda3/bin/python",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T19:06:03.116394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/etc/profile.d/conda.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T19:06:03.116565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T19:06:03.116689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import arviz; print('arviz', arviz.__version__); import numpyro; print('numpyro', numpyro.__version__); import jax; print('jax', jax.__version__); import matplotlib; print('matplotlib', matplotlib.__version__)\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T19:06:03.116818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arviz 1.1.0\\\\nnumpyro 0.21.0\\\\njax 0.10.1\\\\nmatplotlib 3.10.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T19:06:03.116960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ps aux | grep -E \"python.*003|python.*exp003|python.*gmfrm\" | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T19:06:03.117104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     159116  0.0  0.0   4364  3280 pts/1    Ss+  01:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && CUDA_VISIBLE_DEVICES=0 JAX_PLATFORMS=cuda,cpu XLA_PYTHON_CLIENT_PREALLOCATE=false XLA_PYTHON_CLIENT_MEM_FRACTION=0.25 python run_exp003.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv --output-dir /root/gated_mfrm_judge_bias/exp003/output_003b --warmup 4000 --samples 4000 --chains 4 --target-accept 0.95 --device gpu --methods joint_gmfrm 2>&1 | tee /tmp/exp003b.log\\\\nroot     159122  100  0.1 92422804 1809184 pts/1 Rl+ 01:40  75:44 python run_exp003.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv --output-dir /root/gated_mfrm_judge_bias/exp003/output_003b --warmup 4000 --samples 4000 --chains 4 --target-accept 0.95 --device gpu --methods joint_gmfrm\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T19:06:03.117258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "tail -5 /tmp/exp003b.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T19:06:03.117474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- joint_gmfrm ---\\\\n\\\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\\\rwarmup:   0%|          | 0/8000 [00:20<?, ?it/s, 1023 steps of size 8.48e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 81/8000 [00:20<32:40,  4.04it/s, 1023 steps of size 5.13e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 82/8000 [00:20<32:39,  4.04it/s, 1023 steps of size 5.00e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 83/8000 [00:20<32:37,  4.04it/s, 1023 steps of size 5.21e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 84/8000 [00:20<32:35,  4.05it/s, 1023 steps of size 5.79e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 85/8000 [00:21<32:32,  4.05it/s, 1023 steps of size 6.27e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 86/8000 [00:21<32:28,  4.06it/s, 1023 steps of size 5.87e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 87/8000 [00:21<32:24,  4.07it/s, 1023 steps of size 6.53e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 88/8000 [00:21<32:18,  4.08it/s, 1023 steps of size 6.51e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 89/8000 [00:21<32:12,  4.09it/s, 1023 steps of size 7.46e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 90/8000 [00:22<32:05,  4.11it/s, 1023 steps of size 8.56e-04. acc. prob=0.90]\\\\rwarmup:   1%|          | 91/8000 [00:22<32:00,  4.12it/s, 1023 steps of size 6.05e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 92/8000 [00:22<31:54,  4.13it/s, 1023 steps of size 6.73e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 93/8000 [00:22<31:48,  4.14it/s, 1023 steps of size 5.23e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 94/8000 [00:23<31:42,  4.16it/s, 1023 steps of size 5.79e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 95/8000 [00:23<31:41,  4.16it/s, 1023 steps of size 5.43e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 96/8000 [00:23<31:40,  4.16it/s, 1023 steps of size 4.26e-04. acc. prob=0.89]\\\\rwarmup:   1%|          | 97/8000 [00:23<31:37,  4.17it/s, 1023 steps of size 4.70e-04. acc. prob=\n…[truncated 6364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T19:06:03.117799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "head -10 /root/gated_mfrm_judge_bias/exp003/evaluation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T19:06:03.117955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluation and comparison of G-MFRM fitting methods on real data.\\\\n\\\\nNo ground-truth theta available. Instead we use:\\\\n  a) Convergence diagnostics: R-hat, ESS, divergences\\\\n  b) Model comparison: WAIC, LOO-CV via ArviZ\\\\n  c) External validity: Kendall-tau with Chatbot Arena Elo (if available)\\\\n  d) Parameter interpretation: c_n per model, d_j per judge\\\\n  e) Cross-method comparison: rank correlation between methods\\\\n\\\\nDependencies: numpy, scipy, arviz, matplotlib, json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T19:06:03.118086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/",
+              "description": "List local project directory"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T19:06:03.118214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "AGENTS.md\nROADMAP.lock\nROADMAP.md\n_last_visual_review.json\nartifacts\ncheckpoints\ndecisions.lock\ndecisions.yaml\ndistill_tmp\ndocs\ndream_registry.lock\ndream_registry.yaml\ndream_registry.yaml.bak\nexperiment_plan.yaml\nfigures\nliterature_map.yaml\nlogs\nmemory.md\nmistakes.lock\nmistakes.yaml\npaper_framing.md\npaper_provenance.lock\npaper_provenance.yaml\nregistry.lock\nregistry.yaml\nreport.md\nreview_visual_check_state.json\nstudy_status.lock\ntask_context\nwriting_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T19:06:03.118471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/analyze_003b.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"\nexp-003b Analysis: Full posterior diagnostics for G-MFRM (HalfNormal prior).\n\nUsage:\n  python analyze_003b.py                              # analyze saved results\n  python analyze_003b.py --refit                      # re-run MCMC for full posterior\n  python analyze_003b.py --output-dir /path/to/dir    # custom output dir\n\nReads from:  output_003b/ (or --output-dir)\nWrites to:   output_003b/analysis/\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport warnings\nfrom pathlib import Path\n\nos.environ.setdefault(\"JAX_PLATFORMS\", \"cuda,cpu\")\nos.environ.setdefault(\"XLA_PYTHON_CLIENT_PREALLOCATE\", \"false\")\nos.environ.setdefault(\"XLA_PYTHON_CLIENT_MEM_FRACTION\", \"0.25\")\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom scipy.stats import kendalltau, spearmanr\n\ntry:\n    import arviz as az\n    HAS_ARVIZ = True\nexcept ImportError:\n    HAS_ARVIZ = False\n    warnings.warn(\"arviz not installed — convergence diagnostics will be limited\")\n\n# ---------------------------------------------------------------------------\n# Constants\n# ---------------------------------------------------------------------------\nPROJECT_ROOT = Path(\"/root/gated_mfrm_judge_bias\")\nEXP003_DIR = PROJECT_ROOT / \"exp003\"\nDEFAULT_OUTPUT_DIR = EXP003_DIR / \"output_003b\"\n\nMODEL_NAMES = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\nJUDGE_NAMES = [\n    \"claude-opus-4.7-proxy\", \"claude-sonnet-4.6-proxy\", \"deepseek-v4-pro-proxy\",\n    \"gemini-2.5-pro-proxy\", \"gpt-5.5-proxy\", \"llama-3.3-70b\",\n    \"mistral-large-2\", \"qwen2.5-72b\", \"qwen3-235b-proxy\",\n]\nARENA_ELO = {\n    \"gpt-3.5-turbo-0125\": 1105,\n    \"gpt-4-0613\": 1163,\n    \"gemma-2-9b\": 1130,\n    \"qwen3-8b\": 1170,\n    \"llama-3.3-70b\": 1208,\n    \"qwen2.5-72b\": 1187,\n    \"gpt-4o\": 1286,\n    \"gpt-4o-mini\": 1272,\n}\nEXP003_BASELINES = {\n    \"raw_average\":  {\"kendall_tau\": 0.786, \"spearman_rho\": 0.905},\n    \"mfrm_only\":    {\"kendall_tau\": 0.786, \"spearman_rho\": 0.905},\n    \"sequential\":   {\"kendall_tau\": 0.786, \"spearman_rho\": 0.905},\n    \"joint_gmfrm (horseshoe)\": {\"kendall_tau\": 0.857, \"spearman_rho\": 0.952},\n}\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_inference_data(output_dir: Path):\n    \"\"\"Load ArviZ InferenceData from NetCDF / pickle / npz.\"\"\"\n    nc_path = output_dir / \"joint_gmfrm_idata.nc\"\n    if nc_path.exists() and HAS_ARVIZ:\n        print(f\"  Loading InferenceData: {nc_path}\")\n        return az.from_netcdf(str(nc_path))\n\n    pkl_path = output_dir / \"mcmc_samples.pkl\"\n    if pkl_path.exists():\n        import pickle\n        print(f\"  Loading pickled samples: {pkl_path}\")\n        with open(pkl_path, \"rb\") as f:\n            data = pickle.load(f)\n        if HAS_ARVIZ and isinstance(data, dict):\n            return az.from_dict(data)\n        return data\n\n    npz_path = output_dir / \"mcmc_samples.npz\"\n    if npz_path.exists():\n        print(f\"  Loading npz samples: {npz_path}\")\n        data = dict(np.load(str(npz_path), allow_pickle=True))\n        if HAS_ARVIZ:\n            return az.from_dict(data)\n        return data\n\n    return None\n\n\ndef load_point_estimates(output_dir: Path):\n    \"\"\"Load .npy point estimates + results.json.\"\"\"\n    result = {}\n    for name in [\"joint_gmfrm_theta\", \"joint_gmfrm_c\"]:\n        p = output_dir / f\"{name}.npy\"\n        if p.exists():\n            key = \"theta_hat\" if \"theta\" in name else \"c_hat\"\n            result[key] = np.load(str(p))\n\n    rj = output_dir / \"results.json\"\n    if rj.exists():\n        with open(rj) as f:\n            result[\"report\"] = json.load(f)\n\n    return result\n\n\ndef refit_mcmc(output_dir, warmup, samples, chains, target_accept, seed):\n    \"\"\"Re-run G-MFRM MCMC and return InferenceData.\"\"\"\n    print(\"  Re-fitting G-MFRM (this takes a while)...\")\n    import jax\n    import jax.numpy as jnp\n    import numpyro\n\n    sys.path.insert(0, str(EXP003_DIR))\n    from data_loader import load_data\n    from models import _gmfrm_model, _run_mcmc\n\n    data = load_data(\n        str(PROJECT_ROOT / \"exp001\" / \"results\"),\n        str(PROJECT_ROOT / \"exp002\" / \"results\" / \"exposure_scores.csv\"),\n    )\n\n    mcmc = _run_mcmc(\n        _gmfrm_model, jax.random.PRNGKey(seed),\n        dict(\n            model_idx=jnp.array(data[\"model_idx\"]),\n            item_idx=jnp.array(data[\"item_idx\"]),\n            judge_idx=jnp.array(data[\"judge_idx\"]),\n            y=jnp.array(data[\"y\"]),\n            e=jnp.array(data[\"e_i\"], dtype=jnp.float32),\n            N=data[\"N\"], I=data[\"I\"], J=data[\"J\"],\n        ),\n        warmup, samples, chains, target_accept,\n    )\n\n    idata = az.from_numpyro(mcmc)\n    nc_path = output_dir / \"joint_gmfrm_idata.nc\"\n    idata.to_netcdf(str(nc_path))\n    print(f\"  Saved InferenceData: {nc_path}\")\n    return idata\n\n\n# ---------------------------------------------------------------------------\n# Helpers\n# ---------------------------------------------------------------------------\n\ndef _c_key(posterior):\n    \"\"\"Resolve the contamination parameter name (c vs c_n).\"\"\"\n    for k in (\"c\", \"c_n\"):\n        if k in posterior:\n            return k\n    return None\n\n\ndef _get_posterior_array(idata, key):\n    \"\"\"Return [total_samples, dim] from InferenceData.\"\"\"\n    if idata is None or not hasattr(idata, \"posterior\"):\n        return None\n    if key not in idata.posterior:\n        return None\n    arr = idata.posterior[key].values          # [chains, draws, ...]\n    return arr.reshape(-1, *arr.shape[2:])     # [total, ...]\n\n\n# ---------------------------------------------------------------------------\n# 1. Convergence diagnostics\n# ---------------------------------------------------------------------------\n\ndef convergence_diagnostics(idata, point_est):\n    diag = {}\n    if idata is not None and HAS_ARVIZ and hasattr(idata, \"posterior\"):\n        print(\"\\n  R-hat / ESS (rank-normalized split-R-hat, Vehtari et al. 2021)\")\n        target_vars = [v for v in [\"theta\", \"c\", \"c_n\", \"sigma_c\", \"d\"]\n                       if v in idata.posterior]\n        summary = az.summary(idata, var_names=target_vars, kind=\"diagnostics\")\n\n        for vn in target_vars:\n            rows = [r for r in summary.index if r.startswith(vn)]\n            if not rows:\n                continue\n            rh = summary.loc[rows, \"r_hat\"]\n            eb = summary.loc[rows, \"ess_bulk\"]\n            et = summary.loc[rows, \"ess_tail\"]\n            ok = bool((rh < 1.01).all())\n            diag.setdefault(\"rhat\", {})[vn] = {\n                \"max\": float(rh.max()), \"mean\": float(rh.mean()),\n                \"all_below_1.01\": ok,\n            }\n            diag.setdefault(\"ess_bulk\", {})[vn] = {\n                \"min\": float(eb.min()), \"median\": float(eb.median()),\n            }\n            diag.setdefault(\"ess_tail\", {})[vn] = {\n                \"min\": float(et.min()), \"median\": float(et.median()),\n            }\n            mark = \"OK\" if ok else \"WARN\"\n            print(f\"    {vn:10s}  R-hat max={rh.max():.4f} [{mark}]  \"\n                  f\"ESS_bulk min={eb.min():.0f}  ESS_tail min={et.min():.0f}\")\n\n        # Divergent transitions\n        if \"diverging\" in idata.sample_stats:\n            dv = idata.sample_stats[\"diverging\"]\n            n_div = int(dv.sum().values)\n            n_tot = int(np.prod(dv.shape))\n            diag[\"divergences\"] = {\"count\": n_div, \"total\": n_tot,\n                                   \"pct\": round(n_div / n_tot * 100, 3)}\n            print(f\"\\n  Divergent transitions: {n_div}/{n_tot} ({diag['divergences']['pct']:.3f}%)\")\n\n        # Max tree-depth (num_steps = 2^depth - 1; NUTS default max = 1023)\n        if \"num_steps\" in idata.sample_stats:\n            ns = idata.sample_stats[\"num_steps\"]\n            n_max = int((ns >= 1023).sum().values)\n            n_tot = int(np.prod(ns.shape))\n            diag[\"max_tree_depth\"] = {\n                \"max_num_steps\": int(ns.max().values),\n                \"hit_1023_count\": n_max,\n                \"hit_1023_pct\": round(n_max / n_tot * 100, 2),\n                \"total\": n_tot,\n            }\n            print(f\"  Max tree-depth hits (1023 steps): {n_max}/{n_tot} \"\n                  f\"({diag['max_tree_depth']['hit_1023_pct']:.2f}%)\")\n    else:\n        # Fallback: results.json\n        rpt = (point_est or {}).get(\"report\", {})\n        jg = rpt.get(\"convergence\", {}).get(\"joint_gmfrm\", {})\n        diag[\"rhat\"] = {\"overall_max\": jg.get(\"r_hat\", float(\"nan\"))}\n        diag[\"ess_bulk\"] = {\"overall_min\": jg.get(\"ess\", float(\"nan\"))}\n        diag[\"divergences\"] = {\"count\": jg.get(\"divergences\", 0)}\n        print(f\"  (from results.json — per-param breakdown unavailable)\")\n        print(f\"    R-hat max : {jg.get('r_hat', 'N/A')}\")\n        print(f\"    ESS min   : {jg.get('ess', 'N/A')}\")\n        print(f\"    Divergences: {jg.get('divergences', 'N/A')}\")\n        print(f\"\\n  For full diagnostics, re-run with: python analyze_003b.py --refit\")\n\n    return diag\n\n\n# ---------------------------------------------------------------------------\n# 2. Arena correlation\n# ---------------------------------------------------------------------------\n\ndef arena_correlation(theta_hat, model_names):\n    matched = [(i, m) for i, m in enumerate(model_names) if m in ARENA_ELO]\n    if len(matched) < 3:\n        print(f\"  Only {len(matched)} models matched Arena — skipping.\")\n        return {}\n\n    idx = [i for i, _ in matched]\n    names = [m for _, m in matched]\n    theta = theta_hat[idx]\n    elo = np.array([ARENA_ELO[m] for m in names])\n\n    tau, tau_p = kendalltau(theta, elo)\n    rho, rho_p = spearmanr(theta, elo)\n\n    result = {\"kendall_tau\": round(float(tau), 4),\n              \"kendall_p\": round(float(tau_p), 4),\n              \"spearman_rho\": round(float(rho), 4),\n              \"spearman_p\": round(float(rho_p), 4),\n              \"n_matched\": len(matched), \"matched_models\": names}\n\n    print(f\"  Kendall  tau = {tau:.4f}  (p={tau_p:.4f})\")\n    print(f\"  Spearman rho = {rho:.4f}  (p={rho_p:.4f})\")\n    print(f\"  N matched    = {len(matched)}\")\n\n    print(f\"\\n  vs exp-003 baselines:\")\n    print(f\"    {'method':<28s}  {'tau':>7s}  {'rho':>7s}\")\n    print(f\"    {'─'*28}  {'─'*7}  {'─'*7}\")\n    for m, b in EXP003_BASELINES.items():\n        print(f\"    {m:<28s}  {b['kendall_tau']:>7.3f}  {b['spearman_rho']:>7.3f}\")\n    print(f\"    {'─'*28}  {'─'*7}  {'─'*7}\")\n    print(f\"    {'003b (HalfNormal)':<28s}  {tau:>7.3f}  {rho:>7.3f}\")\n\n    return result\n\n\n# ---------------------------------------------------------------------------\n# 3. Parameter extraction\n# ---------------------------------------------------------------------------\n\ndef extract_parameters(idata, point_est, model_names, judge_names):\n    params = {}\n    full = idata is not None and HAS_ARVIZ and hasattr(idata, \"posterior\")\n\n    # θ\n    if full and \"theta\" in idata.posterior:\n        arr = _get_posterior_array(idata, \"theta\")\n        mu = arr.mean(0)\n        lo = np.percentile(arr, 2.5, axis=0)\n        hi = np.percentile(arr, 97.5, axis=0)\n        params[\"theta\"] = _param_table(model_names, mu, lo, hi, \"model\")\n        _print_param(\"theta_n (model ability)\", model_names, mu, lo, hi)\n    elif point_est and \"theta_hat\" in point_est:\n        mu = point_est[\"theta_hat\"]\n        params[\"theta\"] = _param_table(model_names, mu, label=\"model\")\n        _print_param(\"theta_n (point est.)\", model_names, mu)\n\n    # c\n    ck = _c_key(idata.posterior) if full else None\n    if full and ck:\n        arr = _get_posterior_array(idata, ck)\n        mu = arr.mean(0)\n        lo = np.percentile(arr, 2.5, axis=0)\n        hi = np.percentile(arr, 97.5, axis=0)\n        params[\"c\"] = _param_table(model_names, mu, lo, hi, \"model\")\n        _print_param(\"c_n (contamination)\", model_names, mu, lo, hi)\n    elif point_est and \"c_hat\" in point_est:\n        mu = point_est[\"c_hat\"]\n        params[\"c\"] = _param_table(model_names, mu, label=\"model\")\n        _print_param(\"c_n (point est.)\", model_names, mu)\n\n    # d\n    if full and \"d\" in idata.posterior:\n        arr = _get_posterior_array(idata, \"d\")\n        mu = arr.mean(0)\n        lo = np.percentile(arr, 2.5, axis=0)\n        hi = np.percentile(arr, 97.5, axis=0)\n        params[\"d\"] = _param_table(judge_names, mu, lo, hi, \"judge\")\n        _print_param(\"d_j (judge severity)\", judge_names, mu, lo, hi)\n    elif point_est and \"report\" in point_est:\n        dv = (point_est[\"report\"].get(\"parameters\", {})\n              .get(\"joint_gmfrm\", {}).get(\"d_values\", {}))\n        if dv:\n            names = list(dv.keys())\n            mu = np.array([dv[n] for n in names])\n            params[\"d\"] = _param_table(names, mu, label=\"judge\")\n            _print_param(\"d_j (point est.)\", names, mu)\n\n    # sigma_c\n    if full and \"sigma_c\" in idata.posterior:\n        arr = _get_posterior_array(idata, \"sigma_c\").flatten()\n        mu_s = float(arr.mean())\n        lo_s = float(np.percentile(arr, 2.5))\n        hi_s = float(np.percentile(arr, 97.5))\n        params[\"sigma_c\"] = {\"mean\": mu_s, \"ci_lo\": lo_s, \"ci_hi\": hi_s}\n        print(f\"\\n  sigma_c: {mu_s:.4f} [{lo_s:.4f}, {hi_s:.4f}]\")\n\n    return params\n\n\ndef _param_table(names, mu, lo=None, hi=None, label=\"name\"):\n    order = np.argsort(-mu)\n    rows = []\n    for i in order:\n        row = {label: names[i], \"mean\": round(float(mu[i]), 4)}\n        if lo is not None:\n            row[\"ci_lo\"] = round(float(lo[i]), 4)\n            row[\"ci_hi\"] = round(float(hi[i]), 4)\n        rows.append(row)\n    return rows\n\n\ndef _print_param(title, names, mu, lo=None, hi=None):\n    order = np.argsort(-mu)\n    has_ci = lo is not None\n    print(f\"\\n  {title}:\")\n    for i in order:\n        if has_ci:\n            print(f\"    {names[i]:<30s} {mu[i]:>7.3f}  [{lo[i]:>7.3f}, {hi[i]:>7.3f}]\")\n        else:\n            print(f\"    {names[i]:<30s} {mu[i]:>7.3f}\")\n\n\n# ---------------------------------------------------------------------------\n# 4. Visualizations\n# ---------------------------------------------------------------------------\n\ndef plot_traces(idata, out, model_names, judge_names):\n    if idata is None or not HAS_ARVIZ or not hasattr(idata, \"posterior\"):\n        print(\"  Trace plots require full MCMC samples — skipped.\")\n        return\n    posterior = idata.posterior\n    n_chains = posterior.dims[\"chain\"]\n\n    def _trace_grid(key, names, fname, title):\n        if key not in posterior:\n            return\n        vals = posterior[key].values   # [chains, draws, dim]\n        n = vals.shape[-1]\n        fig, axes = plt.subplots(n, 2, figsize=(14, max(2.2 * n, 4)),\n                                 squeeze=False)\n        for i in range(n):\n            for ch in range(n_chains):\n                axes[i, 0].plot(vals[ch, :, i], alpha=0.55, lw=0.4)\n                axes[i, 1].hist(vals[ch, :, i], bins=50, alpha=0.45, density=True)\n            axes[i, 0].set_ylabel(names[i] if i < len(names) else str(i),\n                                  fontsize=7, rotation=0, ha=\"right\")\n            for ax in axes[i]:\n                ax.tick_params(labelsize=6)\n        axes[0, 0].set_title(f\"Trace — {title}\", fontsize=10)\n        axes[0, 1].set_title(\"Marginal density\", fontsize=10)\n        plt.tight_layout()\n        plt.savefig(out / fname, dpi=150, bbox_inches=\"tight\")\n        plt.close()\n\n    _trace_grid(\"theta\", model_names, \"trace_theta.png\", \"theta (model ability)\")\n\n    ck = _c_key(posterior)\n    if ck:\n        _trace_grid(ck, model_names, \"trace_c.png\", \"c_n (contamination)\")\n\n    _trace_grid(\"d\", judge_names, \"trace_d.png\", \"d_j (judge severity)\")\n\n    # sigma_c (scalar)\n    if \"sigma_c\" in posterior:\n        vals = posterior[\"sigma_c\"].values  # [chains, draws]\n        fig, axes = plt.subplots(1, 2, figsize=(12, 3))\n        for ch in range(n_chains):\n            axes[0].plot(vals[ch], alpha=0.55, lw=0.5, label=f\"chain {ch}\")\n            axes[1].hist(vals[ch], bins=50, alpha=0.45, density=True)\n        axes[0].set_title(\"Trace — sigma_c\")\n        axes[1].set_title(\"Marginal density — sigma_c\")\n        axes[0].legend(fontsize=7)\n        plt.tight_layout()\n        plt.savefig(out / \"trace_sigma_c.png\", dpi=150, bbox_inches=\"tight\")\n        plt.close()\n\n    print(\"  Saved: trace_theta.png, trace_c.png, trace_d.png, trace_sigma_c.png\")\n\n\ndef plot_posterior_densities(idata, out, model_names, judge_names):\n    if idata is None or not HAS_ARVIZ or not hasattr(idata, \"posterior\"):\n        print(\"  Posterior density plots require full MCMC samples — skipped.\")\n        return\n    posterior = idata.posterior\n\n    ck = _c_key(posterior)\n    if ck:\n        arr = _get_posterior_array(idata, ck)\n        mu = arr.mean(0)\n        order = np.argsort(-mu)\n        fig, ax = plt.subplots(figsize=(10, 5.5))\n        cmap = plt.cm.RdYlGn_r(np.linspace(0.15, 0.85, len(model_names)))\n        for rank, i in enumerate(order):\n            ax.hist(arr[:, i], bins=80, alpha=0.55, density=True,\n                    color=cmap[rank], label=model_names[i])\n        ax.set_xlabel(\"c_n\")\n        ax.set_ylabel(\"Density\")\n        ax.set_title(\"Posterior of c_n (contamination susceptibility)\")\n        ax.legend(fontsize=8)\n        plt.tight_layout()\n        plt.savefig(out / \"posterior_c.png\", dpi=150)\n        plt.close()\n\n    if \"d\" in posterior:\n        arr = _get_posterior_array(idata, \"d\")\n        mu = arr.mean(0)\n        order = np.argsort(-mu)\n        fig, ax = plt.subplots(figsize=(10, 5.5))\n        cmap = plt.cm.coolwarm(np.linspace(0.1, 0.9, len(judge_names)))\n        for rank, i in enumerate(order):\n            ax.hist(arr[:, i], bins=80, alpha=0.55, density=True,\n                    color=cmap[rank], label=judge_names[i])\n        ax.set_xlabel(\"d_j\")\n        ax.set_ylabel(\"Density\")\n        ax.set_title(\"Posterior of d_j (judge severity)\")\n        ax.legend(fontsize=7)\n        plt.tight_layout()\n        plt.savefig(out / \"posterior_d.png\", dpi=150)\n        plt.close()\n\n    print(\"  Saved: posterior_c.png, posterior_d.png\")\n\n\ndef plot_theta_vs_elo(theta_hat, model_names, out, theta_ci=None):\n    matched = [(i, m) for i, m in enumerate(model_names) if m in ARENA_ELO]\n    if len(matched) < 3:\n        return\n\n    fig, ax = plt.subplots(figsize=(8, 6))\n    for i, name in matched:\n        elo = ARENA_ELO[name]\n        if theta_ci is not None:\n            ax.errorbar(elo, theta_hat[i],\n                        yerr=[[theta_hat[i] - theta_ci[i, 0]],\n                              [theta_ci[i, 1] - theta_hat[i]]],\n                        fmt=\"o\", capsize=4, capthick=1.5, ms=8, zorder=5)\n        else:\n            ax.scatter(elo, theta_hat[i], s=80, zorder=5)\n        ax.annotate(name, (elo, theta_hat[i]),\n                    textcoords=\"offset points\", xytext=(6, 6), fontsize=8)\n\n    elo_arr = np.array([ARENA_ELO[m] for _, m in matched])\n    th_arr = theta_hat[[i for i, _ in matched]]\n    z = np.polyfit(elo_arr, th_arr, 1)\n    xs = np.linspace(elo_arr.min() - 20, elo_arr.max() + 20, 100)\n    ax.plot(xs, np.polyval(z, xs), \"--\", alpha=0.4, color=\"gray\")\n\n    ax.set_xlabel(\"Arena Elo\")\n    ax.set_ylabel(\"theta (G-MFRM ability)\")\n    ax.set_title(\"theta vs Arena Elo (exp-003b, HalfNormal prior)\")\n    ax.grid(True, alpha=0.3)\n    plt.tight_layout()\n    plt.savefig(out / \"theta_vs_elo.png\", dpi=150)\n    plt.close()\n    print(\"  Saved: theta_vs_elo.png\")\n\n\ndef plot_c_bar(c_hat, model_names, out, c_ci=None):\n    order = np.argsort(-c_hat)\n    names_s = [model_names[i] for i in order]\n    c_s = c_hat[order]\n\n    fig, ax = plt.subplots(figsize=(10, 5))\n    cmap = plt.cm.RdYlGn_r(np.linspace(0.2, 0.8, len(model_names)))\n    ax.bar(range(len(c_s)), c_s, color=cmap)\n\n    if c_ci is not None:\n        ci_s = c_ci[order]\n        yerr = np.array([c_s - ci_s[:, 0], ci_s[:, 1] - c_s])\n        ax.errorbar(range(len(c_s)), c_s, yerr=yerr,\n                    fmt=\"none\", capsize=4, capthick=1.5, color=\"black\")\n\n    ax.set_xticks(range(len(c_s)))\n    ax.set_xticklabels(names_s, rotation=45, ha=\"right\", fontsize=9)\n    ax.set_ylabel(\"c_n (contamination susceptibility)\")\n    ax.set_title(\"Contamination Susceptibility Ranking (exp-003b)\")\n    ax.grid(True, alpha=0.3, axis=\"y\")\n    plt.tight_layout()\n    plt.savefig(out / \"c_ranking.png\", dpi=150)\n    plt.close()\n    print(\"  Saved: c_ranking.png\")\n\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"exp-003b analysis: full G-MFRM posterior diagnostics\")\n    parser.add_argument(\"--output-dir\", default=str(DEFAULT_OUTPUT_DIR))\n    parser.add_argument(\"--refit\", action=\"store_true\",\n                        help=\"Re-run MCMC for full posterior (~2h on GPU)\")\n    parser.add_argument(\"--warmup\", type=int, default=4000)\n    parser.add_argument(\"--samples\", type=int, default=4000)\n    parser.add_argument(\"--chains\", type=int, default=4)\n    parser.add_argument(\"--target-accept\", type=float, default=0.95)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    args = parser.parse_args()\n\n    output_dir = Path(args.output_dir)\n    analysis_dir = output_dir / \"analysis\"\n    analysis_dir.mkdir(parents=True, exist_ok=True)\n\n    print(\"=\" * 60)\n    print(\"exp-003b Analysis — G-MFRM (HalfNormal prior)\")\n    print(\"=\" * 60)\n    print(f\"  Output dir  : {output_dir}\")\n    print(f\"  Analysis dir: {analysis_dir}\")\n\n    # ── Check availability ──\n    has_results = ((output_dir / \"results.json\").exists() or\n                   (output_dir / \"joint_gmfrm_theta.npy\").exists())\n    has_idata = (output_dir / \"joint_gmfrm_idata.nc\").exists()\n\n    if not has_results and not has_idata and not args.refit:\n        print(f\"\\n  No results found in {output_dir}.\")\n        print(\"  Waiting for exp-003b to complete. Check progress:\")\n        print(\"    tail -1 /tmp/exp003b.log\")\n        sys.exit(1)\n\n    # ── Step 1: Load ──\n    hdr(\"Loading data\")\n    idata = None\n    point_est = None\n\n    if args.refit:\n        assert HAS_ARVIZ, \"arviz required for --refit\"\n        idata = refit_mcmc(output_dir, args.warmup, args.samples,\n                           args.chains, args.target_accept, args.seed)\n    else:\n        idata = load_inference_data(output_dir)\n        point_est = load_point_estimates(output_dir)\n\n    full = idata is not None and HAS_ARVIZ and hasattr(idata, \"posterior\")\n    mode = \"full\" if full else \"partial\"\n    if full:\n        print(\"  Full posterior samples loaded.\")\n    else:\n        print(\"  Point estimates only — some diagnostics unavailable.\")\n        print(\"  To get full posterior, run:  python analyze_003b.py --refit\")\n\n    # Resolve names from report if possible\n    rpt = (point_est or {}).get(\"report\", {}).get(\"data_summary\", {})\n    model_names = rpt.get(\"model_names\", MODEL_NAMES)\n    judge_names = rpt.get(\"judge_names\", JUDGE_NAMES)\n\n    # ── Step 2: Convergence ──\n    hdr(\"Convergence Diagnostics\")\n    diag = convergence_diagnostics(idata, point_est)\n\n    # ── Step 3: Extract theta / c ──\n    theta_hat, theta_ci = _extract_vec(idata, \"theta\", point_est, \"theta_hat\",\n                                       len(model_names))\n    ck = _c_key(idata.posterior) if full else None\n    c_hat, c_ci = _extract_vec(idata, ck, point_est, \"c_hat\",\n                               len(model_names))\n\n    # ── Step 4: Arena correlation ──\n    hdr(\"Arena Elo Correlation\")\n    arena = arena_correlation(theta_hat, model_names) if theta_hat is not None else {}\n\n    # ── Step 5: Parameter profiles ──\n    hdr(\"Parameter Profiles\")\n    params = extract_parameters(idata, point_est, model_names, judge_names)\n\n    # ── Step 6: Plots ──\n    hdr(\"Visualizations\")\n    plot_traces(idata, analysis_dir, model_names, judge_names)\n    plot_posterior_densities(idata, analysis_dir, model_names, judge_names)\n    if theta_hat is not None:\n        plot_theta_vs_elo(theta_hat, model_names, analysis_dir, theta_ci)\n    if c_hat is not None:\n        plot_c_bar(c_hat, model_names, analysis_dir, c_ci)\n\n    # ── Step 7: Save summary ──\n    hdr(\"Summary\")\n    summary = {\n        \"experiment\": \"exp-003b\",\n        \"model\": \"G-MFRM (HalfNormal prior)\",\n        \"mcmc_config\": {\"warmup\": 4000, \"samples\": 4000,\n                        \"chains\": 4, \"target_accept\": 0.95},\n        \"analysis_mode\": mode,\n        \"convergence\": _jsonable(diag),\n        \"arena_correlation\": arena,\n        \"parameters\": _jsonable(params),\n        \"exp003_baselines\": EXP003_BASELINES,\n    }\n    spath = analysis_dir / \"summary.json\"\n    with open(spath, \"w\") as f:\n        json.dump(summary, f, indent=2, default=str)\n    print(f\"  Saved: {spath}\")\n\n    # Final console summary\n    print(f\"\\n  Mode: {mode}\")\n    if \"rhat\" in diag:\n        rh = diag[\"rhat\"]\n        if isinstance(rh, dict) and any(isinstance(v, dict) for v in rh.values()):\n            max_rh = max(v.get(\"max\", 0) for v in rh.values() if isinstance(v, dict))\n            print(f\"  R-hat max: {max_rh:.4f}\")\n    if arena:\n        print(f\"  Arena tau={arena['kendall_tau']:.3f}, rho={arena['spearman_rho']:.3f}\")\n    n_plots = len(list(analysis_dir.glob(\"*.png\")))\n    print(f\"  Plots: {n_plots} PNGs in {analysis_dir}\")\n    print(f\"  JSON:  {spath}\")\n\n\n# ── Utilities ──\n\ndef hdr(title):\n    print(f\"\\n{'='*60}\")\n    print(f\"  {title}\")\n    print(f\"{'='*60}\")\n\n\ndef _extract_vec(idata, idata_key, point_est, pe_key, n):\n    \"\"\"Return (mean, ci_array_or_None) for a vector parameter.\"\"\"\n    full = (idata is not None and HAS_ARVIZ and hasattr(idata, \"posterior\")\n            and idata_key and idata_key in idata.posterior)\n    if full:\n        arr = _get_posterior_array(idata, idata_key)\n        mu = arr.mean(0)\n        ci = np.column_stack([np.percentile(arr, 2.5, axis=0),\n                              np.percentile(arr, 97.5, axis=0)])\n        return mu, ci\n    if point_est and pe_key in point_est:\n        return point_est[pe_key], None\n    return None, None\n\n\ndef _jsonable(obj):\n    \"\"\"Make nested dicts/arrays JSON-safe.\"\"\"\n    if isinstance(obj, dict):\n        return {k: _jsonable(v) for k, v in obj.items()}\n    if isinstance(obj, list):\n        return [_jsonable(v) for v in obj]\n    if isinstance(obj, (np.integer,)):\n        return int(obj)\n    if isinstance(obj, (np.floating, np.float64)):\n        return float(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    return obj\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-22T19:06:03.119004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/analyze_003b.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-22T19:06:03.119270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "cat > /root/gated_mfrm_judge_bias/exp003/analyze_003b.py << 'HEREDOC_EOF'\n#!/usr/bin/env python3\n\"\"\"\nexp-003b Analysis: Full posterior diagnostics for G-MFRM (HalfNormal prior).\n\nUsage:\n  python analyze_003b.py                              # analyze saved results\n  python analyze_003b.py --refit                      # re-run MCMC for full posterior\n  python analyze_003b.py --output-dir /path/to/dir    # custom output dir\n\nReads from:  output_003b/ (or --output-dir)\nWrites to:   output_003b/analysis/\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport warnings\nfrom pathlib import Path\n\nos.environ.setdefault(\"JAX_PLATFORMS\", \"cuda,cpu\")\nos.environ.setdefault(\"XLA_PYTHON_CLIENT_PREALLOCATE\", \"false\")\nos.environ.setdefault(\"XLA_PYTHON_CLIENT_MEM_FRACTION\", \"0.25\")\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom scipy.stats import kendalltau, spearmanr\n\ntry:\n    import arviz as az\n    HAS_ARVIZ = True\nexcept ImportError:\n    HAS_ARVIZ = False\n    warnings.warn(\"arviz not installed — convergence diagnostics will be limited\")\n\n# ---------------------------------------------------------------------------\n# Constants\n# ---------------------------------------------------------------------------\nPROJECT_ROOT = Path(\"/root/gated_mfrm_judge_bias\")\nEXP003_DIR = PROJECT_ROOT / \"exp003\"\nDEFAULT_OUTPUT_DIR = EXP003_DIR / \"output_003b\"\n\nMODEL_NAMES = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\nJUDGE_NAMES = [\n    \"claude-opus-4.7-proxy\", \"claude-sonnet-4.6-proxy\", \"deepseek-v4-pro-proxy\",\n    \"gemini-2.5-pro-proxy\", \"gpt-5.5-proxy\", \"llama-3.3-70b\",\n    \"mistral-large-2\", \"qwen2.5-72b\", \"qwen3-235b-proxy\",\n]\nARENA_ELO = {\n    \"gpt-3.5-turbo-0125\": 1105,\n    \"gpt-4-0613\": 1163,\n    \"gemma-2-9b\": 1130,\n    \"qwen3-8b\": 1170,\n    \"llama-3.3-70b\": 1208,\n    \"qwen2.5-72b\": 1187,\n    \"gpt-4o\": 1286,\n    \"gpt-4o-mini\": 1272,\n}\nEXP003_BASELINES = {\n    \"raw_average\":  {\"kendall_tau\": 0.786, \"spearman_rho\": 0.905},\n    \"mfrm_only\":    {\"kendall_tau\": 0.786, \"spearman_rho\": 0.905},\n    \"sequential\":   {\"kendall_tau\": 0.786, \"spearman_rho\": 0.905},\n    \"joint_gmfrm (horseshoe)\": {\"kendall_tau\": 0.857, \"spearman_rho\": 0.952},\n}\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_inference_data(output_dir: Path):\n    \"\"\"Load ArviZ InferenceData from NetCDF / pickle / npz.\"\"\"\n    nc_path = output_dir / \"joint_gmfrm_idata.nc\"\n    if nc_path.exists() and HAS_ARVIZ:\n        print(f\"  Loading InferenceData: {nc_path}\")\n        return az.from_netcdf(str(nc_path))\n\n    pkl_path = output_dir / \"mcmc_samples.pkl\"\n    if pkl_path.exists():\n        import pickle\n        print(f\"  Loading pickled samples: {pkl_path}\")\n        with open(pkl_path, \"rb\") as f:\n            data = pickle.load(f)\n        if HAS_ARVIZ and isinstance(data, dict):\n            return az.from_dict(data)\n        return data\n\n    npz_path = output_dir / \"mcmc_samples.npz\"\n    if npz_path.exists():\n        print(f\"  Loading npz samples: {npz_path}\")\n        data = dict(np.load(str(npz_path), allow_pickle=True))\n        if HAS_ARVIZ:\n            return az.from_dict(data)\n        return data\n\n    return None\n\n\ndef load_point_estimates(output_dir: Path):\n    \"\"\"Load .npy point estimates + results.json.\"\"\"\n    result = {}\n    for name in [\"joint_gmfrm_theta\", \"joint_gmfrm_c\"]:\n        p = output_dir / f\"{name}.npy\"\n        if p.exists():\n            key = \"theta_hat\" if \"theta\" in name else \"c_hat\"\n            result[key] = np.load(str(p))\n\n    rj = output_dir / \"results.json\"\n    if rj.exists():\n        with open(rj) as f:\n            result[\"report\"] = json.load(f)\n\n    return result\n\n\ndef refit_mcmc(output_dir, warmup, samples, chains, target_accept, seed):\n    \"\"\"Re-run G-MFRM MCMC and return InferenceData.\"\"\"\n    print(\"  Re-fitting G-MFRM (this takes a while)...\")\n    import jax\n    import jax.numpy as jnp\n    import numpyro\n\n    sys.path.insert(0, str(EXP003_DIR))\n    from data_loader import load_data\n    from models import _gmfrm_model, _run_mcmc\n\n    data = load_data(\n        str(PROJECT_ROOT / \"exp001\" / \"results\"),\n        str(PROJECT_ROOT / \"exp002\" / \"results\" / \"exposure_scores.csv\"),\n    )\n\n    mcmc = _run_mcmc(\n        _gmfrm_model, jax.random.PRNGKey(seed),\n        dict(\n            model_idx=jnp.array(data[\"model_idx\"]),\n            item_idx=jnp.array(data[\"item_idx\"]),\n            judge_idx=jnp.array(data[\"judge_idx\"]),\n            y=jnp.array(data[\"y\"]),\n            e=jnp.array(data[\"e_i\"], dtype=jnp.float32),\n            N=data[\"N\"], I=data[\"I\"], J=data[\"J\"],\n        ),\n        warmup, samples, chains, target_accept,\n    )\n\n    idata = az.from_numpyro(mcmc)\n    nc_path = output_dir / \"joint_gmfrm_idata.nc\"\n    idata.to_netcdf(str(nc_path))\n    print(f\"  Saved InferenceData: {nc_path}\")\n    return idata\n\n\n# ---------------------------------------------------------------------------\n# Helpers\n# ---------------------------------------------------------------------------\n\ndef _c_key(posterior):\n    for k in (\"c\", \"c_n\"):\n        if k in posterior:\n            return k\n    return None\n\n\ndef _get_posterior_array(idata, key):\n    if idata is None or not hasattr(idata, \"posterior\"):\n        return None\n    if key not in idata.posterior:\n        return None\n    arr = idata.posterior[key].values\n    return arr.reshape(-1, *arr.shape[2:])\n\n\n# ---------------------------------------------------------------------------\n# 1. Convergence diagnostics\n# ---------------------------------------------------------------------------\n\ndef convergence_diagnostics(idata, point_est):\n    diag = {}\n    if idata is not None and HAS_ARVIZ and hasattr(idata, \"posterior\"):\n        print(\"\\n  R-hat / ESS (rank-normalized split-R-hat, Vehtari et al. 2021)\")\n        target_vars = [v for v in [\"theta\", \"c\", \"c_n\", \"sigma_c\", \"d\"]\n                       if v in idata.posterior]\n        summary = az.summary(idata, var_names=target_vars, kind=\"diagnostics\")\n\n        for vn in target_vars:\n            rows = [r for r in summary.index if r.startswith(vn)]\n            if not rows:\n                continue\n            rh = summary.loc[rows, \"r_hat\"]\n            eb = summary.loc[rows, \"ess_bulk\"]\n            et = summary.loc[rows, \"ess_tail\"]\n            ok = bool((rh < 1.01).all())\n            diag.setdefault(\"rhat\", {})[vn] = {\n                \"max\": float(rh.max()), \"mean\": float(rh.mean()),\n                \"all_below_1.01\": ok,\n            }\n            diag.setdefault(\"ess_bulk\", {})[vn] = {\n                \"min\": float(eb.min()), \"median\": float(eb.median()),\n            }\n            diag.setdefault(\"ess_tail\", {})[vn] = {\n                \"min\": float(et.min()), \"median\": float(et.median()),\n            }\n            mark = \"OK\" if ok else \"WARN\"\n            print(f\"    {vn:10s}  R-hat max={rh.max():.4f} [{mark}]  \"\n                  f\"ESS_bulk min={eb.min():.0f}  ESS_tail min={et.min():.0f}\")\n\n        if \"diverging\" in idata.sample_stats:\n            dv = idata.sample_stats[\"diverging\"]\n            n_div = int(dv.sum().values)\n            n_tot = int(np.prod(dv.shape))\n            diag[\"divergences\"] = {\"count\": n_div, \"total\": n_tot,\n                                   \"pct\": round(n_div / n_tot * 100, 3)}\n            print(f\"\\n  Divergent transitions: {n_div}/{n_tot} \"\n                  f\"({diag['divergences']['pct']:.3f}%)\")\n\n        if \"num_steps\" in idata.sample_stats:\n            ns = idata.sample_stats[\"num_steps\"]\n            n_max = int((ns >= 1023).sum().values)\n            n_tot = int(np.prod(ns.shape))\n            diag[\"max_tree_depth\"] = {\n                \"max_num_steps\": int(ns.max().values),\n                \"hit_1023_count\": n_max,\n                \"hit_1023_pct\": round(n_max / n_tot * 100, 2),\n                \"total\": n_tot,\n            }\n            print(f\"  Max tree-depth hits (1023 steps): {n_max}/{n_tot} \"\n                  f\"({diag['max_tree_depth']['hit_1023_pct']:.2f}%)\")\n    else:\n        rpt = (point_est or {}).get(\"report\", {})\n        jg = rpt.get(\"convergence\", {}).get(\"joint_gmfrm\", {})\n        diag[\"rhat\"] = {\"overall_max\": jg.get(\"r_hat\", float(\"nan\"))}\n        diag[\"ess_bulk\"] = {\"overall_min\": jg.get(\"ess\", float(\"nan\"))}\n        diag[\"divergences\"] = {\"count\": jg.get(\"divergences\", 0)}\n        print(f\"  (from results.json — per-param breakdown unavailable)\")\n        print(f\"    R-hat max  : {jg.get('r_hat', 'N/A')}\")\n        print(f\"    ESS min    : {jg.get('ess', 'N/A')}\")\n        print(f\"    Divergences: {jg.get('divergences', 'N/A')}\")\n        print(f\"\\n  For full diagnostics: python analyze_003b.py --refit\")\n\n    return diag\n\n\n# ---------------------------------------------------------------------------\n# 2. Arena correlation\n# ---------------------------------------------------------------------------\n\ndef arena_correlation(theta_hat, model_names):\n    matched = [(i, m) for i, m in enumerate(model_names) if m in ARENA_ELO]\n    if len(matched) < 3:\n        print(f\"  Only {len(matched)} models matched Arena — skipping.\")\n        return {}\n\n    idx = [i for i, _ in matched]\n    names = [m for _, m in matched]\n    theta = theta_hat[idx]\n    elo = np.array([ARENA_ELO[m] for m in names])\n\n    tau, tau_p = kendalltau(theta, elo)\n    rho, rho_p = spearmanr(theta, elo)\n\n    result = {\"kendall_tau\": round(float(tau), 4),\n              \"kendall_p\": round(float(tau_p), 4),\n              \"spearman_rho\": round(float(rho), 4),\n              \"spearman_p\": round(float(rho_p), 4),\n              \"n_matched\": len(matched), \"matched_models\": names}\n\n    print(f\"  Kendall  tau = {tau:.4f}  (p={tau_p:.4f})\")\n    print(f\"  Spearman rho = {rho:.4f}  (p={rho_p:.4f})\")\n    print(f\"  N matched    = {len(matched)}\")\n\n    print(f\"\\n  vs exp-003 baselines:\")\n    print(f\"    {'method':<28s}  {'tau':>7s}  {'rho':>7s}\")\n    print(f\"    {'---'*12}  {'---'*3}  {'---'*3}\")\n    for m, b in EXP003_BASELINES.items():\n        print(f\"    {m:<28s}  {b['kendall_tau']:>7.3f}  {b['spearman_rho']:>7.3f}\")\n    print(f\"    {'---'*12}  {'---'*3}  {'---'*3}\")\n    print(f\"    {'003b (HalfNormal)':<28s}  {tau:>7.3f}  {rho:>7.3f}\")\n\n    return result\n\n\n# ---------------------------------------------------------------------------\n# 3. Parameter extraction\n# ---------------------------------------------------------------------------\n\ndef extract_parameters(idata, point_est, model_names, judge_names):\n    params = {}\n    full = idata is not None and HAS_ARVIZ and hasattr(idata, \"posterior\")\n\n    # theta\n    if full and \"theta\" in idata.posterior:\n        arr = _get_posterior_array(idata, \"theta\")\n        mu = arr.mean(0); lo = np.percentile(arr, 2.5, 0); hi = np.percentile(arr, 97.5, 0)\n        params[\"theta\"] = _param_table(model_names, mu, lo, hi, \"model\")\n        _print_param(\"theta_n (model ability)\", model_names, mu, lo, hi)\n    elif point_est and \"theta_hat\" in point_est:\n        mu = point_est[\"theta_hat\"]\n        params[\"theta\"] = _param_table(model_names, mu, label=\"model\")\n        _print_param(\"theta_n (point est.)\", model_names, mu)\n\n    # c\n    ck = _c_key(idata.posterior) if full else None\n    if full and ck:\n        arr = _get_posterior_array(idata, ck)\n        mu = arr.mean(0); lo = np.percentile(arr, 2.5, 0); hi = np.percentile(arr, 97.5, 0)\n        params[\"c\"] = _param_table(model_names, mu, lo, hi, \"model\")\n        _print_param(\"c_n (contamination)\", model_names, mu, lo, hi)\n    elif point_est and \"c_hat\" in point_est:\n        mu = point_est[\"c_hat\"]\n        params[\"c\"] = _param_table(model_names, mu, label=\"model\")\n        _print_param(\"c_n (point est.)\", model_names, mu)\n\n    # d\n    if full and \"d\" in idata.posterior:\n        arr = _get_posterior_array(idata, \"d\")\n        mu = arr.mean(0); lo = np.percentile(arr, 2.5, 0); hi = np.percentile(arr, 97.5, 0)\n        params[\"d\"] = _param_table(judge_names, mu, lo, hi, \"judge\")\n        _print_param(\"d_j (judge severity)\", judge_names, mu, lo, hi)\n    elif point_est and \"report\" in point_est:\n        dv = (point_est[\"report\"].get(\"parameters\", {})\n              .get(\"joint_gmfrm\", {}).get(\"d_values\", {}))\n        if dv:\n            names = list(dv.keys()); mu = np.array([dv[n] for n in names])\n            params[\"d\"] = _param_table(names, mu, label=\"judge\")\n            _print_param(\"d_j (point est.)\", names, mu)\n\n    # sigma_c\n    if full and \"sigma_c\" in idata.posterior:\n        arr = _get_posterior_array(idata, \"sigma_c\").flatten()\n        params[\"sigma_c\"] = {\n            \"mean\": round(float(arr.mean()), 4),\n            \"ci_lo\": round(float(np.percentile(arr, 2.5)), 4),\n            \"ci_hi\": round(float(np.percentile(arr, 97.5)), 4),\n        }\n        print(f\"\\n  sigma_c: {params['sigma_c']['mean']:.4f} \"\n              f\"[{params['sigma_c']['ci_lo']:.4f}, {params['sigma_c']['ci_hi']:.4f}]\")\n\n    return params\n\n\ndef _param_table(names, mu, lo=None, hi=None, label=\"name\"):\n    order = np.argsort(-mu)\n    rows = []\n    for i in order:\n        row = {label: names[i], \"mean\": round(float(mu[i]), 4)}\n        if lo is not None:\n            row[\"ci_lo\"] = round(float(lo[i]), 4)\n            row[\"ci_hi\"] = round(float(hi[i]), 4)\n        rows.append(row)\n    return rows\n\n\ndef _print_param(title, names, mu, lo=None, hi=None):\n    order = np.argsort(-mu)\n    print(f\"\\n  {title}:\")\n    for i in order:\n        if lo is not None:\n            print(f\"    {names[i]:<30s} {mu[i]:>7.3f}  [{lo[i]:>7.3f}, {hi[i]:>7.3f}]\")\n        else:\n            print(f\"    {names[i]:<30s} {mu[i]:>7.3f}\")\n\n\n# ---------------------------------------------------------------------------\n# 4. Visualizations\n# ---------------------------------------------------------------------------\n\ndef plot_traces(idata, out, model_names, judge_names):\n    if idata is None or not HAS_ARVIZ or not hasattr(idata, \"posterior\"):\n        print(\"  Trace plots require full MCMC samples — skipped.\")\n        return\n    posterior = idata.posterior\n    n_chains = posterior.dims[\"chain\"]\n\n    def _trace_grid(key, names, fname, title):\n        if key not in posterior:\n            return\n        vals = posterior[key].values\n        n = vals.shape[-1]\n        fig, axes = plt.subplots(n, 2, figsize=(14, max(2.2 * n, 4)), squeeze=False)\n        for i in range(n):\n            for ch in range(n_chains):\n                axes[i, 0].plot(vals[ch, :, i], alpha=0.55, lw=0.4)\n                axes[i, 1].hist(vals[ch, :, i], bins=50, alpha=0.45, density=True)\n            lbl = names[i] if i < len(names) else str(i)\n            axes[i, 0].set_ylabel(lbl, fontsize=7, rotation=0, ha=\"right\")\n            for ax in axes[i]:\n                ax.tick_params(labelsize=6)\n        axes[0, 0].set_title(f\"Trace — {title}\", fontsize=10)\n        axes[0, 1].set_title(\"Marginal density\", fontsize=10)\n        plt.tight_layout()\n        plt.savefig(out / fname, dpi=150, bbox_inches=\"tight\")\n        plt.close()\n\n    _trace_grid(\"theta\", model_names, \"trace_theta.png\", \"theta (model ability)\")\n    ck = _c_key(posterior)\n    if ck:\n        _trace_grid(ck, model_names, \"trace_c.png\", \"c_n (contamination)\")\n    _trace_grid(\"d\", judge_names, \"trace_d.png\", \"d_j (judge severity)\")\n\n    if \"sigma_c\" in posterior:\n        vals = posterior[\"sigma_c\"].values\n        fig, axes = plt.subplots(1, 2, figsize=(12, 3))\n        for ch in range(n_chains):\n            axes[0].plot(vals[ch], alpha=0.55, lw=0.5, label=f\"chain {ch}\")\n            axes[1].hist(vals[ch], bins=50, alpha=0.45, density=True)\n        axes[0].set_title(\"Trace — sigma_c\")\n        axes[1].set_title(\"Marginal density — sigma_c\")\n        axes[0].legend(fontsize=7)\n        plt.tight_layout()\n        plt.savefig(out / \"trace_sigma_c.png\", dpi=150, bbox_inches=\"tight\")\n        plt.close()\n\n    print(\"  Saved: trace_theta.png, trace_c.png, trace_d.png, trace_sigma_c.png\")\n\n\ndef plot_posterior_densities(idata, out, model_names, judge_names):\n    if idata is None or not HAS_ARVIZ or not hasattr(idata, \"posterior\"):\n        print(\"  Posterior density plots require full MCMC samples — skipped.\")\n        return\n    posterior = idata.posterior\n\n    ck = _c_key(posterior)\n    if ck:\n        arr = _get_posterior_array(idata, ck)\n        mu = arr.mean(0)\n        order = np.argsort(-mu)\n        fig, ax = plt.subplots(figsize=(10, 5.5))\n        cmap = plt.cm.RdYlGn_r(np.linspace(0.15, 0.85, len(model_names)))\n        for rank, i in enumerate(order):\n            ax.hist(arr[:, i], bins=80, alpha=0.55, density=True,\n                    color=cmap[rank], label=model_names[i])\n        ax.set_xlabel(\"c_n\"); ax.set_ylabel(\"Density\")\n        ax.set_title(\"Posterior of c_n (contamination susceptibility)\")\n        ax.legend(fontsize=8)\n        plt.tight_layout()\n        plt.savefig(out / \"posterior_c.png\", dpi=150)\n        plt.close()\n\n    if \"d\" in posterior:\n        arr = _get_posterior_array(idata, \"d\")\n        mu = arr.mean(0)\n        order = np.argsort(-mu)\n        fig, ax = plt.subplots(figsize=(10, 5.5))\n        cmap = plt.cm.coolwarm(np.linspace(0.1, 0.9, len(judge_names)))\n        for rank, i in enumerate(order):\n            ax.hist(arr[:, i], bins=80, alpha=0.55, density=True,\n                    color=cmap[rank], label=judge_names[i])\n        ax.set_xlabel(\"d_j\"); ax.set_ylabel(\"Density\")\n        ax.set_title(\"Posterior of d_j (judge severity)\")\n        ax.legend(fontsize=7)\n        plt.tight_layout()\n        plt.savefig(out / \"posterior_d.png\", dpi=150)\n        plt.close()\n\n    print(\"  Saved: posterior_c.png, posterior_d.png\")\n\n\ndef plot_theta_vs_elo(theta_hat, model_names, out, theta_ci=None):\n    matched = [(i, m) for i, m in enumerate(model_names) if m in ARENA_ELO]\n    if len(matched) < 3:\n        return\n\n    fig, ax = plt.subplots(figsize=(8, 6))\n    for i, name in matched:\n        elo = ARENA_ELO[name]\n        if theta_ci is not None:\n            ax.errorbar(elo, theta_hat[i],\n                        yerr=[[theta_hat[i] - theta_ci[i, 0]],\n                              [theta_ci[i, 1] - theta_hat[i]]],\n                        fmt=\"o\", capsize=4, capthick=1.5, ms=8, zorder=5)\n        else:\n            ax.scatter(elo, theta_hat[i], s=80, zorder=5)\n        ax.annotate(name, (elo, theta_hat[i]),\n                    textcoords=\"offset points\", xytext=(6, 6), fontsize=8)\n\n    elo_arr = np.array([ARENA_ELO[m] for _, m in matched])\n    th_arr = theta_hat[[i for i, _ in matched]]\n    z = np.polyfit(elo_arr, th_arr, 1)\n    xs = np.linspace(elo_arr.min() - 20, elo_arr.max() + 20, 100)\n    ax.plot(xs, np.polyval(z, xs), \"--\", alpha=0.4, color=\"gray\")\n    ax.set_xlabel(\"Arena Elo\"); ax.set_ylabel(\"theta (G-MFRM ability)\")\n    ax.set_title(\"theta vs Arena Elo (exp-003b, HalfNormal prior)\")\n    ax.grid(True, alpha=0.3)\n    plt.tight_layout()\n    plt.savefig(out / \"theta_vs_elo.png\", dpi=150)\n    plt.close()\n    print(\"  Saved: theta_vs_elo.png\")\n\n\ndef plot_c_bar(c_hat, model_names, out, c_ci=None):\n    order = np.argsort(-c_hat)\n    names_s = [model_names[i] for i in order]\n    c_s = c_hat[order]\n\n    fig, ax = plt.subplots(figsize=(10, 5))\n    cmap = plt.cm.RdYlGn_r(np.linspace(0.2, 0.8, len(model_names)))\n    ax.bar(range(len(c_s)), c_s, color=cmap)\n\n    if c_ci is not None:\n        ci_s = c_ci[order]\n        yerr = np.array([c_s - ci_s[:, 0], ci_s[:, 1] - c_s])\n        ax.errorbar(range(len(c_s)), c_s, yerr=yerr,\n                    fmt=\"none\", capsize=4, capthick=1.5, color=\"black\")\n\n    ax.set_xticks(range(len(c_s)))\n    ax.set_xticklabels(names_s, rotation=45, ha=\"right\", fontsize=9)\n    ax.set_ylabel(\"c_n (contamination susceptibility)\")\n    ax.set_title(\"Contamination Susceptibility Ranking (exp-003b)\")\n    ax.grid(True, alpha=0.3, axis=\"y\")\n    plt.tight_layout()\n    plt.savefig(out / \"c_ranking.png\", dpi=150)\n    plt.close()\n    print(\"  Saved: c_ranking.png\")\n\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"exp-003b analysis: full G-MFRM posterior diagnostics\")\n    parser.add_argument(\"--output-dir\", default=str(DEFAULT_OUTPUT_DIR))\n    parser.add_argument(\"--refit\", action=\"store_true\",\n                        help=\"Re-run MCMC for full posterior (~2h on GPU)\")\n    parser.add_argument(\"--warmup\", type=int, default=4000)\n    parser.add_argument(\"--samples\", type=int, default=4000)\n    parser.add_argument(\"--chains\", type=int, default=4)\n    parser.add_argument(\"--target-accept\", type=float, default=0.95)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    args = parser.parse_args()\n\n    output_dir = Path(args.output_dir)\n    analysis_dir = output_dir / \"analysis\"\n    analysis_dir.mkdir(parents=True, exist_ok=True)\n\n    print(\"=\" * 60)\n    print(\"exp-003b Analysis — G-MFRM (HalfNormal prior)\")\n    print(\"=\" * 60)\n    print(f\"  Output dir  : {output_dir}\")\n    print(f\"  Analysis dir: {analysis_dir}\")\n\n    # Check availability\n    has_results = ((output_dir / \"results.json\").exists() or\n                   (output_dir / \"joint_gmfrm_theta.npy\").exists())\n    has_idata = (output_dir / \"joint_gmfrm_idata.nc\").exists()\n\n    if not has_results and not has_idata and not args.refit:\n        print(f\"\\n  No results found in {output_dir}.\")\n        print(\"  Waiting for exp-003b to complete. Check progress:\")\n        print(\"    tail -1 /tmp/exp003b.log\")\n        sys.exit(1)\n\n    # Step 1: Load\n    hdr(\"Loading data\")\n    idata = None\n    point_est = None\n\n    if args.refit:\n        assert HAS_ARVIZ, \"arviz required for --refit\"\n        idata = refit_mcmc(output_dir, args.warmup, args.samples,\n                           args.chains, args.target_accept, args.seed)\n    else:\n        idata = load_inference_data(output_dir)\n        point_est = load_point_estimates(output_dir)\n\n    full = idata is not None and HAS_ARVIZ and hasattr(idata, \"posterior\")\n    mode = \"full\" if full else \"partial\"\n    if full:\n        print(\"  Full posterior samples loaded.\")\n    else:\n        print(\"  Point estimates only — some diagnostics unavailable.\")\n        print(\"  To get full posterior: python analyze_003b.py --refit\")\n\n    rpt = (point_est or {}).get(\"report\", {}).get(\"data_summary\", {})\n    model_names = rpt.get(\"model_names\", MODEL_NAMES)\n    judge_names = rpt.get(\"judge_names\", JUDGE_NAMES)\n\n    # Step 2: Convergence\n    hdr(\"Convergence Diagnostics\")\n    diag = convergence_diagnostics(idata, point_est)\n\n    # Step 3: Extract theta / c\n    theta_hat, theta_ci = _extract_vec(idata, \"theta\", point_est, \"theta_hat\",\n                                       len(model_names))\n    ck = _c_key(idata.posterior) if full else None\n    c_hat, c_ci = _extract_vec(idata, ck, point_est, \"c_hat\",\n                               len(model_names))\n\n    # Step 4: Arena correlation\n    hdr(\"Arena Elo Correlation\")\n    arena = arena_correlation(theta_hat, model_names) if theta_hat is not None else {}\n\n    # Step 5: Parameter profiles\n    hdr(\"Parameter Profiles\")\n    params = extract_parameters(idata, point_est, model_names, judge_names)\n\n    # Step 6: Plots\n    hdr(\"Visualizations\")\n    plot_traces(idata, analysis_dir, model_names, judge_names)\n    plot_posterior_densities(idata, analysis_dir, model_names, judge_names)\n    if theta_hat is not None:\n        plot_theta_vs_elo(theta_hat, model_names, analysis_dir, theta_ci)\n    if c_hat is not None:\n        plot_c_bar(c_hat, model_names, analysis_dir, c_ci)\n\n    # Step 7: Save summary\n    hdr(\"Summary\")\n    summary = {\n        \"experiment\": \"exp-003b\",\n        \"model\": \"G-MFRM (HalfNormal prior)\",\n        \"mcmc_config\": {\"warmup\": 4000, \"samples\": 4000,\n                        \"chains\": 4, \"target_accept\": 0.95},\n        \"analysis_mode\": mode,\n        \"convergence\": _jsonable(diag),\n        \"arena_correlation\": arena,\n        \"parameters\": _jsonable(params),\n        \"exp003_baselines\": EXP003_BASELINES,\n    }\n    spath = analysis_dir / \"summary.json\"\n    with open(spath, \"w\") as f:\n        json.dump(summary, f, indent=2, default=str)\n    print(f\"  Saved: {spath}\")\n\n    print(f\"\\n  Mode: {mode}\")\n    if \"rhat\" in diag:\n        rh = diag[\"rhat\"]\n        if isinstance(rh, dict) and any(isinstance(v, dict) for v in rh.values()):\n            max_rh = max(\n                v.get(\"max\", v.get(\"overall_max\", 0))\n                for v in rh.values() if isinstance(v, dict)\n            )\n            print(f\"  R-hat max: {max_rh:.4f}\")\n    if arena:\n        print(f\"  Arena tau={arena['kendall_tau']:.3f}, rho={arena['spearman_rho']:.3f}\")\n    n_plots = len(list(analysis_dir.glob(\"*.png\")))\n    print(f\"  Plots: {n_plots} PNGs in {analysis_dir}\")\n    print(f\"  JSON:  {spath}\")\n\n\n# Utilities\n\ndef hdr(title):\n    print(f\"\\n{'='*60}\")\n    print(f\"  {title}\")\n    print(f\"{'='*60}\")\n\n\ndef _extract_vec(idata, idata_key, point_est, pe_key, n):\n    full = (idata is not None and HAS_ARVIZ and hasattr(idata, \"posterior\")\n            and idata_key and idata_key in idata.posterior)\n    if full:\n        arr = _get_posterior_array(idata, idata_key)\n        mu = arr.mean(0)\n        ci = np.column_stack([np.percentile(arr, 2.5, axis=0),\n                              np.percentile(arr, 97.5, axis=0)])\n        return mu, ci\n    if point_est and pe_key in point_est:\n        return point_est[pe_key], None\n    return None, None\n\n\ndef _jsonable(obj):\n    if isinstance(obj, dict):\n        return {k: _jsonable(v) for k, v in obj.items()}\n    if isinstance(obj, list):\n        return [_jsonable(v) for v in obj]\n    if isinstance(obj, (np.integer,)):\n        return int(obj)\n    if isinstance(obj, (np.floating, np.float64)):\n        return float(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    return obj\n\n\nif __name__ == \"__main__\":\n    main()\nHEREDOC_EOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-22T19:06:03.119710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-22T19:06:03.119878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "cat /root/gated_mfrm_judge_bias/exp003/run_exp003.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-22T19:06:03.120077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\nos.environ[\\\\\\\"JAX_PLATFORMS\\\\\\\"] = \\\\\\\"cuda,cpu\\\\\\\"\\\\nos.environ[\\\\\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\\\\\"] = \\\\\\\"0.25\\\\\\\"\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"0\\\\\\\"\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-003: Fit G-MFRM on real Arena-Hard judgment data.\\\\n\\\\nUsage:\\\\n  python run_exp003.py \\\\\\\\\\\\n    --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n    --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n    --output-dir /root/gated_mfrm_judge_bias/exp003/output \\\\\\\\\\\\n    --warmup 2000 --samples 4000 --chains 4 --target-accept 0.95 \\\\\\\\\\\\n    --device gpu\\\\n\\\\nDependencies: jax, numpyro, arviz, numpy, pandas, scipy, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"exp-003: G-MFRM real data fitting\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--judgment-dir\\\\\\\", required=True, help=\\\\\\\"exp-001 results directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--exposure-csv\\\\\\\", required=True, help=\\\\\\\"exp-002 exposure_scores.csv\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True, help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=2000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=4000)\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--target-accept\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", choices=[\\\\\\\"cpu\\\\\\\", \\\\\\\"gpu\\\\\\\", \\\\\\\"cuda\\\\\\\"], default=\\\\\\\"gpu\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--methods\\\\\\\", nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"raw_average\\\\\\\", \\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"],\\\\n               \n…[truncated 2633 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-22T19:06:03.120296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "cat > /tmp/patch_run_exp003.py << 'PATCH_EOF'\nimport sys\n\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/run_exp003.py\"\nwith open(filepath) as f:\n    content = f.read()\n\n# Add InferenceData saving after step 2, before step 3\nold = '''    # 3. Evaluate\n    print(\"\\\\n\" + \"=\" * 60)\n    print(\"STEP 3: Evaluation\")\n    print(\"=\" * 60)\n    report = run_evaluation(results, data, args.output_dir)'''\n\nnew = '''    # 2b. Save MCMC InferenceData for posterior analysis\n    import arviz as az\n    for name, res in results.items():\n        mcmc_obj = res.get(\"mcmc\")\n        if mcmc_obj is not None:\n            try:\n                idata = az.from_numpyro(mcmc_obj)\n                nc_path = os.path.join(args.output_dir, f\"{name}_idata.nc\")\n                idata.to_netcdf(nc_path)\n                print(f\"  Saved InferenceData: {nc_path}\")\n            except Exception as e:\n                print(f\"  Warning: failed to save InferenceData for {name}: {e}\")\n\n    # 3. Evaluate\n    print(\"\\\\n\" + \"=\" * 60)\n    print(\"STEP 3: Evaluation\")\n    print(\"=\" * 60)\n    report = run_evaluation(results, data, args.output_dir)'''\n\nif old in content:\n    content = content.replace(old, new)\n    with open(filepath, 'w') as f:\n        f.write(content)\n    print(\"PATCHED OK\")\nelse:\n    print(\"PATTERN NOT FOUND — manual check needed\")\nPATCH_EOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_run_exp003.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-22T19:06:03.120537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PATCHED OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-22T19:06:03.120707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python analyze_003b.py --help",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-22T19:06:03.120851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: analyze_003b.py [-h] [--output-dir OUTPUT_DIR] [--refit]\\\\n                       [--warmup WARMUP] [--samples SAMPLES] [--chains CHAINS]\\\\n                       [--target-accept TARGET_ACCEPT] [--seed SEED]\\\\n\\\\nexp-003b analysis: full G-MFRM posterior diagnostics\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --output-dir OUTPUT_DIR\\\\n  --refit               Re-run MCMC for full posterior (~2h on GPU)\\\\n  --warmup WARMUP\\\\n  --samples SAMPLES\\\\n  --chains CHAINS\\\\n  --target-accept TARGET_ACCEPT\\\\n  --seed SEED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-22T19:06:03.121001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python analyze_003b.py 2>&1; echo \"EXIT_CODE=$?\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-22T19:06:03.121145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nexp-003b Analysis — G-MFRM (HalfNormal prior)\\\\n============================================================\\\\n  Output dir  : /root/gated_mfrm_judge_bias/exp003/output_003b\\\\n  Analysis dir: /root/gated_mfrm_judge_bias/exp003/output_003b/analysis\\\\n\\\\n  No results found in /root/gated_mfrm_judge_bias/exp003/output_003b.\\\\n  Waiting for exp-003b to complete. Check progress:\\\\n    tail -1 /tmp/exp003b.log\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-22T19:06:03.121291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python analyze_003b.py --output-dir /root/gated_mfrm_judge_bias/exp003/results 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-22T19:06:03.121498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nexp-003b Analysis — G-MFRM (HalfNormal prior)\\\\n============================================================\\\\n  Output dir  : /root/gated_mfrm_judge_bias/exp003/results\\\\n  Analysis dir: /root/gated_mfrm_judge_bias/exp003/results/analysis\\\\n\\\\n============================================================\\\\n  Loading data\\\\n============================================================\\\\n  Point estimates only — some diagnostics unavailable.\\\\n  To get full posterior: python analyze_003b.py --refit\\\\n\\\\n============================================================\\\\n  Convergence Diagnostics\\\\n============================================================\\\\n  (from results.json — per-param breakdown unavailable)\\\\n    R-hat max  : 1.73\\\\n    ESS min    : 6.0\\\\n    Divergences: 0\\\\n\\\\n  For full diagnostics: python analyze_003b.py --refit\\\\n\\\\n============================================================\\\\n  Arena Elo Correlation\\\\n============================================================\\\\n  Kendall  tau = 0.8571  (p=0.0017)\\\\n  Spearman rho = 0.9524  (p=0.0003)\\\\n  N matched    = 8\\\\n\\\\n  vs exp-003 baselines:\\\\n    method                            tau      rho\\\\n    ------------------------------------  ---------  ---------\\\\n    raw_average                     0.786    0.905\\\\n    mfrm_only                       0.786    0.905\\\\n    sequential                      0.786    0.905\\\\n    joint_gmfrm (horseshoe)         0.857    0.952\\\\n    ------------------------------------  ---------  ---------\\\\n    003b (HalfNormal)               0.857    0.952\\\\n\\\\n============================================================\\\\n  Parameter Profiles\\\\n============================================================\\\\n\\\\n  theta_n (point est.):\\\\n    gpt-4o                           2.007\\\\n    gpt-4o-mini                      1.452\\\\n    qwen2.5-72b                    \n…[truncated 1891 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-22T19:06:03.121692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "rm -rf /root/gated_mfrm_judge_bias/exp003/results/analysis",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-22T19:06:03.121830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-22T19:06:03.121955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -n \"InferenceData\\|idata\\|to_netcdf\" /root/gated_mfrm_judge_bias/exp003/run_exp003.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-22T19:06:03.122078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-22T19:06:03.122201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -n \"idata\" /root/gated_mfrm_judge_bias/exp003/run_exp003.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-22T19:06:03.122323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"102:                idata = az.from_numpyro(mcmc_obj)\\\\n103:                nc_path = os.path.join(args.output_dir, f\\\\\\\"{name}_idata.nc\\\\\\\")\\\\n104:                idata.to_netcdf(nc_path)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-22T19:06:03.122496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "chmod +x /root/gated_mfrm_judge_bias/exp003/analyze_003b.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-22T19:06:03.122641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-22T19:06:03.122772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register artifact",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-22T19:06:03.122887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-22T19:06:03.123051+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 产出\n\n**1. 脚本路径和使用方法**\n\n`/root/gated_mfrm_judge_bias/exp003/analyze_003b.py`\n\n```bash\n# 003b 完成后一键分析（partial mode — 用 point estimates）\ncd /root/gated_mfrm_judge_bias/exp003\npython analyze_003b.py\n\n# 需要完整后验诊断（trace plots、CI、per-param R-hat）\npython analyze_003b.py --refit    # 重跑 MCMC ~2h\n```\n\n输出到 `output_003b/analysis/`：\n- `summary.json` — 完整结果 JSON\n- `theta_vs_elo.png` — θ vs Arena Elo 散点图\n- `c_ranking.png` — c_n 排序柱状图\n- `trace_theta/c/d/sigma_c.png` — trace plots（仅 full mode）\n- `posterior_c/d.png` — posterior density（仅 full mode）\n\n**2. 依赖是否齐全**\n\n全部就绪：arviz 1.1.0, numpyro 0.21.0, jax 0.10.1, matplotlib 3.10.5, scipy 均已安装。\n\n**3. 预期运行时间**\n\n- Partial mode（默认）：< 5 秒\n- Full mode（`--refit`）：~2h（重跑 4000+4000 × 4 chains MCMC）\n\n### 注意事项\n\n当前正在运行的 003b 进程用的是未修改的 `run_exp003.py`，**不会保存完整 MCMC samples**。只会产出 `joint_gmfrm_theta.npy`、`joint_gmfrm_c.npy`、`results.json` — 足以运行 partial mode 分析（Arena correlation + 参数排名 + 2 张图）。\n\n已修改 `run_exp003.py` 增加 InferenceData 保存（行 100-107），未来重跑 exp-003 系列实验时会自动生成 `joint_gmfrm_idata.nc`，届时 `analyze_003b.py` 自动进入 full mode（完整 R-hat/ESS/trace plots/CI）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_exp003b_analysis_script_20260522T185021"
+          },
+          "id": "event-000091"
+        }
+      ],
+      "message_count": 91
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-exp003b-analysis-script.md"
+}

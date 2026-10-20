@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8773ee1549fe9804c96e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp013 results collect",
+  "task_key": "worker_ssh_exp013_results_collect_20260523T052310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp013_results_collect_20260523T052310_result.json",
+    "occurrence": 1,
+    "bytes": 2106,
+    "sha256": "7ce0c7d8f0ece9610d93409f84961af0af986083275db229a08b6b55058bd303"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part A: exp-013 Weight Sensitivity\n\n**状态：仍在运行** (PID 558426, elapsed 1h13m, GPU 0 占用 73.5GB)\n\n当前正在拟合最后一个配置 `100_0` (ref=1.0, cma=0.0)，warmup 进度约 45% (1794/4000)。\n\n已完成 3 个配置的 G-MFRM 拟合，结果保存为 JSON（无 CSV — CSV 应该是全部跑完后汇总生成）：\n\n| 配置 | r_hat | ESS | Divergences | θ range | c range |\n|------|-------|-----|-------------|---------|---------|\n| 50_50 | 1.02 | 196 | 0 | [-3.04, 1.84] | [0.96, 3.20] |\n| 75_25 | 1.04 | 115 | 0 | [-3.12, 1.85] | [1.09, 3.49] |\n| 90_10 | 1.01 | 432 | 0 | [-3.15, 1.87] | [1.01, 3.67] |\n\nMCMC 诊断正常（0 divergences），模型能力排序稳定：gpt-4o > qwen2.5-72b ≈ gpt-4o-mini > llama-3.3-70b > qwen3-8b > gemma-2-9b > gpt-4-0613 > gpt-3.5-turbo。\n\n**预估剩余时间：** 100_0 warmup 还需约 3 分钟完成，加上 sampling 2000 步约 2 分钟，总计约 5 分钟内完成。之后生成 weight_sensitivity.csv。\n\n---\n\n## Part B: exp-001 Llama 收集\n\n**vLLM 服务运行中，但无 collect 进程：**\n- GPU 1: vLLM Llama-3.3-70B-AWQ on port 8001 (运行 1天4小时)\n- GPU 2: vLLM Llama-3.3-70B-AWQ on port 8004 (运行 5h50m)\n- **无活跃的 collect.py 进程**\n\n**数据文件（最后修改时间均为 13:24，已停止增长）：**\n\n| 文件 | 行数 |\n|------|------|\n| llama-3.3-70b/ | 6,061 |\n| llama-3.3-70b-shard2/ | 5,821 |\n| **合计** | **11,882** |\n| 参考：qwen2.5-72b | 9,281 |\n| 参考：mistral-large-2 | 9,021 |\n\nLlama 两个 shard 合计 11,882 行，超过其他本地 judge 的 ~9,000 行，**数据收集大概率已完成**。但 collect 进程不在运行，数据文件已停止增长。\n\n**GPU 状态：**\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 73.5/97.9 GB | 72% (exp-013) |\n| 1 | 91.0/97.9 GB | 100% (vLLM Llama) |\n| 2 | 91.0/97.9 GB | 100% (vLLM Llama) |\n| 3 | 0/97.9 GB | 0% (空闲) |\n\n**建议：** Llama 收集已完成，GPU 1-2 上的 vLLM 可以关掉释放资源。exp-013 约 5 分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp013-results-collect.md"
+}

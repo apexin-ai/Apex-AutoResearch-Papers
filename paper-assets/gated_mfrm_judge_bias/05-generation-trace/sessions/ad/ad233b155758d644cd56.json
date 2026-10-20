@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ad233b155758d644cd56",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh kill all restart verified",
+  "task_key": "worker_ssh_kill_all_restart_verified_20260523T202803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_all_restart_verified_20260523T202803.log",
+    "occurrence": 1,
+    "bytes": 537847,
+    "sha256": "7d4dee9dc458afd507385d771269e1d59438287b0473d5a04d6cda7d802a4b18"
+  },
+  "statistics": {
+    "messages": 305,
+    "user_turns": 0,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 107,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 305,
+      "chunks": [
+        {
+          "path": "ad233b155758d644cd56-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ad233b155758d644cd56-part-0002.json",
+          "message_count": 125
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-kill-all-restart-verified.md"
+}

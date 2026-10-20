@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6115b3f4d62ab6220db3",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check exp009 status",
+  "task_key": "worker_ssh_check_exp009_status_20260522T200916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_exp009_status_20260522T200916_result.json",
+    "occurrence": 1,
+    "bytes": 1375,
+    "sha256": "bb628e075de590845a4e1aea32de3d821f676a6eb38d78e9c75098ca928cb6de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-009 OVB Validation 实验状态\n\n### 1. 状态：运行中 — 196/200（98%）\n\n当前正在跑 `[196/200] rho=0.9 seed=45`，已耗时 ~19h，ETA ~23 分钟。rho=0.9 还剩 5 个 seed（45-49）。\n\n### 2. 已完成部分的 bias_slope 结果\n\n**Sequential（基线）：**\n| ρ | n | mean bias_slope |\n|---|---|-----------------|\n| 0.0 | 50 | 0.1982 ± 0.0547 |\n| 0.3 | 50 | 0.1950 ± 0.0555 |\n| 0.6 | 50 | 0.1910 ± 0.0568 |\n| 0.9 | 45 | 0.1845 ± 0.0587 |\n\n**Joint（MFRM）：**\n| ρ | n | mean bias_slope |\n|---|---|-----------------|\n| 0.0 | 50 | 0.0558 ± 0.0241 |\n| 0.3 | 50 | 0.0574 ± 0.0278 |\n| 0.6 | 50 | 0.0595 ± 0.0293 |\n| 0.9 | 45 | 0.0635 ± 0.0268 |\n\n### 3. 关键发现\n\n**bias_slope 没有随 ρ 单调递增** — 反而呈现出一个有意思的模式：\n\n- **Sequential**: bias_slope 随 ρ **单调递减**（0.198 → 0.185），说明 rater correlation 越高，sequential 方法的 bias 反而略小\n- **Joint (MFRM)**: bias_slope 随 ρ **单调递增**（0.056 → 0.064），但幅度很小（增幅仅 ~0.008）\n- **核心结论**：Joint 方法在所有 ρ 条件下 bias_slope 都远低于 sequential（约 3-4 倍），且对 ρ 变化不敏感。RMSE 也一致更低（0.12 vs 0.21）\n\n实验预计约 23 分钟内完成，rho=0.9 最后 5 个 seed 不太可能改变整体趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp009-status.md"
+}

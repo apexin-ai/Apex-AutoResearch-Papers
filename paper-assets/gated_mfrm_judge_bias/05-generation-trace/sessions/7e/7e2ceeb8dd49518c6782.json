@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e2ceeb8dd49518c6782",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp020 oracle mcmc followup",
+  "task_key": "worker_ssh_exp020-oracle-mcmc-followup_20260525T152558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp020-oracle-mcmc-followup_20260525T152558_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "a39262889a5323315b2cad05e7cdf43c0db081310d771ce631523c743b2723ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总关键结果：\n\n---\n\n**Variant A (c_n=0, pure MFRM/NCP)**\n- 收敛：R̂=1.0060, ESS=1304\n- Kendall τ = **0.824** (raw_average: 0.838)\n- Spearman ρ = 0.934 (raw_average: 0.949)\n\n**Variant B (tighter prior, sigma_c~HN(0.3))**\n- 收敛：R̂=1.0076, ESS=1121\n- Kendall τ = **0.794** (与原始 G-MFRM v2 完全一致)\n- Spearman ρ = 0.926\n- c_n mean: 1.312 (原始 2.038)，range: [0.425, 2.993]\n\n**诊断结论**\n- Variant A（去掉 c_n）τ=0.824 > 0.794 → **contamination gating 确实在损害排名精度**\n- Variant B（缩紧先验）τ 仍为 0.794，与原始 v2 持平 → **缩紧先验未能改善排名**，c_n 仍然在吸收信号\n- 最大 theta 偏移集中在 gpt-4-0613（+0.324）和 gpt-4-turbo（+0.155），它们正好是原始 c_n 最高的两个模型（3.775, 3.756）\n\n报告已保存至 `/root/gated_mfrm_judge_bias/diagnosis_oracle_results.txt`，JSON 在 `output_n17_diagnosis/diagnosis_summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp020-oracle-mcmc-followup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad9fdc1cb971610ca944",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code anonymous repo push",
+  "task_key": "worker_code_anonymous_repo_push_20260523T125207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous_repo_push_20260523T125207_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "991d6b0246d2b240a237ce9d4c3cb9b6fa2856dd890f7497d0e17180fde9da8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n---\n\n## 产出\n\n1. **Commit**: `3c3f7da` — Author: `Anonymous <anonymous@example.com>`，已推送至 `https://github.com/anonymous-nlp-2026-2/gated_mfrm_judge_bias`\n\n2. **文件**: 96 个文件（93 代码 + README.md + requirements.txt + .gitignore），完整目录结构包含 baselines/、exp001-019/、exp_w7_ablation/、figures/、lib/、mvp/、scripts/\n\n3. **匿名化确认**:\n   - 硬编码 proxy key (`tum_XXB3s...`) → `os.environ.get(\"TUM_PROXY_KEY\", \"\")`\n   - 硬编码 IP `47.94.22.126` → `localhost:8000`\n   - 绝对路径 `/root/gated_mfrm_judge_bias` → 相对路径 `.`\n   - `/root/autodl-tmp/models` → `./models`\n   - wandb entity → `\"anonymous\"`\n   - 个人信息扫描（caoxiaoyu/1844118046/ghp_/sk-ant）：零残留\n   - git remote URL 已移除 PAT\n\n4. **无需确认的事项**: 流程顺利，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anonymous-repo-push.md"
+}

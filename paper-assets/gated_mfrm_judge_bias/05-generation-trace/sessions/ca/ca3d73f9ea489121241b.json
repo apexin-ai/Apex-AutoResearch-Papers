@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca3d73f9ea489121241b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh verify judges crossed tau",
+  "task_key": "worker_ssh_verify_judges_crossed_tau_20260523T015021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_judges_crossed_tau_20260523T015021_result.json",
+    "occurrence": 1,
+    "bytes": 2844,
+    "sha256": "f072e70f02b6f87d7531de1ef2eb411470b88d6d091b492599d63d7320f60941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n---\n\n```\nNEW-A: Judge count = 9\n  Judge list:\n    1. claude-opus-4.7-proxy\n    2. claude-sonnet-4.6-proxy\n    3. deepseek-v4-pro-proxy\n    4. gemini-2.5-pro-proxy\n    5. gpt-5.5-proxy\n    6. llama-3.3-70b\n    7. mistral-large-2\n    8. qwen2.5-72b\n    9. qwen3-235b-proxy\n  Source: exp001/results/ 9 个 judge 子目录，data_loader.py 动态发现\n  两个 dry run (dry_run + results_dryrun) 均确认同样 9 judges\n\nNEW-C: Fully crossed status\n  n_observations = 5661 ——在服务器上找不到匹配的数据\n  当前完整数据实际值:\n    N=8 models, I=401 items (min-3-judges filter 后), J=9 judges\n    n_obs = 17,039\n    Full crossing = 8×401×9 = 28,872\n    Fill rate = 59.0%\n  历史 dry run 数据:\n    dry_run:       N=8, I=316, J=9, n_obs=4,250 (fill=16.8%)\n    results_dryrun: N=8, I=175, J=9, n_obs=4,223 (fill=33.7%)\n  均不匹配 5661 或 I=176。5661 在代码库中仅出现于 ROADMAP.md (即本任务描述)。\n\n  每个 observation = 1 个 (model, item, judge) triplet:\n    - 原始数据是 pairwise comparison (model vs baseline gpt-4-0314)\n    - AB/BA 方向平均后去 tie → 1 binary win/loss per triplet\n    - 非 pair×2方向，非 model×item×judge 满格\n\n  Per-judge 覆盖率严重不均:\n    gpt-5.5-proxy:        89.9% cells filled (2,883 obs)\n    qwen2.5-72b:          79.4% (2,546)\n    mistral-large-2:      74.5% (2,391)\n    claude-opus-4.7-proxy: 69.3% (2,223)\n    llama-3.3-70b:        62.3% (1,999)\n    claude-sonnet-4.6-proxy: 58.3% (1,870)\n    qwen3-235b-proxy:     39.6% (1,269)\n    gemini-2.5-pro-proxy: 31.2% (1,000)\n    deepseek-v4-pro-proxy: 26.7% (858)\n\n  (model, item) cell 的 judge 覆盖分布:\n    9 judges (fully crossed): 348 cells (10.9%)\n    6-8 judges:              1,263 cells (39.6%)\n    3-5 judges:              1,256 cells (39.4%)\n    1-2 judges:                321 cells (10.1%)\n\n  Recommendation: \"connected incomplete design\"，绝非 fully crossed。\n  论文应避免 \"fully crossed\" 描述，改用 \"connected sparse design\"。\n\nNEW-D: exp-009 sequential τ\n  exp-009 bias_vs_rho.csv 实际值 (N=50, I=100, J=8, 50 seeds/rho):\n    rho=0.0: τ_mean = 0.8632 ± 0.036\n    rho=0.3: τ_mean = 0.8641 ± 0.034\n    rho=0.6: τ_mean = 0.8657 ± 0.033\n    rho=0.9: τ_mean = 0.8690 ± 0.035\n    Grand mean (all rhos): 0.8655\n\n  Is τ=0.859 correct? NO\n  - τ=0.859 来源是 IDEA_BRIEF.md 的 MVP validation (mvp_003, 2026-05-21)，\n    不是 exp-009 的结果\n  - exp-009 最接近的值: rho=0.0 seed=24 的单次 τ=0.8596\n  - exp-009 grand mean = 0.866，与 0.859 相差 0.007\n  - Round 2 review 已标记此问题: Introduction τ=0.859 vs §4.2 τ=0.826 矛盾\n  - 建议统一为 exp-009 的 rho=0.0 mean: τ=0.863 ± 0.036\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-judges-crossed-tau.md"
+}

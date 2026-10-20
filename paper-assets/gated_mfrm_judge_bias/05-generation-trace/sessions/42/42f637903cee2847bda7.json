@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42f637903cee2847bda7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "analysis exp 013",
+  "task_key": "worker_analysis_exp-013_20260523T052624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-013_20260523T052624_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "9a3ab94334c980df71a34f6ac253a787f67141ee112b04cb1f7b45e05ae98daf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## exp-013 结果总结\n\n### Conclusion: **success** — hypothesis 完全验证\n\n权重配置对 downstream G-MFRM τ **零影响**，远超 hypothesis 预期（< 0.02）。\n\n### τ 值表\n\n| Weight Config | ref_weight | cma_weight | G-MFRM τ | Exposure ρ vs default | R-hat | ESS_min | Divergences |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| 50/50 | 0.50 | 0.50 | 0.7857 | 0.9981 | 1.02 | 196 | 0 |\n| **75/25 (default)** | **0.75** | **0.25** | **0.7857** | **1.0000** | **1.04** | **115** | **0** |\n| 90/10 | 0.90 | 0.10 | 0.7857 | 0.9991 | 1.01 | 432 | 0 |\n| 100/0 | 1.00 | 0.00 | 0.7857 | 0.9978 | 1.01 | 668 | 0 |\n\n### 关键数字\n\n- **τ 变化幅度**: **0.000**（4 种配置完全相同 τ = 0.7857）\n- **Exposure Spearman ρ**: 0.9978–1.0000（各配置的 exposure 估计近乎完全一致）\n- **收敛诊断**: R-hat 1.01–1.04（均 < 1.05），divergences = 0，ESS 最低 115（75/25 配置）\n\n### 对 R1-W6 的影响\n\n这个实验彻底回答了 R1-W6 关于 exposure estimation 权重选择 robustness 的问题。结论：**G-MFRM 的 downstream ranking (τ) 对 Stage 2 权重配置完全不敏感**。即使将 cross-model-agreement 权重从 50% 降到 0%（纯 reference-anchoring），τ 不变，exposure 排序的 Spearman ρ > 0.997。这意味着论文中使用 75/25 默认配置是充分合理的，reviewer 对此超参数选择的担忧可以被数据驳回。可以在论文的 robustness analysis 中加一句话 + 引用此表即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-013.md"
+}

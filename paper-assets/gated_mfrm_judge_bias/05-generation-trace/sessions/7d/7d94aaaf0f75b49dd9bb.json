@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d94aaaf0f75b49dd9bb",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh qwen local done check",
+  "task_key": "worker_ssh_qwen-local-done-check_20260524T182611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen-local-done-check_20260524T182611_result.json",
+    "occurrence": 1,
+    "bytes": 1275,
+    "sha256": "df26f178477836348f7800e39ced33edd8b990dbeac17678be17c8673021cd0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Qwen local (Qwen2.5-72B-Instruct) — 完成\n\n- **行数**: 17,994 / 18,000（99.97%）\n- **最后写入时间**: 2026-05-25 02:22:43\n- **状态**: 正常完成退出。6 条缺失可能是个别 prompt 缺 response 或 max_retries 耗尽\n- **输出文件**: `exp001/results/qwen2.5-72b-local_n17/arena_hard_judgments.jsonl`\n- 日志中无报错，最后几条 status 均为 `\"ok\"`\n\n### 其他 judge 状态\n\n| Judge | PID | 状态 | 进度 |\n|-------|-----|------|------|\n| Qwen3-235B (proxy) | 592432 | ALIVE | 17,558 / 18,000 |\n| DeepSeek-v4-pro (proxy) | 592328 | ALIVE | 13,416 / 18,000 |\n| Llama-3.3-70B (local) | — | Done | 18,093 ✓ |\n| Mistral-Large-2 (local) | — | Done | 118 (注：这是旧 n17 文件) |\n\n### MCMC monitor (PID 605265) — 正常运行\n\n- 每分钟轮询一次\n- 当前状态识别：\"Qwen local: done, Qwen3: running\"\n- 等待 Qwen3 完成后触发 MCMC phase 1\n\n### 结论\n\n- Qwen local 采集**成功完成**，无需干预\n- vLLM Qwen server (PID 583078) 仍在运行——如不再需要可关闭释放 GPU 2,3\n- Qwen3 预计很快完成（还剩 ~442 条），完成后 MCMC monitor 会自动触发\n- DeepSeek 还需一些时间（剩余 ~4,584 条）\n- 无需更新 cron"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen-local-done-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ce1ef54eda55521a9bc",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh p1 autodl kill unnecessary download",
+  "task_key": "worker_ssh_p1_autodl_kill_unnecessary_download_20260522T135403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_autodl_kill_unnecessary_download_20260522T135403_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "80a6a5ce6c19b180d322b3e43e83343ef2b57ab89e390aed99014248b93e7c66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**pth 文件状态**：无需处理。`original/` 目录仅存在于 Llama-3.1-8B-Instruct 下，只有 2.1M（`params.json` + `tokenizer.model`），没有 `consolidated.00.pth`。PID 123917 的 Llama 下载已带 `ignore_file_pattern=['original/*']`，不会拉 pth。其他模型（Qwen、Mistral）无 `original/` 目录。\n\n**不需要 kill 任何进程。**\n\n**safetensors 下载进度**：\n\n| 模型 | 状态 | 大小 |\n|------|------|------|\n| gemma-2-9b-it | **完成** (4/4 safetensors) | 18G |\n| Llama-3.1-8B-Instruct | 下载中 (2/4 done, 2 in temp, ~71%) | 15G |\n| Mistral-7B-Instruct-v0.3 | 下载中 (0 done, 3 in temp) | 11G |\n| Qwen2.5-7B-Instruct | 刚开始 (0 done, 0 in temp) | 12M |\n\n**磁盘**：数据盘 250G 用了 117G，剩余 134G (47%)，空间充足。\n\n**Llama 下载速度极慢**（~400-800 KB/s），model-00002 和 model-00003 各约 4.6G，按当前速度还需数小时。Qwen2.5-7B-Instruct 可能在等 PID 102451 的 Qwen 下载排队（该进程按顺序下 Qwen 再下 Mistral，但 Mistral 已在下了，说明 Qwen2.5 可能已由另一渠道完成或失败）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-autodl-kill-unnecessary-download.md"
+}

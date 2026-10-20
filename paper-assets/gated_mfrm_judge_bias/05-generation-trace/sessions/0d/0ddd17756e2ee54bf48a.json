@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ddd17756e2ee54bf48a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp001 judge response gen",
+  "task_key": "worker_code_exp001_judge_response_gen_20260522T010240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp001_judge_response_gen_20260522T010240_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "12a1cae09125440ce52d2a0c4a38829b6a012c2b1620ddc19f04d80dd57aacc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。改动摘要：\n\n**judge_interface.py** (L123)：在 `JudgeInterface` 基类添加 `generate_response(prompt)` 方法，直接调用各子类已有的 `_call(prompt)` — 所有 6 个 judge 子类自动继承，无需单独实现。\n\n**collect.py**：\n- L83: `generate_response_with_retry` — 复用现有 retry 模式\n- L300-362: `collect_judge_responses` — 从所有 benchmark 加载 unique prompts，遍历 judge × prompt 生成 response，保存为 `{output_base}/{judge_name}/{prompt_id}.json`，支持 resume（已有文件跳过）\n- L366: `--generate-judge-responses` CLI 参数\n- L380: 在 `main()` 中 dispatch 到 `collect_judge_responses`，输出目录默认 `/root/gated_mfrm_judge_bias/data/judge_responses/`，可通过 config.yaml 的 `judge_response_dir` 覆盖"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp001-judge-response-gen.md"
+}

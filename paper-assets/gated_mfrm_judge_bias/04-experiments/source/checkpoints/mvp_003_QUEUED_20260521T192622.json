@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_003",
+  "project": "gated_mfrm_judge_bias",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T19:22:36.886Z",
+    "updated_at": "2026-05-21T19:26:22.735Z",
+    "hypothesis": "同 mvp_002 DGP（c~HalfNormal(1.5), bimodal e, s~N(0,0.8), N=50, J=8, ρ=0.6），MCMC 调优（warmup=2000, samples=4000, chains=4, target_accept=0.95, non-centered parameterization）后收敛达标（R̂<1.05, ESS>100）且 joint 显著优于 sequential。",
+    "parent": "mvp_002"
+  },
+  "timestamp": "2026-05-21T19:26:22.745463+00:00",
+  "trigger": "update_registry"
+}

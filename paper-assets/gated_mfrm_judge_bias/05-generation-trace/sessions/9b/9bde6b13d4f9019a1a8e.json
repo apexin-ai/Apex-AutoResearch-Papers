@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bde6b13d4f9019a1a8e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "validation model diagnostics",
+  "task_key": "worker_validation_model-diagnostics_20260525T203850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validation_model-diagnostics_20260525T203850_result.json",
+    "occurrence": 1,
+    "bytes": 1778,
+    "sha256": "6dbadfbc7738844c13d8f6e5066ae77af3dac293dc305f815490bcdcff317010"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n---\n\n```\nItem 4 (OVB r=0.86): [MISMATCH] 论文=0.86, 实际=0.8302\n  Sequential mean bias_corr across all rho (N=352 seeds):\n    rho=0.0: 0.8516 (n=50)\n    rho=0.3: 0.8398 (n=61)\n    rho=0.6: 0.8264 (n=141)\n    rho=0.9: 0.8191 (n=100)\n    Overall: 0.8302\n  差距 ~0.03，论文数字偏高。\n\nItem 5 (Self-eval): [PARTIAL MATCH]\n  Self-judging (item-level exclusive = wins/(wins+losses)):\n    qwen_self=1.000 (42/42) ✓ MATCH\n    llama_self=0.912 (52/57) ✓ MATCH\n  Cross-judge mean:\n    论文: qwen_cross=0.714, llama_cross=0.823\n    实际（per-judge exclusive mean）: qwen_cross=0.807, llama_cross=0.702\n    实际（pooled exclusive）: qwen_cross=0.776, llama_cross=0.674\n    ✗ MISMATCH — 无法用任何合理聚合方式复现论文的 cross-judge 数字。\n    注意：论文中 llama(0.823) > qwen(0.714) 与数据方向相反（实际 qwen > llama）。\n\nItem 6 (PPC): [MATCH] 论文=0.593/0.599, 实际=0.5934/0.5987, N=5661\n  Predicted mean: 0.5934 (论文 0.593 ✓)\n  Observed mean:  0.5987 (论文 0.599 ✓)\n  N observations: 5661 ✓\n\nItem 7 (Bootstrap): [PARTIAL MATCH]\n  N=8:  Δτ 95% CI = [-0.071, 0.071] ✓ MATCH（CI crosses zero，与论文一致）\n  N=17: 无 bootstrap 结果文件。点估计 Δτ = -0.015。\n        论文 Table 1 标注 \"TBD\"。任务中声称的 CI=[-0.141, 0] 无法验证。\n```\n\n关键发现：\n- **Item 5 cross-judge 数字可能有错**：论文称 qwen cross=0.714 < llama cross=0.823，但实际数据中 qwen 在所有计算方法下都高于 llama。数字方向反转，疑似写反或计算方法不同。\n- **Item 4** 偏差约 0.03（0.83 vs 0.86），可能是论文四舍五入或使用了不同子集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validation-model-diagnostics.md"
+}

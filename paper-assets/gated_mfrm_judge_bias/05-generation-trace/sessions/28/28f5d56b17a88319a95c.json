@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28f5d56b17a88319a95c",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh prep mcmc n17",
+  "task_key": "worker_ssh_prep-mcmc-n17_20260524T092601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prep-mcmc-n17_20260524T092601_result.json",
+    "occurrence": 1,
+    "bytes": 3880,
+    "sha256": "d699700081b3ab654b81bd0cee3caff492e7cc1cdd5d5a03fbf7defed8843696"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有检查完成。以下是完整汇报。\n\n---\n\n## 汇报：N=17 MCMC Fitting 准备状态\n\n### 1. MCMC fitting 脚本 (`run_exp003_n17.py`) — 存在但需修复\n\n**问题 A**: `CUDA_VISIBLE_DEVICES = \"0\"`，需改为 `\"0,3\"` 以使用 cuda:0 + cuda:3\n\n**问题 B**: 系统 python3 **没有** jax/numpyro。必须用 conda 环境运行：\n```\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n```\nconda base 中依赖完整：jax 0.10.1, numpyro 0.21.0, 4x RTX PRO 6000 (98GB) 全部可见\n\n### 2. 数据准备 (`prepare_n17_data.py`) — 需要重新运行\n\n- 当前 `judgment_data_n17/` 只有 **6 个 judge**（claude-sonnet-4.6-proxy, deepseek-v4-pro-proxy, gemini-2.5-pro-proxy, llama-3.3-70b, qwen2.5-72b, qwen3-235b-proxy）\n- exp001/results 中已有 7 个 `*_n17` 数据源（多了 mistral-large-2-local_n17）\n- exp-020 完成后需重新 `python prepare_n17_data.py` 刷新 symlinks\n\n### 3. qwen3-8b 方案 B — **未实现**\n\n需要在 3 个地方添加过滤逻辑：\n\n| 脚本 | 现状 | 需要做的 |\n|------|------|---------|\n| `run_exp003_n17.py` | MCMC 用所有模型 | **不需要改**（方案 B 就是 fitting 包含 qwen3-8b） |\n| `evaluation.py` | `arena_correlation()` 自动匹配 ARENA_ELO，qwen3-8b 在 ARENA_ELO 中会被包含 | 添加 `exclude_models=[\"qwen3-8b\"]` 参数，τ 计算时排除 |\n| `bootstrap_delta_tau.py` | 硬编码 N=8 的 MODEL_NAMES 和 ARENA_ELO | 完全不适用 N=17，需要用数据驱动（从 idata 获取模型列表）并加 qwen3-8b 排除 |\n| `run_n17_downstream.py` | bootstrap wrapper 知道会 break 但没修 | 需重写 bootstrap 部分 |\n\n**注意**: 当前 judgment data 中实际有 **18 个目标模型**（非 17），模型名与 ARENA_ELO 存在命名不匹配（如 `gemma-2-9b-it` vs `gemma-2-9b`，`gpt-4o-2024-05-13` vs `gpt-4o`），需要添加 name mapping。\n\n### 4. 依赖 — conda 中完整，系统 python 缺失\n\n| 包 | conda base | 系统 python3 |\n|---|---|---|\n| jax | 0.10.1 | 未安装 |\n| numpyro | 0.21.0 | 未安装 |\n| arviz | (已有) | 未检查 |\n\n### 5. 路径 bug\n\n`run_n17_downstream.py` 中 `JUDGMENT_DIR_N17 = \"/root/gated_mfrm_judge_bias/exp001_n17/results\"` — **该路径不存在**。应改为 `/root/gated_mfrm_judge_bias/exp003/judgment_data_n17` 或根据实际情况调整。\n\n### 6. 一键启动命令（修复后）\n\n```bash\n# Step 1: 数据准备（judge eval 完成后执行）\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/gated_mfrm_judge_bias/exp003\npython prepare_n17_data.py\n\n# Step 2: MCMC fitting（nohup 后台运行）\nnohup python run_exp003_n17.py \\\n  --judgment-dir /root/gated_mfrm_judge_bias/exp003/judgment_data_n17 \\\n  --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\n  --output-dir /root/gated_mfrm_judge_bias/exp003/output_n17 \\\n  --warmup 6000 --samples 4000 --chains 4 --target-accept 0.95 \\\n  --device gpu \\\n  > /root/gated_mfrm_judge_bias/exp003/run_n17.log 2>&1 &\n\n# Step 3: Downstream（MCMC 完成且 convergence OK 后）\npython run_n17_downstream.py\n```\n\n### 7. 需要修复的问题清单\n\n1. **`run_exp003_n17.py` L5**: `CUDA_VISIBLE_DEVICES = \"0\"` → `\"0,3\"`\n2. **`run_n17_downstream.py` L22**: `JUDGMENT_DIR_N17` 路径不存在，需修正\n3. **`evaluation.py` `arena_correlation()`**: 添加 qwen3-8b 排除参数 + ARENA_ELO name mapping（18 个模型名对齐）\n4. **`bootstrap_delta_tau.py`**: 需重写为数据驱动（不再硬编码 MODEL_NAMES），添加 qwen3-8b 排除\n5. **`run_n17_downstream.py` `run_bootstrap()`**: 当前 wrapper hack 不可用，需配合 bootstrap 脚本更新\n6. **所有脚本启动前**: 必须先 `conda activate base`，否则 import 失败\n\n需要我开始修复这些问题吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prep-mcmc-n17.md"
+}

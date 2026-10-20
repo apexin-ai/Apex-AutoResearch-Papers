@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ca638aa80cbad2d9e57",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh data download arena mt",
+  "task_key": "worker_ssh_data_download_arena_mt_20260521T234538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_data_download_arena_mt_20260521T234538_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "b1275b5982fdb5f3c35fa5e24c3a83a123685dfacfc1bbcf133bac23d25042bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据下载和整理完成。汇总如下：\n\n```\n=== Arena-Hard (v0.1) ===\nPrompts: 500 条\n  格式: {uid, category, cluster, prompt}\n  转换后: prompts.jsonl — {id, prompt, cluster}\nModels with responses: [gpt-3.5-turbo-0125, gpt-4-0314, gpt-4-0613]\n  转换后: responses/{model}.jsonl — {id, response}\nModel judgments: gpt-4-1106-preview 评判 gpt-3.5-turbo-0125 和 gpt-4-0613\nLicense: Apache 2.0\nData size: 21MB\n\n=== MT-Bench ===\nQuestions: 80 条 (8 categories: coding, extraction, humanities, math, reasoning, roleplay, stem, writing)\n  格式: {question_id, category, turns: [str, str]} (multi-turn, 2 turns)\nReference answers: 30 条 (gpt-4, 仅覆盖需要参考答案的 categories)\n  格式: {question_id, answer_id, model_id, choices: [{index, turns: [str, str]}], tstamp}\nJudge prompts: judge_prompts.jsonl (FastChat 原始 judge prompt 模板)\nModels with answers: 无公开 model answer（FastChat repo 不提供，需自行生成）\nData size: 112KB\n```\n\n**数据路径:**\n- `/root/gated_mfrm_judge_bias/data/arena_hard/` — prompts.jsonl, responses/, model_answer/, model_judgment/\n- `/root/gated_mfrm_judge_bias/data/mt_bench/` — question.jsonl, reference_answer/, judge_prompts.jsonl"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-data-download-arena-mt.md"
+}

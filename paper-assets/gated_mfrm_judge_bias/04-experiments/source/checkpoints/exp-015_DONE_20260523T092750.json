@@ -1,0 +1,85 @@
+{
+  "exp_id": "exp-015",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:26:45.165Z",
+    "updated_at": "2026-05-23T09:27:50.291Z",
+    "hypothesis": "N=8 合成数据上 G-MFRM joint vs sequential 的 Δτ 存在但效应量小，统计 power 不足以在 20 seeds 下达到显著——与真实数据（N=8 models）non-significant bootstrap 结论一致，确认是 power 不足而非方法无效。",
+    "parent": "exp-003b",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp015 && python run_exp015.py",
+      "server": "autodl-8gpu",
+      "gpu": "cuda:1",
+      "pid": 291457,
+      "log_path": "/root/runs/gated_mfrm_judge_bias/exp-015.log",
+      "submitted_at": "2026-05-23T05:49:42.262Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "synthetic (generated in-memory, N=8 I=176 J=9)",
+      "data_count": "20 seeds x 2 methods (sequential + joint_gmfrm)",
+      "model_name": "G-MFRM synthetic calibration at N=8",
+      "seed": "0-19",
+      "checkpoint_source": "mvp_003 DGP code + G-MFRM model",
+      "eval_data": "synthetic DGP (N=8, I=176, J=9, rho=0.6)",
+      "checkpoint_path": "/root/gated_mfrm_judge_bias/exp015/results/",
+      "wall_clock_seconds": 12793.1,
+      "gpu_hours": 3.55
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T09:17:50.890Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T09:17:53.363623+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n_seeds": 20,
+      "n_models": 8,
+      "sequential": {
+        "theta_rmse_mean": 0.1664,
+        "theta_rmse_std": 0.0496,
+        "theta_tau_mean": 0.8821,
+        "theta_tau_std": 0.1118,
+        "c_rmse_mean": 1.3992,
+        "c_rmse_std": 0.3583
+      },
+      "joint_gmfrm": {
+        "theta_rmse_mean": 0.0827,
+        "theta_rmse_std": 0.0241,
+        "theta_tau_mean": 0.9536,
+        "theta_tau_std": 0.0479,
+        "c_rmse_mean": 0.5524,
+        "c_rmse_std": 0.3283
+      },
+      "improvement": {
+        "theta_rmse_pct": -50.3,
+        "c_rmse_pct": -60.5,
+        "delta_tau": 0.0715
+      },
+      "statistics": {
+        "wilcoxon_p": 9.54e-07,
+        "cohens_d": 1.884,
+        "win_rate": "20/20"
+      },
+      "convergence": {
+        "rhat_max": 1,
+        "ess_min": 1678
+      },
+      "key_finding": "Hypothesis falsified: effect is overwhelmingly significant at N=8 (p=9.54e-7, d=1.884). Real data non-significance is NOT power issue but model-data mismatch."
+    },
+    "completed_at": "2026-05-23T09:22:55.330Z"
+  },
+  "timestamp": "2026-05-23T09:27:50.434978+00:00",
+  "trigger": "update_registry"
+}

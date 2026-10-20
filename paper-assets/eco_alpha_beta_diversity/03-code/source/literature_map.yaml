@@ -1,0 +1,182 @@
+meta:
+  last_updated: "2026-05-21T12:10:00Z"
+  total_papers: 10
+categories:
+  - key: "homogenization_evidence"
+    name: "LLM Homogenization Evidence"
+    narrative: "Empirical studies documenting how LLM assistance affects text diversity at individual and collective levels"
+  - key: "ecological_diversity_theory"
+    name: "Ecological Diversity Theory"
+    narrative: "Mathematical foundations of alpha-beta-gamma diversity decomposition using Hill numbers and abundance-based partitioning"
+  - key: "diversity_measurement_nlp"
+    name: "NLP Diversity Measurement"
+    narrative: "Existing frameworks and surveys for measuring linguistic and output diversity in NLP systems"
+  - key: "concurrent_work"
+    name: "Concurrent Approaches"
+    narrative: "Recent concurrent work on LLM homogenization mechanisms and mitigation strategies"
+papers:
+  doshi2024generative:
+    title: "Generative AI enhances individual creativity but reduces the collective diversity of novel content"
+    authors:
+      - "Doshi, A. R."
+      - "Hauser, O. P."
+    year: 2024
+    venue: "Science Advances"
+    url: "https://doi.org/10.1126/sciadv.adn5290"
+    doi: "10.1126/sciadv.adn5290"
+    bibtex_key: "doshi2024generative"
+    category: "homogenization_evidence"
+    role: "foundation"
+    relevance: "Establishes the core creativity-diversity paradox: LLMs improve individual creative quality while reducing collective diversity. Primary dataset for MVP validation (293 stories, 3 conditions, CC-BY on Dryad)."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  padmakumar2024writing:
+    title: "Does Writing with Language Models Reduce Content Diversity?"
+    authors:
+      - "Padmakumar, V."
+      - "He, H."
+    year: 2024
+    venue: "ICLR"
+    url: "https://openreview.net/forum?id=yQDSJSmVuo"
+    bibtex_key: "padmakumar2024writing"
+    category: "homogenization_evidence"
+    role: "foundation"
+    relevance: "Keystroke-level data showing InstructGPT reduces content diversity in argumentative essays. Within-subjects design (38 writers x 3 conditions) enables paired alpha-beta comparisons. Second validation dataset."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  guo2025benchmarking:
+    title: "Benchmarking Linguistic Diversity of Large Language Models"
+    authors:
+      - "Guo, Y."
+      - "Shang, J."
+      - "Clavel, C."
+    year: 2025
+    venue: "TACL"
+    bibtex_key: "guo2025benchmarking"
+    category: "diversity_measurement_nlp"
+    role: "direct-competitor"
+    relevance: "Current SOTA for LLM diversity benchmarking across lexical/syntactic/semantic dimensions but treats them as independent axes without hierarchical structure. Our framework subsumes their flat metrics."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  jost2007partitioning:
+    title: "Partitioning diversity into independent alpha and beta components"
+    authors:
+      - "Jost, L."
+    year: 2007
+    venue: "Ecology"
+    doi: "10.1890/06-1736.1"
+    bibtex_key: "jost2007partitioning"
+    category: "ecological_diversity_theory"
+    role: "foundation"
+    relevance: "Theoretical backbone: multiplicative partition gamma = alpha x beta using Hill numbers guarantees mathematical independence between within-site and between-site diversity. Core framework we adapt to text ecosystems."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  baselga2017partitioning:
+    title: "Partitioning abundance-based multiple-site dissimilarity into components: balanced variation in abundance and abundance gradients"
+    authors:
+      - "Baselga, A."
+    year: 2017
+    venue: "Methods in Ecology and Evolution"
+    doi: "10.1111/2041-210X.12693"
+    bibtex_key: "baselga2017partitioning"
+    category: "ecological_diversity_theory"
+    role: "method-component"
+    relevance: "Abundance-based beta decomposition into balanced-variation (convergence) and abundance-gradients (subsumption). Core diagnostic capability our framework provides that flat metrics algebraically cannot."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  chao2023rarefaction:
+    title: "Rarefaction and extrapolation with beta diversity under a framework of Hill numbers: the iNEXT.beta3D standardization"
+    authors:
+      - "Chao, A."
+      - "Thorn, S."
+      - "Chiu, C.-H."
+      - "Moyes, F."
+      - "Hu, K.-H."
+      - "Chazdon, R. L."
+      - "Wu, J."
+      - "Magnago, L. F. S."
+      - "Dornelas, M."
+      - "Zeleny, D."
+      - "Colwell, R. K."
+      - "Gotelli, N. J."
+    year: 2023
+    venue: "Ecological Monographs"
+    doi: "10.1002/ecm.1588"
+    bibtex_key: "chao2023rarefaction"
+    category: "ecological_diversity_theory"
+    role: "method-component"
+    relevance: "Statistical machinery for bootstrap CIs, coverage-based standardization, and rarefaction/extrapolation under Hill number framework. Essential for handling unequal sample sizes across LLM conditions."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  grin2022measuring:
+    title: "Measuring Linguistic Diversity: A Multi-level Metric"
+    authors:
+      - "Grin, F."
+      - "Fuerst, G."
+    year: 2022
+    venue: "Social Indicators Research"
+    bibtex_key: "grin2022measuring"
+    category: "diversity_measurement_nlp"
+    role: "direct-competitor"
+    relevance: "Most directly related prior work: applied ecological alpha-beta-gamma with Hill numbers to sociolinguistic diversity (languages as species, regions as sites). But operates at macro-sociolinguistic level, never at text-feature level. We must clearly differentiate."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  deng2026examining:
+    title: "Examining and Addressing Barriers to Diversity in LLM-Generated Ideas"
+    authors:
+      - "Deng, S."
+      - "Brucks, M."
+      - "Toubia, O."
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2602.20408"
+    bibtex_key: "deng2026examining"
+    category: "concurrent_work"
+    role: "direct-competitor"
+    relevance: "Most direct concurrent competitor: identifies fixation and knowledge-partitioning mechanisms. Our framework subsumes their descriptive categories with continuous quantitative decomposition. Their mechanism mapping to our Baselga components is a testable hypothesis."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  nlp_diversity_survey:
+    title: "A survey of diversity quantification in natural language processing"
+    authors: []
+    year: 2025
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2507.20858"
+    bibtex_key: "nlp_diversity_survey"
+    category: "diversity_measurement_nlp"
+    role: "background"
+    relevance: "Documents the NLP diversity measurement crisis: 300+ papers with ad hoc, cross-paper inconsistent metrics. Our framework directly responds to this documented fragmentation by providing a principled hierarchical decomposition."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"
+
+  baselga2013separating:
+    title: "Separating the two components of abundance-based dissimilarity: balanced changes in abundance vs. abundance gradients"
+    authors:
+      - "Baselga, A."
+    year: 2013
+    venue: "Methods in Ecology and Evolution"
+    doi: "10.1111/2041-210X.12029"
+    bibtex_key: "baselga2013separating"
+    category: "ecological_diversity_theory"
+    role: "method-component"
+    relevance: "Earlier formulation of abundance-based beta decomposition. Together with Baselga (2017), provides the mathematical foundation for distinguishing convergence from subsumption in text homogenization."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T12:10:00Z"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16d6cb77548a3ab5d6fc",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix configs correct models restart",
+  "task_key": "worker_ssh_fix_configs_correct_models_restart_20260523T233058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_configs_correct_models_restart_20260523T233058_result.json",
+    "occurrence": 1,
+    "bytes": 1944,
+    "sha256": "3ca4d86492a718bfaa3bb07e4c7768452d137bb384ed6cd3e0e1354a7467d714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 judges Total=18000 ✅，从 0 开始，正常运行。\n\n---\n\n## 产出报告\n\n### 1. 18 个模型 response 文件\n\n| 模型 | 行数 | 来源 |\n|------|------|------|\n| gpt-3.5-turbo-0613 | 500 ✅ | HF 新下载 |\n| gpt-4-0613 | 500 ✅ | 已有 |\n| gpt-4o-2024-05-13 | 500 ✅ | HF 新下载 |\n| gpt-4o-mini-2024-07-18 | 500 ✅ | HF 新下载 |\n| gpt-4-turbo-2024-04-09 | 500 ✅ | 已有 |\n| llama-3.3-70b-instruct | **491** ⚠️ | 从 llama-3.3-70b 复制（HF 无此模型） |\n| llama-3.1-70b-instruct | 500 ✅ | 已有 |\n| llama-3-70b-instruct | 500 ✅ | 已有 |\n| llama-3-8b-instruct | 500 ✅ | 已有 |\n| qwen2.5-72b-instruct | 500 ✅ | HF 新下载 |\n| qwen3-8b | 500 ✅ | 已有 |\n| gemma-2-9b-it | 500 ✅ | HF 新下载 |\n| gemma-2-27b-it | 500 ✅ | 已有 |\n| claude-3-5-sonnet-20241022 | 500 ✅ | 已有 |\n| claude-3-opus-20240229 | 500 ✅ | 已有 |\n| claude-3-haiku-20240307 | 500 ✅ | 已有 |\n| mixtral-8x22b-instruct-v0.1 | 500 ✅ | 已有 |\n| mistral-large-2407 | 500 ✅ | HF 新下载 |\n\n### 2. Config 修改 ✅\n- 4 个 n17 config 全部从 14→18 models\n- RPM: sonnet=150, gemini/deepseek/qwen3=100\n\n### 3. 旧错误数据清理 ✅\n- 837 行旧 judgment 数据已备份 (`.bak_wrong_models`) 并清空\n\n### 4. API Judges 运行状态\n\n| Judge | PID | Total | 速度 | ETA |\n|-------|-----|-------|------|-----|\n| sonnet | 485562 | 18000 (17982 实际) | ~1.2/s | ~250 min |\n| gemini | 485759 | 18000 (17982 实际) | ~0.5/s | ~650 min |\n| deepseek | 485826 | 18000 (17982 实际) | ~0.1/s | ~2145 min |\n| qwen3 | 485992 | 18000 (17982 实际) | ~0.2/s | ~1449 min |\n\n实际任务数 17982 = 18000 - 18，因为 llama-3.3-70b-instruct 缺 9 个 item（×2 positions）。\n\n### 5. LLaMA 下载\n- PID 480645，已有进程在跑，无需重启\n- 进度：29% (5/17 files)，已下载 25GB\n- 有超时自动重试，正在继续"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-configs-correct-models-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5b16cfe292633fc4ad0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh monitor response restart judges v2",
+  "task_key": "worker_ssh_monitor_response_restart_judges_v2_20260522T075813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_monitor_response_restart_judges_v2_20260522T075813_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "2a2c146db611bd972e68b82a0c92453702abc6b3969239c6a17d72674440f41d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态总结：\n- **llama-3.3-70b**: 301/500（~0.10/s，预计还需 ~33min）\n- **qwen2.5-72b**: 242/500（~0.08/s，预计还需 ~54min）\n- **mistral-large-2**: 62/500（~0.02/s，预计还需 ~325min）⚠️ 非常慢\n\nMistral 的生成速度明显偏低（0.02/s vs llama 的 0.10/s），可能需要关注。监控脚本已在服务器上运行，120 秒后我会再次检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-monitor-response-restart-judges-v2.md"
+}

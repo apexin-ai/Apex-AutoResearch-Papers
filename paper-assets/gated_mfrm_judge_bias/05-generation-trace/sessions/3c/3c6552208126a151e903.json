@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c6552208126a151e903",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix naming and llama priority",
+  "task_key": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_naming_and_llama_priority_20260522T063705_result.json",
+    "occurrence": 1,
+    "bytes": 2270,
+    "sha256": "4ba6f86617e9c02a849e12f5078356f4646be430ff11b246fcbfe5cb5cf2216c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告：\n\n---\n\n### 1. Mistral 命名修复 ✓\n\n**模型确认**: 部署的是 `Mistral-Large-Instruct-2407-AWQ`（Mistral Large **2**），vLLM served name `mistral-large-instruct`\n\n**修改了 5 处**:\n| 文件 | 变更 |\n|------|------|\n| `data/arena_hard/responses/mistral-large-3.jsonl` | → `mistral-large-2.jsonl` |\n| `exp001/generate_vllm_online.py:23` | `mistral-large-3` → `mistral-large-2` |\n| `exp001/generate_vllm_batch.py:34` | `mistral-large-3` → `mistral-large-2` |\n| `exp001/config.yaml:46` | `mistral-large-3` → `mistral-large-2` |\n| `exp001/generate_responses.py:44` | `mistral-large-3` → `mistral-large-2` |\n\n`exp001/results/mistral-large-2/` 本来就是正确命名，无需改。全项目已无 `mistral-large-3` 残留。\n\n注意：`Mistral-Large-Instruct-2411-AWQ`（真正的 Large 3）正在下载中（2 个 hf download 进程）。\n\n### 2. Llama response 生成 — 无需干预\n\n`generate_vllm_online.py` 进程**已自然结束**（不在进程列表中）。Llama vLLM 当前仅服务 judge 收集，无双重负载。\n\n### 3. Response 生成进度\n\n| Model | 进度 |\n|-------|------|\n| gpt-3.5-turbo-0125 | **500/500** ✓ |\n| gpt-4-0314 | **500/500** ✓ |\n| gpt-4-0613 | **500/500** ✓ |\n| gpt-4o | 377/500 (openai group 在跑) |\n| qwen2.5-72b | 395/500 |\n| mistral-large-2 | 395/500 |\n| llama-3.3-70b | **9/500** (需后续单独补) |\n\n### 4. Judge 收集进度（目标 3000 each）\n\n| Judge | 进度 | 状态 |\n|-------|------|------|\n| gpt-5.5-proxy | 835 | 运行中 (0.1/s, ETA ~6h) |\n| claude-opus-4.7-proxy | 467 | — |\n| claude-sonnet-4.6-proxy | 431 | — |\n| gemini-2.5-pro-proxy | 360 | — |\n| qwen3-235b-proxy | 252 | — |\n| deepseek-v4-pro-proxy | 243 | — |\n| llama-3.3-70b | 217 | 运行中 (极慢, 40/2827) |\n| qwen2.5-72b | 130 | 运行中 (30/2907) |\n| mistral-large-2 | 58 | 运行中 (10/2979, 极慢) |\n\n### 5. exp-009\n\n**仍在运行**。PID 112923，已运行 5h32m，GPU 0 上，CPU 105%。\n\n### 6. GPU 状态\n\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| 0 | 74/98 GB | 61% (exp-009) |\n| 1 | 88/98 GB | 100% (Qwen vLLM) |\n| 2 | 90/98 GB | 100% (Llama vLLM) |\n| 3 | 88/98 GB | 100% (Mistral vLLM) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-naming-and-llama-priority.md"
+}

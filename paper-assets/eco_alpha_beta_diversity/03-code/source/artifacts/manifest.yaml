@@ -1,0 +1,230 @@
+- id: art_20260521_a03459
+  name: mvp_results_real_data
+  type: data
+  description: 'MVP results JSON with real Doshi & Hauser 2024 data (297 stories,
+    nboot=200). OVERALL: FAIL.'
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/data/mvp_results.json
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:08:14.021340+00:00'
+  tags:
+  - mvp
+  - real-data
+  - doshi-hauser-2024
+- id: art_20260521_aaaf57
+  name: hill_numbers_comparison_real
+  type: chart
+  description: Hill numbers (q=0,1,2) alpha/beta comparison across conditions, real
+    data
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/chart/hill_numbers_comparison.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:08:15.852673+00:00'
+  tags:
+  - mvp
+  - real-data
+  - hill-numbers
+- id: art_20260521_af982d
+  name: baselga_decomposition_real
+  type: chart
+  description: Baselga beta decomposition (balanced-variation vs abundance-gradient),
+    real data
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/chart/baselga_decomposition.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:08:17.713321+00:00'
+  tags:
+  - mvp
+  - real-data
+  - baselga
+- id: art_20260521_497fcd
+  name: cosine_heatmap_real
+  type: chart
+  description: TF-IDF cosine similarity heatmap, real data
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/chart/cosine_similarity_heatmap.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:08:19.643026+00:00'
+  tags:
+  - mvp
+  - real-data
+  - cosine
+- id: art_20260521_ef39fc
+  name: rarefaction_curves_real
+  type: chart
+  description: Rarefaction sensitivity curves, real data
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/chart/rarefaction_curves.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:08:20.690114+00:00'
+  tags:
+  - mvp
+  - real-data
+  - rarefaction
+- id: art_20260521_c4c7a3
+  name: mvp_results_v2
+  type: data
+  description: MVP results JSON with multi-cutoff rarefaction, coverage-based standardization,
+    and per-pair FAIL test 2 (nboot=200, 297 stories)
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/data/mvp_results_c4c7a3.json
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:24:26.481343+00:00'
+  tags:
+  - mvp
+  - rarefaction
+  - coverage
+  - fail-test-2
+  - v2
+- id: art_20260521_7a8b28
+  name: multi_cutoff_rarefaction_plot
+  type: chart
+  description: 'Multi-cutoff rarefaction sensitivity plot: alpha/beta trends at 50/75/100
+    word cutoffs for q=0,1,2 × 3 conditions'
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/chart/multi_cutoff_rarefaction.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:24:29.326186+00:00'
+  tags:
+  - mvp
+  - rarefaction
+  - sensitivity
+  - chart
+- id: art_20260521_11c872
+  name: hill_numbers_comparison_v2
+  type: chart
+  description: Hill numbers comparison bar chart (alpha/gamma/beta × q=0,1,2 × 3 conditions)
+    with bootstrap CI
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/chart/hill_numbers_comparison_11c872.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:24:31.697934+00:00'
+  tags:
+  - mvp
+  - hill-numbers
+  - chart
+- id: art_20260521_96d2b7
+  name: baselga_decomposition_v2
+  type: chart
+  description: Baselga abundance-based beta decomposition stacked bar chart with bootstrap
+    CI
+  path: projects/eco_alpha_beta_diversity/artifacts/_project/chart/baselga_decomposition_96d2b7.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:24:33.293668+00:00'
+  tags:
+  - mvp
+  - baselga
+  - chart
+- id: art_20260521_43994c
+  name: semantic_mvp_results
+  type: data
+  description: Semantic-level MVP (mvp_002) full results JSON — Hill numbers, Baselga
+    decomposition, embedding cosine, FAIL test 2, pass/fail judgment for k=50,100,200
+    with nboot=200
+  path: projects/eco_alpha_beta_diversity/artifacts/mvp_002/data/semantic_mvp_results.json
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: mvp_002
+  skill: ''
+  created_at: '2026-05-21T14:59:48.384270+00:00'
+  tags:
+  - semantic
+  - mvp
+  - hill-numbers
+  - baselga
+  - kill-go
+- id: art_20260521_034313
+  name: semantic_hill_numbers_plot
+  type: chart
+  description: Semantic Hill numbers (α, γ, β) by condition and q-order — sentence-embedding
+    cluster features, k=50
+  path: projects/eco_alpha_beta_diversity/artifacts/mvp_002/chart/semantic_hill_numbers.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: mvp_002
+  skill: ''
+  created_at: '2026-05-21T14:59:51.187063+00:00'
+  tags:
+  - semantic
+  - hill-numbers
+  - visualization
+- id: art_20260521_95601d
+  name: semantic_baselga_plot
+  type: chart
+  description: Semantic Baselga beta decomposition (balanced variation vs abundance
+    gradient) — k=50
+  path: projects/eco_alpha_beta_diversity/artifacts/mvp_002/chart/semantic_baselga.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: mvp_002
+  skill: ''
+  created_at: '2026-05-21T14:59:53.682995+00:00'
+  tags:
+  - semantic
+  - baselga
+  - visualization
+- id: art_20260521_4c7a49
+  name: semantic_cosine_heatmap
+  type: chart
+  description: Embedding cosine similarity heatmap (mean sentence vectors per story)
+    — no visible condition structure
+  path: projects/eco_alpha_beta_diversity/artifacts/mvp_002/chart/semantic_cosine_heatmap.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: mvp_002
+  skill: ''
+  created_at: '2026-05-21T14:59:55.394202+00:00'
+  tags:
+  - semantic
+  - cosine
+  - visualization
+- id: art_20260521_c8830a
+  name: semantic_k_sensitivity_plot
+  type: chart
+  description: k-value sensitivity analysis — alpha flat, beta increases linearly
+    with k, conclusion stable across k=50,100,200
+  path: projects/eco_alpha_beta_diversity/artifacts/mvp_002/chart/semantic_k_sensitivity.png
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: mvp_002
+  skill: ''
+  created_at: '2026-05-21T14:59:57.766399+00:00'
+  tags:
+  - semantic
+  - sensitivity
+  - visualization
+- id: art_20260521_fc6323
+  name: semantic_mvp_002_report
+  type: report
+  description: Semantic-level MVP (mvp_002) kill/go final judgment report — complete
+    results, comparison with lexical MVP, and conclusion
+  path: projects/eco_alpha_beta_diversity/artifacts/mvp_002/report/semantic_mvp_002_report.md
+  url: null
+  project: eco_alpha_beta_diversity
+  exp_id: mvp_002
+  skill: ''
+  created_at: '2026-05-21T15:00:58.424086+00:00'
+  tags:
+  - semantic
+  - mvp
+  - kill-go
+  - report

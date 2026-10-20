@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ea2f5bb15a05cc83cba",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp001 supplement target models",
+  "task_key": "worker_ssh_exp001_supplement_target_models_20260522T053513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_supplement_target_models_20260522T053513_result.json",
+    "occurrence": 1,
+    "bytes": 2210,
+    "sha256": "e89842ca09824e4aeba3652ec819856b7db319035403c316493e017476ba8490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "llama 确实在跑但吞吐只有 5 tok/s（AWQ 单卡）。所有 3 个 vLLM 服务都在并行生成。\n\n下面汇总当前状态和完整计划。\n\n---\n\n## 当前状态\n\n### 正在生成（后台进行中）\n\n| 模型 | 来源 | 进度 | 预估完成 |\n|------|------|------|---------|\n| gpt-4o | Proxy API | 69/500 | ~1h |\n| gpt-4o-mini | Proxy API (排队中) | 0/500 | gpt-4o 完成后 ~1h |\n| gpt-5.5 | Proxy API (排队中) | 0/500 | gpt-4o-mini 后 ~1.5h |\n| llama-3.3-70b | vLLM :8001 | 1/500 | ~3-4h (AWQ 慢) |\n| qwen2.5-72b | vLLM :8002 | 26/500 | ~2h |\n| mistral-large-3 | vLLM :8003 | 26/500 | ~2h |\n\n### 已完成（原有）\n\n| 模型 | 数量 |\n|------|------|\n| gpt-3.5-turbo-0125 | 500 ✓ |\n| gpt-4-0314 | 500 ✓ |\n| gpt-4-0613 | 500 ✓ |\n\n### 需要 GPU 时间窗（等现有 vLLM 服务释放后用离线批推理，每模型 ~10-30min）\n\n| 模型 | 大小 | GPU 需求 |\n|------|------|---------|\n| llama-3.1-8b | 8B | 1 GPU |\n| qwen2.5-7b | 7B | 1 GPU |\n| gemma-2-9b | 9B | 1 GPU |\n| mistral-7b-v0.3 | 7B | 1 GPU |\n| qwen2.5-14b | 14B | 1 GPU |\n| phi-4 | 14B | 1 GPU |\n| gemma-2-27b | 27B | 1 GPU |\n| llama-3.1-70b | 70B | 2 GPU |\n| qwen3-235b-a22b | 235B MoE | 4 GPU + FP8 |\n\n### 需要额外 API 余额（Proxy 402 余额不足）\n\n| 模型 | 状态 |\n|------|------|\n| claude-opus-4.7 | 需充值/替代 API |\n| claude-sonnet-4.6 | 需充值/替代 API |\n| gemini-2.5-pro | 需充值/替代 API |\n| gemini-2.5-flash | 需充值/替代 API |\n| deepseek-v4-pro | 需充值/替代 API |\n| mistral-medium-3.5 | 需充值/替代 API |\n| deepseek-v3 | 671B MoE，本地装不下，需 API |\n\n---\n\n### 接下来需要你决定的\n\n1. **7 个 proprietary 模型**的 API 问题：proxy (`47.94.22.126`) 对非 OpenAI 模型余额不足 (402)。是否有其他 API key 可用？或者需要充值？\n2. **GPU 调度**：等 vLLM 在线生成（llama/qwen/mistral）完成后，是否可以暂停 vLLM 服务来跑小模型的离线批推理？还是 exp009 和 judge 评估也在用这些服务？\n3. **deepseek-v3**（671B MoE）本地跑不下，是否可以从 target list 中去掉或替换为 deepseek-v2.5？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp001-supplement-target-models.md"
+}

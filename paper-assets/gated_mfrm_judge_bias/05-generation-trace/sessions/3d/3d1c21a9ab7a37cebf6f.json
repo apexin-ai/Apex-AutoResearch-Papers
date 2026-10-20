@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d1c21a9ab7a37cebf6f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check mcmc status full",
+  "task_key": "worker_ssh_check-mcmc-status-full_20260525T131310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-mcmc-status-full_20260525T131310_result.json",
+    "occurrence": 1,
+    "bytes": 2152,
+    "sha256": "0c0227e6a659b72516ed5a8cb1b9405e0f898e7ec442c179392b0507f9f5621d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Exp-020 MCMC Phase 1 状态报告\n\n**服务器**: autodl-8gpu  \n**进程**: PID 2598 (parent, S) → PID 2605 (python, R, 99.7% CPU)  \n**GPU 0**: 852 MiB (我们的进程) + 21530 MiB (PID 29577 其他任务), 99% utilization  \n**日志**: `/root/gated_mfrm_judge_bias/logs/exp020_mcmc_phase1_v2.log`（注意不是 v1）\n\n### 模型进度（4 个模型）\n\n| 模型 | 状态 | 耗时 |\n|------|------|------|\n| raw_average | 完成 | 0s |\n| mfrm_only | 完成 (15:55) | — |\n| sequential | 完成 (18:49) | 10432s (~2h54m) |\n| **joint_gmfrm** | **运行中** — warmup 54% (5409/10000) | 已跑 1h40m, 预计剩余 ~1h40m warmup + ~17m sampling |\n\n### 收敛诊断（已完成的两个模型）— 严重问题\n\n| 指标 | mfrm_only | sequential |\n|------|-----------|------------|\n| **R-hat max** | **2.9000** | **1.6700** |\n| R-hat > 1.05 | 541/548 | 216/548 |\n| R-hat > 1.01 | 548/548 | 441/548 |\n| **ESS bulk min** | **4** | **6** |\n| **ESS tail min** | **4** | **4** |\n| Divergences | 0 | 0 |\n\n**两个模型都完全没有收敛。** R-hat 远超 1.05 阈值，ESS 仅 4-6（应 >400）。4 chains × 6000 warmup + 4000 samples + target_accept=0.95 完全不够，链之间没有混合。\n\n### 参数点估计（不可信，仅供参考）\n\n| 文件 | shape | mean | std | min | max |\n|------|-------|------|-----|-----|-----|\n| mfrm_only_theta | (18,) | 0.0000 | 1.4452 | -2.8736 | 2.1636 |\n| mfrm_only_b | (500,) | -0.6645 | 1.1389 | -3.5554 | 2.6527 |\n| mfrm_only_d | (6,) | 0.0000 | 0.3947 | -0.5358 | 0.4230 |\n| sequential_theta | (18,) | -0.0000 | 1.4837 | -2.8654 | 2.2665 |\n| sequential_c | (18,) | -0.0084 | 0.0866 | -0.1098 | 0.2368 |\n| sequential_b | (500,) | -0.8152 | 1.3262 | -3.8068 | 3.3267 |\n| sequential_d | (6,) | -0.0000 | 0.3747 | -0.5162 | 0.3729 |\n\n### 判断\n\n- 0 divergences 说明不是 step size 问题，而是**链未混合**（可能是多模态后验或参数化问题）\n- joint_gmfrm 复杂度更高，收敛大概率更差\n- 当前结果**不可信**，需要重新检查模型参数化（reparameterization / non-centered parameterization 等）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-mcmc-status-full.md"
+}

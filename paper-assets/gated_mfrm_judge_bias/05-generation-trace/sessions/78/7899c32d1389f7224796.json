@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7899c32d1389f7224796",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh orphan bib audit",
+  "task_key": "worker_ssh_orphan_bib_audit_20260524T073745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_orphan_bib_audit_20260524T073745_result.json",
+    "occurrence": 1,
+    "bytes": 1737,
+    "sha256": "6208d23bc64b123dfb71f79d38deeaf3094af89d13c49332fabcfc471f344edf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 entry 全部已被引用，审计完成。\n\n---\n\n**Entry 1: `sanmartin2016`**\n- **Bib 内容**: San Martín (2016), \"Identification of Item Response Theory Models\", Handbook of IRT Vol.2, CRC Press\n- **引用状态**: 已引用 at appendix.tex:57 (`\\citet[Chapter~5]{sanmartin2016}`)\n- **method.tex identifiability 讨论**: method.tex §3.3 (lines 53-82) 大量讨论 identifiability，但呈现的是本文自己的 Propositions/Theorem，proof 推迟到 Appendix。Appendix 证明中引用 San Martín 的已有 MFRM identifiability 结果，引用位置正确。method.tex 无需重复引用。\n- **决定**: 保留（已引用，位置正确）\n- **执行结果**: 无需修改\n\n**Entry 2: `talts2018sbc`**\n- **Bib 内容**: Talts et al. (2018), \"Validating Bayesian Inference Algorithms with Simulation-Based Calibration\", arXiv:1804.06788\n- **引用状态**: 已引用 at limitations.tex:3 (`\\citealp{talts2018sbc}`)\n- **上下文**: 讨论 CI coverage 的 posterior overconfidence 时引用 SBC，提出 SBC-based recalibration 作为未来方向\n- **决定**: 保留（已引用，位置正确）\n- **执行结果**: 无需修改\n\n**Entry 3: `vehtari2017loo`**\n- **Bib 内容**: Vehtari, Gelman & Gabry (2017), \"Practical Bayesian Model Evaluation Using LOO-CV and WAIC\", Statistics and Computing 27(5)\n- **引用状态**: 已引用 at experiments.tex:48 (`\\citealp{vehtari2017loo}`)\n- **上下文**: 报告 LOO cross-validation 结果（ΔELPD = -55.7, SE = 9.4）时引用\n- **决定**: 保留（已引用，位置正确）\n- **执行结果**: 无需修改\n\n**结论**: 3 个 entry 均非 orphan，全部在论文中被正确引用。无需修改，无需编译验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-orphan-bib-audit.md"
+}

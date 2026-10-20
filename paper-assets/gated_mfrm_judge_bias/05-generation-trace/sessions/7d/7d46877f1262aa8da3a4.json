@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d46877f1262aa8da3a4",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix dangling appendix refs",
+  "task_key": "worker_ssh_fix_dangling_appendix_refs_20260524T051616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_dangling_appendix_refs_20260524T051616_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "7129d8c384d22ed3a04d012f9cb926e0f5d608289e592aeec561264c0e38cc73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits confirmed. Summary:\n\n**Task A** — Added `\\section{Prior Specification Robustness}` (`app:prior_robustness`) with an 8-row table comparing Horseshoe vs. HalfNormal posterior means. Pearson $r = 1.000$ (θ), $r = 0.9999$ ($c_n$) — consistent with the \"Pearson $r > 0.999$\" claim in the main text.\n\n**Task B** — Added `\\section{Item-Level Fit Diagnostics}` (`app:item_diagnostics`) with a summary statistics table (mean/SD/median/min/max for infit and outfit MNSQ) and a paragraph explaining that 92/176 items are flagged (18 overfit, 74 underfit), mostly sparse low-observation items.\n\n**Task C** — Fixed both dangling `Appendix` references in experiments.tex L52 to `Appendix~\\ref{app:prior_robustness}` and `Appendix~\\ref{app:item_diagnostics}`.\n\n**Compilation**: 3 passes (pdflatex + bibtex + pdflatex × 2), 17-page PDF. Zero undefined reference warnings. All overfull hbox warnings are pre-existing (synthetic calibration tables at 14pt, others ≤ 3pt). No new overfull boxes from the added content."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-dangling-appendix-refs.md"
+}

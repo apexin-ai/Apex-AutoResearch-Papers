@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6f78c92760fc44f613f3",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh waic loo retry",
+  "task_key": "worker_ssh_waic_loo_retry_20260522T235758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_waic_loo_retry_20260522T235758.log",
+    "occurrence": 1,
+    "bytes": 743421,
+    "sha256": "1d44923deb16a4f4ba9df2bc6f590a9fa26954e32e6f9d38ef9c72bfbe63f0e1"
+  },
+  "statistics": {
+    "messages": 296,
+    "user_turns": 0,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 106,
+      "tool_result": 106,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 296,
+      "chunks": [
+        {
+          "path": "6f78c92760fc44f613f3-part-0001.json",
+          "message_count": 172
+        },
+        {
+          "path": "6f78c92760fc44f613f3-part-0002.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-waic-loo-retry.md"
+}

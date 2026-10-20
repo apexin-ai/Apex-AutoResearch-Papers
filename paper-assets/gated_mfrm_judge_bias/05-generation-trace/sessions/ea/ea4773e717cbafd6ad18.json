@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "ea4773e717cbafd6ad18",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh exp001 mistral cuda1",
+  "task_key": "worker_ssh_exp001_mistral_cuda1_20260522T032402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_mistral_cuda1_20260522T032402.log",
+    "occurrence": 1,
+    "bytes": 2252759,
+    "sha256": "7ebb81713ffad82145968c6dc3e3bcbec79dd82cae16d14126b0c384d8e437fc"
+  },
+  "statistics": {
+    "messages": 1610,
+    "user_turns": 2,
+    "tool_calls": 671,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 256,
+      "tool_call": 671,
+      "tool_result": 671,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 712,
+      "chunks": [
+        {
+          "path": "ea4773e717cbafd6ad18-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea4773e717cbafd6ad18-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea4773e717cbafd6ad18-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea4773e717cbafd6ad18-part-0004.json",
+          "message_count": 172
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 875,
+      "chunks": [
+        {
+          "path": "ea4773e717cbafd6ad18-part-0004.json",
+          "message_count": 8
+        },
+        {
+          "path": "ea4773e717cbafd6ad18-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea4773e717cbafd6ad18-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea4773e717cbafd6ad18-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea4773e717cbafd6ad18-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea4773e717cbafd6ad18-part-0009.json",
+          "message_count": 147
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "ea4773e717cbafd6ad18-part-0009.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-exp001-mistral-cuda1.md"
+}

@@ -1,0 +1,2481 @@
+# ssh fix naming and llama priority
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 83
+- **Recorded user turns:** 0
+- **Tool calls:** 41
+- **Original source:** `logs/chats/worker_ssh_fix_naming_and_llama_priority_20260522T063705.jsonl`
+- **Structured JSON:** [`7d679b5b468951f69931.json`](../../sessions/7d/7d679b5b468951f69931.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+83 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T06:40:20.687041+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T06:40:20.687383+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T06:40:20.687609+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "curl -s http://localhost:8003/v1/models",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "curl -s http://localhost:8003/v1/models",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T06:40:20.687755+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'curl' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T06:40:20.687882+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls /root/gated_mfrm_judge_bias/exp001/data/arena_hard/responses/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ls /root/gated_mfrm_judge_bias/exp001/data/arena_hard/responses/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-22T06:40:20.688050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls /root/gated_mfrm_judge_bias/exp001/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ls /root/gated_mfrm_judge_bias/exp001/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T06:40:20.688212+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gated_mfrm_judge_bias/exp001/data/arena_hard/responses/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T06:40:20.688347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arena_hard_judgments.jsonl\\narena_hard_judgments.jsonl.bak\\nclaude-opus-4.7-proxy\\nclaude-sonnet-4.6-proxy\\ndeepseek-v4-pro-proxy\\ngemini-2.5-pro-proxy\\ngpt-5.5-proxy\\nllama-3.3-70b\\nmistral-large-2\\nqwen2.5-72b\\nqwen3-235b-proxy\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T06:40:20.688515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls /root/autodl-tmp/models/*istral*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ls /root/autodl-tmp/models/*istral*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T06:40:20.688652+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T06:40:20.688783+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nconfig.json\\nconfiguration.json\\ngeneration_config.json\\nmodel-00001-of-00014.safetensors\\nmodel-00002-of-00014.safetensors\\nmodel-00003-of-00014.safetensors\\nmodel-00004-of-00014.safetensors\\nmodel-00005-of-00014.safetensors\\nmodel-00006-of-00014.safetensors\\nmodel-00007-of-00014.safetensors\\nmodel-00008-of-00014.safetensors\\nmodel-00009-of-00014.safetensors\\nmodel-00010-of-00014.safetensors\\nmodel-00011-of-00014.safetensors\\nmodel-00012-of-00014.safetensors\\nmodel-00013-of-00014.safetensors\\nmodel-00014-of-00014.safetensors\\nmodel.safetensors.index.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T06:40:20.688919+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 73829 MiB, 97887 MiB, 61 %\\n1, 88129 MiB, 97887 MiB, 100 %\\n2, 90113 MiB, 97887 MiB, 100 %\\n3, 88115 MiB, 97887 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T06:40:20.689039+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T06:40:20.689157+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T06:40:20.689272+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ps -p 112923 -o pid,etime,pcpu,pmem,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ps -p 112923 -o pid,etime,pcpu,pmem,args",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T06:40:20.689388+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED %CPU %MEM COMMAND\\n112923    05:31:52  0.0  0.0 bash -c cd /root/gated_mfrm_judge_bias/exp009 && rm -f bias_vs_rho.csv cn_recovery.csv && CUDA_VISIBLE_DEVICES=0 nohup /root/miniconda3/bin/python3 run_exp009.py --part both > /tmp/exp009_full.log 2>&1 & echo $!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T06:40:20.689564+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/exp001/data -name \"*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "find /root/gated_mfrm_judge_bias/exp001/data -name \"*.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T06:40:20.689687+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp001/data/mmlu/mmlu_500.jsonl\\n/root/gated_mfrm_judge_bias/exp001/data/gsm8k/gsm8k_500.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T06:40:20.689809+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/autodl-tmp/models/*istral*/config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat /root/autodl-tmp/models/*istral*/config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T06:40:20.689951+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"_name_or_path\\\": \\\"mistralai/Mistral-Large-Instruct-2407\\\",\\n  \\\"architectures\\\": [\\n    \\\"MistralForCausalLM\\\"\\n  ],\\n  \\\"attention_dropout\\\": 0.0,\\n  \\\"bos_token_id\\\": 1,\\n  \\\"eos_token_id\\\": 2,\\n  \\\"head_dim\\\": 128,\\n  \\\"hidden_act\\\": \\\"silu\\\",\\n  \\\"hidden_size\\\": 12288,\\n  \\\"initializer_range\\\": 0.02,\\n  \\\"intermediate_size\\\": 28672,\\n  \\\"max_position_embeddings\\\": 131072,\\n  \\\"model_type\\\": \\\"mistral\\\",\\n  \\\"num_attention_heads\\\": 96,\\n  \\\"num_hidden_layers\\\": 88,\\n  \\\"num_key_value_heads\\\": 8,\\n  \\\"quantization_config\\\": {\\n    \\\"bits\\\": 4,\\n    \\\"group_size\\\": 128,\\n    \\\"modules_to_not_convert\\\": null,\\n    \\\"quant_method\\\": \\\"awq\\\",\\n    \\\"version\\\": \\\"gemm\\\",\\n    \\\"zero_point\\\": true\\n  },\\n  \\\"rms_norm_eps\\\": 1e-05,\\n  \\\"rope_theta\\\": 1000000.0,\\n  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": false,\\n  \\\"torch_dtype\\\": \\\"float16\\\",\\n  \\\"transformers_version\\\": \\\"4.43.2\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"vocab_size\\\": 32768\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T06:40:20.690078+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "grep -rn \"mistral-large-3\" /root/gated_mfrm_judge_bias/exp001/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "grep -rn \"mistral-large-3\" /root/gated_mfrm_judge_bias/exp001/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-22T06:40:20.690190+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tmux list-sessions 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "tmux list-sessions 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T06:40:20.690312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp001/config.yaml:46:  - mistral-large-3\\n/root/gated_mfrm_judge_bias/exp001/generate_responses.py:44:    (\\\"mistral-large-3\\\",    \\\"mistral-large-latest\\\",  \\\"proxy_nocredit\\\", 0.0),\\n/root/gated_mfrm_judge_bias/exp001/generate_vllm_batch.py:34:    (\\\"mistral-large-3\\\", \\\"/root/autodl-tmp/models/Mistral-Large-Instruct-2407-AWQ\\\",\\\"large\\\", 1, 0.0, \\\"awq\\\"),\\n/root/gated_mfrm_judge_bias/exp001/generate_vllm_online.py:23:    (\\\"mistral-large-3\\\", \\\"http://localhost:8003/v1\\\", \\\"mistral-large-instruct\\\",  0.0),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T06:40:20.690466+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp001-gpt55: 1 windows (created Fri May 22 12:24:49 2026)\\nexp001-llama: 1 windows (created Fri May 22 13:39:42 2026)\\nexp001-mistral: 1 windows (created Fri May 22 13:40:51 2026)\\nexp001-qwen: 1 windows (created Fri May 22 13:40:51 2026)\\nvllm-llama: 1 windows (created Fri May 22 09:20:35 2026)\\nvllm-mistral: 1 windows (created Fri May 22 12:45:10 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T06:40:20.690592+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/exp001/data -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "find /root/gated_mfrm_judge_bias/exp001/data -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T06:40:20.690708+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp001/data\\n/root/gated_mfrm_judge_bias/exp001/data/mmlu\\n/root/gated_mfrm_judge_bias/exp001/data/gsm8k\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T06:40:20.690896+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "curl -s http://localhost:8003/v1/models | python3 -c \"import sys,json; print(json.load(sys.stdin))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "curl -s http://localhost:8003/v1/models | python3 -c \"import sys,json; print(json.load(sys.stdin))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T06:40:20.691046+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ps aux | grep generate_responses | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ps aux | grep generate_responses | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T06:40:20.691172+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'curl -s http://localhost:8003/v1/models | python3 -c \\\"import sys,json; print(json.load(sys.stdin))\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T06:40:20.691292+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     220838  0.0  0.0   4364  1992 ?        S    13:47   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp001 && nohup python3 generate_responses.py --group openai --workers 3 --rate-delay 0.3 > /tmp/gen_openai.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     220843  0.0  0.0  79876 70572 ?        S    13:47   0:02 python3 generate_responses.py --group openai --workers 3 --rate-delay 0.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T06:40:20.691525+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "curl -s http://localhost:8003/v1/models | /root/miniconda3/bin/python3 -c \"import sys,json; print(json.dumps(json.load(sys.stdin), indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "curl -s http://localhost:8003/v1/models | /root/miniconda3/bin/python3 -c \"import sys,json; print(json.dumps(json.load(sys.stdin), indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T06:40:20.691715+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"object\\\": \\\"list\\\",\\n  \\\"data\\\": [\\n    {\\n      \\\"id\\\": \\\"mistral-large-instruct\\\",\\n      \\\"object\\\": \\\"model\\\",\\n      \\\"created\\\": 1779431878,\\n      \\\"owned_by\\\": \\\"vllm\\\",\\n      \\\"root\\\": \\\"/root/autodl-tmp/models/Mistral-Large-Instruct-2407-AWQ\\\",\\n      \\\"parent\\\": null,\\n      \\\"max_model_len\\\": 4096,\\n      \\\"permission\\\": [\\n        {\\n          \\\"id\\\": \\\"modelperm-b3b9083b283e5f7b\\\",\\n          \\\"object\\\": \\\"model_permission\\\",\\n          \\\"created\\\": 1779431878,\\n          \\\"allow_create_engine\\\": false,\\n          \\\"allow_sampling\\\": true,\\n          \\\"allow_logprobs\\\": true,\\n          \\\"allow_search_indices\\\": false,\\n          \\\"allow_view\\\": true,\\n          \\\"allow_fine_tuning\\\": false,\\n          \\\"organization\\\": \\\"*\\\",\\n          \\\"group\\\": null,\\n          \\\"is_blocking\\\": false\\n        }\\n      ]\\n    }\\n  ]\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T06:40:20.691850+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "for d in /root/gated_mfrm_judge_bias/exp001/results/*/; do name=$(basename \"$d\"); count=$(cat \"$d\"/*.jsonl 2>/dev/null | wc -l); echo \"$name: $count judgments\"; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "for d in /root/gated_mfrm_judge_bias/exp001/results/*/; do name=$(basename \"$d\"); count=$(cat \"$d\"/*.jsonl 2>/dev/null | wc -l); echo \"$name: $count judgments\"; done",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T06:40:20.691976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"claude-opus-4.7-proxy: 467 judgments\\nclaude-sonnet-4.6-proxy: 431 judgments\\ndeepseek-v4-pro-proxy: 243 judgments\\ngemini-2.5-pro-proxy: 360 judgments\\ngpt-5.5-proxy: 824 judgments\\nllama-3.3-70b: 215 judgments\\nmistral-large-2: 57 judgments\\nqwen2.5-72b: 128 judgments\\nqwen3-235b-proxy: 252 judgments\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T06:40:20.692092+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tmux capture-pane -t exp001-llama -p 2>/dev/null | tail -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "tmux capture-pane -t exp001-llama -p 2>/dev/null | tail -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-22T06:40:20.692292+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tmux capture-pane -t exp001-mistral -p 2>/dev/null | tail -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "tmux capture-pane -t exp001-mistral -p 2>/dev/null | tail -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T06:40:20.692452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [20/2827] 0.0 items/s, ETA 3458.8min\\n  [30/2827] 0.0 items/s, ETA 3659.6min\\n  [40/2827] 0.0 items/s, ETA 3807.4min\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T06:40:20.692599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T06:40:20.692718+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tmux capture-pane -t exp001-qwen -p 2>/dev/null | tail -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "tmux capture-pane -t exp001-qwen -p 2>/dev/null | tail -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T06:40:20.692839+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [20/2907] 0.0 items/s, ETA 5060.1min\\n  [30/2907] 0.0 items/s, ETA 4619.1min\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T06:40:20.692952+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tail -20 /tmp/gen_openai.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "tail -20 /tmp/gen_openai.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T06:40:20.693067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T06:40:20.693177+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/exp001/results -name \"*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "find /root/gated_mfrm_judge_bias/exp001/results -name \"*.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T06:40:20.693301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp001/results/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/qwen3-235b-proxy/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/gpt-5.5-proxy/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/claude-opus-4.7-proxy/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/claude-sonnet-4.6-proxy/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/deepseek-v4-pro-proxy/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/gemini-2.5-pro-proxy/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/llama-3.3-70b/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/qwen2.5-72b/arena_hard_judgments.jsonl\\n/root/gated_mfrm_judge_bias/exp001/results/mistral-large-2/arena_hard_judgments.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T06:40:20.693510+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tmux capture-pane -t exp001-gpt55 -p 2>/dev/null | tail -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "tmux capture-pane -t exp001-gpt55 -p 2>/dev/null | tail -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T06:40:20.693663+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [600/3000] 0.1 items/s, ETA 376.0min\\n  [610/3000] 0.1 items/s, ETA 373.2min\\n  [620/3000] 0.1 items/s, ETA 371.9min\\n  [630/3000] 0.1 items/s, ETA 370.1min\\n  [640/3000] 0.1 items/s, ETA 369.2min\\n  [650/3000] 0.1 items/s, ETA 368.5min\\n  [660/3000] 0.1 items/s, ETA 367.5min\\n  [670/3000] 0.1 items/s, ETA 365.8min\\n  [680/3000] 0.1 items/s, ETA 364.9min\\n  [690/3000] 0.1 items/s, ETA 364.0min\\n  [700/3000] 0.1 items/s, ETA 365.4min\\n  [710/3000] 0.1 items/s, ETA 367.1min\\n  [720/3000] 0.1 items/s, ETA 365.9min\\n  [730/3000] 0.1 items/s, ETA 365.5min\\n  [740/3000] 0.1 items/s, ETA 364.2min\\n  [750/3000] 0.1 items/s, ETA 362.3min\\n  [760/3000] 0.1 items/s, ETA 360.2min\\n  [770/3000] 0.1 items/s, ETA 359.8min\\n  [780/3000] 0.1 items/s, ETA 357.3min\\n  [790/3000] 0.1 items/s, ETA 354.4min\\n  [800/3000] 0.1 items/s, ETA 352.5min\\n  [810/3000] 0.1 items/s, ETA 351.3min\\n  [820/3000] 0.1 items/s, ETA 352.0min\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T06:40:20.693791+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ps aux | grep -E \"python|vllm\" | grep -v grep | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ps aux | grep -E \"python|vllm\" | grep -v grep | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T06:40:20.693941+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root       1239  0.0  0.0 182300 98048 ?        S    00:51   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1242  0.0  0.0 4146816 79764 ?       Sl   00:51   0:37 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1350  0.0  0.0 28341192 12168 ?      Sl   00:51   0:47 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ilkt5s94/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ilkt5s94/startup_error\\nroot     112923  0.0  0.0   4364  1888 ?        S    09:05   0:00 bash -c cd /root/gated_mfrm_judge_bias/exp009 && rm -f bias_vs_rho.csv cn_recovery.csv && CUDA_VISIBLE_DEVICES=0 nohup /root/miniconda3/bin/python3 run_exp009.py --part both > /tmp/exp009_full.log 2>&1 & echo $!\\nroot     112925  105  1.8 193989448 20012872 ?  Rl   09:05 352:35 /root/miniconda3/bin/python3 run_exp009.py --part both\\nroot     122775  0.0  0.0   9548  5984 ?        Ss   09:20   0:03 tmux new-session -d -s vllm-llama CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python3 -m vllm.entrypoints.openai.api_server   --model /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ   --served-model-name llama-3.3-70b-instruct   --port 8001   --tensor-parallel-size 1   --quantization awq   --max-model-len 8192   --trust-remote-code   2>&1 | tee /tmp/vllm_llama.log\\nroot     122776  0.0  0.0   4364  3220 pts/0    Ss+  09:20   0:00 bash -c CUDA_VISIBLE_DEVICES=2 VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python3 -m vllm.entrypoints.openai.api_server   --model /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ   --served-model-name llama-3.3-70b-instruct   --port 8001   --tensor-parallel-size 1   --quantization a
+…[truncated 3092 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T06:40:20.694087+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "head -60 /root/gated_mfrm_judge_bias/exp001/generate_responses.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "head -60 /root/gated_mfrm_judge_bias/exp001/generate_responses.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T06:40:20.694264+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Generate target model responses for Arena-Hard prompts.\\n\\nSupports:\\n  - Proxy API (OpenAI-compatible endpoint)\\n  - Local vLLM endpoint\\n\\nUsage:\\n    python generate_responses.py --model gpt-4o\\n    python generate_responses.py --group openai\\n    python generate_responses.py --group vllm --vllm-url http://localhost:8000/v1\\n    python generate_responses.py --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport time\\nimport concurrent.futures\\nfrom datetime import datetime\\n\\nfrom openai import OpenAI\\n\\nPROXY_URL = \\\"http://47.94.22.126/v1\\\"\\nPROXY_KEY = \\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\"\\n\\nPROMPTS_PATH = \\\"/root/gated_mfrm_judge_bias/data/arena_hard/prompts.jsonl\\\"\\nRESPONSES_DIR = \\\"/root/gated_mfrm_judge_bias/data/arena_hard/responses\\\"\\n\\n# (target_name, proxy_model_id, source, temperature)\\n# source: \\\"openai\\\" = proxy with credits, \\\"proxy_nocredit\\\" = proxy but 402,\\n#         \\\"vllm\\\" = local vLLM, \\\"unavail\\\" = 404 on proxy\\nMODELS = [\\n    # OpenAI - via proxy (have credits)\\n    (\\\"gpt-4o\\\",           \\\"gpt-4o\\\",           \\\"openai\\\",  0.0),\\n    (\\\"gpt-4o-mini\\\",      \\\"gpt-4o-mini\\\",      \\\"openai\\\",  0.0),\\n    (\\\"gpt-5.5\\\",          \\\"gpt-5.5\\\",          \\\"openai\\\",  None),  # reasoning model, no temp\\n\\n    # Proprietary - proxy but no credits\\n    (\\\"claude-opus-4.7\\\",    \\\"claude-opus-4-7\\\",      \\\"proxy_nocredit\\\", 0.0),\\n    (\\\"claude-sonnet-4.6\\\",  \\\"claude-sonnet-4\\\",      \\\"proxy_nocredit\\\", 0.0),\\n    (\\\"gemini-2.5-pro\\\",     \\\"gemini-2.5-pro\\\",       \\\"proxy_nocredit\\\", 0.0),\\n    (\\\"gemini-2.5-flash\\\",   \\\"gemini-2.5-flash\\\",     \\\"proxy_nocredit\\\", 0.0),\\n    (\\\"deepseek-v4-pro\\\",    \\\"deepseek-v4-pro\\\",      \\\"proxy_nocredit\\\", 0.0),\\n    (\\\"mistral-large-3\\\"
+…[truncated 1477 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T06:40:20.694409+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "head -60 /root/gated_mfrm_judge_bias/exp001/generate_vllm_online.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "head -60 /root/gated_mfrm_judge_bias/exp001/generate_vllm_online.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T06:40:20.694597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Generate responses using already-running vLLM servers.\\n\\nUsage:\\n    python generate_vllm_online.py --all\\n    python generate_vllm_online.py --model llama-3.3-70b\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport time\\nimport concurrent.futures\\nfrom datetime import datetime\\nfrom openai import OpenAI\\n\\nPROMPTS_PATH = \\\"/root/gated_mfrm_judge_bias/data/arena_hard/prompts.jsonl\\\"\\nRESPONSES_DIR = \\\"/root/gated_mfrm_judge_bias/data/arena_hard/responses\\\"\\n\\n# (target_name, base_url, served_model_name, temperature)\\nENDPOINTS = [\\n    (\\\"llama-3.3-70b\\\",   \\\"http://localhost:8001/v1\\\", \\\"llama-3.3-70b-instruct\\\", 0.0),\\n    (\\\"qwen2.5-72b\\\",     \\\"http://localhost:8002/v1\\\", \\\"qwen2.5-72b-instruct\\\",   0.0),\\n    (\\\"mistral-large-3\\\", \\\"http://localhost:8003/v1\\\", \\\"mistral-large-instruct\\\",  0.0),\\n]\\n\\nMAX_TOKENS = 4096\\n\\n\\ndef load_prompts():\\n    with open(PROMPTS_PATH) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef load_existing(model_name):\\n    path = os.path.join(RESPONSES_DIR, f\\\"{model_name}.jsonl\\\")\\n    existing = set()\\n    if os.path.exists(path):\\n        with open(path) as f:\\n            for line in f:\\n                try:\\n                    existing.add(json.loads(line)[\\\"id\\\"])\\n                except (json.JSONDecodeError, KeyError):\\n                    pass\\n    return existing\\n\\n\\ndef generate_for_endpoint(target_name, base_url, served_model, temperature, prompts):\\n    os.makedirs(RESPONSES_DIR, exist_ok=True)\\n    out_path = os.path.join(RESPONSES_DIR, f\\\"{target_name}.jsonl\\\")\\n    existing = load_existing(target_name)\\n    todo = [p for p in prompts if p[\\\"id\\\"] not in existing]\\n\\n    print(f\\\"[{target_name}] total={len(prompts)}, existing={len(existing)}, \\\"\\n          f\\\"todo={len(todo)}\\\")\\n\\n    if not todo:\\n
+…[truncated 251 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T06:40:20.694741+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "tmux capture-pane -t exp001-mistral -p -S -50 2>/dev/null | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "tmux capture-pane -t exp001-mistral -p -S -50 2>/dev/null | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T06:40:20.694868+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[arena_hard] Mode: pairwise, loaded 21 completed judgments\\nLoaded 500 prompts from arena_hard\\nTotal: 3000, Already done: 21, Remaining: 2979\\n  [10/2979] 0.0 items/s, ETA 9772.3min\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T06:40:20.694987+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls -la /tmp/gen*.log /tmp/exp001*.log /tmp/judge*.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ls -la /tmp/gen*.log /tmp/exp001*.log /tmp/judge*.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T06:40:20.695121+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'ls -la /tmp/gen*.log /tmp/exp001*.log /tmp/judge*.log 2>/dev/null'\\n\\nExit code: 2\\n\\nStdout:\\n\\n-rw-r--r-- 1 root root   299 May 22 14:34 /tmp/exp001_llama_arena.log\\n-rw-r--r-- 1 root root   182 May 22 13:19 /tmp/exp001_mistral.log\\n-rw-r--r-- 1 root root   180 May 22 14:13 /tmp/exp001_mistral_arena.log\\n-rw-r--r-- 1 root root 60718 May 22 13:38 /tmp/exp001_opus47_arena.log\\n-rw-r--r-- 1 root root     0 May 22 11:02 /tmp/exp001_qwen.log\\n-rw-r--r-- 1 root root 56411 May 22 13:38 /tmp/exp001_qwen3_arena.log\\n-rw-r--r-- 1 root root   258 May 22 14:29 /tmp/exp001_qwen_arena.log\\n-rw-r--r-- 1 root root 59934 May 22 13:38 /tmp/exp001_sonnet46_arena.log\\n-rw-r--r-- 1 root root     0 May 22 13:47 /tmp/gen_openai.log\\n-rw-r--r-- 1 root root   848 May 22 14:34 /tmp/gen_vllm_online.log\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T06:40:20.695282+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /tmp/gen_vllm_online.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat /tmp/gen_vllm_online.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-22T06:40:20.695403+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /tmp/exp001_mistral_arena.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat /tmp/exp001_mistral_arena.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-22T06:40:20.695555+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 500 prompts @ 2026-05-22T13:53:37.409805\\n[llama-3.3-70b] total=500, existing=0, todo=500\\n[qwen2.5-72b] total=500, existing=0, todo=500[mistral-large-3] total=500, existing=0, todo=500\\n\\n  [qwen2.5-72b] 50/500 (0.1/s, ETA 52.8min)\\n  [mistral-large-3] 50/500 (0.1/s, ETA 52.8min)\\n  [qwen2.5-72b] 100/500 (0.1/s, ETA 46.9min)  [mistral-large-3] 100/500 (0.1/s, ETA 46.9min)\\n\\n  [qwen2.5-72b] 150/500 (0.1/s, ETA 41.1min)\\n  [mistral-large-3] 150/500 (0.1/s, ETA 41.1min)\\n  [mistral-large-3] 200/500 (0.1/s, ETA 35.2min)\\n  [qwen2.5-72b] 200/500 (0.1/s, ETA 35.2min)\\n  [qwen2.5-72b] 250/500 (0.1/s, ETA 29.3min)  [mistral-large-3] 250/500 (0.1/s, ETA 29.3min)\\n\\n  [mistral-large-3] 300/500 (0.1/s, ETA 23.5min)\\n  [qwen2.5-72b] 300/500 (0.1/s, ETA 23.5min)\\n  [qwen2.5-72b] 350/500 (0.1/s, ETA 17.6min)\\n  [mistral-large-3] 350/500 (0.1/s, ETA 17.6min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-22T06:40:20.695678+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls -la /root/gated_mfrm_judge_bias/data/arena_hard/responses/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ls -la /root/gated_mfrm_judge_bias/data/arena_hard/responses/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-22T06:40:20.695796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[arena_hard] Mode: pairwise, loaded 21 completed judgments\\nLoaded 500 prompts from arena_hard\\nTotal: 3000, Already done: 21, Remaining: 2979\\n  [10/2979] 0.0 items/s, ETA 9772.3min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T06:40:20.695930+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4496\\ndrwxr-xr-x 2 root root    4096 May 22 13:53 .\\ndrwxr-xr-x 5 root root     132 May 22 08:01 ..\\n-rw-r--r-- 1 root root  777913 May 22 08:01 gpt-3.5-turbo-0125.jsonl\\n-rw-r--r-- 1 root root  981093 May 22 08:01 gpt-4-0314.jsonl\\n-rw-r--r-- 1 root root  827609 May 22 08:01 gpt-4-0613.jsonl\\n-rw-r--r-- 1 root root 1032275 May 22 14:38 gpt-4o.jsonl\\n-rw-r--r-- 1 root root   30955 May 22 14:34 llama-3.3-70b.jsonl\\n-rw-r--r-- 1 root root  192892 May 22 14:38 mistral-large-3.jsonl\\n-rw-r--r-- 1 root root  193094 May 22 14:38 qwen2.5-72b.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T06:40:20.696056+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "wc -l /root/gated_mfrm_judge_bias/data/arena_hard/responses/*.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "wc -l /root/gated_mfrm_judge_bias/data/arena_hard/responses/*.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T06:40:20.696492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    500 /root/gated_mfrm_judge_bias/data/arena_hard/responses/gpt-3.5-turbo-0125.jsonl\\n    500 /root/gated_mfrm_judge_bias/data/arena_hard/responses/gpt-4-0314.jsonl\\n    500 /root/gated_mfrm_judge_bias/data/arena_hard/responses/gpt-4-0613.jsonl\\n    371 /root/gated_mfrm_judge_bias/data/arena_hard/responses/gpt-4o.jsonl\\n      9 /root/gated_mfrm_judge_bias/data/arena_hard/responses/llama-3.3-70b.jsonl\\n    386 /root/gated_mfrm_judge_bias/data/arena_hard/responses/mistral-large-3.jsonl\\n    386 /root/gated_mfrm_judge_bias/data/arena_hard/responses/qwen2.5-72b.jsonl\\n   2652 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-22T06:40:20.696691+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /tmp/exp001_mistral.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat /tmp/exp001_mistral.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T06:40:20.696837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[arena_hard] Mode: pairwise, loaded 197 completed judgments\\nLoaded 500 prompts from arena_hard\\nTotal: 3000, Already done: 197, Remaining: 2803\\n  [10/2803] 0.0 items/s, ETA 6311.8min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T06:40:20.696958+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/config.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/config.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T06:40:20.697101+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"46:  - mistral-large-3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-22T06:40:20.697385+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cd /root/gated_mfrm_judge_bias/data/arena_hard/responses/ && mv mistral-large-3.jsonl mistral-large-2.jsonl && echo \"Renamed response file: mistral-large-3.jsonl → mistral-large-2.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cd /root/gated_mfrm_judge_bias/data/arena_hard/responses/ && mv mistral-large-3.jsonl mistral-large-2.jsonl && echo \"Renamed response file: mistral-large-3.jsonl → mistral-large-2.jsonl\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T06:40:20.697553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Renamed response file: mistral-large-3.jsonl → mistral-large-2.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-22T06:40:20.697680+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "sed -i 's/mistral-large-3/mistral-large-2/g' /root/gated_mfrm_judge_bias/exp001/generate_vllm_online.py && echo \"Fixed generate_vllm_online.py\" && grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/generate_vllm_online.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "sed -i 's/mistral-large-3/mistral-large-2/g' /root/gated_mfrm_judge_bias/exp001/generate_vllm_online.py && echo \"Fixed generate_vllm_online.py\" && grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/generate_vllm_online.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T06:40:20.697807+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed generate_vllm_online.py\\n23:    (\\\"mistral-large-2\\\", \\\"http://localhost:8003/v1\\\", \\\"mistral-large-instruct\\\",  0.0),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-22T06:40:20.697927+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "sed -i 's/mistral-large-3/mistral-large-2/g' /root/gated_mfrm_judge_bias/exp001/generate_vllm_batch.py && echo \"Fixed generate_vllm_batch.py\" && grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/generate_vllm_batch.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "sed -i 's/mistral-large-3/mistral-large-2/g' /root/gated_mfrm_judge_bias/exp001/generate_vllm_batch.py && echo \"Fixed generate_vllm_batch.py\" && grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/generate_vllm_batch.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T06:40:20.698048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed generate_vllm_batch.py\\n34:    (\\\"mistral-large-2\\\", \\\"/root/autodl-tmp/models/Mistral-Large-Instruct-2407-AWQ\\\",\\\"large\\\", 1, 0.0, \\\"awq\\\"),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-22T06:40:20.698164+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "sed -i 's/mistral-large-3/mistral-large-2/g' /root/gated_mfrm_judge_bias/exp001/config.yaml && echo \"Fixed config.yaml\" && grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/config.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "sed -i 's/mistral-large-3/mistral-large-2/g' /root/gated_mfrm_judge_bias/exp001/config.yaml && echo \"Fixed config.yaml\" && grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/config.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-22T06:40:20.698293+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed config.yaml\\n46:  - mistral-large-2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-22T06:40:20.698411+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "sed -i 's/mistral-large-3/mistral-large-2/g' /root/gated_mfrm_judge_bias/exp001/generate_responses.py && echo \"Fixed generate_responses.py\" && grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/generate_responses.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "sed -i 's/mistral-large-3/mistral-large-2/g' /root/gated_mfrm_judge_bias/exp001/generate_responses.py && echo \"Fixed generate_responses.py\" && grep -n \"mistral-large\" /root/gated_mfrm_judge_bias/exp001/generate_responses.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T06:40:20.698555+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed generate_responses.py\\n44:    (\\\"mistral-large-2\\\",    \\\"mistral-large-latest\\\",  \\\"proxy_nocredit\\\", 0.0),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-22T06:40:20.698697+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "echo \"=== Verify no mistral-large-3 remains ===\" && grep -rn \"mistral-large-3\" /root/gated_mfrm_judge_bias/exp001/ 2>/dev/null && echo \"STILL FOUND\" || echo \"ALL CLEAN\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "echo \"=== Verify no mistral-large-3 remains ===\" && grep -rn \"mistral-large-3\" /root/gated_mfrm_judge_bias/exp001/ 2>/dev/null && echo \"STILL FOUND\" || echo \"ALL CLEAN\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-22T06:40:20.698817+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Verify no mistral-large-3 remains ===\\nALL CLEAN\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-22T06:40:20.698928+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "echo \"=== Response files ===\" && for f in /root/gated_mfrm_judge_bias/data/arena_hard/responses/*.jsonl; do echo \"$(basename $f): $(wc -l < $f)/500\"; done && echo \"\" && echo \"=== Judge collection ===\" && for d in /root/gated_mfrm_judge_bias/exp001/results/*/; do name=$(basename \"$d\"); count=$(wc -l < \"$d/arena_hard_judgments.jsonl\" 2>/dev/null || echo 0); echo \"$name: $count judgments\"; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "echo \"=== Response files ===\" && for f in /root/gated_mfrm_judge_bias/data/arena_hard/responses/*.jsonl; do echo \"$(basename $f): $(wc -l < $f)/500\"; done && echo \"\" && echo \"=== Judge collection ===\" && for d in /root/gated_mfrm_judge_bias/exp001/results/*/; do name=$(basename \"$d\"); count=$(wc -l < \"$d/arena_hard_judgments.jsonl\" 2>/dev/null || echo 0); echo \"$name: $count judgments\"; done",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-22T06:40:20.699053+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Response files ===\\ngpt-3.5-turbo-0125.jsonl: 500/500\\ngpt-4-0314.jsonl: 500/500\\ngpt-4-0613.jsonl: 500/500\\ngpt-4o.jsonl: 377/500\\nllama-3.3-70b.jsonl: 9/500\\nmistral-large-2.jsonl: 395/500\\nqwen2.5-72b.jsonl: 395/500\\n\\n=== Judge collection ===\\nclaude-opus-4.7-proxy: 467 judgments\\nclaude-sonnet-4.6-proxy: 431 judgments\\ndeepseek-v4-pro-proxy: 243 judgments\\ngemini-2.5-pro-proxy: 360 judgments\\ngpt-5.5-proxy: 835 judgments\\nllama-3.3-70b: 217 judgments\\nmistral-large-2: 58 judgments\\nqwen2.5-72b: 130 judgments\\nqwen3-235b-proxy: 252 judgments\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-22T06:40:20.699501+00:00_
+
+汇总报告：
+
+---
+
+### 1. Mistral 命名修复 ✓
+
+**模型确认**: 部署的是 `Mistral-Large-Instruct-2407-AWQ`（Mistral Large **2**），vLLM served name `mistral-large-instruct`
+
+**修改了 5 处**:
+| 文件 | 变更 |
+|------|------|
+| `data/arena_hard/responses/mistral-large-3.jsonl` | → `mistral-large-2.jsonl` |
+| `exp001/generate_vllm_online.py:23` | `mistral-large-3` → `mistral-large-2` |
+| `exp001/generate_vllm_batch.py:34` | `mistral-large-3` → `mistral-large-2` |
+| `exp001/config.yaml:46` | `mistral-large-3` → `mistral-large-2` |
+| `exp001/generate_responses.py:44` | `mistral-large-3` → `mistral-large-2` |
+
+`exp001/results/mistral-large-2/` 本来就是正确命名，无需改。全项目已无 `mistral-large-3` 残留。
+
+注意：`Mistral-Large-Instruct-2411-AWQ`（真正的 Large 3）正在下载中（2 个 hf download 进程）。
+
+### 2. Llama response 生成 — 无需干预
+
+`generate_vllm_online.py` 进程**已自然结束**（不在进程列表中）。Llama vLLM 当前仅服务 judge 收集，无双重负载。
+
+### 3. Response 生成进度
+
+| Model | 进度 |
+|-------|------|
+| gpt-3.5-turbo-0125 | **500/500** ✓ |
+| gpt-4-0314 | **500/500** ✓ |
+| gpt-4-0613 | **500/500** ✓ |
+| gpt-4o | 377/500 (openai group 在跑) |
+| qwen2.5-72b | 395/500 |
+| mistral-large-2 | 395/500 |
+| llama-3.3-70b | **9/500** (需后续单独补) |
+
+### 4. Judge 收集进度（目标 3000 each）
+
+| Judge | 进度 | 状态 |
+|-------|------|------|
+| gpt-5.5-proxy | 835 | 运行中 (0.1/s, ETA ~6h) |
+| claude-opus-4.7-proxy | 467 | — |
+| claude-sonnet-4.6-proxy | 431 | — |
+| gemini-2.5-pro-proxy | 360 | — |
+| qwen3-235b-proxy | 252 | — |
+| deepseek-v4-pro-proxy | 243 | — |
+| llama-3.3-70b | 217 | 运行中 (极慢, 40/2827) |
+| qwen2.5-72b | 130 | 运行中 (30/2907) |
+| mistral-large-2 | 58 | 运行中 (10/2979, 极慢) |
+
+### 5. exp-009
+
+**仍在运行**。PID 112923，已运行 5h32m，GPU 0 上，CPU 105%。
+
+### 6. GPU 状态
+
+| GPU | 显存 | 利用率 |
+|-----|------|--------|
+| 0 | 74/98 GB | 61% (exp-009) |
+| 1 | 88/98 GB | 100% (Qwen vLLM) |
+| 2 | 90/98 GB | 100% (Llama vLLM) |
+| 3 | 88/98 GB | 100% (Mistral vLLM) |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_fix_naming_and_llama_priority_20260522T063705"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,341 @@
+paper:
+  title: ''
+  version: 25
+  generated_at: '2026-05-25T17:07:42.339003+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: G-MFRM reduces ability RMSE by 44% relative to sequential estimation on synthetic
+    data (N=50)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_003
+    metric: rmse_reduction
+    value: 43.8%
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Synthetic ranking: τ 0.922 vs 0.859 (Wilcoxon p<0.001)'
+  type: quantitative
+  evidence:
+  - exp_id: mvp_003
+    metric: kendall_tau_joint
+    value: 0.9223
+  - exp_id: mvp_003
+    metric: kendall_tau_seq
+    value: 0.8593
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Contamination susceptibility recovered with Pearson r=0.81
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: part_b_cn_recovery.correlation
+    value: 0.8114
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'LOO cross-validation: ΔELPD/SE=5.9, stacking weight 1.0'
+  type: quantitative
+  evidence:
+  - exp_id: exp-003b
+    metric: loo_elpd
+  decisions: []
+  deprecated: false
+- id: C015
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Coverage-degradation: full set (46% coverage) Δτ=-0.044'
+  type: quantitative
+  evidence:
+  - exp_id: exp-020
+    metric: ranking.delta_tau
+    value: -0.044
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Coverage-degradation: filtered set (73% coverage) Δτ=-0.015'
+  type: quantitative
+  evidence:
+  - exp_id: exp-020
+    metric: v3_filtered_317items.delta_tau
+    value: -0.015
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Coverage-degradation: exposed-only (100% coverage) Δτ=0.000'
+  type: quantitative
+  evidence:
+  - exp_id: exp-020
+    metric: v7_nonzero_ei_231.delta_tau
+    value: 0
+  decisions: []
+  deprecated: false
+- id: C036
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: MFRM-only Δτ=0.000 on filtered set (severity correction alone has no effect)
+  type: quantitative
+  evidence:
+  - exp_id: exp-020
+    metric: v4_mfrm_only_317.delta_tau
+    value: 0
+  decisions: []
+  deprecated: false
+- id: C045
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Contamination-only Δτ=-0.118 (catastrophically harmful)
+  type: quantitative
+  evidence:
+  - exp_id: exp-020
+    metric: v5_contamination_only.delta_tau
+    value: -0.118
+  decisions: []
+  deprecated: false
+- id: C055
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: GPT-3.5-Turbo c_n=5.60, GPT-4-0613 c_n=4.20
+  type: quantitative
+  evidence:
+  - exp_id: exp-003b
+    metric: c_n_profile
+  decisions: []
+  deprecated: false
+- id: C066
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: MFRM-only inflates θ by up to 0.79 logits for contaminated models
+  type: quantitative
+  evidence:
+  - exp_id: exp-019
+    metric: delta_theta_table.gpt-3.5-turbo-0125.delta_theta
+    value: 0.786
+  decisions: []
+  deprecated: false
+- id: C078
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Spearman ρ=1.0 between c_n and Δθ
+  type: quantitative
+  evidence:
+  - exp_id: exp-019
+    metric: spearman_rho_delta_theta_cn
+    value: 1
+  decisions: []
+  deprecated: false
+- id: C091
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Judge severity spans 1.34 logits
+  type: quantitative
+  evidence:
+  - exp_id: exp-003b
+    metric: d_j_profile
+  decisions: []
+  deprecated: false
+- id: C092
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Synthetic RMSE reduction 44% (Introduction)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_003
+    metric: rmse_reduction
+  decisions: []
+  deprecated: false
+- id: C093
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: c_n recovery Pearson r=0.81 (Introduction)
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: part_b_cn_recovery.correlation
+  decisions: []
+  deprecated: false
+- id: C094
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Coverage-degradation monotonic relationship (Introduction)
+  type: qualitative
+  evidence:
+  - exp_id: exp-020
+    metric: v2/v3/v7 delta_tau series
+  decisions: []
+  deprecated: false
+- id: C095
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Contamination diagnostics: 4-6x susceptibility gradient by model age (Conclusion)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-003b
+    metric: c_n_profile
+  decisions: []
+  deprecated: false
+- id: C097
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: MFRM inflates theta by up to 0.79 logits (Conclusion)
+  type: quantitative
+  evidence:
+  - exp_id: exp-019
+    metric: delta_theta_table
+  decisions: []
+  deprecated: false
+- id: C100
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Coverage-degradation: -0.044 to 0.000 (Conclusion)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-020
+    metric: v2/v3/v7 series
+  decisions: []
+  deprecated: false
+- id: C104
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Staged estimation doubles ability RMSE (Conclusion)
+  type: quantitative
+  evidence:
+  - exp_id: exp-w7-ablation
+    metric: full_vs_staged theta_rmse ratio
+  decisions: []
+  deprecated: false
+- id: C109
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CI overconfidence 71% coverage at nominal 95% (Conclusion)
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: part_b_cn_recovery.coverage_95
+  decisions: []
+  deprecated: false
+- id: C110
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: RMSE reduction 44% synthetic (Abstract)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_003
+    metric: rmse_reduction
+  decisions: []
+  deprecated: false
+- id: C112
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: c_n recovery r=0.81 (Abstract)
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: part_b_cn_recovery.correlation
+  decisions: []
+  deprecated: false
+- id: C115
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Coverage-degradation -0.044 to 0 (Abstract)
+  type: quantitative
+  evidence:
+  - exp_id: exp-020
+    metric: v2/v7 delta_tau
+  decisions: []
+  deprecated: false
+- id: C119
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: LOO ELPD/SE=5.9 (Abstract)
+  type: quantitative
+  evidence:
+  - exp_id: exp-003b
+    metric: loo
+  decisions: []
+  deprecated: false
+tables: []
+figures:
+- id: F001
+  location:
+    section: method
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+_completeness:
+  coverage: 25/26
+  claims: 25
+  tables: 0
+  figures: 1
+  tier_counts:
+    tier1: 0
+    tier2: 25
+    tier3: 1
+    tierX: 0
+  last_checked: '2026-05-25T17:07:42.339039+00:00'

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2d413d01d5f6fc6b24e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh n17 mcmc config prep",
+  "task_key": "worker_ssh_n17_mcmc_config_prep_20260523T151354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_n17_mcmc_config_prep_20260523T151354_result.json",
+    "occurrence": 1,
+    "bytes": 2370,
+    "sha256": "1cb92450b61c624ccd480a2d159f473262133496877df86da5f6eefff38bf6ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建完成。\n\n## 产出总结\n\n### 1. `run_exp003_n17.py`\n位置：`/root/gated_mfrm_judge_bias/exp003/run_exp003_n17.py`\n\n关键修改：\n- `--warmup` 默认值 2000 → **6000**\n- 其余 MCMC 参数不变（samples=4000, chains=4, target_accept=0.95）\n- 在 `joint_gmfrm` idata 保存后自动执行 **convergence stop-loss**：R-hat > 1.1 或 ESS < 50 触发失败，写 `CONVERGENCE_FAILED` 标记文件，`sys.exit(1)`\n\n运行命令：\n```bash\ncd /root/gated_mfrm_judge_bias/exp003\npython run_exp003_n17.py \\\n  --judgment-dir /root/gated_mfrm_judge_bias/exp001_n17/results \\\n  --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\n  --output-dir /root/gated_mfrm_judge_bias/exp003/output_n17\n```\n\n### 2. 数据路径\n- **data_loader.py 是数据驱动的**：动态构建 model/item/judge 索引，N=17 自动适配\n- N=17 judge 评测数据在 rtx6000-4x 产出后需 **scp 到 autodl-8gpu**，放到 `/root/gated_mfrm_judge_bias/exp001_n17/results/` 目录\n- exposure_scores.csv（exp002）可复用，exposure 按 item_id 对齐，与 judge 数量无关\n\n### 3. `run_n17_downstream.py`\n位置：`/root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py`\n\n6 个分析步骤：\n\n| # | 分析 | 接口类型 | 处理方式 |\n|---|------|----------|----------|\n| 1 | WAIC/LOO (compute_waic_loo.py) | 硬编码路径 | monkey-patch 模块常量 |\n| 2 | Bootstrap Δτ (bootstrap_delta_tau.py) | 硬编码路径+MODEL_NAMES | subprocess wrapper 覆盖路径 |\n| 3 | Baselines (exp004/run_exp004.py) | argparse | 直接传 CLI args ✅ |\n| 4 | Δθ table (exp019/run_exp019.py) | 硬编码 EXP003B_DIR | subprocess wrapper 覆盖 |\n| 5 | Facet fit (exp008/run_exp008.py) | 硬编码路径 | subprocess wrapper 重写 main() |\n| 6 | Full posterior (analyze_003b.py) | argparse `--output-dir` | 直接传 CLI args ✅ |\n\n### 4. 各脚本接口检查结果\n- **可直接用**：exp004（argparse）、analyze_003b.py（argparse）\n- **需 monkey-patch**：compute_waic_loo.py、bootstrap_delta_tau.py、exp019、exp008 — 全部硬编码 `output_003b` 路径，master 脚本通过 wrapper 子进程覆盖\n- **bootstrap_delta_tau.py 额外注意**：硬编码了 `MODEL_NAMES`（8 个模型）和 `ARENA_ELO` 字典，如果 N=17 的模型集有变化需同步更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n17-mcmc-config-prep.md"
+}

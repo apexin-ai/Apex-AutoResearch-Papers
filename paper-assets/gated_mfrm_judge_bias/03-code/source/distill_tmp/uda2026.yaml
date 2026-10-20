@@ -1,0 +1,92 @@
+paper_key: "uda2026"
+title: "UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge"
+venue: "AAAI 2026"
+full_text_available: true
+
+research:
+  baselines: ["Baseline Elo (K=32)", "Consensus (multi-judge mean)", "UDA Ablated (without self-awareness features)"]
+  metrics:
+    - {name: "Inter-judge standard deviation", direction: "lower_better"}
+    - {name: "Pearson correlation with human judgments", direction: "higher_better"}
+    - {name: "Self-preference deviation range", direction: "narrower_better"}
+    - {name: "MSE to consensus", direction: "lower_better"}
+  datasets:
+    - {name: "ArenaHard", size: "500 prompts × 10 LLMs × 10 judges = 450K pairwise judgments"}
+    - {name: "Human-Annotated Transfer Set", size: "100 prompts with human preference labels"}
+  ablation_dimensions: ["Self-awareness features (full vs ablated)", "Judge model identity"]
+  training_recipe: {optimizer: "AdamW", lr: "not specified", hardware: "single NVIDIA RTX 4090, 8 hours training"}
+  method_family: "Neural Elo calibration (adaptive K-factor + soft labels)"
+
+positioning:
+  core_claim: "UDA通过学习实例级K-factor和soft win probabilities在无监督下（以judge共识为信号）校准Elo评分，将inter-judge std降低63.4%且人类相关性提升24.7%"
+  key_results: "Inter-judge std: 193.95→70.97 (-63.4%); Pearson r with human: 0.651→0.812 (+24.7%); self-preference deviation: [-21%,+56%]→[-15%,+4%]; ablated无self-awareness→Pearson r降到0.510"
+  limitations:
+    - "Feature依赖BERT embeddings，可能不够捕获instruction-level特征"
+    - "Consensus loss平等对待所有judge，可能过度校正高质量judge"
+    - "O(MN)复杂度，M>100时不可扩展"
+    - "如果多数judge共享系统偏差，consensus会反映'bias average'"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM-as-judge存在自我偏好等系统偏差，baseline Elo上score差异超30%"
+  tension: "Prompt engineering是ad-hoc的，ensemble太贵，Nash-based不可扩展——现有方法要么依赖模型内部、要么不实用"
+  key_insight: "Section 3.3 'Consensus Anchor Principle' — 用多judge共识替代ground truth作为无监督信号，但关键是Section 6 ablation证明self-awareness features是必要的，否则收敛到'false consensus'"
+  argument_chain: "judge bias pervasive → existing debiasing insufficient → consensus as unsupervised signal → adaptive K + soft labels via MLP → train to minimize inter-judge dispersion → 63% std reduction + 25% human corr improvement → zero-shot transfer validates generalization"
+  contribution_framing: "隐含三条：(1)UDA框架 (2)理论证明consensus alignment减少aggregate bias (3)zero-shot transfer验证"
+  intro_structure: "5段：LLM评测重要性 → LLM-as-judge bias问题 → 现有方法局限 → UDA方案 → zero-shot验证 + 自我偏好量化"
+  notable_technique: "Ablation实验的论证逻辑精彩——移除self-awareness features后std更低(66.2%)但human corr从0.812降到0.510，证明'agreeing≠being correct'，称之为'false consensus'"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "motivation"
+    description: "两面板：A-自我偏好问题示意 B-UDA方法概览（动态校准vs朴素采用judge score）"
+    narrative_role: "一图建立问题+方案双重框架"
+    design_elements: ["左右分面板", "偏差箭头标注", "consensus流程示意"]
+    visual_style: "概念图，A面板展示bias，B面板展示UDA校准流程"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "各judge的self-preference deviation（baseline ArenaHard）"
+      how_gain_highlighted: "显示[-38%,+90%]的极端范围，建立问题严重性"
+      design_note: "per-judge bar，正负deviation清晰可见"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Baseline Elo vs UDA的score trajectories across 10 judges"
+      how_gain_highlighted: "左右对比：baseline散开(>340 pts) vs UDA收敛(<130 pts)"
+      design_note: "并排折线图，envelope压缩效果一目了然"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Per-judge Pearson correlation with human judgments"
+      how_gain_highlighted: "UDA(橙)全面高于baseline(蓝)，弱judge提升到强judge水平"
+      design_note: "三组bar(baseline/UDA/consensus)，consensus最高作为参照"
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      what_compared: "Judge-score heatmaps (baseline vs UDA)"
+      how_gain_highlighted: "Baseline有明显vertical stripes(judge偏差)，UDA平滑化"
+      design_note: "双heatmap并排定性展示calibration效果"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(motivation+method) → Figure 2(问题量化) → Figure 3(收敛对比) → Figure 4(human alignment) → Figure 5(定性heatmap)"
+
+tables:
+  table_count: 7
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (Baseline Elo vs UDA)"
+    col_axis: "models × std metric"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "reduction百分比行突出改善"
+    statistical_reporting: "标准差直接报告"
+    num_baselines: 1
+    design_note: "10列（10个evaluated model）+ average列，两行直接对比baseline vs UDA"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["Self-awareness features (full vs ablated)"]
+      variation_style: "full_numbers"
+      design_note: "三行(baseline/UDA full/UDA ablated)×两指标(std/human corr)，揭示false consensus风险"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4(consensus alignment metrics), Tables 5-7(完整judge-score matrices)"
+    reason: "完整数值矩阵放附录，主文聚焦关键指标对比"

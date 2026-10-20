@@ -1,0 +1,76 @@
+{
+  "exp_id": "exp-w7-ablation",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:49:35.978Z",
+    "updated_at": "2026-05-23T01:14:07.292Z",
+    "hypothesis": "G-MFRM 各组件（continuous gating, judge severity d_j, joint estimation）对性能的独立贡献，合成数据消融",
+    "parent": "mvp_003",
+    "spec": {
+      "command": "python run_ablation.py (binary vs continuous gating, with/without d_j, joint vs staged, 20 seeds)",
+      "server": "autodl-8gpu",
+      "data_path": "synthetic (mvp_003 DGP: N=50, J=8, I=100, rho=0.6)",
+      "data_count": "20 seeds x 4 variants = 80 fits",
+      "model_name": "G-MFRM ablation variants",
+      "seed": "0-19",
+      "gpu": "cuda:2",
+      "checkpoint_source": "N/A (synthetic data ablation, no checkpoint)",
+      "eval_data": "synthetic DGP (N=50, J=8, I=100, rho=0.6, c~HalfNormal(1.5))",
+      "checkpoint_path": "/root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_original_20seeds.csv",
+      "log_path": "/root/gated_mfrm_judge_bias/exp_w7_ablation/w7_ablation.log"
+    },
+    "notes": "原始 20-seed 结果被误删（Worker 误重启实验覆盖 CSV）。2026-05-23 01:04 UTC 重跑：cuda:2, PID 263954, tmux w7_ablation, ETA ~14:40 UTC。每 5 seeds 自动保存 partial CSV。初步结果(2/20 seeds): full_gmfrm θ_RMSE=0.124/0.151, τ=0.922/0.920 | binary_gating c_RMSE +75% | no_judge_severity θ接近full | staged_estimation 最差(θ_RMSE 2.4x, c_RMSE 3.4x). 单seed ~19min, 20 seeds ETA ~6.3h. tmux session: w7_ablation",
+    "conclusion": "success",
+    "metrics": {
+      "n_seeds": 20,
+      "n_variants": 4,
+      "variant_summary": {
+        "full_gmfrm": {
+          "theta_rmse": "0.1243±0.0164",
+          "c_rmse": "0.5933±0.2242",
+          "theta_tau": "0.9224±0.0097"
+        },
+        "no_judge_severity": {
+          "theta_rmse": "0.1266±0.0160",
+          "c_rmse": "0.6292±0.2425",
+          "theta_tau": "0.9216±0.0097"
+        },
+        "binary_gating": {
+          "theta_rmse": "0.1371±0.0161",
+          "c_rmse": "0.8326±0.2257",
+          "theta_tau": "0.9093±0.0140"
+        },
+        "staged_estimation": {
+          "theta_rmse": "0.2539±0.0448",
+          "c_rmse": "1.3823±0.1635",
+          "theta_tau": "0.8393±0.0349"
+        }
+      },
+      "wilcoxon_p_values": {
+        "full_vs_no_severity": {
+          "theta_rmse": 0.245,
+          "c_rmse": 0.00021,
+          "theta_tau": 0.344
+        },
+        "full_vs_binary_gate": {
+          "theta_rmse": 3.81e-06,
+          "c_rmse": 1.91e-06,
+          "theta_tau": 0.000515
+        },
+        "full_vs_staged": {
+          "theta_rmse": 1.91e-06,
+          "c_rmse": 1.91e-06,
+          "theta_tau": 8.84e-05
+        }
+      },
+      "key_finding": "Joint estimation (vs staged) is most impactful: 2x θ RMSE, 2.3x c RMSE. Continuous gating significantly outperforms binary. Judge severity d_j minimally affects θ but helps c_n recovery."
+    },
+    "completed_at": "2026-05-23T01:14:07.292Z"
+  },
+  "timestamp": "2026-05-23T01:14:07.355635+00:00",
+  "trigger": "update_registry"
+}

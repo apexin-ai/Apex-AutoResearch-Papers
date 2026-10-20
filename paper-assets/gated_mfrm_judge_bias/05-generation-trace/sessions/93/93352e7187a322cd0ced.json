@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93352e7187a322cd0ced",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix exp001 judge errors",
+  "task_key": "worker_ssh_fix_exp001_judge_errors_20260522T053339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_exp001_judge_errors_20260522T053339_result.json",
+    "occurrence": 1,
+    "bytes": 2585,
+    "sha256": "b99be0bc16b15cd0538b02260b2b5e1a4ebab098a70f8af453c9bb409506919c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "gpt-5.5-proxy 仍正常运行 (470/3000)。\n\n---\n\n## 修复完成汇报\n\n### 1. 每个 judge 的错误根因分类\n\n| Judge | 错误率 | 根因分类 |\n|-------|--------|----------|\n| gemini-2.5-pro-proxy | 90% | **proxy 余额不足 (402)** + **max_tokens=1024 截断** (parse_failure) |\n| deepseek-v4-pro-proxy | 69% | **proxy 余额不足 (402)** + **模型返回空内容** (empty_response) |\n| qwen3-235b-proxy | 44% | **proxy 余额不足 (402)** |\n| claude-opus-4.7-proxy | 28% | **proxy 余额不足 (402)** + 少量 parse_failure |\n| claude-sonnet-4.6-proxy | 27% | **proxy 余额不足 (402)** |\n| gpt-5.5-proxy | 5% | 偶发空响应，仍正常运行 |\n| 3 local judges | 0% | 无错误 |\n\n### 2. API 连通性\n- Proxy (`http://47.94.22.126/v1`) 本身可连，但 **OpenRouter 余额已耗尽** (HTTP 402)\n- 所有 proxy judges 除 gpt-5.5 外都卡在 402 重试循环，已停止\n- **需要充值 OpenRouter 后才能恢复 5 个 proxy judge**\n\n### 3. Local judge JSONL 数据完整性\n- 296 行，**0 行损坏**，全部有效 JSON\n- 已按 judge 拆分：llama=173, qwen=89(+4新), mistral=34\n\n### 4. 执行的修复\n\n**代码改动:**\n- `judge_interface.py`: ProxyJudge/OpenAIJudge/AnthropicJudge/DeepSeekJudge/OpenRouterJudge 的 `max_tokens` 从 1024 → 4096（修复 Gemini 截断）；VLLMJudge 保持 1024（适配 4096 context limit）\n\n**Config 改动:**\n- `config_llama_arena.yaml`: `output_dir` → `results/llama-3.3-70b/`\n- `config_qwen_arena.yaml`: `output_dir` → `results/qwen2.5-72b/`\n- `config_mistral_arena.yaml`: `output_dir` → `results/mistral-large-2/`\n\n**操作:**\n- 停止 5 个 proxy sessions (402 无效重试)\n- 停止 3 个 local judges + 1 个多余的 mistral 进程\n- 备份共享 JSONL → `arena_hard_judgments.jsonl.bak`\n- 拆分数据到 per-judge 目录\n- 重启 3 个 local judges（per-judge 独立输出）\n\n### 5. 当前各 judge 状态\n\n| Session | 状态 | 进度 |\n|---------|------|------|\n| exp001-llama | **运行中** | 173/3000 |\n| exp001-qwen | **运行中** | 93/3000 |\n| exp001-mistral | **运行中** | 21/3000 |\n| exp001-gpt55 | **运行中** | 470/3000 |\n| 5 个 proxy judges | **已停止** | 等待 OpenRouter 充值 |\n\n### 6. 待用户操作\n- **充值 OpenRouter 账户** (https://openrouter.ai/settings/credits)，然后重启 5 个 proxy judge sessions\n- 充值后 Gemini 的 `max_tokens=4096` 修复应能将 parse failure 率从 ~85% 降至接近 0\n- DeepSeek 的空响应问题可能需要进一步调查 proxy 的 model routing"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-exp001-judge-errors.md"
+}

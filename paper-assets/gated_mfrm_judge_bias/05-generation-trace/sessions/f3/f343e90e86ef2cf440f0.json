@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f343e90e86ef2cf440f0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh p0 exp003 readiness and launch",
+  "task_key": "worker_ssh_p0_exp003_readiness_and_launch_20260522T121335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0_exp003_readiness_and_launch_20260522T121335_result.json",
+    "occurrence": 1,
+    "bytes": 3179,
+    "sha256": "daf266917aaa2033e09ae7ca77631bfc51fd927ac3f997435455ca592bc6347b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the readiness report.\n\n---\n\n## exp-003 Readiness Report\n\n### 1. Coverage Matrix (exp-001)\n\n**9 judges × 9 models, 12,122 total judgments. THRESHOLD MET: YES**\n\nAll 9 models have ≥5 judges with ≥20 items. Minor gaps:\n- `gemma-2-9b`: 8/9 judges ≥20 (mistral-large-2 only 14)\n- `qwen3-8b`: 7/9 judges ≥20 (deepseek 19, llama 19)\n\nData sufficient to proceed.\n\n### 2. exp-002 Inputs\n\n**Available and complete:**\n- `exposure_scores.csv` — 493 items, columns: `item_id, e_i, source_a_z, source_b_z, source_c_z, n_sources`\n- `summary.json` — 493 items, 10 judges, 2 target models (`gpt-3.5-turbo-0125`, `gpt-4-0613`), ref=`gpt-4-0314`\n- `model_abilities.csv` — `model, ability, n_items`\n- `win_rates_with_residuals.csv` — `item_id, model, win_rate, n_judgments, difficulty, expected_wr, residual`\n\n### 3. exp-003 Code Status\n\n**exp003/ directory does NOT exist. No exp003 code anywhere. Must be created from mvp_003.**\n\n### 4. MVP → Real Data Gap Analysis\n\n| Component | MVP (synthetic) | Real Data | Change needed |\n|-----------|----------------|-----------|---------------|\n| **Data format** | 3D tensor Y[N,I,J] from `generate_mvp002_data()` | Pairwise JSONL: `{item_id, model_a, model_b, judge, score(0/0.5/1), position}` | Build data loader to convert pairwise judgments → binary response tensor |\n| **Dimensions** | N=50 models, I=100 items, J=8 judges | N=9 models, I=493 items, J=9 judges | Parametric, just feed real dims |\n| **e_i values** | `data[\"true_params\"][\"e\"]` (synthetic) | `exp002/results/exposure_scores.csv` → `e_i` column | Load CSV, match by item_id |\n| **Evaluation** | `compute_metrics(theta_hat, theta_true)` — RMSE/Kendall-τ vs ground truth | **No ground truth θ** in real data | Need alternative: convergence (R-hat, ESS), model comparison (WAIC/LOO), win-rate calibration, c_hat analysis |\n| **Model code** | `models_v3.py` — MFRM + G-MFRM NumPyro | Reusable as-is | Copy to exp003, adjust `numpyro.set_host_device_count` |\n| **Seeding** | 20 seeds × same DGP | Single real dataset, no reseeding | One fit per method (or multi-chain for uncertainty) |\n\n### 5. Key Engineering Tasks to Create exp003\n\n1. **Data loader**: Parse exp-001 JSONL → construct Y[N,I,J] tensor. Handle: binarization of 0/0.5/1 scores, position debiasing (AB/BA), missing cells (sparse matrix), item_id → index mapping.\n2. **e_i loader**: Read `exposure_scores.csv`, align item indices with judgment data.\n3. **Model adaptation**: Copy `models_v3.py`, handle sparse observations (mask missing cells in likelihood).\n4. **Evaluation framework**: Replace synthetic-truth metrics with: (a) convergence diagnostics, (b) WAIC/LOO model comparison, (c) calibrated win-rate analysis, (d) c_hat interpretation.\n5. **Output**: Results JSON + CSV + diagnostic plots.\n\n### 6. Verdict\n\n**Cannot launch exp-003 immediately — needs ~2-3 hours of code writing.**\n\nThe critical blocker is the data loader (pairwise JSONL → tensor) and the evaluation framework (no ground truth). The MCMC model code from mvp_003 is directly reusable. exp-002's e_i outputs are ready."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-exp003-readiness-and-launch.md"
+}

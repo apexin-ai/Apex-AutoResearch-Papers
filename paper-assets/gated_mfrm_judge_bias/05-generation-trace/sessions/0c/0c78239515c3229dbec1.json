@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c78239515c3229dbec1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003b fix convergence",
+  "task_key": "worker_ssh_exp003b_fix_convergence_20260522T173321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003b_fix_convergence_20260522T173321_result.json",
+    "occurrence": 1,
+    "bytes": 1640,
+    "sha256": "27ffe4c1c79d2906e439dd58782cce5a3fb009c415f306dbcd86c69bd59050e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，验证通过。\n\n## 结果\n\n### Diff 摘要\n- **删除**: `from lib.priors import reg_horseshoe_prior_cn` import\n- **删除**: `_gmfrm_model` 中的 `reg_horseshoe_prior_cn(N)` 调用（4 个潜变量: `tau_c`, `lambda_c`, `c_slab`, `c_raw`）\n- **替换为**: `c_n = numpyro.sample(\"c_n\", dist.HalfNormal(jnp.ones(N) * 1.0))` （1 个潜变量）\n- **docstring** 同步更新\n- **import 验证**: `from models import *` → OK\n- **备份**: `models_horseshoe.py`\n\n### Warmup\n`run_exp003.py` 已支持 `--warmup` CLI 参数（默认 2000），exp-003b 运行时传 `--warmup 4000` 即可，无需改代码。\n\n### 预估重跑时间\n- exp-003 原始: mfrm_only 37min, sequential ~60min (含 mfrm_only), joint_gmfrm 未收敛所以时间不可参考\n- HalfNormal 只有 1 个潜变量 vs horseshoe 的 N+3 个，采样效率大幅提升\n- warmup 翻倍 4000→但 per-step 更快\n- **预估 joint_gmfrm**: 40-60min（单 GPU sequential chains）\n- **预估全量 exp-003b**: ~2h（raw_average 秒级 + mfrm_only ~37min + sequential ~60min + joint ~50min）\n\n### 运行命令（待批准）\n```bash\nCUDA_VISIBLE_DEVICES=0 XLA_PYTHON_CLIENT_PREALLOCATE=false \\\nnumpyro.set_host_device_count(1) \\\npython run_exp003.py \\\n  --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\n  --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\n  --output-dir /root/gated_mfrm_judge_bias/exp003/output_003b \\\n  --warmup 4000 --samples 4000 --chains 4 --target-accept 0.95 \\\n  --methods joint_gmfrm\n```\n\n代码已就绪，等 Director 批准后提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003b-fix-convergence.md"
+}

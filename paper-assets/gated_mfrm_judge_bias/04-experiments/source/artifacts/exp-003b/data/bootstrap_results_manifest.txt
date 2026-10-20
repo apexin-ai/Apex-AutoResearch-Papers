@@ -1,0 +1,15 @@
+Remote: autodl-8gpu:/root/gated_mfrm_judge_bias/artifacts/bootstrap_results/
+
+Files:
+- summary.json — all statistics
+- bootstrap_delta_tau.pdf — Δτ distribution histogram
+- bootstrap_delta_rho.pdf — Δρ distribution histogram  
+- theta_overlap_rank_swap.pdf — θ posterior overlap for gpt-4o-mini vs qwen2.5-72b
+
+Key results:
+- Δτ mean=0.0273, median=0.0, 95% CI=[-0.0714, 0.0714], P(Δτ>0)=0.4511
+- Δρ mean=0.0184, 95% CI=[-0.0476, 0.0476], P(Δρ>0)=0.4559
+- τ_GMFRM mean=0.813, 95% CI=[0.714, 0.857]
+- P(θ_gpt4o_mini > θ_qwen2.5_72b) = 0.853, θ diff 95% CI=[-0.227, 0.722]
+
+VERDICT: Claim 3 UNSAFE — ranking improvement not statistically significant via bootstrap

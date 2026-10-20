@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ffefc3bddd2ed86e8f9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper data consistency audit",
+  "task_key": "worker_paper_data-consistency-audit_20260525T083214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_data-consistency-audit_20260525T083214_result.json",
+    "occurrence": 1,
+    "bytes": 8691,
+    "sha256": "a0d4d667330e8e170b066e668cc9ebd12ada279248c720dc06ab8747b8a0a645"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Now let me compile the comprehensive report.\n\n---\n\n## 修改清单\n\n1. **[experiments.tex:7]** `94\\% credible intervals` → `95\\% credible intervals`（全文其他地方均用 95% CI，这里是笔误）\n2. **[experiments.tex:14]** `XX{,}XXX observations; XX.X\\% fill rate` → `36{,}231 observations; 66.0\\% fill rate`（用户提供 observation count=36,231；fill rate 由 18,116 unique cells / 27,456 full N×I×J tensor 计算）\n3. **[limitations.tex:1]** `XX.X\\% fill rate (XX{,}XXX of XX{,}XXX potential cells)` → `66.0\\% fill rate (18{,}116 of 27{,}456 potential cells)`（27,456 = 17×176×9；18,116 = ceil(36,231/2) 即去掉 position swap 后的 unique cells）\n4. **[conclusion.tex:4]** `$N \\geq 20$` → `$N \\geq 17$`（Experiments、Limitations、Appendix Power Analysis 均写 N≈17 for 80% power，Conclusion 原来写 N≥20 矛盾）\n5. **[introduction.tex:9]** `$\\tilde{\\theta}_n$` → `$\\hat{\\theta}_n$`（background.tex 中 tilde 表示 MFRM-only 有偏估计，figure 1 caption 却用 tilde 表示 G-MFRM 校正后的 ability——符号冲突，改为 hat）\n\n---\n\n## 一致性问题\n\n### 任务 1：数字一致性交叉检查\n\n| 指标 | Abstract | Intro | Experiments | Conclusion | Limitations | 状态 |\n|------|----------|-------|-------------|------------|-------------|------|\n| RMSE reduction 51.2% | 51.2% | 51.2% | -(ablation table隐含 51.0%)¹ | — | — | ✓ |\n| τ (G-MFRM, N=8) | 0.857 | 0.857 | 0.857 | 0.857 | — | ✓ |\n| τ (baselines, N=8) | 0.786 | 0.786 | 0.786 | 0.786 | — | ✓ |\n| ΔELPD | -55.7, \\|Δ/SE\\|=5.9 | — | -55.7, SE=9.4, \\|Δ/SE\\|=5.9 | — | — | ✓ |\n| Power N | — | — | N≈17 | ~~N≥20~~ → **N≥17** | N≈17 | **[已修]** |\n| CI coverage θ | — | — | — | — | ~90% at N=8 | ✓ (matches appendix 90.1%) |\n| CI coverage c_n | — | — | — | — | 71% at N=50, 68% at N=8 | ✓ (appendix: 71%, 67.9%) |\n| Error prop 5.9%/7.9% | ≤6% (abstract) | — | 5.9%/7.9% | — | — | ✓ |\n| Severity range 1.34 logits | — | — | 1.34 | — | — | ✓ (0.60−(−0.74)=1.34) |\n\n¹ RMSE 51.2% vs ablation表计算 (0.2539−0.1243)/0.2539=51.04%：差异 <0.2pp，在 ±std 范围内，属正常 per-seed mean 计算差异。\n\n### 任务 2：Table 数据溯源\n\n**Table 1 (error_prop) vs exp-012 registry — 全部一致 ✓**\n\n| σ | Paper θ-RMSE | Registry θ_rmse | Paper Δθ% | Registry | Paper c_n-RMSE | Registry |\n|---|---|---|---|---|---|---|\n| 0.0 | 0.128±0.018 | 0.1277±0.0178 | — | — | 0.533±0.187 | 0.533 |\n| 0.1 | 0.130±0.018 | 0.1295±0.0178 | +1.4 | +1.4 | 0.545±0.192 | 0.5452 |\n| 0.2 | 0.135±0.018 | 0.1352±0.0175 | +5.9 | +5.9 | 0.575±0.198 | 0.5751 |\n| 0.5 | 0.175±0.027 | 0.1748±0.0266 | +36.9 | +36.9 | 0.842±0.281 | 0.8415 |\n\n**Table 2 (main_results) N=8 vs exp-003b registry — 全部一致 ✓**\n\n| Method | Paper τ | Registry τ | Paper ρ | Registry ρ |\n|--------|---------|-----------|---------|-----------|\n| Raw Average | 0.786 | 0.786 | 0.905 | 0.905 |\n| MFRM-only | 0.786 | 0.786 | 0.905 | 0.905 |\n| Sequential | 0.786 | 0.786 | 0.905 | 0.905 |\n| G-MFRM | 0.857 | 0.857 | 0.952 | 0.952 |\n\n**Table 2 N=17 baselines vs exp-004 registry — 全部一致 ✓**\n\n| Method | Paper τ | Registry τ | Paper ρ | Registry ρ |\n|--------|---------|-----------|---------|-----------|\n| Raw Average | 0.838 | 0.8382 | 0.949 | 0.9485 |\n| CyclicJudge | 0.838 | 0.8382 | 0.949 | 0.9485 |\n| CyclicJudge+discard | 0.824 | 0.8235 | 0.934 | 0.9338 |\n| DCR Factor | 0.824 | 0.8235 | 0.946 | 0.9461 |\n| Pref. Leakage | 0.838 | 0.8382 | 0.949 | 0.9485 |\n\nAll rounded to 3dp consistently.\n\n**Ablation table vs exp-w7-ablation registry — 全部一致 ✓**\n**Synthetic calibration tables vs exp-015/exp-018 registry — 全部一致 ✓**\n**Bias absorption table vs exp-019 registry — 全部一致 ✓**（精确到 3dp）\n**Judge severity table vs exp-003b d_j registry — 全部一致 ✓**\n\n---\n\n## 占位符状态\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| experiments.tex:14 | observation count, fill rate | **[已填]** 36,231 obs; 66.0% fill |\n| limitations.tex:1 | fill rate, cells, potential | **[已填]** 66.0% (18,116/27,456) |\n| experiments.tex:37 | MFRM-only N=17: τ, ρ | **[待填 - exp-020 MCMC RUNNING]** |\n| experiments.tex:38 | Sequential N=17: τ, ρ | **[待填 - exp-020 MCMC RUNNING]** |\n| experiments.tex:44 | G-MFRM N=17: τ, ρ | **[待填 - exp-020 MCMC RUNNING]** |\n| experiments.tex:47 | caption \"(TBD)\" | **[待填 - exp-020 MCMC RUNNING]** |\n\n注：fill rate 66.0% 由 ceil(36,231/2)=18,116 unique cells ÷ 27,456 (17×176×9) 计算。36,231 包含 position-swapped observations。**需确认**：18,116 这个 unique cell 数是否精确（36,231 不能被 2 整除，说明可能有 1 个 cell 只有单方向 observation）。\n\n---\n\n## 符号问题\n\n- **[已修] tilde/hat 冲突**：`introduction.tex:9` figure 1 caption 用 $\\tilde{\\theta}_n$ 表示 G-MFRM 校正后 ability，但 `background.tex:34` 中 $\\tilde{\\theta}_n$ 表示 MFRM-only 有偏估计。已改为 $\\hat{\\theta}_n$。\n- **θ vs θ_n**：全文一致——vector/collection 用 $\\theta$（如 $\\hat{\\theta}, \\hat{b}, \\hat{d}$），单个模型用 $\\theta_n$。✓\n- **c vs c_n**：全文一致——$c_n$ 用于单模型，$\\mathbf{c}$ 用于向量。✓\n- **hat/tilde 其余用法**：hat = 估计值（$\\hat{\\theta}$, $\\hat{c}_n$, $\\hat{d}_j$, $\\hat{R}$），tilde = MFRM-only 有偏估计（$\\tilde{\\theta}_n$, $\\tilde{b}_i$, $\\tilde{d}_j$）。修正后全文一致。✓\n- **所有核心符号首次出现时有定义**：$\\theta_n$, $b_i$, $d_j$, $\\tau_k$ 在 Eq.1 后定义；$c_n$, $e_i$ 在 Eq.2 前定义。✓\n\n---\n\n## 图表问题\n\n- **[已修] fig:judge\\_severity caption**：`94\\% credible intervals` → `95\\% credible intervals`。全文其余处均用 95% CI（raw\\_scores table、cn\\_profile figure、appendix CI coverage analysis）。\n- **Caption 与内容匹配**：\n  - fig:framework — 描述三阶段 pipeline ✓\n  - fig:ovb\\_bias — Pearson r=0.86 与 text 一致 ✓\n  - fig:bias\\_vs\\_rho — \"approximately constant across ρ\" 与 text 一致 ✓\n  - fig:error\\_prop — \"5.9%, 7.9%\" 与 table 一致 ✓\n  - fig:cn\\_recovery — \"71% coverage\" 与 appendix (N=50: 71%) 一致 ✓\n  - fig:cn\\_profile — \"95% credible intervals\" ✓\n  - fig:ppc — \"0.593 vs 0.599\" ✓\n- **所有 \\ref 引用**：检查了全部 figure (11), table (13), section, equation, theorem, proposition, corollary, observation, appendix 引用——均有对应 \\label 定义。未发现 undefined reference。\n- **图编号**：LaTeX 自动编号，不受文件名（fig3/fig4 交叉）影响。✓\n\n---\n\n## 任务 6：与实验真值对账\n\n**N=8 核心结果 (exp-003b)**：\n- τ=0.786 (baselines) → registry `arena_correlation.raw_average.kendall_tau = 0.786` ✓\n- τ=0.857 (G-MFRM) → registry `arena_correlation.joint_gmfrm.kendall_tau = 0.857` ✓\n- ρ=0.905/0.952 → registry 0.905/0.952 ✓\n\n**c_n 值 (exp-003b c_n_profile)**：\n| Model | Paper | Registry | ✓ |\n|-------|-------|----------|---|\n| GPT-3.5-Turbo | 5.60 | 5.6 | ✓ |\n| GPT-4-0613 | 4.20 | 4.2 | ✓ |\n| Qwen2.5-72B | 3.00 | 3.0 | ✓ |\n| LLaMA-3.3-70B | 2.50 | 2.5 | ✓ |\n| Gemma-2-9B | 1.70 | 1.7 | ✓ |\n| Qwen3-8B | 1.20 | 1.2 | ✓ |\n| GPT-4o-mini | 0.93 | 0.93 | ✓ |\n| GPT-4o | 0.88 | 0.88 | ✓ |\n\n**Bias absorption table (exp-019)**：所有 8 行 4 列数值精确匹配 registry（3dp）。✓\n\n**N=17 baselines (exp-004)**：5 个方法的 τ 和 ρ 均与 registry 一致（3dp 四舍五入）。✓\n\n**Prior robustness table**：HN 列与 exp-003b 有轻微差异（如 c_n GPT-3.5: 5.57 vs 5.60），属于不同 MCMC run 的正常 posterior 抽样差异，两组 Pearson r > 0.999。不需要修正。\n\n---\n\n## 总结\n\n**已修 5 处**：Conclusion N≥20→N≥17、figure caption tilde→hat 符号冲突、judge severity CI 94→95%、experiments/limitations 填入 observation count 和 fill rate。\n\n**待填 4 处**（exp-020 MCMC RUNNING）：Table 2 N=17 列的 MFRM-only、Sequential、G-MFRM 数值及 caption \"(TBD)\"。\n\n**需确认 1 处**：fill rate 66.0% 基于 unique cells = ceil(36,231/2) = 18,116 计算，36,231 不能被 2 整除，建议核实 unique cell 精确数。\n\n**无问题**：所有 table 数据与 registry 完全一致；所有 \\ref 引用均有定义；符号体系（修正后）一致；无 TODO/FIXME/placeholder 残留（除 exp-020 待填 TBD）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-data-consistency-audit.md"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-003",
+  "project": "gated_mfrm_judge_bias",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:54:35.807Z",
+    "updated_at": "2026-05-22T14:14:39.347Z",
+    "hypothesis": "G-MFRM joint calibration on real Arena-Hard data (9 judges × 8 target models × 316 items) produces model ability estimates (θ) with higher agreement to Chatbot Arena human rankings (Kendall-τ) than raw averages, MFRM-only, and sequential pipelines, while simultaneously recovering interpretable per-model contamination susceptibility (c_n) and per-judge severity (d_j) profiles.",
+    "parent": "mvp_003",
+    "spec": {
+      "command": "python run_exp003.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv --output-dir /root/gated_mfrm_judge_bias/exp003/results --warmup 2000 --samples 4000 --chains 4 --target-accept 0.95 --device gpu",
+      "server": "autodl-8gpu",
+      "data_path": "/root/gated_mfrm_judge_bias/exp001/results",
+      "data_count": 5661,
+      "model_name": "G-MFRM (Horseshoe prior, NCP, 4-chain MCMC)",
+      "seed": 0,
+      "checkpoint_source": "mvp_003 (code adapted from mvp/models_v3.py)",
+      "eval_data": "exp-001 real Arena-Hard judgments (8 models × 9 judges × 176 items) + exp-002 exposure scores (317 items)"
+    },
+    "notes": "Run 1 failed: JAX_PLATFORMS missing \"cpu\" — io_callback cannot find local CPU device. Fix: export JAX_PLATFORMS=\"cuda,cpu\"",
+    "reproduce": {
+      "finished_at": "2026-05-22T14:14:39.264Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T14:14:39.366158+00:00",
+  "trigger": "update_registry"
+}

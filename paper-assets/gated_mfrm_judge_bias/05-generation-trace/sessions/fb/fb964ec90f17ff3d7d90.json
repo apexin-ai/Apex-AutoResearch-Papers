@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb964ec90f17ff3d7d90",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh kill exp014 start exp017 fix exp016",
+  "task_key": "worker_ssh_kill_exp014_start_exp017_fix_exp016_20260523T065649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_exp014_start_exp017_fix_exp016_20260523T065649_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "d535d2567875c316881477cb42ddba0f53c60bfd9d8de04a389b05c4e054d4cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "旧进程已清理。GPU 2 上只剩新 exp-016 进程（PID 316023, 658 MiB）。\n\n---\n\n## 汇总\n\n### 操作 1: Kill exp-014 ✅\n- tmux session `exp-014` 已 kill\n- GPU 0 上残留进程 PID 283059, 289630 已 `kill -9`\n- **cuda:0 已完全释放**: 0 MiB, 0% utilization\n\n### 操作 2: 启动 exp-017 ⚠️ 需确认\n- **exp-017 已在运行**（tmux session 创建于 14:57:04，进度 3/800）\n- 脚本 `run_exp017.py` 是 Murphy-Topel Coverage Simulation，**硬编码 `JAX_PLATFORMS=\"cpu\"`**，使用 CPU 多链并行（`numpyro.set_host_device_count(4)`）\n- 即使提交到 cuda:0，脚本也不会使用 GPU\n- MCMC 参数：chains=4, warmup=2000, samples=4000 — 与预期一致\n\n**请确认**：保留当前 CPU 运行的 exp-017，还是需要改成 GPU 模式重跑？\n\n### 操作 3: 调整 exp-016 ✅\n- 脚本已修改：\n  - **HalfNormal**: warmup=2000, samples=4000, chains=4（原参数不变）\n  - **Exponential / LogNormal / Gamma**: warmup=1000, samples=2000, chains=2\n- 旧 exp-016 已 kill，新 exp-016 已重启（PID 316023, cuda:2）\n- 旧残留进程已清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-exp014-start-exp017-fix-exp016.md"
+}

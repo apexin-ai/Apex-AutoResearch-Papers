@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60d07c505b0e11e64950",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check exp020 and collection",
+  "task_key": "worker_ssh_check-exp020-and-collection_20260524T132948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-exp020-and-collection_20260524T132948_result.json",
+    "occurrence": 1,
+    "bytes": 2174,
+    "sha256": "e10da459b1b847d04ab27a316c2e647cab7b0b4f8e9034499b915d41a583fad1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-020 状态报告\n\n### 1. 进程状态\n\n| 组件 | PID | 状态 |\n|------|-----|------|\n| LLaMA vLLM (port 8001, cuda:0,1) | 582372 | **运行中** |\n| Qwen vLLM (port 8002, cuda:2,3) | 583078 | **运行中** |\n| LLaMA collect (workers=64) | 584106 | **运行中** [1980/11443] 0.9 items/s |\n| Qwen collect (workers=64) | 584197 | **运行中** [1980/13590] 0.6 items/s |\n| Sonnet collect (workers=10) | 506658 | **卡住** ❌ OpenRouter 402 |\n| Gemini collect (workers=10) | 506876 | **卡住** ❌ OpenRouter 402 |\n| DeepSeek collect (workers=10) | 506930 | **卡住** ❌ OpenRouter 402 |\n| Qwen3-235B collect (workers=10) | 506990 | **卡住** ❌ OpenRouter 402 |\n\n### 2. GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|----------|--------|\n| 0 | 89031 / 97887 MiB | 100% |\n| 1 | 89031 / 97887 MiB | 100% |\n| 2 | 89083 / 97887 MiB | 100% |\n| 3 | 89083 / 97887 MiB | 100% |\n\n只有 4 张 GPU 可见（TP=2 × 2 模型满载）。\n\n### 3. JSONL 进度\n\n| Judge | 行数 | 状态 |\n|-------|------|------|\n| claude-sonnet-4.6-proxy | 13,825 | ❌ 停滞（402 余额不足） |\n| qwen3-235b-proxy | 11,296 | ❌ 停滞 |\n| gemini-2.5-pro-proxy | 10,791 | ❌ 停滞 |\n| llama-3.3-70b-local | 9,655 | ✅ 活跃增长 |\n| deepseek-v4-pro-proxy | 9,572 | ❌ 停滞 |\n| qwen2.5-72b-local | 6,561 | ✅ 活跃增长 |\n| mistral-large-2-local | 118 | ⚠️ 几乎无数据 |\n\n### 4. 数据增长\n\n所有 JSONL 文件最后修改时间为 **2026-05-24 21:30:37~41**（检查时刻），local judge 数据正在实时写入。\n\n### 5. MCMC\n\n无 MCMC 进程运行（符合预期）。\n\n### 6. ETA 估算\n\n- **LLaMA local**: 剩余 9463 items @ 0.9/s → **~175 min（约 3h）**\n- **Qwen local**: 剩余 11610 items @ 0.6/s → **~306 min（约 5.1h）**\n- **4 个 API judge**: **完全停滞**，OpenRouter 余额耗尽，需充值后才能继续\n\n### 关键问题\n\n**OpenRouter 账户余额不足** — 所有 4 个 API judge（Sonnet / Gemini / DeepSeek / Qwen3-235B）都在循环重试 402 错误，不会再有新数据写入。需要充值 OpenRouter credits 后重启这些采集进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp020-and-collection.md"
+}

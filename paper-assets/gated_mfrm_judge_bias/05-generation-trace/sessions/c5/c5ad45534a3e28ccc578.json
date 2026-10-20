@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5ad45534a3e28ccc578",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh n17 full status check",
+  "task_key": "worker_ssh_n17_full_status_check_20260524T012944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_n17_full_status_check_20260524T012944_result.json",
+    "occurrence": 1,
+    "bytes": 1788,
+    "sha256": "65abebd23e9d14414dab6b2c50fd3a428f4f80fac0fbd28a24ddb7b2fbf35afa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### A. N=17 API Judge Eval — 全部存活，进度较慢\n\n| Judge | 完成 | 总数 | 进度 | 速率 | ETA |\n|-------|------|------|------|------|-----|\n| Claude Sonnet 4.6 | 1,613 | 18,000 | **9.0%** | ~0.3 items/s | ~14h |\n| Qwen3-235B | 1,025 | 18,000 | **5.7%** | ~0.2 items/s | ~34h |\n| Gemini 2.5 Pro | 1,038 | 18,000 | **5.8%** | ~0.1 items/s | ~47h |\n| DeepSeek V4 Pro | 836 | 18,000 | **4.6%** | ~0.1 items/s | ~73h |\n\n- 4 个进程全部存活（PID 499180/499233/499407/499462 系列）\n- JSONL 文件最后修改时间均为 09:30 CST（刚才），确认在持续写入\n- \"500\" 关键词命中数：Sonnet=43, Gemini=31, DeepSeek=27, Qwen3=25（含\"500 prompts\"等误匹配，实际 HTTP 500 错误数需更精确过滤）\n- DeepSeek 和 Gemini 速率极慢（~0.1 items/s），ETA 分别 73h 和 47h\n\n### B. 本地 Judge\n\n| 项目 | 状态 |\n|------|------|\n| LLaMA 3.3-70B AWQ | **下载完成** (9/9 safetensors) |\n| Qwen2.5-72B AWQ | **未下载**（目录不存在） |\n| vLLM 进程 | 无 |\n| 本地 judge collect | 无 |\n\n### C. exp-017 — 仍在运行\n\n- PID 318082 **存活**\n- `coverage_simulation.csv`: 191 行数据（seed 0–190, n_models=8）\n- 最后修改 09:30:47 CST，仍在写入\n- 单 seed 耗时从 ~63s 增长到 ~374s（后期变慢）\n\n### D. 磁盘\n\n| 分区 | 已用 | 总量 | 使用率 |\n|------|------|------|--------|\n| / (根) | 15G | 30G | 49% |\n| /root/autodl-tmp | 210G | 250G | **84%** |\n\nautodl-tmp 还剩 41G，注意 Qwen2.5-72B AWQ 模型约需 ~40G 空间，下载后磁盘接近满。\n\n### E. rtx6000-4x — 已断连\n\n连接失败：`Unable to connect to port 23687 on 36.103.198.204`。D037 cutoff (May 24 04:00 UTC) 已过，实例大概率已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n17-full-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b73b1987e1d753d80c8",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx kill vllm",
+  "task_key": "worker_ssh_rtx_kill_vllm_20260523T054819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx_kill_vllm_20260523T054819_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "10a1460a9e4faf9cbe8863c5a7dca62d3c2ccc23da14f935b635285e7709800a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM 进程已经不在了。4 张卡当前状态：\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 0 MiB / 97887 MiB | 0% | 空闲 |\n| 1 | 0 MiB / 97887 MiB | 100%* | 已释放 |\n| 2 | 0 MiB / 97887 MiB | 100%* | 已释放 |\n| 3 | 0 MiB / 97887 MiB | 0% | 空闲 |\n\nGPU 1 和 2 显存已归零，无进程占用。利用率显示 100% 是 nvidia-smi 的滞后刷新（Persistence Mode 下 P0 状态残留），下次查询会降为 0%。vLLM 实例在我们操作前已经退出，4 张卡全部可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx-kill-vllm.md"
+}

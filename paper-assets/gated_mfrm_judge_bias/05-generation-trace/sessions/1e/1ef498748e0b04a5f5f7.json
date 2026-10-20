@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ef498748e0b04a5f5f7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix name mapping and snapshot",
+  "task_key": "worker_ssh_fix-name-mapping-and-snapshot_20260524T095707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-name-mapping-and-snapshot_20260524T095707_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "5bca45354df0b1c169cbfa9122c3356fbef08cd6508d39f5dc94d59cc1511b21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成。\n\n**任务 1: ARENA_NAME_MAPPING 修复**\n- 添加了 4 条 name mapping (`llama-3.3-70b-instruct`, `qwen2.5-72b-instruct`, `gpt-3.5-turbo-0613`, `mistral-large-2407`)\n- 添加了 `mistral-large-2407: 1250` 到 ARENA_ELO\n- 验证结果：17/18 targets 有 ELO mapping，唯一缺失的 `qwen3-8b` 是预期行为（它在 `ESTIMATED_ELO` 中，没有官方 Arena 排名）\n\n**任务 2: snapshot_judge_data.sh** — 已创建并 chmod +x\n\n**任务 3: check_progress.sh** — 已创建，当前进度快照：\n\n| Judge | Records | Progress |\n|-------|---------|----------|\n| claude-sonnet-4.6-proxy | 8,541 | 47.4% |\n| qwen3-235b-proxy | 6,378 | 35.4% |\n| gemini-2.5-pro-proxy | 5,977 | 33.2% |\n| deepseek-v4-pro-proxy | 5,071 | 28.1% |\n| llama-3.3-70b-local | 2,057 | 11.4% |\n| qwen2.5-72b-local | 1,402 | 7.8% |\n| mistral-large-2-local | 118 | 0.7% |\n\nGPU 1/2 满载运行（~92GB used, 100% util），GPU 0/3 空闲。磁盘 40% used (12G/30G)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-name-mapping-and-snapshot.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a207ebd9a9e1ebf92d7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh llama vllm deploy autodl",
+  "task_key": "worker_ssh_llama_vllm_deploy_autodl_20260523T234632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama_vllm_deploy_autodl_20260523T234632_result.json",
+    "occurrence": 1,
+    "bytes": 1212,
+    "sha256": "fe92a5a12f5ebb7360a425d6f62b878ff7ab40f1a98584d03e7d9d71d6e77e34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### LLaMA 下载状态：**进行中，未完成**\n\n| 项目 | 状态 |\n|------|------|\n| 总文件数 | 17（含 9 个 safetensors 分片） |\n| 已完成 safetensors | 3/9（001, 004, 007），约 14GB |\n| 未完成 safetensors | 6 个（.incomplete 状态） |\n| 总目录大小 | 28GB（含缓存中的部分下载） |\n| 下载进度 | 5/17 files (29%) |\n| 下载进程 | PID 480645，活跃中 |\n| 问题 | HF 下载遇到超时（`The read operation timed out`），正在自动重试 |\n\n### 后续步骤无法执行\n\n根据指令，safetensors 文件不完整，**vLLM 部署、config 创建、collect.py 启动均暂停**。\n\n### 建议\n\nAutoDL 通过代理下载 HuggingFace 大文件极慢（~200KB/s），当前下载可能还需 1-2 小时。可以考虑：\n\n1. **等待当前下载完成** — huggingface_hub 有自动重试机制，会继续跑\n2. **切换 ModelScope** — 如果该模型在 ModelScope 有镜像，国内 CDN 会快很多（但 `casperhansen/Llama-3.3-70B-Instruct-AWQ` 是第三方量化版本，ModelScope 不一定有）\n3. **下载完成后重新执行本流程** — 所有后续步骤（Step 2-6）可一次性跑完"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-vllm-deploy-autodl.md"
+}

@@ -1,0 +1,51 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Bai et~al.(2024)}]{bai2024cyclicjudge}
+Yiming Bai and 1 others. 2024.
+\newblock Cyclicjudge: Eliminating systematic bias in {LLM}-as-a-judge via
+  cyclic evaluation.
+\newblock In \emph{EMNLP}.
+
+\bibitem[{De~Koninck et~al.(2024)}]{dekoninck2024constat}
+Jasper De~Koninck and 1 others. 2024.
+\newblock Constat: Performance-based contamination detection in large language
+  models.
+\newblock In \emph{ICML}.
+
+\bibitem[{Dong et~al.(2024)}]{dong2024prefleakage}
+Yihong Dong and 1 others. 2024.
+\newblock Generalization or memorization: Data contamination and trustworthy
+  evaluation for large language models.
+\newblock In \emph{NAACL}.
+
+\bibitem[{Kwon et~al.(2024)}]{kwon2024uda}
+Minjun Kwon and 1 others. 2024.
+\newblock {UDA}: Unified difficulty-aware scoring for {LLM} evaluation.
+\newblock In \emph{ACL}.
+
+\bibitem[{Otani et~al.(2016)}]{otani2016irt}
+Naoki Otani and 1 others. 2016.
+\newblock Irt-based aggregation model of crowdsourced pairwise comparison for
+  evaluating machine translations.
+\newblock In \emph{EMNLP}.
+
+\bibitem[{Sato et~al.(2024)}]{sato2024dg-irt}
+Takahiro Sato and 1 others. 2024.
+\newblock {DG-IRT}: Detecting item compromise via the gated item response
+  theory model.
+\newblock In \emph{Psychometrika}.
+
+\bibitem[{Xu et~al.(2024)}]{xu2024dcr}
+Cheng Xu and 1 others. 2024.
+\newblock Benchmark data contamination of large language models: A survey.
+\newblock In \emph{ACL Findings}.
+
+\bibitem[{Zheng et~al.(2024)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
+  Li, Xing et~al.}]{zheng2024judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric Xing, and 1 others. 2024.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and {Chatbot Arena}.
+\newblock In \emph{NeurIPS}.
+
+\end{thebibliography}

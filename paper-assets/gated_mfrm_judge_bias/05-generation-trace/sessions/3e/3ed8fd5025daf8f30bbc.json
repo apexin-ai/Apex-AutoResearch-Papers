@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ed8fd5025daf8f30bbc",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code p0 step2 write exp003",
+  "task_key": "worker_code_p0_step2_write_exp003_20260522T123425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0_step2_write_exp003_20260522T123425_result.json",
+    "occurrence": 1,
+    "bytes": 1410,
+    "sha256": "544472fd60124ff5bbd27b02d4cf214f489c52246a6de73dafa0daacb2959369"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run passed all three verification criteria:\n\n1. **Data loaded successfully**: 12,166 raw records → 4,250 binary observations after preprocessing (8 models, 316 items, 9 judges, 18.7% sparsity)\n2. **Models ran without errors**: raw_average (0s), mfrm_only (116s), joint_gmfrm (~90s)\n3. **No shape mismatches or index errors**: Evaluation completed, plots generated, results.json saved\n\nKey results from dry-run (50 warmup/50 samples, not converged but structurally correct):\n- **Arena Elo correlation**: Kendall-τ = 0.733 (p=0.056), Spearman-ρ = 0.886 (p=0.019) — strong agreement\n- **Theta ranking**: gpt-4o > qwen2.5-72b > gpt-4o-mini > llama-3.3-70b > qwen3-8b > gemma-2-9b > gpt-4-0613 > gpt-3.5-turbo-0125\n- **Contamination (c)**: gpt-4-0613 (3.80) and gpt-3.5-turbo-0125 (3.77) show highest susceptibility — both are older models heavily represented in training data\n- **Output files**: 4 plots (theta_comparison, contamination_c, judge_severity, theta_vs_elo) + results.json + npy arrays\n\nFiles created in `/root/gated_mfrm_judge_bias/exp003/`:\n- `data_loader.py` — loads/preprocesses judgment JSONL + exposure CSV\n- `models.py` — 4 fitting methods (sparse observation format)\n- `evaluation.py` — convergence diagnostics, WAIC, Arena correlation, plots\n- `run_exp003.py` — main entry point with CLI args\n- `README.md` — design decisions documentation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p0-step2-write-exp003.md"
+}

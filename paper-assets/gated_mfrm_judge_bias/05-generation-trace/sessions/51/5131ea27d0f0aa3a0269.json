@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "id": "5131ea27d0f0aa3a0269",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh qwen download vllm cuda3",
+  "task_key": "worker_ssh_qwen_download_vllm_cuda3_20260522T011845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen_download_vllm_cuda3_20260522T011845.log",
+    "occurrence": 1,
+    "bytes": 2556395,
+    "sha256": "74f470a3776b3388f5fc00336d4e0b637778795a7914d9126facf6835a315e83"
+  },
+  "statistics": {
+    "messages": 1677,
+    "user_turns": 2,
+    "tool_calls": 669,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 326,
+      "tool_call": 669,
+      "tool_result": 669,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 799,
+      "chunks": [
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0005.json",
+          "message_count": 79
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 526,
+      "chunks": [
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0005.json",
+          "message_count": 101
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0008.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 352,
+      "chunks": [
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0008.json",
+          "message_count": 115
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "5131ea27d0f0aa3a0269-part-0010.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-qwen-download-vllm-cuda3.md"
+}

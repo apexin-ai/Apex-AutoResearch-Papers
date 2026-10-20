@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dea80176de52228ce33",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp001 proprietary judges",
+  "task_key": "worker_ssh_exp001_proprietary_judges_20260522T041459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_proprietary_judges_20260522T041459_result.json",
+    "occurrence": 1,
+    "bytes": 2529,
+    "sha256": "1d809f8a35fddd88e831bf212edc3f7610a1f8cb64913a0b47d7122e4b874f2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。汇总报告如下：\n\n---\n\n## 汇总报告\n\n### 1. 代理可用模型列表\n\n| Judge | 代理 Model ID | JUDGE_MAP 名称 |\n|-------|--------------|----------------|\n| GPT-5.5 | `gpt-5.5` | `gpt-5.5-proxy` |\n| Claude Opus 4.7 | `claude-opus-4-7` | `claude-opus-4.7-proxy` |\n| Claude Sonnet 4.6 | `claude-sonnet-4` | `claude-sonnet-4.6-proxy` |\n| DeepSeek-V4-Pro | `deepseek-v4-pro` | `deepseek-v4-pro-proxy` |\n| Qwen3-235B | `qwen3-235b-a22b` | `qwen3-235b-proxy` |\n| Gemini 2.5 Pro | `gemini-2.5-pro` | `gemini-2.5-pro-proxy` |\n\n### 2. 模型测试结果\n\n全部 ✅。GPT-5.5 不支持 temperature=0（已设为 None 跳过）。\n\n### 3. 配置文件\n\n```\nexp001/config_gpt-5.5-proxy_arena.yaml\nexp001/config_claude-opus-4.7-proxy_arena.yaml\nexp001/config_claude-sonnet-4.6-proxy_arena.yaml\nexp001/config_deepseek-v4-pro-proxy_arena.yaml\nexp001/config_qwen3-235b-proxy_arena.yaml\nexp001/config_gemini-2.5-pro-proxy_arena.yaml\n```\n\n每个 judge 写入独立输出目录 `results/<judge-name>/`。\n\n### 4. Tmux Session 状态\n\n| Session | PID (python) | 状态 |\n|---------|------|------|\n| exp001-gpt55 | 195498 | 运行中 |\n| exp001-opus47 | 195513 | 运行中 |\n| exp001-sonnet46 | 195532 | 运行中 |\n| exp001-deepseek | 195659 | 运行中 |\n| exp001-qwen3 | 195679 | 运行中 |\n| exp001-gemini | 195696 | 运行中 |\n\n### 5. 各 Judge 已收集条数（启动约 2 分钟后）\n\n| Judge | 已收集 | 速率 |\n|-------|--------|------|\n| gpt-5.5-proxy | 17 | ~0.1 items/s |\n| qwen3-235b-proxy | 15 | ~0.1 items/s |\n| gemini-2.5-pro-proxy | 12 | ~0.08 items/s |\n| claude-sonnet-4.6-proxy | 5 | ~0.04 items/s |\n| deepseek-v4-pro-proxy | 5 | ~0.04 items/s |\n| claude-opus-4.7-proxy | 1 | ~0.01 items/s（延迟高） |\n\n### 6. 问题与处理\n\n- **GPT-5.5 不支持 temperature=0**：ProxyJudge 中该模型设 `temperature=None`（不传参数）\n- **Claude 模型 ID 与预期不同**：代理使用 `claude-opus-4-7` / `claude-sonnet-4` 而非带日期的完整 ID\n- **Opus 延迟大**：每次请求约 60-90s，但正在正常产出\n- **并发写入安全**：采用 per-judge 独立输出目录避免冲突\n- **代码改动**：在 `judge_interface.py` 末尾添加了 `ProxyJudge` 类 + 6 条 JUDGE_MAP 注册\n\n每个 judge 需要收集 3000 条 pairwise judgment（500 prompts × 3 target models × 2 positions）。按当前速率，最快的 (gpt-5.5) 约 6-7 小时完成，最慢的 (opus) 可能需要更久。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp001-proprietary-judges.md"
+}

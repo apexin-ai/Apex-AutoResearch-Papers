@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbc20bdbf6acfa413977",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh regenerate fig1",
+  "task_key": "worker_ssh_regenerate_fig1_20260522T101843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_regenerate_fig1_20260522T101843_result.json",
+    "occurrence": 1,
+    "bytes": 224,
+    "sha256": "c83679bea8e34ce0ac5a0155a7a929f47ebff944b9e1e40968b0749fb82ca1b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已成功生成，两处修改均已反映：\n- 副标题：\"staged joint calibration of all facets\"\n- Stage 2 三个子模块：\"Reference anchoring\"、\"Cross-model agreement\"、\"LogProber\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-regenerate-fig1.md"
+}

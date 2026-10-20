@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0b5ca70684b8a6c8cec",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp020 v5v6 postprocess",
+  "task_key": "worker_ssh_exp020-v5v6-postprocess_20260525T155751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp020-v5v6-postprocess_20260525T155751_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "b53ca06a8ddf510780d6fab3d40f9e8357a7f33113247575d6e870737df2d3fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**v5 (contamination-only correction)**: τ = 0.706，比 raw_average 的 0.824 **下降** 0.118。contamination penalty 过度矫正了——因为 c_n 值普遍偏大（mean_e_i ≈ 0.21 对所有模型几乎相同），高 c_n 模型（如 gpt-4-turbo: c=4.0）被惩罚过重，排名严重下滑。contamination-only correction 无正向价值。\n\n**v6 (shrinkage α-sweep)**: α*=0.1 时 τ=0.838（Δτ=+0.015 vs raw_average），ρ=0.936。10% G-MFRM + 90% raw_average 的混合略优于纯 raw_average。α≥0.4 后 τ 退化到 0.809（G-MFRM 水平）。部分校正有微弱正向价值，但提升幅度小。\n\n端点验证通过：α=0 → τ=0.824（raw_average），α=1 → τ=0.809（G-MFRM）。\n\n结果已保存到 `/root/gated_mfrm_judge_bias/v5v6_results.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp020-v5v6-postprocess.md"
+}

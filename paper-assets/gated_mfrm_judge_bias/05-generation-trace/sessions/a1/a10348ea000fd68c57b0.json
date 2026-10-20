@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a10348ea000fd68c57b0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003b completion analysis",
+  "task_key": "worker_ssh_exp003b_completion_analysis_20260522T192028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003b_completion_analysis_20260522T192028_result.json",
+    "occurrence": 1,
+    "bytes": 248,
+    "sha256": "42f400edd781b116b923ad8d34a8bb2aefb430e187b007e4e753eb989c15779e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 分钟后回来检查。当前状态汇总：\n\n- **joint_gmfrm warmup**: 1228/8000 (15%), ~4.15 it/s, acc. prob=0.94\n- **预估完成时间**: ~27 分钟后\n- **output_003b/**: 仅有空的 analysis/ 子目录，无结果文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003b-completion-analysis.md"
+}

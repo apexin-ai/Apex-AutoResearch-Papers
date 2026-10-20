@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae493bd9cccff25a1a85",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh compute budget paragraph",
+  "task_key": "worker_ssh_compute_budget_paragraph_20260524T081508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_compute_budget_paragraph_20260524T081508_result.json",
+    "occurrence": 1,
+    "bytes": 1432,
+    "sha256": "238f2c87e3e683452d2a130ddeb2852b37a27abce27f01ed970dcf7fd4375c08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，无新错误。\n\n### 汇报\n\n**位置**: `appendix.tex` 末尾（第 472–480 行），新增 `\\section{Compute Budget}` (`\\label{app:compute}`)，位于 \"Use of AI Assistants\" 之后。\n\n**段落全文**:\n```latex\n\\section{Compute Budget}\n\\label{app:compute}\n\n\\paragraph{Compute budget.}\nAll experiments ran on a single machine with four NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs (96\\,GB each).\nMCMC inference (Stage~3) used NumPyro/JAX with 4 chains $\\times$ 4{,}000 warmup + 4{,}000 sampling iterations;\nthe $N=8$ joint G-MFRM fit completed in approximately [X] minutes on one GPU.\nJudge inference for local models (LLaMA-3.3-70B, Qwen2.5-72B, Mistral-Large-2; all AWQ-quantized)\nused vLLM continuous batching, consuming approximately [Y] GPU-hours total across three GPUs.\nAPI judge calls (GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini-2.5-Pro, Qwen3-235B) cost approximately \\$[ZZZ] in total.\nSynthetic calibration experiments (exp-015, exp-018) required approximately [W] GPU-hours.\n```\n\n**编译结果**:\n- 16 页，无编译错误\n- 正文不受影响（compute budget 在 `\\appendix` 之后，不计入 8 页限制）\n- 9 个 overfull hbox（全部为已有的，无新增）\n- 待填占位符：`[X]`（MCMC 运行时间）、`[Y]`（本地 judge GPU-hours）、`\\$[ZZZ]`（API 费用）、`[W]`（合成实验 GPU-hours）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-compute-budget-paragraph.md"
+}

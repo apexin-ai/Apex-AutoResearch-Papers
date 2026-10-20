@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d0d8c1ab1370bddffa4",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper compress to 8pages",
+  "task_key": "worker_paper_compress-to-8pages_20260525T080852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compress-to-8pages_20260525T080852_result.json",
+    "occurrence": 1,
+    "bytes": 2159,
+    "sha256": "11334e21102e3ee6d739e0cb74a70aa0150310fbbd66a97f43c7606f9fe69f9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sections layout:\n- Page 1: Abstract, Introduction (starts ~43%)\n- Page 2: Introduction cont., Related Work (starts ~56%)\n- Page 3: Confounding/Background (starts ~37%)\n- Page 4: G-MFRM Method (starts ~62%)\n- Page 5-6: Method cont. (Identifiability, Error Propagation)\n- Page 6-7: Experiments (starts ~93% of p6)\n- Page 8: Experiments cont., Conclusion (~55%), Limitations (~69%)\n- Page 9: Limitations cont., References (~23%)\n- Pages 10+: References cont., Appendix\n\n---\n\n**Summary:**\n\n**Final page count:** Main text (Abstract through Conclusion) = ~7.6 pages (Conclusion ends near top of page 8 at ~69%). Total PDF = 17 pages.\n\n**Section layout (approximate):**\n| Section | Pages |\n|---------|-------|\n| Abstract + Introduction | ~1.5 |\n| Related Work | ~0.8 |\n| Background (Confounding) | ~1.3 |\n| Method (G-MFRM) | ~2.0 |\n| Experiments | ~1.7 |\n| Conclusion | ~0.3 |\n\n**Content moved to appendix:**\n- Proposition 1 and 2 proofs → new `\\ref{app:prop_proofs}` section in appendix\n\n**Compressed in place (not moved):**\n- experiments.tex: Main results paragraph (deleted discretization artifact discussion, structural confounding cross-reference, CyclicJudge+discard interpretation), convergence diagnostics (compressed to 1 sentence), contamination/prior robustness/judge count details (1 sentence each), error propagation subsection (3 sentences), predictive fit/ranking accuracy paragraphs\n- method.tex: DG-IRT comparison (2 sentences), Stage 2 exposure (removed LogProber sentence, merged non-circularity), Theorem 1 explanation, error propagation numerical details, Murphy-Topel paragraph\n- background.tex: Last two paragraphs (linear approximation caveat + sequential estimation failure) merged and compressed\n- related_work.tex: All three paragraphs compressed, detailed per-citation descriptions → grouped citations\n\n**N=17 data filled in:** Raw Average, CyclicJudge, CyclicJudge+discard, DCR Factor, Pref. Leakage columns populated. MFRM-only/Sequential/G-MFRM remain TBD (awaiting MCMC).\n\n**LaTeX warnings:** No undefined references. Only benign `h→ht` float specifier changes in appendix."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compress-to-8pages.md"
+}

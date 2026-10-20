@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d804a7e12d041ede022b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper update latex split fig6",
+  "task_key": "worker_paper_update-latex-split-fig6_20260525T125337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-latex-split-fig6_20260525T125337_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "3f547e3f31814671ca6b66d4c7287dbd9c9045a5e1f92027e633f67160608778"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation successful. Here's the page-by-page figure/table distribution for the main text (p1–p8):\n\n| Page | Figures / Tables |\n|------|-----------------|\n| p1 | (title/abstract) |\n| p2 | Figure 1 (framework) |\n| p3 | Figure 2 (OVB bias) |\n| p4 | Table 1 (error propagation) |\n| p5 | Figure 3 (judge severity) |\n| p6 | Table 2 (main results) + Figure 4 (contamination bars) |\n| p7 | Figure 5 (bias absorption) |\n| p8 | (limitations/conclusion, no float) |\n\nSummary:\n- 0 undefined references\n- Figure numbering is continuous: 1–5 in main text, 6–12 in appendix\n- `fig_contamination_bars` landed on p6 top, `fig_bias_absorption` on p7 top — matches targets\n- p2–p7 each has at least one float at top; p8 has no float (it's the last main-text page with limitations/conclusion)\n- Total main text is 8 pages (references start p8/p9 based on the log showing `[8]` before appendix content)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-latex-split-fig6.md"
+}

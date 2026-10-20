@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6746eef7cfb2c1a7644",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh w7 analyze only",
+  "task_key": "worker_ssh_w7_analyze_only_20260523T005958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w7_analyze_only_20260523T005958_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "52f998e387867bc8f82f14a313ad4a43ab1751a98eeda00f6628673b3977a20b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果不存在于服务器任何位置。W7 ablation 实验**从未完成过**——目录今天刚创建（02:31），唯一的一次运行（08:49 启动）仅完成了 seed 0 的 full_gmfrm 变体，已被我 kill。\n\n汇报：\n\n```\nSeed files found: 0\nresults_w7_ablation.csv: 不存在\nresults_w7_ablation_partial.csv: 不存在\n\n状态：W7 ablation 实验从未成功完成。\n  - exp_w7_ablation/ 目录创建于 2026-05-23 02:31\n  - run_ablation.py 写于 02:33，analyze_w7.py 写于 08:51\n  - 唯一的 run_ablation.py 进程（PID 534178）于 08:49 启动，\n    仅完成 [1/20] seed=0 的 full_gmfrm 变体（耗时 254s），\n    已作为误启动进程被 kill\n  - 无任何 CSV/JSON 结果文件\n\n已执行操作：\n  - Kill 了误启动的 run_ablation.py（PID 534178）\n\n无法运行 analyze_w7.py：缺少输入文件 results_w7_ablation.csv。\n\n需要先完整运行 run_ablation.py（20 seeds × 4 variants = 80 次 MCMC fitting，\n每次 ~254s，预计总耗时 ~5.6 小时）才能分析。\n请确认是否需要启动实验。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w7-analyze-only.md"
+}

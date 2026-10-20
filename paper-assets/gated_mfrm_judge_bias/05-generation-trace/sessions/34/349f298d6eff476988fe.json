@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "349f298d6eff476988fe",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp017 switch to gpu",
+  "task_key": "worker_ssh_exp017_switch_to_gpu_20260523T070256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp017_switch_to_gpu_20260523T070256_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "e8fc31c40f0f39cb5be4e072c3705bf178672178d8dbacc22231c52b426913d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU模式启动成功。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| CPU进程 | 已kill |\n| 脚本修改 | `JAX_PLATFORMS=\"cpu\"` + `XLA_FLAGS` → `CUDA_VISIBLE_DEVICES=\"0\"` |\n| 已有结果 | 7条有效（去重后），793条待跑，断点续跑 |\n| GPU占用 | PID 318082，GPU 0，显存 73524 MiB |\n| 并行链 | 单GPU只有1个device，4条chain串行执行（预期行为，单链GPU仍远快于CPU） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp017-switch-to-gpu.md"
+}

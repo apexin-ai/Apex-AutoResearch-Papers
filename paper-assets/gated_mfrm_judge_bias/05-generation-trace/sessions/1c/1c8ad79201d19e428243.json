@@ -1,0 +1,933 @@
+{
+  "schema_version": "1.0",
+  "id": "1c8ad79201d19e428243",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh sync fill paper script",
+  "task_key": "worker_ssh_sync-fill-paper-script_20260524T091316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync-fill-paper-script_20260524T091316.log",
+    "occurrence": 1,
+    "bytes": 71408,
+    "sha256": "bb4912a0ac6221c6fe154f269995471daa3a67765430cec5adb1957625dec139"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "record": 1,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f038746e-8d37-48c8-b219-5878aa5e018b",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reading the local script first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "590e0917-e108-4c44-8764-019ece70bac6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C6RGYahqejkZ6p68HYiAbg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12376,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12376
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BsuPxKWMg7Aaxkn4tVd6Dc",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "fb31bfbf-f795-4272-ab67-f83b39d981a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C6RGYahqejkZ6p68HYiAbg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12376,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12376
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779625800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "e997f66f-4161-4e39-910c-bca513bcc690",
+                "session_id": "c2722b34-4b41-4655-932c-cd3947c43853"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T09:13:25.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BsuPxKWMg7Aaxkn4tVd6Dc",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tfill_paper_n17.py — Extract N=17 MCMC results and generate paper artifacts.\n4\t\n5\tInput:  MCMC trace directory (output_n17/) containing results.json + analysis/\n6\tOutput: paper_values_n17.json + 3 Appendix LaTeX tables\n7\t\n8\tCompat fixes (2026-05-24):\n9\t  - Design: read data_summary.{N,I,J,n_obs} instead of top-level n_models/n_judges\n10\t  - Convergence: accept r_hat/ess/divergences alongside r_hat_max/ess_min/divergent_transitions\n11\t  - c_n/d_j: load from refit_summary.json array format (CI+ESS); fall back to results.json flat dict\n12\t  - LOO: handle delta_elpd_loo at top level + comparison.MFRM.dse nested structure\n13\t  - MCMC config: fall back to refit_summary.mcmc_config for chains/warmup/samples\n14\t\n15\tUsage:\n16\t  python fill_paper_n17.py --trace-dir /path/to/output_n17\n17\t  python fill_paper_n17.py --trace-dir /path/to/output_n17 --out-dir ./paper_artifacts\n18\t\"\"\"\n19\timport argparse\n20\timport json\n21\timport sys\n22\tfrom pathlib import Path\n23\tfrom typing import Any\n24\t\n25\t# Precision rules: τ/ρ 3dp, θ/c/d 2dp, ELPD 1dp, ESS/counts int\n26\tdef fmt_tau(v): return f\"{v:.3f}\"\n27\tdef fmt_theta(v): return f\"{v:.2f}\"\n28\tdef fmt_elpd(v): return f\"{v:.1f}\"\n29\tdef fmt_int(v): return str(int(round(v)))\n30\tdef fmt_ci(lo, hi, fn=fmt_theta): return f\"[{fn(lo)}, {fn(hi)}]\"\n31\tdef sign_theta(v): return f\"+{v:.2f}\" if v >= 0 else f\"{v:.2f}\"\n32\t\n33\t\n34\tdef load_json(path: Path) -> dict:\n35\t    with open(path) as f:\n36\t        return json.load(f)\n37\t\n38\t\n39\tdef try_load_json(path: Path) -> dict | None:\n40\t    if path.exists():\n41\t        return load_json(path)\n42\t    return None\n43\t\n44\t\n45\tdef _refit_array_to_dict(arr: list, name_key: str = \"model\") -> dict:\n46\t    \"\"\"Convert refit_summary arrays [{model/judge, mean, ci_95_lower, ...}] to dict keyed by name.\"\"\"\n47\t    return {\n48\t        entry[name_key]: {\n49\t            \"mean\": entry[\"mean\"],\n50\t            \"ci\": [entry.get(\"ci_95_lower\"), entry.get(\"ci_95_upper\")],\n51\t            \"ess_bulk\": entry.get(\"ess_bulk\", 0),\n52\t        }\n53\t        for entry in arr\n54\t    }\n55\t\n56\t\n57\tdef extract_values(trace_dir: Path) -> dict:\n58\t    \"\"\"Extract all paper-relevant values from MCMC output directory.\"\"\"\n59\t    values: dict[str, Any] = {}\n60\t\n61\t    # --- Core results ---\n62\t    results_path = trace_dir / \"results.json\"\n63\t    if not results_path.exists():\n64\t        sys.exit(f\"ERROR: {results_path} not found\")\n65\t    results = load_json(results_path)\n66\t\n67\t    # Load refit_summary for posterior CI/ESS (path varies across runs)\n68\t    refit = None\n69\t    for rp in [trace_dir / \"analysis\" / \"refit_summary.json\",\n70\t               trace_dir / \"downstream\" / \"analysis\" / \"refit_summary.json\"]:\n71\t        refit = try_load_json(rp)\n72\t        if refit:\n73\t            break\n74\t\n75\t    # Design — actual MCMC output uses data_summary.{N,I,J,n_obs}\n76\t    ds = results.get(\"data_summary\", {})\n77\t    values[\"design\"] = {\n78\t        \"n_models\": ds.get(\"N\", results.get(\"n_models\", 17)),\n79\t        \"n_items\": ds.get(\"I\", results.get(\"n_items\")),\n80\t        \"n_judges\": ds.get(\"J\", results.get(\"n_judges\")),\n81\t        \"n_observations\": ds.get(\"n_obs\", results.get(\"n_observations\")),\n82\t    }\n83\t\n84\t    # Table 1: ranking correlations\n85\t    table1 = {}\n86\t    for method_key in [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]:\n87\t        m = results.get(method_key, results.get(\"arena_correlation\", {}).get(method_key, {}))\n88\t        if isinstance(m, dict):\n89\t            table1[method_key] = {\n90\t                \"kendall_tau\": fmt_tau(m.get(\"kendall_tau\", 0)),\n91\t                \"spearman_rho\": fmt_tau(m.get(\"spearman_rho\", 0)),\n92\t            }\n93\t    values[\"table1\"] = table1\n94\t\n95\t    # MCMC diagnostics — actual fields: r_hat/ess/divergences (not r_hat_max/ess_min/divergent_transitions)\n96\t    conv = results.get(\"convergence\", {}).get(\"joint_gmfrm\", results.get(\"convergence\", {}))\n97\t    refit_mcmc = (refit or {}).get(\"mcmc_config\", {})\n98\t    values[\"mcmc_diagnostics\"] = {\n99\t        \"r_hat_max\": conv.get(\"r_hat_max\", conv.get(\"r_hat\")),\n100\t        \"ess_min\": conv.get(\"ess_min\", conv.get(\"ess\")),\n101\t        \"divergent_transitions\": conv.get(\"divergent_transitions\", conv.get(\"divergences\", 0)),\n102\t        \"chains\": results.get(\"chains\", refit_mcmc.get(\"chains\", 4)),\n103\t        \"warmup\": results.get(\"warmup\", refit_mcmc.get(\"warmup\")),\n104\t        \"samples\": results.get(\"samples\", refit_mcmc.get(\"samples\")),\n105\t    }\n106\t\n107\t    # Per-model c_n — refit_summary has CI+ESS as array; results.json only has point estimates\n108\t    if refit and \"c\" in refit:\n109\t        cn_data = _refit_array_to_dict(refit[\"c\"], name_key=\"model\")\n110\t    elif \"c_n\" in results:\n111\t        cn_data = results[\"c_n\"]\n112\t    else:\n113\t        c_vals = results.get(\"parameters\", {}).get(\"joint_gmfrm\", {}).get(\"c_values\", {})\n114\t        cn_data = {m: {\"mean\": v, \"ci\": [None, None], \"ess_bulk\": 0} for m, v in c_vals.items()}\n115\t    values[\"contamination\"] = {}\n116\t    for model_name in sorted(cn_data.keys(), key=lambda k: cn_data[k].get(\"mean\", 0), reverse=True):\n117\t        entry = cn_data[model_name]\n118\t        ci = entry.get(\"ci\", [None, None])\n119\t        values[\"contamination\"][model_name] = {\n120\t            \"c_n_mean\": fmt_theta(entry[\"mean\"]),\n121\t            \"c_n_ci\": fmt_ci(ci[0], ci[1]) if ci[0] is not None else \"N/A\",\n122\t            \"ess\": fmt_int(entry.get(\"ess_bulk\", 0)),\n123\t        }\n124\t\n125\t    # Per-judge d_j — same pattern: refit_summary array or results.json flat dict\n126\t    if refit and \"d\" in refit:\n127\t        dj_data = _refit_array_to_dict(refit[\"d\"], name_key=\"judge\")\n128\t    elif \"d_j\" in results:\n129\t        dj_data = results[\"d_j\"]\n130\t    else:\n131\t        d_vals = results.get(\"parameters\", {}).get(\"joint_gmfrm\", {}).get(\"d_values\", {})\n132\t        dj_data = {j: {\"mean\": v, \"ci\": [None, None], \"ess_bulk\": 0} for j, v in d_vals.items()}\n133\t    values[\"judge_severity\"] = {}\n134\t    for judge_name in sorted(dj_data.keys(), key=lambda k: dj_data[k].get(\"mean\", 0), reverse=True):\n135\t        entry = dj_data[judge_name]\n136\t        ci = entry.get(\"ci\", [None, None])\n137\t        values[\"judge_severity\"][judge_name] = {\n138\t            \"d_j_mean\": fmt_theta(entry[\"mean\"]),\n139\t            \"d_j_ci\": fmt_ci(ci[0], ci[1]) if ci[0] is not None else \"N/A\",\n140\t            \"ess\": fmt_int(entry.get(\"ess_bulk\", 0)),\n141\t        }\n142\t\n143\t    # --- Downstream results ---\n144\t    downstream = trace_dir / \"downstream\"\n145\t\n146\t    # LOO-CV — actual output has loo_comparison.json at trace_dir root,\n147\t    # with delta_elpd_loo at top level and dse inside comparison.MFRM\n148\t    loo_paths = [\n149\t        trace_dir / \"loo_comparison.json\",\n150\t        downstream / \"model_comparison\" / \"loo_comparison.json\",\n151\t        downstream / \"model_comparison\" / \"waic_loo_summary.json\",\n152\t    ]\n153\t    for p in loo_paths:\n154\t        loo = try_load_json(p)\n155\t        if loo:\n156\t            comp_mfrm = loo.get(\"comparison\", {}).get(\"MFRM\", {})\n157\t            delta = loo.get(\"delta_elpd_loo\", loo.get(\"delta_elpd\", loo.get(\"elpd_diff\", 0)))\n158\t            se = comp_mfrm.get(\"dse\", loo.get(\"se\", loo.get(\"dse\", 0)))\n159\t            stacking = loo.get(\"comparison\", {}).get(\"G-MFRM\", {}).get(\"weight\",\n160\t                       loo.get(\"stacking_weight_gmfrm\", loo.get(\"weight\")))\n161\t            values[\"loo_cv\"] = {\n162\t                \"delta_elpd\": fmt_elpd(delta),\n163\t                \"se\": fmt_elpd(se),\n164\t                \"ratio\": fmt_tau(abs(delta) / max(se, 0.01)),\n165\t                \"stacking_weight_gmfrm\": stacking,\n166\t            }\n167\t            break\n168\t    if \"loo_cv\" not in values:\n169\t        values[\"loo_cv\"] = {\"delta_elpd\": \"N/A\", \"se\": \"N/A\", \"ratio\": \"N/A\"}\n170\t\n171\t    # Bootstrap Δτ\n172\t    bootstrap_paths = [\n173\t        downstream / \"bootstrap_results\" / \"bootstrap_summary.json\",\n174\t        downstream / \"bootstrap_results\" / \"results.json\",\n175\t    ]\n176\t    for p in bootstrap_paths:\n177\t        bs = try_load_json(p)\n178\t        if bs:\n179\t            values[\"ranking_significance\"] = {\n180\t                \"delta_tau_mean\": fmt_tau(bs.get(\"delta_tau_mean\", bs.get(\"mean\", 0))),\n181\t                \"delta_tau_median\": fmt_tau(bs.get(\"delta_tau_median\", bs.get(\"median\", 0))),\n182\t                \"ci_95\": fmt_ci(\n183\t                    bs.get(\"ci_lower\", bs.get(\"ci\", [0, 0])[0]),\n184\t                    bs.get(\"ci_upper\", bs.get(\"ci\", [0, 0])[1]),\n185\t                    fmt_tau,\n186\t                ),\n187\t                \"p_positive\": fmt_tau(bs.get(\"p_positive\", bs.get(\"p_delta_ge_0\", 0))),\n188\t            }\n189\t            break\n190\t    if \"ranking_significance\" not in values:\n191\t        values[\"ranking_significance\"] = {\"delta_tau_mean\": \"N/A\"}\n192\t\n193\t    # Baselines\n194\t    baselines_paths = [\n195\t        downstream / \"baselines\" / \"results.json\",\n196\t        downstream / \"baselines\" / \"baseline_results.json\",\n197\t    ]\n198\t    for p in baselines_paths:\n199\t        bl = try_load_json(p)\n200\t        if bl:\n201\t            for method in [\"raw_average\", \"mfrm_only\", \"sequential\",\n202\t                           \"cyclic_judge\", \"cyclic_judge_discard\",\n203\t                           \"dcr_factor\", \"pref_leakage\", \"preference_leakage\"]:\n204\t                if method in bl and method not in table1:\n205\t                    table1[method] = {\n206\t                        \"kendall_tau\": fmt_tau(bl[method].get(\"kendall_tau\", 0)),\n207\t                        \"spearman_rho\": fmt_tau(bl[method].get(\"spearman_rho\", 0)),\n208\t                    }\n209\t            if \"preference_leakage\" in table1 and \"pref_leakage\" not in table1:\n210\t                table1[\"pref_leakage\"] = table1.pop(\"preference_leakage\")\n211\t            break\n212\t\n213\t    # Bias absorption (delta theta)\n214\t    delta_paths = [\n215\t        downstream / \"delta_theta\" / \"results.json\",\n216\t        downstream / \"delta_theta\" / \"delta_theta.json\",\n217\t    ]\n218\t    for p in delta_paths:\n219\t        dt = try_load_json(p)\n220\t        if dt:\n221\t            values[\"bias_absorption\"] = dt\n222\t            break\n223\t\n224\t    # Facet fit\n225\t    fit_paths = [\n226\t        downstream / \"facet_fit\" / \"results.json\",\n227\t        downstream / \"facet_fit\" / \"fit_statistics.json\",\n228\t    ]\n229\t    for p in fit_paths:\n230\t        ff = try_load_json(p)\n231\t        if ff:\n232\t            values[\"fit_statistics\"] = ff\n233\t            break\n234\t\n235\t    # Headline numbers\n236\t    gmfrm = table1.get(\"joint_gmfrm\", {})\n237\t    baseline = table1.get(\"raw_average\", {})\n238\t    values[\"headline_numbers\"] = {\n239\t        \"gmfrm_tau\": gmfrm.get(\"kendall_tau\", \"N/A\"),\n240\t        \"gmfrm_rho\": gmfrm.get(\"spearman_rho\", \"N/A\"),\n241\t        \"baseline_tau\": baseline.get(\"kendall_tau\", \"N/A\"),\n242\t        \"baseline_rho\": baseline.get(\"spearman_rho\", \"N/A\"),\n243\t        \"n_models\": values[\"design\"][\"n_models\"],\n244\t        \"n_judges\": values[\"design\"][\"n_judges\"],\n245\t    }\n246\t\n247\t    return values\n248\t\n249\t\n250\tdef generate_raw_scores_table(values: dict) -> str:\n251\t    \"\"\"Generate LaTeX for per-model estimates (tab:raw_scores), N=17 version.\"\"\"\n252\t    lines = [\n253\t        r\"\\begin{table}[h]\",\n254\t        r\"\\centering\",\n255\t        r\"\\scriptsize\",\n256\t        r\"\\setlength{\\tabcolsep}{3pt}\",\n257\t        r\"\\begin{tabular}{lcccc}\",\n258\t        r\"\\toprule\",\n259\t        r\"\\textbf{Model} & $\\hat{\\theta}$ [95\\% CI] & $\\hat{c}_n$ [95\\% CI] & \\textbf{Base} & \\textbf{G-MFRM} \\\\\",\n260\t        r\"\\midrule\",\n261\t    ]\n262\t    # TODO: actual ranking data requires theta values sorted\n263\t    # Placeholder structure — fill from results.json theta + c_n + rankings\n264\t    lines.append(r\"% [Auto-generated from MCMC output — rows inserted by fill_paper_n17.py]\")\n265\t    lines.append(r\"\\bottomrule\")\n266\t    lines.append(r\"\\end{tabular}\")\n267\t    lines.append(r\"\\caption{G-MFRM posterior estimates for ability ($\\hat{\\theta}$) and contamination susceptibility ($\\hat{c}_n$) for all 17 target models.}\")\n268\t    lines.append(r\"\\label{tab:raw_scores_n17}\")\n269\t    lines.append(r\"\\end{table}\")\n270\t    return \"\\n\".join(lines)\n271\t\n272\t\n273\tdef generate_bias_absorption_table(values: dict) -> str:\n274\t    \"\"\"Generate LaTeX for bias absorption table, N=17 version.\"\"\"\n275\t    lines = [\n276\t        r\"\\begin{table}[h]\",\n277\t        r\"\\centering\",\n278\t        r\"\\scriptsize\",\n279\t        r\"\\setlength{\\tabcolsep}{3pt}\",\n280\t        r\"\\begin{tabular}{lcccc}\",\n281\t        r\"\\toprule\",\n282\t        r\"\\textbf{Model} & $\\hat{\\theta}_{\\text{MFRM}}$ & $\\hat{\\theta}_{\\text{G-MFRM}}$ & $\\Delta\\theta$ & $\\hat{c}_n$ \\\\\",\n283\t        r\"\\midrule\",\n284\t    ]\n285\t    ba = values.get(\"bias_absorption\", {})\n286\t    if isinstance(ba, dict):\n287\t        for model_name in sorted(ba.keys(),\n288\t                                  key=lambda k: ba[k].get(\"delta_theta\", ba[k].get(\"c_n\", 0))\n289\t                                  if isinstance(ba[k], dict) else 0,\n290\t                                  reverse=True):\n291\t            entry = ba[model_name]\n292\t            if isinstance(entry, dict):\n293\t                theta_mfrm = sign_theta(entry.get(\"theta_mfrm\", 0))\n294\t                theta_gmfrm = sign_theta(entry.get(\"theta_gmfrm\", 0))\n295\t                delta = sign_theta(entry.get(\"delta_theta\", 0))\n296\t                cn = fmt_theta(entry.get(\"c_n\", 0))\n297\t                display = model_name.replace(\"_\", r\"\\_\").replace(\"-\", \"-\")\n298\t                lines.append(f\"{display} & ${theta_mfrm}$ & ${theta_gmfrm}$ & ${delta}$ & ${cn}$ \\\\\\\\\")\n299\t    lines.append(r\"\\bottomrule\")\n300\t    lines.append(r\"\\end{tabular}\")\n301\t    lines.append(r\"\\caption{Contamination bias absorption in MFRM-only estimation for 17 models.}\")\n302\t    lines.append(r\"\\label{tab:bias_absorption_n17}\")\n303\t    lines.append(r\"\\end{table}\")\n304\t    return \"\\n\".join(lines)\n305\t\n306\t\n307\tdef generate_judge_severity_table(values: dict) -> str:\n308\t    \"\"\"Generate LaTeX for judge severity table.\"\"\"\n309\t    lines = [\n310\t        r\"\\begin{table}[h]\",\n311\t        r\"\\centering\",\n312\t        r\"\\small\",\n313\t        r\"\\begin{tabular}{lcc}\",\n314\t        r\"\\toprule\",\n315\t        r\"\\textbf{Judge} & $\\hat{d}_j$ & 95\\% CI \\\\\",\n316\t        r\"\\midrule\",\n317\t    ]\n318\t    js = values.get(\"judge_severity\", {})\n319\t    for judge_name, entry in js.items():\n320\t        display = judge_name.replace(\"_\", r\"\\_\").replace(\"-\", \"-\")\n321\t        lines.append(f\"{display} & ${entry['d_j_mean']}$ & ${entry['d_j_ci']}$ \\\\\\\\\")\n322\t    lines.append(r\"\\bottomrule\")\n323\t    lines.append(r\"\\end{tabular}\")\n324\t    lines.append(r\"\\caption{Judge severity estimates ($d_j$) for N=17 evaluation.}\")\n325\t    lines.append(r\"\\label{tab:judge_severity_n17}\")\n326\t    lines.append(r\"\\end{table}\")\n327\t    return \"\\n\".join(lines)\n328\t\n329\t\n330\tdef main():\n331\t    parser = argparse.ArgumentParser(description=\"Extract N=17 results for paper\")\n332\t    parser.add_argument(\"--trace-dir\", required=True, help=\"Path to output_n17/\")\n333\t    parser.add_argument(\"--out-dir\", default=None, help=\"Output directory (default: trace-dir)\")\n334\t    args = parser.parse_args()\n335\t\n336\t    trace_dir = Path(args.trace_dir)\n337\t    out_dir = Path(args.out_dir) if args.out_dir else trace_dir / \"paper_artifacts\"\n338\t    out_dir.mkdir(parents=True, exist_ok=True)\n339\t\n340\t    values = extract_values(trace_dir)\n341\t\n342\t    # Write JSON\n343\t    json_path = out_dir / \"paper_values_n17.json\"\n344\t    with open(json_path, \"w\") as f:\n345\t        json.dump(values, f, indent=2, ensure_ascii=False)\n346\t    print(f\"Written: {json_path}\")\n347\t\n348\t    # Generate LaTeX tables\n349\t    tables = {\n350\t        \"table_raw_scores_n17.tex\": generate_raw_scores_table(values),\n351\t        \"table_bias_absorption_n17.tex\": generate_bias_absorption_table(values),\n352\t        \"table_judge_severity_n17.tex\": generate_judge_severity_table(values),\n353\t    }\n354\t    for name, content in tables.items():\n355\t        path = out_dir / name\n356\t        with open(path, \"w\") as f:\n357\t            f.write(content)\n358\t        print(f\"Written: {path}\")\n359\t\n360\t    # Print summary for quick verification\n361\t    print(\"\\n--- Headline Numbers ---\")\n362\t    hl = values.get(\"headline_numbers\", {})\n363\t    print(f\"G-MFRM τ={hl.get('gmfrm_tau')}  ρ={hl.get('gmfrm_rho')}\")\n364\t    print(f\"Baseline τ={hl.get('baseline_tau')}  ρ={hl.get('baseline_rho')}\")\n365\t    print(f\"Design: {hl.get('n_models')} models, {values['design'].get('n_judges')} judges\")\n366\t\n367\t    diag = values.get(\"mcmc_diagnostics\", {})\n368\t    print(f\"MCMC: R-hat={diag.get('r_hat_max')}, ESS={diag.get('ess_min')}, div={diag.get('divergent_transitions')}\")\n369\t\n370\t    loo = values.get(\"loo_cv\", {})\n371\t    print(f\"LOO: ΔELPD={loo.get('delta_elpd')}, SE={loo.get('se')}, |Δ/SE|={loo.get('ratio')}\")\n372\t\n373\t\n374\tif __name__ == \"__main__\":\n375\t    main()\n376\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "b32765ba-a8c8-4fbc-ad65-2ed281291720",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"\nfill_paper_n17.py — Extract N=17 MCMC results and generate paper artifacts.\n\nInput:  MCMC trace directory (output_n17/) containing results.json + analysis/\nOutput: paper_values_n17.json + 3 Appendix LaTeX tables\n\nCompat fixes (2026-05-24):\n  - Design: read data_summary.{N,I,J,n_obs} instead of top-level n_models/n_judges\n  - Convergence: accept r_hat/ess/divergences alongside r_hat_max/ess_min/divergent_transitions\n  - c_n/d_j: load from refit_summary.json array format (CI+ESS); fall back to results.json flat dict\n  - LOO: handle delta_elpd_loo at top level + comparison.MFRM.dse nested structure\n  - MCMC config: fall back to refit_summary.mcmc_config for chains/warmup/samples\n\nUsage:\n  python fill_paper_n17.py --trace-dir /path/to/output_n17\n  python fill_paper_n17.py --trace-dir /path/to/output_n17 --out-dir ./paper_artifacts\n\"\"\"\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\nfrom typing import Any\n\n# Precision rules: τ/ρ 3dp, θ/c/d 2dp, ELPD 1dp, ESS/counts int\ndef fmt_tau(v): return f\"{v:.3f}\"\ndef fmt_theta(v): return f\"{v:.2f}\"\ndef fmt_elpd(v): return f\"{v:.1f}\"\ndef fmt_int(v): return str(int(round(v)))\ndef fmt_ci(lo, hi, fn=fmt_theta): return f\"[{fn(lo)}, {fn(hi)}]\"\ndef sign_theta(v): return f\"+{v:.2f}\" if v >= 0 else f\"{v:.2f}\"\n\n\ndef load_json(path: Path) -> dict:\n    with open(path) as f:\n        return json.load(f)\n\n\ndef try_load_json(path: Path) -> dict | None:\n    if path.exists():\n        return load_json(path)\n    return None\n\n\ndef _refit_array_to_dict(arr: list, name_key: str = \"model\") -> dict:\n    \"\"\"Convert refit_summary arrays [{model/judge, mean, ci_95_lower, ...}] to dict keyed by name.\"\"\"\n    return {\n        entry[name_key]: {\n            \"mean\": entry[\"mean\"],\n            \"ci\": [entry.get(\"ci_95_lower\"), entry.get(\"ci_95_upper\")],\n            \"ess_bulk\": entry.get(\"ess_bulk\", 0),\n        }\n        for entry in arr\n    }\n\n\ndef extract_values(trace_dir: Path) -> dict:\n    \"\"\"Extract all paper-relevant values from MCMC output directory.\"\"\"\n    values: dict[str, Any] = {}\n\n    # --- Core results ---\n    results_path = trace_dir / \"results.json\"\n    if not results_path.exists():\n        sys.exit(f\"ERROR: {results_path} not found\")\n    results = load_json(results_path)\n\n    # Load refit_summary for posterior CI/ESS (path varies across runs)\n    refit = None\n    for rp in [trace_dir / \"analysis\" / \"refit_summary.json\",\n               trace_dir / \"downstream\" / \"analysis\" / \"refit_summary.json\"]:\n        refit = try_load_json(rp)\n        if refit:\n            break\n\n    # Design — actual MCMC output uses data_summary.{N,I,J,n_obs}\n    ds = results.get(\"data_summary\", {})\n    values[\"design\"] = {\n        \"n_models\": ds.get(\"N\", results.get(\"n_models\", 17)),\n        \"n_items\": ds.get(\"I\", results.get(\"n_items\")),\n        \"n_judges\": ds.get(\"J\", results.get(\"n_judges\")),\n        \"n_observations\": ds.get(\"n_obs\", results.get(\"n_observations\")),\n    }\n\n    # Table 1: ranking correlations\n    table1 = {}\n    for method_key in [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]:\n        m = results.get(method_key, results.get(\"arena_correlation\", {}).get(method_key, {}))\n        if isinstance(m, dict):\n            table1[method_key] = {\n                \"kendall_tau\": fmt_tau(m.get(\"kendall_tau\", 0)),\n                \"spearman_rho\": fmt_tau(m.get(\"spearman_rho\", 0)),\n            }\n    values[\"table1\"] = table1\n\n    # MCMC diagnostics — actual fields: r_hat/ess/divergences (not r_hat_max/ess_min/divergent_transitions)\n    conv = results.get(\"convergence\", {}).get(\"joint_gmfrm\", results.get(\"convergence\", {}))\n    refit_mcmc = (refit or {}).get(\"mcmc_config\", {})\n    values[\"mcmc_diagnostics\"] = {\n        \"r_hat_max\": conv.get(\"r_hat_max\", conv.get(\"r_hat\")),\n        \"ess_min\": conv.get(\"ess_min\", conv.get(\"ess\")),\n        \"divergent_transitions\": conv.get(\"divergent_transitions\", conv.get(\"divergences\", 0)),\n        \"chains\": results.get(\"chains\", refit_mcmc.get(\"chains\", 4)),\n        \"warmup\": results.get(\"warmup\", refit_mcmc.get(\"warmup\")),\n        \"samples\": results.get(\"samples\", refit_mcmc.get(\"samples\")),\n    }\n\n    # Per-model c_n — refit_summary has CI+ESS as array; results.json only has point estimates\n    if refit and \"c\" in refit:\n        cn_data = _refit_array_to_dict(refit[\"c\"], name_key=\"model\")\n    elif \"c_n\" in results:\n        cn_data = results[\"c_n\"]\n    else:\n        c_vals = results.get(\"parameters\", {}).get(\"joint_gmfrm\", {}).get(\"c_values\", {})\n        cn_data = {m: {\"mean\": v, \"ci\": [None, None], \"ess_bulk\": 0} for m, v in c_vals.items()}\n    values[\"contamination\"] = {}\n    for model_name in sorted(cn_data.keys(), key=lambda k: cn_data[k].get(\"mean\", 0), reverse=True):\n        entry = cn_data[model_name]\n        ci = entry.get(\"ci\", [None, None])\n        values[\"contamination\"][model_name] = {\n            \"c_n_mean\": fmt_theta(entry[\"mean\"]),\n            \"c_n_ci\": fmt_ci(ci[0], ci[1]) if ci[0] is not None else \"N/A\",\n            \"ess\": fmt_int(entry.get(\"ess_bulk\", 0)),\n        }\n\n    # Per-judge d_j — same pattern: refit_summary array or results.json flat dict\n    if refit and \"d\" in refit:\n        dj_data = _refit_array_to_dict(refit[\"d\"], name_key=\"judge\")\n    elif \"d_j\" in results:\n        dj_data = results[\"d_j\"]\n    else:\n        d_vals = results.get(\"parameters\", {}).get(\"joint_gmfrm\", {}).get(\"d_values\", {})\n        dj_data = {j: {\"mean\": v, \"ci\": [None, None], \"ess_bulk\": 0} for j, v in d_vals.items()}\n    values[\"judge_severity\"] = {}\n    for judge_name in sorted(dj_data.keys(), key=lambda k: dj_data[k].get(\"mean\", 0), reverse=True):\n        entry = dj_data[judge_name]\n        ci = entry.get(\"ci\", [None, None])\n        values[\"judge_severity\"][judge_name] = {\n            \"d_j_mean\": fmt_theta(entry[\"mean\"]),\n            \"d_j_ci\": fmt_ci(ci[0], ci[1]) if ci[0] is not None else \"N/A\",\n            \"ess\": fmt_int(entry.get(\"ess_bulk\", 0)),\n        }\n\n    # --- Downstream results ---\n    downstream = trace_dir / \"downstream\"\n\n    # LOO-CV — actual output has loo_comparison.json at trace_dir root,\n    # with delta_elpd_loo at top level and dse inside comparison.MFRM\n    loo_paths = [\n        trace_dir / \"loo_comparison.json\",\n        downstream / \"model_comparison\" / \"loo_comparison.json\",\n        downstream / \"model_comparison\" / \"waic_loo_summary.json\",\n    ]\n    for p in loo_paths:\n        loo = try_load_json(p)\n        if loo:\n            comp_mfrm = loo.get(\"comparison\", {}).get(\"MFRM\", {})\n            delta = loo.get(\"delta_elpd_loo\", loo.get(\"delta_elpd\", loo.get(\"elpd_diff\", 0)))\n            se = comp_mfrm.get(\"dse\", loo.get(\"se\", loo.get(\"dse\", 0)))\n            stacking = loo.get(\"comparison\", {}).get(\"G-MFRM\", {}).get(\"weight\",\n                       loo.get(\"stacking_weight_gmfrm\", loo.get(\"weight\")))\n            values[\"loo_cv\"] = {\n                \"delta_elpd\": fmt_elpd(delta),\n                \"se\": fmt_elpd(se),\n                \"ratio\": fmt_tau(abs(delta) / max(se, 0.01)),\n                \"stacking_weight_gmfrm\": stacking,\n            }\n            break\n    if \"loo_cv\" not in values:\n        values[\"loo_cv\"] = {\"delta_elpd\": \"N/A\", \"se\": \"N/A\", \"ratio\": \"N/A\"}\n\n    # Bootstrap Δτ\n    bootstrap_paths = [\n        downstream / \"bootstrap_results\" / \"bootstrap_summary.json\",\n        downstream / \"bootstrap_results\" / \"results.json\",\n    ]\n    for p in bootstrap_paths:\n        bs = try_load_json(p)\n        if bs:\n            values[\"ranking_significance\"] = {\n                \"delta_tau_mean\": fmt_tau(bs.get(\"delta_tau_mean\", bs.get(\"mean\", 0))),\n                \"delta_tau_median\": fmt_tau(bs.get(\"delta_tau_median\", bs.get(\"median\", 0))),\n                \"ci_95\": fmt_ci(\n                    bs.get(\"ci_lower\", bs.get(\"ci\", [0, 0])[0]),\n                    bs.get(\"ci_upper\", bs.get(\"ci\", [0, 0])[1]),\n                    fmt_tau,\n                ),\n                \"p_positive\": fmt_tau(bs.get(\"p_positive\", bs.get(\"p_delta_ge_0\", 0))),\n            }\n            break\n    if \"ranking_significance\" not in values:\n        values[\"ranking_significance\"] = {\"delta_tau_mean\": \"N/A\"}\n\n    # Baselines\n    baselines_paths = [\n        downstream / \"baselines\" / \"results.json\",\n        downstream / \"baselines\" / \"baseline_results.json\",\n    ]\n    for p in baselines_paths:\n        bl = try_load_json(p)\n        if bl:\n            for method in [\"raw_average\", \"mfrm_only\", \"sequential\",\n                           \"cyclic_judge\", \"cyclic_judge_discard\",\n                           \"dcr_factor\", \"pref_leakage\", \"preference_leakage\"]:\n                if method in bl and method not in table1:\n                    table1[method] = {\n                        \"kendall_tau\": fmt_tau(bl[method].get(\"kendall_tau\", 0)),\n                        \"spearman_rho\": fmt_tau(bl[method].get(\"spearman_rho\", 0)),\n                    }\n            if \"preference_leakage\" in table1 and \"pref_leakage\" not in table1:\n                table1[\"pref_leakage\"] = table1.pop(\"preference_leakage\")\n            break\n\n    # Bias absorption (delta theta)\n    delta_paths = [\n        downstream / \"delta_theta\" / \"results.json\",\n        downstream / \"delta_theta\" / \"delta_theta.json\",\n    ]\n    for p in delta_paths:\n        dt = try_load_json(p)\n        if dt:\n            values[\"bias_absorption\"] = dt\n            break\n\n    # Facet fit\n    fit_paths = [\n        downstream / \"facet_fit\" / \"results.json\",\n        downstream / \"facet_fit\" / \"fit_statistics.json\",\n    ]\n    for p in fit_paths:\n        ff = try_load_json(p)\n        if ff:\n            values[\"fit_statistics\"] = ff\n            break\n\n    # Headline numbers\n    gmfrm = table1.get(\"joint_gmfrm\", {})\n    baseline = table1.get(\"raw_average\", {})\n    values[\"headline_numbers\"] = {\n        \"gmfrm_tau\": gmfrm.get(\"kendall_tau\", \"N/A\"),\n        \"gmfrm_rho\": gmfrm.get(\"spearman_rho\", \"N/A\"),\n        \"baseline_tau\": baseline.get(\"kendall_tau\", \"N/A\"),\n        \"baseline_rho\": baseline.get(\"spearman_rho\", \"N/A\"),\n        \"n_models\": values[\"design\"][\"n_models\"],\n        \"n_judges\": values[\"design\"][\"n_judges\"],\n    }\n\n    return values\n\n\ndef generate_raw_scores_table(values: dict) -> str:\n    \"\"\"Generate LaTeX for per-model estimates (tab:raw_scores), N=17 version.\"\"\"\n    lines = [\n        r\"\\begin{table}[h]\",\n        r\"\\centering\",\n        r\"\\scriptsize\",\n        r\"\\setlength{\\tabcolsep}{3pt}\",\n        r\"\\begin{tabular}{lcccc}\",\n        r\"\\toprule\",\n        r\"\\textbf{Model} & $\\hat{\\theta}$ [95\\% CI] & $\\hat{c}_n$ [95\\% CI] & \\textbf{Base} & \\textbf{G-MFRM} \\\\\",\n        r\"\\midrule\",\n    ]\n    # TODO: actual ranking data requires theta values sorted\n    # Placeholder structure — fill from results.json theta + c_n + rankings\n    lines.append(r\"% [Auto-generated from MCMC output — rows inserted by fill_paper_n17.py]\")\n    lines.append(r\"\\bottomrule\")\n    lines.append(r\"\\end{tabular}\")\n    lines.append(r\"\\caption{G-MFRM posterior estimates for ability ($\\hat{\\theta}$) and contamination susceptibility ($\\hat{c}_n$) for all 17 target models.}\")\n    lines.append(r\"\\label{tab:raw_scores_n17}\")\n    lines.append(r\"\\end{table}\")\n    return \"\\n\".join(lines)\n\n\ndef generate_bias_absorption_table(values: dict) -> str:\n    \"\"\"Generate LaTeX for bias absorption table, N=17 version.\"\"\"\n    lines = [\n        r\"\\begin{table}[h]\",\n        r\"\\centering\",\n        r\"\\scriptsize\",\n        r\"\\setlength{\\tabcolsep}{3pt}\",\n        r\"\\begin{tabular}{lcccc}\",\n        r\"\\toprule\",\n        r\"\\textbf{Model} & $\\hat{\\theta}_{\\text{MFRM}}$ & $\\hat{\\theta}_{\\text{G-MFRM}}$ & $\\Delta\\theta$ & $\\hat{c}_n$ \\\\\",\n        r\"\\midrule\",\n    ]\n    ba = values.get(\"bias_absorption\", {})\n    if isinstance(ba, dict):\n        for model_name in sorted(ba.keys(),\n                                  key=lambda k: ba[k].get(\"delta_theta\", ba[k].get(\"c_n\", 0))\n                                  if isinstance(ba[k], dict) else 0,\n                                  reverse=True):\n            entry = ba[model_name]\n            if isinstance(entry, dict):\n                theta_mfrm = sign_theta(entry.get(\"theta_mfrm\", 0))\n                theta_gmfrm = sign_theta(entry.get(\"theta_gmfrm\", 0))\n                delta = sign_theta(entry.get(\"delta_theta\", 0))\n                cn = fmt_theta(entry.get(\"c_n\", 0))\n                display = model_name.replace(\"_\", r\"\\_\").replace(\"-\", \"-\")\n                lines.append(f\"{display} & ${theta_mfrm}$ & ${theta_gmfrm}$ & ${delta}$ & ${cn}$ \\\\\\\\\")\n    lines.append(r\"\\bottomrule\")\n    lines.append(r\"\\end{tabular}\")\n    lines.append(r\"\\caption{Contamination bias absorption in MFRM-only estimation for 17 models.}\")\n    lines.append(r\"\\label{tab:bias_absorption_n17}\")\n    lines.append(r\"\\end{table}\")\n    return \"\\n\".join(lines)\n\n\ndef generate_judge_severity_table(values: dict) -> str:\n    \"\"\"Generate LaTeX for judge severity table.\"\"\"\n    lines = [\n        r\"\\begin{table}[h]\",\n        r\"\\centering\",\n        r\"\\small\",\n        r\"\\begin{tabular}{lcc}\",\n        r\"\\toprule\",\n        r\"\\textbf{Judge} & $\\hat{d}_j$ & 95\\% CI \\\\\",\n        r\"\\midrule\",\n    ]\n    js = values.get(\"judge_severity\", {})\n    for judge_name, entry in js.items():\n        display = judge_name.replace(\"_\", r\"\\_\").replace(\"-\", \"-\")\n        lines.append(f\"{display} & ${entry['d_j_mean']}$ & ${entry['d_j_ci']}$ \\\\\\\\\")\n    lines.append(r\"\\bottomrule\")\n    lines.append(r\"\\end{tabular}\")\n    lines.append(r\"\\caption{Judge severity estimates ($d_j$) for N=17 evaluation.}\")\n    lines.append(r\"\\label{tab:judge_severity_n17}\")\n    lines.append(r\"\\end{table}\")\n    return \"\\n\".join(lines)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Extract N=17 results for paper\")\n    parser.add_argument(\"--trace-dir\", required=True, help=\"Path to output_n17/\")\n    parser.add_argument(\"--out-dir\", default=None, help=\"Output directory (default: trace-dir)\")\n    args = parser.parse_args()\n\n    trace_dir = Path(args.trace_dir)\n    out_dir = Path(args.out_dir) if args.out_dir else trace_dir / \"paper_artifacts\"\n    out_dir.mkdir(parents=True, exist_ok=True)\n\n    values = extract_values(trace_dir)\n\n    # Write JSON\n    json_path = out_dir / \"paper_values_n17.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(values, f, indent=2, ensure_ascii=False)\n    print(f\"Written: {json_path}\")\n\n    # Generate LaTeX tables\n    tables = {\n        \"table_raw_scores_n17.tex\": generate_raw_scores_table(values),\n        \"table_bias_absorption_n17.tex\": generate_bias_absorption_table(values),\n        \"table_judge_severity_n17.tex\": generate_judge_severity_table(values),\n    }\n    for name, content in tables.items():\n        path = out_dir / name\n        with open(path, \"w\") as f:\n            f.write(content)\n        print(f\"Written: {path}\")\n\n    # Print summary for quick verification\n    print(\"\\n--- Headline Numbers ---\")\n    hl = values.get(\"headline_numbers\", {})\n    print(f\"G-MFRM τ={hl.get('gmfrm_tau')}  ρ={hl.get('gmfrm_rho')}\")\n    print(f\"Baseline τ={hl.get('baseline_tau')}  ρ={hl.get('baseline_rho')}\")\n    print(f\"Design: {hl.get('n_models')} models, {values['design'].get('n_judges')} judges\")\n\n    diag = values.get(\"mcmc_diagnostics\", {})\n    print(f\"MCMC: R-hat={diag.get('r_hat_max')}, ESS={diag.get('ess_min')}, div={diag.get('divergent_transitions')}\")\n\n    loo = values.get(\"loo_cv\", {})\n    print(f\"LOO: ΔELPD={loo.get('delta_elpd')}, SE={loo.get('se')}, |Δ/SE|={loo.get('ratio')}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 376,
+                "startLine": 1,
+                "totalLines": 376
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014NCiuddyMdwi2yuMQmM9GH",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "8918ffe1-b993-4bf4-b7ac-d63041ea83f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y9d4mYH37zRYK8gj2csofS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6326,
+                "cache_read_input_tokens": 23823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6326
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T09:13:29.659Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_014NCiuddyMdwi2yuMQmM9GH",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "c1a039ff-eea9-4579-97d7-509369354925",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to create the directory and write the script content to the remote server. Let me first create the directory, then write the file content using a heredoc approach.",
+              "signature": "EvQCCmMIDhgCKkADbKo0fbJqLIwgs9WrCwHpQInDdfxpratX7bzE6M5e5JHn3okItshNMLXQh6OQl3kj88MdPYvhfEY3uAULp3DaMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDKWjW9E8bKrATrFtrxoMfwDssB+0u2mj3UBVIjC+1BqVTjN/1v9NqGI5Ioo98kRxaiS3ClFJ5oXYhu/wGqKAXHpaWcDAs05tlOaW3vAqvgHe4o1rFZr51frpSfBbWOF/IqWIFjL/xQSYEuP+PlqCi4CClimGd0kThBxmaV3XmXCp+vDfigLWv2YFz/36nm0U/m2uRe/F9kF1kBPuoa22uS5F+vcFXjGRH57VXxeH1cHqM0KhO2GVOBCG5BlxOk+r34NkHBaV5JwJLHg1g5NnmC0vh4UqQ6ebqk4oAhVmUGMKnkqajeqBO5O5Y8difhAa9gK8Ziepd7tUgGgvzNleCDiOT1MmakYDmjjqYsn7GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "2d8bf983-07b7-4e51-ad02-c6b2512b43c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FsipE71LGrbioxroDq3fke",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 344,
+                "cache_read_input_tokens": 30149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 344
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "创建目录并写入脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "b2abe53f-6325-444d-b414-f1c0390f712f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FsipE71LGrbioxroDq3fke",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 344,
+                "cache_read_input_tokens": 30149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 344
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WuNZ2B7bq8n2b78fEWPuXt",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-8gpu",
+                "command": "mkdir -p /root/gated_mfrm_judge_bias/docs/paper/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "0627a373-3351-4973-b99f-215f5cbbbdab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FsipE71LGrbioxroDq3fke",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 344,
+                "cache_read_input_tokens": 30149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 344
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T09:13:35.704Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WuNZ2B7bq8n2b78fEWPuXt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "4ca66157-77ef-48b2-bda7-819758bd09bb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wd6GXDmyCD8QDbPq7x61CV",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-8gpu",
+                "command": "cat > /root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"\nfill_paper_n17.py — Extract N=17 MCMC results and generate paper artifacts.\n\nInput:  MCMC trace directory (output_n17/) containing results.json + analysis/\nOutput: paper_values_n17.json + 3 Appendix LaTeX tables\n\nCompat fixes (2026-05-24):\n  - Design: read data_summary.{N,I,J,n_obs} instead of top-level n_models/n_judges\n  - Convergence: accept r_hat/ess/divergences alongside r_hat_max/ess_min/divergent_transitions\n  - c_n/d_j: load from refit_summary.json array format (CI+ESS); fall back to results.json flat dict\n  - LOO: handle delta_elpd_loo at top level + comparison.MFRM.dse nested structure\n  - MCMC config: fall back to refit_summary.mcmc_config for chains/warmup/samples\n\nUsage:\n  python fill_paper_n17.py --trace-dir /path/to/output_n17\n  python fill_paper_n17.py --trace-dir /path/to/output_n17 --out-dir ./paper_artifacts\n\"\"\"\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\nfrom typing import Any\n\n# Precision rules: τ/ρ 3dp, θ/c/d 2dp, ELPD 1dp, ESS/counts int\ndef fmt_tau(v): return f\"{v:.3f}\"\ndef fmt_theta(v): return f\"{v:.2f}\"\ndef fmt_elpd(v): return f\"{v:.1f}\"\ndef fmt_int(v): return str(int(round(v)))\ndef fmt_ci(lo, hi, fn=fmt_theta): return f\"[{fn(lo)}, {fn(hi)}]\"\ndef sign_theta(v): return f\"+{v:.2f}\" if v >= 0 else f\"{v:.2f}\"\n\n\ndef load_json(path: Path) -> dict:\n    with open(path) as f:\n        return json.load(f)\n\n\ndef try_load_json(path: Path) -> dict | None:\n    if path.exists():\n        return load_json(path)\n    return None\n\n\ndef _refit_array_to_dict(arr: list, name_key: str = \"model\") -> dict:\n    \"\"\"Convert refit_summary arrays [{model/judge, mean, ci_95_lower, ...}] to dict keyed by name.\"\"\"\n    return {\n        entry[name_key]: {\n            \"mean\": entry[\"mean\"],\n            \"ci\": [entry.get(\"ci_95_lower\"), entry.get(\"ci_95_upper\")],\n            \"ess_bulk\": entry.get(\"ess_bulk\", 0),\n        }\n        for entry in arr\n    }\n\n\ndef extract_values(trace_dir: Path) -> dict:\n    \"\"\"Extract all paper-relevant values from MCMC output directory.\"\"\"\n    values: dict[str, Any] = {}\n\n    # --- Core results ---\n    results_path = trace_dir / \"results.json\"\n    if not results_path.exists():\n        sys.exit(f\"ERROR: {results_path} not found\")\n    results = load_json(results_path)\n\n    # Load refit_summary for posterior CI/ESS (path varies across runs)\n    refit = None\n    for rp in [trace_dir / \"analysis\" / \"refit_summary.json\",\n               trace_dir / \"downstream\" / \"analysis\" / \"refit_summary.json\"]:\n        refit = try_load_json(rp)\n        if refit:\n            break\n\n    # Design — actual MCMC output uses data_summary.{N,I,J,n_obs}\n    ds = results.get(\"data_summary\", {})\n    values[\"design\"] = {\n        \"n_models\": ds.get(\"N\", results.get(\"n_models\", 17)),\n        \"n_items\": ds.get(\"I\", results.get(\"n_items\")),\n        \"n_judges\": ds.get(\"J\", results.get(\"n_judges\")),\n        \"n_observations\": ds.get(\"n_obs\", results.get(\"n_observations\")),\n    }\n\n    # Table 1: ranking correlations\n    table1 = {}\n    for method_key in [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]:\n        m = results.get(method_key, results.get(\"arena_correlation\", {}).get(method_key, {}))\n        if isinstance(m, dict):\n            table1[method_key] = {\n                \"kendall_tau\": fmt_tau(m.get(\"kendall_tau\", 0)),\n                \"spearman_rho\": fmt_tau(m.get(\"spearman_rho\", 0)),\n            }\n    values[\"table1\"] = table1\n\n    # MCMC diagnostics — actual fields: r_hat/ess/divergences (not r_hat_max/ess_min/divergent_transitions)\n    conv = results.get(\"convergence\", {}).get(\"joint_gmfrm\", results.get(\"convergence\", {}))\n    refit_mcmc = (refit or {}).get(\"mcmc_config\", {})\n    values[\"mcmc_diagnostics\"] = {\n        \"r_hat_max\": conv.get(\"r_hat_max\", conv.get(\"r_hat\")),\n        \"ess_min\": conv.get(\"ess_min\", conv.get(\"ess\")),\n        \"divergent_transitions\": conv.get(\"divergent_transitions\", conv.get(\"divergences\", 0)),\n        \"chains\": results.get(\"chains\", refit_mcmc.get(\"chains\", 4)),\n        \"warmup\": results.get(\"warmup\", refit_mcmc.get(\"warmup\")),\n        \"samples\": results.get(\"samples\", refit_mcmc.get(\"samples\")),\n    }\n\n    # Per-model c_n — refit_summary has CI+ESS as array; results.json only has point estimates\n    if refit and \"c\" in refit:\n        cn_data = _refit_array_to_dict(refit[\"c\"], name_key=\"model\")\n    elif \"c_n\" in results:\n        cn_data = results[\"c_n\"]\n    else:\n        c_vals = results.get(\"parameters\", {}).get(\"joint_gmfrm\", {}).get(\"c_values\", {})\n        cn_data = {m: {\"mean\": v, \"ci\": [None, None], \"ess_bulk\": 0} for m, v in c_vals.items()}\n    values[\"contamination\"] = {}\n    for model_name in sorted(cn_data.keys(), key=lambda k: cn_data[k].get(\"mean\", 0), reverse=True):\n        entry = cn_data[model_name]\n        ci = entry.get(\"ci\", [None, None])\n        values[\"contamination\"][model_name] = {\n            \"c_n_mean\": fmt_theta(entry[\"mean\"]),\n            \"c_n_ci\": fmt_ci(ci[0], ci[1]) if ci[0] is not None else \"N/A\",\n            \"ess\": fmt_int(entry.get(\"ess_bulk\", 0)),\n        }\n\n    # Per-judge d_j — same pattern: refit_summary array or results.json flat dict\n    if refit and \"d\" in refit:\n        dj_data = _refit_array_to_dict(refit[\"d\"], name_key=\"judge\")\n    elif \"d_j\" in results:\n        dj_data = results[\"d_j\"]\n    else:\n        d_vals = results.get(\"parameters\", {}).get(\"joint_gmfrm\", {}).get(\"d_values\", {})\n        dj_data = {j: {\"mean\": v, \"ci\": [None, None], \"ess_bulk\": 0} for j, v in d_vals.items()}\n    values[\"judge_severity\"] = {}\n    for judge_name in sorted(dj_data.keys(), key=lambda k: dj_data[k].get(\"mean\", 0), reverse=True):\n        entry = dj_data[judge_name]\n        ci = entry.get(\"ci\", [None, None])\n        values[\"judge_severity\"][judge_name] = {\n            \"d_j_mean\": fmt_theta(entry[\"mean\"]),\n            \"d_j_ci\": fmt_ci(ci[0], ci[1]) if ci[0] is not None else \"N/A\",\n            \"ess\": fmt_int(entry.get(\"ess_bulk\", 0)),\n        }\n\n    # --- Downstream results ---\n    downstream = trace_dir / \"downstream\"\n\n    # LOO-CV — actual output has loo_comparison.json at trace_dir root,\n    # with delta_elpd_loo at top level and dse inside comparison.MFRM\n    loo_paths = [\n        trace_dir / \"loo_comparison.json\",\n        downstream / \"model_comparison\" / \"loo_comparison.json\",\n        downstream / \"model_comparison\" / \"waic_loo_summary.json\",\n    ]\n    for p in loo_paths:\n        loo = try_load_json(p)\n        if loo:\n            comp_mfrm = loo.get(\"comparison\", {}).get(\"MFRM\", {})\n            delta = loo.get(\"delta_elpd_loo\", loo.get(\"delta_elpd\", loo.get(\"elpd_diff\", 0)))\n            se = comp_mfrm.get(\"dse\", loo.get(\"se\", loo.get(\"dse\", 0)))\n            stacking = loo.get(\"comparison\", {}).get(\"G-MFRM\", {}).get(\"weight\",\n                       loo.get(\"stacking_weight_gmfrm\", loo.get(\"weight\")))\n            values[\"loo_cv\"] = {\n                \"delta_elpd\": fmt_elpd(delta),\n                \"se\": fmt_elpd(se),\n                \"ratio\": fmt_tau(abs(delta) / max(se, 0.01)),\n                \"stacking_weight_gmfrm\": stacking,\n            }\n            break\n    if \"loo_cv\" not in values:\n        values[\"loo_cv\"] = {\"delta_elpd\": \"N/A\", \"se\": \"N/A\", \"ratio\": \"N/A\"}\n\n    # Bootstrap Δτ\n    bootstrap_paths = [\n        downstream / \"bootstrap_results\" / \"bootstrap_summary.json\",\n        downstream / \"bootstrap_results\" / \"results.json\",\n    ]\n    for p in bootstrap_paths:\n        bs = try_load_json(p)\n        if bs:\n            values[\"ranking_significance\"] = {\n                \"delta_tau_mean\": fmt_tau(bs.get(\"delta_tau_mean\", bs.get(\"mean\", 0))),\n                \"delta_tau_median\": fmt_tau(bs.get(\"delta_tau_median\", bs.get(\"median\", 0))),\n                \"ci_95\": fmt_ci(\n                    bs.get(\"ci_lower\", bs.get(\"ci\", [0, 0])[0]),\n                    bs.get(\"ci_upper\", bs.get(\"ci\", [0, 0])[1]),\n                    fmt_tau,\n                ),\n                \"p_positive\": fmt_tau(bs.get(\"p_positive\", bs.get(\"p_delta_ge_0\", 0))),\n            }\n            break\n    if \"ranking_significance\" not in values:\n        values[\"ranking_significance\"] = {\"delta_tau_mean\": \"N/A\"}\n\n    # Baselines\n    baselines_paths = [\n        downstream / \"baselines\" / \"results.json\",\n        downstream / \"baselines\" / \"baseline_results.json\",\n    ]\n    for p in baselines_paths:\n        bl = try_load_json(p)\n        if bl:\n            for method in [\"raw_average\", \"mfrm_only\", \"sequential\",\n                           \"cyclic_judge\", \"cyclic_judge_discard\",\n                           \"dcr_factor\", \"pref_leakage\", \"preference_leakage\"]:\n                if method in bl and method not in table1:\n                    table1[method] = {\n                        \"kendall_tau\": fmt_tau(bl[method].get(\"kendall_tau\", 0)),\n                        \"spearman_rho\": fmt_tau(bl[method].get(\"spearman_rho\", 0)),\n                    }\n            if \"preference_leakage\" in table1 and \"pref_leakage\" not in table1:\n                table1[\"pref_leakage\"] = table1.pop(\"preference_leakage\")\n            break\n\n    # Bias absorption (delta theta)\n    delta_paths = [\n        downstream / \"delta_theta\" / \"results.json\",\n        downstream / \"delta_theta\" / \"delta_theta.json\",\n    ]\n    for p in delta_paths:\n        dt = try_load_json(p)\n        if dt:\n            values[\"bias_absorption\"] = dt\n            break\n\n    # Facet fit\n    fit_paths = [\n        downstream / \"facet_fit\" / \"results.json\",\n        downstream / \"facet_fit\" / \"fit_statistics.json\",\n    ]\n    for p in fit_paths:\n        ff = try_load_json(p)\n        if ff:\n            values[\"fit_statistics\"] = ff\n            break\n\n    # Headline numbers\n    gmfrm = table1.get(\"joint_gmfrm\", {})\n    baseline = table1.get(\"raw_average\", {})\n    values[\"headline_numbers\"] = {\n        \"gmfrm_tau\": gmfrm.get(\"kendall_tau\", \"N/A\"),\n        \"gmfrm_rho\": gmfrm.get(\"spearman_rho\", \"N/A\"),\n        \"baseline_tau\": baseline.get(\"kendall_tau\", \"N/A\"),\n        \"baseline_rho\": baseline.get(\"spearman_rho\", \"N/A\"),\n        \"n_models\": values[\"design\"][\"n_models\"],\n        \"n_judges\": values[\"design\"][\"n_judges\"],\n    }\n\n    return values\n\n\ndef generate_raw_scores_table(values: dict) -> str:\n    \"\"\"Generate LaTeX for per-model estimates (tab:raw_scores), N=17 version.\"\"\"\n    lines = [\n        r\"\\begin{table}[h]\",\n        r\"\\centering\",\n        r\"\\scriptsize\",\n        r\"\\setlength{\\tabcolsep}{3pt}\",\n        r\"\\begin{tabular}{lcccc}\",\n        r\"\\toprule\",\n        r\"\\textbf{Model} & $\\hat{\\theta}$ [95\\% CI] & $\\hat{c}_n$ [95\\% CI] & \\textbf{Base} & \\textbf{G-MFRM} \\\\\",\n        r\"\\midrule\",\n    ]\n    # TODO: actual ranking data requires theta values sorted\n    # Placeholder structure — fill from results.json theta + c_n + rankings\n    lines.append(r\"% [Auto-generated from MCMC output — rows inserted by fill_paper_n17.py]\")\n    lines.append(r\"\\bottomrule\")\n    lines.append(r\"\\end{tabular}\")\n    lines.append(r\"\\caption{G-MFRM posterior estimates for ability ($\\hat{\\theta}$) and contamination susceptibility ($\\hat{c}_n$) for all 17 target models.}\")\n    lines.append(r\"\\label{tab:raw_scores_n17}\")\n    lines.append(r\"\\end{table}\")\n    return \"\\n\".join(lines)\n\n\ndef generate_bias_absorption_table(values: dict) -> str:\n    \"\"\"Generate LaTeX for bias absorption table, N=17 version.\"\"\"\n    lines = [\n        r\"\\begin{table}[h]\",\n        r\"\\centering\",\n        r\"\\scriptsize\",\n        r\"\\setlength{\\tabcolsep}{3pt}\",\n        r\"\\begin{tabular}{lcccc}\",\n        r\"\\toprule\",\n        r\"\\textbf{Model} & $\\hat{\\theta}_{\\text{MFRM}}$ & $\\hat{\\theta}_{\\text{G-MFRM}}$ & $\\Delta\\theta$ & $\\hat{c}_n$ \\\\\",\n        r\"\\midrule\",\n    ]\n    ba = values.get(\"bias_absorption\", {})\n    if isinstance(ba, dict):\n        for model_name in sorted(ba.keys(),\n                                  key=lambda k: ba[k].get(\"delta_theta\", ba[k].get(\"c_n\", 0))\n                                  if isinstance(ba[k], dict) else 0,\n                                  reverse=True):\n            entry = ba[model_name]\n            if isinstance(entry, dict):\n                theta_mfrm = sign_theta(entry.get(\"theta_mfrm\", 0))\n                theta_gmfrm = sign_theta(entry.get(\"theta_gmfrm\", 0))\n                delta = sign_theta(entry.get(\"delta_theta\", 0))\n                cn = fmt_theta(entry.get(\"c_n\", 0))\n                display = model_name.replace(\"_\", r\"\\_\").replace(\"-\", \"-\")\n                lines.append(f\"{display} & ${theta_mfrm}$ & ${theta_gmfrm}$ & ${delta}$ & ${cn}$ \\\\\\\\\")\n    lines.append(r\"\\bottomrule\")\n    lines.append(r\"\\end{tabular}\")\n    lines.append(r\"\\caption{Contamination bias absorption in MFRM-only estimation for 17 models.}\")\n    lines.append(r\"\\label{tab:bias_absorption_n17}\")\n    lines.append(r\"\\end{table}\")\n    return \"\\n\".join(lines)\n\n\ndef generate_judge_severity_table(values: dict) -> str:\n    \"\"\"Generate LaTeX for judge severity table.\"\"\"\n    lines = [\n        r\"\\begin{table}[h]\",\n        r\"\\centering\",\n        r\"\\small\",\n        r\"\\begin{tabular}{lcc}\",\n        r\"\\toprule\",\n        r\"\\textbf{Judge} & $\\hat{d}_j$ & 95\\% CI \\\\\",\n        r\"\\midrule\",\n    ]\n    js = values.get(\"judge_severity\", {})\n    for judge_name, entry in js.items():\n        display = judge_name.replace(\"_\", r\"\\_\").replace(\"-\", \"-\")\n        lines.append(f\"{display} & ${entry['d_j_mean']}$ & ${entry['d_j_ci']}$ \\\\\\\\\")\n    lines.append(r\"\\bottomrule\")\n    lines.append(r\"\\end{tabular}\")\n    lines.append(r\"\\caption{Judge severity estimates ($d_j$) for N=17 evaluation.}\")\n    lines.append(r\"\\label{tab:judge_severity_n17}\")\n    lines.append(r\"\\end{table}\")\n    return \"\\n\".join(lines)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Extract N=17 results for paper\")\n    parser.add_argument(\"--trace-dir\", required=True, help=\"Path to output_n17/\")\n    parser.add_argument(\"--out-dir\", default=None, help=\"Output directory (default: trace-dir)\")\n    args = parser.parse_args()\n\n    trace_dir = Path(args.trace_dir)\n    out_dir = Path(args.out_dir) if args.out_dir else trace_dir / \"paper_artifacts\"\n    out_dir.mkdir(parents=True, exist_ok=True)\n\n    values = extract_values(trace_dir)\n\n    # Write JSON\n    json_path = out_dir / \"paper_values_n17.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(values, f, indent=2, ensure_ascii=False)\n    print(f\"Written: {json_path}\")\n\n    # Generate LaTeX tables\n    tables = {\n        \"table_raw_scores_n17.tex\": generate_raw_scores_table(values),\n        \"table_bias_absorption_n17.tex\": generate_bias_absorption_table(values),\n        \"table_judge_severity_n17.tex\": generate_judge_severity_table(values),\n    }\n    for name, content in tables.items():\n        path = out_dir / name\n        with open(path, \"w\") as f:\n            f.write(content)\n        print(f\"Written: {path}\")\n\n    # Print summary for quick verification\n    print(\"\\n--- Headline Numbers ---\")\n    hl = values.get(\"headline_numbers\", {})\n    print(f\"G-MFRM τ={hl.get('gmfrm_tau')}  ρ={hl.get('gmfrm_rho')}\")\n    print(f\"Baseline τ={hl.get('baseline_tau')}  ρ={hl.get('baseline_rho')}\")\n    print(f\"Design: {hl.get('n_models')} models, {values['design'].get('n_judges')} judges\")\n\n    diag = values.get(\"mcmc_diagnostics\", {})\n    print(f\"MCMC: R-hat={diag.get('r_hat_max')}, ESS={diag.get('ess_min')}, div={diag.get('divergent_transitions')}\")\n\n    loo = values.get(\"loo_cv\", {})\n    print(f\"LOO: ΔELPD={loo.get('delta_elpd')}, SE={loo.get('se')}, |Δ/SE|={loo.get('ratio')}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "85774a6e-619b-42ae-b134-c9092c8c6c60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SKfeb6P9KCxrpFPeRkecnQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 257,
+                "cache_read_input_tokens": 30493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 257
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T09:14:55.308Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wd6GXDmyCD8QDbPq7x61CV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "832efdad-3e2f-4566-96f0-c73c1b160e97",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证语法和可执行性。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "79784d51-a950-441f-b949-35e3777b0918",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014icnohefJoL9dhBFgsaGQ6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5631,
+                "cache_read_input_tokens": 30750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5631
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HM8C3YG6djdKXnJ8QSL3LW",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-8gpu",
+                "command": "python -c \"import ast; ast.parse(open('/root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py').read()); print('SYNTAX OK')\" && python /root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py --help",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "304a261a-b57a-482e-9cf0-4631524e9b3a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014icnohefJoL9dhBFgsaGQ6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5631,
+                "cache_read_input_tokens": 30750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5631
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T09:15:04.980Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HM8C3YG6djdKXnJ8QSL3LW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'/root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py\\\\\\\\').read()); print(\\\\\\\\'SYNTAX OK\\\\\\\\')\\\\\\\" && python /root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py --help'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "01cbed85-180a-4ac3-a91d-4640d31fa8c8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'/root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py\\\\\\\\').read()); print(\\\\\\\\'SYNTAX OK\\\\\\\\')\\\\\\\" && python /root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py --help'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python -c \\\"import ast; ast.parse(open(\\\\'/root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py\\\\').read()); print(\\\\'SYNTAX OK\\\\')\\\" && python /root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py --help'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FPsEvz3J9PGBZHFf95yBHt",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-8gpu",
+                "command": "python3 -c \"import ast; ast.parse(open('/root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py').read()); print('SYNTAX OK')\" && python3 /root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py --help",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "1e54d63b-f15f-47f2-b4d7-787f1e239347",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EuqXwTMaMtaQdgLRWipz6K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 395,
+                "cache_read_input_tokens": 36381,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 395
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T09:15:08.763Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FPsEvz3J9PGBZHFf95yBHt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX OK\\\\nusage: fill_paper_n17.py [-h] --trace-dir TRACE_DIR [--out-dir OUT_DIR]\\\\n\\\\nExtract N=17 results for paper\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --trace-dir TRACE_DIR\\\\n                        Path to output_n17/\\\\n  --out-dir OUT_DIR     Output directory (default: trace-dir)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "05e1b7b0-a33c-45f7-9ea8-5cad29eb53ba",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX OK\\\\nusage: fill_paper_n17.py [-h] --trace-dir TRACE_DIR [--out-dir OUT_DIR]\\\\n\\\\nExtract N=17 results for paper\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --trace-dir TRACE_DIR\\\\n                        Path to output_n17/\\\\n  --out-dir OUT_DIR     Output directory (default: trace-dir)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX OK\\nusage: fill_paper_n17.py [-h] --trace-dir TRACE_DIR [--out-dir OUT_DIR]\\n\\nExtract N=17 results for paper\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --trace-dir TRACE_DIR\\n                        Path to output_n17/\\n  --out-dir OUT_DIR     Output directory (default: trace-dir)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已同步到 `autodl-8gpu:/root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py`，语法检查通过，`--help` 正常输出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "uuid": "56814bbe-3912-430c-813c-82a9a8501a0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XtTt6Ar2idpjGiv5j6TQss",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 368,
+                "cache_read_input_tokens": 36776,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 368
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已同步到 `autodl-8gpu:/root/gated_mfrm_judge_bias/docs/paper/fill_paper_n17.py`，语法检查通过，`--help` 正常输出。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 109157,
+            "duration_api_ms": 111664,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "c2722b34-4b41-4655-932c-cd3947c43853",
+            "total_cost_usd": 0.42066875,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 25697,
+              "cache_read_input_tokens": 199819,
+              "output_tokens": 6358,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25697,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 62,
+                  "cache_read_input_tokens": 36776,
+                  "cache_creation_input_tokens": 368,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 368
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 6358,
+                "cacheReadInputTokens": 199819,
+                "cacheCreationInputTokens": 25697,
+                "webSearchRequests": 0,
+                "costUSD": 0.41952075000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              },
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1023,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0011480000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "fe453593-2436-4031-ad98-3002fa2696c0"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-sync-fill-paper-script.md"
+}

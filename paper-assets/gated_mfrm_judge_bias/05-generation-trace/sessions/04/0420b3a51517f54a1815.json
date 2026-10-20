@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0420b3a51517f54a1815",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh w7 final 20seed analysis",
+  "task_key": "worker_ssh_w7_final_20seed_analysis_20260523T004806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w7_final_20seed_analysis_20260523T004806_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "3cd1d41fe5f0837b0f8f348d5260cbe5a6adb0ac679870977aa950e8ebe8b453"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验在后台运行中，我设置了 ~4.5 分钟后的自动检查。完成状态会通过 loop 跟踪。进度已知：\n\n- **Seed 0/20 进行中**（full_gmfrm ✓, binary_gating 运行中）\n- **预计总耗时 ~5-6 小时**\n- `analyze_w7.py` 已就绪，实验完成后自动运行分析并报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w7-final-20seed-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebd2b4d77400d34099db",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh p0 step3 4 rsync and launch exp003",
+  "task_key": "worker_ssh_p0_step3_4_rsync_and_launch_exp003_20260522T135505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0_step3_4_rsync_and_launch_exp003_20260522T135505_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "63b269678a5408c78621c505286c592dcffbca1ca39cc5f78500e51414c8d8b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Step 3+4 执行完成。汇总：**\n\n### Step 3: rsync 结果\n| 数据 | 大小 | 状态 |\n|------|------|------|\n| exp003/ 代码 (4 .py) | 522KB | 同步成功 |\n| exp002/results/ (exposure_scores.csv 等) | 252KB | 同步成功 |\n| exp001/results/ (9 judge × judgments) | 25.6MB | 同步成功 |\n\n注：judgment 数据实际路径是 `exp001/results/`（非 `outputs/`），已修正。\n\n### Step 4: exp-003 启动状态\n- **tmux session**: `exp003`，PID 126565\n- **数据加载成功**: 8 models × 9 judges × 176 items = 5661 observations (44.7% sparsity)\n- **当前阶段**: `mfrm_only` 模型 XLA 编译中（4 chains），编译完成后进入 MCMC 采样\n- **GPU 显存**: GPU 0-1 已分配 ~73GB/98GB，GPU 2-3 待分配\n- **日志**: `/root/gated_mfrm_judge_bias/exp003/run.log`\n\n已设置 5 分钟后自动检查采样进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-step3-4-rsync-and-launch-exp003.md"
+}

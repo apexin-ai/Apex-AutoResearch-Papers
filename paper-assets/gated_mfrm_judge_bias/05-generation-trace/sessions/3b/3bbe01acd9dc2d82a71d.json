@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "3bbe01acd9dc2d82a71d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh sync figs and fix rho",
+  "task_key": "worker_ssh_sync-figs-and-fix-rho_20260525T115412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync-figs-and-fix-rho_20260525T115412_result.json",
+    "occurrence": 1,
+    "bytes": 2159041,
+    "sha256": "dcaff26f02b751ccb3bed4e10597bb7d935c2c3506732e575a1d4d0a987eed89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "3bbe01acd9dc2d82a71d-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-sync-figs-and-fix-rho.md"
+}

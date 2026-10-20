@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a9e8c092fd1c76f0f50",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl model inference launch",
+  "task_key": "worker_ssh_autodl_model_inference_launch_20260522T163718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_model_inference_launch_20260522T163718_result.json",
+    "occurrence": 1,
+    "bytes": 1330,
+    "sha256": "36a741e6586917057e4e4cbbdd250e016b05760159763dd3fcb810b9242607e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务前提与服务器实际状态不符。汇报如下：\n\n---\n\n## autodl-8gpu 实际状态\n\n### 没有小模型\n服务器上 **不存在** Llama-3.1-8B / Qwen2.5-7B / Mistral-7B。之前下载的是大模型 AWQ 量化版：\n- Llama-3.3-70B-Instruct-AWQ (37 GiB)\n- Qwen2.5-72B-Instruct-AWQ (39 GiB)\n- Mistral-Large-Instruct-2407-AWQ (60 GiB)\n\n### 4 张 GPU 全部占满\n\n| GPU | 用途 | 端口 | 显存占用 |\n|-----|------|------|---------|\n| cuda:0 | exp-003 MCMC | - | 74.3 / 97.9 GB |\n| cuda:1 | vLLM: Mistral-Large-AWQ | 8003 | 90.1 / 97.9 GB |\n| cuda:2 | vLLM: Llama-3.3-70B-AWQ | 8001 | 91.0 / 97.9 GB |\n| cuda:3 | vLLM: Qwen2.5-72B-AWQ | 8002 | 90.1 / 97.9 GB |\n\n### Arena-Hard 流水线已推进到 judge 阶段\n\nResponse 生成已基本完成（monitor 最后记录: llama=489, qwen=448, mistral=65）。\n\n当前三个 vLLM 正在服务 **pairwise judge 评估**：\n\n| Target Model | 判评进度 | 完成度 |\n|-------------|---------|-------|\n| Llama-3.3-70B | 2074 / 3000 | 69% |\n| Qwen2.5-72B | 2045 / 3000 | 68% |\n| Mistral-Large | 1382 / 3000 | 46% |\n\n### 结论\ncuda:1/2/3 不是空闲的——正在用大模型 AWQ 跑 judge 评估，不能中断。如果仍需要小模型 response，需要等当前 judge 完成后释放 GPU，或者用另一台机器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-model-inference-launch.md"
+}

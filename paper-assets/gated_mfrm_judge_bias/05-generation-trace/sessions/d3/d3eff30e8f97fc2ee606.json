@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3eff30e8f97fc2ee606",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh paper prep placeholders",
+  "task_key": "worker_ssh_paper_prep_placeholders_20260524T011411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_paper_prep_placeholders_20260524T011411_result.json",
+    "occurrence": 1,
+    "bytes": 2992,
+    "sha256": "c70e78fc326f0d19cb610c27c2495c0706c21e00b1ecd15b076161578f97d1de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已经收集完整。以下是报告。\n\n---\n\n## 1. 占位符清单\n\n所有 TBD 均在 `docs/paper/experiments.tex`，集中在 Table 1 的 \"17 models\" 两列：\n\n| 行号 | 方法 | 占位符 | 上下文 |\n|------|------|--------|--------|\n| 29 | Raw Average | `& TBD & TBD \\\\` | 17-model τ, ρ |\n| 30 | MFRM-only | `& TBD & TBD \\\\` | 17-model τ, ρ |\n| 31 | Sequential | `& TBD & TBD \\\\` | 17-model τ, ρ |\n| 32 | CyclicJudge | `& TBD & TBD \\\\` | 17-model τ, ρ |\n| 33 | CyclicJudge+discard | `& TBD & TBD \\\\` | 17-model τ, ρ |\n| 34 | DCR Factor | `& TBD & TBD \\\\` | 17-model τ, ρ |\n| 35 | Pref.\\ Leakage | `& TBD & TBD \\\\` | 17-model τ, ρ |\n| 37 | G-MFRM (ours) | `\\textbf{TBD} & \\textbf{TBD}` | 17-model τ, ρ (加粗) |\n| 40 | \\caption | `(TBD)` | caption 末尾描述 17-model 结果 |\n\n**共 17 个 TBD**：8 行 × 2 个指标 (τ, ρ) + 1 个 caption 描述。\n\n其他 tex 文件无 TBD/TODO/PLACEHOLDER/FIXME。\n\n---\n\n## 2. `run_n17_downstream.py` 输出结构\n\n脚本跑 6 个分析步骤，输出到 `output_n17/downstream/`：\n\n| 步骤 | 子目录 | 输出格式 | 关键 metrics |\n|------|--------|----------|-------------|\n| 1. WAIC/LOO | `model_comparison/` | WAIC/LOO 表 | ΔELPD_LOO, SE, stacking weight |\n| 2. Bootstrap Δτ | `bootstrap_results/` | bootstrap CI | Δτ 95% CI, P(Δτ≥0) |\n| 3. Baselines (exp004) | `baselines/results.json` | JSON | 每方法 `kendall_tau`, `spearman_rho`, per-model `theta` |\n| 4. Bias absorption (exp019) | `delta_theta/` | JSON | per-model Δθ (G-MFRM vs MFRM) |\n| 5. Facet fit (exp008) | `facet_fit/results.json` | JSON | per-model infit/outfit/θ/c, per-judge infit/outfit/d |\n| 6. Full posterior analysis | `analysis/` | analyze_003b 输出 | 综合 posterior 分析 |\n\n此外，MCMC 本身（`run_exp003_n17.py`）在拟合时调用 `evaluation.py`，直接输出 `output_n17/results.json`，包含 G-MFRM 的 τ 和 ρ。\n\n---\n\n## 3. 占位符 → downstream 输出映射表\n\n| 论文占位符 (experiments.tex) | 数据来源 | 字段路径 |\n|---|---|---|\n| L29-35: 7 baselines 的 τ | `downstream/baselines/results.json` | `[method].kendall_tau` |\n| L29-35: 7 baselines 的 ρ | `downstream/baselines/results.json` | `[method].spearman_rho` |\n| L37: G-MFRM τ | `output_n17/results.json` | `joint_gmfrm.kendall_tau` |\n| L37: G-MFRM ρ | `output_n17/results.json` | `joint_gmfrm.spearman_rho` |\n| L40: caption \"(TBD)\" | 手动更新 | 根据上述数值写出 N=17 结论描述 |\n\nbaselines `results.json` 中方法名映射：\n- `raw_average` → Raw Average\n- `mfrm_only` → MFRM-only\n- `sequential` → Sequential\n- `cyclic_judge` → CyclicJudge\n- `cyclic_judge_discard` → CyclicJudge+discard\n- `dcr_factor` → DCR Factor\n- `pref_leakage` → Pref. Leakage\n\nMCMC 完成后，只需读两个 JSON（`output_n17/results.json` + `downstream/baselines/results.json`），即可填完全部 17 个 TBD。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-paper-prep-placeholders.md"
+}

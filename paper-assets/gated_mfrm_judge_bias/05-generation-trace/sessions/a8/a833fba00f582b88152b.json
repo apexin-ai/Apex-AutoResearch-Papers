@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a833fba00f582b88152b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh qwen72b download autodl",
+  "task_key": "worker_ssh_qwen72b_download_autodl_20260524T005414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen72b_download_autodl_20260524T005414_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "82306a49b7079ed8113e77d98d85603cc1f03cf567f87b49c916b3a8d2aaea1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正常运行中。\n\n**报告：**\n\n| 项目 | 状态 |\n|------|------|\n| 下载方式 | ModelScope（国内 CDN） |\n| PID | 496190 |\n| 磁盘空间 | /root/autodl-tmp 剩余 80GB，充足 |\n| 当前进度 | 并行下载 11 个 safetensors 分片中，每个 ~3.6-3.7GB，速度 ~2-4 MB/s |\n| 预估时间 | 模型总量 ~40GB，当前速度约 2-4 MB/s 并行，预计 **30-50 分钟**完成 |\n\n下载在后台运行，可随时用 `tail -20 /tmp/download_qwen72b_awq.log` 检查进度。完成后模型路径为 `/root/autodl-tmp/models/Qwen/Qwen2.5-72B-Instruct-AWQ/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen72b-download-autodl.md"
+}

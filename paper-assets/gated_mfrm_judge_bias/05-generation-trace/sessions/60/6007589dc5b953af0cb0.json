@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6007589dc5b953af0cb0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh p0 critical fix exp003 sigma c",
+  "task_key": "worker_ssh_p0_critical_fix_exp003_sigma_c_20260522T125335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0_critical_fix_exp003_sigma_c_20260522T125335_result.json",
+    "occurrence": 1,
+    "bytes": 1523,
+    "sha256": "4374f0d8f1488d7a2a1b64bc3c35d3d9861596bd810a7263102be3c5fedd3191"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run completed. Results summary:\n\n## 修复验证\n\n| Fix | 状态 | 详情 |\n|-----|------|------|\n| **Bug 1: sigma_c** | ✅ | 用 `reg_horseshoe_prior_cn` 替代裸 HalfNormal — 提供 tau_c 全局收缩 + lambda_c 局部自适应收缩 |\n| **Bug 2: Docstring** | ✅ | 已改为 \"Regularized Horseshoe (Piironen & Vehtari, 2017)\" |\n| **Fix 3: Item 过滤** | ✅ | 316 → 175 items (dropped 141 with <3 judges), 4613 → 4223 obs |\n| **Fix 4: Arena Elo** | ✅ | gpt-4o (1286), gpt-4o-mini (1272) — 8/8 models matched |\n\n## c_n 分布 (joint_gmfrm)\n\n| Model | c_n |\n|-------|-----|\n| gpt-3.5-turbo-0125 | 5.14 |\n| gpt-4-0613 | 3.56 |\n| qwen2.5-72b | 3.20 |\n| llama-3.3-70b | 2.67 |\n| qwen3-8b | 1.65 |\n| gemma-2-9b | 1.21 |\n| gpt-4o-mini | 1.21 |\n| **gpt-4o** | **0.39** |\n\nc_n 尚未呈现 zero-inflated 形态，但 **ESS=5**（100 samples / 1 chain 严重不足）。Horseshoe 的自适应收缩需要充分采样才能生效。全量运行 (4000 samples / 4 chains) 预期 tau_c 会收缩到 <1，使大部分 c_n 被压向 0。\n\n## Arena Elo 相关性\n\n- joint_gmfrm: **tau=0.857, rho=0.952** (p=0.00026) — 最优\n- 其他三种方法: tau=0.786, rho=0.905\n\njoint_gmfrm 在 8 个模型上的 Arena Elo 相关性最高，说明加入 contamination term 确实改善了 ability 估计。\n\n## 判断\n\n**可以启动全量运行。** 0 divergences，模型正确采样，horseshoe prior 成功集成。ESS 过低是 dry-run 采样量不足的正常表现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-critical-fix-exp003-sigma-c.md"
+}

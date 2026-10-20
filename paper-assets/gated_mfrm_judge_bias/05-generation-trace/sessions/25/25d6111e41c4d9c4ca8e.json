@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25d6111e41c4d9c4ca8e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix orphan appendix pointers",
+  "task_key": "worker_ssh_fix_orphan_appendix_pointers_20260524T052228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_orphan_appendix_pointers_20260524T052228_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "869c09c82d129eb6e30cc67e740ce3fb9bb60bac3604b52dc1670fb87fcda0f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "None of the overfull warnings are at our edited lines — all pre-existing (in appendix tables at lines 367+).\n\n**验证通过。三个 ref 插入位置：**\n\n| Ref | 文件 | 行号 | 上下文 |\n|-----|------|------|--------|\n| `app:murphy_topel` | `method.tex` | 103 | \"...Murphy-Topel variance correction \\citep{murphy1985} to inflate the Stage~3 posterior variance by the estimated Stage~2 sampling variability **(Appendix~\\ref{app:murphy_topel})**.\" |\n| `app:cn_recovery` | `experiments.tex` | 52 | \"Contamination susceptibility $\\hat{c}_n$ exhibits a gradient by model age, directionally consistent with known training data exposure **(Appendix~\\ref{app:cn_recovery})**.\" |\n| `app:ci_coverage` | `limitations.tex` | 3 | \"$c_n$ credible intervals should be treated as lower bounds on uncertainty **(Appendix~\\ref{app:ci_coverage})**, with SBC-based recalibration...\" |\n\n- 0 undefined references\n- 0 new overfull hbox（9 个全是 pre-existing）\n- 编译成功，17 页 PDF"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-orphan-appendix-pointers.md"
+}

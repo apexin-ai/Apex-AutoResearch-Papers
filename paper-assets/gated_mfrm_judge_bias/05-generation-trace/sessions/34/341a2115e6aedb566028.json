@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "341a2115e6aedb566028",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh w7 final analysis",
+  "task_key": "worker_ssh_w7_final_analysis_20260523T002833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w7_final_analysis_20260523T002833_result.json",
+    "occurrence": 1,
+    "bytes": 72,
+    "sha256": "ff3acb94770ec4de4723425244da7d1ce58595e814673ed54853155188d1185f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等 seed 19 完成后我会自动检查并运行分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w7-final-analysis.md"
+}

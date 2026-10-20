@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "2a022b99e43093d7bda3",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh deploy mistral vllm cuda1",
+  "task_key": "worker_ssh_deploy_mistral_vllm_cuda1_20260522T043400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deploy_mistral_vllm_cuda1_20260522T043400.log",
+    "occurrence": 1,
+    "bytes": 1102536,
+    "sha256": "1df87a8181f73a772557b94000ecdb3f13c22d277e74fa5901e8893e626445b9"
+  },
+  "statistics": {
+    "messages": 652,
+    "user_turns": 0,
+    "tool_calls": 267,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 114,
+      "tool_call": 267,
+      "tool_result": 267
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 652,
+      "chunks": [
+        {
+          "path": "2a022b99e43093d7bda3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a022b99e43093d7bda3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a022b99e43093d7bda3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a022b99e43093d7bda3-part-0004.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-deploy-mistral-vllm-cuda1.md"
+}

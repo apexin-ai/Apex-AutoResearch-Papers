@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f18c096b6f8da3269229",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp016 prior sensitivity",
+  "task_key": "worker_ssh_exp016_prior_sensitivity_20260523T054734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp016_prior_sensitivity_20260523T054734_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "b78caef49e70426324b00d43feda98e194fb1065b7231c4dc29455c099e2d2b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job submitted.\n\n- **exp_id**: exp-016\n- **server**: autodl-8gpu, cuda:2\n- **tmux session**: `exp-016`\n- **log**: `~/runs/gated_mfrm_judge_bias/exp-016.log`\n\n脚本会依次跑 4 种 c_n 先验（HalfNormal(1.5) → Exponential(1.0) → LogNormal(0,1) → Gamma(2,1)），每种 4 chains × 2000 warmup + 4000 samples。预计总耗时 1-2 小时。结果输出到 `/root/gated_mfrm_judge_bias/exp016/results/prior_sensitivity.csv`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp016-prior-sensitivity.md"
+}

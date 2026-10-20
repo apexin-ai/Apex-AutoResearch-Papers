@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "abdce377024f233ac545",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh check diag and prep v3",
+  "task_key": "worker_ssh_check-diag-and-prep-v3_20260525T153021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-diag-and-prep-v3_20260525T153021.log",
+    "occurrence": 1,
+    "bytes": 685839,
+    "sha256": "4d438bc927a81db53f5634718a1c9f23656052aec82645142f08032e159287e9"
+  },
+  "statistics": {
+    "messages": 262,
+    "user_turns": 0,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 99,
+      "tool_result": 99,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 262,
+      "chunks": [
+        {
+          "path": "abdce377024f233ac545-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "abdce377024f233ac545-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-check-diag-and-prep-v3.md"
+}

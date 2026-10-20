@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3843885186240b21f5b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl small model inference",
+  "task_key": "worker_ssh_autodl_small_model_inference_20260522T181927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_small_model_inference_20260522T181927_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "aed01efc681788aef5549cfe0d7665f673334414ee726f501ef3880c31dc28db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral-7B 完成，500 条 response 已写入。\n\nQwen 下载速度 ~300-350 kB/s/shard，4 个 shard 并行但总量 ~14GB，预计 2.5-3 小时完成。下载完后会自动启动生成（`os.execvp` 接力）。\n\n## 汇总\n\n| 模型 | GPU | 状态 | PID | 输出 |\n|------|-----|------|-----|------|\n| **Mistral-7B-v0.3** | cuda:2 | **完成 500/500** (0 err, ~1min) | 163155 (已退出) | `responses/mistral-7b-v0.3.jsonl` |\n| **Qwen2.5-7B** | cuda:1 | 下载中 (~1% of 14GB, ~3h ETA) → 下载完自动生成 | 163745 | 待生成 → `responses/qwen2.5-7b.jsonl` |\n| cuda:0 | exp-003b MCMC | 未碰 | — | — |\n\nQwen 下载进程 PID=163745，日志 `/tmp/gen_qwen7b.log`。下载完成后会自动 `execvp` 到 `generate_vllm_batch.py --model qwen2.5-7b` 在 cuda:1 上生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-small-model-inference.md"
+}

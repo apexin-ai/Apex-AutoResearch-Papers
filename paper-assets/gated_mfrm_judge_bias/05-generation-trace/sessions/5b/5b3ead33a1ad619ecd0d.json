@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b3ead33a1ad619ecd0d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx6000 judge api health",
+  "task_key": "worker_ssh_rtx6000_judge_api_health_20260522T163611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx6000_judge_api_health_20260522T163611_result.json",
+    "occurrence": 1,
+    "bytes": 2603,
+    "sha256": "bf576ebb95dad0f29f63845a36e2686ac2d2c392838145b7ea56f448212d7869"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n---\n\n## 健康状况报告\n\n### 1. PID 247295（死亡进程）\n是 `generate_vllm_online.py` v5 run，生成 3 个本地 vLLM 模型（llama-3.3-70b, qwen2.5-72b, mistral-large-2）的 responses。在 summary 阶段因 `unsupported operand type(s) for +: 'int' and 'list'` 崩溃，但 **3 个模型的 responses 均已写入完毕（500/500）**。**无需重启。**\n\n### 2. 9 个 Judge 收集器 — 全部存活\n\n| Judge | PID | Workers | Judgments | %（/9000） | ETA | 状态 |\n|-------|-----|---------|-----------|-----------|-----|------|\n| claude-opus-4.7-proxy | 332552 | 4 | 5,150 | 57.2% | ~7.8h | ✅ |\n| gpt-5.5-proxy | 332533 | 4 | 4,900 | 54.4% | ~8.6h | ✅ |\n| claude-sonnet-4.6-proxy | 332567 | 4 | 4,673 | 51.9% | ~8.6h | ✅ |\n| qwen3-235b-proxy | 332616 | 4 | 3,309 | 36.8% | ~13h | ✅ |\n| gemini-2.5-pro-proxy | 332599 | 4 | 2,961 | 32.9% | — | ✅ log空但文件 9s 前更新 |\n| deepseek-v4-pro-proxy | 332582 | 4 | 2,320 | 25.8% | — | ✅ log空但文件 3s 前更新 |\n| llama-3.3-70b | 332474 | 8 | 2,074 | 23.0% | — | ✅ log空但文件 36s 前更新 |\n| qwen2.5-72b | 332493 | 8 | 1,974 | 21.9% | ~30h | ⚠️ 有 connection errors，在 retry |\n| mistral-large-2 | 332512 | 8 | 1,337 | 14.9% | ~34h | ⚠️ 部分 prompt 超 8192 token 限制 |\n\n3 个 log 为空（llama/deepseek/gemini）仅是 Python stdout 缓冲，judgment 文件实际在持续写入。\n\n### 3. API Response 生成\n\n| Model | Responses | 完成? |\n|-------|-----------|-------|\n| gpt-3.5-turbo-0125 | 500 | ✅ |\n| gpt-4-0314 | 500 | ✅ |\n| gpt-4-0613 | 500 | ✅ |\n| gpt-4o | 500 | ✅ |\n| gpt-4o-mini | 500 | ✅ |\n| llama-3.3-70b | 500 | ✅ |\n| qwen2.5-72b | 500 | ✅ |\n| mistral-large-2 | 500 | ✅ |\n| claude-opus-4.7 | 500 | ✅ |\n| gpt-5.5 | 500 | ✅ |\n| gemma-2-9b | 500 | ✅ |\n| qwen3-8b | 500 | ✅ |\n| **claude-sonnet-4.6** | **255** | **❌ 51%** |\n\n`generate_responses.py --group proxy_nocredit`（PID 273489）正在运行，log 暂无输出（可能在处理 claude-sonnet-4.6 剩余 245 条）。\n\n### 4. exp-009\n**159/200**（79.5%），ETA ~4h，PID 112923 运行 15h31m，正常。\n\n### 需要关注的问题\n\n1. **mistral judge 的 8192 token 上限** — 部分长 prompt 会永久失败，可能需要调大 max_tokens 或跳过这些 item\n2. **qwen judge 连接错误** — vLLM port 8002 可能不稳定，retry 中但速率只有 0.1 items/s（ETA 30h）\n3. **claude-sonnet-4.6 responses 只有 255/500** — 是当前唯一未完成的 response 生成任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx6000-judge-api-health.md"
+}

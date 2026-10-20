@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d56ad7e41d52f9d74e72",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp006 k9 parallel",
+  "task_key": "worker_ssh_exp006_k9_parallel_20260523T002423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp006_k9_parallel_20260523T002423_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "4729df1de5db7a163b7a2b3a24c03ee04966dd898fc109ca9a8e1a8b379ad01a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功启动。\n\n**汇报：**\n\n- **启动命令**：`CUDA_VISIBLE_DEVICES=3 python3 run_exp006.py --methods raw_average joint_gmfrm sequential --judge-counts 9 --output-dir results_k9`（tmux session: `exp006_k9`）\n- **状态**：已启动，MCMC sampling 进行中（GPU 3 占用 667MiB, 62% util）\n- **k=9 只有 1 个 subset**（9 个 judges 里选 9 个，只有 C(9,9)=1 种组合），所以是 1 subset × 3 methods = **3 fits**（不是 30）\n- **预估 ETA**：3 个 MCMC fits（raw_average 不需要 MCMC，实际 2 个 MCMC fits: joint_gmfrm + sequential），每个 ~3-5 分钟，总计约 **10-15 分钟**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp006-k9-parallel.md"
+}

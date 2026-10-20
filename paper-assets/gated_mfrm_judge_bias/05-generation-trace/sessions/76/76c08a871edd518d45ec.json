@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76c08a871edd518d45ec",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh regen split figs unified style",
+  "task_key": "worker_ssh_regen-split-figs-unified-style_20260525T125443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_regen-split-figs-unified-style_20260525T125443_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "ccf0080c48ba25b1901be1b03505eb401c55b90e38712559e2ddc4152a52d4a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张图全部生成成功。汇报：\n\n| 图 | 数据来源 | figsize | 文件大小 |\n|---|---|---|---|\n| `fig2_ovb_bias.pdf` | 模拟数据（20 seeds, N=50, I=100, J=8） | (3.5, 2.8) | 38 KB |\n| `forest_dj.pdf` | `exp003/output_003b/joint_gmfrm_idata.nc` | (3.5, 2.8) | 21 KB |\n| `fig_cn_contamination.pdf` | `exp003/output_003b/joint_gmfrm_idata.nc` | (3.5, 2.8) | 20 KB |\n| `fig_cn_bias_absorption.pdf` | `joint_gmfrm_idata.nc` + `mfrm_only_idata.nc` | (3.5, 2.8) | 23 KB |\n\n- 所有 4 张图均使用统一 `PAPER_STYLE`（Times New Roman/serif, fontsize 10/12, no top/right spines, grid alpha 0.3, pdf.fonttype 42）\n- 无 (a)/(b) 面板前缀\n- fig2 的 Pearson r=0.79, bias absorption 的 r=0.9958"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-regen-split-figs-unified-style.md"
+}

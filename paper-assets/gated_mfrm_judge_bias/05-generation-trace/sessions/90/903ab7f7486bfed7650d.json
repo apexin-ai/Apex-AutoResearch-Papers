@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "903ab7f7486bfed7650d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code cyclic judge baseline",
+  "task_key": "worker_code_cyclic_judge_baseline_20260521T230859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cyclic_judge_baseline_20260521T230859_result.json",
+    "occurrence": 1,
+    "bytes": 392,
+    "sha256": "11c281928e9a79b1249adf5e5ba27a827bfad5b5ba7a7689ca125908d8c37213"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**结果**:\n- 文件: `/root/gated_mfrm_judge_bias/baselines/cyclic_judge.py`，58 行\n- `fit_cyclic_judge`: shape (20,), mean=0.000000, std=0.1774\n- `fit_cyclic_judge_balanced(k=2)`: shape (20,), mean=0.000000\n- RMSE vs raw_avg: cyclic=0.0473, balanced=0.0253（接近但不同，balanced 更接近 raw_avg 符合预期——用了更多 judge 信息）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cyclic-judge-baseline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a5b791b096a47516063",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl llama judge check and orchestrator fix",
+  "task_key": "worker_ssh_autodl_llama_judge_check_and_orchestrator_fix_20260522T112034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_llama_judge_check_and_orchestrator_fix_20260522T112034_result.json",
+    "occurrence": 1,
+    "bytes": 3479,
+    "sha256": "24dd29ebb39a79383abd654b0fc1f3107ee205f80d55e14bcc627fd202eb3d5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 任务 A：Llama-3.3-70B judge 数据\n\n**实际数量** — 不是 296，是 **233**：\n\n| 文件 | 行数 | 内容 |\n|---|---|---|\n| `exp001/results/llama-3.3-70b/arena_hard_judgments.jsonl` | **233** | 全部 llama-3.3-70b judge |\n| `exp001/results/arena_hard_judgments.jsonl`（聚合文件） | 296 | 混合 3 judges：llama-3.3-70b ×173、qwen2.5-72b ×89、mistral-large-2 ×34 |\n\n用户提到的 296 是**聚合文件**（混合 3 个 judge）；llama 单独文件实际是 233 条，最新更新到 15:01:45。\n\n**target_models — 仍是旧的 3 个模型**（不是 7 个）：\n\n```\nconfig_llama_arena.yaml / config_qwen_arena.yaml / config_mistral_arena.yaml\ntarget_models:\n  - gpt-3.5-turbo-0125\n  - gpt-4-0314\n  - gpt-4-0613\n```\n\n实际 judgment 文件 model_a / model_b 列也只出现这 3 个，配对：(3.5 vs 4-0314) 78、(4-0314 vs 4-0314) 78、(4-0613 vs 4-0314) 77。\n\n**proxy 配置同样只有 3 个旧模型**（如 `config_claude-opus-4.7-proxy_arena.yaml`），但 `exp001/config.yaml` 主配置已扩到 22 个 target_models 全集。\n\n**结论**：autodl-8gpu 上的 Llama judge 仅覆盖旧 3 模型，**需要更新 config 为 7 模型**才能与 rtx6000-4x 对齐。\n- 若 rtx6000-4x 上 llama judge 用的也是 3 模型相同 prompts，则**与本机 233 条完全重复**，不能直接合并（属于复跑）。\n- 若 rtx6000-4x 已扩到 7 模型，则两边**目标不同**，可以保留本机 233 条作为子集 + 对方补完。\n\n### 任务 B：编排脚本\n\n**位置**：`/root/gated_mfrm_judge_bias/exp001/run_remaining.sh`（tmux session `orchestrator2` 中运行）。\n\n**当前模式 — 已经是\"下完一个跑一个\"** ✅：\n- `wait_for_model()` 轮询 safetensors 文件数 == index.json 期望数 且 `._____temp/` 为空 → 视为下载完成\n- 完成后立即在指定 GPU 上后台启动 `generate_vllm_batch.py`（`&`），不阻塞下个模型的等待\n- GPU 分配：Llama→GPU2、Qwen2.5→GPU3、Mistral→第一个空闲 GPU\n- `generate_vllm_batch.py:91` 已设 `enforce_eager=True`，Blackwell OK\n\n**唯一限制**：等待是按 llama→qwen2.5→mistral 顺序，不会\"谁先下完先跑\"。但本场景下 Llama (3.1G/14G) 远超 Qwen2.5 (12MB)，串行顺序与实际完成顺序一致，**无需修改**。\n\n### 模型下载进度\n\n| 模型 | 状态 | 大小 |\n|---|---|---|\n| gemma-2-9b-it | ✅ 完成 | 18GB（4 safetensors）— 响应已生成 500/500 |\n| Qwen3-8B | ✅ 完成 | 16GB（5 safetensors）— 响应已生成 500/500 |\n| Llama-3.1-8B-Instruct | 🔄 ~20% | 3.1GB / ~16GB（在 `._____temp/`，~400KB/s，预计还要 3-4h） |\n| Qwen2.5-7B-Instruct | 🔄 启动中 | 12MB（仅 metadata，PID 102451 串行队列里） |\n| Mistral-7B-Instruct-v0.3 | ⏳ 排队 | 目录不存在（等 Qwen2.5 下完才开始） |\n\n**GPU 全部 idle**（0/97887 MiB ×4）— 编排器卡在 `wait_for_model Llama-3.1-8B-Instruct`，等下载完成。\n\n### 建议\n\n1. 如确认 rtx6000-4x 上 llama judge 也只用 3 模型 → autodl 的 233 条是重复，**不合并、不更新 config**；让 rtx6000-4x 完成 3 模型版后两边二选一。\n2. 如计划扩到 7 模型 → 现在改 3 个 local config + 6 个 proxy config 的 `target_models`，删除旧结果重跑（233 条作废）。\n3. modelscope 下载速度 ~400KB/s 偏慢，可考虑切 HF + `HF_HUB_ENABLE_HF_TRANSFER=1`，或换镜像源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-llama-judge-check-and-orchestrator-fix.md"
+}

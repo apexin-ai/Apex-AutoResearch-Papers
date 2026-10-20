@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "044f6bea26832078df57",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh verify judge processes",
+  "task_key": "worker_ssh_verify-judge-processes_20260524T095805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-judge-processes_20260524T095805_result.json",
+    "occurrence": 1,
+    "bytes": 1630,
+    "sha256": "4abcfbe2a41a6450c1db1c6f5a74c7c600027fb50971464c5969bf499d078b11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**监控报告有误——6/7 个 judge 存活，仅 mistral-large-2 真正停止。**\n\n## 存活进程汇总\n\n| Judge | PID | 进度 | 速度 | 数据量 | 最后写入 | 状态 |\n|-------|-----|------|------|--------|---------|------|\n| claude-sonnet-4.6-proxy | 506658 | 6560/15997 (41%) | 0.2 items/s | 8546行 | 17:58:42 | **ALIVE** |\n| gemini-2.5-pro-proxy | 506876 | 4780/17092 (28%) | 0.2 items/s | 5981行 | 17:59:22 | **ALIVE** |\n| deepseek-v4-pro-proxy | 506930 | 4100/17138 (24%) | 0.1 items/s | 5076行 | 17:58:56 | **ALIVE** |\n| qwen3-235b-proxy | 506990 | 5280/16890 (31%) | 0.2 items/s | 6386行 | 17:58:42 | **ALIVE** |\n| llama-3.3-70b-local | 564416 | — | — | 2071行 | 17:59:34 | **ALIVE** |\n| qwen2.5-72b-local | 564492 | — | — | 1424行 | 17:59:57 | **ALIVE** |\n| **mistral-large-2-local** | **无** | — | — | 118行 | **17:03:28** | **STOPPED** |\n\n## GPU 状态\n\n- GPU 0: 空闲 (0MiB, 0%)\n- GPU 1: vLLM LLaMA (PID 502431, 100%, 92.9GB)\n- GPU 2: vLLM Qwen (PID 504901, 100%, 91.1GB)\n- GPU 3: 空闲 (0MiB, 0%)\n\n## 关键发现\n\n1. **6 个 judge 全部正常运行**，数据文件在最近 1 分钟内都有写入活动，监控脚本的 STOPPED 判断有误。\n2. **mistral-large-2-local 确实停了**——无 collect.py 进程、无 vLLM 服务进程、数据文件停留在 17:03（近 1 小时前）、仅 118 行数据。GPU 0 和 GPU 3 空闲，没有为 mistral 提供推理服务。\n3. llama 和 qwen local 的 `/tmp/collect_*_w32.log` 日志为空（0 字节），但数据在写入——日志可能重定向到了别处或 stdout 被 buffer。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-judge-processes.md"
+}

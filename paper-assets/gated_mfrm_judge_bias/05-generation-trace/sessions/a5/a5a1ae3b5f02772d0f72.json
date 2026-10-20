@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5a1ae3b5f02772d0f72",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mistral collect start",
+  "task_key": "worker_ssh_mistral_collect_start_20260524T055838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mistral_collect_start_20260524T055838_result.json",
+    "occurrence": 1,
+    "bytes": 306,
+    "sha256": "ce1ce40dbd5125a870c940af1e056c526ef908cdfbe58345d1ad9a23bc4cdc74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **下载**：9/14 分片（45GB），仍在进行\n- **部署脚本** PID 537098 运行中（38 分钟）\n- **下载进程** PID 534407 运行中（51 分钟）\n\n预计还需 10-15 分钟完成下载，之后部署脚本会自动启动 vLLM。3 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mistral-collect-start.md"
+}

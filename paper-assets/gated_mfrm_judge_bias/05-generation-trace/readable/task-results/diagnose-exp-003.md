@@ -1,0 +1,55 @@
+# diagnose exp 003
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_exp-003_20260522T141631_result.json`
+- **Structured JSON:** [`a103df9a010d8e5b0bd7.json`](../../sessions/a1/a103df9a010d8e5b0bd7.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+诊断信息已充分。关键证据链闭合了：
+
+**GPU 利用率双快照确认**：GPU 0=68%, GPU 1=0%, GPU 2=0%, GPU 3=63%。PID 137389 在 4 GPU 上都注册了 ~73.5GB，但只有 GPU 0/3 有实际计算。
+
+Chains 1/3 正在以 CPU 速度（5 it/s）运行而非 GPU 速度（150 it/s），尽管 pmap 被正确配置为 parallel。
+
+```json
+{"root_cause":"JAX pmap 将 4 chains 分配到 4 GPU，但 chains 1/3 实际以 CPU 速度（~5 it/s）执行而非 GPU 速度（~150 it/s）。nvidia-smi 连续采样显示 GPU 1/2 利用率恒为 0%（尽管 PID 137389 在上面各预分配了 73.5GB）。这导致 mfrm_only 步骤从 ~1min 膨胀到 ~20min，且脚本依次运行 3 个 MCMC 方法（mfrm_only → sequential → joint_gmfrm），总运行时间可达 70+ 分钟。长时间运行期间进程被外部 SIGKILL（无 Python traceback），可能原因：VmPeak=414GB 逼近 cgroup 内存限制 440GB，或 AutoDL 平台级进程管理。JAX 默认预分配 75% GPU 内存（73.5GB × 4 = 294GB 映射为虚拟内存），加上 MCMC 运行时内存可推高 VmSize 触发 cgroup OOM。","error_type":"resource","fix_steps":["在脚本头部添加 os.environ['XLA_PYTHON_CLIENT_PREALLOCATE']='false' 和 os.environ['XLA_PYTHON_CLIENT_MEM_FRACTION']='0.25'，阻止 4 GPU 各锁 73.5GB 虚拟内存","将 num_chains 从 4 降为 2，配合 CUDA_VISIBLE_DEVICES=0,3 只暴露有效工作的 GPU，消除 CPU fallback chains","若需 4 chains 用于 R-hat 诊断，分两批 run：batch1 用 seed=42 跑 2 chains，batch2 用 seed=43 跑 2 chains，最后合并 samples","在 run_exp003.py 的 _run_mcmc 中显式传入 chain_method='sequential' 作为临时 workaround——让所有 chains 在单 GPU 上串行执行，每 chain ~45s，4 chains ~3min，远比当前 CPU fallback 的 20min 快"],"can_auto_fix":true,"details":"速度证据：chain 0/2 均值 ~130 it/s（GPU），chain 1/3 均值 ~5 it/s（CPU），比值 26-33x 精确匹配 GPU/CPU 吞吐比。PCIe 拓扑显示 GPU 0/1 在 NUMA 0（NODE），GPU 2/3 在 NUMA 1（NODE），跨 NUMA 为 SYS。但 fast pair 是 GPU 0+2（跨 NUMA），slow pair 是 GPU 1+3（也跨 NUMA），排除 NUMA 亲和性。根因推测：JAX 0.10.1 的 pmap 在 4 GPU SYS 拓扑下可能存在 device placement bug，或 numpyro.set_host_device_count(4) 创建的 4 个 CPU 设备干扰了 pmap 的 device 选择。最优先的 fix 是 chain_method='sequential' + 单 GPU，彻底绕过 multi-device 问题。"}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "data": {
+    "root_cause": "JAX pmap 将 4 chains 分配到 4 GPU，但 chains 1/3 实际以 CPU 速度（~5 it/s）执行而非 GPU 速度（~150 it/s）。nvidia-smi 连续采样显示 GPU 1/2 利用率恒为 0%（尽管 PID 137389 在上面各预分配了 73.5GB）。这导致 mfrm_only 步骤从 ~1min 膨胀到 ~20min，且脚本依次运行 3 个 MCMC 方法（mfrm_only → sequential → joint_gmfrm），总运行时间可达 70+ 分钟。长时间运行期间进程被外部 SIGKILL（无 Python traceback），可能原因：VmPeak=414GB 逼近 cgroup 内存限制 440GB，或 AutoDL 平台级进程管理。JAX 默认预分配 75% GPU 内存（73.5GB × 4 = 294GB 映射为虚拟内存），加上 MCMC 运行时内存可推高 VmSize 触发 cgroup OOM。",
+    "error_type": "resource",
+    "fix_steps": [
+      "在脚本头部添加 os.environ['XLA_PYTHON_CLIENT_PREALLOCATE']='false' 和 os.environ['XLA_PYTHON_CLIENT_MEM_FRACTION']='0.25'，阻止 4 GPU 各锁 73.5GB 虚拟内存",
+      "将 num_chains 从 4 降为 2，配合 CUDA_VISIBLE_DEVICES=0,3 只暴露有效工作的 GPU，消除 CPU fallback chains",
+      "若需 4 chains 用于 R-hat 诊断，分两批 run：batch1 用 seed=42 跑 2 chains，batch2 用 seed=43 跑 2 chains，最后合并 samples",
+      "在 run_exp003.py 的 _run_mcmc 中显式传入 chain_method='sequential' 作为临时 workaround——让所有 chains 在单 GPU 上串行执行，每 chain ~45s，4 chains ~3min，远比当前 CPU fallback 的 20min 快"
+    ],
+    "can_auto_fix": true,
+    "details": "速度证据：chain 0/2 均值 ~130 it/s（GPU），chain 1/3 均值 ~5 it/s（CPU），比值 26-33x 精确匹配 GPU/CPU 吞吐比。PCIe 拓扑显示 GPU 0/1 在 NUMA 0（NODE），GPU 2/3 在 NUMA 1（NODE），跨 NUMA 为 SYS。但 fast pair 是 GPU 0+2（跨 NUMA），slow pair 是 GPU 1+3（也跨 NUMA），排除 NUMA 亲和性。根因推测：JAX 0.10.1 的 pmap 在 4 GPU SYS 拓扑下可能存在 device placement bug，或 numpyro.set_host_device_count(4) 创建的 4 个 CPU 设备干扰了 pmap 的 device 选择。最优先的 fix 是 chain_method='sequential' + 单 GPU，彻底绕过 multi-device 问题。"
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce841365f8d1faeabaaa",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh final tp2 revert",
+  "task_key": "worker_ssh_final-tp2-revert_20260524T122805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_final-tp2-revert_20260524T122805_result.json",
+    "occurrence": 1,
+    "bytes": 2235,
+    "sha256": "9a6432a34a57898cb14f843eba0bf6f0fabcac7c3530a3e1136a3529e5e46605"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。以下是最终报告。\n\n---\n\n## TP=2 恢复完成报告\n\n### 1. vLLM 进程（确认 TP=2）\n| 模型 | PID | TP | GPUs | Port |\n|------|-----|----|------|------|\n| LLaMA-3.3-70B-AWQ | 582367 | 2 | cuda:0,1 | 8001 |\n| Qwen2.5-72B-AWQ | 583073 | 2 | cuda:2,3 | 8002 |\n\n### 2. collect.py 进程\n| Judge | PID | Workers |\n|-------|-----|---------|\n| llama-3.3-70b-local | 584106 | 64 |\n| qwen2.5-72b-local | 584197 | 64 |\n\n### 3. GPU 显存使用\n| GPU | Used / Total | Utilization |\n|-----|-------------|-------------|\n| 0 | 89,031 / 97,887 MiB | 100% |\n| 1 | 89,031 / 97,887 MiB | 100% |\n| 2 | 89,083 / 97,887 MiB | 100% |\n| 3 | 89,083 / 97,887 MiB | 100% |\n\n### 4. 吞吐量（严格协议，2 × ≥2min 窗口）\n\n**Window 1** (T0 20:37:33 → T1 20:39:31, 118s):\n\n| Judge | T0 | T1 | Δ | rate_1 |\n|-------|----|----|---|--------|\n| LLaMA | 6,799 | 6,895 | +96 | **48.8 lines/min** |\n| Qwen | 4,506 | 4,578 | +72 | **36.6 lines/min** |\n\n**Window 2** (T1 20:39:31 → T2 20:41:30, 119s):\n\n| Judge | T1 | T2 | Δ | rate_2 |\n|-------|----|----|---|--------|\n| LLaMA | 6,895 | 7,007 | +112 | **56.5 lines/min** |\n| Qwen | 4,578 | 4,649 | +71 | **35.8 lines/min** |\n\n**平均吞吐量**:\n- LLaMA: **(48.8 + 56.5) / 2 = 52.7 lines/min**\n- Qwen: **(36.6 + 35.8) / 2 = 36.2 lines/min**\n- 合计: **88.9 lines/min**（预期 ~87.8，吻合）\n\n### 5. 6 Judge n17 数据量与完成度\n\n| Judge | Lines | / 18,000 | 完成% |\n|-------|-------|----------|-------|\n| claude-sonnet-4.6-proxy_n17 | 11,363 | 18,000 | 63.1% |\n| qwen3-235b-proxy_n17 | 8,866 | 18,000 | 49.2% |\n| gemini-2.5-pro-proxy_n17 | 8,343 | 18,000 | 46.3% |\n| deepseek-v4-pro-proxy_n17 | 7,142 | 18,000 | 39.6% |\n| llama-3.3-70b-local_n17 | 7,017 | 18,000 | 38.9% |\n| qwen2.5-72b-local_n17 | 4,665 | 18,000 | 25.9% |\n\n注：`mistral-large-2-local_n17` 仅 118 条（0.6%），当前无 collect 进程运行。\n\n### 6. 剩余 Records 与 ETA（本地 judge）\n\n| Judge | 剩余 | 速率 | ETA |\n|-------|------|------|-----|\n| LLaMA | 10,983 | 52.7/min | **~3h 28min** |\n| Qwen | 13,335 | 36.2/min | **~6h 8min** |\n\nQwen 为瓶颈，预计 ~6h 完成全部采集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-final-tp2-revert.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c3736cbb65ecaab04bb",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx6000 gemini sonnet recovery",
+  "task_key": "worker_ssh_rtx6000-gemini-sonnet-recovery_20260524T151858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx6000-gemini-sonnet-recovery_20260524T151858_result.json",
+    "occurrence": 1,
+    "bytes": 1321,
+    "sha256": "796fb8bc53c5eba4bf54ef94d3d9b8dfea755985f03b7661f60d9108b5c447b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Gemini 和 Sonnet 的采集进程已停止（没有匹配的进程）。Gemini 最后修改时间 23:05，已无新写入。\n\n汇报如下：\n\n---\n\n## 结果\n\n### rtx6000-4x 恢复：**不可行**\n- `rtx6000-4x` 不在可用服务器列表中（仅有 `autodl-8gpu` 和 `westd-25068`）\n- `westd-25068` 连接失败（端口 25068 不通，IP 36.103.198.204）\n- **无法从其他服务器恢复 Gemini/Sonnet 采集**\n\n### Gemini & Sonnet 采集状态\n- **Gemini 2.5 Pro**: 11,253 行，进程已停止，最后修改 23:05:25\n- **Claude Sonnet 4.6**: 14,255 行，进程已停止，最后修改 23:05:25\n- 两者均因 OpenRouter 403 停采，无可用非中国 IP 服务器恢复\n\n### DeepSeek & Qwen3 采集状态（autodl-8gpu）\n- **DeepSeek V4 Pro** (PID 592328): 运行中，已运行 19h43m，当前 10,007 行，文件持续增长（23:19 仍在写入）\n- **Qwen3 235B** (PID 592432): 运行中，已运行 18h20m，当前 12,134 行，文件持续增长（23:19 仍在写入）\n\n### 本地 judge 进度\n- LLaMA 3.3 70B: 15,668 行\n- Mistral Large 2: 118 行（极少，可能也有问题）\n- Qwen2.5 72B: 10,793 行\n\n### 需要关注\n1. Mistral Large 2 只有 118 行，可能采集异常\n2. Gemini/Sonnet 需要非中国 IP 才能恢复，当前无可用服务器"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx6000-gemini-sonnet-recovery.md"
+}

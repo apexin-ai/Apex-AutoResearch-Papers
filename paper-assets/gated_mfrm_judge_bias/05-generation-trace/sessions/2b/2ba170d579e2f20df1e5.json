@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ba170d579e2f20df1e5",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh restart local judges w4",
+  "task_key": "worker_ssh_restart_local_judges_w4_20260523T220347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_restart_local_judges_w4_20260523T220347_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "8f7a7769c434345b6c740c0b66e1f68060401dad58faa04c709143276d09e361"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成 Step 1-6。当前状态总结：\n\n| 项目 | 值 |\n|------|-----|\n| **vLLM 端口** | LLaMA=8001, Qwen=8002, Mistral=8003 |\n| **CLI 格式** | `--config config_<model>_arena_n17.yaml --workers N` |\n| **新 workers** | 4（从 10 降下来） |\n| **llama PID** | 668282 |\n| **qwen PID** | 668366 |\n| **mistral PID** | 668431 |\n\n**Baseline (22:04:51 UTC):**\n| Judge | 已完成 | 剩余 |\n|-------|--------|------|\n| llama | 7319 | 10681 |\n| qwen | 9748 | 8252 |\n| mistral | 9145 | 8855 |\n\n~4.5 分钟后回来测吞吐。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-restart-local-judges-w4.md"
+}

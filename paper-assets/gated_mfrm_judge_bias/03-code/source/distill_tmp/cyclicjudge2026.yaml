@@ -1,0 +1,81 @@
+paper_key: "cyclicjudge2026"
+title: "CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: ["Single-judge evaluation", "All-judges (full panel)", "Random single judge per generation"]
+  metrics:
+    - {name: "Benchmark score variance Var(X̄)", direction: "lower_better"}
+    - {name: "Judge offset variance σ_γ²", direction: "lower_better"}
+    - {name: "ANOVA F-statistic (judge effect)", direction: "diagnostic"}
+  datasets:
+    - {name: "MT-Bench", size: "80 questions, 5 models × 5 judges × 10 generations = 4000 scores/model"}
+    - {name: "MindEval", size: "50 scenarios, 5 models × 5 judges × 5 generations = 1250 scores/model"}
+  ablation_dimensions: ["Allocation strategy (A/B/C)", "Budget level B", "Benchmark type (general vs domain-specific)", "Model capability level"]
+  training_recipe: {optimizer: "N/A (statistical analysis)", lr: "N/A", hardware: "API calls to 5 judge LLMs"}
+  method_family: "Variance decomposition + round-robin assignment (generalizability theory)"
+
+positioning:
+  core_claim: "Judge bias是LLM评测中benchmark score variance的主导因素（>94%），round-robin分配（CyclicJudge）在任意预算下均最优，能精确恢复panel mean且不增加成本"
+  key_results: "Judge offset占Var(X̄)>94% at default; CyclicJudge比random降低27-40% variance at B=5; ANOVA judge effect全部p<0.001; 自我偏好对角线显著（Qwen自评第一但共识排最后）"
+  limitations:
+    - "Panel mean作为参考而非绝对ground truth，共享偏差被吸收进μ_θ"
+    - "线性模型假设，LLM评分实为有界序数变量"
+    - "Judge pool仅5个模型，未验证更大panel"
+    - "假设scenario可交换，未考虑item selection"
+    - "假设balanced design和uniform cost"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLM-as-judge已成标准但judges有系统偏差——systematic bias不会随更多scenario平均掉"
+  tension: "增加judge数量multiplies成本；单judge评测导致排名随judge变化（Table 1: Qwen自评第一但共识排最后）"
+  key_insight: "Section 3.2 的Proposition 1用方差分解将bias与noise分离——bias只响应K，noise响应n/m/K各有不同shrinkage——进而推导CyclicJudge最优性"
+  argument_chain: "judge bias is systematic → ANOVA confirms → variance decomposition separates bias from noise → CyclicJudge cancels bias exactly via round-robin → empirical validation on 2 benchmarks"
+  contribution_framing: "三条贡献：(1)方差分解模型 (2)CyclicJudge最优性证明 (3)MT-Bench+MindEval实证"
+  intro_structure: "3段：problem + prior work → our solution overview → 3 contributions"
+  notable_technique: "Proposition 1的方差分解简洁优雅——将复杂的多facet评测归结为一个可解析的公式，直接推导出最优策略"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "teaser_result"
+    description: "Var(X̄) vs per-scenario budget的三策略对比，两个benchmark各5个model子图"
+    narrative_role: "核心实验结果一图展示，markers=实证 vs dashed=理论预测完美吻合"
+    design_elements: ["多子图网格(5 models × 2 benchmarks)", "三条线对比", "markers vs dashed线区分实证/理论"]
+    visual_style: "10子图网格，每个子图三条曲线+markers，紧凑展示全部实验条件"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "heatmap"
+      what_compared: "每个judge-model pair的bias estimate γ̂_ℓ"
+      how_gain_highlighted: "对角线自我偏好明显（暖色），cross-benchmark bias pattern差异清晰"
+      design_note: "两个benchmark并排heatmap，行=judge列=model，颜色编码bias方向和强度"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(策略对比主结果) → Figure 2(bias结构分析)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models"
+    col_axis: "judges"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "bold_best + underline_second per column"
+    statistical_reporting: "mean ± 95% CI"
+    num_baselines: 5
+    design_note: "5×5 judge-model矩阵直观展示self-preference bias（对角线）和ranking不稳定性"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Variance components (σ_α², σ_β², σ_γ², σ_ε²)"]
+      variation_style: "full_numbers"
+      design_note: "per-observation variance分解，展示各成分相对大小"
+    - table_id: "Table 3"
+      what_varied: ["Contribution to Var(X̄) at default operating point"]
+      variation_style: "full_numbers"
+      design_note: "将Table 2转换为对benchmark score的实际贡献，突出judge bias主导性（>94%）"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4(ANOVA F-stats), Table 5(judge decoding hyperparameters), proof of Proposition 1, allocation strategy derivations, bootstrap methodology"
+    reason: "数学证明和技术细节放附录，主文保持紧凑的problem→theory→experiment叙事"

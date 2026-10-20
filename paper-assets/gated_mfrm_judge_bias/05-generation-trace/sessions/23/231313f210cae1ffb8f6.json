@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "231313f210cae1ffb8f6",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper figure fig3 error propagation",
+  "task_key": "worker_paper_figure_fig3_error_propagation_20260522T122439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_error_propagation_20260522T122439_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "a7fd31585796135c41f4df5336c1ddba0d1664863277c732b1de109c4c225e99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成并注册。\n\n**输出文件**:\n- PDF: `figures/paper/fig3_error_propagation.pdf` (27KB)\n- PNG: `figures/paper/fig3_error_propagation.png` (119KB)\n- 生成脚本: `figures/paper/gen_fig3.py`\n- Artifact ID: `art_20260522_0e1521`\n\n**图表内容**: 双面板 (a) θ-RMSE、(b) c_n-RMSE vs σ_e，绿/红 regime bands 以 σ_crit=0.2 分界，理论曲线与实验数据高度吻合，百分比退化标注清晰展示 graceful degradation → rapid degradation 的转折。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-error-propagation.md"
+}

@@ -1,0 +1,128 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zheng2024judging}
+\citation{xu2024cyclic}
+\citation{park2024uda}
+\citation{yang2025dcr}
+\citation{dong2024constat}
+\citation{angrist2009mostly}
+\citation{linacre1994many}
+\citation{doebler2024dgirt}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{angrist2009mostly}
+\@writefile{toc}{\contentsline {section}{\numberline {2}The Confounding Problem}{2}{section.2}\protected@file@percent }
+\newlabel{sec:confounding}{{2}{2}{The Confounding Problem}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Formal Observation}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:mfrm}{{1}{2}{Formal Observation}{equation.1}{}}
+\newlabel{eq:gmfrm}{{2}{2}{Formal Observation}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Observation (OVB in LLM Evaluation).}{2}{section*.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Monte Carlo OVB analysis (500 replications). Joint estimation maintains constant RMSE regardless of confounding level.}}{2}{table.1}\protected@file@percent }
+\newlabel{tab:ovb}{{1}{2}{Monte Carlo OVB analysis (500 replications). Joint estimation maintains constant RMSE regardless of confounding level}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Toy Example.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Monte Carlo Validation}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Gated Many-Facet Rasch Model}{2}{section.3}\protected@file@percent }
+\citation{zheng2024judging}
+\citation{xu2024cyclic}
+\citation{park2024uda}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Standard MFRM}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Exposure Indicator Estimation}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Performance Gap (primary, 100\% coverage).}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal Signal (35\% coverage).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LogProber (60\% coverage).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 3: Joint Gated Calibration}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Priors.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Non-centered parameterization.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gating mechanism.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fair scores.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MCMC configuration.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Collection}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baselines}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Naive.}{3}{section*.12}\protected@file@percent }
+\citation{yang2025dcr}
+\@writefile{toc}{\contentsline {paragraph}{Bias-only.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination-only.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sequential.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Protocol}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Comparison}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Agreement with Chatbot Arena human rankings (Kendall-$\tau $). \textsc  {G-MFRM}{} consistently outperforms all baselines across both benchmarks.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:main}{{2}{4}{Agreement with Chatbot Arena human rankings (Kendall-$\tau $). \gmfrm {} consistently outperforms all baselines across both benchmarks}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Models with largest rank shifts after \textsc  {G-MFRM}{} correction. Contamination-inflated models drop; clean models rise.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:rank}{{3}{4}{Models with largest rank shifts after \gmfrm {} correction. Contamination-inflated models drop; clean models rise}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Rank Change Analysis}{4}{subsection.5.2}\protected@file@percent }
+\citation{dong2024constat}
+\citation{lin2024wildbench}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces External validation: \textsc  {G-MFRM}{} $c_n$ vs.\ ConStat $\Delta $.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:constat}{{4}{5}{External validation: \gmfrm {} $c_n$ vs.\ ConStat $\Delta $}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-benchmark generalization. \textsc  {G-MFRM}{}'s advantage is consistent across three benchmarks.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:cross}{{5}{5}{Cross-benchmark generalization. \gmfrm {}'s advantage is consistent across three benchmarks}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}External Validation via ConStat}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Benchmark Generalization}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Exposure indicator ablation. Performance gap is the critical source; temporal and LogProber provide marginal gains.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:ablation}{{6}{5}{Exposure indicator ablation. Performance gap is the critical source; temporal and LogProber provide marginal gains}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Convergence Diagnostics}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Exposure Indicator Ablation}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Judge Count Sensitivity}{5}{subsection.6.3}\protected@file@percent }
+\citation{zheng2024judging}
+\citation{xu2024cyclic}
+\citation{park2024uda}
+\citation{dong2024constat}
+\citation{yang2025dcr}
+\citation{lalor2016building}
+\citation{doebler2024dgirt}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Judge count sensitivity. \textsc  {G-MFRM}{} requires $\geq $3 judges for statistically significant gains.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:judges_sens}{{7}{6}{Judge count sensitivity. \gmfrm {} requires $\geq $3 judges for statistically significant gains}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Error propagation sensitivity (synthetic data). \textsc  {G-MFRM}{} is robust to $e_i$ noise up to $\sigma \approx 0.2$.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:error}{{8}{6}{Error propagation sensitivity (synthetic data). \gmfrm {} is robust to $e_i$ noise up to $\sigma \approx 0.2$}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Error Propagation from Stage 2}{6}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related Work}{6}{section.7}\protected@file@percent }
+\newlabel{sec:related}{{7}{6}{Related Work}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-a-Judge Bias.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark Contamination.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Psychometric Models in NLP.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gap.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{6}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Staged estimation.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge panel size.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rank-1 contamination assumption.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Arena Elo as ground truth.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Non-negative contamination.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Judge Panel}{7}{appendix.A}\protected@file@percent }
+\newlabel{sec:panel}{{A}{7}{Judge Panel}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Judge panel summary. Severity (mean score stringency) ranges from $-0.21$ (lenient) to $+0.31$ (strict).}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:judges}{{9}{7}{Judge panel summary. Severity (mean score stringency) ranges from $-0.21$ (lenient) to $+0.31$ (strict)}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Convergence and Fit Diagnostics}{7}{appendix.B}\protected@file@percent }
+\newlabel{sec:diagnostics}{{B}{7}{Convergence and Fit Diagnostics}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Facet fit summary (infit/outfit MNSQ).}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:fit}{{10}{7}{Facet fit summary (infit/outfit MNSQ)}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces MCMC diagnostics. All thresholds met.}}{7}{table.11}\protected@file@percent }
+\newlabel{tab:mcmc}{{11}{7}{MCMC diagnostics. All thresholds met}{table.11}{}}
+\citation{wang2026fragility}
+\bibstyle{plainnat}
+\bibcite{angrist2009mostly}{{1}{2009}{{Angrist and Pischke}}{{}}}
+\bibcite{doebler2024dgirt}{{2}{2024}{{Doebler et~al.}}{{}}}
+\bibcite{dong2024constat}{{3}{2024}{{Dong et~al.}}{{}}}
+\bibcite{lalor2016building}{{4}{2016}{{Lalor et~al.}}{{}}}
+\bibcite{lin2024wildbench}{{5}{2024}{{Lin et~al.}}{{}}}
+\bibcite{linacre1994many}{{6}{1994}{{Linacre}}{{}}}
+\bibcite{park2024uda}{{7}{2024}{{Park et~al.}}{{}}}
+\bibcite{wang2026fragility}{{8}{2026}{{Wang et~al.}}{{}}}
+\bibcite{xu2024cyclic}{{9}{2024}{{Xu et~al.}}{{}}}
+\bibcite{yang2025dcr}{{10}{2025}{{Yang et~al.}}{{}}}
+\bibcite{zheng2024judging}{{11}{2024}{{Zheng et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Contamination magnitude: real data vs.\ synthetic scenarios. Real data matches the strong-contamination regime of mvp\_003.}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:contam_mag}{{12}{8}{Contamination magnitude: real data vs.\ synthetic scenarios. Real data matches the strong-contamination regime of mvp\_003}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Contamination Magnitude Calibration}{8}{appendix.C}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}Exposure Source Comparison}{8}{appendix.D}\protected@file@percent }
+\newlabel{sec:exposure_detail}{{D}{8}{Exposure Source Comparison}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Exposure indicator source comparison. Performance gap has full coverage and highest SNR.}}{8}{table.13}\protected@file@percent }
+\newlabel{tab:exposure}{{13}{8}{Exposure indicator source comparison. Performance gap has full coverage and highest SNR}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Adversarial Robustness}{8}{appendix.E}\protected@file@percent }
+\newlabel{sec:adversarial}{{E}{8}{Adversarial Robustness}{appendix.E}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Adversarial robustness. \textsc  {G-MFRM}{} detects most attacks via fit diagnostics.}}{8}{table.14}\protected@file@percent }
+\newlabel{tab:adversarial}{{14}{8}{Adversarial robustness. \gmfrm {} detects most attacks via fit diagnostics}{table.14}{}}
+\gdef \@abspage@last{8}

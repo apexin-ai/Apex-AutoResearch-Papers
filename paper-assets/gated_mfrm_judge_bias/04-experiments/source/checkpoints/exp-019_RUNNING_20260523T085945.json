@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp-019",
+  "project": "gated_mfrm_judge_bias",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:53:33.579Z",
+    "updated_at": "2026-05-23T08:59:45.325Z",
+    "hypothesis": "G-MFRM θ 与 MFRM-only θ 的差异（Δθ）与 contamination exposure c_n 正相关——高 c_n 模型的 MFRM θ 被高估，G-MFRM 校正后 θ 下降，可视化 contamination bias 如何被吸收进 ability estimates。",
+    "parent": "exp-003b",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp019 && CUDA_VISIBLE_DEVICES=3 python run_exp019.py",
+      "server": "autodl-8gpu",
+      "data_path": "/root/gated_mfrm_judge_bias/exp003/output_003b/ (mfrm_only_idata.nc + joint_gmfrm_idata.nc)",
+      "data_count": "8 models, MFRM-only (2c/2000s) + G-MFRM (4c/4000s)",
+      "model_name": "MFRM-only vs G-MFRM theta comparison",
+      "seed": 0,
+      "gpu": "cuda:3",
+      "checkpoint_source": "exp-003b MFRM-only and G-MFRM posterior fits",
+      "eval_data": "exp-003b posterior estimates (mfrm_only_idata.nc + joint_gmfrm_idata.nc)",
+      "checkpoint_path": "/root/gated_mfrm_judge_bias/exp019/results/",
+      "log_path": "N/A (lightweight analysis, no separate log)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T08:59:45.378236+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b08cd69c4872c8f0ec8",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp017 018 progress",
+  "task_key": "worker_ssh_exp017_018_progress_20260523T100021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp017_018_progress_20260523T100021_result.json",
+    "occurrence": 1,
+    "bytes": 1494,
+    "sha256": "e21514200fccf6abf19c445d7fafea297b7d7f501d25756cb577ad11a0750021"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-018 (cuda:2)\n\n**进程**: 运行中，PID 345307，CPU 104%，已运行 ~67 分钟\n**GPU**: 73566 MiB\n\n**synthetic_n20.csv**: 15 行（含 header = 14 条数据）\n\n最后 3 行：\n```\n5,joint_gmfrm,0.09608924324949444,0.968421052631579,0.3112602772509905,0.9606677809775076,1.0,1394.0,354.53775572776794\n6,sequential,0.15524451261779593,0.9578947368421054,1.5833724721610172,0.5458551421325101,1.01,653.0,166.3316445350647\n6,joint_gmfrm,0.0962666835812814,0.9578947368421054,1.0153660475447923,0.4960395816312468,1.01,1192.0,296.6363182067871\n```\n\n**日志**: exp-018.log 为空（输出 tee 到 `exp018/results/exp018.log`，不是 `/root/runs/` 路径）\n\n---\n\n## exp-017 (cuda:0)\n\n**进程**: 运行中，PID 318082，CPU 103%，已运行 ~182 分钟\n**GPU**: 73586 MiB\n\n**coverage_simulation.csv**: 38 行（含 header = 37 条数据），进度 **38/800**\n\n最后 3 行：\n```\n8,34,0.75,1.0,0.621182955801487,0.2871408015489578,1.0,3158.0,344.55604791641235\n8,35,0.5,1.0,0.7726924493908882,0.29669101908802986,1.0,3435.0,340.1221022605896\n8,36,0.625,1.0,0.6703061610460281,0.2709451653063297,1.0,2604.0,344.4957962036133\n```\n\n**日志尾部**:\n```\n[38/800] N=  8 seed= 37 | 10389s | ETA 264231s\n```\n\n**exp-017 预计剩余时间**: ~264231s ≈ **73.4 小时**。每步约 ~273s，800 步总计约 61 小时，已跑 2.9 小时完成 38 步。有 `num_chains=4` 串行警告（只有 1 个 GPU device，4 条链顺序执行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp017-018-progress.md"
+}

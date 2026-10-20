@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66845710791c0a16b064",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mcmc v2 results extraction",
+  "task_key": "worker_ssh_mcmc-v2-results-extraction_20260525T150527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mcmc-v2-results-extraction_20260525T150527_result.json",
+    "occurrence": 1,
+    "bytes": 4033,
+    "sha256": "72a4b7a4dc8516422a0167639c540bbe523f74c88b88802e84665fea2d4b5988"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据提取完成。以下是完整汇报：\n\n---\n\n## 进程状态\n- PID 58562: **已完成** (DEAD)\n- 完成时间: 2026-05-25 22:20:43 (耗时 43.4 min)\n- 参数化: Non-centered (sigma_b, sigma_theta hierarchical)\n- MCMC 配置: warmup=6000, samples=4000, chains=4, target_accept=0.95, chain_method=vectorized\n\n## 收敛诊断\n\n**joint_gmfrm 详细 (关键模型):**\n\n| 参数 | R̂ max | ESS min | Shape |\n|------|--------|---------|-------|\n| theta | 1.0005 | 16016 | (18,) |\n| b (item difficulty) | 1.0016 | 1386 | (500,) |\n| c (contamination) | 1.0023 | 1240 | (18,) |\n| d (judge severity) | 1.0004 | 15792 | (6,) |\n| sigma_b | 1.0008 | 2296 | scalar |\n| sigma_c | 1.0010 | 1741 | scalar |\n| sigma_theta | 1.0007 | 4336 | scalar |\n\n**所有方法 Divergences = 0。R̂ max = 1.0023 << 1.05。ESS min = 1240。收敛完美。**\n\n## 核心结果：N=17 τ/ρ (与 Arena ELO)\n\n| 方法 | τ | ρ |\n|------|---|---|\n| Raw Average | **0.838** | **0.949** |\n| MFRM-only | 0.824 | 0.934 |\n| Sequential | 0.824 | 0.934 |\n| G-MFRM (joint) | 0.794 | 0.926 |\n\n## Δτ (G-MFRM vs Raw Average)\n\n- **Δτ = −0.044** (G-MFRM 低于 Raw Average!)\n- Bootstrap 95% CI: [−0.141, 0.000]\n- P(Δτ ≥ 0) = 0.186\n- **方向翻转**: N=17 下 G-MFRM 的 c_n 参数\"过度校正\"了 gpt-4-turbo 等模型\n\n## 与 N=8 对比\n\n| | N=8 | N=17 | 变化 |\n|---|-----|------|------|\n| Raw Average τ | 0.786 | **0.838** | +0.052 |\n| G-MFRM τ | **0.857** | 0.794 | −0.063 |\n| Δτ (G-MFRM − Raw) | **+0.071** | **−0.044** | 方向翻转 |\n\n## 分析\n\n核心问题：G-MFRM 为 gpt-4-turbo 估计了极高的 contamination (c=3.76)，导致 θ 从 rank 1→4 下降。但 Arena ELO 显示 gpt-4-turbo 确实很强 (1272)，所以这个\"校正\"反而降低了与真实排名的相关性。\n\n**可能原因**：N=17 数据中 gpt-4-turbo 的 benchmark-vs-open 表现差异确实很大（c 估计合理），但 Arena ELO 本身也受 benchmark contamination 影响，所以 \"去污\"后反而与 Arena ELO 相关性下降。这正好支持了论文的一个 narrative：Arena ELO 不是完美 ground truth。\n\n## Judge Severity (d_j)\n\n| Judge | d̂_j |\n|-------|------|\n| deepseek-v4-pro | +0.429 (最严格) |\n| claude-sonnet-4.6 | +0.324 |\n| gemini-2.5-pro | +0.271 |\n| qwen3-235b | −0.034 |\n| qwen2.5-72b | −0.468 |\n| llama-3.3-70b | −0.523 (最宽松) |\n\n## 模型参数 (18 models, G-MFRM)\n\n| Model | θ̂ | 95% CI | ĉ_n | 95% CI |\n|-------|-----|--------|------|--------|\n| claude-3-5-sonnet-20241022 | 2.580 | [2.37, 2.80] | 1.282 | [0.28, 2.40] |\n| gpt-4o-2024-05-13 | 2.165 | [1.98, 2.36] | 0.961 | [0.14, 1.92] |\n| qwen2.5-72b-instruct | 1.937 | [1.76, 2.12] | 1.635 | [0.63, 2.65] |\n| gpt-4-turbo-2024-04-09 | 1.821 | [1.64, 2.01] | **3.756** | [2.55, 5.04] |\n| mistral-large-2407 | 1.208 | [1.05, 1.37] | 1.446 | [0.55, 2.37] |\n| gpt-4o-mini-2024-07-18 | 1.183 | [1.03, 1.34] | 1.471 | [0.59, 2.38] |\n| llama-3.3-70b-instruct | 0.601 | [0.45, 0.75] | 1.315 | [0.46, 2.19] |\n| claude-3-opus-20240229 | 0.387 | [0.25, 0.53] | 1.567 | [0.71, 2.42] |\n| gemma-2-27b-it | 0.191 | [0.05, 0.34] | 1.481 | [0.64, 2.32] |\n| llama-3.1-70b-instruct | 0.141 | [0.00, 0.28] | 2.493 | [1.61, 3.36] |\n| qwen3-8b * | −0.095 | [−0.23, 0.04] | 2.007 | [1.18, 2.85] |\n| llama-3-70b-instruct | −0.173 | [−0.31, −0.04] | 1.574 | [0.76, 2.39] |\n| gemma-2-9b-it | −0.824 | [−0.96, −0.69] | 1.755 | [0.95, 2.58] |\n| claude-3-haiku-20240307 | −1.119 | [−1.25, −0.99] | 2.348 | [1.52, 3.18] |\n| mixtral-8x22b-instruct-v0.1 | −1.941 | [−2.08, −1.80] | 2.466 | [1.65, 3.28] |\n| llama-3-8b-instruct | −2.101 | [−2.24, −1.96] | 2.615 | [1.79, 3.45] |\n| gpt-4-0613 | −2.805 | [−2.97, −2.65] | **3.775** | [2.94, 4.62] |\n| gpt-3.5-turbo-0613 | −3.156 | [−3.32, −2.99] | 2.696 | [1.83, 3.55] |\n\n\\* excluded from τ/ρ (no Arena ELO)\n\n## 清理\n- v1 文件: 已移至 `output_n17_phase1_FAILED_v1/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mcmc-v2-results-extraction.md"
+}

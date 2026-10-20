@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db38d83694a845344cd6",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh gpu reset",
+  "task_key": "worker_ssh_gpu_reset_20260521T211253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_reset_20260521T211253_result.json",
+    "occurrence": 1,
+    "bytes": 85,
+    "sha256": "a52dc7ada062da90e5a9bc434be302ba33d602874a59fde1bea6e8ff47794018"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Persistence mode 已恢复。4 卡全部就绪，可以正常使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-reset.md"
+}

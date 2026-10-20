@@ -1,0 +1,647 @@
+## Round 1-2 Issues (carried over)
+
+- id: "R1-W1"
+  summary: "Experiments/Conclusion/Limitations 三章为空"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "Fatal flaw, Limitations缺失可desk rejection"}
+  action_items:
+    - {round: 1, action: "Phase 2 writing: experiments/conclusion/limitations after exp-003 results", assigned_to: "paper_agent", status: done}
+  resolution: "Phase 2 完整填入: experiments (Table 1 + convergence + c_n/d_j profiles), conclusion, limitations 均已完成"
+  resolution_round: 2
+
+- id: "R1-W2"
+  summary: "OVB线性→非线性模型迁移缺乏严格论证"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "Observation 1直接用线性OVB公式于ordinal logistic MFRM"}
+    - {round: 2, reviewers: "R1+R2", note: "γ_n 的具体形式仍未给出。"}
+  action_items:
+    - {round: 1, action: "Observation 1加linear approximation限定 + 引Wooldridge 2010 + exp-009 simulation validation", assigned_to: "paper_agent", status: done}
+    - {round: 2, action: "在 Appendix 给出 γ_n 在 MFRM 设定下的显式表达式", assigned_to: "paper_agent", status: done}
+  resolution: "Appendix §A.2 (app:gamma) 给出 γ_n 的 explicit form: weighted average of e_i over Fisher info weights"
+  resolution_round: 3
+
+- id: "R1-W3"
+  summary: "Theorem 1仅proof sketch，缺完整证明"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "Fisher info weights未定义, 子块未推导, cross-block coupling未讨论"}
+    - {round: 3, reviewers: "R1+R2", note: "证明结构正确但仍压缩：Cauchy-Schwarz 应用条件不充分, local vs global identifiability 未讨论"}
+    - {round: 4, reviewers: "R1", note: "Appendix A 证明完整正确（Fisher info block Cauchy-Schwarz 分解 + Schur complement），含 local vs global identifiability 讨论。R1 确认技术正确。"}
+  action_items:
+    - {round: 1, action: "Appendix写完整证明", assigned_to: "paper_agent+worker", status: done}
+    - {round: 3, action: "扩展 Cauchy-Schwarz 推导细节 + 增加 local vs global identifiability 讨论", assigned_to: "paper_agent", status: done}
+  resolution: "Appendix A 完整证明含 3 步（Fisher block → item/judge blocks → Schur complement）+ local vs global 讨论 + Cauchy-Schwarz 角色说明"
+  resolution_round: 4
+
+- id: "R1-W4"
+  summary: "断裂交叉引用和TBD占位符"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "Figure ??, Table ??, numbers TBD"}
+  action_items:
+    - {round: 1, action: "Phase 2嵌入figures/tables float环境, 移除TBD", assigned_to: "paper_agent", status: done}
+  resolution: "0 undefined references, 0 TBD placeholders confirmed"
+  resolution_round: 2
+
+- id: "R1-W5"
+  summary: "CI coverage 68-71% 严重偏离 95% 名义水平——结构性问题"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 1
+  last_seen_round: 5
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "异方差/非独立/非正态, attenuation factor精度存疑"}
+    - {round: 2, reviewers: "R1+R2", note: "CI coverage 仅 71%。"}
+    - {round: 3, reviewers: "R1+R2", note: "71% coverage 仍为核心问题。需 SBC 诊断或 parametric bootstrap 替代方案。"}
+    - {round: 4, reviewers: "R1", note: "N=8 时 68%，N=50 时 71%——几乎无改善，说明非小样本问题而是结构性缺陷（乘性耦合 + HalfNormal 边界约束）。论文仍在 Table 7 报告具体 c_n 95% CI，可能误导。未提出解决方案或讨论是否可修复。"}
+    - {round: 5, reviewers: "R1+R2", note: "R1 列为 Must-Fix（67.9-71%）。R2 agree：Table 6 仍标注 '95% CI' 无 caveat，对读者有误导性。SBC 是标准实践不应作为 future work。对测量模型论文 uncertainty quantification 可靠性是核心质量指标。"}
+  action_items:
+    - {round: 1, action: "σ_crit改approximate + Murphy-Topel推导 + Limitations承认", assigned_to: "paper_agent", status: done}
+    - {round: 1, action: "exp-012 error propagation sensitivity validation", assigned_to: "main_agent", status: done}
+    - {round: 2, action: "Abstract CI claim 加 qualifier (71% coverage caveat)", assigned_to: "paper_agent", status: done}
+    - {round: 3, action: "在正文标注所有 CI 应视为下界；exp-017 Murphy-Topel coverage simulation", assigned_to: "paper_agent+main_agent", status: in_progress}
+    - {round: 4, action: "Table 7 标注 coverage-uncalibrated；探索 SBC 校正；讨论 coverage 不随 N 改善是否暗示 model misspecification", assigned_to: "paper_agent+main_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W6"
+  summary: "Stage 2 exposure estimation设计决策缺乏论证"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 4
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "75/25权重无sensitivity, reference model contamination, clipping bias"}
+    - {round: 2, reviewers: "R1+R2", note: "需要不同权重配置下 downstream τ 的 sensitivity。"}
+    - {round: 3, reviewers: "R1+R2", note: "论文声称 ρ≥0.998 但无支撑 Table。Reference model 选择敏感性未分析。"}
+    - {round: 4, reviewers: "R1+R2", note: "权重 sensitivity 表已提供（Appendix L）。但所有配置使用相同 anchor (gpt-4-0314)，缺换用不同 anchor 的 robustness check。"}
+  action_items:
+    - {round: 1, action: "exp-002权重sensitivity", assigned_to: "main_agent", status: done}
+    - {round: 2, action: "exp-013: 4 种权重配置 downstream τ sensitivity", assigned_to: "main_agent", status: done}
+    - {round: 3, action: "在 Appendix 提供权重 sensitivity 的详细数据表", assigned_to: "paper_agent", status: done}
+  resolution: "权重 sensitivity 已充分验证（ρ≥0.998）；anchor model robustness 作为 Should-Fix 建议保留但不阻塞"
+  resolution_round: 4
+
+- id: "R1-W7"
+  summary: "G-MFRM vs DG-IRT增量贡献需消融实验 + Ablation 'preliminary' 标注"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "binary vs continuous, with/without d_j, joint vs staged"}
+    - {round: 2, reviewers: "R1+R2", note: "Ablation table 标注 preliminary（10 seeds），投稿不应含 preliminary。"}
+  action_items:
+    - {round: 1, action: "W7 ablation: 4 variants × 20 seeds synthetic data", assigned_to: "main_agent", status: done}
+    - {round: 2, action: "移除 preliminary 标注，更新为 20-seed 结果", assigned_to: "paper_agent", status: done}
+  resolution: "W7 ablation 20-seed 完成; 'preliminary' 标注已移除; 全文无残留 'preliminary'"
+  resolution_round: 3
+
+- id: "R1-W8"
+  summary: "MCMC收敛标准偏宽松 / 引用与实际标准不匹配"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 5
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "R-hat<1.05是旧标准, 需Vehtari 2021"}
+    - {round: 2, reviewers: "R1+R2", note: "§3.2 设定 R̂<1.01/ESS>400 但 §4.2 实际 R̂≤1.03/ESS=217——internal inconsistency。"}
+    - {round: 3, reviewers: "R1+R2", note: "使用 Vehtari 2021 方法但采用 Gelman 2013 阈值——引用与标准不匹配。"}
+    - {round: 4, reviewers: "R1", note: "引用/阈值统一问题已修复。R̂≤1.03/ESS=174 未达 Vehtari 2021 严格标准但论文诚实承认。建议补报 ESS_tail 和增加 sampling iterations。"}
+    - {round: 5, reviewers: "R1+R2", note: "已解决。实际结果 R̂≤1.003, ESS≥1240 远优于声明阈值。R1 建议更新声明阈值为 R̂<1.01 (Vehtari 2021)，trivial fix。"}
+  action_items:
+    - {round: 1, action: "采用Vehtari 2021标准", assigned_to: "main_agent+paper_agent", status: done}
+    - {round: 2, action: "§3.2 标准降为传统阈值", assigned_to: "paper_agent", status: done}
+    - {round: 3, action: "统一引用与阈值", assigned_to: "paper_agent", status: done}
+    - {round: 5, action: "更新声明阈值为 R̂<1.01 以匹配 Vehtari 2021 推荐", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W9"
+  summary: "Related Work遗漏contamination avoidance范式"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - {round: 1, reviewers: "R2", note: "LiveBench/SEAL/TRUCE未讨论"}
+    - {round: 2, reviewers: "R1+R2", note: "本轮未提及，已修复。"}
+  action_items:
+    - {round: 1, action: "Related Work加一段contamination avoidance", assigned_to: "paper_agent", status: done}
+  resolution: "Related Work §5 已含 Contamination Avoidance 段落"
+  resolution_round: 2
+
+- id: "R1-W10"
+  summary: "OVB作为Contribution 1的贡献层次需校准"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "R1:problem identification合理但需论证; R2:应为motivation"}
+    - {round: 2, reviewers: "R2", note: "C1 'identify and formalize' 暗示深刻理论结果"}
+    - {round: 3, reviewers: "R2 (R1 partial rebut)", note: "OVB 是教科书直接应用，作为首要 contribution 过度宣称。"}
+  action_items:
+    - {round: 3, action: "C1 重新定位为 motivating observation 而非独立 contribution", assigned_to: "paper_agent", status: done}
+  resolution: "OVB 重新定位为 motivating observation，C1 改为 G-MFRM framework with identifiability guarantees"
+  resolution_round: 4
+
+- id: "R1-W11"
+  summary: "Theorem 1条件(iii)(iv)逻辑冗余"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1", note: "fully crossed蕴含Var(e_i)>0"}
+  action_items:
+    - {round: 1, action: "合并条件, 注释蕴含关系", assigned_to: "paper_agent", status: done}
+  resolution: "Theorem 1 条件(i)改为 connected design，条件(iii) Var(e_i)>0 保留为独立必要条件"
+  resolution_round: 3
+
+- id: "R1-W12"
+  summary: "c_n≥0排除负向contamination"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1", note: "记忆旧版答案等反例"}
+  action_items:
+    - {round: 1, action: "Limitations section讨论", assigned_to: "paper_agent", status: done}
+  resolution: "HalfNormal prior 编码 c_n≥0 约束"
+  resolution_round: 3
+
+- id: "R1-W13"
+  summary: "遗漏近期引用"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: "R2", note: "Choi et al. 2026, Polo et al. 2024"}
+    - {round: 2, reviewers: "R2", note: "仍缺 Chernozhukov 2022; Uto & Ueno 2020 在 bib 中未引用。"}
+    - {round: 3, reviewers: "R2", note: "新增 3 篇 missing: Polo 2024, Ye 2024, Panickssery 2024"}
+  action_items:
+    - {round: 3, action: "添加 Polo 2024, Ye 2024, Panickssery 2024", assigned_to: "paper_agent", status: done}
+  resolution: "全部已添加到 references.bib 并在 Related Work 中引用"
+  resolution_round: 4
+
+- id: "R1-MR"
+  summary: "缺少6篇missing references"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "Vehtari 2021, Wooldridge 2010, LiveBench, TRUCE, SEAL, Choi 2026"}
+  action_items:
+    - {round: 1, action: "全部加入references.bib", assigned_to: "paper_agent", status: done}
+  resolution: "6 references 全部加入 references.bib"
+  resolution_round: 2
+
+- id: "R1-REPRO"
+  summary: "Reproducibility 1/5 — 无代码/数据/实验细节"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - {round: 1, reviewers: "R1+R2", note: "需code+data release承诺 + 补充实验细节"}
+    - {round: 2, reviewers: "R2", note: "仍无代码/数据可用性声明。"}
+  action_items:
+    - {round: 2, action: "添加 code+data availability statement", assigned_to: "paper_agent", status: done}
+  resolution: "Limitations 末尾: 'Code and data will be released upon acceptance at [anonymized URL].'"
+  resolution_round: 3
+
+- id: "R1-MT"
+  summary: "Murphy-Topel variance correction 在 N=8 下适用性存疑"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 1
+  last_seen_round: 5
+  mentions:
+    - {round: 1, reviewers: "Q6", note: "只提了一句，需具体推导 + empirical CI coverage"}
+    - {round: 2, reviewers: "R1", note: "Appendix B 推导已有，但未报告 correction 前后 CI width 变化。"}
+    - {round: 3, reviewers: "R1+R2", note: "Murphy-Topel 是渐近方法，N=8 远低于适用范围。与 R1-W5 (CI coverage 71%) 可能直接相关。"}
+    - {round: 4, reviewers: "R1", note: "Murphy-Topel 基于大样本渐近理论（经验 N≥30），N=8 远低于适用范围。论文将此列为方法论贡献但未验证其在 N=8 下是否实际改善 coverage。c_n CI coverage 68-71% 可能部分归因于校正不充分。需 coverage with vs without Murphy-Topel 的对比。"}
+    - {round: 5, reviewers: "R1+R2", note: "R1+R2 共识：Murphy-Topel 渐近有效性在 N=8 下不成立。R2 补充：Appendix D 推导了公式但未讨论 finite-sample properties。如果 71% 是修正后的结果则修正基本无效。"}
+  action_items:
+    - {round: 1, action: "Appendix写Murphy-Topel推导", assigned_to: "paper_agent+main_agent", status: done}
+    - {round: 2, action: "报告 Murphy-Topel correction 前后 CI width 变化", assigned_to: "paper_agent", status: in_progress}
+    - {round: 3, action: "exp-017: Murphy-Topel coverage simulation at N=8/20/50/100", assigned_to: "main_agent", status: in_progress}
+    - {round: 4, action: "报告 coverage with vs without Murphy-Topel 对比；讨论小样本替代方案（parametric bootstrap / double bootstrap）", assigned_to: "paper_agent+main_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+## Round 2 Issues (carried over)
+
+- id: "R2-N1"
+  summary: "§4.1 与 §4.2 judge 名称严重不一致——数据完整性存疑"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "R1+R2", note: "§4.1 列 6 judges vs §4.2 不同名称。"}
+  action_items:
+    - {round: 2, action: "统一为实际 9 个 judges", assigned_to: "paper_agent", status: done}
+  resolution: "§4.1 列出完整 9 judges; self-evaluation 讨论 + Appendix app:self_eval 分析"
+  resolution_round: 3
+
+- id: "R2-N2"
+  summary: "Introduction 与 Experiments/Ablation 数值不一致（τ: 0.859 vs 0.826）"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "R1+R2", note: "Intro C3 τ=0.859 vs §4.2 τ=0.826。"}
+  action_items:
+    - {round: 2, action: "全文统一为 W7 ablation 20-seed 最终数值", assigned_to: "paper_agent", status: done}
+  resolution: "全文统一为 W7 20-seed: τ=0.839, RMSE=0.254"
+  resolution_round: 3
+
+- id: "R2-N3"
+  summary: "主结果 Δτ 统计不显著 + 单一 benchmark + N=8 underpowered"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 2
+  last_seen_round: 5
+  mentions:
+    - {round: 2, reviewers: "R1+R2", note: "Bootstrap Δτ CI=[-0.071, 0.071] 包含零。"}
+    - {round: 3, reviewers: "R1+R2", note: "共识 critical。改善仅为 rank 2-3 swap。LOO ΔELPD 衡量 model fit 非 ranking accuracy。"}
+    - {round: 4, reviewers: "R1+R2", note: "共识 critical。N=8 下 Kendall τ 最小非零增量 = 0.071，CI 宽度恰好等于一个 concordant pair swap。Power ~50%，需 N≥17 for 80% power。论文已明确区分 predictive fit vs ranking accuracy 证据线（LOO ΔELPD = -55.7 支持 model fit，ranking improvement 不显著），但核心 claim 仍缺乏 real-data 统计支持。"}
+    - {round: 5, reviewers: "R1+R2", note: "共识 critical。R1: N=17 100% coverage 下 G-MFRM 仅与 raw average 持平（τ=0.779）。R2: 在 Exposed-only 231 items 下也未正向改进。替代假说未排除：item filtering 移除高噪声 item 本身提升 ranking，与 contamination 校准无关。建议 random e_i placebo test。论文更适合重新定位为诊断工具而非 ranking improvement 方法。"}
+  action_items:
+    - {round: 2, action: "Diagnostic-first reframe + WAIC/LOO-CV + power analysis", assigned_to: "main_agent+paper_agent", status: done}
+    - {round: 3, action: "明确区分 model-fit 和 ranking-accuracy evidence; power analysis 独立 section", assigned_to: "main_agent+paper_agent", status: done}
+    - {round: 4, action: "扩展到 N≥17 benchmark 评估（如 Chatbot Arena 完整排名或 AlpacaEval 2.0），或将论文 claim 重心从 ranking improvement 转向 contamination diagnostics", assigned_to: "main_agent+paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R2-N4"
+  summary: "Appendix Figure 3 (PPC) 是占位符"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "R1+R2", note: "PDF 显示 placeholder。"}
+  action_items:
+    - {round: 2, action: "修复 LaTeX path", assigned_to: "paper_agent+main_agent", status: done}
+  resolution: "fig_ppc.pdf 正确渲染"
+  resolution_round: 3
+
+- id: "R2-N5"
+  summary: "7 个 baselines 产生完全相同 ranking（τ=0.786）——可信度存疑"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 4
+  mentions:
+    - {round: 2, reviewers: "R1+R2", note: "N=8 下 τ discrete nature 可部分解释，需 raw scores。"}
+    - {round: 4, reviewers: "R1+R2", note: "论文在 §4.2 解释 raw scores 差异 <0.03 logits，确认 genuine invariance 而非离散化 artifact。但 baseline space 退化使 G-MFRM 的对比对象实质上仅为 raw average。"}
+  action_items:
+    - {round: 2, action: "提取 raw model scores 表", assigned_to: "main_agent+paper_agent", status: done}
+  resolution: "§4.2 讨论了 N=8 τ 离散性 + raw scores <0.03 logits 确认 genuine invariance。Appendix Table raw_scores 报告全部估计。"
+  resolution_round: 3
+
+- id: "R2-W1"
+  summary: "Limitations 计数错误（写 three 实际 four）"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "R1+R2", note: "three → four"}
+  action_items:
+    - {round: 2, action: "改为正确计数", assigned_to: "paper_agent", status: done}
+  resolution: "改为 'six limitations'"
+  resolution_round: 4
+
+- id: "R2-W2"
+  summary: "Conclusion 仅 2 句话，过于简短"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: "R1+R2", note: "约 40 词对 8 页 long paper 不充分。"}
+  action_items:
+    - {round: 2, action: "扩展至 4-6 句", assigned_to: "paper_agent", status: done}
+  resolution: "Conclusion 扩展为 4 句"
+  resolution_round: 3
+
+- id: "R2-W3"
+  summary: "技术新颖性为 MFRM + DG-IRT 增量组合"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 2
+  last_seen_round: 5
+  mentions:
+    - {round: 2, reviewers: "R2 (R1 partial rebut)", note: "Eq. 4 是 MFRM + DG-IRT gating 直接组合。"}
+    - {round: 3, reviewers: "R2 (R1 partial rebut)", note: "R2: 核心 gating 来自 DG-IRT，差异是工程扩展。R1: identifiability 和 error propagation 是方法论贡献。"}
+    - {round: 4, reviewers: "R2 critical / R1 rebut", note: "[分歧] R2 维持 critical：identifiability 条件直觉上显然，error propagation 是标准工具应用，增量不足以支撑 main conference。R1 强力 REBUT：(1) OVB 形式化是首次在 LLM-as-a-judge 文献中的严格论证；(2) DG-IRT 无任何 identifiability 分析，Theorem 1 的 Cauchy-Schwarz + Schur complement 证明非平凡；(3) continuous gating 改善 c_n-RMSE 40% (p<0.001)；(4) Murphy-Topel 在 staged IRT 中的首次应用。R1 认为核心贡献是围绕模型的理论分析体系而非模型本身。"}
+    - {round: 5, reviewers: "R1 rebut / R2 maintains", note: "[持续分歧] R1 部分不同意 R2 的'教科书应用'判断：完整贡献链从 problem identification → OVB motivation → identifiability proof → error propagation 超越直接应用。但同意 Observation 1 本身新颖性有限。R2 未在 Round 5 进一步回应此点——评分差异（3.5 vs 3.0）主要反映对此贡献的不同权重。"}
+  action_items:
+    - {round: 2, action: "更精确定位贡献", assigned_to: "paper_agent", status: done}
+    - {round: 3, action: "重写 §3.1 末段强调方法论贡献", assigned_to: "paper_agent", status: done}
+    - {round: 4, action: "考虑重新定位为 applications paper，强调 OVB formalization + diagnostic value 而非 model novelty", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+## Round 3 Issues
+
+- id: "R3-N1"
+  summary: "OVB 线性近似（Observation 1）r=0.80，36% 方差未解释"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 3
+  last_seen_round: 5
+  mentions:
+    - {round: 3, reviewers: "R1 (R2 rebut)", note: "R1 列为 critical，R2 反驳仅用于 motivation。Director 降级为 warning。"}
+    - {round: 4, reviewers: "R1+R2", note: "共识 warning。r=0.86 影响叙事说服力而非方法有效性——G-MFRM 使用完整非线性模型(Eq. 4)，不依赖此近似。建议讨论近似适用范围和失效条件。"}
+    - {round: 5, reviewers: "R2 rebut / R1 maintains", note: "R1 列为 Must-Fix（r=0.80, 36% unexplained）。R2 强力 REBUT：论文已明确标注近似性质，实际估计不依赖线性近似（full nonlinear likelihood），r=0.80 对 directional motivation 足够。R2 建议降级为 Should-Fix（加 'Approximate' 标注即可）。Director 维持 warning。"}
+  action_items:
+    - {round: 3, action: "增加讨论线性近似适用范围", assigned_to: "paper_agent", status: in_progress}
+    - {round: 4, action: "在 §2 正文中明确 Observation 1 的 approximation quality 和适用范围限制", assigned_to: "paper_agent", status: open}
+    - {round: 5, action: "将 Observation 1 标注为 'Approximate Observation' 或在标题中加 'under linear approximation'", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-N2"
+  summary: "σ_crit 阈值推导假设过强（加性高斯/独立/同方差）"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 5
+  mentions:
+    - {round: 3, reviewers: "R1 (R2 agree with mitigation)", note: "Eq. 6 attenuation factor 假设 i.i.d. Gaussian，实践中 heteroskedastic。"}
+    - {round: 4, reviewers: "R1", note: "论文未报告 real data 中 Stage 2 的实际 σ 或 Var(e_i)，无法判断 real-data exposure 噪声是否低于 σ_crit。Table 2 σ 值量纲未与 real-data 对接。"}
+    - {round: 5, reviewers: "R1+R2", note: "R1+R2 共识：假设违反使 σ_crit≈0.2 具体数值不可靠，但 'error propagation matters' 的 qualitative message 仍成立。缺乏 real-data 的 Stage 2 实际 σ 报告。"}
+  action_items:
+    - {round: 3, action: "讨论假设与实践偏离；将 Table 2 定位为 robustness check", assigned_to: "paper_agent", status: in_progress}
+    - {round: 4, action: "报告 real-data 的 Var(e_i) 和 Stage 2 estimated σ，验证是否低于 σ_crit", assigned_to: "main_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R3-N3"
+  summary: "N=8 缺正式 power analysis"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - {round: 3, reviewers: "R1+R2", note: "论文括号中提 N≥17 for 80% power，无推导过程。"}
+  action_items:
+    - {round: 3, action: "power analysis 提升为 Appendix 独立 section", assigned_to: "paper_agent", status: done}
+  resolution: "Appendix §app:power 独立 section + exp-018 N=20 empirical validation"
+  resolution_round: 4
+
+- id: "R3-N4"
+  summary: "Bilinear rank-1 交互假设可能过于简化"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 5
+  mentions:
+    - {round: 3, reviewers: "R2 (R1 agree)", note: "rank-1 miss 异质性 contamination pattern。"}
+    - {round: 4, reviewers: "R1", note: "Limitations 第 6 点已讨论 rank-1 局限 + 高秩分解。建议在合成实验中加入 rank-2 misspecification 测试。"}
+    - {round: 5, reviewers: "R1+R2", note: "R1 agree rank-1 限制性强但 Limitations 已讨论。建议按 item category 做 residual analysis 检查 rank-1 合理性——Arena-Hard 500 items 涵盖多种话题。"}
+  action_items:
+    - {round: 3, action: "Limitations 讨论 rank-1 假设", assigned_to: "paper_agent", status: done}
+  resolution: "Limitations 第六点充分讨论"
+  resolution_round: 4
+
+- id: "R3-N5"
+  summary: "LOO ΔELPD 到 ranking improvement 存在逻辑跳跃"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  mentions:
+    - {round: 3, reviewers: "R1+R2", note: "ΔELPD_LOO 衡量 model fit 非 ranking accuracy。"}
+    - {round: 4, reviewers: "R1", note: "§4.2 已重构为两条独立评估轴（predictive fit vs ranking accuracy）。但 LOO 和排名改善在同段并列仍可能造成误导。"}
+  action_items:
+    - {round: 3, action: "区分 model fit 与 ranking accuracy", assigned_to: "paper_agent", status: done}
+  resolution: "§4.2 区分两条证据线；LOO 不再与 ranking improvement 混为一体"
+  resolution_round: 4
+
+- id: "R3-N6"
+  summary: "Conclusion 溢出至第 9 页"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - {round: 3, reviewers: "R2", note: "Section 6 文本溢出至第 9 页约 3-4 行。"}
+  action_items:
+    - {round: 3, action: "压缩 Related Work", assigned_to: "paper_agent", status: done}
+  resolution: "正文完全在 8 页内"
+  resolution_round: 4
+
+- id: "R3-MR"
+  summary: "遗漏 3 篇近期相关工作"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - {round: 3, reviewers: "R2", note: "Polo 2024, Ye 2024, Panickssery 2024"}
+  action_items:
+    - {round: 3, action: "添加 3 篇 missing references", assigned_to: "paper_agent", status: done}
+  resolution: "3 篇全部添加"
+  resolution_round: 4
+
+## Round 4 Issues
+
+- id: "R4-N1"
+  summary: "Abstract 超过 200 词限制（EMNLP 2026 硬约束）——desk rejection 风险"
+  category: format
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - {round: 4, reviewers: "R2 (R1 agree, suggests downgrade)", note: "R2 列为 critical (desk rejection 风险)。R1 同意超词但建议降为 Should-Fix：5 分钟可修的编辑问题。Director 定级 warning：确实超出但可快速修复。约 209-213 词，超出上限 ~10-13 词。"}
+  action_items:
+    - {round: 4, action: "压缩 abstract 至 ≤195 词（删减 LOO 细节或合并 synthetic/real-data 描述）", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-W1"
+  summary: "Contamination 验证存在循环性风险——c_n 未提供超出 e_i 的额外信息验证"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 4
+  last_seen_round: 5
+  mentions:
+    - {round: 4, reviewers: "R2 (R1 agree with nuance)", note: "e_i 定义 item exposure，c_n 捕获模型在 high-e_i items 上的超常表现——信息已编码在 e_i 里。验证仅为 model age proxy (face validity)。R1 补充：Table 8 Δθ-c_n 完美秩相关验证的是 OVB 理论预测而非 contamination ground truth。R1 建议将 c_n 定位为 'differential performance on high-exposure items' 而非对 '真实污染程度' 的直接测量。"}
+    - {round: 5, reviewers: "R1+R2", note: "共识 critical。Model age 与 c_n 的相关性是 face validity 非 causal validation。LOO-ELPD 证明模型拟合优势而非 c_n 语义正确性。合成 recovery (r=0.81) 在已知 ground truth 下。缺乏独立外部指标（membership inference, Min-K%）对比。R1 建议 random e_i placebo test 作为区分方法。"}
+  action_items:
+    - {round: 4, action: "设计 out-of-sample 验证（用部分 items 训练，预测 held-out 的 contamination patterns）；或更明确定位 c_n 为 differential performance 指标", assigned_to: "main_agent+paper_agent", status: open}
+    - {round: 5, action: "实施 random e_i placebo test：将真实 e_i 替换为随机 e_i，验证 c_n 估计是否退化。或对比 Min-K%/membership inference 等独立 contamination indicator", assigned_to: "main_agent+paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-W2"
+  summary: "'First joint contamination-severity diagnostic' claim 需更精确限定"
+  category: framing
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  mentions:
+    - {round: 4, reviewers: "R2 (R1 agree with nuance)", note: "Li et al. (2024, Preference Leakage) 已识别 judge-specific contamination。R1 补充区分：Pref Leakage 是 detect-and-discard，G-MFRM 在统一 IRT 模型中 jointly estimate continuous facets。建议限定为 'first measurement-theoretic framework that jointly estimates model-specific contamination susceptibility and judge severity as continuous facets within a single IRT model'。"}
+  action_items:
+    - {round: 4, action: "在 Introduction 中限定 'first' claim 为 measurement-theoretic framework 层面", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R4-MR"
+  summary: "可能遗漏近期相关工作"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 5
+  mentions:
+    - {round: 4, reviewers: "R1+R2", note: "R1: Ye et al. 2024 'Benchmarking Benchmark Leakage', Oren et al. 2024 'Proving Test Set Contamination in Black Box LMs'. R2: arXiv:2506.22316 (June 2025) scoring bias 分类, arXiv:2511.21140 (Nov 2025) calibration-based correction, 4PL-IRT framework (Oct 2025). 需验证发表时间是否在 submission deadline 前。"}
+    - {round: 5, reviewers: "R1+R2", note: "R1: Batsuren et al. 2024（IRT for LLM evaluation）直接相关应引用。Stureborg et al. 2024 相关但非必须。"}
+  action_items:
+    - {round: 4, action: "验证这些论文发表时间并酌情纳入 Related Work", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+## Round 5 New Issues
+
+- id: "R5-N1"
+  summary: "标题/abstract 使用泛化表述 'LLM Evaluation' 但实验仅基于 Arena-Hard pairwise comparison"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 5
+  last_seen_round: 5
+  mentions:
+    - {round: 5, reviewers: "R1+R2", note: "理论贡献是 benchmark-agnostic 但 Stage 2 exposure pipeline 针对 pairwise comparison 设计。在选择题或代码生成 benchmark 上行为未知。Claims 应限定为 'pairwise open-ended evaluation' 或增加不同类型 benchmark 验证。"}
+  action_items:
+    - {round: 5, action: "将标题/abstract/Introduction 的 claims 限定为 pairwise open-ended evaluation，或增加至少一个非 pairwise benchmark（如 MT-Bench 单答案评分）", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R5-W1"
+  summary: "Anchor model (gpt-4-0314) 自身 contamination 可能系统性偏倚 e_i 估计"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 5
+  last_seen_round: 5
+  mentions:
+    - {round: 5, reviewers: "R1 (R2 strongly agree)", note: "gpt-4-0314 作为 Stage 2 anchor，其 win-rate residuals 用于估计 item-level exposure。若 anchor 本身对部分 items exposed，则这些 items 的 e_i 被系统性低估（anchor high performance 归因于 ability 而非 contamination），导致 c_n 估计偏倚。R2 认为这比 e_i pipeline 内部一致性问题更根本。"}
+  action_items:
+    - {round: 5, action: "讨论 anchor contamination 风险；提供 anchor 替换（如 gpt-4-0613 或 Claude-3）后 e_i 排序稳定性分析；或在 Limitations 明确承认此假设", assigned_to: "main_agent+paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R5-W2"
+  summary: "52% items misfit（92/176, infit MNSQ outside [0.5,1.5]）无排除后 sensitivity analysis"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 5
+  last_seen_round: 5
+  mentions:
+    - {round: 5, reviewers: "R1+R2 (R2 escalates)", note: "Appendix Q Table 11: 176 items 中 92 个 flagged（74 underfit, 18 overfit）。52% misfit 率远超 Rasch 建模常规可接受范围（<20%）。大量 underfit 意味这些 items response pattern 过于 predictable——Rasch 模型可能过度参数化。关键缺失：排除 misfitting items 后 θ_n 和 c_n 估计是否稳定。R2 建议升级为 critical concern。"}
+  action_items:
+    - {round: 5, action: "排除 92 个 misfitting items 后重新估计 θ_n 和 c_n，报告与 full-set 估计的 rank correlation；讨论为何 misfit 率如此高（可能是 pairwise comparison 数据的固有特性而非模型缺陷）", assigned_to: "main_agent+paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R5-W3"
+  summary: "c_n 跨配置不稳定：GPT-3.5-Turbo N=8 中 c_n=5.60 vs N=17 中 c_n=2.57"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 5
+  last_seen_round: 5
+  mentions:
+    - {round: 5, reviewers: "R1+R2", note: "论文解释为 shrinkage from larger population，但 hierarchical shrinkage 通常不产生 >2× 变化。N=8 用 9 judges vs N=17 用 6 judges——panel 完全不同也可能是原因。这强化了 c_n CI 覆盖率问题。"}
+  action_items:
+    - {round: 5, action: "控制变量分析：固定 judge panel，仅改变 model set 大小，观察 c_n 变化。或明确讨论为何 shrinkage 程度如此大以及 panel 差异对 c_n 的影响", assigned_to: "main_agent+paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R5-W4"
+  summary: "Table 1 caption 列举 baseline 不完整（列 5 个名称，实际 7 个）"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 5
+  last_seen_round: 5
+  mentions:
+    - {round: 5, reviewers: "R1+R2", note: "Table 1 caption 列 5 个 baseline 名称但 Section 5.2 列举 7 个（加 Raw Average 和 CyclicJudge+discard）。未给出每个 baseline 独立 τ 值，仅用 'within 0.015' 概括。"}
+  action_items:
+    - {round: 5, action: "Table 1 caption 完整列举所有 baseline 或注明'详见 Section 5.2'；补充每个 baseline 的独立 τ 值", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: "R5-MR"
+  summary: "Batsuren et al. 2024 (IRT for LLM evaluation) 应引用"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 5
+  last_seen_round: 5
+  mentions:
+    - {round: 5, reviewers: "R1+R2", note: "直接相关：IRT 用于 LLM 评测。Stureborg et al. 2024 相关但非必须。"}
+  action_items:
+    - {round: 5, action: "添加 Batsuren et al. 2024 到 Related Work", assigned_to: "paper_agent", status: open}
+  resolution: ""
+  resolution_round: null

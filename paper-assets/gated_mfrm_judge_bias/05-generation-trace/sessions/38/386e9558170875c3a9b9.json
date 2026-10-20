@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "386e9558170875c3a9b9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh urgent 5task rtx6000 check",
+  "task_key": "worker_ssh_urgent_5task_rtx6000_check_20260522T160902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_5task_rtx6000_check_20260522T160902_result.json",
+    "occurrence": 1,
+    "bytes": 3063,
+    "sha256": "3262cfe828d7a52b3d76fb1a1db94f76a712b989500a1c363741f11d36f65733"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 状态报告\n\n### 1. exp-009 进度\n\n| 指标 | 值 |\n|------|-----|\n| PID | 112923 (alive, 15h04m) |\n| 进度 | **155/200** (77.5%) |\n| 当前 | rho=0.9, seed=4 |\n| 已用 | ~54,185s (~15h) |\n| ETA | **~15,731s (~4.4h)** |\n| GPU | GPU 0 (61% util, 74.3/97.9 GB) |\n\n输出文件已生成: `bias_vs_rho.csv`, `bias_vs_rho.png`, `cn_recovery_scatter.png`\n\n---\n\n### 2. Judge 收集状态\n\n**9 个 judge 全部在线收集中**（均运行 ~4h）：\n\n| Judge | 已收集 | 进度 | ETA | 状态 |\n|-------|--------|------|-----|------|\n| claude-opus-4.7 | 4,826 | 2030/6871 (30%) | ~7.8h | 正常 |\n| claude-sonnet-4.6 | 4,368 | 2030/7282 (28%) | ~8.6h | 正常 |\n| gpt-5.5 | 4,646 | 2030/6601 (31%) | ~8.6h | 正常 |\n| qwen3-235b | 3,087 | — | — | 运行中（无日志尾部） |\n| gemini-2.5-pro | 2,795 | — | — | 运行中（无日志尾部） |\n| deepseek-v4-pro | 2,157 | — | — | 运行中（无日志尾部） |\n| llama-3.3-70b | 1,931 | — | — | 运行中（无日志尾部） |\n| qwen2.5-72b | 1,445 | 960/8534 (11%) | ~31.9h | **⚠ 有 context length 错误** |\n| mistral-large-2 | 916 | 590/8742 (7%) | ~52.7h | **⚠ 有 context length 错误** |\n\n**总计**: 26,467 judgments\n\n**⚠ 关键问题**: qwen2.5-72b 和 mistral-large-2 的 vLLM 实例 `max-model-len=4096`，部分 prompt 超限（3073 input + 1024 output = 4097），导致反复重试失败。这两个 judge 速度极慢且会丢失部分判断。需要将 `max-model-len` 提高到至少 8192。\n\n---\n\n### 3. API Response 生成进度\n\n| Model | 进度 | 状态 |\n|-------|------|------|\n| claude-opus-4.7 | 500/500 | ✓ |\n| gemma-2-9b | 500/500 | ✓ |\n| gpt-3.5-turbo-0125 | 500/500 | ✓ |\n| gpt-4-0314 | 500/500 | ✓ |\n| gpt-4-0613 | 500/500 | ✓ |\n| gpt-4o | 500/500 | ✓ |\n| gpt-4o-mini | 500/500 | ✓ |\n| llama-3.3-70b | 500/500 | ✓ |\n| qwen2.5-72b | 500/500 | ✓ |\n| qwen3-8b | 500/500 | ✓ |\n| gpt-5.5 | **495/500** | ⚠ 差 5 条 |\n| mistral-large-2 | **362/500** | ⚠ 差 138 条 |\n| claude-sonnet-4.6 | **200/500** | ⚠ 差 300 条 |\n\n2 个生成进程仍在运行：`generate_responses.py --group openai`（10h22m）和 `--group proxy_nocredit`（7h26m）。\n\n---\n\n### 4. GPU 状态\n\n| GPU | 利用率 | 显存 | 用途 |\n|-----|--------|------|------|\n| 0 | 61% | 74.3 / 97.9 GB | exp-009 (MCMC) |\n| 1 | 100% | 89.7 / 97.9 GB | vLLM 服务 |\n| 2 | 100% | 91.0 / 97.9 GB | vLLM Llama-3.3-70B (port 8001) |\n| 3 | 100% | 88.1 / 97.9 GB | vLLM Mistral-Large (port 8003) |\n\n---\n\n### 需要关注的问题\n\n1. **qwen2.5-72b / mistral-large-2 vLLM context length 不足** — `max-model-len=4096` 导致部分 judge prompt 失败重试。qwen2.5-72b (port 8002) 当前 ETA 31.9h、mistral 52.7h，实际会更久因为错误重试浪费时间。建议重启这两个 vLLM 实例并将 `max-model-len` 提高到 8192。\n2. **3 个模型 response 未满 500** — claude-sonnet-4.6 (200)、mistral-large-2 (362)、gpt-5.5 (495)，生成进程仍在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-5task-rtx6000-check.md"
+}

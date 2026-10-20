@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54a922af388eb6974c7f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mistral deploy cuda3",
+  "task_key": "worker_ssh_mistral_deploy_cuda3_20260524T044939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mistral_deploy_cuda3_20260524T044939_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "d53b4b97b0903a1638063048544996bfc2d51d80a2f9a30958fbf63eb80fe9b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 个分片完成（4.6G 每个），第 3 个正在下载。进度稳定。\n\n下载正在后台稳定运行，预计还需约 50 分钟（12 个分片 * 4 分钟/分片）。\n\n**当前状态汇总：**\n\n| 步骤 | 状态 |\n|------|------|\n| **Step 1: 磁盘清理** | 完成。释放 28G (212G → 184G)，可用 67G |\n| **Step 2: 下载 Mistral-Large-2-AWQ** | 进行中 (PID 534407)。2/14 分片完成 (~12G/60.5G)，速度 ~13 MB/s，预计 ~50 分钟 |\n| **Step 5: Config** | 已创建 `config_mistral-large-2_local_n17.yaml` |\n| **Step 3-4, 6: vLLM + collect.py** | 等下载完成 |\n\n下载使用 `aria2c` 16 连接从 `hf-mirror.com` 下载。脚本支持断点续传，失败自动重试。\n\n**监控命令：**\n```bash\ndu -sh /root/autodl-tmp/models/Mistral-Large-Instruct-2407-AWQ/\ncat /tmp/download_mistral_v3.log | strings | grep -E \"SKIP|OK|FAIL|Downloading\" | tail -10\nps -p 534407 -o pid,etime\n```\n\n下载完成后需要执行 Step 3 (vLLM 部署) → Step 4 (健康检查) → Step 6 (collect.py)。是否需要我继续轮询等待下载完成并执行后续步骤？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mistral-deploy-cuda3.md"
+}

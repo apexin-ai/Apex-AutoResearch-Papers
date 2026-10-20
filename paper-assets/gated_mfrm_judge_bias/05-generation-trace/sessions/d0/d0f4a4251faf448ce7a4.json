@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0f4a4251faf448ce7a4",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix exclude models 1line",
+  "task_key": "worker_ssh_fix-exclude-models-1line_20260524T100608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-exclude-models-1line_20260524T100608_result.json",
+    "occurrence": 1,
+    "bytes": 137,
+    "sha256": "c65f26912b8bdf5ecfa0bbd51aada95cf832aa58950f1fd9c48b20e7185dc31a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过：17 matched + 1 excluded (qwen3-8b) + 0 unmatched。mistral-large-2407 已恢复参与评估，ELO=1250。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-exclude-models-1line.md"
+}

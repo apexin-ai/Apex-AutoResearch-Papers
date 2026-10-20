@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45d9e3c7f66e8c305e36",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh launch exp008 facet",
+  "task_key": "worker_ssh_launch_exp008_facet_20260522T212739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_exp008_facet_20260522T212739_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "9af7fde6ed0d62ff10709a125acea425b22a03391abc0e81d7d383a8dbdc32ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果汇报：\n\n---\n\n## exp-008 Facet Fit Diagnostics 结果\n\n### 1. 代码状态\n新创建 `/root/gated_mfrm_judge_bias/exp008/run_exp008.py`\n\n### 2. 全局拟合\n| 指标 | 值 | 评估 |\n|------|-----|------|\n| Global infit MNSQ | 0.870 | 略低于1.0，模型整体偏 overfit（预测过于确定） |\n| Global outfit MNSQ | 0.795 | 同上 |\n\n### 3. Model facet — 无异常\n全部 8 个模型 infit/outfit 在 [0.63, 1.07]，无 flagged。gpt-4-0613 拟合最好（infit=0.993, outfit=1.068），qwen2.5-72b outfit 最低（0.628）。\n\n### 4. Judge facet — 无异常\n全部 9 个 judge 在可接受范围内。gpt-5.5-proxy 拟合最佳（infit=1.006, outfit=1.001，几乎完美）。claude-sonnet-4.6-proxy 和 mistral-large-2 outfit 偏低（~0.6），判分模式比模型预期更规律。\n\n### 5. Item facet — 92/176 flagged\n- **5 items overfit（MNSQ > 1.5）**：响应模式与模型预期不一致，最严重的是 `20c9d951` (outfit=3.170) 和 `6b31320632` (outfit=3.010)\n- **87 items underfit（MNSQ < 0.5）**：响应过于可预测。这些大多是低观测量（4-6 obs）、低 exposure（e_i≈0）的 items，模型对它们的预测已经很确定\n\n### 6. 整体评估\nG-MFRM 模型对 model 和 judge facet 拟合良好，主要问题在 item 层面：\n- 大量低观测量 items 的 underfit 是稀疏数据的自然结果（非模型缺陷）\n- 少数 overfit items 值得检查——可能包含异常判分模式（如不同 judge 对同一 item 评价高度矛盾）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-exp008-facet.md"
+}

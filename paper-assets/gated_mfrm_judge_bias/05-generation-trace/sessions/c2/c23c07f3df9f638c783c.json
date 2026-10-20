@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c23c07f3df9f638c783c",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix collect concurrency",
+  "task_key": "worker_ssh_fix_collect_concurrency_20260523T194030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_collect_concurrency_20260523T194030_result.json",
+    "occurrence": 1,
+    "bytes": 2246,
+    "sha256": "4089f94ae33a52835fd125da7f0a1a0102db793acfdc6b2d8b0a2bed7ab0883a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 瓶颈原因\ncollect.py 已有 `ThreadPoolExecutor` 支持（`--workers` 参数），但所有本地 judge 进程启动时均未指定 `--workers`，默认为 1（完全串行请求）。vLLM continuous batching 无法发挥作用，KV cache 利用率极低。\n\n### 修复方案\n**方案 A：启动额外并行进程（零代码修改）**\n\n为每个本地 judge 启动了新的 `collect.py --workers 32` 进程：\n- `judge_llama_parallel` — `--config config_llama_arena_n17.yaml --workers 32`\n- `judge_qwen_parallel` — `--config config_qwen_arena_n17.yaml --workers 32`\n- `judge_mistral_parallel` — `--config config_mistral_arena_n17.yaml --workers 32`\n\n原有串行进程未停止。新进程通过 `load_completed()` 跳过已完成项，JSONL 追加写入在 Linux 上是原子安全的。\n\n### 吞吐量对比\n\n| Judge | 串行速度 | 并行速度 (32 workers) | 加速倍数 |\n|-------|---------|---------------------|---------|\n| llama-3.3-70b | ~30/hr | ~450+/hr | **~15x** |\n| qwen2.5-72b | ~30/hr | ~540+/hr | **~18x** |\n| mistral-large-2 | ~30/hr | ~540+/hr | **~18x** |\n\n### 预估完成时间\n\n| Judge | 进度 | 剩余 | 预估完成 |\n|-------|------|------|---------|\n| llama-3.3-70b | 6497/18000 (36%) | 11503 | ~25h → **May 25 凌晨** |\n| qwen2.5-72b | 9474/18000 (53%) | 8526 | ~16h → **May 24 晚** |\n| mistral-large-2 | 9138/18000 (51%) | 8862 | ~16h → **May 24 晚** |\n\n**全部在 May 26 DDL 前完成。** 速率仍在爬升中，实际完成可能更早。\n\n### vLLM 状态\n\n| 实例 | 并发请求 | 生成吞吐 | KV Cache | 状态 |\n|------|---------|---------|----------|------|\n| llama (8001) | 32 | 78.6 tok/s | 12.7% | 健康 |\n| qwen (8002) | 33 | 75.7 tok/s | 29.2% | 健康 |\n| mistral (8003) | 31 | 39.4 tok/s | 80.0% | 可控（曾达92%，已回落） |\n\n### 注意事项\n- 串行+并行进程可能产生少量重复行（串行进程每小时仅贡献几条），分析时 deduplicate 即可\n- mistral 的 KV cache 偏高，如果后续出现 preemption/OOM，可考虑杀掉其串行进程或降低 workers 数\n- 回滚方法：直接 kill 三个 `_parallel` tmux session，不影响原有进程和已有数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-collect-concurrency.md"
+}

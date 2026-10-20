@@ -1,0 +1,2015 @@
+{
+  "schema_version": "1.0",
+  "id": "d94d7cabc6bacd3ea5d8",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "code mvp gmfrm update",
+  "task_key": "worker_code_mvp_gmfrm_update_20260521T163849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_gmfrm_update_20260521T163849.log",
+    "occurrence": 1,
+    "bytes": 144330,
+    "sha256": "da0d477072ff889fa37affe52e00dd83a4918f1c388081dcfd68480f4ced52fe"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__distill_papers",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_distill_status",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "db32aa1b-bd15-4951-b58a-9314d808f440",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779384600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "2e8c42e5-bca0-4bce-86e0-548bd7a6a08d",
+                "session_id": "63365001-7510-43d8-a52a-149efc11b032"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the existing files to understand the current state before making changes.",
+              "signature": "EqYCCmMIDRgCKkBTJzceCweJgg3xTFb9xy/pl+L8ZOfDBnh+KNkTZlcQvtsmJk7+nI/lJWG4OSGVd+oD14oDvC3Knw6FL5+ynCuSMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDE0Svlqnp7hbt7o+khoMF20a8xb3HLDN6TpSIjDgIch6GTzT6IcW/j2aWUcNenqAAH4xCWQ60IVixeJWISEFhljt5V/znELklCpfrloqcfHrMK92YiegnvcGDbdNgXoFjY58HLfrf2en+iaDYuk+yyl/jlwp5PxEMusRozW68Z/hf96am7Qj5tErOAHuztkUH4DUpKLci64n4JA4mN3U9ztDc2JbHvsi7Z0p64XxRX/mfkYdZfzSlhmIRuLBj+swGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "5005ef98-5579-41d8-a8db-0135c46012b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Asyjx7Xr7JYaTGLwzXQFw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16396,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 16396
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the existing files first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "ac56d1ab-abcf-4388-b72c-a7fd2c72ccb5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Asyjx7Xr7JYaTGLwzXQFw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16396,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 16396
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YLfWTMXNS99JXLBkHM5LNC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "92e217ef-2d89-47fa-9fe5-dc35cb1d0aa9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Asyjx7Xr7JYaTGLwzXQFw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16396,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 16396
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T16:39:03.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YLfWTMXNS99JXLBkHM5LNC",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Fitting methods for the G-MFRM synthetic recovery experiment.\n2\t\n3\tFour methods of increasing sophistication:\n4\t  1. Raw average — naive mean of responses.\n5\t  2. MFRM-only — standard 3-facet Rasch via NumPyro MCMC.\n6\t  3. Sequential — MFRM then OLS residual regression on exposure.\n7\t  4. Joint G-MFRM — full model with contamination term, NumPyro MCMC.\n8\t\n9\tDependencies: numpy, jax, numpyro, arviz, scipy\n10\t\"\"\"\n11\t\n12\timport warnings\n13\t\n14\timport arviz as az\n15\timport jax\n16\timport jax.numpy as jnp\n17\timport numpy as np\n18\timport numpyro\n19\timport numpyro.distributions as dist\n20\tfrom numpyro.infer import MCMC, NUTS\n21\tfrom scipy.special import expit\n22\t\n23\tnumpyro.set_host_device_count(2)\n24\t\n25\t\n26\t# ---------------------------------------------------------------------------\n27\t# Helpers\n28\t# ---------------------------------------------------------------------------\n29\t\n30\tdef _mcmc_diagnostics(mcmc: MCMC) -> tuple[float, float]:\n31\t    \"\"\"Return (max R-hat, min ESS) across all parameters.\"\"\"\n32\t    summary = az.summary(az.from_numpyro(mcmc))\n33\t    max_rhat = summary[\"r_hat\"].max()\n34\t    min_ess = summary[\"ess_bulk\"].min()\n35\t    return float(max_rhat), float(min_ess)\n36\t\n37\t\n38\t# ---------------------------------------------------------------------------\n39\t# Method 1: Raw average\n40\t# ---------------------------------------------------------------------------\n41\t\n42\tdef fit_raw_average(data: dict) -> dict:\n43\t    \"\"\"Estimate theta as mean response rate per model.\n44\t\n45\t    Args:\n46\t        data: Output of generate_gated_mfrm_data().\n47\t\n48\t    Returns:\n49\t        Dict with theta_hat (N,), r_hat=NaN, ess=NaN.\n50\t    \"\"\"\n51\t    Y = data[\"responses\"].astype(np.float64)\n52\t    theta_hat = Y.mean(axis=(1, 2))\n53\t    # Center to match identification constraint of MCMC methods\n54\t    theta_hat = theta_hat - theta_hat.mean()\n55\t    return {\"theta_hat\": theta_hat, \"r_hat\": float(\"nan\"), \"ess\": float(\"nan\")}\n56\t\n57\t\n58\t# ---------------------------------------------------------------------------\n59\t# Method 2: Standard MFRM (no contamination term)\n60\t# ---------------------------------------------------------------------------\n61\t\n62\tdef _mfrm_model(Y: jnp.ndarray, N: int, I: int, J: int) -> None:\n63\t    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n64\t    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n65\t    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n66\t    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n67\t\n68\t    logits = theta[:, None, None] - b[None, :, None] - d[None, None, :]\n69\t    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n70\t\n71\t\n72\tdef fit_mfrm_only(data: dict) -> dict:\n73\t    \"\"\"Fit standard 3-facet MFRM via NUTS.\n74\t\n75\t    Args:\n76\t        data: Output of generate_gated_mfrm_data().\n77\t\n78\t    Returns:\n79\t        Dict with theta_hat (N,), r_hat (float), ess (float).\n80\t    \"\"\"\n81\t    cfg = data[\"config\"]\n82\t    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n83\t\n84\t    kernel = NUTS(_mfrm_model)\n85\t    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n86\t    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n87\t\n88\t    samples = mcmc.get_samples()\n89\t    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n90\t    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n91\t\n92\t    return {\"theta_hat\": theta_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n93\t\n94\t\n95\t# ---------------------------------------------------------------------------\n96\t# Method 3: Sequential (MFRM then OLS residual correction)\n97\t# ---------------------------------------------------------------------------\n98\t\n99\tdef fit_sequential(data: dict, e_values: np.ndarray) -> dict:\n100\t    \"\"\"Two-step approach: fit MFRM, then regress residuals on exposure.\n101\t\n102\t    Args:\n103\t        data: Output of generate_gated_mfrm_data().\n104\t        e_values: True item exposure values, shape (I,).\n105\t\n106\t    Returns:\n107\t        Dict with theta_hat (N,), r_hat (float), ess (float).\n108\t    \"\"\"\n109\t    cfg = data[\"config\"]\n110\t    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n111\t    Y = data[\"responses\"].astype(np.float64)\n112\t\n113\t    # Step 1: fit standard MFRM\n114\t    mfrm_result = fit_mfrm_only(data)\n115\t    theta_mfrm = mfrm_result[\"theta_hat\"]\n116\t\n117\t    # Also need b_hat and d_hat — re-run to get all posteriors\n118\t    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n119\t    kernel = NUTS(_mfrm_model)\n120\t    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n121\t    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n122\t    samples = mcmc.get_samples()\n123\t    b_hat = np.array(samples[\"b\"].mean(axis=0))\n124\t    d_hat = np.array(samples[\"d\"].mean(axis=0))\n125\t\n126\t    # Step 2: residuals\n127\t    logits_hat = theta_mfrm[:, None, None] - b_hat[None, :, None] - d_hat[None, None, :]\n128\t    pred = expit(logits_hat)\n129\t    residuals = Y - pred  # (N, I, J)\n130\t    r_ni = residuals.mean(axis=2)  # (N, I) — average over judges\n131\t\n132\t    # Step 3: OLS per model — regress r_ni on e_i to get c_hat_n\n133\t    c_hat = np.zeros(N)\n134\t    e_centered = e_values - e_values.mean()\n135\t    e_var = (e_centered**2).sum()\n136\t    if e_var > 1e-10:\n137\t        for n in range(N):\n138\t            c_hat[n] = (r_ni[n] * e_centered).sum() / e_var\n139\t\n140\t    # Step 4: adjust theta\n141\t    mean_e = e_values.mean()\n142\t    theta_seq = theta_mfrm - c_hat * mean_e\n143\t    theta_seq = theta_seq - theta_seq.mean()\n144\t\n145\t    return {\n146\t        \"theta_hat\": theta_seq,\n147\t        \"r_hat\": mfrm_result[\"r_hat\"],\n148\t        \"ess\": mfrm_result[\"ess\"],\n149\t    }\n150\t\n151\t\n152\t# ---------------------------------------------------------------------------\n153\t# Method 4: Joint G-MFRM\n154\t# ---------------------------------------------------------------------------\n155\t\n156\tdef _gmfrm_model(Y: jnp.ndarray, e: jnp.ndarray, N: int, I: int, J: int) -> None:\n157\t    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n158\t    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n159\t    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n160\t    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n161\t    c = numpyro.sample(\"c\", dist.HalfNormal(0.5).expand([N]))\n162\t\n163\t    logits = (\n164\t        theta[:, None, None]\n165\t        - b[None, :, None]\n166\t        - d[None, None, :]\n167\t        + c[:, None, None] * e[None, :, None]\n168\t    )\n169\t    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n170\t\n171\t\n172\tdef fit_joint_gmfrm(data: dict, e_values: np.ndarray) -> dict:\n173\t    \"\"\"Fit full G-MFRM with contamination term via NUTS.\n174\t\n175\t    Args:\n176\t        data: Output of generate_gated_mfrm_data().\n177\t        e_values: True item exposure values, shape (I,).\n178\t\n179\t    Returns:\n180\t        Dict with theta_hat (N,), c_hat (N,), r_hat (float), ess (float).\n181\t    \"\"\"\n182\t    cfg = data[\"config\"]\n183\t    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n184\t    e = jnp.array(e_values, dtype=jnp.float32)\n185\t\n186\t    kernel = NUTS(_gmfrm_model)\n187\t    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n188\t    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, e=e, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n189\t\n190\t    samples = mcmc.get_samples()\n191\t    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n192\t    c_hat = np.array(samples[\"c\"].mean(axis=0))\n193\t    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n194\t\n195\t    return {\"theta_hat\": theta_hat, \"c_hat\": c_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n196\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "7ee5d644-3345-477a-bcb1-ff2d131b649c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+                "content": "\"\"\"Fitting methods for the G-MFRM synthetic recovery experiment.\n\nFour methods of increasing sophistication:\n  1. Raw average — naive mean of responses.\n  2. MFRM-only — standard 3-facet Rasch via NumPyro MCMC.\n  3. Sequential — MFRM then OLS residual regression on exposure.\n  4. Joint G-MFRM — full model with contamination term, NumPyro MCMC.\n\nDependencies: numpy, jax, numpyro, arviz, scipy\n\"\"\"\n\nimport warnings\n\nimport arviz as az\nimport jax\nimport jax.numpy as jnp\nimport numpy as np\nimport numpyro\nimport numpyro.distributions as dist\nfrom numpyro.infer import MCMC, NUTS\nfrom scipy.special import expit\n\nnumpyro.set_host_device_count(2)\n\n\n# ---------------------------------------------------------------------------\n# Helpers\n# ---------------------------------------------------------------------------\n\ndef _mcmc_diagnostics(mcmc: MCMC) -> tuple[float, float]:\n    \"\"\"Return (max R-hat, min ESS) across all parameters.\"\"\"\n    summary = az.summary(az.from_numpyro(mcmc))\n    max_rhat = summary[\"r_hat\"].max()\n    min_ess = summary[\"ess_bulk\"].min()\n    return float(max_rhat), float(min_ess)\n\n\n# ---------------------------------------------------------------------------\n# Method 1: Raw average\n# ---------------------------------------------------------------------------\n\ndef fit_raw_average(data: dict) -> dict:\n    \"\"\"Estimate theta as mean response rate per model.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat=NaN, ess=NaN.\n    \"\"\"\n    Y = data[\"responses\"].astype(np.float64)\n    theta_hat = Y.mean(axis=(1, 2))\n    # Center to match identification constraint of MCMC methods\n    theta_hat = theta_hat - theta_hat.mean()\n    return {\"theta_hat\": theta_hat, \"r_hat\": float(\"nan\"), \"ess\": float(\"nan\")}\n\n\n# ---------------------------------------------------------------------------\n# Method 2: Standard MFRM (no contamination term)\n# ---------------------------------------------------------------------------\n\ndef _mfrm_model(Y: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n\n    logits = theta[:, None, None] - b[None, :, None] - d[None, None, :]\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_mfrm_only(data: dict) -> dict:\n    \"\"\"Fit standard 3-facet MFRM via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n\n\n# ---------------------------------------------------------------------------\n# Method 3: Sequential (MFRM then OLS residual correction)\n# ---------------------------------------------------------------------------\n\ndef fit_sequential(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Two-step approach: fit MFRM, then regress residuals on exposure.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step 1: fit standard MFRM\n    mfrm_result = fit_mfrm_only(data)\n    theta_mfrm = mfrm_result[\"theta_hat\"]\n\n    # Also need b_hat and d_hat — re-run to get all posteriors\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n\n    # Step 2: residuals\n    logits_hat = theta_mfrm[:, None, None] - b_hat[None, :, None] - d_hat[None, None, :]\n    pred = expit(logits_hat)\n    residuals = Y - pred  # (N, I, J)\n    r_ni = residuals.mean(axis=2)  # (N, I) — average over judges\n\n    # Step 3: OLS per model — regress r_ni on e_i to get c_hat_n\n    c_hat = np.zeros(N)\n    e_centered = e_values - e_values.mean()\n    e_var = (e_centered**2).sum()\n    if e_var > 1e-10:\n        for n in range(N):\n            c_hat[n] = (r_ni[n] * e_centered).sum() / e_var\n\n    # Step 4: adjust theta\n    mean_e = e_values.mean()\n    theta_seq = theta_mfrm - c_hat * mean_e\n    theta_seq = theta_seq - theta_seq.mean()\n\n    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": mfrm_result[\"r_hat\"],\n        \"ess\": mfrm_result[\"ess\"],\n    }\n\n\n# ---------------------------------------------------------------------------\n# Method 4: Joint G-MFRM\n# ---------------------------------------------------------------------------\n\ndef _gmfrm_model(Y: jnp.ndarray, e: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n    c = numpyro.sample(\"c\", dist.HalfNormal(0.5).expand([N]))\n\n    logits = (\n        theta[:, None, None]\n        - b[None, :, None]\n        - d[None, None, :]\n        + c[:, None, None] * e[None, :, None]\n    )\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_joint_gmfrm(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Fit full G-MFRM with contamination term via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), c_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    e = jnp.array(e_values, dtype=jnp.float32)\n\n    kernel = NUTS(_gmfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, e=e, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    c_hat = np.array(samples[\"c\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"c_hat\": c_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n",
+                "numLines": 196,
+                "startLine": 1,
+                "totalLines": 196
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XRH9kkYytQ3XbQtsKSRm2d",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "3c46a451-7e05-44e5-9328-c71efee1ae18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Asyjx7Xr7JYaTGLwzXQFw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16396,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 16396
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T16:39:04.014Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XRH9kkYytQ3XbQtsKSRm2d",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Evaluation utilities for the G-MFRM synthetic recovery experiment.\n2\t\n3\tComputes RMSE and Kendall-tau between estimated and true theta,\n4\taggregates multi-seed results, plots, and runs significance tests.\n5\t\n6\tDependencies: numpy, scipy, pandas, matplotlib\n7\t\"\"\"\n8\t\n9\tfrom pathlib import Path\n10\t\n11\timport matplotlib.pyplot as plt\n12\timport numpy as np\n13\timport pandas as pd\n14\tfrom scipy import stats\n15\t\n16\t\n17\tdef compute_metrics(theta_hat: np.ndarray, theta_true: np.ndarray) -> dict:\n18\t    \"\"\"Compute recovery metrics between estimated and true ability parameters.\n19\t\n20\t    Args:\n21\t        theta_hat: Estimated theta, shape (N,).\n22\t        theta_true: Ground-truth theta, shape (N,).\n23\t\n24\t    Returns:\n25\t        Dict with 'rmse' (float) and 'kendall_tau' (float).\n26\t    \"\"\"\n27\t    rmse = float(np.sqrt(np.mean((theta_hat - theta_true) ** 2)))\n28\t    tau, _ = stats.kendalltau(theta_hat, theta_true)\n29\t    return {\"rmse\": rmse, \"kendall_tau\": float(tau)}\n30\t\n31\t\n32\tdef summarize_results(all_results: list[dict]) -> pd.DataFrame:\n33\t    \"\"\"Aggregate multi-seed results into mean +/- std per method and rho.\n34\t\n35\t    Args:\n36\t        all_results: List of dicts, each with keys:\n37\t            rho (float), seed (int), method (str),\n38\t            rmse (float), kendall_tau (float).\n39\t\n40\t    Returns:\n41\t        DataFrame indexed by (rho, method) with columns\n42\t        rmse_mean, rmse_std, tau_mean, tau_std.\n43\t    \"\"\"\n44\t    df = pd.DataFrame(all_results)\n45\t    grouped = df.groupby([\"rho\", \"method\"]).agg(\n46\t        rmse_mean=(\"rmse\", \"mean\"),\n47\t        rmse_std=(\"rmse\", \"std\"),\n48\t        tau_mean=(\"kendall_tau\", \"mean\"),\n49\t        tau_std=(\"kendall_tau\", \"std\"),\n50\t    )\n51\t    return grouped.reset_index()\n52\t\n53\t\n54\tdef plot_results(summary_df: pd.DataFrame, output_path: str | Path) -> None:\n55\t    \"\"\"Line plot of RMSE vs rho for each method, with +/-1 std error bars.\n56\t\n57\t    Args:\n58\t        summary_df: Output of summarize_results().\n59\t        output_path: File path to save the figure (e.g. .png).\n60\t    \"\"\"\n61\t    fig, ax = plt.subplots(figsize=(7, 4.5))\n62\t    methods = summary_df[\"method\"].unique()\n63\t    markers = [\"o\", \"s\", \"^\", \"D\"]\n64\t\n65\t    for i, method in enumerate(methods):\n66\t        sub = summary_df[summary_df[\"method\"] == method].sort_values(\"rho\")\n67\t        ax.errorbar(\n68\t            sub[\"rho\"],\n69\t            sub[\"rmse_mean\"],\n70\t            yerr=sub[\"rmse_std\"],\n71\t            label=method,\n72\t            marker=markers[i % len(markers)],\n73\t            capsize=3,\n74\t        )\n75\t\n76\t    ax.set_xlabel(r\"Confounding strength ($\\rho$)\")\n77\t    ax.set_ylabel(\"RMSE (theta recovery)\")\n78\t    ax.set_title(\"G-MFRM: Theta Recovery vs Confounding\")\n79\t    ax.legend()\n80\t    fig.tight_layout()\n81\t    fig.savefig(output_path, dpi=150)\n82\t    plt.close(fig)\n83\t\n84\t\n85\tdef run_significance_test(\n86\t    results: list[dict], rho: float\n87\t) -> dict:\n88\t    \"\"\"Paired t-test on RMSE: joint G-MFRM vs sequential, at a given rho.\n89\t\n90\t    Args:\n91\t        results: Full list of per-seed result dicts (same format as\n92\t                 summarize_results input).\n93\t        rho: The confounding level to test.\n94\t\n95\t    Returns:\n96\t        Dict with 't_stat' and 'p_value'.\n97\t    \"\"\"\n98\t    df = pd.DataFrame(results)\n99\t    df_rho = df[np.isclose(df[\"rho\"], rho)]\n100\t\n101\t    joint = df_rho[df_rho[\"method\"] == \"joint_gmfrm\"].sort_values(\"seed\")[\"rmse\"].values\n102\t    seq = df_rho[df_rho[\"method\"] == \"sequential\"].sort_values(\"seed\")[\"rmse\"].values\n103\t\n104\t    t_stat, p_value = stats.ttest_rel(joint, seq)\n105\t    return {\"t_stat\": float(t_stat), \"p_value\": float(p_value)}\n106\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "cd7f679e-b87d-4b0d-ad19-d2b5d686d6a3",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/evaluate.py",
+                "content": "\"\"\"Evaluation utilities for the G-MFRM synthetic recovery experiment.\n\nComputes RMSE and Kendall-tau between estimated and true theta,\naggregates multi-seed results, plots, and runs significance tests.\n\nDependencies: numpy, scipy, pandas, matplotlib\n\"\"\"\n\nfrom pathlib import Path\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\n\n\ndef compute_metrics(theta_hat: np.ndarray, theta_true: np.ndarray) -> dict:\n    \"\"\"Compute recovery metrics between estimated and true ability parameters.\n\n    Args:\n        theta_hat: Estimated theta, shape (N,).\n        theta_true: Ground-truth theta, shape (N,).\n\n    Returns:\n        Dict with 'rmse' (float) and 'kendall_tau' (float).\n    \"\"\"\n    rmse = float(np.sqrt(np.mean((theta_hat - theta_true) ** 2)))\n    tau, _ = stats.kendalltau(theta_hat, theta_true)\n    return {\"rmse\": rmse, \"kendall_tau\": float(tau)}\n\n\ndef summarize_results(all_results: list[dict]) -> pd.DataFrame:\n    \"\"\"Aggregate multi-seed results into mean +/- std per method and rho.\n\n    Args:\n        all_results: List of dicts, each with keys:\n            rho (float), seed (int), method (str),\n            rmse (float), kendall_tau (float).\n\n    Returns:\n        DataFrame indexed by (rho, method) with columns\n        rmse_mean, rmse_std, tau_mean, tau_std.\n    \"\"\"\n    df = pd.DataFrame(all_results)\n    grouped = df.groupby([\"rho\", \"method\"]).agg(\n        rmse_mean=(\"rmse\", \"mean\"),\n        rmse_std=(\"rmse\", \"std\"),\n        tau_mean=(\"kendall_tau\", \"mean\"),\n        tau_std=(\"kendall_tau\", \"std\"),\n    )\n    return grouped.reset_index()\n\n\ndef plot_results(summary_df: pd.DataFrame, output_path: str | Path) -> None:\n    \"\"\"Line plot of RMSE vs rho for each method, with +/-1 std error bars.\n\n    Args:\n        summary_df: Output of summarize_results().\n        output_path: File path to save the figure (e.g. .png).\n    \"\"\"\n    fig, ax = plt.subplots(figsize=(7, 4.5))\n    methods = summary_df[\"method\"].unique()\n    markers = [\"o\", \"s\", \"^\", \"D\"]\n\n    for i, method in enumerate(methods):\n        sub = summary_df[summary_df[\"method\"] == method].sort_values(\"rho\")\n        ax.errorbar(\n            sub[\"rho\"],\n            sub[\"rmse_mean\"],\n            yerr=sub[\"rmse_std\"],\n            label=method,\n            marker=markers[i % len(markers)],\n            capsize=3,\n        )\n\n    ax.set_xlabel(r\"Confounding strength ($\\rho$)\")\n    ax.set_ylabel(\"RMSE (theta recovery)\")\n    ax.set_title(\"G-MFRM: Theta Recovery vs Confounding\")\n    ax.legend()\n    fig.tight_layout()\n    fig.savefig(output_path, dpi=150)\n    plt.close(fig)\n\n\ndef run_significance_test(\n    results: list[dict], rho: float\n) -> dict:\n    \"\"\"Paired t-test on RMSE: joint G-MFRM vs sequential, at a given rho.\n\n    Args:\n        results: Full list of per-seed result dicts (same format as\n                 summarize_results input).\n        rho: The confounding level to test.\n\n    Returns:\n        Dict with 't_stat' and 'p_value'.\n    \"\"\"\n    df = pd.DataFrame(results)\n    df_rho = df[np.isclose(df[\"rho\"], rho)]\n\n    joint = df_rho[df_rho[\"method\"] == \"joint_gmfrm\"].sort_values(\"seed\")[\"rmse\"].values\n    seq = df_rho[df_rho[\"method\"] == \"sequential\"].sort_values(\"seed\")[\"rmse\"].values\n\n    t_stat, p_value = stats.ttest_rel(joint, seq)\n    return {\"t_stat\": float(t_stat), \"p_value\": float(p_value)}\n",
+                "numLines": 106,
+                "startLine": 1,
+                "totalLines": 106
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll apply all three changes in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "4e4523fd-db1e-4609-ab9f-7f84020de070",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y2URshcVzo459J9c3uKsWW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4495,
+                "cache_read_input_tokens": 27843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4495
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B1aTuaQZk1KEH1uzqZD8Jk",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+                "old_string": "    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step 1: fit standard MFRM\n    mfrm_result = fit_mfrm_only(data)\n    theta_mfrm = mfrm_result[\"theta_hat\"]\n\n    # Also need b_hat and d_hat — re-run to get all posteriors\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n\n    # Step 2: residuals",
+                "new_string": "    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step A: single MFRM MCMC — extract theta, b, d from one run\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    theta_mfrm = np.array(samples[\"theta\"].mean(axis=0))\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    # Step B: residuals"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "b12b7ae2-7d4c-4557-8fa9-fa86572a1dc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y2URshcVzo459J9c3uKsWW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4495,
+                "cache_read_input_tokens": 27843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4495
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T16:39:15.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B1aTuaQZk1KEH1uzqZD8Jk",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "ed3bfc58-017a-4728-8b95-aa192866d8ee",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+              "oldString": "    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step 1: fit standard MFRM\n    mfrm_result = fit_mfrm_only(data)\n    theta_mfrm = mfrm_result[\"theta_hat\"]\n\n    # Also need b_hat and d_hat — re-run to get all posteriors\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n\n    # Step 2: residuals",
+              "newString": "    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step A: single MFRM MCMC — extract theta, b, d from one run\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    theta_mfrm = np.array(samples[\"theta\"].mean(axis=0))\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    # Step B: residuals",
+              "originalFile": "\"\"\"Fitting methods for the G-MFRM synthetic recovery experiment.\n\nFour methods of increasing sophistication:\n  1. Raw average — naive mean of responses.\n  2. MFRM-only — standard 3-facet Rasch via NumPyro MCMC.\n  3. Sequential — MFRM then OLS residual regression on exposure.\n  4. Joint G-MFRM — full model with contamination term, NumPyro MCMC.\n\nDependencies: numpy, jax, numpyro, arviz, scipy\n\"\"\"\n\nimport warnings\n\nimport arviz as az\nimport jax\nimport jax.numpy as jnp\nimport numpy as np\nimport numpyro\nimport numpyro.distributions as dist\nfrom numpyro.infer import MCMC, NUTS\nfrom scipy.special import expit\n\nnumpyro.set_host_device_count(2)\n\n\n# ---------------------------------------------------------------------------\n# Helpers\n# ---------------------------------------------------------------------------\n\ndef _mcmc_diagnostics(mcmc: MCMC) -> tuple[float, float]:\n    \"\"\"Return (max R-hat, min ESS) across all parameters.\"\"\"\n    summary = az.summary(az.from_numpyro(mcmc))\n    max_rhat = summary[\"r_hat\"].max()\n    min_ess = summary[\"ess_bulk\"].min()\n    return float(max_rhat), float(min_ess)\n\n\n# ---------------------------------------------------------------------------\n# Method 1: Raw average\n# ---------------------------------------------------------------------------\n\ndef fit_raw_average(data: dict) -> dict:\n    \"\"\"Estimate theta as mean response rate per model.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat=NaN, ess=NaN.\n    \"\"\"\n    Y = data[\"responses\"].astype(np.float64)\n    theta_hat = Y.mean(axis=(1, 2))\n    # Center to match identification constraint of MCMC methods\n    theta_hat = theta_hat - theta_hat.mean()\n    return {\"theta_hat\": theta_hat, \"r_hat\": float(\"nan\"), \"ess\": float(\"nan\")}\n\n\n# ---------------------------------------------------------------------------\n# Method 2: Standard MFRM (no contamination term)\n# ---------------------------------------------------------------------------\n\ndef _mfrm_model(Y: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n\n    logits = theta[:, None, None] - b[None, :, None] - d[None, None, :]\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_mfrm_only(data: dict) -> dict:\n    \"\"\"Fit standard 3-facet MFRM via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n\n\n# ---------------------------------------------------------------------------\n# Method 3: Sequential (MFRM then OLS residual correction)\n# ---------------------------------------------------------------------------\n\ndef fit_sequential(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Two-step approach: fit MFRM, then regress residuals on exposure.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step 1: fit standard MFRM\n    mfrm_result = fit_mfrm_only(data)\n    theta_mfrm = mfrm_result[\"theta_hat\"]\n\n    # Also need b_hat and d_hat — re-run to get all posteriors\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n\n    # Step 2: residuals\n    logits_hat = theta_mfrm[:, None, None] - b_hat[None, :, None] - d_hat[None, None, :]\n    pred = expit(logits_hat)\n    residuals = Y - pred  # (N, I, J)\n    r_ni = residuals.mean(axis=2)  # (N, I) — average over judges\n\n    # Step 3: OLS per model — regress r_ni on e_i to get c_hat_n\n    c_hat = np.zeros(N)\n    e_centered = e_values - e_values.mean()\n    e_var = (e_centered**2).sum()\n    if e_var > 1e-10:\n        for n in range(N):\n            c_hat[n] = (r_ni[n] * e_centered).sum() / e_var\n\n    # Step 4: adjust theta\n    mean_e = e_values.mean()\n    theta_seq = theta_mfrm - c_hat * mean_e\n    theta_seq = theta_seq - theta_seq.mean()\n\n    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": mfrm_result[\"r_hat\"],\n        \"ess\": mfrm_result[\"ess\"],\n    }\n\n\n# ---------------------------------------------------------------------------\n# Method 4: Joint G-MFRM\n# ---------------------------------------------------------------------------\n\ndef _gmfrm_model(Y: jnp.ndarray, e: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n    c = numpyro.sample(\"c\", dist.HalfNormal(0.5).expand([N]))\n\n    logits = (\n        theta[:, None, None]\n        - b[None, :, None]\n        - d[None, None, :]\n        + c[:, None, None] * e[None, :, None]\n    )\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_joint_gmfrm(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Fit full G-MFRM with contamination term via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), c_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    e = jnp.array(e_values, dtype=jnp.float32)\n\n    kernel = NUTS(_gmfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, e=e, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    c_hat = np.array(samples[\"c\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"c_hat\": c_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 110,
+                  "oldLines": 20,
+                  "newStart": 110,
+                  "newLines": 18,
+                  "lines": [
+                    "     N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]",
+                    "     Y = data[\"responses\"].astype(np.float64)",
+                    " ",
+                    "-    # Step 1: fit standard MFRM",
+                    "-    mfrm_result = fit_mfrm_only(data)",
+                    "-    theta_mfrm = mfrm_result[\"theta_hat\"]",
+                    "-",
+                    "-    # Also need b_hat and d_hat — re-run to get all posteriors",
+                    "+    # Step A: single MFRM MCMC — extract theta, b, d from one run",
+                    "     Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)",
+                    "     kernel = NUTS(_mfrm_model)",
+                    "     mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)",
+                    "     mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)",
+                    "     samples = mcmc.get_samples()",
+                    "+    theta_mfrm = np.array(samples[\"theta\"].mean(axis=0))",
+                    "     b_hat = np.array(samples[\"b\"].mean(axis=0))",
+                    "     d_hat = np.array(samples[\"d\"].mean(axis=0))",
+                    "+    max_rhat, min_ess = _mcmc_diagnostics(mcmc)",
+                    " ",
+                    "-    # Step 2: residuals",
+                    "+    # Step B: residuals",
+                    "     logits_hat = theta_mfrm[:, None, None] - b_hat[None, :, None] - d_hat[None, None, :]",
+                    "     pred = expit(logits_hat)",
+                    "     residuals = Y - pred  # (N, I, J)"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LuuQEcFA2zXnC6dZCyTez7",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+                "old_string": "    # Step 3: OLS per model — regress r_ni on e_i to get c_hat_n",
+                "new_string": "    # Step C: OLS per model — regress r_ni on e_i to get c_hat_n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "90e1829d-bfd9-4b88-bb6b-182b70734f2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y2URshcVzo459J9c3uKsWW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4495,
+                "cache_read_input_tokens": 27843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4495
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T16:39:16.725Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LuuQEcFA2zXnC6dZCyTez7",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "4bd9db43-0317-46c1-a329-039b53c54774",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+              "oldString": "    # Step 3: OLS per model — regress r_ni on e_i to get c_hat_n",
+              "newString": "    # Step C: OLS per model — regress r_ni on e_i to get c_hat_n",
+              "originalFile": "\"\"\"Fitting methods for the G-MFRM synthetic recovery experiment.\n\nFour methods of increasing sophistication:\n  1. Raw average — naive mean of responses.\n  2. MFRM-only — standard 3-facet Rasch via NumPyro MCMC.\n  3. Sequential — MFRM then OLS residual regression on exposure.\n  4. Joint G-MFRM — full model with contamination term, NumPyro MCMC.\n\nDependencies: numpy, jax, numpyro, arviz, scipy\n\"\"\"\n\nimport warnings\n\nimport arviz as az\nimport jax\nimport jax.numpy as jnp\nimport numpy as np\nimport numpyro\nimport numpyro.distributions as dist\nfrom numpyro.infer import MCMC, NUTS\nfrom scipy.special import expit\n\nnumpyro.set_host_device_count(2)\n\n\n# ---------------------------------------------------------------------------\n# Helpers\n# ---------------------------------------------------------------------------\n\ndef _mcmc_diagnostics(mcmc: MCMC) -> tuple[float, float]:\n    \"\"\"Return (max R-hat, min ESS) across all parameters.\"\"\"\n    summary = az.summary(az.from_numpyro(mcmc))\n    max_rhat = summary[\"r_hat\"].max()\n    min_ess = summary[\"ess_bulk\"].min()\n    return float(max_rhat), float(min_ess)\n\n\n# ---------------------------------------------------------------------------\n# Method 1: Raw average\n# ---------------------------------------------------------------------------\n\ndef fit_raw_average(data: dict) -> dict:\n    \"\"\"Estimate theta as mean response rate per model.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat=NaN, ess=NaN.\n    \"\"\"\n    Y = data[\"responses\"].astype(np.float64)\n    theta_hat = Y.mean(axis=(1, 2))\n    # Center to match identification constraint of MCMC methods\n    theta_hat = theta_hat - theta_hat.mean()\n    return {\"theta_hat\": theta_hat, \"r_hat\": float(\"nan\"), \"ess\": float(\"nan\")}\n\n\n# ---------------------------------------------------------------------------\n# Method 2: Standard MFRM (no contamination term)\n# ---------------------------------------------------------------------------\n\ndef _mfrm_model(Y: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n\n    logits = theta[:, None, None] - b[None, :, None] - d[None, None, :]\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_mfrm_only(data: dict) -> dict:\n    \"\"\"Fit standard 3-facet MFRM via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n\n\n# ---------------------------------------------------------------------------\n# Method 3: Sequential (MFRM then OLS residual correction)\n# ---------------------------------------------------------------------------\n\ndef fit_sequential(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Two-step approach: fit MFRM, then regress residuals on exposure.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step A: single MFRM MCMC — extract theta, b, d from one run\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    theta_mfrm = np.array(samples[\"theta\"].mean(axis=0))\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    # Step B: residuals\n    logits_hat = theta_mfrm[:, None, None] - b_hat[None, :, None] - d_hat[None, None, :]\n    pred = expit(logits_hat)\n    residuals = Y - pred  # (N, I, J)\n    r_ni = residuals.mean(axis=2)  # (N, I) — average over judges\n\n    # Step 3: OLS per model — regress r_ni on e_i to get c_hat_n\n    c_hat = np.zeros(N)\n    e_centered = e_values - e_values.mean()\n    e_var = (e_centered**2).sum()\n    if e_var > 1e-10:\n        for n in range(N):\n            c_hat[n] = (r_ni[n] * e_centered).sum() / e_var\n\n    # Step 4: adjust theta\n    mean_e = e_values.mean()\n    theta_seq = theta_mfrm - c_hat * mean_e\n    theta_seq = theta_seq - theta_seq.mean()\n\n    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": mfrm_result[\"r_hat\"],\n        \"ess\": mfrm_result[\"ess\"],\n    }\n\n\n# ---------------------------------------------------------------------------\n# Method 4: Joint G-MFRM\n# ---------------------------------------------------------------------------\n\ndef _gmfrm_model(Y: jnp.ndarray, e: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n    c = numpyro.sample(\"c\", dist.HalfNormal(0.5).expand([N]))\n\n    logits = (\n        theta[:, None, None]\n        - b[None, :, None]\n        - d[None, None, :]\n        + c[:, None, None] * e[None, :, None]\n    )\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_joint_gmfrm(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Fit full G-MFRM with contamination term via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), c_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    e = jnp.array(e_values, dtype=jnp.float32)\n\n    kernel = NUTS(_gmfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, e=e, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    c_hat = np.array(samples[\"c\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"c_hat\": c_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 127,
+                  "oldLines": 7,
+                  "newStart": 127,
+                  "newLines": 7,
+                  "lines": [
+                    "     residuals = Y - pred  # (N, I, J)",
+                    "     r_ni = residuals.mean(axis=2)  # (N, I) — average over judges",
+                    " ",
+                    "-    # Step 3: OLS per model — regress r_ni on e_i to get c_hat_n",
+                    "+    # Step C: OLS per model — regress r_ni on e_i to get c_hat_n",
+                    "     c_hat = np.zeros(N)",
+                    "     e_centered = e_values - e_values.mean()",
+                    "     e_var = (e_centered**2).sum()"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SXhUpscYumcKknMCqtrKVG",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+                "old_string": "    # Step 4: adjust theta",
+                "new_string": "    # Step D: adjust theta"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "dc8d4d45-f2e7-4c07-bf99-763c3a37ec62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y2URshcVzo459J9c3uKsWW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4495,
+                "cache_read_input_tokens": 27843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4495
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T16:39:17.482Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SXhUpscYumcKknMCqtrKVG",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "3edc51d9-8683-4130-b957-e646250cee4d",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+              "oldString": "    # Step 4: adjust theta",
+              "newString": "    # Step D: adjust theta",
+              "originalFile": "\"\"\"Fitting methods for the G-MFRM synthetic recovery experiment.\n\nFour methods of increasing sophistication:\n  1. Raw average — naive mean of responses.\n  2. MFRM-only — standard 3-facet Rasch via NumPyro MCMC.\n  3. Sequential — MFRM then OLS residual regression on exposure.\n  4. Joint G-MFRM — full model with contamination term, NumPyro MCMC.\n\nDependencies: numpy, jax, numpyro, arviz, scipy\n\"\"\"\n\nimport warnings\n\nimport arviz as az\nimport jax\nimport jax.numpy as jnp\nimport numpy as np\nimport numpyro\nimport numpyro.distributions as dist\nfrom numpyro.infer import MCMC, NUTS\nfrom scipy.special import expit\n\nnumpyro.set_host_device_count(2)\n\n\n# ---------------------------------------------------------------------------\n# Helpers\n# ---------------------------------------------------------------------------\n\ndef _mcmc_diagnostics(mcmc: MCMC) -> tuple[float, float]:\n    \"\"\"Return (max R-hat, min ESS) across all parameters.\"\"\"\n    summary = az.summary(az.from_numpyro(mcmc))\n    max_rhat = summary[\"r_hat\"].max()\n    min_ess = summary[\"ess_bulk\"].min()\n    return float(max_rhat), float(min_ess)\n\n\n# ---------------------------------------------------------------------------\n# Method 1: Raw average\n# ---------------------------------------------------------------------------\n\ndef fit_raw_average(data: dict) -> dict:\n    \"\"\"Estimate theta as mean response rate per model.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat=NaN, ess=NaN.\n    \"\"\"\n    Y = data[\"responses\"].astype(np.float64)\n    theta_hat = Y.mean(axis=(1, 2))\n    # Center to match identification constraint of MCMC methods\n    theta_hat = theta_hat - theta_hat.mean()\n    return {\"theta_hat\": theta_hat, \"r_hat\": float(\"nan\"), \"ess\": float(\"nan\")}\n\n\n# ---------------------------------------------------------------------------\n# Method 2: Standard MFRM (no contamination term)\n# ---------------------------------------------------------------------------\n\ndef _mfrm_model(Y: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n\n    logits = theta[:, None, None] - b[None, :, None] - d[None, None, :]\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_mfrm_only(data: dict) -> dict:\n    \"\"\"Fit standard 3-facet MFRM via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n\n\n# ---------------------------------------------------------------------------\n# Method 3: Sequential (MFRM then OLS residual correction)\n# ---------------------------------------------------------------------------\n\ndef fit_sequential(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Two-step approach: fit MFRM, then regress residuals on exposure.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step A: single MFRM MCMC — extract theta, b, d from one run\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    theta_mfrm = np.array(samples[\"theta\"].mean(axis=0))\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    # Step B: residuals\n    logits_hat = theta_mfrm[:, None, None] - b_hat[None, :, None] - d_hat[None, None, :]\n    pred = expit(logits_hat)\n    residuals = Y - pred  # (N, I, J)\n    r_ni = residuals.mean(axis=2)  # (N, I) — average over judges\n\n    # Step C: OLS per model — regress r_ni on e_i to get c_hat_n\n    c_hat = np.zeros(N)\n    e_centered = e_values - e_values.mean()\n    e_var = (e_centered**2).sum()\n    if e_var > 1e-10:\n        for n in range(N):\n            c_hat[n] = (r_ni[n] * e_centered).sum() / e_var\n\n    # Step 4: adjust theta\n    mean_e = e_values.mean()\n    theta_seq = theta_mfrm - c_hat * mean_e\n    theta_seq = theta_seq - theta_seq.mean()\n\n    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": mfrm_result[\"r_hat\"],\n        \"ess\": mfrm_result[\"ess\"],\n    }\n\n\n# ---------------------------------------------------------------------------\n# Method 4: Joint G-MFRM\n# ---------------------------------------------------------------------------\n\ndef _gmfrm_model(Y: jnp.ndarray, e: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n    c = numpyro.sample(\"c\", dist.HalfNormal(0.5).expand([N]))\n\n    logits = (\n        theta[:, None, None]\n        - b[None, :, None]\n        - d[None, None, :]\n        + c[:, None, None] * e[None, :, None]\n    )\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_joint_gmfrm(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Fit full G-MFRM with contamination term via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), c_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    e = jnp.array(e_values, dtype=jnp.float32)\n\n    kernel = NUTS(_gmfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, e=e, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    c_hat = np.array(samples[\"c\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"c_hat\": c_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 135,
+                  "oldLines": 7,
+                  "newStart": 135,
+                  "newLines": 7,
+                  "lines": [
+                    "         for n in range(N):",
+                    "             c_hat[n] = (r_ni[n] * e_centered).sum() / e_var",
+                    " ",
+                    "-    # Step 4: adjust theta",
+                    "+    # Step D: adjust theta",
+                    "     mean_e = e_values.mean()",
+                    "     theta_seq = theta_mfrm - c_hat * mean_e",
+                    "     theta_seq = theta_seq - theta_seq.mean()"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now fix the return statement in `fit_sequential` to use the new diagnostics variables, and update `evaluate.py`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "a33a5639-ae13-49dc-a677-330f5f9f2cf8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PnysMyNpiZFitPp5t4Chbj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1259,
+                "cache_read_input_tokens": 32338,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1259
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EfSksuy4eQaDgQfr5TvE6c",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+                "old_string": "    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": mfrm_result[\"r_hat\"],\n        \"ess\": mfrm_result[\"ess\"],\n    }",
+                "new_string": "    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": max_rhat,\n        \"ess\": min_ess,\n    }"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "72f2ad38-0a10-4455-8c89-f81402f73b30",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PnysMyNpiZFitPp5t4Chbj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1259,
+                "cache_read_input_tokens": 32338,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1259
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T16:39:22.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EfSksuy4eQaDgQfr5TvE6c",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "1b94be1b-2f7c-4c24-804e-a9253e4448ba",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/models.py",
+              "oldString": "    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": mfrm_result[\"r_hat\"],\n        \"ess\": mfrm_result[\"ess\"],\n    }",
+              "newString": "    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": max_rhat,\n        \"ess\": min_ess,\n    }",
+              "originalFile": "\"\"\"Fitting methods for the G-MFRM synthetic recovery experiment.\n\nFour methods of increasing sophistication:\n  1. Raw average — naive mean of responses.\n  2. MFRM-only — standard 3-facet Rasch via NumPyro MCMC.\n  3. Sequential — MFRM then OLS residual regression on exposure.\n  4. Joint G-MFRM — full model with contamination term, NumPyro MCMC.\n\nDependencies: numpy, jax, numpyro, arviz, scipy\n\"\"\"\n\nimport warnings\n\nimport arviz as az\nimport jax\nimport jax.numpy as jnp\nimport numpy as np\nimport numpyro\nimport numpyro.distributions as dist\nfrom numpyro.infer import MCMC, NUTS\nfrom scipy.special import expit\n\nnumpyro.set_host_device_count(2)\n\n\n# ---------------------------------------------------------------------------\n# Helpers\n# ---------------------------------------------------------------------------\n\ndef _mcmc_diagnostics(mcmc: MCMC) -> tuple[float, float]:\n    \"\"\"Return (max R-hat, min ESS) across all parameters.\"\"\"\n    summary = az.summary(az.from_numpyro(mcmc))\n    max_rhat = summary[\"r_hat\"].max()\n    min_ess = summary[\"ess_bulk\"].min()\n    return float(max_rhat), float(min_ess)\n\n\n# ---------------------------------------------------------------------------\n# Method 1: Raw average\n# ---------------------------------------------------------------------------\n\ndef fit_raw_average(data: dict) -> dict:\n    \"\"\"Estimate theta as mean response rate per model.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat=NaN, ess=NaN.\n    \"\"\"\n    Y = data[\"responses\"].astype(np.float64)\n    theta_hat = Y.mean(axis=(1, 2))\n    # Center to match identification constraint of MCMC methods\n    theta_hat = theta_hat - theta_hat.mean()\n    return {\"theta_hat\": theta_hat, \"r_hat\": float(\"nan\"), \"ess\": float(\"nan\")}\n\n\n# ---------------------------------------------------------------------------\n# Method 2: Standard MFRM (no contamination term)\n# ---------------------------------------------------------------------------\n\ndef _mfrm_model(Y: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n\n    logits = theta[:, None, None] - b[None, :, None] - d[None, None, :]\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_mfrm_only(data: dict) -> dict:\n    \"\"\"Fit standard 3-facet MFRM via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n\n\n# ---------------------------------------------------------------------------\n# Method 3: Sequential (MFRM then OLS residual correction)\n# ---------------------------------------------------------------------------\n\ndef fit_sequential(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Two-step approach: fit MFRM, then regress residuals on exposure.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    N, I, J = cfg[\"N\"], cfg[\"I\"], cfg[\"J\"]\n    Y = data[\"responses\"].astype(np.float64)\n\n    # Step A: single MFRM MCMC — extract theta, b, d from one run\n    Y_jnp = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    kernel = NUTS(_mfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y_jnp, N=N, I=I, J=J)\n    samples = mcmc.get_samples()\n    theta_mfrm = np.array(samples[\"theta\"].mean(axis=0))\n    b_hat = np.array(samples[\"b\"].mean(axis=0))\n    d_hat = np.array(samples[\"d\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    # Step B: residuals\n    logits_hat = theta_mfrm[:, None, None] - b_hat[None, :, None] - d_hat[None, None, :]\n    pred = expit(logits_hat)\n    residuals = Y - pred  # (N, I, J)\n    r_ni = residuals.mean(axis=2)  # (N, I) — average over judges\n\n    # Step C: OLS per model — regress r_ni on e_i to get c_hat_n\n    c_hat = np.zeros(N)\n    e_centered = e_values - e_values.mean()\n    e_var = (e_centered**2).sum()\n    if e_var > 1e-10:\n        for n in range(N):\n            c_hat[n] = (r_ni[n] * e_centered).sum() / e_var\n\n    # Step D: adjust theta\n    mean_e = e_values.mean()\n    theta_seq = theta_mfrm - c_hat * mean_e\n    theta_seq = theta_seq - theta_seq.mean()\n\n    return {\n        \"theta_hat\": theta_seq,\n        \"r_hat\": mfrm_result[\"r_hat\"],\n        \"ess\": mfrm_result[\"ess\"],\n    }\n\n\n# ---------------------------------------------------------------------------\n# Method 4: Joint G-MFRM\n# ---------------------------------------------------------------------------\n\ndef _gmfrm_model(Y: jnp.ndarray, e: jnp.ndarray, N: int, I: int, J: int) -> None:\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta = numpyro.deterministic(\"theta\", theta_raw - theta_raw.mean())\n    b = numpyro.sample(\"b\", dist.Normal(0, 1).expand([I]))\n    d = numpyro.sample(\"d\", dist.Normal(0, 0.5).expand([J]))\n    c = numpyro.sample(\"c\", dist.HalfNormal(0.5).expand([N]))\n\n    logits = (\n        theta[:, None, None]\n        - b[None, :, None]\n        - d[None, None, :]\n        + c[:, None, None] * e[None, :, None]\n    )\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=Y)\n\n\ndef fit_joint_gmfrm(data: dict, e_values: np.ndarray) -> dict:\n    \"\"\"Fit full G-MFRM with contamination term via NUTS.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        e_values: True item exposure values, shape (I,).\n\n    Returns:\n        Dict with theta_hat (N,), c_hat (N,), r_hat (float), ess (float).\n    \"\"\"\n    cfg = data[\"config\"]\n    Y = jnp.array(data[\"responses\"], dtype=jnp.float32)\n    e = jnp.array(e_values, dtype=jnp.float32)\n\n    kernel = NUTS(_gmfrm_model)\n    mcmc = MCMC(kernel, num_warmup=1000, num_samples=2000, num_chains=2, progress_bar=False)\n    mcmc.run(jax.random.PRNGKey(cfg[\"seed\"]), Y=Y, e=e, N=cfg[\"N\"], I=cfg[\"I\"], J=cfg[\"J\"])\n\n    samples = mcmc.get_samples()\n    theta_hat = np.array(samples[\"theta\"].mean(axis=0))\n    c_hat = np.array(samples[\"c\"].mean(axis=0))\n    max_rhat, min_ess = _mcmc_diagnostics(mcmc)\n\n    return {\"theta_hat\": theta_hat, \"c_hat\": c_hat, \"r_hat\": max_rhat, \"ess\": min_ess}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 142,
+                  "oldLines": 8,
+                  "newStart": 142,
+                  "newLines": 8,
+                  "lines": [
+                    " ",
+                    "     return {",
+                    "         \"theta_hat\": theta_seq,",
+                    "-        \"r_hat\": mfrm_result[\"r_hat\"],",
+                    "-        \"ess\": mfrm_result[\"ess\"],",
+                    "+        \"r_hat\": max_rhat,",
+                    "+        \"ess\": min_ess,",
+                    "     }",
+                    " ",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R9RBjePg6bCU6Y8H6CEcua",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/evaluate.py",
+                "old_string": "def run_significance_test(\n    results: list[dict], rho: float\n) -> dict:\n    \"\"\"Paired t-test on RMSE: joint G-MFRM vs sequential, at a given rho.\n\n    Args:\n        results: Full list of per-seed result dicts (same format as\n                 summarize_results input).\n        rho: The confounding level to test.\n\n    Returns:\n        Dict with 't_stat' and 'p_value'.\n    \"\"\"\n    df = pd.DataFrame(results)\n    df_rho = df[np.isclose(df[\"rho\"], rho)]\n\n    joint = df_rho[df_rho[\"method\"] == \"joint_gmfrm\"].sort_values(\"seed\")[\"rmse\"].values\n    seq = df_rho[df_rho[\"method\"] == \"sequential\"].sort_values(\"seed\")[\"rmse\"].values\n\n    t_stat, p_value = stats.ttest_rel(joint, seq)\n    return {\"t_stat\": float(t_stat), \"p_value\": float(p_value)}",
+                "new_string": "def run_significance_test(\n    results: list[dict], rho: float, alternative: str = \"less\"\n) -> dict:\n    \"\"\"Paired Wilcoxon signed-rank test: joint G-MFRM RMSE vs sequential RMSE.\n\n    Args:\n        results: Full list of per-seed result dicts.\n        rho: The confounding level to test.\n        alternative: 'less' (joint < seq), 'two-sided', or 'greater'.\n\n    Returns:\n        Dict with 'statistic' and 'p_value'.\n    \"\"\"\n    df = pd.DataFrame(results)\n    df_rho = df[np.isclose(df[\"rho\"], rho)]\n\n    joint = df_rho[df_rho[\"method\"] == \"joint_gmfrm\"].sort_values(\"seed\")[\"rmse\"].values\n    seq = df_rho[df_rho[\"method\"] == \"sequential\"].sort_values(\"seed\")[\"rmse\"].values\n\n    stat, p_value = stats.wilcoxon(joint, seq, alternative=alternative)\n    return {\"statistic\": float(stat), \"p_value\": float(p_value)}\n\n\ndef evaluate_pass_fail(all_results: list[dict]) -> dict:\n    \"\"\"Apply quantified pass/fail criteria.\n\n    Criteria:\n      1. Convergence: all MCMC fits have max R-hat < 1.05 AND min ESS > 100\n      2. Improvement: at rho=0.3 AND rho=0.6, joint theta-RMSE < sequential\n         (Wilcoxon signed-rank p<0.05)\n      3. No degradation: at rho=0, joint not significantly worse than sequential\n         (Wilcoxon p>0.05, two-sided)\n\n    Returns dict with:\n      verdict: \"PASS\" / \"CONDITIONAL PASS\" / \"FAIL\"\n      details: dict with per-criterion results\n    \"\"\"\n    df = pd.DataFrame(all_results)\n\n    # Criterion 1: convergence\n    mcmc_rows = df[df[\"method\"] != \"raw_average\"]\n    max_rhat_obs = mcmc_rows[\"r_hat\"].max()\n    min_ess_obs = mcmc_rows[\"ess\"].min()\n    convergence = (max_rhat_obs < 1.05) and (min_ess_obs > 100)\n\n    # Criterion 2: improvement at rho=0.3 and rho=0.6\n    test_03 = run_significance_test(all_results, 0.3, alternative=\"less\")\n    test_06 = run_significance_test(all_results, 0.6, alternative=\"less\")\n    pass_03 = test_03[\"p_value\"] < 0.05\n    pass_06 = test_06[\"p_value\"] < 0.05\n\n    # Criterion 3: no degradation at rho=0\n    test_00 = run_significance_test(all_results, 0.0, alternative=\"two-sided\")\n    pass_00 = test_00[\"p_value\"] > 0.05\n\n    # Verdict\n    if convergence and pass_03 and pass_06 and pass_00:\n        verdict = \"PASS\"\n    elif convergence and pass_06 and not pass_03 and pass_00:\n        verdict = \"CONDITIONAL PASS\"\n    else:\n        verdict = \"FAIL\"\n\n    return {\n        \"verdict\": verdict,\n        \"details\": {\n            \"convergence\": convergence,\n            \"max_rhat_observed\": float(max_rhat_obs),\n            \"min_ess_observed\": float(min_ess_obs),\n            \"p_03\": test_03[\"p_value\"],\n            \"pass_03\": pass_03,\n            \"p_06\": test_06[\"p_value\"],\n            \"pass_06\": pass_06,\n            \"p_00\": test_00[\"p_value\"],\n            \"pass_00\": pass_00,\n        },\n    }"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "2b801a4f-bc67-40a9-91ad-3c2c51159af0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PnysMyNpiZFitPp5t4Chbj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1259,
+                "cache_read_input_tokens": 32338,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1259
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T16:39:37.432Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R9RBjePg6bCU6Y8H6CEcua",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/evaluate.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "86a06fe4-84c5-4560-8990-4c331cb0734f",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/evaluate.py",
+              "oldString": "def run_significance_test(\n    results: list[dict], rho: float\n) -> dict:\n    \"\"\"Paired t-test on RMSE: joint G-MFRM vs sequential, at a given rho.\n\n    Args:\n        results: Full list of per-seed result dicts (same format as\n                 summarize_results input).\n        rho: The confounding level to test.\n\n    Returns:\n        Dict with 't_stat' and 'p_value'.\n    \"\"\"\n    df = pd.DataFrame(results)\n    df_rho = df[np.isclose(df[\"rho\"], rho)]\n\n    joint = df_rho[df_rho[\"method\"] == \"joint_gmfrm\"].sort_values(\"seed\")[\"rmse\"].values\n    seq = df_rho[df_rho[\"method\"] == \"sequential\"].sort_values(\"seed\")[\"rmse\"].values\n\n    t_stat, p_value = stats.ttest_rel(joint, seq)\n    return {\"t_stat\": float(t_stat), \"p_value\": float(p_value)}",
+              "newString": "def run_significance_test(\n    results: list[dict], rho: float, alternative: str = \"less\"\n) -> dict:\n    \"\"\"Paired Wilcoxon signed-rank test: joint G-MFRM RMSE vs sequential RMSE.\n\n    Args:\n        results: Full list of per-seed result dicts.\n        rho: The confounding level to test.\n        alternative: 'less' (joint < seq), 'two-sided', or 'greater'.\n\n    Returns:\n        Dict with 'statistic' and 'p_value'.\n    \"\"\"\n    df = pd.DataFrame(results)\n    df_rho = df[np.isclose(df[\"rho\"], rho)]\n\n    joint = df_rho[df_rho[\"method\"] == \"joint_gmfrm\"].sort_values(\"seed\")[\"rmse\"].values\n    seq = df_rho[df_rho[\"method\"] == \"sequential\"].sort_values(\"seed\")[\"rmse\"].values\n\n    stat, p_value = stats.wilcoxon(joint, seq, alternative=alternative)\n    return {\"statistic\": float(stat), \"p_value\": float(p_value)}\n\n\ndef evaluate_pass_fail(all_results: list[dict]) -> dict:\n    \"\"\"Apply quantified pass/fail criteria.\n\n    Criteria:\n      1. Convergence: all MCMC fits have max R-hat < 1.05 AND min ESS > 100\n      2. Improvement: at rho=0.3 AND rho=0.6, joint theta-RMSE < sequential\n         (Wilcoxon signed-rank p<0.05)\n      3. No degradation: at rho=0, joint not significantly worse than sequential\n         (Wilcoxon p>0.05, two-sided)\n\n    Returns dict with:\n      verdict: \"PASS\" / \"CONDITIONAL PASS\" / \"FAIL\"\n      details: dict with per-criterion results\n    \"\"\"\n    df = pd.DataFrame(all_results)\n\n    # Criterion 1: convergence\n    mcmc_rows = df[df[\"method\"] != \"raw_average\"]\n    max_rhat_obs = mcmc_rows[\"r_hat\"].max()\n    min_ess_obs = mcmc_rows[\"ess\"].min()\n    convergence = (max_rhat_obs < 1.05) and (min_ess_obs > 100)\n\n    # Criterion 2: improvement at rho=0.3 and rho=0.6\n    test_03 = run_significance_test(all_results, 0.3, alternative=\"less\")\n    test_06 = run_significance_test(all_results, 0.6, alternative=\"less\")\n    pass_03 = test_03[\"p_value\"] < 0.05\n    pass_06 = test_06[\"p_value\"] < 0.05\n\n    # Criterion 3: no degradation at rho=0\n    test_00 = run_significance_test(all_results, 0.0, alternative=\"two-sided\")\n    pass_00 = test_00[\"p_value\"] > 0.05\n\n    # Verdict\n    if convergence and pass_03 and pass_06 and pass_00:\n        verdict = \"PASS\"\n    elif convergence and pass_06 and not pass_03 and pass_00:\n        verdict = \"CONDITIONAL PASS\"\n    else:\n        verdict = \"FAIL\"\n\n    return {\n        \"verdict\": verdict,\n        \"details\": {\n            \"convergence\": convergence,\n            \"max_rhat_observed\": float(max_rhat_obs),\n            \"min_ess_observed\": float(min_ess_obs),\n            \"p_03\": test_03[\"p_value\"],\n            \"pass_03\": pass_03,\n            \"p_06\": test_06[\"p_value\"],\n            \"pass_06\": pass_06,\n            \"p_00\": test_00[\"p_value\"],\n            \"pass_00\": pass_00,\n        },\n    }",
+              "originalFile": "\"\"\"Evaluation utilities for the G-MFRM synthetic recovery experiment.\n\nComputes RMSE and Kendall-tau between estimated and true theta,\naggregates multi-seed results, plots, and runs significance tests.\n\nDependencies: numpy, scipy, pandas, matplotlib\n\"\"\"\n\nfrom pathlib import Path\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\n\n\ndef compute_metrics(theta_hat: np.ndarray, theta_true: np.ndarray) -> dict:\n    \"\"\"Compute recovery metrics between estimated and true ability parameters.\n\n    Args:\n        theta_hat: Estimated theta, shape (N,).\n        theta_true: Ground-truth theta, shape (N,).\n\n    Returns:\n        Dict with 'rmse' (float) and 'kendall_tau' (float).\n    \"\"\"\n    rmse = float(np.sqrt(np.mean((theta_hat - theta_true) ** 2)))\n    tau, _ = stats.kendalltau(theta_hat, theta_true)\n    return {\"rmse\": rmse, \"kendall_tau\": float(tau)}\n\n\ndef summarize_results(all_results: list[dict]) -> pd.DataFrame:\n    \"\"\"Aggregate multi-seed results into mean +/- std per method and rho.\n\n    Args:\n        all_results: List of dicts, each with keys:\n            rho (float), seed (int), method (str),\n            rmse (float), kendall_tau (float).\n\n    Returns:\n        DataFrame indexed by (rho, method) with columns\n        rmse_mean, rmse_std, tau_mean, tau_std.\n    \"\"\"\n    df = pd.DataFrame(all_results)\n    grouped = df.groupby([\"rho\", \"method\"]).agg(\n        rmse_mean=(\"rmse\", \"mean\"),\n        rmse_std=(\"rmse\", \"std\"),\n        tau_mean=(\"kendall_tau\", \"mean\"),\n        tau_std=(\"kendall_tau\", \"std\"),\n    )\n    return grouped.reset_index()\n\n\ndef plot_results(summary_df: pd.DataFrame, output_path: str | Path) -> None:\n    \"\"\"Line plot of RMSE vs rho for each method, with +/-1 std error bars.\n\n    Args:\n        summary_df: Output of summarize_results().\n        output_path: File path to save the figure (e.g. .png).\n    \"\"\"\n    fig, ax = plt.subplots(figsize=(7, 4.5))\n    methods = summary_df[\"method\"].unique()\n    markers = [\"o\", \"s\", \"^\", \"D\"]\n\n    for i, method in enumerate(methods):\n        sub = summary_df[summary_df[\"method\"] == method].sort_values(\"rho\")\n        ax.errorbar(\n            sub[\"rho\"],\n            sub[\"rmse_mean\"],\n            yerr=sub[\"rmse_std\"],\n            label=method,\n            marker=markers[i % len(markers)],\n            capsize=3,\n        )\n\n    ax.set_xlabel(r\"Confounding strength ($\\rho$)\")\n    ax.set_ylabel(\"RMSE (theta recovery)\")\n    ax.set_title(\"G-MFRM: Theta Recovery vs Confounding\")\n    ax.legend()\n    fig.tight_layout()\n    fig.savefig(output_path, dpi=150)\n    plt.close(fig)\n\n\ndef run_significance_test(\n    results: list[dict], rho: float\n) -> dict:\n    \"\"\"Paired t-test on RMSE: joint G-MFRM vs sequential, at a given rho.\n\n    Args:\n        results: Full list of per-seed result dicts (same format as\n                 summarize_results input).\n        rho: The confounding level to test.\n\n    Returns:\n        Dict with 't_stat' and 'p_value'.\n    \"\"\"\n    df = pd.DataFrame(results)\n    df_rho = df[np.isclose(df[\"rho\"], rho)]\n\n    joint = df_rho[df_rho[\"method\"] == \"joint_gmfrm\"].sort_values(\"seed\")[\"rmse\"].values\n    seq = df_rho[df_rho[\"method\"] == \"sequential\"].sort_values(\"seed\")[\"rmse\"].values\n\n    t_stat, p_value = stats.ttest_rel(joint, seq)\n    return {\"t_stat\": float(t_stat), \"p_value\": float(p_value)}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 83,
+                  "oldLines": 17,
+                  "newStart": 83,
+                  "newLines": 17,
+                  "lines": [
+                    " ",
+                    " ",
+                    " def run_significance_test(",
+                    "-    results: list[dict], rho: float",
+                    "+    results: list[dict], rho: float, alternative: str = \"less\"",
+                    " ) -> dict:",
+                    "-    \"\"\"Paired t-test on RMSE: joint G-MFRM vs sequential, at a given rho.",
+                    "+    \"\"\"Paired Wilcoxon signed-rank test: joint G-MFRM RMSE vs sequential RMSE.",
+                    " ",
+                    "     Args:",
+                    "-        results: Full list of per-seed result dicts (same format as",
+                    "-                 summarize_results input).",
+                    "+        results: Full list of per-seed result dicts.",
+                    "         rho: The confounding level to test.",
+                    "+        alternative: 'less' (joint < seq), 'two-sided', or 'greater'.",
+                    " ",
+                    "     Returns:",
+                    "-        Dict with 't_stat' and 'p_value'.",
+                    "+        Dict with 'statistic' and 'p_value'.",
+                    "     \"\"\"",
+                    "     df = pd.DataFrame(results)",
+                    "     df_rho = df[np.isclose(df[\"rho\"], rho)]"
+                  ]
+                },
+                {
+                  "oldStart": 101,
+                  "oldLines": 5,
+                  "newStart": 101,
+                  "newLines": 61,
+                  "lines": [
+                    "     joint = df_rho[df_rho[\"method\"] == \"joint_gmfrm\"].sort_values(\"seed\")[\"rmse\"].values",
+                    "     seq = df_rho[df_rho[\"method\"] == \"sequential\"].sort_values(\"seed\")[\"rmse\"].values",
+                    " ",
+                    "-    t_stat, p_value = stats.ttest_rel(joint, seq)",
+                    "-    return {\"t_stat\": float(t_stat), \"p_value\": float(p_value)}",
+                    "+    stat, p_value = stats.wilcoxon(joint, seq, alternative=alternative)",
+                    "+    return {\"statistic\": float(stat), \"p_value\": float(p_value)}",
+                    "+",
+                    "+",
+                    "+def evaluate_pass_fail(all_results: list[dict]) -> dict:",
+                    "+    \"\"\"Apply quantified pass/fail criteria.",
+                    "+",
+                    "+    Criteria:",
+                    "+      1. Convergence: all MCMC fits have max R-hat < 1.05 AND min ESS > 100",
+                    "+      2. Improvement: at rho=0.3 AND rho=0.6, joint theta-RMSE < sequential",
+                    "+         (Wilcoxon signed-rank p<0.05)",
+                    "+      3. No degradation: at rho=0, joint not significantly worse than sequential",
+                    "+         (Wilcoxon p>0.05, two-sided)",
+                    "+",
+                    "+    Returns dict with:",
+                    "+      verdict: \"PASS\" / \"CONDITIONAL PASS\" / \"FAIL\"",
+                    "+      details: dict with per-criterion results",
+                    "+    \"\"\"",
+                    "+    df = pd.DataFrame(all_results)",
+                    "+",
+                    "+    # Criterion 1: convergence",
+                    "+    mcmc_rows = df[df[\"method\"] != \"raw_average\"]",
+                    "+    max_rhat_obs = mcmc_rows[\"r_hat\"].max()",
+                    "+    min_ess_obs = mcmc_rows[\"ess\"].min()",
+                    "+    convergence = (max_rhat_obs < 1.05) and (min_ess_obs > 100)",
+                    "+",
+                    "+    # Criterion 2: improvement at rho=0.3 and rho=0.6",
+                    "+    test_03 = run_significance_test(all_results, 0.3, alternative=\"less\")",
+                    "+    test_06 = run_significance_test(all_results, 0.6, alternative=\"less\")",
+                    "+    pass_03 = test_03[\"p_value\"] < 0.05",
+                    "+    pass_06 = test_06[\"p_value\"] < 0.05",
+                    "+",
+                    "+    # Criterion 3: no degradation at rho=0",
+                    "+    test_00 = run_significance_test(all_results, 0.0, alternative=\"two-sided\")",
+                    "+    pass_00 = test_00[\"p_value\"] > 0.05",
+                    "+",
+                    "+    # Verdict",
+                    "+    if convergence and pass_03 and pass_06 and pass_00:",
+                    "+        verdict = \"PASS\"",
+                    "+    elif convergence and pass_06 and not pass_03 and pass_00:",
+                    "+        verdict = \"CONDITIONAL PASS\"",
+                    "+    else:",
+                    "+        verdict = \"FAIL\"",
+                    "+",
+                    "+    return {",
+                    "+        \"verdict\": verdict,",
+                    "+        \"details\": {",
+                    "+            \"convergence\": convergence,",
+                    "+            \"max_rhat_observed\": float(max_rhat_obs),",
+                    "+            \"min_ess_observed\": float(min_ess_obs),",
+                    "+            \"p_03\": test_03[\"p_value\"],",
+                    "+            \"pass_03\": pass_03,",
+                    "+            \"p_06\": test_06[\"p_value\"],",
+                    "+            \"pass_06\": pass_06,",
+                    "+            \"p_00\": test_00[\"p_value\"],",
+                    "+            \"pass_00\": pass_00,",
+                    "+        },",
+                    "+    }"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now create `run_mvp.py`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "24430b0e-fc14-4b36-8391-245f48af4f18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EF1HbSy2KMD5uY57ZYr9C7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1878,
+                "cache_read_input_tokens": 33597,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1878
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015tQUAo3VGBRJYidhTtRCBx",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py",
+                "content": "\"\"\"Main script for the G-MFRM MVP synthetic recovery experiment.\n\nRuns all four fitting methods across multiple confounding levels (rho)\nand random seeds, then evaluates recovery quality and prints verdict.\n\nUsage: python run_mvp.py\nOutput: results.csv, results.png, console verdict\n\nDependencies: data_gen, models, evaluate (local modules), plus their deps\n\"\"\"\n\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nfrom data_gen import generate_gated_mfrm_data\nfrom models import fit_raw_average, fit_mfrm_only, fit_sequential, fit_joint_gmfrm\nfrom evaluate import compute_metrics, summarize_results, plot_results, run_significance_test, evaluate_pass_fail\n\nRHOS = [0.0, 0.3, 0.6]\nN_SEEDS = 20\nOUTPUT_DIR = Path(__file__).parent\nMETHODS = [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]\n\n\ndef run_single(rho: float, seed: int) -> list[dict]:\n    \"\"\"Run all 4 methods on one (rho, seed) combination.\"\"\"\n    data = generate_gated_mfrm_data(rho=rho, seed=seed)\n    theta_true = data[\"true_params\"][\"theta\"]\n    theta_true_centered = theta_true - theta_true.mean()\n    e_values = data[\"true_params\"][\"e\"]\n\n    results = []\n\n    raw = fit_raw_average(data)\n    m = compute_metrics(raw[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"raw_average\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": raw[\"r_hat\"], \"ess\": raw[\"ess\"]})\n\n    mfrm = fit_mfrm_only(data)\n    m = compute_metrics(mfrm[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"mfrm_only\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": mfrm[\"r_hat\"], \"ess\": mfrm[\"ess\"]})\n\n    seq = fit_sequential(data, e_values)\n    m = compute_metrics(seq[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"sequential\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": seq[\"r_hat\"], \"ess\": seq[\"ess\"]})\n\n    joint = fit_joint_gmfrm(data, e_values)\n    m = compute_metrics(joint[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"joint_gmfrm\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": joint[\"r_hat\"], \"ess\": joint[\"ess\"]})\n\n    return results\n\n\ndef print_results_table(summary_df: pd.DataFrame, all_results: list[dict]) -> None:\n    \"\"\"Print formatted results table.\"\"\"\n    print(\"\\n\" + \"=\" * 85)\n    print(f\"{'rho':>5} | {'method':<15} | {'RMSE mean±std':>18} | {'τ mean±std':>18} | {'p-value':>10}\")\n    print(\"-\" * 85)\n\n    for rho in RHOS:\n        sub = summary_df[np.isclose(summary_df[\"rho\"], rho)]\n        for _, row in sub.iterrows():\n            method = row[\"method\"]\n            rmse_str = f\"{row['rmse_mean']:.4f}±{row['rmse_std']:.4f}\"\n            tau_str = f\"{row['tau_mean']:.4f}±{row['tau_std']:.4f}\"\n\n            if method == \"sequential\":\n                p_str = \"ref\"\n            elif method in (\"raw_average\", \"mfrm_only\"):\n                p_str = \"—\"\n            else:\n                test = run_significance_test(all_results, rho)\n                p_str = f\"{test['p_value']:.4f}\"\n\n            print(f\"{rho:5.1f} | {method:<15} | {rmse_str:>18} | {tau_str:>18} | {p_str:>10}\")\n        print(\"-\" * 85)\n    print(\"=\" * 85)\n\n\ndef main():\n    print(f\"G-MFRM MVP Experiment\")\n    print(f\"Rhos: {RHOS}, Seeds: {N_SEEDS}\")\n    print(f\"Methods: {METHODS}\")\n\n    all_results = []\n    total = len(RHOS) * N_SEEDS\n    done = 0\n\n    t0 = time.time()\n    for rho in RHOS:\n        for seed in range(N_SEEDS):\n            done += 1\n            print(f\"\\r  [{done}/{total}] rho={rho}, seed={seed}\", end=\"\", flush=True)\n            results = run_single(rho, seed)\n            all_results.extend(results)\n\n    elapsed = time.time() - t0\n    print(f\"\\n  Completed in {elapsed:.1f}s\")\n\n    summary_df = summarize_results(all_results)\n\n    csv_path = OUTPUT_DIR / \"results.csv\"\n    pd.DataFrame(all_results).to_csv(csv_path, index=False)\n    print(f\"\\nResults saved to {csv_path}\")\n\n    print_results_table(summary_df, all_results)\n\n    plot_path = OUTPUT_DIR / \"results.png\"\n    plot_results(summary_df, plot_path)\n    print(f\"Plot saved to {plot_path}\")\n\n    verdict = evaluate_pass_fail(all_results)\n    print(f\"\\n{'='*40}\")\n    print(f\"VERDICT: {verdict['verdict']}\")\n    print(f\"{'='*40}\")\n    details = verdict[\"details\"]\n    print(f\"  Convergence (R̂<1.05, ESS>100): {'PASS' if details['convergence'] else 'FAIL'}\")\n    if not details[\"convergence\"]:\n        print(f\"    max R̂ = {details.get('max_rhat_observed', '?')}, min ESS = {details.get('min_ess_observed', '?')}\")\n    print(f\"  ρ=0.3 improvement: p={details.get('p_03', 0):.4f} {'PASS' if details.get('pass_03') else 'FAIL'}\")\n    print(f\"  ρ=0.6 improvement: p={details.get('p_06', 0):.4f} {'PASS' if details.get('pass_06') else 'FAIL'}\")\n    print(f\"  ρ=0.0 no degradation: p={details.get('p_00', 0):.4f} {'PASS' if details.get('pass_00') else 'FAIL'}\")\n\n    if verdict[\"verdict\"] == \"FAIL\":\n        sys.exit(1)\n    sys.exit(0)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "89451bca-3a3f-4cf4-a7f2-f84369bf5fe4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EF1HbSy2KMD5uY57ZYr9C7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1878,
+                "cache_read_input_tokens": 33597,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1878
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T16:40:04.393Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_015tQUAo3VGBRJYidhTtRCBx"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "38d605ac-aa5f-4567-b80c-d53c794e63de",
+            "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P6P26Dzg5UkjU5tsbwKfpZ",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py 2>/dev/null; echo \"EXIT:$?\"",
+                "description": "Check if run_mvp.py exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "bca5ad92-907e-4ffa-8f22-27e2338353ad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PTeuvwUjoU2i6eNNp1ecgT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2048,
+                "cache_read_input_tokens": 35475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2048
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T16:40:07.956Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P6P26Dzg5UkjU5tsbwKfpZ",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py\nEXIT:0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "bf61ee2c-ebc5-4a3d-b77b-8ea29e5d7bc4",
+            "tool_use_result": {
+              "stdout": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py\nEXIT:0",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SYrdTYNkEFsDPmRc4fkB44",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "0095984a-514d-45e4-a02d-f1b622e21cd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pn3vNZKrearQzSgRRxeo4d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 181,
+                "cache_read_input_tokens": 37523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 181
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T16:40:10.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SYrdTYNkEFsDPmRc4fkB44",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Main driver for the G-MFRM synthetic recovery MVP experiment.\n2\t\n3\tSweeps over confounding levels (rho) and seeds, fits four methods,\n4\tevaluates theta recovery, and prints Pass/Fail diagnostics.\n5\t\n6\tUsage:\n7\t    python run_mvp.py\n8\t\n9\tOutputs:\n10\t    artifacts/mvp/results.csv  — per-seed metrics\n11\t    artifacts/mvp/results.png  — RMSE vs rho comparison plot\n12\t\n13\tDependencies: numpy, jax, numpyro, arviz, scipy, pandas, matplotlib\n14\t\"\"\"\n15\t\n16\timport time\n17\tfrom pathlib import Path\n18\t\n19\timport numpy as np\n20\t\n21\tfrom data_gen import generate_gated_mfrm_data\n22\tfrom evaluate import compute_metrics, plot_results, run_significance_test, summarize_results\n23\tfrom models import fit_joint_gmfrm, fit_mfrm_only, fit_raw_average, fit_sequential\n24\t\n25\tOUTPUT_DIR = Path(__file__).parent\n26\tRHOS = [0.0, 0.3, 0.6]\n27\tN_SEEDS = 10\n28\t\n29\t\n30\tdef main() -> None:\n31\t    all_results: list[dict] = []\n32\t    convergence_ok = True\n33\t\n34\t    t0 = time.time()\n35\t    total_runs = len(RHOS) * N_SEEDS\n36\t    run_idx = 0\n37\t\n38\t    for rho in RHOS:\n39\t        for seed in range(N_SEEDS):\n40\t            run_idx += 1\n41\t            print(f\"[{run_idx}/{total_runs}] rho={rho}, seed={seed}\")\n42\t\n43\t            data = generate_gated_mfrm_data(rho=rho, seed=seed)\n44\t            theta_true = data[\"true_params\"][\"theta\"]\n45\t            e_values = data[\"true_params\"][\"e\"]\n46\t\n47\t            methods = {\n48\t                \"raw_average\": fit_raw_average(data),\n49\t                \"mfrm_only\": fit_mfrm_only(data),\n50\t                \"sequential\": fit_sequential(data, e_values),\n51\t                \"joint_gmfrm\": fit_joint_gmfrm(data, e_values),\n52\t            }\n53\t\n54\t            for name, result in methods.items():\n55\t                metrics = compute_metrics(result[\"theta_hat\"], theta_true)\n56\t                rhat = result.get(\"r_hat\", float(\"nan\"))\n57\t\n58\t                if not np.isnan(rhat) and rhat >= 1.05:\n59\t                    print(f\"  WARNING: {name} R-hat={rhat:.3f} >= 1.05\")\n60\t                    convergence_ok = False\n61\t\n62\t                all_results.append(\n63\t                    {\n64\t                        \"rho\": rho,\n65\t                        \"seed\": seed,\n66\t                        \"method\": name,\n67\t                        \"rmse\": metrics[\"rmse\"],\n68\t                        \"kendall_tau\": metrics[\"kendall_tau\"],\n69\t                        \"r_hat\": rhat,\n70\t                        \"ess\": result.get(\"ess\", float(\"nan\")),\n71\t                    }\n72\t                )\n73\t\n74\t    elapsed = time.time() - t0\n75\t    print(f\"\\nAll runs completed in {elapsed:.0f}s\")\n76\t\n77\t    # Summarize and save\n78\t    summary_df = summarize_results(all_results)\n79\t    print(\"\\n=== Summary ===\")\n80\t    print(summary_df.to_string(index=False))\n81\t\n82\t    import pandas as pd\n83\t\n84\t    results_df = pd.DataFrame(all_results)\n85\t    csv_path = OUTPUT_DIR / \"results.csv\"\n86\t    results_df.to_csv(csv_path, index=False)\n87\t    print(f\"\\nResults saved to {csv_path}\")\n88\t\n89\t    png_path = OUTPUT_DIR / \"results.png\"\n90\t    plot_results(summary_df, png_path)\n91\t    print(f\"Plot saved to {png_path}\")\n92\t\n93\t    # Pass/Fail checks\n94\t    print(\"\\n=== Pass/Fail ===\")\n95\t    passes = []\n96\t\n97\t    # Condition 1: convergence\n98\t    c1 = convergence_ok\n99\t    passes.append(c1)\n100\t    print(f\"[{'PASS' if c1 else 'FAIL'}] All MCMC R-hat < 1.05\")\n101\t\n102\t    # Condition 2: joint < sequential at rho=0.3 and rho=0.6\n103\t    for rho in [0.3, 0.6]:\n104\t        test = run_significance_test(all_results, rho)\n105\t        sig = test[\"p_value\"] < 0.05 and test[\"t_stat\"] < 0\n106\t        passes.append(sig)\n107\t        print(\n108\t            f\"[{'PASS' if sig else 'FAIL'}] rho={rho}: \"\n109\t            f\"joint < sequential (t={test['t_stat']:.3f}, p={test['p_value']:.4f})\"\n110\t        )\n111\t\n112\t    # Condition 3: joint ≈ sequential at rho=0\n113\t    test0 = run_significance_test(all_results, 0.0)\n114\t    no_diff = test0[\"p_value\"] > 0.05\n115\t    passes.append(no_diff)\n116\t    print(\n117\t        f\"[{'PASS' if no_diff else 'FAIL'}] rho=0: \"\n118\t        f\"joint ≈ sequential (t={test0['t_stat']:.3f}, p={test0['p_value']:.4f})\"\n119\t    )\n120\t\n121\t    overall = all(passes)\n122\t    print(f\"\\n{'='*40}\")\n123\t    print(f\"OVERALL: {'PASS' if overall else 'FAIL'}\")\n124\t    print(f\"{'='*40}\")\n125\t\n126\t\n127\tif __name__ == \"__main__\":\n128\t    main()\n129\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "746326af-0e28-4e8c-8867-a5af9366d994",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py",
+                "content": "\"\"\"Main driver for the G-MFRM synthetic recovery MVP experiment.\n\nSweeps over confounding levels (rho) and seeds, fits four methods,\nevaluates theta recovery, and prints Pass/Fail diagnostics.\n\nUsage:\n    python run_mvp.py\n\nOutputs:\n    artifacts/mvp/results.csv  — per-seed metrics\n    artifacts/mvp/results.png  — RMSE vs rho comparison plot\n\nDependencies: numpy, jax, numpyro, arviz, scipy, pandas, matplotlib\n\"\"\"\n\nimport time\nfrom pathlib import Path\n\nimport numpy as np\n\nfrom data_gen import generate_gated_mfrm_data\nfrom evaluate import compute_metrics, plot_results, run_significance_test, summarize_results\nfrom models import fit_joint_gmfrm, fit_mfrm_only, fit_raw_average, fit_sequential\n\nOUTPUT_DIR = Path(__file__).parent\nRHOS = [0.0, 0.3, 0.6]\nN_SEEDS = 10\n\n\ndef main() -> None:\n    all_results: list[dict] = []\n    convergence_ok = True\n\n    t0 = time.time()\n    total_runs = len(RHOS) * N_SEEDS\n    run_idx = 0\n\n    for rho in RHOS:\n        for seed in range(N_SEEDS):\n            run_idx += 1\n            print(f\"[{run_idx}/{total_runs}] rho={rho}, seed={seed}\")\n\n            data = generate_gated_mfrm_data(rho=rho, seed=seed)\n            theta_true = data[\"true_params\"][\"theta\"]\n            e_values = data[\"true_params\"][\"e\"]\n\n            methods = {\n                \"raw_average\": fit_raw_average(data),\n                \"mfrm_only\": fit_mfrm_only(data),\n                \"sequential\": fit_sequential(data, e_values),\n                \"joint_gmfrm\": fit_joint_gmfrm(data, e_values),\n            }\n\n            for name, result in methods.items():\n                metrics = compute_metrics(result[\"theta_hat\"], theta_true)\n                rhat = result.get(\"r_hat\", float(\"nan\"))\n\n                if not np.isnan(rhat) and rhat >= 1.05:\n                    print(f\"  WARNING: {name} R-hat={rhat:.3f} >= 1.05\")\n                    convergence_ok = False\n\n                all_results.append(\n                    {\n                        \"rho\": rho,\n                        \"seed\": seed,\n                        \"method\": name,\n                        \"rmse\": metrics[\"rmse\"],\n                        \"kendall_tau\": metrics[\"kendall_tau\"],\n                        \"r_hat\": rhat,\n                        \"ess\": result.get(\"ess\", float(\"nan\")),\n                    }\n                )\n\n    elapsed = time.time() - t0\n    print(f\"\\nAll runs completed in {elapsed:.0f}s\")\n\n    # Summarize and save\n    summary_df = summarize_results(all_results)\n    print(\"\\n=== Summary ===\")\n    print(summary_df.to_string(index=False))\n\n    import pandas as pd\n\n    results_df = pd.DataFrame(all_results)\n    csv_path = OUTPUT_DIR / \"results.csv\"\n    results_df.to_csv(csv_path, index=False)\n    print(f\"\\nResults saved to {csv_path}\")\n\n    png_path = OUTPUT_DIR / \"results.png\"\n    plot_results(summary_df, png_path)\n    print(f\"Plot saved to {png_path}\")\n\n    # Pass/Fail checks\n    print(\"\\n=== Pass/Fail ===\")\n    passes = []\n\n    # Condition 1: convergence\n    c1 = convergence_ok\n    passes.append(c1)\n    print(f\"[{'PASS' if c1 else 'FAIL'}] All MCMC R-hat < 1.05\")\n\n    # Condition 2: joint < sequential at rho=0.3 and rho=0.6\n    for rho in [0.3, 0.6]:\n        test = run_significance_test(all_results, rho)\n        sig = test[\"p_value\"] < 0.05 and test[\"t_stat\"] < 0\n        passes.append(sig)\n        print(\n            f\"[{'PASS' if sig else 'FAIL'}] rho={rho}: \"\n            f\"joint < sequential (t={test['t_stat']:.3f}, p={test['p_value']:.4f})\"\n        )\n\n    # Condition 3: joint ≈ sequential at rho=0\n    test0 = run_significance_test(all_results, 0.0)\n    no_diff = test0[\"p_value\"] > 0.05\n    passes.append(no_diff)\n    print(\n        f\"[{'PASS' if no_diff else 'FAIL'}] rho=0: \"\n        f\"joint ≈ sequential (t={test0['t_stat']:.3f}, p={test0['p_value']:.4f})\"\n    )\n\n    overall = all(passes)\n    print(f\"\\n{'='*40}\")\n    print(f\"OVERALL: {'PASS' if overall else 'FAIL'}\")\n    print(f\"{'='*40}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 129,
+                "startLine": 1,
+                "totalLines": 129
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File already exists with an older version. I'll rewrite it completely."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "fc8409a3-c015-47b9-ba7c-b31acc57c644",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016uXu8bhDocruaQgYPwotPd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 37704,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qxh2Ed9M5YxebmaXRU1C8Q",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py",
+                "content": "\"\"\"Main script for the G-MFRM MVP synthetic recovery experiment.\n\nRuns all four fitting methods across multiple confounding levels (rho)\nand random seeds, then evaluates recovery quality and prints verdict.\n\nUsage: python run_mvp.py\nOutput: results.csv, results.png, console verdict\n\nDependencies: data_gen, models, evaluate (local modules), plus their deps\n\"\"\"\n\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nfrom data_gen import generate_gated_mfrm_data\nfrom models import fit_raw_average, fit_mfrm_only, fit_sequential, fit_joint_gmfrm\nfrom evaluate import compute_metrics, summarize_results, plot_results, run_significance_test, evaluate_pass_fail\n\nRHOS = [0.0, 0.3, 0.6]\nN_SEEDS = 20\nOUTPUT_DIR = Path(__file__).parent\nMETHODS = [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]\n\n\ndef run_single(rho: float, seed: int) -> list[dict]:\n    \"\"\"Run all 4 methods on one (rho, seed) combination.\"\"\"\n    data = generate_gated_mfrm_data(rho=rho, seed=seed)\n    theta_true = data[\"true_params\"][\"theta\"]\n    theta_true_centered = theta_true - theta_true.mean()\n    e_values = data[\"true_params\"][\"e\"]\n\n    results = []\n\n    raw = fit_raw_average(data)\n    m = compute_metrics(raw[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"raw_average\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": raw[\"r_hat\"], \"ess\": raw[\"ess\"]})\n\n    mfrm = fit_mfrm_only(data)\n    m = compute_metrics(mfrm[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"mfrm_only\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": mfrm[\"r_hat\"], \"ess\": mfrm[\"ess\"]})\n\n    seq = fit_sequential(data, e_values)\n    m = compute_metrics(seq[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"sequential\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": seq[\"r_hat\"], \"ess\": seq[\"ess\"]})\n\n    joint = fit_joint_gmfrm(data, e_values)\n    m = compute_metrics(joint[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"joint_gmfrm\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": joint[\"r_hat\"], \"ess\": joint[\"ess\"]})\n\n    return results\n\n\ndef print_results_table(summary_df: pd.DataFrame, all_results: list[dict]) -> None:\n    \"\"\"Print formatted results table.\"\"\"\n    print(\"\\n\" + \"=\" * 85)\n    print(f\"{'rho':>5} | {'method':<15} | {'RMSE mean±std':>18} | {'τ mean±std':>18} | {'p-value':>10}\")\n    print(\"-\" * 85)\n\n    for rho in RHOS:\n        sub = summary_df[np.isclose(summary_df[\"rho\"], rho)]\n        for _, row in sub.iterrows():\n            method = row[\"method\"]\n            rmse_str = f\"{row['rmse_mean']:.4f}±{row['rmse_std']:.4f}\"\n            tau_str = f\"{row['tau_mean']:.4f}±{row['tau_std']:.4f}\"\n\n            if method == \"sequential\":\n                p_str = \"ref\"\n            elif method in (\"raw_average\", \"mfrm_only\"):\n                p_str = \"—\"\n            else:\n                test = run_significance_test(all_results, rho)\n                p_str = f\"{test['p_value']:.4f}\"\n\n            print(f\"{rho:5.1f} | {method:<15} | {rmse_str:>18} | {tau_str:>18} | {p_str:>10}\")\n        print(\"-\" * 85)\n    print(\"=\" * 85)\n\n\ndef main():\n    print(f\"G-MFRM MVP Experiment\")\n    print(f\"Rhos: {RHOS}, Seeds: {N_SEEDS}\")\n    print(f\"Methods: {METHODS}\")\n\n    all_results = []\n    total = len(RHOS) * N_SEEDS\n    done = 0\n\n    t0 = time.time()\n    for rho in RHOS:\n        for seed in range(N_SEEDS):\n            done += 1\n            print(f\"\\r  [{done}/{total}] rho={rho}, seed={seed}\", end=\"\", flush=True)\n            results = run_single(rho, seed)\n            all_results.extend(results)\n\n    elapsed = time.time() - t0\n    print(f\"\\n  Completed in {elapsed:.1f}s\")\n\n    summary_df = summarize_results(all_results)\n\n    csv_path = OUTPUT_DIR / \"results.csv\"\n    pd.DataFrame(all_results).to_csv(csv_path, index=False)\n    print(f\"\\nResults saved to {csv_path}\")\n\n    print_results_table(summary_df, all_results)\n\n    plot_path = OUTPUT_DIR / \"results.png\"\n    plot_results(summary_df, plot_path)\n    print(f\"Plot saved to {plot_path}\")\n\n    verdict = evaluate_pass_fail(all_results)\n    print(f\"\\n{'='*40}\")\n    print(f\"VERDICT: {verdict['verdict']}\")\n    print(f\"{'='*40}\")\n    details = verdict[\"details\"]\n    print(f\"  Convergence (R̂<1.05, ESS>100): {'PASS' if details['convergence'] else 'FAIL'}\")\n    if not details[\"convergence\"]:\n        print(f\"    max R̂ = {details.get('max_rhat_observed', '?')}, min ESS = {details.get('min_ess_observed', '?')}\")\n    print(f\"  ρ=0.3 improvement: p={details.get('p_03', 0):.4f} {'PASS' if details.get('pass_03') else 'FAIL'}\")\n    print(f\"  ρ=0.6 improvement: p={details.get('p_06', 0):.4f} {'PASS' if details.get('pass_06') else 'FAIL'}\")\n    print(f\"  ρ=0.0 no degradation: p={details.get('p_00', 0):.4f} {'PASS' if details.get('pass_00') else 'FAIL'}\")\n\n    if verdict[\"verdict\"] == \"FAIL\":\n        sys.exit(1)\n    sys.exit(0)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "41274a0a-cc64-4bb5-9fda-134a55bcca7f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016uXu8bhDocruaQgYPwotPd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 37704,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T16:40:28.401Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qxh2Ed9M5YxebmaXRU1C8Q",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "4edcb6ba-332b-409f-9ad0-735a1443f621",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/run_mvp.py",
+              "content": "\"\"\"Main script for the G-MFRM MVP synthetic recovery experiment.\n\nRuns all four fitting methods across multiple confounding levels (rho)\nand random seeds, then evaluates recovery quality and prints verdict.\n\nUsage: python run_mvp.py\nOutput: results.csv, results.png, console verdict\n\nDependencies: data_gen, models, evaluate (local modules), plus their deps\n\"\"\"\n\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nfrom data_gen import generate_gated_mfrm_data\nfrom models import fit_raw_average, fit_mfrm_only, fit_sequential, fit_joint_gmfrm\nfrom evaluate import compute_metrics, summarize_results, plot_results, run_significance_test, evaluate_pass_fail\n\nRHOS = [0.0, 0.3, 0.6]\nN_SEEDS = 20\nOUTPUT_DIR = Path(__file__).parent\nMETHODS = [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]\n\n\ndef run_single(rho: float, seed: int) -> list[dict]:\n    \"\"\"Run all 4 methods on one (rho, seed) combination.\"\"\"\n    data = generate_gated_mfrm_data(rho=rho, seed=seed)\n    theta_true = data[\"true_params\"][\"theta\"]\n    theta_true_centered = theta_true - theta_true.mean()\n    e_values = data[\"true_params\"][\"e\"]\n\n    results = []\n\n    raw = fit_raw_average(data)\n    m = compute_metrics(raw[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"raw_average\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": raw[\"r_hat\"], \"ess\": raw[\"ess\"]})\n\n    mfrm = fit_mfrm_only(data)\n    m = compute_metrics(mfrm[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"mfrm_only\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": mfrm[\"r_hat\"], \"ess\": mfrm[\"ess\"]})\n\n    seq = fit_sequential(data, e_values)\n    m = compute_metrics(seq[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"sequential\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": seq[\"r_hat\"], \"ess\": seq[\"ess\"]})\n\n    joint = fit_joint_gmfrm(data, e_values)\n    m = compute_metrics(joint[\"theta_hat\"], theta_true_centered)\n    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"joint_gmfrm\",\n                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],\n                     \"r_hat\": joint[\"r_hat\"], \"ess\": joint[\"ess\"]})\n\n    return results\n\n\ndef print_results_table(summary_df: pd.DataFrame, all_results: list[dict]) -> None:\n    \"\"\"Print formatted results table.\"\"\"\n    print(\"\\n\" + \"=\" * 85)\n    print(f\"{'rho':>5} | {'method':<15} | {'RMSE mean±std':>18} | {'τ mean±std':>18} | {'p-value':>10}\")\n    print(\"-\" * 85)\n\n    for rho in RHOS:\n        sub = summary_df[np.isclose(summary_df[\"rho\"], rho)]\n        for _, row in sub.iterrows():\n            method = row[\"method\"]\n            rmse_str = f\"{row['rmse_mean']:.4f}±{row['rmse_std']:.4f}\"\n            tau_str = f\"{row['tau_mean']:.4f}±{row['tau_std']:.4f}\"\n\n            if method == \"sequential\":\n                p_str = \"ref\"\n            elif method in (\"raw_average\", \"mfrm_only\"):\n                p_str = \"—\"\n            else:\n                test = run_significance_test(all_results, rho)\n                p_str = f\"{test['p_value']:.4f}\"\n\n            print(f\"{rho:5.1f} | {method:<15} | {rmse_str:>18} | {tau_str:>18} | {p_str:>10}\")\n        print(\"-\" * 85)\n    print(\"=\" * 85)\n\n\ndef main():\n    print(f\"G-MFRM MVP Experiment\")\n    print(f\"Rhos: {RHOS}, Seeds: {N_SEEDS}\")\n    print(f\"Methods: {METHODS}\")\n\n    all_results = []\n    total = len(RHOS) * N_SEEDS\n    done = 0\n\n    t0 = time.time()\n    for rho in RHOS:\n        for seed in range(N_SEEDS):\n            done += 1\n            print(f\"\\r  [{done}/{total}] rho={rho}, seed={seed}\", end=\"\", flush=True)\n            results = run_single(rho, seed)\n            all_results.extend(results)\n\n    elapsed = time.time() - t0\n    print(f\"\\n  Completed in {elapsed:.1f}s\")\n\n    summary_df = summarize_results(all_results)\n\n    csv_path = OUTPUT_DIR / \"results.csv\"\n    pd.DataFrame(all_results).to_csv(csv_path, index=False)\n    print(f\"\\nResults saved to {csv_path}\")\n\n    print_results_table(summary_df, all_results)\n\n    plot_path = OUTPUT_DIR / \"results.png\"\n    plot_results(summary_df, plot_path)\n    print(f\"Plot saved to {plot_path}\")\n\n    verdict = evaluate_pass_fail(all_results)\n    print(f\"\\n{'='*40}\")\n    print(f\"VERDICT: {verdict['verdict']}\")\n    print(f\"{'='*40}\")\n    details = verdict[\"details\"]\n    print(f\"  Convergence (R̂<1.05, ESS>100): {'PASS' if details['convergence'] else 'FAIL'}\")\n    if not details[\"convergence\"]:\n        print(f\"    max R̂ = {details.get('max_rhat_observed', '?')}, min ESS = {details.get('min_ess_observed', '?')}\")\n    print(f\"  ρ=0.3 improvement: p={details.get('p_03', 0):.4f} {'PASS' if details.get('pass_03') else 'FAIL'}\")\n    print(f\"  ρ=0.6 improvement: p={details.get('p_06', 0):.4f} {'PASS' if details.get('pass_06') else 'FAIL'}\")\n    print(f\"  ρ=0.0 no degradation: p={details.get('p_00', 0):.4f} {'PASS' if details.get('pass_00') else 'FAIL'}\")\n\n    if verdict[\"verdict\"] == \"FAIL\":\n        sys.exit(1)\n    sys.exit(0)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 128,
+                  "newStart": 1,
+                  "newLines": 141,
+                  "lines": [
+                    "-\"\"\"Main driver for the G-MFRM synthetic recovery MVP experiment.",
+                    "+\"\"\"Main script for the G-MFRM MVP synthetic recovery experiment.",
+                    " ",
+                    "-Sweeps over confounding levels (rho) and seeds, fits four methods,",
+                    "-evaluates theta recovery, and prints Pass/Fail diagnostics.",
+                    "+Runs all four fitting methods across multiple confounding levels (rho)",
+                    "+and random seeds, then evaluates recovery quality and prints verdict.",
+                    " ",
+                    "-Usage:",
+                    "-    python run_mvp.py",
+                    "+Usage: python run_mvp.py",
+                    "+Output: results.csv, results.png, console verdict",
+                    " ",
+                    "-Outputs:",
+                    "-    artifacts/mvp/results.csv  — per-seed metrics",
+                    "-    artifacts/mvp/results.png  — RMSE vs rho comparison plot",
+                    "-",
+                    "-Dependencies: numpy, jax, numpyro, arviz, scipy, pandas, matplotlib",
+                    "+Dependencies: data_gen, models, evaluate (local modules), plus their deps",
+                    " \"\"\"",
+                    " ",
+                    "+import sys",
+                    " import time",
+                    " from pathlib import Path",
+                    " ",
+                    " import numpy as np",
+                    "+import pandas as pd",
+                    " ",
+                    " from data_gen import generate_gated_mfrm_data",
+                    "-from evaluate import compute_metrics, plot_results, run_significance_test, summarize_results",
+                    "-from models import fit_joint_gmfrm, fit_mfrm_only, fit_raw_average, fit_sequential",
+                    "+from models import fit_raw_average, fit_mfrm_only, fit_sequential, fit_joint_gmfrm",
+                    "+from evaluate import compute_metrics, summarize_results, plot_results, run_significance_test, evaluate_pass_fail",
+                    " ",
+                    "-OUTPUT_DIR = Path(__file__).parent",
+                    " RHOS = [0.0, 0.3, 0.6]",
+                    "-N_SEEDS = 10",
+                    "+N_SEEDS = 20",
+                    "+OUTPUT_DIR = Path(__file__).parent",
+                    "+METHODS = [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]",
+                    " ",
+                    " ",
+                    "-def main() -> None:",
+                    "-    all_results: list[dict] = []",
+                    "-    convergence_ok = True",
+                    "+def run_single(rho: float, seed: int) -> list[dict]:",
+                    "+    \"\"\"Run all 4 methods on one (rho, seed) combination.\"\"\"",
+                    "+    data = generate_gated_mfrm_data(rho=rho, seed=seed)",
+                    "+    theta_true = data[\"true_params\"][\"theta\"]",
+                    "+    theta_true_centered = theta_true - theta_true.mean()",
+                    "+    e_values = data[\"true_params\"][\"e\"]",
+                    " ",
+                    "-    t0 = time.time()",
+                    "-    total_runs = len(RHOS) * N_SEEDS",
+                    "-    run_idx = 0",
+                    "+    results = []",
+                    " ",
+                    "+    raw = fit_raw_average(data)",
+                    "+    m = compute_metrics(raw[\"theta_hat\"], theta_true_centered)",
+                    "+    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"raw_average\",",
+                    "+                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],",
+                    "+                     \"r_hat\": raw[\"r_hat\"], \"ess\": raw[\"ess\"]})",
+                    "+",
+                    "+    mfrm = fit_mfrm_only(data)",
+                    "+    m = compute_metrics(mfrm[\"theta_hat\"], theta_true_centered)",
+                    "+    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"mfrm_only\",",
+                    "+                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],",
+                    "+                     \"r_hat\": mfrm[\"r_hat\"], \"ess\": mfrm[\"ess\"]})",
+                    "+",
+                    "+    seq = fit_sequential(data, e_values)",
+                    "+    m = compute_metrics(seq[\"theta_hat\"], theta_true_centered)",
+                    "+    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"sequential\",",
+                    "+                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],",
+                    "+                     \"r_hat\": seq[\"r_hat\"], \"ess\": seq[\"ess\"]})",
+                    "+",
+                    "+    joint = fit_joint_gmfrm(data, e_values)",
+                    "+    m = compute_metrics(joint[\"theta_hat\"], theta_true_centered)",
+                    "+    results.append({\"rho\": rho, \"seed\": seed, \"method\": \"joint_gmfrm\",",
+                    "+                     \"rmse\": m[\"rmse\"], \"kendall_tau\": m[\"kendall_tau\"],",
+                    "+                     \"r_hat\": joint[\"r_hat\"], \"ess\": joint[\"ess\"]})",
+                    "+",
+                    "+    return results",
+                    "+",
+                    "+",
+                    "+def print_results_table(summary_df: pd.DataFrame, all_results: list[dict]) -> None:",
+                    "+    \"\"\"Print formatted results table.\"\"\"",
+                    "+    print(\"\\n\" + \"=\" * 85)",
+                    "+    print(f\"{'rho':>5} | {'method':<15} | {'RMSE mean±std':>18} | {'τ mean±std':>18} | {'p-value':>10}\")",
+                    "+    print(\"-\" * 85)",
+                    "+",
+                    "     for rho in RHOS:",
+                    "-        for seed in range(N_SEEDS):",
+                    "-            run_idx += 1",
+                    "-            print(f\"[{run_idx}/{total_runs}] rho={rho}, seed={seed}\")",
+                    "+        sub = summary_df[np.isclose(summary_df[\"rho\"], rho)]",
+                    "+        for _, row in sub.iterrows():",
+                    "+            method = row[\"method\"]",
+                    "+            rmse_str = f\"{row['rmse_mean']:.4f}±{row['rmse_std']:.4f}\"",
+                    "+            tau_str = f\"{row['tau_mean']:.4f}±{row['tau_std']:.4f}\"",
+                    " ",
+                    "-            data = generate_gated_mfrm_data(rho=rho, seed=seed)",
+                    "-            theta_true = data[\"true_params\"][\"theta\"]",
+                    "-            e_values = data[\"true_params\"][\"e\"]",
+                    "+            if method == \"sequential\":",
+                    "+                p_str = \"ref\"",
+                    "+            elif method in (\"raw_average\", \"mfrm_only\"):",
+                    "+                p_str = \"—\"",
+                    "+            else:",
+                    "+                test = run_significance_test(all_results, rho)",
+                    "+                p_str = f\"{test['p_value']:.4f}\"",
+                    " ",
+                    "-            methods = {",
+                    "-                \"raw_average\": fit_raw_average(data),",
+                    "-                \"mfrm_only\": fit_mfrm_only(data),",
+                    "-                \"sequential\": fit_sequential(data, e_values),",
+                    "-                \"joint_gmfrm\": fit_joint_gmfrm(data, e_values),",
+                    "-            }",
+                    "+            print(f\"{rho:5.1f} | {method:<15} | {rmse_str:>18} | {tau_str:>18} | {p_str:>10}\")",
+                    "+        print(\"-\" * 85)",
+                    "+    print(\"=\" * 85)",
+                    " ",
+                    "-            for name, result in methods.items():",
+                    "-                metrics = compute_metrics(result[\"theta_hat\"], theta_true)",
+                    "-                rhat = result.get(\"r_hat\", float(\"nan\"))",
+                    " ",
+                    "-                if not np.isnan(rhat) and rhat >= 1.05:",
+                    "-                    print(f\"  WARNING: {name} R-hat={rhat:.3f} >= 1.05\")",
+                    "-                    convergence_ok = False",
+                    "+def main():",
+                    "+    print(f\"G-MFRM MVP Experiment\")",
+                    "+    print(f\"Rhos: {RHOS}, Seeds: {N_SEEDS}\")",
+                    "+    print(f\"Methods: {METHODS}\")",
+                    " ",
+                    "-                all_results.append(",
+                    "-                    {",
+                    "-                        \"rho\": rho,",
+                    "-                        \"seed\": seed,",
+                    "-                        \"method\": name,",
+                    "-                        \"rmse\": metrics[\"rmse\"],",
+                    "-                        \"kendall_tau\": metrics[\"kendall_tau\"],",
+                    "-                        \"r_hat\": rhat,",
+                    "-                        \"ess\": result.get(\"ess\", float(\"nan\")),",
+                    "-                    }",
+                    "-                )",
+                    "+    all_results = []",
+                    "+    total = len(RHOS) * N_SEEDS",
+                    "+    done = 0",
+                    " ",
+                    "+    t0 = time.time()",
+                    "+    for rho in RHOS:",
+                    "+        for seed in range(N_SEEDS):",
+                    "+            done += 1",
+                    "+            print(f\"\\r  [{done}/{total}] rho={rho}, seed={seed}\", end=\"\", flush=True)",
+                    "+            results = run_single(rho, seed)",
+                    "+            all_results.extend(results)",
+                    "+",
+                    "     elapsed = time.time() - t0",
+                    "-    print(f\"\\nAll runs completed in {elapsed:.0f}s\")",
+                    "+    print(f\"\\n  Completed in {elapsed:.1f}s\")",
+                    " ",
+                    "-    # Summarize and save",
+                    "     summary_df = summarize_results(all_results)",
+                    "-    print(\"\\n=== Summary ===\")",
+                    "-    print(summary_df.to_string(index=False))",
+                    " ",
+                    "-    import pandas as pd",
+                    "-",
+                    "-    results_df = pd.DataFrame(all_results)",
+                    "     csv_path = OUTPUT_DIR / \"results.csv\"",
+                    "-    results_df.to_csv(csv_path, index=False)",
+                    "+    pd.DataFrame(all_results).to_csv(csv_path, index=False)",
+                    "     print(f\"\\nResults saved to {csv_path}\")",
+                    " ",
+                    "-    png_path = OUTPUT_DIR / \"results.png\"",
+                    "-    plot_results(summary_df, png_path)",
+                    "-    print(f\"Plot saved to {png_path}\")",
+                    "+    print_results_table(summary_df, all_results)",
+                    " ",
+                    "-    # Pass/Fail checks",
+                    "-    print(\"\\n=== Pass/Fail ===\")",
+                    "-    passes = []",
+                    "+    plot_path = OUTPUT_DIR / \"results.png\"",
+                    "+    plot_results(summary_df, plot_path)",
+                    "+    print(f\"Plot saved to {plot_path}\")",
+                    " ",
+                    "-    # Condition 1: convergence",
+                    "-    c1 = convergence_ok",
+                    "-    passes.append(c1)",
+                    "-    print(f\"[{'PASS' if c1 else 'FAIL'}] All MCMC R-hat < 1.05\")",
+                    "-",
+                    "-    # Condition 2: joint < sequential at rho=0.3 and rho=0.6",
+                    "-    for rho in [0.3, 0.6]:",
+                    "-        test = run_significance_test(all_results, rho)",
+                    "-        sig = test[\"p_value\"] < 0.05 and test[\"t_stat\"] < 0",
+                    "-        passes.append(sig)",
+                    "-        print(",
+                    "-            f\"[{'PASS' if sig else 'FAIL'}] rho={rho}: \"",
+                    "-            f\"joint < sequential (t={test['t_stat']:.3f}, p={test['p_value']:.4f})\"",
+                    "-        )",
+                    "-",
+                    "-    # Condition 3: joint ≈ sequential at rho=0",
+                    "-    test0 = run_significance_test(all_results, 0.0)",
+                    "-    no_diff = test0[\"p_value\"] > 0.05",
+                    "-    passes.append(no_diff)",
+                    "-    print(",
+                    "-        f\"[{'PASS' if no_diff else 'FAIL'}] rho=0: \"",
+                    "-        f\"joint ≈ sequential (t={test0['t_stat']:.3f}, p={test0['p_value']:.4f})\"",
+                    "-    )",
+                    "-",
+                    "-    overall = all(passes)",
+                    "+    verdict = evaluate_pass_fail(all_results)",
+                    "     print(f\"\\n{'='*40}\")",
+                    "-    print(f\"OVERALL: {'PASS' if overall else 'FAIL'}\")",
+                    "+    print(f\"VERDICT: {verdict['verdict']}\")",
+                    "     print(f\"{'='*40}\")",
+                    "+    details = verdict[\"details\"]",
+                    "+    print(f\"  Convergence (R̂<1.05, ESS>100): {'PASS' if details['convergence'] else 'FAIL'}\")",
+                    "+    if not details[\"convergence\"]:",
+                    "+        print(f\"    max R̂ = {details.get('max_rhat_observed', '?')}, min ESS = {details.get('min_ess_observed', '?')}\")",
+                    "+    print(f\"  ρ=0.3 improvement: p={details.get('p_03', 0):.4f} {'PASS' if details.get('pass_03') else 'FAIL'}\")",
+                    "+    print(f\"  ρ=0.6 improvement: p={details.get('p_06', 0):.4f} {'PASS' if details.get('pass_06') else 'FAIL'}\")",
+                    "+    print(f\"  ρ=0.0 no degradation: p={details.get('p_00', 0):.4f} {'PASS' if details.get('pass_00') else 'FAIL'}\")",
+                    " ",
+                    "+    if verdict[\"verdict\"] == \"FAIL\":",
+                    "+        sys.exit(1)",
+                    "+    sys.exit(0)",
+                    " ",
+                    "+",
+                    " if __name__ == \"__main__\":",
+                    "     main()"
+                  ]
+                }
+              ],
+              "originalFile": "\"\"\"Main driver for the G-MFRM synthetic recovery MVP experiment.\n\nSweeps over confounding levels (rho) and seeds, fits four methods,\nevaluates theta recovery, and prints Pass/Fail diagnostics.\n\nUsage:\n    python run_mvp.py\n\nOutputs:\n    artifacts/mvp/results.csv  — per-seed metrics\n    artifacts/mvp/results.png  — RMSE vs rho comparison plot\n\nDependencies: numpy, jax, numpyro, arviz, scipy, pandas, matplotlib\n\"\"\"\n\nimport time\nfrom pathlib import Path\n\nimport numpy as np\n\nfrom data_gen import generate_gated_mfrm_data\nfrom evaluate import compute_metrics, plot_results, run_significance_test, summarize_results\nfrom models import fit_joint_gmfrm, fit_mfrm_only, fit_raw_average, fit_sequential\n\nOUTPUT_DIR = Path(__file__).parent\nRHOS = [0.0, 0.3, 0.6]\nN_SEEDS = 10\n\n\ndef main() -> None:\n    all_results: list[dict] = []\n    convergence_ok = True\n\n    t0 = time.time()\n    total_runs = len(RHOS) * N_SEEDS\n    run_idx = 0\n\n    for rho in RHOS:\n        for seed in range(N_SEEDS):\n            run_idx += 1\n            print(f\"[{run_idx}/{total_runs}] rho={rho}, seed={seed}\")\n\n            data = generate_gated_mfrm_data(rho=rho, seed=seed)\n            theta_true = data[\"true_params\"][\"theta\"]\n            e_values = data[\"true_params\"][\"e\"]\n\n            methods = {\n                \"raw_average\": fit_raw_average(data),\n                \"mfrm_only\": fit_mfrm_only(data),\n                \"sequential\": fit_sequential(data, e_values),\n                \"joint_gmfrm\": fit_joint_gmfrm(data, e_values),\n            }\n\n            for name, result in methods.items():\n                metrics = compute_metrics(result[\"theta_hat\"], theta_true)\n                rhat = result.get(\"r_hat\", float(\"nan\"))\n\n                if not np.isnan(rhat) and rhat >= 1.05:\n                    print(f\"  WARNING: {name} R-hat={rhat:.3f} >= 1.05\")\n                    convergence_ok = False\n\n                all_results.append(\n                    {\n                        \"rho\": rho,\n                        \"seed\": seed,\n                        \"method\": name,\n                        \"rmse\": metrics[\"rmse\"],\n                        \"kendall_tau\": metrics[\"kendall_tau\"],\n                        \"r_hat\": rhat,\n                        \"ess\": result.get(\"ess\", float(\"nan\")),\n                    }\n                )\n\n    elapsed = time.time() - t0\n    print(f\"\\nAll runs completed in {elapsed:.0f}s\")\n\n    # Summarize and save\n    summary_df = summarize_results(all_results)\n    print(\"\\n=== Summary ===\")\n    print(summary_df.to_string(index=False))\n\n    import pandas as pd\n\n    results_df = pd.DataFrame(all_results)\n    csv_path = OUTPUT_DIR / \"results.csv\"\n    results_df.to_csv(csv_path, index=False)\n    print(f\"\\nResults saved to {csv_path}\")\n\n    png_path = OUTPUT_DIR / \"results.png\"\n    plot_results(summary_df, png_path)\n    print(f\"Plot saved to {png_path}\")\n\n    # Pass/Fail checks\n    print(\"\\n=== Pass/Fail ===\")\n    passes = []\n\n    # Condition 1: convergence\n    c1 = convergence_ok\n    passes.append(c1)\n    print(f\"[{'PASS' if c1 else 'FAIL'}] All MCMC R-hat < 1.05\")\n\n    # Condition 2: joint < sequential at rho=0.3 and rho=0.6\n    for rho in [0.3, 0.6]:\n        test = run_significance_test(all_results, rho)\n        sig = test[\"p_value\"] < 0.05 and test[\"t_stat\"] < 0\n        passes.append(sig)\n        print(\n            f\"[{'PASS' if sig else 'FAIL'}] rho={rho}: \"\n            f\"joint < sequential (t={test['t_stat']:.3f}, p={test['p_value']:.4f})\"\n        )\n\n    # Condition 3: joint ≈ sequential at rho=0\n    test0 = run_significance_test(all_results, 0.0)\n    no_diff = test0[\"p_value\"] > 0.05\n    passes.append(no_diff)\n    print(\n        f\"[{'PASS' if no_diff else 'FAIL'}] rho=0: \"\n        f\"joint ≈ sequential (t={test0['t_stat']:.3f}, p={test0['p_value']:.4f})\"\n    )\n\n    overall = all(passes)\n    print(f\"\\n{'='*40}\")\n    print(f\"OVERALL: {'PASS' if overall else 'FAIL'}\")\n    print(f\"{'='*40}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now run syntax checks on all four files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "db94c21a-2d3f-4e8b-a9b3-7e7980450b20",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ErZEZNT8BrPVar6ec2jHdB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2063,
+                "cache_read_input_tokens": 39445,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2063
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qfr2tDoomB1biKyhMshz4M",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/mvp/ && python3 -c \"import ast; ast.parse(open('data_gen.py').read()); print('data_gen.py OK')\" && python3 -c \"import ast; ast.parse(open('models.py').read()); print('models.py OK')\" && python3 -c \"import ast; ast.parse(open('evaluate.py').read()); print('evaluate.py OK')\" && python3 -c \"import ast; ast.parse(open('run_mvp.py').read()); print('run_mvp.py OK')\"",
+                "description": "Syntax check all four MVP files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "362b7f80-0244-4ef7-8dbe-dd2a117c4511",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ErZEZNT8BrPVar6ec2jHdB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2063,
+                "cache_read_input_tokens": 39445,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2063
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T16:40:33.347Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qfr2tDoomB1biKyhMshz4M",
+              "type": "tool_result",
+              "content": "data_gen.py OK\nmodels.py OK\nevaluate.py OK\nrun_mvp.py OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "846a12a2-3f3e-4c48-9c01-75a6710d8203",
+            "tool_use_result": {
+              "stdout": "data_gen.py OK\nmodels.py OK\nevaluate.py OK\nrun_mvp.py OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "四个文件语法检查全部通过。变更总结：\n\n1. **`models.py`** — `fit_sequential` 从两次 MCMC 合并为一次，theta/b/d 从同一次 run 提取，diagnostics 也直接用该次结果\n2. **`evaluate.py`** — `run_significance_test` 从 paired t-test 改为 Wilcoxon signed-rank test（支持 `alternative` 参数）；新增 `evaluate_pass_fail` 函数实现三项 pass/fail 判定（收敛、rho=0.3/0.6 改善、rho=0 无退化），返回 PASS / CONDITIONAL PASS / FAIL\n3. **`run_mvp.py`** — 完整重写，20 seeds，中心化 theta_true，带格式化输出表（含 p-value 列）和 verdict 打印"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "uuid": "7df10177-fc06-4f69-8a12-daa1a750b224",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkWbK1zHiic8wgzFo5sqWP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 287,
+                "cache_read_input_tokens": 41508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 287
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四个文件语法检查全部通过。变更总结：\n\n1. **`models.py`** — `fit_sequential` 从两次 MCMC 合并为一次，theta/b/d 从同一次 run 提取，diagnostics 也直接用该次结果\n2. **`evaluate.py`** — `run_significance_test` 从 paired t-test 改为 Wilcoxon signed-rank test（支持 `alternative` 参数）；新增 `evaluate_pass_fail` 函数实现三项 pass/fail 判定（收敛、rho=0.3/0.6 改善、rho=0 无退化），返回 PASS / CONDITIONAL PASS / FAIL\n3. **`run_mvp.py`** — 完整重写，20 seeds，中心化 theta_true，带格式化输出表（含 p-value 列）和 verdict 打印"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 101288,
+            "duration_api_ms": 102865,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "63365001-7510-43d8-a52a-149efc11b032",
+            "total_cost_usd": 0.5316430000000001,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 30348,
+              "cache_read_input_tokens": 296880,
+              "output_tokens": 7555,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 30348,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 248,
+                  "cache_read_input_tokens": 41508,
+                  "cache_creation_input_tokens": 287,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 287
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 4438,
+                "outputTokens": 32,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.004598,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 7555,
+                "cacheReadInputTokens": 296880,
+                "cacheCreationInputTokens": 30348,
+                "webSearchRequests": 0,
+                "costUSD": 0.5270450000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6ac475b2-9625-4876-b548-f7c8c61be974"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mvp-gmfrm-update.md"
+}

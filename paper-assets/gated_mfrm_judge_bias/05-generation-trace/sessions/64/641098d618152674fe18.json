@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "641098d618152674fe18",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh kill exp016",
+  "task_key": "worker_ssh_kill_exp016_20260523T075611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_exp016_20260523T075611_result.json",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "7d5a6f0a36442c1e73631c75a8281c31e35f15f24a48f8981375de99c08d3659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **进程 316023**：已不存在（可能在你发消息前已退出），无残留子进程\n- **GPU 2**：已释放，无任何计算进程占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-exp016.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4096447b6a171e4b0889",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp 012 check and model download",
+  "task_key": "worker_ssh_exp_012_check_and_model_download_20260521T234553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_012_check_and_model_download_20260521T234553_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "9ac1565c8c78f1845677a8ebc9903b7b5aa3549196c727ea4f04b0a8bba1f103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. exp-012 状态\n- **进程存活**：PID 54823，CPU 105%，已运行 45 分钟\n- **进度**：14/80 fits 完成（CSV 15 行含 header）\n- **速度**：~175-180s/fit\n- **预计剩余**：66 fits × ~178s ≈ **3.3 小时**\n- 注意：MCMC 运行在单 CPU 核心（JAX 未检测到多设备），不影响 GPU 任务\n\n### 2. 模型下载状态\n- **仓库**：`casperhansen/Llama-3.3-70B-Instruct-AWQ`（非 gated，17 files，~35GB）\n- **状态**：下载中，已缓存 ~1GB，9 个分片并行下载\n- **预计完成**：30-60 分钟（未认证速率，通过 network_turbo 加速）\n- **路径**：`/root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/`\n- 监控：`tail -3 /tmp/llama_download.log`\n\n### 3. vLLM\n- **已安装**：vLLM 0.21.0，torch 2.11.0+cu130，4 GPUs 检测正常\n\n### 4. 磁盘\n| 分区 | 总量 | 可用 |\n|------|------|------|\n| Root (overlay) | 30G | 28G |\n| Data (/root/autodl-tmp) | 250G | ~249G |\n\n模型下载完成后空间充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-012-check-and-model-download.md"
+}

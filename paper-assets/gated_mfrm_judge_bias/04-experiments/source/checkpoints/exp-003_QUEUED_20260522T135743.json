@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-003",
+  "project": "gated_mfrm_judge_bias",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:54:35.807Z",
+    "updated_at": "2026-05-22T13:57:43.225Z",
+    "hypothesis": "G-MFRM joint calibration on real Arena-Hard data (9 judges × 8 target models × 316 items) produces model ability estimates (θ) with higher agreement to Chatbot Arena human rankings (Kendall-τ) than raw averages, MFRM-only, and sequential pipelines, while simultaneously recovering interpretable per-model contamination susceptibility (c_n) and per-judge severity (d_j) profiles.",
+    "parent": "mvp_003"
+  },
+  "timestamp": "2026-05-22T13:57:43.247355+00:00",
+  "trigger": "update_registry"
+}

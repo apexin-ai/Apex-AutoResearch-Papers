@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97a4196b539e86967722",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mvp 001 deploy run",
+  "task_key": "worker_ssh_mvp_001_deploy_run_20260521T175859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp_001_deploy_run_20260521T175859_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "1c5a923f16ce4ed06b17838abec59d27dbc7c73ddefac1c9df863c2822b1c3c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n| 步骤 | 结果 |\n|------|------|\n| **1. SSH 连接** | 正常 |\n| **2. 环境信息** | Python 3.12.3 (conda base), numpyro=0.21.0, jax=0.10.1, arviz=1.1.0 |\n| **3. 文件部署** | data_gen.py: 87行, evaluate.py: 164行, models.py: 193行, run_mvp.py: 149行 — 均与本地一致 |\n| **4. s_j (judge-level confounding)** | **已包含** — 第4/8/33/57/58/63/65行均有 s_j 相关代码，Bug 4 修复已部署 |\n| **5. Dry-run** | 通过 — responses shape (5,10,2), true_params 含 6 个 key (theta/b/d/c/e/s), raw average RMSE=0.3911, `DRY-RUN OK` |\n| **6. MVP 进程** | 已启动 — PID 9423, nohup 后台运行, 日志写入 `/tmp/mvp_run.log`, 进程存活已确认 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mvp-001-deploy-run.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edb4787e5e3ddcc34eae",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix ratelimiter and restart judges",
+  "task_key": "worker_ssh_fix_ratelimiter_and_restart_judges_20260522T071918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_ratelimiter_and_restart_judges_20260522T071918_result.json",
+    "occurrence": 1,
+    "bytes": 1612,
+    "sha256": "1a0f451ebdf69b847bba972b382b67d6a28a55bb9f32412c5d2bb13ada1bdf11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。汇总：\n\n---\n\n### 1. RateLimiter 修复 ✓\n\n**修改前**（L34-39）— sleep 在锁内，8 workers 串行化：\n```python\ndef wait(self):\n    with self._lock:\n        elapsed = time.time() - self.last_call\n        if elapsed < self.min_interval:\n            time.sleep(self.min_interval - elapsed)  # 锁内 sleep！\n        self.last_call = time.time()\n```\n\n**修改后** — 锁内只计算+预占时间槽，sleep 在锁外：\n```python\ndef wait(self):\n    with self._lock:\n        now = time.time()\n        elapsed = now - self.last_call\n        sleep_time = max(0, self.min_interval - elapsed)\n        self.last_call = now + sleep_time  # 预占\n    if sleep_time > 0:\n        time.sleep(sleep_time)  # 锁外 sleep\n```\n\n### 2. RPM 配置更新 ✓\n\n3 个 local judge config 全部 `rpm: 100` → `rpm: 999`（本地 vLLM 推理无需限流）。\n\n### 3. Response 生成进度 — 未完成\n\n| 模型 | 已生成 | 目标 | 进度 |\n|------|--------|------|------|\n| llama-3.3-70b | 71 | 500 | 14% |\n| qwen2.5-72b | 46 | 500 | 9% |\n| mistral-large-2 | 23 | 500 | 5% |\n\n生成脚本在 `gen-vllm` tmux session 中运行（`generate_vllm_online.py --all --workers 32`，启动于 15:10）。日志显示速度约 0.04-0.10 items/s per model，**预计还需 75-200 分钟**（约 1.5-3.5 小时）。\n\n### 4. Judge 收集 — 暂不重启\n\nResponse 远未完成，不启动 judge 收集。等 3 个模型都到 500 后再用 `--workers 8` 启动，届时 RateLimiter 修复 + RPM 999 已就绪，8 workers 将真正并行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-ratelimiter-and-restart-judges.md"
+}

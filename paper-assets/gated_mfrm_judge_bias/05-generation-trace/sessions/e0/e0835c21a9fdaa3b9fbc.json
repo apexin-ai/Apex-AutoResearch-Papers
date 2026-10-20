@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0835c21a9fdaa3b9fbc",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh vllm maxlen fix",
+  "task_key": "worker_ssh_vllm_maxlen_fix_20260523T212401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_vllm_maxlen_fix_20260523T212401_result.json",
+    "occurrence": 1,
+    "bytes": 1756,
+    "sha256": "e1bf8abbec84b5cd3d5b41a10df35a19b03c89f8c3608168b733b376d90df1cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。产出报告：\n\n---\n\n## 产出报告\n\n### 1. vLLM 参数对比\n\n| 参数 | 旧值 | 新值 |\n|------|------|------|\n| max-model-len | **4096** | **8192** |\n| 其他参数 | 不变 | 不变 |\n\n三个 vLLM 实例共享参数：`--quantization awq --gpu-memory-utilization 0.90 --attention-backend FLASH_ATTN`  \n新增环境变量：`VLLM_USE_FLASHINFER_SAMPLER=0`\n\n| 模型 | GPU | 端口 | 旧 PID | 新 PID |\n|------|-----|------|--------|--------|\n| LLaMA-3.3-70B-AWQ | 0 | 8001 | 656336 | 662563 |\n| Qwen2.5-72B-AWQ | 1 | 8002 | 656337 | 663361 |\n| Mistral-Large-AWQ | 2 | 8003 | 656338 | 664095 |\n\n### 2. vLLM 健康检查\n三个 endpoint 全部返回 200，`max_model_len: 8192` 已确认生效。\n\n### 3. collect.py 重启后的 PID\n\n| Judge | 类型 | PID | workers |\n|-------|------|-----|---------|\n| llama_arena_n17 | local | 665441 | 10 |\n| qwen_arena_n17 | local | 665509 | 10 |\n| mistral_arena_n17 | local | 665583 | 10 |\n\n### 4. JSONL Baseline 行数（重启时刻）\n\n| 目录 | 行数 |\n|------|------|\n| llama-3.3-70b | 7,128 |\n| qwen2.5-72b | 9,922 |\n| mistral-large-2 | 9,425 |\n| llama-3.3-70b-shard2 | 5,943 |\n\n### 5. API judge 进程状态：正常运行\n\n| Judge | PID | 状态 |\n|-------|-----|------|\n| claude-sonnet-4.6-proxy | 653489 | ✓ |\n| gemini-2.5-pro-proxy | 653490 | ✓ |\n| deepseek-v4-pro-proxy | 653491 | ✓ |\n| qwen3-235b-proxy | 653492 | ✓ |\n| gpt-5.5-proxy (partial) | 659566 | ✓ |\n| claude-opus-4.7-proxy (partial) | 659677 | ✓ |\n\n### 6. 10 分钟验证\n已调度后台脚本（PID 665662），结果将写入 `/tmp/final_check.txt`，可稍后用 `cat /tmp/final_check.txt` 查看 400 error 数量和 throughput 增长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-vllm-maxlen-fix.md"
+}

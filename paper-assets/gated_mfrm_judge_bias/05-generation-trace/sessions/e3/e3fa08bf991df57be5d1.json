@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3fa08bf991df57be5d1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mcmc phase1 complete analysis",
+  "task_key": "worker_ssh_mcmc-phase1-complete-analysis_20260525T045424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mcmc-phase1-complete-analysis_20260525T045424_result.json",
+    "occurrence": 1,
+    "bytes": 3434,
+    "sha256": "8ebc34b9fccab7de2411d2a4cdd9bc9558a830feb979979715554f46a013bc6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the status report.\n\n---\n\n## MCMC Phase 1 — Status Report\n\n### COMPLETION STATUS\n```\nStatus: FAILED (previous run killed during joint_gmfrm chain 3/4 at 90%)\nRe-launched: PID 2598, robust script with incremental saving\nEstimated completion: ~8h from now (~21:00 UTC+8)\n```\n\n**Root cause:** Process killed externally during joint_gmfrm's 3rd chain at sample 9038/10000. No OOM, no Python error. All 4 methods ran sequentially; mfrm_only (9208.8s) and sequential (9585.5s) completed but nothing was saved because the script only writes output at the end. The new script saves each method immediately.\n\n**Data update:** Current run has more data than the killed run — 88,803 raw records (was 83,311). deepseek-v4-pro-proxy grew from 4,993 to 7,293 obs (81% coverage now).\n\n### DRY RUN RESULTS (warmup=10, samples=10, chains=1 — DIRECTIONAL ONLY)\n\nThese are from the N=17 dry run with trivial MCMC budget. raw_average is deterministic and reliable; MCMC-based methods are noise.\n\n**τ/ρ Table (dry run):**\n\n| Method | N=17 τ | N=17 ρ | N=7† τ | N=7† ρ |\n|--------|--------|--------|--------|--------|\n| raw_average | **0.824** | 0.939 | 0.810 | 0.893 |\n| mfrm_only | 0.691 | 0.846 | 0.905 | 0.964 |\n| sequential | 0.588 | 0.775 | 0.810 | 0.893 |\n| joint_gmfrm | 0.779 | 0.919 | 0.810 | 0.893 |\n\n†N=7 = subset of models overlapping with N=8 experiment (excl. qwen3-8b)\n\n**D045 gate (dry run, UNRELIABLE):** Δτ = 0.779 - 0.824 = **-4.5pp → FAIL** (but 10 samples is noise)\n\n**c_n from dry run (unreliable extremes):**\n- gpt-4-turbo: 6.63 (extreme, likely noise)\n- claude-3-5-sonnet: 3.69\n- gpt-4-0613: 3.08\n\n**d_j judge severity (dry run):**\n\n| Judge | d_j | Interpretation | Coverage |\n|-------|-----|---------------|----------|\n| deepseek-v4-pro-proxy | +0.44 | Lenient | 81.0% |\n| gemini-2.5-pro-proxy | +0.34 | Lenient | 33.4% |\n| claude-sonnet-4.6-proxy | +0.31 | Lenient | 48.6% |\n| qwen3-235b-proxy | -0.12 | Neutral | 81.3% |\n| qwen2.5-72b | -0.46 | Strict | 79.1% |\n| llama-3.3-70b | -0.51 | Strict | 79.1% |\n\n### N=8 BASELINE (output_003b, RELIABLE)\n\n| Metric | Value |\n|--------|-------|\n| R-hat max | 1.04 (PASS) |\n| ESS min | 174 (PASS) |\n| Divergences | 0 |\n| joint_gmfrm τ | **0.857** (p=0.002) |\n| joint_gmfrm ρ | 0.952 (p=0.0003) |\n\n**N=8 → N=17 comparison (dry run):**\n- θ rank τ between N=8 and N=17: 0.905 (high consistency)\n- c rank τ: 0.143 (contamination estimates differ drastically — noise from 10-sample dry run)\n- d rank τ: 0.867\n- Arena τ delta: N=8 0.857 → N=17 0.779, Δ = -0.078\n\n### WHAT'S RUNNING\n\n```\nPID: 2598 on autodl-8gpu (4× RTX PRO 6000 Blackwell, 1TB RAM)\nScript: run_n17_phase1_robust.py\nConfig: warmup=6000, samples=4000, chains=4, target_accept=0.95\nData: N=18, I=500, J=6, n_obs=36,231\nGPU: CUDA:0 (single GPU to reduce memory pressure)\n```\n\n**Progress:** mfrm_only chain 1 warmup started, ~4 it/s. Each method takes ~2h48m. Total ~8h.\n\n### NEXT STEPS\n\nWhen the MCMC completes, I need to:\n1. Verify convergence (R-hat < 1.05, ESS > 100)\n2. Run the analysis pipeline (`compute_tau_n17.py`, `gen_table_latex.py`, `compare_n8_n17.py`)\n3. Extract full d_j posteriors (95% CI) and c_n distributions\n4. Evaluate D045 decision gate with real estimates\n\nWant me to check progress periodically, or should I wait for you to prompt me?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mcmc-phase1-complete-analysis.md"
+}

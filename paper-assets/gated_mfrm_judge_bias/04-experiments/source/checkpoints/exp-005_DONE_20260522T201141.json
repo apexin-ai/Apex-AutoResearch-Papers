@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp-005",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:08:35.591Z",
+    "updated_at": "2026-05-22T20:11:41.595Z",
+    "hypothesis": "exp-003b 估计的 c_n 分布（gpt-3.5=5.57 到 gpt-4o=0.88）与模型已知 contamination 风险一致：旧模型 c_n 显著高于新模型，且 c_n 排序与 benchmark contamination timeline 相关。calibration 通过比较 c_n 与外部 contamination proxy 验证。",
+    "parent": "exp-003b",
+    "conclusion": "success",
+    "metrics": {
+      "joint_gmfrm_cn": {
+        "mean": 2.4782,
+        "regime": "MVP-002 (strong)",
+        "strong_ratio": 2.07
+      },
+      "sequential_cn": {
+        "mean": 0.0587,
+        "regime": "MVP-001 (weak)",
+        "weak_ratio": 0.15
+      },
+      "joint_gmfrm_003b_cn": {
+        "mean": 2.4625,
+        "regime": "MVP-002 (strong)",
+        "strong_ratio": 2.06
+      },
+      "tau_improvement": {
+        "delta": 0.0714,
+        "pct": 9.1
+      },
+      "ks_test_vs_mvp003": {
+        "D": 0.4474,
+        "p": 0.0561
+      },
+      "key_finding": "Real contamination (c_n) matches strong-signal MVP regime. Sequential fails to detect contamination (c_n≈0). Joint G-MFRM recovers meaningful contamination signal."
+    },
+    "spec": {
+      "command": "python run_exp005.py",
+      "server": "autodl-8gpu",
+      "data_path": "/root/gated_mfrm_judge_bias/exp003/output_003b/",
+      "data_count": "8 models",
+      "model_name": "c_n calibration analysis",
+      "seed": "N/A",
+      "checkpoint_path": "/root/gated_mfrm_judge_bias/exp005/results/",
+      "log_path": "/tmp/exp005.log",
+      "checkpoint_source": "exp-003b c_n estimates",
+      "eval_data": "exp-003b joint_gmfrm output + mvp_003 synthetic reference"
+    },
+    "completed_at": "2026-05-22T20:11:41.595Z"
+  },
+  "timestamp": "2026-05-22T20:11:41.628389+00:00",
+  "trigger": "update_registry"
+}

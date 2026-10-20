@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "5d09e20157696647f338",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper figure fig1 framework matplotlib v2",
+  "task_key": "worker_paper_figure_fig1_framework_matplotlib_v2_20260524T114235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_framework_matplotlib_v2_20260524T114235_result.json",
+    "occurrence": 1,
+    "bytes": 2116869,
+    "sha256": "f142d8edbac62c164742f0351af54f645a039d920ede38141b6b370cca928580"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "5d09e20157696647f338-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-framework-matplotlib-v2.md"
+}

@@ -1,0 +1,57 @@
+{
+  "source": "joint_gmfrm_idata.nc",
+  "arviz_version": "1.1.0",
+  "summary": {
+    "b": {"n": 176, "ess_tail_min": 381, "ess_tail_max": 3749, "ess_tail_mean": 2044, "ess_bulk_min": 317, "ess_bulk_max": 2264, "ess_bulk_mean": 1329},
+    "c": {"n": 8, "ess_tail_min": 437, "ess_tail_max": 3315, "ess_tail_mean": 1392, "ess_bulk_min": 217, "ess_bulk_max": 1463, "ess_bulk_mean": 829},
+    "d": {"n": 9, "ess_tail_min": 3061, "ess_tail_max": 6858, "ess_tail_mean": 4696, "ess_bulk_min": 1244, "ess_bulk_max": 4311, "ess_bulk_mean": 3178},
+    "sigma_c": {"ess_tail": 524, "ess_bulk": 227},
+    "theta": {"n": 8, "ess_tail_min": 1884, "ess_tail_max": 4838, "ess_tail_mean": 3367, "ess_bulk_min": 1536, "ess_bulk_max": 3155, "ess_bulk_mean": 2174}
+  },
+  "rhat": {
+    "b": {"min": 1.0003, "max": 1.0221},
+    "c": {"min": 1.0011, "max": 1.0266},
+    "d": {"min": 1.0001, "max": 1.0027},
+    "sigma_c": 1.0326,
+    "theta": {"min": 1.0004, "max": 1.0062}
+  },
+  "warnings": [],
+  "detail": {
+    "theta_per_judge": {
+      "0": {"tail": 3101, "bulk": 2186},
+      "1": {"tail": 3493, "bulk": 2400},
+      "2": {"tail": 4794, "bulk": 3155},
+      "3": {"tail": 4838, "bulk": 2201},
+      "4": {"tail": 3224, "bulk": 2553},
+      "5": {"tail": 1884, "bulk": 1720},
+      "6": {"tail": 2278, "bulk": 1536},
+      "7": {"tail": 3326, "bulk": 1643}
+    },
+    "c_per_judge": {
+      "0": {"tail": 1149, "bulk": 842},
+      "1": {"tail": 2614, "bulk": 1293},
+      "2": {"tail": 3315, "bulk": 1463},
+      "3": {"tail": 1057, "bulk": 971},
+      "4": {"tail": 965, "bulk": 914},
+      "5": {"tail": 437, "bulk": 217},
+      "6": {"tail": 941, "bulk": 474},
+      "7": {"tail": 657, "bulk": 462}
+    },
+    "d_per_level": {
+      "0": {"tail": 5166, "bulk": 3913},
+      "1": {"tail": 6228, "bulk": 4311},
+      "2": {"tail": 4803, "bulk": 2848},
+      "3": {"tail": 3683, "bulk": 3040},
+      "4": {"tail": 6858, "bulk": 3669},
+      "5": {"tail": 4546, "bulk": 3125},
+      "6": {"tail": 3061, "bulk": 1244},
+      "7": {"tail": 3234, "bulk": 2626},
+      "8": {"tail": 4687, "bulk": 3826}
+    }
+  },
+  "mfrm_only": {
+    "b": {"ess_tail_min": 1274, "ess_tail_max": 2211, "ess_tail_mean": 1751},
+    "d": {"ess_tail_min": 2331, "ess_tail_max": 2969, "ess_tail_mean": 2716},
+    "theta": {"ess_tail_min": 2429, "ess_tail_max": 2999, "ess_tail_mean": 2782}
+  }
+}

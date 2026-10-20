@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7017fbc86d4cd9cf328f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh setup mcmc auto trigger",
+  "task_key": "worker_ssh_setup-mcmc-auto-trigger_20260524T180838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_setup-mcmc-auto-trigger_20260524T180838_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "3e019dbcee6efbbe7b1f1b719a01edcecb17cd4f2599e5ea9da035ba735d905c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控脚本正在运行（PID 605265）。\n\n---\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| **Sonnet/Gemini 进程** | 已停，无残留 |\n| **活跃采集进程** | Qwen local (584197) ETA ~43min, Qwen3 (592432) ETA ~154min, DeepSeek (592328) ETA ~507min |\n| **Judge 行数** | `data/arena_hard/` 下目前只有 prompts.jsonl(500) 和 question.jsonl(500)；judge 输出在 `exp001/results/*/arena_hard_judgments.jsonl` |\n| **GPU 0** | 空闲（0 MiB），GPU 2,3 被 vLLM 占用 |\n| **auto_mcmc_phase1.sh** | PID 605265，日志 `/root/gated_mfrm_judge_bias/logs/auto_mcmc_phase1.log`，已确认正在轮询 |\n| **MCMC 启动命令** | `CUDA_VISIBLE_DEVICES=0 python run_mcmc_n17_exp020.py --output-dir /root/gated_mfrm_judge_bias/exp003/output_n17_phase1` |\n\n**注意**：DeepSeek (PID 592328) 也在采集中（ETA ~8.4h），但不在监控脚本的触发条件里。如需也等 DeepSeek 完成再触发 MCMC，需更新脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-setup-mcmc-auto-trigger.md"
+}

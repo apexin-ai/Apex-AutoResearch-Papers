@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24b23c243a7c684e2564",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh llama download resume",
+  "task_key": "worker_ssh_llama_download_resume_20260524T005404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama_download_resume_20260524T005404_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "aa850feb86f9522b00134c554f8d5bfbe0ef18d9090123b9f2b53fdf35eb4ec1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行：\n- 文件 A：4.3G（接近完成，shard 约 4.6G）\n- 文件 B：720M（刚开始）\n\n**汇总：**\n- **已完成 shards**：00001, 00003, 00004, 00005, 00006, 00007, 00008（7/9）\n- **下载中 shards**：00002, 00009\n- **下载 PID**：496428，进程活跃\n- 其中一个 shard 已下载 4.3G/~4.6G，即将完成；另一个 720M，还需几分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-download-resume.md"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp-014",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:26:41.752Z",
+    "updated_at": "2026-05-23T07:01:40.190Z",
+    "hypothesis": "穷举所有 C(9,k) judge 子集组合（k=2,4,6,9 共 247 subsets）的 G-MFRM τ 与 10-random 采样结论一致（τ 单调递增且 diminishing returns），但提供精确 mean±std 而非采样近似。",
+    "parent": "exp-006",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp014 && python run_exp014.py",
+      "server": "autodl-8gpu",
+      "gpu": "cuda:0",
+      "pid": 289621,
+      "log_path": "~/runs/gated_mfrm_judge_bias/exp-014.log",
+      "submitted_at": "2026-05-23T05:48:04.753Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/gated_mfrm_judge_bias/exp001/results/ + exp002/results/exposure_scores.csv",
+      "data_count": "247 subsets (C(9,2)+C(9,4)+C(9,6)+C(9,9)) x 3 methods",
+      "model_name": "G-MFRM exhaustive judge subsampling",
+      "seed": 0,
+      "checkpoint_source": "exp-006 code + exp-001/002 data",
+      "eval_data": "Arena-Hard judgments + Arena Elo ground truth",
+      "wall_clock_seconds": 4415.4,
+      "gpu_hours": 1.23
+    },
+    "conclusion": "failed",
+    "notes": "Killed by Director: 247 subsets × 30min = ~120h 远超 DDL 5/26。论文已有 exp-006 10-random sampling 结论，足够支撑 claim。仅完成 2/247 subsets 后终止。",
+    "reproduce": {
+      "finished_at": "2026-05-23T07:01:37.597Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-23T07:01:40.190Z"
+  },
+  "timestamp": "2026-05-23T07:01:40.241560+00:00",
+  "trigger": "update_registry"
+}

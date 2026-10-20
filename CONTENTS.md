@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **24 projects with manuscript PDFs** and **13 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **25 projects with manuscript PDFs** and **15 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -21,6 +21,7 @@ This catalogue covers **24 projects with manuscript PDFs** and **13 additional p
 | [event-gated-adaptive-horizon](paper-assets/event-gated-adaptive-horizon/README.md) | [PDF](paper-assets/event-gated-adaptive-horizon/01-manuscript/paper.pdf) | 649 | 1,727 | 3,085 | 193,802 |
 | [exec-sim-repair-verifier](paper-assets/exec-sim-repair-verifier/README.md) | [PDF](paper-assets/exec-sim-repair-verifier/01-manuscript/paper.pdf) | 667 | 1,826 | 3,511 | 250,687 |
 | [faith-evidence-ie](paper-assets/faith-evidence-ie/README.md) | [PDF](paper-assets/faith-evidence-ie/01-manuscript/paper.pdf) | 782 | 2,688 | 3,870 | 217,142 |
+| [gated_mfrm_judge_bias](paper-assets/gated_mfrm_judge_bias/README.md) | [PDF](paper-assets/gated_mfrm_judge_bias/01-manuscript/paper.pdf) | 211 | 329 | 973 | 78,434 |
 | [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) | 83 | 50 | 5,754 | 413,702 |
 | [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
@@ -34,8 +35,10 @@ This catalogue covers **24 projects with manuscript PDFs** and **13 additional p
 | [contrastive_graph_jailbreak_detect](paper-assets/contrastive_graph_jailbreak_detect/README.md) | No PDF in snapshot | 28 | 15 | 28 | 3,080 |
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
 | [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |
+| [eco_alpha_beta_diversity](paper-assets/eco_alpha_beta_diversity/README.md) | No PDF in snapshot | 22 | 40 | 20 | 1,818 |
 | [error_diag_dpo_recovery](paper-assets/error_diag_dpo_recovery/README.md) | No PDF in snapshot | 76 | 97 | 323 | 25,149 |
 | [prod42](paper-assets/prod42/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
+| [prod43](paper-assets/prod43/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [tbab_multi_turn](paper-assets/tbab_multi_turn/README.md) | No PDF in snapshot | 45 | 60 | 116 | 10,572 |
 | [temp-adv-distill-vla](paper-assets/temp-adv-distill-vla/README.md) | No PDF in snapshot | 20 | 25 | 52 | 9,052 |

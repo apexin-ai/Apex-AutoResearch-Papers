@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a84916ce24cf4590ea6",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp017 progress check",
+  "task_key": "worker_ssh_exp017_progress_check_20260523T231034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp017_progress_check_20260523T231034_result.json",
+    "occurrence": 1,
+    "bytes": 1652,
+    "sha256": "47cc8bf23fc30ad00f510c3958ea8814fe032b78e63dfc9c1b1249503a281bea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-017 状态报告\n\n### 1. 进程存活\n- **PID 318082 存活**，已运行 **16h07m**，CPU 103%，内存 2.5%\n\n### 2. 进度：168 / 800 fits (21%)\n- 全部 168 fits 都是 **N=8**（第一个 N 值），seed 0–167\n- N=20 / N=50 / N=100 尚未开始\n\n### 3. 严重问题：per-fit 时间 6x 劣化\n- 早期 seeds (0–1)：**~63s/fit**\n- 最近 seeds (163–167)：**~370s/fit**\n- 同一个 N=8 内出现 6 倍速度劣化，可能存在内存泄漏或 MCMC 采样器退化\n\n### 4. 时间估算\n- 剩余 N=8：32 fits × 370s ≈ **3.3h**\n- N=20/50/100 各 200 fits，且更大 N 意味着更长 fit 时间。按 MCMC 对数据量的线性 scaling 粗估：\n  - N=20 ~925s/fit → ~51h\n  - N=50 ~2300s/fit → ~128h\n  - N=100 ~4600s/fit → ~257h\n- **总剩余约 440h（~18天）**，如果劣化趋势持续则更久\n\n### 5. GPU 利用率\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 65% | 73.8 / 97.9 GB |\n| 1 | 0% | 0 / 97.9 GB |\n| 2 | 0% | 0 / 97.9 GB |\n| 3 | 0% | 0 / 97.9 GB |\n\n仅用 1 张卡（cuda:0），其余 3 张空闲。\n\n### 6. 磁盘\n| 分区 | 已用 | 可用 | 使用率 |\n|------|------|------|--------|\n| / (根) | 15G | 16G | 49% |\n| /root/autodl-tmp | 145G | 106G | 58% |\n\n磁盘充足。\n\n### 建议行动\n1. **调查 per-fit 劣化**——370s vs 63s 不正常，先看是否有内存泄漏（RSS 增长）或 MCMC 收敛问题\n2. **并行化**——当前只用 1 张卡，4 张 RTX 6000 只用了一张。可以按 N 值分 4 个进程各占一张卡，总时间缩短 ~4x\n3. 如果 18 天 ETA 不可接受，需要重构实验脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp017-progress-check.md"
+}

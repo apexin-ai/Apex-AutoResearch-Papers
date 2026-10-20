@@ -1,0 +1,340 @@
+\begin{thebibliography}{46}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Angrist and Pischke(2009)}]{angrist2009mostly}
+Joshua~D. Angrist and J{\"o}rn-Steffen Pischke. 2009.
+\newblock \emph{Mostly Harmless Econometrics: An Empiricist's Companion}.
+\newblock Princeton University Press, Princeton, NJ.
+
+\bibitem[{Bavaresco et~al.(2025)Bavaresco, Bernardi, Bertolazzi, Elliott,
+  Fernandez, Gatt, Giulianelli, Hanna, Koller, Martins
+  et~al.}]{bavaresco2025judgebench}
+Anna Bavaresco, Raffaella Bernardi, Leonardo Bertolazzi, Desmond Elliott,
+  Raquel Fernandez, Albert Gatt, Mario Giulianelli, Michael Hanna, Alexander
+  Koller, Andre F.~T. Martins, and 1 others. 2025.
+\newblock {LLMs} instead of human judges? {A} large scale empirical study
+  across 20 {NLP} evaluation tasks.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (ACL, Short Papers)}.
+
+\bibitem[{Betancourt and Girolami(2015)}]{betancourt2015}
+Michael~J. Betancourt and Mark Girolami. 2015.
+\newblock Hamiltonian {M}onte {C}arlo for hierarchical models.
+\newblock In \emph{Current Trends in {B}ayesian Methodology with Applications},
+  pages 119--142. CRC Press, Boca Raton, FL.
+
+\bibitem[{Choi et~al.(2026)Choi, Park, Cho, Park, and Kim}]{choi2026irt_judge}
+Junhyuk Choi, Sohhyung Park, Chanhee Cho, Hyeonchu Park, and Bugeun Kim. 2026.
+\newblock Diagnosing the reliability of {LLM}-as-a-judge via item response
+  theory.
+\newblock \emph{arXiv preprint arXiv:2602.00521}.
+
+\bibitem[{Dekoninck et~al.(2024)Dekoninck, M{\"u}ller, and
+  Vechev}]{constat2024}
+Jasper Dekoninck, Mark~Niklas M{\"u}ller, and Martin Vechev. 2024.
+\newblock {ConStat}: Performance-based contamination detection in large
+  language models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37.
+
+\bibitem[{Deng et~al.(2024)Deng, Zhao, Tang, Gerstein, and
+  Cohan}]{deng2024contamination}
+Chunyuan Deng, Yilun Zhao, Xiangru Tang, Mark Gerstein, and Arman Cohan. 2024.
+\newblock Investigating data contamination in modern benchmarks for large
+  language models.
+\newblock In \emph{Proceedings of the 2024 Conference of the North American
+  Chapter of the Association for Computational Linguistics (NAACL)}, pages
+  8706--8719.
+
+\bibitem[{Fiedler(2026)}]{fiedler2026bias_uncertainty}
+James Fiedler. 2026.
+\newblock Bias and uncertainty in {LLM}-as-a-judge estimation.
+\newblock \emph{arXiv preprint arXiv:2605.06939}.
+
+\bibitem[{Gelman et~al.(2013)Gelman, Carlin, Stern, Dunson, Vehtari, and
+  Rubin}]{gelman2013bda}
+Andrew Gelman, John~B. Carlin, Hal~S. Stern, David~B. Dunson, Aki Vehtari, and
+  Donald~B. Rubin. 2013.
+\newblock \emph{Bayesian Data Analysis}, 3rd edition.
+\newblock CRC Press, Boca Raton, FL.
+
+\bibitem[{Golchin and Surdeanu(2024)}]{golchin2024timetravel}
+Shahriar Golchin and Mihai Surdeanu. 2024.
+\newblock Time travel in {LLMs}: Tracing data contamination in large language
+  models.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}.
+
+\bibitem[{Jiao et~al.(2025)Jiao, Song, and Lee}]{jiao2025mfrm_llm}
+Hong Jiao, Dan Song, and Won-Chan Lee. 2025.
+\newblock Comparing human and {AI} rater effects using the many-facet {R}asch
+  model.
+\newblock \emph{arXiv preprint arXiv:2505.18486}.
+
+\bibitem[{Koo et~al.(2024)Koo, Lee, Raheja, Park, Kim, and
+  Kang}]{koo2024cobbler}
+Ryan Koo, Minhwa Lee, Vipul Raheja, Jong~Inn Park, Zae~Myung Kim, and Dongyeop
+  Kang. 2024.
+\newblock Benchmarking cognitive biases in large language models as evaluators.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2024}, pages 517--545.
+
+\bibitem[{Lalor et~al.(2019)Lalor, Wu, and Yu}]{lalor2019irt}
+John~P. Lalor, Hao Wu, and Hong Yu. 2019.
+\newblock Learning latent parameters without human response patterns: Item
+  response theory with artificial crowds.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing and the 9th International Joint Conference on
+  Natural Language Processing (EMNLP-IJCNLP)}, pages 4249--4259.
+
+\bibitem[{Li et~al.(2026)Li, Sun, Huang, Zhong, Jiang, Han, Zhang, Wang, and
+  Liu}]{preference_leakage2026}
+Dawei Li, Renliang Sun, Yue Huang, Ming Zhong, Bohan Jiang, Jiawei Han,
+  Xiangliang Zhang, Wei Wang, and Huan Liu. 2026.
+\newblock Preference leakage: A contamination problem in {LLM}-as-a-judge.
+\newblock In \emph{The Fourteenth International Conference on Learning
+  Representations}.
+
+\bibitem[{Li et~al.(2024{\natexlab{a}})Li, Chiang, Frick, Dunlap, Wu, Zhu,
+  Gonzalez, and Stoica}]{li2024arenahard}
+Tianle Li, Wei-Lin Chiang, Evan Frick, Lisa Dunlap, Tianhao Wu, Banghua Zhu,
+  Joseph~E. Gonzalez, and Ion Stoica. 2024{\natexlab{a}}.
+\newblock From crowdsourced data to high-quality benchmarks: {Arena-Hard} and
+  {BenchBuilder} pipeline.
+\newblock \emph{arXiv preprint arXiv:2406.11939}.
+
+\bibitem[{Li et~al.(2024{\natexlab{b}})Li, Wang, Ma, Wu, Wang, Gao, and
+  Liu}]{li2024splitmerge}
+Zongjie Li, Chaozheng Wang, Pingchuan Ma, Daoyuan Wu, Shuai Wang, Cuiyun Gao,
+  and Yang Liu. 2024{\natexlab{b}}.
+\newblock Split and merge: Aligning position biases in {LLM}-based evaluators.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 11084--11108.
+
+\bibitem[{Linacre(1989)}]{linacre1989mfrm}
+John~Michael Linacre. 1989.
+\newblock \emph{Many-Facet {R}asch Measurement}.
+\newblock MESA Press, Chicago, IL.
+
+\bibitem[{Linacre(1994)}]{linacre1994mfrm}
+John~Michael Linacre. 1994.
+\newblock \emph{Many-Facet {R}asch Measurement}, 2nd edition.
+\newblock MESA Press, Chicago, IL.
+
+\bibitem[{Murphy and Topel(1985)}]{murphy1985}
+Kevin~M. Murphy and Robert~H. Topel. 1985.
+\newblock Estimation and inference in two-step econometric models.
+\newblock \emph{Journal of Business \& Economic Statistics}, 3(4):370--379.
+
+\bibitem[{Oren et~al.(2024)Oren, Meister, Chatterji, Ladhak, and
+  Hashimoto}]{oren2024proving}
+Yonatan Oren, Nicole Meister, Niladri Chatterji, Faisal Ladhak, and
+  Tatsunori~B. Hashimoto. 2024.
+\newblock Proving test set contamination in black box language models.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}.
+
+\bibitem[{Pagan(1984)}]{pagan1984}
+Adrian Pagan. 1984.
+\newblock Econometric issues in the analysis of regressions with generated
+  regressors.
+\newblock \emph{International Economic Review}, 25(1):221--247.
+
+\bibitem[{Panickssery et~al.(2024)Panickssery, Bowman, and
+  Feng}]{panickssery2024selffavor}
+Arjun Panickssery, Samuel~R. Bowman, and Shi Feng. 2024.
+\newblock {LLM} evaluators recognize and favor their own generations.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37.
+
+\bibitem[{Phan et~al.(2019)Phan, Pradhan, and Jankowiak}]{phan2019numpyro}
+Du~Phan, Neeraj Pradhan, and Martin Jankowiak. 2019.
+\newblock Composable effects for flexible and accelerated probabilistic
+  programming in {NumPyro}.
+\newblock \emph{arXiv preprint arXiv:1912.11554}.
+
+\bibitem[{Piironen and Vehtari(2017)}]{piironen2017horseshoe}
+Juho Piironen and Aki Vehtari. 2017.
+\newblock \href {https://doi.org/10.1214/17-EJS1337SI} {Sparsity information
+  and regularization in the horseshoe and other shrinkage priors}.
+\newblock \emph{Electronic Journal of Statistics}, 11(2):5018--5051.
+
+\bibitem[{Polo et~al.(2024)Polo, Weber, Choshen, Sun, Xu, and
+  Yurochkin}]{polo2024tinybenchmarks}
+Felipe~Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, and
+  Mikhail Yurochkin. 2024.
+\newblock tinybenchmarks: Evaluating {LLMs} with fewer examples.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Rajore et~al.(2024)Rajore, Chandran, Sitaram, Gupta, Sharma, Mittal,
+  and Swaminathan}]{truce2024}
+Tanmay Rajore, Nishanth Chandran, Sunayana Sitaram, Divya Gupta, Rahul Sharma,
+  Kashish Mittal, and Manohar Swaminathan. 2024.
+\newblock {TRUCE}: Private benchmarking to prevent contamination and improve
+  comparative evaluation of {LLMs}.
+\newblock \emph{arXiv preprint arXiv:2403.00393}.
+
+\bibitem[{Rodriguez et~al.(2021)Rodriguez, Barrow, Hoyle, Lalor, Jia, and
+  Boyd-Graber}]{rodriguez2021irt}
+Pedro Rodriguez, Joe Barrow, Alexander~Miserlis Hoyle, John~P. Lalor, Robin
+  Jia, and Jordan Boyd-Graber. 2021.
+\newblock Evaluation examples are not equally informative: How should that
+  change {NLP} leaderboards?
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (ACL-IJCNLP)}, pages 4486--4503.
+
+\bibitem[{Rothenberg(1971)}]{rothenberg1971}
+Thomas~J. Rothenberg. 1971.
+\newblock \href {https://doi.org/10.2307/1913267} {Identification in parametric
+  models}.
+\newblock \emph{Econometrica}, 39(3):577--591.
+
+\bibitem[{Sainz et~al.(2023)Sainz, Campos, Garcia-Ferrero, Etxaniz, Lopez~de
+  Lacalle, and Agirre}]{sainz2023contamination}
+Oscar Sainz, Jon Campos, Iker Garcia-Ferrero, Julen Etxaniz, Oier Lopez~de
+  Lacalle, and Eneko Agirre. 2023.
+\newblock {NLP} evaluation in trouble: On the need to measure {LLM} data
+  contamination for each benchmark.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2023}, pages 10776--10787.
+
+\bibitem[{San~Mart{\'\i}n(2016)}]{sanmartin2016}
+Ernesto San~Mart{\'\i}n. 2016.
+\newblock Identification of item response theory models.
+\newblock In Wim~J. van~der Linden, editor, \emph{Handbook of Item Response
+  Theory, Volume Two: Statistical Tools}, pages 127--150. CRC Press, Boca
+  Raton, FL.
+
+\bibitem[{Shi et~al.(2024)Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and
+  Zettlemoyer}]{mink2024}
+Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra
+  Blevins, Danqi Chen, and Luke Zettlemoyer. 2024.
+\newblock Detecting pretraining data from large language models.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}.
+
+\bibitem[{Shu et~al.(2013)Shu, Henson, and Luecht}]{shu2013dgirt}
+Zhan Shu, Robert Henson, and Richard Luecht. 2013.
+\newblock \href {https://doi.org/10.1007/s11336-012-9311-3} {Using
+  deterministic, gated item response theory model to detect test cheating due
+  to item compromise}.
+\newblock \emph{Psychometrika}, 78(3):481--497.
+
+\bibitem[{Talts et~al.(2018)Talts, Betancourt, Simpson, Vehtari, and
+  Gelman}]{talts2018sbc}
+Sean Talts, Michael Betancourt, Daniel Simpson, Aki Vehtari, and Andrew Gelman.
+  2018.
+\newblock Validating {B}ayesian inference algorithms with simulation-based
+  calibration.
+\newblock \emph{arXiv preprint arXiv:1804.06788}.
+
+\bibitem[{Uto and Ueno(2020)}]{uto2020generalized}
+Masaki Uto and Maomi Ueno. 2020.
+\newblock \href {https://doi.org/10.1007/s41237-020-00115-7} {A generalized
+  many-facet {R}asch model and its {B}ayesian estimation using {H}amiltonian
+  {M}onte {C}arlo}.
+\newblock \emph{Behaviormetrika}, 47(2):469--496.
+
+\bibitem[{Vania et~al.(2021)Vania, Htut, Huang, Mungra, Pang, Phang, Liu, Cho,
+  and Bowman}]{vania2021irt}
+Clara Vania, Phu~Mon Htut, William Huang, Dhara Mungra, Richard~Yuanzhe Pang,
+  Jason Phang, Haokun Liu, Kyunghyun Cho, and Samuel~R. Bowman. 2021.
+\newblock Comparing test sets with item response theory.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (ACL-IJCNLP)}, pages 1141--1158.
+
+\bibitem[{Vehtari et~al.(2017)Vehtari, Gelman, and Gabry}]{vehtari2017loo}
+Aki Vehtari, Andrew Gelman, and Jonah Gabry. 2017.
+\newblock \href {https://doi.org/10.1007/s11222-016-9696-4} {Practical
+  {B}ayesian model evaluation using leave-one-out cross-validation and {WAIC}}.
+\newblock \emph{Statistics and Computing}, 27(5):1413--1432.
+
+\bibitem[{Vehtari et~al.(2021)Vehtari, Gelman, Simpson, Carpenter, and
+  B{\"u}rkner}]{vehtari2021rhat}
+Aki Vehtari, Andrew Gelman, Daniel Simpson, Bob Carpenter, and Paul-Christian
+  B{\"u}rkner. 2021.
+\newblock \href {https://doi.org/10.1214/20-BA1221} {Rank-normalization,
+  folding, and localization: An improved $\hat{R}$ for assessing convergence of
+  {MCMC} (with discussion)}.
+\newblock \emph{Bayesian Analysis}, 16(2):667--718.
+
+\bibitem[{Wang et~al.(2024)Wang, Li, Chen, Cai, Zhu, Lin, Cao, Kong, Liu, Liu,
+  and Sui}]{wang2024positionbias}
+Peiyi Wang, Lei Li, Liang Chen, Zefan Cai, Dawei Zhu, Binghuai Lin, Yunbo Cao,
+  Lingpeng Kong, Qi~Liu, Tianyu Liu, and Zhifang Sui. 2024.
+\newblock Large language models are not fair evaluators.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pages 9440--9450.
+
+\bibitem[{White et~al.(2025)White, Dooley, Roberts, Pal, Feuer, Jain,
+  Shwartz-Ziv, Jain, Saifullah, Dey et~al.}]{livebench2025}
+Colin White, Samuel Dooley, Manley Roberts, Arka Pal, Ben Feuer, Siddhartha
+  Jain, Ravid Shwartz-Ziv, Neel Jain, Khalid Saifullah, Sreemanti Dey, and 1
+  others. 2025.
+\newblock {LiveBench}: A challenging, contamination-limited {LLM} benchmark.
+\newblock In \emph{The Thirteenth International Conference on Learning
+  Representations}.
+
+\bibitem[{Wooldridge(2010)}]{wooldridge2010}
+Jeffrey~M. Wooldridge. 2010.
+\newblock \emph{Econometric Analysis of Cross Section and Panel Data}, 2nd
+  edition.
+\newblock MIT Press, Cambridge, MA.
+
+\bibitem[{Xu et~al.(2025)Xu, Yan, Guan, Jin, Mei, Guo, and Kechadi}]{dcr2025}
+Cheng Xu, Nan Yan, Shuhao Guan, Changhong Jin, Yuke Mei, Yibing Guo, and Tahar
+  Kechadi. 2025.
+\newblock {DCR}: Quantifying data contamination in {LLMs} evaluation.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}, pages 23002--23020.
+
+\bibitem[{Yax et~al.(2024)Yax, Oudeyer, and Palminteri}]{logprober2024}
+Nicolas Yax, Pierre-Yves Oudeyer, and Stefano Palminteri. 2024.
+\newblock {LogProber}: Disentangling confidence from contamination in {LLM}
+  responses.
+\newblock \emph{arXiv preprint arXiv:2408.14352}.
+
+\bibitem[{Ye et~al.(2025)Ye, Gao, Bhatt, Tan, and Verma}]{ye2025justice}
+Jianqiao Ye, Ishaan Gao, Rishav Bhatt, Hao Tan, and Siddharth Verma. 2025.
+\newblock Justice or prejudice? quantifying biases in {LLM}-as-a-judge.
+\newblock In \emph{The Thirteenth International Conference on Learning
+  Representations}.
+
+\bibitem[{Zhang et~al.(2026)Zhang, Wang, Wu, Yu, Wang, Bao, and Tang}]{uda2026}
+Yongkang Zhang, Chunpu Wang, Liang Wu, Wentao Yu, Yucheng Wang, Guanghao Bao,
+  and Jiliang Tang. 2026.
+\newblock {UDA}: Unsupervised debiasing alignment for pair-wise
+  {LLM}-as-a-judge.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~40, pages 34854--34861.
+
+\bibitem[{Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
+  Li, Xing, Zhang, Gonzalez, and Stoica}]{zheng2023mtbench}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P. Xing, Hao Zhang, Joseph~E.
+  Gonzalez, and Ion Stoica. 2023.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and {Chatbot Arena}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36.
+
+\bibitem[{Zhou et~al.(2025)Zhou, Huang, Zhao, Han, Wang, Chen, Yang, Bao, Dong,
+  Xu, Zhu, Cao, and Zhao}]{zhou2025psnirt}
+Hongli Zhou, Hao Huang, Zhuoran Zhao, Lei Han, Hao Wang, Kai Chen, Min Yang,
+  Weidong Bao, Jingya Dong, Bo~Xu, Changchang Zhu, Haozhao Cao, and Tiejun
+  Zhao. 2025.
+\newblock Lost in benchmarks? {R}ethinking large language model benchmarking
+  with item response theory.
+\newblock \emph{arXiv preprint arXiv:2505.15055}.
+\newblock AAAI 2026.
+
+\bibitem[{Zhu et~al.(2026)Zhu, Tieleman, Bukhtiyarov, and
+  Chen}]{cyclicjudge2026}
+Ziyi Zhu, Olivier Tieleman, Alexey Bukhtiyarov, and Jinghong Chen. 2026.
+\newblock {CyclicJudge}: Mitigating judge bias efficiently in {LLM}-based
+  evaluation.
+\newblock \emph{arXiv preprint arXiv:2603.01865}.
+
+\end{thebibliography}

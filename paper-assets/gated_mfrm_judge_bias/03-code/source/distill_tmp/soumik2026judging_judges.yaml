@@ -1,0 +1,29 @@
+paper_key: "soumik2026judging_judges"
+title: "Judging the Judges: Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["9 debiasing strategies across 5 judge models (Claude Sonnet 4, GPT, Gemini, Llama)"]
+  metrics:
+    - {name: "Style bias score", direction: "lower_better"}
+    - {name: "Position bias score", direction: "lower_better"}
+    - {name: "Quality-length discrimination accuracy", direction: "higher_better"}
+    - {name: "Agreement change (pp)", direction: "context_dependent"}
+  datasets:
+    - {name: "MT-Bench", size: "n=400"}
+    - {name: "LLMBar", size: "n=200"}
+    - {name: "Custom benchmark", size: "n=225"}
+  ablation_dimensions: ["Debiasing strategy", "Judge model", "Bias type"]
+  training_recipe: {optimizer: "N/A (evaluation study)", lr: "N/A", hardware: "N/A"}
+  method_family: "Empirical comparative evaluation of debiasing"
+
+positioning:
+  core_claim: "Style bias远大于position bias（0.76-0.92 vs ≤0.04），debiasing效果高度依赖judge模型"
+  key_results: "Style bias 0.76-0.92; position bias ≤0.04; Claude Sonnet 4 +11.2pp with combined budget (p<0.0001)"
+  limitations: ["仅比较已有策略，未提出新方法", "未建立解释框架"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

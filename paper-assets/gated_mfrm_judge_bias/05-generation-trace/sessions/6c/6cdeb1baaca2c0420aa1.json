@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cdeb1baaca2c0420aa1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl contingency discovery",
+  "task_key": "worker_ssh_autodl_contingency_discovery_20260523T224547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_contingency_discovery_20260523T224547_result.json",
+    "occurrence": 1,
+    "bytes": 3385,
+    "sha256": "c9e7e259f60a807d6ad93a6ea4071bdf101ffccade27176dadc6eb516b950983"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。\n\n---\n\n## autodl-8gpu Discovery 报告\n\n### 1. 代码就绪度\n- **collect.py** ✓ — `exp001/collect.py`，支持 pairwise/pointwise、增量续跑、rate limiting\n- **n17 configs** ✗ — exp001 中**无 n17 命名的 config**。n17 文件仅存在于 exp003/（`run_exp003_n17.py`, `run_n17_downstream.py`）\n- 现有 per-judge configs（9个）：claude-opus-4.7-proxy, claude-sonnet-4.6-proxy, deepseek-v4-pro-proxy, gemini-2.5-pro-proxy, gpt-5.5-proxy, llama_arena, mistral_arena, qwen3-235b-proxy, qwen_arena\n- base config.yaml 定义了 22 个 target models，per-judge proxy configs 只含 9 个\n\n### 2. 环境就绪度\n| 包 | 状态 |\n|---|---|\n| Python 3.12 (miniconda) | ✓ |\n| vllm | ✓ |\n| openai | ✓ |\n| anthropic | ✓ |\n| transformers | ✓ |\n\n### 3. 模型权重\n**仅有 7-9B 小模型**，无 70B/72B：\n\n| 模型 | 路径 |\n|---|---|\n| Qwen3-8B | ✓ /root/autodl-tmp/models/ |\n| gemma-2-9b-it | ✓ |\n| Qwen2.5-7B-Instruct | ✓ |\n| Llama-3.1-8B-Instruct | ✓ |\n| Mistral-7B-Instruct-v0.3 | ✓ |\n| **llama-3.3-70b** | ✗ 无权重 |\n| **qwen2.5-72b** | ✗ 无权重 |\n\n### 4. GPU 可用性\n\n| GPU | 型号 | VRAM | 已用 | 利用率 | 状态 |\n|---|---|---|---|---|---|\n| 0 | RTX PRO 6000 Blackwell | 96 GB | 73.8 GB | 65% | **exp-017 占用** |\n| 1 | RTX PRO 6000 Blackwell | 96 GB | 0 | 0% | **空闲** |\n| 2 | RTX PRO 6000 Blackwell | 96 GB | 0 | 0% | **空闲** |\n| 3 | RTX PRO 6000 Blackwell | 96 GB | 0 | 0% | **空闲** |\n\n### 5. 已有 judgment 数据（exp001 arena_hard）\n\n| Judge | 行数 | 预估完成度 |\n|---|---|---|\n| gpt-5.5-proxy | 3437 | ~38% |\n| claude-opus-4.7-proxy | 3389 | ~38% |\n| claude-sonnet-4.6-proxy | 2961 | ~33% |\n| qwen3-235b-proxy | 2091 | ~23% |\n| gemini-2.5-pro-proxy | 1916 | ~21% |\n| deepseek-v4-pro-proxy | 1433 | ~16% |\n| llama-3.3-70b | 1238 | ~14% |\n| qwen2.5-72b | 915 | ~10% |\n| mistral-large-2 | 583 | ~6% |\n\norchestrator2（response generation）**已完成**，不影响后续。\n\n### 6. exp-017 状态\n- **进度**: 165/800 iterations (20.6%)\n- **速度**: ~370s/iter\n- **ETA**: ~235,000s ≈ **~65 小时（约2.7天）**\n- 仅占 GPU0，不影响 GPU1-3\n- 类型：MCMC (numpyro)，CPU-bound sequential chains\n\n### 7. 磁盘\n- 根分区：30GB，剩余 16GB (49%)\n- 数据盘：250GB，剩余 115GB (55%)\n\n### 8. 网络\n- ssh_read_only 无法测 curl，但 orchestrator2 曾成功使用 `network_turbo` 代理\n- API judges 已部分产出 judgment 数据 → **API endpoint 此前可达**\n\n---\n\n## 结论\n\n| 方案 | 可行性 | 说明 |\n|---|---|---|\n| **A: API judges only** | ✅ **立即可用** | 代码/环境/configs 就绪，collect.py 支持增量续跑，6 个 API judge 可直接继续（需确认 API key 和网络） |\n| **B: API + local vLLM (70B/72B)** | ⚠️ **需数小时准备** | 无 70B/72B 权重，需下载到 autodl-tmp（AutoDL 代理下载慢，建议用 ModelScope）。3×96GB 空闲 GPU 足够托管 |\n| **C: 大量准备工作** | ✗ 不适用 | 基础设施已就位，不属于此类 |\n\n**建议**：如果只需推进 API judges（6个 proxy 系列），autodl-8gpu 可立即接手。local vLLM judges（llama-70b, qwen-72b）需要先下载权重。n17 configs 在此服务器上不存在，需从 rtx6000-4x 同步或重新生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-contingency-discovery.md"
+}

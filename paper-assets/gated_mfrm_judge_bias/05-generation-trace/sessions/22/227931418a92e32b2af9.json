@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "227931418a92e32b2af9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "history",
+  "title": "agent / loop_2_1779582852.md",
+  "task_key": "loop_2_1779582852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779582852.md",
+    "occurrence": 1,
+    "bytes": 4110,
+    "sha256": "5770719f56d20a283aa06d65aadc29096c739d20d7e699b68bb4cc7768878490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-23T23:07:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：autodl-8gpu cuda:0/1/2/3 + rtx6000-4x cuda:0/1/2/3（共 8 张）\n- exp-014 已被 Director kill (D028)，不要重启——论文用 exp-006 的 10-random sampling 结论即可\n- exp-004 状态 ALLOCATED/success 是 registry artifact，实验实际已完成，不要尝试提交\n- Round 3 审稿 score=3.0 (Findings)，目标 3.5+。CI coverage 71% 是三轮反复被批的核心问题，exp-017 是关键修复实验\n- 论文 8 页硬限，Related Work 需压缩（R3-N6 页面溢出）\n- kill exp-014 时附带杀了 exp-016（同 tmux/SSH session），exp-016 已自动重试。后续 kill 操作注意隔离 tmux session\n\n### 2. 🖥️ 基础设施快照\n- **autodl-8gpu**: 工作目录 `/root/gated_mfrm_judge_bias/`，Python `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **rtx6000-4x**: 同上路径结构，当前 4 张 GPU 全部空闲\n- 数据：`/root/gated_mfrm_judge_bias/exp001/results/`（9 judges × 8 models judgments）+ `exp002/results/exposure_scores.csv`\n- 核心产出：`exp003/output_003b/joint_gmfrm_idata.nc`（14.7MB InferenceData，4 chains × 4000 samples）\n- 磁盘：autodl-8gpu 544G/879G 可用（35%），rtx6000-4x 817G/879G 可用（3%）\n- 活跃进程：\n  - exp-015: PID 291457, autodl-8gpu cuda:1, tmux session\n  - exp-016: PID 316023 (重试), autodl-8gpu cuda:2, tmux session\n  - exp-017: PID 314680, autodl-8gpu cuda:3 (可能已移至 cuda:0，有 worker 在做 GPU 切换)\n- Worker 池：2 个（ssh:exp017_switch_to_gpu + ssh:exp015_016_progress）\n\n### 3. 📊 当前状态\n刚处理 exp-014/exp-016 的 cron 失败回调。exp-014 确认为 Director kill（D028），exp-016 是附带伤亡已自动重试。已向 Director 汇报。\n\n**RUNNING 实验**:\n| exp_id | 内容 | GPU | 说明 |\n|--------|------|-----|------|\n| exp-015 | N=8 合成 Δτ calibration (20 seeds) | cuda:1 | 验证 N=8 下 power 不足是预期行为 |\n| exp-016 | 先验敏感性 4 priors (重试) | cuda:2 | retry_count=1, 刚重启 |\n| exp-017 | Murphy-Topel coverage N=8/20/50/100 (200 seeds) | cuda:0/3 | **最关键**——修复三轮 CI 71% 批评 |\n\n**等待中**:\n- exp-015/016/017 完成 cron 回调\n- Paper Agent 13 项批量 Patch 的 Worker 回调\n- Director 对空闲 rtx6000-4x GPU 的决策\n\n### 4. 📋 待办（条件触发式）\n- exp-017 完成 → 分析 CI coverage 趋势（N=8 ~71% → N=100 ~95%）→ patch 进论文 §4 + Appendix CI 趋势图 → **这是 3.0→3.5 关键路径 #1**\n- exp-015 完成 → 确认 N=8 power 不足解释 → patch 进论文支撑 \"small N limitation\" 叙事\n- exp-016 完成 → 确认 4 种先验 τ 一致 → patch 进 Appendix robustness table\n- Paper Agent 13 项 Patch Worker 完成 → 编译验证 → 检查 8 页限制\n- 所有实验 + patches 完成 → Round 4 审稿提交\n\n### 5. 🎯 战略上下文\n- **核心方法**: G-MFRM joint calibration，同时建模 judge bias (d_j) + benchmark contamination (c_n·e_i)。OVB 理论证明 sequential pipeline 有一阶偏差，joint estimation 避免。\n- **核心证据链**: WAIC ΔELPD=-60 (D023) + τ=0.857 vs baseline 0.786 (+7.1pp, D019) + 合成数据 RMSE 减半 (mvp_003) + ablation 确认 joint > staged > binary (exp-w7-ablation)\n- **Framing 重心**: Claim 3 (ranking improvement) 已降级——bootstrap Δτ CI 包含 0 (D022)。重心转移到 Claim 1 (OVB bias reduction) + Claim 2 (contamination recovery)。LOO 证据与 ranking 明确分离 (R3-N5)\n- **易错点**:\n  - 不要把 τ=0.857 说成\"显著优于 baseline\"——bootstrap CI 包含 0，只能说 \"directionally consistent\"\n  - CI coverage 71% 不是 bug 而是 small-sample asymptotic breakdown——exp-017 的 N→∞ 趋势图是解释工具，不是修复\n  - exp-003b 的 sigma_c ESS=227 和部分 c_n ESS 偏低但 R-hat≤1.03，可接受但不要声称\"完美收敛\"\n  - D028 决定不做穷举 judge subsampling，论文用 exp-006 的 10-random 采样即可\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779582852.md"
+}

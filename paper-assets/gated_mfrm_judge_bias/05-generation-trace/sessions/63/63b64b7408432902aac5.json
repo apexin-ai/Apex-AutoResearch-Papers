@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63b64b7408432902aac5",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh waic cleanup duplicate",
+  "task_key": "worker_ssh_waic_cleanup_duplicate_20260523T004920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_waic_cleanup_duplicate_20260523T004920_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "56d65939c65f1e532076736da0d8ad3e2033deb999cc86fc3b33a961f50b7143"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇报：\n\n**清理结果**\n- PID 244822 (`compute_waic_loo.py`) — 已 kill\n- PID 249604 (`waic_loo_comparison.py`) — 正常运行，GPU 0 独占（669MiB, 69% util）\n\n**当前进度**\n- G-MFRM 的 WAIC/LOO 已完成（ELPD_WAIC=-2272.26, Pareto-k 全部 good）\n- 正在 fitting 标准 MFRM（无 contamination）：chain 进度 891/8000，~1.18 s/it\n- 剩余 ~7109 iterations × 1.18s ≈ **2h 20min**（kill 掉竞争进程后 GPU 独占，实际可能更快）\n\n**ETA**: MFRM fitting + WAIC/LOO 计算，预计 **~2.5-3 小时**完成（约今天 11:00-11:30 服务器时间）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-waic-cleanup-duplicate.md"
+}

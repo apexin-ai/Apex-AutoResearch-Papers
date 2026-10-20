@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cc3f003474ee6c3ea3d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003 completion check",
+  "task_key": "worker_ssh_exp003_completion_check_20260522T135906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003_completion_check_20260522T135906_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "2cd2837f0cef4372a8aaecd1a36288f6c34e414ef8d373232e95534f649f94f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：failed**\n\n**错误原因：** JAX 运行时错误 — NumPyro MCMC 采样在 `mfrm_only` 模型拟合阶段崩溃。\n\n具体报错：\n```\njax.errors.JaxRuntimeError: INTERNAL: CpuCallback error calling callback:\nRuntimeError: jax.io_callback failed to find a local CPU device to place the inputs on.\nMake sure \"cpu\" is listed in --jax_platforms or the JAX_PLATFORMS environment variable.\n```\n\n**崩溃位置：** `exp003/models.py:112` — `fit_mfrm_only()` 中 MCMC 采样完成后尝试提取 `theta` 参数时失败。\n\n**状态：**\n- Step 1（数据预处理）成功完成：8 models, 176 items, 9 judges, 5661 observations\n- Step 2 在 `mfrm_only` 模型拟合时崩溃（`raw_average` 已完成）\n- `results/` 目录为空，无输出文件\n\n**修复方案：** 在运行脚本前设置环境变量：\n```bash\nexport JAX_PLATFORMS=\"cpu\"\n```\n或在 Python 脚本开头添加：\n```python\nimport os\nos.environ[\"JAX_PLATFORMS\"] = \"cpu\"\n```\n\n如果实验需要 GPU 加速 MCMC，则用：\n```bash\nexport JAX_PLATFORMS=\"cuda,cpu\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003-completion-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dd64aa77e8d330eb677",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp001 llama arena hard",
+  "task_key": "worker_ssh_exp001_llama_arena_hard_20260522T015143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_llama_arena_hard_20260522T015143_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "deaf18edb78c73935f8130362b32cc6dbb2df0bf851e6c915da620d166ee23b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收集正在稳定运行。状态总结：\n\n**已完成 3 条 judgments：**\n| 时间 | model_a vs model_b | position | score | 备注 |\n|------|-------------------|----------|-------|------|\n| 10:05:40 | gpt-3.5 vs gpt-4-0314 | AB | 0.0 (B wins) | 正确 |\n| 10:06:44 | gpt-3.5 vs gpt-4-0314 | BA | 0.0 (B wins) | position swap 一致 |\n| 10:07:28 | gpt-4-0314 vs gpt-4-0314 | AB | 0.5 (tie) | 自比较 = tie ✓ |\n\n**运行参数：**\n- 命令：`python -u collect.py --config config_llama_arena.yaml --benchmark arena_hard`\n- tmux session: `exp001-llama`\n- 输出：`/root/gated_mfrm_judge_bias/exp001/results/arena_hard_judgments.jsonl`\n\n**速度与 ETA：**\n- 每条 judgment 约 50 秒（70B AWQ 模型单序列推理）\n- 总量：3000 条（500 prompts × 3 models × 2 positions AB/BA）\n- 预估完成时间：~42 小时\n\n**注意事项：**\n1. `reference_model` 用的是 `gpt-4-0314`（Arena-Hard 标准 baseline），因为 gpt-4o 的 response 文件不存在\n2. config 中修正了 `base_url: http://localhost:8001` 和 `model_name: llama-3.3-70b-instruct` 以匹配实际 vLLM 部署\n3. 脚本支持断点续跑（读取已完成的 keys 跳过）\n\n如果想加速，可以考虑将 `max_tokens` 从 1024 降到 512（实际 judge 输出通常 < 300 tokens），或启用 vLLM 并发请求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp001-llama-arena-hard.md"
+}

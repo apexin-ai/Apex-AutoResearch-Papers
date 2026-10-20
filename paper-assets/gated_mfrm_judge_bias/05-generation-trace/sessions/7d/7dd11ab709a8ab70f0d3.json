@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dd11ab709a8ab70f0d3",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003 dryrun analysis",
+  "task_key": "worker_ssh_exp003_dryrun_analysis_20260522T172823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003_dryrun_analysis_20260522T172823_result.json",
+    "occurrence": 1,
+    "bytes": 5076,
+    "sha256": "14e155cdae2c9c00f47b04fbb01f27542561907a4078d8d4adefa2ce3666749e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部读取。全量结果已完成（01:22写入），以下是完整分析。\n\n---\n\n## 1. JSON 输出格式\n\n```\nresults.json\n├── convergence          # per-method: r_hat, ess, divergences\n├── arena_correlation    # per-method: kendall_tau/p, spearman_rho/p, matched_models\n├── cross_method         # 方法两两对比: kendall_tau, spearman_rho\n├── parameters\n│   ├── raw_average      # theta_ranking, theta_values\n│   ├── mfrm_only        # theta_ranking/values, d_ranking/values\n│   ├── sequential       # theta_ranking/values, c_ranking/values, d_ranking/values\n│   ├── joint_gmfrm      # theta_ranking/values, c_ranking/values, d_ranking/values\n│   ├── top_exposure_items    # (item_id, exposure_score) × 10\n│   └── bottom_exposure_items # (item_id, exposure_score) × 10\n└── data_summary         # N=8 models, I=176 items, J=9 judges, n_obs=5661\n```\n\n附加文件：4 个 PNG（theta_comparison, contamination_c, judge_severity, theta_vs_elo）+ 各方法的 .npy 文件。\n\n---\n\n## 2. Dry-run vs 全量对比\n\n### Convergence\n\n| Method | Dry-run (r_hat / ESS) | Full (r_hat / ESS) | 状态 |\n|--------|----------------------|---------------------|------|\n| raw_average | NaN / NaN | NaN / NaN | 非MCMC，正常 |\n| mfrm_only | NaN / 12 | **1.00 / 2220** | 收敛良好 |\n| sequential | NaN / 9 | **1.01 / 395** | 收敛OK |\n| joint_gmfrm | NaN / 5 | **1.73 / 6** | **未收敛** |\n\n**joint_gmfrm 严重未收敛**（r_hat=1.73 远超 1.1 阈值，ESS=6 几乎无有效样本）。dry-run ESS=5 已预示了这个问题。\n\n### Arena Correlation (Kendall-τ)\n\n| Method | Dry-run τ | Full τ | p-value |\n|--------|-----------|--------|---------|\n| raw_average | 0.786 | 0.786 | 0.006 |\n| mfrm_only | 0.786 | 0.786 | 0.006 |\n| sequential | 0.786 | 0.786 | 0.006 |\n| joint_gmfrm | **0.857** | **0.857** | 0.002 |\n\nDry-run 和全量的 τ 值完全一致——说明 ranking 已稳定，不受 warmup/samples 数量影响。\n\n---\n\n## 3. 全量结果关键信号\n\n### θ ranking（模型能力排名，各方法一致）\n\n| Rank | Model | raw_avg | mfrm_only | sequential | joint_gmfrm |\n|------|-------|---------|-----------|------------|-------------|\n| 1 | gpt-4o | 0.249 | 1.592 | 1.638 | 2.007 |\n| 2 | qwen2.5-72b | 0.207 | 1.212 | 1.195 | 1.167 |\n| 3 | gpt-4o-mini | 0.193 | 1.064 | 1.126 | 1.452 |\n| 4 | llama-3.3-70b | 0.110 | 0.518 | 0.525 | 0.534 |\n| 5 | qwen3-8b | 0.050 | 0.207 | 0.267 | 0.528 |\n| 6 | gemma-2-9b | -0.104 | -0.660 | -0.645 | -0.492 |\n| 7 | gpt-4-0613 | -0.273 | -1.444 | -1.518 | -1.894 |\n| 8 | gpt-3.5-turbo | -0.431 | -2.488 | -2.589 | -3.303 |\n\nraw_average、mfrm_only、sequential 产生**完全相同的排名**（cross-method τ=1.0）。joint_gmfrm 唯一的差异是 gpt-4o-mini 和 qwen2.5-72b 交换了 2/3 位。\n\n### c_n（contamination 估计）\n\n**joint_gmfrm 的 c 值**（全部为正，scale 大）：\n\n| Model | c (joint) | c (sequential) |\n|-------|-----------|----------------|\n| gpt-3.5-turbo | **5.69** | 0.55 |\n| gpt-4-0613 | **4.25** | 0.42 |\n| qwen2.5-72b | 3.02 | 0.14 |\n| llama-3.3-70b | 2.50 | 0.03 |\n| gemma-2-9b | 1.61 | -0.01 |\n| qwen3-8b | 1.11 | -0.23 |\n| gpt-4o-mini | 0.84 | -0.24 |\n| gpt-4o | **0.79** | -0.18 |\n\n两种方法趋势一致：旧模型（gpt-3.5, gpt-4-0613）contamination 最高，新模型（gpt-4o）最低。但 joint 的 c 值 scale 非常大（与未收敛相关），sequential 的 c 值更合理。\n\n### d_j（judge severity，正=严格）\n\n| Judge | mfrm_only | sequential | joint_gmfrm |\n|-------|-----------|------------|-------------|\n| claude-opus-4.7 | 0.461 | 0.462 | 0.598 |\n| gpt-5.5 | 0.410 | 0.410 | 0.535 |\n| deepseek-v4-pro | 0.330 | 0.329 | 0.311 |\n| claude-sonnet-4.6 | 0.010 | 0.012 | 0.139 |\n| gemini-2.5-pro | -0.020 | -0.021 | -0.035 |\n| qwen3-235b | -0.069 | -0.069 | -0.038 |\n| qwen2.5-72b | -0.239 | -0.239 | -0.350 |\n| llama-3.3-70b | -0.379 | -0.380 | -0.419 |\n| mistral-large-2 | **-0.504** | **-0.505** | **-0.741** |\n\n三种方法高度一致。Claude Opus 和 GPT-5.5 最严格，Mistral-large-2 最宽松。\n\n---\n\n## 4. 关键问题和全量结果展望\n\n### 问题\n1. **joint_gmfrm 未收敛是核心问题**——r_hat=1.73，ESS=6，结果不可信。需要调参（更多 warmup、重参数化、或拆分 c 的先验）\n2. **三种非 joint 方法排名完全一致**——说明当前数据中 MFRM 的 bias correction 和 sequential 的 contamination correction 都没有改变最终排名\n3. joint_gmfrm 的 τ 更高（0.857 vs 0.786）是否因为它 overfit 了噪声（ESS=6 意味着只有几个有效样本）\n\n### 全量结果已完成\n`results/` 目录已有完整输出（与上述分析已一致），包含：\n- `results.json`（已分析完毕）\n- 4 个 PNG plots\n- 各方法的 .npy 文件\n\n下一步建议：**修复 joint_gmfrm 的收敛问题**是首要任务，否则论文核心方法的结果不可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003-dryrun-analysis.md"
+}

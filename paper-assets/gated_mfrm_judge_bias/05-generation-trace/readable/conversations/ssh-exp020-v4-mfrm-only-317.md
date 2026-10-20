@@ -1,0 +1,3079 @@
+# ssh exp020 v4 mfrm only 317
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 109
+- **Recorded user turns:** 0
+- **Tool calls:** 54
+- **Original source:** `logs/chats/worker_ssh_exp020-v4-mfrm-only-317_20260525T155812.jsonl`
+- **Structured JSON:** [`cc5b50ce448ccf5b1edb.json`](../../sessions/cc/cc5b50ce448ccf5b1edb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+109 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-25T16:05:10.616494+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-25T16:05:10.616869+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-25T16:05:10.617049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-25T16:05:10.617358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-020 v3: G-MFRM on filtered items (only items covered by exposure CSV).\\n\\nChanges from v2:\\n  - Only keep items that appear in the exposure CSV (317 items)\\n  - Items not covered by CSV are excluded entirely (not set to e_i=0)\\n  - Only run raw_average + joint_gmfrm\\n  - warmup=4000, samples=4000, chains=4\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ.setdefault(\\\"JAX_PLATFORMS\\\", \\\"cuda,cpu\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\", \\\"false\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\", \\\"0.25\\\")\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nBASE_DIR = \\\"/root/gated_mfrm_judge_bias\\\"\\n\\nEXCLUDE_JUDGES = [\\\"mistral-large-2\\\"]\\nEXCLUDE_MODELS_FROM_TAU = [\\\"qwen3-8b\\\"]\\n\\n\\ndef filter_excluded_judges(data: dict, exclude: list[str]) -> dict:\\n    judge_names = data[\\\"judge_names\\\"]\\n    excluded_set = set(exclude) & set(judge_names)\\n    if not excluded_set:\\n        print(f\\\"  No judges to exclude (requested: {exclude})\\\")\\n        return data\\n\\n    excluded_indices = {judge_names.index(j) for j in excluded_set}\\n    mask = np.array([j not in excluded_indices for j in data[\\\"judge_idx\\\"]])\\n\\n    remaining = [j for j in judge_names if j not in excluded_set]\\n    old_to_new = {}\\n    for old_j, name in enumerate(judge_names):\\n        if name not in excluded_set:\\n            old_to_new[old_j] = len(old_to_new)\\n\\n    n_removed = (~mask).sum()\\n    print(f\\\"  Excluded judges {sorted(excluded_set)}: removed {n_removed} observations\\\")\\n    print(f\\\"  Remaining judges ({len(remaining)}): {remaining}\\\")\\n\\n    return {\\n        \\\"model_idx\\\": data[\\\"model_idx\\\"][mask],\\n        \\\"item_idx\\\": data[\\\"item_idx\\\"][mask],\\n        \\\"judge_idx\\\": np.array([old_to_new[j] for j
+…[truncated 7604 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-25T16:05:10.617604+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "wc -l /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "wc -l /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T16:05:10.617751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"439 /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-25T16:05:10.617892+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -220 /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -220 /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-25T16:05:10.618131+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-020 v3: G-MFRM on filtered items (only items covered by exposure CSV).\\n\\nChanges from v2:\\n  - Only keep items that appear in the exposure CSV (317 items)\\n  - Items not covered by CSV are excluded entirely (not set to e_i=0)\\n  - Only run raw_average + joint_gmfrm\\n  - warmup=4000, samples=4000, chains=4\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ.setdefault(\\\"JAX_PLATFORMS\\\", \\\"cuda,cpu\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\", \\\"false\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\", \\\"0.25\\\")\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nBASE_DIR = \\\"/root/gated_mfrm_judge_bias\\\"\\n\\nEXCLUDE_JUDGES = [\\\"mistral-large-2\\\"]\\nEXCLUDE_MODELS_FROM_TAU = [\\\"qwen3-8b\\\"]\\n\\n\\ndef filter_excluded_judges(data: dict, exclude: list[str]) -> dict:\\n    judge_names = data[\\\"judge_names\\\"]\\n    excluded_set = set(exclude) & set(judge_names)\\n    if not excluded_set:\\n        print(f\\\"  No judges to exclude (requested: {exclude})\\\")\\n        return data\\n\\n    excluded_indices = {judge_names.index(j) for j in excluded_set}\\n    mask = np.array([j not in excluded_indices for j in data[\\\"judge_idx\\\"]])\\n\\n    remaining = [j for j in judge_names if j not in excluded_set]\\n    old_to_new = {}\\n    for old_j, name in enumerate(judge_names):\\n        if name not in excluded_set:\\n            old_to_new[old_j] = len(old_to_new)\\n\\n    n_removed = (~mask).sum()\\n    print(f\\\"  Excluded judges {sorted(excluded_set)}: removed {n_removed} observations\\\")\\n    print(f\\\"  Remaining judges ({len(remaining)}): {remaining}\\\")\\n\\n    return {\\n        \\\"model_idx\\\": data[\\\"model_idx\\\"][mask],\\n        \\\"item_idx\\\": data[\\\"item_idx\\\"][mask],\\n        \\\"judge_idx\\\": np.array([old_to_new[j] for j
+…[truncated 6843 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-25T16:05:10.618288+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -n +220 /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -n +220 /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T16:05:10.618609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    sigma_b = numpyro.sample(\\\"sigma_b\\\", dist.HalfNormal(1.0))\\n    b_raw = numpyro.sample(\\\"b_raw\\\", dist.Normal(0, 1).expand([I]))\\n    b = numpyro.deterministic(\\\"b\\\", b_raw * sigma_b)\\n\\n    d_raw = numpyro.sample(\\\"d_raw\\\", dist.Normal(0, 0.5).expand([J]))\\n    d = numpyro.deterministic(\\\"d\\\", d_raw - d_raw.mean())\\n\\n    sigma_c = numpyro.sample(\\\"sigma_c\\\", dist.HalfNormal(1.0))\\n    c_raw = numpyro.sample(\\\"c_raw\\\", dist.HalfNormal(jnp.ones(N) * 1.0))\\n    c = numpyro.deterministic(\\\"c\\\", c_raw * sigma_c)\\n\\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx] + c[model_idx] * e[item_idx]\\n    numpyro.sample(\\\"obs\\\", dist.Bernoulli(logits=logits), obs=y)\\n\\n\\ndef _to_numpy(x):\\n    import jax\\n    cpu = jax.devices(\\\"cpu\\\")[0]\\n    return np.asarray(jax.device_put(x, cpu))\\n\\n\\ndef _run_mcmc(model_fn, rng_key, model_kwargs, warmup, samples, chains, target_accept,\\n              chain_method=\\\"vectorized\\\"):\\n    from numpyro.infer import MCMC, NUTS\\n    kernel = NUTS(model_fn, target_accept_prob=target_accept)\\n    mcmc = MCMC(kernel, num_warmup=warmup, num_samples=samples,\\n                num_chains=chains, chain_method=chain_method, progress_bar=True)\\n    mcmc.run(rng_key, **model_kwargs)\\n    return mcmc\\n\\n\\ndef fit_raw_average(data):\\n    N = data[\\\"N\\\"]\\n    model_idx = data[\\\"model_idx\\\"]\\n    y = data[\\\"y\\\"]\\n    theta_hat = np.zeros(N)\\n    for n in range(N):\\n        mask = model_idx == n\\n        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n    return {\\\"method\\\": \\\"raw_average\\\", \\\"theta_hat\\\": theta_hat}\\n\\n\\ndef fit_joint_gmfrm(data, warmup, samples, chains, target_accept, seed, chain_method):\\n    import jax\\n    import jax.numpy as jnp\\n\\n    model_idx = jnp.array(data[\\\"model_idx\\\"])\\n    item_id
+…[truncated 7016 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-25T16:05:10.618831+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/evaluation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp003/evaluation.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T16:05:10.619117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation and comparison of G-MFRM fitting methods on real data.\\n\\nNo ground-truth theta available. Instead we use:\\n  a) Convergence diagnostics: R-hat, ESS, divergences\\n  b) Model comparison: WAIC, LOO-CV via ArviZ\\n  c) External validity: Kendall-tau with Chatbot Arena Elo (if available)\\n  d) Parameter interpretation: c_n per model, d_j per judge\\n  e) Cross-method comparison: rank correlation between methods\\n\\nDependencies: numpy, scipy, arviz, matplotlib, json\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nimport arviz as az\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# Chatbot Arena ELO (snapshot: 2026-05-19, source: lmarena.ai)\\nARENA_ELO = {\\n    \\\"gpt-4o\\\": 1300,\\n    \\\"claude-3-5-sonnet-20241022\\\": 1298,\\n    \\\"gpt-4o-mini\\\": 1286,\\n    \\\"llama-3.3-70b\\\": 1275,\\n    \\\"gpt-4-turbo-2024-04-09\\\": 1272,\\n    \\\"qwen2.5-72b\\\": 1269,\\n    \\\"claude-3-opus-20240229\\\": 1262,\\n    \\\"llama-3.1-70b-instruct\\\": 1261,\\n    \\\"gemma-2-27b-it\\\": 1231,\\n    \\\"llama-3-70b-instruct\\\": 1221,\\n    \\\"gemma-2-9b\\\": 1207,\\n    \\\"gpt-4-0314\\\": 1206,\\n    \\\"claude-3-haiku-20240307\\\": 1195,\\n    \\\"gpt-4-0613\\\": 1186,\\n    \\\"llama-3-8b-instruct\\\": 1166,\\n    \\\"mixtral-8x22b-instruct-v0.1\\\": 1162,\\n    \\\"gpt-3.5-turbo-0125\\\": 1125,\\n    \\\"mistral-large-2407\\\": 1250,\\n}\\n\\n# Estimated ELO for models without official Arena ranking (NOT ground truth)\\nESTIMATED_ELO = {\\\"qwen3-8b\\\": 1170}\\n\\n# Name mapping: data model names → ARENA_ELO keys\\nARENA_NAME_MAPPING = {\\n    \\\"gemma-2-9b-it\\\": \\\"gemma-2-9b\\\",\\n    \\\"gpt-4o-2024-05-13\\\": \\\"gpt-4o\\\",\\n    \\\"gpt-4o-mini-2024-07-18\\\": \\\"gpt-4o-mini\\\",\\n    \\\"gpt-4-turbo-2024-04-09\\\": \\\"gpt-4-turbo-2024-04
+…[truncated 7526 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-25T16:05:10.619314+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cp /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py /root/gated_mfrm_judge_bias/run_mcmc_n17_v4_mfrm_only.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cp /root/gated_mfrm_judge_bias/run_mcmc_n17_v3_filtered_items.py /root/gated_mfrm_judge_bias/run_mcmc_n17_v4_mfrm_only.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T16:05:10.619468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-25T16:05:10.619595+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-25T16:05:10.619713+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-25T16:05:10.619831+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Create v4 MFRM-only script (remove contamination gating from v3)', 'status': 'in_progress', 'activeForm': 'Creating v4 MFRM-only script'}, {'content': 'Run v4 MCMC on autodl-8gpu', 'status': 'pending', 'activeForm': 'Running v4 MCMC'}, {'content': 'Extract results and save to v4_results.txt', 'status': 'pending', 'activeForm': 'Extracting and saving results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Create v4 MFRM-only script (remove contamination gating from v3)', 'status': 'in_progress', 'activeForm': 'Creating v4 MFRM-only script'}, {'content': 'Run v4 MCMC on autodl-8gpu', 'status': 'pending', 'activeForm': 'Running v4 MCMC'}, {'content': 'Extract results and save to v4_results.txt', 'status': 'pending', 'activeForm': 'Extracting and saving results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T16:05:10.619958+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-25T16:05:10.620205+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/run_mcmc_n17_v4_mfrm_only.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp-020 v4: MFRM-only on 317 filtered items (no contamination gating).\n\nAblation of v3: identical data pipeline (317 items from exposure CSV),\nbut the model is pure MFRM without c_n * e_i contamination term.\nPurpose: isolate the effect of contamination gating.\n\"\"\"\n\nimport os\nos.environ.setdefault(\"JAX_PLATFORMS\", \"cuda,cpu\")\nos.environ.setdefault(\"XLA_PYTHON_CLIENT_PREALLOCATE\", \"false\")\nos.environ.setdefault(\"XLA_PYTHON_CLIENT_MEM_FRACTION\", \"0.25\")\n\nimport argparse\nimport json\nimport sys\nimport time\n\nimport numpy as np\nimport pandas as pd\n\nBASE_DIR = \"/root/gated_mfrm_judge_bias\"\n\nEXCLUDE_JUDGES = [\"mistral-large-2\"]\nEXCLUDE_MODELS_FROM_TAU = [\"qwen3-8b\"]\n\n\ndef filter_excluded_judges(data: dict, exclude: list[str]) -> dict:\n    judge_names = data[\"judge_names\"]\n    excluded_set = set(exclude) & set(judge_names)\n    if not excluded_set:\n        print(f\"  No judges to exclude (requested: {exclude})\")\n        return data\n\n    excluded_indices = {judge_names.index(j) for j in excluded_set}\n    mask = np.array([j not in excluded_indices for j in data[\"judge_idx\"]])\n\n    remaining = [j for j in judge_names if j not in excluded_set]\n    old_to_new = {}\n    for old_j, name in enumerate(judge_names):\n        if name not in excluded_set:\n            old_to_new[old_j] = len(old_to_new)\n\n    n_removed = (~mask).sum()\n    print(f\"  Excluded judges {sorted(excluded_set)}: removed {n_removed} observations\")\n    print(f\"  Remaining judges ({len(remaining)}): {remaining}\")\n\n    return {\n        \"model_idx\": data[\"model_idx\"][mask],\n        \"item_idx\": data[\"item_idx\"][mask],\n        \"judge_idx\": np.array([old_to_new[j] for j in data[\"judge_idx\"][mask]], dtype=np.int32),\n        \"y\": data[\"y\"][mask],\n        \"model_names\": data[\"model_names\"],\n        \"item_ids\": data[\"item_ids\"],\n        \"judge_names\": remaining,\n        \"e_i\": data[\"e_i\"],\n        \"N\": data[\"N\"],\n        \"I\": data[\"I\"],\n        \"J\": len(remaining),\n        \"n_obs\": int(mask.sum()),\n    }\n\n\ndef filter_items_by_exposure_csv(data: dict, exposure_csv: str) -> dict:\n    \"\"\"Keep only items that appear in the exposure CSV.\"\"\"\n    df = pd.read_csv(exposure_csv)\n    csv_item_ids = set(df[\"item_id\"].astype(str).tolist())\n\n    item_ids = data[\"item_ids\"]\n    keep_old_indices = []\n    for old_i, iid in enumerate(item_ids):\n        if str(iid) in csv_item_ids:\n            keep_old_indices.append(old_i)\n\n    keep_set = set(keep_old_indices)\n    n_kept = len(keep_old_indices)\n    n_dropped = data[\"I\"] - n_kept\n    print(f\"  Item filtering by exposure CSV: {data['I']} -> {n_kept} (dropped {n_dropped} not in CSV)\")\n\n    old_to_new = {}\n    for new_i, old_i in enumerate(sorted(keep_old_indices)):\n        old_to_new[old_i] = new_i\n\n    item_idx = data[\"item_idx\"]\n    mask = np.array([item_idx[k] in keep_set for k in range(len(item_idx))])\n\n    new_item_ids = [item_ids[old_i] for old_i in sorted(keep_old_indices)]\n    new_e_i = data[\"e_i\"][sorted(keep_old_indices)]\n    new_item_idx = np.array([old_to_new[item_idx[k]] for k in range(len(item_idx)) if mask[k]], dtype=np.int32)\n\n    n_obs = int(mask.sum())\n    print(f\"  Observations: {data['n_obs']} -> {n_obs}\")\n    print(f\"  Exposure in kept items: range=[{new_e_i.min():.3f}, {new_e_i.max():.3f}], mean={new_e_i.mean():.3f}\")\n    n_zero = (new_e_i == 0).sum()\n    n_pos = (new_e_i > 0).sum()\n    print(f\"  e_i=0: {n_zero}, e_i>0: {n_pos}\")\n\n    return {\n        \"model_idx\": data[\"model_idx\"][mask],\n        \"item_idx\": new_item_idx,\n        \"judge_idx\": data[\"judge_idx\"][mask],\n        \"y\": data[\"y\"][mask],\n        \"model_names\": data[\"model_names\"],\n        \"item_ids\": new_item_ids,\n        \"judge_names\": data[\"judge_names\"],\n        \"e_i\": new_e_i,\n        \"N\": data[\"N\"],\n        \"I\": n_kept,\n        \"J\": data[\"J\"],\n        \"n_obs\": n_obs,\n    }\n\n\ndef filter_items_by_coverage(data: dict, min_judges: int) -> dict:\n    item_idx = data[\"item_idx\"]\n    judge_idx = data[\"judge_idx\"]\n    I = data[\"I\"]\n\n    judges_per_item = [set() for _ in range(I)]\n    for k in range(len(item_idx)):\n        judges_per_item[item_idx[k]].add(judge_idx[k])\n\n    coverage = np.array([len(s) for s in judges_per_item])\n    keep_items = set(np.where(coverage >= min_judges)[0])\n    n_dropped = I - len(keep_items)\n\n    if n_dropped == 0:\n        print(f\"  All {I} items have >= {min_judges} judge coverage\")\n        return data\n\n    mask = np.array([item_idx[k] in keep_items for k in range(len(item_idx))])\n    old_to_new = {}\n    for old_i in sorted(keep_items):\n        old_to_new[old_i] = len(old_to_new)\n\n    new_item_ids = [data[\"item_ids\"][old_i] for old_i in sorted(keep_items)]\n    new_e_i = data[\"e_i\"][sorted(keep_items)]\n    new_I = len(keep_items)\n\n    print(f\"  Items: {I} -> {new_I} (dropped {n_dropped} with <{min_judges} judges)\")\n\n    return {\n        \"model_idx\": data[\"model_idx\"][mask],\n        \"item_idx\": np.array([old_to_new[item_idx[k]] for k in range(len(item_idx)) if mask[k]], dtype=np.int32),\n        \"judge_idx\": data[\"judge_idx\"][mask],\n        \"y\": data[\"y\"][mask],\n        \"model_names\": data[\"model_names\"],\n        \"item_ids\": new_item_ids,\n        \"judge_names\": data[\"judge_names\"],\n        \"e_i\": new_e_i,\n        \"N\": data[\"N\"],\n        \"I\": new_I,\n        \"J\": data[\"J\"],\n        \"n_obs\": int(mask.sum()),\n    }\n\n\ndef convergence_stoploss(idata, output_dir):\n    import arviz as az\n\n    rhat = az.rhat(idata)\n    ess_bulk = az.ess(idata, method=\"bulk\")\n\n    rhat_max = max(\n        float(rhat[v].values.max()) if rhat[v].values.ndim > 0 else float(rhat[v].values)\n        for v in rhat.data_vars\n    )\n    ess_min = min(\n        float(ess_bulk[v].values.min()) if ess_bulk[v].values.ndim > 0 else float(ess_bulk[v].values)\n        for v in ess_bulk.data_vars\n    )\n\n    divs = int(idata.sample_stats[\"diverging\"].values.sum()) if \"diverging\" in idata.sample_stats else 0\n\n    print(f\"  Convergence: R-hat max={rhat_max:.4f}, ESS min={ess_min:.0f}, divergences={divs}\")\n    ok = rhat_max < 1.05 and ess_min > 100\n    if not ok:\n        print(f\"  WARNING: Convergence issues detected!\")\n    return ok\n\n\ndef save_method_results(name, res, output_dir):\n    import arviz as az\n\n    np.save(os.path.join(output_dir, f\"{name}_theta.npy\"), res[\"theta_hat\"])\n    if \"c_hat\" in res:\n        np.save(os.path.join(output_dir, f\"{name}_c.npy\"), res[\"c_hat\"])\n    if \"b_hat\" in res:\n        np.save(os.path.join(output_dir, f\"{name}_b.npy\"), res[\"b_hat\"])\n    if \"d_hat\" in res:\n        np.save(os.path.join(output_dir, f\"{name}_d.npy\"), res[\"d_hat\"])\n\n    mcmc_obj = res.get(\"mcmc\")\n    if mcmc_obj is not None:\n        try:\n            idata = az.from_numpyro(mcmc_obj)\n            nc_path = os.path.join(output_dir, f\"{name}_idata.nc\")\n            idata.to_netcdf(nc_path)\n            print(f\"  Saved InferenceData: {nc_path}\")\n        except Exception as e:\n            print(f\"  Warning: failed to save InferenceData for {name}: {e}\")\n\n    sys.stdout.flush()\n\n\n# ---- Pure MFRM model (no contamination gating) ----\n\ndef _mfrm_model_ncp(model_idx, item_idx, judge_idx, y, N, I, J):\n    import jax.numpy as jnp\n    import numpyro\n    import numpyro.distributions as dist\n\n    sigma_theta = numpyro.sample(\"sigma_theta\", dist.HalfNormal(1.0))\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta_uncentered = theta_raw * sigma_theta\n    theta = numpyro.deterministic(\"theta\", theta_uncentered - theta_uncentered.mean())\n\n    sigma_b = numpyro.sample(\"sigma_b\", dist.HalfNormal(1.0))\n    b_raw = numpyro.sample(\"b_raw\", dist.Normal(0, 1).expand([I]))\n    b = numpyro.deterministic(\"b\", b_raw * sigma_b)\n\n    d_raw = numpyro.sample(\"d_raw\", dist.Normal(0, 0.5).expand([J]))\n    d = numpyro.deterministic(\"d\", d_raw - d_raw.mean())\n\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx]\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=y)\n\n\ndef _to_numpy(x):\n    import jax\n    cpu = jax.devices(\"cpu\")[0]\n    return np.asarray(jax.device_put(x, cpu))\n\n\ndef _run_mcmc(model_fn, rng_key, model_kwargs, warmup, samples, chains, target_accept,\n              chain_method=\"vectorized\"):\n    from numpyro.infer import MCMC, NUTS\n    kernel = NUTS(model_fn, target_accept_prob=target_accept)\n    mcmc = MCMC(kernel, num_warmup=warmup, num_samples=samples,\n                num_chains=chains, chain_method=chain_method, progress_bar=True)\n    mcmc.run(rng_key, **model_kwargs)\n    return mcmc\n\n\ndef fit_raw_average(data):\n    N = data[\"N\"]\n    model_idx = data[\"model_idx\"]\n    y = data[\"y\"]\n    theta_hat = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            theta_hat[n] = y[mask].mean()\n    theta_hat = theta_hat - theta_hat.mean()\n    return {\"method\": \"raw_average\", \"theta_hat\": theta_hat}\n\n\ndef fit_mfrm_only(data, warmup, samples, chains, target_accept, seed, chain_method):\n    import jax\n    import jax.numpy as jnp\n\n    model_idx = jnp.array(data[\"model_idx\"])\n    item_idx = jnp.array(data[\"item_idx\"])\n    judge_idx = jnp.array(data[\"judge_idx\"])\n    y = jnp.array(data[\"y\"])\n\n    mcmc = _run_mcmc(\n        _mfrm_model_ncp, jax.random.PRNGKey(seed),\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\n             y=y, N=data[\"N\"], I=data[\"I\"], J=data[\"J\"]),\n        warmup, samples, chains, target_accept, chain_method,\n    )\n\n    samples_dict = mcmc.get_samples()\n    theta_hat = _to_numpy(samples_dict[\"theta\"].mean(axis=0))\n    b_hat = _to_numpy(samples_dict[\"b\"].mean(axis=0))\n    d_hat = _to_numpy(samples_dict[\"d\"].mean(axis=0))\n\n    return {\n        \"method\": \"mfrm_only_317\",\n        \"theta_hat\": theta_hat,\n        \"b_hat\": b_hat,\n        \"d_hat\": d_hat,\n        \"mcmc\": mcmc,\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"exp-020 v4: MFRM-only on 317 filtered items\")\n    parser.add_argument(\"--judgment-dir\",\n                        default=os.path.join(BASE_DIR, \"exp003/judgment_data_n17\"))\n    parser.add_argument(\"--exposure-csv\",\n                        default=os.path.join(BASE_DIR, \"exp002/results/exposure_scores.csv\"))\n    parser.add_argument(\"--output-dir\",\n                        default=os.path.join(BASE_DIR, \"output_n17_v4_mfrm_only\"))\n    parser.add_argument(\"--warmup\", type=int, default=4000)\n    parser.add_argument(\"--samples\", type=int, default=4000)\n    parser.add_argument(\"--chains\", type=int, default=4)\n    parser.add_argument(\"--target-accept\", type=float, default=0.95)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--chain-method\", default=\"vectorized\",\n                        choices=[\"vectorized\", \"sequential\", \"parallel\"])\n    parser.add_argument(\"--min-judges\", type=int, default=3)\n    args = parser.parse_args()\n\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    import jax\n    import numpyro\n    numpyro.set_host_device_count(min(args.chains, 4))\n\n    sys.path.insert(0, os.path.join(BASE_DIR, \"exp003\"))\n    from data_loader import load_data\n    from evaluation import run_evaluation\n\n    # Step 1: Load data\n    print(\"=\" * 60)\n    print(\"STEP 1: Loading data\")\n    print(\"=\" * 60)\n    data = load_data(args.judgment_dir, args.exposure_csv)\n\n    # Step 2: Filter judges\n    print(\"\\n\" + \"=\" * 60)\n    print(\"STEP 2: Filtering\")\n    print(\"=\" * 60)\n    data = filter_excluded_judges(data, EXCLUDE_JUDGES)\n\n    # Step 3: Filter items to exposure CSV coverage\n    print(\"\\n\" + \"=\" * 60)\n    print(\"STEP 3: Filter items by exposure CSV\")\n    print(\"=\" * 60)\n    data = filter_items_by_exposure_csv(data, args.exposure_csv)\n\n    # Step 4: Filter by judge coverage\n    if args.min_judges > 0:\n        data = filter_items_by_coverage(data, args.min_judges)\n\n    print(f\"  Final: N={data['N']}, I={data['I']}, J={data['J']}, n_obs={data['n_obs']}\")\n\n    # Step 5: Fit models\n    print(\"\\n\" + \"=\" * 60)\n    print(\"STEP 4: Fitting models (MFRM-only, no contamination)\")\n    print(\"=\" * 60)\n\n    mcmc_kwargs = dict(\n        warmup=args.warmup,\n        samples=args.samples,\n        chains=args.chains,\n        target_accept=args.target_accept,\n        seed=args.seed,\n        chain_method=args.chain_method,\n    )\n\n    results = {}\n    timings = {}\n    convergence_passed = True\n\n    # raw_average\n    print(\"\\n--- raw_average ---\")\n    t0 = time.time()\n    results[\"raw_average\"] = fit_raw_average(data)\n    timings[\"raw_average\"] = time.time() - t0\n    print(f\"  Done in {timings['raw_average']:.1f}s\")\n    save_method_results(\"raw_average\", results[\"raw_average\"], args.output_dir)\n\n    # mfrm_only_317\n    print(\"\\n--- mfrm_only_317 ---\")\n    t0 = time.time()\n    results[\"mfrm_only_317\"] = fit_mfrm_only(data, **mcmc_kwargs)\n    elapsed = time.time() - t0\n    timings[\"mfrm_only_317\"] = elapsed\n    print(f\"  Done in {elapsed:.1f}s\")\n    save_method_results(\"mfrm_only_317\", results[\"mfrm_only_317\"], args.output_dir)\n\n    import arviz as az\n    idata = az.from_numpyro(results[\"mfrm_only_317\"][\"mcmc\"])\n    if not convergence_stoploss(idata, args.output_dir):\n        convergence_passed = False\n\n    sys.stdout.flush()\n\n    # Step 6: Evaluation\n    print(\"\\n\" + \"=\" * 60)\n    print(\"STEP 5: Evaluation\")\n    print(\"=\" * 60)\n    report = run_evaluation(results, data, args.output_dir)\n\n    # Step 7: Save metadata\n    metadata = {\n        \"experiment\": \"exp-020-v4-mfrm-only-317\",\n        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n        \"parameterization\": \"non-centered (sigma_b, sigma_theta hierarchical)\",\n        \"model\": \"pure MFRM (no contamination gating c_n * e_i)\",\n        \"item_filter\": \"exposure CSV coverage only (317 items before judge coverage filter)\",\n        \"mcmc_config\": {\n            \"warmup\": args.warmup,\n            \"samples\": args.samples,\n            \"chains\": args.chains,\n            \"target_accept\": args.target_accept,\n            \"chain_method\": args.chain_method,\n            \"seed\": args.seed,\n        },\n        \"data_summary\": {\n            \"N\": data[\"N\"], \"I\": data[\"I\"], \"J\": data[\"J\"],\n            \"n_obs\": data[\"n_obs\"],\n            \"model_names\": data[\"model_names\"],\n            \"judge_names\": data[\"judge_names\"],\n        },\n        \"excluded_judges\": EXCLUDE_JUDGES,\n        \"excluded_models_from_tau\": EXCLUDE_MODELS_FROM_TAU,\n        \"min_judges\": args.min_judges,\n        \"timings_seconds\": timings,\n        \"convergence_passed\": convergence_passed,\n    }\n    with open(os.path.join(args.output_dir, \"run_metadata.json\"), \"w\") as f:\n        json.dump(metadata, f, indent=2)\n\n    # Summary\n    print(\"\\n\" + \"=\" * 60)\n    total_time = sum(timings.values())\n    print(f\"TOTAL TIME: {total_time:.0f}s ({total_time/60:.1f}min)\")\n    if convergence_passed:\n        print(\"\\nDONE — Convergence OK\")\n    else:\n        print(\"\\nDONE — CONVERGENCE FAILED\")\n        sys.exit(1)\n    print(\"=\" * 60)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /root/gated_mfrm_judge_bias/run_mcmc_n17_v4_mfrm_only.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp-020 v4: MFRM-only on 317 filtered items (no contamination gating).\n\nAblation of v3: identical data pipeline (317 items from exposure CSV),\nbut the model is pure MFRM without c_n * e_i contamination term.\nPurpose: isolate the effect of contamination gating.\n\"\"\"\n\nimport os\nos.environ.setdefault(\"JAX_PLATFORMS\", \"cuda,cpu\")\nos.environ.setdefault(\"XLA_PYTHON_CLIENT_PREALLOCATE\", \"false\")\nos.environ.setdefault(\"XLA_PYTHON_CLIENT_MEM_FRACTION\", \"0.25\")\n\nimport argparse\nimport json\nimport sys\nimport time\n\nimport numpy as np\nimport pandas as pd\n\nBASE_DIR = \"/root/gated_mfrm_judge_bias\"\n\nEXCLUDE_JUDGES = [\"mistral-large-2\"]\nEXCLUDE_MODELS_FROM_TAU = [\"qwen3-8b\"]\n\n\ndef filter_excluded_judges(data: dict, exclude: list[str]) -> dict:\n    judge_names = data[\"judge_names\"]\n    excluded_set = set(exclude) & set(judge_names)\n    if not excluded_set:\n        print(f\"  No judges to exclude (requested: {exclude})\")\n        return data\n\n    excluded_indices = {judge_names.index(j) for j in excluded_set}\n    mask = np.array([j not in excluded_indices for j in data[\"judge_idx\"]])\n\n    remaining = [j for j in judge_names if j not in excluded_set]\n    old_to_new = {}\n    for old_j, name in enumerate(judge_names):\n        if name not in excluded_set:\n            old_to_new[old_j] = len(old_to_new)\n\n    n_removed = (~mask).sum()\n    print(f\"  Excluded judges {sorted(excluded_set)}: removed {n_removed} observations\")\n    print(f\"  Remaining judges ({len(remaining)}): {remaining}\")\n\n    return {\n        \"model_idx\": data[\"model_idx\"][mask],\n        \"item_idx\": data[\"item_idx\"][mask],\n        \"judge_idx\": np.array([old_to_new[j] for j in data[\"judge_idx\"][mask]], dtype=np.int32),\n        \"y\": data[\"y\"][mask],\n        \"model_names\": data[\"model_names\"],\n        \"item_ids\": data[\"item_ids\"],\n        \"judge_names\": remaining,\n        \"e_i\": data[\"e_i\"],\n        \"N\": data[\"N\"],\n        \"I\": data[\"I\"],\n        \"J\": len(remaining),\n        \"n_obs\": int(mask.sum()),\n    }\n\n\ndef filter_items_by_exposure_csv(data: dict, exposure_csv: str) -> dict:\n    \"\"\"Keep only items that appear in the exposure CSV.\"\"\"\n    df = pd.read_csv(exposure_csv)\n    csv_item_ids = set(df[\"item_id\"].astype(str).tolist())\n\n    item_ids = data[\"item_ids\"]\n    keep_old_indices = []\n    for old_i, iid in enumerate(item_ids):\n        if str(iid) in csv_item_ids:\n            keep_old_indices.append(old_i)\n\n    keep_set = set(keep_old_indices)\n    n_kept = len(keep_old_indices)\n    n_dropped = data[\"I\"] - n_kept\n    print(f\"  Item filtering by exposure CSV: {data['I']} -> {n_kept} (dropped {n_dropped} not in CSV)\")\n\n    old_to_new = {}\n    for new_i, old_i in enumerate(sorted(keep_old_indices)):\n        old_to_new[old_i] = new_i\n\n    item_idx = data[\"item_idx\"]\n    mask = np.array([item_idx[k] in keep_set for k in range(len(item_idx))])\n\n    new_item_ids = [item_ids[old_i] for old_i in sorted(keep_old_indices)]\n    new_e_i = data[\"e_i\"][sorted(keep_old_indices)]\n    new_item_idx = np.array([old_to_new[item_idx[k]] for k in range(len(item_idx)) if mask[k]], dtype=np.int32)\n\n    n_obs = int(mask.sum())\n    print(f\"  Observations: {data['n_obs']} -> {n_obs}\")\n    print(f\"  Exposure in kept items: range=[{new_e_i.min():.3f}, {new_e_i.max():.3f}], mean={new_e_i.mean():.3f}\")\n    n_zero = (new_e_i == 0).sum()\n    n_pos = (new_e_i > 0).sum()\n    print(f\"  e_i=0: {n_zero}, e_i>0: {n_pos}\")\n\n    return {\n        \"model_idx\": data[\"model_idx\"][mask],\n        \"item_idx\": new_item_idx,\n        \"judge_idx\": data[\"judge_idx\"][mask],\n        \"y\": data[\"y\"][mask],\n        \"model_names\": data[\"model_names\"],\n        \"item_ids\": new_item_ids,\n        \"judge_names\": data[\"judge_names\"],\n        \"e_i\": new_e_i,\n        \"N\": data[\"N\"],\n        \"I\": n_kept,\n        \"J\": data[\"J\"],\n        \"n_obs\": n_obs,\n    }\n\n\ndef filter_items_by_coverage(data: dict, min_judges: int) -> dict:\n    item_idx = data[\"item_idx\"]\n    judge_idx = data[\"judge_idx\"]\n    I = data[\"I\"]\n\n    judges_per_item = [set() for _ in range(I)]\n    for k in range(len(item_idx)):\n        judges_per_item[item_idx[k]].add(judge_idx[k])\n\n    coverage = np.array([len(s) for s in judges_per_item])\n    keep_items = set(np.where(coverage >= min_judges)[0])\n    n_dropped = I - len(keep_items)\n\n    if n_dropped == 0:\n        print(f\"  All {I} items have >= {min_judges} judge coverage\")\n        return data\n\n    mask = np.array([item_idx[k] in keep_items for k in range(len(item_idx))])\n    old_to_new = {}\n    for old_i in sorted(keep_items):\n        old_to_new[old_i] = len(old_to_new)\n\n    new_item_ids = [data[\"item_ids\"][old_i] for old_i in sorted(keep_items)]\n    new_e_i = data[\"e_i\"][sorted(keep_items)]\n    new_I = len(keep_items)\n\n    print(f\"  Items: {I} -> {new_I} (dropped {n_dropped} with <{min_judges} judges)\")\n\n    return {\n        \"model_idx\": data[\"model_idx\"][mask],\n        \"item_idx\": np.array([old_to_new[item_idx[k]] for k in range(len(item_idx)) if mask[k]], dtype=np.int32),\n        \"judge_idx\": data[\"judge_idx\"][mask],\n        \"y\": data[\"y\"][mask],\n        \"model_names\": data[\"model_names\"],\n        \"item_ids\": new_item_ids,\n        \"judge_names\": data[\"judge_names\"],\n        \"e_i\": new_e_i,\n        \"N\": data[\"N\"],\n        \"I\": new_I,\n        \"J\": data[\"J\"],\n        \"n_obs\": int(mask.sum()),\n    }\n\n\ndef convergence_stoploss(idata, output_dir):\n    import arviz as az\n\n    rhat = az.rhat(idata)\n    ess_bulk = az.ess(idata, method=\"bulk\")\n\n    rhat_max = max(\n        float(rhat[v].values.max()) if rhat[v].values.ndim > 0 else float(rhat[v].values)\n        for v in rhat.data_vars\n    )\n    ess_min = min(\n        float(ess_bulk[v].values.min()) if ess_bulk[v].values.ndim > 0 else float(ess_bulk[v].values)\n        for v in ess_bulk.data_vars\n    )\n\n    divs = int(idata.sample_stats[\"diverging\"].values.sum()) if \"diverging\" in idata.sample_stats else 0\n\n    print(f\"  Convergence: R-hat max={rhat_max:.4f}, ESS min={ess_min:.0f}, divergences={divs}\")\n    ok = rhat_max < 1.05 and ess_min > 100\n    if not ok:\n        print(f\"  WARNING: Convergence issues detected!\")\n    return ok\n\n\ndef save_method_results(name, res, output_dir):\n    import arviz as az\n\n    np.save(os.path.join(output_dir, f\"{name}_theta.npy\"), res[\"theta_hat\"])\n    if \"c_hat\" in res:\n        np.save(os.path.join(output_dir, f\"{name}_c.npy\"), res[\"c_hat\"])\n    if \"b_hat\" in res:\n        np.save(os.path.join(output_dir, f\"{name}_b.npy\"), res[\"b_hat\"])\n    if \"d_hat\" in res:\n        np.save(os.path.join(output_dir, f\"{name}_d.npy\"), res[\"d_hat\"])\n\n    mcmc_obj = res.get(\"mcmc\")\n    if mcmc_obj is not None:\n        try:\n            idata = az.from_numpyro(mcmc_obj)\n            nc_path = os.path.join(output_dir, f\"{name}_idata.nc\")\n            idata.to_netcdf(nc_path)\n            print(f\"  Saved InferenceData: {nc_path}\")\n        except Exception as e:\n            print(f\"  Warning: failed to save InferenceData for {name}: {e}\")\n\n    sys.stdout.flush()\n\n\n# ---- Pure MFRM model (no contamination gating) ----\n\ndef _mfrm_model_ncp(model_idx, item_idx, judge_idx, y, N, I, J):\n    import jax.numpy as jnp\n    import numpyro\n    import numpyro.distributions as dist\n\n    sigma_theta = numpyro.sample(\"sigma_theta\", dist.HalfNormal(1.0))\n    theta_raw = numpyro.sample(\"theta_raw\", dist.Normal(0, 1).expand([N]))\n    theta_uncentered = theta_raw * sigma_theta\n    theta = numpyro.deterministic(\"theta\", theta_uncentered - theta_uncentered.mean())\n\n    sigma_b = numpyro.sample(\"sigma_b\", dist.HalfNormal(1.0))\n    b_raw = numpyro.sample(\"b_raw\", dist.Normal(0, 1).expand([I]))\n    b = numpyro.deterministic(\"b\", b_raw * sigma_b)\n\n    d_raw = numpyro.sample(\"d_raw\", dist.Normal(0, 0.5).expand([J]))\n    d = numpyro.deterministic(\"d\", d_raw - d_raw.mean())\n\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx]\n    numpyro.sample(\"obs\", dist.Bernoulli(logits=logits), obs=y)\n\n\ndef _to_numpy(x):\n    import jax\n    cpu = jax.devices(\"cpu\")[0]\n    return np.asarray(jax.device_put(x, cpu))\n\n\ndef _run_mcmc(model_fn, rng_key, model_kwargs, warmup, samples, chains, target_accept,\n              chain_method=\"vectorized\"):\n    from numpyro.infer import MCMC, NUTS\n    kernel = NUTS(model_fn, target_accept_prob=target_accept)\n    mcmc = MCMC(kernel, num_warmup=warmup, num_samples=samples,\n                num_chains=chains, chain_method=chain_method, progress_bar=True)\n    mcmc.run(rng_key, **model_kwargs)\n    return mcmc\n\n\ndef fit_raw_average(data):\n    N = data[\"N\"]\n    model_idx = data[\"model_idx\"]\n    y = data[\"y\"]\n    theta_hat = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            theta_hat[n] = y[mask].mean()\n    theta_hat = theta_hat - theta_hat.mean()\n    return {\"method\": \"raw_average\", \"theta_hat\": theta_hat}\n\n\ndef fit_mfrm_only(data, warmup, samples, chains, target_accept, seed, chain_method):\n    import jax\n    import jax.numpy as jnp\n\n    model_idx = jnp.array(data[\"model_idx\"])\n    item_idx = jnp.array(data[\"item_idx\"])\n    judge_idx = jnp.array(data[\"judge_idx\"])\n    y = jnp.array(data[\"y\"])\n\n    mcmc = _run_mcmc(\n        _mfrm_model_ncp, jax.random.PRNGKey(seed),\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\n             y=y, N=data[\"N\"], I=data[\"I\"], J=data[\"J\"]),\n        warmup, samples, chains, target_accept, chain_method,\n    )\n\n    samples_dict = mcmc.get_samples()\n    theta_hat = _to_numpy(samples_dict[\"theta\"].mean(axis=0))\n    b_hat = _to_numpy(samples_dict[\"b\"].mean(axis=0))\n    d_hat = _to_numpy(samples_dict[\"d\"].mean(axis=0))\n\n    return {\n        \"method\": \"mfrm_only_317\",\n        \"theta_hat\": theta_hat,\n        \"b_hat\": b_hat,\n        \"d_hat\": d_hat,\n        \"mcmc\": mcmc,\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"exp-020 v4: MFRM-only on 317 filtered items\")\n    parser.add_argument(\"--judgment-dir\",\n                        default=os.path.join(BASE_DIR, \"exp003/judgment_data_n17\"))\n    parser.add_argument(\"--exposure-csv\",\n                        default=os.path.join(BASE_DIR, \"exp002/results/exposure_scores.csv\"))\n    parser.add_argument(\"--output-dir\",\n                        default=os.path.join(BASE_DIR, \"output_n17_v4_mfrm_only\"))\n    parser.add_argument(\"--warmup\", type=int, default=4000)\n    parser.add_argument(\"--samples\", type=int, default=4000)\n    parser.add_argument(\"--chains\", type=int, default=4)\n    parser.add_argument(\"--target-accept\", type=float, default=0.95)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--chain-method\", default=\"vectorized\",\n                        choices=[\"vectorized\", \"sequential\", \"parallel\"])\n    parser.add_argument(\"--min-judges\", type=int, default=3)\n    args = parser.parse_args()\n\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    import jax\n    import numpyro\n    numpyro.set_host_device_count(min(args.chains, 4))\n\n    sys.path.insert(0, os.path.join(BASE_DIR, \"exp003\"))\n    from data_loader import load_data\n    from evaluation import run_evaluation\n\n    # Step 1: Load data\n    print(\"=\" * 60)\n    print(\"STEP 1: Loading data\")\n    print(\"=\" * 60)\n    data = load_data(args.judgment_dir, args.exposure_csv)\n\n    # Step 2: Filter judges\n    print(\"\\n\" + \"=\" * 60)\n    print(\"STEP 2: Filtering\")\n    print(\"=\" * 60)\n    data = filter_excluded_judges(data, EXCLUDE_JUDGES)\n\n    # Step 3: Filter items to exposure CSV coverage\n    print(\"\\n\" + \"=\" * 60)\n    print(\"STEP 3: Filter items by exposure CSV\")\n    print(\"=\" * 60)\n    data = filter_items_by_exposure_csv(data, args.exposure_csv)\n\n    # Step 4: Filter by judge coverage\n    if args.min_judges > 0:\n        data = filter_items_by_coverage(data, args.min_judges)\n\n    print(f\"  Final: N={data['N']}, I={data['I']}, J={data['J']}, n_obs={data['n_obs']}\")\n\n    # Step 5: Fit models\n    print(\"\\n\" + \"=\" * 60)\n    print(\"STEP 4: Fitting models (MFRM-only, no contamination)\")\n    print(\"=\" * 60)\n\n    mcmc_kwargs = dict(\n        warmup=args.warmup,\n        samples=args.samples,\n        chains=args.chains,\n        target_accept=args.target_accept,\n        seed=args.seed,\n        chain_method=args.chain_method,\n    )\n\n    results = {}\n    timings = {}\n    convergence_passed = True\n\n    # raw_average\n    print(\"\\n--- raw_average ---\")\n    t0 = time.time()\n    results[\"raw_average\"] = fit_raw_average(data)\n    timings[\"raw_average\"] = time.time() - t0\n    print(f\"  Done in {timings['raw_average']:.1f}s\")\n    save_method_results(\"raw_average\", results[\"raw_average\"], args.output_dir)\n\n    # mfrm_only_317\n    print(\"\\n--- mfrm_only_317 ---\")\n    t0 = time.time()\n    results[\"mfrm_only_317\"] = fit_mfrm_only(data, **mcmc_kwargs)\n    elapsed = time.time() - t0\n    timings[\"mfrm_only_317\"] = elapsed\n    print(f\"  Done in {elapsed:.1f}s\")\n    save_method_results(\"mfrm_only_317\", results[\"mfrm_only_317\"], args.output_dir)\n\n    import arviz as az\n    idata = az.from_numpyro(results[\"mfrm_only_317\"][\"mcmc\"])\n    if not convergence_stoploss(idata, args.output_dir):\n        convergence_passed = False\n\n    sys.stdout.flush()\n\n    # Step 6: Evaluation\n    print(\"\\n\" + \"=\" * 60)\n    print(\"STEP 5: Evaluation\")\n    print(\"=\" * 60)\n    report = run_evaluation(results, data, args.output_dir)\n\n    # Step 7: Save metadata\n    metadata = {\n        \"experiment\": \"exp-020-v4-mfrm-only-317\",\n        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n        \"parameterization\": \"non-centered (sigma_b, sigma_theta hierarchical)\",\n        \"model\": \"pure MFRM (no contamination gating c_n * e_i)\",\n        \"item_filter\": \"exposure CSV coverage only (317 items before judge coverage filter)\",\n        \"mcmc_config\": {\n            \"warmup\": args.warmup,\n            \"samples\": args.samples,\n            \"chains\": args.chains,\n            \"target_accept\": args.target_accept,\n            \"chain_method\": args.chain_method,\n            \"seed\": args.seed,\n        },\n        \"data_summary\": {\n            \"N\": data[\"N\"], \"I\": data[\"I\"], \"J\": data[\"J\"],\n            \"n_obs\": data[\"n_obs\"],\n            \"model_names\": data[\"model_names\"],\n            \"judge_names\": data[\"judge_names\"],\n        },\n        \"excluded_judges\": EXCLUDE_JUDGES,\n        \"excluded_models_from_tau\": EXCLUDE_MODELS_FROM_TAU,\n        \"min_judges\": args.min_judges,\n        \"timings_seconds\": timings,\n        \"convergence_passed\": convergence_passed,\n    }\n    with open(os.path.join(args.output_dir, \"run_metadata.json\"), \"w\") as f:\n        json.dump(metadata, f, indent=2)\n\n    # Summary\n    print(\"\\n\" + \"=\" * 60)\n    total_time = sum(timings.values())\n    print(f\"TOTAL TIME: {total_time:.0f}s ({total_time/60:.1f}min)\")\n    if convergence_passed:\n        print(\"\\nDONE — Convergence OK\")\n    else:\n        print(\"\\nDONE — CONVERGENCE FAILED\")\n        sys.exit(1)\n    print(\"=\" * 60)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T16:05:10.620549+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-25T16:05:10.620691+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Create v4 MFRM-only script (remove contamination gating from v3)', 'status': 'completed', 'activeForm': 'Creating v4 MFRM-only script'}, {'content': 'Run v4 MCMC on autodl-8gpu', 'status': 'in_progress', 'activeForm': 'Running v4 MCMC'}, {'content': 'Extract results and save to v4_results.txt', 'status': 'pending', 'activeForm': 'Extracting and saving results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Create v4 MFRM-only script (remove contamination gating from v3)', 'status': 'completed', 'activeForm': 'Creating v4 MFRM-only script'}, {'content': 'Run v4 MCMC on autodl-8gpu', 'status': 'in_progress', 'activeForm': 'Running v4 MCMC'}, {'content': 'Extract results and save to v4_results.txt', 'status': 'pending', 'activeForm': 'Extracting and saving results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T16:05:10.620828+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-25T16:05:10.620966+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "mkdir -p /root/gated_mfrm_judge_bias/logs && ls /root/gated_mfrm_judge_bias/run_mcmc_n17_v4_mfrm_only.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "mkdir -p /root/gated_mfrm_judge_bias/logs && ls /root/gated_mfrm_judge_bias/run_mcmc_n17_v4_mfrm_only.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-25T16:05:10.621099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/run_mcmc_n17_v4_mfrm_only.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-25T16:05:10.621222+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cd /root/gated_mfrm_judge_bias && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -u run_mcmc_n17_v4_mfrm_only.py 2>&1 | tee logs/v4_mfrm_only.log' > /tmp/v4_nohup.log 2>&1 & echo $!"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cd /root/gated_mfrm_judge_bias && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -u run_mcmc_n17_v4_mfrm_only.py 2>&1 | tee logs/v4_mfrm_only.log' > /tmp/v4_nohup.log 2>&1 & echo $!"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T16:05:10.621349+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: \\\"cd /root/gated_mfrm_judge_bias && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -u run_mcmc_n17_v4_mfrm_only.py 2>&1 | tee logs/v4_mfrm_only.log' > /tmp/v4_nohup.log 2>&1 & echo $!\\\"\\n\\nStdout:\\n\\n90112\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-25T16:05:10.621517+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -30 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -30 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T16:05:10.621668+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    llama-3.3-70b: 7115\\n    mistral-large-2: 43\\n    qwen2.5-72b: 7121\\n    qwen3-235b-proxy: 7319\\n\\n============================================================\\nSTEP 2: Filtering\\n============================================================\\n  Excluded judges ['mistral-large-2']: removed 43 observations\\n  Remaining judges (6): ['claude-sonnet-4.6-proxy', 'deepseek-v4-pro-proxy', 'gemini-2.5-pro-proxy', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-235b-proxy']\\n\\n============================================================\\nSTEP 3: Filter items by exposure CSV\\n============================================================\\n  Item filtering by exposure CSV: 500 -> 317 (dropped 183 not in CSV)\\n  Observations: 36231 -> 25665\\n  Exposure in kept items: range=[0.000, 1.000], mean=0.212\\n  e_i=0: 86, e_i>0: 231\\n  All 317 items have >= 3 judge coverage\\n  Final: N=18, I=317, J=6, n_obs=25665\\n\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-25T16:05:10.621819+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -10 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -10 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T16:05:10.621958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-25T16:05:10.622103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -5 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -5 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-25T16:05:10.622236+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-25T16:05:10.622389+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ps -p 90112 -o pid,etime,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ps -p 90112 -o pid,etime,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-25T16:05:10.622540+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED CMD\\n 90112       00:47 bash -c cd /root/gated_mfrm_judge_bias && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -u run_mcmc_n17_v4_mfrm_only.py 2>&1 | tee logs/v4_mfrm_only.log' > /tmp/v4_nohup.log 2>&1 & echo $!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-25T16:05:10.622679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -15 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -15 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T16:05:10.622819+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Observations: 36231 -> 25665\\n  Exposure in kept items: range=[0.000, 1.000], mean=0.212\\n  e_i=0: 86, e_i>0: 231\\n  All 317 items have >= 3 judge coverage\\n  Final: N=18, I=317, J=6, n_obs=25665\\n\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-25T16:05:10.622969+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -5 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -5 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-25T16:05:10.623103+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-25T16:05:10.623243+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -3 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -3 /root/gated_mfrm_judge_bias/logs/v4_mfrm_only.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-25T16:05:10.623374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-25T16:05:10.623548+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -5 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -5 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-25T16:05:10.623684+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-25T16:05:10.623815+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ps -p 90112 -o pid,etime"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ps -p 90112 -o pid,etime"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-25T16:05:10.623938+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n 90112       01:06\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-25T16:05:10.624068+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -3 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -3 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-25T16:05:10.624250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-25T16:05:10.624462+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -3 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -3 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-25T16:05:10.624606+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-25T16:05:10.624748+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ps -p 90112 -o pid,etime"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ps -p 90112 -o pid,etime"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-25T16:05:10.624870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n 90112       01:17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-25T16:05:10.624993+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ps aux --sort=-rss"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ps aux --sort=-rss"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-25T16:05:10.625136+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot      30859 1057  1.8 93294168 19016724 ?   Sl   May25 2587:35 python exp009/run_exp009.py --part a\\nroot      90118  126  0.1 93092172 1768520 ?    Rl   00:00   1:39 python -u run_mcmc_n17_v4_mfrm_only.py\\nroot        939  0.2  0.0 6673096 105296 ?      Sl   May25   1:35 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        944  0.0  0.0 188724 103028 ?       S    May25   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        938  0.0  0.0 4147592 79228 ?       Sl   May25   0:28 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        919  1.9  0.0 722848 23604 ?        Sl   May25  13:00 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        945  0.0  0.0 3089936 20068 ?       Sl   May25   0:23 proxy -c /init/proxy/proxy.ini\\nroot        942  0.0  0.0 3164180 19232 ?       Sl   May25   0:08 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1049  0.0  0.0 28341192 12544 ?      Sl   May25   0:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_bljxgds_/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_bljxgds_/startup_error\\nroot      91608  0.0  0.0  16692 10944 ?        Ss   00:01   0:00 sshd: root@notty\\nroot       1527  0.0  0.0  16692 10792 ?        Ss   May25   0:03 sshd: root@notty\\nroot       1503  0.0  0.0  16692 10692 ?        Ss   May25   0:03 sshd: root@notty\\nroot      91620  0.0  0.0  16692 10648 ?        Ss   00:01   0:00 sshd: root@notty\\nroot      89969  0.0  0.0  16704 10632 ?        Ss   May25   0:00 sshd: root@notty\\nroot        943  0.0  0.0  15444  9652 ?      
+…[truncated 955 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-25T16:05:10.625293+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -3 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -3 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-25T16:05:10.625444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-25T16:05:10.625641+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -3 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -3 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-25T16:05:10.625806+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-25T16:05:10.625954+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -3 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -3 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-25T16:05:10.626089+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\\rsample:  55%|█████▌    | 4400/8000 [01:22<00:57, 62.33it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-25T16:05:10.626233+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -3 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -3 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-25T16:05:10.626368+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\\rsample:  55%|█████▌    | 4400/8000 [01:22<00:57, 62.33it/s]\\rsample:  60%|██████    | 4800/8000 [01:27<00:48, 66.30it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-25T16:05:10.626565+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -3 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -3 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-25T16:05:10.626710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\\rsample:  55%|█████▌    | 4400/8000 [01:22<00:57, 62.33it/s]\\rsample:  60%|██████    | 4800/8000 [01:27<00:48, 66.30it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-25T16:05:10.626855+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ps -p 90118 -o pid,etime"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ps -p 90118 -o pid,etime"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-25T16:05:10.626979+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n 90118       01:45\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-25T16:05:10.627113+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -20 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -20 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-25T16:05:10.627257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nSTEP 3: Filter items by exposure CSV\\n============================================================\\n  Item filtering by exposure CSV: 500 -> 317 (dropped 183 not in CSV)\\n  Observations: 36231 -> 25665\\n  Exposure in kept items: range=[0.000, 1.000], mean=0.212\\n  e_i=0: 86, e_i>0: 231\\n  All 317 items have >= 3 judge coverage\\n  Final: N=18, I=317, J=6, n_obs=25665\\n\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\\rsample:  55%|█████▌    | 4400/8000 [01:22<00:57, 62.33it/s]\\rsample:  60%|██████    | 4800/8000 [01:27<00:48, 66.30it/s]\\rsample:  65%|██████▌   | 5200/8000 [01:32<00:40, 68.76it/s]\\rsample:  70%|███████   | 5600/8000 [01:37<00:33, 71.27it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-25T16:05:10.627431+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -20 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -20 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-25T16:05:10.627590+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nSTEP 3: Filter items by exposure CSV\\n============================================================\\n  Item filtering by exposure CSV: 500 -> 317 (dropped 183 not in CSV)\\n  Observations: 36231 -> 25665\\n  Exposure in kept items: range=[0.000, 1.000], mean=0.212\\n  e_i=0: 86, e_i>0: 231\\n  All 317 items have >= 3 judge coverage\\n  Final: N=18, I=317, J=6, n_obs=25665\\n\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\\rsample:  55%|█████▌    | 4400/8000 [01:22<00:57, 62.33it/s]\\rsample:  60%|██████    | 4800/8000 [01:27<00:48, 66.30it/s]\\rsample:  65%|██████▌   | 5200/8000 [01:32<00:40, 68.76it/s]\\rsample:  70%|███████   | 5600/8000 [01:37<00:33, 71.27it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-25T16:05:10.627762+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ps -p 90118 -o pid,etime"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ps -p 90118 -o pid,etime"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-25T16:05:10.627890+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n 90118       01:56\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-25T16:05:10.628024+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -30 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -30 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-25T16:05:10.628202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    llama-3.3-70b: 7115\\n    mistral-large-2: 43\\n    qwen2.5-72b: 7121\\n    qwen3-235b-proxy: 7319\\n\\n============================================================\\nSTEP 2: Filtering\\n============================================================\\n  Excluded judges ['mistral-large-2']: removed 43 observations\\n  Remaining judges (6): ['claude-sonnet-4.6-proxy', 'deepseek-v4-pro-proxy', 'gemini-2.5-pro-proxy', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-235b-proxy']\\n\\n============================================================\\nSTEP 3: Filter items by exposure CSV\\n============================================================\\n  Item filtering by exposure CSV: 500 -> 317 (dropped 183 not in CSV)\\n  Observations: 36231 -> 25665\\n  Exposure in kept items: range=[0.000, 1.000], mean=0.212\\n  e_i=0: 86, e_i>0: 231\\n  All 317 items have >= 3 judge coverage\\n  Final: N=18, I=317, J=6, n_obs=25665\\n\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\\rsample:  55%|█████▌    | 4400/8000 [01:22<00:57, 62.33it/s]\\rsample:  60%|██████    | 4800/8000 [01:27<00:48
+…[truncated 364 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-25T16:05:10.628404+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -30 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -30 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-25T16:05:10.628588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    llama-3.3-70b: 7115\\n    mistral-large-2: 43\\n    qwen2.5-72b: 7121\\n    qwen3-235b-proxy: 7319\\n\\n============================================================\\nSTEP 2: Filtering\\n============================================================\\n  Excluded judges ['mistral-large-2']: removed 43 observations\\n  Remaining judges (6): ['claude-sonnet-4.6-proxy', 'deepseek-v4-pro-proxy', 'gemini-2.5-pro-proxy', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-235b-proxy']\\n\\n============================================================\\nSTEP 3: Filter items by exposure CSV\\n============================================================\\n  Item filtering by exposure CSV: 500 -> 317 (dropped 183 not in CSV)\\n  Observations: 36231 -> 25665\\n  Exposure in kept items: range=[0.000, 1.000], mean=0.212\\n  e_i=0: 86, e_i>0: 231\\n  All 317 items have >= 3 judge coverage\\n  Final: N=18, I=317, J=6, n_obs=25665\\n\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\\rsample:  55%|█████▌    | 4400/8000 [01:22<00:57, 62.33it/s]\\rsample:  60%|██████    | 4800/8000 [01:27<00:48
+…[truncated 426 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-25T16:05:10.628757+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -40 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -40 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-25T16:05:10.628923+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    llama-3.3-70b-instruct: 0.767 (n=1977)\\n    mistral-large-2407: 0.838 (n=2043)\\n    mixtral-8x22b-instruct-v0.1: 0.362 (n=1955)\\n    qwen2.5-72b-instruct: 0.901 (n=2160)\\n    qwen3-8b: 0.671 (n=1906)\\n\\n  Per-judge observations:\\n    claude-sonnet-4.6-proxy: 4374\\n    deepseek-v4-pro-proxy: 7293\\n    gemini-2.5-pro-proxy: 3009\\n    llama-3.3-70b: 7115\\n    mistral-large-2: 43\\n    qwen2.5-72b: 7121\\n    qwen3-235b-proxy: 7319\\n\\n============================================================\\nSTEP 2: Filtering\\n============================================================\\n  Excluded judges ['mistral-large-2']: removed 43 observations\\n  Remaining judges (6): ['claude-sonnet-4.6-proxy', 'deepseek-v4-pro-proxy', 'gemini-2.5-pro-proxy', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-235b-proxy']\\n\\n============================================================\\nSTEP 3: Filter items by exposure CSV\\n============================================================\\n  Item filtering by exposure CSV: 500 -> 317 (dropped 183 not in CSV)\\n  Observations: 36231 -> 25665\\n  Exposure in kept items: range=[0.000, 1.000], mean=0.212\\n  e_i=0: 86, e_i>0: 231\\n  All 317 items have >= 3 judge coverage\\n  Final: N=18, I=317, J=6, n_obs=25665\\n\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|
+…[truncated 832 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-25T16:05:10.629088+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -20 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -20 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-25T16:05:10.629245+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nSTEP 3: Filter items by exposure CSV\\n============================================================\\n  Item filtering by exposure CSV: 500 -> 317 (dropped 183 not in CSV)\\n  Observations: 36231 -> 25665\\n  Exposure in kept items: range=[0.000, 1.000], mean=0.212\\n  e_i=0: 86, e_i>0: 231\\n  All 317 items have >= 3 judge coverage\\n  Final: N=18, I=317, J=6, n_obs=25665\\n\\n============================================================\\nSTEP 4: Fitting models (MFRM-only, no contamination)\\n============================================================\\n\\n--- raw_average ---\\n  Done in 0.0s\\n\\n--- mfrm_only_317 ---\\n\\r  0%|          | 0/8000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 400/8000 [00:13<04:14, 29.83it/s]\\rwarmup:  10%|█         | 800/8000 [00:20<02:55, 41.14it/s]\\rwarmup:  15%|█▌        | 1200/8000 [00:28<02:28, 45.76it/s]\\rwarmup:  20%|██        | 1600/8000 [00:35<02:09, 49.53it/s]\\rwarmup:  25%|██▌       | 2000/8000 [00:42<01:57, 51.01it/s]\\rwarmup:  30%|███       | 2400/8000 [00:49<01:46, 52.83it/s]\\rwarmup:  35%|███▌      | 2800/8000 [00:56<01:35, 54.72it/s]\\rwarmup:  40%|████      | 3200/8000 [01:03<01:25, 56.11it/s]\\rwarmup:  45%|████▌     | 3600/8000 [01:09<01:17, 57.02it/s]\\rwarmup:  50%|█████     | 4000/8000 [01:16<01:10, 57.10it/s]\\rsample:  55%|█████▌    | 4400/8000 [01:22<00:57, 62.33it/s]\\rsample:  60%|██████    | 4800/8000 [01:27<00:48, 66.30it/s]\\rsample:  65%|██████▌   | 5200/8000 [01:32<00:40, 68.76it/s]\\rsample:  70%|███████   | 5600/8000 [01:37<00:33, 71.27it/s]\\rsample:  75%|███████▌  | 6000/8000 [01:42<00:27, 72.49it/s]\\rsample:  80%|████████  | 6400/8000 [01:48<00:21, 73.16it/s]\\rsample:  85%|████████▌ | 6800/8000 [01:53<00:16, 74.53it/s]\\rsample:  90%|█████████ | 7200/8000 [01:58<00:10, 75.43it/s]\\rsample:  95%|█████████���| 7600/8000 [02:03<00:05, 75.94it/s]\", \"stderr\": \"\", \"re
+…[truncated 78 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-25T16:05:10.629403+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ps -p 90118 -o pid,etime"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ps -p 90118 -o pid,etime"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-25T16:05:10.629552+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n 90118       02:21\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-25T16:05:10.629693+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -50 /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -50 /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-25T16:05:10.629845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  raw_average theta ranking:\\n    claude-3-5-sonnet-20241022: 0.282\\n    gpt-4-turbo-2024-04-09: 0.257\\n    gpt-4o-2024-05-13: 0.254\\n    qwen2.5-72b-instruct: 0.238\\n    mistral-large-2407: 0.179\\n    gpt-4o-mini-2024-07-18: 0.176\\n    llama-3.3-70b-instruct: 0.111\\n    claude-3-opus-20240229: 0.089\\n    llama-3.1-70b-instruct: 0.070\\n    gemma-2-27b-it: 0.053\\n    qwen3-8b: 0.033\\n    llama-3-70b-instruct: -0.015\\n    gemma-2-9b-it: -0.102\\n    claude-3-haiku-20240307: -0.154\\n    llama-3-8b-instruct: -0.309\\n    mixtral-8x22b-instruct-v0.1: -0.309\\n    gpt-4-0613: -0.386\\n    gpt-3.5-turbo-0613: -0.468\\n\\n  mfrm_only_317 theta ranking:\\n    claude-3-5-sonnet-20241022: 2.464\\n    gpt-4-turbo-2024-04-09: 2.022\\n    gpt-4o-2024-05-13: 1.994\\n    qwen2.5-72b-instruct: 1.767\\n    mistral-large-2407: 1.089\\n    gpt-4o-mini-2024-07-18: 1.006\\n    llama-3.3-70b-instruct: 0.473\\n    claude-3-opus-20240229: 0.363\\n    llama-3.1-70b-instruct: 0.205\\n    gemma-2-27b-it: 0.072\\n    qwen3-8b: 0.029\\n    llama-3-70b-instruct: -0.307\\n    gemma-2-9b-it: -0.818\\n    claude-3-haiku-20240307: -1.051\\n    llama-3-8b-instruct: -1.927\\n    mixtral-8x22b-instruct-v0.1: -1.929\\n    gpt-4-0613: -2.433\\n    gpt-3.5-turbo-0613: -3.020\\n\\n5. Generating plots...\\n  Plots saved to /root/gated_mfrm_judge_bias/output_n17_v4_mfrm_only\\n\\n  Results saved to /root/gated_mfrm_judge_bias/output_n17_v4_mfrm_only/results.json\\n\\n============================================================\\nTOTAL TIME: 137s (2.3min)\\n\\nDONE — Convergence OK\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-25T16:05:10.629998+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/output_n17_v4_mfrm_only/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/output_n17_v4_mfrm_only/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-25T16:05:10.630300+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only_317\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.8235294117647057,\\n      \\\"kendall_p\\\": 1.25716599654265e-07,\\n      \\\"spearman_rho\\\": 0.9264705882352943,\\n      \\\"spearman_p\\\": 9.329882323638342e-08,\\n      \\\"n_matched\\\": 17,\\n      \\\"matched_models\\\": [\\n        \\\"claude-3-5-sonnet-20241022\\\",\\n        \\\"claude-3-haiku-20240307\\\",\\n        \\\"claude-3-opus-20240229\\\",\\n        \\\"gemma-2-27b-it\\\",\\n        \\\"gemma-2-9b-it\\\",\\n        \\\"gpt-3.5-turbo-0613\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4-turbo-2024-04-09\\\",\\n        \\\"gpt-4o-2024-05-13\\\",\\n        \\\"gpt-4o-mini-2024-07-18\\\",\\n        \\\"llama-3-70b-instruct\\\",\\n        \\\"llama-3-8b-instruct\\\",\\n        \\\"llama-3.1-70b-instruct\\\",\\n        \\\"llama-3.3-70b-instruct\\\",\\n        \\\"mistral-large-2407\\\",\\n        \\\"mixtral-8x22b-instruct-v0.1\\\",\\n        \\\"qwen2.5-72b-instruct\\\"\\n      ],\\n      \\\"excluded\\\": [\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only_317\\\": {\\n      \\\"kendall_tau\\\": 0.8235294117647057,\\n      \\\"kendall_p\\\": 1.25716599654265e-07,\\n      \\\"spearman_rho\\\": 0.9264705882352943,\\n      \\\"spearman_p\\\": 9.329882323638342e-08,\\n      \\\"n_matched\\\": 17,\\n      \\\"matched_models\\\": [\\n        \\\"claude-3-5-sonnet-20241022\\\",\\n        \\\"claude-3-haiku-20240307\\\",\\n        \\\"claude-3-opus-20240229\\\",\\n        \\\"gemma-2-27b-it\\\",\\n        \\\"gemma-2-9b-it\\\",\\n        \\\"gpt-3.5-turbo-0613\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"g
+…[truncated 7909 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-25T16:05:10.630495+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -E \"(Convergence|R-hat|ESS|divergen|tau=|rho=|TOTAL)\" /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep -E \"(Convergence|R-hat|ESS|divergen|tau=|rho=|TOTAL)\" /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-25T16:05:10.630631+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-25T16:05:10.630754+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -E \"Convergence|R-hat|tau=|rho=|TOTAL|Done in\" /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep -E \"Convergence|R-hat|tau=|rho=|TOTAL|Done in\" /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-25T16:05:10.630874+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-25T16:05:10.630992+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep \"Convergence\\|tau=\\|rho=\\|TOTAL\\|Done in\" /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep \"Convergence\\|tau=\\|rho=\\|TOTAL\\|Done in\" /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-25T16:05:10.631108+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-25T16:05:10.631230+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -E \"(Convergence|R-hat|tau=|rho=|TOTAL|Done in)\" /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep -E \"(Convergence|R-hat|tau=|rho=|TOTAL|Done in)\" /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-25T16:05:10.631347+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-25T16:05:10.631480+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep \"Convergence\" /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep \"Convergence\" /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-25T16:05:10.631611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Convergence: R-hat max=1.0064, ESS min=1118, divergences=0\\n1. Convergence diagnostics:\\nDONE — Convergence OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-25T16:05:10.631733+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep \"tau=\" /tmp/v4_nohup.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep \"tau=\" /tmp/v4_nohup.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-25T16:05:10.631852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  raw_average: tau=0.824 (p=0.000), rho=0.926 (p=0.000)\\n  mfrm_only_317: tau=0.824 (p=0.000), rho=0.926 (p=0.000)\\n  raw_average_vs_mfrm_only_317: tau=1.000, rho=1.000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-25T16:05:10.632006+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Create v4 MFRM-only script (remove contamination gating from v3)', 'status': 'completed', 'activeForm': 'Creating v4 MFRM-only script'}, {'content': 'Run v4 MCMC on autodl-8gpu', 'status': 'completed', 'activeForm': 'Running v4 MCMC'}, {'content': 'Extract results and save to v4_results.txt', 'status': 'in_progress', 'activeForm': 'Extracting and saving results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Create v4 MFRM-only script (remove contamination gating from v3)', 'status': 'completed', 'activeForm': 'Creating v4 MFRM-only script'}, {'content': 'Run v4 MCMC on autodl-8gpu', 'status': 'completed', 'activeForm': 'Running v4 MCMC'}, {'content': 'Extract results and save to v4_results.txt', 'status': 'in_progress', 'activeForm': 'Extracting and saving results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-25T16:05:10.632163+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-25T16:05:10.632331+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/output_n17_v3_filtered/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/output_n17_v3_filtered/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-25T16:05:10.632650+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.8235294117647057,\\n      \\\"kendall_p\\\": 1.25716599654265e-07,\\n      \\\"spearman_rho\\\": 0.9264705882352943,\\n      \\\"spearman_p\\\": 9.329882323638342e-08,\\n      \\\"n_matched\\\": 17,\\n      \\\"matched_models\\\": [\\n        \\\"claude-3-5-sonnet-20241022\\\",\\n        \\\"claude-3-haiku-20240307\\\",\\n        \\\"claude-3-opus-20240229\\\",\\n        \\\"gemma-2-27b-it\\\",\\n        \\\"gemma-2-9b-it\\\",\\n        \\\"gpt-3.5-turbo-0613\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4-turbo-2024-04-09\\\",\\n        \\\"gpt-4o-2024-05-13\\\",\\n        \\\"gpt-4o-mini-2024-07-18\\\",\\n        \\\"llama-3-70b-instruct\\\",\\n        \\\"llama-3-8b-instruct\\\",\\n        \\\"llama-3.1-70b-instruct\\\",\\n        \\\"llama-3.3-70b-instruct\\\",\\n        \\\"mistral-large-2407\\\",\\n        \\\"mixtral-8x22b-instruct-v0.1\\\",\\n        \\\"qwen2.5-72b-instruct\\\"\\n      ],\\n      \\\"excluded\\\": [\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"kendall_tau\\\": 0.8088235294117646,\\n      \\\"kendall_p\\\": 2.674946328840178e-07,\\n      \\\"spearman_rho\\\": 0.928921568627451,\\n      \\\"spearman_p\\\": 7.287799106752726e-08,\\n      \\\"n_matched\\\": 17,\\n      \\\"matched_models\\\": [\\n        \\\"claude-3-5-sonnet-20241022\\\",\\n        \\\"claude-3-haiku-20240307\\\",\\n        \\\"claude-3-opus-20240229\\\",\\n        \\\"gemma-2-27b-it\\\",\\n        \\\"gemma-2-9b-it\\\",\\n        \\\"gpt-3.5-turbo-0613\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4
+…[truncated 7900 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-25T16:05:10.632848+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "python3 -c \"\nimport json\nwith open('/root/gated_mfrm_judge_bias/output_n17_v3_filtered/results.json') as f:\n    v3 = json.load(f)\nwith open('/root/gated_mfrm_judge_bias/output_n17_v4_mfrm_only/results.json') as f:\n    v4 = json.load(f)\n\nv3_theta = v3['parameters']['joint_gmfrm']['theta_values']\nv3_c = v3['parameters']['joint_gmfrm']['c_values']\nv4_theta = v4['parameters']['mfrm_only_317']['theta_values']\nraw_theta = v4['parameters']['raw_average']['theta_values']\n\nmodels = list(v4_theta.keys())\narena_elo = {'claude-3-5-sonnet-20241022':1298,'claude-3-haiku-20240307':1195,'claude-3-opus-20240229':1262,'gemma-2-27b-it':1231,'gemma-2-9b-it':1207,'gpt-3.5-turbo-0613':1125,'gpt-4-0613':1186,'gpt-4-turbo-2024-04-09':1272,'gpt-4o-2024-05-13':1300,'gpt-4o-mini-2024-07-18':1286,'llama-3-70b-instruct':1221,'llama-3-8b-instruct':1166,'llama-3.1-70b-instruct':1261,'llama-3.3-70b-instruct':1275,'mistral-large-2407':1250,'mixtral-8x22b-instruct-v0.1':1162,'qwen2.5-72b-instruct':1269,'qwen3-8b':1170}\n\nfrom scipy.stats import rankdata\narena_vals = [arena_elo[m] for m in models]\narena_ranks = rankdata([-v for v in arena_vals], method='min')\nraw_vals = [raw_theta[m] for m in models]\nraw_ranks = rankdata([-v for v in raw_vals], method='min')\nv3_vals = [v3_theta[m] for m in models]\nv3_ranks = rankdata([-v for v in v3_vals], method='min')\nv4_vals = [v4_theta[m] for m in models]\nv4_ranks = rankdata([-v for v in v4_vals], method='min')\n\nprint(f'{'Model':<35} {'Arena_R':>7} {'Raw_R':>5} {'v3_R':>4} {'v4_R':>4} {'v3_theta':>9} {'v4_theta':>9} {'v3_c':>7} {'d_theta':>8}')\nfor i, m in enumerate(models):\n    dt = v4_theta[m] - v3_theta[m]\n    print(f'{m:<35} {int(arena_ranks[i]):>7} {int(raw_ranks[i]):>5} {int(v3_ranks[i]):>4} {int(v4_ranks[i]):>4} {v3_theta[m]:>9.3f} {v4_theta[m]:>9.3f} {v3_c[m]:>7.3f} {dt:>+8.3f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "python3 -c \"\nimport json\nwith open('/root/gated_mfrm_judge_bias/output_n17_v3_filtered/results.json') as f:\n    v3 = json.load(f)\nwith open('/root/gated_mfrm_judge_bias/output_n17_v4_mfrm_only/results.json') as f:\n    v4 = json.load(f)\n\nv3_theta = v3['parameters']['joint_gmfrm']['theta_values']\nv3_c = v3['parameters']['joint_gmfrm']['c_values']\nv4_theta = v4['parameters']['mfrm_only_317']['theta_values']\nraw_theta = v4['parameters']['raw_average']['theta_values']\n\nmodels = list(v4_theta.keys())\narena_elo = {'claude-3-5-sonnet-20241022':1298,'claude-3-haiku-20240307':1195,'claude-3-opus-20240229':1262,'gemma-2-27b-it':1231,'gemma-2-9b-it':1207,'gpt-3.5-turbo-0613':1125,'gpt-4-0613':1186,'gpt-4-turbo-2024-04-09':1272,'gpt-4o-2024-05-13':1300,'gpt-4o-mini-2024-07-18':1286,'llama-3-70b-instruct':1221,'llama-3-8b-instruct':1166,'llama-3.1-70b-instruct':1261,'llama-3.3-70b-instruct':1275,'mistral-large-2407':1250,'mixtral-8x22b-instruct-v0.1':1162,'qwen2.5-72b-instruct':1269,'qwen3-8b':1170}\n\nfrom scipy.stats import rankdata\narena_vals = [arena_elo[m] for m in models]\narena_ranks = rankdata([-v for v in arena_vals], method='min')\nraw_vals = [raw_theta[m] for m in models]\nraw_ranks = rankdata([-v for v in raw_vals], method='min')\nv3_vals = [v3_theta[m] for m in models]\nv3_ranks = rankdata([-v for v in v3_vals], method='min')\nv4_vals = [v4_theta[m] for m in models]\nv4_ranks = rankdata([-v for v in v4_vals], method='min')\n\nprint(f'{'Model':<35} {'Arena_R':>7} {'Raw_R':>5} {'v3_R':>4} {'v4_R':>4} {'v3_theta':>9} {'v4_theta':>9} {'v3_c':>7} {'d_theta':>8}')\nfor i, m in enumerate(models):\n    dt = v4_theta[m] - v3_theta[m]\n    print(f'{m:<35} {int(arena_ranks[i]):>7} {int(raw_ranks[i]):>5} {int(v3_ranks[i]):>4} {int(v4_ranks[i]):>4} {v3_theta[m]:>9.3f} {v4_theta[m]:>9.3f} {v3_c[m]:>7.3f} {dt:>+8.3f}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-25T16:05:10.633001+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-25T16:05:10.633134+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cd /root/gated_mfrm_judge_bias && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('output_n17_v3_filtered/results.json') as f:\n    v3 = json.load(f)\nwith open('output_n17_v4_mfrm_only/results.json') as f:\n    v4 = json.load(f)\n\nv3_theta = v3['parameters']['joint_gmfrm']['theta_values']\nv3_c = v3['parameters']['joint_gmfrm']['c_values']\nv4_theta = v4['parameters']['mfrm_only_317']['theta_values']\nraw_theta = v4['parameters']['raw_average']['theta_values']\n\nmodels = list(v4_theta.keys())\narena_elo = {'claude-3-5-sonnet-20241022':1298,'claude-3-haiku-20240307':1195,'claude-3-opus-20240229':1262,'gemma-2-27b-it':1231,'gemma-2-9b-it':1207,'gpt-3.5-turbo-0613':1125,'gpt-4-0613':1186,'gpt-4-turbo-2024-04-09':1272,'gpt-4o-2024-05-13':1300,'gpt-4o-mini-2024-07-18':1286,'llama-3-70b-instruct':1221,'llama-3-8b-instruct':1166,'llama-3.1-70b-instruct':1261,'llama-3.3-70b-instruct':1275,'mistral-large-2407':1250,'mixtral-8x22b-instruct-v0.1':1162,'qwen2.5-72b-instruct':1269,'qwen3-8b':1170}\n\nfrom scipy.stats import rankdata\narena_vals = [arena_elo[m] for m in models]\narena_ranks = rankdata([-v for v in arena_vals], method='min')\nraw_vals = [raw_theta[m] for m in models]\nraw_ranks = rankdata([-v for v in raw_vals], method='min')\nv3_vals = [v3_theta[m] for m in models]\nv3_ranks = rankdata([-v for v in v3_vals], method='min')\nv4_vals = [v4_theta[m] for m in models]\nv4_ranks = rankdata([-v for v in v4_vals], method='min')\n\nheader = f\\\"{'Model':<35} {'Arena_R':>7} {'Raw_R':>5} {'v3_R':>4} {'v4_R':>4} {'v3_theta':>9} {'v4_theta':>9} {'v3_c':>7} {'d_theta':>8}\\\"\nprint(header)\n\nsorted_idx = sorted(range(len(models)), key=lambda i: arena_vals[i], reverse=True)\nfor i in sorted_idx:\n    m = models[i]\n    dt = v4_theta[m] - v3_theta[m]\n    print(f'{m:<35} {int(arena_ranks[i]):>7} {int(raw_ranks[i]):>5} {int(v3_ranks[i]):>4} {int(v4_ranks[i]):>4} {v3_theta[m]:>9.3f} {v4_theta[m]:>9.3f} {v3_c[m]:>7.3f} {dt:>+8.3f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cd /root/gated_mfrm_judge_bias && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('output_n17_v3_filtered/results.json') as f:\n    v3 = json.load(f)\nwith open('output_n17_v4_mfrm_only/results.json') as f:\n    v4 = json.load(f)\n\nv3_theta = v3['parameters']['joint_gmfrm']['theta_values']\nv3_c = v3['parameters']['joint_gmfrm']['c_values']\nv4_theta = v4['parameters']['mfrm_only_317']['theta_values']\nraw_theta = v4['parameters']['raw_average']['theta_values']\n\nmodels = list(v4_theta.keys())\narena_elo = {'claude-3-5-sonnet-20241022':1298,'claude-3-haiku-20240307':1195,'claude-3-opus-20240229':1262,'gemma-2-27b-it':1231,'gemma-2-9b-it':1207,'gpt-3.5-turbo-0613':1125,'gpt-4-0613':1186,'gpt-4-turbo-2024-04-09':1272,'gpt-4o-2024-05-13':1300,'gpt-4o-mini-2024-07-18':1286,'llama-3-70b-instruct':1221,'llama-3-8b-instruct':1166,'llama-3.1-70b-instruct':1261,'llama-3.3-70b-instruct':1275,'mistral-large-2407':1250,'mixtral-8x22b-instruct-v0.1':1162,'qwen2.5-72b-instruct':1269,'qwen3-8b':1170}\n\nfrom scipy.stats import rankdata\narena_vals = [arena_elo[m] for m in models]\narena_ranks = rankdata([-v for v in arena_vals], method='min')\nraw_vals = [raw_theta[m] for m in models]\nraw_ranks = rankdata([-v for v in raw_vals], method='min')\nv3_vals = [v3_theta[m] for m in models]\nv3_ranks = rankdata([-v for v in v3_vals], method='min')\nv4_vals = [v4_theta[m] for m in models]\nv4_ranks = rankdata([-v for v in v4_vals], method='min')\n\nheader = f\\\"{'Model':<35} {'Arena_R':>7} {'Raw_R':>5} {'v3_R':>4} {'v4_R':>4} {'v3_theta':>9} {'v4_theta':>9} {'v3_c':>7} {'d_theta':>8}\\\"\nprint(header)\n\nsorted_idx = sorted(range(len(models)), key=lambda i: arena_vals[i], reverse=True)\nfor i in sorted_idx:\n    m = models[i]\n    dt = v4_theta[m] - v3_theta[m]\n    print(f'{m:<35} {int(arena_ranks[i]):>7} {int(raw_ranks[i]):>5} {int(v3_ranks[i]):>4} {int(v4_ranks[i]):>4} {v3_theta[m]:>9.3f} {v4_theta[m]:>9.3f} {v3_c[m]:>7.3f} {dt:>+8.3f}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-25T16:05:10.633288+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model                               Arena_R Raw_R v3_R v4_R  v3_theta  v4_theta    v3_c  d_theta\\ngpt-4o-2024-05-13                         1     3    2    3     2.241     1.994   0.941   -0.247\\nclaude-3-5-sonnet-20241022                2     1    1    1     2.649     2.464   1.273   -0.186\\ngpt-4o-mini-2024-07-18                    3     6    6    6     1.085     1.006   1.827   -0.079\\nllama-3.3-70b-instruct                    4     7    7    7     0.656     0.473   1.351   -0.183\\ngpt-4-turbo-2024-04-09                    5     2    4    2     1.779     2.022   4.015   +0.243\\nqwen2.5-72b-instruct                      6     4    3    4     1.811     1.767   2.040   -0.044\\nclaude-3-opus-20240229                    7     8    8    8     0.528     0.363   1.418   -0.165\\nllama-3.1-70b-instruct                    8     9   11    9     0.105     0.205   2.721   +0.100\\nmistral-large-2407                        9     5    5    5     1.222     1.089   1.557   -0.133\\ngemma-2-27b-it                           10    10    9   10     0.196     0.072   1.618   -0.123\\nllama-3-70b-instruct                     11    12   12   12    -0.234    -0.307   1.849   -0.073\\ngemma-2-9b-it                            12    13   13   13    -0.700    -0.818   1.652   -0.118\\nclaude-3-haiku-20240307                  13    14   14   14    -1.124    -1.051   2.512   +0.073\\ngpt-4-0613                               14    17   17   17    -2.971    -2.433   4.263   +0.539\\nqwen3-8b                                 15    11   10   11     0.140     0.029   1.662   -0.111\\nllama-3-8b-instruct                      16    15   15   15    -2.026    -1.927   2.611   +0.099\\nmixtral-8x22b-instruct-v0.1              17    16   16   16    -2.132    -1.929   3.006   +0.203\\ngpt-3.5-turbo-0613                       18    18   18   18    -3.225    -3.020   2.998   +0.205\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"m
+…[truncated 41 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-25T16:05:10.633482+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cd /root/gated_mfrm_judge_bias && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nwith open('output_n17_v3_filtered/results.json') as f:\n    v3 = json.load(f)\nwith open('output_n17_v4_mfrm_only/results.json') as f:\n    v4 = json.load(f)\n\nv3_theta = v3['parameters']['joint_gmfrm']['theta_values']\nv3_c = v3['parameters']['joint_gmfrm']['c_values']\nv4_theta = v4['parameters']['mfrm_only_317']['theta_values']\nraw_theta = v4['parameters']['raw_average']['theta_values']\n\nmodels = list(v4_theta.keys())\narena_elo = {'claude-3-5-sonnet-20241022':1298,'claude-3-haiku-20240307':1195,'claude-3-opus-20240229':1262,'gemma-2-27b-it':1231,'gemma-2-9b-it':1207,'gpt-3.5-turbo-0613':1125,'gpt-4-0613':1186,'gpt-4-turbo-2024-04-09':1272,'gpt-4o-2024-05-13':1300,'gpt-4o-mini-2024-07-18':1286,'llama-3-70b-instruct':1221,'llama-3-8b-instruct':1166,'llama-3.1-70b-instruct':1261,'llama-3.3-70b-instruct':1275,'mistral-large-2407':1250,'mixtral-8x22b-instruct-v0.1':1162,'qwen2.5-72b-instruct':1269,'qwen3-8b':1170}\n\nfrom scipy.stats import rankdata\narena_vals = [arena_elo[m] for m in models]\narena_ranks = rankdata([-v for v in arena_vals], method='min')\nraw_vals = [raw_theta[m] for m in models]\nraw_ranks = rankdata([-v for v in raw_vals], method='min')\nv3_vals = [v3_theta[m] for m in models]\nv3_ranks = rankdata([-v for v in v3_vals], method='min')\nv4_vals = [v4_theta[m] for m in models]\nv4_ranks = rankdata([-v for v in v4_vals], method='min')\n\nsorted_idx = sorted(range(len(models)), key=lambda i: arena_vals[i], reverse=True)\n\nlines = []\nlines.append(\"=== v4: MFRM-only on 317 items (no contamination gating) ===\")\nlines.append(\"\")\nlines.append(\"Convergence: R-hat max=1.0064, ESS min=1118, divergences=0\")\nlines.append(f\"Kendall tau vs Arena: 0.824 (v3 G-MFRM: 0.809, raw_average: 0.824)\")\nlines.append(f\"Spearman rho: 0.926 (v3 G-MFRM: 0.929)\")\nlines.append(f\"Delta_tau vs raw: +0.000 (v4 MFRM = raw_average ranking)\")\nlines.append(f\"Delta_tau vs v3:  +0.015 (v4 MFRM > v3 G-MFRM)\")\nlines.append(\"\")\nlines.append(\"Cross-method: v4 MFRM vs raw_average: tau=1.000, rho=1.000 (identical ranking)\")\nlines.append(\"Cross-method: v3 G-MFRM vs raw_average: tau=0.948, rho=0.988\")\nlines.append(\"\")\nlines.append(\"INTERPRETATION: v4 tau (0.824) > v3 tau (0.809)\")\nlines.append(\"  -> Contamination gating is SLIGHTLY HARMFUL on 317 items\")\nlines.append(\"  -> MFRM-only recovers the same ranking as raw_average (tau=1.000)\")\nlines.append(\"  -> The c_n * e_i term in G-MFRM introduced noise that slightly distorted theta estimates\")\nlines.append(\"  -> On this 317-item subset, contamination gating does not improve Arena alignment\")\nlines.append(\"\")\nlines.append(\"Per-model:\")\nheader = f\"{'Model':<35} {'Arena_R':>7} {'Raw_R':>5} {'v3_Joint_R':>10} {'v4_MFRM_R':>9} {'v3_theta':>9} {'v4_theta':>9} {'v3_c':>7} {'d_theta':>8}\"\nlines.append(header)\nfor i in sorted_idx:\n    m = models[i]\n    dt = v4_theta[m] - v3_theta[m]\n    lines.append(f\"{m:<35} {int(arena_ranks[i]):>7} {int(raw_ranks[i]):>5} {int(v3_ranks[i]):>10} {int(v4_ranks[i]):>9} {v3_theta[m]:>9.3f} {v4_theta[m]:>9.3f} {v3_c[m]:>7.3f} {dt:>+8.3f}\")\n\nlines.append(\"\")\nlines.append(\"Notable rank changes (v3 G-MFRM -> v4 MFRM-only):\")\nlines.append(\"  gpt-4-turbo: rank 4 -> 2 (v3 c=4.015 inflated contamination correction)\")\nlines.append(\"  llama-3.1-70b: rank 11 -> 9 (v3 c=2.721)\")\nlines.append(\"  gpt-4-0613: rank 17 -> 17 (no change, but theta shifts +0.539)\")\nlines.append(\"\")\nlines.append(\"Runtime: 137s (2.3min), MCMC: warmup=4000, samples=4000, chains=4\")\n\nwith open('v4_results.txt', 'w') as f:\n    f.write('\\n'.join(lines) + '\\n')\n\nprint(\"Saved to v4_results.txt\")\nprint()\nprint('\\n'.join(lines))\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cd /root/gated_mfrm_judge_bias && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\n\nwith open('output_n17_v3_filtered/results.json') as f:\n    v3 = json.load(f)\nwith open('output_n17_v4_mfrm_only/results.json') as f:\n    v4 = json.load(f)\n\nv3_theta = v3['parameters']['joint_gmfrm']['theta_values']\nv3_c = v3['parameters']['joint_gmfrm']['c_values']\nv4_theta = v4['parameters']['mfrm_only_317']['theta_values']\nraw_theta = v4['parameters']['raw_average']['theta_values']\n\nmodels = list(v4_theta.keys())\narena_elo = {'claude-3-5-sonnet-20241022':1298,'claude-3-haiku-20240307':1195,'claude-3-opus-20240229':1262,'gemma-2-27b-it':1231,'gemma-2-9b-it':1207,'gpt-3.5-turbo-0613':1125,'gpt-4-0613':1186,'gpt-4-turbo-2024-04-09':1272,'gpt-4o-2024-05-13':1300,'gpt-4o-mini-2024-07-18':1286,'llama-3-70b-instruct':1221,'llama-3-8b-instruct':1166,'llama-3.1-70b-instruct':1261,'llama-3.3-70b-instruct':1275,'mistral-large-2407':1250,'mixtral-8x22b-instruct-v0.1':1162,'qwen2.5-72b-instruct':1269,'qwen3-8b':1170}\n\nfrom scipy.stats import rankdata\narena_vals = [arena_elo[m] for m in models]\narena_ranks = rankdata([-v for v in arena_vals], method='min')\nraw_vals = [raw_theta[m] for m in models]\nraw_ranks = rankdata([-v for v in raw_vals], method='min')\nv3_vals = [v3_theta[m] for m in models]\nv3_ranks = rankdata([-v for v in v3_vals], method='min')\nv4_vals = [v4_theta[m] for m in models]\nv4_ranks = rankdata([-v for v in v4_vals], method='min')\n\nsorted_idx = sorted(range(len(models)), key=lambda i: arena_vals[i], reverse=True)\n\nlines = []\nlines.append(\"=== v4: MFRM-only on 317 items (no contamination gating) ===\")\nlines.append(\"\")\nlines.append(\"Convergence: R-hat max=1.0064, ESS min=1118, divergences=0\")\nlines.append(f\"Kendall tau vs Arena: 0.824 (v3 G-MFRM: 0.809, raw_average: 0.824)\")\nlines.append(f\"Spearman rho: 0.926 (v3 G-MFRM: 0.929)\")\nlines.append(f\"Delta_tau vs raw: +0.000 (v4 MFRM = raw_average ranking)\")\nlines.append(f\"Delta_tau vs v3:  +0.015 (v4 MFRM > v3 G-MFRM)\")\nlines.append(\"\")\nlines.append(\"Cross-method: v4 MFRM vs raw_average: tau=1.000, rho=1.000 (identical ranking)\")\nlines.append(\"Cross-method: v3 G-MFRM vs raw_average: tau=0.948, rho=0.988\")\nlines.append(\"\")\nlines.append(\"INTERPRETATION: v4 tau (0.824) > v3 tau (0.809)\")\nlines.append(\"  -> Contamination gating is SLIGHTLY HARMFUL on 317 items\")\nlines.append(\"  -> MFRM-only recovers the same ranking as raw_average (tau=1.000)\")\nlines.append(\"  -> The c_n * e_i term in G-MFRM introduced noise that slightly distorted theta estimates\")\nlines.append(\"  -> On this 317-item subset, contamination gating does not improve Arena alignment\")\nlines.append(\"\")\nlines.append(\"Per-model:\")\nheader = f\"{'Model':<35} {'Arena_R':>7} {'Raw_R':>5} {'v3_Joint_R':>10} {'v4_MFRM_R':>9} {'v3_theta':>9} {'v4_theta':>9} {'v3_c':>7} {'d_theta':>8}\"\nlines.append(header)\nfor i in sorted_idx:\n    m = models[i]\n    dt = v4_theta[m] - v3_theta[m]\n    lines.append(f\"{m:<35} {int(arena_ranks[i]):>7} {int(raw_ranks[i]):>5} {int(v3_ranks[i]):>10} {int(v4_ranks[i]):>9} {v3_theta[m]:>9.3f} {v4_theta[m]:>9.3f} {v3_c[m]:>7.3f} {dt:>+8.3f}\")\n\nlines.append(\"\")\nlines.append(\"Notable rank changes (v3 G-MFRM -> v4 MFRM-only):\")\nlines.append(\"  gpt-4-turbo: rank 4 -> 2 (v3 c=4.015 inflated contamination correction)\")\nlines.append(\"  llama-3.1-70b: rank 11 -> 9 (v3 c=2.721)\")\nlines.append(\"  gpt-4-0613: rank 17 -> 17 (no change, but theta shifts +0.539)\")\nlines.append(\"\")\nlines.append(\"Runtime: 137s (2.3min), MCMC: warmup=4000, samples=4000, chains=4\")\n\nwith open('v4_results.txt', 'w') as f:\n    f.write('\\n'.join(lines) + '\\n')\n\nprint(\"Saved to v4_results.txt\")\nprint()\nprint('\\n'.join(lines))\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-25T16:05:10.633681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to v4_results.txt\\n\\n=== v4: MFRM-only on 317 items (no contamination gating) ===\\n\\nConvergence: R-hat max=1.0064, ESS min=1118, divergences=0\\nKendall tau vs Arena: 0.824 (v3 G-MFRM: 0.809, raw_average: 0.824)\\nSpearman rho: 0.926 (v3 G-MFRM: 0.929)\\nDelta_tau vs raw: +0.000 (v4 MFRM = raw_average ranking)\\nDelta_tau vs v3:  +0.015 (v4 MFRM > v3 G-MFRM)\\n\\nCross-method: v4 MFRM vs raw_average: tau=1.000, rho=1.000 (identical ranking)\\nCross-method: v3 G-MFRM vs raw_average: tau=0.948, rho=0.988\\n\\nINTERPRETATION: v4 tau (0.824) > v3 tau (0.809)\\n  -> Contamination gating is SLIGHTLY HARMFUL on 317 items\\n  -> MFRM-only recovers the same ranking as raw_average (tau=1.000)\\n  -> The c_n * e_i term in G-MFRM introduced noise that slightly distorted theta estimates\\n  -> On this 317-item subset, contamination gating does not improve Arena alignment\\n\\nPer-model:\\nModel                               Arena_R Raw_R v3_Joint_R v4_MFRM_R  v3_theta  v4_theta    v3_c  d_theta\\ngpt-4o-2024-05-13                         1     3          2         3     2.241     1.994   0.941   -0.247\\nclaude-3-5-sonnet-20241022                2     1          1         1     2.649     2.464   1.273   -0.186\\ngpt-4o-mini-2024-07-18                    3     6          6         6     1.085     1.006   1.827   -0.079\\nllama-3.3-70b-instruct                    4     7          7         7     0.656     0.473   1.351   -0.183\\ngpt-4-turbo-2024-04-09                    5     2          4         2     1.779     2.022   4.015   +0.243\\nqwen2.5-72b-instruct                      6     4          3         4     1.811     1.767   2.040   -0.044\\nclaude-3-opus-20240229                    7     8          8         8     0.528     0.363   1.418   -0.165\\nllama-3.1-70b-instruct                    8     9         11         9     0.105     0.205   2.721   +0.100\\nmistral-large-2407                        9     5     
+…[truncated 1464 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-25T16:05:10.633836+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Create v4 MFRM-only script (remove contamination gating from v3)', 'status': 'completed', 'activeForm': 'Creating v4 MFRM-only script'}, {'content': 'Run v4 MCMC on autodl-8gpu', 'status': 'completed', 'activeForm': 'Running v4 MCMC'}, {'content': 'Extract results and save to v4_results.txt', 'status': 'completed', 'activeForm': 'Extracting and saving results'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Create v4 MFRM-only script (remove contamination gating from v3)', 'status': 'completed', 'activeForm': 'Creating v4 MFRM-only script'}, {'content': 'Run v4 MCMC on autodl-8gpu', 'status': 'completed', 'activeForm': 'Running v4 MCMC'}, {'content': 'Extract results and save to v4_results.txt', 'status': 'completed', 'activeForm': 'Extracting and saving results'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-25T16:05:10.633974+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-25T16:05:10.634134+00:00_
+
+全部完成。结果摘要：
+
+**v4 MFRM-only τ = 0.824** vs v3 G-MFRM τ = 0.809 → **contamination gating 轻微有害**
+
+关键发现：
+- MFRM-only 与 raw_average 产生 **完全相同的排名**（互相关 τ=1.000）
+- v4 去掉 c_n·e_i 项后 τ 反而提高了 0.015
+- 收敛良好：R̂=1.006, ESS=1118, div=0
+- 受 contamination gating 影响最大的模型：gpt-4-turbo（c=4.015，v3 排名被压到第 4，v4 恢复到第 2）、gpt-4-0613（c=4.263，θ 偏移 +0.539）
+
+结论：在 317 items 子集上，contamination gating 不仅没有提升 Arena 对齐度，反而引入了少量噪声。结果已保存到 `/root/gated_mfrm_judge_bias/v4_results.txt`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812"
+}
+```
+
+</details>
+
+---

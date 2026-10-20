@@ -1,0 +1,1159 @@
+# code exp 001 framework
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_code_exp_001_framework_20260521T231703.jsonl`
+- **Structured JSON:** [`fc56a6cefd914d412f3f.json`](../../sessions/fc/fc56a6cefd914d412f3f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T23:20:10.429178+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T23:20:10.429670+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T23:20:10.429957+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T23:20:10.430149+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "pip list --format=freeze 2>/dev/null | grep -iE \"openai|anthropic|google-generativeai|pyyaml\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "pip list --format=freeze 2>/dev/null | grep -iE \"openai|anthropic|google-generativeai|pyyaml\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-21T23:20:10.430352+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T23:20:10.430596+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T23:20:10.430813+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "pip list --format=freeze",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "pip list --format=freeze",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T23:20:10.431022+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'pip' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T23:20:10.431220+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls /root/gated_mfrm_judge_bias/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ls /root/gated_mfrm_judge_bias/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T23:20:10.431450+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"baselines\\nexp009\\nexp012\\nmvp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T23:20:10.431706+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "pip list --format=freeze 2>/dev/null | grep -iE \"openai|anthropic|google-generativeai|pyyaml\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "pip list --format=freeze 2>/dev/null | grep -iE \"openai|anthropic|google-generativeai|pyyaml\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T23:20:10.431935+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'pip list --format=freeze 2>/dev/null | grep -iE \\\"openai|anthropic|google-generativeai|pyyaml\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T23:20:10.432184+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip list --format=freeze 2>/dev/null | grep -iE \"openai|anthropic|google-generativeai|pyyaml\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip list --format=freeze 2>/dev/null | grep -iE \"openai|anthropic|google-generativeai|pyyaml\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T23:20:10.432405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PyYAML==6.0.2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T23:20:10.432657+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install openai anthropic google-generativeai --quiet",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install openai anthropic google-generativeai --quiet",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T23:20:10.432852+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "mkdir -p /root/gated_mfrm_judge_bias/exp001/results",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "mkdir -p /root/gated_mfrm_judge_bias/exp001/results",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T23:20:10.433048+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install openai anthropic google-generativeai --quiet'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T23:20:10.433237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T23:20:10.433473+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup pip install openai anthropic google-generativeai --quiet > /tmp/pip_install_exp001.log 2>&1 & echo $!",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup pip install openai anthropic google-generativeai --quiet > /tmp/pip_install_exp001.log 2>&1 & echo $!",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T23:20:10.433688+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"64250\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T23:20:10.433954+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp001/judge_interface.py << 'PYEOF'\n\"\"\"Unified LLM judge interface for pairwise evaluation.\n\nEach judge wraps an API (OpenAI, Anthropic, Google, DeepSeek, OpenRouter, vLLM)\nand returns a standardized score dict.\n\nEnv vars: OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY,\n          DEEPSEEK_API_KEY, OPENROUTER_API_KEY\n\"\"\"\n\nimport os\nimport re\nfrom abc import ABC, abstractmethod\n\nPAIRWISE_JUDGE_PROMPT = \"\"\"\\\nPlease act as an impartial judge and evaluate the quality of the responses \\\nprovided by two AI assistants to the user question displayed below. You should \\\nchoose the assistant that follows the user's instructions and answers the \\\nuser's question better. Your evaluation should consider factors such as the \\\nhelpfulness, relevance, accuracy, depth, creativity, and level of detail of \\\ntheir responses. Begin your evaluation by comparing the two responses and \\\nprovide a short explanation. Avoid any position biases and ensure that the \\\norder in which the responses were presented does not influence your decision. \\\nDo not allow the length of the responses to influence your evaluation. Do not \\\nfavor certain names of the assistants. Be as objective as possible. After \\\nproviding your explanation, output your final verdict by strictly following \\\nthis format: \"[[A]]\" if assistant A is better, \"[[B]]\" if assistant B is \\\nbetter, and \"[[C]]\" for a tie.\n\n[User Question]\n{prompt}\n\n[The Start of Assistant A's Answer]\n{response_a}\n[The End of Assistant A's Answer]\n\n[The Start of Assistant B's Answer]\n{response_b}\n[The End of Assistant B's Answer]\"\"\"\n\n\ndef _parse_verdict(raw: str) -> float:\n    \"\"\"Extract verdict from judge output. Returns 1.0 (A wins), 0.0 (B wins), 0.5 (tie).\"\"\"\n    match = re.search(r\"\\[\\[([ABC])\\]\\]\", raw)\n    if not match:\n        return 0.5\n    v = match.group(1)\n    if v == \"A\":\n        return 1.0\n    elif v == \"B\":\n        return 0.0\n    return 0.5\n\n\nclass JudgeInterface(ABC):\n    \"\"\"Base class for all LLM judges.\"\"\"\n\n    @abstractmethod\n    def evaluate(self, prompt: str, response_a: str, response_b: str,\n                 swap_position: bool = False) -> dict:\n        \"\"\"Evaluate a pair of responses.\n\n        Returns:\n            dict with keys: score (float), raw_output (str), position (str \"AB\"|\"BA\")\n            score: 1.0 = A wins, 0.0 = B wins, 0.5 = tie (always w.r.t. original A/B)\n        \"\"\"\n        pass\n\n    def _build_prompt(self, prompt: str, response_a: str, response_b: str,\n                      swap_position: bool) -> tuple[str, str]:\n        \"\"\"Build judge prompt, optionally swapping positions.\n        Returns (formatted_prompt, position_label).\n        \"\"\"\n        if swap_position:\n            text = PAIRWISE_JUDGE_PROMPT.format(\n                prompt=prompt, response_a=response_b, response_b=response_a)\n            return text, \"BA\"\n        else:\n            text = PAIRWISE_JUDGE_PROMPT.format(\n                prompt=prompt, response_a=response_a, response_b=response_b)\n            return text, \"AB\"\n\n    def _make_result(self, raw_output: str, position: str) -> dict:\n        \"\"\"Parse raw output into standardized result dict.\"\"\"\n        score = _parse_verdict(raw_output)\n        if position == \"BA\":\n            score = 1.0 - score\n        return {\"score\": score, \"raw_output\": raw_output, \"position\": position}\n\n\nclass OpenAIJudge(JudgeInterface):\n    \"\"\"Judge using OpenAI API (GPT-4o, GPT-5.5).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        from openai import OpenAI\n        self.model_name = model_name\n        self.client = OpenAI(api_key=[REDACTED] or os.environ[\"OPENAI_API_KEY\"])\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.chat.completions.create(\n            model=self.model_name,\n            messages=[{\"role\": \"user\", \"content\": text}],\n            temperature=0.0,\n            max_tokens=1024,\n        )\n        raw = resp.choices[0].message.content\n        return self._make_result(raw, position)\n\n\nclass AnthropicJudge(JudgeInterface):\n    \"\"\"Judge using Anthropic API (Claude Opus 4.7, Sonnet 4.6).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        import anthropic\n        self.model_name = model_name\n        self.client = anthropic.Anthropic(api_key=[REDACTED] or os.environ[\"ANTHROPIC_API_KEY\"])\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.messages.create(\n            model=self.model_name,\n            max_tokens=1024,\n            messages=[{\"role\": \"user\", \"content\": text}],\n        )\n        raw = resp.content[0].text\n        return self._make_result(raw, position)\n\n\nclass GoogleJudge(JudgeInterface):\n    \"\"\"Judge using Google AI API (Gemini 2.5 Pro).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        import google.generativeai as genai\n        genai.configure(api_key=[REDACTED] or os.environ[\"GOOGLE_API_KEY\"])\n        self.model = genai.GenerativeModel(model_name)\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.model.generate_content(text)\n        raw = resp.text\n        return self._make_result(raw, position)\n\n\nclass DeepSeekJudge(JudgeInterface):\n    \"\"\"Judge using DeepSeek API (OpenAI-compatible).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        from openai import OpenAI\n        self.model_name = model_name\n        self.client = OpenAI(\n            api_key=[REDACTED] or os.environ[\"DEEPSEEK_API_KEY\"],\n            base_url=\"https://api.deepseek.com/v1\",\n        )\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.chat.completions.create(\n            model=self.model_name,\n            messages=[{\"role\": \"user\", \"content\": text}],\n            temperature=0.0,\n            max_tokens=1024,\n        )\n        raw = resp.choices[0].message.content\n        return self._make_result(raw, position)\n\n\nclass OpenRouterJudge(JudgeInterface):\n    \"\"\"Judge using OpenRouter API (Qwen3-235B etc).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        from openai import OpenAI\n        self.model_name = model_name\n        self.client = OpenAI(\n            api_key=[REDACTED] or os.environ[\"OPENROUTER_API_KEY\"],\n            base_url=\"https://openrouter.ai/api/v1\",\n        )\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.chat.completions.create(\n            model=self.model_name,\n            messages=[{\"role\": \"user\", \"content\": text}],\n            temperature=0.0,\n            max_tokens=1024,\n        )\n        raw = resp.choices[0].message.content\n        return self._make_result(raw, position)\n\n\nclass VLLMJudge(JudgeInterface):\n    \"\"\"Judge using local vLLM server.\"\"\"\n\n    def __init__(self, model_name: str, base_url: str = \"http://localhost:8000\"):\n        from openai import OpenAI\n        self.model_name = model_name\n        self.client = OpenAI(api_key=\"[REDACTED]\", base_url=f\"{base_url}/v1\")\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.chat.completions.create(\n            model=self.model_name,\n            messages=[{\"role\": \"user\", \"content\": text}],\n            temperature=0.0,\n            max_tokens=1024,\n        )\n        raw = resp.choices[0].message.content\n        return self._make_result(raw, position)\n\n\nJUDGE_MAP = {\n    \"gpt-4o\": (OpenAIJudge, {\"model_name\": \"gpt-4o\"}),\n    \"gpt-5.5\": (OpenAIJudge, {\"model_name\": \"gpt-5.5\"}),\n    \"claude-opus-4.7\": (AnthropicJudge, {\"model_name\": \"claude-opus-4-7-20250219\"}),\n    \"claude-sonnet-4.6\": (AnthropicJudge, {\"model_name\": \"claude-sonnet-4-6-20250514\"}),\n    \"gemini-2.5-pro\": (GoogleJudge, {\"model_name\": \"gemini-2.5-pro\"}),\n    \"deepseek-v4-pro\": (DeepSeekJudge, {\"model_name\": \"deepseek-v4-pro\"}),\n    \"qwen3-235b\": (OpenRouterJudge, {\"model_name\": \"qwen/qwen3-235b-a22b\"}),\n    \"llama-3.3-70b\": (VLLMJudge, {\"model_name\": \"meta-llama/Llama-3.3-70B-Instruct\"}),\n    \"qwen2.5-72b\": (VLLMJudge, {\"model_name\": \"Qwen/Qwen2.5-72B-Instruct\"}),\n}\n\n\ndef get_judge(judge_name: str, **kwargs) -> JudgeInterface:\n    \"\"\"Factory function to get judge by name.\"\"\"\n    if judge_name not in JUDGE_MAP:\n        raise ValueError(f\"Unknown judge: {judge_name}. Available: {list(JUDGE_MAP.keys())}\")\n    cls, defaults = JUDGE_MAP[judge_name]\n    params = {**defaults, **kwargs}\n    return cls(**params)\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat > /root/gated_mfrm_judge_bias/exp001/judge_interface.py << 'PYEOF'\n\"\"\"Unified LLM judge interface for pairwise evaluation.\n\nEach judge wraps an API (OpenAI, Anthropic, Google, DeepSeek, OpenRouter, vLLM)\nand returns a standardized score dict.\n\nEnv vars: OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY,\n          DEEPSEEK_API_KEY, OPENROUTER_API_KEY\n\"\"\"\n\nimport os\nimport re\nfrom abc import ABC, abstractmethod\n\nPAIRWISE_JUDGE_PROMPT = \"\"\"\\\nPlease act as an impartial judge and evaluate the quality of the responses \\\nprovided by two AI assistants to the user question displayed below. You should \\\nchoose the assistant that follows the user's instructions and answers the \\\nuser's question better. Your evaluation should consider factors such as the \\\nhelpfulness, relevance, accuracy, depth, creativity, and level of detail of \\\ntheir responses. Begin your evaluation by comparing the two responses and \\\nprovide a short explanation. Avoid any position biases and ensure that the \\\norder in which the responses were presented does not influence your decision. \\\nDo not allow the length of the responses to influence your evaluation. Do not \\\nfavor certain names of the assistants. Be as objective as possible. After \\\nproviding your explanation, output your final verdict by strictly following \\\nthis format: \"[[A]]\" if assistant A is better, \"[[B]]\" if assistant B is \\\nbetter, and \"[[C]]\" for a tie.\n\n[User Question]\n{prompt}\n\n[The Start of Assistant A's Answer]\n{response_a}\n[The End of Assistant A's Answer]\n\n[The Start of Assistant B's Answer]\n{response_b}\n[The End of Assistant B's Answer]\"\"\"\n\n\ndef _parse_verdict(raw: str) -> float:\n    \"\"\"Extract verdict from judge output. Returns 1.0 (A wins), 0.0 (B wins), 0.5 (tie).\"\"\"\n    match = re.search(r\"\\[\\[([ABC])\\]\\]\", raw)\n    if not match:\n        return 0.5\n    v = match.group(1)\n    if v == \"A\":\n        return 1.0\n    elif v == \"B\":\n        return 0.0\n    return 0.5\n\n\nclass JudgeInterface(ABC):\n    \"\"\"Base class for all LLM judges.\"\"\"\n\n    @abstractmethod\n    def evaluate(self, prompt: str, response_a: str, response_b: str,\n                 swap_position: bool = False) -> dict:\n        \"\"\"Evaluate a pair of responses.\n\n        Returns:\n            dict with keys: score (float), raw_output (str), position (str \"AB\"|\"BA\")\n            score: 1.0 = A wins, 0.0 = B wins, 0.5 = tie (always w.r.t. original A/B)\n        \"\"\"\n        pass\n\n    def _build_prompt(self, prompt: str, response_a: str, response_b: str,\n                      swap_position: bool) -> tuple[str, str]:\n        \"\"\"Build judge prompt, optionally swapping positions.\n        Returns (formatted_prompt, position_label).\n        \"\"\"\n        if swap_position:\n            text = PAIRWISE_JUDGE_PROMPT.format(\n                prompt=prompt, response_a=response_b, response_b=response_a)\n            return text, \"BA\"\n        else:\n            text = PAIRWISE_JUDGE_PROMPT.format(\n                prompt=prompt, response_a=response_a, response_b=response_b)\n            return text, \"AB\"\n\n    def _make_result(self, raw_output: str, position: str) -> dict:\n        \"\"\"Parse raw output into standardized result dict.\"\"\"\n        score = _parse_verdict(raw_output)\n        if position == \"BA\":\n            score = 1.0 - score\n        return {\"score\": score, \"raw_output\": raw_output, \"position\": position}\n\n\nclass OpenAIJudge(JudgeInterface):\n    \"\"\"Judge using OpenAI API (GPT-4o, GPT-5.5).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        from openai import OpenAI\n        self.model_name = model_name\n        self.client = OpenAI(api_key=[REDACTED] or os.environ[\"OPENAI_API_KEY\"])\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.chat.completions.create(\n            model=self.model_name,\n            messages=[{\"role\": \"user\", \"content\": text}],\n            temperature=0.0,\n            max_tokens=1024,\n        )\n        raw = resp.choices[0].message.content\n        return self._make_result(raw, position)\n\n\nclass AnthropicJudge(JudgeInterface):\n    \"\"\"Judge using Anthropic API (Claude Opus 4.7, Sonnet 4.6).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        import anthropic\n        self.model_name = model_name\n        self.client = anthropic.Anthropic(api_key=[REDACTED] or os.environ[\"ANTHROPIC_API_KEY\"])\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.messages.create(\n            model=self.model_name,\n            max_tokens=1024,\n            messages=[{\"role\": \"user\", \"content\": text}],\n        )\n        raw = resp.content[0].text\n        return self._make_result(raw, position)\n\n\nclass GoogleJudge(JudgeInterface):\n    \"\"\"Judge using Google AI API (Gemini 2.5 Pro).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        import google.generativeai as genai\n        genai.configure(api_key=[REDACTED] or os.environ[\"GOOGLE_API_KEY\"])\n        self.model = genai.GenerativeModel(model_name)\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.model.generate_content(text)\n        raw = resp.text\n        return self._make_result(raw, position)\n\n\nclass DeepSeekJudge(JudgeInterface):\n    \"\"\"Judge using DeepSeek API (OpenAI-compatible).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        from openai import OpenAI\n        self.model_name = model_name\n        self.client = OpenAI(\n            api_key=[REDACTED] or os.environ[\"DEEPSEEK_API_KEY\"],\n            base_url=\"https://api.deepseek.com/v1\",\n        )\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.chat.completions.create(\n            model=self.model_name,\n            messages=[{\"role\": \"user\", \"content\": text}],\n            temperature=0.0,\n            max_tokens=1024,\n        )\n        raw = resp.choices[0].message.content\n        return self._make_result(raw, position)\n\n\nclass OpenRouterJudge(JudgeInterface):\n    \"\"\"Judge using OpenRouter API (Qwen3-235B etc).\"\"\"\n\n    def __init__(self, model_name: str, api_key: [REDACTED] = None):\n        from openai import OpenAI\n        self.model_name = model_name\n        self.client = OpenAI(\n            api_key=[REDACTED] or os.environ[\"OPENROUTER_API_KEY\"],\n            base_url=\"https://openrouter.ai/api/v1\",\n        )\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.chat.completions.create(\n            model=self.model_name,\n            messages=[{\"role\": \"user\", \"content\": text}],\n            temperature=0.0,\n            max_tokens=1024,\n        )\n        raw = resp.choices[0].message.content\n        return self._make_result(raw, position)\n\n\nclass VLLMJudge(JudgeInterface):\n    \"\"\"Judge using local vLLM server.\"\"\"\n\n    def __init__(self, model_name: str, base_url: str = \"http://localhost:8000\"):\n        from openai import OpenAI\n        self.model_name = model_name\n        self.client = OpenAI(api_key=\"[REDACTED]\", base_url=f\"{base_url}/v1\")\n\n    def evaluate(self, prompt, response_a, response_b, swap_position=False):\n        text, position = self._build_prompt(prompt, response_a, response_b, swap_position)\n        resp = self.client.chat.completions.create(\n            model=self.model_name,\n            messages=[{\"role\": \"user\", \"content\": text}],\n            temperature=0.0,\n            max_tokens=1024,\n        )\n        raw = resp.choices[0].message.content\n        return self._make_result(raw, position)\n\n\nJUDGE_MAP = {\n    \"gpt-4o\": (OpenAIJudge, {\"model_name\": \"gpt-4o\"}),\n    \"gpt-5.5\": (OpenAIJudge, {\"model_name\": \"gpt-5.5\"}),\n    \"claude-opus-4.7\": (AnthropicJudge, {\"model_name\": \"claude-opus-4-7-20250219\"}),\n    \"claude-sonnet-4.6\": (AnthropicJudge, {\"model_name\": \"claude-sonnet-4-6-20250514\"}),\n    \"gemini-2.5-pro\": (GoogleJudge, {\"model_name\": \"gemini-2.5-pro\"}),\n    \"deepseek-v4-pro\": (DeepSeekJudge, {\"model_name\": \"deepseek-v4-pro\"}),\n    \"qwen3-235b\": (OpenRouterJudge, {\"model_name\": \"qwen/qwen3-235b-a22b\"}),\n    \"llama-3.3-70b\": (VLLMJudge, {\"model_name\": \"meta-llama/Llama-3.3-70B-Instruct\"}),\n    \"qwen2.5-72b\": (VLLMJudge, {\"model_name\": \"Qwen/Qwen2.5-72B-Instruct\"}),\n}\n\n\ndef get_judge(judge_name: str, **kwargs) -> JudgeInterface:\n    \"\"\"Factory function to get judge by name.\"\"\"\n    if judge_name not in JUDGE_MAP:\n        raise ValueError(f\"Unknown judge: {judge_name}. Available: {list(JUDGE_MAP.keys())}\")\n    cls, defaults = JUDGE_MAP[judge_name]\n    params = {**defaults, **kwargs}\n    return cls(**params)\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T23:20:10.434315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T23:20:10.434584+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp001/data_loader.py << 'PYEOF'\n\"\"\"Benchmark prompt and model response loader.\n\nLoads prompts from MT-Bench / Arena-Hard and corresponding model responses\nfrom JSONL files under the data directory.\n\"\"\"\n\nimport json\nimport os\n\nDATA_DIR = os.path.join(os.path.dirname(__file__), \"data\")\n\n\ndef load_mt_bench_prompts() -> list[dict]:\n    \"\"\"Load MT-Bench prompts.\n\n    Returns list of {id, category, prompt} from data/mt_bench_prompts.jsonl.\n    \"\"\"\n    path = os.path.join(DATA_DIR, \"mt_bench_prompts.jsonl\")\n    items = []\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            items.append({\n                \"id\": obj[\"question_id\"],\n                \"category\": obj.get(\"category\", \"\"),\n                \"prompt\": obj[\"turns\"][0] if \"turns\" in obj else obj[\"prompt\"],\n            })\n    return items\n\n\ndef load_arena_hard_prompts() -> list[dict]:\n    \"\"\"Load Arena-Hard prompts.\n\n    Returns list of {id, category, prompt} from data/arena_hard_prompts.jsonl.\n    \"\"\"\n    path = os.path.join(DATA_DIR, \"arena_hard_prompts.jsonl\")\n    items = []\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            items.append({\n                \"id\": obj[\"question_id\"],\n                \"category\": obj.get(\"category\", \"\"),\n                \"prompt\": obj[\"prompt\"] if \"prompt\" in obj else obj[\"turns\"][0],\n            })\n    return items\n\n\ndef load_model_responses(benchmark: str, model_name: str) -> dict:\n    \"\"\"Load a model's responses for given benchmark.\n\n    Expects file at data/responses/{benchmark}/{model_name}.jsonl\n    Each line: {question_id, response}\n\n    Returns {item_id: response_text}.\n    \"\"\"\n    path = os.path.join(DATA_DIR, \"responses\", benchmark, f\"{model_name}.jsonl\")\n    responses = {}\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            responses[obj[\"question_id\"]] = obj[\"response\"]\n    return responses\n\n\ndef load_prompts(benchmark: str) -> list[dict]:\n    \"\"\"Dispatch to benchmark-specific loader.\"\"\"\n    loaders = {\n        \"mt-bench\": load_mt_bench_prompts,\n        \"arena-hard\": load_arena_hard_prompts,\n    }\n    if benchmark not in loaders:\n        raise ValueError(f\"Unknown benchmark: {benchmark}. Available: {list(loaders.keys())}\")\n    return loaders[benchmark]()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat > /root/gated_mfrm_judge_bias/exp001/data_loader.py << 'PYEOF'\n\"\"\"Benchmark prompt and model response loader.\n\nLoads prompts from MT-Bench / Arena-Hard and corresponding model responses\nfrom JSONL files under the data directory.\n\"\"\"\n\nimport json\nimport os\n\nDATA_DIR = os.path.join(os.path.dirname(__file__), \"data\")\n\n\ndef load_mt_bench_prompts() -> list[dict]:\n    \"\"\"Load MT-Bench prompts.\n\n    Returns list of {id, category, prompt} from data/mt_bench_prompts.jsonl.\n    \"\"\"\n    path = os.path.join(DATA_DIR, \"mt_bench_prompts.jsonl\")\n    items = []\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            items.append({\n                \"id\": obj[\"question_id\"],\n                \"category\": obj.get(\"category\", \"\"),\n                \"prompt\": obj[\"turns\"][0] if \"turns\" in obj else obj[\"prompt\"],\n            })\n    return items\n\n\ndef load_arena_hard_prompts() -> list[dict]:\n    \"\"\"Load Arena-Hard prompts.\n\n    Returns list of {id, category, prompt} from data/arena_hard_prompts.jsonl.\n    \"\"\"\n    path = os.path.join(DATA_DIR, \"arena_hard_prompts.jsonl\")\n    items = []\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            items.append({\n                \"id\": obj[\"question_id\"],\n                \"category\": obj.get(\"category\", \"\"),\n                \"prompt\": obj[\"prompt\"] if \"prompt\" in obj else obj[\"turns\"][0],\n            })\n    return items\n\n\ndef load_model_responses(benchmark: str, model_name: str) -> dict:\n    \"\"\"Load a model's responses for given benchmark.\n\n    Expects file at data/responses/{benchmark}/{model_name}.jsonl\n    Each line: {question_id, response}\n\n    Returns {item_id: response_text}.\n    \"\"\"\n    path = os.path.join(DATA_DIR, \"responses\", benchmark, f\"{model_name}.jsonl\")\n    responses = {}\n    with open(path) as f:\n        for line in f:\n            obj = json.loads(line)\n            responses[obj[\"question_id\"]] = obj[\"response\"]\n    return responses\n\n\ndef load_prompts(benchmark: str) -> list[dict]:\n    \"\"\"Dispatch to benchmark-specific loader.\"\"\"\n    loaders = {\n        \"mt-bench\": load_mt_bench_prompts,\n        \"arena-hard\": load_arena_hard_prompts,\n    }\n    if benchmark not in loaders:\n        raise ValueError(f\"Unknown benchmark: {benchmark}. Available: {list(loaders.keys())}\")\n    return loaders[benchmark]()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T23:20:10.434838+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T23:20:10.435034+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp001/config.yaml << 'PYEOF'\nbenchmark: mt-bench\njudges:\n  - name: gpt-4o\n    rpm: 500\n  - name: claude-sonnet-4.6\n    rpm: 50\n  - name: gemini-2.5-pro\n    rpm: 60\n  - name: deepseek-v4-pro\n    rpm: 100\n  - name: qwen3-235b\n    rpm: 60\n  - name: llama-3.3-70b\n    rpm: 100\n    base_url: http://localhost:8000\n  - name: qwen2.5-72b\n    rpm: 100\n    base_url: http://localhost:8000\nmodel_pairs:\n  - [gpt-4o, claude-sonnet-4.6]\noutput_dir: /root/gated_mfrm_judge_bias/exp001/results/\nposition_swap: true\nmax_retries: 3\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat > /root/gated_mfrm_judge_bias/exp001/config.yaml << 'PYEOF'\nbenchmark: mt-bench\njudges:\n  - name: gpt-4o\n    rpm: 500\n  - name: claude-sonnet-4.6\n    rpm: 50\n  - name: gemini-2.5-pro\n    rpm: 60\n  - name: deepseek-v4-pro\n    rpm: 100\n  - name: qwen3-235b\n    rpm: 60\n  - name: llama-3.3-70b\n    rpm: 100\n    base_url: http://localhost:8000\n  - name: qwen2.5-72b\n    rpm: 100\n    base_url: http://localhost:8000\nmodel_pairs:\n  - [gpt-4o, claude-sonnet-4.6]\noutput_dir: /root/gated_mfrm_judge_bias/exp001/results/\nposition_swap: true\nmax_retries: 3\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T23:20:10.435241+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T23:20:10.435492+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp001/collect.py << 'PYEOF'\n\"\"\"Main data collection script for exp-001.\n\nRuns pairwise judgments across all (item, model_pair, judge) combinations.\nSupports position swap, incremental resume, rate limiting, and retry.\n\nUsage:\n    python collect.py --config config.yaml\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport time\nfrom datetime import datetime\nfrom collections import defaultdict\n\nimport yaml\n\nfrom judge_interface import get_judge\nfrom data_loader import load_prompts, load_model_responses\n\n\nclass RateLimiter:\n    \"\"\"Token-bucket rate limiter per judge.\"\"\"\n\n    def __init__(self, rpm: int):\n        self.min_interval = 60.0 / rpm if rpm > 0 else 0\n        self.last_call = 0.0\n\n    def wait(self):\n        elapsed = time.time() - self.last_call\n        if elapsed < self.min_interval:\n            time.sleep(self.min_interval - elapsed)\n        self.last_call = time.time()\n\n\ndef load_completed(output_path: str) -> set:\n    \"\"\"Load completed judgment keys from existing JSONL for resume.\"\"\"\n    completed = set()\n    if not os.path.exists(output_path):\n        return completed\n    with open(output_path) as f:\n        for line in f:\n            try:\n                obj = json.loads(line)\n                key = (obj[\"item_id\"], obj[\"model_a\"], obj[\"model_b\"],\n                       obj[\"judge\"], obj[\"position\"])\n                completed.add(key)\n            except (json.JSONDecodeError, KeyError):\n                continue\n    return completed\n\n\ndef evaluate_with_retry(judge, prompt, resp_a, resp_b, swap, max_retries=3):\n    \"\"\"Call judge.evaluate with exponential backoff retry.\"\"\"\n    for attempt in range(max_retries + 1):\n        try:\n            return judge.evaluate(prompt, resp_a, resp_b, swap_position=swap)\n        except Exception as e:\n            if attempt == max_retries:\n                return {\"score\": None, \"raw_output\": f\"ERROR: {e}\", \"position\": \"BA\" if swap else \"AB\"}\n            wait = 2 ** attempt\n            print(f\"  Retry {attempt+1}/{max_retries} after {wait}s: {e}\")\n            time.sleep(wait)\n\n\ndef collect_judgments(\n    benchmark: str,\n    judge_configs: list[dict],\n    model_pairs: list[tuple[str, str]],\n    output_dir: str,\n    position_swap: bool = True,\n    max_retries: int = 3,\n):\n    \"\"\"Run pairwise judgments for all combinations.\"\"\"\n    os.makedirs(output_dir, exist_ok=True)\n    output_path = os.path.join(output_dir, f\"{benchmark}_judgments.jsonl\")\n\n    # Resume support\n    completed = load_completed(output_path)\n    print(f\"Loaded {len(completed)} completed judgments from {output_path}\")\n\n    # Load prompts\n    prompts = load_prompts(benchmark)\n    print(f\"Loaded {len(prompts)} prompts from {benchmark}\")\n\n    # Load model responses\n    response_cache = {}\n    for model_a, model_b in model_pairs:\n        for m in (model_a, model_b):\n            if m not in response_cache:\n                response_cache[m] = load_model_responses(benchmark, m)\n\n    # Initialize judges and rate limiters\n    judges = {}\n    limiters = {}\n    for jcfg in judge_configs:\n        name = jcfg[\"name\"]\n        kwargs = {k: v for k, v in jcfg.items() if k not in (\"name\", \"rpm\")}\n        judges[name] = get_judge(name, **kwargs)\n        limiters[name] = RateLimiter(jcfg.get(\"rpm\", 60))\n\n    # Compute total work\n    positions = [\"AB\", \"BA\"] if position_swap else [\"AB\"]\n    total = len(prompts) * len(model_pairs) * len(judges) * len(positions)\n    done = len(completed)\n    remaining = total - done\n    print(f\"Total: {total}, Already done: {done}, Remaining: {remaining}\")\n\n    if remaining == 0:\n        print(\"All judgments complete!\")\n        return\n\n    start_time = time.time()\n    processed = 0\n\n    with open(output_path, \"a\") as fout:\n        for item in prompts:\n            item_id = item[\"id\"]\n            user_prompt = item[\"prompt\"]\n\n            for model_a, model_b in model_pairs:\n                resp_a = response_cache[model_a].get(item_id)\n                resp_b = response_cache[model_b].get(item_id)\n                if resp_a is None or resp_b is None:\n                    continue\n\n                for judge_name in judges:\n                    for swap in ([False, True] if position_swap else [False]):\n                        position = \"BA\" if swap else \"AB\"\n                        key = (item_id, model_a, model_b, judge_name, position)\n                        if key in completed:\n                            continue\n\n                        limiters[judge_name].wait()\n                        result = evaluate_with_retry(\n                            judges[judge_name], user_prompt, resp_a, resp_b,\n                            swap, max_retries)\n\n                        record = {\n                            \"benchmark\": benchmark,\n                            \"item_id\": item_id,\n                            \"model_a\": model_a,\n                            \"model_b\": model_b,\n                            \"judge\": judge_name,\n                            \"score\": result[\"score\"],\n                            \"position\": result[\"position\"],\n                            \"raw_output\": result[\"raw_output\"],\n                            \"timestamp\": datetime.now().isoformat(),\n                        }\n                        fout.write(json.dumps(record, ensure_ascii=False) + \"\\n\")\n                        fout.flush()\n                        completed.add(key)\n\n                        processed += 1\n                        if processed % 10 == 0:\n                            elapsed = time.time() - start_time\n                            rate = processed / elapsed\n                            eta = (remaining - processed) / rate if rate > 0 else 0\n                            print(f\"  [{processed}/{remaining}] \"\n                                  f\"{rate:.1f} items/s, ETA {eta/60:.1f}min\")\n\n    elapsed = time.time() - start_time\n    print(f\"Done. {processed} judgments in {elapsed/60:.1f}min\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Collect pairwise LLM judgments\")\n    parser.add_argument(\"--config\", type=str, default=\"config.yaml\")\n    args = parser.parse_args()\n\n    with open(args.config) as f:\n        cfg = yaml.safe_load(f)\n\n    collect_judgments(\n        benchmark=cfg[\"benchmark\"],\n        judge_configs=cfg[\"judges\"],\n        model_pairs=[tuple(p) for p in cfg[\"model_pairs\"]],\n        output_dir=cfg[\"output_dir\"],\n        position_swap=cfg.get(\"position_swap\", True),\n        max_retries=cfg.get(\"max_retries\", 3),\n    )\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat > /root/gated_mfrm_judge_bias/exp001/collect.py << 'PYEOF'\n\"\"\"Main data collection script for exp-001.\n\nRuns pairwise judgments across all (item, model_pair, judge) combinations.\nSupports position swap, incremental resume, rate limiting, and retry.\n\nUsage:\n    python collect.py --config config.yaml\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport time\nfrom datetime import datetime\nfrom collections import defaultdict\n\nimport yaml\n\nfrom judge_interface import get_judge\nfrom data_loader import load_prompts, load_model_responses\n\n\nclass RateLimiter:\n    \"\"\"Token-bucket rate limiter per judge.\"\"\"\n\n    def __init__(self, rpm: int):\n        self.min_interval = 60.0 / rpm if rpm > 0 else 0\n        self.last_call = 0.0\n\n    def wait(self):\n        elapsed = time.time() - self.last_call\n        if elapsed < self.min_interval:\n            time.sleep(self.min_interval - elapsed)\n        self.last_call = time.time()\n\n\ndef load_completed(output_path: str) -> set:\n    \"\"\"Load completed judgment keys from existing JSONL for resume.\"\"\"\n    completed = set()\n    if not os.path.exists(output_path):\n        return completed\n    with open(output_path) as f:\n        for line in f:\n            try:\n                obj = json.loads(line)\n                key = (obj[\"item_id\"], obj[\"model_a\"], obj[\"model_b\"],\n                       obj[\"judge\"], obj[\"position\"])\n                completed.add(key)\n            except (json.JSONDecodeError, KeyError):\n                continue\n    return completed\n\n\ndef evaluate_with_retry(judge, prompt, resp_a, resp_b, swap, max_retries=3):\n    \"\"\"Call judge.evaluate with exponential backoff retry.\"\"\"\n    for attempt in range(max_retries + 1):\n        try:\n            return judge.evaluate(prompt, resp_a, resp_b, swap_position=swap)\n        except Exception as e:\n            if attempt == max_retries:\n                return {\"score\": None, \"raw_output\": f\"ERROR: {e}\", \"position\": \"BA\" if swap else \"AB\"}\n            wait = 2 ** attempt\n            print(f\"  Retry {attempt+1}/{max_retries} after {wait}s: {e}\")\n            time.sleep(wait)\n\n\ndef collect_judgments(\n    benchmark: str,\n    judge_configs: list[dict],\n    model_pairs: list[tuple[str, str]],\n    output_dir: str,\n    position_swap: bool = True,\n    max_retries: int = 3,\n):\n    \"\"\"Run pairwise judgments for all combinations.\"\"\"\n    os.makedirs(output_dir, exist_ok=True)\n    output_path = os.path.join(output_dir, f\"{benchmark}_judgments.jsonl\")\n\n    # Resume support\n    completed = load_completed(output_path)\n    print(f\"Loaded {len(completed)} completed judgments from {output_path}\")\n\n    # Load prompts\n    prompts = load_prompts(benchmark)\n    print(f\"Loaded {len(prompts)} prompts from {benchmark}\")\n\n    # Load model responses\n    response_cache = {}\n    for model_a, model_b in model_pairs:\n        for m in (model_a, model_b):\n            if m not in response_cache:\n                response_cache[m] = load_model_responses(benchmark, m)\n\n    # Initialize judges and rate limiters\n    judges = {}\n    limiters = {}\n    for jcfg in judge_configs:\n        name = jcfg[\"name\"]\n        kwargs = {k: v for k, v in jcfg.items() if k not in (\"name\", \"rpm\")}\n        judges[name] = get_judge(name, **kwargs)\n        limiters[name] = RateLimiter(jcfg.get(\"rpm\", 60))\n\n    # Compute total work\n    positions = [\"AB\", \"BA\"] if position_swap else [\"AB\"]\n    total = len(prompts) * len(model_pairs) * len(judges) * len(positions)\n    done = len(completed)\n    remaining = total - done\n    print(f\"Total: {total}, Already done: {done}, Remaining: {remaining}\")\n\n    if remaining == 0:\n        print(\"All judgments complete!\")\n        return\n\n    start_time = time.time()\n    processed = 0\n\n    with open(output_path, \"a\") as fout:\n        for item in prompts:\n            item_id = item[\"id\"]\n            user_prompt = item[\"prompt\"]\n\n            for model_a, model_b in model_pairs:\n                resp_a = response_cache[model_a].get(item_id)\n                resp_b = response_cache[model_b].get(item_id)\n                if resp_a is None or resp_b is None:\n                    continue\n\n                for judge_name in judges:\n                    for swap in ([False, True] if position_swap else [False]):\n                        position = \"BA\" if swap else \"AB\"\n                        key = (item_id, model_a, model_b, judge_name, position)\n                        if key in completed:\n                            continue\n\n                        limiters[judge_name].wait()\n                        result = evaluate_with_retry(\n                            judges[judge_name], user_prompt, resp_a, resp_b,\n                            swap, max_retries)\n\n                        record = {\n                            \"benchmark\": benchmark,\n                            \"item_id\": item_id,\n                            \"model_a\": model_a,\n                            \"model_b\": model_b,\n                            \"judge\": judge_name,\n                            \"score\": result[\"score\"],\n                            \"position\": result[\"position\"],\n                            \"raw_output\": result[\"raw_output\"],\n                            \"timestamp\": datetime.now().isoformat(),\n                        }\n                        fout.write(json.dumps(record, ensure_ascii=False) + \"\\n\")\n                        fout.flush()\n                        completed.add(key)\n\n                        processed += 1\n                        if processed % 10 == 0:\n                            elapsed = time.time() - start_time\n                            rate = processed / elapsed\n                            eta = (remaining - processed) / rate if rate > 0 else 0\n                            print(f\"  [{processed}/{remaining}] \"\n                                  f\"{rate:.1f} items/s, ETA {eta/60:.1f}min\")\n\n    elapsed = time.time() - start_time\n    print(f\"Done. {processed} judgments in {elapsed/60:.1f}min\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Collect pairwise LLM judgments\")\n    parser.add_argument(\"--config\", type=str, default=\"config.yaml\")\n    args = parser.parse_args()\n\n    with open(args.config) as f:\n        cfg = yaml.safe_load(f)\n\n    collect_judgments(\n        benchmark=cfg[\"benchmark\"],\n        judge_configs=cfg[\"judges\"],\n        model_pairs=[tuple(p) for p in cfg[\"model_pairs\"]],\n        output_dir=cfg[\"output_dir\"],\n        position_swap=cfg.get(\"position_swap\", True),\n        max_retries=cfg.get(\"max_retries\", 3),\n    )\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T23:20:10.435797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T23:20:10.436029+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /tmp/pip_install_exp001.log | tail -5",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cat /tmp/pip_install_exp001.log | tail -5",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T23:20:10.436254+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T23:20:10.436456+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ps -p 64250 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "ps -p 64250 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T23:20:10.436655+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T23:20:10.436853+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cd /root/gated_mfrm_judge_bias/exp001 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -m py_compile judge_interface.py && python3 -m py_compile data_loader.py && python3 -m py_compile collect.py && echo \"SYNTAX_OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cd /root/gated_mfrm_judge_bias/exp001 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -m py_compile judge_interface.py && python3 -m py_compile data_loader.py && python3 -m py_compile collect.py && echo \"SYNTAX_OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T23:20:10.437067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T23:20:10.437254+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cd /root/gated_mfrm_judge_bias/exp001 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from judge_interface import get_judge; print('OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "cd /root/gated_mfrm_judge_bias/exp001 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from judge_interface import get_judge; print('OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T23:20:10.437475+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T23:20:10.437687+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "wc -l /root/gated_mfrm_judge_bias/exp001/*.py /root/gated_mfrm_judge_bias/exp001/config.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-4x",
+    "command": "wc -l /root/gated_mfrm_judge_bias/exp001/*.py /root/gated_mfrm_judge_bias/exp001/config.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T23:20:10.437891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  186 /root/gated_mfrm_judge_bias/exp001/collect.py\\n   74 /root/gated_mfrm_judge_bias/exp001/data_loader.py\\n  229 /root/gated_mfrm_judge_bias/exp001/judge_interface.py\\n   23 /root/gated_mfrm_judge_bias/exp001/config.yaml\\n  512 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_001_framework_20260521T231703",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-21T23:20:10.438142+00:00_
+
+全部完成。
+
+### 结果
+
+| 文件 | 行数 | 说明 |
+|------|------|------|
+| `judge_interface.py` | 229 | 统一 judge 接口 + 6 个 judge 实现 + factory |
+| `collect.py` | 186 | 主收集脚本（resume/swap/retry/rate-limit） |
+| `data_loader.py` | 74 | Benchmark 数据加载器 |
+| `config.yaml` | 23 | 配置文件 |
+
+验证结果：
+- 语法检查：✓ 全部通过
+- `from judge_interface import get_judge` ：✓ OK
+
+依赖安装：openai、anthropic、google-generativeai 已装入 conda base。
+
+待后续补充：`data/` 目录下的 benchmark prompts 和 model responses JSONL 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_exp_001_framework_20260521T231703"
+}
+```
+
+</details>
+
+---

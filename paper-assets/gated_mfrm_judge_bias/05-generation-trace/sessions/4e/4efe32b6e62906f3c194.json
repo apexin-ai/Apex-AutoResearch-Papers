@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4efe32b6e62906f3c194",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh investigate mcmc kill",
+  "task_key": "worker_ssh_investigate-mcmc-kill_20260525T051244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_investigate-mcmc-kill_20260525T051244_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "cf1606121d9b07b43f7a62fc383e95de0db3a73f965d81b7106c1ebf3901424e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n**原因：AutoDL 平台级别强制终止（非 OOM）**\n\n### 证据\n\n| 检查项 | 结果 | 排除 |\n|--------|------|------|\n| cgroup memory.events | `oom 0, oom_kill 0` | ✅ 排除 cgroup OOM |\n| 系统内存 | 1TB 总量，当前使用 32GB，cgroup 限制 440GB | ✅ 排除内存不足 |\n| 日志中错误 | grep 0 matches (无 Traceback/Signal/Error) | ✅ 排除 Python 异常 |\n| bash_history | 无 kill 命令 | ✅ 排除人为误杀 |\n| auto_mcmc_phase1.sh | 启动 PID 后已退出，无后续 kill 逻辑 | ✅ 排除脚本误杀 |\n| last reboot | 无近期重启记录 | ✅ 排除系统重启 |\n| dmesg | Operation not permitted (容器限制) | ❌ 无法查看宿主机内核日志 |\n\n### 日志现场\n\n- 进程 04:39 启动，12:10 日志停止写入（运行约 7.5 小时）\n- 前面的 chain 正常完成 (10000/10000)\n- 最后停在 joint_gmfrm chain 采样 9038/10000，无任何 graceful shutdown 痕迹（突然截断）\n\n### 判定\n\n**AutoDL 平台操作**——容器编排层面的 SIGKILL。在 AutoDL 容器内 dmesg 不可访问，且平台的资源管理/维护操作不留用户可见日志。内存、磁盘、用户操作均已排除，剩下唯一合理解释是平台层面干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-investigate-mcmc-kill.md"
+}

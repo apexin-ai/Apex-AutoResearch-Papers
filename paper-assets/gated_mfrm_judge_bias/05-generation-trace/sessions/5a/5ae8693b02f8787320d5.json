@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ae8693b02f8787320d5",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh p0 step1 rerun exp002 9models",
+  "task_key": "worker_ssh_p0_step1_rerun_exp002_9models_20260522T123351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0_step1_rerun_exp002_9models_20260522T123351_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "520c83bbaff78d9361c013dec332bc4a8237d74fb22e6f9f3b1645fda5a92609"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果对比：\n\n| 指标 | 旧版 (2 target models) | 新版 (8 target models) |\n|---|---|---|\n| **Judgments** | — | 12,122 (from 10 files) |\n| **Judges** | 10 | 9 |\n| **Items** | 493 | 317 |\n| **Target models** | 2 (gpt-3.5-turbo-0125, gpt-4-0613) | 8 (gemma-2-9b, gpt-3.5-turbo-0125, gpt-4-0613, gpt-4o, gpt-4o-mini, llama-3.3-70b, qwen2.5-72b, qwen3-8b) |\n| **e_i mean** | 0.236 | 0.212 |\n| **e_i median** | 0.126 | 0.125 |\n| **e_i std** | 0.247 | 0.236 |\n| **e_i max** | 1.0 | 1.0 |\n| **High exposure (e_i=1.0)** | 9 items | 2 items |\n| **Source coverage** | 2 sources/item | 2 sources/item (A+C, no Source B) |\n\n注意两点：\n\n1. **Items 从 493 降到 317** — 新的 judgment 数据覆盖的 item 集合比旧版小。可能旧版用了 `--arena-hard-dir` 补充数据，或者新 judges 只覆盖了部分 items。需确认这是否符合预期。\n\n2. **8 个 target models 而非 9 个** — exp001/results 有 9 个 judge 子目录（对应 9 个 judge model），但 target models 是 judgment 数据中的 `model_a` 字段去重后的结果。reference model (gpt-4-0314) 被排除，剩 8 个 target models。这说明 judge 目录名 ≠ target model，9 个 judge 用来评判 8 个 target model 的表现。\n\n旧结果已备份到 `results_2model_backup/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-step1-rerun-exp002-9models.md"
+}

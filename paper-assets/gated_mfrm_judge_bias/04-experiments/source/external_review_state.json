@@ -1,0 +1,8 @@
+{
+  "status": "pending",
+  "paper_pdf_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/review_round_5/submitted.pdf",
+  "venue": "EMNLP 2026",
+  "requested_at": "2026-05-25T21:15:29.186175+00:00",
+  "reminder_hours": 8,
+  "chat_id": "oc_0cbc280bd5cb8937b8ac82690c3c5283"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "cb0d327e92628c4eedfb",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "code exp 009 formal ovb",
+  "task_key": "worker_code_exp_009_formal_ovb_20260521T223155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_009_formal_ovb_20260521T223155.log",
+    "occurrence": 1,
+    "bytes": 714709,
+    "sha256": "faa4fbc6825231354ac893e078e4e560a99c57a335c0939be483f5102ff8759f"
+  },
+  "statistics": {
+    "messages": 494,
+    "user_turns": 0,
+    "tool_calls": 196,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 96,
+      "tool_call": 196,
+      "tool_result": 196,
+      "record": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 494,
+      "chunks": [
+        {
+          "path": "cb0d327e92628c4eedfb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cb0d327e92628c4eedfb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cb0d327e92628c4eedfb-part-0003.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-009-formal-ovb.md"
+}

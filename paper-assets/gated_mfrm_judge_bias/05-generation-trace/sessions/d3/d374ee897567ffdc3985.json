@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d374ee897567ffdc3985",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp 001 framework",
+  "task_key": "worker_code_exp_001_framework_20260521T231703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001_framework_20260521T231703_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "128984cc74bae864148b2ffd69b9c19b701cee4b91a8fdbe0de7689800f9b219"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 结果\n\n| 文件 | 行数 | 说明 |\n|------|------|------|\n| `judge_interface.py` | 229 | 统一 judge 接口 + 6 个 judge 实现 + factory |\n| `collect.py` | 186 | 主收集脚本（resume/swap/retry/rate-limit） |\n| `data_loader.py` | 74 | Benchmark 数据加载器 |\n| `config.yaml` | 23 | 配置文件 |\n\n验证结果：\n- 语法检查：✓ 全部通过\n- `from judge_interface import get_judge` ：✓ OK\n\n依赖安装：openai、anthropic、google-generativeai 已装入 conda base。\n\n待后续补充：`data/` 目录下的 benchmark prompts 和 model responses JSONL 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001-framework.md"
+}

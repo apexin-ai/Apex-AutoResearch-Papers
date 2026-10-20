@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6ad7dcdccf2491b25ba",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp001 mmlu gsmk prep",
+  "task_key": "worker_ssh_exp001_mmlu_gsmk_prep_20260522T061523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_mmlu_gsmk_prep_20260522T061523_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "0e57237efd925cee4f0ab04528331672809acf8db2485eafdb4f7e28edfd2a95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇总\n\n### 1. 数据文件\n| 文件 | 行数 | 大小 |\n|------|------|------|\n| `exp001/data/mmlu/mmlu_500.jsonl` | 500 | 284KB |\n| `exp001/data/gsm8k/gsm8k_500.jsonl` | 500 | 305KB |\n\nMMLU 覆盖 **57 个 subject**，按比例分层抽样。GSM8K 从 test split (1319题) 随机抽 500。\n\n### 2. Prompt Template\n`exp001/prompts/pointwise_template.py` — 包含 MMLU 和 GSM8K 各自的 system prompt + user prompt 模板，使用 `[[rating]]` 格式与 `judge_interface.py` 的解析器兼容。\n\n### 3. 收集脚本\n`exp001/collect_pointwise.py` + `exp001/config_pointwise.yaml`\n\n功能：\n- `--generate-responses`: 用 target model 生成 MMLU/GSM8K 的 response\n- 默认模式：对每个 (item, model, judge) 收集 pointwise 评分\n- `--benchmark mmlu/gsm8k` + `--judge <name>` 支持增量运行\n- 断点续传：跳过已完成的 key，failed 会重试\n- RateLimiter 复用 collect.py 的 token-bucket 模式\n- 输出到 `results/pointwise/{benchmark}_judgments.jsonl`\n\n### 4. 开始收集前还需要\n**Target model responses**（最关键的缺失项）：需要先用 `--generate-responses` 为 8 个 target model 各生成 500 MMLU + 500 GSM8K 的 response，存到 `data/responses/{mmlu,gsm8k}/{model}.jsonl`。\n\n运行方式：\n```bash\npython collect_pointwise.py --config config_pointwise.yaml --generate-responses --judge gpt-5.5-proxy\n```\n\n### 5. Judgment 数量预估\n每个 judge 需评 **500 items × 8 models = 4,000 judgments**（每个 benchmark），两个 benchmark 合计 **8,000 judgments/judge**。\n\n8 个 judge 总计：**64,000 judgments**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp001-mmlu-gsmk-prep.md"
+}

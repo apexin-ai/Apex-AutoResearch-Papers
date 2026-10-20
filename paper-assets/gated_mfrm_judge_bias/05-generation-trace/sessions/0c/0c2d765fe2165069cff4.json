@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c2d765fe2165069cff4",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix missing local judges",
+  "task_key": "worker_ssh_fix_missing_local_judges_20260522T121209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_missing_local_judges_20260522T121209_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "20109e751b07b13496fcc279c0c61bc1b056e958cae0c61a7d53afd5918af63b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇总：**\n\n**Judge collect.py — 9/9 全部在运行，无需修复：**\n| Judge | Config | Workers | Status |\n|-------|--------|---------|--------|\n| llama-3.3-70b | config_llama_arena.yaml | 8 | ✓ running |\n| qwen2.5-72b | config_qwen_arena.yaml | 8 | ✓ running |\n| mistral | config_mistral_arena.yaml | 8 | ✓ running |\n| gpt-5.5 | config_gpt-5.5-proxy_arena.yaml | 4 | ✓ running |\n| claude-opus-4.7 | config_claude-opus-4.7-proxy_arena.yaml | 4 | ✓ running |\n| claude-sonnet-4.6 | config_claude-sonnet-4.6-proxy_arena.yaml | 4 | ✓ running |\n| deepseek-v4-pro | config_deepseek-v4-pro-proxy_arena.yaml | 4 | ✓ running |\n| gemini-2.5-pro | config_gemini-2.5-pro-proxy_arena.yaml | 4 | ✓ running |\n| qwen3-235b | config_qwen3-235b-proxy_arena.yaml | 4 | ✓ running |\n\n**vLLM 服务 — 均在线：**\n- Port 8001: `llama-3.3-70b-instruct` (max_model_len=8192)\n- Port 8002: `qwen2.5-72b-instruct` (max_model_len=4096)\n\n**Response 生成进程 — 3 个在运行（非暂停）：**\n| Session | 进程 | 详情 |\n|---------|------|------|\n| gen-vllm | `generate_vllm_online.py --all --workers 32` | 在 tmux pts/2 |\n| gen-api | `generate_responses.py --group proxy_nocredit --workers 3 --rate-delay 1.0` | 在 tmux pts/5 |\n| (background) | `generate_responses.py --group openai --workers 3 --rate-delay 0.3` | nohup 后台进程 |\n\nllama 和 qwen 的 judge sessions 已经存在并且 collect.py 正在运行，看起来是之前已经启动好了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-missing-local-judges.md"
+}

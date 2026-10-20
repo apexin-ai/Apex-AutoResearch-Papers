@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b22b0f6c0f15f1af284",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh verify throughput restart partial",
+  "task_key": "worker_ssh_verify_throughput_restart_partial_20260523T204200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_throughput_restart_partial_20260523T204200_result.json",
+    "occurrence": 1,
+    "bytes": 1975,
+    "sha256": "45eaf26a18ad509b65954ccd578d3750ae130bef9379c830dbe6ca360c2f07d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。\n\n---\n\n## 产出报告\n\n### 1. N=17 Judge Throughput\n\n**Snapshot 1**: 04:43:17 CST → **Snapshot 2**: 04:48:08 CST — 间隔 **291 秒**\n\n| Judge | S1 行数 | S2 行数 | 5min Δ | items/hr | 错误 |\n|-------|--------|--------|--------|----------|------|\n| claude-sonnet-4.6-proxy | 11198 | 11238 | +40 | **495** | 0 |\n| qwen3-235b-proxy | 8132 | 8165 | +33 | **408** | 0 |\n| llama-3.3-70b | 6876 | 6907 | +31 | **383** | 0 |\n| gemini-2.5-pro-proxy | 7659 | 7686 | +27 | **334** | 0 |\n| qwen2.5-72b | 9740 | 9762 | +22 | **272** | 0 |\n| mistral-large-2 | 9301 | 9323 | +22 | **272** | 0 |\n| deepseek-v4-pro-proxy | 6748 | 6767 | +19 | **235** | 0 |\n\n所有 7 个 N=17 进程正常运行（`--workers 10`），restart 日志 0 errors。\n\nN=17 target 约 18,000 行/judge（18 target models × 500 questions × 2 position swap）。按当前速率，最快的 sonnet 约 14 小时完成，最慢的 deepseek 约 48 小时。\n\n### 2. Partial Judge 状态\n\n| Judge | 行数 | 目标(≈9000) | PID | 状态 |\n|-------|------|------------|-----|------|\n| GPT-5.5 | 8454 | ~9000 | 659566 | 运行中，+7 lines since restart |\n| Claude Opus 4.7 | 9148 | ~9000 | 659677 | 运行中，+10 lines since restart |\n\n- Opus 已超过 9000 行——可能包含重复/retry 条目，或者正在收尾剩余 position swap。进程仍在运行说明还有未完成的 item。\n- GPT-5.5 还差 ~546 行，按 ~84 items/hr 估计约 6.5 小时完成。\n\n### 3. 问题标记\n\n- **无 500/429/error**：所有 7 个 N=17 restart 日志均为 0 errors\n- **Opus log 重定向问题**：首次启动 opus 时日志文件创建失败（路径解析问题），第二次用绝对路径成功。日志在 `/root/gated_mfrm_judge_bias/exp001/logs/opus_partial_restart.log`\n- **注意**：`python` 不在默认 PATH 中，启动 collect.py 需先 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-throughput-restart-partial.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6a1887e796ca312b1f0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check n17 judge status",
+  "task_key": "worker_ssh_check_n17_judge_status_20260523T213855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_n17_judge_status_20260523T213855_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "634e8cb5cf2a738d58f25ee8c60c5d0effbcf7cc9a5321912fc43987a3fe9a72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/n17_judge_status.md`。\n\n**结论**: 评测正在进行中，总体完成约 50%。\n\n关键状态：\n- **8/9 个 judge 活跃运行**，结果文件持续写入中（最后更新 ~2分钟前）\n- 3 个 vLLM 服务器（llama/qwen/mistral）均正常\n- **最快 sonnet 65.7%，最慢 deepseek 39.8%**\n- llama-3.3-70b-shard2 已停止 16 小时，需确认\n\n**需要关注的问题**：\n1. Mistral 早期因 4096 token 上下文限制跳过了大量 items（vLLM 已重启修复，但跳过的 items 需要重跑）\n2. llama-shard2 停了，不确定是废弃还是需要继续\n3. 预计全部完成需 24-36 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-n17-judge-status.md"
+}

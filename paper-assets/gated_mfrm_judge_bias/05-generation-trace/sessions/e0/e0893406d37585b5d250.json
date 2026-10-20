@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0893406d37585b5d250",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh anonymity check",
+  "task_key": "worker_ssh_anonymity_check_20260524T071740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_anonymity_check_20260524T071740_result.json",
+    "occurrence": 1,
+    "bytes": 1505,
+    "sha256": "2bac585acfe6624011b534ad00fb63610d547b0c80e3878374e468f2d2dceecd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 匿名性检查报告\n\n### 1. 作者姓名/机构 — **PASS** ✓\n- `main.tex:27` → `\\author{Anonymous}` — 正确的匿名格式\n- 未发现任何真实姓名、大学名称、实验室名称\n\n### 2. 非匿名 URL — **PASS** ✓\n- 无 GitHub/GitLab/Bitbucket/HuggingFace 链接\n- 无 arXiv 自引链接\n- `limitations.tex:7` 使用了 `[anonymized URL]` — 正确做法\n\n### 3. 致谢中的人名 — **PASS** ✓\n- 未发现 acknowledge/thank/grateful/funded by/grant 等内容\n- 无致谢段落，匿名提交阶段正确\n\n### 4. 匿名宏 — **PASS** ✓\n- `main.tex:3` → `\\usepackage[review]{acl}` — 正确启用了 review（匿名）模式\n- `acl.sty` 中 `review` 选项设置 `\\acl@anonymizetrue`，会自动隐藏作者信息并显示行号\n\n### 5. PDF metadata — **PASS** ✓\n- `main.tex` 中无 `pdfauthor`/`pdfcreator`/`pdftitle` 设置，不会通过 PDF 元数据泄露作者信息\n\n### 6. 脚注中的泄露 — **PASS** ✓\n- 3 个脚注（`background.tex:26`, `method.tex:50`, `method.tex:99`），内容均为技术说明（OVB 近似、收敛诊断、衰减公式假设），无身份信息\n\n### 补充检查\n- **API key/token 泄露** — PASS，无 wandb/openai/api_key 等敏感信息\n- **隐性自引** (\"our lab/group/team\") — PASS，未发现\n- **匿名占位符** — 正确使用了 `[anonymized URL]` 和 `\\author{Anonymous}`\n\n---\n\n**总结：全部 6 项检查通过，论文符合匿名审查要求。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-anonymity-check.md"
+}

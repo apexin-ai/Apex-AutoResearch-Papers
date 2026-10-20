@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp-008",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:32:22.196Z",
+    "updated_at": "2026-05-22T21:32:56.738Z",
+    "hypothesis": "G-MFRM joint estimation produces acceptable model fit (infit/outfit MNSQ in [0.5, 1.5]) for model and judge facets, validating that the measurement model structure adequately captures response patterns. Item-level misfit identifies items with anomalous response patterns that may warrant exclusion.",
+    "parent": "exp-003b",
+    "spec": {
+      "command": "python run_exp008.py",
+      "server": "autodl-8gpu",
+      "data_path": "/root/gated_mfrm_judge_bias/exp003/output_003b/",
+      "data_count": "8 models × 9 judges × 176 items",
+      "model_name": "G-MFRM facet fit diagnostics (infit/outfit MNSQ)",
+      "seed": "N/A",
+      "gpu": "cuda:3 (CPU-only analysis)",
+      "checkpoint_source": "exp-003b point estimates",
+      "eval_data": "exp-003b joint_gmfrm output",
+      "checkpoint_path": "/root/gated_mfrm_judge_bias/exp008/",
+      "log_path": "/root/gated_mfrm_judge_bias/exp008/exp008_output.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "global_fit": {
+        "infit_mnsq": 0.87,
+        "outfit_mnsq": 0.795,
+        "interpretation": "Slightly overfit globally (predictions too certain), acceptable"
+      },
+      "model_facet": {
+        "flagged": 0,
+        "total": 8,
+        "range": [
+          0.63,
+          1.07
+        ],
+        "best_fit": "gpt-4-0613 (infit=0.993, outfit=1.068)"
+      },
+      "judge_facet": {
+        "flagged": 0,
+        "total": 9,
+        "best_fit": "gpt-5.5-proxy (infit=1.006, outfit=1.001)",
+        "note": "claude-sonnet-4.6-proxy and mistral-large-2 outfit ~0.6 (overly predictable)"
+      },
+      "item_facet": {
+        "flagged_overfit": 5,
+        "flagged_underfit": 87,
+        "total": 176,
+        "worst_items": [
+          "20c9d951 (outfit=3.170)",
+          "6b31320632 (outfit=3.010)"
+        ],
+        "note": "87 underfit items mostly low-observation (4-6 obs) low-exposure items — sparse data effect, not model deficiency"
+      },
+      "key_finding": "Model and judge facets fit well (0 flagged). Item-level misfit concentrated in sparse low-exposure items (underfit) and 5 anomalous items (overfit). Overall model structure validated."
+    },
+    "completed_at": "2026-05-22T21:32:56.739Z"
+  },
+  "timestamp": "2026-05-22T21:32:56.812231+00:00",
+  "trigger": "update_registry"
+}

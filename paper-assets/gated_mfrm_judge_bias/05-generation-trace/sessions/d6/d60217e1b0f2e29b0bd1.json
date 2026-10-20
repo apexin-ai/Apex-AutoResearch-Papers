@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d60217e1b0f2e29b0bd1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp006 fix and launch",
+  "task_key": "worker_ssh_exp006_fix_and_launch_20260522T201520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp006_fix_and_launch_20260522T201520_result.json",
+    "occurrence": 1,
+    "bytes": 1747,
+    "sha256": "09a12994364402f8f5d95c90a64e806c0b1e340b75e8b7ad9346ad5580d788c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两种 MCMC 方法的 InferenceData 都成功保存。汇报如下：\n\n---\n\n### 1. 代码修改内容\n\n| 修改 | 说明 |\n|------|------|\n| **修复 import bug** | `from exp003_models import` → `from models import`（两处：`fit_methods_on_subset` L182, `main()` L518） |\n| **添加 `import arviz as az`** | L33 |\n| **`fit_methods_on_subset`** 新增 `idata_dir`, `idata_label` 参数 | 每个 MCMC fit 后调 `az.from_numpyro(mcmc).to_netcdf(...)` |\n| **`run_sensitivity_analysis`** 新增 `output_dir` 参数 | 创建 `{output_dir}/idata/` 子目录，传 `idata_label=f\"k{k}_s{s_idx}\"` |\n| **安装 `h5netcdf`** | NetCDF4 后端依赖 |\n\n### 2. InferenceData 保存路径模式\n\n```\nresults_full/idata/idata_{method}_k{judge_count}_s{subset_idx}.nc\n```\n例：`idata_joint_gmfrm_k2_s1.nc`（~5.7MB），`idata_sequential_k2_s1.nc`（~5.4MB）\n\n### 3. 启动命令\n\n```bash\nCUDA_VISIBLE_DEVICES=1 JAX_PLATFORMS=cuda,cpu XLA_PYTHON_CLIENT_PREALLOCATE=false XLA_PYTHON_CLIENT_MEM_FRACTION=0.25 \\\npython run_exp006.py --methods raw_average joint_gmfrm sequential \\\n  --judge-counts 2 4 6 9 --run-loocv --output-dir results_full\n```\ntmux session: `exp006_full`\n\n### 4. 初始日志确认\n\n- MCMC warmup/sample 正常运行，acc. prob=0.93-0.96\n- Subset 1 的 idata 保存失败（h5netcdf 尚未安装），subset 2 开始后全部正常保存\n- 当前进度：k=2 的 subset 2 已完成\n\n### 5. 预估完成时间\n\n- 每 subset: sequential (~30s) + joint_gmfrm (~50s) ≈ **~1.3 min**\n- 31 subsets × 1.3 min ≈ 40 min\n- LOOCV (10 fits) ≈ 13 min\n- **总计 ≈ 1 小时**\n\n> **注意**：subset 1（k=2, s=0）的 2 个 idata 文件丢失。如需补跑可后续单独处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp006-fix-and-launch.md"
+}

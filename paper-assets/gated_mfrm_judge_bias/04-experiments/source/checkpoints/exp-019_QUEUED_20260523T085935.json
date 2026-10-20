@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-019",
+  "project": "gated_mfrm_judge_bias",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:53:33.579Z",
+    "updated_at": "2026-05-23T08:59:34.998Z",
+    "hypothesis": "G-MFRM θ 与 MFRM-only θ 的差异（Δθ）与 contamination exposure c_n 正相关——高 c_n 模型的 MFRM θ 被高估，G-MFRM 校正后 θ 下降，可视化 contamination bias 如何被吸收进 ability estimates。",
+    "parent": "exp-003b"
+  },
+  "timestamp": "2026-05-23T08:59:35.132180+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2abab89cd614e59ada67",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh wait restart llama qwen judges v2",
+  "task_key": "worker_ssh_wait_restart_llama_qwen_judges_v2_20260522T084304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_wait_restart_llama_qwen_judges_v2_20260522T084304_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "99121624ec173f62a39112815e107a3150bd558313e0f8b4c9554bb62a7fceab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "自动重启脚本已部署并运行中。\n\n当前状态：\n- llama: 488/500（约 1-2 轮检查后触发 judge）\n- qwen: 403/500（约 2-3 轮检查后触发 judge）\n- 脚本每 3 分钟检查一次，response 到 500 行时自动在独立 tmux session 启动 `collect.py --workers 8 --generate-judge-responses`\n- 日志：`/tmp/auto_restart_judges.log`（总控）、`/tmp/judge_llama_collect.log`、`/tmp/judge_qwen_collect.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-wait-restart-llama-qwen-judges-v2.md"
+}

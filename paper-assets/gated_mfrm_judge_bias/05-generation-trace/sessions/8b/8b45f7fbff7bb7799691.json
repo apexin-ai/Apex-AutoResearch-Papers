@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8b45f7fbff7bb7799691",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh split fig6 and unify style",
+  "task_key": "worker_ssh_split-fig6-and-unify-style_20260525T124129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_split-fig6-and-unify-style_20260525T124129.log",
+    "occurrence": 1,
+    "bytes": 579437,
+    "sha256": "3b3c20265c61864a7bcabe630eccad3cab08ef821c6c4f1ae51c45fd02841717"
+  },
+  "statistics": {
+    "messages": 264,
+    "user_turns": 0,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 107,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 264,
+      "chunks": [
+        {
+          "path": "8b45f7fbff7bb7799691-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b45f7fbff7bb7799691-part-0002.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-split-fig6-and-unify-style.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a691870cf4702a4d6702",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "validation ref audit A",
+  "task_key": "worker_validation_ref-audit-A_20260526T104707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validation_ref-audit-A_20260526T104707_result.json",
+    "occurrence": 1,
+    "bytes": 2911,
+    "sha256": "b864a3a3ad45dfb2e91611b1d45d508e87e6659cb17164c6d4718fd73ca4bf40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 批次验证完成。以下是汇总结果。\n\n---\n\n```\n总条数: 45\n全部论文真实存在: ✅（无 hallucinated paper）\n严重错误: 1 条\n标题/元信息需修正: ~14 条\n```\n\n## 严重错误（必须修）\n\n| # | cite_key | 错误 |\n|---|----------|------|\n| 44 | `ye2024justice` | **❌ Venue 错误**: 实际是 **ICLR 2025**，非 EMNLP 2024 |\n\n## 标题显著改写（建议修正）\n\n| # | cite_key | 问题 |\n|---|----------|------|\n| 10 | `uto2020generalized` | 标题大幅缩写：实际 \"A generalized many-facet Rasch model and its Bayesian estimation using Hamiltonian Monte Carlo\"，bib 用了 MFRM/HMC 缩写 |\n| 4 | `shu2013dgirt` | 缺副标题 \"due to Item Compromise\"，且 \"IRT\" 应为 \"Item Response Theory\" |\n\n## 标题截断/缺词（视 bib 实际内容决定是否修）\n\n以下条目在 bib 摘要中存在标题不完整，需对照实际 .bib 文件确认：\n\n| # | cite_key | 缺失部分 |\n|---|----------|----------|\n| 6 | `zhou2025psnirt` | \"LLM\"→\"Large Language Model\", \"IRT\"→\"Item Response Theory\" |\n| 12 | `rodriguez2021irt` | 缺副标题 \"How should that change NLP Leaderboards?\" |\n| 17 | `bavaresco2025judgebench` | 缺副标题 \"A Large Scale Empirical Study across 20 NLP Evaluation Tasks\" |\n| 18 | `cyclicjudge2026` | 缺 \"Efficiently in LLM-based Evaluation\" |\n| 19 | `uda2026` | 缺 \"for Pair-wise LLM-as-a-Judge\" |\n| 20 | `fiedler2026bias_uncertainty` | 缺末尾 \"Estimation\" |\n| 24 | `sainz2023contamination` | 缺副标题 \"On the Need to Measure LLM Data Contamination for each Benchmark\" |\n| 29 | `preference_leakage2026` | 缺冠词 \"A\" → \"A Contamination Problem...\" |\n| 30 | `li2024arenahard` | 缺 \"and BenchBuilder Pipeline\" |\n| 39 | `vehtari2021rhat` | 缺副标题 \"for Assessing Convergence of MCMC\" |\n| 41 | `truce2024` | 缺 \"and Improve Comparative Evaluation of LLMs\" |\n| 42 | `choi2026irt_judge` | 缺 \"the\"，\"IRT\"→\"Item Response Theory\" |\n\n## 完全通过 ✅ (30 条)\n\n`piironen2017horseshoe`, `linacre1989mfrm`, `linacre1994mfrm`, `jiao2025mfrm_llm`, `rothenberg1971`, `sanmartin2016`, `betancourt2015`, `lalor2019irt`, `vania2021irt`, `wang2024positionbias`, `li2024splitmerge`, `koo2024cobbler`, `golchin2024timetravel`, `oren2024proving`, `deng2024contamination`, `constat2024`, `dcr2025`, `mink2024`, `zheng2023mtbench`, `talts2018sbc`, `angrist2009mostly`, `murphy1985`, `pagan1984`, `wooldridge2010`, `vehtari2017loo`, `gelman2013bda`, `livebench2025`, `polo2024tinybenchmarks`, `panickssery2024selffavor`, `gelman2013bda`\n\n---\n\n**结论**: 无 hallucinated paper。唯一必须立即修复的是 `ye2024justice` 的 venue（EMNLP 2024 → ICLR 2025）。标题截断问题需对照实际 .bib 文件确认——上面列出的是基于摘要信息的比对，实际 bib 中可能已有完整标题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validation-ref-audit-a.md"
+}

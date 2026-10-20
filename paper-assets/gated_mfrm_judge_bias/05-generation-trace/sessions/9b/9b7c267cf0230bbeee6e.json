@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b7c267cf0230bbeee6e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper repo audit and link",
+  "task_key": "worker_paper_repo-audit-and-link_20260525T083815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_repo-audit-and-link_20260525T083815_result.json",
+    "occurrence": 1,
+    "bytes": 1672,
+    "sha256": "e7d3ecf5ff18f65db1ef4b505e18cfeee7d9c581bd54253c192a74bafbdc8749"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Part 1: 匿名仓库\n\n- **密钥状态：失效** — 本地 deploy key 绑定的是 `caoxiaoyuyuyuyuyu/agent-ml-research`，对 `anonymous-nlp-2026-2/gated_mfrm_judge_bias` 无 push 权限。需要为匿名仓库添加新的 deploy key（write access）或使用 PAT。\n- **匿名性：有问题**\n  - git author/committer：`Anonymous <anonymous@example.com>` ✅\n  - **`TUM_PROXY_KEY`** 出现在 2 个文件中，泄漏机构信息：\n    - `exp001/judge_interface.py:343`\n    - `exp001/generate_responses.py:24`\n  - 需要重命名为 `API_PROXY_KEY` 或 `PROXY_API_KEY`\n  - 其他（真实姓名、邮箱、wandb entity）未发现 ✅\n- **完整性：通过** ✅\n  - README.md 覆盖环境要求、依赖安装、入口脚本、数据获取方式\n  - 核心代码齐全（exp001 收集、exp002 exposure、exp003 MCMC fitting、exp004 baselines、lib/、mvp/）\n  - requirements.txt 完整\n- **干净度：通过** ✅\n  - 无 .DS_Store / \\_\\_pycache\\_\\_ / *.pyc / .env / wandb/ / checkpoint 文件\n  - .gitignore 覆盖充分\n- **推送：未执行** — 密钥无权限，等待你配置新 key 后重推\n\n## Part 2: 论文链接\n\n- **删除位置：** `limitations.tex` 第 7 行 — 已删除 `Code and data will be released upon acceptance at [anonymized URL].`\n- **添加位置：** `abstract.tex` 第 2 行末尾 — 添加 `\\footnote{Code and data are available at \\url{https://github.com/anonymous-nlp-2026-2/gated_mfrm_judge_bias}.}`\n- **重复检查：** 其他 .tex 文件无重复链接 ✅\n- **url 包：** acl.sty 已包含 `\\usepackage{url}` ✅\n- **编译：通过** — 17 pages, 无错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-repo-audit-and-link.md"
+}

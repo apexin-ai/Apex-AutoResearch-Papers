@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c62798f7b142794d25b7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check autodl cuda123",
+  "task_key": "worker_ssh_check_autodl_cuda123_20260522T173820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_autodl_cuda123_20260522T173820_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "f883d4e3de39324056de186fdf0643a142582482d24f17c5c0326c5ba71b23d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 总显存 |\n|-----|--------|----------|--------|\n| 0 | 0% | 0 MiB | 97,887 MiB |\n| 1 | 0% | 0 MiB | 97,887 MiB |\n| 2 | 0% | 0 MiB | 97,887 MiB |\n| 3 | 0% | 0 MiB | 97,887 MiB |\n\n**cuda:1/2/3 全部空闲。** 之前的 vLLM judge 评估已结束，无任何 GPU 进程。\n\n### orchestrator2 状态\n`run_remaining.sh`（exp001 小模型生成）仍在 tmux 中运行，但不占 GPU：\n- **Llama-3.1-8B**: 已完成 (500/500)，进程已退出\n- **Qwen2.5-7B**: 模型下载**卡住** — safetensors 文件数为 0，只有 config/tokenizer。脚本在 `wait_for_model` 循环里 sleep 30\n- **Mistral-7B-v0.3**: 模型已下载完成 (3/3 safetensors)，但脚本逻辑是串行等待，要等 Qwen 先跑完\n\n### exp-004 可行性\n- `/root/gated_mfrm_judge_bias/exp004/` **不存在**，代码还未部署到服务器\n- GPU 完全空闲，可以直接使用 cuda:1/2/3 跑 exp-004（包括 MCMC 方法）\n\n### 需要决策\n1. **Qwen2.5-7B 下载问题**：下载似乎挂了（只有元数据文件没有权重），orchestrator2 会无限等待。需要排查下载源或手动重新下载\n2. **exp-004 部署**：需要先把 exp004 代码推到服务器，才能运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-autodl-cuda123.md"
+}

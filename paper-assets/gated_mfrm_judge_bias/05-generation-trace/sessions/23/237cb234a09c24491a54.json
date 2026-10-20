@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "237cb234a09c24491a54",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh api judges restore workers10",
+  "task_key": "worker_ssh_api_judges_restore_workers10_20260524T015352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_api_judges_restore_workers10_20260524T015352_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "4e6914973518cd04d1b35ae6b5c55664babe1093f14f664343a9420bc1fe0bae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 报告\n\n### 重启前进度\n| Judge | 已完成 | 总数 | 速率 |\n|-------|--------|------|------|\n| Sonnet | 640 | 16646 | 0.3 items/s |\n| Gemini | 240 | 17175 | 0.1 items/s |\n| DeepSeek | 170 | 17261 | 0.1 items/s |\n| Qwen3 | 170 | 17058 | 0.1 items/s |\n\n### 重启后 PID（--workers 10）\n| Judge | PID |\n|-------|-----|\n| Sonnet | 506658 |\n| Gemini | 506876 |\n| DeepSeek | 506930 |\n| Qwen3 | 506990 |\n\n### 6 个 collect.py 全部运行中\n- 4 API judges: `--workers 10` ✓\n- LLaMA local (PID 503734): `--workers 4` ✓\n- Qwen72B local (PID 505793): `--workers 4` ✓\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 73885 MiB | 65% |\n| 1 | 90109 MiB | 100% |\n| 2 | 90195 MiB | 100% |\n| 3 | 0 MiB | 0% |\n\nGPU 0-2 被 local judges 的 vLLM 占用，GPU 3 空闲。API judges 不占 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-api-judges-restore-workers10.md"
+}

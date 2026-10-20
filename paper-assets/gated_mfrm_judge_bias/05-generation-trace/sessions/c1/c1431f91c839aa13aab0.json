@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1431f91c839aa13aab0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh local judge acceleration",
+  "task_key": "worker_ssh_local-judge-acceleration_20260524T084448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_local-judge-acceleration_20260524T084448_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "ebf8ffa877ce82cfc8eef82cbf25195afbaa436bffa23cdcc96fe058756b02d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "500 items × 18 models × 2 positions = 18000 records/judge。\n\nPhase 6 结果——当前吞吐 **不足以在 May 26 deadline 前完成**：\n\n| Judge | 重启前 records | workers | 当前 records | records/min | 剩余 | 预估完成时间 |\n|-------|-------------|---------|------------|-------------|------|-------------|\n| LLaMA-3.3-70B | 1046 | 12 | 1084 | ~6.3 | 16916 | ~45h (1.9d) |\n| Qwen2.5-72B | 693 | 12 | 713 | ~3.3 | 17287 | ~87h (3.6d) |\n| Mistral-Large-2 | 84 | 12 | 97 | ~2.2 | 17903 | ~136h (5.7d) |\n\n**问题根源**：GPU 是瓶颈，不是 workers。但 vLLM 日志显示 KV cache 利用率极低（LLaMA 7%, Qwen 8%, Mistral 27%），说明 **batch size 太小**。Qwen 之前 16 reqs 时 throughput 是 40 tokens/s，降到 12 reqs 后只有 29 tokens/s。\n\n**建议**：进一步提高 workers 到 32（Mistral）或 48（LLaMA/Qwen）以增加 vLLM batch size，充分利用 GPU。要执行吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-local-judge-acceleration.md"
+}

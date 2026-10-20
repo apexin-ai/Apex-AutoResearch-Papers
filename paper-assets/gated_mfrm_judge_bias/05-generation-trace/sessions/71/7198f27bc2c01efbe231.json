@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "7198f27bc2c01efbe231",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp001 mistral cuda1",
+  "task_key": "worker_ssh_exp001_mistral_cuda1_20260522T032402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_mistral_cuda1_20260522T032402_result.json",
+    "occurrence": 1,
+    "bytes": 2361461,
+    "sha256": "4d2653b9b14d43c7307367ff1e51d7f476d625aa8fd77d881e1d1995002409f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "7198f27bc2c01efbe231-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp001-mistral-cuda1.md"
+}

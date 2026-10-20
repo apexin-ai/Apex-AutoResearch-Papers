@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-020",
+  "project": "gated_mfrm_judge_bias",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:14:09.581Z",
+    "updated_at": "2026-05-24T08:14:28.868Z",
+    "hypothesis": "N=17 target models (vs N=8) with 7 diverse judges provides sufficient statistical power for G-MFRM joint estimation to achieve significant Δτ over baselines, confirming that exp-018 synthetic calibration results translate to real data.",
+    "parent": "exp-018"
+  },
+  "timestamp": "2026-05-24T08:14:28.930906+00:00",
+  "trigger": "update_registry"
+}

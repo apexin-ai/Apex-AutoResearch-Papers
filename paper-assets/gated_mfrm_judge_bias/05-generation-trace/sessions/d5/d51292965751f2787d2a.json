@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d51292965751f2787d2a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh diagnose mistral slow speed",
+  "task_key": "worker_ssh_diagnose_mistral_slow_speed_20260522T082205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_mistral_slow_speed_20260522T082205_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "6212c84545d120096ba7d8eb7edca8d848391dacc5fcd4d3a22642292f2285df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根本原因：模型本身大 1.75x，不可通过配置修复。**\n\n架构对比：\n\n| | Mistral-Large-2 | Llama-3.3-70B | Qwen2.5-72B |\n|---|---|---|---|\n| 参数量 | **~123B** | ~70B | ~72B |\n| hidden_size | **12288** | 8192 | 8192 |\n| 层数 | **88** | 80 | 80 |\n| 注意力头数 | **96** | 64 | 64 |\n| AWQ 权重 | **61 GB** | 38 GB | 39 GB |\n\n生成脚本对三个模型完全一致（`MAX_TOKENS=2048`, `workers=8`, 无 model-specific 配置差异）。vLLM 启动参数也合理（`max-model-len=4096`, `gpu-memory-utilization=0.90`）。\n\n**速度差异分析**：\n- Mistral 每个 token 的计算量约为 70B 模型的 2-2.5x（hidden_size 宽 50% + 多 10% 层）\n- 权重加载带宽需求 61/38 ≈ 1.6x\n- KV cache 剩余空间：Mistral ~25 GB vs Llama/Qwen ~47-48 GB（但 8 并发下不构成瓶颈）\n- 实测 3-5x 慢于 70B 模型，符合预期\n\n**不可修复。** 无配置调优能让 123B 模型达到 70B 的速度。\n\n**当前进度和 ETA**：\n- Llama: 400/485, ~0.09/s → 约 **16 分钟**完成\n- Qwen: 320/499, ~0.08/s → 约 **37 分钟**完成\n- Mistral: 60/499, ~0.02/s → 约 **5.4 小时**完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-mistral-slow-speed.md"
+}

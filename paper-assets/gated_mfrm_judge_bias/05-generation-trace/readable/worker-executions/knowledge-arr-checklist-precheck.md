@@ -1,0 +1,2598 @@
+# knowledge arr checklist precheck
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_knowledge_arr_checklist_precheck_20260524T071755.log`
+- **Structured JSON:** [`24d8182c618d5f959639.json`](../../sessions/24/24d8182c618d5f959639.json)
+
+## Before a recorded user message
+
+38 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "23f7afe1-bde6-488c-8ec9-7bca56f6cdc1",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779607800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "892431d6-e867-438c-a609-1399dab2edf9",
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll read the project file and check the paper files on the server in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "978fb2e4-c109-4462-8a70-df2120876636",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RPox2q8Sz53mVERnqHpaYi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12706,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12706
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CMBj4AVrBTrBh4cUh2EEwy`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "2869a88f-0249-466a-88d8-06c42f3a5495",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RPox2q8Sz53mVERnqHpaYi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12706,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12706
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T07:18:07.427Z_
+
+<details><summary>↩ Tool result · `toolu_01CMBj4AVrBTrBh4cUh2EEwy`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "ff9810d4-f9fd-4119-bca9-73718674bac6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can call the tools in parallel to gather all the information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "9e0821fc-c32f-4548-b745-bdae85e7aa55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbZha2EH6R5c12EYkgTXsR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 24153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_017KTxoDWJbYSxSwzL6eeYA3`</summary>
+
+```json
+{
+  "project": "gated_mfrm_judge_bias",
+  "file": "paper_framing.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "88b4939e-21a9-4aa6-8b51-04b7bf9bf426",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbZha2EH6R5c12EYkgTXsR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 24153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T07:18:11.322Z_
+
+<details><summary>↩ Tool result · `toolu_017KTxoDWJbYSxSwzL6eeYA3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/paper_framing.md\", \"content\": \"# Paper Framing — gated_mfrm_judge_bias\\n\\n## Target Venue\\n- Primary: EMNLP 2026 ARR (submission deadline May 26, 2026)\\n- Timeline: 4 days from today (2026-05-22)\\n\\n## Core Insight\\nSequential approaches to judge bias correction and contamination adjustment produce biased model ability estimates due to omitted variable confounding. Joint estimation within a single psychometric calibration framework is methodologically necessary, not merely convenient.\\n\\n## Core Claims (3 条，均可证伪)\\n\\n1. **Confounding Claim**: When judge severity (d_j) and contamination susceptibility (c_n·e_i) are both present but only one is modeled, the unmodeled facet's effect is absorbed into other parameter estimates, producing systematic bias in model ability rankings. Sequential pipelines (bias-first or contamination-first) do not resolve this confounding. (Note: OVB formalization supports this claim as mechanism explanation — \\\"identify and quantify confounding in LLM evaluation\\\" — not as independent theoretical contribution. Cite Angrist & Pischke 2009 as source.)\\n\\n2. **Framework Claim**: The Gated Many-Facet Rasch Model (G-MFRM) — combining MFRM's multi-facet structure with DG-IRT's gating mechanism and externally-anchored exposure indicators — provides a staged joint calibration that estimates model ability, item difficulty, judge severity, and contamination susceptibility, yielding bias-and-contamination-corrected \\\"fair scores.\\\" (Note: \\\"staged joint\\\" — e_i is pre-estimated in Stage 2 and fixed in Stage 3; the joint estimation is conditional on e_i. This is a deliberate identifiability choice, not fully simultaneous. Paper must use \\\"staged joint calibration\\\" or \\\"conditional joint estimation,\\\" never \\\"fully joint.\\\")\\n\\n3. **Empirical Claim**: G-MFRM fair scores achieve higher agreement with human rankings (Chatbot Arena votes, Kendall-τ) than all baselines: raw multi-judge averages, bias-only correction (CyclicJudge, UDA), contamination-only adjustment (DCR), and naive sequential pipelines.\\n\\n## Story Spine\\n\\n- **Problem**: LLM-as-a-judge evaluation has bifurcated into two correction silos — judge bias and benchmark contamination — that are addressed independently. But judge severity and contamination effects are confounded: bias-only methods absorb contamination inflation into ability estimates; contamination-only methods misattribute judge effects as contamination signals. Sequential correction cannot resolve this because the first stage's estimates are already biased by the unmodeled facet.\\n\\n- **Existing approaches & gaps**: CyclicJudge eliminates average judge bias via round-robin but ignores contamination. UDA uses neural K-factor adjustment (−63.4% inter-judge std) but is black-box and contamination-unaware. DCR/ConStat quantify contamination effects (r²=0.94) but ignore judge variation. In LLM evaluation literature, no existing work jointly models both within a single calibration framework. (Note: educational measurement has MFRM+DIF joint modeling — Eckes 2011, Patz et al. 2002, Fox & Glas 2001, Wind & Peterson 2018 — but these address test fairness, not LLM contamination. G-MFRM is the first to apply continuous-exposure gating within MFRM for LLM evaluation. \\\"First\\\" claim must be precisely scoped to LLM evaluation with continuous exposure.)\\n\\n- **Our framing**: Joint estimation is methodologically necessary. We formalize this as an omitted variable bias problem: under non-orthogonality of d_j and c_n·e_i, sequential estimators are asymptotically biased (direction determined by covariance sign). G-MFRM resolves this by estimating all facets simultaneously, with a three-stage procedure ensuring identifiability: (1) standard MFRM for initial estimates, (2) external per-item exposure estimation via item-level performance gap (original vs reference variants) with difficulty correction, supplemented by temporal signals and LogProber where available, (3) joint gated model with e_i fixed and c_n as latent parameters. ConStat per-model delta serves as external validation of fitted c_n.\\n\\n- **MCMC Implementation Note (Method section)**: Use NCP for c_n to avoid funnel geometries. Centered parameterization yields ESS~47 vs 224+ with NCP. Report convergence diagnostics (R̂ < 1.05, ESS > 100). One sentence + footnote in paper, not a subsection.\\n\\n- **Headline result template**: \\\"On MT-Bench/Arena-Hard with 8 LLM judges, G-MFRM fair scores achieve X% higher Kendall-τ with Chatbot Arena human votes than the best sequential baseline, while simultaneously producing interpretable per-model contamination estimates and per-judge severity profiles.\\\"\\n\\n## Narrative Strategy (from distilled writing)\\n\\n- **Type**: \\\"突破局限\\\" (sequential has structural flaw) + \\\"统一框架\\\" (G-MFRM unifies both corrections)\\n- **Opening hook**: Quantitative shock — lead with confounding's θ-RMSE degradation (43.8% in synthetic, to be validated on real data)\\n- **Section 2**: Toy example / formal **observation** (NOT \\\"proposition\\\" — this is standard OVB from Angrist & Pischke 2009 applied to LLM evaluation; cite originals, present as domain-specific instantiation) demonstrating confounding before introducing G-MFRM method\\n- **Figure 1**: Left = sequential pipeline with confounding annotation, Right = joint G-MFRM with gating mechanism highlighted\\n- **Main result table**: rows = methods (7 baselines + G-MFRM), cols = benchmarks × metrics\\n- **Ablation**: Full numbers (not checkmark grid), rows = components on/off\\n\\n## Venue Fit Risks\\n\\n- **AAAI**: Good fit for psychometric methodology applied to AI evaluation. Risk: reviewers may lack MFRM/IRT background — need clear, self-contained exposition with toy examples. Strength: AAAI values formal modeling + practical impact.\\n- **ACL/ARR**: Good fit for LLM evaluation methodology. Risk: may demand stronger NLP-specific contributions beyond the measurement framework. Strength: directly relevant to LLM evaluation community.\\n\\n## Anticipated Reviewer Concerns & Responses\\n\\n1. **\\\"Why not CyclicJudge + discard contaminated items?\\\"** — Item discard wastes information; CyclicJudge doesn't capture item-specific judge effects; neither produces c_n for auditing; G-MFRM degrades gracefully to standard MFRM when contamination ≈ 0. Synthetic validation confirms graceful degradation: under weak contamination (c~HalfNormal(0.5), ρ=0.0), G-MFRM shows no significant degradation vs sequential (non-degradation p=0.96), demonstrating that gating parameters do not introduce noise when signal is absent.\\n\\n2. **\\\"Is confounding large enough in practice?\\\"** — MVP synthetic: 43.8% RMSE degradation. Real-data calibration (P0 experiment) will establish realistic contamination magnitude. Bias scatter (r=0.65) shows the mechanism exists regardless of magnitude.\\n\\n3. **\\\"Rank-1 assumption (c_n·e_i) too strong\\\"** — Rank-1 is LLTM tradition, good approximation when contamination comes from dominant data source. Person-fit diagnostics (infit/outfit) detect violations. Rank-k extension is future work.\\n\\n4. **\\\"DG-IRT transfer is trivial\\\"** — Three structural differences require non-trivial adaptation: binary→continuous exposure, single-rater→multi-facet, known→unknown exposure status. Stage 2 external anchoring solves a fundamental obstacle (exposure unknown to administrator) absent in educational testing. Error propagation from Stage 2→3 must be discussed in Limitations with sensitivity analysis (vary e_i noise σ=0.1,0.2,0.5).\\n\\n4b. **\\\"Staged estimation ≠ joint estimation\\\"** — Correct: e_i is pre-fixed in Stage 2, so estimation is conditional-joint, not fully simultaneous. Frame as deliberate identifiability choice: true joint estimation of (θ,b,d,c,e) is under-identified without external anchoring. Staged estimation is the principled solution. Compare to two-step estimators in econometrics (Heckman 1979). exp-012 establishes explicit applicability bounds: robust at σ_e ≤ σ_crit ≈ √Var(e_i) (θ +5.9% at σ=0.2), degrades beyond (θ +36.9% at σ=0.5). This testable boundary makes the staged approximation falsifiable — a methodological strength, not weakness.\\n\\n5. **\\\"Contamination signal realistic?\\\"** — ConStat validated r²=0.94 with true contamination effects. LogProber provides per-item memorization indicators. Multiple indicators combined via weighted composite. P0 experiment calibrates against real benchmarks.\\n\\n6. **\\\"Chatbot Arena Elo as ground truth — circular reasoning?\\\"** — Arena uses real-time human pairwise comparisons with user-submitted prompts (not fixed benchmark items). Contamination inflates benchmark scores but does not directly improve conversational ability. Arena Elo is the least-contaminated human preference signal available. Acknowledge limitation in paper but argue decoupling is strong.\\n\\n7. **\\\"c_n ≥ 0 assumption too restrictive?\\\"** — Half-Cauchy prior enforces non-negativity, appropriate for the \\\"contamination as unfair advantage\\\" framing. Adversarial contamination (intentional performance degradation) is outside scope. Discuss in Limitations.\\n\\n8. **\\\"≥4 judges needed — too expensive?\\\"** — Leave-one-judge-out analysis during exp-003 fitting shows degradation curve as judge count decreases. Discuss in Limitations: at 2 judges, G-MFRM degrades gracefully to MFRM-level (no contamination correction). Cost-benefit analysis for practitioners.\\n\\n9. **\\\"No judge-model interaction term?\\\"** — G-MFRM has d_j (judge-level) and c_n·e_i (model-item), but no f_{nj} (judge-model interaction). Preference Leakage shows same-model PLS≈23.6%, same-family≈8.9%. When GPT-5.5 judges GPT-5.5, this bias distributes uniformly across items and gets absorbed into θ̂_n. Mitigation: (a) leave-one-judge-out residual analysis during exp-003 fitting detects if specific judges inflate same-family models; (b) Limitations section acknowledges scope boundary; (c) rank-k extension with judge-model interaction is future work.\\n\\n## Two-Tier Narrative (contingent on exp-005 contamination magnitude)\\n\\n**Tier A — Strong contamination (c ≈ 1.0-1.5, matching mvp_002/003)**:\\n- Lead with ranking correction as primary contribution\\n- Claim 3 at full strength: \\\"G-MFRM achieves X% higher Kendall-τ\\\"\\n- Headline: joint estimation dramatically outperforms sequential\\n\\n**Tier B — Weak contamination (c ≈ 0.3-0.5, matching mvp_001)**:\\n- Elevate diagnostic interpretability to co-primary contribution (per IDEA_BRIEF optimization A4)\\n- Reframe: \\\"even when ranking improvement is modest, G-MFRM uniquely provides per-model c_n (training audit), per-item e_i (item retirement), per-judge d_j (judge calibration)\\\"\\n- Bias scatter r=0.65 proves the mechanism exists; practical impact scales with contamination magnitude\\n- Claim 3 softened to \\\"comparable or better rankings PLUS interpretable diagnostic outputs\\\"\\n\\n**Tier B+ — Diagnostics as sole primary (if Claim 1 ρ≈0 AND Claim 3 Δτ non-significant)**:\\n- Diagnostics become the **sole** primary contribution (not co-primary)\\n- Paper becomes \\\"tool paper\\\": G-MFRM as diagnostic framework for LLM evaluation auditing\\n- Contribution: per-model c_n (training data audit), per-item e_i (item retirement), per-judge d_j (judge calibration) — unified diagnostic outputs no existing tool provides\\n- Risk: \\\"tool paper\\\" positioning may be weaker for Main Conference; strong for Findings\\n\\nexp-005 determines which tier. Decision point: after exp-005 results, before paper writing.\\n\\n## Novelty Supplementation Strategy\\n\\nDream R2 exposed a novelty ceiling: \\\"MFRM + 1 term\\\" + \\\"textbook OVB\\\" = combinatorial novelty. Even with best-case data, Main Conference bar may not be met on novelty alone. Supplement with:\\n\\n1. **Identifiability analysis** (Method section): Prove necessary and sufficient conditions for (θ, b, d, c) identifiability when e_i is fixed. This is a non-trivial technical contribution beyond \\\"adding a term.\\\"\\n2. **Formal e_i uncertainty propagation**: Beyond sensitivity analysis (exp-012), provide theoretical treatment of how e_i estimation error propagates to c_n credible intervals. Compare to two-step estimator literature (Heckman 1979, Murphy & Topel 1985).\\n3. **Diagnostic framework formal\\n\\n... [截断: 省略 1239 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 13239, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "de47cbd0-d043-4167-93c0-a42056ff1402",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gated_mfrm_judge_bias\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 ARR (submission deadline May 26, 2026)\\\\n- Timeline: 4 days from today (2026-05-22)\\\\n\\\\n## Core Insight\\\\nSequential approaches to judge bias correction and contamination adjustment produce biased model ability estimates due to omitted variable confounding. Joint estimation within a single psychometric calibration framework is methodologically necessary, not merely convenient.\\\\n\\\\n## Core Claims (3 条，均可证伪)\\\\n\\\\n1. **Confounding Claim**: When judge severity (d_j) and contamination susceptibility (c_n·e_i) are both present but only one is modeled, the unmodeled facet's effect is absorbed into other parameter estimates, producing systematic bias in model ability rankings. Sequential pipelines (bias-first or contamination-first) do not resolve this confounding. (Note: OVB formalization supports this claim as mechanism explanation — \\\\\\\"identify and quantify confounding in LLM evaluation\\\\\\\" — not as independent theoretical contribution. Cite Angrist & Pischke 2009 as source.)\\\\n\\\\n2. **Framework Claim**: The Gated Many-Facet Rasch Model (G-MFRM) — combining MFRM's multi-facet structure with DG-IRT's gating mechanism and externally-anchored exposure indicators — provides a staged joint calibration that estimates model ability, item difficulty, judge severity, and contamination susceptibility, yielding bias-and-contamination-corrected \\\\\\\"fair scores.\\\\\\\" (Note: \\\\\\\"staged joint\\\\\\\" — e_i is pre-estimated in Stage 2 and fixed in Stage 3; the joint estimation is conditional on e_i. This is a deliberate identifiability choice, not fully simultaneous. Paper must use \\\\\\\"staged joint calibration\\\\\\\" or \\\\\\\"conditional joint estimation,\\\\\\\" never \\\\\\\"fully joint.\\\\\\\")\\\\n\\\\n3. **Empirical Claim**: G-MFRM fair scores achieve higher agreement with human rankings (Chatbot Arena votes, Kendall-τ) than all baselines: raw multi-judge averages, bias-only correction (CyclicJudge, UDA), contamination-only adjustment (DCR), and naive sequential pipelines.\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: LLM-as-a-judge evaluation has bifurcated into two correction silos — judge bias and benchmark contamination — that are addressed independently. But judge severity and contamination effects are confounded: bias-only methods absorb contamination inflation into ability estimates; contamination-only methods misattribute judge effects as contamination signals. Sequential correction cannot resolve this because the first stage's estimates are already biased by the unmodeled facet.\\\\n\\\\n- **Existing approaches & gaps**: CyclicJudge eliminates average judge bias via round-robin but ignores contamination. UDA uses neural K-factor adjustment (−63.4% inter-judge std) but is black-box and contamination-unaware. DCR/ConStat quantify contamination effects (r²=0.94) but ignore judge variation. In LLM evaluation literature, no existing work jointly models both within a single calibration framework. (Note: educational measurement has MFRM+DIF joint modeling — Eckes 2011, Patz et al. 2002, Fox & Glas 2001, Wind & Peterson 2018 — but these address test fairness, not LLM contamination. G-MFRM is the first to apply continuous-exposure gating within MFRM for LLM evaluation. \\\\\\\"First\\\\\\\" claim must be precisely scoped to LLM evaluation with continuous exposure.)\\\\n\\\\n- **Our framing**: Joint estimation is methodologically necessary. We formalize this as an omitted variable bias problem: under non-orthogonality of d_j and c_n·e_i, sequential estimators are asymptotically biased (direction determined by covariance sign). G-MFRM resolves this by estimating all facets simultaneously, with a three-stage procedure ensuring identifiability: (1) standard MFRM for initial estimates, (2) external per-item exposure estimation via item-level performance gap (original vs reference variants) with difficulty correction, supplemented by temporal signals and LogProber where available, (3) joint gated model with e_i fixed and c_n as latent parameters. ConStat per-model delta serves as external validation of fitted c_n.\\\\n\\\\n- **MCMC Implementation Note (Method section)**: Use NCP for c_n to avoid funnel geometries. Centered parameterization yields ESS~47 vs 224+ with NCP. Report convergence diagnostics (R̂ < 1.05, ESS > 100). One sentence + footnote in paper, not a subsection.\\\\n\\\\n- **Headline result template**: \\\\\\\"On MT-Bench/Arena-Hard with 8 LLM judges, G-MFRM fair scores achieve X% higher Kendall-τ with Chatbot Arena human votes than the best sequential baseline, while simultaneously producing interpretable per-model contamination estimates and per-judge severity profiles.\\\\\\\"\\\\n\\\\n## Narrative Strategy (from distilled writing)\\\\n\\\\n- **Type**: \\\\\\\"突破局限\\\\\\\" (sequential has structural flaw) + \\\\\\\"统一框架\\\\\\\" (G-MFRM unifies both corrections)\\\\n- **Opening hook**: Quantitative shock — lead with confounding's θ-RMSE degradation (43.8% in synthetic, to be validated on real data)\\\\n- **Section 2**: Toy example / formal **observation** (NOT \\\\\\\"proposition\\\\\\\" — this is standard OVB from Angrist & Pischke 2009 applied to LLM evaluation; cite originals, present as domain-specific instantiation) demonstrating confounding before introducing G-MFRM method\\\\n- **Figure 1**: Left = sequential pipeline with confounding annotation, Right = joint G-MFRM with gating mechanism highlighted\\\\n- **Main result table**: rows = methods (7 baselines + G-MFRM), cols = benchmarks × metrics\\\\n- **Ablation**: Full numbers (not checkmark grid), rows = components on/off\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n- **AAAI**: Good fit for psychometric methodology applied to AI evaluation. Risk: reviewers may lack MFRM/IRT background — need clear, self-contained exposition with toy examples. Strength: AAAI values formal modeling + practical impact.\\\\n- **ACL/ARR**: Good fit for LLM evaluation methodology. Risk: may demand stronger NLP-specific contributions beyond the measurement framework. Strength: directly relevant to LLM evaluation community.\\\\n\\\\n## Anticipated Reviewer Concerns & Responses\\\\n\\\\n1. **\\\\\\\"Why not CyclicJudge + discard contaminated items?\\\\\\\"** — Item discard wastes information; CyclicJudge doesn't capture item-specific judge effects; neither produces c_n for auditing; G-MFRM degrades gracefully to standard MFRM when contamination ≈ 0. Synthetic validation confirms graceful degradation: under weak contamination (c~HalfNormal(0.5), ρ=0.0), G-MFRM shows no significant degradation vs sequential (non-degradation p=0.96), demonstrating that gating parameters do not introduce noise when signal is absent.\\\\n\\\\n2. **\\\\\\\"Is confounding large enough in practice?\\\\\\\"** — MVP synthetic: 43.8% RMSE degradation. Real-data calibration (P0 experiment) will establish realistic contamination magnitude. Bias scatter (r=0.65) shows the mechanism exists regardless of magnitude.\\\\n\\\\n3. **\\\\\\\"Rank-1 assumption (c_n·e_i) too strong\\\\\\\"** — Rank-1 is LLTM tradition, good approximation when contamination comes from dominant data source. Person-fit diagnostics (infit/outfit) detect violations. Rank-k extension is future work.\\\\n\\\\n4. **\\\\\\\"DG-IRT transfer is trivial\\\\\\\"** — Three structural differences require non-trivial adaptation: binary→continuous exposure, single-rater→multi-facet, known→unknown exposure status. Stage 2 external anchoring solves a fundamental obstacle (exposure unknown to administrator) absent in educational testing. Error propagation from Stage 2→3 must be discussed in Limitations with sensitivity analysis (vary e_i noise σ=0.1,0.2,0.5).\\\\n\\\\n4b. **\\\\\\\"Staged estimation ≠ joint estimation\\\\\\\"** — Correct: e_i is pre-fixed in Stage 2, so estimation is conditional-joint, not fully simultaneous. Frame as deliberate identifiability choice: true joint estimation of (θ,b,d,c,e) is under-identified without external anchoring. Staged estimation is the principled solution. Compare to two-step estimators in econometrics (Heckman 1979). exp-012 establishes explicit applicability bounds: robust at σ_e ≤ σ_crit ≈ √Var(e_i) (θ +5.9% at σ=0.2), degrades beyond (θ +36.9% at σ=0.5). This testable boundary makes the staged approximation falsifiable — a methodological strength, not weakness.\\\\n\\\\n5. **\\\\\\\"Contamination signal realistic?\\\\\\\"** — ConStat validated r²=0.94 with true contamination effects. LogProber provides per-item memorization indicators. Multiple indicators combined via weighted composite. P0 experiment calibrates against real benchmarks.\\\\n\\\\n6. **\\\\\\\"Chatbot Arena Elo as ground truth — circular reasoning?\\\\\\\"** — Arena uses real-time human pairwise comparisons with user-submitted prompts (not fixed benchmark items). Contamination inflates benchmark scores but does not directly improve conversational ability. Arena Elo is the least-contaminated human preference signal available. Acknowledge limitation in paper but argue decoupling is strong.\\\\n\\\\n7. **\\\\\\\"c_n ≥ 0 assumption too restrictive?\\\\\\\"** — Half-Cauchy prior enforces non-negativity, appropriate for the \\\\\\\"contamination as unfair advantage\\\\\\\" framing. Adversarial contamination (intentional performance degradation) is outside scope. Discuss in Limitations.\\\\n\\\\n8. **\\\\\\\"≥4 judges needed — too expensive?\\\\\\\"** — Leave-one-judge-out analysis during exp-003 fitting shows degradation curve as judge count decreases. Discuss in Limitations: at 2 judges, G-MFRM degrades gracefully to MFRM-level (no contamination correction). Cost-benefit analysis for practitioners.\\\\n\\\\n9. **\\\\\\\"No judge-model interaction term?\\\\\\\"** — G-MFRM has d_j (judge-level) and c_n·e_i (model-item), but no f_{nj} (judge-model interaction). Preference Leakage shows same-model PLS≈23.6%, same-family≈8.9%. When GPT-5.5 judges GPT-5.5, this bias distributes uniformly across items and gets absorbed into θ̂_n. Mitigation: (a) leave-one-judge-out residual analysis during exp-003 fitting detects if specific judges inflate same-family models; (b) Limitations section acknowledges scope boundary; (c) rank-k extension with judge-model interaction is future work.\\\\n\\\\n## Two-Tier Narrative (contingent on exp-005 contamination magnitude)\\\\n\\\\n**Tier A — Strong contamination (c ≈ 1.0-1.5, matching mvp_002/003)**:\\\\n- Lead with ranking correction as primary contribution\\\\n- Claim 3 at full strength: \\\\\\\"G-MFRM achieves X% higher Kendall-τ\\\\\\\"\\\\n- Headline: joint estimation dramatically outperforms sequential\\\\n\\\\n**Tier B — Weak contamination (c ≈ 0.3-0.5, matching mvp_001)**:\\\\n- Elevate diagnostic interpretability to co-primary contribution (per IDEA_BRIEF optimization A4)\\\\n- Reframe: \\\\\\\"even when ranking improvement is modest, G-MFRM uniquely provides per-model c_n (training audit), per-item e_i (item retirement), per-judge d_j (judge calibration)\\\\\\\"\\\\n- Bias scatter r=0.65 proves the mechanism exists; practical impact scales with contamination magnitude\\\\n- Claim 3 softened to \\\\\\\"comparable or better rankings PLUS interpretable diagnostic outputs\\\\\\\"\\\\n\\\\n**Tier B+ — Diagnostics as sole primary (if Claim 1 ρ≈0 AND Claim 3 Δτ non-significant)**:\\\\n- Diagnostics become the **sole** primary contribution (not co-primary)\\\\n- Paper becomes \\\\\\\"tool paper\\\\\\\": G-MFRM as diagnostic framework for LLM evaluation auditing\\\\n- Contribution: per-model c_n (training data audit), per-item e_i (item retirement), per-judge d_j (judge calibration) — unified diagnostic outputs no existing tool provides\\\\n- Risk: \\\\\\\"tool paper\\\\\\\" positioning may be weaker for Main Conference; strong for Findings\\\\n\\\\nexp-005 determines which tier. Decision point: after exp-005 results, before paper writing.\\\\n\\\\n## Novelty Supplementation Strategy\\\\n\\\\nDream R2 exposed a novelty ceiling: \\\\\\\"MFRM + 1 term\\\\\\\" + \\\\\\\"textbook OVB\\\\\\\" = combinatorial novelty. Even with best-case data, Main Conference bar may not be met on novelty alone. Supplement with:\\\\n\\\\n1. **Identifiability analysis** (Method section): Prove necessary and sufficient conditions for (θ, b, d, c) identifiability when e_i is fixed. This is a non-trivial technical contribution beyond \\\\\\\"adding a term.\\\\\\\"\\\\n2. **Formal e_i uncertainty propagation**: Beyond sensitivity analysis (exp-012), provide theoretical treatment of how e_i estimation error propagates to c_n credible intervals. Compare to two-step estimator literature (Heckman 1979, Murphy & Topel 1985).\\\\n3. **Diagnostic framework formal\\\\n\\\\n... [截断: 省略 1239 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 13239, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/paper_framing.md\", \"content\": \"# Paper Framing — gated_mfrm_judge_bias\\n\\n## Target Venue\\n- Primary: EMNLP 2026 ARR (submission deadline May 26, 2026)\\n- Timeline: 4 days from today (2026-05-22)\\n\\n## Core Insight\\nSequential approaches to judge bias correction and contamination adjustment produce biased model ability estimates due to omitted variable confounding. Joint estimation within a single psychometric calibration framework is methodologically necessary, not merely convenient.\\n\\n## Core Claims (3 条，均可证伪)\\n\\n1. **Confounding Claim**: When judge severity (d_j) and contamination susceptibility (c_n·e_i) are both present but only one is modeled, the unmodeled facet's effect is absorbed into other parameter estimates, producing systematic bias in model ability rankings. Sequential pipelines (bias-first or contamination-first) do not resolve this confounding. (Note: OVB formalization supports this claim as mechanism explanation — \\\"identify and quantify confounding in LLM evaluation\\\" — not as independent theoretical contribution. Cite Angrist & Pischke 2009 as source.)\\n\\n2. **Framework Claim**: The Gated Many-Facet Rasch Model (G-MFRM) — combining MFRM's multi-facet structure with DG-IRT's gating mechanism and externally-anchored exposure indicators — provides a staged joint calibration that estimates model ability, item difficulty, judge severity, and contamination susceptibility, yielding bias-and-contamination-corrected \\\"fair scores.\\\" (Note: \\\"staged joint\\\" — e_i is pre-estimated in Stage 2 and fixed in Stage 3; the joint estimation is conditional on e_i. This is a deliberate identifiability choice, not fully simultaneous. Paper must use \\\"staged joint calibration\\\" or \\\"conditional joint estimation,\\\" never \\\"fully joint.\\\")\\n\\n3. **Empirical Claim**: G-MFRM fair scores achieve higher agreement with human rankings (Chatbot Arena votes, Kendall-τ) than all baselines: raw multi-judge averages, bias-only correction (CyclicJudge, UDA), contamination-only adjustment (DCR), and naive sequential pipelines.\\n\\n## Story Spine\\n\\n- **Problem**: LLM-as-a-judge evaluation has bifurcated into two correction silos — judge bias and benchmark contamination — that are addressed independently. But judge severity and contamination effects are confounded: bias-only methods absorb contamination inflation into ability estimates; contamination-only methods misattribute judge effects as contamination signals. Sequential correction cannot resolve this because the first stage's estimates are already biased by the unmodeled facet.\\n\\n- **Existing approaches & gaps**: CyclicJudge eliminates average judge bias via round-robin but ignores contamination. UDA uses neural K-factor adjustment (−63.4% inter-judge std) but is black-box and contamination-unaware. DCR/ConStat quantify contamination effects (r²=0.94) but ignore judge variation. In LLM evaluation literature, no existing work jointly models both within a single calibration framework. (Note: educational measurement has MFRM+DIF joint modeling — Eckes 2011, Patz et al. 2002, Fox & Glas 2001, Wind & Peterson 2018 — but these address test fairness, not LLM contamination. G-MFRM is the first to apply continuous-exposure gating within MFRM for LLM evaluation. \\\"First\\\" claim must be precisely scoped to LLM evaluation with continuous exposure.)\\n\\n- **Our framing**: Joint estimation is methodologically necessary. We formalize this as an omitted variable bias problem: under non-orthogonality of d_j and c_n·e_i, sequential estimators are asymptotically biased (direction determined by covariance sign). G-MFRM resolves this by estimating all facets simultaneously, with a three-stage procedure ensuring identifiability: (1) standard MFRM for initial estimates, (2) external per-item exposure estimation via item-level performance gap (original vs reference variants) with difficulty correction, supplemented by temporal signals and LogProber where available, (3) joint gated model with e_i fixed and c_n as latent parameters. ConStat per-model delta serves as external validation of fitted c_n.\\n\\n- **MCMC Implementation Note (Method section)**: Use NCP for c_n to avoid funnel geometries. Centered parameterization yields ESS~47 vs 224+ with NCP. Report convergence diagnostics (R̂ < 1.05, ESS > 100). One sentence + footnote in paper, not a subsection.\\n\\n- **Headline result template**: \\\"On MT-Bench/Arena-Hard with 8 LLM judges, G-MFRM fair scores achieve X% higher Kendall-τ with Chatbot Arena human votes than the best sequential baseline, while simultaneously producing interpretable per-model contamination estimates and per-judge severity profiles.\\\"\\n\\n## Narrative Strategy (from distilled writing)\\n\\n- **Type**: \\\"突破局限\\\" (sequential has structural flaw) + \\\"统一框架\\\" (G-MFRM unifies both corrections)\\n- **Opening hook**: Quantitative shock — lead with confounding's θ-RMSE degradation (43.8% in synthetic, to be validated on real data)\\n- **Section 2**: Toy example / formal **observation** (NOT \\\"proposition\\\" — this is standard OVB from Angrist & Pischke 2009 applied to LLM evaluation; cite originals, present as domain-specific instantiation) demonstrating confounding before introducing G-MFRM method\\n- **Figure 1**: Left = sequential pipeline with confounding annotation, Right = joint G-MFRM with gating mechanism highlighted\\n- **Main result table**: rows = methods (7 baselines + G-MFRM), cols = benchmarks × metrics\\n- **Ablation**: Full numbers (not checkmark grid), rows = components on/off\\n\\n## Venue Fit Risks\\n\\n- **AAAI**: Good fit for psychometric methodology applied to AI evaluation. Risk: reviewers may lack MFRM/IRT background — need clear, self-contained exposition with toy examples. Strength: AAAI values formal modeling + practical impact.\\n- **ACL/ARR**: Good fit for LLM evaluation methodology. Risk: may demand stronger NLP-specific contributions beyond the measurement framework. Strength: directly relevant to LLM evaluation community.\\n\\n## Anticipated Reviewer Concerns & Responses\\n\\n1. **\\\"Why not CyclicJudge + discard contaminated items?\\\"** — Item discard wastes information; CyclicJudge doesn't capture item-specific judge effects; neither produces c_n for auditing; G-MFRM degrades gracefully to standard MFRM when contamination ≈ 0. Synthetic validation confirms graceful degradation: under weak contamination (c~HalfNormal(0.5), ρ=0.0), G-MFRM shows no significant degradation vs sequential (non-degradation p=0.96), demonstrating that gating parameters do not introduce noise when signal is absent.\\n\\n2. **\\\"Is confounding large enough in practice?\\\"** — MVP synthetic: 43.8% RMSE degradation. Real-data calibration (P0 experiment) will establish realistic contamination magnitude. Bias scatter (r=0.65) shows the mechanism exists regardless of magnitude.\\n\\n3. **\\\"Rank-1 assumption (c_n·e_i) too strong\\\"** — Rank-1 is LLTM tradition, good approximation when contamination comes from dominant data source. Person-fit diagnostics (infit/outfit) detect violations. Rank-k extension is future work.\\n\\n4. **\\\"DG-IRT transfer is trivial\\\"** — Three structural differences require non-trivial adaptation: binary→continuous exposure, single-rater→multi-facet, known→unknown exposure status. Stage 2 external anchoring solves a fundamental obstacle (exposure unknown to administrator) absent in educational testing. Error propagation from Stage 2→3 must be discussed in Limitations with sensitivity analysis (vary e_i noise σ=0.1,0.2,0.5).\\n\\n4b. **\\\"Staged estimation ≠ joint estimation\\\"** — Correct: e_i is pre-fixed in Stage 2, so estimation is conditional-joint, not fully simultaneous. Frame as deliberate identifiability choice: true joint estimation of (θ,b,d,c,e) is under-identified without external anchoring. Staged estimation is the principled solution. Compare to two-step estimators in econometrics (Heckman 1979). exp-012 establishes explicit applicability bounds: robust at σ_e ≤ σ_crit ≈ √Var(e_i) (θ +5.9% at σ=0.2), degrades beyond (θ +36.9% at σ=0.5). This testable boundary makes the staged approximation falsifiable — a methodological strength, not weakness.\\n\\n5. **\\\"Contamination signal realistic?\\\"** — ConStat validated r²=0.94 with true contamination effects. LogProber provides per-item memorization indicators. Multiple indicators combined via weighted composite. P0 experiment calibrates against real benchmarks.\\n\\n6. **\\\"Chatbot Arena Elo as ground truth — circular reasoning?\\\"** — Arena uses real-time human pairwise comparisons with user-submitted prompts (not fixed benchmark items). Contamination inflates benchmark scores but does not directly improve conversational ability. Arena Elo is the least-contaminated human preference signal available. Acknowledge limitation in paper but argue decoupling is strong.\\n\\n7. **\\\"c_n ≥ 0 assumption too restrictive?\\\"** — Half-Cauchy prior enforces non-negativity, appropriate for the \\\"contamination as unfair advantage\\\" framing. Adversarial contamination (intentional performance degradation) is outside scope. Discuss in Limitations.\\n\\n8. **\\\"≥4 judges needed — too expensive?\\\"** — Leave-one-judge-out analysis during exp-003 fitting shows degradation curve as judge count decreases. Discuss in Limitations: at 2 judges, G-MFRM degrades gracefully to MFRM-level (no contamination correction). Cost-benefit analysis for practitioners.\\n\\n9. **\\\"No judge-model interaction term?\\\"** — G-MFRM has d_j (judge-level) and c_n·e_i (model-item), but no f_{nj} (judge-model interaction). Preference Leakage shows same-model PLS≈23.6%, same-family≈8.9%. When GPT-5.5 judges GPT-5.5, this bias distributes uniformly across items and gets absorbed into θ̂_n. Mitigation: (a) leave-one-judge-out residual analysis during exp-003 fitting detects if specific judges inflate same-family models; (b) Limitations section acknowledges scope boundary; (c) rank-k extension with judge-model interaction is future work.\\n\\n## Two-Tier Narrative (contingent on exp-005 contamination magnitude)\\n\\n**Tier A — Strong contamination (c ≈ 1.0-1.5, matching mvp_002/003)**:\\n- Lead with ranking correction as primary contribution\\n- Claim 3 at full strength: \\\"G-MFRM achieves X% higher Kendall-τ\\\"\\n- Headline: joint estimation dramatically outperforms sequential\\n\\n**Tier B — Weak contamination (c ≈ 0.3-0.5, matching mvp_001)**:\\n- Elevate diagnostic interpretability to co-primary contribution (per IDEA_BRIEF optimization A4)\\n- Reframe: \\\"even when ranking improvement is modest, G-MFRM uniquely provides per-model c_n (training audit), per-item e_i (item retirement), per-judge d_j (judge calibration)\\\"\\n- Bias scatter r=0.65 proves the mechanism exists; practical impact scales with contamination magnitude\\n- Claim 3 softened to \\\"comparable or better rankings PLUS interpretable diagnostic outputs\\\"\\n\\n**Tier B+ — Diagnostics as sole primary (if Claim 1 ρ≈0 AND Claim 3 Δτ non-significant)**:\\n- Diagnostics become the **sole** primary contribution (not co-primary)\\n- Paper becomes \\\"tool paper\\\": G-MFRM as diagnostic framework for LLM evaluation auditing\\n- Contribution: per-model c_n (training data audit), per-item e_i (item retirement), per-judge d_j (judge calibration) — unified diagnostic outputs no existing tool provides\\n- Risk: \\\"tool paper\\\" positioning may be weaker for Main Conference; strong for Findings\\n\\nexp-005 determines which tier. Decision point: after exp-005 results, before paper writing.\\n\\n## Novelty Supplementation Strategy\\n\\nDream R2 exposed a novelty ceiling: \\\"MFRM + 1 term\\\" + \\\"textbook OVB\\\" = combinatorial novelty. Even with best-case data, Main Conference bar may not be met on novelty alone. Supplement with:\\n\\n1. **Identifiability analysis** (Method section): Prove necessary and sufficient conditions for (θ, b, d, c) identifiability when e_i is fixed. This is a non-trivial technical contribution beyond \\\"adding a term.\\\"\\n2. **Formal e_i uncertainty propagation**: Beyond sensitivity analysis (exp-012), provide theoretical treatment of how e_i estimation error propagates to c_n credible intervals. Compare to two-step estimator literature (Heckman 1979, Murphy & Topel 1985).\\n3. **Diagnostic framework formal\\n\\n... [截断: 省略 1239 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 13239, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JzxqkeSfZCvv4cmk6ybHQi`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/paper/limitations.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "5c7226d8-2e5b-467a-9973-43c00afbf010",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbZha2EH6R5c12EYkgTXsR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 24153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T07:18:13.171Z_
+
+<details><summary>↩ Tool result · `toolu_01JzxqkeSfZCvv4cmk6ybHQi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 23687 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "4fb499c9-f98d-4052-92e7-3916b394a9e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[Errno None] Unable to connect to port 23687 on 36.103.198.204\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 23687 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dt443dXGjwrgkMAaKQnfnC`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/paper/main.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "0ad376c8-984c-4d78-8617-10f42c893783",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbZha2EH6R5c12EYkgTXsR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 24153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T07:18:13.461Z_
+
+<details><summary>↩ Tool result · `toolu_01Dt443dXGjwrgkMAaKQnfnC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 23687 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "83b25898-36e4-4b3b-bc6f-a45832319194",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[Errno None] Unable to connect to port 23687 on 36.103.198.204\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 23687 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ud8AeDbcynwDCE3odBytrd`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat /root/gated_mfrm_judge_bias/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "db1a257d-50f7-4bb3-80fa-db399ed46d95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbZha2EH6R5c12EYkgTXsR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 24153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T07:18:14.103Z_
+
+<details><summary>↩ Tool result · `toolu_01Ud8AeDbcynwDCE3odBytrd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 23687 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "ee465afc-0c7a-4c43-8535-1c62cf4ad3b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[Errno None] Unable to connect to port 23687 on 36.103.198.204\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[Errno None] Unable to connect to port 23687 on 36.103.198.204\", \"metadata\": {\"elapsed_seconds\": 0.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The SSH connections to rtx6000-4x failed. The task says to SSH to autodl-8gpu but the project context says the server is rtx6000-4x. Let me re-read the task - it says "SSH 到 autodl-8gpu"... but the project config says server is rtx6000-4x. The SSH error shows it's trying to connect to port 23687 which looks like an AutoDL port. 
+
+Wait, actually the task says "SSH 到 autodl-8gpu" but the project context says server is rtx6000-4x. The connection failed on rtx6000-4x. 
+
+Maybe the paper files are stored elsewhere or the server is currently unavailable. I should check if there's a local copy in the artifacts directory instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "ac3e3f2c-ee64-44b1-b990-700aa4a4cd74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfrnnVRBvmPyBhFbBm7MkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4401,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4401
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+SSH 连接 rtx6000-4x 失败（端口 23687 无法连接）。让我检查本地是否有论文文件副本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "ec205c46-d40b-499b-93ae-53fd0319cb2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfrnnVRBvmPyBhFbBm7MkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4401,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4401
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_016u4EMjZL7EGzuCSHa9vCzy`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "0064c45f-88ad-4906-a701-640cc314ad2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfrnnVRBvmPyBhFbBm7MkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4401,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4401
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T07:18:23.607Z_
+
+<details><summary>↩ Tool result · `toolu_016u4EMjZL7EGzuCSHa9vCzy`</summary>
+
+```text
+artifacts/dream_reports/dream_20260521T204917/best/paper.tex
+artifacts/dream_reports/dream_20260521T204917/median/paper.tex
+artifacts/dream_reports/dream_20260521T204917/worst/paper.tex
+artifacts/dream_reports/dream_20260521T215715/best/paper.tex
+artifacts/dream_reports/dream_20260521T215715/median/paper.tex
+artifacts/dream_reports/dream_20260521T215715/worst/paper.tex
+artifacts/dream_reports/dream_20260522T041217/best/paper.tex
+artifacts/dream_reports/dream_20260522T041217/median/paper.tex
+artifacts/dream_reports/dream_20260522T041217/worst/paper.tex
+docs/paper/main.tex
+docs/paper/abstract.tex
+docs/paper/background.tex
+docs/paper/introduction.tex
+docs/paper/conclusion.tex
+docs/paper/related_work.tex
+docs/paper/appendix.tex
+docs/paper/method.tex
+docs/paper/experiments.tex
+docs/paper/limitations.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "8eeaa592-ffff-47ab-a03a-1cdac8266779",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260521T204917/best/paper.tex",
+      "artifacts/dream_reports/dream_20260521T204917/median/paper.tex",
+      "artifacts/dream_reports/dream_20260521T204917/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260521T215715/best/paper.tex",
+      "artifacts/dream_reports/dream_20260521T215715/median/paper.tex",
+      "artifacts/dream_reports/dream_20260521T215715/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260522T041217/best/paper.tex",
+      "artifacts/dream_reports/dream_20260522T041217/median/paper.tex",
+      "artifacts/dream_reports/dream_20260522T041217/worst/paper.tex",
+      "docs/paper/main.tex",
+      "docs/paper/abstract.tex",
+      "docs/paper/background.tex",
+      "docs/paper/introduction.tex",
+      "docs/paper/conclusion.tex",
+      "docs/paper/related_work.tex",
+      "docs/paper/appendix.tex",
+      "docs/paper/method.tex",
+      "docs/paper/experiments.tex",
+      "docs/paper/limitations.tex"
+    ],
+    "durationMs": 32,
+    "numFiles": 19,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_011wDnw8qxvYtYm27LX6XuC7`</summary>
+
+```json
+{
+  "pattern": "**/paper/**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "2be90322-1004-4735-93b7-406c4af68f79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LfrnnVRBvmPyBhFbBm7MkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4401,
+      "cache_read_input_tokens": 24931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4401
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T07:18:23.997Z_
+
+<details><summary>↩ Tool result · `toolu_011wDnw8qxvYtYm27LX6XuC7`</summary>
+
+```text
+docs/paper/main.tex
+docs/paper/abstract.tex
+docs/paper/background.tex
+docs/paper/introduction.tex
+docs/paper/conclusion.tex
+docs/paper/related_work.tex
+docs/paper/appendix.tex
+docs/paper/method.tex
+docs/paper/experiments.tex
+docs/paper/limitations.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "14389938-8192-4f31-a548-32a1e37dbfd8",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/main.tex",
+      "docs/paper/abstract.tex",
+      "docs/paper/background.tex",
+      "docs/paper/introduction.tex",
+      "docs/paper/conclusion.tex",
+      "docs/paper/related_work.tex",
+      "docs/paper/appendix.tex",
+      "docs/paper/method.tex",
+      "docs/paper/experiments.tex",
+      "docs/paper/limitations.tex"
+    ],
+    "durationMs": 30,
+    "numFiles": 10,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found local copies of the paper files in `docs/paper/`. Let me read the three key files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "b1a0fd56-c88b-4c93-9101-f2eb72b6cfb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqjE3stH1p8kBVNX5V7rLy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 838,
+      "cache_read_input_tokens": 29332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 838
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+本地有论文文件。并行读取三个关键文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "84aa98f4-dcc5-4985-a6fd-c248cbd15b8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqjE3stH1p8kBVNX5V7rLy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 838,
+      "cache_read_input_tokens": 29332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 838
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CSPriS18qSZJn6bsJYJQiU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "2f2f98d9-d68c-44d1-92fe-a334888fbe6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqjE3stH1p8kBVNX5V7rLy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 838,
+      "cache_read_input_tokens": 29332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 838
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T07:18:27.055Z_
+
+<details><summary>↩ Tool result · `toolu_01CSPriS18qSZJn6bsJYJQiU`</summary>
+
+```text
+1	The evaluation uses a single benchmark (Arena-Hard) with XX.X\% fill rate (XX{,}XXX of XX{,}XXX potential cells); sparser designs may compromise identifiability of $c_n$ for models with few observed exposed items, and sparse per-item observations produce elevated item-level mean-square residuals (92/176 items), though model- and judge-level fit remains acceptable. Stage~2 exposure estimation relies on a reference model anchor (gpt-4-0314), whose validity should be periodically re-assessed as benchmarks age.
+2	
+3	Empirical CI coverage differs by parameter type: ability estimates $\theta$ approach nominal coverage (${\sim}$90\% at $N = 8$), while contamination susceptibility $c_n$ exhibits posterior overconfidence (71\% at $N = 50$, 68\% at $N = 8$; \citealp{talts2018sbc}), a structural issue from the multiplicative coupling $c_n \cdot e_i$ and the HalfNormal boundary constraint at $c_n = 0$ that does not improve with sample size; $c_n$ credible intervals should be treated as lower bounds on uncertainty (Appendix~\ref{app:ci_coverage}), with SBC-based recalibration as a direction for future work. The bilinear term also assumes rank-1 structure---a single contamination dimension per model---while contamination may be domain-specific (e.g., coding vs.\ reasoning), requiring a higher-rank decomposition $\sum_r c_{nr} \cdot e_{ir}$ that the current model does not capture.
+4	
+5	Post-hoc power analysis indicates $N \approx 17$ for 80\% power to detect $\Delta\tau = 0.071$; the $N = 8$ evaluation has ${\sim}$50\% power, explaining the non-significant bootstrap result. Generalization to other benchmarks and larger model populations remains to be verified. While self-evaluation sensitivity analysis (Appendix~\ref{app:self_eval}) confirms robust rankings when excluding self-judging observations, removing overlapping models entirely from the judge panel has not been conducted.
+6	
+7	Code and data will be released upon acceptance at [anonymized URL].
+8	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "997b05c7-c73a-4327-bd76-8904873b2a17",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/limitations.tex",
+      "content": "The evaluation uses a single benchmark (Arena-Hard) with XX.X\\% fill rate (XX{,}XXX of XX{,}XXX potential cells); sparser designs may compromise identifiability of $c_n$ for models with few observed exposed items, and sparse per-item observations produce elevated item-level mean-square residuals (92/176 items), though model- and judge-level fit remains acceptable. Stage~2 exposure estimation relies on a reference model anchor (gpt-4-0314), whose validity should be periodically re-assessed as benchmarks age.\n\nEmpirical CI coverage differs by parameter type: ability estimates $\\theta$ approach nominal coverage (${\\sim}$90\\% at $N = 8$), while contamination susceptibility $c_n$ exhibits posterior overconfidence (71\\% at $N = 50$, 68\\% at $N = 8$; \\citealp{talts2018sbc}), a structural issue from the multiplicative coupling $c_n \\cdot e_i$ and the HalfNormal boundary constraint at $c_n = 0$ that does not improve with sample size; $c_n$ credible intervals should be treated as lower bounds on uncertainty (Appendix~\\ref{app:ci_coverage}), with SBC-based recalibration as a direction for future work. The bilinear term also assumes rank-1 structure---a single contamination dimension per model---while contamination may be domain-specific (e.g., coding vs.\\ reasoning), requiring a higher-rank decomposition $\\sum_r c_{nr} \\cdot e_{ir}$ that the current model does not capture.\n\nPost-hoc power analysis indicates $N \\approx 17$ for 80\\% power to detect $\\Delta\\tau = 0.071$; the $N = 8$ evaluation has ${\\sim}$50\\% power, explaining the non-significant bootstrap result. Generalization to other benchmarks and larger model populations remains to be verified. While self-evaluation sensitivity analysis (Appendix~\\ref{app:self_eval}) confirms robust rankings when excluding self-judging observations, removing overlapping models entirely from the judge panel has not been conducted.\n\nCode and data will be released upon acceptance at [anonymized URL].\n",
+      "numLines": 8,
+      "startLine": 1,
+      "totalLines": 8
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014Dreq7CjrsohRYLxuuSt6D`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "61b797e0-06bb-4ed4-a843-5e1e106e600f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqjE3stH1p8kBVNX5V7rLy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 838,
+      "cache_read_input_tokens": 29332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 838
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T07:18:27.533Z_
+
+<details><summary>↩ Tool result · `toolu_014Dreq7CjrsohRYLxuuSt6D`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{amsmath}
+12	\usepackage{amssymb}
+13	\usepackage{amsthm}
+14	\usepackage{booktabs}
+15	\usepackage{xcolor}
+16	\usepackage{subcaption}
+17	
+18	\newtheorem{observation}{Observation}
+19	\newtheorem{proposition}{Proposition}
+20	\newtheorem{theorem}{Theorem}
+21	\newtheorem{corollary}{Corollary}
+22	
+23	\graphicspath{{../../figures/paper/}}
+24	
+25	\title{Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model\\for Disentangling Judge Bias and Contamination in LLM Evaluation}
+26	
+27	\author{Anonymous}
+28	
+29	\begin{document}
+30	\maketitle
+31	
+32	\input{abstract}
+33	\input{introduction}
+34	\input{background}
+35	\input{method}
+36	\input{experiments}
+37	\input{related_work}
+38	\input{conclusion}
+39	
+40	\section*{Limitations}
+41	\input{limitations}
+42	
+43	\bibliography{references}
+44	
+45	\appendix
+46	\input{appendix}
+47	
+48	\end{document}
+49	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "2a02de6d-13a6-4c97-9770-5f1caee505c5",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{amsthm}\n\\usepackage{booktabs}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\newtheorem{observation}{Observation}\n\\newtheorem{proposition}{Proposition}\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{corollary}{Corollary}\n\n\\graphicspath{{../../figures/paper/}}\n\n\\title{Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model\\\\for Disentangling Judge Bias and Contamination in LLM Evaluation}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\\input{introduction}\n\\input{background}\n\\input{method}\n\\input{experiments}\n\\input{related_work}\n\\input{conclusion}\n\n\\section*{Limitations}\n\\input{limitations}\n\n\\bibliography{references}\n\n\\appendix\n\\input{appendix}\n\n\\end{document}\n",
+      "numLines": 49,
+      "startLine": 1,
+      "totalLines": 49
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01515LAzDU6r88WaGufNfHBg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "d44f1575-80c6-41c0-a11a-994e9d879dfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqjE3stH1p8kBVNX5V7rLy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 838,
+      "cache_read_input_tokens": 29332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 838
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-24T07:18:27.989Z_
+
+<details><summary>↩ Tool result · `toolu_01515LAzDU6r88WaGufNfHBg`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Setup}
+5	\label{sec:setup}
+6	
+7	\paragraph{Data and models.} We evaluate on Arena-Hard \citep{li2024arenahard}, a benchmark of 316 multi-turn conversational items selected for high separability among frontier models. After filtering for coverage, the evaluation set comprises 176 items in a connected incomplete design (XX{,}XXX observations; XX.X\% fill rate of the full $N \times I \times J$ tensor). Seventeen target models spanning proprietary and open-source families are evaluated: the original 8 models (GPT-4o, GPT-4o-mini, Qwen2.5-72B, LLaMA-3.3-70B, Qwen3-8B, Gemma-2-9B, GPT-4-0613, GPT-3.5-Turbo) plus 9 additional models (Claude-3.5-Sonnet, GPT-4-Turbo, LLaMA-3.1-70B, Gemma-2-27B, Claude-3-Opus, LLaMA-3-70B, Mixtral-8x22B, Claude-3-Haiku, LLaMA-3-8B). Ground-truth rankings are derived from Chatbot Arena human preference data \citep{zheng2023mtbench}.
+8	
+9	\paragraph{Judges.} Nine LLM judges score model responses in position-swapped pairwise mode: GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini-2.5-Pro, Mistral-Large-2, LLaMA-3.3-70B, Qwen2.5-72B, and Qwen3-235B. Seven judges cover all 17 target models; two judges (GPT-5.5 and Claude Opus 4.7) cover only the original 8 models, yielding an asymmetric connected design---Theorem~\ref{thm:sufficient} requires only connectivity, not full crossing. Position swapping controls for position bias and doubles the effective observation count. Two models---Qwen2.5-72B and LLaMA-3.3-70B---serve as both judge and target; $d_j$ absorbs systematic self-evaluation bias, and excluding self-judging observations leaves rankings unchanged ($\tau = 0.857$; Appendix~\ref{app:self_eval}).
+10	
+11	\paragraph{Exposure estimation.} Per-item exposure $e_i$ is estimated via a two-source pipeline (\S\ref{sec:staged}): reference model anchoring with gpt-4-0314 as anchor (75\% weight) and cross-model agreement (25\% weight). The pipeline is robust to weight configuration (Spearman $\rho \geq 0.998$ across all configurations tested).
+12	
+13	\paragraph{MCMC.} We use NumPyro NUTS with 4{,}000 warmup and 4{,}000 sampling iterations across 4 chains (target acceptance 0.95). The contamination prior follows the hierarchical HalfNormal specification (Eq.~\ref{eq:contam_prior}). Convergence is assessed via rank-normalized split-$\hat{R}$ \citep{vehtari2021rhat} with conventional $\hat{R} < 1.05$ and ESS $> 100$ thresholds \citep{gelman2013bda}.
+14	
+15	\subsection{Baselines and Main Results}
+16	\label{sec:main_results}
+17	
+18	We compare G-MFRM against seven methods that address judge bias or contamination separately: (1) Raw Average, (2) MFRM-only (Eq.~\ref{eq:mfrm}), (3) Sequential pipeline (MFRM then contamination adjustment), (4) CyclicJudge \citep{cyclicjudge2026}, (5) CyclicJudge+discard (exposed items removed), (6) DCR Factor \citep{dcr2025}, and (7) Preference Leakage calibration \citep{preference_leakage2026}. All methods are evaluated by Kendall $\tau$ and Spearman $\rho$ against Chatbot Arena human rankings.
+19	
+20	\begin{table}[t]
+21	\centering
+22	\small
+23	\begin{tabular}{lcccc}
+24	\toprule
+25	& \multicolumn{2}{c}{\textbf{8 models}} & \multicolumn{2}{c}{\textbf{17 models}} \\
+26	\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+27	\textbf{Method} & $\tau$ & $\rho$ & $\tau$ & $\rho$ \\
+28	\midrule
+29	Raw Average & 0.786 & 0.905 & TBD & TBD \\
+30	MFRM-only & 0.786 & 0.905 & TBD & TBD \\
+31	Sequential & 0.786 & 0.905 & TBD & TBD \\
+32	CyclicJudge & 0.786 & 0.905 & TBD & TBD \\
+33	CyclicJudge+discard & 0.786 & 0.905 & TBD & TBD \\
+34	DCR Factor & 0.786 & 0.905 & TBD & TBD \\
+35	Pref.\ Leakage & 0.786 & 0.905 & TBD & TBD \\
+36	\midrule
+37	G-MFRM (ours) & \textbf{0.857} & \textbf{0.952} & \textbf{TBD} & \textbf{TBD} \\
+38	\bottomrule
+39	\end{tabular}
+40	\caption{Correlation with Chatbot Arena human rankings on Arena-Hard (9 judges). All seven baselines produce identical rankings at $N = 8$ ($\tau = 0.786$). G-MFRM yields nominally higher point-estimate rank agreement ($+$7.1pp; bootstrap $\Delta\tau$ CI includes zero). Right columns report the 17-model evaluation (TBD).}
+41	\label{tab:main_results}
+42	\end{table}
+43	
+44	All seven baselines produce identical model rankings ($\tau = 0.786$, $\rho = 0.905$). With $N = 8$, Kendall $\tau$ takes only ${\sim}20$ distinct values, but raw ability scores also vary by $< 0.03$ logits across methods (Table~\ref{tab:raw_scores}), confirming genuine invariance rather than discretization artifact. This reflects the structural confounding from Section~\ref{sec:confounding}: single-facet corrections leave the uncorrected confound intact (Observation~\ref{obs:ovb}). That CyclicJudge+discard also preserves rankings suggests contamination effects on aggregate rankings are modest at this scale; G-MFRM's primary value lies in per-model contamination diagnostics. G-MFRM achieves nominally higher point-estimate rank agreement ($\tau = 0.857$, $\rho = 0.952$) over the baselines ($\tau = 0.786$), but the posterior median $\tau$ equals the baseline (0.786), with the point estimate at the distribution's upper tail. Bootstrap resampling (4{,}000 posterior draws) yields $\Delta\tau$ 95\% CI $[-0.071, 0.071]$: the ranking improvement is not statistically significant at $N = 8$, though G-MFRM almost never degrades rankings ($P(\Delta\tau \geq 0) = 0.927$). On synthetic data ($N = 50$), joint estimation significantly outperforms sequential ($\tau = 0.922$ vs.\ $0.839$, Wilcoxon $p < 0.001$), confirming that the effect is real but below detection at this sample size. The rank change---gpt-4o-mini and qwen2.5-72b swap positions---is consistent with differential contamination ($P(\theta_{\text{mini}} > \theta_{\text{qwen}}) = 0.853$).
+45	
+46	We evaluate G-MFRM along two orthogonal axes: predictive fit and ranking accuracy.
+47	
+48	\paragraph{Predictive fit.} LOO cross-validation strongly favors G-MFRM ($\Delta\mathrm{ELPD}_{\mathrm{LOO}} = -55.7$, SE $= 9.4$, $|\Delta/\mathrm{SE}| = 5.9$; \citealp{vehtari2017loo}), with stacking weight 1.0 for G-MFRM versus 0.0 for MFRM-only. All Pareto $\hat{k} < 0.7$, confirming reliable LOO estimates. The contamination gating term substantially improves held-out predictive fit.
+49	
+50	\paragraph{Ranking accuracy.} Ranking improvement ($\Delta\tau = +0.071$) is not statistically significant at $N = 8$ (bootstrap 95\% CI crosses zero). Post-hoc power analysis indicates $N \approx 17$ is needed for 80\% power to detect this effect size (Appendix~\ref{app:power}). This prediction is empirically validated: at $N = 20$, synthetic $\Delta\tau$ reaches significance (Wilcoxon $p < 0.001$, 18 wins / 1 loss; Appendix~\ref{app:synthetic_calibration}). Pooling 20 replications at $N = 8$ also yields significance ($p < 0.002$), confirming the method consistently improves rankings though any single $N = 8$ dataset has limited power.
+51	
+52	The MCMC sampler achieves rank-normalized split-$\hat{R} \leq 1.03$ across all parameters with zero divergent transitions and minimum bulk ESS of 174 and minimum tail ESS of 381 (model-level parameters: bulk ESS $\geq$ 217, tail ESS $\geq$ 437). These values satisfy the traditional convergence thresholds ($\hat{R} < 1.05$, ESS $> 100$; \citealp{gelman2013bda}) but do not meet the stricter criteria of \citet{vehtari2021rhat} ($\hat{R} < 1.01$, ESS $> 400$), which may contribute to posterior overconfidence (synthetic CI coverage 71\%; see Limitations); we report point estimates and rank orderings as primary results. Model and judge facets show acceptable fit (all infit/outfit MNSQ within $[0.63, 1.07]$; item-level diagnostics in Appendix~\ref{app:item_diagnostics}). Posterior predictive checks confirm adequate model fit (predicted response rate $0.593$ vs.\ observed $0.599$; Appendix~\ref{app:ppc}). Contamination susceptibility $\hat{c}_n$ exhibits a gradient by model age, directionally consistent with known training data exposure (Appendix~\ref{app:cn_recovery}). Estimated $\hat{c}_n$ exceeds 1.0 for the four oldest models: GPT-3.5-Turbo ($\hat{c}_n = 5.60$), GPT-4-0613 ($4.20$), Qwen2.5-72B ($3.00$), and LLaMA-3.3-70B ($2.50$). The most recent models show low estimated contamination: GPT-4o ($0.88$) and GPT-4o-mini ($0.93$). The global shrinkage scale $\hat{\sigma}_c = 2.40$ confirms substantial inter-model heterogeneity ($\bar{c} = 2.50$, aligning with the strong-contamination regime in synthetic validation). Notably, sequential estimation yields near-zero contamination estimates ($\bar{c} \approx 0$), demonstrating that without joint modeling, contamination effects are entirely absorbed into ability estimates $\hat{\theta}$---precisely the omitted variable bias predicted by the theoretical analysis (Section~\ref{sec:confounding}). A per-model diagnostic (Table~\ref{tab:bias_absorption}) reveals that MFRM-only inflates ability estimates for the most contaminated models by up to 0.79 logits (GPT-3.5-Turbo), while deflating estimates for the least contaminated models by up to 0.40 logits (GPT-4o). Judge severity $d_j$ separates by provenance: proprietary judges tend to score more strictly (e.g., Claude Opus $+0.60$, GPT-5.5 $+0.53$) than open-source judges (e.g., Mistral $-0.74$, LLaMA $-0.42$); full $d_j$ values for all nine judges are reported in Table~\ref{tab:judge_severity}. Results are robust to prior specification (Horseshoe \citep{piironen2017horseshoe} vs.\ HalfNormal: Pearson $r > 0.999$; Appendix~\ref{app:prior_robustness}) and to judge panel size: G-MFRM outperforms baselines at all judge counts $k \geq 2$, with $\tau$ increasing monotonically from $0.771$ ($k = 2$) to $0.857$ ($k = 9$); $k \geq 4$ suffices to exceed the full-panel baseline (Appendix~\ref{app:judge_count}).
+53	
+54	\subsection{Error Propagation Robustness}
+55	\label{sec:error_prop_results}
+56	
+57	Section~\ref{sec:error_prop} predicted that ability estimates degrade gracefully when exposure noise $\sigma$ remains below $\sqrt{\mathrm{Var}(e_i)} \approx 0.2$. We validate this prediction by injecting Gaussian noise into the true exposure values and re-fitting G-MFRM on synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds; exp-012).
+58	
+59	\begin{table}[t]
+60	\centering
+61	\small
+62	\begin{tabular}{lcccc}
+63	\toprule
+64	$\sigma$ & $\theta$-RMSE & $\Delta\theta$\% & $c_n$-RMSE & $\Delta c_n$\% \\
+65	\midrule
+66	0.0 & 0.128 $\pm$ 0.018 & --- & 0.533 $\pm$ 0.187 & --- \\
+67	0.1 & 0.130 $\pm$ 0.018 & +1.4 & 0.545 $\pm$ 0.192 & +2.3 \\
+68	0.2 & 0.135 $\pm$ 0.018 & +5.9 & 0.575 $\pm$ 0.198 & +7.9 \\
+69	0.5 & 0.175 $\pm$ 0.027 & +36.9 & 0.842 $\pm$ 0.281 & +57.9 \\
+70	\bottomrule
+71	\end{tabular}
+72	\caption{Error propagation robustness (exp-012). Ability RMSE degrades by less than 6\% when exposure noise $\sigma \leq 0.2$, matching the theoretical prediction. Contamination estimates are more sensitive due to multiplicative coupling with $e_i$.}
+73	\label{tab:error_prop}
+74	\end{table}
+75	
+76	Table~\ref{tab:error_prop} confirms this prediction: below $\sigma = 0.2$, ability RMSE increases by 5.9\% and contamination RMSE by 7.9\%; beyond the threshold ($\sigma = 0.5$), degradation becomes substantial. Rank ordering is preserved even at $\sigma = 0.5$ ($\tau > 0.88$).
+77	
+78	Ablation (Table~\ref{tab:ablation}, Appendix) confirms joint estimation as the dominant contributor: staged estimation increases $\theta$-RMSE by $2.0\times$ ($p < 0.001$); continuous gating improves $c_n$-RMSE by 40\% over binary ($p < 0.001$). Removing $d_j$ preserves rankings but degrades contamination recovery ($c_n$-RMSE $+$6\%, $p < 0.001$).
+79	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "4d916b28-4b06-4020-8f5b-6aac329b5d61",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Setup}\n\\label{sec:setup}\n\n\\paragraph{Data and models.} We evaluate on Arena-Hard \\citep{li2024arenahard}, a benchmark of 316 multi-turn conversational items selected for high separability among frontier models. After filtering for coverage, the evaluation set comprises 176 items in a connected incomplete design (XX{,}XXX observations; XX.X\\% fill rate of the full $N \\times I \\times J$ tensor). Seventeen target models spanning proprietary and open-source families are evaluated: the original 8 models (GPT-4o, GPT-4o-mini, Qwen2.5-72B, LLaMA-3.3-70B, Qwen3-8B, Gemma-2-9B, GPT-4-0613, GPT-3.5-Turbo) plus 9 additional models (Claude-3.5-Sonnet, GPT-4-Turbo, LLaMA-3.1-70B, Gemma-2-27B, Claude-3-Opus, LLaMA-3-70B, Mixtral-8x22B, Claude-3-Haiku, LLaMA-3-8B). Ground-truth rankings are derived from Chatbot Arena human preference data \\citep{zheng2023mtbench}.\n\n\\paragraph{Judges.} Nine LLM judges score model responses in position-swapped pairwise mode: GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini-2.5-Pro, Mistral-Large-2, LLaMA-3.3-70B, Qwen2.5-72B, and Qwen3-235B. Seven judges cover all 17 target models; two judges (GPT-5.5 and Claude Opus 4.7) cover only the original 8 models, yielding an asymmetric connected design---Theorem~\\ref{thm:sufficient} requires only connectivity, not full crossing. Position swapping controls for position bias and doubles the effective observation count. Two models---Qwen2.5-72B and LLaMA-3.3-70B---serve as both judge and target; $d_j$ absorbs systematic self-evaluation bias, and excluding self-judging observations leaves rankings unchanged ($\\tau = 0.857$; Appendix~\\ref{app:self_eval}).\n\n\\paragraph{Exposure estimation.} Per-item exposure $e_i$ is estimated via a two-source pipeline (\\S\\ref{sec:staged}): reference model anchoring with gpt-4-0314 as anchor (75\\% weight) and cross-model agreement (25\\% weight). The pipeline is robust to weight configuration (Spearman $\\rho \\geq 0.998$ across all configurations tested).\n\n\\paragraph{MCMC.} We use NumPyro NUTS with 4{,}000 warmup and 4{,}000 sampling iterations across 4 chains (target acceptance 0.95). The contamination prior follows the hierarchical HalfNormal specification (Eq.~\\ref{eq:contam_prior}). Convergence is assessed via rank-normalized split-$\\hat{R}$ \\citep{vehtari2021rhat} with conventional $\\hat{R} < 1.05$ and ESS $> 100$ thresholds \\citep{gelman2013bda}.\n\n\\subsection{Baselines and Main Results}\n\\label{sec:main_results}\n\nWe compare G-MFRM against seven methods that address judge bias or contamination separately: (1) Raw Average, (2) MFRM-only (Eq.~\\ref{eq:mfrm}), (3) Sequential pipeline (MFRM then contamination adjustment), (4) CyclicJudge \\citep{cyclicjudge2026}, (5) CyclicJudge+discard (exposed items removed), (6) DCR Factor \\citep{dcr2025}, and (7) Preference Leakage calibration \\citep{preference_leakage2026}. All methods are evaluated by Kendall $\\tau$ and Spearman $\\rho$ against Chatbot Arena human rankings.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{8 models}} & \\multicolumn{2}{c}{\\textbf{17 models}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n\\textbf{Method} & $\\tau$ & $\\rho$ & $\\tau$ & $\\rho$ \\\\\n\\midrule\nRaw Average & 0.786 & 0.905 & TBD & TBD \\\\\nMFRM-only & 0.786 & 0.905 & TBD & TBD \\\\\nSequential & 0.786 & 0.905 & TBD & TBD \\\\\nCyclicJudge & 0.786 & 0.905 & TBD & TBD \\\\\nCyclicJudge+discard & 0.786 & 0.905 & TBD & TBD \\\\\nDCR Factor & 0.786 & 0.905 & TBD & TBD \\\\\nPref.\\ Leakage & 0.786 & 0.905 & TBD & TBD \\\\\n\\midrule\nG-MFRM (ours) & \\textbf{0.857} & \\textbf{0.952} & \\textbf{TBD} & \\textbf{TBD} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Correlation with Chatbot Arena human rankings on Arena-Hard (9 judges). All seven baselines produce identical rankings at $N = 8$ ($\\tau = 0.786$). G-MFRM yields nominally higher point-estimate rank agreement ($+$7.1pp; bootstrap $\\Delta\\tau$ CI includes zero). Right columns report the 17-model evaluation (TBD).}\n\\label{tab:main_results}\n\\end{table}\n\nAll seven baselines produce identical model rankings ($\\tau = 0.786$, $\\rho = 0.905$). With $N = 8$, Kendall $\\tau$ takes only ${\\sim}20$ distinct values, but raw ability scores also vary by $< 0.03$ logits across methods (Table~\\ref{tab:raw_scores}), confirming genuine invariance rather than discretization artifact. This reflects the structural confounding from Section~\\ref{sec:confounding}: single-facet corrections leave the uncorrected confound intact (Observation~\\ref{obs:ovb}). That CyclicJudge+discard also preserves rankings suggests contamination effects on aggregate rankings are modest at this scale; G-MFRM's primary value lies in per-model contamination diagnostics. G-MFRM achieves nominally higher point-estimate rank agreement ($\\tau = 0.857$, $\\rho = 0.952$) over the baselines ($\\tau = 0.786$), but the posterior median $\\tau$ equals the baseline (0.786), with the point estimate at the distribution's upper tail. Bootstrap resampling (4{,}000 posterior draws) yields $\\Delta\\tau$ 95\\% CI $[-0.071, 0.071]$: the ranking improvement is not statistically significant at $N = 8$, though G-MFRM almost never degrades rankings ($P(\\Delta\\tau \\geq 0) = 0.927$). On synthetic data ($N = 50$), joint estimation significantly outperforms sequential ($\\tau = 0.922$ vs.\\ $0.839$, Wilcoxon $p < 0.001$), confirming that the effect is real but below detection at this sample size. The rank change---gpt-4o-mini and qwen2.5-72b swap positions---is consistent with differential contamination ($P(\\theta_{\\text{mini}} > \\theta_{\\text{qwen}}) = 0.853$).\n\nWe evaluate G-MFRM along two orthogonal axes: predictive fit and ranking accuracy.\n\n\\paragraph{Predictive fit.} LOO cross-validation strongly favors G-MFRM ($\\Delta\\mathrm{ELPD}_{\\mathrm{LOO}} = -55.7$, SE $= 9.4$, $|\\Delta/\\mathrm{SE}| = 5.9$; \\citealp{vehtari2017loo}), with stacking weight 1.0 for G-MFRM versus 0.0 for MFRM-only. All Pareto $\\hat{k} < 0.7$, confirming reliable LOO estimates. The contamination gating term substantially improves held-out predictive fit.\n\n\\paragraph{Ranking accuracy.} Ranking improvement ($\\Delta\\tau = +0.071$) is not statistically significant at $N = 8$ (bootstrap 95\\% CI crosses zero). Post-hoc power analysis indicates $N \\approx 17$ is needed for 80\\% power to detect this effect size (Appendix~\\ref{app:power}). This prediction is empirically validated: at $N = 20$, synthetic $\\Delta\\tau$ reaches significance (Wilcoxon $p < 0.001$, 18 wins / 1 loss; Appendix~\\ref{app:synthetic_calibration}). Pooling 20 replications at $N = 8$ also yields significance ($p < 0.002$), confirming the method consistently improves rankings though any single $N = 8$ dataset has limited power.\n\nThe MCMC sampler achieves rank-normalized split-$\\hat{R} \\leq 1.03$ across all parameters with zero divergent transitions and minimum bulk ESS of 174 and minimum tail ESS of 381 (model-level parameters: bulk ESS $\\geq$ 217, tail ESS $\\geq$ 437). These values satisfy the traditional convergence thresholds ($\\hat{R} < 1.05$, ESS $> 100$; \\citealp{gelman2013bda}) but do not meet the stricter criteria of \\citet{vehtari2021rhat} ($\\hat{R} < 1.01$, ESS $> 400$), which may contribute to posterior overconfidence (synthetic CI coverage 71\\%; see Limitations); we report point estimates and rank orderings as primary results. Model and judge facets show acceptable fit (all infit/outfit MNSQ within $[0.63, 1.07]$; item-level diagnostics in Appendix~\\ref{app:item_diagnostics}). Posterior predictive checks confirm adequate model fit (predicted response rate $0.593$ vs.\\ observed $0.599$; Appendix~\\ref{app:ppc}). Contamination susceptibility $\\hat{c}_n$ exhibits a gradient by model age, directionally consistent with known training data exposure (Appendix~\\ref{app:cn_recovery}). Estimated $\\hat{c}_n$ exceeds 1.0 for the four oldest models: GPT-3.5-Turbo ($\\hat{c}_n = 5.60$), GPT-4-0613 ($4.20$), Qwen2.5-72B ($3.00$), and LLaMA-3.3-70B ($2.50$). The most recent models show low estimated contamination: GPT-4o ($0.88$) and GPT-4o-mini ($0.93$). The global shrinkage scale $\\hat{\\sigma}_c = 2.40$ confirms substantial inter-model heterogeneity ($\\bar{c} = 2.50$, aligning with the strong-contamination regime in synthetic validation). Notably, sequential estimation yields near-zero contamination estimates ($\\bar{c} \\approx 0$), demonstrating that without joint modeling, contamination effects are entirely absorbed into ability estimates $\\hat{\\theta}$---precisely the omitted variable bias predicted by the theoretical analysis (Section~\\ref{sec:confounding}). A per-model diagnostic (Table~\\ref{tab:bias_absorption}) reveals that MFRM-only inflates ability estimates for the most contaminated models by up to 0.79 logits (GPT-3.5-Turbo), while deflating estimates for the least contaminated models by up to 0.40 logits (GPT-4o). Judge severity $d_j$ separates by provenance: proprietary judges tend to score more strictly (e.g., Claude Opus $+0.60$, GPT-5.5 $+0.53$) than open-source judges (e.g., Mistral $-0.74$, LLaMA $-0.42$); full $d_j$ values for all nine judges are reported in Table~\\ref{tab:judge_severity}. Results are robust to prior specification (Horseshoe \\citep{piironen2017horseshoe} vs.\\ HalfNormal: Pearson $r > 0.999$; Appendix~\\ref{app:prior_robustness}) and to judge panel size: G-MFRM outperforms baselines at all judge counts $k \\geq 2$, with $\\tau$ increasing monotonically from $0.771$ ($k = 2$) to $0.857$ ($k = 9$); $k \\geq 4$ suffices to exceed the full-panel baseline (Appendix~\\ref{app:judge_count}).\n\n\\subsection{Error Propagation Robustness}\n\\label{sec:error_prop_results}\n\nSection~\\ref{sec:error_prop} predicted that ability estimates degrade gracefully when exposure noise $\\sigma$ remains below $\\sqrt{\\mathrm{Var}(e_i)} \\approx 0.2$. We validate this prediction by injecting Gaussian noise into the true exposure values and re-fitting G-MFRM on synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds; exp-012).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n$\\sigma$ & $\\theta$-RMSE & $\\Delta\\theta$\\% & $c_n$-RMSE & $\\Delta c_n$\\% \\\\\n\\midrule\n0.0 & 0.128 $\\pm$ 0.018 & --- & 0.533 $\\pm$ 0.187 & --- \\\\\n0.1 & 0.130 $\\pm$ 0.018 & +1.4 & 0.545 $\\pm$ 0.192 & +2.3 \\\\\n0.2 & 0.135 $\\pm$ 0.018 & +5.9 & 0.575 $\\pm$ 0.198 & +7.9 \\\\\n0.5 & 0.175 $\\pm$ 0.027 & +36.9 & 0.842 $\\pm$ 0.281 & +57.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Error propagation robustness (exp-012). Ability RMSE degrades by less than 6\\% when exposure noise $\\sigma \\leq 0.2$, matching the theoretical prediction. Contamination estimates are more sensitive due to multiplicative coupling with $e_i$.}\n\\label{tab:error_prop}\n\\end{table}\n\nTable~\\ref{tab:error_prop} confirms this prediction: below $\\sigma = 0.2$, ability RMSE increases by 5.9\\% and contamination RMSE by 7.9\\%; beyond the threshold ($\\sigma = 0.5$), degradation becomes substantial. Rank ordering is preserved even at $\\sigma = 0.5$ ($\\tau > 0.88$).\n\nAblation (Table~\\ref{tab:ablation}, Appendix) confirms joint estimation as the dominant contributor: staged estimation increases $\\theta$-RMSE by $2.0\\times$ ($p < 0.001$); continuous gating improves $c_n$-RMSE by 40\\% over binary ($p < 0.001$). Removing $d_j$ preserves rankings but degrades contamination recovery ($c_n$-RMSE $+$6\\%, $p < 0.001$).\n",
+      "numLines": 79,
+      "startLine": 1,
+      "totalLines": 79
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all three files. Let me also check for ethical considerations section. Looking at main.tex, I see it includes:
+- abstract
+- introduction
+- background
+- method
+- experiments
+- related_work
+- conclusion
+- Limitations section (as \section*{Limitations})
+- bibliography
+- appendix
+
+There's NO ethical considerations section. Let me also check the appendix and conclusion for any compute budget or ethical mentions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "fae9fe18-a58b-4d1d-b787-717a1698fcec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uce8fSJFzqUcsYqQ2TbTof",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5717,
+      "cache_read_input_tokens": 30170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5717
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Let me check the conclusion and appendix for ethical considerations or compute budget mentions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "846fae26-c79e-4c2a-bef2-0c00445f5695",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uce8fSJFzqUcsYqQ2TbTof",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5717,
+      "cache_read_input_tokens": 30170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5717
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01V2GNhZ7G6NqdnAh77BPnmA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "8b4e62da-8f7c-4ef7-a5a0-9eded96141f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uce8fSJFzqUcsYqQ2TbTof",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5717,
+      "cache_read_input_tokens": 30170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5717
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BaBVZjYofLnxrDbUnCqsck`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "42f0bd05-6e59-4654-9187-e259dc1f3068",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uce8fSJFzqUcsYqQ2TbTof",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5717,
+      "cache_read_input_tokens": 30170,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5717
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T07:18:35.548Z_
+
+<details><summary>↩ Tool result · `toolu_01V2GNhZ7G6NqdnAh77BPnmA`</summary>
+
+```text
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We introduced G-MFRM, which jointly estimates model ability, judge severity, and contamination susceptibility by formalizing their confounding as omitted variable bias. On Arena-Hard, G-MFRM produces the first joint contamination--severity diagnostic within a measurement-theoretic framework, with nominally higher rank agreement ($\tau = 0.857$ vs.\ $0.786$; not significant at $N = 8$); well-powered validation requires $N \geq 20$ (Limitations). Treating judge bias and contamination as separable leads to systematic estimation errors; future LLM evaluation frameworks should model these facets jointly.
+5	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "80b9e76e-6f44-497d-8d62-224c59d3df6a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe introduced G-MFRM, which jointly estimates model ability, judge severity, and contamination susceptibility by formalizing their confounding as omitted variable bias. On Arena-Hard, G-MFRM produces the first joint contamination--severity diagnostic within a measurement-theoretic framework, with nominally higher rank agreement ($\\tau = 0.857$ vs.\\ $0.786$; not significant at $N = 8$); well-powered validation requires $N \\geq 20$ (Limitations). Treating judge bias and contamination as separable leads to systematic estimation errors; future LLM evaluation frameworks should model these facets jointly.\n",
+      "numLines": 5,
+      "startLine": 1,
+      "totalLines": 5
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-24T07:18:35.807Z_
+
+<details><summary>↩ Tool result · `toolu_01BaBVZjYofLnxrDbUnCqsck`</summary>
+
+```text
+1	\section{Proof of Theorem~\ref{thm:sufficient}}
+2	\label{app:proof}
+3	
+4	We prove that the G-MFRM is locally identifiable under the conditions of Theorem~\ref{thm:sufficient}. Following \citet{rothenberg1971}, a parametric model is locally identifiable at the true parameter vector $\boldsymbol{\psi}_0$ if and only if the Fisher information matrix $\mathbf{F}(\boldsymbol{\psi}_0)$ is non-singular.
+5	
+6	\paragraph{Setup.} The G-MFRM parameter vector is $\boldsymbol{\psi} = (\boldsymbol{\theta}, \mathbf{c}, \mathbf{b}, \mathbf{d}, \boldsymbol{\tau})$, where $\boldsymbol{\theta} \in \mathbb{R}^{N-1}$ (after the location constraint $\sum_n \theta_n = 0$), $\mathbf{c} \in \mathbb{R}_{\geq 0}^N$, $\mathbf{b} \in \mathbb{R}^I$, $\mathbf{d} \in \mathbb{R}^J$, and $\boldsymbol{\tau} \in \mathbb{R}^{K-1}$. The exposure vector $\mathbf{e} = (e_1, \ldots, e_I)$ is fixed externally and treated as known. The linear predictor is $\eta_{nijk} = \theta_n - b_i - d_j - \tau_k + c_n \cdot e_i$, with partial derivatives:
+7	%
+8	\begin{align*}
+9	\frac{\partial \eta_{nijk}}{\partial \theta_n} &= 1, \quad
+10	\frac{\partial \eta_{nijk}}{\partial c_n} = e_i, \quad
+11	\frac{\partial \eta_{nijk}}{\partial b_i} = -1, \\
+12	\frac{\partial \eta_{nijk}}{\partial d_j} &= -1, \quad
+13	\frac{\partial \eta_{nijk}}{\partial \tau_k} = -1.
+14	\end{align*}
+15	
+16	\paragraph{Fisher information weights.} For each observation cell $(n,i,j)$, the Fisher information weight under the cumulative logit model is
+17	%
+18	\begin{equation}
+19	\label{eq:fisher_weight}
+20	w_{nij} = \sum_{k=1}^{K} \frac{\bigl[\sigma'(\eta_{nijk}) - \sigma'(\eta_{nij,k+1})\bigr]^2}{P(Y_{nij} = k)},
+21	\end{equation}
+22	%
+23	where $\sigma(x) = (1 + e^{-x})^{-1}$, $\sigma'(x) = \sigma(x)(1 - \sigma(x))$, and we set $\sigma'(\eta_{nij,0}) = \sigma'(\eta_{nij,K+1}) = 0$ at the boundaries. Since $P(Y_{nij} = k) > 0$ for all categories and $\sigma'(\cdot) > 0$, we have $w_{nij} > 0$ for all $(n,i,j)$.
+24	
+25	\paragraph{Step 1: The $(\theta_n, c_n)$ submatrix.} For each model $n$, the $2 \times 2$ Fisher information submatrix is
+26	%
+27	\begin{equation}
+28	\label{eq:fisher_block}
+29	\mathbf{F}_n = \sum_{i=1}^{I} \sum_{j=1}^{J} w_{nij}
+30	\begin{pmatrix} 1 & e_i \\ e_i & e_i^2 \end{pmatrix}.
+31	\end{equation}
+32	%
+33	Its determinant is
+34	%
+35	\begin{multline}
+36	\det \mathbf{F}_n = \Bigl(\textstyle\sum_{i,j} w_{nij}\Bigr)\Bigl(\textstyle\sum_{i,j} w_{nij}\, e_i^2\Bigr) \\
+37	- \Bigl(\textstyle\sum_{i,j} w_{nij}\, e_i\Bigr)^2 = W_n^2 \cdot \mathrm{Var}_w(e_i),
+38	\end{multline}
+39	%
+40	where $W_n = \sum_{i,j} w_{nij}$ and $\mathrm{Var}_w(e_i) = \overline{e^2}_n - \bar{e}_n^2$ is the weighted variance of exposure with weights $w_{nij}$. By the Cauchy--Schwarz inequality, $\mathrm{Var}_w(e_i) \geq 0$, with equality if and only if $e_i$ is constant across all items with $w_{nij} > 0$. Under conditions~(i) and~(iii), the observed items for model $n$ include at least two distinct exposure values with $w_{nij} > 0$ for the corresponding cells. Therefore $\mathrm{Var}_w(e_i) > 0$, $\det \mathbf{F}_n > 0$, and each $\mathbf{F}_n$ is positive definite.
+41	
+42	\paragraph{Step 2: Item and judge blocks.} Under the connected design (condition~i), each item $i$ is observed by at least one $(n,j)$ pair, so the item difficulty block has positive diagonal entries $[\mathbf{F}_{bb}]_{ii} = \sum_{n,j} w_{nij} > 0$ (summing over observed cells). Similarly, each judge $j$ observes at least one $(n,i)$ pair, giving $[\mathbf{F}_{dd}]_{jj} = \sum_{n,i} w_{nij} > 0$. Condition~(ii) ($J \geq 2$) ensures the judge block has sufficient dimension to separate judge effects from the intercept. Both blocks are positive definite.
+43	
+44	\paragraph{Step 3: Schur complement argument.} The full Fisher information matrix $\mathbf{F}$ contains off-diagonal blocks coupling the parameter groups. Partition as
+45	%
+46	\begin{equation*}
+47	\mathbf{F} = \begin{pmatrix} \mathbf{A} & \mathbf{B} \\ \mathbf{B}^\top & \mathbf{D} \end{pmatrix},
+48	\end{equation*}
+49	%
+50	where $\mathbf{A} = \mathrm{blockdiag}(\mathbf{F}_1, \ldots, \mathbf{F}_N)$ collects all $(\theta_n, c_n)$ submatrices and $\mathbf{D}$ collects the $(\mathbf{b}, \mathbf{d}, \boldsymbol{\tau})$ blocks. From Step~1, $\mathbf{A}$ is positive definite. The Schur complement
+51	%
+52	\begin{equation}
+53	\label{eq:schur}
+54	\mathbf{S} = \mathbf{D} - \mathbf{B}^\top \mathbf{A}^{-1} \mathbf{B}
+55	\end{equation}
+56	%
+57	equals the conditional Fisher information for $(\mathbf{b}, \mathbf{d}, \boldsymbol{\tau})$ given $(\boldsymbol{\theta}, \mathbf{c})$. Conditioning on $(\boldsymbol{\theta}, \mathbf{c})$ with fixed $\mathbf{e}$ reduces the model to a standard MFRM with known offsets $c_n \cdot e_i$, whose identifiability is established by \citet[Chapter~5]{sanmartin2016} under conditions~(i), (ii), and~(iv). Therefore $\mathbf{S}$ is positive definite.
+58	
+59	Since both $\mathbf{A}$ and $\mathbf{S}$ are positive definite:
+60	%
+61	\begin{equation*}
+62	\det \mathbf{F} = \det \mathbf{A} \cdot \det \mathbf{S} > 0,
+63	\end{equation*}
+64	%
+65	establishing non-singularity of $\mathbf{F}$ and hence local identifiability. \qed
+66	
+67	\paragraph{Local vs.\ global identifiability.} Theorem~\ref{thm:sufficient} establishes \emph{local} identifiability: the Fisher information matrix is non-singular at the true parameter value, guaranteeing that no infinitesimally close parameter vector produces the same likelihood. This does not rule out discrete global non-identifiabilities (i.e., isolated points in parameter space with identical likelihood). However, the HalfNormal prior on $c_n$ restricts the parameter space to $c_n \geq 0$, eliminating the sign ambiguity that would otherwise create a global reflection $(\theta_n + \delta,\, c_n - \delta/e_i)$. Combined with the location constraint $\sum_n \theta_n = 0$ and the empirical observation that the posterior is unimodal across all chains (no mode-switching detected), the local result provides a practical guarantee of unique parameter recovery.
+68	
+69	\paragraph{Role of the Cauchy--Schwarz inequality.} The key step in Step~1 is the decomposition $\det \mathbf{F}_n = W_n^2 \cdot \mathrm{Var}_w(e_i)$, where the weighted variance $\mathrm{Var}_w(e_i) = \mathbb{E}_w[e_i^2] - (\mathbb{E}_w[e_i])^2 \geq 0$ by the Cauchy--Schwarz inequality applied to the vectors $(\sqrt{w_{nij}})$ and $(\sqrt{w_{nij}}\, e_i)$. Strict positivity follows from the requirement that $e_i$ takes at least two distinct values over observed items (condition~iii): if $e_i = e$ for all $i$ with $w_{nij} > 0$, then $\mathrm{Var}_w(e_i) = 0$ and the $(\theta_n, c_n)$ block becomes singular, recovering Proposition~\ref{prop:exposure_variation}. The Cauchy--Schwarz bound is tight only in this degenerate case, so any non-trivial exposure variation suffices for identification.
+70	
+71	
+72	\section{Explicit Form of the OVB Coefficient $\gamma_n$}
+73	\label{app:gamma}
+74	
+75	Under the MFRM logistic link, a first-order Taylor expansion of Observation~\ref{obs:ovb} yields an explicit approximation for the bias coefficient $\gamma_n$:
+76	%
+77	\begin{equation}
+78	\label{eq:gamma_explicit}
+79	\gamma_n \approx \frac{\sum_{i} w_{ni} \cdot e_i \cdot p_{ni}(1 - p_{ni})}{\sum_{i} w_{ni} \cdot p_{ni}(1 - p_{ni})},
+80	\end{equation}
+81	%
+82	where $p_{ni} = \sigma(\theta_n - b_i - \bar{d})$ is the MFRM predicted probability averaged over judges and $w_{ni}$ is the effective item weight (number of judge observations for item $i$ on model $n$). Eq.~\ref{eq:gamma_explicit} is a weighted mean of the exposure values $e_i$, with weights proportional to the Fisher information $p_{ni}(1 - p_{ni})$. Items near the boundary ($p_{ni} \approx 0.5$) contribute more to the bias than items at the extremes, because the logistic link is most sensitive at these points. This approximation is accurate to first order in $(c_n \cdot e_i)$; the synthetic validation in Section~\ref{sec:confounding} ($r = 0.86$) confirms that the linear approximation captures the dominant bias structure.
+83	
+84	
+85	\section{Murphy--Topel Variance Correction}
+86	\label{app:murphy_topel}
+87	
+88	The three-stage G-MFRM procedure treats Stage~2 exposure estimates $\hat{e}_i$ as fixed in Stage~3, understating posterior uncertainty by ignoring estimation error in $\hat{e}_i$. We derive the Murphy--Topel correction \citep{murphy1985} adapted to the G-MFRM setting.
+89	
+90	\paragraph{Setup.} Let $\boldsymbol{\alpha} = (e_1, \ldots, e_I)$ denote the Stage~2 parameters estimated from an independent dataset with log-likelihood $\ell_2(\boldsymbol{\alpha})$, and let $\boldsymbol{\psi} = (\boldsymbol{\theta}, \mathbf{c}, \mathbf{b}, \mathbf{d}, \boldsymbol{\tau})$ denote the Stage~3 parameters estimated with log-likelihood $\ell_3(\boldsymbol{\psi}; \hat{\boldsymbol{\alpha}})$, where $\hat{\boldsymbol{\alpha}}$ is plugged in as known.
+91	
+92	\paragraph{Naive and Stage~2 variances.} The naive (uncorrected) variance of $\hat{\boldsymbol{\psi}}$ is
+93	%
+94	\begin{equation}
+95	\mathbf{V}_3 = \left[-\frac{\partial^2 \ell_3}{\partial \boldsymbol{\psi}\, \partial \boldsymbol{\psi}^\top}\bigg|_{\hat{\boldsymbol{\psi}},\, \hat{\boldsymbol{\alpha}}}\right]^{-1},
+96	\end{equation}
+97	%
+98	and the Stage~2 variance is
+99	%
+100	\begin{equation}
+101	\mathbf{V}_2 = \left[-\frac{\partial^2 \ell_2}{\partial \boldsymbol{\alpha}\, \partial \boldsymbol{\alpha}^\top}\bigg|_{\hat{\boldsymbol{\alpha}}}\right]^{-1}.
+102	\end{equation}
+103	
+104	\paragraph{Cross-derivative matrix.} The coupling between stages is captured by the cross-derivative
+105	%
+106	\begin{equation}
+107	\mathbf{C} = \frac{\partial^2 \ell_3}{\partial \boldsymbol{\psi}\, \partial \boldsymbol{\alpha}^\top}\bigg|_{\hat{\boldsymbol{\psi}},\, \hat{\boldsymbol{\alpha}}}.
+108	\end{equation}
+109	%
+110	In the G-MFRM, non-zero entries of $\mathbf{C}$ arise from the contamination gating term $c_n \cdot e_i$. The key entry is
+111	%
+112	\begin{equation}
+113	\frac{\partial^2 \ell_3}{\partial c_n\, \partial e_i} = \sum_{j=1}^{J} \frac{\partial^2 \ell_{nij}}{\partial \eta_{nij}^2} \cdot c_n,
+114	\end{equation}
+115	%
+116	which is proportional to $c_n$: models with zero contamination contribute no cross-derivative. Similarly, $\partial^2 \ell_3 / (\partial \theta_n\, \partial e_i)$ involves only indirect coupling through the shared item observations. The correction is therefore concentrated on the contamination parameters of models with $c_n > 0$.
+117	
+118	\paragraph{Corrected variance.} The Murphy--Topel corrected variance is
+119	%
+120	\begin{equation}
+121	\label{eq:murphy_topel}
+122	\mathbf{V}_{\mathrm{MT}} = \mathbf{V}_3 + \mathbf{V}_3\, \mathbf{C}\, \mathbf{V}_2\, \mathbf{C}^\top\, \mathbf{V}_3.
+123	\end{equation}
+124	%
+125	The correction term $\mathbf{V}_3 \mathbf{C} \mathbf{V}_2 \mathbf{C}^\top \mathbf{V}_3$ is positive semi-definite, so $\mathbf{V}_{\mathrm{MT}} \succeq \mathbf{V}_3$: the corrected variance is always at least as large as the naive variance. The inflation is concentrated on $c_n$ for contaminated models and is negligible for $\theta_n$ when contamination is sparse, consistent with the empirical pattern in Table~\ref{tab:error_prop}.
+126	
+127	\paragraph{Implementation.} We estimate $\mathbf{V}_2$ from the Stage~2 bootstrap and compute $\mathbf{C}$ via finite differences of the Stage~3 log-likelihood evaluated at perturbed $\hat{\boldsymbol{\alpha}}$ values. Corrected credible intervals are obtained by inflating Stage~3 posterior samples by $\sqrt{\mathrm{diag}(\mathbf{V}_{\mathrm{MT}}) / \mathrm{diag}(\mathbf{V}_3)}$.
+128	
+129	
+130	\section{Ablation Study}
+131	\label{app:ablation}
+132	
+133	\begin{table}[h]
+134	\centering
+135	\scriptsize
+136	\setlength{\tabcolsep}{3pt}
+137	\begin{tabular}{lccc}
+138	\toprule
+139	\textbf{Variant} & $\theta$-RMSE & $\tau$ & $c_n$-RMSE \\
+140	\midrule
+141	Full G-MFRM & 0.124 $\pm$ 0.016 & 0.922 $\pm$ 0.010 & 0.593 $\pm$ 0.224 \\
+142	$-$ Judge severity ($d_j$) & 0.127 $\pm$ 0.016 & 0.922 $\pm$ 0.010 & 0.629 $\pm$ 0.243 \\
+143	Binary gating & 0.137 $\pm$ 0.016 & 0.909 $\pm$ 0.014 & 0.833 $\pm$ 0.226 \\
+144	Staged estimation & 0.254 $\pm$ 0.045 & 0.839 $\pm$ 0.035 & 1.382 $\pm$ 0.164 \\
+145	\bottomrule
+146	\end{tabular}
+147	\caption{Ablation study on synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds). Each row removes or modifies one component of the full G-MFRM. Staged estimation refers to fitting MFRM and contamination sequentially rather than jointly. All differences from Full G-MFRM are significant at $p < 0.001$ (Wilcoxon) except $-d_j$ on $\theta$-RMSE ($p = 0.245$) and $\tau$ ($p = 0.344$).}
+148	\label{tab:ablation}
+149	\end{table}
+150	
+151	The ablation confirms that joint estimation is the primary contributor to G-MFRM's advantage: staged estimation increases $\theta$-RMSE by $2.0\times$ (from 0.124 to 0.254, $p < 0.001$) and $c_n$-RMSE by $2.3\times$ (from 0.593 to 1.382, $p < 0.001$), with $\tau$ dropping from 0.922 to 0.839. This degradation directly reflects the omitted variable bias characterized in Section~\ref{sec:confounding}: when contamination and judge effects are estimated sequentially, the first-stage estimates absorb the unmodeled facet.
+152	
+153	Replacing continuous exposure $e_i \in [0,1]$ with binary gating ($e_i \in \{0, 1\}$) increases $c_n$-RMSE by 40\% (from 0.593 to 0.833, $p < 0.001$), indicating that graded exposure modeling captures contamination magnitude more precisely than a binary flag. The effect on $\theta$-RMSE is moderate ($+$10\%, $p < 0.001$), suggesting that the binary approximation still captures the dominant contamination signal but loses precision on partially exposed items.
+154	
+155	Removing judge severity $d_j$ does not significantly affect ability estimates ($\theta$-RMSE $+$2.4\%, $p = 0.245$; $\tau$ identical, $p = 0.344$) but significantly degrades contamination recovery ($c_n$-RMSE $+$6.1\%, $p < 0.001$). This confirms that $d_j$ serves as a diagnostic component that improves contamination estimation precision rather than ranking accuracy: without explicit judge severity modeling, judge-induced score variation is partially absorbed into the contamination estimates, inflating $c_n$-RMSE. The $d_j$ profile also provides independent diagnostic value for judge calibration (e.g., Claude Opus $d_j = +0.60$ vs.\ Mistral $-0.74$ in the real-data evaluation).
+156	
+157	
+158	\section{Posterior Predictive Check}
+159	\label{app:ppc}
+160	
+161	Figure~\ref{fig:ppc} shows the posterior predictive distribution from 1{,}000 posterior draws over 5{,}661 observations. The predicted and observed response distributions are well-aligned (predicted mean win rate $0.593$ vs.\ observed $0.599$), with no systematic discrepancy across item difficulty or model ability levels.
+162	
+163	\begin{figure}[h]
+164	\centering
+165	\includegraphics[width=\columnwidth]{fig_ppc}
+166	\caption{Posterior predictive check. Distribution of predicted (gray) and observed (black) response rates across all model--item--judge triplets. Mean predicted $= 0.593$, mean observed $= 0.599$.}
+167	\label{fig:ppc}
+168	\end{figure}
+169	
+170	
+171	\section{OVB Validation Across Confounding Levels}
+172	\label{app:ovb_validation}
+173	
+174	\begin{figure}[h]
+175	\centering
+176	\includegraphics[width=\columnwidth]{fig4_bias_vs_rho}
+177	\caption{Sequential estimator bias remains approximately constant across confounding levels ($\rho$), confirming omission-driven rather than confounding-strength-dependent bias. Joint G-MFRM estimation reduces bias by approximately 70\% at all $\rho$ levels. Synthetic data: $N = 50$, $I = 100$, $J = 8$, 50 seeds.}
+178	\label{fig:bias_vs_rho}
+179	\end{figure}
+180	
+181	
+182	\section{Contamination Susceptibility Recovery}
+183	\label{app:cn_recovery}
+184	
+185	\begin{figure}[h]
+186	\centering
+187	\includegraphics[width=\columnwidth]{fig5_cn_recovery}
+188	\caption{Contamination susceptibility recovery ($c_n$: true vs.\ estimated) from 50 Monte Carlo seeds. Empirical CI coverage is 71\% (below nominal 95\%), indicating moderate posterior overconfidence (see Limitations).}
+189	\label{fig:cn_recovery}
+190	\end{figure}
+191	
+192	
+193	\section{Error Propagation Figure}
+194	\label{app:error_prop_fig}
+195	
+196	\begin{figure}[h]
+197	\centering
+198	\includegraphics[width=\columnwidth]{fig3_error_propagation}
+199	\caption{Error propagation from Stage~2 exposure noise to Stage~3 parameter estimates. (a)~Ability RMSE ($\theta$) and (b)~contamination RMSE ($c_n$) as a function of exposure noise $\sigma_e$. The dashed vertical line marks $\sigma_{\mathrm{crit}} \approx 0.2$, below which degradation remains mild ($\theta$-RMSE $+$5.9\%, $c_n$-RMSE $+$7.9\%). Error bars show $\pm$1 std over 20 seeds. See Table~\ref{tab:error_prop} for numerical values.}
+200	\label{fig:error_prop}
+201	\end{figure}
+202	
+203	
+204	\section{Self-Evaluation Robustness}
+205	\label{app:self_eval}
+206	
+207	Two models---Qwen2.5-72B and LLaMA-3.3-70B---appear as both judge and target in our evaluation. Self-judging introduces a potential confound: a model may score its own responses more favorably. We examine the empirical magnitude of this effect and its impact on rankings.
+208	
+209	Qwen2.5-72B achieves a perfect self-judging win rate of 1.000 (42/42 items), compared to a cross-judge mean win rate of 0.714 for the same model. LLaMA-3.3-70B shows a self-judging win rate of 0.912, compared to a cross-judge mean of 0.823. Both values are elevated relative to cross-judge baselines, consistent with same-family preference leakage \citep{preference_leakage2026}.
+210	
+211	To assess sensitivity, we re-fit G-MFRM excluding all 99 self-judging observations (Qwen2.5-72B and LLaMA-3.3-70B judging their own responses). The resulting ranking yields $\tau = 0.857$, identical to the full-data G-MFRM point estimate, with a swap at ranks 2--3. Contamination susceptibility estimates $c_n$ shift by less than 0.15 for all models. This confirms that $d_j$ absorbs the bulk of self-evaluation bias and that rankings are robust to excluding self-judging pairs.
+212	
+213	
+214	\section{Judge Severity Profiles}
+215	\label{app:judge_severity}
+216	
+217	Table~\ref{tab:judge_severity} reports posterior estimates of judge severity $d_j$ for all nine judges. Positive values indicate stricter scoring (lower win rates); negative values indicate more lenient scoring. Proprietary models cluster at the strict end, while open-source models tend to be more lenient.
+218	
+219	\begin{table}[h]
+220	\centering
+221	\small
+222	\begin{tabular}{lcc}
+223	\toprule
+224	\textbf{Judge} & $\hat{d}_j$ & 95\% CI \\
+225	\midrule
+226	Claude Opus 4.7 & $+0.60$ & [$+0.43$, $+0.76$] \\
+227	GPT-5.5 & $+0.53$ & [$+0.37$, $+0.70$] \\
+228	DeepSeek-V4-Pro & $+0.31$ & [$+0.07$, $+0.54$] \\
+229	Claude Sonnet 4.6 & $+0.14$ & [$-0.04$, $+0.31$] \\
+230	Gemini-2.5-Pro & $-0.04$ & [$-0.27$, $+0.19$] \\
+231	Qwen3-235B & $-0.04$ & [$-0.24$, $+0.16$] \\
+232	Qwen2.5-72B & $-0.35$ & [$-0.64$, $-0.07$] \\
+233	LLaMA-3.3-70B & $-0.42$ & [$-0.66$, $-0.18$] \\
+234	Mistral-Large-2 & $-0.74$ & [$-1.10$, $-0.37$] \\
+235	\bottomrule
+236	\end{tabular}
+237	\caption{Judge severity estimates ($d_j$) for all nine judges. Positive = stricter scoring. The severity range spans 1.34 logits (Claude Opus to Mistral), comparable to $\sim$1 standard deviation of model ability.}
+238	\label{tab:judge_severity}
+239	\end{table}
+240	
+241	
+242	\section{Judge Count Sensitivity}
+243	\label{app:judge_count}
+244	
+245	Table~\ref{tab:judge_count} reports ranking accuracy as a function of the number of judges $k$, obtained by subsampling from the full 9-judge panel (10 random subsets per $k$; $k = 9$ uses the full panel). G-MFRM outperforms both raw averaging and sequential estimation at all judge counts. Rank agreement increases monotonically with $k$ ($\tau = 0.771 \to 0.857$), and variance contracts as additional judges improve $d_j$ and $c_n$ estimation. At $k \geq 4$, G-MFRM exceeds the full-panel baseline $\tau = 0.786$, suggesting that four diverse judges suffice for practical deployment.
+246	
+247	\begin{table}[h]
+248	\centering
+249	\small
+250	\begin{tabular}{lcccc}
+251	\toprule
+252	$k$ & Raw Avg & Sequential & G-MFRM & $\Delta\tau$ \\
+253	\midrule
+254	2 & $.755 \pm .088$ & $.764 \pm .096$ & $.771 \pm .081$ & $+.017$ \\
+255	4 & $.779 \pm .041$ & $.786 \pm .048$ & $.800 \pm .045$ & $+.021$ \\
+256	6 & $.800 \pm .030$ & $.807 \pm .048$ & $.821 \pm .051$ & $+.021$ \\
+257	9 & $.786$ & $.786$ & $.857$ & $+.071$ \\
+258	\bottomrule
+259	\end{tabular}
+260	\caption{Kendall $\tau$ with Chatbot Arena rankings as a function of judge count $k$. $\Delta\tau$ = G-MFRM $-$ Raw Average. Values for $k < 9$ are mean $\pm$ std over 10 random judge subsets.}
+261	\label{tab:judge_count}
+262	\end{table}
+263	
+264	Leave-one-judge-out analysis reveals that three judges---Claude Opus 4.7 ($d_j = +0.60$), GPT-5.5 ($+0.53$), and LLaMA-3.3-70B ($-0.42$)---are individually necessary for the ranking improvement: removing any one of these reduces G-MFRM $\tau$ to the baseline ($0.786$), while removing any of the other six judges preserves $\tau = 0.857$. These three judges span the severity spectrum (the two strictest and the second-most lenient), suggesting that contamination$\times$judge interaction identification requires sufficient severity diversity. This provides practical guidance: judge panels should include models with diverse scoring tendencies rather than homogeneous judges.
+265	
+266	G-MFRM requires $\geq 4$ MCMC chains for reliable contamination estimation; reduced chain counts attenuate $c_n$ estimates toward the prior mean, compressing inter-model differences.
+267	
+268	
+269	\section{Stage~2 Weight Robustness}
+270	\label{app:weight_robustness}
+271	
+272	All four weight configurations produce identical model rankings and near-perfect exposure score agreement (Spearman $\rho \geq 0.998$; Table~\ref{tab:weight_robustness}), confirming that the default 75/25 split is not a sensitive hyperparameter choice.
+273	
+274	\begin{table}[h]
+275	\centering
+276	\small
+277	\begin{tabular}{lc}
+278	\toprule
+279	\textbf{Weight Config} & \textbf{Exposure} $\rho$ \\
+280	\midrule
+281	50 / 50 & 0.998 \\
+282	75 / 25 (default) & 1.000 \\
+283	90 / 10 & 0.999 \\
+284	100 / 0 & 0.998 \\
+285	\bottomrule
+286	\end{tabular}
+287	\caption{Stage~2 weight robustness. Weight Config denotes the percentage assigned to reference model anchoring vs.\ cross-model agreement. All configurations produce identical model rankings. Exposure $\rho$ is the Spearman correlation of per-item $e_i$ scores relative to the default 75/25 configuration.}
+288	\label{tab:weight_robustness}
+289	\end{table}
+290	
+291	
+292	\section{Power Analysis}
+293	\label{app:power}
+294	
+295	The observed effect size in the real-data evaluation is $\Delta\tau = 0.071$ (G-MFRM $\tau = 0.857$ vs.\ baseline $\tau = 0.786$). We conduct a permutation-based power analysis to determine the sample sizes required to detect this effect at $\alpha = 0.05$.
+296	
+297	We simulate ranking comparisons under the alternative hypothesis $H_1\!: \Delta\tau = 0.071$ by bootstrapping from the observed posterior distribution of G-MFRM ability estimates and recomputing $\tau$ against ground truth at varying model counts $N$. For each $N$, we draw 10{,}000 permutation replicates and compute the rejection rate at $\alpha = 0.05$ (two-sided).
+298	
+299	At $N = 8$ (our evaluation), power is approximately 50\%, explaining the non-significant bootstrap result ($\Delta\tau$ 95\% CI $[-0.071, 0.071]$). Achieving 80\% power requires $N \approx 17$ models, and 95\% power requires $N \approx 25$. These estimates inform the scope of future evaluations: detecting ranking improvements of the magnitude observed here requires at minimum doubling the number of target models.
+300	
+301	
+302	\section{Per-Model Estimates}
+303	\label{app:raw_scores}
+304	
+305	Table~\ref{tab:raw_scores} reports G-MFRM posterior estimates for all eight target models. All seven baselines produce identical rankings (Table~\ref{tab:main_results}), with ability scores differing by $< 0.03$ logits across methods; G-MFRM is the only method that alters the ranking, swapping gpt-4o-mini and Qwen2.5-72B at ranks 2--3.
+306	
+307	\begin{table}[h]
+308	\centering
+309	\scriptsize
+310	\setlength{\tabcolsep}{3pt}
+311	\resizebox{\linewidth}{!}{%
+312	\begin{tabular}{lcccc}
+313	\toprule
+314	\textbf{Model} & $\hat{\theta}$ [95\% CI] & $\hat{c}_n$ [95\% CI] & \textbf{Base} & \textbf{G-MFRM} \\
+315	\midrule
+316	GPT-4o & $+2.00$ [$1.70$, $2.30$] & $0.88$ [$0.05$, $2.20$] & 1 & 1 \\
+317	GPT-4o-mini & $+1.40$ [$1.10$, $1.70$] & $0.93$ [$0.06$, $2.20$] & 3 & 2 \\
+318	Qwen2.5-72B & $+1.20$ [$0.85$, $1.50$] & $3.00$ [$1.40$, $4.60$] & 2 & 3 \\
+319	LLaMA-3.3-70B & $+0.54$ [$0.23$, $0.85$] & $2.50$ [$1.10$, $3.90$] & 4 & 4 \\
+320	Qwen3-8B & $+0.51$ [$0.22$, $0.79$] & $1.20$ [$0.14$, $2.50$] & 5 & 5 \\
+321	Gemma-2-9B & $-0.50$ [$-0.79$, $-0.21$] & $1.70$ [$0.36$, $2.90$] & 6 & 6 \\
+322	GPT-4-0613 & $-1.90$ [$-2.20$, $-1.60$] & $4.20$ [$3.10$, $5.30$] & 7 & 7 \\
+323	GPT-3.5-Turbo & $-3.30$ [$-3.60$, $-3.00$] & $5.60$ [$4.40$, $6.80$] & 8 & 8 \\
+324	\bottomrule
+325	\end{tabular}}
+326	\caption{G-MFRM posterior estimates for ability ($\hat{\theta}$) and contamination susceptibility ($\hat{c}_n$) with approximate 95\% credible intervals (empirical coverage ${\sim}$71\%; see Limitations). Point estimates and rank orderings are the primary results. ``Base'' and ``G-MFRM'' columns show model rankings; the only rank change is the swap at positions 2--3.}
+327	\label{tab:raw_scores}
+328	\end{table}
+329	
+330	
+331	\section{Contamination Bias Absorption}
+332	\label{app:bias_absorption}
+333	
+334	Table~\ref{tab:bias_absorption} compares per-model ability estimates from MFRM-only and G-MFRM. The difference $\Delta\theta = \hat{\theta}_{\text{MFRM}} - \hat{\theta}_{\text{G-MFRM}}$ is perfectly rank-correlated with contamination susceptibility $c_n$ (Spearman $\rho = 1.0$), providing direct empirical evidence that MFRM-only absorbs the omitted contamination term into ability estimates.
+335	
+336	\begin{table}[h]
+337	\centering
+338	\scriptsize
+339	\setlength{\tabcolsep}{3pt}
+340	\begin{tabular}{lcccc}
+341	\toprule
+342	\textbf{Model} & $\hat{\theta}_{\text{MFRM}}$ & $\hat{\theta}_{\text{G-MFRM}}$ & $\Delta\theta$ & $\hat{c}_n$ \\
+343	\midrule
+344	GPT-3.5-Turbo & $-2.487$ & $-3.274$ & $+0.786$ & $5.587$ \\
+345	GPT-4-0613 & $-1.446$ & $-1.877$ & $+0.431$ & $4.168$ \\
+346	Qwen2.5-72B & $+1.213$ & $+1.178$ & $+0.035$ & $2.961$ \\
+347	LLaMA-3.3-70B & $+0.518$ & $+0.539$ & $-0.022$ & $2.478$ \\
+348	Gemma-2-9B & $-0.661$ & $-0.500$ & $-0.161$ & $1.654$ \\
+349	Qwen3-8B & $+0.208$ & $+0.513$ & $-0.305$ & $1.178$ \\
+350	GPT-4o-mini & $+1.064$ & $+1.432$ & $-0.368$ & $0.934$ \\
+351	GPT-4o & $+1.591$ & $+1.988$ & $-0.397$ & $0.880$ \\
+352	\bottomrule
+353	\end{tabular}
+354	\caption{Contamination bias absorption in MFRM-only estimation. $\Delta\theta = \hat{\theta}_{\text{MFRM}} - \hat{\theta}_{\text{G-MFRM}}$. Models with high contamination susceptibility ($c_n$) have inflated ability estimates under MFRM-only; models with low $c_n$ are relatively deflated. The perfect rank correlation (Spearman $\rho = 1.0$) between $\Delta\theta$ and $c_n$ empirically confirms the omitted variable bias predicted in Section~\ref{sec:confounding}.}
+355	\label{tab:bias_absorption}
+356	\end{table}
+357	
+358	
+359	\section{Synthetic Calibration at Matched Scale}
+360	\label{app:synthetic_calibration}
+361	
+362	We generate synthetic data at matched scale ($N = 8$ models, $I = 176$ items, $J = 9$ judges) with known ground-truth parameters across 20 random seeds. Joint G-MFRM consistently outperforms sequential estimation: $\theta$-RMSE is halved ($0.083$ vs.\ $0.166$), and ranking agreement improves by 7.2 percentage points (mean $\tau = 0.954$ vs.\ $0.882$). Across 20 seeds, joint estimation improves or matches sequential in all cases (10 wins, 0 losses, 10 ties; Wilcoxon signed-rank $p < 0.002$). The synthetic effect size ($\Delta\tau = +0.072$) closely matches the observed real-data effect ($\Delta\tau = +0.071$). All 40 MCMC fits converge ($\hat{R} = 1.0$, ESS $\geq 1{,}678$).
+363	
+364	\begin{table}[h]
+365	\centering
+366	\small
+367	\begin{tabular}{lccc}
+368	\toprule
+369	\textbf{Metric} & \textbf{Sequential} & \textbf{Joint G-MFRM} & \textbf{Improv.} \\
+370	\midrule
+371	$\theta$ RMSE & $0.166 \pm 0.050$ & $0.083 \pm 0.024$ & $-50.3\%$ \\
+372	$\theta$ $\tau$ & $0.882 \pm 0.112$ & $0.954 \pm 0.048$ & $+7.2$pp \\
+373	$c_n$ RMSE & $1.399 \pm 0.358$ & $0.552 \pm 0.328$ & $-60.5\%$ \\
+374	$c_n$ Pearson & $0.850 \pm 0.141$ & $0.866 \pm 0.151$ & $+1.9$\% \\
+375	\bottomrule
+376	\end{tabular}
+377	\caption{Synthetic calibration at $N = 8$ ($I = 176$, $J = 9$, 20 seeds). Joint G-MFRM halves $\theta$-RMSE and reduces $c_n$-RMSE by 61\% relative to sequential estimation.}
+378	\label{tab:synthetic_calibration}
+379	\end{table}
+380	
+381	At $N = 20$ (20 seeds), the ranking improvement becomes individually significant: joint G-MFRM achieves $\Delta\tau = +0.052$ over sequential estimation (Wilcoxon $p = 1.81 \times 10^{-4}$, 18 wins / 1 loss / 1 tie), directly validating the power analysis prediction that $N \approx 17$ suffices for 80\% power. The effect size is stable across scales ($\Delta\tau = +0.072$ at $N = 8$, $+0.052$ at $N = 20$).
+382	
+383	\begin{table}[h]
+384	\centering
+385	\small
+386	\begin{tabular}{lccc}
+387	\toprule
+388	\textbf{Metric} & \textbf{Sequential} & \textbf{Joint G-MFRM} & \textbf{Improv.} \\
+389	\midrule
+390	$\theta$ RMSE & $0.171 \pm 0.049$ & $0.094 \pm 0.019$ & $-45.2\%$ \\
+391	$\theta$ $\tau$ & $0.891 \pm 0.038$ & $0.943 \pm 0.036$ & $+5.2$pp \\
+392	$c_n$ RMSE & $1.375 \pm 0.278$ & $0.626 \pm 0.263$ & $-54.5\%$ \\
+393	$c_n$ Pearson & $0.817 \pm 0.096$ & $0.842 \pm 0.106$ & $+2.5\%$ \\
+394	\bottomrule
+395	\end{tabular}
+396	\caption{Synthetic calibration at $N = 20$ ($I = 176$, $J = 9$, 20 seeds). Ranking improvement is individually significant (Wilcoxon $p = 1.81 \times 10^{-4}$), validating the power analysis prediction.}
+397	\label{tab:synthetic_calibration_n20}
+398	\end{table}
+399	
+400	
+401	\section{Prior Specification Robustness}
+402	\label{app:prior_robustness}
+403	
+404	We compare posterior estimates under two contamination priors: Horseshoe \citep{piironen2017horseshoe} and hierarchical HalfNormal (Eq.~\ref{eq:contam_prior}). Table~\ref{tab:prior_robustness} reports $\hat{c}_n$ and $\hat{\theta}$ posterior means for all eight target models under both specifications.
+405	
+406	\begin{table}[h]
+407	\centering
+408	\small
+409	\begin{tabular}{lcccc}
+410	\toprule
+411	\textbf{Model} & $\hat{c}_n$ (HS) & $\hat{c}_n$ (HN) & $\hat{\theta}$ (HS) & $\hat{\theta}$ (HN) \\
+412	\midrule
+413	Gemma-2-9B & 1.61 & 1.65 & $-0.49$ & $-0.50$ \\
+414	GPT-3.5-Turbo & 5.69 & 5.57 & $-3.30$ & $-3.27$ \\
+415	GPT-4-0613 & 4.25 & 4.15 & $-1.89$ & $-1.88$ \\
+416	GPT-4o & 0.79 & 0.88 & $+2.01$ & $+1.99$ \\
+417	GPT-4o-mini & 0.84 & 0.92 & $+1.45$ & $+1.43$ \\
+418	LLaMA-3.3-70B & 2.50 & 2.46 & $+0.53$ & $+0.54$ \\
+419	Qwen2.5-72B & 3.02 & 2.94 & $+1.17$ & $+1.18$ \\
+420	Qwen3-8B & 1.11 & 1.15 & $+0.53$ & $+0.52$ \\
+421	\bottomrule
+422	\end{tabular}
+423	\caption{Posterior estimates under Horseshoe (HS) and HalfNormal (HN) contamination priors. Both priors produce virtually identical estimates: Pearson $r = 1.000$ for $\hat{\theta}$ and $r = 0.9999$ for $\hat{c}_n$.}
+424	\label{tab:prior_robustness}
+425	\end{table}
+426	
+427	Posterior estimates are virtually identical across the two prior specifications (Pearson $r = 1.000$ for $\hat{\theta}$, $r > 0.999$ for $\hat{c}_n$), indicating that results are not sensitive to the choice of contamination prior.
+428	
+429	
+430	\section{Item-Level Fit Diagnostics}
+431	\label{app:item_diagnostics}
+432	
+433	We report item-level infit and outfit MNSQ statistics for all 176 items. Items with MNSQ outside $[0.5, 1.5]$ are flagged as potentially misfitting.
+434	
+435	\begin{table}[h]
+436	\centering
+437	\small
+438	\begin{tabular}{lccccc}
+439	\toprule
+440	\textbf{Statistic} & \textbf{Mean} & \textbf{SD} & \textbf{Median} & \textbf{Min} & \textbf{Max} \\
+441	\midrule
+442	Infit MNSQ & 0.78 & 0.41 & 0.76 & 0.05 & 1.95 \\
+443	Outfit MNSQ & 0.73 & 0.57 & 0.58 & 0.04 & 3.17 \\
+444	\bottomrule
+445	\end{tabular}
+446	\caption{Item-level fit statistics across 176 items.}
+447	\label{tab:item_fit_summary}
+448	\end{table}
+449	
+450	Of the 176 items, 92 are flagged: 18 overfit (MNSQ $> 1.5$) and 74 underfit (MNSQ $< 0.5$). The majority of flagged items are underfit, reflecting sparse low-observation items where the model's predicted variance exceeds the observed variance---a consequence of limited data per item rather than a structural model deficiency. The 18 overfit items exhibit more erratic response patterns than the model predicts. Importantly, no model-level or judge-level facets are flagged (all MNSQ within $[0.63, 1.07]$), confirming that the G-MFRM captures the systematic structure in model ability, judge severity, and contamination.
+451	
+452	
+453	\section{CI Coverage Analysis}
+454	\label{app:ci_coverage}
+455	
+456	We assess empirical coverage of 95\% posterior credible intervals across synthetic replications. At $N=8$ (49 seeds), ability parameter $\theta$ achieves 90.1\% coverage, approaching the nominal level, while contamination susceptibility $c_n$ achieves only 67.9\%. At $N=50$ (50 seeds; exp-009), $c_n$ coverage improves to 71\%. The coverage gap between $\theta$ and $c_n$ reflects the multiplicative coupling $c_n \cdot e_i$: contamination parameters enter the likelihood through an interaction term, making posterior inference more sensitive to exposure estimation noise and the HalfNormal prior's boundary constraint at $c_n = 0$. These results support treating $c_n$ point estimates and rank orderings as reliable diagnostics, while noting that $c_n$ credible intervals are systematically too narrow.
+457	
+458	\section{Use of AI Assistants}
+459	\label{app:ai_assistants}
+460	
+461	We used Claude (Anthropic) as an AI coding and writing assistant
+462	throughout this work. Specifically:
+463	\begin{itemize}
+464	    \item \textbf{Code:} drafting experiment scripts, data-processing
+465	    pipelines, and analysis utilities; debugging and refactoring.
+466	    \item \textbf{Writing:} drafting and revising paper sections,
+467	    polishing prose, and reformatting LaTeX.
+468	    \item \textbf{Literature:} summarizing related papers to inform
+469	    the related-work section.
+470	\end{itemize}
+471	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "15a4604b-161f-4941-8255-8941eac3ca8f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex",
+      "content": "\\section{Proof of Theorem~\\ref{thm:sufficient}}\n\\label{app:proof}\n\nWe prove that the G-MFRM is locally identifiable under the conditions of Theorem~\\ref{thm:sufficient}. Following \\citet{rothenberg1971}, a parametric model is locally identifiable at the true parameter vector $\\boldsymbol{\\psi}_0$ if and only if the Fisher information matrix $\\mathbf{F}(\\boldsymbol{\\psi}_0)$ is non-singular.\n\n\\paragraph{Setup.} The G-MFRM parameter vector is $\\boldsymbol{\\psi} = (\\boldsymbol{\\theta}, \\mathbf{c}, \\mathbf{b}, \\mathbf{d}, \\boldsymbol{\\tau})$, where $\\boldsymbol{\\theta} \\in \\mathbb{R}^{N-1}$ (after the location constraint $\\sum_n \\theta_n = 0$), $\\mathbf{c} \\in \\mathbb{R}_{\\geq 0}^N$, $\\mathbf{b} \\in \\mathbb{R}^I$, $\\mathbf{d} \\in \\mathbb{R}^J$, and $\\boldsymbol{\\tau} \\in \\mathbb{R}^{K-1}$. The exposure vector $\\mathbf{e} = (e_1, \\ldots, e_I)$ is fixed externally and treated as known. The linear predictor is $\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i$, with partial derivatives:\n%\n\\begin{align*}\n\\frac{\\partial \\eta_{nijk}}{\\partial \\theta_n} &= 1, \\quad\n\\frac{\\partial \\eta_{nijk}}{\\partial c_n} = e_i, \\quad\n\\frac{\\partial \\eta_{nijk}}{\\partial b_i} = -1, \\\\\n\\frac{\\partial \\eta_{nijk}}{\\partial d_j} &= -1, \\quad\n\\frac{\\partial \\eta_{nijk}}{\\partial \\tau_k} = -1.\n\\end{align*}\n\n\\paragraph{Fisher information weights.} For each observation cell $(n,i,j)$, the Fisher information weight under the cumulative logit model is\n%\n\\begin{equation}\n\\label{eq:fisher_weight}\nw_{nij} = \\sum_{k=1}^{K} \\frac{\\bigl[\\sigma'(\\eta_{nijk}) - \\sigma'(\\eta_{nij,k+1})\\bigr]^2}{P(Y_{nij} = k)},\n\\end{equation}\n%\nwhere $\\sigma(x) = (1 + e^{-x})^{-1}$, $\\sigma'(x) = \\sigma(x)(1 - \\sigma(x))$, and we set $\\sigma'(\\eta_{nij,0}) = \\sigma'(\\eta_{nij,K+1}) = 0$ at the boundaries. Since $P(Y_{nij} = k) > 0$ for all categories and $\\sigma'(\\cdot) > 0$, we have $w_{nij} > 0$ for all $(n,i,j)$.\n\n\\paragraph{Step 1: The $(\\theta_n, c_n)$ submatrix.} For each model $n$, the $2 \\times 2$ Fisher information submatrix is\n%\n\\begin{equation}\n\\label{eq:fisher_block}\n\\mathbf{F}_n = \\sum_{i=1}^{I} \\sum_{j=1}^{J} w_{nij}\n\\begin{pmatrix} 1 & e_i \\\\ e_i & e_i^2 \\end{pmatrix}.\n\\end{equation}\n%\nIts determinant is\n%\n\\begin{multline}\n\\det \\mathbf{F}_n = \\Bigl(\\textstyle\\sum_{i,j} w_{nij}\\Bigr)\\Bigl(\\textstyle\\sum_{i,j} w_{nij}\\, e_i^2\\Bigr) \\\\\n- \\Bigl(\\textstyle\\sum_{i,j} w_{nij}\\, e_i\\Bigr)^2 = W_n^2 \\cdot \\mathrm{Var}_w(e_i),\n\\end{multline}\n%\nwhere $W_n = \\sum_{i,j} w_{nij}$ and $\\mathrm{Var}_w(e_i) = \\overline{e^2}_n - \\bar{e}_n^2$ is the weighted variance of exposure with weights $w_{nij}$. By the Cauchy--Schwarz inequality, $\\mathrm{Var}_w(e_i) \\geq 0$, with equality if and only if $e_i$ is constant across all items with $w_{nij} > 0$. Under conditions~(i) and~(iii), the observed items for model $n$ include at least two distinct exposure values with $w_{nij} > 0$ for the corresponding cells. Therefore $\\mathrm{Var}_w(e_i) > 0$, $\\det \\mathbf{F}_n > 0$, and each $\\mathbf{F}_n$ is positive definite.\n\n\\paragraph{Step 2: Item and judge blocks.} Under the connected design (condition~i), each item $i$ is observed by at least one $(n,j)$ pair, so the item difficulty block has positive diagonal entries $[\\mathbf{F}_{bb}]_{ii} = \\sum_{n,j} w_{nij} > 0$ (summing over observed cells). Similarly, each judge $j$ observes at least one $(n,i)$ pair, giving $[\\mathbf{F}_{dd}]_{jj} = \\sum_{n,i} w_{nij} > 0$. Condition~(ii) ($J \\geq 2$) ensures the judge block has sufficient dimension to separate judge effects from the intercept. Both blocks are positive definite.\n\n\\paragraph{Step 3: Schur complement argument.} The full Fisher information matrix $\\mathbf{F}$ contains off-diagonal blocks coupling the parameter groups. Partition as\n%\n\\begin{equation*}\n\\mathbf{F} = \\begin{pmatrix} \\mathbf{A} & \\mathbf{B} \\\\ \\mathbf{B}^\\top & \\mathbf{D} \\end{pmatrix},\n\\end{equation*}\n%\nwhere $\\mathbf{A} = \\mathrm{blockdiag}(\\mathbf{F}_1, \\ldots, \\mathbf{F}_N)$ collects all $(\\theta_n, c_n)$ submatrices and $\\mathbf{D}$ collects the $(\\mathbf{b}, \\mathbf{d}, \\boldsymbol{\\tau})$ blocks. From Step~1, $\\mathbf{A}$ is positive definite. The Schur complement\n%\n\\begin{equation}\n\\label{eq:schur}\n\\mathbf{S} = \\mathbf{D} - \\mathbf{B}^\\top \\mathbf{A}^{-1} \\mathbf{B}\n\\end{equation}\n%\nequals the conditional Fisher information for $(\\mathbf{b}, \\mathbf{d}, \\boldsymbol{\\tau})$ given $(\\boldsymbol{\\theta}, \\mathbf{c})$. Conditioning on $(\\boldsymbol{\\theta}, \\mathbf{c})$ with fixed $\\mathbf{e}$ reduces the model to a standard MFRM with known offsets $c_n \\cdot e_i$, whose identifiability is established by \\citet[Chapter~5]{sanmartin2016} under conditions~(i), (ii), and~(iv). Therefore $\\mathbf{S}$ is positive definite.\n\nSince both $\\mathbf{A}$ and $\\mathbf{S}$ are positive definite:\n%\n\\begin{equation*}\n\\det \\mathbf{F} = \\det \\mathbf{A} \\cdot \\det \\mathbf{S} > 0,\n\\end{equation*}\n%\nestablishing non-singularity of $\\mathbf{F}$ and hence local identifiability. \\qed\n\n\\paragraph{Local vs.\\ global identifiability.} Theorem~\\ref{thm:sufficient} establishes \\emph{local} identifiability: the Fisher information matrix is non-singular at the true parameter value, guaranteeing that no infinitesimally close parameter vector produces the same likelihood. This does not rule out discrete global non-identifiabilities (i.e., isolated points in parameter space with identical likelihood). However, the HalfNormal prior on $c_n$ restricts the parameter space to $c_n \\geq 0$, eliminating the sign ambiguity that would otherwise create a global reflection $(\\theta_n + \\delta,\\, c_n - \\delta/e_i)$. Combined with the location constraint $\\sum_n \\theta_n = 0$ and the empirical observation that the posterior is unimodal across all chains (no mode-switching detected), the local result provides a practical guarantee of unique parameter recovery.\n\n\\paragraph{Role of the Cauchy--Schwarz inequality.} The key step in Step~1 is the decomposition $\\det \\mathbf{F}_n = W_n^2 \\cdot \\mathrm{Var}_w(e_i)$, where the weighted variance $\\mathrm{Var}_w(e_i) = \\mathbb{E}_w[e_i^2] - (\\mathbb{E}_w[e_i])^2 \\geq 0$ by the Cauchy--Schwarz inequality applied to the vectors $(\\sqrt{w_{nij}})$ and $(\\sqrt{w_{nij}}\\, e_i)$. Strict positivity follows from the requirement that $e_i$ takes at least two distinct values over observed items (condition~iii): if $e_i = e$ for all $i$ with $w_{nij} > 0$, then $\\mathrm{Var}_w(e_i) = 0$ and the $(\\theta_n, c_n)$ block becomes singular, recovering Proposition~\\ref{prop:exposure_variation}. The Cauchy--Schwarz bound is tight only in this degenerate case, so any non-trivial exposure variation suffices for identification.\n\n\n\\section{Explicit Form of the OVB Coefficient $\\gamma_n$}\n\\label{app:gamma}\n\nUnder the MFRM logistic link, a first-order Taylor expansion of Observation~\\ref{obs:ovb} yields an explicit approximation for the bias coefficient $\\gamma_n$:\n%\n\\begin{equation}\n\\label{eq:gamma_explicit}\n\\gamma_n \\approx \\frac{\\sum_{i} w_{ni} \\cdot e_i \\cdot p_{ni}(1 - p_{ni})}{\\sum_{i} w_{ni} \\cdot p_{ni}(1 - p_{ni})},\n\\end{equation}\n%\nwhere $p_{ni} = \\sigma(\\theta_n - b_i - \\bar{d})$ is the MFRM predicted probability averaged over judges and $w_{ni}$ is the effective item weight (number of judge observations for item $i$ on model $n$). Eq.~\\ref{eq:gamma_explicit} is a weighted mean of the exposure values $e_i$, with weights proportional to the Fisher information $p_{ni}(1 - p_{ni})$. Items near the boundary ($p_{ni} \\approx 0.5$) contribute more to the bias than items at the extremes, because the logistic link is most sensitive at these points. This approximation is accurate to first order in $(c_n \\cdot e_i)$; the synthetic validation in Section~\\ref{sec:confounding} ($r = 0.86$) confirms that the linear approximation captures the dominant bias structure.\n\n\n\\section{Murphy--Topel Variance Correction}\n\\label{app:murphy_topel}\n\nThe three-stage G-MFRM procedure treats Stage~2 exposure estimates $\\hat{e}_i$ as fixed in Stage~3, understating posterior uncertainty by ignoring estimation error in $\\hat{e}_i$. We derive the Murphy--Topel correction \\citep{murphy1985} adapted to the G-MFRM setting.\n\n\\paragraph{Setup.} Let $\\boldsymbol{\\alpha} = (e_1, \\ldots, e_I)$ denote the Stage~2 parameters estimated from an independent dataset with log-likelihood $\\ell_2(\\boldsymbol{\\alpha})$, and let $\\boldsymbol{\\psi} = (\\boldsymbol{\\theta}, \\mathbf{c}, \\mathbf{b}, \\mathbf{d}, \\boldsymbol{\\tau})$ denote the Stage~3 parameters estimated with log-likelihood $\\ell_3(\\boldsymbol{\\psi}; \\hat{\\boldsymbol{\\alpha}})$, where $\\hat{\\boldsymbol{\\alpha}}$ is plugged in as known.\n\n\\paragraph{Naive and Stage~2 variances.} The naive (uncorrected) variance of $\\hat{\\boldsymbol{\\psi}}$ is\n%\n\\begin{equation}\n\\mathbf{V}_3 = \\left[-\\frac{\\partial^2 \\ell_3}{\\partial \\boldsymbol{\\psi}\\, \\partial \\boldsymbol{\\psi}^\\top}\\bigg|_{\\hat{\\boldsymbol{\\psi}},\\, \\hat{\\boldsymbol{\\alpha}}}\\right]^{-1},\n\\end{equation}\n%\nand the Stage~2 variance is\n%\n\\begin{equation}\n\\mathbf{V}_2 = \\left[-\\frac{\\partial^2 \\ell_2}{\\partial \\boldsymbol{\\alpha}\\, \\partial \\boldsymbol{\\alpha}^\\top}\\bigg|_{\\hat{\\boldsymbol{\\alpha}}}\\right]^{-1}.\n\\end{equation}\n\n\\paragraph{Cross-derivative matrix.} The coupling between stages is captured by the cross-derivative\n%\n\\begin{equation}\n\\mathbf{C} = \\frac{\\partial^2 \\ell_3}{\\partial \\boldsymbol{\\psi}\\, \\partial \\boldsymbol{\\alpha}^\\top}\\bigg|_{\\hat{\\boldsymbol{\\psi}},\\, \\hat{\\boldsymbol{\\alpha}}}.\n\\end{equation}\n%\nIn the G-MFRM, non-zero entries of $\\mathbf{C}$ arise from the contamination gating term $c_n \\cdot e_i$. The key entry is\n%\n\\begin{equation}\n\\frac{\\partial^2 \\ell_3}{\\partial c_n\\, \\partial e_i} = \\sum_{j=1}^{J} \\frac{\\partial^2 \\ell_{nij}}{\\partial \\eta_{nij}^2} \\cdot c_n,\n\\end{equation}\n%\nwhich is proportional to $c_n$: models with zero contamination contribute no cross-derivative. Similarly, $\\partial^2 \\ell_3 / (\\partial \\theta_n\\, \\partial e_i)$ involves only indirect coupling through the shared item observations. The correction is therefore concentrated on the contamination parameters of models with $c_n > 0$.\n\n\\paragraph{Corrected variance.} The Murphy--Topel corrected variance is\n%\n\\begin{equation}\n\\label{eq:murphy_topel}\n\\mathbf{V}_{\\mathrm{MT}} = \\mathbf{V}_3 + \\mathbf{V}_3\\, \\mathbf{C}\\, \\mathbf{V}_2\\, \\mathbf{C}^\\top\\, \\mathbf{V}_3.\n\\end{equation}\n%\nThe correction term $\\mathbf{V}_3 \\mathbf{C} \\mathbf{V}_2 \\mathbf{C}^\\top \\mathbf{V}_3$ is positive semi-definite, so $\\mathbf{V}_{\\mathrm{MT}} \\succeq \\mathbf{V}_3$: the corrected variance is always at least as large as the naive variance. The inflation is concentrated on $c_n$ for contaminated models and is negligible for $\\theta_n$ when contamination is sparse, consistent with the empirical pattern in Table~\\ref{tab:error_prop}.\n\n\\paragraph{Implementation.} We estimate $\\mathbf{V}_2$ from the Stage~2 bootstrap and compute $\\mathbf{C}$ via finite differences of the Stage~3 log-likelihood evaluated at perturbed $\\hat{\\boldsymbol{\\alpha}}$ values. Corrected credible intervals are obtained by inflating Stage~3 posterior samples by $\\sqrt{\\mathrm{diag}(\\mathbf{V}_{\\mathrm{MT}}) / \\mathrm{diag}(\\mathbf{V}_3)}$.\n\n\n\\section{Ablation Study}\n\\label{app:ablation}\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Variant} & $\\theta$-RMSE & $\\tau$ & $c_n$-RMSE \\\\\n\\midrule\nFull G-MFRM & 0.124 $\\pm$ 0.016 & 0.922 $\\pm$ 0.010 & 0.593 $\\pm$ 0.224 \\\\\n$-$ Judge severity ($d_j$) & 0.127 $\\pm$ 0.016 & 0.922 $\\pm$ 0.010 & 0.629 $\\pm$ 0.243 \\\\\nBinary gating & 0.137 $\\pm$ 0.016 & 0.909 $\\pm$ 0.014 & 0.833 $\\pm$ 0.226 \\\\\nStaged estimation & 0.254 $\\pm$ 0.045 & 0.839 $\\pm$ 0.035 & 1.382 $\\pm$ 0.164 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Ablation study on synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds). Each row removes or modifies one component of the full G-MFRM. Staged estimation refers to fitting MFRM and contamination sequentially rather than jointly. All differences from Full G-MFRM are significant at $p < 0.001$ (Wilcoxon) except $-d_j$ on $\\theta$-RMSE ($p = 0.245$) and $\\tau$ ($p = 0.344$).}\n\\label{tab:ablation}\n\\end{table}\n\nThe ablation confirms that joint estimation is the primary contributor to G-MFRM's advantage: staged estimation increases $\\theta$-RMSE by $2.0\\times$ (from 0.124 to 0.254, $p < 0.001$) and $c_n$-RMSE by $2.3\\times$ (from 0.593 to 1.382, $p < 0.001$), with $\\tau$ dropping from 0.922 to 0.839. This degradation directly reflects the omitted variable bias characterized in Section~\\ref{sec:confounding}: when contamination and judge effects are estimated sequentially, the first-stage estimates absorb the unmodeled facet.\n\nReplacing continuous exposure $e_i \\in [0,1]$ with binary gating ($e_i \\in \\{0, 1\\}$) increases $c_n$-RMSE by 40\\% (from 0.593 to 0.833, $p < 0.001$), indicating that graded exposure modeling captures contamination magnitude more precisely than a binary flag. The effect on $\\theta$-RMSE is moderate ($+$10\\%, $p < 0.001$), suggesting that the binary approximation still captures the dominant contamination signal but loses precision on partially exposed items.\n\nRemoving judge severity $d_j$ does not significantly affect ability estimates ($\\theta$-RMSE $+$2.4\\%, $p = 0.245$; $\\tau$ identical, $p = 0.344$) but significantly degrades contamination recovery ($c_n$-RMSE $+$6.1\\%, $p < 0.001$). This confirms that $d_j$ serves as a diagnostic component that improves contamination estimation precision rather than ranking accuracy: without explicit judge severity modeling, judge-induced score variation is partially absorbed into the contamination estimates, inflating $c_n$-RMSE. The $d_j$ profile also provides independent diagnostic value for judge calibration (e.g., Claude Opus $d_j = +0.60$ vs.\\ Mistral $-0.74$ in the real-data evaluation).\n\n\n\\section{Posterior Predictive Check}\n\\label{app:ppc}\n\nFigure~\\ref{fig:ppc} shows the posterior predictive distribution from 1{,}000 posterior draws over 5{,}661 observations. The predicted and observed response distributions are well-aligned (predicted mean win rate $0.593$ vs.\\ observed $0.599$), with no systematic discrepancy across item difficulty or model ability levels.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig_ppc}\n\\caption{Posterior predictive check. Distribution of predicted (gray) and observed (black) response rates across all model--item--judge triplets. Mean predicted $= 0.593$, mean observed $= 0.599$.}\n\\label{fig:ppc}\n\\end{figure}\n\n\n\\section{OVB Validation Across Confounding Levels}\n\\label{app:ovb_validation}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig4_bias_vs_rho}\n\\caption{Sequential estimator bias remains approximately constant across confounding levels ($\\rho$), confirming omission-driven rather than confounding-strength-dependent bias. Joint G-MFRM estimation reduces bias by approximately 70\\% at all $\\rho$ levels. Synthetic data: $N = 50$, $I = 100$, $J = 8$, 50 seeds.}\n\\label{fig:bias_vs_rho}\n\\end{figure}\n\n\n\\section{Contamination Susceptibility Recovery}\n\\label{app:cn_recovery}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig5_cn_recovery}\n\\caption{Contamination susceptibility recovery ($c_n$: true vs.\\ estimated) from 50 Monte Carlo seeds. Empirical CI coverage is 71\\% (below nominal 95\\%), indicating moderate posterior overconfidence (see Limitations).}\n\\label{fig:cn_recovery}\n\\end{figure}\n\n\n\\section{Error Propagation Figure}\n\\label{app:error_prop_fig}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_error_propagation}\n\\caption{Error propagation from Stage~2 exposure noise to Stage~3 parameter estimates. (a)~Ability RMSE ($\\theta$) and (b)~contamination RMSE ($c_n$) as a function of exposure noise $\\sigma_e$. The dashed vertical line marks $\\sigma_{\\mathrm{crit}} \\approx 0.2$, below which degradation remains mild ($\\theta$-RMSE $+$5.9\\%, $c_n$-RMSE $+$7.9\\%). Error bars show $\\pm$1 std over 20 seeds. See Table~\\ref{tab:error_prop} for numerical values.}\n\\label{fig:error_prop}\n\\end{figure}\n\n\n\\section{Self-Evaluation Robustness}\n\\label{app:self_eval}\n\nTwo models---Qwen2.5-72B and LLaMA-3.3-70B---appear as both judge and target in our evaluation. Self-judging introduces a potential confound: a model may score its own responses more favorably. We examine the empirical magnitude of this effect and its impact on rankings.\n\nQwen2.5-72B achieves a perfect self-judging win rate of 1.000 (42/42 items), compared to a cross-judge mean win rate of 0.714 for the same model. LLaMA-3.3-70B shows a self-judging win rate of 0.912, compared to a cross-judge mean of 0.823. Both values are elevated relative to cross-judge baselines, consistent with same-family preference leakage \\citep{preference_leakage2026}.\n\nTo assess sensitivity, we re-fit G-MFRM excluding all 99 self-judging observations (Qwen2.5-72B and LLaMA-3.3-70B judging their own responses). The resulting ranking yields $\\tau = 0.857$, identical to the full-data G-MFRM point estimate, with a swap at ranks 2--3. Contamination susceptibility estimates $c_n$ shift by less than 0.15 for all models. This confirms that $d_j$ absorbs the bulk of self-evaluation bias and that rankings are robust to excluding self-judging pairs.\n\n\n\\section{Judge Severity Profiles}\n\\label{app:judge_severity}\n\nTable~\\ref{tab:judge_severity} reports posterior estimates of judge severity $d_j$ for all nine judges. Positive values indicate stricter scoring (lower win rates); negative values indicate more lenient scoring. Proprietary models cluster at the strict end, while open-source models tend to be more lenient.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Judge} & $\\hat{d}_j$ & 95\\% CI \\\\\n\\midrule\nClaude Opus 4.7 & $+0.60$ & [$+0.43$, $+0.76$] \\\\\nGPT-5.5 & $+0.53$ & [$+0.37$, $+0.70$] \\\\\nDeepSeek-V4-Pro & $+0.31$ & [$+0.07$, $+0.54$] \\\\\nClaude Sonnet 4.6 & $+0.14$ & [$-0.04$, $+0.31$] \\\\\nGemini-2.5-Pro & $-0.04$ & [$-0.27$, $+0.19$] \\\\\nQwen3-235B & $-0.04$ & [$-0.24$, $+0.16$] \\\\\nQwen2.5-72B & $-0.35$ & [$-0.64$, $-0.07$] \\\\\nLLaMA-3.3-70B & $-0.42$ & [$-0.66$, $-0.18$] \\\\\nMistral-Large-2 & $-0.74$ & [$-1.10$, $-0.37$] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Judge severity estimates ($d_j$) for all nine judges. Positive = stricter scoring. The severity range spans 1.34 logits (Claude Opus to Mistral), comparable to $\\sim$1 standard deviation of model ability.}\n\\label{tab:judge_severity}\n\\end{table}\n\n\n\\section{Judge Count Sensitivity}\n\\label{app:judge_count}\n\nTable~\\ref{tab:judge_count} reports ranking accuracy as a function of the number of judges $k$, obtained by subsampling from the full 9-judge panel (10 random subsets per $k$; $k = 9$ uses the full panel). G-MFRM outperforms both raw averaging and sequential estimation at all judge counts. Rank agreement increases monotonically with $k$ ($\\tau = 0.771 \\to 0.857$), and variance contracts as additional judges improve $d_j$ and $c_n$ estimation. At $k \\geq 4$, G-MFRM exceeds the full-panel baseline $\\tau = 0.786$, suggesting that four diverse judges suffice for practical deployment.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n$k$ & Raw Avg & Sequential & G-MFRM & $\\Delta\\tau$ \\\\\n\\midrule\n2 & $.755 \\pm .088$ & $.764 \\pm .096$ & $.771 \\pm .081$ & $+.017$ \\\\\n4 & $.779 \\pm .041$ & $.786 \\pm .048$ & $.800 \\pm .045$ & $+.021$ \\\\\n6 & $.800 \\pm .030$ & $.807 \\pm .048$ & $.821 \\pm .051$ & $+.021$ \\\\\n9 & $.786$ & $.786$ & $.857$ & $+.071$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Kendall $\\tau$ with Chatbot Arena rankings as a function of judge count $k$. $\\Delta\\tau$ = G-MFRM $-$ Raw Average. Values for $k < 9$ are mean $\\pm$ std over 10 random judge subsets.}\n\\label{tab:judge_count}\n\\end{table}\n\nLeave-one-judge-out analysis reveals that three judges---Claude Opus 4.7 ($d_j = +0.60$), GPT-5.5 ($+0.53$), and LLaMA-3.3-70B ($-0.42$)---are individually necessary for the ranking improvement: removing any one of these reduces G-MFRM $\\tau$ to the baseline ($0.786$), while removing any of the other six judges preserves $\\tau = 0.857$. These three judges span the severity spectrum (the two strictest and the second-most lenient), suggesting that contamination$\\times$judge interaction identification requires sufficient severity diversity. This provides practical guidance: judge panels should include models with diverse scoring tendencies rather than homogeneous judges.\n\nG-MFRM requires $\\geq 4$ MCMC chains for reliable contamination estimation; reduced chain counts attenuate $c_n$ estimates toward the prior mean, compressing inter-model differences.\n\n\n\\section{Stage~2 Weight Robustness}\n\\label{app:weight_robustness}\n\nAll four weight configurations produce identical model rankings and near-perfect exposure score agreement (Spearman $\\rho \\geq 0.998$; Table~\\ref{tab:weight_robustness}), confirming that the default 75/25 split is not a sensitive hyperparameter choice.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lc}\n\\toprule\n\\textbf{Weight Config} & \\textbf{Exposure} $\\rho$ \\\\\n\\midrule\n50 / 50 & 0.998 \\\\\n75 / 25 (default) & 1.000 \\\\\n90 / 10 & 0.999 \\\\\n100 / 0 & 0.998 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Stage~2 weight robustness. Weight Config denotes the percentage assigned to reference model anchoring vs.\\ cross-model agreement. All configurations produce identical model rankings. Exposure $\\rho$ is the Spearman correlation of per-item $e_i$ scores relative to the default 75/25 configuration.}\n\\label{tab:weight_robustness}\n\\end{table}\n\n\n\\section{Power Analysis}\n\\label{app:power}\n\nThe observed effect size in the real-data evaluation is $\\Delta\\tau = 0.071$ (G-MFRM $\\tau = 0.857$ vs.\\ baseline $\\tau = 0.786$). We conduct a permutation-based power analysis to determine the sample sizes required to detect this effect at $\\alpha = 0.05$.\n\nWe simulate ranking comparisons under the alternative hypothesis $H_1\\!: \\Delta\\tau = 0.071$ by bootstrapping from the observed posterior distribution of G-MFRM ability estimates and recomputing $\\tau$ against ground truth at varying model counts $N$. For each $N$, we draw 10{,}000 permutation replicates and compute the rejection rate at $\\alpha = 0.05$ (two-sided).\n\nAt $N = 8$ (our evaluation), power is approximately 50\\%, explaining the non-significant bootstrap result ($\\Delta\\tau$ 95\\% CI $[-0.071, 0.071]$). Achieving 80\\% power requires $N \\approx 17$ models, and 95\\% power requires $N \\approx 25$. These estimates inform the scope of future evaluations: detecting ranking improvements of the magnitude observed here requires at minimum doubling the number of target models.\n\n\n\\section{Per-Model Estimates}\n\\label{app:raw_scores}\n\nTable~\\ref{tab:raw_scores} reports G-MFRM posterior estimates for all eight target models. All seven baselines produce identical rankings (Table~\\ref{tab:main_results}), with ability scores differing by $< 0.03$ logits across methods; G-MFRM is the only method that alters the ranking, swapping gpt-4o-mini and Qwen2.5-72B at ranks 2--3.\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{3pt}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & $\\hat{\\theta}$ [95\\% CI] & $\\hat{c}_n$ [95\\% CI] & \\textbf{Base} & \\textbf{G-MFRM} \\\\\n\\midrule\nGPT-4o & $+2.00$ [$1.70$, $2.30$] & $0.88$ [$0.05$, $2.20$] & 1 & 1 \\\\\nGPT-4o-mini & $+1.40$ [$1.10$, $1.70$] & $0.93$ [$0.06$, $2.20$] & 3 & 2 \\\\\nQwen2.5-72B & $+1.20$ [$0.85$, $1.50$] & $3.00$ [$1.40$, $4.60$] & 2 & 3 \\\\\nLLaMA-3.3-70B & $+0.54$ [$0.23$, $0.85$] & $2.50$ [$1.10$, $3.90$] & 4 & 4 \\\\\nQwen3-8B & $+0.51$ [$0.22$, $0.79$] & $1.20$ [$0.14$, $2.50$] & 5 & 5 \\\\\nGemma-2-9B & $-0.50$ [$-0.79$, $-0.21$] & $1.70$ [$0.36$, $2.90$] & 6 & 6 \\\\\nGPT-4-0613 & $-1.90$ [$-2.20$, $-1.60$] & $4.20$ [$3.10$, $5.30$] & 7 & 7 \\\\\nGPT-3.5-Turbo & $-3.30$ [$-3.60$, $-3.00$] & $5.60$ [$4.40$, $6.80$] & 8 & 8 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{G-MFRM posterior estimates for ability ($\\hat{\\theta}$) and contamination susceptibility ($\\hat{c}_n$) with approximate 95\\% credible intervals (empirical coverage ${\\sim}$71\\%; see Limitations). Point estimates and rank orderings are the primary results. ``Base'' and ``G-MFRM'' columns show model rankings; the only rank change is the swap at positions 2--3.}\n\\label{tab:raw_scores}\n\\end{table}\n\n\n\\section{Contamination Bias Absorption}\n\\label{app:bias_absorption}\n\nTable~\\ref{tab:bias_absorption} compares per-model ability estimates from MFRM-only and G-MFRM. The difference $\\Delta\\theta = \\hat{\\theta}_{\\text{MFRM}} - \\hat{\\theta}_{\\text{G-MFRM}}$ is perfectly rank-correlated with contamination susceptibility $c_n$ (Spearman $\\rho = 1.0$), providing direct empirical evidence that MFRM-only absorbs the omitted contamination term into ability estimates.\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & $\\hat{\\theta}_{\\text{MFRM}}$ & $\\hat{\\theta}_{\\text{G-MFRM}}$ & $\\Delta\\theta$ & $\\hat{c}_n$ \\\\\n\\midrule\nGPT-3.5-Turbo & $-2.487$ & $-3.274$ & $+0.786$ & $5.587$ \\\\\nGPT-4-0613 & $-1.446$ & $-1.877$ & $+0.431$ & $4.168$ \\\\\nQwen2.5-72B & $+1.213$ & $+1.178$ & $+0.035$ & $2.961$ \\\\\nLLaMA-3.3-70B & $+0.518$ & $+0.539$ & $-0.022$ & $2.478$ \\\\\nGemma-2-9B & $-0.661$ & $-0.500$ & $-0.161$ & $1.654$ \\\\\nQwen3-8B & $+0.208$ & $+0.513$ & $-0.305$ & $1.178$ \\\\\nGPT-4o-mini & $+1.064$ & $+1.432$ & $-0.368$ & $0.934$ \\\\\nGPT-4o & $+1.591$ & $+1.988$ & $-0.397$ & $0.880$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Contamination bias absorption in MFRM-only estimation. $\\Delta\\theta = \\hat{\\theta}_{\\text{MFRM}} - \\hat{\\theta}_{\\text{G-MFRM}}$. Models with high contamination susceptibility ($c_n$) have inflated ability estimates under MFRM-only; models with low $c_n$ are relatively deflated. The perfect rank correlation (Spearman $\\rho = 1.0$) between $\\Delta\\theta$ and $c_n$ empirically confirms the omitted variable bias predicted in Section~\\ref{sec:confounding}.}\n\\label{tab:bias_absorption}\n\\end{table}\n\n\n\\section{Synthetic Calibration at Matched Scale}\n\\label{app:synthetic_calibration}\n\nWe generate synthetic data at matched scale ($N = 8$ models, $I = 176$ items, $J = 9$ judges) with known ground-truth parameters across 20 random seeds. Joint G-MFRM consistently outperforms sequential estimation: $\\theta$-RMSE is halved ($0.083$ vs.\\ $0.166$), and ranking agreement improves by 7.2 percentage points (mean $\\tau = 0.954$ vs.\\ $0.882$). Across 20 seeds, joint estimation improves or matches sequential in all cases (10 wins, 0 losses, 10 ties; Wilcoxon signed-rank $p < 0.002$). The synthetic effect size ($\\Delta\\tau = +0.072$) closely matches the observed real-data effect ($\\Delta\\tau = +0.071$). All 40 MCMC fits converge ($\\hat{R} = 1.0$, ESS $\\geq 1{,}678$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Metric} & \\textbf{Sequential} & \\textbf{Joint G-MFRM} & \\textbf{Improv.} \\\\\n\\midrule\n$\\theta$ RMSE & $0.166 \\pm 0.050$ & $0.083 \\pm 0.024$ & $-50.3\\%$ \\\\\n$\\theta$ $\\tau$ & $0.882 \\pm 0.112$ & $0.954 \\pm 0.048$ & $+7.2$pp \\\\\n$c_n$ RMSE & $1.399 \\pm 0.358$ & $0.552 \\pm 0.328$ & $-60.5\\%$ \\\\\n$c_n$ Pearson & $0.850 \\pm 0.141$ & $0.866 \\pm 0.151$ & $+1.9$\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Synthetic calibration at $N = 8$ ($I = 176$, $J = 9$, 20 seeds). Joint G-MFRM halves $\\theta$-RMSE and reduces $c_n$-RMSE by 61\\% relative to sequential estimation.}\n\\label{tab:synthetic_calibration}\n\\end{table}\n\nAt $N = 20$ (20 seeds), the ranking improvement becomes individually significant: joint G-MFRM achieves $\\Delta\\tau = +0.052$ over sequential estimation (Wilcoxon $p = 1.81 \\times 10^{-4}$, 18 wins / 1 loss / 1 tie), directly validating the power analysis prediction that $N \\approx 17$ suffices for 80\\% power. The effect size is stable across scales ($\\Delta\\tau = +0.072$ at $N = 8$, $+0.052$ at $N = 20$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Metric} & \\textbf{Sequential} & \\textbf{Joint G-MFRM} & \\textbf{Improv.} \\\\\n\\midrule\n$\\theta$ RMSE & $0.171 \\pm 0.049$ & $0.094 \\pm 0.019$ & $-45.2\\%$ \\\\\n$\\theta$ $\\tau$ & $0.891 \\pm 0.038$ & $0.943 \\pm 0.036$ & $+5.2$pp \\\\\n$c_n$ RMSE & $1.375 \\pm 0.278$ & $0.626 \\pm 0.263$ & $-54.5\\%$ \\\\\n$c_n$ Pearson & $0.817 \\pm 0.096$ & $0.842 \\pm 0.106$ & $+2.5\\%$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Synthetic calibration at $N = 20$ ($I = 176$, $J = 9$, 20 seeds). Ranking improvement is individually significant (Wilcoxon $p = 1.81 \\times 10^{-4}$), validating the power analysis prediction.}\n\\label{tab:synthetic_calibration_n20}\n\\end{table}\n\n\n\\section{Prior Specification Robustness}\n\\label{app:prior_robustness}\n\nWe compare posterior estimates under two contamination priors: Horseshoe \\citep{piironen2017horseshoe} and hierarchical HalfNormal (Eq.~\\ref{eq:contam_prior}). Table~\\ref{tab:prior_robustness} reports $\\hat{c}_n$ and $\\hat{\\theta}$ posterior means for all eight target models under both specifications.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & $\\hat{c}_n$ (HS) & $\\hat{c}_n$ (HN) & $\\hat{\\theta}$ (HS) & $\\hat{\\theta}$ (HN) \\\\\n\\midrule\nGemma-2-9B & 1.61 & 1.65 & $-0.49$ & $-0.50$ \\\\\nGPT-3.5-Turbo & 5.69 & 5.57 & $-3.30$ & $-3.27$ \\\\\nGPT-4-0613 & 4.25 & 4.15 & $-1.89$ & $-1.88$ \\\\\nGPT-4o & 0.79 & 0.88 & $+2.01$ & $+1.99$ \\\\\nGPT-4o-mini & 0.84 & 0.92 & $+1.45$ & $+1.43$ \\\\\nLLaMA-3.3-70B & 2.50 & 2.46 & $+0.53$ & $+0.54$ \\\\\nQwen2.5-72B & 3.02 & 2.94 & $+1.17$ & $+1.18$ \\\\\nQwen3-8B & 1.11 & 1.15 & $+0.53$ & $+0.52$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Posterior estimates under Horseshoe (HS) and HalfNormal (HN) contamination priors. Both priors produce virtually identical estimates: Pearson $r = 1.000$ for $\\hat{\\theta}$ and $r = 0.9999$ for $\\hat{c}_n$.}\n\\label{tab:prior_robustness}\n\\end{table}\n\nPosterior estimates are virtually identical across the two prior specifications (Pearson $r = 1.000$ for $\\hat{\\theta}$, $r > 0.999$ for $\\hat{c}_n$), indicating that results are not sensitive to the choice of contamination prior.\n\n\n\\section{Item-Level Fit Diagnostics}\n\\label{app:item_diagnostics}\n\nWe report item-level infit and outfit MNSQ statistics for all 176 items. Items with MNSQ outside $[0.5, 1.5]$ are flagged as potentially misfitting.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Statistic} & \\textbf{Mean} & \\textbf{SD} & \\textbf{Median} & \\textbf{Min} & \\textbf{Max} \\\\\n\\midrule\nInfit MNSQ & 0.78 & 0.41 & 0.76 & 0.05 & 1.95 \\\\\nOutfit MNSQ & 0.73 & 0.57 & 0.58 & 0.04 & 3.17 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Item-level fit statistics across 176 items.}\n\\label{tab:item_fit_summary}\n\\end{table}\n\nOf the 176 items, 92 are flagged: 18 overfit (MNSQ $> 1.5$) and 74 underfit (MNSQ $< 0.5$). The majority of flagged items are underfit, reflecting sparse low-observation items where the model's predicted variance exceeds the observed variance---a consequence of limited data per item rather than a structural model deficiency. The 18 overfit items exhibit more erratic response patterns than the model predicts. Importantly, no model-level or judge-level facets are flagged (all MNSQ within $[0.63, 1.07]$), confirming that the G-MFRM captures the systematic structure in model ability, judge severity, and contamination.\n\n\n\\section{CI Coverage Analysis}\n\\label{app:ci_coverage}\n\nWe assess empirical coverage of 95\\% posterior credible intervals across synthetic replications. At $N=8$ (49 seeds), ability parameter $\\theta$ achieves 90.1\\% coverage, approaching the nominal level, while contamination susceptibility $c_n$ achieves only 67.9\\%. At $N=50$ (50 seeds; exp-009), $c_n$ coverage improves to 71\\%. The coverage gap between $\\theta$ and $c_n$ reflects the multiplicative coupling $c_n \\cdot e_i$: contamination parameters enter the likelihood through an interaction term, making posterior inference more sensitive to exposure estimation noise and the HalfNormal prior's boundary constraint at $c_n = 0$. These results support treating $c_n$ point estimates and rank orderings as reliable diagnostics, while noting that $c_n$ credible intervals are systematically too narrow.\n\n\\section{Use of AI Assistants}\n\\label{app:ai_assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant\nthroughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n    pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections,\n    polishing prose, and reformatting LaTeX.\n    \\item \\textbf{Literature:} summarizing related papers to inform\n    the related-work section.\n\\end{itemize}\n",
+      "numLines": 471,
+      "startLine": 1,
+      "totalLines": 471
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile the checklist report.
+
+## Analysis:
+
+### 1. Limitations
+- Located in `limitations.tex`, included via `\section*{Limitations}` in `main.tex` (line 40)
+- Placed in the main text (correct per EMNLP rules), not in appendix
+- Content covers 3 points:
+  1. **Single benchmark & sparsity**: Arena-Hard fill rate, identifiability concerns for sparse designs, Stage 2 reliance on gpt-4-0314 anchor
+  2. **CI coverage / posterior overconfidence**: c_n CI coverage is 71% (below nominal 95%), multiplicative coupling issue, rank-1 assumption limitation
+  3. **Statistical power**: N≈17 needed for 80% power, N=8 has ~50% power, self-evaluation sensitivity not fully explored
+
+Plus a code/data release statement at the end. That's 3 substantial points fitting the requirement, though it runs fairly dense across about 3 paragraphs.
+
+Now looking at what's missing from the paper: there's no dedicated ethics section in the main text, though there is an "Use of AI Assistants" appendix. The compute budget details are sparse—the MCMC setup is documented but GPU specs and wall-clock times aren't specified. And the reproducibility statement appears to be cut off mid-sentence about code and data release. I need to reconsider what the ARR checklist actually requires — it's part of the OpenReview submission form, not the paper itself, but the paper still needs to contain the supporting information for those answers. The ethical considerations section isn't strictly mandatory, though the AI assistant disclosure in the appendix is a good start; I should think about whether the broader ethical implications deserve mention elsewhere. The compute budget is explicitly asked in the checklist, so I need to find where GPU hours, type, and cost should be documented. I'm also noticing there are unfilled placeholders in the experiments file — line 7 has some missing numerical values and a fill rate percentage that need to be completed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "a025fb7c-7ef3-4977-b974-4a7a8870388a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ELFMcUXNvkrBg6wDNT16QA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14085,
+      "cache_read_input_tokens": 35887,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14085
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+## ARR Responsible NLP Checklist 预检报告
+
+### Limitations ✅ 已覆盖
+
+位置：`main.tex:40` 的 `\section*{Limitations}` → 输入 `limitations.tex`。放在正文、bibliography 之前，符合 EMNLP 规则。
+
+覆盖 3 个点：
+1. **单一 benchmark + 稀疏性**：仅用 Arena-Hard，fill rate 有占位符未填；Stage 2 依赖 gpt-4-0314 anchor 需定期重评
+2. **CI 覆盖率 / 后验过度自信**：c_n 95% CI 实际覆盖仅 71%（N=50）/68%（N=8），源于乘法耦合和 HalfNormal 边界约束；rank-1 假设限制
+3. **统计功效不足**：N=8 仅 ~50% power，需 N≈17 达 80% power；未做完整的 self-evaluation 排除分析
+
+末尾有代码/数据发布声明。内容偏长但实质到位。
+
+---
+
+### Ethical Considerations ⚠️ 部分覆盖
+
+- **有**：Appendix `\section{Use of AI Assistants}`（`appendix.tex:459`）披露了 Claude 的使用
+- **缺**：没有独立的 `\section*{Ethical Considerations}` 或 `\section*{Ethics Statement}` 讨论 LLM evaluation bias 对模型排名、下游部署决策的潜在影响
+
+**建议**：在 `main.tex` 的 `\section*{Limitations}` 之后、`\bibliography` 之前加一个 `\section*{Ethical Considerations}`，简短写 2-3 句：(1) G-MFRM 排名校正可能影响模型选择决策；(2) contamination susceptibility 分数不应作为训练数据合规性的唯一依据；(3) judge bias 参数反映评分倾向而非模型质量判断。
+
+---
+
+### Compute Budget ❌ 缺失
+
+`experiments.tex` 仅报告了 MCMC 配置（4,000 warmup + 4,000 sampling, 4 chains），**未提及**：
+- GPU 类型
+- 单次 MCMC 拟合的 wall-clock 时间
+- LLM judge API 调用成本（9 judges × 17 models × 176 items × position swap）
+- 总实验计算量
+
+**建议**：在 `experiments.tex` 的 Setup 段末尾加一个 `\paragraph{Compute budget.}`，报告 GPU 型号、单次拟合时间、API 调用总数和估计成本。
+
+---
+
+### Reproducibility ⚠️ 部分覆盖
+
+- `limitations.tex:7`："Code and data will be released upon acceptance at [anonymized URL]." — 仅一句
+- `experiments.tex` 报告了 MCMC 超参（warmup/sampling/chains/acceptance）、prior 规格、Stage 2 权重配置
+- **缺**：未明确说明随机种子策略、软件版本（NumPyro/JAX 版本）、exact judge prompt template 是否在附录或代码包中
+
+**建议**：将代码/数据声明从 limitations.tex 移到 experiments.tex 末尾或 conclusion，补充说明代码包含完整 prompt templates、配置文件和预处理脚本。
+
+---
+
+### Human Subjects ✅ N/A
+
+无人类实验，checklist 中选 N/A 即可，论文无需额外说明。
+
+---
+
+### 额外发现：占位符未填
+
+`experiments.tex:7` 有未填占位符：
+- `XX{,}XXX of XX{,}XXX potential cells`
+- `XX.X\% fill rate`
+
+提交前必须填入实际数值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "uuid": "0f77dd6f-ba3d-4fba-b1a0-bf8c94f5a6ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ELFMcUXNvkrBg6wDNT16QA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14085,
+      "cache_read_input_tokens": 35887,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14085
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 38_
+
+## ARR Responsible NLP Checklist 预检报告
+
+### Limitations ✅ 已覆盖
+
+位置：`main.tex:40` 的 `\section*{Limitations}` → 输入 `limitations.tex`。放在正文、bibliography 之前，符合 EMNLP 规则。
+
+覆盖 3 个点：
+1. **单一 benchmark + 稀疏性**：仅用 Arena-Hard，fill rate 有占位符未填；Stage 2 依赖 gpt-4-0314 anchor 需定期重评
+2. **CI 覆盖率 / 后验过度自信**：c_n 95% CI 实际覆盖仅 71%（N=50）/68%（N=8），源于乘法耦合和 HalfNormal 边界约束；rank-1 假设限制
+3. **统计功效不足**：N=8 仅 ~50% power，需 N≈17 达 80% power；未做完整的 self-evaluation 排除分析
+
+末尾有代码/数据发布声明。内容偏长但实质到位。
+
+---
+
+### Ethical Considerations ⚠️ 部分覆盖
+
+- **有**：Appendix `\section{Use of AI Assistants}`（`appendix.tex:459`）披露了 Claude 的使用
+- **缺**：没有独立的 `\section*{Ethical Considerations}` 或 `\section*{Ethics Statement}` 讨论 LLM evaluation bias 对模型排名、下游部署决策的潜在影响
+
+**建议**：在 `main.tex` 的 `\section*{Limitations}` 之后、`\bibliography` 之前加一个 `\section*{Ethical Considerations}`，简短写 2-3 句：(1) G-MFRM 排名校正可能影响模型选择决策；(2) contamination susceptibility 分数不应作为训练数据合规性的唯一依据；(3) judge bias 参数反映评分倾向而非模型质量判断。
+
+---
+
+### Compute Budget ❌ 缺失
+
+`experiments.tex` 仅报告了 MCMC 配置（4,000 warmup + 4,000 sampling, 4 chains），**未提及**：
+- GPU 类型
+- 单次 MCMC 拟合的 wall-clock 时间
+- LLM judge API 调用成本（9 judges × 17 models × 176 items × position swap）
+- 总实验计算量
+
+**建议**：在 `experiments.tex` 的 Setup 段末尾加一个 `\paragraph{Compute budget.}`，报告 GPU 型号、单次拟合时间、API 调用总数和估计成本。
+
+---
+
+### Reproducibility ⚠️ 部分覆盖
+
+- `limitations.tex:7`："Code and data will be released upon acceptance at [anonymized URL]." — 仅一句
+- `experiments.tex` 报告了 MCMC 超参（warmup/sampling/chains/acceptance）、prior 规格、Stage 2 权重配置
+- **缺**：未明确说明随机种子策略、软件版本（NumPyro/JAX 版本）、exact judge prompt template 是否在附录或代码包中
+
+**建议**：将代码/数据声明从 limitations.tex 移到 experiments.tex 末尾或 conclusion，补充说明代码包含完整 prompt templates、配置文件和预处理脚本。
+
+---
+
+### Human Subjects ✅ N/A
+
+无人类实验，checklist 中选 N/A 即可，论文无需额外说明。
+
+---
+
+### 额外发现：占位符未填
+
+`experiments.tex:7` 有未填占位符：
+- `XX{,}XXX of XX{,}XXX potential cells`
+- `XX.X\% fill rate`
+
+提交前必须填入实际数值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 82673,
+  "duration_api_ms": 83751,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "0bb564ad-2a25-4fe7-9675-3dda0a04ef1f",
+  "total_cost_usd": 0.40894625,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 38525,
+    "cache_read_input_tokens": 155920,
+    "output_tokens": 3550,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 38525,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1973,
+        "cache_read_input_tokens": 35887,
+        "cache_creation_input_tokens": 14085,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 14085
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1310,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001405,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 3550,
+      "cacheReadInputTokens": 155920,
+      "cacheCreationInputTokens": 38525,
+      "webSearchRequests": 0,
+      "costUSD": 0.40754124999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "adfaa181-bfbb-4542-93b0-b89686a171d6"
+}
+```
+
+</details>
+
+---

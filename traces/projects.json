@@ -283,6 +283,21 @@
       }
     },
     {
+      "project": "eco_alpha_beta_diversity",
+      "title": "eco alpha beta diversity",
+      "catalog": "../paper-assets/eco_alpha_beta_diversity/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 20,
+        "messages": 1818,
+        "user_turns": 70,
+        "tool_calls": 691,
+        "unparsed_lines": 9,
+        "worker": 9,
+        "result": 7,
+        "conversation": 4
+      }
+    },
+    {
       "project": "entrainment_gated_ft",
       "title": "Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models",
       "catalog": "../paper-assets/entrainment_gated_ft/05-generation-trace/catalog.json",
@@ -363,6 +378,22 @@
       }
     },
     {
+      "project": "gated_mfrm_judge_bias",
+      "title": "Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation",
+      "catalog": "../paper-assets/gated_mfrm_judge_bias/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 973,
+        "messages": 78434,
+        "user_turns": 2425,
+        "tool_calls": 30643,
+        "unparsed_lines": 414,
+        "worker": 421,
+        "result": 398,
+        "conversation": 144,
+        "history": 10
+      }
+    },
+    {
       "project": "importance_margin_vla_compress",
       "title": "Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility",
       "catalog": "../paper-assets/importance_margin_vla_compress/05-generation-trace/catalog.json",
@@ -398,6 +429,12 @@
       "project": "prod42",
       "title": "prod42",
       "catalog": "../paper-assets/prod42/05-generation-trace/catalog.json",
+      "statistics": {}
+    },
+    {
+      "project": "prod43",
+      "title": "prod43",
+      "catalog": "../paper-assets/prod43/05-generation-trace/catalog.json",
       "statistics": {}
     },
     {

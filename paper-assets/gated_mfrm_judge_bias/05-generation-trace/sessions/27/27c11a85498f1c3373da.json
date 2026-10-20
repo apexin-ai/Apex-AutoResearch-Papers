@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27c11a85498f1c3373da",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh n17 api judges launch",
+  "task_key": "worker_ssh_n17_api_judges_launch_20260523T143930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_n17_api_judges_launch_20260523T143930_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "2cfadc6d363ea8b0fd2eabda9d5437c4ee8b2b60843249b6c02c567421b5cc41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API 调用正常，结果格式正确。\n\n## 启动状态汇总\n\n**4 个 API judge 全部启动成功，正在通过 TUM proxy (`http://47.94.22.126/v1`) 收集评测数据。**\n\n| Judge | tmux session | 已完成 | 总量 | 剩余 | 预估时间 (30 RPM) |\n|-------|-------------|--------|------|------|-------------------|\n| Claude Sonnet 4.6 | `judge_sonnet` | 8,803 | 18,000 | ~9,197 | ~5.1h |\n| Gemini 2.5 Pro | `judge_gemini` | 6,845 | 18,000 | ~11,155 | ~6.2h |\n| DeepSeek V4 Pro | `judge_deepseek` | 6,137 | 18,000 | ~11,863 | ~6.6h |\n| Qwen3-235B | `judge_qwen3` | 7,253 | 18,000 | ~10,747 | ~6.0h |\n\n**注意**：config 中 target_models 有 18 个（含 gpt-4-0314 reference），500 prompts × 18 models × 2 positions = 18,000 total。实际数据为 500 prompts（非 176），总量比预期大。如果需要只跑 9 个新模型，需要调整 config。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n17-api-judges-launch.md"
+}

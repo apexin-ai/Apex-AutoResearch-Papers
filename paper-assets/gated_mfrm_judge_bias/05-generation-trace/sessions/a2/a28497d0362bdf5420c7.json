@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a28497d0362bdf5420c7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260522T133542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260522T133542_result.json",
+    "occurrence": 1,
+    "bytes": 273,
+    "sha256": "5d94c5efcde64e3abdb25e3f4ba0f47f6a308ab840bdbe4633d06813ea2e8090"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Written to `docs/paper/related_work.tex`: 600 words, 4 clusters + positioning paragraph. No em-dash, no en-dash, no banned words, no -ing endings, no contribution claims. Citation keys match those used in the introduction and literature map."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "927edb5ffc9efdbc70c8",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "fix exp 012 dgp and cuda",
+  "task_key": "worker_fix_exp_012_dgp_and_cuda_20260521T224918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_012_dgp_and_cuda_20260521T224918_result.json",
+    "occurrence": 1,
+    "bytes": 1231,
+    "sha256": "4a01abef36529144607bbfa0a97d2c666f575f7d0278ad86fd07e595ab40c029"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个子任务完成。汇报：\n\n---\n\n### 子任务 1: exp-012 e_i 修复\n\n**文件**: `/root/gated_mfrm_judge_bias/exp012/run_exp012.py:53-58`\n\n**修改前** (行 53-60):\n```python\n# Bimodal e: Beta(2,5) + Beta(5,2) mixture, rank-matched to -b for rho\ncomponent = rng.random(I) < 0.5\ne_uncorr = np.where(component, rng.beta(2, 5, I), rng.beta(5, 2, I))\nz = rng.standard_normal(I)\nb_std = max(b.std(), 1e-8)\ntarget = rho * (-b / b_std) + np.sqrt(1 - rho**2) * z\nrank_order = np.argsort(np.argsort(target))\ne = np.sort(e_uncorr)[rank_order]\n```\n\n**修改后** (行 53-58):\n```python\n# Bimodal e: 30% high exposure, 70% low exposure (mvp_003 DGP)\nn_high = int(0.3 * I)\ne = np.zeros(I)\ne[:n_high] = rng.uniform(0.7, 1.0, size=n_high)\ne[n_high:] = rng.uniform(0.0, 0.2, size=I - n_high)\nrng.shuffle(e)\n```\n\ndry-run 通过（语法验证 OK；注意跑了缓存结果，正式 run 需清除 CSV 重跑）。\n\n### 子任务 2: CUDA jaxlib\n\n安装了 `jax[cuda12]`（jax-cuda12-pjrt 0.10.1 + jax-cuda12-plugin 0.10.1）。\n\n验证输出：\n```\n[CudaDevice(id=0), CudaDevice(id=1), CudaDevice(id=2), CudaDevice(id=3)]\ngpu\n```\n\n4 张 GPU 已识别，JAX 默认 backend 为 `gpu`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-012-dgp-and-cuda.md"
+}

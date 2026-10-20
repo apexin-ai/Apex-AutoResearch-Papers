@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "id": "5635d6590f7eb4ce4429",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh sync figs and fix rho",
+  "task_key": "worker_ssh_sync-figs-and-fix-rho_20260525T115412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync-figs-and-fix-rho_20260525T115412.log",
+    "occurrence": 1,
+    "bytes": 903433,
+    "sha256": "e52dd5f5a1c56682c7a369034f1895d5cc6801c1a7228293252956335c9e3330"
+  },
+  "statistics": {
+    "messages": 611,
+    "user_turns": 5,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 103,
+      "record": 1,
+      "assistant": 183,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 5,
+      "result": 96
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 268,
+      "chunks": [
+        {
+          "path": "5635d6590f7eb4ce4429-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5635d6590f7eb4ce4429-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "5635d6590f7eb4ce4429-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "5635d6590f7eb4ce4429-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "5635d6590f7eb4ce4429-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "5635d6590f7eb4ce4429-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 316,
+      "chunks": [
+        {
+          "path": "5635d6590f7eb4ce4429-part-0002.json",
+          "message_count": 65
+        },
+        {
+          "path": "5635d6590f7eb4ce4429-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "5635d6590f7eb4ce4429-part-0004.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-sync-figs-and-fix-rho.md"
+}

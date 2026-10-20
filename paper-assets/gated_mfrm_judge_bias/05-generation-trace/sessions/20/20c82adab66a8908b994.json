@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20c82adab66a8908b994",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh verify fill rate",
+  "task_key": "worker_ssh_verify-fill-rate_20260525T172641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-fill-rate_20260525T172641_result.json",
+    "occurrence": 1,
+    "bytes": 255,
+    "sha256": "6adf2d2dfa3ab17cfd3065760ff6578bf76ff834dab3061ed950e2b973dd53ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败——AutoDL 实例重启后端口变了。请去 AutoDL 控制台确认实例状态和新的 SSH 端口，然后更新 `~/.ssh/config` 中 `autodl-8gpu` 的端口配置。\n\n拿到新端口后告诉我，我继续执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-fill-rate.md"
+}

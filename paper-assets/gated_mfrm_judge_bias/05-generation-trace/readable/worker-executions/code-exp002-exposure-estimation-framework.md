@@ -1,0 +1,2946 @@
+# code exp002 exposure estimation framework
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/workers/worker_code_exp002_exposure_estimation_framework_20260522T090231.log`
+- **Structured JSON:** [`3d2bb25087450bf8c3b5.json`](../../sessions/3d/3d2bb25087450bf8c3b5.json)
+
+## Before a recorded user message
+
+62 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e86d1cc7-27e3-40d2-bb93-8720adb98a13",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779444000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "73a733c6-775e-4362-8798-eaf0c0cd31fe",
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to create the exp-002 code framework on the remote server. Let me start by detecting the image and checking the server environment, then create all the code files.
+
+Let me plan the work:
+1. Detect image on the server
+2. Check existing environment (Python, packages)
+3. Create the directory structure and all code files
+4. Dry-run the pipeline
+
+Let me start by detecting the image and checking the environment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "7cb89ff7-b090-4e44-88ca-b9d02d19f6a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xqQunwoJ78JjS9dphMmKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13356,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13356
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先检测服务器环境，然后创建代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "f55ece53-d839-4d08-80ac-c157209ec00b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xqQunwoJ78JjS9dphMmKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13356,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13356
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011XJy6avRTwhxF7rbsSbBb3`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "6f3a40ef-8c60-4d25-b866-2e503b35c5f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xqQunwoJ78JjS9dphMmKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13356,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13356
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T09:02:47.111Z_
+
+<details><summary>↩ Tool result · `toolu_011XJy6avRTwhxF7rbsSbBb3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "9a9bf1e7-ed34-4798-972d-17e8af935524",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image · `toolu_014cLGezeJUi4MBHcuuox2Mc`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "af5fbc21-9266-455d-8aeb-f6fbcd51cf7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AewiyPNDRstJt4AwYrHyva",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1001,
+      "cache_read_input_tokens": 24803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1001
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016HRNLRzMb85sfVRZMLvuRz`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "python3 --version",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "4a373159-6e39-45de-82be-73846ba54bbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AewiyPNDRstJt4AwYrHyva",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1001,
+      "cache_read_input_tokens": 24803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1001
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T09:02:51.391Z_
+
+<details><summary>↩ Tool result · `toolu_014cLGezeJUi4MBHcuuox2Mc`</summary>
+
+```text
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "d13423f2-87ef-46b7-84bc-684a0ea4891e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}",
+    "structuredContent": {
+      "result": "{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y6Q5Q2r9W9eBNiVMSYz3KF`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls /root/gated_mfrm_judge_bias/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "2064b2d3-8ce9-4cbb-8406-9b0a003d7a9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AewiyPNDRstJt4AwYrHyva",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1001,
+      "cache_read_input_tokens": 24803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1001
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T09:02:51.914Z_
+
+<details><summary>↩ Tool result · `toolu_016HRNLRzMb85sfVRZMLvuRz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "ab0abe73-3ce1-4311-9857-c9943e584bc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T09:02:52.446Z_
+
+<details><summary>↩ Tool result · `toolu_01Y6Q5Q2r9W9eBNiVMSYz3KF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"baselines\\ndata\\nexp001\\nexp009\\nexp012\\nlib\\nmvp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "d64a9b8a-0953-42d4-bbd2-e6f9f8628a5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"baselines\\\\ndata\\\\nexp001\\\\nexp009\\\\nexp012\\\\nlib\\\\nmvp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"baselines\\ndata\\nexp001\\nexp009\\nexp012\\nlib\\nmvp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Image not detected, python3 not found directly but this is likely a conda environment. Let me check for conda and miniconda.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "21f5a77d-35b2-4e31-8979-f9bcc74efea6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JAy9vmWGLX7ctwREJmztfD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 25804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 623
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Conda 环境，python3 不在 PATH。检查 miniconda。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "317437f9-9fd1-4161-858e-84c7e1d7ae0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JAy9vmWGLX7ctwREJmztfD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 25804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 623
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TwzHGvD5LDo8jCNtEMapRZ`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls /root/miniconda3/bin/python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "0935ad50-c1f7-447d-9055-8c7af7e5260e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JAy9vmWGLX7ctwREJmztfD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 25804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 623
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011a9m6GqjWGCwCSjqCjyqW5`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "/root/miniconda3/bin/pip list --format=freeze",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "86a2a1df-5a4f-40c6-8959-5cabdd3b07f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JAy9vmWGLX7ctwREJmztfD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 623,
+      "cache_read_input_tokens": 25804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 623
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T09:02:57.942Z_
+
+<details><summary>↩ Tool result · `toolu_01TwzHGvD5LDo8jCNtEMapRZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "3b1dc11c-b71b-43c4-bb09-47a094975aa9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T09:02:57.953Z_
+
+<details><summary>↩ Tool result · `toolu_011a9m6GqjWGCwCSjqCjyqW5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'pip' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "360e8247-1d32-4a8d-a0fb-eeaa408a2ec4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'pip' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'pip' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K6Cd3v3w9pAoy1UzaNNHWK`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "/root/miniconda3/bin/python3 -c \"import numpy, scipy, pandas; print('numpy:', numpy.__version__, 'scipy:', scipy.__version__, 'pandas:', pandas.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "7fba2d93-efb6-427b-a827-6730704451f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xe5yvG1ydWuLAy5iNGTKF7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 522,
+      "cache_read_input_tokens": 26427,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 522
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T09:03:02.536Z_
+
+<details><summary>↩ Tool result · `toolu_01K6Cd3v3w9pAoy1UzaNNHWK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "75911cc3-20db-48c8-af41-7871700bd8f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UmNj4rJ2duzWvrxF5q5SEH`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls /root/gated_mfrm_judge_bias/exp001/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "966b7c25-4a8d-4f78-9bbe-04579e317e66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xe5yvG1ydWuLAy5iNGTKF7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 522,
+      "cache_read_input_tokens": 26427,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 522
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T09:03:03.030Z_
+
+<details><summary>↩ Tool result · `toolu_01UmNj4rJ2duzWvrxF5q5SEH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\ncollect.py\\ncollect.py.bak\\ncollect.py.bak2\\ncollect_pointwise.py\\nconfig.yaml\\nconfig_claude-opus-4.7-proxy_arena.yaml\\nconfig_claude-sonnet-4.6-proxy_arena.yaml\\nconfig_deepseek-v4-pro-proxy_arena.yaml\\nconfig_gemini-2.5-pro-proxy_arena.yaml\\nconfig_gpt-5.5-proxy_arena.yaml\\nconfig_llama_arena.yaml\\nconfig_mistral_arena.yaml\\nconfig_pointwise.yaml\\nconfig_qwen3-235b-proxy_arena.yaml\\nconfig_qwen_arena.yaml\\ndata\\ndata_loader.py\\ngenerate_responses.py\\ngenerate_vllm_batch.py\\ngenerate_vllm_online.py\\njudge_interface.py\\nprompts\\nresults\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "4ce827d1-b31b-4331-892e-2b1cac7cfcf9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\ncollect.py\\\\ncollect.py.bak\\\\ncollect.py.bak2\\\\ncollect_pointwise.py\\\\nconfig.yaml\\\\nconfig_claude-opus-4.7-proxy_arena.yaml\\\\nconfig_claude-sonnet-4.6-proxy_arena.yaml\\\\nconfig_deepseek-v4-pro-proxy_arena.yaml\\\\nconfig_gemini-2.5-pro-proxy_arena.yaml\\\\nconfig_gpt-5.5-proxy_arena.yaml\\\\nconfig_llama_arena.yaml\\\\nconfig_mistral_arena.yaml\\\\nconfig_pointwise.yaml\\\\nconfig_qwen3-235b-proxy_arena.yaml\\\\nconfig_qwen_arena.yaml\\\\ndata\\\\ndata_loader.py\\\\ngenerate_responses.py\\\\ngenerate_vllm_batch.py\\\\ngenerate_vllm_online.py\\\\njudge_interface.py\\\\nprompts\\\\nresults\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\ncollect.py\\ncollect.py.bak\\ncollect.py.bak2\\ncollect_pointwise.py\\nconfig.yaml\\nconfig_claude-opus-4.7-proxy_arena.yaml\\nconfig_claude-sonnet-4.6-proxy_arena.yaml\\nconfig_deepseek-v4-pro-proxy_arena.yaml\\nconfig_gemini-2.5-pro-proxy_arena.yaml\\nconfig_gpt-5.5-proxy_arena.yaml\\nconfig_llama_arena.yaml\\nconfig_mistral_arena.yaml\\nconfig_pointwise.yaml\\nconfig_qwen3-235b-proxy_arena.yaml\\nconfig_qwen_arena.yaml\\ndata\\ndata_loader.py\\ngenerate_responses.py\\ngenerate_vllm_batch.py\\ngenerate_vllm_online.py\\njudge_interface.py\\nprompts\\nresults\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The server has miniconda3, and the project directory already has exp001. Let me check if numpy/scipy/pandas are available by running them separately (no semicolons allowed in read-only mode).
+
+Actually, let me just proceed to create the code. I'll check for the packages when I do the dry-run. Let me now write all the code files.
+
+Let me plan the files:
+1. `/root/gated_mfrm_judge_bias/exp002/__init__.py`
+
+
+2. `/root/gated_mfrm_judge_bias/exp002/sources/__init__.py`
+3. `/root/gated_mfrm_judge_bias/exp002/sources/performance_gap.py`
+4. `/root/gated_mfrm_judge_bias/exp002/sources/temporal_signal.py`
+5. `/root/gated_mfrm_judge_bias/exp002/sources/logprober.py`
+6. `/root/gated_mfrm_judge_bias/exp002/composite.py`
+7. `/root/gated_mfrm_judge_bias/exp002/validation.py`
+8. `/root/gated_mfrm_judge_bias/exp002/run_exp002.py`
+
+Now I'll create these files using ssh_execute. The data format is JSONL with model_a, model_b, item_id, judge, winner, score_a, score_b, and position fields. For the performance gap source, I'm computing the mean score difference between original items and their rephrased variants, then applying a spline-based difficulty correction to get residuals. The temporal signal source will distinguish between pre-cutoff and post-cutoff items.
+
+Writing the file creation scripts... Writing the scoring function... Writing function definition... Writing the gap calculation... Writing spline fitting logic...
+
+Now I'm reconsidering the data structure for this contamination detection task. The judgments are pairwise comparisons between models, but what I really need for exposure estimation is per-item scores showing how each model performs on original versus rephrased items. I need to extract the score for the model being tested across both the original benchmark items and their rephrased variants, since the judge ratings provide the performance signal for each model on each item. I'm working through what "reference models" means in this context—it seems like they're the models being evaluated, not the judges. So for each item, I'd calculate the performance gap between original and rephrased versions for each model, then average those gaps across all models to get the item-level exposure estimate. But I'm second-guessing whether "reference variants" refers to the rephrased versions created by GPT-5.5 and Claude, or something else entirely. Now I'm computing the performance gap for each item by comparing its score on the original versus rephrased variants, then averaging those gaps across all models to get a per-item exposure metric—this follows the ConStat-inspired approach. For the mock data, I need to generate judgment data and metadata for a dry run, then write out all the implementation files: the main entry point, package structure, the three source modules for performance gap, temporal signal, and logprober, plus the composite weighting logic and validation.
+
+Writing implementation files... I'm going to create the directory structure first, then write out all the Python files using heredocs with proper escaping to avoid issues with special characters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "e650381b-8608-4687-8b99-e892eec715d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N52BS2jjSW3iBj194VxvA4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 26949,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+环境确认：miniconda3 可用，项目目录存在。先创建目录结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "d5bb2871-a437-4d0f-8867-289ee2a5f29b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N52BS2jjSW3iBj194VxvA4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 26949,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TZ9ZerjnaK8rRJ1L48QCCx`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "mkdir -p /root/gated_mfrm_judge_bias/exp002/sources",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "37769a80-89c5-4f37-89cc-7719f759e5b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N52BS2jjSW3iBj194VxvA4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 26949,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 830
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T09:04:06.620Z_
+
+<details><summary>↩ Tool result · `toolu_01TZ9ZerjnaK8rRJ1L48QCCx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "b95d08ca-5cde-4944-bf66-bd3da3042b5e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me create all the files. I'll batch them to be efficient. Let me start writing the actual code.
+
+I need to be very careful with heredocs - no unescaped special characters. Using 'PYEOF' (single-quoted) prevents all expansion.
+
+Let me create the files in parallel batches:
+
+Batch 1 (independent files): __init__.py files, mock_data.py
+Batch 2: sources/performance_gap.py, sources/temporal_signal.py, sources/logprober.py
+
+
+Batch 3: composite.py, validation.py
+Batch 4: run_exp002.py (depends on understanding all modules)
+
+I think the most efficient approach is to write each file as a separate call with heredocs rather than trying to create Python scripts that generate files. I'll start with the independent ones and work through the batches systematically.
+
+Let me map out what each module needs to do. `performance_gap.py` takes judgments and item metadata along with reference models, computes per-item scores for each, compares original versus rephrased versions, applies spline correction, and outputs a DataFrame with the gap metrics. `temporal_signal.py` works with temporal metadata to compute score differences between pre-cutoff and post-cutoff variants. `logprober.py` processes logprob data separately using a Min-K% style approach to generate memorization scores. Then `composite.py` merges these three source DataFrames with weighted handling of NaN values and normalizes everything to [0,1].
+
+Now I'm setting up the validation and data generation pieces. `validation.py` will compute ConStat deltas and correlate them with c_n values from G-MFRM. `mock_data.py` generates synthetic judgment data, item metadata, and logprob data for testing. Finally, `run_exp002.py` ties everything together with a CLI interface that loads the data, runs the full pipeline, and saves the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "e067182f-b28b-4a4e-bd8c-b0da8f69aa28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+现在并行创建所有代码文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "9be3933f-e16c-409a-9106-ce0e989d3391",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01V7uoA3XA2gdFHD2wQCAyH6`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/__init__.py\nPYEOF\ncat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/sources/__init__.py\nfrom .performance_gap import compute_performance_gap\nfrom .temporal_signal import compute_temporal_signal\nfrom .logprober import compute_memorization_scores\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "19a9527d-f09e-4213-a051-0e4f1741ce81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T09:04:26.381Z_
+
+<details><summary>↩ Tool result · `toolu_01V7uoA3XA2gdFHD2wQCAyH6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "aa504f0b-9cac-47b0-9ad6-46c9488d5307",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PLG32d1nX7j7w88BXJ8CuV`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/sources/performance_gap.py\n\"\"\"Source 1: Item-level performance gap with spline difficulty correction.\n\nCompares model performance on original benchmark items vs rephrased variants.\nThe gap, after removing the difficulty-driven component via cubic spline,\nserves as the primary contamination signal.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.interpolate import UnivariateSpline\nfrom typing import Optional\n\n\ndef _item_scores_for_model(judgments: pd.DataFrame, model: str) -> pd.Series:\n    \"\"\"Compute per-item mean score for a model from pairwise judgments.\n\n    Collects score_a where model appears as model_a, and score_b where\n    model appears as model_b, then averages per item_id.\n    \"\"\"\n    parts = []\n    mask_a = judgments[\"model_a\"] == model\n    if mask_a.any():\n        parts.append(\n            judgments.loc[mask_a, [\"item_id\", \"score_a\"]]\n            .rename(columns={\"score_a\": \"score\"})\n        )\n    mask_b = judgments[\"model_b\"] == model\n    if mask_b.any():\n        parts.append(\n            judgments.loc[mask_b, [\"item_id\", \"score_b\"]]\n            .rename(columns={\"score_b\": \"score\"})\n        )\n    if not parts:\n        return pd.Series(dtype=float)\n    combined = pd.concat(parts, ignore_index=True)\n    return combined.groupby(\"item_id\")[\"score\"].mean()\n\n\ndef _spline_correction(\n    difficulty: np.ndarray,\n    gap: np.ndarray,\n    smoothing: Optional[float] = None,\n) -> np.ndarray:\n    \"\"\"Remove difficulty-driven gap via cubic spline residuals.\"\"\"\n    valid = ~(np.isnan(difficulty) | np.isnan(gap))\n    if valid.sum() < 4:\n        return gap.copy()\n\n    order = np.argsort(difficulty[valid])\n    d = difficulty[valid][order]\n    g = gap[valid][order]\n\n    s = smoothing if smoothing is not None else len(d)\n    spline = UnivariateSpline(d, g, k=3, s=s)\n\n    corrected = gap.copy()\n    corrected[valid] = gap[valid] - spline(difficulty[valid])\n    return corrected\n\n\ndef compute_performance_gap(\n    judgments: pd.DataFrame,\n    item_metadata: pd.DataFrame,\n    reference_models: list[str],\n    smoothing: Optional[float] = None,\n) -> pd.DataFrame:\n    \"\"\"Compute per-item contamination gap (original vs rephrased).\n\n    Args:\n        judgments: Pairwise judgments with columns\n            [model_a, model_b, item_id, judge, winner, score_a, score_b, position].\n        item_metadata: Columns [item_id, original_item_id, variant_type].\n            variant_type is \"original\" or a rephrase tag.\n        reference_models: Models to average the gap across.\n        smoothing: Spline smoothing factor (None = auto).\n\n    Returns:\n        DataFrame [item_id, raw_gap, difficulty, corrected_gap] indexed by\n        original item id.\n    \"\"\"\n    originals = set(\n        item_metadata.loc[\n            item_metadata[\"variant_type\"] == \"original\", \"item_id\"\n        ]\n    )\n    rephrase_map: dict[str, list[str]] = {}\n    for _, row in item_metadata.iterrows():\n        if row[\"variant_type\"] != \"original\":\n            rephrase_map.setdefault(row[\"original_item_id\"], []).append(\n                row[\"item_id\"]\n            )\n\n    records: list[dict] = []\n    for model in reference_models:\n        scores = _item_scores_for_model(judgments, model)\n        if scores.empty:\n            continue\n        for orig_id in originals:\n            orig_score = scores.get(orig_id, np.nan)\n            variants = rephrase_map.get(orig_id, [])\n            reph_scores = [scores.get(v, np.nan) for v in variants]\n            reph_scores = [s for s in reph_scores if not np.isnan(s)]\n            if np.isnan(orig_score) or not reph_scores:\n                continue\n            records.append(\n                {\n                    \"item_id\": orig_id,\n                    \"model\": model,\n                    \"gap\": orig_score - float(np.mean(reph_scores)),\n                    \"orig_score\": orig_score,\n                }\n            )\n\n    if not records:\n        return pd.DataFrame(\n            columns=[\"item_id\", \"raw_gap\", \"difficulty\", \"corrected_gap\"]\n        )\n\n    df = pd.DataFrame(records)\n    agg = (\n        df.groupby(\"item_id\")\n        .agg(raw_gap=(\"gap\", \"mean\"), difficulty=(\"orig_score\", \"mean\"))\n        .reset_index()\n    )\n    agg[\"corrected_gap\"] = _spline_correction(\n        agg[\"difficulty\"].values, agg[\"raw_gap\"].values, smoothing\n    )\n    return agg\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "03c1dd19-f334-4dce-90de-94801a121474",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T09:04:37.778Z_
+
+<details><summary>↩ Tool result · `toolu_01PLG32d1nX7j7w88BXJ8CuV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "6056d0a8-0621-46a9-a4d9-57ac7517188a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01367KiJLJcS8MEJy3SATDLz`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/sources/temporal_signal.py\n\"\"\"Source 2: Temporal contamination signal.\n\nCompares model performance on pre-cutoff benchmark items (likely seen during\ntraining) versus post-cutoff variants (unseen). A positive gap suggests the\nmodel memorised pre-cutoff content.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\n\n\ndef _item_scores_for_model(judgments: pd.DataFrame, model: str) -> pd.Series:\n    \"\"\"Per-item mean score for *model* (same logic as performance_gap).\"\"\"\n    parts = []\n    mask_a = judgments[\"model_a\"] == model\n    if mask_a.any():\n        parts.append(\n            judgments.loc[mask_a, [\"item_id\", \"score_a\"]]\n            .rename(columns={\"score_a\": \"score\"})\n        )\n    mask_b = judgments[\"model_b\"] == model\n    if mask_b.any():\n        parts.append(\n            judgments.loc[mask_b, [\"item_id\", \"score_b\"]]\n            .rename(columns={\"score_b\": \"score\"})\n        )\n    if not parts:\n        return pd.Series(dtype=float)\n    return pd.concat(parts, ignore_index=True).groupby(\"item_id\")[\"score\"].mean()\n\n\ndef compute_temporal_signal(\n    judgments: pd.DataFrame,\n    item_metadata: pd.DataFrame,\n    models: list[str],\n) -> pd.DataFrame:\n    \"\"\"Compute per-item temporal gap.\n\n    Args:\n        judgments: Pairwise judgments (same schema as Source 1).\n        item_metadata: Must include columns\n            [item_id, original_item_id, variant_type, temporal_tag].\n            temporal_tag: \"pre_cutoff\" | \"post_cutoff\" | NaN.\n        models: Models to average the temporal gap across.\n\n    Returns:\n        DataFrame [item_id, temporal_gap] where item_id is the original id.\n        Items without both pre- and post-cutoff variants get NaN.\n    \"\"\"\n    pre = item_metadata[item_metadata[\"temporal_tag\"] == \"pre_cutoff\"]\n    post = item_metadata[item_metadata[\"temporal_tag\"] == \"post_cutoff\"]\n\n    pre_map: dict[str, str] = dict(\n        zip(pre[\"original_item_id\"], pre[\"item_id\"])\n    )\n    post_map: dict[str, str] = dict(\n        zip(post[\"original_item_id\"], post[\"item_id\"])\n    )\n    common_originals = set(pre_map.keys()) & set(post_map.keys())\n\n    if not common_originals:\n        orig_ids = item_metadata[\"original_item_id\"].dropna().unique()\n        return pd.DataFrame(\n            {\"item_id\": orig_ids, \"temporal_gap\": np.nan}\n        )\n\n    records: list[dict] = []\n    for model in models:\n        scores = _item_scores_for_model(judgments, model)\n        if scores.empty:\n            continue\n        for orig_id in common_originals:\n            pre_score = scores.get(pre_map[orig_id], np.nan)\n            post_score = scores.get(post_map[orig_id], np.nan)\n            if np.isnan(pre_score) or np.isnan(post_score):\n                continue\n            records.append(\n                {\"item_id\": orig_id, \"model\": model, \"gap\": pre_score - post_score}\n            )\n\n    all_orig = (\n        item_metadata[\"original_item_id\"].dropna().unique()\n        if \"original_item_id\" in item_metadata.columns\n        else item_metadata[\"item_id\"].unique()\n    )\n\n    if not records:\n        return pd.DataFrame({\"item_id\": all_orig, \"temporal_gap\": np.nan})\n\n    df = pd.DataFrame(records)\n    agg = df.groupby(\"item_id\")[\"gap\"].mean().reset_index()\n    agg.columns = [\"item_id\", \"temporal_gap\"]\n\n    result = pd.DataFrame({\"item_id\": all_orig})\n    result = result.merge(agg, on=\"item_id\", how=\"left\")\n    return result\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "5c067229-c6be-4065-bc32-1717f014e73d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T09:04:50.036Z_
+
+<details><summary>↩ Tool result · `toolu_01367KiJLJcS8MEJy3SATDLz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "9c6c8a79-a8b0-4fcb-a678-67f0bfe656ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UffFjrQMMFeJMtJ1gomvnD`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/sources/logprober.py\n\"\"\"Source 3: Token-level logprob memorisation scores.\n\nImplements Min-K%% Prob style memorisation detection: for each benchmark item,\ncompute what fraction of tokens fall into the bottom-K%% of the model's\npredicted token distribution. High memorisation → fewer low-probability tokens.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom typing import Optional\n\n\ndef _min_k_pct(logprobs: list[float], k_pct: float = 20.0) -> float:\n    \"\"\"Min-K%% Prob score: mean logprob of the bottom k%% tokens.\n\n    A higher (less negative) score indicates potential memorisation because\n    even the model's least-confident tokens have relatively high probability.\n    \"\"\"\n    if not logprobs:\n        return np.nan\n    arr = np.array(logprobs)\n    k = max(1, int(len(arr) * k_pct / 100.0))\n    bottom_k = np.sort(arr)[:k]\n    return float(np.mean(bottom_k))\n\n\ndef compute_memorization_scores(\n    logprob_data: pd.DataFrame,\n    k_pct: float = 20.0,\n    models: Optional[list[str]] = None,\n) -> pd.DataFrame:\n    \"\"\"Compute per-item memorisation scores from token logprobs.\n\n    Args:\n        logprob_data: DataFrame with columns\n            [item_id, model, token_logprobs].\n            token_logprobs is a list of per-token log-probabilities.\n        k_pct: Percentage of lowest-probability tokens to average.\n        models: If given, restrict to these models. Otherwise use all.\n\n    Returns:\n        DataFrame [item_id, memorization_score]. Score is averaged across\n        models. Items not present in logprob_data get NaN.\n    \"\"\"\n    if logprob_data.empty:\n        return pd.DataFrame(columns=[\"item_id\", \"memorization_score\"])\n\n    df = logprob_data.copy()\n    if models is not None:\n        df = df[df[\"model\"].isin(models)]\n\n    df[\"score\"] = df[\"token_logprobs\"].apply(\n        lambda lp: _min_k_pct(lp, k_pct)\n    )\n\n    agg = df.groupby(\"item_id\")[\"score\"].mean().reset_index()\n    agg.columns = [\"item_id\", \"memorization_score\"]\n    return agg\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "62790e9c-576c-4766-96b2-3563f20843b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T09:04:59.692Z_
+
+<details><summary>↩ Tool result · `toolu_01UffFjrQMMFeJMtJ1gomvnD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "42518d0f-7544-4198-b41a-17d169783f63",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017UwkK4B8ny86SRhiTxp5z8`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/composite.py\n\"\"\"Weighted composite combiner for three exposure sources.\n\nMerges performance-gap, temporal, and logprob memorisation scores into a\nsingle per-item exposure estimate e_i in [0, 1].\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.optimize import minimize\nfrom typing import Optional\n\n\ndef combine_sources(\n    gap_df: pd.DataFrame,\n    temporal_df: pd.DataFrame,\n    logprob_df: pd.DataFrame,\n    weights: Optional[tuple[float, float, float]] = None,\n) -> pd.DataFrame:\n    \"\"\"Merge three sources into composite e_i.\n\n    Args:\n        gap_df: [item_id, corrected_gap] from Source 1.\n        temporal_df: [item_id, temporal_gap] from Source 2.\n        logprob_df: [item_id, memorization_score] from Source 3.\n        weights: (w1, w2, w3) for gap, temporal, logprob.\n            If None, defaults to (0.5, 0.3, 0.2).\n\n    Returns:\n        DataFrame [item_id, e_i, gap_z, temporal_z, logprob_z, n_sources].\n    \"\"\"\n    if weights is None:\n        weights = (0.5, 0.3, 0.2)\n    w1, w2, w3 = weights\n\n    merged = gap_df[[\"item_id\", \"corrected_gap\"]].copy()\n    merged = merged.merge(\n        temporal_df[[\"item_id\", \"temporal_gap\"]], on=\"item_id\", how=\"outer\"\n    )\n    merged = merged.merge(\n        logprob_df[[\"item_id\", \"memorization_score\"]], on=\"item_id\", how=\"outer\"\n    )\n\n    merged[\"gap_z\"] = _zscore(merged[\"corrected_gap\"])\n    merged[\"temporal_z\"] = _zscore(merged[\"temporal_gap\"])\n    merged[\"logprob_z\"] = _zscore(merged[\"memorization_score\"])\n\n    merged[\"n_sources\"] = (\n        merged[\"gap_z\"].notna().astype(int)\n        + merged[\"temporal_z\"].notna().astype(int)\n        + merged[\"logprob_z\"].notna().astype(int)\n    )\n\n    raw = np.zeros(len(merged))\n    total_w = np.zeros(len(merged))\n    for col, w in [(\"gap_z\", w1), (\"temporal_z\", w2), (\"logprob_z\", w3)]:\n        valid = merged[col].notna()\n        raw[valid] += w * merged.loc[valid, col].values\n        total_w[valid] += w\n\n    total_w[total_w == 0] = 1.0\n    merged[\"e_i_raw\"] = raw / total_w\n    merged[\"e_i\"] = _normalize_01(merged[\"e_i_raw\"].values)\n\n    return merged[[\"item_id\", \"e_i\", \"gap_z\", \"temporal_z\", \"logprob_z\", \"n_sources\"]]\n\n\ndef tune_weights(\n    gap_df: pd.DataFrame,\n    temporal_df: pd.DataFrame,\n    logprob_df: pd.DataFrame,\n    validation_labels: pd.DataFrame,\n    metric: str = \"correlation\",\n) -> tuple[float, float, float]:\n    \"\"\"Tune source weights on a validation split.\n\n    Args:\n        gap_df, temporal_df, logprob_df: Source DataFrames.\n        validation_labels: [item_id, label] where label is a known\n            contamination indicator (binary or continuous).\n        metric: \"correlation\" (Spearman) or \"auc\".\n\n    Returns:\n        Optimal (w1, w2, w3) normalised to sum to 1.\n    \"\"\"\n    from scipy.stats import spearmanr\n\n    val_items = set(validation_labels[\"item_id\"])\n    label_map = dict(\n        zip(validation_labels[\"item_id\"], validation_labels[\"label\"])\n    )\n\n    def _objective(w_raw):\n        w = np.abs(w_raw)\n        w = w / w.sum()\n        composite = combine_sources(gap_df, temporal_df, logprob_df, tuple(w))\n        subset = composite[composite[\"item_id\"].isin(val_items)]\n        if len(subset) < 5:\n            return 0.0\n        labels = subset[\"item_id\"].map(label_map)\n        if metric == \"correlation\":\n            rho, _ = spearmanr(subset[\"e_i\"], labels)\n            return -rho  # minimise negative correlation\n        return 0.0\n\n    result = minimize(\n        _objective,\n        x0=[0.5, 0.3, 0.2],\n        method=\"Nelder-Mead\",\n        options={\"maxiter\": 200},\n    )\n    w = np.abs(result.x)\n    w = w / w.sum()\n    return tuple(w)\n\n\ndef _zscore(s: pd.Series) -> pd.Series:\n    \"\"\"Robust z-score (ignoring NaN).\"\"\"\n    mean = s.mean()\n    std = s.std()\n    if std == 0 or np.isnan(std):\n        return s * 0.0\n    return (s - mean) / std\n\n\ndef _normalize_01(arr: np.ndarray) -> np.ndarray:\n    \"\"\"Min-max normalise to [0, 1], NaN-safe.\"\"\"\n    valid = ~np.isnan(arr)\n    if not valid.any():\n        return arr.copy()\n    lo, hi = np.nanmin(arr), np.nanmax(arr)\n    if hi == lo:\n        out = np.where(valid, 0.5, np.nan)\n        return out\n    return (arr - lo) / (hi - lo)\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "50e93343-1694-4933-a76b-f6be30a91402",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-22T09:05:19.750Z_
+
+<details><summary>↩ Tool result · `toolu_017UwkK4B8ny86SRhiTxp5z8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "ad7c7817-5e74-40ed-aec8-cc454f74c8e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HsqUG336Es7WfeBXjVmweM`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/validation.py\n\"\"\"External validation via ConStat per-model contamination delta.\n\nComputes ConStat-style delta_n for each model, then checks rank correlation\nwith c_n fitted by G-MFRM Stage 3 — validating that the exposure estimates\nare coherent with the IRT contamination parameters.\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import spearmanr, pearsonr\nfrom typing import Optional\n\n\ndef compute_constat_delta(\n    judgments: pd.DataFrame,\n    item_metadata: pd.DataFrame,\n    models: list[str],\n) -> pd.DataFrame:\n    \"\"\"ConStat per-model contamination delta.\n\n    For each model, delta_n = mean_score(original items) - mean_score(rephrased items).\n    A larger delta suggests the model benefits more from having seen the\n    originals (i.e., higher contamination).\n\n    Args:\n        judgments: Pairwise judgment data.\n        item_metadata: [item_id, original_item_id, variant_type].\n        models: Models to compute delta for.\n\n    Returns:\n        DataFrame [model, delta, n_items].\n    \"\"\"\n    originals = set(\n        item_metadata.loc[\n            item_metadata[\"variant_type\"] == \"original\", \"item_id\"\n        ]\n    )\n    rephrased = set(\n        item_metadata.loc[\n            item_metadata[\"variant_type\"] != \"original\", \"item_id\"\n        ]\n    )\n\n    records = []\n    for model in models:\n        orig_scores = _collect_scores(judgments, model, originals)\n        reph_scores = _collect_scores(judgments, model, rephrased)\n        if orig_scores and reph_scores:\n            delta = np.mean(orig_scores) - np.mean(reph_scores)\n            records.append({\n                \"model\": model,\n                \"delta\": delta,\n                \"n_items\": len(orig_scores) + len(reph_scores),\n            })\n\n    return pd.DataFrame(records) if records else pd.DataFrame(\n        columns=[\"model\", \"delta\", \"n_items\"]\n    )\n\n\ndef validate_against_cn(\n    constat_df: pd.DataFrame,\n    cn_estimates: pd.DataFrame,\n) -> dict:\n    \"\"\"Correlate ConStat delta with G-MFRM c_n.\n\n    Args:\n        constat_df: [model, delta] from compute_constat_delta.\n        cn_estimates: [model, c_n] from G-MFRM Stage 3.\n\n    Returns:\n        Dict with spearman_rho, spearman_p, pearson_r, pearson_p, n_models.\n    \"\"\"\n    merged = constat_df.merge(cn_estimates, on=\"model\", how=\"inner\")\n    if len(merged) < 3:\n        return {\n            \"spearman_rho\": np.nan, \"spearman_p\": np.nan,\n            \"pearson_r\": np.nan, \"pearson_p\": np.nan,\n            \"n_models\": len(merged),\n        }\n\n    rho, rho_p = spearmanr(merged[\"delta\"], merged[\"c_n\"])\n    r, r_p = pearsonr(merged[\"delta\"], merged[\"c_n\"])\n    return {\n        \"spearman_rho\": float(rho),\n        \"spearman_p\": float(rho_p),\n        \"pearson_r\": float(r),\n        \"pearson_p\": float(r_p),\n        \"n_models\": len(merged),\n    }\n\n\ndef _collect_scores(\n    judgments: pd.DataFrame, model: str, item_ids: set\n) -> list[float]:\n    \"\"\"Collect all scores for *model* on the given item set.\"\"\"\n    scores = []\n    mask_a = (judgments[\"model_a\"] == model) & (judgments[\"item_id\"].isin(item_ids))\n    if mask_a.any():\n        scores.extend(judgments.loc[mask_a, \"score_a\"].dropna().tolist())\n    mask_b = (judgments[\"model_b\"] == model) & (judgments[\"item_id\"].isin(item_ids))\n    if mask_b.any():\n        scores.extend(judgments.loc[mask_b, \"score_b\"].dropna().tolist())\n    return scores\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "4a648f90-b571-4987-a37b-ff81b8dd3758",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T09:05:31.869Z_
+
+<details><summary>↩ Tool result · `toolu_01HsqUG336Es7WfeBXjVmweM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "f8c0e387-5787-4185-bbdd-d92437d897de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KdzJpicUpSCXKgS1wVHrTh`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/mock_data.py\n\"\"\"Generate mock data for dry-run testing of the exp-002 pipeline.\"\"\"\n\nimport json\nimport numpy as np\nimport pandas as pd\nfrom pathlib import Path\n\nRNG = np.random.RandomState(42)\n\nMODELS = [\"gpt-4o\", \"llama-3.3-70b\", \"qwen-2.5-72b\", \"mistral-large\"]\nJUDGES = [\"gpt-5.5\", \"claude-opus\"]\nN_ITEMS = 30\n\n\ndef generate_item_metadata() -> pd.DataFrame:\n    \"\"\"Create metadata for original + rephrased + temporal items.\"\"\"\n    rows = []\n    for i in range(N_ITEMS):\n        base_id = f\"arena_hard_{i:03d}\"\n        rows.append({\n            \"item_id\": base_id,\n            \"original_item_id\": base_id,\n            \"variant_type\": \"original\",\n            \"temporal_tag\": \"pre_cutoff\" if i < N_ITEMS // 2 else np.nan,\n        })\n        # Rephrased variants\n        for tag in [\"rephrase_gpt55\", \"rephrase_claude\"]:\n            rows.append({\n                \"item_id\": f\"{base_id}_{tag}\",\n                \"original_item_id\": base_id,\n                \"variant_type\": tag,\n                \"temporal_tag\": np.nan,\n            })\n        # Post-cutoff variant (only for first half of items)\n        if i < N_ITEMS // 2:\n            rows.append({\n                \"item_id\": f\"{base_id}_postcutoff\",\n                \"original_item_id\": base_id,\n                \"variant_type\": \"postcutoff\",\n                \"temporal_tag\": \"post_cutoff\",\n            })\n    return pd.DataFrame(rows)\n\n\ndef generate_judgments(item_metadata: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"Generate synthetic pairwise judgments.\n\n    Injects a contamination signal: some models score higher on original\n    items than rephrased ones, simulating memorisation advantage.\n    \"\"\"\n    contamination = {\"gpt-4o\": 1.5, \"llama-3.3-70b\": 0.3,\n                     \"qwen-2.5-72b\": 1.0, \"mistral-large\": 0.1}\n    all_items = item_metadata[\"item_id\"].tolist()\n    variant_map = dict(zip(item_metadata[\"item_id\"], item_metadata[\"variant_type\"]))\n\n    rows = []\n    for judge in JUDGES:\n        for idx in range(0, len(MODELS), 2):\n            ma, mb = MODELS[idx], MODELS[idx + 1]\n            for item_id in all_items:\n                is_orig = variant_map[item_id] == \"original\"\n                boost_a = contamination[ma] if is_orig else 0\n                boost_b = contamination[mb] if is_orig else 0\n\n                base_a = 5 + boost_a + RNG.normal(0, 1)\n                base_b = 5 + boost_b + RNG.normal(0, 1)\n                score_a = np.clip(round(base_a, 1), 1, 10)\n                score_b = np.clip(round(base_b, 1), 1, 10)\n\n                rows.append({\n                    \"model_a\": ma, \"model_b\": mb,\n                    \"item_id\": item_id, \"judge\": judge,\n                    \"winner\": \"model_a\" if score_a > score_b else \"model_b\",\n                    \"score_a\": score_a, \"score_b\": score_b,\n                    \"position\": \"AB\",\n                })\n    return pd.DataFrame(rows)\n\n\ndef generate_logprob_data(item_metadata: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"Generate mock token logprob data for a subset of models.\"\"\"\n    logprob_models = [\"gpt-4o\", \"mistral-large\"]\n    originals = item_metadata[\n        item_metadata[\"variant_type\"] == \"original\"\n    ][\"item_id\"].tolist()\n\n    contamination = {\"gpt-4o\": 0.5, \"mistral-large\": 0.0}\n    rows = []\n    for model in logprob_models:\n        boost = contamination[model]\n        for item_id in originals:\n            n_tokens = RNG.randint(20, 60)\n            logprobs = (RNG.normal(-3.0 + boost, 1.0, n_tokens)).tolist()\n            rows.append({\n                \"item_id\": item_id,\n                \"model\": model,\n                \"token_logprobs\": logprobs,\n            })\n    return pd.DataFrame(rows)\n\n\ndef generate_cn_estimates() -> pd.DataFrame:\n    \"\"\"Mock G-MFRM Stage 3 c_n (per-model contamination parameter).\"\"\"\n    return pd.DataFrame({\n        \"model\": MODELS,\n        \"c_n\": [0.8, 0.15, 0.5, 0.05],\n    })\n\n\ndef save_mock_data(output_dir: str):\n    \"\"\"Write all mock data to disk.\"\"\"\n    out = Path(output_dir)\n    out.mkdir(parents=True, exist_ok=True)\n\n    meta = generate_item_metadata()\n    judgments = generate_judgments(meta)\n    logprobs = generate_logprob_data(meta)\n    cn = generate_cn_estimates()\n\n    meta.to_csv(out / \"item_metadata.csv\", index=False)\n    cn.to_csv(out / \"cn_estimates.csv\", index=False)\n\n    # Save judgments as JSONL\n    with open(out / \"judgments.jsonl\", \"w\") as f:\n        for _, row in judgments.iterrows():\n            f.write(json.dumps(row.to_dict()) + \"\\n\")\n\n    # Save logprobs as JSON (lists inside)\n    logprobs.to_json(out / \"logprob_data.json\", orient=\"records\", indent=2)\n\n    print(f\"Mock data written to {out}/\")\n    print(f\"  judgments: {len(judgments)} rows\")\n    print(f\"  items: {len(meta)} rows ({meta['variant_type'].value_counts().to_dict()})\")\n    print(f\"  logprobs: {len(logprobs)} rows\")\n    print(f\"  cn_estimates: {len(cn)} models\")\n\n\nif __name__ == \"__main__\":\n    save_mock_data(\"/root/gated_mfrm_judge_bias/exp002/mock_output\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "be2618fb-b0f5-4eb4-ad60-8bc1eee3362e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019AWcyEbBkERnX958zdRE7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3942,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3942
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T09:05:52.985Z_
+
+<details><summary>↩ Tool result · `toolu_01KdzJpicUpSCXKgS1wVHrTh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "0dd27c55-7632-4b28-a424-8e4387ef24dc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All files created successfully. Now I need to create the main entry point `run_exp002.py`. Let me write it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "75f739a6-ac63-4934-a459-7c9cb0ec01fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01By7xxQLHR5gXKsCTsQCmHz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9460,
+      "cache_read_input_tokens": 31721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9460
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+6 个模块文件已创建。现在写主入口 `run_exp002.py`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "4fdeec2a-51f7-4f61-8e85-fa4ca405247a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01By7xxQLHR5gXKsCTsQCmHz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9460,
+      "cache_read_input_tokens": 31721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9460
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GrCSHriq1CfY1Lc9rU4BZ4`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cat << 'PYEOF' > /root/gated_mfrm_judge_bias/exp002/run_exp002.py\n#!/usr/bin/env python3\n\"\"\"exp-002: Per-item exposure estimation via three-source pipeline.\n\nSources:\n  1. Performance gap (original vs rephrased) with spline difficulty correction\n  2. Temporal signal (pre-cutoff vs post-cutoff)\n  3. LogProber memorisation scores (Min-K% Prob)\n\nCombined via weighted composite → per-item e_i ∈ [0, 1].\nConStat per-model delta used as external validation.\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nfrom sources.performance_gap import compute_performance_gap\nfrom sources.temporal_signal import compute_temporal_signal\nfrom sources.logprober import compute_memorization_scores\nfrom composite import combine_sources, tune_weights\nfrom validation import compute_constat_delta, validate_against_cn\n\n\ndef load_judgments(path: Path) -> pd.DataFrame:\n    \"\"\"Load JSONL judgment file.\"\"\"\n    records = []\n    with open(path) as f:\n        for line in f:\n            records.append(json.loads(line.strip()))\n    return pd.DataFrame(records)\n\n\ndef load_logprob_data(path: Path) -> pd.DataFrame:\n    \"\"\"Load logprob JSON with token_logprobs lists.\"\"\"\n    df = pd.read_json(path, orient=\"records\")\n    return df\n\n\ndef run_pipeline(args):\n    data_dir = Path(args.data_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    # --- Load data ---\n    print(\"[1/6] Loading data...\")\n    judgments = load_judgments(data_dir / \"judgments.jsonl\")\n    item_meta = pd.read_csv(data_dir / \"item_metadata.csv\")\n    print(f\"  Judgments: {len(judgments)} rows, Items: {len(item_meta)} rows\")\n\n    models = sorted(\n        set(judgments[\"model_a\"].unique()) | set(judgments[\"model_b\"].unique())\n    )\n    print(f\"  Models: {models}\")\n\n    # --- Source 1: Performance gap ---\n    print(\"[2/6] Computing performance gap (Source 1)...\")\n    gap_df = compute_performance_gap(\n        judgments, item_meta, reference_models=models\n    )\n    print(f\"  Items with gap scores: {len(gap_df)}\")\n    if not gap_df.empty:\n        print(f\"  Raw gap: mean={gap_df['raw_gap'].mean():.3f}, std={gap_df['raw_gap'].std():.3f}\")\n        print(f\"  Corrected gap: mean={gap_df['corrected_gap'].mean():.3f}, std={gap_df['corrected_gap'].std():.3f}\")\n\n    # --- Source 2: Temporal signal ---\n    print(\"[3/6] Computing temporal signal (Source 2)...\")\n    temporal_df = compute_temporal_signal(judgments, item_meta, models=models)\n    n_temporal = temporal_df[\"temporal_gap\"].notna().sum()\n    print(f\"  Items with temporal scores: {n_temporal}/{len(temporal_df)}\")\n\n    # --- Source 3: LogProber ---\n    print(\"[4/6] Computing memorisation scores (Source 3)...\")\n    logprob_path = data_dir / \"logprob_data.json\"\n    if logprob_path.exists():\n        logprob_data = load_logprob_data(logprob_path)\n        logprob_df = compute_memorization_scores(logprob_data)\n        print(f\"  Items with logprob scores: {len(logprob_df)}\")\n    else:\n        print(\"  No logprob data found, skipping Source 3.\")\n        logprob_df = pd.DataFrame(columns=[\"item_id\", \"memorization_score\"])\n\n    # --- Composite ---\n    print(\"[5/6] Computing weighted composite e_i...\")\n    weights = tuple(map(float, args.weights.split(\",\")))\n    assert len(weights) == 3, \"Need exactly 3 weights (gap, temporal, logprob)\"\n\n    if args.validation_split:\n        val_path = data_dir / args.validation_split\n        if val_path.exists():\n            val_labels = pd.read_csv(val_path)\n            print(f\"  Tuning weights on {len(val_labels)} validation items...\")\n            weights = tune_weights(gap_df, temporal_df, logprob_df, val_labels)\n            print(f\"  Tuned weights: {weights}\")\n\n    composite_df = combine_sources(gap_df, temporal_df, logprob_df, weights)\n    print(f\"  Final e_i computed for {len(composite_df)} items\")\n    print(f\"  e_i: mean={composite_df['e_i'].mean():.3f}, \"\n          f\"median={composite_df['e_i'].median():.3f}, \"\n          f\"std={composite_df['e_i'].std():.3f}\")\n    source_coverage = composite_df[\"n_sources\"].value_counts().sort_index()\n    print(f\"  Source coverage: {dict(source_coverage)}\")\n\n    # --- Validation ---\n    print(\"[6/6] Running ConStat validation...\")\n    constat_df = compute_constat_delta(judgments, item_meta, models)\n    cn_path = data_dir / \"cn_estimates.csv\"\n    if cn_path.exists():\n        cn_df = pd.read_csv(cn_path)\n        val_result = validate_against_cn(constat_df, cn_df)\n        print(f\"  ConStat delta vs c_n correlation:\")\n        print(f\"    Spearman rho={val_result['spearman_rho']:.3f} (p={val_result['spearman_p']:.3f})\")\n        print(f\"    Pearson  r={val_result['pearson_r']:.3f} (p={val_result['pearson_p']:.3f})\")\n        print(f\"    n_models={val_result['n_models']}\")\n    else:\n        val_result = None\n        print(\"  No c_n estimates found, skipping validation.\")\n\n    # --- Save outputs ---\n    composite_df.to_csv(output_dir / \"exposure_scores.csv\", index=False)\n    composite_df.to_json(\n        output_dir / \"exposure_scores.json\", orient=\"records\", indent=2\n    )\n    gap_df.to_csv(output_dir / \"source1_performance_gap.csv\", index=False)\n    temporal_df.to_csv(output_dir / \"source2_temporal.csv\", index=False)\n    logprob_df.to_csv(output_dir / \"source3_logprob.csv\", index=False)\n    constat_df.to_csv(output_dir / \"constat_delta.csv\", index=False)\n\n    if val_result:\n        with open(output_dir / \"validation_result.json\", \"w\") as f:\n            json.dump(val_result, f, indent=2)\n\n    summary = {\n        \"n_items\": len(composite_df),\n        \"n_items_gap\": len(gap_df),\n        \"n_items_temporal\": int(n_temporal),\n        \"n_items_logprob\": len(logprob_df),\n        \"weights\": list(weights),\n        \"e_i_mean\": float(composite_df[\"e_i\"].mean()),\n        \"e_i_std\": float(composite_df[\"e_i\"].std()),\n        \"validation\": val_result,\n    }\n    with open(output_dir / \"summary.json\", \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    print(f\"\\nOutputs saved to {output_dir}/\")\n    print(\"Done.\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"exp-002: Per-item exposure estimation\"\n    )\n    parser.add_argument(\n        \"--data-dir\", required=True,\n        help=\"Directory with judgments.jsonl, item_metadata.csv, etc.\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"output\",\n        help=\"Directory for output files (default: output).\",\n    )\n    parser.add_argument(\n        \"--weights\", default=\"0.5,0.3,0.2\",\n        help=\"Comma-separated weights for gap,temporal,logprob (default: 0.5,0.3,0.2).\",\n    )\n    parser.add_argument(\n        \"--validation-split\", default=None,\n        help=\"CSV file name in data-dir with [item_id, label] for weight tuning.\",\n    )\n    args = parser.parse_args()\n    run_pipeline(args)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\nchmod +x /root/gated_mfrm_judge_bias/exp002/run_exp002.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "fb4251c1-340a-4afa-aecf-3547f0afd4a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01By7xxQLHR5gXKsCTsQCmHz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9460,
+      "cache_read_input_tokens": 31721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9460
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-22T09:06:27.327Z_
+
+<details><summary>↩ Tool result · `toolu_01GrCSHriq1CfY1Lc9rU4BZ4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "3a7fca52-10ad-47ba-8726-a0a12fda8866",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+所有代码文件已创建。现在生成 mock 数据并 dry-run 整个 pipeline。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "88853737-facd-4bc3-a1f0-22c6b70c1e6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VD6FeK2mgiK7s84STuaDPM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2540,
+      "cache_read_input_tokens": 41181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2540
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Dh1TDswy7tzrPZFf9vr37w`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cd /root/gated_mfrm_judge_bias/exp002 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python mock_data.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "13c655ad-90f8-4f01-a857-90eb47832725",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VD6FeK2mgiK7s84STuaDPM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2540,
+      "cache_read_input_tokens": 41181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2540
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T09:06:32.563Z_
+
+<details><summary>↩ Tool result · `toolu_01Dh1TDswy7tzrPZFf9vr37w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mock data written to /root/gated_mfrm_judge_bias/exp002/mock_output/\\n  judgments: 420 rows\\n  items: 105 rows ({'original': 30, 'rephrase_gpt55': 30, 'rephrase_claude': 30, 'postcutoff': 15})\\n  logprobs: 60 rows\\n  cn_estimates: 4 models\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "5fb9b9ef-e11f-45b0-b163-4aa7c1e1d0ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mock data written to /root/gated_mfrm_judge_bias/exp002/mock_output/\\\\n  judgments: 420 rows\\\\n  items: 105 rows ({'original': 30, 'rephrase_gpt55': 30, 'rephrase_claude': 30, 'postcutoff': 15})\\\\n  logprobs: 60 rows\\\\n  cn_estimates: 4 models\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Mock data written to /root/gated_mfrm_judge_bias/exp002/mock_output/\\n  judgments: 420 rows\\n  items: 105 rows ({'original': 30, 'rephrase_gpt55': 30, 'rephrase_claude': 30, 'postcutoff': 15})\\n  logprobs: 60 rows\\n  cn_estimates: 4 models\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+Mock 数据生成成功。先测 `--help`，再 dry-run pipeline。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "c485c40d-de2f-4b53-94c7-8149c755bea8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUuBrwJr1c3RHRgm6v3Arm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 361,
+      "cache_read_input_tokens": 43721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 361
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Nk1dhV2SacZx7EKLvge8MM`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cd /root/gated_mfrm_judge_bias/exp002 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_exp002.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "342e90cf-033b-4a10-8255-b417caec5203",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUuBrwJr1c3RHRgm6v3Arm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 361,
+      "cache_read_input_tokens": 43721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 361
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DM4enbun1TFN8ap8WfAQig`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "cd /root/gated_mfrm_judge_bias/exp002 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_exp002.py --data-dir mock_output --output-dir mock_results",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "909b71be-98f5-41af-a22c-89946aac50c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUuBrwJr1c3RHRgm6v3Arm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 361,
+      "cache_read_input_tokens": 43721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 361
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T09:06:38.051Z_
+
+<details><summary>↩ Tool result · `toolu_01Nk1dhV2SacZx7EKLvge8MM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: run_exp002.py [-h] --data-dir DATA_DIR [--output-dir OUTPUT_DIR]\\n                     [--weights WEIGHTS] [--validation-split VALIDATION_SPLIT]\\n\\nexp-002: Per-item exposure estimation\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --data-dir DATA_DIR   Directory with judgments.jsonl, item_metadata.csv,\\n                        etc.\\n  --output-dir OUTPUT_DIR\\n                        Directory for output files (default: output).\\n  --weights WEIGHTS     Comma-separated weights for gap,temporal,logprob\\n                        (default: 0.5,0.3,0.2).\\n  --validation-split VALIDATION_SPLIT\\n                        CSV file name in data-dir with [item_id, label] for\\n                        weight tuning.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "fdfb5a6e-896b-4eed-aa71-017b1a039c4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: run_exp002.py [-h] --data-dir DATA_DIR [--output-dir OUTPUT_DIR]\\\\n                     [--weights WEIGHTS] [--validation-split VALIDATION_SPLIT]\\\\n\\\\nexp-002: Per-item exposure estimation\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --data-dir DATA_DIR   Directory with judgments.jsonl, item_metadata.csv,\\\\n                        etc.\\\\n  --output-dir OUTPUT_DIR\\\\n                        Directory for output files (default: output).\\\\n  --weights WEIGHTS     Comma-separated weights for gap,temporal,logprob\\\\n                        (default: 0.5,0.3,0.2).\\\\n  --validation-split VALIDATION_SPLIT\\\\n                        CSV file name in data-dir with [item_id, label] for\\\\n                        weight tuning.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: run_exp002.py [-h] --data-dir DATA_DIR [--output-dir OUTPUT_DIR]\\n                     [--weights WEIGHTS] [--validation-split VALIDATION_SPLIT]\\n\\nexp-002: Per-item exposure estimation\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --data-dir DATA_DIR   Directory with judgments.jsonl, item_metadata.csv,\\n                        etc.\\n  --output-dir OUTPUT_DIR\\n                        Directory for output files (default: output).\\n  --weights WEIGHTS     Comma-separated weights for gap,temporal,logprob\\n                        (default: 0.5,0.3,0.2).\\n  --validation-split VALIDATION_SPLIT\\n                        CSV file name in data-dir with [item_id, label] for\\n                        weight tuning.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-22T09:06:39.504Z_
+
+<details><summary>↩ Tool result · `toolu_01DM4enbun1TFN8ap8WfAQig`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[1/6] Loading data...\\n  Judgments: 420 rows, Items: 105 rows\\n  Models: ['gpt-4o', 'llama-3.3-70b', 'mistral-large', 'qwen-2.5-72b']\\n[2/6] Computing performance gap (Source 1)...\\n  Items with gap scores: 30\\n  Raw gap: mean=0.797, std=0.409\\n  Corrected gap: mean=-0.000, std=0.269\\n[3/6] Computing temporal signal (Source 2)...\\n  Items with temporal scores: 15/30\\n[4/6] Computing memorisation scores (Source 3)...\\n  Items with logprob scores: 30\\n[5/6] Computing weighted composite e_i...\\n  Final e_i computed for 30 items\\n  e_i: mean=0.483, median=0.462, std=0.281\\n  Source coverage: {2: np.int64(15), 3: np.int64(15)}\\n[6/6] Running ConStat validation...\\n  ConStat delta vs c_n correlation:\\n    Spearman rho=1.000 (p=0.000)\\n    Pearson  r=0.995 (p=0.005)\\n    n_models=4\\n\\nOutputs saved to mock_results/\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "aff300f1-5bee-4582-81e5-d216bec37f27",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[1/6] Loading data...\\\\n  Judgments: 420 rows, Items: 105 rows\\\\n  Models: ['gpt-4o', 'llama-3.3-70b', 'mistral-large', 'qwen-2.5-72b']\\\\n[2/6] Computing performance gap (Source 1)...\\\\n  Items with gap scores: 30\\\\n  Raw gap: mean=0.797, std=0.409\\\\n  Corrected gap: mean=-0.000, std=0.269\\\\n[3/6] Computing temporal signal (Source 2)...\\\\n  Items with temporal scores: 15/30\\\\n[4/6] Computing memorisation scores (Source 3)...\\\\n  Items with logprob scores: 30\\\\n[5/6] Computing weighted composite e_i...\\\\n  Final e_i computed for 30 items\\\\n  e_i: mean=0.483, median=0.462, std=0.281\\\\n  Source coverage: {2: np.int64(15), 3: np.int64(15)}\\\\n[6/6] Running ConStat validation...\\\\n  ConStat delta vs c_n correlation:\\\\n    Spearman rho=1.000 (p=0.000)\\\\n    Pearson  r=0.995 (p=0.005)\\\\n    n_models=4\\\\n\\\\nOutputs saved to mock_results/\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[1/6] Loading data...\\n  Judgments: 420 rows, Items: 105 rows\\n  Models: ['gpt-4o', 'llama-3.3-70b', 'mistral-large', 'qwen-2.5-72b']\\n[2/6] Computing performance gap (Source 1)...\\n  Items with gap scores: 30\\n  Raw gap: mean=0.797, std=0.409\\n  Corrected gap: mean=-0.000, std=0.269\\n[3/6] Computing temporal signal (Source 2)...\\n  Items with temporal scores: 15/30\\n[4/6] Computing memorisation scores (Source 3)...\\n  Items with logprob scores: 30\\n[5/6] Computing weighted composite e_i...\\n  Final e_i computed for 30 items\\n  e_i: mean=0.483, median=0.462, std=0.281\\n  Source coverage: {2: np.int64(15), 3: np.int64(15)}\\n[6/6] Running ConStat validation...\\n  ConStat delta vs c_n correlation:\\n    Spearman rho=1.000 (p=0.000)\\n    Pearson  r=0.995 (p=0.005)\\n    n_models=4\\n\\nOutputs saved to mock_results/\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+Pipeline dry-run 完全通过。验证一下输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "12380bd6-b2c7-4cab-9130-20ab82293de7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQTcGhWj5cXiKhscrFCFbZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 44082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1103
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0172pdyYQvRXKN1yPj4x8N5J`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "ls -la /root/gated_mfrm_judge_bias/exp002/mock_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "41a68798-8b17-4e96-9675-7701edd66fee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQTcGhWj5cXiKhscrFCFbZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 44082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1103
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T09:06:43.895Z_
+
+<details><summary>↩ Tool result · `toolu_0172pdyYQvRXKN1yPj4x8N5J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 44\\ndrwxr-xr-x 2 root root 4096 May 22 17:06 .\\ndrwxr-xr-x 6 root root 4096 May 22 17:06 ..\\n-rw-r--r-- 1 root root  161 May 22 17:06 constat_delta.csv\\n-rw-r--r-- 1 root root 2598 May 22 17:06 exposure_scores.csv\\n-rw-r--r-- 1 root root 4985 May 22 17:06 exposure_scores.json\\n-rw-r--r-- 1 root root 1859 May 22 17:06 source1_performance_gap.csv\\n-rw-r--r-- 1 root root  722 May 22 17:06 source2_temporal.csv\\n-rw-r--r-- 1 root root 1042 May 22 17:06 source3_logprob.csv\\n-rw-r--r-- 1 root root  370 May 22 17:06 summary.json\\n-rw-r--r-- 1 root root  135 May 22 17:06 validation_result.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "effcdfb4-d670-4635-a6db-dd603006385a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 44\\\\ndrwxr-xr-x 2 root root 4096 May 22 17:06 .\\\\ndrwxr-xr-x 6 root root 4096 May 22 17:06 ..\\\\n-rw-r--r-- 1 root root  161 May 22 17:06 constat_delta.csv\\\\n-rw-r--r-- 1 root root 2598 May 22 17:06 exposure_scores.csv\\\\n-rw-r--r-- 1 root root 4985 May 22 17:06 exposure_scores.json\\\\n-rw-r--r-- 1 root root 1859 May 22 17:06 source1_performance_gap.csv\\\\n-rw-r--r-- 1 root root  722 May 22 17:06 source2_temporal.csv\\\\n-rw-r--r-- 1 root root 1042 May 22 17:06 source3_logprob.csv\\\\n-rw-r--r-- 1 root root  370 May 22 17:06 summary.json\\\\n-rw-r--r-- 1 root root  135 May 22 17:06 validation_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 44\\ndrwxr-xr-x 2 root root 4096 May 22 17:06 .\\ndrwxr-xr-x 6 root root 4096 May 22 17:06 ..\\n-rw-r--r-- 1 root root  161 May 22 17:06 constat_delta.csv\\n-rw-r--r-- 1 root root 2598 May 22 17:06 exposure_scores.csv\\n-rw-r--r-- 1 root root 4985 May 22 17:06 exposure_scores.json\\n-rw-r--r-- 1 root root 1859 May 22 17:06 source1_performance_gap.csv\\n-rw-r--r-- 1 root root  722 May 22 17:06 source2_temporal.csv\\n-rw-r--r-- 1 root root 1042 May 22 17:06 source3_logprob.csv\\n-rw-r--r-- 1 root root  370 May 22 17:06 summary.json\\n-rw-r--r-- 1 root root  135 May 22 17:06 validation_result.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W4JABhuFwNS7uF7DvLeC7n`</summary>
+
+```json
+{
+  "server": "rtx6000-4x",
+  "command": "find /root/gated_mfrm_judge_bias/exp002 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "c65e997c-e0c6-4dc4-bbbc-e9696a7ea4cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQTcGhWj5cXiKhscrFCFbZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 44082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1103
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T09:06:44.577Z_
+
+<details><summary>↩ Tool result · `toolu_01W4JABhuFwNS7uF7DvLeC7n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp002/sources/__init__.py\\n/root/gated_mfrm_judge_bias/exp002/sources/performance_gap.py\\n/root/gated_mfrm_judge_bias/exp002/sources/temporal_signal.py\\n/root/gated_mfrm_judge_bias/exp002/sources/logprober.py\\n/root/gated_mfrm_judge_bias/exp002/__init__.py\\n/root/gated_mfrm_judge_bias/exp002/composite.py\\n/root/gated_mfrm_judge_bias/exp002/validation.py\\n/root/gated_mfrm_judge_bias/exp002/mock_data.py\\n/root/gated_mfrm_judge_bias/exp002/run_exp002.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "f80280cb-9c81-489b-ac0e-c26ec55c46d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp002/sources/__init__.py\\\\n/root/gated_mfrm_judge_bias/exp002/sources/performance_gap.py\\\\n/root/gated_mfrm_judge_bias/exp002/sources/temporal_signal.py\\\\n/root/gated_mfrm_judge_bias/exp002/sources/logprober.py\\\\n/root/gated_mfrm_judge_bias/exp002/__init__.py\\\\n/root/gated_mfrm_judge_bias/exp002/composite.py\\\\n/root/gated_mfrm_judge_bias/exp002/validation.py\\\\n/root/gated_mfrm_judge_bias/exp002/mock_data.py\\\\n/root/gated_mfrm_judge_bias/exp002/run_exp002.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp002/sources/__init__.py\\n/root/gated_mfrm_judge_bias/exp002/sources/performance_gap.py\\n/root/gated_mfrm_judge_bias/exp002/sources/temporal_signal.py\\n/root/gated_mfrm_judge_bias/exp002/sources/logprober.py\\n/root/gated_mfrm_judge_bias/exp002/__init__.py\\n/root/gated_mfrm_judge_bias/exp002/composite.py\\n/root/gated_mfrm_judge_bias/exp002/validation.py\\n/root/gated_mfrm_judge_bias/exp002/mock_data.py\\n/root/gated_mfrm_judge_bias/exp002/run_exp002.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+全部完成。
+
+## 文件列表
+
+```
+exp002/
+├── __init__.py
+├── run_exp002.py              # 主入口 CLI
+├── sources/
+│   ├── __init__.py
+│   ├── performance_gap.py     # Source 1: 原始 vs rephrased gap + spline校正
+│   ├── temporal_signal.py     # Source 2: pre-cutoff vs post-cutoff
+│   └── logprober.py           # Source 3: Min-K% memorisation score
+├── composite.py               # 加权合成 + 权重调优
+├── validation.py              # ConStat delta vs c_n 相关性验证
+└── mock_data.py               # Mock 数据生成
+```
+
+## Dry-run 结果
+
+| 指标 | 值 |
+|------|-----|
+| 30 items, 4 models, 2 judges | 420 judgments |
+| Source 1 (gap) | 30 items, raw_gap mean=0.797, corrected mean≈0 |
+| Source 2 (temporal) | 15/30 items有temporal scores |
+| Source 3 (logprob) | 30 items |
+| Composite e_i | mean=0.483, std=0.281 |
+| Source coverage | 15 items 有2源, 15 items 有3源 |
+| ConStat vs c_n | Spearman ρ=1.000, Pearson r=0.995 |
+
+Mock 数据中注入了差异化 contamination 信号 (gpt-4o=1.5, qwen=1.0, llama=0.3, mistral=0.1)，pipeline 成功检出：spline 校正去掉了 difficulty 成分，ConStat delta 与 c_n 完美相关。exp-001 数据到手后替换 `--data-dir` 即可运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "uuid": "a1e1415f-fa26-44cc-972b-98690bf72324",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KSLyuoKShX8GCwJRUSqvYS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1108,
+      "cache_read_input_tokens": 45185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1108
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 62_
+
+全部完成。
+
+## 文件列表
+
+```
+exp002/
+├── __init__.py
+├── run_exp002.py              # 主入口 CLI
+├── sources/
+│   ├── __init__.py
+│   ├── performance_gap.py     # Source 1: 原始 vs rephrased gap + spline校正
+│   ├── temporal_signal.py     # Source 2: pre-cutoff vs post-cutoff
+│   └── logprober.py           # Source 3: Min-K% memorisation score
+├── composite.py               # 加权合成 + 权重调优
+├── validation.py              # ConStat delta vs c_n 相关性验证
+└── mock_data.py               # Mock 数据生成
+```
+
+## Dry-run 结果
+
+| 指标 | 值 |
+|------|-----|
+| 30 items, 4 models, 2 judges | 420 judgments |
+| Source 1 (gap) | 30 items, raw_gap mean=0.797, corrected mean≈0 |
+| Source 2 (temporal) | 15/30 items有temporal scores |
+| Source 3 (logprob) | 30 items |
+| Composite e_i | mean=0.483, std=0.281 |
+| Source coverage | 15 items 有2源, 15 items 有3源 |
+| ConStat vs c_n | Spearman ρ=1.000, Pearson r=0.995 |
+
+Mock 数据中注入了差异化 contamination 信号 (gpt-4o=1.5, qwen=1.0, llama=0.3, mistral=0.1)，pipeline 成功检出：spline 校正去掉了 difficulty 成分，ConStat delta 与 c_n 完美相关。exp-001 数据到手后替换 `--data-dir` 即可运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 254838,
+  "duration_api_ms": 250578,
+  "num_turns": 23,
+  "stop_reason": "end_turn",
+  "session_id": "29bcb6ec-a9f4-4ce6-acd1-eb92a9007025",
+  "total_cost_usd": 0.828697,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 34846,
+    "cache_read_input_tokens": 349099,
+    "output_tokens": 17366,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 34846,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 509,
+        "cache_read_input_tokens": 45185,
+        "cache_creation_input_tokens": 1108,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1108
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2050,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00214,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 17366,
+      "cacheReadInputTokens": 349099,
+      "cacheCreationInputTokens": 34846,
+      "webSearchRequests": 0,
+      "costUSD": 0.8265570000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1925f4d0-83c1-4af5-b611-29b3afb9a886"
+}
+```
+
+</details>
+
+---

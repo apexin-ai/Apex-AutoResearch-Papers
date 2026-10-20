@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "047a60f145e4b36a85f2",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh w7 rerun 20seeds",
+  "task_key": "worker_ssh_w7_rerun_20seeds_20260523T010356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w7_rerun_20seeds_20260523T010356_result.json",
+    "occurrence": 1,
+    "bytes": 415,
+    "sha256": "cdf35a180ebc0af7b6d48fc4f6c0543e8df85b55fdbdd9e4de95cc6eda8f9348"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在 GPU 2 上运行，占用 ~73GB 显存。\n\n**W7 Rerun Status: STARTED**\n- tmux session: `w7_ablation`\n- GPU: cuda:2 (69% util, 73539MiB/97887MiB)\n- PID: 263954\n- Seeds: 20 (4 variants × 20 seeds = 80 MCMC fits)\n- ETA: ~5.6h (~14:40 UTC)\n- Log: `/root/gated_mfrm_judge_bias/exp_w7_ablation/w7_ablation.log`\n- Checkpoint: 每 5 seeds 自动保存 `results_w7_ablation_partial.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w7-rerun-20seeds.md"
+}

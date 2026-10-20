@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cb07fa2b84060f86716",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp015 016 progress",
+  "task_key": "worker_ssh_exp015_016_progress_20260523T070355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp015_016_progress_20260523T070355_result.json",
+    "occurrence": 1,
+    "bytes": 1538,
+    "sha256": "b21f5316e9116c85ad7ee4ab253299ca75c2d2f4d65e3898ae0aef297d946009"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### exp-015 — synthetic N=8 (PID 291457, 运行 1h15m)\n\n**进度：7/20 seeds** (seed 0–6 完成，正在跑 seed 7 sequential)\n\n每 seed 约 10 分钟 (240s sequential + 340s joint_gmfrm)，剩余 13 seeds ≈ **~2h 估计完成**。\n\n当前结果（joint_gmfrm vs sequential）：\n\n| Metric | sequential (mean) | joint_gmfrm (mean) | 胜负 |\n|--------|-------------------|---------------------|------|\n| θ RMSE | 0.174 | 0.084 | joint **2x better** |\n| θ tau | 0.854 | 0.959 | joint wins |\n| c RMSE | 1.465 | 0.520 | joint **2.8x better** |\n| c pearson | 0.897 | 0.910 | joint wins |\n| Rhat | 1.0 | 1.0 | both converged |\n| ESS | 3103 | 3351 | comparable |\n\njoint_gmfrm 在所有指标上一致优于 sequential，尤其 contamination 参数恢复 (c_RMSE) 提升最大。\n\n### exp-016 — prior sensitivity (PID 316023, 运行 4m45s)\n\n**刚重启。** 前一次运行 (PID 293733) 在 HalfNormal(1.5) warmup 22% (1340/6000) 时被 Killed (EXIT_CODE=129)。当前 PID 316023 刚启动约 5 分钟，处于数据加载阶段。无 CSV 产出。\n\n数据概况：8 models, 176 items, 9 judges, 5661 observations, sparsity 44.7%。\n\n### GPU 状态\n\n| GPU | Memory | Utilization |\n|-----|--------|-------------|\n| 0 | 73.5 GB | 69% |\n| 1 | 73.5 GB | 64% |\n| 2 | 667 MB | 69% |\n| 3 | 0 MB | 0% |\n\nGPU 0,1 被其他任务占满。exp-016 (cuda:2) 内存占用低（MCMC 主要在 CPU 跑）。前次被 kill 可能与 GPU 0,1 的大任务抢资源有关，需关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp015-016-progress.md"
+}

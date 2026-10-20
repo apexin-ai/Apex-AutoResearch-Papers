@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a46dc3d6e46c27de0910",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "history",
+  "title": "agent / loop_2_1779738941.md",
+  "task_key": "loop_2_1779738941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779738941.md",
+    "occurrence": 1,
+    "bytes": 4610,
+    "sha256": "546eb8a3309b0d855e4ce9e1615f985decd7f2f6db95bf5b785749c843e4d726"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-24T01:27:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- autodl-8gpu GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（gpu_ids 配置）。cuda:4-7 不在白名单，即使 Director 指令也必须 push back\n- rtx6000-4x GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3\n- 论文 DDL 5/26，所有实验决策以此为锚。Director 已连续 kill 两个超时实验（exp-014 120h, exp-016 10h+）\n- exp-004 状态是 ALLOCATED/success 的 registry 残留——实验实际已完成，不要重复提交\n- Bootstrap Δτ CI 包含 0（D022）——Claim 3 ranking improvement 不能说 \"significant\"，只能说 directional evidence\n\n### 2. 🖥️ 基础设施快照\n- **autodl-8gpu**: 工作目录 /root/gated_mfrm_judge_bias/，Python /root/miniconda3/bin/python3，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **rtx6000-4x**: 同上路径结构，4 张 GPU 全空闲（论文修复阶段）\n- 数据：exp-001 judgments → /root/gated_mfrm_judge_bias/exp001/results/，exp-002 exposure → /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv\n- 核心 posterior：/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc（exp-003b，所有下游分析的基础）\n- 活跃进程：exp-017 PID 318082 (autodl-8gpu cuda:0, Murphy-Topel coverage)，exp-018 (autodl-8gpu cuda:2, N=20 Δτ calibration)\n- exp-017 有 cron 监控（reconcile 确认 still running）；exp-018 cron 状态未在 reconcile 中出现，可能需要检查\n\n### 3. 📊 当前状态\n刚收到 exp-015 完成回调（ANALYZING）。已派 Worker `worker_analysis_exp-015_20260523T091853` 去 SSH 读结果，**尚未收到回调**。\n\nRegistry 状态：\n- **exp-015** ANALYZING — N=8 合成 Δτ calibration (20 seeds)，等 Worker 分析结果\n- **exp-017** RUNNING — Murphy-Topel coverage N={8,20,50,100}×200 seeds，autodl cuda:0，ETA 较长（800 fits，之前从 CPU 迁移到 GPU，7/800 时 ~14h ETA）\n- **exp-018** RUNNING — N=20 Δτ calibration，autodl cuda:2，是 exp-015 的 scale-up 版（验证 N=8 non-significance 是 power 问题）\n- **exp-019** DONE/success — Δθ vs c_n 完美秩相关（Spearman ρ=1.0），contamination bias 被 MFRM θ 吸收的直接证据\n\n等待中：\n- Worker `worker_analysis_exp-015` 回调 → 需更新 registry 到 DONE + 汇报 Director\n- exp-017 cron 回调（进程完成时自动触发）\n- exp-018 cron 回调\n\n### 4. 📋 待办\n- Worker exp-015 分析回调到达 → 读 Worker 产出，更新 registry（conclusion + metrics + checkpoint_path + log_path），刷新 report.md，汇报 Director（带 [资源] 行），将 20-seed 结果与 mvp_003 (N=50) 对比写入汇报\n- exp-018 完成回调 → 分析 N=20 Δτ 是否显著（预期 significant，与 exp-015 N=8 形成 power 对比）；若 significant → patch 论文 \"N=8 underpowered, N=20 recovers significance\"\n- exp-017 完成回调 → 分析 coverage 趋势（N=8→20→50→100），58%→71%→~95% 的渐近恢复趋势 patch 到论文\n- exp-015 + exp-018 双完成 → 向 Director 汇报完整 N-scaling story（ROADMAP \"3.0→3.5 关键路径\" 第 4 项）\n- 所有实验完成 → 触发 Round 4 提交审稿\n\n### 5. 🎯 战略上下文\n- **论文 framing（D021）**：Story 重心已从 Claim 3 (ranking improvement) 转到 Claim 1 (identifiability) + Claim 2 (error propagation/OVB)。τ=0.857 (+7.1pp) 是 directional evidence，不是 statistical significance claim\n- **核心实验链**：mvp_001(neg) → mvp_002(neg/convergence) → mvp_003(success, N=50 joint>>seq) → exp-003(neg/horseshoe不收敛) → exp-003b(success, HalfNormal收敛 τ=0.857) → 下游分析全基于 exp-003b\n- **D030 决策**：Director 新增 exp-018 (N=20 Δτ P0 优先) + exp-019 (Δθ vs c_n 可视化)，exp-019 已完成\n- **易错点 1**：exp-003b 的 τ=0.857 vs baseline τ=0.786 看似大，但 N=8 models 下 bootstrap CI 包含 0——不能 overclaim\n- **易错点 2**：exp-017 已经历 CPU→GPU 迁移（旧 PID 被 kill），当前 PID 318082 是正确的。如果收到旧 PID 的 fail 回调要忽略\n- **易错点 3**：exp-018 的 parent 字段为空字符串（应该是 exp-015 或 exp-003b），registry 有小瑕疵但不影响运行\n- **关键数字（论文用）**：joint θ RMSE 比 sequential 低 43.8% (N=50)；OVB bias_slope joint ~0.06 vs sequential ~0.19 (3x reduction)；c_n coverage 71% (N=50, Murphy-Topel)；Stage 2 weight 完全 robust（τ 四配置一致 0.7857）；ablation: staged estimation 最差（θ RMSE 2x, c RMSE 2.3x）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779738941.md"
+}

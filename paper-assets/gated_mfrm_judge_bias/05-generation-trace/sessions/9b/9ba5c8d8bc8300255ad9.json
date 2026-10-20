@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9ba5c8d8bc8300255ad9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "paper compress to 8pages",
+  "task_key": "worker_paper_compress-to-8pages_20260525T080852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compress-to-8pages_20260525T080852.log",
+    "occurrence": 1,
+    "bytes": 661543,
+    "sha256": "c6257fa21beb1756a366413ccd10d85c0a8c9eb79741eaf7028fd7ea20795988"
+  },
+  "statistics": {
+    "messages": 168,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 168,
+      "chunks": [
+        {
+          "path": "9ba5c8d8bc8300255ad9-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "9ba5c8d8bc8300255ad9-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-compress-to-8pages.md"
+}

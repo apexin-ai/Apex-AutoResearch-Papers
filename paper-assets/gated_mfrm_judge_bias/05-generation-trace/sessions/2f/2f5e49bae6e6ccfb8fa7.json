@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f5e49bae6e6ccfb8fa7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix hardcoded key",
+  "task_key": "worker_ssh_fix-hardcoded-key_20260525T090348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-hardcoded-key_20260525T090348_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "cef01d6e6bd1c1a9e7a15a0f5530ac5cfd4efde27d4dcf3de9d2ec4958e6ba8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。改动汇总：\n\n| 文件 | 行 | 改动 |\n|------|----|------|\n| `exp001/generate_responses.py` | 24 | `API_PROXY_KEY = \"tum_XXB3s...\"` → `API_PROXY_KEY = os.environ[\"API_PROXY_KEY\"]` |\n| `exp001/judge_interface.py` | 343 | `_API_PROXY_KEY = \"sk-or-v1-1019...\"` → `_API_PROXY_KEY = os.environ[\"API_PROXY_KEY\"]` |\n| `logs/exp020_mcmc_phase1_v2.log` | 1 行变更（`git add -A` 带入的已有改动） |\n\n全仓库搜索 `tum_` 和 `sk-or-v1`：**零残留**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-hardcoded-key.md"
+}

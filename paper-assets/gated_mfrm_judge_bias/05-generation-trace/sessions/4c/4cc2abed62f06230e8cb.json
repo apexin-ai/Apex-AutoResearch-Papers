@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cc2abed62f06230e8cb",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp020 n16 exclude turbo",
+  "task_key": "worker_ssh_exp020-n16-exclude-turbo_20260525T152056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp020-n16-exclude-turbo_20260525T152056_result.json",
+    "occurrence": 1,
+    "bytes": 201,
+    "sha256": "2851fbe15a7967b67af7a2174ffc47796d4ea01d0d1fca7f06459c32e1305cec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有后台任务已完成。实验结果已在前面完整汇总，核心结论不变：排除 gpt-4-turbo 后 G-MFRM τ=0.817 仍低于 raw_average τ=0.850，问题是系统性的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp020-n16-exclude-turbo.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "996064f10ae049923fa7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl n17 configs and download",
+  "task_key": "worker_ssh_autodl_n17_configs_and_download_20260523T225131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_n17_configs_and_download_20260523T225131_result.json",
+    "occurrence": 1,
+    "bytes": 1321,
+    "sha256": "5e76d32e3fc643c3f616c616107f5f1ac97f45dc35818773334d8b2422c0b3bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 产出报告\n\n**任务 1: N=17 configs — 完成**\n\n4 个文件已生成在 `/root/gated_mfrm_judge_bias/exp001/`：\n| 文件 | Judge | Target Models |\n|------|-------|--------------|\n| `config_claude-sonnet-4.6-proxy_arena_n17.yaml` | claude-sonnet-4.6-proxy | 18 个 |\n| `config_gemini-2.5-pro-proxy_arena_n17.yaml` | gemini-2.5-pro-proxy | 18 个 |\n| `config_deepseek-v4-pro-proxy_arena_n17.yaml` | deepseek-v4-pro-proxy | 18 个 |\n| `config_qwen3-235b-proxy_arena_n17.yaml` | qwen3-235b-proxy | 18 个 |\n\n每个 config 的 `output_dir` 已加 `_n17/` 后缀以区分结果。其他配置（proxy、rpm=30、position_swap、max_retries）保持不变。\n\n**任务 2: LLaMA-3.3-70B-AWQ 下载 — 进行中**\n\n- 仓库：`casperhansen/Llama-3.3-70B-Instruct-AWQ`（原始 `LLM-Research` 在 ModelScope 不存在，`hugging-quants` 需要 token，改用 casperhansen 社区版本）\n- PID: 478762\n- 进度：1/17 文件，已下载 397MB\n- 目标路径：`/root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/`\n- 预估大小：AWQ INT4 量化约 **36-38GB**\n- 预估时间：AutoDL 代理下载 HF 速度不稳定，无 token 限速，预计 **30-60 分钟**\n\n> 注意：服务器未配置 HF_TOKEN，下载速率受限。如需加速可设置 token：`huggingface-cli login`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-n17-configs-and-download.md"
+}

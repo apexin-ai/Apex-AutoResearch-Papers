@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3800eae80d736055d39b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003 sequential chain fix",
+  "task_key": "worker_ssh_exp003_sequential_chain_fix_20260522T142817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003_sequential_chain_fix_20260522T142817_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "afc10636fb2388f4094e8e8e31768cb45954b697c5e8f88cdd9ff9f6f6f94f0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已稳定运行：\n\n| 指标 | 结果 |\n|------|------|\n| **PID** | 143769 |\n| **GPU 0** | 62% utilization, 667 MiB（vs 之前 73.5GB×4） |\n| **GPU 1-3** | 空闲，符合 `CUDA_VISIBLE_DEVICES=0` |\n| **MCMC 速度** | ~85-93 it/s（sequential chain on single GPU） |\n| **进度** | mfrm_only chain 1 已跑到 45%，无 error |\n| **数据加载** | 5661 条观测，9 个 judge，正常 |\n\nchain 1 的 warmup 2000 + sample 4000 = 6000 步，当前 ~87 it/s ≈ 69s/chain，4 chains ≈ 4.6min per method。3 个 MCMC method 总计约 15min 完成。无 OOM 风险。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003-sequential-chain-fix.md"
+}

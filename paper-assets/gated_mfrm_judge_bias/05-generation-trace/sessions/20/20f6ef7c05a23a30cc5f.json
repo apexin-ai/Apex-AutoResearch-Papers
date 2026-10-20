@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20f6ef7c05a23a30cc5f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "research exp 001 api survey",
+  "task_key": "worker_research_exp_001_api_survey_20260521T230918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp_001_api_survey_20260521T230918_result.json",
+    "occurrence": 1,
+    "bytes": 2596,
+    "sha256": "ab9764ae43e93ddedcab41bf4c88e976bbd628b1709ba691334119655d4dc846"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，结果已写入 `memory.md`。以下是汇总：\n\n## Proprietary Judges\n\n| Judge | Model ID | Input $/1M | Output $/1M | 预估总费用 | 状态 |\n|-------|----------|-----------|------------|-----------|------|\n| GPT-4o | `gpt-4o` | $2.50 | $10.00 | **$112.50** | ✅ |\n| GPT-5.5 | `gpt-5.5` | $5.00 | $30.00 | **$275.00** | ✅ 2026-04-23 发布 |\n| Claude Opus 4.7 | `claude-opus-4-7-20250219` | $5.00 | $25.00 | **$250.00** | ✅ |\n| Claude Sonnet 4.6 | `claude-sonnet-4-6-20250514` | $3.00 | $15.00 | **$150.00** | ✅ |\n| Gemini 2.5 Pro | `gemini-2.5-pro` | $1.25 | $10.00 | **$81.25** | ✅ |\n| DeepSeek V4 Pro | `deepseek-v4-pro` | $0.435 (促销) | $0.87 (促销) | **$15.23** | ✅ 促销至5/31 |\n| Qwen3-235B-A22B | `qwen3-235b-a22b` | $0.18 (OpenRouter) | $0.54 (OpenRouter) | **$7.20** | ✅ |\n\n**Proprietary 总费用: ~$891** (促销价) / ~$950 (原价)\n\n## Open-Source Judges (4×RTX 6000 = 192GB VRAM)\n\n| Judge | HuggingFace ID | FP16 VRAM | INT8 VRAM | 可行性 |\n|-------|---------------|-----------|-----------|--------|\n| Llama-3.3-70B | `meta-llama/Llama-3.3-70B-Instruct` | ~140 GB | ~70 GB | ✅ |\n| Qwen2.5-72B | `Qwen/Qwen2.5-72B-Instruct` | ~144 GB | ~72 GB | ✅ |\n| Mistral-Large 3 | `mistralai/Mistral-Large-3-675B-Instruct-2512` | ~1.35 TB | ~675 GB | ❌ 太大 |\n\n**Mistral-Large 无法本地运行**（675B MoE 需 8×H200）。替代方案：**Mistral Medium 3.5** (`mistralai/Mistral-Medium-3.5-128B`)，FP8 ~128GB 可在 192GB 上运行。\n\n## 关键结论\n\n1. **GPT-5.5 和 DeepSeek V4 Pro 均已发布**，无需替代\n2. **总费用 ~$891**（7 个 proprietary judges），可控\n3. **DeepSeek 促销 5/31 到期**，建议尽快启动数据收集\n4. **需要 5 个 API key**: OpenAI、Anthropic、Google AI、DeepSeek、DashScope（或用 OpenRouter 统一接入）\n5. **Mistral 需决策**: 用 Medium 3.5 (128B) 本地跑，还是改用 Mistral API 调 Large 3\n\nSources:\n- [OpenAI API Pricing](https://openai.com/api/pricing/)\n- [Anthropic Pricing](https://platform.claude.com/docs/en/about-claude/pricing)\n- [Gemini Pricing](https://ai.google.dev/gemini-api/docs/pricing)\n- [DeepSeek Pricing](https://api-docs.deepseek.com/quick_start/pricing/)\n- [GPT-5.5 Release](https://openai.com/index/introducing-gpt-5-5/)\n- [DeepSeek V4 Preview](https://api-docs.deepseek.com/news/news260424)\n- [Mistral Large 3 HuggingFace](https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512)\n- [Mistral Medium 3.5 HuggingFace](https://huggingface.co/mistralai/Mistral-Medium-3.5-128B)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-exp-001-api-survey.md"
+}

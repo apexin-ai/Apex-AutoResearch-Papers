@@ -1,0 +1,92 @@
+paper_key: "dcr2025"
+title: "DCR: Quantifying Data Contamination in LLMs Evaluation"
+venue: "EMNLP 2025"
+full_text_available: true
+
+research:
+  baselines: ["InstructLM-500M/1.3B (clean baseline)", "Qwen2.5 series (0.5B-72B, pre-contaminated baseline)"]
+  metrics:
+    - {name: "DCR Factor", direction: "lower_better"}
+    - {name: "Raw Accuracy (Acc)", direction: "higher_better"}
+    - {name: "Adjusted Accuracy (Acc_adj)", direction: "higher_better"}
+    - {name: "|Δ| (adjustment error vs uncontaminated baseline)", direction: "lower_better"}
+    - {name: "Pearson r (DCR Factor vs Accuracy)", direction: "higher_better"}
+  datasets:
+    - {name: "SST-2", size: "67.3k/872/1.82k, binary sentiment"}
+    - {name: "LIAR2", size: "18.4k/2.3k/2.3k, 6-class fake news"}
+    - {name: "GSM8K", size: "7.47k/1.32k, arithmetic reasoning"}
+  ablation_dimensions: ["BDC level (L1-L4: semantic/information/data/label)", "Model scale (0.5B-72B)", "Model family (InstructLM vs Qwen2.5)", "Ni (test prompt count)"]
+  training_recipe: {optimizer: "AdamW lr=5e-5 linear decay", lr: "5e-5", hardware: "NVIDIA H100 GPUs, 3 epochs, contamination ≤15% corpus"}
+  method_family: "Fuzzy inference-based contamination quantification and accuracy adjustment"
+
+positioning:
+  core_claim: "DCR框架通过四级污染检测(semantic/information/data/label) + 模糊推理系统计算DCR Factor来调整accuracy，平均误差<4%，轻量可解释"
+  key_results: "Avg |Δ|: SST-2=3.44%, LIAR2=3.74%, GSM8K=2.76%; Pearson r: SST-2=0.92, GSM8K=0.86; Qwen2.5-7B SST-2 baseline DCR=67.6% (Acc 94.6→Adj 30.7%)"
+  limitations:
+    - "仅验证到72B，未测frontier-scale模型(>100B)"
+    - "仅2个开源clean基线模型(InstructLM)"
+    - "模拟单阶段预训练，未覆盖真实多阶段pipeline"
+    - "尚不适用于生成式任务(MT, summarization)"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "BDC研究越来越复杂但实际很少被LLM开发者采用——存在研究与实践的脱节"
+  tension: "现有BDC检测方法计算昂贵、缺乏可解释性、无法量化对性能的影响→开发者不愿投入→需要轻量可解释方案"
+  key_insight: "Section 2.1 Motivation — 直接点出'research-practice disconnect'，以此justify设计目标为efficiency + interpretability而非detection accuracy"
+  argument_chain: "BDC is pervasive → existing methods too expensive for practice → DCR prioritizes efficiency + interpretability → 4-level taxonomy + fuzzy inference → Acc_adj = Acc × (1-DCR Factor) → <4% average error → practical adoption"
+  contribution_framing: "三条贡献：(1)DCR框架 (2)DCR Factor指标 (3)9模型3benchmark大规模验证"
+  intro_structure: "4段：LLM评测挑战 → BDC问题严重性 → 现有方法局限 → DCR方案简介 + 3条贡献"
+  notable_technique: "用fuzzy logic处理BDC level定义本身的模糊性——'the definition of BDC level itself is fuzzy'——方法论选择与问题本质匹配的论证方式"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "method_overview"
+    description: "DCR框架两阶段流程图：Quantification Stage(DCR Test Sheet→Check→Si) + Adjustment Stage(模糊推理→DCR Factor→Acc_adj)"
+    narrative_role: "框架全景，让读者一图理解完整pipeline"
+    design_elements: ["两阶段分隔", "四级BDC标注", "公式嵌入"]
+    visual_style: "标准流程图，左右两阶段，中间模糊推理系统"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Raw vs Adjusted accuracy across baseline to L4 injection"
+      how_gain_highlighted: "左列按family×scale分组显示raw-adj gap；右列均值统计"
+      design_note: "6子图(3 benchmarks × 2 views)展示DCR correction的效果"
+    - figure_id: "Figure 3"
+      viz_type: "scatter"
+      what_compared: "Raw/Adjusted accuracy vs DCR Factor"
+      how_gain_highlighted: "三benchmark颜色编码，线性回归参考线"
+      design_note: "一张scatter展示DCR Factor与accuracy的相关性"
+  ablation_figures:
+    - figure_id: "Figure 7"
+      viz_type: "heatmap"
+      dimensions_varied: ["L1 vs L3 × L2 levels × L4 levels"]
+      design_note: "9宫格surface图展示模糊推理系统的输入-输出关系，3×3 grid for L2×L4"
+  figure_narrative_role: "Figure 1(method) → Figure 2(raw vs adj) → Figure 3(correlation) → Figure 4-7(appendix: training loss, membership functions, fuzzy surface)"
+
+tables:
+  table_count: 9
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "models × BDC levels"
+    col_axis: "benchmarks × metrics (DCR/Acc/Acc_adj/|Δ|)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "无显式bold，靠|Δ|列量化"
+    statistical_reporting: "3次评估均值"
+    num_baselines: 9
+    design_note: "超大表格覆盖全部9模型×5条件×3benchmark，完整性优先于可读性"
+  ablation_tables:
+    - table_id: "Table 6"
+      what_varied: ["Ni (test prompt count: 5-50)"]
+      variation_style: "full_numbers"
+      design_note: "展示Ni=20为efficiency-accuracy sweet spot"
+    - table_id: "Table 7"
+      what_varied: ["LLM model for Check step"]
+      variation_style: "full_numbers"
+      design_note: "LLM替代人工检查的可行性分析"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4(model specs), Table 5(GPU costs), Table 8-9(fuzzy system设置), contamination corpus细节"
+    reason: "实验设置和系统参数放附录，主文聚焦结果和分析"

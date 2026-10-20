@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f95a32193d4ac12cdb27",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh w7 completion analysis",
+  "task_key": "worker_ssh_w7_completion_analysis_20260523T002436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w7_completion_analysis_20260523T002436_result.json",
+    "occurrence": 1,
+    "bytes": 164,
+    "sha256": "af7f6374a43992541108ecc5e1a90d74326906a9fe79d9d71319b2127832f3e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W7 ablation is at seed 19/20 (variant 3 of 4). Roughly 5-10 min left. I'll check back in 90 seconds and proceed with analysis as soon as it finishes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w7-completion-analysis.md"
+}

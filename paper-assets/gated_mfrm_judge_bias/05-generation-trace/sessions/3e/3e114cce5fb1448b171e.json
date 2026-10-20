@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e114cce5fb1448b171e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mvp 002 run",
+  "task_key": "worker_ssh_mvp_002_run_20260521T184314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp_002_run_20260521T184314_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "ed6c0c0cca15da515e1a937b9795bd4ad68c0283248d61f5c549d11a012c1298"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **脚本**: `run_mvp_002.py` 已写入 `/root/gated_mfrm_judge_bias/mvp/run_mvp_002.py`\n- **进程**: PID 15290，后台运行中（CPU mode，JAX fallback）\n- **Registry**: `mvp_002` 状态已推进到 RUNNING\n- **日志**: `/tmp/mvp_002.log`（seed=0 已开始）\n\n注意：服务器无 CUDA jaxlib，MCMC 运行在 CPU 上，N=50/J=8 × 20 seeds × 4 methods 预计耗时较长。可稍后用 `tail /tmp/mvp_002.log` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mvp-002-run.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64106832a83eeeee7c09",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh bootstrap delta tau",
+  "task_key": "worker_ssh_bootstrap_delta_tau_20260522T233031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_bootstrap_delta_tau_20260522T233031_result.json",
+    "occurrence": 1,
+    "bytes": 1448,
+    "sha256": "66c928a551d2ed64a9a864d3825bbb02f0522778a5f7b6a0f927ec69de1c6c60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出已生成。以下是完整结果：\n\n## summary.json\n\n| 指标 | 值 |\n|------|-----|\n| **Δτ mean** | 0.0273 |\n| **Δτ median** | 0.0000 |\n| **Δτ 95% CI** | [−0.0714, 0.0714] |\n| **P(Δτ > 0)** | 0.4511 |\n| **Δρ mean** | 0.0184 |\n| **Δρ 95% CI** | [−0.0476, 0.0476] |\n| **P(Δρ > 0)** | 0.4559 |\n| **τ_G-MFRM mean** | 0.8130 |\n| **τ_G-MFRM 95% CI** | [0.7143, 0.8571] |\n| **P(θ_mini > θ_qwen)** | 0.8531 |\n| **θ diff 95% CI** | [−0.2270, 0.7221] |\n\n## Claim 3 判定：**UNSAFE**\n\n**Δτ 的 95% CI 完全跨越 0 ([−0.071, 0.071])，P(Δτ>0) 仅 0.45，远低于 0.95 门槛。**\n\n核心原因：raw_average baseline 的排名和 G-MFRM 后验排名的差异太小。raw_average 的 τ=0.786 vs G-MFRM 的 τ 均值=0.813，差距只有 ~0.03。由于 Kendall τ 在 8 个模型上是离散的（最小可分辨差 ≈ 1/28 ≈ 0.036），绝大部分后验 draw 的 G-MFRM 排名和 baseline 排名一致或仅差一个 swap。\n\nrank swap 分析也佐证了这点：gpt-4o-mini vs qwen2.5-72b 的 θ 后验重叠显著，P(θ_mini > θ_qwen) = 0.853，θ 差的 95% CI 包含 0。这正是 G-MFRM 和 raw_average 产生 rank 分歧的那个位置。\n\n**结论：无法用 bootstrap Δτ 检验支撑 \"G-MFRM 显著优于 raw_average\" 的 claim。需要重新措辞 Claim 3 或补充其他证据维度（如 contamination 校正效果、WAIC/LOO 模型比较）。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-bootstrap-delta-tau.md"
+}

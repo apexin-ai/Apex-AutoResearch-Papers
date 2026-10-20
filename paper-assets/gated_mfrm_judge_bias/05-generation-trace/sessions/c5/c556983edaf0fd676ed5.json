@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c556983edaf0fd676ed5",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003 status check urgent",
+  "task_key": "worker_ssh_exp003_status_check_urgent_20260522T140524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003_status_check_urgent_20260522T140524_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "3cd289f9838cecd7fdd1ff80342ebf4d6533a7f4f1d9f5863c5ff1f785ec086a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003 状态报告\n\n### 1. 新进程：**已崩溃，无存活进程**\n- PID 131302 已退出，GPU 利用率全部 0%，4×GPU 无占用\n- 没有任何 `run_exp003` 相关进程存活\n\n### 2. 结果：**失败，results 目录为空**\n\n### 3. 错误原因：**JAX_PLATFORMS 修复未生效，同一个错误再次发生**\n\nrun.log 时间线：\n- 创建 21:56:21，最后修改 22:06:13（运行约 10 分钟后崩溃）\n- 脚本已加载数据成功（16507 records），进入 MCMC 编译阶段后崩溃\n\n崩溃栈：\n```\njax.errors.JaxRuntimeError: INTERNAL: CpuCallback error\nRuntimeError: jax.io_callback failed to find a local CPU device...\nMake sure \"cpu\" is listed in --jax_platforms or the JAX_PLATFORMS environment variable.\n```\n\n**关键矛盾**：`run_exp003.py` 第 1-2 行确实已有 `os.environ[\"JAX_PLATFORMS\"] = \"cuda,cpu\"`（文件修改时间 22:01），但错误依然发生。这说明：\n\n- **`os.environ` 设置太晚** — JAX 可能在 import 时就读取了 `JAX_PLATFORMS`，之后修改环境变量不再生效\n- 需要在 **import jax 之前** 确保环境变量已设置，或者用启动命令 `JAX_PLATFORMS=cuda,cpu python run_exp003.py` 从 shell 层面注入\n\n**建议修复**：在 tmux/nohup 启动命令中直接 `export JAX_PLATFORMS=cuda,cpu` 再调 python，而不是依赖脚本内 `os.environ`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003-status-check-urgent.md"
+}

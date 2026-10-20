@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9a362393847320e5807",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh w7 run analysis now",
+  "task_key": "worker_ssh_w7_run_analysis_now_20260523T003025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w7_run_analysis_now_20260523T003025_result.json",
+    "occurrence": 1,
+    "bytes": 80,
+    "sha256": "e9334211e10fbe34a8bf7c0898d67813c7cc7674a0e4d866859bc3d1dbe2bbfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting 2 minutes for seed 19 to progress, then I'll check again."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w7-run-analysis-now.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ceb8b828d42434dd7032",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp017 kill dryrun and start",
+  "task_key": "worker_ssh_exp017_kill_dryrun_and_start_20260523T065612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp017_kill_dryrun_and_start_20260523T065612_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "fe4fe13e4b76745f827595ca69d97cf7da1497dfd48411baf5e2c51a7b6c2702"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-017 已在 cuda:3 上成功启动：\n\n- **tmux session**: `exp-017`（created 14:57:04）\n- **PID**: 314680\n- **初始日志**: Coverage Simulation 进行中，800 轮配置（N_models=[8,20,50,100], seeds=200），已完成 3/800，MCMC 参数 chains=4, warmup=2000, samples=4000, target_accept=0.95"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp017-kill-dryrun-and-start.md"
+}

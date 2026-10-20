@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8e507d14de061ca591f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003b urgent check",
+  "task_key": "worker_ssh_exp003b_urgent_check_20260522T182307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003b_urgent_check_20260522T182307_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "df5a820a149aef074da08a6a1567c7aae399d8e48d89e5d90a4f157c9ee8f653"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 状态：\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 73% | 667 MiB / 97887 MiB |\n| 1-3 | 0% | 空闲 |\n\nexp-003b 在 GPU 0 上跑 MCMC，只用了 667 MiB 显存（NumPyro NUTS 主要吃 CPU）。\n\n**结论：实验还在 warmup 阶段（35%），预计还需 35-50 分钟完成。** 需要等完成后再提取结果。要我过一段时间再来查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003b-urgent-check.md"
+}

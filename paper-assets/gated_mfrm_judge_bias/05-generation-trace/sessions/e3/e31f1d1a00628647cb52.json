@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e31f1d1a00628647cb52",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh kill api judges check coverage",
+  "task_key": "worker_ssh_kill_api_judges_check_coverage_20260522T194015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_api_judges_check_coverage_20260522T194015_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "5eeed5dfde45f9499b38119475f35f9f30d460b6ce47674b616ddaeb44d99d65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 已杀进程\n\n| Judge | PID | 状态 |\n|---|---|---|\n| claude-opus-4.7-proxy | — | 进程已不存在（自行退出） |\n| gpt-5.5-proxy | 332533 | ✓ 已杀 |\n| claude-sonnet-4.6-proxy | 332567 | ✓ 已杀 |\n| deepseek-v4-pro-proxy | 332582 | ✓ 已杀 |\n| gemini-2.5-pro-proxy | 332599 | ✓ 已杀 |\n| qwen3-235b-proxy | 332616 | ✓ 已杀 |\n\n**保留运行中**：llama-3.3-70b (332474), qwen2.5-72b (332493), mistral-large-2 (332512)\n\n### 2. Sonnet 未保留\n\nSonnet 最近写入的全是 `status=failed` 记录（402 Insufficient balance），已杀掉。\n\n### 3. 覆盖率（成功判定 / 9000 目标）\n\n| Judge | Total | OK | Fail | Unique OK | Coverage |\n|---|---|---|---|---|---|\n| **gpt-5.5-proxy** | 8447 | 7221 | 1226 | **7221** | **80.2%** |\n| **qwen2.5-72b** ★ | 6720 | 6439 | 281 | **6439** | **71.5%** |\n| claude-opus-4.7-proxy | 9138 | 5522 | 3616 | 5522 | 61.4% |\n| claude-sonnet-4.6-proxy | 8774 | 5041 | 3733 | 5041 | 56.0% |\n| mistral-large-2 ★ | 4610 | 4304 | 306 | 4287 | 47.6% |\n| qwen3-235b-proxy | 7235 | 3535 | 3700 | 3535 | 39.3% |\n| llama-3.3-70b ★ | 3028 | 3028 | 0 | 3028 | 33.6% |\n| gemini-2.5-pro-proxy | 6827 | 2526 | 4301 | 2526 | 28.1% |\n| deepseek-v4-pro-proxy | 6129 | 2237 | 3892 | 2237 | 24.9% |\n\n★ = 本地 judge，仍在运行中\n\n### 4. 可用性判定\n\n- **≥ 80%**：gpt-5.5-proxy（80.2%）— 唯一达标\n- **< 80%**：其余 8 个 judge 均未达标。qwen2.5-72b（71.5%）和 claude-opus-4.7-proxy（61.4%）相对较高但仍不足。3 个本地 judge 仍在运行，覆盖率会继续增长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-api-judges-check-coverage.md"
+}

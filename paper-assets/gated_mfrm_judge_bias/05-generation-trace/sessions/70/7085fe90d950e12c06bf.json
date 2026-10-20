@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7085fe90d950e12c06bf",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl 8gpu start inference fix",
+  "task_key": "worker_ssh_autodl_8gpu_start_inference_fix_20260522T110023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_8gpu_start_inference_fix_20260522T110023_result.json",
+    "occurrence": 1,
+    "bytes": 1357,
+    "sha256": "32df1b0e15423770925d1b79c296dbdd172b33c1749a8c0b40044b87cafa604d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full status report:\n\n**Inference (running on autodl-8gpu, 4x RTX PRO 6000 Blackwell, 96GB each):**\n\n| Model | GPU | Progress | Speed |\n|-------|-----|----------|-------|\n| Qwen3-8B | GPU 0 | ~15% (75/500) | ~450 tok/s output |\n| gemma-2-9b-it | GPU 1 | 36% (181/500) | ~478 tok/s output |\n\n**Downloads (ModelScope, ~700KB/s via AutoDL proxy):**\n\n| Model | Status |\n|-------|--------|\n| Llama-3.1-8B-Instruct | 4/4 safetensors in temp dir, nearly done |\n| Qwen2.5-7B-Instruct | 12MB/~15GB, early stage |\n| Mistral-7B-Instruct-v0.3 | Not started yet (queued after Qwen2.5) |\n\n**Key fix applied:** vLLM 0.21.0 + FlashInfer 0.6.8 fails on Blackwell SM 12.0 (`check_cuda_arch()` can't detect the arch). Fixed by setting `VLLM_USE_FLASHINFER_SAMPLER=0`. This env var is now in the orchestrator script (`run_remaining.sh`), which watches for Llama/Qwen2.5/Mistral downloads and auto-launches them on GPUs 2-3.\n\n**What's running:**\n- `orchestrator2` tmux session — waits for remaining downloads, launches inference automatically\n- 2 ModelScope download processes still active (PIDs 98593, 102451)\n- Both inference processes healthy and generating\n\nGemma should finish in ~5min, Qwen3-8B in ~20min. Llama download should complete within the hour. Qwen2.5 and Mistral will take several more hours at current speeds."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-8gpu-start-inference-fix.md"
+}

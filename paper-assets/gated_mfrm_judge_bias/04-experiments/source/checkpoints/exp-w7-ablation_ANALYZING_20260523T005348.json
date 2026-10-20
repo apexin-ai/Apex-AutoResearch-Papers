@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-w7-ablation",
+  "project": "gated_mfrm_judge_bias",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:49:35.978Z",
+    "updated_at": "2026-05-23T00:53:48.402Z",
+    "hypothesis": "G-MFRM 各组件（continuous gating, judge severity d_j, joint estimation）对性能的独立贡献，合成数据消融",
+    "parent": "mvp_003",
+    "spec": {
+      "command": "python run_ablation.py (binary vs continuous gating, with/without d_j, joint vs staged, 20 seeds)",
+      "server": "autodl-8gpu",
+      "data_path": "synthetic (mvp_003 DGP: N=50, J=8, I=100, rho=0.6)",
+      "data_count": "20 seeds x 4 variants = 80 fits",
+      "model_name": "G-MFRM ablation variants",
+      "seed": "0-19",
+      "gpu": "cuda:2",
+      "checkpoint_source": "N/A (synthetic data ablation, no checkpoint)",
+      "eval_data": "synthetic DGP (N=50, J=8, I=100, rho=0.6, c~HalfNormal(1.5))"
+    },
+    "notes": "初步结果(2/20 seeds): full_gmfrm θ_RMSE=0.124/0.151, τ=0.922/0.920 | binary_gating c_RMSE +75% | no_judge_severity θ接近full | staged_estimation 最差(θ_RMSE 2.4x, c_RMSE 3.4x). 单seed ~19min, 20 seeds ETA ~6.3h. tmux session: w7_ablation"
+  },
+  "timestamp": "2026-05-23T00:53:48.462798+00:00",
+  "trigger": "update_registry"
+}

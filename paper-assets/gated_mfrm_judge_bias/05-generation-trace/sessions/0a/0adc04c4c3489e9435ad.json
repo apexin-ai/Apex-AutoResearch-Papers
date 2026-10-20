@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0adc04c4c3489e9435ad",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper figure fig1 framework",
+  "task_key": "worker_paper_figure_fig1_framework_20260522T091503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_framework_20260522T091503_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "62403a284db3139c2f0b37ed808765c1aea13834b4f9fdb924399423109cfb45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已完成。\n\n**输出文件**：\n- PDF: `/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.pdf` (52K)\n- PNG: `/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.png` (412K, 300dpi)\n- 生成脚本: `figures/paper/gen_fig1.py`\n\n**内容**：\n- **(a) 左面板**：Sequential Pipeline — Path A (Bias-first) 和 Path B (Contamination-first)，红色虚线弧标注 confounding，底部 OVB 公式框 Cov(d_j, c_n·e_i) ≠ 0\n- **(b) 右面板**：G-MFRM 三阶段流程 — Stage 1 Standard MFRM → Stage 2 External e_i estimation → Stage 3 Joint Gated Model with c_n·e_i gating → 4维诊断输出 (θ̂, d_j, c_n, e_i)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-framework.md"
+}

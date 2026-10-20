@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e05c58e62ec463b33825",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "latex swap fig1 fig2",
+  "task_key": "worker_latex_swap-fig1-fig2_20260524T165903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_latex_swap-fig1-fig2_20260524T165903_result.json",
+    "occurrence": 1,
+    "bytes": 240,
+    "sha256": "4e218089e87f5fffa245bfbd96a7e5f3f66e15142dea4b866b2ff32cebe10823"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`fig:framework` 已从 `method.tex` 移至 `background.tex` 中 `fig:ovb_bias` 之前。LaTeX 编译后 framework 图将排为 Figure 1，OVB 散点图排为 Figure 2。所有引用均使用 `\\ref`，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/latex-swap-fig1-fig2.md"
+}

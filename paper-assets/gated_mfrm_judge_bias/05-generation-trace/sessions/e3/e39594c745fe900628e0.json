@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e39594c745fe900628e0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh vllm llama cuda2",
+  "task_key": "worker_ssh_vllm_llama_cuda2_20260522T011825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_vllm_llama_cuda2_20260522T011825_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "882ec83e8dd2ea04bf296d8a9936e15afb9aa2a050a8455e75f9c0e0f44d078b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n### 产出汇总\n\n| 项目 | 值 |\n|------|------|\n| PID | 122778 (APIServer) / 123152 (EngineCore) |\n| 端口 | 8001 |\n| 模型名 | `llama-3.3-70b-instruct` |\n| GPU | cuda:2, 90104 MiB / 97887 MiB |\n| tmux session | `vllm-llama` |\n| KV cache | 150,128 tokens (最大并发 18.3x @ 8192 tokens) |\n\n**API 测试**: `\"Hello.\"` — 正常响应，延迟 ~1.7s（warmup 后）。\n\n**注意事项**:\n- 启动时需加 `VLLM_USE_FLASHINFER_SAMPLER=0`，因为 FlashInfer JIT 不识别 Blackwell GPU (sm_100)，已用 PyTorch-native sampler 替代\n- vLLM 提示可用 `--quantization awq_marlin` 获得更快推理，当前用的是 `awq`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-vllm-llama-cuda2.md"
+}

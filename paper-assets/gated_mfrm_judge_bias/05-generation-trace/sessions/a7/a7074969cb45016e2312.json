@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7074969cb45016e2312",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "figure fig1 framework paperbanana v3",
+  "task_key": "worker_figure_fig1-framework-paperbanana-v3_20260524T172758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1-framework-paperbanana-v3_20260524T172758_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "ccdd32bf502a1455177bc5c35e461f44499c5c50be19c57e67cb05da359db8ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "register_artifact 工具不可用，跳过注册步骤。\n\n**完成汇报：**\n\n- **方法**：PaperBanana 直接生成（gemini-2.5-pro + gemini-3-pro-image-preview），1 次迭代 critic 即通过\n- **公式正确性**：✓ Stage 3 G-MFRM 公式为 `θ_n − b_i − d_j − τ_k + c_n·e_i`（正号），`c_n·e_i` 橙色高亮\n- **输出标签**：✓ `ĉ_n`（Contamination），`θ̃_n`（Fair scores，带 tilde）\n- **视觉质量**：顶会级别——圆角面板、彩色 Stage 标签、阴影、Warm-start 弧形箭头、ê_i fixed 箭头、OVB 双向红色虚线箭头全部到位\n- **分辨率**：300 DPI，2752×1536 px\n\n**产出文件**：\n- PNG: `/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework_v2.png` (4.1MB)\n- PDF: `/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework_v2.pdf` (4.0MB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-framework-paperbanana-v3.md"
+}

@@ -1,0 +1,1687 @@
+# ssh fix mcmc n17 scripts
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/chats/worker_ssh_fix-mcmc-n17-scripts_20260524T093235.jsonl`
+- **Structured JSON:** [`2c8b785de80734930bdd.json`](../../sessions/2c/2c8b785de80734930bdd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+57 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-24T09:37:13.991748+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-24T09:37:13.992084+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-24T09:37:13.992314+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/run_exp003_n17.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp003/run_exp003_n17.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-24T09:37:13.992494+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-24T09:37:13.992783+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"JAX_PLATFORMS\\\"] = \\\"cuda,cpu\\\"\\nos.environ[\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\"] = \\\"false\\\"\\nos.environ[\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\"] = \\\"0.25\\\"\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\n\\\"\\\"\\\"exp-003 N=17: Fit G-MFRM on N=17 judge data.\\n\\nSame as run_exp003.py but with:\\n  - warmup: 6000 (was 2000/4000)\\n  - Automatic convergence stop-loss check after fitting\\n\\nUsage:\\n  python run_exp003_n17.py \\\\\\n    --judgment-dir /root/gated_mfrm_judge_bias/exp001_n17/results \\\\\\n    --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n    --output-dir /root/gated_mfrm_judge_bias/exp003/output_n17 \\\\\\n    --warmup 6000 --samples 4000 --chains 4 --target-accept 0.95 \\\\\\n    --device gpu\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nimport numpy as np\\n\\n\\ndef convergence_stoploss(idata, output_dir):\\n    \\\"\\\"\\\"Check R-hat and ESS; write CONVERGENCE_OK or CONVERGENCE_FAILED marker.\\\"\\\"\\\"\\n    import arviz as az\\n\\n    rhat = az.rhat(idata)\\n    ess_bulk = az.ess(idata, method=\\\"bulk\\\")\\n\\n    rhat_max = max(\\n        float(rhat[v].values.max()) if rhat[v].values.ndim > 0 else float(rhat[v].values)\\n        for v in rhat.data_vars\\n    )\\n    ess_min = min(\\n        float(ess_bulk[v].values.min()) if ess_bulk[v].values.ndim > 0 else float(ess_bulk[v].values)\\n        for v in ess_bulk.data_vars\\n    )\\n\\n    print(f\\\"\\\\n=== CONVERGENCE CHECK ===\\\")\\n    print(f\\\"R-hat max: {rhat_max:.4f} (threshold: 1.1)\\\")\\n    print(f\\\"ESS min: {ess_min:.0f} (threshold: 50)\\\")\\n\\n    if rhat_max > 1.1 or ess_min < 50:\\n        print(\\\"⚠️ STOP-LOSS TRIGGERED: R-hat > 1.1 or ESS < 50\\\")\\n        print(\\\"ACTION: Notify Director, do NOT proceed with downstream analysis\\\")\\n        with open(os.path.join
+…[truncated 5174 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T09:37:13.993087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nN=17 downstream analysis master script.\\nRun after MCMC fitting (run_exp003_n17.py) produces output_n17/.\\n\\nHandles hardcoded-path scripts by monkey-patching their module-level constants\\nbefore calling main(). Scripts with argparse get proper CLI args.\\n\\\"\\\"\\\"\\n\\nimport importlib\\nimport json\\nimport os\\nimport subprocess\\nimport sys\\nimport time\\n\\nBASE_DIR = \\\"/root/gated_mfrm_judge_bias\\\"\\nEXP003_DIR = os.path.join(BASE_DIR, \\\"exp003\\\")\\nN17_OUTPUT_DIR = os.path.join(EXP003_DIR, \\\"output_n17\\\")\\nDOWNSTREAM_DIR = os.path.join(N17_OUTPUT_DIR, \\\"downstream\\\")\\nJUDGMENT_DIR_N17 = os.path.join(BASE_DIR, \\\"exp001_n17\\\", \\\"results\\\")\\nEXPOSURE_CSV = os.path.join(BASE_DIR, \\\"exp002\\\", \\\"results\\\", \\\"exposure_scores.csv\\\")\\nGMFRM_IDATA = os.path.join(N17_OUTPUT_DIR, \\\"joint_gmfrm_idata.nc\\\")\\nMFRM_IDATA = os.path.join(N17_OUTPUT_DIR, \\\"mfrm_only_idata.nc\\\")\\n\\n\\ndef check_preconditions():\\n    if os.path.exists(os.path.join(N17_OUTPUT_DIR, \\\"CONVERGENCE_FAILED\\\")):\\n        print(\\\"ERROR: Convergence failed, aborting downstream analysis\\\")\\n        sys.exit(1)\\n    if not os.path.exists(GMFRM_IDATA):\\n        print(f\\\"ERROR: idata not found at {GMFRM_IDATA}\\\")\\n        sys.exit(1)\\n    os.makedirs(DOWNSTREAM_DIR, exist_ok=True)\\n\\n\\ndef run_step(name, fn):\\n    \\\"\\\"\\\"Run a step, catch exceptions, return status dict.\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"  {name}\\\")\\n    print(f\\\"{'='*60}\\\")\\n    t0 = time.time()\\n    try:\\n        fn()\\n        elapsed = time.time() - t0\\n        print(f\\\"  -> OK ({elapsed:.0f}s)\\\")\\n        return {\\\"status\\\": \\\"OK\\\", \\\"time\\\": round(elapsed, 1)}\\n    except Exception as e:\\n        elapsed = time.time() - t0\\n        print(f\\\"  -> FAILED ({elapsed:.0f}s): {e}\\\")\\n        impor
+…[truncated 7250 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-24T09:37:13.993260+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp003/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-24T09:37:13.993392+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T09:37:13.993738+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation and comparison of G-MFRM fitting methods on real data.\\n\\nNo ground-truth theta available. Instead we use:\\n  a) Convergence diagnostics: R-hat, ESS, divergences\\n  b) Model comparison: WAIC, LOO-CV via ArviZ\\n  c) External validity: Kendall-tau with Chatbot Arena Elo (if available)\\n  d) Parameter interpretation: c_n per model, d_j per judge\\n  e) Cross-method comparison: rank correlation between methods\\n\\nDependencies: numpy, scipy, arviz, matplotlib, json\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nimport arviz as az\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# Chatbot Arena ELO (snapshot: 2026-05-19, source: lmarena.ai)\\nARENA_ELO = {\\n    \\\"gpt-4o\\\": 1300,\\n    \\\"claude-3-5-sonnet-20241022\\\": 1298,\\n    \\\"gpt-4o-mini\\\": 1286,\\n    \\\"llama-3.3-70b\\\": 1275,\\n    \\\"gpt-4-turbo-2024-04-09\\\": 1272,\\n    \\\"qwen2.5-72b\\\": 1269,\\n    \\\"claude-3-opus-20240229\\\": 1262,\\n    \\\"llama-3.1-70b-instruct\\\": 1261,\\n    \\\"gemma-2-27b-it\\\": 1231,\\n    \\\"llama-3-70b-instruct\\\": 1221,\\n    \\\"gemma-2-9b\\\": 1207,\\n    \\\"gpt-4-0314\\\": 1206,\\n    \\\"claude-3-haiku-20240307\\\": 1195,\\n    \\\"gpt-4-0613\\\": 1186,\\n    \\\"qwen3-8b\\\": 1170,  # Not on official leaderboard; estimated from Arena-Hard performance\\n    \\\"llama-3-8b-instruct\\\": 1166,\\n    \\\"mixtral-8x22b-instruct-v0.1\\\": 1162,\\n    \\\"gpt-3.5-turbo-0125\\\": 1125,\\n}\\n\\n\\ndef convergence_report(results: dict) -> dict:\\n    \\\"\\\"\\\"Summarize convergence diagnostics across methods.\\\"\\\"\\\"\\n    report = {}\\n    for name, res in results.items():\\n        diag = res.get(\\\"diagnostics\\\", {})\\n        report[name] = {\\n            \\\"r_hat\\\": diag.get(\\\"r_hat\\\", float(\\\"nan\\\")),\\n            \\\"e
+…[truncated 7449 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T09:37:13.994032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap Δτ analysis: G-MFRM vs raw_average baseline, with Arena Elo as ground truth.\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\nfrom scipy.stats import kendalltau, spearmanr, rankdata\\n\\nos.environ.setdefault(\\\"JAX_PLATFORMS\\\", \\\"cuda,cpu\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\", \\\"false\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\", \\\"0.25\\\")\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport arviz as az\\n\\n# ---------------------------------------------------------------------------\\n# Constants\\n# ---------------------------------------------------------------------------\\nPROJECT_ROOT = Path(\\\"/root/gated_mfrm_judge_bias\\\")\\nOUTPUT_DIR = PROJECT_ROOT / \\\"artifacts\\\" / \\\"bootstrap_results\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nMODEL_NAMES = [\\n    \\\"gemma-2-9b\\\", \\\"gpt-3.5-turbo-0125\\\", \\\"gpt-4-0613\\\", \\\"gpt-4o\\\",\\n    \\\"gpt-4o-mini\\\", \\\"llama-3.3-70b\\\", \\\"qwen2.5-72b\\\", \\\"qwen3-8b\\\",\\n]\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\n\\ndef compute_ranking(values):\\n    \\\"\\\"\\\"Descending rank: highest value = rank 1.\\\"\\\"\\\"\\n    return rankdata(-np.asarray(values), method=\\\"ordinal\\\")\\n\\n\\ndef main():\\n    # -----------------------------------------------------------------------\\n    # 1. Load posterior theta samples\\n    # -----------------------------------------------------------------------\\n    ppc_path = PROJECT_ROOT / \\\"exp003\
+…[truncated 7283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-24T09:37:13.994205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -d /root/gated_mfrm_judge_bias/exp003/judgment_data_n17 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls -d /root/gated_mfrm_judge_bias/exp003/judgment_data_n17 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T09:37:13.994343+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-24T09:37:13.994488+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/gated_mfrm_judge_bias -type d -name \"*n17*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "find /root/gated_mfrm_judge_bias -type d -name \"*n17*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T09:37:13.994622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp001/results/claude-sonnet-4.6-proxy_n17\\n/root/gated_mfrm_judge_bias/exp001/results/gemini-2.5-pro-proxy_n17\\n/root/gated_mfrm_judge_bias/exp001/results/deepseek-v4-pro-proxy_n17\\n/root/gated_mfrm_judge_bias/exp001/results/qwen3-235b-proxy_n17\\n/root/gated_mfrm_judge_bias/exp001/results/llama-3.3-70b-local_n17\\n/root/gated_mfrm_judge_bias/exp001/results/mistral-large-2-local_n17\\n/root/gated_mfrm_judge_bias/exp001/output_n17_llama-3.3-70b-local\\n/root/gated_mfrm_judge_bias/exp001/output_n17_qwen2.5-72b-local\\n/root/gated_mfrm_judge_bias/exp003/judgment_data_n17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-24T09:37:13.994745+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -d /root/gated_mfrm_judge_bias/exp001/results 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls -d /root/gated_mfrm_judge_bias/exp001/results 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T09:37:13.994863+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-24T09:37:13.995002+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp001/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp001/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-24T09:37:13.995116+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp003/judgment_data_n17/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp003/judgment_data_n17/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T09:37:13.995240+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arena_hard_judgments.jsonl\\narena_hard_judgments.jsonl.bak\\nclaude-opus-4.7-proxy\\nclaude-sonnet-4.6-proxy\\nclaude-sonnet-4.6-proxy_n17\\ndeepseek-v4-pro-proxy\\ndeepseek-v4-pro-proxy_n17\\ngemini-2.5-pro-proxy\\ngemini-2.5-pro-proxy_n17\\ngpt-5.5-proxy\\nllama-3.3-70b\\nllama-3.3-70b-local_n17\\nmistral-large-2\\nmistral-large-2-local_n17\\nqwen2.5-72b\\nqwen2.5-72b-local_n17\\nqwen3-235b-proxy\\nqwen3-235b-proxy_n17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T09:37:13.995375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"claude-sonnet-4.6-proxy\\ndeepseek-v4-pro-proxy\\ngemini-2.5-pro-proxy\\nllama-3.3-70b\\nqwen2.5-72b\\nqwen3-235b-proxy\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-24T09:37:13.995561+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -60 /root/gated_mfrm_judge_bias/exp003/data_loader.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -60 /root/gated_mfrm_judge_bias/exp003/data_loader.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T09:37:13.995728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Load and preprocess Arena-Hard pairwise judgments for G-MFRM fitting.\\n\\nInputs:\\n  - judgment_dir: directory containing per-judge subdirs, each with arena_hard_judgments.jsonl\\n  - exposure_csv: exp-002 exposure_scores.csv (columns: item_id, e_i, ...)\\n\\nOutputs:\\n  - obs dict with sparse observation arrays (model_idx, item_idx, judge_idx, y)\\n  - index mappings (model_names, item_ids, judge_names)\\n  - exposure array e_i aligned to item indices\\n\\nDesign decisions (Director-defined):\\n  1. Ties (score=0.5) are discarded — binary MFRM only\\n  2. AB/BA position pairs are averaged; if average=0.5 (conflicting), treated as tie and discarded\\n  3. gpt-4-0314 self-comparison (model_a == baseline) is excluded\\n\\nDependencies: pandas, numpy, pathlib, json\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\n\\nBASELINE_MODEL = \\\"gpt-4-0314\\\"\\n\\n\\ndef load_judgments(judgment_dir: str) -> list[dict]:\\n    \\\"\\\"\\\"Read all per-judge JSONL files from subdirectories.\\\"\\\"\\\"\\n    judgment_dir = Path(judgment_dir)\\n    records = []\\n    jsonl_files = sorted(judgment_dir.glob(\\\"*/arena_hard_judgments.jsonl\\\"))\\n    if not jsonl_files:\\n        jsonl_files = sorted(judgment_dir.glob(\\\"arena_hard_judgments.jsonl\\\"))\\n\\n    for fpath in jsonl_files:\\n        with open(fpath) as f:\\n            for line in f:\\n                line = line.strip()\\n                if not line:\\n                    continue\\n                rec = json.loads(line)\\n                if rec.get(\\\"status\\\") != \\\"ok\\\":\\n                    continue\\n                score = rec.get(\\\"score\\\")\\n                if score is None or score == \\\"\\\":\\n                    continue\\n                score = float(score)\\n                records.append({\\n                    \\\"item_
+…[truncated 404 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-24T09:37:13.995889+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "sed -i 's/os.environ\\[\"CUDA_VISIBLE_DEVICES\"\\] = \"0\"/os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0,3\"/' /root/gated_mfrm_judge_bias/exp003/run_exp003_n17.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "sed -i 's/os.environ\\[\"CUDA_VISIBLE_DEVICES\"\\] = \"0\"/os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0,3\"/' /root/gated_mfrm_judge_bias/exp003/run_exp003_n17.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T09:37:13.996025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-24T09:37:13.996186+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "sed -i 's|JUDGMENT_DIR_N17 = os.path.join(BASE_DIR, \"exp001_n17\", \"results\")|JUDGMENT_DIR_N17 = os.path.join(EXP003_DIR, \"judgment_data_n17\")|' /root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "sed -i 's|JUDGMENT_DIR_N17 = os.path.join(BASE_DIR, \"exp001_n17\", \"results\")|JUDGMENT_DIR_N17 = os.path.join(EXP003_DIR, \"judgment_data_n17\")|' /root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T09:37:13.996322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-24T09:37:13.996494+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /tmp/fix_eval.py << 'PYEOF'\nimport re\n\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/evaluation.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# Add NAME_MAPPING after ARENA_ELO dict\nname_mapping_block = '''\n\n# Name mapping: data model names → ARENA_ELO keys\nARENA_NAME_MAPPING = {\n    \"gemma-2-9b-it\": \"gemma-2-9b\",\n    \"gpt-4o-2024-05-13\": \"gpt-4o\",\n    \"gpt-4o-mini-2024-07-18\": \"gpt-4o-mini\",\n    \"gpt-4-turbo-2024-04-09\": \"gpt-4-turbo-2024-04-09\",\n    \"claude-3-5-sonnet\": \"claude-3-5-sonnet-20241022\",\n    \"llama-3.1-70b\": \"llama-3.1-70b-instruct\",\n    \"llama-3-70b\": \"llama-3-70b-instruct\",\n    \"llama-3-8b\": \"llama-3-8b-instruct\",\n    \"mixtral-8x22b\": \"mixtral-8x22b-instruct-v0.1\",\n}\n'''\n\n# Insert after ARENA_ELO closing brace\narena_elo_end = content.find('\"gpt-3.5-turbo-0125\": 1125,\\n}')\nif arena_elo_end != -1:\n    insert_pos = content.find('\\n}', arena_elo_end) + 2\n    content = content[:insert_pos] + name_mapping_block + content[insert_pos:]\n\n# Replace arena_correlation function\nold_func = '''def arena_correlation(results: dict, model_names: list[str]) -> dict:\n    \"\"\"Kendall-tau and Spearman correlation with Arena Elo.\"\"\"\n    matched_models = [m for m in model_names if m in ARENA_ELO]\n    if len(matched_models) < 3:\n        return {\"note\": f\"Only {len(matched_models)} models matched Arena Elo, skipping\"}\n\n    matched_idx = [model_names.index(m) for m in matched_models]\n    elo_values = np.array([ARENA_ELO[m] for m in matched_models])\n\n    corr_results = {}\n    for name, res in results.items():\n        theta = res[\"theta_hat\"][matched_idx]\n        tau, tau_p = kendalltau(theta, elo_values)\n        rho, rho_p = spearmanr(theta, elo_values)\n        corr_results[name] = {\n            \"kendall_tau\": float(tau),\n            \"kendall_p\": float(tau_p),\n            \"spearman_rho\": float(rho),\n            \"spearman_p\": float(rho_p),\n            \"n_matched\": len(matched_models),\n            \"matched_models\": matched_models,\n        }\n    return corr_results'''\n\nnew_func = '''def arena_correlation(results: dict, model_names: list[str],\n                      exclude_models: list[str] | None = None,\n                      name_mapping: dict[str, str] | None = None) -> dict:\n    \"\"\"Kendall-tau and Spearman correlation with Arena Elo.\"\"\"\n    if name_mapping is None:\n        name_mapping = ARENA_NAME_MAPPING\n    if exclude_models is None:\n        exclude_models = []\n\n    # Map model names to ARENA_ELO keys\n    def resolve_name(m):\n        return name_mapping.get(m, m)\n\n    matched_models = []\n    matched_idx = []\n    for i, m in enumerate(model_names):\n        elo_key = resolve_name(m)\n        if elo_key in ARENA_ELO and m not in exclude_models:\n            matched_models.append(m)\n            matched_idx.append(i)\n\n    if len(matched_models) < 3:\n        return {\"note\": f\"Only {len(matched_models)} models matched Arena Elo, skipping\"}\n\n    elo_values = np.array([ARENA_ELO[resolve_name(m)] for m in matched_models])\n\n    corr_results = {}\n    for name, res in results.items():\n        theta = res[\"theta_hat\"][matched_idx]\n        tau, tau_p = kendalltau(theta, elo_values)\n        rho, rho_p = spearmanr(theta, elo_values)\n        corr_results[name] = {\n            \"kendall_tau\": float(tau),\n            \"kendall_p\": float(tau_p),\n            \"spearman_rho\": float(rho),\n            \"spearman_p\": float(rho_p),\n            \"n_matched\": len(matched_models),\n            \"matched_models\": matched_models,\n            \"excluded\": exclude_models,\n        }\n    return corr_results'''\n\ncontent = content.replace(old_func, new_func)\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"evaluation.py patched OK\")\nPYEOF\npython3 /tmp/fix_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /tmp/fix_eval.py << 'PYEOF'\nimport re\n\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/evaluation.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# Add NAME_MAPPING after ARENA_ELO dict\nname_mapping_block = '''\n\n# Name mapping: data model names → ARENA_ELO keys\nARENA_NAME_MAPPING = {\n    \"gemma-2-9b-it\": \"gemma-2-9b\",\n    \"gpt-4o-2024-05-13\": \"gpt-4o\",\n    \"gpt-4o-mini-2024-07-18\": \"gpt-4o-mini\",\n    \"gpt-4-turbo-2024-04-09\": \"gpt-4-turbo-2024-04-09\",\n    \"claude-3-5-sonnet\": \"claude-3-5-sonnet-20241022\",\n    \"llama-3.1-70b\": \"llama-3.1-70b-instruct\",\n    \"llama-3-70b\": \"llama-3-70b-instruct\",\n    \"llama-3-8b\": \"llama-3-8b-instruct\",\n    \"mixtral-8x22b\": \"mixtral-8x22b-instruct-v0.1\",\n}\n'''\n\n# Insert after ARENA_ELO closing brace\narena_elo_end = content.find('\"gpt-3.5-turbo-0125\": 1125,\\n}')\nif arena_elo_end != -1:\n    insert_pos = content.find('\\n}', arena_elo_end) + 2\n    content = content[:insert_pos] + name_mapping_block + content[insert_pos:]\n\n# Replace arena_correlation function\nold_func = '''def arena_correlation(results: dict, model_names: list[str]) -> dict:\n    \"\"\"Kendall-tau and Spearman correlation with Arena Elo.\"\"\"\n    matched_models = [m for m in model_names if m in ARENA_ELO]\n    if len(matched_models) < 3:\n        return {\"note\": f\"Only {len(matched_models)} models matched Arena Elo, skipping\"}\n\n    matched_idx = [model_names.index(m) for m in matched_models]\n    elo_values = np.array([ARENA_ELO[m] for m in matched_models])\n\n    corr_results = {}\n    for name, res in results.items():\n        theta = res[\"theta_hat\"][matched_idx]\n        tau, tau_p = kendalltau(theta, elo_values)\n        rho, rho_p = spearmanr(theta, elo_values)\n        corr_results[name] = {\n            \"kendall_tau\": float(tau),\n            \"kendall_p\": float(tau_p),\n            \"spearman_rho\": float(rho),\n            \"spearman_p\": float(rho_p),\n            \"n_matched\": len(matched_models),\n            \"matched_models\": matched_models,\n        }\n    return corr_results'''\n\nnew_func = '''def arena_correlation(results: dict, model_names: list[str],\n                      exclude_models: list[str] | None = None,\n                      name_mapping: dict[str, str] | None = None) -> dict:\n    \"\"\"Kendall-tau and Spearman correlation with Arena Elo.\"\"\"\n    if name_mapping is None:\n        name_mapping = ARENA_NAME_MAPPING\n    if exclude_models is None:\n        exclude_models = []\n\n    # Map model names to ARENA_ELO keys\n    def resolve_name(m):\n        return name_mapping.get(m, m)\n\n    matched_models = []\n    matched_idx = []\n    for i, m in enumerate(model_names):\n        elo_key = resolve_name(m)\n        if elo_key in ARENA_ELO and m not in exclude_models:\n            matched_models.append(m)\n            matched_idx.append(i)\n\n    if len(matched_models) < 3:\n        return {\"note\": f\"Only {len(matched_models)} models matched Arena Elo, skipping\"}\n\n    elo_values = np.array([ARENA_ELO[resolve_name(m)] for m in matched_models])\n\n    corr_results = {}\n    for name, res in results.items():\n        theta = res[\"theta_hat\"][matched_idx]\n        tau, tau_p = kendalltau(theta, elo_values)\n        rho, rho_p = spearmanr(theta, elo_values)\n        corr_results[name] = {\n            \"kendall_tau\": float(tau),\n            \"kendall_p\": float(tau_p),\n            \"spearman_rho\": float(rho),\n            \"spearman_p\": float(rho_p),\n            \"n_matched\": len(matched_models),\n            \"matched_models\": matched_models,\n            \"excluded\": exclude_models,\n        }\n    return corr_results'''\n\ncontent = content.replace(old_func, new_func)\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"evaluation.py patched OK\")\nPYEOF\npython3 /tmp/fix_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T09:37:13.996675+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"evaluation.py patched OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-24T09:37:13.996860+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /tmp/fix_bootstrap.py << 'PYEOF'\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# Replace MODEL_NAMES and ARENA_ELO constants with data-driven approach\nold_constants = '''MODEL_NAMES = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\n\nARENA_ELO = {\n    \"gpt-3.5-turbo-0125\": 1105,\n    \"gpt-4-0613\": 1163,\n    \"gemma-2-9b\": 1130,\n    \"qwen3-8b\": 1170,\n    \"llama-3.3-70b\": 1208,\n    \"qwen2.5-72b\": 1187,\n    \"gpt-4o\": 1286,\n    \"gpt-4o-mini\": 1272,\n}'''\n\nnew_constants = '''# Default MODEL_NAMES for N=8 backward compat (overridden by idata if available)\nMODEL_NAMES_N8 = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\n\n# Full Arena Elo (covers both N=8 and N=17 models)\nARENA_ELO = {\n    \"gpt-4o\": 1300,\n    \"claude-3-5-sonnet-20241022\": 1298,\n    \"gpt-4o-mini\": 1286,\n    \"llama-3.3-70b\": 1275,\n    \"gpt-4-turbo-2024-04-09\": 1272,\n    \"qwen2.5-72b\": 1269,\n    \"claude-3-opus-20240229\": 1262,\n    \"llama-3.1-70b-instruct\": 1261,\n    \"gemma-2-27b-it\": 1231,\n    \"llama-3-70b-instruct\": 1221,\n    \"gemma-2-9b\": 1207,\n    \"gpt-4-0314\": 1206,\n    \"claude-3-haiku-20240307\": 1195,\n    \"gpt-4-0613\": 1186,\n    \"qwen3-8b\": 1170,\n    \"llama-3-8b-instruct\": 1166,\n    \"mixtral-8x22b-instruct-v0.1\": 1162,\n    \"gpt-3.5-turbo-0125\": 1125,\n}\n\n# Name mapping for model names in idata that differ from ARENA_ELO keys\nARENA_NAME_MAPPING = {\n    \"gemma-2-9b-it\": \"gemma-2-9b\",\n    \"gpt-4o-2024-05-13\": \"gpt-4o\",\n    \"gpt-4o-mini-2024-07-18\": \"gpt-4o-mini\",\n    \"claude-3-5-sonnet\": \"claude-3-5-sonnet-20241022\",\n    \"llama-3.1-70b\": \"llama-3.1-70b-instruct\",\n    \"llama-3-70b\": \"llama-3-70b-instruct\",\n    \"llama-3-8b\": \"llama-3-8b-instruct\",\n    \"mixtral-8x22b\": \"mixtral-8x22b-instruct-v0.1\",\n}\n\nEXCLUDE_MODELS = [\"qwen3-8b\"]'''\n\ncontent = content.replace(old_constants, new_constants)\n\n# Replace the beginning of main() to be data-driven\nold_main_start = '''def main():\n    # -----------------------------------------------------------------------\n    # 1. Load posterior theta samples\n    # -----------------------------------------------------------------------\n    ppc_path = PROJECT_ROOT / \"exp003\" / \"output_003b\" / \"joint_gmfrm_idata_with_ppc.nc\"\n    base_path = PROJECT_ROOT / \"exp003\" / \"output_003b\" / \"joint_gmfrm_idata.nc\"\n    nc_path = ppc_path if ppc_path.exists() else base_path\n    print(f\"Loading InferenceData: {nc_path}\")\n    idata = az.from_netcdf(str(nc_path))\n\n    theta_samples = idata.posterior[\"theta\"].values  # (4, 4000, 8)\n    n_chains, n_draws, n_models = theta_samples.shape\n    print(f\"  Posterior theta: {n_chains} chains × {n_draws} draws × {n_models} models\")\n    theta_flat = theta_samples.reshape(-1, n_models)  # (16000, 8)\n    n_total = theta_flat.shape[0]\n\n    # -----------------------------------------------------------------------\n    # 2. Arena Elo → ground truth ranking\n    # -----------------------------------------------------------------------\n    arena_elo_vals = np.array([ARENA_ELO[m] for m in MODEL_NAMES])\n    arena_ranking = compute_ranking(arena_elo_vals)\n    print(f\"\\\\nArena Elo ranking (ground truth):\")\n    for i, m in enumerate(MODEL_NAMES):\n        print(f\"  {m}: Elo={ARENA_ELO[m]}, rank={arena_ranking[i]}\")'''\n\nnew_main_start = '''def main():\n    # -----------------------------------------------------------------------\n    # 1. Load posterior theta samples (data-driven model list)\n    # -----------------------------------------------------------------------\n    ppc_path = PROJECT_ROOT / \"exp003\" / \"output_003b\" / \"joint_gmfrm_idata_with_ppc.nc\"\n    base_path = PROJECT_ROOT / \"exp003\" / \"output_003b\" / \"joint_gmfrm_idata.nc\"\n    nc_path = ppc_path if ppc_path.exists() else base_path\n    print(f\"Loading InferenceData: {nc_path}\")\n    idata = az.from_netcdf(str(nc_path))\n\n    theta_samples = idata.posterior[\"theta\"].values\n    n_chains, n_draws, n_models = theta_samples.shape\n    print(f\"  Posterior theta: {n_chains} chains × {n_draws} draws × {n_models} models\")\n    theta_flat = theta_samples.reshape(-1, n_models)\n    n_total = theta_flat.shape[0]\n\n    # Extract model names from idata coordinates (data-driven)\n    if \"model\" in idata.posterior.coords:\n        MODEL_NAMES = [str(m) for m in idata.posterior.coords[\"model\"].values]\n        print(f\"  Model names from idata: {MODEL_NAMES}\")\n    elif n_models == 8:\n        MODEL_NAMES = MODEL_NAMES_N8\n        print(f\"  Using default N=8 model names (no coord in idata)\")\n    else:\n        raise ValueError(f\"Cannot determine model names: n_models={n_models}, no 'model' coord in idata\")\n\n    # Resolve names and filter for Arena Elo matching (excluding qwen3-8b)\n    def resolve_name(m):\n        return ARENA_NAME_MAPPING.get(m, m)\n\n    active_models = [m for m in MODEL_NAMES if m not in EXCLUDE_MODELS]\n    matched_models = [m for m in active_models if resolve_name(m) in ARENA_ELO]\n    matched_idx = [MODEL_NAMES.index(m) for m in matched_models]\n\n    if len(matched_models) < 3:\n        raise ValueError(f\"Only {len(matched_models)} models matched Arena Elo: {matched_models}\")\n\n    print(f\"  Excluded: {EXCLUDE_MODELS}\")\n    print(f\"  Matched for Arena correlation: {len(matched_models)}/{len(MODEL_NAMES)}\")\n\n    # -----------------------------------------------------------------------\n    # 2. Arena Elo → ground truth ranking (matched models only)\n    # -----------------------------------------------------------------------\n    arena_elo_vals = np.array([ARENA_ELO[resolve_name(m)] for m in matched_models])\n    arena_ranking = compute_ranking(arena_elo_vals)\n    print(f\"\\\\nArena Elo ranking (ground truth, {len(matched_models)} models):\")\n    for i, m in enumerate(matched_models):\n        print(f\"  {m}: Elo={ARENA_ELO[resolve_name(m)]}, rank={arena_ranking[i]}\")'''\n\ncontent = content.replace(old_main_start, new_main_start)\n\n# Fix section 3 baseline to use matched indices\nold_baseline = '''    # -----------------------------------------------------------------------\n    # 3. Baseline: raw_average from judgment data\n    # -----------------------------------------------------------------------\n    sys.path.insert(0, str(PROJECT_ROOT / \"exp003\"))\n    from data_loader import load_data\n    data = load_data(\n        str(PROJECT_ROOT / \"exp001\" / \"results\"),\n        str(PROJECT_ROOT / \"exp002\" / \"results\" / \"exposure_scores.csv\"),\n    )\n    raw_avg_theta = np.zeros(data[\"N\"])\n    for n in range(data[\"N\"]):\n        mask = data[\"model_idx\"] == n\n        if mask.sum() > 0:\n            raw_avg_theta[n] = data[\"y\"][mask].mean()\n    raw_avg_theta = raw_avg_theta - raw_avg_theta.mean()\n    baseline_ranking = compute_ranking(raw_avg_theta)\n\n    print(f\"\\\\nBaseline (raw_average) ranking:\")\n    for i, m in enumerate(MODEL_NAMES):\n        print(f\"  {m}: raw_avg={raw_avg_theta[i]:.4f}, rank={baseline_ranking[i]}\")\n\n    # Verify baseline tau matches expected 0.786\n    tau_baseline_check, _ = kendalltau(arena_ranking, baseline_ranking)\n    print(f\"\\\\n  Baseline τ with Arena = {tau_baseline_check:.4f} (expected ~0.786)\")'''\n\nnew_baseline = '''    # -----------------------------------------------------------------------\n    # 3. Baseline: raw_average from judgment data\n    # -----------------------------------------------------------------------\n    sys.path.insert(0, str(PROJECT_ROOT / \"exp003\"))\n    from data_loader import load_data\n\n    # Try N=17 judgment data first, fall back to N=8\n    judgment_dir_n17 = PROJECT_ROOT / \"exp003\" / \"judgment_data_n17\"\n    judgment_dir_n8 = PROJECT_ROOT / \"exp001\" / \"results\"\n    judgment_dir = str(judgment_dir_n17) if judgment_dir_n17.exists() and n_models > 8 else str(judgment_dir_n8)\n\n    data = load_data(\n        judgment_dir,\n        str(PROJECT_ROOT / \"exp002\" / \"results\" / \"exposure_scores.csv\"),\n    )\n    raw_avg_theta = np.zeros(data[\"N\"])\n    for n in range(data[\"N\"]):\n        mask = data[\"model_idx\"] == n\n        if mask.sum() > 0:\n            raw_avg_theta[n] = data[\"y\"][mask].mean()\n    raw_avg_theta = raw_avg_theta - raw_avg_theta.mean()\n\n    # Use matched subset for baseline ranking\n    baseline_matched = raw_avg_theta[matched_idx]\n    baseline_ranking = compute_ranking(baseline_matched)\n\n    print(f\"\\\\nBaseline (raw_average) ranking ({len(matched_models)} matched models):\")\n    for i, m in enumerate(matched_models):\n        print(f\"  {m}: raw_avg={baseline_matched[i]:.4f}, rank={baseline_ranking[i]}\")\n\n    tau_baseline_check, _ = kendalltau(arena_ranking, baseline_ranking)\n    print(f\"\\\\n  Baseline τ with Arena = {tau_baseline_check:.4f}\")'''\n\ncontent = content.replace(old_baseline, new_baseline)\n\n# Fix section 4 bootstrap to use matched indices\nold_bootstrap_header = '''    # -----------------------------------------------------------------------\n    # 4. Bootstrap: posterior draws of Δτ and Δρ\n    # ---------------------------------------'''\n\nnew_bootstrap_header = '''    # -----------------------------------------------------------------------\n    # 4. Bootstrap: posterior draws of Δτ and Δρ (matched models only)\n    # -----------------------------------------------------------------------\n    # Subset theta_flat to matched models\n    theta_flat_matched = theta_flat[:, matched_idx]'''\n\ncontent = content.replace(old_bootstrap_header, new_bootstrap_header)\n\n# Now fix the tau computation in section 4 to use theta_flat_matched\n# The original code uses theta_flat[:, i] - need to change to theta_flat_matched\ncontent = content.replace(\n    \"theta_draw = theta_flat[i]\",\n    \"theta_draw = theta_flat_matched[i]\"\n)\n\n# Fix n_total usage if it references MODEL_NAMES length\n# Actually the loop uses theta_flat rows which is fine\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"bootstrap_delta_tau.py patched OK\")\nPYEOF\npython3 /tmp/fix_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /tmp/fix_bootstrap.py << 'PYEOF'\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# Replace MODEL_NAMES and ARENA_ELO constants with data-driven approach\nold_constants = '''MODEL_NAMES = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\n\nARENA_ELO = {\n    \"gpt-3.5-turbo-0125\": 1105,\n    \"gpt-4-0613\": 1163,\n    \"gemma-2-9b\": 1130,\n    \"qwen3-8b\": 1170,\n    \"llama-3.3-70b\": 1208,\n    \"qwen2.5-72b\": 1187,\n    \"gpt-4o\": 1286,\n    \"gpt-4o-mini\": 1272,\n}'''\n\nnew_constants = '''# Default MODEL_NAMES for N=8 backward compat (overridden by idata if available)\nMODEL_NAMES_N8 = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\n\n# Full Arena Elo (covers both N=8 and N=17 models)\nARENA_ELO = {\n    \"gpt-4o\": 1300,\n    \"claude-3-5-sonnet-20241022\": 1298,\n    \"gpt-4o-mini\": 1286,\n    \"llama-3.3-70b\": 1275,\n    \"gpt-4-turbo-2024-04-09\": 1272,\n    \"qwen2.5-72b\": 1269,\n    \"claude-3-opus-20240229\": 1262,\n    \"llama-3.1-70b-instruct\": 1261,\n    \"gemma-2-27b-it\": 1231,\n    \"llama-3-70b-instruct\": 1221,\n    \"gemma-2-9b\": 1207,\n    \"gpt-4-0314\": 1206,\n    \"claude-3-haiku-20240307\": 1195,\n    \"gpt-4-0613\": 1186,\n    \"qwen3-8b\": 1170,\n    \"llama-3-8b-instruct\": 1166,\n    \"mixtral-8x22b-instruct-v0.1\": 1162,\n    \"gpt-3.5-turbo-0125\": 1125,\n}\n\n# Name mapping for model names in idata that differ from ARENA_ELO keys\nARENA_NAME_MAPPING = {\n    \"gemma-2-9b-it\": \"gemma-2-9b\",\n    \"gpt-4o-2024-05-13\": \"gpt-4o\",\n    \"gpt-4o-mini-2024-07-18\": \"gpt-4o-mini\",\n    \"claude-3-5-sonnet\": \"claude-3-5-sonnet-20241022\",\n    \"llama-3.1-70b\": \"llama-3.1-70b-instruct\",\n    \"llama-3-70b\": \"llama-3-70b-instruct\",\n    \"llama-3-8b\": \"llama-3-8b-instruct\",\n    \"mixtral-8x22b\": \"mixtral-8x22b-instruct-v0.1\",\n}\n\nEXCLUDE_MODELS = [\"qwen3-8b\"]'''\n\ncontent = content.replace(old_constants, new_constants)\n\n# Replace the beginning of main() to be data-driven\nold_main_start = '''def main():\n    # -----------------------------------------------------------------------\n    # 1. Load posterior theta samples\n    # -----------------------------------------------------------------------\n    ppc_path = PROJECT_ROOT / \"exp003\" / \"output_003b\" / \"joint_gmfrm_idata_with_ppc.nc\"\n    base_path = PROJECT_ROOT / \"exp003\" / \"output_003b\" / \"joint_gmfrm_idata.nc\"\n    nc_path = ppc_path if ppc_path.exists() else base_path\n    print(f\"Loading InferenceData: {nc_path}\")\n    idata = az.from_netcdf(str(nc_path))\n\n    theta_samples = idata.posterior[\"theta\"].values  # (4, 4000, 8)\n    n_chains, n_draws, n_models = theta_samples.shape\n    print(f\"  Posterior theta: {n_chains} chains × {n_draws} draws × {n_models} models\")\n    theta_flat = theta_samples.reshape(-1, n_models)  # (16000, 8)\n    n_total = theta_flat.shape[0]\n\n    # -----------------------------------------------------------------------\n    # 2. Arena Elo → ground truth ranking\n    # -----------------------------------------------------------------------\n    arena_elo_vals = np.array([ARENA_ELO[m] for m in MODEL_NAMES])\n    arena_ranking = compute_ranking(arena_elo_vals)\n    print(f\"\\\\nArena Elo ranking (ground truth):\")\n    for i, m in enumerate(MODEL_NAMES):\n        print(f\"  {m}: Elo={ARENA_ELO[m]}, rank={arena_ranking[i]}\")'''\n\nnew_main_start = '''def main():\n    # -----------------------------------------------------------------------\n    # 1. Load posterior theta samples (data-driven model list)\n    # -----------------------------------------------------------------------\n    ppc_path = PROJECT_ROOT / \"exp003\" / \"output_003b\" / \"joint_gmfrm_idata_with_ppc.nc\"\n    base_path = PROJECT_ROOT / \"exp003\" / \"output_003b\" / \"joint_gmfrm_idata.nc\"\n    nc_path = ppc_path if ppc_path.exists() else base_path\n    print(f\"Loading InferenceData: {nc_path}\")\n    idata = az.from_netcdf(str(nc_path))\n\n    theta_samples = idata.posterior[\"theta\"].values\n    n_chains, n_draws, n_models = theta_samples.shape\n    print(f\"  Posterior theta: {n_chains} chains × {n_draws} draws × {n_models} models\")\n    theta_flat = theta_samples.reshape(-1, n_models)\n    n_total = theta_flat.shape[0]\n\n    # Extract model names from idata coordinates (data-driven)\n    if \"model\" in idata.posterior.coords:\n        MODEL_NAMES = [str(m) for m in idata.posterior.coords[\"model\"].values]\n        print(f\"  Model names from idata: {MODEL_NAMES}\")\n    elif n_models == 8:\n        MODEL_NAMES = MODEL_NAMES_N8\n        print(f\"  Using default N=8 model names (no coord in idata)\")\n    else:\n        raise ValueError(f\"Cannot determine model names: n_models={n_models}, no 'model' coord in idata\")\n\n    # Resolve names and filter for Arena Elo matching (excluding qwen3-8b)\n    def resolve_name(m):\n        return ARENA_NAME_MAPPING.get(m, m)\n\n    active_models = [m for m in MODEL_NAMES if m not in EXCLUDE_MODELS]\n    matched_models = [m for m in active_models if resolve_name(m) in ARENA_ELO]\n    matched_idx = [MODEL_NAMES.index(m) for m in matched_models]\n\n    if len(matched_models) < 3:\n        raise ValueError(f\"Only {len(matched_models)} models matched Arena Elo: {matched_models}\")\n\n    print(f\"  Excluded: {EXCLUDE_MODELS}\")\n    print(f\"  Matched for Arena correlation: {len(matched_models)}/{len(MODEL_NAMES)}\")\n\n    # -----------------------------------------------------------------------\n    # 2. Arena Elo → ground truth ranking (matched models only)\n    # -----------------------------------------------------------------------\n    arena_elo_vals = np.array([ARENA_ELO[resolve_name(m)] for m in matched_models])\n    arena_ranking = compute_ranking(arena_elo_vals)\n    print(f\"\\\\nArena Elo ranking (ground truth, {len(matched_models)} models):\")\n    for i, m in enumerate(matched_models):\n        print(f\"  {m}: Elo={ARENA_ELO[resolve_name(m)]}, rank={arena_ranking[i]}\")'''\n\ncontent = content.replace(old_main_start, new_main_start)\n\n# Fix section 3 baseline to use matched indices\nold_baseline = '''    # -----------------------------------------------------------------------\n    # 3. Baseline: raw_average from judgment data\n    # -----------------------------------------------------------------------\n    sys.path.insert(0, str(PROJECT_ROOT / \"exp003\"))\n    from data_loader import load_data\n    data = load_data(\n        str(PROJECT_ROOT / \"exp001\" / \"results\"),\n        str(PROJECT_ROOT / \"exp002\" / \"results\" / \"exposure_scores.csv\"),\n    )\n    raw_avg_theta = np.zeros(data[\"N\"])\n    for n in range(data[\"N\"]):\n        mask = data[\"model_idx\"] == n\n        if mask.sum() > 0:\n            raw_avg_theta[n] = data[\"y\"][mask].mean()\n    raw_avg_theta = raw_avg_theta - raw_avg_theta.mean()\n    baseline_ranking = compute_ranking(raw_avg_theta)\n\n    print(f\"\\\\nBaseline (raw_average) ranking:\")\n    for i, m in enumerate(MODEL_NAMES):\n        print(f\"  {m}: raw_avg={raw_avg_theta[i]:.4f}, rank={baseline_ranking[i]}\")\n\n    # Verify baseline tau matches expected 0.786\n    tau_baseline_check, _ = kendalltau(arena_ranking, baseline_ranking)\n    print(f\"\\\\n  Baseline τ with Arena = {tau_baseline_check:.4f} (expected ~0.786)\")'''\n\nnew_baseline = '''    # -----------------------------------------------------------------------\n    # 3. Baseline: raw_average from judgment data\n    # -----------------------------------------------------------------------\n    sys.path.insert(0, str(PROJECT_ROOT / \"exp003\"))\n    from data_loader import load_data\n\n    # Try N=17 judgment data first, fall back to N=8\n    judgment_dir_n17 = PROJECT_ROOT / \"exp003\" / \"judgment_data_n17\"\n    judgment_dir_n8 = PROJECT_ROOT / \"exp001\" / \"results\"\n    judgment_dir = str(judgment_dir_n17) if judgment_dir_n17.exists() and n_models > 8 else str(judgment_dir_n8)\n\n    data = load_data(\n        judgment_dir,\n        str(PROJECT_ROOT / \"exp002\" / \"results\" / \"exposure_scores.csv\"),\n    )\n    raw_avg_theta = np.zeros(data[\"N\"])\n    for n in range(data[\"N\"]):\n        mask = data[\"model_idx\"] == n\n        if mask.sum() > 0:\n            raw_avg_theta[n] = data[\"y\"][mask].mean()\n    raw_avg_theta = raw_avg_theta - raw_avg_theta.mean()\n\n    # Use matched subset for baseline ranking\n    baseline_matched = raw_avg_theta[matched_idx]\n    baseline_ranking = compute_ranking(baseline_matched)\n\n    print(f\"\\\\nBaseline (raw_average) ranking ({len(matched_models)} matched models):\")\n    for i, m in enumerate(matched_models):\n        print(f\"  {m}: raw_avg={baseline_matched[i]:.4f}, rank={baseline_ranking[i]}\")\n\n    tau_baseline_check, _ = kendalltau(arena_ranking, baseline_ranking)\n    print(f\"\\\\n  Baseline τ with Arena = {tau_baseline_check:.4f}\")'''\n\ncontent = content.replace(old_baseline, new_baseline)\n\n# Fix section 4 bootstrap to use matched indices\nold_bootstrap_header = '''    # -----------------------------------------------------------------------\n    # 4. Bootstrap: posterior draws of Δτ and Δρ\n    # ---------------------------------------'''\n\nnew_bootstrap_header = '''    # -----------------------------------------------------------------------\n    # 4. Bootstrap: posterior draws of Δτ and Δρ (matched models only)\n    # -----------------------------------------------------------------------\n    # Subset theta_flat to matched models\n    theta_flat_matched = theta_flat[:, matched_idx]'''\n\ncontent = content.replace(old_bootstrap_header, new_bootstrap_header)\n\n# Now fix the tau computation in section 4 to use theta_flat_matched\n# The original code uses theta_flat[:, i] - need to change to theta_flat_matched\ncontent = content.replace(\n    \"theta_draw = theta_flat[i]\",\n    \"theta_draw = theta_flat_matched[i]\"\n)\n\n# Fix n_total usage if it references MODEL_NAMES length\n# Actually the loop uses theta_flat rows which is fine\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"bootstrap_delta_tau.py patched OK\")\nPYEOF\npython3 /tmp/fix_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T09:37:13.997097+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bootstrap_delta_tau.py patched OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-24T09:37:13.997238+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "sed -n '90,160p' /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "sed -n '90,160p' /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T09:37:13.997361+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-24T09:37:13.997500+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -150 /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -150 /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T09:37:13.997740+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                                 float(np.percentile(theta_diff, 97.5))],\\n        },\\n        \\\"metadata\\\": {\\n            \\\"n_posterior_draws\\\": n_total,\\n            \\\"n_chains\\\": n_chains,\\n            \\\"n_draws_per_chain\\\": n_draws,\\n            \\\"n_models\\\": n_models,\\n            \\\"model_names\\\": MODEL_NAMES,\\n        },\\n    }\\n\\n    # Save\\n    summary_path = OUTPUT_DIR / \\\"summary.json\\\"\\n    with open(summary_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {summary_path}\\\")\\n\\n    # -----------------------------------------------------------------------\\n    # 7. Plots\\n    # -----------------------------------------------------------------------\\n    plt.rcParams.update({\\n        \\\"font.size\\\": 11,\\n        \\\"axes.labelsize\\\": 13,\\n        \\\"axes.titlesize\\\": 13,\\n        \\\"figure.dpi\\\": 150,\\n    })\\n    colors = plt.cm.tab10.colors\\n\\n    # --- Plot 1: Δτ distribution ---\\n    fig, ax = plt.subplots(figsize=(3.5, 3.0))\\n    ax.hist(delta_tau, bins=50, color=colors[0], alpha=0.7, edgecolor=\\\"white\\\", linewidth=0.5)\\n    ci_lo, ci_hi = results[\\\"delta_tau\\\"][\\\"ci_95\\\"]\\n    ymax = ax.get_ylim()[1]\\n    ax.axvline(0, color=\\\"black\\\", linestyle=\\\"--\\\", linewidth=1, label=\\\"Δτ = 0\\\")\\n    ax.axvline(ci_lo, color=colors[3], linestyle=\\\":\\\", linewidth=1.2)\\n    ax.axvline(ci_hi, color=colors[3], linestyle=\\\":\\\", linewidth=1.2,\\n               label=f\\\"95% CI [{ci_lo:.3f}, {ci_hi:.3f}]\\\")\\n    ax.axvline(np.mean(delta_tau), color=colors[1], linestyle=\\\"-\\\", linewidth=1.5,\\n               label=f\\\"Mean = {np.mean(delta_tau):.3f}\\\")\\n    ax.set_xlabel(\\\"Δτ (G-MFRM − raw average)\\\")\\n    ax.set_ylabel(\\\"Count\\\")\\n    ax.legend(fontsize=8, loc=\\\"upper left\\\")\\n    ax.text(0.97, 0.95, f\\\"P(Δτ > 0) = {results['delta_tau']['
+…[truncated 6196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-24T09:37:13.997915+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -140 /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -140 /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T09:37:13.998396+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap Δτ analysis: G-MFRM vs raw_average baseline, with Arena Elo as ground truth.\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\nfrom scipy.stats import kendalltau, spearmanr, rankdata\\n\\nos.environ.setdefault(\\\"JAX_PLATFORMS\\\", \\\"cuda,cpu\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\", \\\"false\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\", \\\"0.25\\\")\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport arviz as az\\n\\n# ---------------------------------------------------------------------------\\n# Constants\\n# ---------------------------------------------------------------------------\\nPROJECT_ROOT = Path(\\\"/root/gated_mfrm_judge_bias\\\")\\nOUTPUT_DIR = PROJECT_ROOT / \\\"artifacts\\\" / \\\"bootstrap_results\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n# Default MODEL_NAMES for N=8 backward compat (overridden by idata if available)\\nMODEL_NAMES_N8 = [\\n    \\\"gemma-2-9b\\\", \\\"gpt-3.5-turbo-0125\\\", \\\"gpt-4-0613\\\", \\\"gpt-4o\\\",\\n    \\\"gpt-4o-mini\\\", \\\"llama-3.3-70b\\\", \\\"qwen2.5-72b\\\", \\\"qwen3-8b\\\",\\n]\\n\\n# Full Arena Elo (covers both N=8 and N=17 models)\\nARENA_ELO = {\\n    \\\"gpt-4o\\\": 1300,\\n    \\\"claude-3-5-sonnet-20241022\\\": 1298,\\n    \\\"gpt-4o-mini\\\": 1286,\\n    \\\"llama-3.3-70b\\\": 1275,\\n    \\\"gpt-4-turbo-2024-04-09\\\": 1272,\\n    \\\"qwen2.5-72b\\\": 1269,\\n    \\\"claude-3-opus-20240229\\\": 1262,\\n    \\\"llama-3.1-70b-instruct\\\": 1261,\\n    \\\"gemma-2-27b-it\\\": 1231,\\n    \\\"llama-3-70b-instruct\\\": 1221,\\n    \\\"gemma-2-9b\\\": 1207,\\n    \\\"gpt-4-0314\\\": 1206,\\n    \\\"claude-3-haiku-20240307\\\": 1195,\\n    \\\"gpt-4-0613\\\": 1186,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\
+…[truncated 4633 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-24T09:37:13.998628+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -200 /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -200 /root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T09:37:13.998882+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Bootstrap Δτ analysis: G-MFRM vs raw_average baseline, with Arena Elo as ground truth.\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\nfrom scipy.stats import kendalltau, spearmanr, rankdata\\n\\nos.environ.setdefault(\\\"JAX_PLATFORMS\\\", \\\"cuda,cpu\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\", \\\"false\\\")\\nos.environ.setdefault(\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\", \\\"0.25\\\")\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport arviz as az\\n\\n# ---------------------------------------------------------------------------\\n# Constants\\n# ---------------------------------------------------------------------------\\nPROJECT_ROOT = Path(\\\"/root/gated_mfrm_judge_bias\\\")\\nOUTPUT_DIR = PROJECT_ROOT / \\\"artifacts\\\" / \\\"bootstrap_results\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n# Default MODEL_NAMES for N=8 backward compat (overridden by idata if available)\\nMODEL_NAMES_N8 = [\\n    \\\"gemma-2-9b\\\", \\\"gpt-3.5-turbo-0125\\\", \\\"gpt-4-0613\\\", \\\"gpt-4o\\\",\\n    \\\"gpt-4o-mini\\\", \\\"llama-3.3-70b\\\", \\\"qwen2.5-72b\\\", \\\"qwen3-8b\\\",\\n]\\n\\n# Full Arena Elo (covers both N=8 and N=17 models)\\nARENA_ELO = {\\n    \\\"gpt-4o\\\": 1300,\\n    \\\"claude-3-5-sonnet-20241022\\\": 1298,\\n    \\\"gpt-4o-mini\\\": 1286,\\n    \\\"llama-3.3-70b\\\": 1275,\\n    \\\"gpt-4-turbo-2024-04-09\\\": 1272,\\n    \\\"qwen2.5-72b\\\": 1269,\\n    \\\"claude-3-opus-20240229\\\": 1262,\\n    \\\"llama-3.1-70b-instruct\\\": 1261,\\n    \\\"gemma-2-27b-it\\\": 1231,\\n    \\\"llama-3-70b-instruct\\\": 1221,\\n    \\\"gemma-2-9b\\\": 1207,\\n    \\\"gpt-4-0314\\\": 1206,\\n    \\\"claude-3-haiku-20240307\\\": 1195,\\n    \\\"gpt-4-0613\\\": 1186,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\
+…[truncated 7206 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-24T09:37:13.999094+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /tmp/fix_bootstrap2.py << 'PYEOF'\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# Fix 1: Remove the trailing dashes from section 4 header\ncontent = content.replace(\n    \"theta_flat_matched = theta_flat[:, matched_idx]--------------------------------\",\n    \"theta_flat_matched = theta_flat[:, matched_idx]\"\n)\n\n# Fix 2: The bootstrap loop should use theta_flat_matched\ncontent = content.replace(\n    \"\"\"    for i in range(n_total):\n        theta_i = theta_flat[i]\n        gmfrm_ranking_i = compute_ranking(theta_i)\"\"\",\n    \"\"\"    for i in range(n_total):\n        theta_i = theta_flat_matched[i]\n        gmfrm_ranking_i = compute_ranking(theta_i)\"\"\"\n)\n\n# Fix 3: Section 5 rank swap - guard against missing models and use full theta_flat\n# (rank swap uses actual posterior indices, not the matched subset)\nold_section5 = '''    # -----------------------------------------------------------------------\n    # 5. θ CI overlap: gpt-4o-mini vs qwen2.5-72b\n    # -----------------------------------------------------------------------\n    idx_gpt4o_mini = MODEL_NAMES.index(\"gpt-4o-mini\")\n    idx_qwen72b = MODEL_NAMES.index(\"qwen2.5-72b\")\n    p_swap = float(np.mean(theta_flat[:, idx_gpt4o_mini] > theta_flat[:, idx_qwen72b]))\n    theta_diff = theta_flat[:, idx_gpt4o_mini] - theta_flat[:, idx_qwen72b]\n\n    print(f\"\\\\n  P(θ_gpt4o_mini > θ_qwen2.5_72b) = {p_swap:.4f}\")'''\n\nnew_section5 = '''    # -----------------------------------------------------------------------\n    # 5. θ CI overlap: gpt-4o-mini vs qwen2.5-72b\n    # -----------------------------------------------------------------------\n    p_swap = float(\"nan\")\n    theta_diff = np.zeros(n_total)\n    if \"gpt-4o-mini\" in MODEL_NAMES and \"qwen2.5-72b\" in MODEL_NAMES:\n        idx_gpt4o_mini = MODEL_NAMES.index(\"gpt-4o-mini\")\n        idx_qwen72b = MODEL_NAMES.index(\"qwen2.5-72b\")\n        p_swap = float(np.mean(theta_flat[:, idx_gpt4o_mini] > theta_flat[:, idx_qwen72b]))\n        theta_diff = theta_flat[:, idx_gpt4o_mini] - theta_flat[:, idx_qwen72b]\n        print(f\"\\\\n  P(θ_gpt4o_mini > θ_qwen2.5_72b) = {p_swap:.4f}\")\n    else:\n        print(\"\\\\n  Rank swap analysis skipped (gpt-4o-mini or qwen2.5-72b not in model list)\")'''\n\ncontent = content.replace(old_section5, new_section5)\n\n# Fix 4: metadata section uses MODEL_NAMES which is now local var\ncontent = content.replace(\n    '\"model_names\": MODEL_NAMES,',\n    '\"model_names\": MODEL_NAMES,\\n            \"matched_models\": matched_models,\\n            \"excluded_models\": EXCLUDE_MODELS,'\n)\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"bootstrap_delta_tau.py patch 2 OK\")\nPYEOF\npython3 /tmp/fix_bootstrap2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /tmp/fix_bootstrap2.py << 'PYEOF'\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/bootstrap_delta_tau.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# Fix 1: Remove the trailing dashes from section 4 header\ncontent = content.replace(\n    \"theta_flat_matched = theta_flat[:, matched_idx]--------------------------------\",\n    \"theta_flat_matched = theta_flat[:, matched_idx]\"\n)\n\n# Fix 2: The bootstrap loop should use theta_flat_matched\ncontent = content.replace(\n    \"\"\"    for i in range(n_total):\n        theta_i = theta_flat[i]\n        gmfrm_ranking_i = compute_ranking(theta_i)\"\"\",\n    \"\"\"    for i in range(n_total):\n        theta_i = theta_flat_matched[i]\n        gmfrm_ranking_i = compute_ranking(theta_i)\"\"\"\n)\n\n# Fix 3: Section 5 rank swap - guard against missing models and use full theta_flat\n# (rank swap uses actual posterior indices, not the matched subset)\nold_section5 = '''    # -----------------------------------------------------------------------\n    # 5. θ CI overlap: gpt-4o-mini vs qwen2.5-72b\n    # -----------------------------------------------------------------------\n    idx_gpt4o_mini = MODEL_NAMES.index(\"gpt-4o-mini\")\n    idx_qwen72b = MODEL_NAMES.index(\"qwen2.5-72b\")\n    p_swap = float(np.mean(theta_flat[:, idx_gpt4o_mini] > theta_flat[:, idx_qwen72b]))\n    theta_diff = theta_flat[:, idx_gpt4o_mini] - theta_flat[:, idx_qwen72b]\n\n    print(f\"\\\\n  P(θ_gpt4o_mini > θ_qwen2.5_72b) = {p_swap:.4f}\")'''\n\nnew_section5 = '''    # -----------------------------------------------------------------------\n    # 5. θ CI overlap: gpt-4o-mini vs qwen2.5-72b\n    # -----------------------------------------------------------------------\n    p_swap = float(\"nan\")\n    theta_diff = np.zeros(n_total)\n    if \"gpt-4o-mini\" in MODEL_NAMES and \"qwen2.5-72b\" in MODEL_NAMES:\n        idx_gpt4o_mini = MODEL_NAMES.index(\"gpt-4o-mini\")\n        idx_qwen72b = MODEL_NAMES.index(\"qwen2.5-72b\")\n        p_swap = float(np.mean(theta_flat[:, idx_gpt4o_mini] > theta_flat[:, idx_qwen72b]))\n        theta_diff = theta_flat[:, idx_gpt4o_mini] - theta_flat[:, idx_qwen72b]\n        print(f\"\\\\n  P(θ_gpt4o_mini > θ_qwen2.5_72b) = {p_swap:.4f}\")\n    else:\n        print(\"\\\\n  Rank swap analysis skipped (gpt-4o-mini or qwen2.5-72b not in model list)\")'''\n\ncontent = content.replace(old_section5, new_section5)\n\n# Fix 4: metadata section uses MODEL_NAMES which is now local var\ncontent = content.replace(\n    '\"model_names\": MODEL_NAMES,',\n    '\"model_names\": MODEL_NAMES,\\n            \"matched_models\": matched_models,\\n            \"excluded_models\": EXCLUDE_MODELS,'\n)\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"bootstrap_delta_tau.py patch 2 OK\")\nPYEOF\npython3 /tmp/fix_bootstrap2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T09:37:13.999265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bootstrap_delta_tau.py patch 2 OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-24T09:37:13.999408+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"def run_bootstrap\" /root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep -n \"def run_bootstrap\" /root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T09:37:13.999559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"87:def run_bootstrap():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-24T09:37:13.999678+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -130 /root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -130 /root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T09:37:13.999884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nN=17 downstream analysis master script.\\nRun after MCMC fitting (run_exp003_n17.py) produces output_n17/.\\n\\nHandles hardcoded-path scripts by monkey-patching their module-level constants\\nbefore calling main(). Scripts with argparse get proper CLI args.\\n\\\"\\\"\\\"\\n\\nimport importlib\\nimport json\\nimport os\\nimport subprocess\\nimport sys\\nimport time\\n\\nBASE_DIR = \\\"/root/gated_mfrm_judge_bias\\\"\\nEXP003_DIR = os.path.join(BASE_DIR, \\\"exp003\\\")\\nN17_OUTPUT_DIR = os.path.join(EXP003_DIR, \\\"output_n17\\\")\\nDOWNSTREAM_DIR = os.path.join(N17_OUTPUT_DIR, \\\"downstream\\\")\\nJUDGMENT_DIR_N17 = os.path.join(EXP003_DIR, \\\"judgment_data_n17\\\")\\nEXPOSURE_CSV = os.path.join(BASE_DIR, \\\"exp002\\\", \\\"results\\\", \\\"exposure_scores.csv\\\")\\nGMFRM_IDATA = os.path.join(N17_OUTPUT_DIR, \\\"joint_gmfrm_idata.nc\\\")\\nMFRM_IDATA = os.path.join(N17_OUTPUT_DIR, \\\"mfrm_only_idata.nc\\\")\\n\\n\\ndef check_preconditions():\\n    if os.path.exists(os.path.join(N17_OUTPUT_DIR, \\\"CONVERGENCE_FAILED\\\")):\\n        print(\\\"ERROR: Convergence failed, aborting downstream analysis\\\")\\n        sys.exit(1)\\n    if not os.path.exists(GMFRM_IDATA):\\n        print(f\\\"ERROR: idata not found at {GMFRM_IDATA}\\\")\\n        sys.exit(1)\\n    os.makedirs(DOWNSTREAM_DIR, exist_ok=True)\\n\\n\\ndef run_step(name, fn):\\n    \\\"\\\"\\\"Run a step, catch exceptions, return status dict.\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"  {name}\\\")\\n    print(f\\\"{'='*60}\\\")\\n    t0 = time.time()\\n    try:\\n        fn()\\n        elapsed = time.time() - t0\\n        print(f\\\"  -> OK ({elapsed:.0f}s)\\\")\\n        return {\\\"status\\\": \\\"OK\\\", \\\"time\\\": round(elapsed, 1)}\\n    except Exception as e:\\n        elapsed = time.time() - t0\\n        print(f\\\"  -> FAILED ({elapsed:.0f}s): {e}\\\")\\n        import traceb
+…[truncated 3590 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-24T09:37:14.000093+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /tmp/fix_downstream_bootstrap.py << 'PYEOF'\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# Find and replace the entire run_bootstrap function\nold_start = \"# ============================================================\\n# Analysis 3: Bootstrap\"\nold_end = \"# ============================================================\\n# Analysis 4:\"\n\nstart_idx = content.find(old_start)\nend_idx = content.find(old_end)\n\nif start_idx == -1 or end_idx == -1:\n    # Try alternate markers\n    old_start = \"# Analysis 3: Bootstrap\"\n    old_end = \"# Analysis 4:\"\n    start_idx = content.find(old_start)\n    end_idx = content.find(old_end)\n    # Go back to the \"# ===...\" line before \"# Analysis 3\"\n    prefix_idx = content.rfind(\"# ============\", 0, start_idx)\n    if prefix_idx != -1:\n        start_idx = prefix_idx\n\n# Find the \"# ===...\" line before Analysis 4\nprefix_4 = content.rfind(\"# ============\", 0, end_idx)\nif prefix_4 != -1:\n    end_idx = prefix_4\n\nnew_bootstrap = '''# ============================================================\n# Analysis 3: Bootstrap Δτ\n# bootstrap_delta_tau.py — now data-driven from idata\n# ============================================================\ndef run_bootstrap():\n    bootstrap_output = os.path.join(DOWNSTREAM_DIR, \"bootstrap_results\")\n    os.makedirs(bootstrap_output, exist_ok=True)\n\n    sys.path.insert(0, EXP003_DIR)\n    import bootstrap_delta_tau as bdt\n    importlib.reload(bdt)\n\n    # Override output dir and idata paths to use N=17 output\n    bdt.OUTPUT_DIR = bdt.Path(bootstrap_output)\n    bdt.PROJECT_ROOT = bdt.Path(BASE_DIR)\n\n    # Create symlink so path resolution works: output_003b -> output_n17\n    symlink_path = os.path.join(EXP003_DIR, \"output_003b\")\n    symlink_target = N17_OUTPUT_DIR\n    created_symlink = False\n    if not os.path.exists(symlink_path):\n        os.symlink(symlink_target, symlink_path)\n        created_symlink = True\n\n    try:\n        bdt.main()\n    finally:\n        if created_symlink and os.path.islink(symlink_path):\n            os.unlink(symlink_path)\n\n\n'''\n\ncontent = content[:start_idx] + new_bootstrap + content[end_idx:]\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"run_n17_downstream.py bootstrap wrapper fixed\")\nPYEOF\npython3 /tmp/fix_downstream_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /tmp/fix_downstream_bootstrap.py << 'PYEOF'\nfilepath = \"/root/gated_mfrm_judge_bias/exp003/run_n17_downstream.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# Find and replace the entire run_bootstrap function\nold_start = \"# ============================================================\\n# Analysis 3: Bootstrap\"\nold_end = \"# ============================================================\\n# Analysis 4:\"\n\nstart_idx = content.find(old_start)\nend_idx = content.find(old_end)\n\nif start_idx == -1 or end_idx == -1:\n    # Try alternate markers\n    old_start = \"# Analysis 3: Bootstrap\"\n    old_end = \"# Analysis 4:\"\n    start_idx = content.find(old_start)\n    end_idx = content.find(old_end)\n    # Go back to the \"# ===...\" line before \"# Analysis 3\"\n    prefix_idx = content.rfind(\"# ============\", 0, start_idx)\n    if prefix_idx != -1:\n        start_idx = prefix_idx\n\n# Find the \"# ===...\" line before Analysis 4\nprefix_4 = content.rfind(\"# ============\", 0, end_idx)\nif prefix_4 != -1:\n    end_idx = prefix_4\n\nnew_bootstrap = '''# ============================================================\n# Analysis 3: Bootstrap Δτ\n# bootstrap_delta_tau.py — now data-driven from idata\n# ============================================================\ndef run_bootstrap():\n    bootstrap_output = os.path.join(DOWNSTREAM_DIR, \"bootstrap_results\")\n    os.makedirs(bootstrap_output, exist_ok=True)\n\n    sys.path.insert(0, EXP003_DIR)\n    import bootstrap_delta_tau as bdt\n    importlib.reload(bdt)\n\n    # Override output dir and idata paths to use N=17 output\n    bdt.OUTPUT_DIR = bdt.Path(bootstrap_output)\n    bdt.PROJECT_ROOT = bdt.Path(BASE_DIR)\n\n    # Create symlink so path resolution works: output_003b -> output_n17\n    symlink_path = os.path.join(EXP003_DIR, \"output_003b\")\n    symlink_target = N17_OUTPUT_DIR\n    created_symlink = False\n    if not os.path.exists(symlink_path):\n        os.symlink(symlink_target, symlink_path)\n        created_symlink = True\n\n    try:\n        bdt.main()\n    finally:\n        if created_symlink and os.path.islink(symlink_path):\n            os.unlink(symlink_path)\n\n\n'''\n\ncontent = content[:start_idx] + new_bootstrap + content[end_idx:]\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"run_n17_downstream.py bootstrap wrapper fixed\")\nPYEOF\npython3 /tmp/fix_downstream_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T09:37:14.000285+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"run_n17_downstream.py bootstrap wrapper fixed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-24T09:37:14.000447+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"import ast; ast.parse(open('run_exp003_n17.py').read()); print('run_exp003_n17.py OK')\" && python -c \"import ast; ast.parse(open('run_n17_downstream.py').read()); print('run_n17_downstream.py OK')\" && python -c \"import ast; ast.parse(open('evaluation.py').read()); print('evaluation.py OK')\" && python -c \"import ast; ast.parse(open('bootstrap_delta_tau.py').read()); print('bootstrap_delta_tau.py OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"import ast; ast.parse(open('run_exp003_n17.py').read()); print('run_exp003_n17.py OK')\" && python -c \"import ast; ast.parse(open('run_n17_downstream.py').read()); print('run_n17_downstream.py OK')\" && python -c \"import ast; ast.parse(open('evaluation.py').read()); print('evaluation.py OK')\" && python -c \"import ast; ast.parse(open('bootstrap_delta_tau.py').read()); print('bootstrap_delta_tau.py OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T09:37:14.000616+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"run_exp003_n17.py OK\\nrun_n17_downstream.py OK\\nevaluation.py OK\\nbootstrap_delta_tau.py OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-24T09:37:14.000818+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"from evaluation import arena_correlation, ARENA_NAME_MAPPING, ARENA_ELO; print(f'evaluation import OK, {len(ARENA_ELO)} models in ARENA_ELO, {len(ARENA_NAME_MAPPING)} mappings')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"from evaluation import arena_correlation, ARENA_NAME_MAPPING, ARENA_ELO; print(f'evaluation import OK, {len(ARENA_ELO)} models in ARENA_ELO, {len(ARENA_NAME_MAPPING)} mappings')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-24T09:37:14.000958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"evaluation import OK, 18 models in ARENA_ELO, 9 mappings\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-24T09:37:14.001082+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"\nimport bootstrap_delta_tau as bdt\nprint(f'bootstrap import OK')\nprint(f'  ARENA_ELO: {len(bdt.ARENA_ELO)} models')\nprint(f'  ARENA_NAME_MAPPING: {len(bdt.ARENA_NAME_MAPPING)} entries')\nprint(f'  EXCLUDE_MODELS: {bdt.EXCLUDE_MODELS}')\nprint(f'  MODEL_NAMES_N8: {bdt.MODEL_NAMES_N8}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"\nimport bootstrap_delta_tau as bdt\nprint(f'bootstrap import OK')\nprint(f'  ARENA_ELO: {len(bdt.ARENA_ELO)} models')\nprint(f'  ARENA_NAME_MAPPING: {len(bdt.ARENA_NAME_MAPPING)} entries')\nprint(f'  EXCLUDE_MODELS: {bdt.EXCLUDE_MODELS}')\nprint(f'  MODEL_NAMES_N8: {bdt.MODEL_NAMES_N8}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-24T09:37:14.001211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bootstrap import OK\\n  ARENA_ELO: 18 models\\n  ARENA_NAME_MAPPING: 8 entries\\n  EXCLUDE_MODELS: ['qwen3-8b']\\n  MODEL_NAMES_N8: ['gemma-2-9b', 'gpt-3.5-turbo-0125', 'gpt-4-0613', 'gpt-4o', 'gpt-4o-mini', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-8b']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-24T09:37:14.001354+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"\n# Verify Fix 1\nwith open('run_exp003_n17.py') as f:\n    for i, line in enumerate(f, 1):\n        if 'CUDA_VISIBLE_DEVICES' in line:\n            print(f'L{i}: {line.strip()}')\n            break\n\n# Verify Fix 2\nwith open('run_n17_downstream.py') as f:\n    for i, line in enumerate(f, 1):\n        if 'JUDGMENT_DIR_N17' in line and '=' in line and 'os.path' in line:\n            print(f'L{i}: {line.strip()}')\n            break\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"\n# Verify Fix 1\nwith open('run_exp003_n17.py') as f:\n    for i, line in enumerate(f, 1):\n        if 'CUDA_VISIBLE_DEVICES' in line:\n            print(f'L{i}: {line.strip()}')\n            break\n\n# Verify Fix 2\nwith open('run_n17_downstream.py') as f:\n    for i, line in enumerate(f, 1):\n        if 'JUDGMENT_DIR_N17' in line and '=' in line and 'os.path' in line:\n            print(f'L{i}: {line.strip()}')\n            break\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-24T09:37:14.001542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"L5: os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0,3\\\"\\nL21: JUDGMENT_DIR_N17 = os.path.join(EXP003_DIR, \\\"judgment_data_n17\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-24T09:37:14.001702+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"\nimport numpy as np\nfrom evaluation import arena_correlation, ARENA_ELO\n\n# Simulate N=8 model results\nmodel_names = ['gemma-2-9b', 'gpt-3.5-turbo-0125', 'gpt-4-0613', 'gpt-4o',\n               'gpt-4o-mini', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-8b']\nfake_theta = np.array([1.0, 0.5, 1.5, 3.0, 2.8, 2.5, 2.3, 1.8])\nresults = {'test': {'theta_hat': fake_theta}}\n\n# Without exclusion\nr1 = arena_correlation(results, model_names)\nprint(f'No exclusion: n_matched={r1[\\\"test\\\"][\\\"n_matched\\\"]}, tau={r1[\\\"test\\\"][\\\"kendall_tau\\\"]:.3f}')\n\n# With qwen3-8b excluded\nr2 = arena_correlation(results, model_names, exclude_models=['qwen3-8b'])\nprint(f'Exclude qwen3-8b: n_matched={r2[\\\"test\\\"][\\\"n_matched\\\"]}, tau={r2[\\\"test\\\"][\\\"kendall_tau\\\"]:.3f}')\nassert r2['test']['n_matched'] == 7\nassert 'qwen3-8b' not in r2['test']['matched_models']\nprint('exclude_models logic OK')\n\n# With name mapping\nmodel_names_alt = ['gemma-2-9b-it', 'gpt-3.5-turbo-0125', 'gpt-4-0613', 'gpt-4o',\n                   'gpt-4o-mini', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-8b']\nr3 = arena_correlation(results, model_names_alt, exclude_models=['qwen3-8b'])\nprint(f'Name mapping: n_matched={r3[\\\"test\\\"][\\\"n_matched\\\"]} (gemma-2-9b-it resolved)')\nassert r3['test']['n_matched'] == 7\nprint('name_mapping logic OK')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp003 && python -c \"\nimport numpy as np\nfrom evaluation import arena_correlation, ARENA_ELO\n\n# Simulate N=8 model results\nmodel_names = ['gemma-2-9b', 'gpt-3.5-turbo-0125', 'gpt-4-0613', 'gpt-4o',\n               'gpt-4o-mini', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-8b']\nfake_theta = np.array([1.0, 0.5, 1.5, 3.0, 2.8, 2.5, 2.3, 1.8])\nresults = {'test': {'theta_hat': fake_theta}}\n\n# Without exclusion\nr1 = arena_correlation(results, model_names)\nprint(f'No exclusion: n_matched={r1[\\\"test\\\"][\\\"n_matched\\\"]}, tau={r1[\\\"test\\\"][\\\"kendall_tau\\\"]:.3f}')\n\n# With qwen3-8b excluded\nr2 = arena_correlation(results, model_names, exclude_models=['qwen3-8b'])\nprint(f'Exclude qwen3-8b: n_matched={r2[\\\"test\\\"][\\\"n_matched\\\"]}, tau={r2[\\\"test\\\"][\\\"kendall_tau\\\"]:.3f}')\nassert r2['test']['n_matched'] == 7\nassert 'qwen3-8b' not in r2['test']['matched_models']\nprint('exclude_models logic OK')\n\n# With name mapping\nmodel_names_alt = ['gemma-2-9b-it', 'gpt-3.5-turbo-0125', 'gpt-4-0613', 'gpt-4o',\n                   'gpt-4o-mini', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-8b']\nr3 = arena_correlation(results, model_names_alt, exclude_models=['qwen3-8b'])\nprint(f'Name mapping: n_matched={r3[\\\"test\\\"][\\\"n_matched\\\"]} (gemma-2-9b-it resolved)')\nassert r3['test']['n_matched'] == 7\nprint('name_mapping logic OK')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-24T09:37:14.001841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"No exclusion: n_matched=8, tau=0.786\\nExclude qwen3-8b: n_matched=7, tau=0.905\\nexclude_models logic OK\\nName mapping: n_matched=7 (gemma-2-9b-it resolved)\\nname_mapping logic OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-24T09:37:14.002005+00:00_
+
+全部 6 个修复完成并验证通过：
+
+| Fix | 文件 | 状态 |
+|-----|------|------|
+| 1 | `run_exp003_n17.py` | `CUDA_VISIBLE_DEVICES = "0,3"` |
+| 2 | `run_n17_downstream.py` | `JUDGMENT_DIR_N17` → `exp003/judgment_data_n17` |
+| 3 | `evaluation.py` | `arena_correlation` 支持 `exclude_models` + `ARENA_NAME_MAPPING` |
+| 4 | `bootstrap_delta_tau.py` | 数据驱动（从 idata coords 读模型名）+ qwen3-8b 排除 + N=8 后向兼容 |
+| 5 | `run_n17_downstream.py` | `run_bootstrap()` 通过 symlink `output_003b→output_n17` 调用修复后的脚本 |
+| 6 | 语法检查 + import 验证 + functional test | 全部通过 |
+
+Judge eval 完成后可直接执行：
+```bash
+cd /root/gated_mfrm_judge_bias/exp003
+python run_exp003_n17.py --judgment-dir ./judgment_data_n17 --exposure-csv ../exp002/results/exposure_scores.csv --output-dir ./output_n17
+python run_n17_downstream.py
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235"
+}
+```
+
+</details>
+
+---

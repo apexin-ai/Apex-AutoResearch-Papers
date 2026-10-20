@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbf6a3b64d68bf623694",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh urgent 5task autodl check",
+  "task_key": "worker_ssh_urgent_5task_autodl_check_20260522T160913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_5task_autodl_check_20260522T160913_result.json",
+    "occurrence": 1,
+    "bytes": 2278,
+    "sha256": "a6811a36ffd67b2fd2cd7f8f20e735005b89114d43797bd5b46d00ad37ce91b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## autodl-8gpu 状态报告\n\n### 1. EXP-003（最高优先级）\n\n**状态：🔄 仍在运行，无错误**\n\n- **进程**：仍在执行（GPU 0 活跃，log 持续输出）\n- **错误**：grep \"error\" / \"traceback\" 均为 0 匹配，运行正常\n- **Results 目录**：空——尚未产出任何结果文件\n\n**MCMC 进度**（从 run.log 尾部）：\n\n| 阶段 | 状态 |\n|------|------|\n| STEP 1: 数据加载 | ✅ 完成 — 9 judges, 176 items, 5661 obs, win rate=0.599, exposure mean=0.206 |\n| STEP 2: `raw_average` | ✅ 完成 (0.0s) |\n| STEP 2: `mfrm_only` chain 1 | ✅ 完成 (6000/6000, 74s, acc.prob=0.95) |\n| STEP 2: `mfrm_only` chain 2+ | 🔄 ~15% warmup (912/6000), ~7 it/s |\n\n当前瓶颈：第二条链收敛较慢（step size ~0.008），后面可能还有 `gated_mfrm` 等更大模型要拟合。**预计还需较长时间。**\n\n**数据摘要**（已加载）：\n\n| Examinee model | Win rate | n |\n|---|---|---|\n| gpt-4o | 0.864 | 705 |\n| qwen2.5-72b | 0.822 | 706 |\n| gpt-4o-mini | 0.807 | 685 |\n| llama-3.3-70b | 0.724 | 671 |\n| qwen3-8b | 0.664 | 599 |\n| gemma-2-9b | 0.510 | 674 |\n| gpt-4-0613 | 0.341 | 774 |\n| gpt-3.5-turbo-0125 | 0.183 | 847 |\n\n---\n\n### 2. GPU 状态\n\n| GPU | Util | VRAM Used | VRAM Total |\n|-----|------|-----------|------------|\n| 0 | **78%** | 731 MiB | 97887 MiB |\n| 1 | 0% | 0 MiB | 97887 MiB |\n| 2 | 0% | 0 MiB | 97887 MiB |\n| 3 | 0% | 0 MiB | 97887 MiB |\n\n仅 GPU 0 在跑 exp-003 MCMC（CPU-bound PyTorch，VRAM 占用低）。\n\n---\n\n### 3. 模型下载\n\n| Model | 状态 |\n|-------|------|\n| Qwen3-8B | ✅ 5/5 shards |\n| gemma-2-9b-it | ✅ 4/4 shards |\n| Llama-3.1-8B-Instruct | ✅ 4/4 shards |\n| Mistral-7B-Instruct-v0.3 | ⚠️ 2/3 done, 1 shard 仍在 `._____temp/` |\n\n---\n\n### 4. Response 文件\n\n13 个 response JSONL 已就绪：claude-opus-4.7, gpt-3.5-turbo-0125, gpt-4-0314, gpt-4-0613, gpt-4o, gpt-4o-mini, gpt-5.5, llama-3.3-70b, mistral-large-2, qwen2.5-72b, gemma-2-9b, qwen3-8b, llama-3.1-8b\n\n---\n\n**结论**：exp-003 正常运行中，无报错，但 MCMC 采样仍在 `mfrm_only` 第二条链的 warmup 阶段（15%），results.json 尚未生成。Mistral 模型下载未完成（1 shard 卡在 temp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-5task-autodl-check.md"
+}

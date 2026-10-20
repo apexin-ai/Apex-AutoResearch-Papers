@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95e77c0309eefa070a03",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp020 v4 mfrm only 317",
+  "task_key": "worker_ssh_exp020-v4-mfrm-only-317_20260525T155812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp020-v4-mfrm-only-317_20260525T155812_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "bb8f07b6254bf86ed88e0f0c55c5a3b07f5c8e4e96f952cc9b35717c2d8f4f2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**v4 MFRM-only τ = 0.824** vs v3 G-MFRM τ = 0.809 → **contamination gating 轻微有害**\n\n关键发现：\n- MFRM-only 与 raw_average 产生 **完全相同的排名**（互相关 τ=1.000）\n- v4 去掉 c_n·e_i 项后 τ 反而提高了 0.015\n- 收敛良好：R̂=1.006, ESS=1118, div=0\n- 受 contamination gating 影响最大的模型：gpt-4-turbo（c=4.015，v3 排名被压到第 4，v4 恢复到第 2）、gpt-4-0613（c=4.263，θ 偏移 +0.539）\n\n结论：在 317 items 子集上，contamination gating 不仅没有提升 Arena 对齐度，反而引入了少量噪声。结果已保存到 `/root/gated_mfrm_judge_bias/v4_results.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp020-v4-mfrm-only-317.md"
+}

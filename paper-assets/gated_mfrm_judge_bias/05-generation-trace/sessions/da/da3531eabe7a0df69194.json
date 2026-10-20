@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da3531eabe7a0df69194",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh restart 3 api judges",
+  "task_key": "worker_ssh_restart_3_api_judges_20260522T085744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_restart_3_api_judges_20260522T085744_result.json",
+    "occurrence": 1,
+    "bytes": 117,
+    "sha256": "0f31541bbf9cae5a980273a62bf4654fa9af42e158e5b348ba32104165ee2382"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台监控脚本也已完成，结果与之前直接检查一致。3 个 judge 均正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-restart-3-api-judges.md"
+}

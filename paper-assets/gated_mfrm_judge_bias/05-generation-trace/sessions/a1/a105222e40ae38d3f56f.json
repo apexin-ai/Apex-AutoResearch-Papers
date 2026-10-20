@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a105222e40ae38d3f56f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh create snapshot monitor",
+  "task_key": "worker_ssh_create-snapshot-monitor_20260524T095403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_create-snapshot-monitor_20260524T095403_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "828c1320e4f6b10ad68d3cc21d4c54488d1d1466e87d4703aca3bcaa41c30541"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本均测试通过。\n\n### check_collection_progress.sh 结果\n\n| Judge | Records | % | Status |\n|-------|---------|---|--------|\n| claude-sonnet-4.6-proxy_n17 | 8,501 | 47.2% | STOPPED |\n| deepseek-v4-pro-proxy_n17 | 5,050 | 28.0% | STOPPED |\n| gemini-2.5-pro-proxy_n17 | 5,951 | 33.0% | STOPPED |\n| llama-3.3-70b-local_n17 | 2,003 | 11.1% | STOPPED |\n| mistral-large-2-local_n17 | 118 | 0.6% | STOPPED |\n| qwen2.5-72b-local_n17 | 1,365 | 7.5% | STOPPED |\n| qwen3-235b-proxy_n17 | 6,341 | 35.2% | STOPPED |\n\nSonnet 和 Qwen3-235B 均未达到 18,000 目标，触发条件未满足。\n\n### snapshot_judge_data.sh 结果\n\n`prepare_n17_data.py` 正常刷新了 7 个 judge 的 symlinks，共 28,109 条 status=ok 记录，覆盖 18 个 target models，7×18 judge×model 矩阵全覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-create-snapshot-monitor.md"
+}

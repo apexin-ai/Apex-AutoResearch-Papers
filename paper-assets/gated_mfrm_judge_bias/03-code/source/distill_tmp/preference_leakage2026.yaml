@@ -1,0 +1,91 @@
+paper_key: "preference_leakage2026"
+title: "Preference Leakage: A Contamination Problem in LLM-as-a-judge"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines: ["GPT-4o judge", "Gemini-1.5-flash judge", "LLaMA-3.3-70B judge", "Claude-3.5-Sonnet judge", "Naive evaluation (no debiasing)", "Prompting", "Chain-of-Thought", "Paraphrase", "Auto Calibration", "Contextual Calibration"]
+  metrics:
+    - {name: "Preference Leakage Score (PLS)", direction: "lower_better"}
+    - {name: "Error Bias", direction: "lower_better"}
+    - {name: "Win Rate (WR)", direction: "context_dependent"}
+    - {name: "Student Recognition Accuracy", direction: "diagnostic"}
+  datasets:
+    - {name: "Arena-Hard", size: "500 questions"}
+    - {name: "AlpacaEval 2.0", size: "805 questions"}
+    - {name: "Ultrafeedback (synthetic data source)", size: "30k prompts"}
+  ablation_dimensions: ["Relatedness type (same/inheritance/family)", "Learning method (SFT/DPO/ICL)", "Data mixing ratio", "Spurious feature type (style/format/wording)", "Student model size", "Cross-lingual (EN/ZH)", "Mitigation methods"]
+  training_recipe: {optimizer: "AdamW", lr: "1e-5", hardware: "8× A100, CUDA 11.8, BF16, LLaMA-Factory"}
+  method_family: "Contamination analysis in LLM-as-a-judge (judge-side bias)"
+
+positioning:
+  core_claim: "当数据生成器和评判LLM存在关联时，评判者的偏好会通过合成数据泄露到学生模型中，造成评分虚高——这是一种新型的、比egocentric bias更隐蔽的污染"
+  key_results: "PLS最高达50.7%(Qwen-2.5-3B, Arena-Hard); SFT>>DPO>>ICL in leakage; style/format removal各减半leakage; contextual calibration: Error Bias 17.8→7.3; smaller students→higher PLS"
+  limitations:
+    - "仅覆盖AlpacaEval和Arena-Hard两个benchmark"
+    - "Judge LLM无法自行检测preference leakage（识别率≈随机）"
+    - "Contextual calibration仅减少但未消除bias"
+    - "不同generator的leakage程度未充分量化"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM-as-judge和LLM数据合成是两大基础方法，但当generator和judge有关联时会产生隐蔽偏差"
+  tension: "现有工作关注position bias / length bias / egocentric bias，但忽略了generator-judge关联导致的preference leakage——更隐蔽（judge自身检测≈随机），且在主流benchmark中普遍存在"
+  key_insight: "Section 3 形式化定义三种relatedness类型（same model / inheritance / same family），将contamination问题从数据层面推广到评判者偏好传递层面"
+  argument_chain: "LLM-as-judge + synthetic data普遍 → generator-judge relatedness未被研究 → 定义PLS指标 → 实验证实PLS显著 → 分析机制(spurious features, 非内容偏好) → 现有mitigation不足"
+  contribution_framing: "三条贡献：(1)首次提出preference leakage概念 (2)跨模型跨benchmark大规模实验 (3)机制分析揭示subtlety"
+  intro_structure: "4段：LLM评测困境 → LLM-as-judge范式及已知问题 → 引入preference leakage核心概念 → 3个RQ"
+  notable_technique: "用BERT分类器(82.4%)证明stylistic fingerprint客观存在但judge LLM自身检测≈随机，优雅地论证了leakage的隐蔽性"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "problem_illustration"
+    description: "Data leakage vs Preference leakage对比图 + 三种relatedness类型示意"
+    narrative_role: "一图定义核心概念，将新问题与已知问题类比帮助读者快速理解"
+    design_elements: ["左右对比布局", "三种relatedness用不同颜色/连线", "箭头标注数据流向"]
+    visual_style: "概念图，左侧data leakage经典示意，右侧preference leakage新框架，色彩区分relatedness层级"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot + bar_chart"
+      what_compared: "学生模型size对PLS的影响; 数据混合比例对PLS的影响"
+      how_gain_highlighted: "趋势线展示smaller model→higher PLS的反直觉发现"
+      design_note: "两个子图并排，(a)size scaling (b)data mixing，紧凑展示两个关键变量"
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "不同question type和judgment dimension下的PLS差异"
+      how_gain_highlighted: "subjective vs objective的对比突出leakage的非均匀分布"
+      design_note: "按category分组的bar chart，直观展示哪些维度更受影响"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(概念定义) → Figure 2(scaling+mixing) → Figure 3(机制分析)"
+
+tables:
+  table_count: 14
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "student models"
+    col_axis: "judge pairs × benchmarks"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "颜色背景编码PLS正负和强度（蓝=负/无leakage，紫=正/有leakage，深浅=强度）"
+    statistical_reporting: "Bootstrap significance (n=10000) in Table 11"
+    num_baselines: 6
+    design_note: "颜色热力图编码让pattern一目了然；正负值区分有无leakage"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Relatedness type"]
+      variation_style: "full_numbers"
+      design_note: "按relatedness从强到弱排列，展示PLS随距离衰减"
+    - table_id: "Table 3"
+      what_varied: ["Learning method (SFT/DPO/ICL)"]
+      variation_style: "full_numbers"
+      design_note: "三种学习方式对比，SFT>>DPO>>ICL清晰展示"
+    - table_id: "Table 6"
+      what_varied: ["Spurious feature removal (style/format/wording)"]
+      variation_style: "delta_from_base"
+      design_note: "移除各类spurious feature后PLS变化，直接量化各因素贡献"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 8(PLS计算示例)、Table 9-10(稳定性/prompt敏感性)、Table 11(bootstrap显著性)、Table 12-14(cross-lingual/extended judges/size scaling详细数据)"
+    reason: "主表放核心发现，附录放robustness checks和扩展实验"

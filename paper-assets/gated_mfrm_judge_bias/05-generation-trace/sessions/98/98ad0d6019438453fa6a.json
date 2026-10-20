@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98ad0d6019438453fa6a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh n17 elo update and prep",
+  "task_key": "worker_ssh_n17_elo_update_and_prep_20260523T140108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_n17_elo_update_and_prep_20260523T140108_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "04c06f68df08426ed9b292d4cedcf1c8fc3a62d1f3c44f6819f54048cacfda90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 产出\n\n**1. evaluation.py ARENA_ELO 更新** — 两台服务器均已更新\n- rtx6000-4x: `/root/gated_mfrm_judge_bias/exp003/evaluation.py` ✓\n- autodl-8gpu: `/root/gated_mfrm_judge_bias/exp003/evaluation.py` ✓\n- 18 个 key（17 targets + gpt-4-0314 reference），snapshot 2026-05-19\n\n**2. Model name 映射检查** — 无兼容性问题\n- 数据文件中已有 9 个模型名与 ARENA_ELO key 完全一致\n- N=17 config（`config_llama_arena_n17.yaml` 等）中的 18 个 target_models 与 ARENA_ELO 18 个 key 一一对应\n- 不需要额外 name mapping\n\n**3. 一键启动脚本** — `/root/gated_mfrm_judge_bias/exp001/run_n17_evaluation.sh`\n- 9 个 judge 全部并行启动，带 API key 检查和日志输出\n- 已 `chmod +x`\n\n**4. Judge prompt template 分析** — 对新模型完全通用\n- `PAIRWISE_JUDGE_PROMPT` 和 `POINTWISE_JUDGE_PROMPT` 只用 `{prompt}`/`{response_a}`/`{response_b}` 占位符，不引用 model name\n- 无 model-specific 处理逻辑\n- target_models 列表从 config YAML 读取，无 hardcoded model list\n- `judge_interface.py` 的 `JUDGE_MAP` 已包含全部 9 个 judge（含 proxy 版本）\n\n**5. 兼容性问题** — 未发现"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n17-elo-update-and-prep.md"
+}

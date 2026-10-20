@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "715760feb1766332d95f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260522T135900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260522T135900_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "6b03ddd56d84e00ee6bce1d2501e10079a17f7d944b2bdab9826920d1b9aaf9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 有效，18 条记录全部就位。\n\n## 验证状态汇总\n\n| # | bibtex_key | 状态 | 修正内容 |\n|---|-----------|------|---------|\n| 1 | `shu2013dgirt` | **verified** ✓ | 补充 volume/pages (78:481-497)，DOI 确认正确 |\n| 2 | `jiao2025mfrm_llm` | **verified** ✓ | 作者修正：Song, **D.** (非Y.)、Lee, **W.-C.** (非J.) |\n| 3 | `lin2025psnirt` | **verified** ✓ | **重大修正**：第一作者是 Zhou, H. 而非 Lin；补全13位作者；补 arxiv_id=2505.15055 |\n| 4 | `linacre1989mfrm` | **新增** ✓ | Linacre 1989, *Many-Facet Rasch Measurement*, MESA Press, ISBN 0-941938-02-6 |\n| 5 | `linacre1994mfrm` | **新增** ✓ | Linacre 1994, 同书第2版, MESA Press |\n| 6 | `rothenberg1971` | **新增** ✓ | Rothenberg 1971, *Identification in Parametric Models*, Econometrica 39(3):577-591, DOI 10.2307/1913267 |\n| 7 | `sanmartin2016` | **新增** ✓ | San Martín 2016, *Identification of IRT Models*, in Handbook of IRT Vol.2 (van der Linden Ed.), CRC Press, pp.127-150 |\n| 8 | `betancourt2015` | **新增** ✓ | Betancourt & Girolami 2015, *HMC for Hierarchical Models*, in Current Trends in Bayesian Methodology, CRC Press, pp.119-142, arXiv:1312.0906 |\n| 9 | `uto2020generalized` | **新增** ✓ | Uto & Ueno 2020, *A Generalized Many-Facet Rasch Model…*, Behaviormetrika 47(2):469-496, DOI 10.1007/s41237-020-00115-7 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research.md"
+}

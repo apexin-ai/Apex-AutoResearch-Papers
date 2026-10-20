@@ -1,0 +1,1795 @@
+# ssh trace plots ppc
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/chats/worker_ssh_trace_plots_ppc_20260522T213844.jsonl`
+- **Structured JSON:** [`e2bad71d172d34718abf.json`](../../sessions/e2/e2bad71d172d34718abf.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+59 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T21:47:02.423464+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T21:47:02.423967+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T21:47:02.424296+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -lh /root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls -lh /root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T21:47:02.424575+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "python3 -c \"import arviz as az; idata = az.load_data('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc'); print(idata)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "python3 -c \"import arviz as az; idata = az.load_data('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc'); print(idata)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T21:47:02.424841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 15M May 23 05:22 /root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T21:47:02.425077+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T21:47:02.425297+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -d /root/gated_mfrm_judge_bias/exp008/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls -d /root/gated_mfrm_judge_bias/exp008/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T21:47:02.425561+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T21:47:02.425834+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nidata = az.load_data('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc')\nprint(idata)\nprint('---')\nfor group in idata.groups():\n    ds = getattr(idata, group)\n    print(f'{group}: {list(ds.data_vars)}')\n    for v in ds.data_vars:\n        print(f'  {v}: dims={ds[v].dims}, shape={ds[v].shape}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nidata = az.load_data('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc')\nprint(idata)\nprint('---')\nfor group in idata.groups():\n    ds = getattr(idata, group)\n    print(f'{group}: {list(ds.data_vars)}')\n    for v in ds.data_vars:\n        print(f'  {v}: dims={ds[v].dims}, shape={ds[v].shape}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T21:47:02.426067+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -d /root/gated_mfrm_judge_bias/exp008/ 2>/dev/null || echo \"NOT_EXIST\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls -d /root/gated_mfrm_judge_bias/exp008/ 2>/dev/null || echo \"NOT_EXIST\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T21:47:02.426338+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport arviz as az\\\\nidata = az.load_data(\\\\'/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc\\\\')\\\\nprint(idata)\\\\nprint(\\\\'---\\\\')\\\\nfor group in idata.groups():\\\\n    ds = getattr(idata, group)\\\\n    print(f\\\\'{group}: {list(ds.data_vars)}\\\\')\\\\n    for v in ds.data_vars:\\\\n        print(f\\\\'  {v}: dims={ds[v].dims}, shape={ds[v].shape}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 3, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/arviz/__init__.py\\\", line 118, in __getattr__\\n    raise AttributeError(f\\\"module {__name__!r} has no attribute {name!r}\\\")\\nAttributeError: module 'arviz' has no attribute 'load_data'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T21:47:02.426609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp008/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T21:47:02.426878+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nprint('arviz version:', az.__version__)\nimport xarray as xr\nprint('xarray version:', xr.__version__)\n# Try from_netcdf\nidata = az.from_netcdf('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc')\nprint(idata)\nprint('---GROUPS---')\nfor group in idata.groups():\n    ds = getattr(idata, group)\n    print(f'{group}: {list(ds.data_vars)}')\n    for v in ds.data_vars:\n        print(f'  {v}: dims={ds[v].dims}, shape={ds[v].shape}')\n    if hasattr(ds, 'coords'):\n        for c in ds.coords:\n            vals = ds.coords[c].values\n            if len(vals) < 20:\n                print(f'  coord {c}: {list(vals)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nprint('arviz version:', az.__version__)\nimport xarray as xr\nprint('xarray version:', xr.__version__)\n# Try from_netcdf\nidata = az.from_netcdf('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc')\nprint(idata)\nprint('---GROUPS---')\nfor group in idata.groups():\n    ds = getattr(idata, group)\n    print(f'{group}: {list(ds.data_vars)}')\n    for v in ds.data_vars:\n        print(f'  {v}: dims={ds[v].dims}, shape={ds[v].shape}')\n    if hasattr(ds, 'coords'):\n        for c in ds.coords:\n            vals = ds.coords[c].values\n            if len(vals) < 20:\n                print(f'  coord {c}: {list(vals)}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T21:47:02.427150+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport arviz as az\\\\nprint(\\\\'arviz version:\\\\', az.__version__)\\\\nimport xarray as xr\\\\nprint(\\\\'xarray version:\\\\', xr.__version__)\\\\n# Try from_netcdf\\\\nidata = az.from_netcdf(\\\\'/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc\\\\')\\\\nprint(idata)\\\\nprint(\\\\'---GROUPS---\\\\')\\\\nfor group in idata.groups():\\\\n    ds = getattr(idata, group)\\\\n    print(f\\\\'{group}: {list(ds.data_vars)}\\\\')\\\\n    for v in ds.data_vars:\\\\n        print(f\\\\'  {v}: dims={ds[v].dims}, shape={ds[v].shape}\\\\')\\\\n    if hasattr(ds, \\\\'coords\\\\'):\\\\n        for c in ds.coords:\\\\n            vals = ds.coords[c].values\\\\n            if len(vals) < 20:\\\\n                print(f\\\\'  coord {c}: {list(vals)}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n            obs        (obs_dim_0) float32 23kB ...\\n        Attributes:\\n            created_at:                 2026-05-22T21:22:06.099417+00:00\\n            creation_library:           ArviZ\\n            creation_library_version:   1.1.0\\n            creation_library_language:  Python\\n            inference_library:          numpyro\\n            inference_library_version:  0.21.0\\n            sample_dims:                []\\n---GROUPS---\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 10, in &lt;module>\\nTypeError: 'tuple' object is not callable\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T21:47:02.427500+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport arviz as az\nidata = az.from_netcdf('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc')\nprint(\"=== GROUPS ===\")\nfor group in idata.groups:\n    ds = getattr(idata, group)\n    print(f\"\\n[{group}]\")\n    print(f\"  data_vars: {list(ds.data_vars)}\")\n    for v in ds.data_vars:\n        print(f\"    {v}: dims={ds[v].dims}, shape={ds[v].shape}\")\n    for c in ds.coords:\n        vals = ds.coords[c].values\n        if len(vals) < 30:\n            print(f\"  coord {c}: {list(vals)}\")\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport arviz as az\nidata = az.from_netcdf('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc')\nprint(\"=== GROUPS ===\")\nfor group in idata.groups:\n    ds = getattr(idata, group)\n    print(f\"\\n[{group}]\")\n    print(f\"  data_vars: {list(ds.data_vars)}\")\n    for v in ds.data_vars:\n        print(f\"    {v}: dims={ds[v].dims}, shape={ds[v].shape}\")\n    for c in ds.coords:\n        vals = ds.coords[c].values\n        if len(vals) < 30:\n            print(f\"  coord {c}: {list(vals)}\")\nPYEOF\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T21:47:02.427905+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\'PYEOF\\\\'\\\\nimport arviz as az\\\\nidata = az.from_netcdf(\\\\'/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc\\\\')\\\\nprint(\\\"=== GROUPS ===\\\")\\\\nfor group in idata.groups:\\\\n    ds = getattr(idata, group)\\\\n    print(f\\\"\\\\\\\\n[{group}]\\\")\\\\n    print(f\\\"  data_vars: {list(ds.data_vars)}\\\")\\\\n    for v in ds.data_vars:\\\\n        print(f\\\"    {v}: dims={ds[v].dims}, shape={ds[v].shape}\\\")\\\\n    for c in ds.coords:\\\\n        vals = ds.coords[c].values\\\\n        if len(vals) < 30:\\\\n            print(f\\\"  coord {c}: {list(vals)}\\\")\\\\nPYEOF\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n=== GROUPS ===\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;stdin>\\\", line 5, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/xarray/core/common.py\\\", line 306, in __getattr__\\n    raise AttributeError(\\nAttributeError: 'DataTree' object has no attribute '/'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 2.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T21:47:02.428213+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport arviz as az\nidata = az.from_netcdf('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc')\nprint(type(idata))\nprint(repr(idata))\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport arviz as az\nidata = az.from_netcdf('/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc')\nprint(type(idata))\nprint(repr(idata))\nPYEOF\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T21:47:02.428539+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"&lt;class 'xarray.core.datatree.DataTree'>\\n&lt;xarray.DataTree>\\nGroup: /\\n├── Group: /posterior\\n│       Dimensions:          (chain: 4, draw: 4000, b_dim_0: 176, c_dim_0: 8,\\n│                             c_raw_dim_0: 8, d_dim_0: 9, d_raw_dim_0: 9,\\n│                             theta_dim_0: 8, theta_raw_dim_0: 8)\\n│       Coordinates:\\n│         * chain            (chain) int64 32B 0 1 2 3\\n│         * draw             (draw) int64 32kB 0 1 2 3 4 5 ... 3995 3996 3997 3998 3999\\n│         * b_dim_0          (b_dim_0) int64 1kB 0 1 2 3 4 5 ... 170 171 172 173 174 175\\n│         * c_dim_0          (c_dim_0) int64 64B 0 1 2 3 4 5 6 7\\n│         * c_raw_dim_0      (c_raw_dim_0) int64 64B 0 1 2 3 4 5 6 7\\n│         * d_dim_0          (d_dim_0) int64 72B 0 1 2 3 4 5 6 7 8\\n│         * d_raw_dim_0      (d_raw_dim_0) int64 72B 0 1 2 3 4 5 6 7 8\\n│         * theta_dim_0      (theta_dim_0) int64 64B 0 1 2 3 4 5 6 7\\n│         * theta_raw_dim_0  (theta_raw_dim_0) int64 64B 0 1 2 3 4 5 6 7\\n│       Data variables:\\n│           b                (chain, draw, b_dim_0) float32 11MB ...\\n│           c                (chain, draw, c_dim_0) float32 512kB ...\\n│           c_raw            (chain, draw, c_raw_dim_0) float32 512kB ...\\n│           d                (chain, draw, d_dim_0) float32 576kB ...\\n│           d_raw            (chain, draw, d_raw_dim_0) float32 576kB ...\\n│           sigma_c          (chain, draw) float32 64kB ...\\n│           theta            (chain, draw, theta_dim_0) float32 512kB ...\\n│           theta_raw        (chain, draw, theta_raw_dim_0) float32 512kB ...\\n│       Attributes:\\n│           created_at:                 2026-05-22T21:22:06.084161+00:00\\n│           creation_library:           ArviZ\\n│           creation_library_version:   1.1.0\\n│           creation_library_language:  Python\\n│           inference_library:          numpyro\\n│           inference_library_ver
+…[truncated 1549 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T21:47:02.428890+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/gated_mfrm_judge_bias/exp003 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "find /root/gated_mfrm_judge_bias/exp003 -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T21:47:02.429135+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp003/data_loader.py\\n/root/gated_mfrm_judge_bias/exp003/evaluation.py\\n/root/gated_mfrm_judge_bias/exp003/models.py\\n/root/gated_mfrm_judge_bias/exp003/run_exp003.py\\n/root/gated_mfrm_judge_bias/exp003/analyze_003b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T21:47:02.429364+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && grep -n \"model_names\\|judge_names\\|MODELS\\|JUDGES\\|model_list\\|judge_list\\|candidates\\|judges\" /root/gated_mfrm_judge_bias/exp003/analyze_003b.py | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && grep -n \"model_names\\|judge_names\\|MODELS\\|JUDGES\\|model_list\\|judge_list\\|candidates\\|judges\" /root/gated_mfrm_judge_bias/exp003/analyze_003b.py | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T21:47:02.429667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"251:def arena_correlation(theta_hat, model_names):\\n252:    matched = [(i, m) for i, m in enumerate(model_names) if m in ARENA_ELO]\\n290:def extract_parameters(idata, point_est, model_names, judge_names):\\n298:        params[\\\"theta\\\"] = _param_table(model_names, mu, lo, hi, \\\"model\\\")\\n299:        _print_param(\\\"theta_n (model ability)\\\", model_names, mu, lo, hi)\\n302:        params[\\\"theta\\\"] = _param_table(model_names, mu, label=\\\"model\\\")\\n303:        _print_param(\\\"theta_n (point est.)\\\", model_names, mu)\\n310:        params[\\\"c\\\"] = _param_table(model_names, mu, lo, hi, \\\"model\\\")\\n311:        _print_param(\\\"c_n (contamination)\\\", model_names, mu, lo, hi)\\n314:        params[\\\"c\\\"] = _param_table(model_names, mu, label=\\\"model\\\")\\n315:        _print_param(\\\"c_n (point est.)\\\", model_names, mu)\\n321:        params[\\\"d\\\"] = _param_table(judge_names, mu, lo, hi, \\\"judge\\\")\\n322:        _print_param(\\\"d_j (judge severity)\\\", judge_names, mu, lo, hi)\\n371:def plot_traces(idata, out, model_names, judge_names):\\n398:    _trace_grid(\\\"theta\\\", model_names, \\\"trace_theta.png\\\", \\\"theta (model ability)\\\")\\n401:        _trace_grid(ck, model_names, \\\"trace_c.png\\\", \\\"c_n (contamination)\\\")\\n402:    _trace_grid(\\\"d\\\", judge_names, \\\"trace_d.png\\\", \\\"d_j (judge severity)\\\")\\n420:def plot_posterior_densities(idata, out, model_names, judge_names):\\n432:        cmap = plt.cm.RdYlGn_r(np.linspace(0.15, 0.85, len(model_names)))\\n435:                    color=cmap[rank], label=model_names[i])\\n448:        cmap = plt.cm.coolwarm(np.linspace(0.1, 0.9, len(judge_names)))\\n451:                    color=cmap[rank], label=judge_names[i])\\n462:def plot_theta_vs_elo(theta_hat, model_names, out, theta_ci=None):\\n463:    matched = [(i, m) for i, m in enumerate(model_names) if m in ARENA_ELO]\\n494:def plot_c_bar(c_hat, mo
+…[truncated 455 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T21:47:02.429938+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && grep -n \"model_names\\|judge_names\\|MODELS\\|JUDGES\\|model_list\\|judge_list\\|candidates\\|judges\" /root/gated_mfrm_judge_bias/exp003/run_exp003.py | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && grep -n \"model_names\\|judge_names\\|MODELS\\|JUDGES\\|model_list\\|judge_list\\|candidates\\|judges\" /root/gated_mfrm_judge_bias/exp003/run_exp003.py | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T21:47:02.430171+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T21:47:02.430393+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && grep -n \"model_names\\|judge_names\\|MODELS\\|JUDGES\\|model_list\\|judge_list\\|candidates\\|judges\" /root/gated_mfrm_judge_bias/exp003/data_loader.py | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && grep -n \"model_names\\|judge_names\\|MODELS\\|JUDGES\\|model_list\\|judge_list\\|candidates\\|judges\" /root/gated_mfrm_judge_bias/exp003/data_loader.py | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T21:47:02.430669+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"9:  - index mappings (model_names, item_ids, judge_names)\\n97:    judges = sorted({o[\\\"judge\\\"] for o in observations})\\n100:    judge_to_idx = {j: i for i, j in enumerate(judges)}\\n127:      - model_names, item_ids, judge_names: lists (index -> name)\\n139:    # Filter: keep only items judged by >= 3 judges\\n141:    judges_per_item = defaultdict(set)\\n143:        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n144:    min_judges = 3\\n145:    valid_items = {item for item, judges in judges_per_item.items() if len(judges) >= min_judges}\\n147:    items_before = len(judges_per_item)\\n150:    print(f\\\"  Items: {items_before} -> {items_after} (dropped {items_before - items_after} with <{min_judges} judges)\\\")\\n169:    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n171:    judge_names = sorted(judge_to_idx, key=judge_to_idx.get)\\n175:    print(f\\\"  Models: {model_names}\\\")\\n176:    print(f\\\"  Judges: {judge_names}\\\")\\n184:    for n, name in enumerate(model_names):\\n190:    for j, name in enumerate(judge_names):\\n199:        \\\"model_names\\\": model_names,\\n201:        \\\"judge_names\\\": judge_names,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T21:47:02.430951+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && grep -n \"MODEL_NAMES\\|JUDGE_NAMES\" /root/gated_mfrm_judge_bias/exp003/analyze_003b.py | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && grep -n \"MODEL_NAMES\\|JUDGE_NAMES\" /root/gated_mfrm_judge_bias/exp003/analyze_003b.py | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T21:47:02.431194+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"45:MODEL_NAMES = [\\n49:JUDGE_NAMES = [\\n580:    model_names = rpt.get(\\\"model_names\\\", MODEL_NAMES)\\n581:    judge_names = rpt.get(\\\"judge_names\\\", JUDGE_NAMES)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T21:47:02.431435+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && sed -n '45,65p' /root/gated_mfrm_judge_bias/exp003/analyze_003b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && sed -n '45,65p' /root/gated_mfrm_judge_bias/exp003/analyze_003b.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T21:47:02.431702+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"MODEL_NAMES = [\\n    \\\"gemma-2-9b\\\", \\\"gpt-3.5-turbo-0125\\\", \\\"gpt-4-0613\\\", \\\"gpt-4o\\\",\\n    \\\"gpt-4o-mini\\\", \\\"llama-3.3-70b\\\", \\\"qwen2.5-72b\\\", \\\"qwen3-8b\\\",\\n]\\nJUDGE_NAMES = [\\n    \\\"claude-opus-4.7-proxy\\\", \\\"claude-sonnet-4.6-proxy\\\", \\\"deepseek-v4-pro-proxy\\\",\\n    \\\"gemini-2.5-pro-proxy\\\", \\\"gpt-5.5-proxy\\\", \\\"llama-3.3-70b\\\",\\n    \\\"mistral-large-2\\\", \\\"qwen2.5-72b\\\", \\\"qwen3-235b-proxy\\\",\\n]\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\nEXP003_BASELINES = {\\n    \\\"raw_average\\\":  {\\\"kendall_tau\\\": 0.786, \\\"spearman_rho\\\": 0.905},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T21:47:02.431992+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp003/output_003b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp003/output_003b/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T21:47:02.432254+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\ncontamination_c.png\\njoint_gmfrm_c.npy\\njoint_gmfrm_idata.nc\\njoint_gmfrm_theta.npy\\njudge_severity.png\\nresults.json\\ntheta_vs_elo.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T21:47:02.432505+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/gated_mfrm_judge_bias/exp003/output_003b/results.json') as f:\n    rpt = json.load(f)\nprint('model_names:', rpt.get('model_names'))\nprint('judge_names:', rpt.get('judge_names'))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/gated_mfrm_judge_bias/exp003/output_003b/results.json') as f:\n    rpt = json.load(f)\nprint('model_names:', rpt.get('model_names'))\nprint('judge_names:', rpt.get('judge_names'))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T21:47:02.432740+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_names: None\\njudge_names: None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T21:47:02.432964+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/gated_mfrm_judge_bias/exp003/output_003b/results.json') as f:\n    rpt = json.load(f)\nprint(list(rpt.keys()))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/gated_mfrm_judge_bias/exp003/output_003b/results.json') as f:\n    rpt = json.load(f)\nprint(list(rpt.keys()))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T21:47:02.433199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"['convergence', 'arena_correlation', 'cross_method', 'parameters', 'data_summary']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T21:47:02.433439+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/gated_mfrm_judge_bias/exp003/output_003b/results.json') as f:\n    rpt = json.load(f)\nparams = rpt['parameters']\nfor k in params:\n    print(f'{k}:')\n    if isinstance(params[k], list):\n        for row in params[k][:3]:\n            print(f'  {row}')\n    elif isinstance(params[k], dict):\n        for sk in list(params[k].keys())[:3]:\n            print(f'  {sk}: {params[k][sk]}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/gated_mfrm_judge_bias/exp003/output_003b/results.json') as f:\n    rpt = json.load(f)\nparams = rpt['parameters']\nfor k in params:\n    print(f'{k}:')\n    if isinstance(params[k], list):\n        for row in params[k][:3]:\n            print(f'  {row}')\n    elif isinstance(params[k], dict):\n        for sk in list(params[k].keys())[:3]:\n            print(f'  {sk}: {params[k][sk]}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T21:47:02.433702+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"joint_gmfrm:\\n  theta_ranking: [['gpt-4o', 1.9864674806594849], ['gpt-4o-mini', 1.4317131042480469], ['qwen2.5-72b', 1.1792981624603271], ['llama-3.3-70b', 0.5396649241447449], ['qwen3-8b', 0.5163798332214355], ['gemma-2-9b', -0.5038303136825562], ['gpt-4-0613', -1.8764393329620361], ['gpt-3.5-turbo-0125', -3.273253917694092]]\\n  c_ranking: [['gpt-3.5-turbo-0125', 5.565671443939209], ['gpt-4-0613', 4.146100044250488], ['qwen2.5-72b', 2.937516212463379], ['llama-3.3-70b', 2.457737922668457], ['gemma-2-9b', 1.6531078815460205], ['qwen3-8b', 1.1485471725463867], ['gpt-4o-mini', 0.9161834716796875], ['gpt-4o', 0.8752158880233765]]\\n  d_ranking: [['claude-opus-4.7-proxy', 0.5968004465103149], ['gpt-5.5-proxy', 0.5341215133666992], ['deepseek-v4-pro-proxy', 0.31228184700012207], ['claude-sonnet-4.6-proxy', 0.13575761020183563], ['gemini-2.5-pro-proxy', -0.036648936569690704], ['qwen3-235b-proxy', -0.03935432806611061], ['qwen2.5-72b', -0.350337415933609], ['llama-3.3-70b', -0.4175201952457428], ['mistral-large-2', -0.735100507736206]]\\ntop_exposure_items:\\n  ['53f4338f1a4b403c84ccf864c079a8c1', 1.0]\\n  ['3735ce11da55495cbe2c013212febe66', 1.0]\\n  ['ab4a5145354848efb97430e90e2049dc', 0.8521250466397368]\\nbottom_exposure_items:\\n  ['c15bbb1710b445109f24fcd2c3d6ef60', 0.0]\\n  ['c542b6d5782b45efb294e945117387fc', 0.0]\\n  ['e9f5e01e6b2c48ff9eb121f7e32afcae', 0.0]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T21:47:02.434148+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nprint('from_dict:', hasattr(az, 'from_dict'))\nprint('from_netcdf:', hasattr(az, 'from_netcdf'))\nprint('plot_trace:', hasattr(az, 'plot_trace'))\nprint('plot_forest:', hasattr(az, 'plot_forest'))\nprint('plot_ppc:', hasattr(az, 'plot_ppc'))\nprint('style:', hasattr(az, 'style'))\n# Check from_dict signature\nimport inspect\nif hasattr(az, 'from_dict'):\n    sig = inspect.signature(az.from_dict)\n    print('from_dict params:', list(sig.parameters.keys())[:10])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nprint('from_dict:', hasattr(az, 'from_dict'))\nprint('from_netcdf:', hasattr(az, 'from_netcdf'))\nprint('plot_trace:', hasattr(az, 'plot_trace'))\nprint('plot_forest:', hasattr(az, 'plot_forest'))\nprint('plot_ppc:', hasattr(az, 'plot_ppc'))\nprint('style:', hasattr(az, 'style'))\n# Check from_dict signature\nimport inspect\nif hasattr(az, 'from_dict'):\n    sig = inspect.signature(az.from_dict)\n    print('from_dict params:', list(sig.parameters.keys())[:10])\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T21:47:02.434412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from_dict: True\\nfrom_netcdf: True\\nplot_trace: True\\nplot_forest: True\\nplot_ppc: False\\nstyle: True\\nfrom_dict params: ['data', 'name', 'sample_dims', 'save_warmup', 'index_origin', 'coords', 'dims', 'pred_dims', 'pred_coords', 'check_conventions']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T21:47:02.434701+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nhelp(az.from_dict)\n\" 2>&1 | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nhelp(az.from_dict)\n\" 2>&1 | head -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T21:47:02.434976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Help on function from_dict in module arviz_base.io_dict:\\n\\nfrom_dict(data, *, name=None, sample_dims=None, save_warmup=None, index_origin=None, coords=None, dims=None, pred_dims=None, pred_coords=None, check_conventions=True, attrs=None)\\n    Convert nested dictionary into a DataTree.\\n\\n    It uses :func:`dict_to_dataset` to convert a nested dictionary to a DataTree\\n    using ArviZ conventions.\\n\\n    Parameters\\n    ----------\\n    data : mapping of {hashable_key : mapping of {hashable_key : array_like}}\\n        Dictionary to convert to DataTree. It must be a nested dictionary.\\n        The keys of the outer dictionary are group names, the values\\n        of the outer dictionary must be dictionaries themselves with the\\n        variables that should be stored in that group. These inner dictionaries\\n        are passed to :func:`dict_to_dataset`.\\n\\n        Depending on the group name, the arguments used when calling `dict_to_dataset`\\n        can take different arguments from their defaults:\\n\\n        * If ``data`` is a substring of the group name, ``sample_dims`` will be\\n          set to an empty list: ``[]``\\n        * If ``predictions`` is a substring of the group name, `pred_coords`\\n          and `pred_dims` will be passed to :func:`dict_to_dataset` as ``coords``\\n          and ``dims``.\\n        * If ``log_likelihood`` is a substring of the group name,\\n          ``skip_event_dims`` is set to ``True``.\\n\\n    name : str, optional\\n        Name of the DataTree root node. This is used as the DataTree name by\\n        ArviZ.\\n    sample_dims : sequence of hashable, optional\\n        Dimensions that should be assumed to be present in _all_ variables.\\n        If missing, they will be added as the dimensions corresponding to the\\n        leading axis.\\n    save_warmup : bool, optional\\n        Save warmup iterations DataTree. If not defined, use default\\n        defi
+…[truncated 263 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T21:47:02.435285+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az, inspect\nsig = inspect.signature(az.plot_trace)\nprint('plot_trace params:', list(sig.parameters.keys()))\nsig2 = inspect.signature(az.plot_forest)\nprint('plot_forest params:', list(sig2.parameters.keys()))\n# Check style options\nprint('styles:', az.style.available if hasattr(az.style, 'available') else 'N/A')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az, inspect\nsig = inspect.signature(az.plot_trace)\nprint('plot_trace params:', list(sig.parameters.keys()))\nsig2 = inspect.signature(az.plot_forest)\nprint('plot_forest params:', list(sig2.parameters.keys()))\n# Check style options\nprint('styles:', az.style.available if hasattr(az.style, 'available') else 'N/A')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T21:47:02.435564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"plot_trace params: ['dt', 'var_names', 'filter_vars', 'group', 'coords', 'sample_dims', 'plot_collection', 'backend', 'labeller', 'aes_by_visuals', 'visuals', 'pc_kwargs']\\nplot_forest params: ['dt', 'var_names', 'filter_vars', 'group', 'coords', 'sample_dims', 'combined', 'point_estimate', 'ci_kind', 'ci_probs', 'labels', 'shade_label', 'plot_collection', 'backend', 'labeller', 'aes_by_visuals', 'visuals', 'stats', 'pc_kwargs']\\nstyles: &lt;function available at 0x7efc0a6ed1c0>\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T21:47:02.435903+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nprint('hdi:', hasattr(az, 'hdi'))\nprint('summary:', hasattr(az, 'summary'))\n# Check available styles\nprint('styles:', az.style.available())\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport arviz as az\nprint('hdi:', hasattr(az, 'hdi'))\nprint('summary:', hasattr(az, 'summary'))\n# Check available styles\nprint('styles:', az.style.available())\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T21:47:02.436176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"hdi: True\\nsummary: True\\nstyles: {'matplotlib': ['Solarize_Light2', '_classic_test_patch', '_mpl-gallery', '_mpl-gallery-nogrid', 'arviz-cetrino', 'arviz-tenui', 'arviz-tumma', 'arviz-variat', 'arviz-vibrant', 'bmh', 'classic', 'dark_background', 'fast', 'fivethirtyeight', 'ggplot', 'grayscale', 'petroff10', 'seaborn-v0_8', 'seaborn-v0_8-bright', 'seaborn-v0_8-colorblind', 'seaborn-v0_8-dark', 'seaborn-v0_8-dark-palette', 'seaborn-v0_8-darkgrid', 'seaborn-v0_8-deep', 'seaborn-v0_8-muted', 'seaborn-v0_8-notebook', 'seaborn-v0_8-paper', 'seaborn-v0_8-pastel', 'seaborn-v0_8-poster', 'seaborn-v0_8-talk', 'seaborn-v0_8-ticks', 'seaborn-v0_8-white', 'seaborn-v0_8-whitegrid', 'tableau-colorblind10']}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T21:47:02.436477+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/exp008",
+  "description": "Create local exp008 directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/exp008",
+    "description": "Create local exp008 directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T21:47:02.436710+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T21:47:02.436994+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/exp008/generate_diagnostics.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Generate exp-003b MCMC diagnostic plots for paper appendix.\n\nOutputs: trace plots, forest plots, (PPC if available)\nAll PDFs saved to artifacts/exp003b_diagnostics/\n\"\"\"\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.gridspec import GridSpec\nimport numpy as np\nimport os\nimport arviz as az\n\n# ─── Config ───\nNC_PATH = \"/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc\"\nOUT_DIR = \"/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics\"\n\nMODEL_NAMES = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\nJUDGE_NAMES = [\n    \"claude-opus-4.7-proxy\", \"claude-sonnet-4.6-proxy\", \"deepseek-v4-pro-proxy\",\n    \"gemini-2.5-pro-proxy\", \"gpt-5.5-proxy\", \"llama-3.3-70b\",\n    \"mistral-large-2\", \"qwen2.5-72b\", \"qwen3-235b-proxy\",\n]\nTHETA_SELECT = [\"gpt-4o\", \"qwen2.5-72b\", \"gpt-3.5-turbo-0125\", \"gemma-2-9b\"]\nN_B_SELECT = 6\nCHAIN_COLORS = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\"]\n\n\ndef setup_style():\n    plt.style.use(\"seaborn-v0_8-whitegrid\")\n    plt.rcParams.update({\n        \"font.size\": 10,\n        \"axes.titlesize\": 11,\n        \"axes.labelsize\": 10,\n        \"xtick.labelsize\": 8,\n        \"ytick.labelsize\": 9,\n        \"figure.dpi\": 150,\n        \"savefig.dpi\": 300,\n        \"pdf.fonttype\": 42,\n        \"ps.fonttype\": 42,\n    })\n\n\ndef trace_plot(samples, names, suptitle, filename):\n    \"\"\"Trace + marginal density plot.\n\n    samples: (n_chains, n_draws, n_params) or (n_chains, n_draws)\n    \"\"\"\n    if samples.ndim == 2:\n        samples = samples[:, :, np.newaxis]\n    if isinstance(names, str):\n        names = [names]\n\n    n_chains, n_draws, n_params = samples.shape\n    fig, axes = plt.subplots(\n        n_params, 2, figsize=(13, 2.6 * n_params + 0.8),\n        squeeze=False, gridspec_kw={\"width_ratios\": [3.5, 1]},\n    )\n\n    for i in range(n_params):\n        ax_t, ax_d = axes[i]\n        for ch in range(n_chains):\n            vals = samples[ch, :, i]\n            ax_t.plot(vals, alpha=0.45, lw=0.25, color=CHAIN_COLORS[ch],\n                      rasterized=True)\n            ax_d.hist(vals, bins=60, alpha=0.3, density=True,\n                      color=CHAIN_COLORS[ch], orientation=\"horizontal\")\n            from scipy.stats import gaussian_kde\n            try:\n                kde = gaussian_kde(vals)\n                grid = np.linspace(vals.min(), vals.max(), 200)\n                ax_d.plot(kde(grid), grid, color=CHAIN_COLORS[ch],\n                          lw=1.0, alpha=0.8)\n            except Exception:\n                pass\n\n        ax_t.set_ylabel(names[i], fontsize=9)\n        ax_d.set_ylabel(\"\")\n        ax_d.tick_params(labelleft=False)\n\n        if i == 0:\n            handles = [plt.Line2D([0], [0], color=c, lw=1.5)\n                       for c in CHAIN_COLORS[:n_chains]]\n            ax_t.legend(handles, [f\"Chain {c}\" for c in range(n_chains)],\n                        fontsize=7, ncol=4, loc=\"upper right\",\n                        framealpha=0.7)\n        if i < n_params - 1:\n            ax_t.tick_params(labelbottom=False)\n        else:\n            ax_t.set_xlabel(\"Draw\", fontsize=9)\n\n    fig.suptitle(suptitle, fontsize=13, fontweight=\"bold\", y=1.005)\n    fig.tight_layout()\n    _save(fig, filename)\n\n\ndef forest_plot(samples, names, suptitle, filename, hdi_prob=0.94):\n    \"\"\"Forest plot with HDI bars and posterior means.\n\n    samples: (n_chains, n_draws, n_params)\n    \"\"\"\n    n_params = len(names)\n    flat = samples.reshape(-1, n_params)\n\n    means = flat.mean(axis=0)\n    alpha = 1 - hdi_prob\n    lo = np.percentile(flat, 100 * alpha / 2, axis=0)\n    hi = np.percentile(flat, 100 * (1 - alpha / 2), axis=0)\n\n    order = np.argsort(means)\n\n    fig, ax = plt.subplots(figsize=(8, max(0.45 * n_params + 1.2, 3.5)))\n    y_pos = np.arange(n_params)\n\n    for rank, orig_idx in enumerate(order):\n        ax.plot([lo[orig_idx], hi[orig_idx]], [rank, rank],\n                color=\"#4878d0\", lw=2.8, solid_capstyle=\"round\", alpha=0.85)\n        ax.plot(means[orig_idx], rank, \"o\", color=\"#222222\",\n                markersize=4.5, zorder=5)\n\n    ax.set_yticks(y_pos)\n    ax.set_yticklabels([names[i] for i in order], fontsize=9)\n    ax.set_xlabel(\"Posterior estimate\", fontsize=10)\n    ax.axvline(0, color=\"gray\", ls=\"--\", lw=0.8, alpha=0.5)\n    ax.set_title(f\"{suptitle}\\n(● = mean, bar = {int(hdi_prob*100)}% CI)\",\n                 fontsize=11, fontweight=\"bold\")\n    ax.margins(y=0.06)\n    fig.tight_layout()\n    _save(fig, filename)\n\n\ndef _save(fig, filename):\n    path = os.path.join(OUT_DIR, filename)\n    fig.savefig(path, bbox_inches=\"tight\")\n    plt.close(fig)\n    kb = os.path.getsize(path) / 1024\n    print(f\"  {filename}: {kb:.1f} KB\")\n\n\n# ─── Main ───\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n    setup_style()\n\n    print(\"Loading InferenceData...\")\n    raw = az.from_netcdf(NC_PATH)\n    post = raw[\"posterior\"].ds\n    print(f\"  Posterior vars: {list(post.data_vars)}\")\n    print(f\"  Chains={post.sizes['chain']}, Draws={post.sizes['draw']}\")\n\n    c = post[\"c\"].values              # (4, 4000, 8)\n    d = post[\"d\"].values              # (4, 4000, 9)\n    theta = post[\"theta\"].values      # (4, 4000, 8)\n    b = post[\"b\"].values              # (4, 4000, 176)\n    sigma_c = post[\"sigma_c\"].values  # (4, 4000)\n\n    # Select representative b items (2 low, 2 mid, 2 high difficulty)\n    b_mean = b.mean(axis=(0, 1))\n    order = np.argsort(b_mean)\n    n_b = len(order)\n    b_idx = np.concatenate([\n        order[:2],\n        order[n_b // 2 - 1 : n_b // 2 + 1],\n        order[-2:],\n    ])\n    b_names = [f\"item {i} ($\\\\bar{{b}}$={b_mean[i]:.2f})\" for i in b_idx]\n\n    # Theta subset\n    theta_idx = [MODEL_NAMES.index(m) for m in THETA_SELECT]\n\n    # ── Trace plots ──\n    print(\"\\n=== Trace Plots ===\")\n    trace_plot(c, MODEL_NAMES,\n               r\"$c_n$ (contamination level)\", \"trace_cn.pdf\")\n    trace_plot(d, JUDGE_NAMES,\n               r\"$d_j$ (judge severity)\", \"trace_dj.pdf\")\n    trace_plot(sigma_c, r\"$\\sigma_c$\",\n               r\"$\\sigma_c$ (contamination spread)\", \"trace_sigma_c.pdf\")\n    trace_plot(theta[:, :, theta_idx], THETA_SELECT,\n               r\"$\\theta_n$ (model ability — selected)\", \"trace_theta.pdf\")\n    trace_plot(b[:, :, b_idx], b_names,\n               r\"$b_i$ (item difficulty — selected)\", \"trace_b.pdf\")\n\n    # ── PPC ──\n    print(\"\\n=== Posterior Predictive Check ===\")\n    if \"posterior_predictive\" in raw.children:\n        print(\"  posterior_predictive found — generating PPC plot\")\n        pp = raw[\"posterior_predictive\"].ds\n        obs = raw[\"observed_data\"].ds[\"obs\"].values\n        pp_var = list(pp.data_vars)[0]\n        pp_samples = pp[pp_var].values.reshape(-1, obs.shape[0])\n        fig, ax = plt.subplots(figsize=(10, 5))\n        for i in range(min(100, pp_samples.shape[0])):\n            ax.hist(pp_samples[i], bins=50, alpha=0.02, density=True,\n                    color=\"#4878d0\", histtype=\"step\")\n        ax.hist(obs, bins=50, density=True, color=\"#d62728\", lw=2,\n                histtype=\"step\", label=\"Observed\")\n        ax.legend(fontsize=10)\n        ax.set_title(\"Posterior Predictive Check\", fontsize=12, fontweight=\"bold\")\n        ax.set_xlabel(\"Score\")\n        fig.tight_layout()\n        _save(fig, \"ppc.pdf\")\n    else:\n        print(\"  SKIPPED: no posterior_predictive group in InferenceData\")\n\n    # ── Forest plots ──\n    print(\"\\n=== Forest Plots ===\")\n    forest_plot(c, MODEL_NAMES,\n                r\"$c_n$ (contamination level)\", \"forest_cn.pdf\")\n    forest_plot(d, JUDGE_NAMES,\n                r\"$d_j$ (judge severity)\", \"forest_dj.pdf\")\n\n    # ── Summary ──\n    print(\"\\n=== All output files ===\")\n    total = 0\n    for f in sorted(os.listdir(OUT_DIR)):\n        sz = os.path.getsize(os.path.join(OUT_DIR, f))\n        total += sz\n        print(f\"  {f}: {sz/1024:.1f} KB\")\n    print(f\"  TOTAL: {total/1024:.1f} KB\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/exp008/generate_diagnostics.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Generate exp-003b MCMC diagnostic plots for paper appendix.\n\nOutputs: trace plots, forest plots, (PPC if available)\nAll PDFs saved to artifacts/exp003b_diagnostics/\n\"\"\"\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.gridspec import GridSpec\nimport numpy as np\nimport os\nimport arviz as az\n\n# ─── Config ───\nNC_PATH = \"/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc\"\nOUT_DIR = \"/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics\"\n\nMODEL_NAMES = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\nJUDGE_NAMES = [\n    \"claude-opus-4.7-proxy\", \"claude-sonnet-4.6-proxy\", \"deepseek-v4-pro-proxy\",\n    \"gemini-2.5-pro-proxy\", \"gpt-5.5-proxy\", \"llama-3.3-70b\",\n    \"mistral-large-2\", \"qwen2.5-72b\", \"qwen3-235b-proxy\",\n]\nTHETA_SELECT = [\"gpt-4o\", \"qwen2.5-72b\", \"gpt-3.5-turbo-0125\", \"gemma-2-9b\"]\nN_B_SELECT = 6\nCHAIN_COLORS = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\"]\n\n\ndef setup_style():\n    plt.style.use(\"seaborn-v0_8-whitegrid\")\n    plt.rcParams.update({\n        \"font.size\": 10,\n        \"axes.titlesize\": 11,\n        \"axes.labelsize\": 10,\n        \"xtick.labelsize\": 8,\n        \"ytick.labelsize\": 9,\n        \"figure.dpi\": 150,\n        \"savefig.dpi\": 300,\n        \"pdf.fonttype\": 42,\n        \"ps.fonttype\": 42,\n    })\n\n\ndef trace_plot(samples, names, suptitle, filename):\n    \"\"\"Trace + marginal density plot.\n\n    samples: (n_chains, n_draws, n_params) or (n_chains, n_draws)\n    \"\"\"\n    if samples.ndim == 2:\n        samples = samples[:, :, np.newaxis]\n    if isinstance(names, str):\n        names = [names]\n\n    n_chains, n_draws, n_params = samples.shape\n    fig, axes = plt.subplots(\n        n_params, 2, figsize=(13, 2.6 * n_params + 0.8),\n        squeeze=False, gridspec_kw={\"width_ratios\": [3.5, 1]},\n    )\n\n    for i in range(n_params):\n        ax_t, ax_d = axes[i]\n        for ch in range(n_chains):\n            vals = samples[ch, :, i]\n            ax_t.plot(vals, alpha=0.45, lw=0.25, color=CHAIN_COLORS[ch],\n                      rasterized=True)\n            ax_d.hist(vals, bins=60, alpha=0.3, density=True,\n                      color=CHAIN_COLORS[ch], orientation=\"horizontal\")\n            from scipy.stats import gaussian_kde\n            try:\n                kde = gaussian_kde(vals)\n                grid = np.linspace(vals.min(), vals.max(), 200)\n                ax_d.plot(kde(grid), grid, color=CHAIN_COLORS[ch],\n                          lw=1.0, alpha=0.8)\n            except Exception:\n                pass\n\n        ax_t.set_ylabel(names[i], fontsize=9)\n        ax_d.set_ylabel(\"\")\n        ax_d.tick_params(labelleft=False)\n\n        if i == 0:\n            handles = [plt.Line2D([0], [0], color=c, lw=1.5)\n                       for c in CHAIN_COLORS[:n_chains]]\n            ax_t.legend(handles, [f\"Chain {c}\" for c in range(n_chains)],\n                        fontsize=7, ncol=4, loc=\"upper right\",\n                        framealpha=0.7)\n        if i < n_params - 1:\n            ax_t.tick_params(labelbottom=False)\n        else:\n            ax_t.set_xlabel(\"Draw\", fontsize=9)\n\n    fig.suptitle(suptitle, fontsize=13, fontweight=\"bold\", y=1.005)\n    fig.tight_layout()\n    _save(fig, filename)\n\n\ndef forest_plot(samples, names, suptitle, filename, hdi_prob=0.94):\n    \"\"\"Forest plot with HDI bars and posterior means.\n\n    samples: (n_chains, n_draws, n_params)\n    \"\"\"\n    n_params = len(names)\n    flat = samples.reshape(-1, n_params)\n\n    means = flat.mean(axis=0)\n    alpha = 1 - hdi_prob\n    lo = np.percentile(flat, 100 * alpha / 2, axis=0)\n    hi = np.percentile(flat, 100 * (1 - alpha / 2), axis=0)\n\n    order = np.argsort(means)\n\n    fig, ax = plt.subplots(figsize=(8, max(0.45 * n_params + 1.2, 3.5)))\n    y_pos = np.arange(n_params)\n\n    for rank, orig_idx in enumerate(order):\n        ax.plot([lo[orig_idx], hi[orig_idx]], [rank, rank],\n                color=\"#4878d0\", lw=2.8, solid_capstyle=\"round\", alpha=0.85)\n        ax.plot(means[orig_idx], rank, \"o\", color=\"#222222\",\n                markersize=4.5, zorder=5)\n\n    ax.set_yticks(y_pos)\n    ax.set_yticklabels([names[i] for i in order], fontsize=9)\n    ax.set_xlabel(\"Posterior estimate\", fontsize=10)\n    ax.axvline(0, color=\"gray\", ls=\"--\", lw=0.8, alpha=0.5)\n    ax.set_title(f\"{suptitle}\\n(● = mean, bar = {int(hdi_prob*100)}% CI)\",\n                 fontsize=11, fontweight=\"bold\")\n    ax.margins(y=0.06)\n    fig.tight_layout()\n    _save(fig, filename)\n\n\ndef _save(fig, filename):\n    path = os.path.join(OUT_DIR, filename)\n    fig.savefig(path, bbox_inches=\"tight\")\n    plt.close(fig)\n    kb = os.path.getsize(path) / 1024\n    print(f\"  {filename}: {kb:.1f} KB\")\n\n\n# ─── Main ───\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n    setup_style()\n\n    print(\"Loading InferenceData...\")\n    raw = az.from_netcdf(NC_PATH)\n    post = raw[\"posterior\"].ds\n    print(f\"  Posterior vars: {list(post.data_vars)}\")\n    print(f\"  Chains={post.sizes['chain']}, Draws={post.sizes['draw']}\")\n\n    c = post[\"c\"].values              # (4, 4000, 8)\n    d = post[\"d\"].values              # (4, 4000, 9)\n    theta = post[\"theta\"].values      # (4, 4000, 8)\n    b = post[\"b\"].values              # (4, 4000, 176)\n    sigma_c = post[\"sigma_c\"].values  # (4, 4000)\n\n    # Select representative b items (2 low, 2 mid, 2 high difficulty)\n    b_mean = b.mean(axis=(0, 1))\n    order = np.argsort(b_mean)\n    n_b = len(order)\n    b_idx = np.concatenate([\n        order[:2],\n        order[n_b // 2 - 1 : n_b // 2 + 1],\n        order[-2:],\n    ])\n    b_names = [f\"item {i} ($\\\\bar{{b}}$={b_mean[i]:.2f})\" for i in b_idx]\n\n    # Theta subset\n    theta_idx = [MODEL_NAMES.index(m) for m in THETA_SELECT]\n\n    # ── Trace plots ──\n    print(\"\\n=== Trace Plots ===\")\n    trace_plot(c, MODEL_NAMES,\n               r\"$c_n$ (contamination level)\", \"trace_cn.pdf\")\n    trace_plot(d, JUDGE_NAMES,\n               r\"$d_j$ (judge severity)\", \"trace_dj.pdf\")\n    trace_plot(sigma_c, r\"$\\sigma_c$\",\n               r\"$\\sigma_c$ (contamination spread)\", \"trace_sigma_c.pdf\")\n    trace_plot(theta[:, :, theta_idx], THETA_SELECT,\n               r\"$\\theta_n$ (model ability — selected)\", \"trace_theta.pdf\")\n    trace_plot(b[:, :, b_idx], b_names,\n               r\"$b_i$ (item difficulty — selected)\", \"trace_b.pdf\")\n\n    # ── PPC ──\n    print(\"\\n=== Posterior Predictive Check ===\")\n    if \"posterior_predictive\" in raw.children:\n        print(\"  posterior_predictive found — generating PPC plot\")\n        pp = raw[\"posterior_predictive\"].ds\n        obs = raw[\"observed_data\"].ds[\"obs\"].values\n        pp_var = list(pp.data_vars)[0]\n        pp_samples = pp[pp_var].values.reshape(-1, obs.shape[0])\n        fig, ax = plt.subplots(figsize=(10, 5))\n        for i in range(min(100, pp_samples.shape[0])):\n            ax.hist(pp_samples[i], bins=50, alpha=0.02, density=True,\n                    color=\"#4878d0\", histtype=\"step\")\n        ax.hist(obs, bins=50, density=True, color=\"#d62728\", lw=2,\n                histtype=\"step\", label=\"Observed\")\n        ax.legend(fontsize=10)\n        ax.set_title(\"Posterior Predictive Check\", fontsize=12, fontweight=\"bold\")\n        ax.set_xlabel(\"Score\")\n        fig.tight_layout()\n        _save(fig, \"ppc.pdf\")\n    else:\n        print(\"  SKIPPED: no posterior_predictive group in InferenceData\")\n\n    # ── Forest plots ──\n    print(\"\\n=== Forest Plots ===\")\n    forest_plot(c, MODEL_NAMES,\n                r\"$c_n$ (contamination level)\", \"forest_cn.pdf\")\n    forest_plot(d, JUDGE_NAMES,\n                r\"$d_j$ (judge severity)\", \"forest_dj.pdf\")\n\n    # ── Summary ──\n    print(\"\\n=== All output files ===\")\n    total = 0\n    for f in sorted(os.listdir(OUT_DIR)):\n        sz = os.path.getsize(os.path.join(OUT_DIR, f))\n        total += sz\n        print(f\"  {f}: {sz/1024:.1f} KB\")\n    print(f\"  TOTAL: {total/1024:.1f} KB\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T21:47:02.437439+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/exp008/generate_diagnostics.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T21:47:02.437705+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "mkdir -p /root/gated_mfrm_judge_bias/exp008",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "mkdir -p /root/gated_mfrm_judge_bias/exp008",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T21:47:02.437936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T21:47:02.438160+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/exp008/generate_diagnostics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/exp008/generate_diagnostics.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T21:47:02.438532+00:00_
+
+1	#!/usr/bin/env python3
+2	"""Generate exp-003b MCMC diagnostic plots for paper appendix.
+3	
+4	Outputs: trace plots, forest plots, (PPC if available)
+5	All PDFs saved to artifacts/exp003b_diagnostics/
+6	"""
+7	import matplotlib
+8	matplotlib.use("Agg")
+9	import matplotlib.pyplot as plt
+10	from matplotlib.gridspec import GridSpec
+11	import numpy as np
+12	import os
+13	import arviz as az
+14	
+15	# ─── Config ───
+16	NC_PATH = "/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc"
+17	OUT_DIR = "/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics"
+18	
+19	MODEL_NAMES = [
+20	    "gemma-2-9b", "gpt-3.5-turbo-0125", "gpt-4-0613", "gpt-4o",
+21	    "gpt-4o-mini", "llama-3.3-70b", "qwen2.5-72b", "qwen3-8b",
+22	]
+23	JUDGE_NAMES = [
+24	    "claude-opus-4.7-proxy", "claude-sonnet-4.6-proxy", "deepseek-v4-pro-proxy",
+25	    "gemini-2.5-pro-proxy", "gpt-5.5-proxy", "llama-3.3-70b",
+26	    "mistral-large-2", "qwen2.5-72b", "qwen3-235b-proxy",
+27	]
+28	THETA_SELECT = ["gpt-4o", "qwen2.5-72b", "gpt-3.5-turbo-0125", "gemma-2-9b"]
+29	N_B_SELECT = 6
+30	CHAIN_COLORS = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
+31	
+32	
+33	def setup_style():
+34	    plt.style.use("seaborn-v0_8-whitegrid")
+35	    plt.rcParams.update({
+36	        "font.size": 10,
+37	        "axes.titlesize": 11,
+38	        "axes.labelsize": 10,
+39	        "xtick.labelsize": 8,
+40	        "ytick.labelsize": 9,
+41	        "figure.dpi": 150,
+42	        "savefig.dpi": 300,
+43	        "pdf.fonttype": 42,
+44	        "ps.fonttype": 42,
+45	    })
+46	
+47	
+48	def trace_plot(samples, names, suptitle, filename):
+49	    """Trace + marginal density plot.
+50	
+51	    samples: (n_chains, n_draws, n_params) or (n_chains, n_draws)
+52	    """
+53	    if samples.ndim == 2:
+54	        samples = samples[:, :, np.newaxis]
+55	    if isinstance(names, str):
+56	        names = [names]
+57	
+58	    n_chains, n_draws, n_params = samples.shape
+59	    fig, axes = plt.subplots(
+60	        n_params, 2, figsize=(13, 2.6 * n_params + 0.8),
+61	    
+…[truncated 6731 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T21:47:02.438885+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp008/generate_diagnostics.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Generate exp-003b MCMC diagnostic plots for paper appendix.\n\nOutputs: trace plots, forest plots, (PPC if available)\nAll PDFs saved to artifacts/exp003b_diagnostics/\n\"\"\"\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.gridspec import GridSpec\nimport numpy as np\nimport os\nimport arviz as az\n\n# ─── Config ───\nNC_PATH = \"/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc\"\nOUT_DIR = \"/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics\"\n\nMODEL_NAMES = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\nJUDGE_NAMES = [\n    \"claude-opus-4.7-proxy\", \"claude-sonnet-4.6-proxy\", \"deepseek-v4-pro-proxy\",\n    \"gemini-2.5-pro-proxy\", \"gpt-5.5-proxy\", \"llama-3.3-70b\",\n    \"mistral-large-2\", \"qwen2.5-72b\", \"qwen3-235b-proxy\",\n]\nTHETA_SELECT = [\"gpt-4o\", \"qwen2.5-72b\", \"gpt-3.5-turbo-0125\", \"gemma-2-9b\"]\nN_B_SELECT = 6\nCHAIN_COLORS = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\"]\n\n\ndef setup_style():\n    plt.style.use(\"seaborn-v0_8-whitegrid\")\n    plt.rcParams.update({\n        \"font.size\": 10,\n        \"axes.titlesize\": 11,\n        \"axes.labelsize\": 10,\n        \"xtick.labelsize\": 8,\n        \"ytick.labelsize\": 9,\n        \"figure.dpi\": 150,\n        \"savefig.dpi\": 300,\n        \"pdf.fonttype\": 42,\n        \"ps.fonttype\": 42,\n    })\n\n\ndef trace_plot(samples, names, suptitle, filename):\n    \"\"\"Trace + marginal density plot.\n\n    samples: (n_chains, n_draws, n_params) or (n_chains, n_draws)\n    \"\"\"\n    if samples.ndim == 2:\n        samples = samples[:, :, np.newaxis]\n    if isinstance(names, str):\n        names = [names]\n\n    n_chains, n_draws, n_params = samples.shape\n    fig, axes = plt.subplots(\n        n_params, 2, figsize=(13, 2.6 * n_params + 0.8),\n        squeeze=False, gridspec_kw={\"width_ratios\": [3.5, 1]},\n    )\n\n    for i in range(n_params):\n        ax_t, ax_d = axes[i]\n        for ch in range(n_chains):\n            vals = samples[ch, :, i]\n            ax_t.plot(vals, alpha=0.45, lw=0.25, color=CHAIN_COLORS[ch],\n                      rasterized=True)\n            ax_d.hist(vals, bins=60, alpha=0.3, density=True,\n                      color=CHAIN_COLORS[ch], orientation=\"horizontal\")\n            from scipy.stats import gaussian_kde\n            try:\n                kde = gaussian_kde(vals)\n                grid = np.linspace(vals.min(), vals.max(), 200)\n                ax_d.plot(kde(grid), grid, color=CHAIN_COLORS[ch],\n                          lw=1.0, alpha=0.8)\n            except Exception:\n                pass\n\n        ax_t.set_ylabel(names[i], fontsize=9)\n        ax_d.set_ylabel(\"\")\n        ax_d.tick_params(labelleft=False)\n\n        if i == 0:\n            handles = [plt.Line2D([0], [0], color=c, lw=1.5)\n                       for c in CHAIN_COLORS[:n_chains]]\n            ax_t.legend(handles, [f\"Chain {c}\" for c in range(n_chains)],\n                        fontsize=7, ncol=4, loc=\"upper right\",\n                        framealpha=0.7)\n        if i < n_params - 1:\n            ax_t.tick_params(labelbottom=False)\n        else:\n            ax_t.set_xlabel(\"Draw\", fontsize=9)\n\n    fig.suptitle(suptitle, fontsize=13, fontweight=\"bold\", y=1.005)\n    fig.tight_layout()\n    _save(fig, filename)\n\n\ndef forest_plot(samples, names, suptitle, filename, hdi_prob=0.94):\n    \"\"\"Forest plot with HDI bars and posterior means.\n\n    samples: (n_chains, n_draws, n_params)\n    \"\"\"\n    n_params = len(names)\n    flat = samples.reshape(-1, n_params)\n\n    means = flat.mean(axis=0)\n    alpha = 1 - hdi_prob\n    lo = np.percentile(flat, 100 * alpha / 2, axis=0)\n    hi = np.percentile(flat, 100 * (1 - alpha / 2), axis=0)\n\n    order = np.argsort(means)\n\n    fig, ax = plt.subplots(figsize=(8, max(0.45 * n_params + 1.2, 3.5)))\n    y_pos = np.arange(n_params)\n\n    for rank, orig_idx in enumerate(order):\n        ax.plot([lo[orig_idx], hi[orig_idx]], [rank, rank],\n                color=\"#4878d0\", lw=2.8, solid_capstyle=\"round\", alpha=0.85)\n        ax.plot(means[orig_idx], rank, \"o\", color=\"#222222\",\n                markersize=4.5, zorder=5)\n\n    ax.set_yticks(y_pos)\n    ax.set_yticklabels([names[i] for i in order], fontsize=9)\n    ax.set_xlabel(\"Posterior estimate\", fontsize=10)\n    ax.axvline(0, color=\"gray\", ls=\"--\", lw=0.8, alpha=0.5)\n    ax.set_title(f\"{suptitle}\\n(● = mean, bar = {int(hdi_prob*100)}% CI)\",\n                 fontsize=11, fontweight=\"bold\")\n    ax.margins(y=0.06)\n    fig.tight_layout()\n    _save(fig, filename)\n\n\ndef _save(fig, filename):\n    path = os.path.join(OUT_DIR, filename)\n    fig.savefig(path, bbox_inches=\"tight\")\n    plt.close(fig)\n    kb = os.path.getsize(path) / 1024\n    print(f\"  {filename}: {kb:.1f} KB\")\n\n\n# ─── Main ───\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n    setup_style()\n\n    print(\"Loading InferenceData...\")\n    raw = az.from_netcdf(NC_PATH)\n    post = raw[\"posterior\"].ds\n    print(f\"  Posterior vars: {list(post.data_vars)}\")\n    print(f\"  Chains={post.sizes['chain']}, Draws={post.sizes['draw']}\")\n\n    c = post[\"c\"].values              # (4, 4000, 8)\n    d = post[\"d\"].values              # (4, 4000, 9)\n    theta = post[\"theta\"].values      # (4, 4000, 8)\n    b = post[\"b\"].values              # (4, 4000, 176)\n    sigma_c = post[\"sigma_c\"].values  # (4, 4000)\n\n    # Select representative b items (2 low, 2 mid, 2 high difficulty)\n    b_mean = b.mean(axis=(0, 1))\n    order = np.argsort(b_mean)\n    n_b = len(order)\n    b_idx = np.concatenate([\n        order[:2],\n        order[n_b // 2 - 1 : n_b // 2 + 1],\n        order[-2:],\n    ])\n    b_names = [f\"item {i} (b_mean={b_mean[i]:.2f})\" for i in b_idx]\n\n    # Theta subset\n    theta_idx = [MODEL_NAMES.index(m) for m in THETA_SELECT]\n\n    # ── Trace plots ──\n    print(\"\\n=== Trace Plots ===\")\n    trace_plot(c, MODEL_NAMES,\n               r\"$c_n$ (contamination level)\", \"trace_cn.pdf\")\n    trace_plot(d, JUDGE_NAMES,\n               r\"$d_j$ (judge severity)\", \"trace_dj.pdf\")\n    trace_plot(sigma_c, r\"$\\sigma_c$\",\n               r\"$\\sigma_c$ (contamination spread)\", \"trace_sigma_c.pdf\")\n    trace_plot(theta[:, :, theta_idx], THETA_SELECT,\n               r\"$\\theta_n$ (model ability, selected)\", \"trace_theta.pdf\")\n    trace_plot(b[:, :, b_idx], b_names,\n               r\"$b_i$ (item difficulty, selected)\", \"trace_b.pdf\")\n\n    # ── PPC ──\n    print(\"\\n=== Posterior Predictive Check ===\")\n    if \"posterior_predictive\" in raw.children:\n        print(\"  posterior_predictive found, generating PPC plot\")\n        pp = raw[\"posterior_predictive\"].ds\n        obs = raw[\"observed_data\"].ds[\"obs\"].values\n        pp_var = list(pp.data_vars)[0]\n        pp_samples = pp[pp_var].values.reshape(-1, obs.shape[0])\n        fig, ax = plt.subplots(figsize=(10, 5))\n        for i in range(min(100, pp_samples.shape[0])):\n            ax.hist(pp_samples[i], bins=50, alpha=0.02, density=True,\n                    color=\"#4878d0\", histtype=\"step\")\n        ax.hist(obs, bins=50, density=True, color=\"#d62728\", lw=2,\n                histtype=\"step\", label=\"Observed\")\n        ax.legend(fontsize=10)\n        ax.set_title(\"Posterior Predictive Check\", fontsize=12, fontweight=\"bold\")\n        ax.set_xlabel(\"Score\")\n        fig.tight_layout()\n        _save(fig, \"ppc.pdf\")\n    else:\n        print(\"  SKIPPED: no posterior_predictive group in InferenceData\")\n\n    # ── Forest plots ──\n    print(\"\\n=== Forest Plots ===\")\n    forest_plot(c, MODEL_NAMES,\n                r\"$c_n$ (contamination level)\", \"forest_cn.pdf\")\n    forest_plot(d, JUDGE_NAMES,\n                r\"$d_j$ (judge severity)\", \"forest_dj.pdf\")\n\n    # ── Summary ──\n    print(\"\\n=== All output files ===\")\n    total = 0\n    for f in sorted(os.listdir(OUT_DIR)):\n        sz = os.path.getsize(os.path.join(OUT_DIR, f))\n        total += sz\n        print(f\"  {f}: {sz/1024:.1f} KB\")\n    print(f\"  TOTAL: {total/1024:.1f} KB\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /root/gated_mfrm_judge_bias/exp008/generate_diagnostics.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Generate exp-003b MCMC diagnostic plots for paper appendix.\n\nOutputs: trace plots, forest plots, (PPC if available)\nAll PDFs saved to artifacts/exp003b_diagnostics/\n\"\"\"\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.gridspec import GridSpec\nimport numpy as np\nimport os\nimport arviz as az\n\n# ─── Config ───\nNC_PATH = \"/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata.nc\"\nOUT_DIR = \"/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics\"\n\nMODEL_NAMES = [\n    \"gemma-2-9b\", \"gpt-3.5-turbo-0125\", \"gpt-4-0613\", \"gpt-4o\",\n    \"gpt-4o-mini\", \"llama-3.3-70b\", \"qwen2.5-72b\", \"qwen3-8b\",\n]\nJUDGE_NAMES = [\n    \"claude-opus-4.7-proxy\", \"claude-sonnet-4.6-proxy\", \"deepseek-v4-pro-proxy\",\n    \"gemini-2.5-pro-proxy\", \"gpt-5.5-proxy\", \"llama-3.3-70b\",\n    \"mistral-large-2\", \"qwen2.5-72b\", \"qwen3-235b-proxy\",\n]\nTHETA_SELECT = [\"gpt-4o\", \"qwen2.5-72b\", \"gpt-3.5-turbo-0125\", \"gemma-2-9b\"]\nN_B_SELECT = 6\nCHAIN_COLORS = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\"]\n\n\ndef setup_style():\n    plt.style.use(\"seaborn-v0_8-whitegrid\")\n    plt.rcParams.update({\n        \"font.size\": 10,\n        \"axes.titlesize\": 11,\n        \"axes.labelsize\": 10,\n        \"xtick.labelsize\": 8,\n        \"ytick.labelsize\": 9,\n        \"figure.dpi\": 150,\n        \"savefig.dpi\": 300,\n        \"pdf.fonttype\": 42,\n        \"ps.fonttype\": 42,\n    })\n\n\ndef trace_plot(samples, names, suptitle, filename):\n    \"\"\"Trace + marginal density plot.\n\n    samples: (n_chains, n_draws, n_params) or (n_chains, n_draws)\n    \"\"\"\n    if samples.ndim == 2:\n        samples = samples[:, :, np.newaxis]\n    if isinstance(names, str):\n        names = [names]\n\n    n_chains, n_draws, n_params = samples.shape\n    fig, axes = plt.subplots(\n        n_params, 2, figsize=(13, 2.6 * n_params + 0.8),\n        squeeze=False, gridspec_kw={\"width_ratios\": [3.5, 1]},\n    )\n\n    for i in range(n_params):\n        ax_t, ax_d = axes[i]\n        for ch in range(n_chains):\n            vals = samples[ch, :, i]\n            ax_t.plot(vals, alpha=0.45, lw=0.25, color=CHAIN_COLORS[ch],\n                      rasterized=True)\n            ax_d.hist(vals, bins=60, alpha=0.3, density=True,\n                      color=CHAIN_COLORS[ch], orientation=\"horizontal\")\n            from scipy.stats import gaussian_kde\n            try:\n                kde = gaussian_kde(vals)\n                grid = np.linspace(vals.min(), vals.max(), 200)\n                ax_d.plot(kde(grid), grid, color=CHAIN_COLORS[ch],\n                          lw=1.0, alpha=0.8)\n            except Exception:\n                pass\n\n        ax_t.set_ylabel(names[i], fontsize=9)\n        ax_d.set_ylabel(\"\")\n        ax_d.tick_params(labelleft=False)\n\n        if i == 0:\n            handles = [plt.Line2D([0], [0], color=c, lw=1.5)\n                       for c in CHAIN_COLORS[:n_chains]]\n            ax_t.legend(handles, [f\"Chain {c}\" for c in range(n_chains)],\n                        fontsize=7, ncol=4, loc=\"upper right\",\n                        framealpha=0.7)\n        if i < n_params - 1:\n            ax_t.tick_params(labelbottom=False)\n        else:\n            ax_t.set_xlabel(\"Draw\", fontsize=9)\n\n    fig.suptitle(suptitle, fontsize=13, fontweight=\"bold\", y=1.005)\n    fig.tight_layout()\n    _save(fig, filename)\n\n\ndef forest_plot(samples, names, suptitle, filename, hdi_prob=0.94):\n    \"\"\"Forest plot with HDI bars and posterior means.\n\n    samples: (n_chains, n_draws, n_params)\n    \"\"\"\n    n_params = len(names)\n    flat = samples.reshape(-1, n_params)\n\n    means = flat.mean(axis=0)\n    alpha = 1 - hdi_prob\n    lo = np.percentile(flat, 100 * alpha / 2, axis=0)\n    hi = np.percentile(flat, 100 * (1 - alpha / 2), axis=0)\n\n    order = np.argsort(means)\n\n    fig, ax = plt.subplots(figsize=(8, max(0.45 * n_params + 1.2, 3.5)))\n    y_pos = np.arange(n_params)\n\n    for rank, orig_idx in enumerate(order):\n        ax.plot([lo[orig_idx], hi[orig_idx]], [rank, rank],\n                color=\"#4878d0\", lw=2.8, solid_capstyle=\"round\", alpha=0.85)\n        ax.plot(means[orig_idx], rank, \"o\", color=\"#222222\",\n                markersize=4.5, zorder=5)\n\n    ax.set_yticks(y_pos)\n    ax.set_yticklabels([names[i] for i in order], fontsize=9)\n    ax.set_xlabel(\"Posterior estimate\", fontsize=10)\n    ax.axvline(0, color=\"gray\", ls=\"--\", lw=0.8, alpha=0.5)\n    ax.set_title(f\"{suptitle}\\n(● = mean, bar = {int(hdi_prob*100)}% CI)\",\n                 fontsize=11, fontweight=\"bold\")\n    ax.margins(y=0.06)\n    fig.tight_layout()\n    _save(fig, filename)\n\n\ndef _save(fig, filename):\n    path = os.path.join(OUT_DIR, filename)\n    fig.savefig(path, bbox_inches=\"tight\")\n    plt.close(fig)\n    kb = os.path.getsize(path) / 1024\n    print(f\"  {filename}: {kb:.1f} KB\")\n\n\n# ─── Main ───\ndef main():\n    os.makedirs(OUT_DIR, exist_ok=True)\n    setup_style()\n\n    print(\"Loading InferenceData...\")\n    raw = az.from_netcdf(NC_PATH)\n    post = raw[\"posterior\"].ds\n    print(f\"  Posterior vars: {list(post.data_vars)}\")\n    print(f\"  Chains={post.sizes['chain']}, Draws={post.sizes['draw']}\")\n\n    c = post[\"c\"].values              # (4, 4000, 8)\n    d = post[\"d\"].values              # (4, 4000, 9)\n    theta = post[\"theta\"].values      # (4, 4000, 8)\n    b = post[\"b\"].values              # (4, 4000, 176)\n    sigma_c = post[\"sigma_c\"].values  # (4, 4000)\n\n    # Select representative b items (2 low, 2 mid, 2 high difficulty)\n    b_mean = b.mean(axis=(0, 1))\n    order = np.argsort(b_mean)\n    n_b = len(order)\n    b_idx = np.concatenate([\n        order[:2],\n        order[n_b // 2 - 1 : n_b // 2 + 1],\n        order[-2:],\n    ])\n    b_names = [f\"item {i} (b_mean={b_mean[i]:.2f})\" for i in b_idx]\n\n    # Theta subset\n    theta_idx = [MODEL_NAMES.index(m) for m in THETA_SELECT]\n\n    # ── Trace plots ──\n    print(\"\\n=== Trace Plots ===\")\n    trace_plot(c, MODEL_NAMES,\n               r\"$c_n$ (contamination level)\", \"trace_cn.pdf\")\n    trace_plot(d, JUDGE_NAMES,\n               r\"$d_j$ (judge severity)\", \"trace_dj.pdf\")\n    trace_plot(sigma_c, r\"$\\sigma_c$\",\n               r\"$\\sigma_c$ (contamination spread)\", \"trace_sigma_c.pdf\")\n    trace_plot(theta[:, :, theta_idx], THETA_SELECT,\n               r\"$\\theta_n$ (model ability, selected)\", \"trace_theta.pdf\")\n    trace_plot(b[:, :, b_idx], b_names,\n               r\"$b_i$ (item difficulty, selected)\", \"trace_b.pdf\")\n\n    # ── PPC ──\n    print(\"\\n=== Posterior Predictive Check ===\")\n    if \"posterior_predictive\" in raw.children:\n        print(\"  posterior_predictive found, generating PPC plot\")\n        pp = raw[\"posterior_predictive\"].ds\n        obs = raw[\"observed_data\"].ds[\"obs\"].values\n        pp_var = list(pp.data_vars)[0]\n        pp_samples = pp[pp_var].values.reshape(-1, obs.shape[0])\n        fig, ax = plt.subplots(figsize=(10, 5))\n        for i in range(min(100, pp_samples.shape[0])):\n            ax.hist(pp_samples[i], bins=50, alpha=0.02, density=True,\n                    color=\"#4878d0\", histtype=\"step\")\n        ax.hist(obs, bins=50, density=True, color=\"#d62728\", lw=2,\n                histtype=\"step\", label=\"Observed\")\n        ax.legend(fontsize=10)\n        ax.set_title(\"Posterior Predictive Check\", fontsize=12, fontweight=\"bold\")\n        ax.set_xlabel(\"Score\")\n        fig.tight_layout()\n        _save(fig, \"ppc.pdf\")\n    else:\n        print(\"  SKIPPED: no posterior_predictive group in InferenceData\")\n\n    # ── Forest plots ──\n    print(\"\\n=== Forest Plots ===\")\n    forest_plot(c, MODEL_NAMES,\n                r\"$c_n$ (contamination level)\", \"forest_cn.pdf\")\n    forest_plot(d, JUDGE_NAMES,\n                r\"$d_j$ (judge severity)\", \"forest_dj.pdf\")\n\n    # ── Summary ──\n    print(\"\\n=== All output files ===\")\n    total = 0\n    for f in sorted(os.listdir(OUT_DIR)):\n        sz = os.path.getsize(os.path.join(OUT_DIR, f))\n        total += sz\n        print(f\"  {f}: {sz/1024:.1f} KB\")\n    print(f\"  TOTAL: {total/1024:.1f} KB\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T21:47:02.439272+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T21:47:02.439529+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias && python3 exp008/generate_diagnostics.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias && python3 exp008/generate_diagnostics.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T21:47:02.439789+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading InferenceData...\\n  Posterior vars: ['b', 'c', 'c_raw', 'd', 'd_raw', 'sigma_c', 'theta', 'theta_raw']\\n  Chains=4, Draws=4000\\n\\n=== Trace Plots ===\\n  trace_cn.pdf: 6392.4 KB\\n  trace_dj.pdf: 6737.8 KB\\n  trace_sigma_c.pdf: 774.7 KB\\n  trace_theta.pdf: 3028.3 KB\\n  trace_b.pdf: 4469.8 KB\\n\\n=== Posterior Predictive Check ===\\n  SKIPPED: no posterior_predictive group in InferenceData\\n\\n=== Forest Plots ===\\n  forest_cn.pdf: 22.7 KB\\n  forest_dj.pdf: 24.9 KB\\n\\n=== All output files ===\\n  forest_cn.pdf: 22.7 KB\\n  forest_dj.pdf: 24.9 KB\\n  trace_b.pdf: 4469.8 KB\\n  trace_cn.pdf: 6392.4 KB\\n  trace_dj.pdf: 6737.8 KB\\n  trace_sigma_c.pdf: 774.7 KB\\n  trace_theta.pdf: 3028.3 KB\\n  TOTAL: 21450.6 KB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-22T21:47:02.440113+00:00_
+
+全部生成成功。结果汇总：
+
+**Trace plots (5 个)**
+| 文件 | 大小 |
+|------|------|
+| `trace_cn.pdf` — 8 个模型的 $c_n$ | 6.2 MB |
+| `trace_dj.pdf` — 9 个 judges 的 $d_j$ | 6.6 MB |
+| `trace_sigma_c.pdf` — 全局参数 $\sigma_c$ | 757 KB |
+| `trace_theta.pdf` — 4 个选定模型的 $\theta_n$ | 3.0 MB |
+| `trace_b.pdf` — 6 个选定 items 的 $b_i$（高/中/低 difficulty） | 4.4 MB |
+
+**Forest plots (2 个)**
+| 文件 | 大小 |
+|------|------|
+| `forest_cn.pdf` — $c_n$ 排序 + 94% CI | 23 KB |
+| `forest_dj.pdf` — $d_j$ 排序 + 94% CI | 25 KB |
+
+**PPC**: 跳过，InferenceData 中无 `posterior_predictive` group（原始 MCMC 未保存 predictive samples）。
+
+所有 PDF 保存在 `/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics/`，总计 ~21 MB。每个 trace plot 包含左侧 4-chain trace 和右侧 KDE 密度图。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_trace_plots_ppc_20260522T213844"
+}
+```
+
+</details>
+
+---

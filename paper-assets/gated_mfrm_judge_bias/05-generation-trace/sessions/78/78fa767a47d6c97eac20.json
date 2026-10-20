@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "78fa767a47d6c97eac20",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh p0 critical fix exp003 sigma c",
+  "task_key": "worker_ssh_p0_critical_fix_exp003_sigma_c_20260522T125335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0_critical_fix_exp003_sigma_c_20260522T125335.log",
+    "occurrence": 1,
+    "bytes": 781031,
+    "sha256": "59cad34f98bfc8e5ad2b06a65b7be0b9e685c3084c137f4849803b656387af84"
+  },
+  "statistics": {
+    "messages": 481,
+    "user_turns": 0,
+    "tool_calls": 211,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 211,
+      "tool_result": 211,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 481,
+      "chunks": [
+        {
+          "path": "78fa767a47d6c97eac20-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "78fa767a47d6c97eac20-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "78fa767a47d6c97eac20-part-0003.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-p0-critical-fix-exp003-sigma-c.md"
+}

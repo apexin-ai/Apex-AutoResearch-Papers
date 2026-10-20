@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25ef84008ea2a039abed",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp018 017 status check",
+  "task_key": "worker_ssh_exp018_017_status_check_20260523T110651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp018_017_status_check_20260523T110651_result.json",
+    "occurrence": 1,
+    "bytes": 1539,
+    "sha256": "d5d308813d87467344c49c4804a5cd135241d7d3a5d4be75e76d4b7b7643c5dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### exp-018 — 仍在运行，未完成\n\n- **进程**: PID 345307, 104% CPU, 已运行 137 分钟，tmux session `exp018` 存在\n- **进度**: CSV 有 **16/20 seeds**（seed 0-15）。日志显示 `[17/20] seed=16` 的 sequential 已完成，正在跑 joint_gmfrm\n- **GPU 2**: 0% 利用率, 73615 MiB 显存占用（MCMC 采样阶段 CPU 密集）\n- **ETA**: 剩余 4 seeds × ~8 min/seed ≈ **30-35 分钟**完成\n\nCSV 目前的内容（16 seeds × 2 methods = 32 行）：\n\n| 指标 | sequential (mean) | joint_gmfrm (mean) |\n|------|-------------------|---------------------|\n| theta_RMSE | 0.171 | 0.091 |\n| theta_tau | 0.894 | 0.949 |\n| c_RMSE | 1.334 | 0.612 |\n| c_pearson | 0.835 | 0.869 |\n| R_hat | 1.008 | 1.003 |\n| ESS | 640 | 1081 |\n\njoint_gmfrm 在所有指标上都优于 sequential（theta_RMSE 降低 47%，c_RMSE 降低 54%）。Wilcoxon 统计还没输出（需等 20 seeds 全部跑完）。\n\n---\n\n### exp-017 — 仍在运行，进度较慢\n\n- **进程**: PID 318082, 103% CPU, 已运行 **4 小时 3 分钟**, state=R\n- **进度**: **49/800 fits** 完成（6.1%），当前在 n_models=8, seed≈48\n- **GPU 0**: 69% 利用率, 73615 MiB 显存\n- **ETA**: 按当前速率（~5 min/fit），剩余 751 fits ≈ **62-65 小时**\n\n---\n\n### GPU 总览\n\n| GPU | 利用率 | 显存 | 用途 |\n|-----|--------|------|------|\n| 0 | 69% | 73615 MiB | exp-017 |\n| 1 | 0% | 0 MiB | 空闲 |\n| 2 | 0% | 73615 MiB | exp-018 (CPU phase) |\n| 3 | 0% | 0 MiB | 空闲 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp018-017-status-check.md"
+}

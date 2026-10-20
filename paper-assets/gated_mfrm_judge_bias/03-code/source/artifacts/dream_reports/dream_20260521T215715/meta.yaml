@@ -1,0 +1,3791 @@
+dream_id: dream_20260521T215715
+project: gated_mfrm_judge_bias
+venue: emnlp-2026
+focus: 'Verify framing improvements: (1) Claim 2 now says "staged joint calibration"
+  not "joint estimation", (2) Proposition 1 downgraded to Observation citing OVB,
+  (3) new exp-012 error propagation sensitivity added, (4) expanded exp-004 rank change
+  analysis, (5) new Reviewer Concerns 6-8 added. Check if these changes resolve the
+  prior round''s critical issues R1-N1 and R1-N2.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Real contamination magnitude matches mvp_002/003 assumptions (strong),
+        G-MFRM converges cleanly on real data, and ranking correction is statistically
+        and practically significant across benchmarks
+      key_assumptions:
+      - 'Real contamination is strong: fitted c_n median ≥ 0.8 across target models
+        (Tier A)'
+      - G-MFRM converges on real data with acceptable diagnostics (R̂ ≤ 1.05, ESS
+        ≥ 200)
+      - e_i estimation pipeline (performance gap + temporal + LogProber) produces
+        reliable exposure indicators (exp-012 σ=0.2 θ̂ degradation < 5%)
+      - G-MFRM fair scores beat ALL 8 baselines on Kendall-τ with Chatbot Arena, including
+        CyclicJudge+discard
+      - 'Rank changes are interpretable and non-trivial: ≥ 3 models shift ≥ 2 positions,
+        top-5 changes'
+      - ConStat per-model delta validates fitted c_n (Spearman ρ ≥ 0.7)
+      number_ranges:
+        real_contamination_c_n_median:
+        - 0.8
+        - 1.5
+        kendall_tau_gmfrm:
+        - 0.88
+        - 0.95
+        delta_tau_vs_best_baseline:
+        - 0.04
+        - 0.08
+        rmse_reduction_vs_sequential_pct:
+        - 30
+        - 50
+        convergence_max_rhat:
+        - 1.0
+        - 1.05
+        convergence_min_ess:
+        - 200
+        - 500
+        error_prop_theta_rmse_degradation_sigma02_pct:
+        - 0
+        - 5
+        c_n_recovery_rmse_synthetic:
+        - 0.05
+        - 0.15
+        rank_changes_ge2_positions:
+        - 3
+        - 8
+        constat_cn_validation_spearman:
+        - 0.7
+        - 0.95
+        judge_count_min_for_significant_gain:
+        - 3
+        - 4
+      narrative_direction: 'Full Tier A. All three claims at full strength. Lead with
+        quantitative shock: joint estimation corrects X% RMSE / +Y Kendall-τ over
+        best sequential baseline on real benchmarks. Confounding Claim proven both
+        formally (OVB observation) and empirically (real-data rank distortions). Framework
+        Claim validated by convergence + diagnostics. Empirical Claim demonstrated
+        across MT-Bench and Arena-Hard. Paper title emphasizes ''joint calibration
+        corrects systematic rank distortions''. Headline: contamination and judge
+        bias confound each other in practice, and only joint estimation resolves it.'
+    median:
+      tier: median
+      meaning: Real contamination exists but is moderate, G-MFRM works but ranking
+        improvement over best baselines is modest; diagnostic/interpretability outputs
+        become co-primary contribution
+      key_assumptions:
+      - 'Real contamination is moderate: fitted c_n median ∈ [0.3, 0.8) — closer to
+        mvp_001 than mvp_003'
+      - G-MFRM converges but may need tuning (R̂ ≤ 1.10, ESS ≥ 100)
+      - G-MFRM beats naive baselines (raw average, MFRM-only, sequential) but margin
+        over CyclicJudge+discard or UDA is small or not significant on one benchmark
+      - e_i pipeline works but one source (e.g., LogProber) contributes little — ablation
+        shows 2/3 sources sufficient
+      - Error propagation sensitivity acceptable but not great (σ=0.2 degradation
+        5-15%)
+      - Rank changes exist but are limited to 1-2 models, top-5 mostly stable
+      - ConStat validation shows moderate agreement (ρ ∈ [0.4, 0.7))
+      number_ranges:
+        real_contamination_c_n_median:
+        - 0.3
+        - 0.8
+        kendall_tau_gmfrm:
+        - 0.84
+        - 0.9
+        delta_tau_vs_best_baseline:
+        - 0.01
+        - 0.04
+        rmse_reduction_vs_sequential_pct:
+        - 10
+        - 30
+        convergence_max_rhat:
+        - 1.0
+        - 1.1
+        convergence_min_ess:
+        - 100
+        - 250
+        error_prop_theta_rmse_degradation_sigma02_pct:
+        - 5
+        - 15
+        c_n_recovery_rmse_synthetic:
+        - 0.15
+        - 0.3
+        rank_changes_ge2_positions:
+        - 1
+        - 3
+        constat_cn_validation_spearman:
+        - 0.4
+        - 0.7
+        judge_count_min_for_significant_gain:
+        - 4
+        - 6
+      narrative_direction: 'Tier B. Claim 1 (confounding) holds formally and is detectable
+        in real data, but practical magnitude is moderate. Claim 2 (framework) holds
+        fully. Claim 3 softened: ''comparable or better rankings PLUS uniquely interpretable
+        diagnostic outputs no other method provides.'' Elevate per-model c_n (training
+        data audit), per-item e_i (item retirement decisions), per-judge d_j (judge
+        selection guidance) as co-primary contributions alongside ranking correction.
+        Lead with: ''Even when contamination effects are moderate, sequential methods
+        provide no visibility into whether corrections are needed — G-MFRM provides
+        both correction and diagnosis.'' Add a forward-looking argument: as contamination
+        grows (which it will), joint estimation becomes increasingly critical. May
+        need one additional experiment — e.g., WildBench replication (exp-010) or
+        expanded judge count sensitivity — to strengthen the empirical package.'
+    worst:
+      tier: worst
+      meaning: Real contamination is weak or heterogeneous enough that G-MFRM shows
+        no significant ranking improvement over simple baselines; convergence may
+        be problematic on real data
+      key_assumptions:
+      - 'Real contamination is weak or highly variable: fitted c_n median < 0.3, or
+        c_n distribution is bimodal with most models near zero'
+      - G-MFRM ranking improvement over CyclicJudge or UDA is not statistically significant
+        (p > 0.05)
+      - 'Convergence issues on real data: R̂ > 1.10 for some parameters, or ESS <
+        100 requiring aggressive thinning'
+      - e_i estimation pipeline is noisy — performance gap method has high variance,
+        LogProber unavailable for key models
+      - Error propagation sensitivity is concerning (σ=0.2 degradation > 15%), undermining
+        staged estimation defense
+      - 'Rank changes are negligible: top-10 order essentially unchanged after G-MFRM
+        correction'
+      - ConStat validation weak (ρ < 0.4) — external signal doesn't confirm fitted
+        c_n
+      number_ranges:
+        real_contamination_c_n_median:
+        - 0.0
+        - 0.3
+        kendall_tau_gmfrm:
+        - 0.82
+        - 0.87
+        delta_tau_vs_best_baseline:
+        - -0.01
+        - 0.01
+        rmse_reduction_vs_sequential_pct:
+        - 0
+        - 10
+        convergence_max_rhat:
+        - 1.05
+        - 1.2
+        convergence_min_ess:
+        - 50
+        - 150
+        error_prop_theta_rmse_degradation_sigma02_pct:
+        - 15
+        - 35
+        c_n_recovery_rmse_synthetic:
+        - 0.3
+        - 0.5
+        rank_changes_ge2_positions:
+        - 0
+        - 1
+        constat_cn_validation_spearman:
+        - 0.1
+        - 0.4
+        judge_count_min_for_significant_gain:
+        - 6
+        - 8
+      narrative_direction: 'Reframe required — but do NOT downgrade venue. New angle:
+        ''A Psychometric Framework for Auditing LLM Evaluation Integrity.'' Shift
+        primary contribution from ranking correction to methodology and measurement
+        infrastructure. Three-pronged reframe: (1) The OVB observation is mathematical
+        fact — confounding IS the correct concern even if current contamination is
+        small; position as proactive methodology (''the framework we need before contamination
+        gets worse''). (2) Emphasize negative result as contribution: ''current benchmark
+        contamination, while detectable, does not yet substantially distort rankings
+        — this is reassuring but contingent, and our framework enables continuous
+        monitoring.'' (3) Foreground the measurement model itself as novel: first
+        application of gated IRT to LLM evaluation, with interpretable facet decomposition
+        (d_j, c_n, e_i) that no existing method provides. Synthetic experiments (mvp_003)
+        demonstrate the method works when contamination is strong; real-data results
+        show current contamination is manageable. Claim 1 becomes the headline claim
+        (confounding exists formally). Claim 2 remains. Claim 3 pivots to: ''G-MFRM
+        provides equivalent rankings to best baselines while additionally producing
+        diagnostic outputs for evaluation quality assurance.'' Will likely need exp-010
+        (WildBench) or exp-011 (adversarial robustness) to fill the empirical gap
+        left by weak real-data results.'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T215715/best/paper.pdf
+  imagined_experiments:
+  - name: multi_judge_data_collection
+    plan_id: exp-001
+    description: 'Collect multi-judge evaluation data on MT-Bench (80 items × 20 target
+      models × 8 judges × 2 positions) and Arena-Hard (500 items × 20 target models
+      × 8 judges × 2 positions). Total ~185,600 pairwise judgments after position
+      swap.
+
+      '
+    expected_results:
+      total_judgments: 185600
+      mt_bench_judgments: 25600
+      arena_hard_judgments: 160000
+      target_models_evaluated: 20
+      judges_used: 8
+      judge_list: GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Qwen3-235B-A22B,
+        Qwen3.6-27B, Llama 4 Maverick, Gemini 2.5 Pro
+      position_bias_rate_mean: 0.58
+      position_bias_rate_std: 0.07
+      inter_judge_agreement_fleiss_kappa: 0.42
+      api_cost_usd: 820
+      vllm_gpu_hours: 95
+      missing_data_rate_pct: 1.2
+    result_rationale: 'Best 档要求数据收集完整且质量高。8 个 judge 中 4 个开源（vLLM 部署）+ 4 个 API， 覆盖不同模型族以最大化
+      judge 多样性。Position swap 产生 ~58% 的平均位置偏差率 （与 CyclicJudge 2024 报告的 55-62% 一致），证明
+      position bias 是普遍存在的。 Fleiss κ ≈ 0.42 表明 moderate agreement，与已发表的 LLM-as-judge
+      文献一致 （Zheng et al. 2024 报告 κ=0.38-0.47）。缺失率 <2% 因为 API 调用有重试机制， vLLM 部署稳定。数据量足够支撑
+      G-MFRM 的参数估计（20 models × 8 judges ≫ 参数数）。
+
+      '
+    tables:
+    - name: 'Table A1: Judge Panel Summary'
+      columns:
+      - judge
+      - type
+      - model_family
+      - position_bias_rate
+      - mean_score_stringency
+      - cost_per_1k_judgments
+      rows:
+      - - GPT-5.5
+        - API
+        - OpenAI
+        - 0.55
+        - 0.12
+        - $4.20
+      - - Claude Opus 4.7
+        - API
+        - Anthropic
+        - 0.61
+        - -0.08
+        - $5.10
+      - - Claude Sonnet 4.6
+        - API
+        - Anthropic
+        - 0.54
+        - 0.03
+        - $1.80
+      - - DeepSeek-V4-Pro
+        - API
+        - DeepSeek
+        - 0.63
+        - -0.21
+        - $0.90
+      - - Qwen3-235B-A22B
+        - vLLM
+        - Alibaba
+        - 0.59
+        - 0.18
+        - $0.35
+      - - Qwen3.6-27B
+        - vLLM
+        - Alibaba
+        - 0.56
+        - 0.31
+        - $0.12
+      - - Llama 4 Maverick
+        - vLLM
+        - Meta
+        - 0.6
+        - -0.15
+        - $0.28
+      - - Gemini 2.5 Pro
+        - API
+        - Google
+        - 0.57
+        - 0.05
+        - $3.60
+    figures_description:
+    - 'Fig A1: Heatmap of inter-judge agreement (Cohen κ pairwise) — 8×8 matrix showing
+      judge clustering by model family. Anthropic judges cluster together (κ=0.56),
+      indicating shared severity profile that G-MFRM''s d_j facet should capture.'
+    analysis: '数据收集构成整个 pipeline 的基础。在 best 档下，所有 8 个 judge 正常工作，数据质量高。 关键观察：judge
+      间一致性仅为 moderate（κ=0.42），且不同模型族的 judge 表现出系统性的 severity 差异（score_stringency 从
+      -0.21 到 +0.31），证实了 judge bias 的存在且 幅度足以影响排名。这为 G-MFRM 的 d_j facet 提供了充足的信号。
+
+      '
+  - name: item_exposure_estimation
+    plan_id: exp-002
+    description: '构建 per-item exposure indicator e_i。三源融合：(1) Performance gap 主通道：
+      对 MT-Bench/Arena-Hard 的每个 item 生成 GPT-5.5 和 Claude 改写的 reference variant， 计算
+      original vs reference 的平均性能差并做 spline difficulty correction； (2) Temporal 通道：利用
+      pre/post-cutoff item variant 的性能差； (3) LogProber 通道：对有 logprob API 的模型计算 token-level
+      memorization score。 加权融合后输出 e_i ∈ [0,1]。
+
+      '
+    expected_results:
+      mt_bench_items_with_reference: 80
+      arena_hard_items_with_reference: 485
+      reference_variant_quality_human_check_pass_rate: 0.93
+      performance_gap_signal_noise_ratio: 3.8
+      temporal_signal_coverage_pct: 35
+      logprober_signal_coverage_pct: 60
+      weighted_composite_e_i_mean: 0.41
+      weighted_composite_e_i_std: 0.28
+      weighted_composite_e_i_median: 0.35
+      high_exposure_items_e_gt_07_pct: 18
+      spearman_gap_vs_logprober: 0.72
+      spearman_gap_vs_temporal: 0.65
+      spearman_composite_vs_constat_item_level: 0.68
+    result_rationale: 'Best 档下 real contamination 强，因此 performance gap 信号显著。对于高曝光
+      item （e_i > 0.7，约 18%），original 与 reference variant 的性能差在 contaminated model
+      上 可达 0.3-0.5 标准差，经 difficulty correction 后信噪比约 3.8。这与 ConStat (2024) 报告 的 r²=0.94
+      效应量一致——当 contamination 真实存在时，performance gap 方法有很强的 检测力。Temporal 信号覆盖率较低（35%）因为只有部分
+      item 有明确的 pre/post-cutoff variant，但覆盖到的 item 与 gap 信号相关性好（ρ=0.65）。LogProber
+      覆盖 60% （仅限有 logprob API 的模型），与 gap 的相关性更高（ρ=0.72），因为两者都直接 测量 memorization 效应。加权融合后
+      e_i 分布右偏（mean=0.41, median=0.35）， 符合大多数 item 低曝光、少数 item 高曝光的预期模式。
+
+      '
+    tables:
+    - name: 'Table 2: Exposure Indicator Source Comparison'
+      columns:
+      - source
+      - coverage_pct
+      - mean_signal
+      - snr
+      - spearman_with_composite
+      rows:
+      - - Performance Gap (primary)
+        - 100
+        - 0.38
+        - 3.8
+        - 0.94
+      - - Temporal
+        - 35
+        - 0.42
+        - 2.9
+        - 0.78
+      - - LogProber
+        - 60
+        - 0.35
+        - 4.1
+        - 0.85
+      - - Weighted Composite
+        - 100
+        - 0.41
+        - '-'
+        - 1.0
+    figures_description:
+    - 'Fig 3: Histogram of e_i distribution (MT-Bench + Arena-Hard combined) — right-skewed,
+      with ~18% items above 0.7 threshold. Inset: scatter of performance gap vs LogProber
+      score colored by benchmark, showing strong agreement (ρ=0.72).'
+    - 'Fig A2: Spline difficulty correction effect — before vs after correction scatter,
+      showing removal of difficulty confound from raw performance gap.'
+    analysis: 'e_i 估计质量是 staged estimation 可靠性的关键。在 best 档下，performance gap 主通道 信噪比高（3.8），多源融合提供
+      robustness。18% 的 item 高曝光意味着约 100 个 item （MT-Bench + Arena-Hard）携带强 contamination
+      信号，足以支撑 c_n 的可辨识性。 e_i 与 ConStat item-level 指标的 ρ=0.68 提供了外部效度验证。
+
+      '
+  - name: gmfrm_real_data_fit
+    plan_id: exp-003
+    description: '在 exp-001/002 的真实数据上拟合 G-MFRM 三阶段 pipeline。Stage 1: 标准 MFRM 估计 初始
+      θ,b,d。Stage 2: 固定 exp-002 的 e_i。Stage 3: NumPyro MCMC 联合估计 θ,b,d,c_n（e_i 固定）。报告收敛诊断、fair
+      score、与 Chatbot Arena 的 Kendall-τ。
+
+      '
+    expected_results:
+      convergence_max_rhat: 1.03
+      convergence_min_ess: 287
+      convergence_divergent_transitions: 0
+      mcmc_warmup: 2000
+      mcmc_samples: 4000
+      mcmc_chains: 4
+      runtime_hours: 3.2
+      theta_fair_score_kendall_tau_arena_mtbench: 0.91
+      theta_fair_score_kendall_tau_arena_arenahard: 0.93
+      theta_fair_score_spearman_arena_mtbench: 0.94
+      theta_fair_score_spearman_arena_arenahard: 0.96
+      c_n_median: 0.95
+      c_n_mean: 1.02
+      c_n_std: 0.48
+      c_n_max: 2.1
+      c_n_min: 0.08
+      d_j_range:
+      - -0.35
+      - 0.42
+      d_j_std: 0.22
+      posterior_predictive_p_value: 0.47
+      graceful_degradation_low_contam_benchmark_tau_delta: 0.005
+    result_rationale: 'Best 档的核心假设是 G-MFRM 在真实数据上干净收敛。mvp_003 已在合成数据上实现 R̂=1.03, ESS=224；真实数据的维度更大（20
+      models × 580 items × 8 judges vs 合成的 15×50×8）但信号也更丰富。使用相同的 MCMC 设置（warmup=2000,
+      samples=4000, chains=4, NCP, target_accept=0.95）加上更大的数据量，ESS 提升至 287 是合理的。 R̂=1.03
+      与合成结果持平。c_n median=0.95 落在 best 档的 [0.8,1.5] 范围内，接近 mvp_002/003 的假设（c~1.0-1.5）。c_n
+      的模型间变异大（std=0.48, max=2.1）反映了 现实中不同模型的 contamination 程度差异巨大——开源模型（训练数据不透明）倾向于
+      更高的 c_n，而 closed-source 模型（如 GPT-5.5）的 c_n 较低。Kendall-τ 在 Arena-Hard 上（0.93）高于
+      MT-Bench（0.91）因为 Arena-Hard 有更多 item 提供更精确 的 ability 估计。posterior predictive
+      p=0.47 表明模型拟合良好（接近 0.5 的均匀分布）。 对于 contamination 接近 0 的 benchmark 子集，G-MFRM 的
+      τ 仅比 MFRM 高 0.005， 验证了 graceful degradation——gating 机制在 e_i≈0 时自动关闭 contamination
+      校正。
+
+      '
+    tables:
+    - name: 'Table 3: G-MFRM Convergence Diagnostics'
+      columns:
+      - parameter_group
+      - n_params
+      - max_rhat
+      - min_ess
+      - mean_ess
+      rows:
+      - - θ (model ability)
+        - 20
+        - 1.02
+        - 312
+        - 890
+      - - b (item difficulty)
+        - 580
+        - 1.03
+        - 287
+        - 650
+      - - d (judge severity)
+        - 8
+        - 1.01
+        - 1450
+        - 2100
+      - - c (contamination)
+        - 20
+        - 1.03
+        - 295
+        - 720
+    - name: 'Table 4: G-MFRM Fair Score Agreement with Chatbot Arena'
+      columns:
+      - benchmark
+      - kendall_tau
+      - spearman_rho
+      - 95% CI (τ)
+      rows:
+      - - MT-Bench
+        - 0.91
+        - 0.94
+        - '[0.86, 0.95]'
+      - - Arena-Hard
+        - 0.93
+        - 0.96
+        - '[0.89, 0.96]'
+      - - Combined (weighted)
+        - 0.92
+        - 0.95
+        - '[0.88, 0.95]'
+    figures_description:
+    - 'Fig 2: G-MFRM parameter estimates visualization. Left: θ̂ (fair score) vs Chatbot
+      Arena Elo with 95% credible intervals — tight linear relationship. Right: c_n
+      estimates with credible intervals, sorted by magnitude — clear separation between
+      high-contamination and low-contamination models.'
+    - 'Fig A3: Trace plots for 4 representative parameters (one per facet) showing
+      clean mixing across 4 chains. No divergent transitions.'
+    - 'Fig A4: Posterior predictive check — observed vs predicted response distribution
+      histograms showing good calibration (p=0.47).'
+    analysis: '这是整个论文的核心实验。收敛诊断全面通过（R̂≤1.03, ESS≥287, 0 divergent transitions） 证明
+      G-MFRM 的参数化在真实数据规模上是可行的。c_n median=0.95 确认 Tier A 叙事： contamination 不是理论上的可能性，而是量级足够大到系统性扭曲排名的现实问题。
+      d_j 的范围 [-0.35, 0.42] 表明最 lenient 和最 strict 的 judge 之间存在 0.77 标准差 的 severity
+      差异，足以影响 model ranking。
+
+      '
+  - name: baseline_comparison
+    plan_id: exp-004
+    description: '在相同数据上对比 G-MFRM 与 8 个 baseline 的排名准确性。包含 rank change 分析： 哪些模型在校正后排名变化
+      ≥2 位，top-5/top-10 稳定性。
+
+      '
+    expected_results:
+      raw_avg_kendall_tau_mtbench: 0.82
+      raw_avg_kendall_tau_arenahard: 0.84
+      mfrm_only_kendall_tau_mtbench: 0.84
+      mfrm_only_kendall_tau_arenahard: 0.86
+      sequential_kendall_tau_mtbench: 0.85
+      sequential_kendall_tau_arenahard: 0.87
+      cyclic_judge_kendall_tau_mtbench: 0.85
+      cyclic_judge_kendall_tau_arenahard: 0.87
+      cyclic_judge_discard_kendall_tau_mtbench: 0.87
+      cyclic_judge_discard_kendall_tau_arenahard: 0.88
+      dcr_factor_kendall_tau_mtbench: 0.83
+      dcr_factor_kendall_tau_arenahard: 0.85
+      uda_kendall_tau_mtbench: 0.86
+      uda_kendall_tau_arenahard: 0.87
+      pref_leakage_kendall_tau_mtbench: 0.84
+      pref_leakage_kendall_tau_arenahard: 0.86
+      gmfrm_kendall_tau_mtbench: 0.91
+      gmfrm_kendall_tau_arenahard: 0.93
+      delta_tau_vs_best_baseline_mtbench: 0.04
+      delta_tau_vs_best_baseline_arenahard: 0.05
+      wilcoxon_p_gmfrm_vs_best_baseline: 0.003
+      rank_changes_ge2_positions: 5
+      rank_changes_ge3_positions: 2
+      top5_models_changed: 2
+      top10_models_changed: 4
+      max_rank_shift: 4
+      most_shifted_model: Qwen3-235B-A22B
+      most_shifted_direction: down
+    result_rationale: 'Best 档下 G-MFRM 以显著优势击败所有 baseline。逻辑链： (1) Raw average（τ=0.82/0.84）最差，因为同时受
+      judge bias 和 contamination 影响。 (2) MFRM-only（+2pp）校正了 judge bias 但 contamination
+      仍在。 (3) Sequential（+3pp over raw）先 bias 后 contamination，但因 OVB 效应，第一阶段 的 bias
+      校正已被 contamination 污染，改善有限。 (4) CyclicJudge（≈sequential level）通过 round-robin
+      消除平均 bias，但无法处理 item-specific judge 效应，且完全忽略 contamination。 (5) CyclicJudge+discard（最强
+      baseline，τ=0.87/0.88）额外丢弃高疑似 contaminated items，但丢弃策略浪费信息且阈值任意——best 档下它仍比 G-MFRM
+      低 4-5pp。 (6) DCR Factor（τ=0.83/0.85）量化 contamination 效应但忽略 judge variation。
+      (7) UDA（τ=0.86/0.87）神经 K-factor 调整 inter-judge variance 但黑盒且不 model contamination。
+      (8) Pref Leakage（τ=0.84/0.86）校准偏好泄漏但不联合估计。 G-MFRM（τ=0.91/0.93）的优势来自联合估计：同时建模
+      d_j 和 c_n·e_i 避免了相互吸收。 Rank change 分析：c_n 高的开源模型（如 Qwen3-235B-A22B）在校正后排名下降
+      （contamination 膨胀被移除），而 c_n 低的 closed-source 模型相对上升。5 个模型 移动 ≥2 位，最大移动 4 位，top-5
+      中有 2 个交换——这对模型选择决策有实质性影响。
+
+      '
+    tables:
+    - name: 'Table 1: Main Results — Agreement with Chatbot Arena Human Rankings'
+      columns:
+      - method
+      - type
+      - τ (MT-Bench)
+      - τ (Arena-Hard)
+      - τ (Combined)
+      - Δτ vs G-MFRM
+      rows:
+      - - Raw Multi-Judge Avg
+        - naive
+        - 0.82
+        - 0.84
+        - 0.83
+        - -0.09
+      - - MFRM-only
+        - bias-only
+        - 0.84
+        - 0.86
+        - 0.85
+        - -0.07
+      - - Sequential (bias→contam)
+        - sequential
+        - 0.85
+        - 0.87
+        - 0.86
+        - -0.06
+      - - CyclicJudge
+        - bias-only
+        - 0.85
+        - 0.87
+        - 0.86
+        - -0.06
+      - - CyclicJudge + Discard
+        - bias+heuristic
+        - 0.87
+        - 0.88
+        - 0.875
+        - -0.045
+      - - DCR Factor
+        - contam-only
+        - 0.83
+        - 0.85
+        - 0.84
+        - -0.08
+      - - UDA
+        - bias-only (neural)
+        - 0.86
+        - 0.87
+        - 0.865
+        - -0.055
+      - - Pref Leakage Calib
+        - contam-only
+        - 0.84
+        - 0.86
+        - 0.85
+        - -0.07
+      - - G-MFRM (ours)
+        - joint
+        - 0.91
+        - 0.93
+        - 0.92
+        - —
+    - name: 'Table 5: Rank Change Analysis (G-MFRM vs Raw Average)'
+      columns:
+      - model
+      - raw_rank
+      - gmfrm_rank
+      - shift
+      - c_n_estimate
+      - interpretation
+      rows:
+      - - Qwen3-235B-A22B
+        - 3
+        - 7
+        - -4
+        - 1.82
+        - High contamination inflated raw rank
+      - - Llama 4 Maverick
+        - 5
+        - 8
+        - -3
+        - 1.45
+        - Moderate-high contamination
+      - - Model-X-70B
+        - 8
+        - 5
+        - 3
+        - 0.12
+        - Low contamination — undervalued by raw
+      - - Claude Sonnet 4.6
+        - 4
+        - 2
+        - 2
+        - 0.21
+        - Low contamination — rose after correction
+      - - DeepSeek-V4-Pro
+        - 6
+        - 4
+        - 2
+        - 0.35
+        - Modest contamination — net rise
+    figures_description:
+    - 'Fig 1 (main): Left panel — sequential pipeline diagram with confounding arrows
+      annotated. Right panel — G-MFRM three-stage pipeline with gating mechanism highlighted.
+      Visual contrast between ''broken'' sequential and ''correct'' joint approach.'
+    - 'Fig 4: Bump chart showing rank changes from raw average to G-MFRM fair score
+      for all 20 target models. Lines colored by c_n magnitude. High-c_n models (red)
+      consistently drop, low-c_n models (blue) rise. 5 models cross ≥2 positions.'
+    - 'Fig 5: Bar chart of Kendall-τ with Chatbot Arena for all 9 methods on both
+      benchmarks. G-MFRM clearly separated from the cluster of baselines. Error bars
+      from bootstrap.'
+    analysis: '这是论文的主表。G-MFRM 在两个 benchmark 上一致地以 4-5pp τ 优势击败最强 baseline （CyclicJudge+discard），p=0.003（Wilcoxon）。关键叙事：CyclicJudge+discard
+      是 Reviewer Concern #1 的最强 trivial alternative，但它 (a) 浪费被丢弃 item 的信息， (b) 不产生
+      per-model c_n 诊断，(c) 丢弃阈值需要启发式调优。G-MFRM 在所有维度上 都优于它。Rank change 分析提供了实际影响力的证据：如果一个团队基于
+      raw score 选择 了 rank-3 的 Qwen3-235B 而非 rank-7 的 Model-X-70B，他们可能选择了一个 contamination
+      膨胀的模型，真实 ability 其实更低。
+
+      '
+  - name: contamination_magnitude_calibration
+    plan_id: exp-005
+    description: '比较 exp-003 拟合的真实 c_n 分布与 MVP 合成假设，确定 contamination 处于哪个 tier。 用
+      ConStat per-model delta 做外部验证。
+
+      '
+    expected_results:
+      c_n_median_real: 0.95
+      c_n_mean_real: 1.02
+      c_n_q25: 0.42
+      c_n_q75: 1.48
+      c_n_iqr: 1.06
+      models_with_c_n_gt_1: 8
+      models_with_c_n_gt_05: 14
+      models_with_c_n_lt_02: 3
+      closest_mvp_scenario: mvp_002/003 (strong)
+      constat_delta_spearman_with_c_n: 0.82
+      constat_delta_pearson_with_c_n: 0.78
+      tier_determination: Tier A
+      ratio_real_vs_mvp003_median: 0.95
+    result_rationale: 'Best 档的核心前提是 real contamination 强度匹配 mvp_002/003 假设。c_n median=0.95
+      非常接近 mvp_003 的设定（c~1.0）。这意味着对于一个典型的高曝光 item（e_i=0.8）， contaminated model 的 expected
+      score 膨胀约 0.76 logits（0.95×0.8），这是一个 非常显著的效应，足以将一个中等 ability 模型提升 2-4 个排名位。14/20
+      个模型的 c_n > 0.5 表明 contamination 是广泛存在的，不仅仅是个别模型的问题。ConStat 外部 验证 ρ=0.82 在 best
+      档范围 [0.7, 0.95] 内偏高，说明 G-MFRM 拟合的 c_n 与独立的 ConStat contamination 指标高度一致——这不是
+      MCMC 的 artifact，而是捕捉到了真实的 contamination 结构。3 个模型 c_n < 0.2（基本无 contamination）提供了自然的负对照。
+
+      '
+    tables:
+    - name: 'Table 6: Contamination Magnitude — Real vs Synthetic'
+      columns:
+      - scenario
+      - c_n_median
+      - c_n_mean
+      - c_n_std
+      - convergence
+      - kendall_tau_gain
+      rows:
+      - - mvp_001 (weak)
+        - 0.5
+        - 0.52
+        - 0.15
+        - PASS
+        - +0.3pp (n.s.)
+      - - mvp_002 (strong
+        - poor convergence)
+        - 1.2
+        - 1.25
+        - 0.4
+        - FAIL
+        - +4.3pp
+      - - mvp_003 (strong
+        - tuned)
+        - 1.0
+        - 1.05
+        - 0.35
+        - PASS
+        - +6.3pp
+      - - Real Data (exp-003)
+        - 0.95
+        - 1.02
+        - 0.48
+        - PASS
+        - +4.5pp
+    - name: 'Table 7: ConStat External Validation'
+      columns:
+      - metric
+      - value
+      - 95% CI
+      rows:
+      - - Spearman ρ (c_n vs ConStat Δ)
+        - 0.82
+        - '[0.65, 0.92]'
+      - - Pearson r (c_n vs ConStat Δ)
+        - 0.78
+        - '[0.58, 0.89]'
+      - - Concordance (top-5 c_n ∩ top-5 ConStat)
+        - 4/5
+        - —
+    figures_description:
+    - 'Fig 6: Scatter of G-MFRM fitted c_n vs ConStat per-model delta with regression
+      line and 95% CI band. Points labeled with model names. Strong positive relationship
+      (ρ=0.82) validates c_n against independent contamination measure.'
+    - 'Fig A5: c_n posterior distributions for all 20 models (violin plot), sorted
+      by median. Clear separation between contamination clusters.'
+    analysis: '此实验是 Tier A/B 决策点。c_n median=0.95 明确指向 Tier A。与 mvp_003 的比较 显示真实数据几乎完美匹配合成假设（ratio=0.95），验证了
+      MVP 阶段的参数校准。 ConStat 验证（ρ=0.82）是论文的关键防线：它证明 c_n 不是模型过拟合的产物， 而是与独立测量工具一致的真实信号。top-5
+      concordance（4/5）特别有说服力—— G-MFRM 和 ConStat 几乎完全同意哪些模型受 contamination 影响最大。
+
+      '
+  - name: judge_count_sensitivity
+    plan_id: exp-006
+    description: '敏感性分析：逐步减少 judge 数量（8→6→4→2），观察 G-MFRM 性能退化曲线。 确定 G-MFRM 优于 sequential
+      的最低 judge 数量。
+
+      '
+    expected_results:
+      tau_8_judges: 0.92
+      tau_6_judges: 0.905
+      tau_4_judges: 0.885
+      tau_3_judges: 0.87
+      tau_2_judges: 0.84
+      sequential_tau_8_judges: 0.865
+      sequential_tau_4_judges: 0.855
+      sequential_tau_2_judges: 0.845
+      min_judges_for_significant_gain: 3
+      degradation_rate_per_judge_removed: 0.012
+      gmfrm_2_judge_vs_mfrm_2_judge_delta: 0.005
+      convergence_failure_at_2_judges: false
+      convergence_rhat_at_2_judges: 1.08
+    result_rationale: 'G-MFRM 需要多 judge 数据来分离 d_j 和 c_n·e_i。在 best 档下，8 judges 提供
+      丰富信号（τ=0.92）。减至 6 judges 损失温和（-1.5pp），因为仍有足够的 judge 变异来估计 d_j。减至 4 judges 是关键拐点（-3.5pp），但仍比
+      sequential 4-judge（0.855） 好 3pp。3 judges 是 G-MFRM 显著优于 sequential 的最低阈值——对应
+      best 档的 judge_count_min_for_significant_gain=[3,4] 范围。2 judges 时 G-MFRM 基本退化到
+      MFRM 水平（delta 仅 0.5pp），因为 2 个 judge 不足以可靠估计 d_j，gating 机制 也因信号不足而趋于保守。R̂ 在 2-judge
+      时升至 1.08，刚好超过阈值，但未发散。 这回应了 Reviewer Concern #8：在 2-judge 场景下 G-MFRM 不会崩溃，只是退化到
+      MFRM baseline 水平。
+
+      '
+    tables:
+    - name: 'Table 8: Judge Count Sensitivity'
+      columns:
+      - n_judges
+      - τ (G-MFRM)
+      - τ (Sequential)
+      - Δτ
+      - p-value
+      - max_rhat
+      - min_ess
+      rows:
+      - - 8
+        - 0.92
+        - 0.865
+        - 0.055
+        - 0.003
+        - 1.03
+        - 287
+      - - 6
+        - 0.905
+        - 0.86
+        - 0.045
+        - 0.008
+        - 1.03
+        - 245
+      - - 4
+        - 0.885
+        - 0.855
+        - 0.03
+        - 0.021
+        - 1.04
+        - 198
+      - - 3
+        - 0.87
+        - 0.852
+        - 0.018
+        - 0.048
+        - 1.05
+        - 165
+      - - 2
+        - 0.84
+        - 0.845
+        - -0.005
+        - 0.62
+        - 1.08
+        - 89
+    figures_description:
+    - 'Fig 7: Line plot of Kendall-τ vs number of judges for G-MFRM (solid) and Sequential
+      (dashed). Shaded region shows 95% CI. Lines cross at ~2.5 judges. Annotation
+      at J=3 marks minimum significant advantage point.'
+    analysis: '此分析为实践者提供了成本效益指导。结论清晰：≥4 judges 推荐（G-MFRM gain ~3pp+）， 3 judges 勉强可行（gain
+      1.8pp, p<0.05），2 judges 不建议用 G-MFRM（退化至 MFRM）。 这回应了 Reviewer Concern #8 的成本问题，并为
+      Limitations 提供了量化数据。
+
+      '
+  - name: exposure_indicator_ablation
+    plan_id: exp-007
+    description: '对 e_i 估计 pipeline 做 leave-one-out 消融：分别去掉 performance gap、temporal、
+      LogProber 中的一个 source，观察对最终 θ̂ 和 c_n 估计质量的影响。
+
+      '
+    expected_results:
+      full_pipeline_theta_tau: 0.92
+      without_performance_gap_theta_tau: 0.87
+      without_temporal_theta_tau: 0.915
+      without_logprober_theta_tau: 0.91
+      full_pipeline_cn_recovery_spearman: 0.82
+      without_performance_gap_cn_recovery_spearman: 0.55
+      without_temporal_cn_recovery_spearman: 0.8
+      without_logprober_cn_recovery_spearman: 0.78
+      performance_gap_contribution_pct: 72
+      temporal_contribution_pct: 8
+      logprober_contribution_pct: 12
+      interaction_effect_pct: 8
+    result_rationale: 'Performance gap 是 e_i 的主通道（100% 覆盖，SNR=3.8），去掉后 τ 下降 5pp——
+      这是因为没有 gap 信号，e_i 估计退化为 temporal+LogProber 的稀疏覆盖 （仅 35%+60% 项有信号，交集更小），大量 item
+      的 e_i 几乎无信息。相反，去掉 temporal 或 LogProber 各自影响很小（-0.5pp 和 -1pp），因为它们是补充信号， 覆盖率有限。但
+      c_n recovery 的 spearman 对 performance gap 的依赖更强 （Δρ=0.27 vs Δρ=0.02/0.04），因为
+      c_n 的可辨识性直接依赖于 e_i 的准确性—— e_i 差则 c_n·e_i 项无法正确分离 c_n。这证明了 performance gap 是不可或缺的，
+      而 temporal 和 LogProber 是有用但非必要的补充。
+
+      '
+    tables:
+    - name: 'Table 9: Exposure Indicator Ablation'
+      columns:
+      - configuration
+      - τ (Arena)
+      - Δτ
+      - c_n ρ
+      - Δρ
+      rows:
+      - - Full pipeline (3 sources)
+        - 0.92
+        - —
+        - 0.82
+        - —
+      - - − Performance Gap
+        - 0.87
+        - -0.05
+        - 0.55
+        - -0.27
+      - - − Temporal
+        - 0.915
+        - -0.005
+        - 0.8
+        - -0.02
+      - - − LogProber
+        - 0.91
+        - -0.01
+        - 0.78
+        - -0.04
+      - - Gap only
+        - 0.912
+        - -0.008
+        - 0.79
+        - -0.03
+    figures_description:
+    - 'Fig A6: Stacked bar chart showing relative contribution of each e_i source.
+      Performance gap dominates (72%), with LogProber (12%) and Temporal (8%) providing
+      marginal but consistent improvements.'
+    analysis: '消融结果支持 pipeline 设计的合理性。Performance gap 是必要条件（去掉后严重退化）， 而 temporal 和
+      LogProber 提供边际改进。"Gap only" 配置仅比 full pipeline 低 0.8pp， 说明如果资源有限，只使用 performance
+      gap 也是可行的最小方案。这为实践者提供了 模块化部署指导。
+
+      '
+  - name: facet_fit_diagnostics
+    plan_id: exp-008
+    description: '报告 G-MFRM 所有 facet 的测量质量诊断：infit/outfit MNSQ、divergent transitions、
+      posterior predictive check、trace plots。标记 misfit 元素。
+
+      '
+    expected_results:
+      theta_infit_mean: 1.02
+      theta_infit_range:
+      - 0.85
+      - 1.18
+      theta_outfit_mean: 1.05
+      theta_outfit_range:
+      - 0.78
+      - 1.35
+      theta_misfit_count: 1
+      b_infit_mean: 1.0
+      b_infit_range:
+      - 0.72
+      - 1.42
+      b_outfit_mean: 1.03
+      b_outfit_range:
+      - 0.65
+      - 1.55
+      b_misfit_count: 12
+      d_infit_mean: 0.98
+      d_infit_range:
+      - 0.88
+      - 1.1
+      d_outfit_mean: 1.01
+      d_outfit_range:
+      - 0.85
+      - 1.15
+      d_misfit_count: 0
+      c_infit_mean: 1.04
+      c_infit_range:
+      - 0.82
+      - 1.25
+      divergent_transitions: 0
+      posterior_predictive_ppp: 0.47
+      posterior_predictive_rmse: 0.18
+      stage1_lz_flagged_models: 2
+      stage3_cn_gt_0_for_lz_flagged: true
+    result_rationale: 'Best 档要求诊断全面良好。Infit/outfit MNSQ 接近 1.0 表示 Rasch 模型拟合良好。 Item
+      facet（b）有 12 个 misfit（outfit > 1.4 的 item），占 580 items 的 ~2%， 这在 IRT 实践中是正常水平——这些
+      item 可能有特殊结构（如依赖特定领域知识） 导致模型不完全适用。1 个 θ misfit 模型可能是有异常评分模式的 target model。 Judge
+      facet（d）完全无 misfit（仅 8 个 judge，且都是主流 LLM），这符合预期。 0 divergent transitions 和 PPP=0.47
+      证实整体模型规范正确。Stage 1 的 person-fit 指标（lz）标记了 2 个模型，Stage 3 中这 2 个模型都有 c_n > 0（分别为
+      1.2 和 0.8）， 证实了 construct coherence：Stage 1 的 misfit 信号确实来自 contamination 而非
+      ability 维度的问题。
+
+      '
+    tables:
+    - name: 'Table A2: Facet Fit Summary (Infit/Outfit MNSQ)'
+      columns:
+      - facet
+      - n
+      - mean_infit
+      - mean_outfit
+      - misfit_count
+      - misfit_%
+      rows:
+      - - θ (model ability)
+        - 20
+        - 1.02
+        - 1.05
+        - 1
+        - 5.0
+      - - b (item difficulty)
+        - 580
+        - 1.0
+        - 1.03
+        - 12
+        - 2.1
+      - - d (judge severity)
+        - 8
+        - 0.98
+        - 1.01
+        - 0
+        - 0.0
+      - - c (contamination)
+        - 20
+        - 1.04
+        - —
+        - 0
+        - 0.0
+    - name: 'Table A3: MCMC Diagnostics Summary'
+      columns:
+      - diagnostic
+      - value
+      - threshold
+      - status
+      rows:
+      - - Max R̂
+        - 1.03
+        - ≤ 1.05
+        - PASS
+      - - Min ESS
+        - 287
+        - ≥ 200
+        - PASS
+      - - Divergent transitions
+        - 0
+        - = 0
+        - PASS
+      - - PPP
+        - 0.47
+        - '[0.1, 0.9]'
+        - PASS
+      - - Posterior predictive RMSE
+        - 0.18
+        - —
+        - —
+    figures_description:
+    - 'Fig A7: Wright map (variable map) showing θ, b, d, c on common logit scale.
+      Good coverage — item difficulties span the model ability range.'
+    - 'Fig A8: Infit/outfit bubble chart for all items, colored by benchmark. 12 misfit
+      items highlighted with IDs for examination.'
+    - 'Fig A3 (ref): Trace plots for representative parameters across 4 chains.'
+    analysis: '诊断全面支持 G-MFRM 的测量质量。2.1% 的 item misfit 率在 IRT 文献中属于正常范围。 Stage 1 lz
+      → Stage 3 c_n 的 coherence 是一个巧妙的验证：如果 person-fit 异常 是由 contamination 引起的，那么在建模
+      contamination 后应该被解释掉——实验证实了这一点。
+
+      '
+  - name: confounding_formal_observation
+    plan_id: exp-009
+    description: '形式化推导 sequential estimator 在 d_j 和 c_n·e_i 非正交条件下的一阶 bias 近似。Monte
+      Carlo 验证。合成数据上的 c_n 点估计验证。
+
+      '
+    expected_results:
+      bias_first_order_formula: bias(θ̂_seq) ≈ Σ_j (X'X)^{-1} X' Cov(d_j, c_n·e_i)
+      monte_carlo_n_reps: 500
+      monte_carlo_bias_mean_rho_0: 0.001
+      monte_carlo_bias_mean_rho_03: 0.048
+      monte_carlo_bias_mean_rho_06: 0.112
+      monte_carlo_bias_std_rho_06: 0.035
+      monte_carlo_rmse_degradation_rho_06_pct: 43.2
+      synthetic_cn_recovery_rmse: 0.09
+      synthetic_cn_coverage_95ci: 0.93
+      synthetic_cn_spearman_recovery: 0.96
+      synthetic_cn_bias: -0.02
+    result_rationale: '形式化分析是标准 OVB 理论在 LLM 评估场景的应用。当 d_j 和 c_n·e_i 正交 （ρ=0）时，bias
+      ≈ 0（0.001 是有限样本噪声），sequential 无害。但在现实中， judge 的 severity 和 model 的 contamination
+      susceptibility 不独立——harsh judges 可能对 contaminated 回答更 lenient（因为 contaminated
+      回答通常更流畅、更自信）， 导致 ρ > 0。在 ρ=0.6 时（mvp 模拟的现实估计），RMSE 退化 43.2%，与 mvp_003 的 43.8%
+      高度一致。合成 c_n recovery 的 RMSE=0.09 落在 best 档范围 [0.05, 0.15] 内， 95% CI coverage=0.93（接近
+      nominal 0.95），说明贝叶斯推断的 uncertainty quantification 是准确的。ρ_recovery=0.96 表明即使点估计有噪声，排序几乎完美保留。
+
+      '
+    tables:
+    - name: 'Table 10: Monte Carlo Bias Analysis (500 replications)'
+      columns:
+      - ρ(d
+      - ce)
+      - bias(θ̂_seq)
+      - θ RMSE (seq)
+      - θ RMSE (joint)
+      - RMSE reduction %
+      rows:
+      - - 0.0
+        - 0.001
+        - 0.124
+        - 0.123
+        - 0.8
+      - - 0.15
+        - 0.021
+        - 0.138
+        - 0.124
+        - 10.1
+      - - 0.3
+        - 0.048
+        - 0.162
+        - 0.125
+        - 22.8
+      - - 0.45
+        - 0.078
+        - 0.189
+        - 0.124
+        - 34.4
+      - - 0.6
+        - 0.112
+        - 0.221
+        - 0.125
+        - 43.2
+    - name: 'Table 11: Synthetic c_n Recovery (G-MFRM)'
+      columns:
+      - metric
+      - value
+      rows:
+      - - c_n RMSE
+        - 0.09
+      - - c_n bias
+        - -0.02
+      - - c_n Spearman ρ (fitted vs true)
+        - 0.96
+      - - 95% CI coverage
+        - 0.93
+      - - Mean CI width
+        - 0.38
+    figures_description:
+    - 'Fig 2 (Section 2): Toy example illustrating OVB in sequential estimation. 3
+      models, 2 judges, 2 contamination levels. Visual proof that bias-first estimation
+      absorbs contamination into θ̂.'
+    - 'Fig A9: Monte Carlo bias as function of ρ(d,ce) — smooth monotonic increase
+      with 95% band from 500 replications. G-MFRM bias stays flat near 0.'
+    - 'Fig A10: c_n recovery scatter (fitted vs true) for 20 synthetic models — tight
+      clustering around identity line with 95% credible intervals.'
+    analysis: '此实验为 Confounding Claim 提供形式化+实证双重支持。OVB observation 是已有理论 的直接应用，不需要
+      novelty——关键贡献是证明这个理论问题在 LLM 评估中量级显著 （43.2% RMSE 退化）。c_n recovery 验证确认 G-MFRM
+      不仅纠正了 θ̂ bias，还能 准确恢复潜在的 contamination 结构，coverage probability 接近 nominal 说明
+      posterior inference 是 well-calibrated 的。
+
+      '
+  - name: error_propagation_sensitivity
+    plan_id: exp-012
+    description: 'Staged estimation 的误差传播敏感性：向 e_i 注入 σ=0.1/0.2/0.5 的高斯噪声后 重新拟合 Stage
+      3，测量 θ̂ RMSE 退化和 c_n recovery 精度。合成数据。
+
+      '
+    expected_results:
+      sigma_0_theta_rmse: 0.124
+      sigma_01_theta_rmse: 0.127
+      sigma_01_theta_rmse_degradation_pct: 2.4
+      sigma_02_theta_rmse: 0.133
+      sigma_02_theta_rmse_degradation_pct: 7.3
+      sigma_05_theta_rmse: 0.168
+      sigma_05_theta_rmse_degradation_pct: 35.5
+      sigma_0_cn_rmse: 0.09
+      sigma_01_cn_rmse: 0.12
+      sigma_02_cn_rmse: 0.18
+      sigma_05_cn_rmse: 0.41
+      sigma_02_cn_spearman: 0.89
+      sigma_05_cn_spearman: 0.62
+      robustness_threshold_sigma: 0.25
+    result_rationale: 'Best 档要求 σ=0.2 时 θ̂ RMSE 退化 < 5%。预测值 7.3% 略超此阈值，但仍属于 实际可接受范围（需在论文中
+      acknowledge）。逻辑：e_i 噪声通过 c_n·e_i 项传播到 θ̂——当 σ 小（0.1）时，e_i 的 rank order 基本保持，gating
+      机制仅微调幅度， 对 θ̂ 影响很小（2.4%）。σ=0.2 时 e_i 的 rank 开始受扰动，部分 high-exposure item 被错误降权、low-exposure
+      item 被错误升权，导致 c_n 估计 偏移（RMSE 从 0.09→0.18），但因为 θ̂ 同时受多个 item 信息约束（580 items），
+      单个 item 的 e_i 误差被平均化，θ̂ 退化相对温和。σ=0.5 是破坏性水平（35.5% 退化）， 此时 e_i 信号几乎被噪声淹没。robustness_threshold
+      ≈ 0.25 意味着 exp-002 的 e_i 估计只要噪声不超过 0.25 就安全——考虑到 performance gap 的 SNR=3.8，实际噪声
+      约 σ≈0.15，处于安全区内。注意：σ=0.2 处 θ̂ degradation 为 7.3% 而非 <5%。 在论文中需诚实报告，但可论证 (a)
+      这是 worst-case 均匀噪声注入，实际噪声结构更 favorable，(b) 7.3% degradation 仍使 G-MFRM 大幅优于 sequential
+      baseline。
+
+      '
+    tables:
+    - name: 'Table 12: Error Propagation Sensitivity (Synthetic)'
+      columns:
+      - e_i_noise_σ
+      - θ̂ RMSE
+      - θ̂ degrad. %
+      - c_n RMSE
+      - c_n ρ
+      - τ (Arena proxy)
+      rows:
+      - - 0.0
+        - 0.124
+        - —
+        - 0.09
+        - 0.96
+        - 0.922
+      - - 0.1
+        - 0.127
+        - 2.4
+        - 0.12
+        - 0.94
+        - 0.918
+      - - 0.2
+        - 0.133
+        - 7.3
+        - 0.18
+        - 0.89
+        - 0.91
+      - - 0.3
+        - 0.145
+        - 16.9
+        - 0.27
+        - 0.79
+        - 0.893
+      - - 0.5
+        - 0.168
+        - 35.5
+        - 0.41
+        - 0.62
+        - 0.862
+    figures_description:
+    - 'Fig 8: Dual-axis plot — θ̂ RMSE degradation % (left axis, blue) and c_n Spearman
+      ρ (right axis, red) as function of e_i noise σ. Dashed vertical line at σ=0.25
+      marks robustness threshold. Shaded green region shows estimated real-data noise
+      level (σ ≈ 0.12-0.18).'
+    analysis: '此实验是 Reviewer Concern #4b 和 Dream R1-N1 的核心回应。结论：staged estimation
+      在 σ≤0.2 时 robust（θ̂ 退化 <8%），在 σ≤0.1 时几乎无损（<2.5%）。exp-002 的 实际 e_i 噪声估计约 σ=0.15（基于
+      SNR=3.8 和 multi-source 融合），落在安全区内。 σ=0.5 的崩溃点提供了理论下界。论文 Limitations 中需讨论 σ=0.2
+      处的 7.3% 超过了 预设 5% 阈值，但结合实际噪声水平论证 staged estimation 的可接受性。
+
+      '
+  - name: wildbench_replication
+    plan_id: exp-010
+    description: '在 WildBench 上复制完整 G-MFRM pipeline 作为第三个 benchmark，验证跨 benchmark
+      泛化性。
+
+      '
+    expected_results:
+      wildbench_items: 1024
+      wildbench_judges_used: 6
+      gmfrm_kendall_tau_wildbench: 0.9
+      sequential_kendall_tau_wildbench: 0.86
+      delta_tau_wildbench: 0.04
+      c_n_spearman_wildbench_vs_mtbench: 0.88
+      convergence_max_rhat: 1.04
+      convergence_min_ess: 210
+      wildbench_high_exposure_items_pct: 14
+    result_rationale: 'WildBench 是更 "wild" 的 benchmark（用户真实 query），contamination 模式应与
+      MT-Bench/Arena-Hard 不同但 G-MFRM 方法论应仍然有效。best 档下 τ=0.90（略低于 Arena-Hard 的 0.93），因为
+      WildBench 的 item 更异质、标注噪声更大。Δτ=0.04 与 MT-Bench 上的 0.04 一致，证明 G-MFRM 的优势不是 benchmark-specific
+      的。 c_n 在 WildBench 和 MT-Bench 之间的 ρ=0.88 说明同一组模型的 contamination susceptibility
+      跨 benchmark 是稳定的——这是一个重要的 construct validity 证据， 说明 c_n 测量的是模型的固有属性而非 benchmark-specific
+      artifact。仅使用 6 个 judge（2 个 API 不支持 WildBench 格式）但收敛仍然良好。
+
+      '
+    tables:
+    - name: 'Table 13: Cross-Benchmark Generalization'
+      columns:
+      - benchmark
+      - τ (G-MFRM)
+      - τ (Best Baseline)
+      - Δτ
+      - items
+      - judges
+      rows:
+      - - MT-Bench
+        - 0.91
+        - 0.87
+        - 0.04
+        - 80
+        - 8
+      - - Arena-Hard
+        - 0.93
+        - 0.88
+        - 0.05
+        - 500
+        - 8
+      - - WildBench
+        - 0.9
+        - 0.86
+        - 0.04
+        - 1024
+        - 6
+    figures_description:
+    - 'Fig A11: c_n estimates scatter — WildBench vs MT-Bench. Strong agreement (ρ=0.88)
+      demonstrates contamination susceptibility is a stable model property across
+      benchmarks.'
+    analysis: '跨 benchmark 复制成功。三个 benchmark 上 G-MFRM 一致优于 best baseline 4-5pp， 消除了
+      "方法只在特定 benchmark 上有效" 的顾虑。c_n 跨 benchmark 稳定性是 bonus finding：可以在 Discussion
+      中论证 c_n 有作为 "model contamination audit index" 的潜力。
+
+      '
+  - name: adversarial_robustness
+    plan_id: exp-011
+    description: '测试 G-MFRM 对抗 adversarial contamination 的鲁棒性，遵循 Wang et al. (ICLR
+      2026) 的 fragility analysis 框架。
+
+      '
+    expected_results:
+      adversarial_attack_types: 3
+      attack1_targeted_item_injection_theta_shift: 0.15
+      attack2_judge_collusion_theta_shift: 0.22
+      attack3_exposure_manipulation_theta_shift: 0.08
+      gmfrm_detection_rate_attack1: 0.85
+      gmfrm_detection_rate_attack2: 0.7
+      gmfrm_detection_rate_attack3: 0.9
+      sequential_detection_rate_attack1: 0.4
+      infit_flags_adversarial_items: true
+      c_n_inflation_under_attack: 0.3
+    result_rationale: 'G-MFRM 的 person-fit diagnostics（infit/outfit）提供了对 adversarial
+      manipulation 的自然检测机制。Attack 1（targeted item injection：在特定 item 上注入异常高分） 被 item-level
+      outfit 检测到（85%），因为注入的分数违反了 Rasch 模型的 sufficiency 假设。Attack 2（judge collusion：多个
+      judge 协调给高分）更难检测（70%），因为 一致的 judge behavior 可以被 d_j 吸收——但 c_n 会出现异常膨胀（+0.3）作为
+      间接信号。Attack 3（exposure manipulation：人为修改 e_i 输入）反而最容易防御 （90%），因为 Stage 2 的 multi-source
+      融合和 ConStat 外部验证能交叉检验 e_i 的一致性。Sequential baseline 在 Attack 1 上检测率仅 40%，因为没有
+      contamination 模型来标记异常。总体而言 G-MFRM 不是完全 adversarial-proof 的（scope 声明已排除）， 但比
+      sequential 有更强的内在鲁棒性。
+
+      '
+    tables:
+    - name: 'Table A4: Adversarial Robustness'
+      columns:
+      - attack
+      - θ̂ shift (G-MFRM)
+      - θ̂ shift (Sequential)
+      - G-MFRM detection rate
+      rows:
+      - - Targeted item injection
+        - 0.15
+        - 0.38
+        - 0.85
+      - - Judge collusion (2/8)
+        - 0.22
+        - 0.31
+        - 0.7
+      - - Exposure manipulation
+        - 0.08
+        - N/A
+        - 0.9
+    figures_description:
+    - 'Fig A12: θ̂ perturbation under three attack scenarios — G-MFRM (blue) vs Sequential
+      (orange). G-MFRM consistently shows smaller shifts and higher detection rates.'
+    analysis: P2 优先级实验，为 Discussion/Limitations 提供材料。G-MFRM 不声称 adversarial robustness
+      作为贡献，但展示其 diagnostic 框架提供了 "免费的" 异常检测能力。 Judge collusion 是最大弱点——如果超过 50% 的 judge
+      被操纵，d_j 无法区分真实 severity 和操纵。这是一个 honest limitation。
+  review_report: '# [Dream Review — best]
+
+
+    Status: subprocess exited but no report was submitted
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T215715/median/paper.pdf
+  imagined_experiments:
+  - name: multi_judge_data_collection
+    plan_id: exp-001
+    description: 'Collect multi-judge evaluation data on MT-Bench and Arena-Hard using
+      8 judges. 20+ target models evaluated with position swap.
+
+      '
+    expected_results:
+      num_judges: 8
+      num_target_models: 22
+      benchmarks:
+      - MT-Bench
+      - Arena-Hard
+      total_judgments_mt_bench: 28160
+      total_judgments_arena_hard: 35200
+      position_bias_detected_judges: 3
+      api_cost_usd: 820
+      gpu_hours_used: 118
+      missing_data_pct: 2.1
+      inter_judge_agreement_fleiss_kappa: 0.38
+    result_rationale: 'Median档下，8个judge的评分会展现出中等程度的一致性（Fleiss κ~0.38），反映了judge之间severity差异的真实存在。
+      22个target model覆盖了从GPT-5.5到开源7B模型的能力梯度，确保contamination susceptibility的变异性。 Position
+      bias在3个judge上显著（主要是较小的开源judge），这为d_j估计提供了必要的judge间变异。 缺失数据约2%来自API超时和vLLM偶发OOM，在可接受范围内。
+
+      '
+    tables:
+    - name: 'Table A1: Judge × Benchmark Data Collection Summary'
+      columns:
+      - Judge
+      - MT-Bench Items
+      - Arena-Hard Items
+      - Position Swap
+      - Missing %
+      - Mean Score
+      sample_rows:
+      - - GPT-5.5
+        - 1760
+        - 2200
+        - 'Yes'
+        - 0.0%
+        - '7.82'
+      - - Claude Opus 4.7
+        - 1760
+        - 2200
+        - 'Yes'
+        - 0.0%
+        - '7.45'
+      - - Claude Sonnet 4.6
+        - 1760
+        - 2200
+        - 'Yes'
+        - 0.0%
+        - '7.61'
+      - - DeepSeek-V4-Pro
+        - 1760
+        - 2200
+        - 'Yes'
+        - 1.8%
+        - '7.28'
+      - - Qwen3-235B-A22B
+        - 1760
+        - 2200
+        - 'Yes'
+        - 2.5%
+        - '7.15'
+      - - Qwen3.6-27B
+        - 1760
+        - 2200
+        - 'Yes'
+        - 4.2%
+        - '6.93'
+      - - Llama 4 Maverick
+        - 1760
+        - 2200
+        - 'Yes'
+        - 3.1%
+        - '7.05'
+      - - Gemma3-27B
+        - 1760
+        - 2200
+        - 'Yes'
+        - 2.8%
+        - '6.88'
+    figures_description:
+    - 'Fig S1: Judge score distribution heatmap (judge × target model), showing systematic
+      severity differences across judges.'
+    analysis: '数据收集本身不直接验证claim，但数据质量决定了后续实验的上限。 Judge间score分布差异（mean range: 6.88–7.82）确认了judge
+      severity变异的存在，为d_j估计提供信号。 中等的inter-judge agreement (κ~0.38) 意味着judge bias correction有实际意义。
+
+      '
+  - name: item_exposure_estimation
+    plan_id: exp-002
+    description: '三源pipeline估计per-item exposure e_i。Primary source: 原始vs改写变体的performance
+      gap； Temporal: pre/post-cutoff变体gap；LogProber: token logprob memorization scores。
+      加权组合后用ConStat per-model delta做外部验证。
+
+      '
+    expected_results:
+      num_items_mt_bench: 80
+      num_items_arena_hard: 100
+      reference_variants_created: 180
+      primary_source_coverage: 1.0
+      temporal_source_coverage: 0.45
+      logprober_source_coverage: 0.55
+      composite_e_i_mean: 0.32
+      composite_e_i_std: 0.21
+      composite_e_i_range:
+      - 0.0
+      - 0.82
+      high_exposure_items_pct: 18.0
+      primary_temporal_correlation: 0.58
+      primary_logprober_correlation: 0.41
+      weighted_composite_internal_consistency_alpha: 0.62
+      constat_cn_vs_gmfrm_cn_spearman: 0.52
+    result_rationale: 'Median档假设real contamination moderate，因此e_i分布右偏但不极端：大部分items（~82%）的e_i
+      < 0.5， 仅少数items（~18%）有明显的contamination exposure。这与"contamination exists but
+      is moderate"一致。 Primary source（performance gap）覆盖率100%且信号最强；temporal source覆盖率有限（仅45%的items有
+      pre/post-cutoff变体），但与primary的相关性中等（r=0.58）。LogProber覆盖率55%（仅有logprob API的模型），
+      且与primary相关性较弱（r=0.41）——这是median档的关键特征之一："one source contributes little"。 内部一致性α=0.62反映了三源信号的中等coherence，足以构建可用的composite但不overwhelming。
+      ConStat验证ρ=0.52落在[0.4, 0.7)范围内，表明fitted c_n与外部contamination measure有中等agreement。
+
+      '
+    tables:
+    - name: 'Table 2: Exposure Indicator Source Comparison'
+      columns:
+      - Source
+      - Coverage
+      - Mean e_i
+      - Std
+      - Correlation w/ Composite
+      sample_rows:
+      - - Primary (performance gap)
+        - 100%
+        - '0.30'
+        - '0.22'
+        - '0.91'
+      - - Temporal (pre/post cutoff)
+        - 45%
+        - '0.35'
+        - '0.25'
+        - '0.72'
+      - - LogProber (logprob)
+        - 55%
+        - '0.28'
+        - '0.19'
+        - '0.58'
+      - - Weighted Composite
+        - 100%
+        - '0.32'
+        - '0.21'
+        - '1.00'
+    - name: 'Table S2: High-Exposure Items (e_i > 0.5)'
+      columns:
+      - Benchmark
+      - Item ID
+      - e_i
+      - Primary
+      - Temporal
+      - LogProber
+      - Category
+      note: ~32 items total (18% of 180). Concentrated in coding and math categories.
+    figures_description:
+    - 'Fig 2(a): e_i histogram across all items, showing right-skewed distribution
+      with mode near 0.15 and tail to 0.82.'
+    - 'Fig 2(b): Source-pair scatter plots (primary vs temporal, primary vs LogProber)
+      with regression lines.'
+    - 'Fig S2: Per-benchmark e_i distribution comparison (MT-Bench vs Arena-Hard).'
+    analysis: 'e_i pipeline产生合理的exposure estimates，但LogProber贡献有限。这意味着在ablation（exp-007）中，
+      去除LogProber对composite质量影响较小，2/3 sources sufficient。 MT-Bench的coding/math items的e_i系统性高于reasoning/writing
+      items， 与contamination通过training data leakage的机制一致。 Arena-Hard的e_i整体略低于MT-Bench，可能因Arena-Hard更新更频繁、泄露窗口更短。
+
+      '
+  - name: gmfrm_real_data_fit
+    plan_id: exp-003
+    description: '在exp-001/002的real data上拟合G-MFRM三阶段pipeline。 Stage 1: MFRM估计(θ,b,d)。Stage
+      2: 固定exp-002的e_i。Stage 3: Joint gated model。 输出fair scores θ̂并与Chatbot Arena
+      Elo对比。
+
+      '
+    expected_results:
+      stage1_max_rhat: 1.02
+      stage1_min_ess: 380
+      stage3_max_rhat: 1.07
+      stage3_min_ess: 142
+      stage3_divergent_transitions: 12
+      theta_range:
+      - -1.8
+      - 2.1
+      d_j_range:
+      - -0.62
+      - 0.48
+      d_j_std: 0.31
+      c_n_median: 0.48
+      c_n_mean: 0.54
+      c_n_range:
+      - 0.05
+      - 1.35
+      c_n_gt_0_3_count: 13
+      c_n_gt_0_8_count: 4
+      kendall_tau_arena_mt_bench: 0.87
+      kendall_tau_arena_arena_hard: 0.86
+      spearman_rho_arena_mt_bench: 0.91
+      spearman_rho_arena_arena_hard: 0.9
+      arena_hard_subset_low_contamination_tau_gmfrm: 0.88
+      arena_hard_subset_low_contamination_tau_mfrm: 0.87
+      runtime_seconds: 8400
+      mcmc_warmup: 2000
+      mcmc_samples: 4000
+      mcmc_chains: 4
+    result_rationale: 'Median档的核心特征在此实验集中体现。c_n median=0.48落在[0.3, 0.8)区间， 接近mvp_001的weak
+      contamination而非mvp_003的strong contamination。 22个模型中13个有c_n > 0.3（moderate），仅4个有c_n
+      > 0.8（heavy）， 说明contamination普遍存在但幅度有限。 Stage 3收敛需要调优：R̂=1.07（≤1.10但不ideal）、ESS=142（≥100但远低于mvp_003的224），
+      12个divergent transitions提示geometry有困难但未破坏inference。 这是因为moderate contamination意味着c_n的posterior更diffuse（数据对c_n的约束力较弱），
+      MCMC更难探索。Kendall-τ=0.87落在[0.84, 0.9]范围，比raw average显著提升但不dramatic。 低contamination子集上G-MFRM与MFRM几乎无差异（0.88
+      vs 0.87），确认graceful degradation。
+
+      '
+    tables:
+    - name: 'Table 3: G-MFRM Convergence Diagnostics'
+      columns:
+      - Parameter Group
+      - Max R̂
+      - Min ESS
+      - Mean ESS
+      - Divergent Transitions
+      sample_rows:
+      - - θ (model ability)
+        - '1.03'
+        - '285'
+        - '420'
+        - '0'
+      - - b (item difficulty)
+        - '1.02'
+        - '310'
+        - '465'
+        - '0'
+      - - d (judge severity)
+        - '1.02'
+        - '340'
+        - '490'
+        - '0'
+      - - c (contamination)
+        - '1.07'
+        - '142'
+        - '215'
+        - '12'
+    - name: 'Table 4: Per-Model Parameter Estimates (sorted by θ̂)'
+      columns:
+      - Model
+      - θ̂ (fair)
+      - θ_raw
+      - c_n
+      - c_n 95%CI
+      - Rank_fair
+      - Rank_raw
+      - Δ Rank
+      sample_rows:
+      - - GPT-5.5
+        - '1.95'
+        - '2.08'
+        - '0.72'
+        - '[0.38, 1.12]'
+        - '1'
+        - '1'
+        - '0'
+      - - Claude Opus 4.7
+        - '1.82'
+        - '1.85'
+        - '0.21'
+        - '[0.03, 0.52]'
+        - '2'
+        - '3'
+        - '+1'
+      - - DeepSeek-V4-Pro
+        - '1.71'
+        - '1.92'
+        - '1.15'
+        - '[0.68, 1.35]'
+        - '3'
+        - '2'
+        - '-1'
+      - - Qwen3-235B-A22B
+        - '1.45'
+        - '1.58'
+        - '0.65'
+        - '[0.31, 1.02]'
+        - '5'
+        - '4'
+        - '-1'
+      - - Model-X-70B
+        - '0.85'
+        - '1.10'
+        - '1.28'
+        - '[0.85, 1.35]'
+        - '10'
+        - '7'
+        - '-3'
+      - - Small-7B-Chat
+        - '-1.52'
+        - '-1.48'
+        - '0.08'
+        - '[0.01, 0.28]'
+        - '22'
+        - '22'
+        - '0'
+    - name: 'Table S3: Per-Judge Severity Estimates'
+      columns:
+      - Judge
+      - d_j
+      - d_j 95%CI
+      - Interpretation
+      sample_rows:
+      - - GPT-5.5
+        - '-0.15'
+        - '[-0.32, 0.02]'
+        - Slightly lenient
+      - - Claude Opus 4.7
+        - '0.08'
+        - '[-0.10, 0.25]'
+        - Near neutral
+      - - Qwen3.6-27B
+        - '0.48'
+        - '[0.28, 0.68]'
+        - Most severe
+      - - Llama 4 Maverick
+        - '-0.62'
+        - '[-0.85, -0.40]'
+        - Most lenient
+    figures_description:
+    - 'Fig 3: Scatter plot of θ̂_fair vs Chatbot Arena Elo, colored by c_n magnitude.
+      High-c_n models pulled downward relative to raw scores.'
+    - 'Fig 4: c_n posterior density plots for all 22 models, ordered by posterior
+      median. Shows moderate contamination landscape.'
+    - 'Fig S3: Trace plots for c_n of 4 highest-contamination models, showing adequate
+      mixing despite slower convergence.'
+    - 'Fig S4: θ̂_raw vs θ̂_fair with identity line; deviations annotated with model
+      names.'
+    analysis: 'G-MFRM成功拟合real data，收敛可接受但不完美（c_n的ESS偏低）。 c_n median=0.48确认了median档预期：contamination存在且可量化，但幅度moderate。
+      关键发现：4个模型（DeepSeek-V4-Pro, Qwen3-235B-A22B, Model-X-70B, 另一个）的c_n > 0.8， 这些模型的fair
+      score显著低于raw score，产生了有意义的rank changes。 但top-5整体稳定（仅1-2个位置变动），限制了ranking correction的headline
+      impact。 Per-judge d_j range（-0.62 to 0.48）确认judge severity差异显著， 为"judge selection
+      guidance"这一diagnostic贡献提供了直接证据。
+
+      '
+  - name: baseline_comparison
+    plan_id: exp-004
+    description: 'G-MFRM vs 8条baselines在相同数据上对比。 包含rank change analysis：具体哪些模型换位、换多少位、top-k稳定性。
+
+      '
+    expected_results:
+      tau_raw_average: 0.79
+      tau_mfrm_only: 0.82
+      tau_sequential: 0.84
+      tau_cyclicjudge: 0.83
+      tau_cyclicjudge_discard: 0.85
+      tau_dcr_factor: 0.81
+      tau_uda: 0.84
+      tau_pref_leakage_cal: 0.82
+      tau_gmfrm: 0.87
+      rho_raw_average: 0.83
+      rho_mfrm_only: 0.86
+      rho_sequential: 0.88
+      rho_cyclicjudge: 0.87
+      rho_cyclicjudge_discard: 0.89
+      rho_dcr_factor: 0.85
+      rho_uda: 0.88
+      rho_pref_leakage_cal: 0.86
+      rho_gmfrm: 0.91
+      tau_gmfrm_arena_hard: 0.86
+      tau_best_baseline_arena_hard: 0.84
+      delta_tau_vs_best_baseline_mt_bench: 0.02
+      delta_tau_vs_best_baseline_arena_hard: 0.02
+      wilcoxon_gmfrm_vs_cyclicjudge_discard_p: 0.073
+      wilcoxon_gmfrm_vs_sequential_p: 0.018
+      wilcoxon_gmfrm_vs_raw_p: 0.001
+      rank_changes_ge2_positions: 2
+      top5_stability_raw_vs_gmfrm: 4/5 same
+      top10_stability_raw_vs_gmfrm: 7/10 same
+      max_rank_change_model: Model-X-70B
+      max_rank_change_positions: 3
+    result_rationale: 'Median档的核心tension在此实验体现：G-MFRM beats all baselines但margin modest。
+      Δτ=+0.02 vs CyclicJudge+discard（best baseline），p=0.073——borderline significant。
+      这是因为moderate contamination意味着contamination correction的marginal value有限： CyclicJudge+discard已经通过丢弃high-exposure
+      items移除了大部分contamination signal， G-MFRM的优势在于保留这些items的information（不丢弃）而非dramatically改变ranking。
+      vs sequential (p=0.018) 和 vs raw (p=0.001) 则显著，因为这些baseline完全不处理contamination。
+      Rank changes limited to 2个models移动≥2位，最大移动3位（Model-X-70B: raw rank 7→fair rank
+      10）， top-5有4/5不变——这限制了"G-MFRM dramatically corrects rankings"的narrative， 但支持"G-MFRM
+      provides correction where needed + diagnostic visibility everywhere"的Tier B
+      framing。 UDA的τ=0.84与sequential持平，说明neural K-factor adjustment在有contamination时也受confounding影响。
+
+      '
+    tables:
+    - name: 'Table 5: Main Results — Agreement with Chatbot Arena Human Votes'
+      columns:
+      - Method
+      - MT-Bench τ
+      - MT-Bench ρ
+      - Arena-Hard τ
+      - Arena-Hard ρ
+      - p vs G-MFRM
+      sample_rows:
+      - - Raw Multi-Judge Avg
+        - '0.79'
+        - '0.83'
+        - '0.78'
+        - '0.82'
+        - '0.001'
+      - - MFRM-only
+        - '0.82'
+        - '0.86'
+        - '0.81'
+        - '0.85'
+        - '0.009'
+      - - Sequential Pipeline
+        - '0.84'
+        - '0.88'
+        - '0.83'
+        - '0.87'
+        - '0.018'
+      - - CyclicJudge
+        - '0.83'
+        - '0.87'
+        - '0.82'
+        - '0.86'
+        - '0.025'
+      - - CyclicJudge + Discard
+        - '0.85'
+        - '0.89'
+        - '0.84'
+        - '0.88'
+        - '0.073'
+      - - DCR Factor
+        - '0.81'
+        - '0.85'
+        - '0.80'
+        - '0.84'
+        - '0.005'
+      - - UDA
+        - '0.84'
+        - '0.88'
+        - '0.83'
+        - '0.87'
+        - '0.021'
+      - - Pref. Leakage Cal.
+        - '0.82'
+        - '0.86'
+        - '0.81'
+        - '0.85'
+        - '0.008'
+      - - '**G-MFRM (ours)**'
+        - '**0.87**'
+        - '**0.91**'
+        - '**0.86**'
+        - '**0.90**'
+        - —
+    - name: 'Table 6: Rank Change Analysis (G-MFRM Fair vs Raw Average)'
+      columns:
+      - Model
+      - Raw Rank
+      - G-MFRM Rank
+      - Δ Rank
+      - c_n
+      - Moved ≥2?
+      sample_rows:
+      - - GPT-5.5
+        - '1'
+        - '1'
+        - '0'
+        - '0.72'
+        - 'No'
+      - - DeepSeek-V4-Pro
+        - '2'
+        - '3'
+        - '-1'
+        - '1.15'
+        - 'No'
+      - - Claude Opus 4.7
+        - '3'
+        - '2'
+        - '+1'
+        - '0.21'
+        - 'No'
+      - - Qwen3-235B-A22B
+        - '4'
+        - '5'
+        - '-1'
+        - '0.65'
+        - 'No'
+      - - Model-Y-Pro
+        - '6'
+        - '4'
+        - '+2'
+        - '0.12'
+        - 'Yes'
+      - - Model-X-70B
+        - '7'
+        - '10'
+        - '-3'
+        - '1.28'
+        - 'Yes'
+    - name: 'Table 6b: Top-k Stability'
+      columns:
+      - k
+      - Overlap(raw, G-MFRM)
+      - Overlap(CJ+discard, G-MFRM)
+      - Overlap(sequential, G-MFRM)
+      sample_rows:
+      - - '5'
+        - 4/5 (80%)
+        - 5/5 (100%)
+        - 4/5 (80%)
+      - - '10'
+        - 7/10 (70%)
+        - 9/10 (90%)
+        - 8/10 (80%)
+    figures_description:
+    - 'Fig 5: Bar chart of Kendall-τ across all methods, both benchmarks side by side.
+      G-MFRM highest but margin small.'
+    - 'Fig 6: Rank comparison alluvial diagram — raw ranks → G-MFRM fair ranks, highlighting
+      the 2 models with ≥2 position change.'
+    - 'Fig 7: Diagnostic output comparison matrix — checkmarks for which methods provide
+      θ, d_j, c_n, e_i outputs. Only G-MFRM provides all four.'
+    analysis: 'G-MFRM在所有metrics上numerically best，但vs CyclicJudge+discard的优势borderline
+      (p=0.073)。 这正是median档Tier B narrative的触发条件。 Fig 7（diagnostic output comparison）成为关键卖点：所有baseline只输出corrected
+      scores， G-MFRM额外输出per-model c_n、per-item e_i、per-judge d_j——这是unique contribution。
+      Rank change分析显示corrections targeted：Model-X-70B下降3位（c_n=1.28，最重contamination），
+      但大多数模型rank变化≤1位，说明moderate contamination下校正是surgical而非sweeping。
+
+      '
+  - name: contamination_magnitude_calibration
+    plan_id: exp-005
+    description: '将exp-003的fitted c_n与MVP synthetic assumptions对比，确定real contamination
+      magnitude所在区间。
+
+      '
+    expected_results:
+      c_n_median_fitted: 0.48
+      c_n_mean_fitted: 0.54
+      c_n_p25: 0.18
+      c_n_p75: 0.78
+      closest_mvp: between mvp_001 (c~0.5) and mvp_002 (c~1.5), closer to mvp_001
+      tier_determination: median → Tier B
+      models_with_c_n_gt_1: 2
+      models_with_c_n_lt_0_1: 5
+      c_n_distribution_shape: right-skewed, mode near 0.2, long tail to ~1.35
+      constat_delta_vs_c_n_spearman: 0.52
+      constat_delta_vs_c_n_pearson: 0.47
+    result_rationale: 'c_n median=0.48直接落在median档定义的[0.3, 0.8)区间内。这接近mvp_001（c~0.5）而非mvp_002/003（c~1.5）。
+      分布右偏（mode~0.2, median~0.48, mean~0.54）反映了真实情况：大多数模型contamination轻微， 少数模型（likely
+      trained on leaked benchmark data）有较高contamination。 仅2个模型的c_n > 1.0，说明"heavy
+      contamination"是exception而非norm—— 这解释了为什么G-MFRM的ranking improvement modest：只有少数模型需要大幅校正。
+      ConStat validation ρ=0.52（[0.4, 0.7)范围）提供了moderate external validation， 说明c_n
+      captures real contamination signal但不是perfect proxy（ConStat measures different
+      aspect）。 这个结果正式触发Tier B narrative decision。
+
+      '
+    tables:
+    - name: 'Table 7: Contamination Magnitude — Real vs Synthetic'
+      columns:
+      - Statistic
+      - Real Data (exp-003)
+      - MVP_001 (synthetic)
+      - MVP_002 (synthetic)
+      - MVP_003 (synthetic)
+      sample_rows:
+      - - c_n median
+        - '0.48'
+        - '0.50'
+        - '1.50'
+        - '1.50'
+      - - c_n mean
+        - '0.54'
+        - '0.50'
+        - '1.50'
+        - '1.50'
+      - - c_n std
+        - '0.35'
+        - '0.10'
+        - '0.30'
+        - '0.30'
+      - - c_n range
+        - '[0.05, 1.35]'
+        - '[0.3, 0.7]'
+        - '[0.8, 2.0]'
+        - '[0.8, 2.0]'
+      - - '% models c_n > 0.8'
+        - 18%
+        - 0%
+        - 100%
+        - 100%
+    - name: 'Table S5: ConStat Validation'
+      columns:
+      - Metric
+      - Value
+      - 95% CI
+      sample_rows:
+      - - Spearman ρ (ConStat Δ vs c_n)
+        - '0.52'
+        - '[0.31, 0.69]'
+      - - Pearson r (ConStat Δ vs c_n)
+        - '0.47'
+        - '[0.25, 0.65]'
+      - - Kendall τ (ConStat Δ vs c_n)
+        - '0.38'
+        - '[0.18, 0.55]'
+    figures_description:
+    - 'Fig 8: c_n distribution overlay — real data (histogram) vs MVP_001 and MVP_003
+      synthetic (density curves). Real data closest to MVP_001 but with heavier tail.'
+    - 'Fig 9: Scatter plot of ConStat per-model Δ vs G-MFRM c_n, with ρ=0.52 annotated.'
+    analysis: 'This is the tier-determining experiment. c_n median=0.48确认Tier B。 关键implication：ranking
+      correction虽然有效但不dramatic，paper必须pivot to diagnostic contribution。 但分布的heavy
+      tail（2个模型c_n > 1.0）提供了"contamination can be severe for specific models"的evidence，
+      支持forward-looking argument："as contamination grows, joint estimation becomes
+      increasingly critical。" ConStat中等验证(ρ=0.52)说明c_n不是noise但也不是perfect——足以claim
+      validity，不足以claim definitive。
+
+      '
+  - name: judge_count_sensitivity
+    plan_id: exp-006
+    description: 'Judge数量敏感性分析：2/4/6/8个judges下G-MFRM performance degradation。
+
+      '
+    expected_results:
+      tau_2_judges: 0.81
+      tau_4_judges: 0.85
+      tau_6_judges: 0.86
+      tau_8_judges: 0.87
+      tau_2_judges_mfrm_only: 0.8
+      tau_4_judges_mfrm_only: 0.82
+      delta_gmfrm_vs_sequential_2_judges: 0.0
+      delta_gmfrm_vs_sequential_4_judges: 0.01
+      delta_gmfrm_vs_sequential_6_judges: 0.02
+      delta_gmfrm_vs_sequential_8_judges: 0.03
+      min_judges_for_significant_gain: 5
+      convergence_2_judges_max_rhat: 1.25
+      convergence_4_judges_max_rhat: 1.09
+      convergence_6_judges_max_rhat: 1.08
+      convergence_8_judges_max_rhat: 1.07
+    result_rationale: 'Median档假设min judge count for significant gain在[4, 6]范围。预测5个judges是拐点。
+      2 judges时G-MFRM无法区分judge severity和contamination（under-identified）， 退化到MFRM-level（τ=0.81
+      vs MFRM τ=0.80），R̂=1.25表明不收敛—— 这是graceful degradation的empirical validation。
+      4 judges开始有信号但gain仍小（Δτ=+0.01），因为moderate contamination下 4个judge的cross-information不足以精确估计c_n
+      posterior。 6-8 judges时gain stabilize（Δτ=+0.02-0.03），c_n posterior tighten。 这个结果支持"≥5
+      judges recommended"的practitioner guidance， 也诚实地展示了G-MFRM的practical limitation。
+
+      '
+    tables:
+    - name: 'Table 8: Judge Count Sensitivity'
+      columns:
+      - '# Judges'
+      - G-MFRM τ
+      - Sequential τ
+      - Δτ
+      - Max R̂
+      - Min ESS
+      - Significant? (p<0.05)
+      sample_rows:
+      - - '2'
+        - '0.81'
+        - '0.81'
+        - '0.00'
+        - '1.25'
+        - '35'
+        - 'No'
+      - - '4'
+        - '0.85'
+        - '0.84'
+        - '+0.01'
+        - '1.09'
+        - '92'
+        - 'No'
+      - - '5'
+        - '0.86'
+        - '0.84'
+        - '+0.02'
+        - '1.08'
+        - '115'
+        - Yes (p=0.04)
+      - - '6'
+        - '0.86'
+        - '0.84'
+        - '+0.02'
+        - '1.08'
+        - '128'
+        - Yes (p=0.03)
+      - - '8'
+        - '0.87'
+        - '0.84'
+        - '+0.03'
+        - '1.07'
+        - '142'
+        - Yes (p=0.02)
+    figures_description:
+    - 'Fig 10: Line plot of Kendall-τ vs judge count for G-MFRM, MFRM, sequential,
+      and raw average. G-MFRM curve diverges from sequential at 4+ judges.'
+    - 'Fig S6: R̂ and ESS vs judge count, showing convergence improves monotonically.'
+    analysis: '实用建议：5个judges是cost-benefit sweet spot。2个judges时G-MFRM无害（graceful degradation
+      to MFRM） 但也无contamination-correction benefit。 Addresses Reviewer Concern #8：cost-benefit明确，4
+      judges下G-MFRM不worse than MFRM， practitioners不需要担心"judges不够多时method会hurt"。
+
+      '
+  - name: exposure_indicator_ablation
+    plan_id: exp-007
+    description: 'Leave-one-out ablation：每次移除一个e_i source，测量对downstream θ̂质量的影响。
+
+      '
+    expected_results:
+      full_tau: 0.87
+      full_c_n_recovery_rmse: 0.22
+      no_logprober_tau: 0.865
+      no_logprober_c_n_rmse: 0.24
+      no_logprober_delta_tau: -0.005
+      no_temporal_tau: 0.86
+      no_temporal_c_n_rmse: 0.26
+      no_temporal_delta_tau: -0.01
+      no_primary_tau: 0.83
+      no_primary_c_n_rmse: 0.38
+      no_primary_delta_tau: -0.04
+      only_primary_tau: 0.86
+      only_primary_c_n_rmse: 0.27
+    result_rationale: 'Median档假设"one source contributes little"，这里是LogProber。 去除LogProber几乎不影响downstream
+      performance（Δτ=-0.005），因为： (1) LogProber覆盖率仅55%，缺失模型需要impute； (2) LogProber与primary
+      source的correlation最低（r=0.41），其unique information有限； (3) moderate contamination下，token-level
+      memorization信号弱于item-level performance gap。 去除temporal影响稍大（Δτ=-0.01）但仍modest，因覆盖率仅45%。
+      去除primary source影响显著（Δτ=-0.04），因它是唯一100%覆盖的source且与contamination最直接相关。 关键结论：2/3
+      sources (primary + temporal) 几乎match full pipeline， 这简化了practitioners的pipeline——不需要LogProber
+      access也能获得good e_i estimates。
+
+      '
+    tables:
+    - name: 'Table 9: Exposure Indicator Ablation'
+      columns:
+      - Configuration
+      - Sources Used
+      - e_i Coverage
+      - G-MFRM τ
+      - c_n RMSE
+      - Δτ vs Full
+      sample_rows:
+      - - Full Pipeline
+        - Primary + Temporal + LogProber
+        - 100%
+        - '0.870'
+        - '0.22'
+        - —
+      - - −LogProber
+        - Primary + Temporal
+        - 100%
+        - '0.865'
+        - '0.24'
+        - −0.005
+      - - −Temporal
+        - Primary + LogProber
+        - 100%
+        - '0.860'
+        - '0.26'
+        - −0.010
+      - - −Primary
+        - Temporal + LogProber
+        - 55%
+        - '0.830'
+        - '0.38'
+        - −0.040
+      - - Primary Only
+        - Primary
+        - 100%
+        - '0.860'
+        - '0.27'
+        - −0.010
+    figures_description:
+    - 'Fig 11: Bar chart of Kendall-τ for each ablation configuration, with error
+      bars from bootstrap.'
+    analysis: 'Primary source是backbone，贡献最大。LogProber可被省略（对practitioners友好）。 Temporal有marginal但real
+      contribution（+0.005 τ over primary-only），值得保留但non-essential。 这支持了"2/3 sources
+      sufficient"的median档预期。 论文中应强调primary source的simplicity（仅需original + rephrased
+      variants的performance gap）， 降低method的perceived complexity。
+
+      '
+  - name: facet_fit_diagnostics
+    plan_id: exp-008
+    description: 'Measurement quality validation：infit/outfit MNSQ, person-fit (lz,
+      EMRi), divergent transitions, posterior predictive checks, trace plots。
+
+      '
+    expected_results:
+      theta_infit_mnsq_range:
+      - 0.72
+      - 1.35
+      theta_outfit_mnsq_range:
+      - 0.68
+      - 1.42
+      theta_misfitting_count: 2
+      item_infit_mnsq_range:
+      - 0.78
+      - 1.28
+      item_misfitting_count: 5
+      judge_infit_mnsq_range:
+      - 0.82
+      - 1.22
+      judge_misfitting_count: 1
+      c_n_infit_mnsq_range:
+      - 0.65
+      - 1.48
+      c_n_misfitting_count: 3
+      stage1_lz_flagged_models: 4
+      stage3_cn_gt_0_8_models: 4
+      overlap_lz_and_cn: 3
+      ppc_mean_residual: 0.02
+      ppc_95pct_residuals_in_band: 91.5
+      divergent_transitions_total: 12
+      divergent_transitions_pct: 0.075
+      trace_quality_theta: good
+      trace_quality_c_n: adequate with slow mixing for 2 models
+    result_rationale: 'Median档下model fit "works but not perfectly"。 θ的infit/outfit大部分在[0.7,
+      1.3]可接受范围，2个models misfitting（可能是能力profile异常的模型， 如specialized coding model在非coding
+      items上表现与Rasch unidimensionality不符）。 c_n的fit较差（3个misfitting），因为rank-1 assumption
+      (c_n·e_i) 对某些models是approximate： 部分models的contamination pattern可能不proportional
+      to item exposure， 但MNSQ < 1.5说明misfit不severe enough to invalidate model。 Person-fit
+      comparison（Stage 1 lz vs Stage 3 c_n）显示3/4 overlap—— Stage 1检测为"anomalous"的模型在Stage
+      3被identified as contaminated， 这提供了construct coherence validation（contamination
+      IS the source of person misfit）。 PPC 91.5%的residuals in 95% band略低于ideal（95%），12个divergent
+      transitions (0.075%) 在可接受范围但提示c_n posterior geometry有局部困难。
+
+      '
+    tables:
+    - name: 'Table 10: Facet Fit Summary (Infit/Outfit MNSQ)'
+      columns:
+      - Facet
+      - N
+      - Infit Range
+      - Outfit Range
+      - Misfitting (>1.3 or <0.7)
+      - '% Misfitting'
+      sample_rows:
+      - - θ (model ability)
+        - '22'
+        - '[0.72, 1.35]'
+        - '[0.68, 1.42]'
+        - '2'
+        - 9.1%
+      - - b (item difficulty)
+        - '180'
+        - '[0.78, 1.28]'
+        - '[0.75, 1.32]'
+        - '5'
+        - 2.8%
+      - - d (judge severity)
+        - '8'
+        - '[0.82, 1.22]'
+        - '[0.80, 1.25]'
+        - '1'
+        - 12.5%
+      - - c (contamination)
+        - '22'
+        - '[0.65, 1.48]'
+        - '[0.62, 1.55]'
+        - '3'
+        - 13.6%
+    - name: 'Table S7: Person-Fit Cross-Validation'
+      columns:
+      - Model
+      - Stage 1 lz
+      - Stage 1 Flag?
+      - Stage 3 c_n
+      - Stage 3 c_n > 0.8?
+      note: 3 of 4 lz-flagged models also have c_n > 0.8, supporting construct coherence.
+    figures_description:
+    - 'Fig S7: Infit/Outfit MNSQ Wright Map for all facets.'
+    - 'Fig S8: Posterior predictive check — observed vs predicted score distributions.'
+    - 'Fig S9: Trace plots for c_n of 4 highest-contamination models.'
+    - 'Fig S10: Stage 1 person-fit (lz) vs Stage 3 c_n scatter plot.'
+    analysis: 'Overall model fit acceptable for a novel psychometric model on real
+      LLM evaluation data. c_n facet的fit稍弱是预期内的——rank-1 assumption是simplification，
+      但misfit程度（MNSQ < 1.5）不足以reject model。 Person-fit cross-validation（3/4 overlap）是一个强validation
+      signal， 可在paper中作为"contamination构念效度"的证据。 Limitations应讨论c_n misfitting models和rank-1
+      assumption的局限性。
+
+      '
+  - name: confounding_formal_observation
+    plan_id: exp-009
+    description: 'Formal bias analysis + Monte Carlo validation + synthetic c_n recovery。
+      Frame as Observation (standard OVB)。
+
+      '
+    expected_results:
+      bias_direction: sign(Cov(d_j, c_n·e_i)) determines bias direction
+      bias_magnitude_first_order: O(σ_d · σ_c · ρ_{d,c·e})
+      mc_rho_0_theta_rmse_sequential: 0.155
+      mc_rho_0_theta_rmse_joint: 0.15
+      mc_rho_0_3_theta_rmse_sequential: 0.168
+      mc_rho_0_3_theta_rmse_joint: 0.148
+      mc_rho_0_6_theta_rmse_sequential: 0.198
+      mc_rho_0_6_theta_rmse_joint: 0.145
+      mc_rho_0_6_degradation_pct: 36.6
+      c_n_recovery_rmse_c_low: 0.12
+      c_n_recovery_rmse_c_moderate: 0.22
+      c_n_recovery_rmse_c_high: 0.18
+      c_n_95ci_coverage_overall: 0.88
+      c_n_95ci_coverage_c_gt_0_8: 0.82
+      c_n_mean_bias: 0.03
+    result_rationale: 'Monte Carlo在ρ=0时两方法RMSE接近（无confounding → no advantage）， 但ρ=0.6时sequential的RMSE升36.6%——低于mvp_003的43.8%因为此Monte
+      Carlo 使用更realistic的moderate contamination parameters（c_n ~ mvp_001 level而非mvp_003）。
+      c_n recovery RMSE在moderate contamination regime为0.22，落在[0.15, 0.3]范围—— moderate
+      contamination比strong contamination更难recover（信号弱）， 但比very weak contamination更容易（有足够信号区分contaminated
+      vs clean）。 95% CI coverage 88% < nominal 95%，说明posterior略under-covers， 主要因为staged
+      estimation（e_i fixed）低估了total uncertainty——这是honest limitation。 c_n > 0.8的coverage更低（82%），因为high-c_n
+      models的posterior更sensitive to e_i error。
+
+      '
+    tables:
+    - name: 'Table 1: Sequential vs Joint Estimation Under Confounding (Monte Carlo)'
+      columns:
+      - ρ(d,c·e)
+      - θ-RMSE Sequential
+      - θ-RMSE Joint
+      - Degradation %
+      - p-value
+      sample_rows:
+      - - '0.0'
+        - 0.155±0.024
+        - 0.150±0.026
+        - 3.3%
+        - '0.42'
+      - - '0.1'
+        - 0.158±0.025
+        - 0.149±0.025
+        - 6.0%
+        - '0.31'
+      - - '0.3'
+        - 0.168±0.027
+        - 0.148±0.024
+        - 13.5%
+        - '0.04'
+      - - '0.6'
+        - 0.198±0.031
+        - 0.145±0.023
+        - 36.6%
+        - < 0.001
+      - - '0.9'
+        - 0.265±0.042
+        - 0.142±0.022
+        - 86.6%
+        - < 0.001
+    - name: 'Table S1: Synthetic c_n Recovery'
+      columns:
+      - True c_n Range
+      - N Models
+      - Recovery RMSE
+      - Mean Bias
+      - 95% CI Coverage
+      sample_rows:
+      - - '[0, 0.3)'
+        - '7'
+        - '0.12'
+        - '+0.02'
+        - 92%
+      - - '[0.3, 0.8)'
+        - '9'
+        - '0.22'
+        - '+0.03'
+        - 88%
+      - - '[0.8, 1.5]'
+        - '4'
+        - '0.18'
+        - '+0.05'
+        - 82%
+      - - Overall
+        - '20'
+        - '0.19'
+        - '+0.03'
+        - 88%
+    figures_description:
+    - 'Fig 1 (Section 2): Toy example showing confounding mechanism. Left: sequential
+      pipeline with bias arrows. Right: G-MFRM joint estimation.'
+    - 'Fig S1: θ-RMSE vs ρ curves for sequential (rising) and joint (flat), clearly
+      showing confounding sensitivity.'
+    - 'Fig S2: c_n scatter (true vs recovered) with 45° reference line and 95% CI
+      bands.'
+    analysis: 'Observation成立：sequential estimator的bias随confounding strength单调增加， joint
+      estimator对confounding robust。Moderate contamination regime（median档）下， sequential
+      degradation ~13-37%（取决于ρ），G-MFRM consistently better。 c_n recovery RMSE=0.22支持"G-MFRM
+      can meaningfully estimate contamination"但 coverage < 95%是honest limitation。
+      Paper Section 2应lead with这个Observation + toy example figure作为motivation。
+
+      '
+  - name: error_propagation_sensitivity
+    plan_id: exp-012
+    description: 'Staged estimation的error propagation：向e_i注入σ=0.1/0.2/0.5的Gaussian
+      noise， 测量θ̂ RMSE degradation和c_n recovery accuracy。
+
+      '
+    expected_results:
+      theta_rmse_sigma_0_0: 0.145
+      theta_rmse_sigma_0_1: 0.152
+      theta_rmse_sigma_0_2: 0.168
+      theta_rmse_sigma_0_5: 0.225
+      theta_rmse_degradation_sigma_0_1_pct: 4.8
+      theta_rmse_degradation_sigma_0_2_pct: 15.9
+      theta_rmse_degradation_sigma_0_5_pct: 55.2
+      c_n_rmse_sigma_0_0: 0.19
+      c_n_rmse_sigma_0_1: 0.22
+      c_n_rmse_sigma_0_2: 0.3
+      c_n_rmse_sigma_0_5: 0.52
+      still_beats_sequential_sigma_0_1: true
+      still_beats_sequential_sigma_0_2: true
+      still_beats_sequential_sigma_0_5: false
+      breakeven_sigma: 0.38
+    result_rationale: 'Median档假设σ=0.2时degradation在[5%, 15%]范围。预测15.9%接近上界， 因为moderate
+      contamination下θ̂对e_i noise更sensitive—— 当c_n本身较小时，e_i的noise相对于c_n·e_i signal的比例更大。
+      σ=0.1时degradation ~5%（可接受），σ=0.5时degradation ~55%（不可接受，method breaks down）。
+      Breakeven point σ≈0.38：e_i noise超过此阈值时G-MFRM不再优于sequential。 这是Tier B narrative的重要组成部分——staged
+      estimation在reasonable e_i quality下robust， 但有clear failure mode。Paper Limitations必须讨论。
+      c_n recovery RMSE的degradation更steep（0.19→0.52 at σ=0.5）， 因为c_n directly depends
+      on e_i through gating mechanism。
+
+      '
+    tables:
+    - name: 'Table 11: Error Propagation Sensitivity (Synthetic)'
+      columns:
+      - e_i Noise σ
+      - θ̂ RMSE
+      - Degradation %
+      - c_n RMSE
+      - Beats Sequential?
+      - p vs Sequential
+      sample_rows:
+      - - 0.0 (oracle)
+        - '0.145'
+        - —
+        - '0.19'
+        - 'Yes'
+        - < 0.001
+      - - '0.1'
+        - '0.152'
+        - 4.8%
+        - '0.22'
+        - 'Yes'
+        - < 0.001
+      - - '0.2'
+        - '0.168'
+        - 15.9%
+        - '0.30'
+        - 'Yes'
+        - '0.02'
+      - - '0.3'
+        - '0.192'
+        - 32.4%
+        - '0.39'
+        - Marginal
+        - '0.08'
+      - - '0.5'
+        - '0.225'
+        - 55.2%
+        - '0.52'
+        - 'No'
+        - '0.35'
+    - name: 'Table S8: Breakeven Analysis'
+      columns:
+      - Metric
+      - Value
+      sample_rows:
+      - - Breakeven σ (G-MFRM τ = Sequential τ)
+        - '0.38'
+      - - Estimated real e_i pipeline σ
+        - 0.15–0.20
+      - - Safety margin
+        - 1.9–2.5×
+    figures_description:
+    - 'Fig 12: θ̂ RMSE vs e_i noise σ, with sequential baseline as horizontal dashed
+      line. Intersection at σ≈0.38.'
+    - 'Fig S11: c_n recovery scatter plots at each noise level, showing increasing
+      dispersion.'
+    analysis: 'Staged estimation在realistic noise levels下robust（safety margin ~2×），
+      但不是unconditionally robust。σ=0.2时degradation 15.9%处于acceptable-but-noticeable
+      range。 Breakeven σ=0.38 vs estimated real pipeline σ=0.15-0.20 gives safety
+      margin of ~2×。 This directly addresses Reviewer Concern #4b和Dream R1-N1： staged
+      estimation是principled且empirically robust，但paper必须state the limitation clearly。
+
+      '
+  - name: wildbench_replication
+    plan_id: exp-010
+    description: 'WildBench上复现G-MFRM pipeline作为第三个benchmark。Cross-benchmark generalization。
+
+      '
+    expected_results:
+      wildbench_num_items: 1024
+      wildbench_num_judges_used: 6
+      tau_raw_average: 0.76
+      tau_mfrm_only: 0.79
+      tau_sequential: 0.81
+      tau_cyclicjudge_discard: 0.82
+      tau_gmfrm: 0.84
+      delta_tau_vs_best_baseline: 0.02
+      c_n_median_wildbench: 0.38
+      c_n_correlation_with_mtbench: 0.72
+      convergence_max_rhat: 1.09
+      convergence_min_ess: 108
+      wilcoxon_gmfrm_vs_best_p: 0.065
+    result_rationale: 'WildBench的contamination预期更低（c_n median=0.38 vs MT-Bench 0.48），
+      因为WildBench items更diverse且更新更频繁。 6个judges（cost constraint）接近minimum threshold（exp-006预测5个为拐点），
+      所以convergence和performance都marginal worse than MT-Bench/Arena-Hard。 Δτ=+0.02
+      vs best baseline，p=0.065——again borderline，consistent with median档。 Cross-benchmark
+      c_n correlation r=0.72说明contamination是model-level trait （某些模型consistently contaminated
+      across benchmarks），这是有价值的diagnostic insight。 WildBench主要价值是generalization evidence，即使improvement
+      modest。
+
+      '
+    tables:
+    - name: 'Table S9: WildBench Results'
+      columns:
+      - Method
+      - Kendall-τ
+      - Spearman-ρ
+      - p vs G-MFRM
+      sample_rows:
+      - - Raw Average
+        - '0.76'
+        - '0.80'
+        - '0.003'
+      - - Sequential
+        - '0.81'
+        - '0.85'
+        - '0.031'
+      - - CyclicJudge+Discard
+        - '0.82'
+        - '0.86'
+        - '0.065'
+      - - '**G-MFRM**'
+        - '**0.84**'
+        - '**0.88**'
+        - —
+    figures_description:
+    - 'Fig S12: Cross-benchmark c_n correlation scatter (MT-Bench c_n vs WildBench
+      c_n), r=0.72.'
+    analysis: 'WildBench replication确认G-MFRM在第三个benchmark上也numerically best，但advantage同样modest。
+      Cross-benchmark c_n correlation是strong secondary finding： contamination susceptibility
+      is a model property, not a benchmark artifact—— strengthens the case for per-model
+      contamination audit as diagnostic tool。 Whether to include in main paper depends
+      on page budget；可放appendix if space-constrained。
+
+      '
+  - name: adversarial_robustness
+    plan_id: exp-011
+    description: '按Wang et al. (ICLR 2026) fragility findings测试G-MFRM robustness。
+
+      '
+    expected_results:
+      scenario_judge_collusion_tau_drop: 0.04
+      scenario_strategic_contamination_tau_drop: 0.06
+      scenario_item_poisoning_tau_drop: 0.03
+      baseline_sequential_collusion_tau_drop: 0.07
+      baseline_cyclicjudge_collusion_tau_drop: 0.05
+      gmfrm_detects_collusion_via_d_j_outlier: true
+      gmfrm_detects_strategic_contam_via_c_n_pattern: partially
+      gmfrm_more_robust_than_baselines: mixed — more robust to judge collusion, similarly
+        vulnerable to strategic contamination
+    result_rationale: 'Median档下adversarial robustness预期为mixed results。 Judge collusion（部分judges协调inflate某模型）：G-MFRM的multi-facet
+      estimation比sequential更robust （Δτ drop 0.04 vs 0.07），因为d_j estimation可以部分absorb
+      coordinated judge behavior。 Strategic contamination（模型deliberately leak but
+      hide signals）：G-MFRM与baselines similarly vulnerable （Δτ drop 0.06），因为e_i estimation依赖performance
+      gap，deliberate obfuscation可以defeat this signal。 但G-MFRM的diagnostic outputs（d_j
+      outlier detection）提供了detection capability其他方法没有。 这是P2 experiment——如果space允许放入paper，主要价值是demonstrates
+      diagnostic use case。
+
+      '
+    tables:
+    - name: 'Table S10: Adversarial Robustness'
+      columns:
+      - Scenario
+      - G-MFRM τ Drop
+      - Sequential τ Drop
+      - CyclicJudge τ Drop
+      - G-MFRM Detects?
+      sample_rows:
+      - - Judge Collusion (2/8 judges)
+        - −0.04
+        - −0.07
+        - −0.05
+        - Yes (d_j outlier)
+      - - Strategic Contamination
+        - −0.06
+        - −0.06
+        - −0.06
+        - Partial (c_n pattern)
+      - - Item Poisoning (10% items)
+        - −0.03
+        - −0.04
+        - −0.03
+        - Yes (infit outlier)
+    figures_description:
+    - 'Fig S13: τ degradation under each adversarial scenario, comparing methods.'
+    analysis: G-MFRM不是adversarially robust的silver bullet，但diagnostic outputs提供了detection
+      capability。 Judge collusion detection通过d_j outlier是实际可行的——这是"judge selection
+      guidance"贡献的具体体现。 Paper中如果include，应framing为"G-MFRM's diagnostic outputs enable
+      detection of evaluation manipulation"， 而非"G-MFRM is robust to adversarial attack"。
+  review_report: "---\ndream_id: dream_20260521T215715\ntier: median\noverall_score:\
+    \ 3.0 — Findings\ntimestamp: 2026-05-21T22:35:40.676908+00:00\n---\n\n# Dream\
+    \ Review Report: G-MFRM for Joint Judge Bias and Contamination Correction\n\n\
+    **Paper:** Gated Many-Facet Rasch Model for Joint Judge Bias and Contamination\
+    \ Correction in LLM Evaluation\n**Venue:** EMNLP 2026 (ARR)\n**Review mode:**\
+    \ Full roundtable (2 Reviewers, 4-step process)\n\n---\n\n## Paper Summary\n\n\
+    The paper proposes G-MFRM, a three-stage calibration framework that extends the\
+    \ Many-Facet Rasch Model with a gating term (c_n · e_i) for benchmark contamination\
+    \ in LLM-as-a-judge evaluation. The key insight is that sequential correction\
+    \ of judge severity bias and contamination produces biased estimates due to omitted\
+    \ variable bias (OVB). G-MFRM jointly estimates model ability (θ), item difficulty\
+    \ (b), judge severity (d_j), and contamination susceptibility (c_n), with per-item\
+    \ exposure (e_i) fixed from an external three-source pipeline. On MT-Bench and\
+    \ Arena-Hard with 8 judges and 22 models, G-MFRM achieves Kendall-τ = 0.87/0.86\
+    \ with Chatbot Arena, outperforming all baselines. The paper frames its primary\
+    \ contribution as diagnostic outputs (c_n, e_i, d_j) rather than ranking improvement,\
+    \ which is modest (+0.02-0.03 τ).\n\n---\n\n## Reviewer 1 (R1): Methods & Experiments\n\
+    \n### Strengths\n\n- **Clean OVB formalization (Section 2).** The omitted variable\
+    \ bias argument is well-articulated and correctly applied to the LLM evaluation\
+    \ setting. The Monte Carlo validation (Table 1, 500 replications, ρ from 0.0 to\
+    \ 0.9) convincingly demonstrates that sequential estimation degrades monotonically\
+    \ (up to 86.6% at ρ=0.9) while joint estimation remains stable (RMSE 0.142–0.150).\
+    \ This is the paper's strongest theoretical contribution.\n\n- **Comprehensive\
+    \ baseline comparison.** Eight baselines spanning both judge bias (CyclicJudge,\
+    \ UDA) and contamination (DCR Factor, Pref. Leakage Cal.) are compared on two\
+    \ benchmarks with two correlation metrics. The evaluation protocol (Chatbot Arena\
+    \ Elo as ground truth, Wilcoxon signed-rank tests) is appropriate.\n\n- **Thorough\
+    \ ablation suite.** Four distinct analyses (judge count sensitivity, exposure\
+    \ indicator ablation, error propagation, facet fit) cover the most important practical\
+    \ and methodological questions. The judge count sensitivity analysis (Table 11)\
+    \ is particularly well-executed, identifying a clear threshold at 5 judges.\n\n\
+    - **Graceful degradation.** At 2 judges, G-MFRM degrades to MFRM-level performance\
+    \ (τ=0.81 vs MFRM τ=0.80) without harming results. The contamination component\
+    \ adds no benefit when data is insufficient, but never hurts. This is a strong\
+    \ practical property.\n\n- **Honest limitations.** The paper directly addresses\
+    \ staged estimation under-coverage (88% vs 95%), the breakeven point (σ≈0.38),\
+    \ the rank-1 assumption, and the judge count requirement. This transparency is\
+    \ commendable.\n\n### Weaknesses\n\n- **[Major] Non-significant improvement over\
+    \ best baseline.** The improvement over CyclicJudge+Discard is +0.02 τ with p=0.073\
+    \ — not significant at α=0.05. The paper describes this as \"borderline significant,\"\
+    \ but this is technically not significant. The ranking improvement claim in the\
+    \ abstract and introduction (\"outperforming all baselines including the best\
+    \ sequential method τ=0.85, p=0.018\") is misleading: p=0.018 is against Sequential\
+    \ Pipeline, not the best baseline. The paper does acknowledge the modest margin\
+    \ in Section 5.2 and pivots to diagnostics in Section 7, but the abstract/intro\
+    \ framing should be revised to foreground the CyclicJudge+Discard comparison honestly.\n\
+    \n- **[Major] MCMC convergence concerns for c_n.** The contamination parameters\
+    \ show the weakest convergence: max R̂=1.07 (acceptable but not good), min ESS=142\
+    \ (barely above common thresholds of 100), and 12 divergent transitions (0.075%).\
+    \ While the paper attributes this to \"diffuse posteriors\" from moderate contamination,\
+    \ it doesn't explore standard remedies: reparameterization (e.g., log(c_n)), non-centered\
+    \ parameterization, different priors, or longer chains. Since c_n is a primary\
+    \ diagnostic output, poor posterior quality directly undermines the paper's main\
+    \ contribution. The trace plot description (\"adequate with slow mixing for 2\
+    \ models\") further suggests problematic c_n estimation for specific models.\n\
+    \n- **[Major] Under-coverage not adequately addressed.** The 95% CI coverage for\
+    \ c_n is only 88% overall and 82% for high-contamination models (c_n > 0.8). This\
+    \ is a substantial under-coverage problem: the models most in need of contamination\
+    \ correction have the least reliable uncertainty estimates. The paper correctly\
+    \ identifies staged estimation (fixing e_i) as the cause, but doesn't quantify:\
+    \ (a) how much uncertainty propagation from Stage 2 would improve coverage, or\
+    \ (b) whether a fully Bayesian treatment of e_i is feasible. For a paper whose\
+    \ primary contribution is diagnostic c_n estimates, this is a serious concern.\n\
+    \n- **[Minor] WildBench uses only 6 judges.** The paper's own sensitivity analysis\
+    \ shows 5 judges as the minimum threshold, so 6 is barely above it. The convergence\
+    \ on WildBench (max R̂=1.09, min ESS=108 per YAML) is worse than the main experiments,\
+    \ but these diagnostics are not reported in the paper.\n\n- **[Minor] Synthetic\
+    \ rather than empirical noise measurement.** The error propagation analysis (Table\
+    \ 13) injects Gaussian noise to estimate sensitivity, but the claimed real pipeline\
+    \ noise (σ=0.15–0.20) is estimated from inter-source agreement rather than directly\
+    \ measured. The breakeven safety margin (1.9–2.5×) rests on this estimate.\n\n\
+    - **[Minor] Contamination facet misfit.** At 13.6% misfitting rate (vs 2.8% for\
+    \ items, 9.1% for ability), the rank-1 assumption (c_n · e_i) is clearly a simplification.\
+    \ The paper acknowledges this but doesn't explore rank-k extensions or discuss\
+    \ the practical impact of misfit on downstream c_n estimates.\n\n### Questions\
+    \ for Authors\n1. Can you provide a bootstrap confidence interval for Δτ (G-MFRM\
+    \ vs CyclicJudge+Discard)? The Wilcoxon test on 22 models has limited statistical\
+    \ power.\n2. Have you tried reparameterizing c_n (e.g., log-normal) to improve\
+    \ MCMC mixing? What about non-centered parameterization?\n3. What is the actual\
+    \ pipeline noise σ measured via cross-validation (e.g., leave-one-source-out reconstruction\
+    \ error)?\n4. How would propagating e_i uncertainty (sampling from Stage 2 posterior)\
+    \ affect CI coverage?\n\n### Scores\n- **Soundness:** 3.5 — Methodology is principled;\
+    \ the OVB formalization is correct. However, convergence issues, under-coverage,\
+    \ and the non-significant improvement over the best baseline are non-trivial concerns\
+    \ that prevent a higher score.\n- **Excitement:** 3.0 — Diagnostic outputs are\
+    \ genuinely useful, but the ranking improvement is modest and the technical execution\
+    \ (convergence, coverage) has gaps. Incremental contribution.\n- **Reproducibility:**\
+    \ 3.5 — Model well-specified (Eq. 4, MCMC hyperparameters, convergence diagnostics).\
+    \ The e_i pipeline involves judgment calls (source weighting, variant creation)\
+    \ that need more specification.\n\n---\n\n## Reviewer 2 (R2): Novelty & Related\
+    \ Work\n\n### Strengths\n\n- **Novel problem formulation.** The paper is the first\
+    \ to jointly model judge severity bias and benchmark contamination within a single\
+    \ calibration framework. The claim \"0/12 surveyed papers through May 2026 jointly\
+    \ model both\" appears well-supported. This problem identification is valuable\
+    \ even if the solution is methodologically straightforward.\n\n- **Clean psychometrics-to-NLP\
+    \ bridge.** The paper connects established IRT/MFRM measurement theory to the\
+    \ LLM evaluation setting, bringing principled calibration tools to a problem that\
+    \ has been addressed ad hoc. The gating mechanism from DG-IRT is well-motivated\
+    \ for the contamination use case.\n\n- **Appropriate framing pivot.** Section\
+    \ 7 (\"The Case for Diagnostic Outputs\") is honest and well-argued. Rather than\
+    \ overselling modest ranking improvements, the paper articulates a clear value\
+    \ proposition: G-MFRM as an evaluation audit framework producing c_n, e_i, and\
+    \ d_j. The diagnostic comparison (only G-MFRM produces all four outputs) is a\
+    \ legitimate differentiator.\n\n- **Cross-benchmark c_n correlation (r=0.72).**\
+    \ This is a genuinely interesting finding that supports the construct validity\
+    \ of contamination susceptibility as a model-level trait. This finding strengthens\
+    \ the training data audit use case.\n\n- **Well-structured paper.** The logical\
+    \ flow (motivation → formalization → method → experiments → analysis → discussion)\
+    \ is clear. The paper fits the 8-page main text limit well.\n\n### Weaknesses\n\
+    \n- **[Major] Limited methodological novelty.** The paper explicitly acknowledges\
+    \ that the OVB analysis is \"a direct application of standard omitted variable\
+    \ bias\" and the gating mechanism is adapted from DG-IRT. The three-stage estimation\
+    \ follows standard two-step estimator logic from econometrics. While the application\
+    \ domain is novel, the individual methodological components are well-established.\
+    \ The paper's innovation is combinatorial (assembling known tools for a new problem)\
+    \ rather than algorithmic. For EMNLP Main (21% acceptance), this level of novelty\
+    \ is borderline — the execution would need to be exceptional to compensate, but\
+    \ the convergence and significance issues (from R1) prevent that.\n\n- **[Major]\
+    \ Missing dedicated Related Work section.** For a paper claiming novelty from\
+    \ combining two research threads (judge bias correction + contamination detection),\
+    \ a proper Related Work section is essential. Currently, related work is scattered\
+    \ across Introduction paragraphs 2-3 and Section 3.1. Key missing discussions:\n\
+    \  - **Dynamic/private benchmarks** (LiveBench, private benchmark approaches)\
+    \ that sidestep contamination entirely — how does G-MFRM compare to \"just use\
+    \ a new benchmark\"?\n  - **IRT applications in NLP evaluation** — are there prior\
+    \ uses of IRT for LLM evaluation beyond MFRM?\n  - **Meta-evaluation literature**\
+    \ — how does this relate to broader efforts to evaluate evaluators?\n  - **Data-centric\
+    \ AI** perspectives on benchmark maintenance and item retirement.\n\n- **[Major]\
+    \ Speculative forward-looking argument.** The claim \"as contamination grows...\
+    \ joint estimation becomes increasingly critical\" is the paper's hedge against\
+    \ modest current results. But: (a) the paper provides no evidence contamination\
+    \ is increasing, (b) if contamination does increase, dynamic benchmarks (LiveBench)\
+    \ may be adopted first, making contamination correction less relevant, and (c)\
+    \ the paper's own Monte Carlo shows G-MFRM's advantage increases with ρ(d, c·e)\
+    \ correlation, not with contamination magnitude per se. The argument conflates\
+    \ contamination level with confounding strength.\n\n- **[Minor] Computational\
+    \ cost not discussed.** The MCMC procedure (4 chains × 6000 iterations on 22×180×8\
+    \ tensor) has non-trivial cost. How does runtime compare to CyclicJudge+Discard,\
+    \ which just discards items? Practitioners need cost-benefit information.\n\n\
+    - **[Minor] Venue fit.** The paper is technically a psychometrics paper applied\
+    \ to NLP. The IRT/MFRM formulation will be unfamiliar to most EMNLP reviewers.\
+    \ Section 3.1 provides background, but terms like \"infit/outfit MNSQ,\" \"person-fit\
+    \ (l_z),\" and \"Wright Map\" (referenced in figure descriptions) assume psychometric\
+    \ fluency.\n\n### Questions for Authors\n1. What specific methodological contributions\
+    \ go beyond assembling known components (MFRM + DG-IRT gating + two-step estimation)?\n\
+    2. How does G-MFRM's cost-benefit compare to simply using dynamic benchmarks like\
+    \ LiveBench?\n3. Can you provide evidence that contamination is actually increasing\
+    \ over time, rather than speculating?\n4. Could a dedicated Related Work section\
+    \ strengthen the positioning?\n\n### Scores\n- **Soundness:** 3.5 — The methodology\
+    \ is correct and well-applied. The OVB analysis is standard but properly done.\n\
+    - **Excitement:** 2.5 — Novel application of known methods to a relevant problem,\
+    \ but limited methodological innovation. The modest empirical gains don't compensate\
+    \ for the novelty gap.\n- **Reproducibility:** 3.5 — Model specification is clear.\
+    \ The e_i pipeline and variant creation process need more detail.\n\n---\n\n##\
+    \ Step 2: Cross-Sharing Summary\n\n**R1 → R2:** R1's finding that the improvement\
+    \ over CyclicJudge+Discard is not statistically significant (p=0.073) reinforces\
+    \ R2's concern about limited novelty — if the method neither innovates methodologically\
+    \ nor delivers clearly superior empirical results, what carries the paper? R1's\
+    \ convergence concerns (R̂=1.07, ESS=142 for c_n) further weaken the case that\
+    \ diagnostic outputs are reliable enough to be a primary contribution.\n\n**R2\
+    \ → R1:** R2's observation that the paper is primarily a combinatorial application\
+    \ of known methods helps R1 contextualize the convergence issues — a more novel\
+    \ method might be granted more tolerance for imperfect convergence, but a well-known\
+    \ technique applied to a new domain should \"just work.\" R2's note about missing\
+    \ dynamic benchmark comparison (LiveBench) highlights that the paper's premise\
+    \ (contamination must be corrected) may be less urgent than assumed.\n\n## Step\
+    \ 3: Convergence\n\n### Points of Agreement\n1. **The paper is technically sound\
+    \ but the contribution is incremental.** The OVB formalization is correct, the\
+    \ model is well-specified, and the experiments are thorough. But no single element\
+    \ rises to the level of a strong contribution.\n2. **The non-significant improvement\
+    \ over CyclicJudge+Discard is the central weakness.** The paper cannot claim ranking\
+    \ superiority over the best baseline.\n3. **The diagnostic contribution is genuine\
+    \ but undersold.** The paper's pivot to diagnostics (Section 7) is the right move,\
+    \ but the under-coverage of c_n CIs (88%) undermines confidence in these diagnostics.\n\
+    4. **Overall: borderline Findings.** Both reviewers converge on 3.0.\n\n### Points\
+    \ of Divergence\n- R1 weighs convergence/under-coverage more heavily (technical\
+    \ execution gaps)\n- R2 weighs novelty gap more heavily (combinatorial vs algorithmic\
+    \ innovation)\n- These lead to the same overall score from different angles\n\n\
+    ---\n\n## Consolidated Assessment\n\n### Overall Scores\n\n| Dimension | R1 |\
+    \ R2 | Consolidated |\n|-----------|----|----|-------------|\n| Soundness | 3.5\
+    \ | 3.5 | **3.5** |\n| Excitement | 3.0 | 2.5 | **3.0** |\n| Reproducibility |\
+    \ 3.5 | 3.5 | **3.5** |\n| **Overall** | 3.0 | 3.0 | **3.0** |\n\n**Confidence:**\
+    \ 4/5\n\n### Overall Assessment: 3.0 — Findings\n\n### Justification\n\nThis paper\
+    \ addresses a genuine gap in LLM evaluation methodology — no prior work jointly\
+    \ models judge severity bias and benchmark contamination. The OVB formalization\
+    \ is clean, the experimental coverage is thorough (11 experiments across 3 benchmarks),\
+    \ and the paper is well-written and honest about its limitations. The diagnostic\
+    \ outputs (c_n, e_i, d_j) are a real contribution to evaluation practice.\n\n\
+    However, the paper falls short of EMNLP Main for three reasons:\n\n1. **The ranking\
+    \ improvement is not significant over the best baseline** (p=0.073 vs CyclicJudge+Discard).\
+    \ The paper's value proposition rests on diagnostics, but this is inherently a\
+    \ weaker contribution than demonstrated empirical superiority.\n\n2. **Limited\
+    \ methodological novelty.** The paper assembles known components (MFRM, DG-IRT\
+    \ gating, two-step estimation, OVB) for a new application. The NLP-specific contribution\
+    \ is the exposure indicator pipeline, which itself has issues (LogProber dispensable,\
+    \ 88% CI coverage).\n\n3. **Technical execution gaps undermine the diagnostic\
+    \ contribution.** The c_n estimates — the paper's claimed primary output — suffer\
+    \ from convergence issues (R̂=1.07, ESS=142, 12 divergent transitions) and under-coverage\
+    \ (88% overall, 82% for high-contamination models). If diagnostics are the main\
+    \ selling point, they need to be demonstrably reliable.\n\nThe paper would benefit\
+    \ from: (a) improving MCMC convergence for c_n via reparameterization, (b) propagating\
+    \ e_i uncertainty to achieve nominal coverage, (c) adding a dedicated Related\
+    \ Work section comparing against dynamic benchmarks, and (d) reframing the abstract/intro\
+    \ to foreground the diagnostic contribution rather than leading with ranking numbers.\n\
+    \n### Experiment Coverage Assessment\n\nComparing against the design document,\
+    \ all 12 imagined experiments (exp-001 through exp-012) are covered in the paper:\n\
+    - exp-001 (data collection): Section 4.1, Table 4 ✓\n- exp-002 (exposure estimation):\
+    \ Section 3.4, Table 3 ✓\n- exp-003 (G-MFRM fit): Sections 5.1–5.3, Tables 5/7\
+    \ ✓\n- exp-004 (baseline comparison): Section 5.2, Table 6 ✓\n- exp-005 (contamination\
+    \ calibration): Section 5.5, Table 9 ✓\n- exp-006 (judge count sensitivity): Section\
+    \ 6.1, Table 11 ✓\n- exp-007 (exposure ablation): Section 6.2, Table 12 ✓\n- exp-008\
+    \ (facet fit diagnostics): Section 6.4, Table 14 ✓\n- exp-009 (confounding observation):\
+    \ Section 2, Table 1 ✓\n- exp-010 (WildBench replication): Section 6.5, Table\
+    \ 15 ✓\n- exp-011 (adversarial robustness): Section 6.6, Table 16 ✓\n- exp-012\
+    \ (error propagation): Section 6.3, Table 13 ✓\n\nCoverage is complete. All experiments\
+    \ match their expected results within the design document's specified ranges.\n\
+    \n### Key Actionable Items for Revision\n\n1. **Fix abstract/intro framing**:\
+    \ Lead with p=0.073 against CyclicJudge+Discard, not p=0.018 against Sequential.\
+    \ Foreground diagnostic contribution.\n2. **Improve c_n convergence**: Try non-centered\
+    \ parameterization or log-normal reparameterization. Target R̂ ≤ 1.05, ESS ≥ 200.\n\
+    3. **Propagate e_i uncertainty**: Sample e_i from Stage 2 posterior in Stage 3\
+    \ to improve CI coverage toward 95%.\n4. **Add Related Work section**: Include\
+    \ dynamic benchmarks (LiveBench), IRT in NLP, meta-evaluation, data-centric AI\
+    \ perspectives.\n5. **Report WildBench convergence diagnostics**: Currently omitted\
+    \ but important given the 6-judge design is near minimum threshold.\n6. **Provide\
+    \ computational cost comparison**: Runtime vs baselines for practitioner guidance.\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T215715/worst/paper.pdf
+  imagined_experiments:
+  - name: multi_judge_data_collection
+    plan_id: exp-001
+    description: 'Collect multi-judge evaluation data on MT-Bench and Arena-Hard using
+      8 judges. Evaluate 20+ target models with position swap.
+
+      '
+    expected_results:
+      judges_collected: 8
+      target_models_evaluated: 22
+      mt_bench_items: 80
+      arena_hard_items: 500
+      total_judgments_after_position_swap: ~176000
+      missing_rate_pct: 4.2
+      logprober_available_judges: 3
+      logprober_unavailable_key_models:
+      - GPT-5.5
+      - Claude Opus 4.7
+      - Claude Sonnet 4.6
+      api_cost_usd: 870
+      gpu_hours_used: 118
+      inter_judge_agreement_fleiss_kappa: 0.31
+    result_rationale: 'Data collection itself succeeds — this is infrastructure, not
+      dependent on contamination magnitude. However, two worst-tier signals emerge
+      early: (1) LogProber access is unavailable for the 3 proprietary judges (GPT-5.5,
+      Claude Opus/Sonnet), which are also the highest- capability models most likely
+      to show contamination signal — this cripples the multi-source e_i pipeline for
+      exactly the models that matter most. (2) Inter-judge agreement is low (κ=0.31),
+      reflecting genuine heterogeneity in judge behavior that will make d_j estimation
+      noisier. Missing rate ~4% from API timeouts/refusals is manageable but adds
+      noise.
+
+      '
+    tables:
+    - name: 'Table A1: Judge Coverage Matrix'
+      description: 'Rows = 22 target models, Columns = 8 judges. Cells = number of
+        items judged. Shows LogProber availability column (✓/✗). Highlights 3 proprietary
+        judges without LogProber access.
+
+        '
+    - name: 'Table A2: Data Collection Summary'
+      description: 'Per-benchmark breakdown: items, judges, models, total judgments,
+        missing rate, position swap completion rate.
+
+        '
+    figures_description:
+    - 'Fig A1: Inter-judge agreement heatmap (8×8) showing pairwise Cohen''s κ. Reveals
+      cluster structure — proprietary judges agree more with each other (κ≈0.45) than
+      with open-source judges (κ≈0.25), suggesting systematic severity differences
+      that d_j must capture.'
+    analysis: 'Data collection is sufficient for downstream experiments. The critical
+      weakness is LogProber unavailability for proprietary judges — this forces exp-002
+      to rely primarily on performance-gap method for these models, increasing e_i
+      estimation variance. The low inter-judge agreement is actually informative:
+      it confirms substantial d_j variation exists, which is part of the paper''s
+      motivation. However, it also means the MFRM Stage 1 fit will require more data
+      per judge to achieve stable d_j estimates.
+
+      '
+  - name: item_exposure_estimation
+    plan_id: exp-002
+    description: 'Estimate per-item exposure e_i via three-source pipeline: performance
+      gap (primary), temporal signal, LogProber. Combined via weighted composite.
+
+      '
+    expected_results:
+      performance_gap_coverage_pct: 100
+      temporal_signal_coverage_pct: 35
+      logprober_coverage_pct: 37.5
+      composite_e_i_mean: 0.28
+      composite_e_i_std: 0.19
+      composite_e_i_median: 0.22
+      performance_gap_noise_std: 0.18
+      performance_gap_spearman_vs_logprober: 0.41
+      temporal_spearman_vs_logprober: 0.38
+      composite_spearman_vs_logprober: 0.47
+      reference_variant_quality_human_validation_pct: 82
+      items_with_high_confidence_e_i_pct: 45
+      mt_bench_avg_e_i: 0.35
+      arena_hard_avg_e_i: 0.22
+    result_rationale: 'Under worst tier, the e_i pipeline is noisy because: (1) Performance-gap
+      method has high variance (σ≈0.18) — rephrased reference variants are imperfect
+      controls; difficulty correction via spline introduces its own estimation error;
+      averaging across reference models helps but proprietary models without LogProber
+      anchoring remain uncertain. (2) LogProber is only available for 3/8 judges (open-source
+      ones), covering ~37.5% of judge-model pairs, so the strongest signal source
+      has poor coverage for the most important models. (3) Temporal signal coverage
+      is low (35%) because many items lack clear pre/post-cutoff variant pairs. The
+      composite e_i correlation with LogProber ground truth is only ρ=0.47 — better
+      than any single source but still quite noisy. MT-Bench items show higher average
+      exposure (0.35) than Arena-Hard (0.22), consistent with MT-Bench being older
+      and more widely known, but the overall magnitude is low. Only 45% of items have
+      high-confidence e_i estimates (both performance-gap and at least one other source
+      available), meaning Stage 3 will be fitting with substantial e_i measurement
+      error for over half the items.
+
+      '
+    tables:
+    - name: 'Table 3: Exposure Indicator Source Coverage and Agreement'
+      description: 'Rows = indicator sources (performance gap, temporal, LogProber,
+        composite). Columns = coverage %, mean e_i, std e_i, Spearman ρ vs LogProber
+        subset. Shows each source''s quality and the composite improvement.
+
+        '
+    - name: 'Table A3: Per-Benchmark Exposure Summary'
+      description: 'MT-Bench vs Arena-Hard breakdown of e_i distribution statistics.
+
+        '
+    figures_description:
+    - 'Fig 3: Scatter plot of performance-gap e_i vs LogProber e_i for the 37.5% overlap
+      subset. Shows positive but noisy correlation (ρ=0.41) with substantial scatter,
+      especially for mid-range exposure items. Error bars from bootstrap resampling
+      shown.'
+    - 'Fig A2: Histogram of composite e_i values. Right-skewed distribution with mode
+      near 0.15, long tail to 0.8. Annotated with ''high confidence'' vs ''low confidence''
+      item counts.'
+    analysis: 'The e_i pipeline produces estimates but with concerning noise levels.
+      The performance-gap method — the only source with full coverage — has ρ=0.41
+      correlation with the more reliable LogProber signal, meaning roughly 83% of
+      variance is unexplained. This noise propagates directly into Stage 3 via fixed
+      e_i values. The composite improves to ρ=0.47 but cannot overcome the fundamental
+      limitation that LogProber (the best source) is unavailable for proprietary models.
+      This is the critical bottleneck: the models most likely to be contaminated (widely
+      deployed proprietary models trained on internet data) are exactly those for
+      which e_i estimation is least reliable. Under worst tier, this noise is the
+      primary driver of poor c_n recovery and weak ranking improvement.
+
+      '
+  - name: gmfrm_real_data_fit
+    plan_id: exp-003
+    description: 'Fit G-MFRM three-stage pipeline on real data. Stage 1: MFRM. Stage
+      2: e_i from exp-002. Stage 3: Joint gated model. Compare with Chatbot Arena
+      votes.
+
+      '
+    expected_results:
+      stage1_mfrm_max_rhat: 1.02
+      stage1_mfrm_min_ess: 380
+      stage1_theta_range:
+      - -1.8
+      - 2.1
+      stage1_d_j_range:
+      - -0.9
+      - 1.1
+      stage3_max_rhat: 1.12
+      stage3_min_ess: 78
+      stage3_divergent_transitions: 23
+      stage3_c_n_median: 0.18
+      stage3_c_n_mean: 0.26
+      stage3_c_n_max: 0.72
+      stage3_c_n_95ci_width_median: 0.45
+      stage3_c_n_bimodal: true
+      stage3_c_n_fraction_near_zero: 0.68
+      kendall_tau_gmfrm_vs_arena_mt_bench: 0.84
+      kendall_tau_gmfrm_vs_arena_arena_hard: 0.86
+      kendall_tau_gmfrm_vs_arena_combined: 0.85
+      kendall_tau_mfrm_only_vs_arena: 0.84
+      theta_gmfrm_vs_mfrm_correlation: 0.987
+      runtime_seconds: 5200
+      graceful_degradation_check: 'Arena-Hard c_n ≈ 0 subset: G-MFRM θ̂ within 0.02
+        of MFRM θ̂ — PASS'
+    result_rationale: 'Under worst tier, real contamination is weak and heterogeneous.
+      The fitted c_n distribution is bimodal: ~68% of models have c_n < 0.1 (effectively
+      zero contamination), while a small cluster of 5-7 models shows moderate c_n
+      (0.3-0.72). Median c_n = 0.18 is far below the mvp_002/003 synthetic settings
+      (c~1.0-1.5) and even below mvp_001 (c~0.5). This means the gating mechanism
+      has very little work to do — for most models, the contamination correction term
+      c_n·e_i·g(e_i) is negligible, so G-MFRM θ̂ ≈ MFRM θ̂ (correlation 0.987). Stage
+      3 convergence is problematic: R̂ = 1.12 for some c_n parameters (the near-zero
+      ones are poorly identified — the posterior is essentially the prior), and ESS
+      = 78 with 23 divergent transitions despite 4000 samples. This occurs because
+      when true c_n ≈ 0, the likelihood surface is flat in the c_n direction (no contamination
+      signal to fit), causing sampling difficulties. The 95% credible intervals for
+      c_n are wide (median width 0.45), meaning individual c_n estimates are not very
+      informative. Kendall-τ with Arena at 0.85 is reasonable but essentially identical
+      to MFRM-only (0.84), showing the contamination correction adds almost nothing
+      to ranking quality.
+
+      '
+    tables:
+    - name: 'Table 2: G-MFRM Convergence Diagnostics'
+      description: 'Parameter groups (θ, b, d, c_n) × diagnostics (max R̂, min ESS,
+        mean ESS, divergent transitions). Shows Stage 1 vs Stage 3 comparison. Highlights
+        c_n convergence issues.
+
+        '
+    - name: 'Table 4: Model Ability Estimates and Contamination Scores'
+      description: 'Rows = 22 target models sorted by θ̂. Columns = θ̂_MFRM, θ̂_GMFRM,
+        Δθ, c_n [95% CI], Arena Elo. Shows most models have Δθ ≈ 0.
+
+        '
+    figures_description:
+    - 'Fig 2: Distribution of fitted c_n values. Bimodal histogram: large spike near
+      0 (68% of models), small cluster at 0.3-0.7. Annotated with prior (half-Cauchy)
+      overlay showing posterior barely departs from prior for most models.'
+    - 'Fig 4: θ̂_GMFRM vs θ̂_MFRM scatter. Nearly perfect diagonal (r=0.987). The
+      5-7 models with c_n > 0.3 show small downward corrections (Δθ = -0.05 to -0.15).
+      Remainder indistinguishable.'
+    - 'Fig A3: Trace plots for worst-converging c_n parameters. Shows mixing issues
+      — chains exploring different modes for models with c_n near zero.'
+    analysis: 'The real-data fit confirms worst-tier expectations: contamination exists
+      but is too weak and heterogeneous for G-MFRM to provide meaningful ranking improvement.
+      The bimodal c_n distribution suggests that most current LLMs either (a) genuinely
+      have minimal benchmark contamination, or (b) contamination exists but the e_i
+      pipeline is too noisy to detect it. Convergence issues for near-zero c_n parameters
+      are expected (flat likelihood) but problematic for reporting. The graceful degradation
+      check passes — on the low-contamination subset, G-MFRM correctly reduces to
+      MFRM. Under the reframed narrative, this becomes: "current contamination is
+      detectable but does not yet substantially distort rankings," positioning G-MFRM
+      as monitoring infrastructure rather than correction tool.
+
+      '
+  - name: baseline_comparison
+    plan_id: exp-004
+    description: 'Compare G-MFRM against 8 baselines. Include rank change analysis
+      with top-k stability.
+
+      '
+    expected_results:
+      raw_average_tau: 0.79
+      mfrm_only_tau: 0.84
+      sequential_tau: 0.84
+      cyclicjudge_tau: 0.85
+      cyclicjudge_discard_tau: 0.85
+      dcr_factor_tau: 0.82
+      uda_tau: 0.86
+      pref_leakage_tau: 0.83
+      gmfrm_tau: 0.85
+      gmfrm_spearman: 0.91
+      delta_tau_gmfrm_vs_uda: -0.01
+      delta_tau_gmfrm_vs_cyclicjudge: 0.0
+      wilcoxon_gmfrm_vs_uda_p: 0.23
+      wilcoxon_gmfrm_vs_cyclicjudge_p: 0.41
+      wilcoxon_gmfrm_vs_sequential_p: 0.18
+      rank_changes_ge2_positions: 1
+      rank_changes_ge3_positions: 0
+      top5_stability_vs_mfrm: 4/5 identical
+      top10_stability_vs_mfrm: 9/10 identical
+      model_with_largest_rank_change: Qwen3-235B-A22B
+      largest_rank_change_positions: 2
+    result_rationale: 'Under worst tier, G-MFRM provides no statistically significant
+      ranking improvement over the best baselines. UDA achieves τ=0.86 (slightly higher
+      than G-MFRM''s 0.85) because UDA''s neural K-factor approach effectively captures
+      judge bias without needing contamination modeling, and when real contamination
+      is weak, the contamination correction provides no advantage. CyclicJudge (τ=0.85)
+      ties with G-MFRM — round-robin bias elimination is effective and simpler. The
+      sequential pipeline (τ=0.84) is not significantly worse because the OVB confounding
+      effect is proportional to contamination magnitude, and weak c_n means weak confounding
+      in practice. All p-values for G-MFRM vs baselines exceed 0.05. Rank changes
+      are negligible: only 1 model (Qwen3-235B-A22B, which has the highest fitted
+      c_n at 0.72) moves by 2 positions. The top-5 and top-10 are essentially stable.
+      This outcome means Claim 3 cannot be supported at full strength — the reframe
+      must pivot to "equivalent rankings plus diagnostic outputs."
+
+      '
+    tables:
+    - name: 'Table 5: Main Results — Method Comparison'
+      description: 'Rows = 9 methods (raw avg, MFRM, sequential, CyclicJudge, CyclicJudge+discard,
+        DCR, UDA, PrefLeakage, G-MFRM). Columns = Kendall-τ (MT-Bench), Kendall-τ
+        (Arena-Hard), Kendall-τ (combined), Spearman-ρ, p-value vs G-MFRM. Shows G-MFRM
+        is competitive but not significantly better.
+
+        '
+    - name: 'Table 6: Rank Change Analysis'
+      description: 'Rows = 22 models. Columns = Rank(MFRM), Rank(G-MFRM), Rank(UDA),
+        Rank(CyclicJudge), Δ(MFRM→G-MFRM). Only Qwen3-235B-A22B changes by ≥2.
+
+        '
+    - name: 'Table 7: Top-k Stability'
+      description: 'k = 5, 10, 15, 20. Columns = overlap fraction (MFRM vs G-MFRM),
+        overlap fraction (UDA vs G-MFRM), Kendall-τ within top-k.
+
+        '
+    figures_description:
+    - 'Fig 5: Bar chart of Kendall-τ for all 9 methods. Error bars from bootstrap.
+      G-MFRM bar overlaps with UDA and CyclicJudge confidence intervals. Clear improvement
+      only over raw average and DCR.'
+    - 'Fig 6: Rank change dot plot. X-axis = model, Y-axis = rank change (MFRM→G-MFRM).
+      Almost all dots at 0. One dot at -2 (Qwen3-235B-A22B).'
+    analysis: 'The baseline comparison is the most damaging result under worst tier.
+      G-MFRM does not outperform simpler methods that only address judge bias. The
+      narrative must handle this carefully: (1) G-MFRM is equivalent, not worse —
+      it matches the best baselines while additionally producing c_n and e_i diagnostics
+      that no baseline provides. (2) The lack of improvement is itself informative
+      — it means current contamination is not yet distorting rankings, which is a
+      reassuring finding. (3) Synthetic experiments (mvp_003) prove the method works
+      when contamination IS strong, establishing readiness for future scenarios. The
+      reframed Claim 3 becomes: "G-MFRM provides equivalent rankings to best baselines
+      while additionally producing diagnostic outputs for evaluation quality assurance."
+
+      '
+  - name: contamination_magnitude_calibration
+    plan_id: exp-005
+    description: 'Estimate real contamination magnitude. Compare fitted c_n with synthetic
+      MVP assumptions. Determine if real contamination matches mvp_001 (weak) or mvp_002
+      (strong).
+
+      '
+    expected_results:
+      c_n_median: 0.18
+      c_n_mean: 0.26
+      c_n_max: 0.72
+      c_n_interquartile_range:
+      - 0.04
+      - 0.38
+      fraction_c_n_below_0_1: 0.55
+      fraction_c_n_below_0_3: 0.73
+      closest_mvp_scenario: below mvp_001 (c~0.5)
+      tier_determination: Tier B — weak contamination
+      constat_delta_spearman_vs_c_n: 0.32
+      constat_delta_pearson_vs_c_n: 0.28
+      models_with_c_n_gt_0_5:
+      - Qwen3-235B-A22B
+      - Qwen3.6-27B
+      models_with_c_n_near_zero:
+      - GPT-5.5
+      - Claude Opus 4.7
+      - Llama 4 Maverick
+    result_rationale: 'Under worst tier, real contamination is weaker than even mvp_001
+      assumptions. Median c_n of 0.18 means the typical model has very low contamination
+      susceptibility on these benchmarks. This occurs because: (1) Current frontier
+      models may have implemented decontamination during training, reducing actual
+      contamination. (2) The e_i pipeline''s noise attenuates true contamination signal
+      — noisy e_i inputs cause c_n to be estimated conservatively (toward the half-Cauchy
+      prior mass near zero). (3) Arena-Hard items, being relatively new, genuinely
+      have lower exposure than assumed in MVP synthetic settings. ConStat validation
+      is weak (ρ=0.32) — the external signal only loosely confirms fitted c_n. Two
+      Qwen models show the highest c_n (0.5-0.72), plausibly because Qwen training
+      data includes more benchmark-adjacent content. Proprietary models (GPT-5.5,
+      Claude) show near-zero c_n, but this could reflect either true low contamination
+      or poor e_i estimation for these models (LogProber unavailable). This ambiguity
+      is a fundamental limitation. Result triggers Tier B narrative strategy.
+
+      '
+    tables:
+    - name: 'Table 8: Contamination Magnitude — Real vs Synthetic'
+      description: 'Comparison table: columns = scenario (mvp_001, mvp_002, mvp_003,
+        real data). Rows = c_n median, mean, max, IQR, fraction < 0.3. Shows real
+        data is below all MVP scenarios.
+
+        '
+    - name: 'Table 9: ConStat Validation'
+      description: 'Rows = 22 models. Columns = c_n (G-MFRM), ConStat delta, Arena
+        Elo. Spearman ρ = 0.32 between c_n and ConStat delta.
+
+        '
+    figures_description:
+    - 'Fig 7: Violin plot comparing c_n distributions: mvp_001, mvp_002, mvp_003,
+      real data. Real data distribution is compressed toward zero with a thin upper
+      tail. Shows real contamination is substantially weaker than all synthetic scenarios.'
+    - 'Fig 8: Scatter of G-MFRM c_n vs ConStat per-model delta. Weak positive trend
+      (ρ=0.32) with substantial scatter. Annotated with model names.'
+    analysis: 'This is the decisive experiment for narrative strategy. Weak contamination
+      (Tier B) means the paper cannot lead with ranking correction as the primary
+      contribution. The reframe activates: (1) The negative result IS the finding
+      — current benchmark contamination is detectable but manageable. (2) G-MFRM''s
+      value is as monitoring infrastructure and diagnostic tool. (3) Synthetic experiments
+      prove the method is ready when contamination intensifies. The weak ConStat correlation
+      (ρ=0.32) is concerning — it means external validation is limited. This can be
+      spun as: ConStat measures a different construct (aggregate performance inflation)
+      than c_n (latent contamination susceptibility), so moderate correlation is expected.
+      But reviewers may not accept this.
+
+      '
+  - name: judge_count_sensitivity
+    plan_id: exp-006
+    description: 'Sensitivity analysis: vary judge count (2, 4, 6, 8) and measure
+      G-MFRM performance.
+
+      '
+    expected_results:
+      tau_2_judges: 0.8
+      tau_4_judges: 0.83
+      tau_6_judges: 0.84
+      tau_8_judges: 0.85
+      tau_mfrm_2_judges: 0.8
+      tau_mfrm_4_judges: 0.83
+      tau_mfrm_6_judges: 0.84
+      tau_mfrm_8_judges: 0.84
+      delta_gmfrm_vs_mfrm_2_judges: 0.0
+      delta_gmfrm_vs_mfrm_4_judges: 0.0
+      delta_gmfrm_vs_mfrm_6_judges: 0.0
+      delta_gmfrm_vs_mfrm_8_judges: 0.01
+      convergence_fail_at_2_judges: true
+      convergence_fail_at_4_judges: true
+      min_judges_for_c_n_identifiability: 6
+      min_judges_for_significant_gain: N/A — no significant gain at any judge count
+    result_rationale: 'Under worst tier, G-MFRM never significantly outperforms MFRM
+      regardless of judge count, because the real contamination is too weak for the
+      gating mechanism to help. At 2 judges, G-MFRM degrades gracefully to MFRM-level
+      (c_n is unidentifiable, posterior = prior) — this is actually a positive result
+      showing no harm. At 4 judges, c_n parameters begin to be weakly identifiable
+      but convergence is poor (R̂ > 1.15 for multiple c_n). At 6 judges, convergence
+      improves but gains remain negligible because weak contamination means weak signal.
+      At 8 judges, +0.01 τ improvement is within noise. The minimum judge count for
+      significant gain cannot be determined because no gain is significant even at
+      8 judges. Under worst tier, the key metric (judge_count_min_for_significant_gain)
+      would be in the 6-8 range only if contamination were stronger; here it''s effectively
+      undefined. Reframe: G-MFRM is safe to use at any judge count (no degradation),
+      and provides increasingly stable diagnostic outputs (c_n, d_j) with more judges
+      even when ranking gains are minimal.
+
+      '
+    tables:
+    - name: 'Table 10: Judge Count Sensitivity'
+      description: 'Rows = judge count (2, 4, 6, 8). Columns = τ(MFRM), τ(G-MFRM),
+        Δτ, p-value, max R̂, min ESS, c_n identifiable (Y/N).
+
+        '
+    figures_description:
+    - 'Fig 9: Line plot of Kendall-τ vs judge count. Two lines: MFRM (solid) and G-MFRM
+      (dashed). Lines nearly overlap at all points. Shaded confidence bands overlap
+      completely. Inset shows c_n posterior width narrowing with more judges.'
+    analysis: 'The sensitivity analysis under worst tier shows that G-MFRM''s value
+      does not manifest as ranking improvement at any judge count tested. However,
+      the graceful degradation property holds: G-MFRM never performs worse than MFRM.
+      This supports the reframed pitch — G-MFRM is a safe drop-in replacement that
+      additionally provides diagnostic c_n estimates. For Reviewer Concern #8, the
+      answer becomes: "at 2 judges, use MFRM; at 4+, G-MFRM provides contamination
+      diagnostics with no ranking cost; at 6+, c_n estimates stabilize."
+
+      '
+  - name: exposure_indicator_ablation
+    plan_id: exp-007
+    description: 'Ablation: contribution of each exposure indicator to e_i quality.
+      Leave-one-out.
+
+      '
+    expected_results:
+      composite_all_three_spearman_vs_logprober: 0.47
+      leave_out_performance_gap_spearman: 0.29
+      leave_out_temporal_spearman: 0.44
+      leave_out_logprober_spearman: 0.38
+      performance_gap_only_spearman: 0.41
+      temporal_only_spearman: 0.25
+      logprober_only_spearman: 0.52
+      logprober_coverage_pct: 37.5
+      downstream_tau_all_three: 0.85
+      downstream_tau_performance_gap_only: 0.84
+      downstream_tau_logprober_only: 0.85
+      downstream_tau_no_e_i_uniform: 0.84
+    result_rationale: 'Under worst tier, the ablation reveals that no single indicator
+      is both high-quality AND high-coverage. LogProber is the best single source
+      (ρ=0.52 with held-out ground truth) but covers only 37.5% of judge-model pairs.
+      Performance gap has full coverage but mediocre quality (ρ=0.41). Temporal signal
+      is weakest (ρ=0.25) due to low coverage. The composite improves over any single
+      source (ρ=0.47) but not dramatically. Critically, when propagated to downstream
+      ranking quality, ALL e_i variants produce nearly identical τ — even uniform
+      e_i (no estimation at all) yields τ=0.84. This is because when c_n is weak,
+      the product c_n·e_i is small regardless of e_i quality, so e_i estimation quality
+      is irrelevant for ranking. This is logically consistent with weak contamination
+      but undermines the claim that the multi-source e_i pipeline is essential. Reframe:
+      "the pipeline becomes critical as contamination increases" (supported by synthetic
+      sensitivity analysis).
+
+      '
+    tables:
+    - name: 'Table 11: Exposure Indicator Ablation'
+      description: 'Rows = indicator configurations (all, leave-one-out × 3, single
+        × 3, uniform). Columns = ρ vs LogProber ground truth, downstream τ, downstream
+        c_n RMSE.
+
+        '
+    figures_description:
+    - 'Fig A4: Bar chart of Spearman ρ for each indicator configuration. LogProber-only
+      bar is highest but annotated with ''37.5% coverage''. Composite bar shows marginal
+      improvement over performance-gap-only.'
+    analysis: 'The ablation''s most inconvenient finding is that e_i estimation quality
+      barely matters for downstream rankings when contamination is weak. Even uniform
+      e_i produces comparable τ. This undercuts the narrative of a carefully designed
+      multi-source pipeline. However, for the reframed paper, this becomes: "when
+      contamination is low, the framework is robust to e_i quality; when contamination
+      increases (as shown in synthetic experiments), accurate e_i becomes critical
+      — motivating the multi-source design as future-proofing." This is honest and
+      defends the pipeline design.
+
+      '
+  - name: facet_fit_diagnostics
+    plan_id: exp-008
+    description: 'Measurement quality validation: infit/outfit, person-fit, posterior
+      predictive checks, divergent transitions, trace plots.
+
+      '
+    expected_results:
+      theta_infit_mnsq_range:
+      - 0.75
+      - 1.35
+      theta_outfit_mnsq_range:
+      - 0.68
+      - 1.52
+      b_infit_mnsq_range:
+      - 0.8
+      - 1.25
+      d_infit_mnsq_range:
+      - 0.72
+      - 1.4
+      c_n_infit_mnsq_range:
+      - 0.55
+      - 2.1
+      misfitting_theta_count: 2
+      misfitting_b_count: 5
+      misfitting_d_count: 1
+      misfitting_c_n_count: 7
+      divergent_transitions_stage3: 23
+      posterior_predictive_p_value: 0.08
+      stage1_lz_flagged_models: 3
+      stage3_c_n_gt_0_flagged_overlap: 2
+      person_fit_lz_vs_c_n_spearman: 0.35
+    result_rationale: 'Under worst tier, diagnostics reveal non-trivial issues. Stage
+      1 (MFRM) fits well — θ, b, d facets have acceptable infit/outfit ranges. But
+      Stage 3 c_n parameters show problematic fit: 7/22 models have c_n outfit MNSQ
+      outside [0.7, 1.3], and the range extends to 2.10, indicating substantial misfit.
+      This occurs because for models with c_n ≈ 0, the gating mechanism is essentially
+      inactive and the model reduces to MFRM — but the c_n parameter still "floats"
+      in the posterior, producing erratic fit statistics. 23 divergent transitions
+      suggest the sampler struggles with the boundary behavior near c_n = 0. Posterior
+      predictive p-value of 0.08 is borderline — not a clear pass. The Stage 1→Stage
+      3 construct coherence check (person-fit lz vs c_n) shows only moderate correlation
+      (ρ=0.35), meaning the two stages flag partially overlapping but not identical
+      sets of anomalous models. This is expected (lz captures overall misfit, c_n
+      captures contamination specifically) but limits the narrative of c_n as a clean
+      contamination indicator.
+
+      '
+    tables:
+    - name: 'Table A4: Facet Fit Statistics'
+      description: 'Rows = facets (θ, b, d, c_n). Columns = N parameters, infit MNSQ
+        range, outfit MNSQ range, N misfitting (outside [0.7, 1.3]), max R̂, min ESS.
+
+        '
+    - name: 'Table A5: Misfitting Elements Detail'
+      description: 'Lists all misfitting elements with their infit/outfit values and
+        likely cause.
+
+        '
+    figures_description:
+    - 'Fig A5: Trace plots for 4 worst-converging c_n parameters. Shows poor mixing
+      with chains occasionally stuck near zero.'
+    - 'Fig A6: Posterior predictive check — observed vs predicted response distributions.
+      Slight systematic underprediction for high-ability models on high-exposure items.'
+    - 'Fig A7: Person-fit lz (Stage 1) vs c_n (Stage 3) scatter. Moderate positive
+      trend with substantial scatter.'
+    analysis: 'Diagnostics under worst tier are reportable but require honest discussion
+      of limitations. The c_n misfit and convergence issues are the main concerns.
+      For the reframed paper, these are acknowledged in Limitations: "when true contamination
+      is near zero, c_n parameters are weakly identified, producing wider posteriors
+      and occasional convergence warnings. We recommend interpreting c_n point estimates
+      cautiously for individual models and focusing on the distribution-level pattern."
+      The borderline posterior predictive p-value should be reported transparently.
+
+      '
+  - name: confounding_formal_observation
+    plan_id: exp-009
+    description: 'Formal OVB bias derivation + Monte Carlo validation + synthetic
+      c_n recovery validation.
+
+      '
+    expected_results:
+      bias_direction_confirmed: true
+      bias_magnitude_proportional_to_cov_d_ce: true
+      monte_carlo_scenarios: 500
+      bias_observed_in_pct_scenarios: 100
+      theta_rmse_degradation_sequential_median_pct: 38.2
+      theta_rmse_degradation_sequential_range_pct:
+      - 15.4
+      - 68.7
+      c_n_recovery_rmse_gmfrm: 0.42
+      c_n_recovery_rmse_naive: 0.85
+      c_n_95ci_coverage_probability: 0.78
+      c_n_recovery_rmse_by_magnitude:
+        low_cn_lt_0_3: 0.55
+        mid_cn_0_3_to_0_8: 0.35
+        high_cn_gt_0_8: 0.28
+      kendall_tau_improvement_joint_vs_seq_synthetic: +6.3pp (median across scenarios)
+    result_rationale: 'The formal observation and Monte Carlo validation succeed under
+      worst tier because they are mathematical/synthetic — they do not depend on real
+      contamination magnitude. The OVB bias derivation is a mathematical fact that
+      holds regardless. Monte Carlo across 500 parameter configurations confirms sequential
+      estimators are biased in 100% of scenarios where d_j and c_n·e_i are non-orthogonal
+      (which is the generic case). However, the c_n point-estimate recovery validation
+      shows concerning results under worst tier: overall RMSE of 0.42 (within the
+      worst-tier range of 0.3-0.5), and 95% CI coverage at only 78% (below nominal
+      95%). Recovery is worst for low c_n (RMSE=0.55) — exactly the regime matching
+      real data. The model struggles to distinguish c_n=0.05 from c_n=0.20, both being
+      "near zero." Recovery is better for high c_n (RMSE=0.28), confirming the method
+      works when contamination is strong but struggles when it''s weak. This is consistent
+      with the information-theoretic argument: weak signal → poor recovery. For the
+      paper, this becomes both a strength (method works when needed) and an acknowledged
+      limitation (point estimates unreliable for low-contamination models).
+
+      '
+    tables:
+    - name: 'Table 1: Sequential Estimator Bias — Monte Carlo Validation'
+      description: 'Rows = parameter configurations (grouped by contamination strength).
+        Columns = θ-RMSE (joint), θ-RMSE (sequential), degradation %, bias direction
+        matches theory (Y/N). Shows bias exists across all configurations.
+
+        '
+    - name: 'Table A6: c_n Recovery Accuracy by Contamination Magnitude'
+      description: 'Rows = c_n magnitude bins (low/mid/high). Columns = RMSE, MAE,
+        95% CI coverage, bias. Shows recovery degrades for low c_n.
+
+        '
+    figures_description:
+    - 'Fig 1: Left panel: sequential pipeline schematic with OVB confounding arrows
+      annotated. Right panel: G-MFRM joint pipeline with all facets connected. Center:
+      formal bias expression with annotated terms.'
+    - 'Fig A8: Monte Carlo θ-RMSE distribution: joint (blue) vs sequential (red).
+      Blue distribution shifted left (lower RMSE) across all scenarios. Gap widens
+      with increasing contamination strength.'
+    - 'Fig A9: c_n recovery scatter (fitted vs true). Good calibration for c_n > 0.5,
+      systematic overestimation for c_n near 0 (posterior pulled toward prior mass).'
+    analysis: 'exp-009 is the strongest experiment under worst tier because it establishes
+      mathematical ground truth independent of real data. The OVB observation is unassailable.
+      The synthetic results show the method works in principle. The c_n recovery limitation
+      at low contamination is honest and actually strengthens the paper — it explains
+      WHY real-data results are weak (the signal is genuinely small) rather than blaming
+      methodology failure. This experiment anchors the reframed narrative: "we prove
+      confounding exists, we prove our method resolves it when contamination is strong,
+      and we show current contamination is fortunately weak."
+
+      '
+  - name: error_propagation_sensitivity
+    plan_id: exp-012
+    description: 'Inject noise into e_i at σ=0.1, 0.2, 0.5. Measure θ̂ RMSE degradation
+      and c_n recovery. Synthetic data with known ground truth.
+
+      '
+    expected_results:
+      theta_rmse_sigma_0_0: 0.124
+      theta_rmse_sigma_0_1: 0.131
+      theta_rmse_sigma_0_2: 0.156
+      theta_rmse_sigma_0_5: 0.238
+      theta_rmse_degradation_sigma_0_1_pct: 5.6
+      theta_rmse_degradation_sigma_0_2_pct: 25.8
+      theta_rmse_degradation_sigma_0_5_pct: 91.9
+      c_n_recovery_rmse_sigma_0_0: 0.28
+      c_n_recovery_rmse_sigma_0_1: 0.33
+      c_n_recovery_rmse_sigma_0_2: 0.45
+      c_n_recovery_rmse_sigma_0_5: 0.72
+      tau_sigma_0_0: 0.922
+      tau_sigma_0_1: 0.915
+      tau_sigma_0_2: 0.896
+      tau_sigma_0_5: 0.861
+      breakpoint_sigma_for_seq_equivalence: 0.35
+    result_rationale: 'Under worst tier, error propagation is concerning. At σ=0.2
+      (a plausible noise level given the performance-gap method''s ρ=0.41 with LogProber),
+      θ̂ RMSE degrades by 25.8% — exceeding the 15% threshold flagged as concerning.
+      This occurs because noisy e_i causes the gating mechanism to misallocate contamination
+      corrections: items with overestimated e_i receive excessive correction, items
+      with underestimated e_i receive insufficient correction, and these errors compound
+      through the c_n estimation. At σ=0.5, degradation is severe (91.9%) and G-MFRM
+      becomes worse than sequential (breakpoint at σ≈0.35). This is the most damaging
+      result for the staged estimation defense: real e_i noise is plausibly σ≈0.18-0.25
+      based on exp-002 residuals, placing us in the "concerning" range. The c_n recovery
+      RMSE at σ=0.2 is 0.45, meaning individual c_n estimates have large errors. For
+      the paper, this MUST be discussed in Limitations. The defense: (1) σ=0.2 degradation
+      (25.8%) is still better than ignoring contamination entirely when contamination
+      is moderate-to-strong; (2) the multi- source e_i pipeline aims to keep σ below
+      0.15; (3) sensitivity analysis itself demonstrates methodological rigor and
+      transparency.
+
+      '
+    tables:
+    - name: 'Table 12: Error Propagation Sensitivity Analysis'
+      description: 'Rows = noise levels (σ = 0, 0.1, 0.2, 0.3, 0.5). Columns = θ̂
+        RMSE, degradation %, c_n RMSE, τ, comparison with sequential τ. Highlights
+        σ=0.35 breakpoint where G-MFRM = sequential.
+
+        '
+    figures_description:
+    - 'Fig 10: Line plot of θ̂ RMSE vs e_i noise σ. G-MFRM curve (blue) rises steeply;
+      sequential baseline (red dashed) is flat. Intersection at σ≈0.35 annotated.
+      Green shaded region shows estimated real noise range (σ=0.15-0.25).'
+    - 'Fig A10: c_n recovery scatter at σ=0, 0.2, 0.5 (three panels). Progressive
+      deterioration visible. At σ=0.5, fitted c_n bears little resemblance to truth.'
+    analysis: 'This experiment honestly quantifies the Achilles heel of staged estimation.
+      The 25.8% degradation at σ=0.2 is above the comfort threshold but not catastrophic.
+      The breakpoint at σ=0.35 provides a concrete "safety margin" — if e_i estimation
+      can be kept below this noise level, G-MFRM still helps. The estimated real noise
+      (σ≈0.18-0.25) straddles the concerning zone. For worst-tier narrative, this
+      experiment is reported with full transparency as evidence of methodological
+      rigor. The defense of staged estimation becomes: "conditional on e_i quality,
+      G-MFRM outperforms sequential; improving e_i estimation (e.g., via broader LogProber
+      access) directly translates to better contamination correction."
+
+      '
+  - name: wildbench_replication
+    plan_id: exp-010
+    description: 'Replicate G-MFRM pipeline on WildBench for cross-benchmark generalization.
+
+      '
+    expected_results:
+      wildbench_c_n_median: 0.12
+      wildbench_c_n_max: 0.48
+      wildbench_tau_gmfrm: 0.82
+      wildbench_tau_mfrm: 0.82
+      wildbench_tau_uda: 0.83
+      wildbench_delta_tau_vs_uda: -0.01
+      wildbench_convergence_max_rhat: 1.15
+      wildbench_convergence_min_ess: 62
+      wildbench_rank_changes_ge2: 0
+      cross_benchmark_c_n_correlation: 0.45
+    result_rationale: 'Under worst tier, WildBench results are even weaker than MT-Bench/Arena-Hard
+      because WildBench items are newer and more diverse, reducing exposure (median
+      c_n = 0.12, even lower than MT-Bench/Arena-Hard). Convergence is worse (R̂=1.15)
+      due to WildBench''s different item structure (longer, more open-ended prompts
+      increase response variance). No rank changes at all — G-MFRM identical to MFRM
+      on this benchmark. The one positive finding: cross-benchmark c_n correlation
+      of 0.45 suggests c_n captures a model-level property (contamination susceptibility)
+      rather than benchmark-specific noise, providing modest construct validity evidence.
+      For worst-tier narrative, WildBench serves as additional evidence that "current
+      contamination is manageable across benchmarks" rather than as a venue for demonstrating
+      G-MFRM improvement.
+
+      '
+    tables:
+    - name: 'Table A7: WildBench Results'
+      description: 'Same format as Table 5 but for WildBench. Shows G-MFRM ≈ MFRM
+        ≈ UDA.
+
+        '
+    - name: 'Table A8: Cross-Benchmark c_n Correlation'
+      description: 'Rows = models. Columns = c_n (MT-Bench), c_n (Arena-Hard), c_n
+        (WildBench). Bottom row: pairwise Spearman correlations.
+
+        '
+    figures_description:
+    - 'Fig A11: c_n scatter: MT-Bench/Arena-Hard c_n vs WildBench c_n. Moderate positive
+      correlation (ρ=0.45) suggests c_n is partially a model-level trait.'
+    analysis: 'WildBench replication reinforces worst-tier findings: weak contamination,
+      no ranking improvement. The cross-benchmark c_n correlation (ρ=0.45) is the
+      main positive finding — it provides construct validity evidence that c_n is
+      measuring something real about models, not just fitting noise. This is valuable
+      for the reframed narrative emphasizing G-MFRM as measurement infrastructure.
+      However, ρ=0.45 is moderate at best. The convergence issues on WildBench (R̂=1.15)
+      suggest the model may need benchmark-specific tuning, which weakens the "general
+      framework" claim.
+
+      '
+  - name: adversarial_robustness
+    plan_id: exp-011
+    description: 'Test G-MFRM robustness against adversarial contamination following
+      Wang et al. (ICLR 2026).
+
+      '
+    expected_results:
+      adversarial_c_n_detection_rate_strong: 0.78
+      adversarial_c_n_detection_rate_subtle: 0.35
+      adversarial_tau_gmfrm_corrected: 0.88
+      adversarial_tau_uncorrected: 0.82
+      adversarial_tau_sequential: 0.85
+      adversarial_c_n_false_positive_rate: 0.14
+      adversarial_rank_recovery_top5: 3/5
+      adversarial_rank_recovery_top10: 6/10
+      adversarial_breaks_gating_assumption: partial — adversarial contamination violates
+        rank-1 c_n·e_i
+    result_rationale: 'Under worst tier, adversarial robustness is mixed. For strong
+      adversarial contamination (blatant memorization injection), G-MFRM detects 78%
+      of affected models — reasonable but not robust. For subtle adversarial contamination
+      (Wang et al.''s "soft leakage" patterns), detection drops to 35% because subtle
+      contamination violates the rank-1 assumption: adversarial contamination is targeted
+      and item-specific, not well-approximated by a single c_n per model. The 14%
+      false positive rate (flagging clean models as contaminated) is concerning for
+      an auditing tool. On the positive side, G-MFRM still partially corrects rankings
+      under adversarial contamination (τ=0.88 vs 0.82 uncorrected), outperforming
+      sequential (0.85). But this is in a SYNTHETIC adversarial setting — on real
+      data where contamination is already weak, adversarial robustness is academic.
+      For worst-tier narrative, this experiment is best placed in the appendix as
+      "the framework has limitations under adversarial contamination, motivating future
+      work on robust extensions."
+
+      '
+    tables:
+    - name: 'Table A9: Adversarial Robustness Results'
+      description: 'Rows = contamination type (none, strong adversarial, subtle adversarial).
+        Columns = detection rate, τ (uncorrected/sequential/G-MFRM), false positive
+        rate.
+
+        '
+    figures_description:
+    - 'Fig A12: ROC curve for c_n-based contamination detection under adversarial
+      injection. AUC=0.72 for strong, AUC=0.58 for subtle (near random).'
+    analysis: 'Adversarial robustness under worst tier reveals a genuine limitation:
+      the rank-1 assumption breaks under targeted adversarial contamination. This
+      is acknowledged in Limitations with a pointer to rank-k extensions as future
+      work. The experiment is important for honesty but should not be prominently
+      featured. Under the reframed narrative (G-MFRM as monitoring infrastructure),
+      the adversarial limitation is: "the current framework detects broad contamination
+      patterns; targeted adversarial attacks require specialized detection methods
+      beyond the scope of this work."'
+  review_report: "---\ndream_id: dream_20260521T215715\ntier: worst\noverall_score:\
+    \ 2.5 — Borderline Findings\ntimestamp: 2026-05-21T22:45:24.978580+00:00\n---\n\
+    \n# Dream Review Report: G-MFRM Paper (Full Review)\n\n**Paper**: \"A Psychometric\
+    \ Framework for Auditing LLM Evaluation Integrity: Joint Calibration of Judge\
+    \ Bias and Benchmark Contamination\"\n**Venue**: EMNLP 2026 (ARR)\n**Review Mode**:\
+    \ Full (2 Reviewers + Roundtable)\n\n---\n\n## Roundtable Summary\n\n| Dimension\
+    \ | R1 (Methods+Experiments) | R2 (Novelty+Related Work) | Consensus |\n|-----------|--------------------------|---------------------------|-----------|\n\
+    | Soundness | 3/5 | 3/5 | 3/5 |\n| Excitement | 2.5/5 | 2.5/5 | 2.5/5 |\n| Reproducibility\
+    \ | 3.5/5 | 2.5/5 | 3/5 |\n| Overall | 2.5 (Borderline Findings) | 3.0 (Findings)\
+    \ | **2.5 (Borderline Findings)** |\n| Confidence | 4/5 | 4/5 | 4/5 |\n\n---\n\
+    \n## R1 Review: Methods and Experiments\n\n### Summary\nThe paper proposes G-MFRM,\
+    \ a three-stage psychometric framework that jointly calibrates judge severity\
+    \ and benchmark contamination in LLM-as-a-judge evaluation. The OVB formalization\
+    \ is mathematically correct, and the experimental coverage (12 experiments) is\
+    \ above average. However, the central empirical result is that G-MFRM does not\
+    \ significantly outperform any strong baseline, and the primary diagnostic output\
+    \ (c_n) suffers from convergence and coverage problems that undermine its utility.\n\
+    \n### Strengths\n- **S1: Well-specified model with clear identifiability reasoning.**\
+    \ The three-stage procedure with externally anchored e_i is a principled resolution\
+    \ to the simultaneous estimation problem, analogous to two-step estimators in\
+    \ econometrics. The model correctly reduces to MFRM when c_n=0 or e_i=0.\n- **S2:\
+    \ Monte Carlo validation is convincing for OVB.** 500 configurations, varying\
+    \ contamination strength/judge count/correlation structure. Sequential estimators\
+    \ exhibit bias in 100% of non-orthogonal scenarios (median θ-RMSE degradation:\
+    \ 38.2%). Clean separation from the orthogonal control case.\n- **S3: Unusually\
+    \ thorough experimental coverage.** 12 experiments covering convergence diagnostics,\
+    \ 8 baselines, contamination calibration, error propagation, exposure ablation,\
+    \ judge count sensitivity, cross-benchmark replication, adversarial robustness,\
+    \ and facet fit diagnostics. This breadth is well above average for the venue.\n\
+    - **S4: Graceful degradation validated.** At 2 judges, G-MFRM degrades to MFRM-level\
+    \ (τ=0.80 vs 0.80) without harm. Critical safety property for practical deployment.\n\
+    - **S5: Error propagation analysis is transparent.** The breakeven point (σ≈0.35)\
+    \ and estimated real noise range (σ≈0.18–0.25) provide clear guidance. The paper\
+    \ honestly acknowledges this places current performance in the \"concerning but\
+    \ still beneficial\" range.\n\n### Weaknesses\n- **W1 [Major]: No statistically\
+    \ significant improvement over any strong baseline.** G-MFRM τ=0.85 vs UDA τ=0.86\
+    \ (p=0.23), CyclicJudge τ=0.85 (p=0.41), Sequential τ=0.84 (p=0.18). The core\
+    \ empirical claim of the framework—that joint calibration improves rankings—is\
+    \ not supported. The paper attempts to reframe this as a \"reassuring negative\
+    \ result,\" but this stretches what constitutes a contribution.\n- **W2 [Major]:\
+    \ c_n convergence diagnostics are problematic for a claimed diagnostic output.**\
+    \ Max R̂=1.12 exceeds the standard 1.05 threshold. Min ESS=78 is well below the\
+    \ recommended 200. 23 divergent transitions across 4,000 samples indicate posterior\
+    \ geometry problems. Per-model R-hat and ESS are not reported—aggregate statistics\
+    \ may hide individual models with much worse mixing. Since c_n is positioned as\
+    \ G-MFRM's primary unique output, these issues directly undermine the paper's\
+    \ value proposition.\n- **W3 [Major]: 95% CI coverage for c_n is only 78%.** This\
+    \ means uncertainty is systematically underestimated, primarily in the low-c_n\
+    \ regime that constitutes 68% of models. The paper identifies staged estimation\
+    \ (fixing e_i ignores Stage 2 uncertainty) as the cause but does not attempt the\
+    \ obvious remedy: propagating e_i uncertainty by sampling from a posterior on\
+    \ e_i within Stage 3.\n- **W4 [Major]: Uniform e_i yields τ=0.84—essentially identical\
+    \ to the full pipeline (τ=0.85).** The exposure indicator ablation (Table 8) shows\
+    \ the multi-source e_i pipeline adds negligible downstream value. When c_n is\
+    \ weak, the product c_n·e_i is negligible regardless of e_i quality. This undercuts\
+    \ the claimed contribution of the exposure estimation pipeline, which occupies\
+    \ an entire section (§4) of the paper.\n- **W5 [Moderate]: Rank-1 contamination\
+    \ assumption is violated for ~7/22 models.** Infit MNSQ range for c_n extends\
+    \ to [0.55, 2.10], with 7 models misfitting. Adversarial detection drops to 35%\
+    \ for subtle attacks with 14% false positive rate. No rank-2 or category-specific\
+    \ exploration.\n- **W6 [Moderate]: No power analysis.** Wilcoxon test on N=22\
+    \ models has limited power to detect Δτ=0.02. The non-significance may reflect\
+    \ insufficient power rather than genuinely absent effect. This ambiguity weakens\
+    \ both the \"negative result\" and the \"competitive performance\" narratives.\n\
+    - **W7 [Minor]: Chatbot Arena as sole external ground truth.** Arena rankings\
+    \ reflect user preferences on user-submitted prompts with potential strategic\
+    \ behaviors. Using a single imperfect reference for all τ calculations limits\
+    \ the strength of all comparative claims.\n\n### Questions for Authors\n- Q1:\
+    \ What are per-model R̂ and ESS values for c_n, especially for the 5–7 models\
+    \ with c_n > 0.3?\n- Q2: Have you attempted propagating e_i uncertainty into Stage\
+    \ 3? If computationally prohibitive, can you estimate coverage improvement via\
+    \ synthetic experiment?\n- Q3: What is the estimated ρ(d_j, c_n·e_i) in your real\
+    \ data? If near zero, the OVB argument is empirically inert.\n- Q4: What is the\
+    \ statistical power of the Wilcoxon test to detect Δτ=0.02 at α=0.05 with N=22?\n\
+    \n### Missing Experiments\n- Per-model c_n convergence reporting (trace plots\
+    \ for top-5 c_n models)\n- Post-hoc power analysis for the main comparison\n-\
+    \ Empirical estimate of ρ(d_j, c_n·e_i) in real data\n- Computational cost comparison\
+    \ (G-MFRM runtime + API cost vs CyclicJudge/UDA)\n\n### R1 Scores\n- Soundness:\
+    \ 3/5\n- Excitement: 2.5/5\n- Reproducibility: 3.5/5\n- Overall Assessment: 2.5\
+    \ (Borderline Findings)\n- Confidence: 4/5\n\n---\n\n## R2 Review: Novelty and\
+    \ Related Work\n\n### Summary\nThe paper identifies a genuine gap—no existing\
+    \ method jointly models judge bias and benchmark contamination—and provides a\
+    \ clean psychometric formulation. However, the technical novelty is limited: G-MFRM\
+    \ adds one multiplicative term (c_n·e_i) to standard MFRM, the OVB observation\
+    \ is a textbook application of the Frisch-Waugh-Lovell theorem, and the related\
+    \ work coverage is severely insufficient for a paper spanning psychometrics, LLM\
+    \ evaluation, and Bayesian estimation.\n\n### Strengths\n- **S1: Genuine gap identification.**\
+    \ The paper correctly observes that judge bias and contamination have been treated\
+    \ independently in the LLM evaluation literature. The confounding argument (non-orthogonality\
+    \ of d_j and c_n·e_i) is well-motivated by the observation that judges trained\
+    \ on benchmark-adjacent data may exhibit differential severity on exposed items.\n\
+    - **S2: Clean psychometric grounding.** The extension from MFRM to G-MFRM is principled:\
+    \ the gating mechanism from DG-IRT is adapted to continuous exposure indicators,\
+    \ and the LLTM-style rank-1 decomposition is a natural first approximation. The\
+    \ connection to educational measurement traditions gives the work a foundation\
+    \ that purely ML-oriented approaches lack.\n- **S3: Honest presentation of negative\
+    \ results.** The paper does not hide the fact that G-MFRM provides no ranking\
+    \ improvement. The Discussion (§6) explicitly separates theoretical, methodological,\
+    \ and empirical contributions and acknowledges the weakness of real-data findings.\
+    \ This is refreshingly transparent for the venue.\n\n### Weaknesses\n- **W1 [Major]:\
+    \ Limited technical novelty.** G-MFRM adds one multiplicative contamination term\
+    \ to MFRM. The three claimed contributions decompose into: (1) a textbook OVB\
+    \ application, (2) a known psychometric model with a standard extension, (3) an\
+    \ empirical study with null results. None individually clears the novelty bar\
+    \ for a top venue. The \"first to jointly model\" claim is the strongest novelty\
+    \ argument, but it rests on being the first to combine two known components—combinatorial\
+    \ novelty, not conceptual novelty.\n- **W2 [Major]: OVB observation is not a contribution.**\
+    \ The Frisch-Waugh-Lovell theorem (and its implications for omitted variables\
+    \ in multi-facet models) is textbook econometrics. The paper's contribution is\
+    \ quantifying the bias magnitude in the LLM evaluation context (38.2% RMSE degradation),\
+    \ but the theoretical mechanism itself is well-known. Calling this a \"formal\
+    \ observation\" overstates its novelty.\n- **W3 [Major]: Related work is critically\
+    \ insufficient.** The paper has approximately 11 references (many showing as [?]\
+    \ placeholders suggesting LaTeX compilation failures). For a paper spanning three\
+    \ fields (psychometrics, LLM evaluation, Bayesian inference), this is far below\
+    \ expectations. Missing references include:\n  - **Foundational IRT**: Rasch (1960),\
+    \ Lord & Novick (1968), de Ayala (2009)\n  - **MFRM**: Linacre (1989) is cited\
+    \ but Engelhard (2013), Eckes (2015), Wind & Peterson (2018) on MFRM+DIF joint\
+    \ modeling are missing\n  - **DG-IRT**: Shu et al. (2013), the original ancestor\
+    \ of the adapted gating mechanism\n  - **LLM contamination detection**: Golchin\
+    \ & Surdeanu (2024), Shi et al. (2024), Deng et al. (2024)\n  - **LLM judge calibration**:\
+    \ Zheng et al. (2024) on MT-Bench is cited in the data section but not in related\
+    \ work\n  - **Bayesian IRT**: Fox (2010), two-step estimators in Bayesian econometrics\n\
+    \  - The absence of a dedicated Related Work section (§2 jumps directly to the\
+    \ confounding problem) exacerbates this issue. The paper does not situate itself\
+    \ against the educational measurement literature on joint rater-effect/item-parameter\
+    \ modeling, which has decades of relevant work.\n- **W4 [Major]: \"First framework\"\
+    \ claim is under-supported.** The paper asserts it is \"the first psychometric\
+    \ framework that jointly calibrates model ability, item difficulty, judge severity,\
+    \ and contamination susceptibility.\" This claim requires demonstrating that no\
+    \ prior work in educational measurement has modeled rater effects and item exposure/compromise\
+    \ jointly. The DIF detection literature (Holland & Wainer, 1993; Osterlind & Everson,\
+    \ 2009) routinely models both rater and item effects. The novelty claim needs\
+    \ more careful scoping.\n- **W5 [Moderate]: [?] reference placeholders.** Multiple\
+    \ citations appear as [?] in the PDF, suggesting LaTeX/BibTeX compilation failures.\
+    \ This is a significant presentation issue that would likely trigger desk-review\
+    \ concerns at ARR. It also makes it impossible to evaluate whether the cited works\
+    \ actually support the claims made.\n- **W6 [Moderate]: No code release mentioned.**\
+    \ The Stage 2 pipeline (reference variant creation, LogProber integration, temporal\
+    \ signal extraction) involves substantial implementation complexity that is model-version-dependent.\
+    \ Without code, reproducibility is significantly limited.\n\n### Questions for\
+    \ Authors\n- Q1: Can you provide a precise count of prior works that jointly model\
+    \ rater effects and item exposure in educational measurement? How does G-MFRM\
+    \ differ from existing DIF-in-MFRM models (e.g., Wind & Peterson, 2018)?\n- Q2:\
+    \ The [?] placeholders—how many references are affected, and will this be fixed\
+    \ before camera-ready?\n- Q3: Will code and data be released?\n\n### Missing Related\
+    \ Work\n- Educational measurement: Rasch (1960), Lord & Novick (1968), Engelhard\
+    \ (2013), Eckes (2015), Wind & Peterson (2018)\n- DG-IRT: Shu et al. (2013)\n\
+    - LLM contamination: Golchin & Surdeanu (2024), Shi et al. (2024), Deng et al.\
+    \ (2024)\n- Bayesian IRT: Fox (2010)\n- DIF: Holland & Wainer (1993), Osterlind\
+    \ & Everson (2009)\n- A dedicated Related Work section is needed\n\n### R2 Scores\n\
+    - Soundness: 3/5\n- Excitement: 2.5/5\n- Reproducibility: 2.5/5\n- Overall Assessment:\
+    \ 3.0 (Findings)\n- Confidence: 4/5\n\n---\n\n## Step 2: Cross-Review Reactions\n\
+    \n### R1 after reading R2\n**Agreements**: R2's novelty concerns are well-taken.\
+    \ The OVB observation is indeed textbook, and the \"first framework\" claim needs\
+    \ stronger support against the educational measurement literature. The missing\
+    \ references are a serious gap I did not flag strongly enough.\n\n**New concerns\
+    \ absorbed from R2**: The [?] reference placeholders are a presentation red flag\
+    \ I should have caught. The lack of a Related Work section is unusual and problematic\
+    \ for ARR.\n\n**Score adjustment**: R2's novelty critique reinforces my assessment.\
+    \ The paper's strongest contribution (the framework itself) has limited novelty,\
+    \ and its weakest aspect (empirical results) is the centerpiece of the experimental\
+    \ evaluation. I maintain 2.5.\n\n### R2 after reading R1\n**Agreements**: R1's\
+    \ convergence critique (R̂=1.12, ESS=78, 23 divergent transitions) is devastating\
+    \ for the diagnostic contribution claim. The uniform-e_i ablation point (τ=0.84\
+    \ vs 0.85) is particularly damaging—it means the entire exposure estimation pipeline\
+    \ (§4) adds negligible value. The power analysis gap is a valid concern.\n\n**New\
+    \ concerns absorbed from R1**: The 78% CI coverage for c_n and the lack of e_i\
+    \ uncertainty propagation are technical issues I underweighted. These compound\
+    \ with the novelty concerns: if the diagnostic output is both unnovel AND poorly\
+    \ calibrated, the contribution shrinks further.\n\n**Score adjustment**: R1's\
+    \ methodological critique lowers my confidence in the framework's practical utility.\
+    \ I revise from 3.0 to 2.5.\n\n---\n\n## Step 3: Convergence\n\n### Agreed Issues\
+    \ (Both Reviewers)\n1. **No empirical ranking improvement.** G-MFRM τ=0.85 is\
+    \ statistically indistinguishable from CyclicJudge (0.85, p=0.41) and UDA (0.86,\
+    \ p=0.23). The paper's primary empirical claim is unsupported.\n2. **Limited technical\
+    \ novelty.** G-MFRM is a combinatorial extension (MFRM + DG-IRT gating). The OVB\
+    \ observation is textbook econometrics applied to a new context.\n3. **c_n diagnostic\
+    \ quality is insufficient.** Max R̂=1.12, ESS=78, 23 divergent transitions, 78%\
+    \ CI coverage, 7/22 models misfitting. The paper's claimed unique value (per-model\
+    \ contamination scores) is undermined by posterior quality.\n4. **e_i pipeline\
+    \ adds negligible value.** Uniform e_i yields τ=0.84 vs full pipeline τ=0.85.\
+    \ Section 4 is largely wasted space under current contamination levels.\n5. **Related\
+    \ work is critically insufficient.** ~11 references, no Related Work section,\
+    \ multiple [?] placeholders. Missing foundational psychometric, contamination\
+    \ detection, and DIF references.\n6. **Real contamination is too weak to demonstrate\
+    \ the method.** Median c_n=0.18, below all synthetic scenarios. The paper's value\
+    \ proposition depends on a future where contamination is stronger—speculative.\n\
+    \n### Remaining Disagreements\n- **Score gap (R1: 2.5 vs R2-revised: 2.5)**: After\
+    \ cross-review, both converge at 2.5 (Borderline Findings).\n- **Weight of Monte\
+    \ Carlo contribution**: R1 gives more credit to the synthetic validation (500\
+    \ configs, clean separation). R2 views it as trivially expected from OVB theory.\
+    \ Resolved: the Monte Carlo is well-executed but validates a known result, providing\
+    \ modest rather than strong value.\n\n---\n\n## Step 4: Consolidated Assessment\n\
+    \n### Final Scores\n\n| Dimension | Score | Rationale |\n|-----------|-------|-----------|\n\
+    | Soundness | 3/5 | Model specification is correct. OVB formalization valid. But\
+    \ c_n convergence (R̂=1.12, ESS=78), 78% CI coverage, and 23 divergent transitions\
+    \ are real methodological concerns. Posterior predictive p=0.08 is borderline.\
+    \ |\n| Excitement | 2.5/5 | Problem identification (bias-contamination confounding)\
+    \ is genuinely valuable. But zero empirical payoff (no significant improvement),\
+    \ limited novelty (combinatorial extension), and diagnostic quality issues substantially\
+    \ reduce excitement. The practical impact under current contamination levels is\
+    \ minimal. |\n| Reproducibility | 3/5 | Model well-specified (Eq. 3, MCMC settings,\
+    \ priors). But no code release, Stage 2 pipeline involves underspecified design\
+    \ choices (source weighting, reference variant construction), and per-model diagnostics\
+    \ not reported. |\n| **Overall Assessment** | **2.5 (Borderline Findings)** |\
+    \ See rationale below. |\n| Confidence | 4/5 | Both reviewers have expertise in\
+    \ evaluation methodology and statistical modeling. Key concerns are convergent\
+    \ and evidence-based. |\n\n### Rationale for 2.5 (Borderline Findings)\n\n**What\
+    \ the paper does well:**\n- Identifies a real problem (bias-contamination confounding\
+    \ in LLM evaluation)\n- Provides a correct mathematical formalization (OVB in\
+    \ sequential correction)\n- Executes an unusually thorough experimental program\
+    \ (12 experiments, 3 benchmarks, 8 baselines)\n- Demonstrates graceful degradation\
+    \ (no harm when contamination is absent)\n- Is transparent about negative results\n\
+    \n**Why it falls short of Findings (3.0):**\n- The primary empirical claim (ranking\
+    \ improvement) is not supported by statistical evidence\n- The primary methodological\
+    \ novelty (G-MFRM) is a combinatorial extension of known components\n- The primary\
+    \ unique output (c_n diagnostics) suffers from convergence, coverage, and calibration\
+    \ issues\n- The e_i pipeline—occupying a full section—adds negligible downstream\
+    \ value under current conditions\n- Related work coverage is critically insufficient\
+    \ (~11 references, no Related Work section, [?] placeholders)\n- The \"monitoring\
+    \ infrastructure for future contamination\" pitch is speculative and unfalsifiable\n\
+    \n**Why it's not Resubmit (2.0):**\n- The problem is real and well-motivated\n\
+    - The Monte Carlo validation is solid and the theoretical argument is correct\n\
+    - Experimental breadth is genuinely impressive\n- The honest presentation of negative\
+    \ results has scientific value\n- Cross-benchmark c_n correlation (ρ=0.45) provides\
+    \ modest construct validity evidence\n\n**Path to acceptance:**\n1. Fix all [?]\
+    \ reference placeholders and add a proper Related Work section with ≥25 references\n\
+    2. Report per-model c_n convergence diagnostics (R̂, ESS, trace plots)\n3. Propagate\
+    \ e_i uncertainty into Stage 3 to improve CI coverage\n4. Add power analysis for\
+    \ the main comparison\n5. Consider stronger contamination scenarios (e.g., intentionally\
+    \ contaminated models) where G-MFRM's advantage over baselines can be demonstrated\
+    \ on real (not just synthetic) data\n6. Reframe contributions more honestly: the\
+    \ Monte Carlo quantification and the framework as infrastructure, not the empirical\
+    \ audit as a standalone contribution\n\n### Experiment Coverage Assessment\n\n\
+    All 12 planned experiments are present in the paper:\n| Experiment | Section |\
+    \ Status |\n|-----------|---------|--------|\n| exp-001: Data collection | §5.1\
+    \ | Covered |\n| exp-002: Exposure estimation | §4 | Covered |\n| exp-003: G-MFRM\
+    \ real-data fit | §5.3 | Covered |\n| exp-004: Baseline comparison | §5.4 | Covered\
+    \ |\n| exp-005: Contamination calibration | §5.5 | Covered |\n| exp-006: Judge\
+    \ count sensitivity | §5.8 | Covered |\n| exp-007: Exposure ablation | §5.7 |\
+    \ Covered |\n| exp-008: Facet diagnostics | §5.11 | Covered |\n| exp-009: OVB\
+    \ Monte Carlo | §2.3 + §5.2 | Covered |\n| exp-010: WildBench replication | §5.9\
+    \ | Covered |\n| exp-011: Adversarial robustness | §5.10 | Covered |\n| exp-012:\
+    \ Error propagation | §5.6 | Covered |\n\nCoverage is complete. The issue is not\
+    \ missing experiments but weak results across experiments due to low real-world\
+    \ contamination magnitude.\n\n### Key Risk for Rebuttal\nThe most difficult question\
+    \ for authors: \"If uniform e_i produces the same τ as your full pipeline, and\
+    \ G-MFRM produces the same τ as MFRM, what is the practical contribution beyond\
+    \ a Monte Carlo demonstration of a known statistical phenomenon?\" The rebuttal\
+    \ must convincingly argue either (a) the diagnostic outputs are trustworthy despite\
+    \ convergence issues, or (b) the monitoring infrastructure argument has concrete,\
+    \ near-term value.\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-21T22:45:35+00:00'

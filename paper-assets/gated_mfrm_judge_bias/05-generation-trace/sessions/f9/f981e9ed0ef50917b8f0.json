@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f981e9ed0ef50917b8f0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh launch exp005",
+  "task_key": "worker_ssh_launch_exp005_20260522T200907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_exp005_20260522T200907_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "0da8e5861dc5814bee800542560aa0e773744b7a6d76538b9335b3ace7cf3bcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-005 已完成运行，汇报如下：\n\n**1. 启动命令**\n```\ncd /root/gated_mfrm_judge_bias/exp005 && python run_exp005.py 2>&1 | tee /tmp/exp005.log\n```\n\n**2. 进程状态**：已完成（运行时间 <15 秒，CPU-only 轻量实验）\n\n**3. 关键结果**\n- `joint_gmfrm`: real c_n ≈ **MVP-002 (strong)**，mean=2.4782，strong_ratio=2.07x\n- `sequential`: real c_n ≈ **MVP-001 (weak)**，mean=0.0587，weak_ratio=0.15x\n- `joint_gmfrm_003b`: real c_n ≈ **MVP-002 (strong)**，mean=2.4625，strong_ratio=2.06x\n- τ improvement (joint vs raw): **+0.0714 (+9.1%)**\n- KS test vs mvp_003: D=0.4474, p=0.0561\n\n**4. 产出文件** (`/root/gated_mfrm_judge_bias/exp005/results/`)\n- `results.json` (5.2KB)\n- `calibration_comparison.png` / `.pdf`\n- `ranking_impact.png`\n\n**5. exp-003b 输出**：可用，`joint_gmfrm_c.npy`、`results.json` 等齐全"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-exp005.md"
+}

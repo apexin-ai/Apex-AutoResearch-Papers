@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f9cc924547d1fc7b195",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mcmc diagnose and fix",
+  "task_key": "worker_ssh_mcmc-diagnose-and-fix_20260525T132445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mcmc-diagnose-and-fix_20260525T132445_result.json",
+    "occurrence": 1,
+    "bytes": 2270,
+    "sha256": "e876b7ac0a303878db9388b88371f24acbe0065190ad8fbfb30974297abce026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Dry-run 结果非常好。** NCP 完全修复了收敛问题。\n\n---\n\n## 诊断结果\n\n### R-hat 最差参数类型：b_i（item difficulty）\n\n| 指标 | v1 (centered) | v2 (NCP, dry-run) |\n|------|--------------|-------------------|\n| b R-hat max | **2.900** | **1.020** |\n| b R-hat mean | 1.492 | 1.002 |\n| b ESS_bulk min | 4 | 719 |\n| theta R-hat max | 1.620 | 1.010 |\n| d R-hat max | 1.600 | 1.010 |\n| R-hat > 1.05 | 541/548 | 16/1050 |\n| R-hat > 1.1 | 520/548 | 3/1050 |\n| ESS_bulk median | ~4 | 1059 |\n| b inter-chain std max | 1.758 | 0.052 |\n\n### 数据稀疏度：不是问题\n\n- 所有 500 items 有 ≥27 obs（均值 72.5）\n- Judge coverage: 207 items 4 judges, 95 items 5 judges, 194 items 6 judges, 4 items 7 judges\n- 57.6% 覆盖率，MCAR pattern\n\n### Chain 间差异：v1 多模态，v2 已修复\n\n- v1 b inter-chain std: mean=0.49, max=1.76（链卡在不同模式）\n- v2 b inter-chain std: mean=0.009, max=0.052（链间一致）\n\n### 根因\n\ncentered `b ~ Normal(0, 1)` 的固定先验尺度与 500 个 item 的异质后验几何冲突，NUTS 无法有效探索。Non-centered + hierarchical `sigma_b` 让采样器在标准正态空间上高效工作。\n\n## 修复方案\n\n- **Non-centered b**: `b_raw ~ N(0,1)`, `sigma_b ~ HalfNormal(1.0)`, `b = b_raw * sigma_b`。学到 `sigma_b = 1.86`\n- **Non-centered theta**: `theta_raw ~ N(0,1)`, `sigma_theta ~ HalfNormal(1.0)`, `theta = theta_raw * sigma_theta - mean`。学到 `sigma_theta = 1.63`\n- **d 不改**：仅 6 个参数，修复 b 后 d 也收敛了（R-hat max 1.01）\n- **c 不改**：已经是 non-centered\n- **chain_method='vectorized'** 替代 'sequential'\n- Item 筛选：保留现有 min_judges=3（数据不稀疏，无需额外过滤）\n\n## Dry-run 结果\n\n- R-hat max: **1.026**（阈值 1.1，通过）\n- ESS min: **117**（阈值 50，通过）\n- 仅 theta_raw 有 3 个参数 R-hat ≈ 1.10（dry-run 仅 500 warmup，full run 6000 warmup 会解决）\n- 运行时间：126s（mfrm_only, 2 chains, 500w+500s）\n- 全量运行估计：~42 min（mfrm_only），全部 4 methods ~90 min\n\n## 新脚本路径\n\n`/root/gated_mfrm_judge_bias/run_mcmc_n17_exp020_v2.py`\n\n**等 Director 审批后启动完整 MCMC。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mcmc-diagnose-and-fix.md"
+}

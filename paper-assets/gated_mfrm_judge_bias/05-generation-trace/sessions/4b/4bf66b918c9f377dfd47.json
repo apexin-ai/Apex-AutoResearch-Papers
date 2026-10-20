@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bf66b918c9f377dfd47",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix local judge paths v2",
+  "task_key": "worker_ssh_fix-local-judge-paths-v2_20260524T084721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-local-judge-paths-v2_20260524T084721_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "a8a49905a4592ac4d2306e730488cc951fba82c34d97828adde4f9e2a0b287c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇总：\n\n### 各 local judge 数据位置\n\n| Judge | 数据位置 | 行数 | 状态 |\n|-------|---------|------|------|\n| Qwen2.5-72B | `output_n17_qwen2.5-72b-local/` | 692 | 已通过 symlink 映射到 `results/qwen2.5-72b-local_n17/` |\n| LLaMA-3.3-70B | `results/llama-3.3-70b-local_n17/` | 1041 | 标准路径，正常 |\n| Mistral-Large-2 | `results/mistral-large-2-local_n17/` | 82 | 标准路径，正常（数据量较少，可能仍在采集） |\n\n### 执行的修复\n\n1. **Symlink**：`results/qwen2.5-72b-local_n17` → `../output_n17_qwen2.5-72b-local`，collect.py 继续写入原目录不受影响\n2. **Config 修正**：`config_qwen2.5-72b_local_n17.yaml` 的 `output_dir` 改为标准路径 `results/qwen2.5-72b-local_n17/`（symlink 保证实际写入位置不变）\n3. **LLaMA/Mistral**：config 和实际路径一致，无需修改\n\n### prepare_n17_data.py 兼容性\n\n该脚本已同时扫描 `results/*_n17/` 和 `output_n17_*/` 两种模式，且有去重逻辑。即使没有 symlink 也能找到 Qwen 数据。symlink 主要是为其他可能只扫 `results/` 的脚本兜底。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-local-judge-paths-v2.md"
+}

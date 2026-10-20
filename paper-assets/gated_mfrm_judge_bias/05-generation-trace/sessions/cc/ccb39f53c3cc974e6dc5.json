@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccb39f53c3cc974e6dc5",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check judge model coverage",
+  "task_key": "worker_ssh_check_judge_model_coverage_20260522T102213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_judge_model_coverage_20260522T102213_result.json",
+    "occurrence": 1,
+    "bytes": 2086,
+    "sha256": "147f0fcb3a40e2f2be63b3ca9db37ec683cf4bb785f36ed8f2e23c7cd6a4ecaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果已收集。汇总如下：\n\n---\n\n## 1. Judge × Target Model 交叉矩阵（OK judgments）\n\n| Judge | gpt-3.5-turbo-0125 | gpt-4-0314 | gpt-4-0613 | **TOTAL** | **FAILED** |\n|---|---|---|---|---|---|\n| claude-opus-4.7-proxy | 480 | 480 | 478 | **1438** | 138 |\n| claude-sonnet-4.6-proxy | 350 | 350 | 349 | **1049** | 124 |\n| deepseek-v4-pro-proxy | 145 | 150 | 141 | **436** | 187 |\n| gemini-2.5-pro-proxy | 148 | 151 | 144 | **443** | 382 |\n| gpt-5.5-proxy | 599 | 630 | 591 | **1820** | 73 |\n| llama-3.3-70b | 78 | 78 | 77 | **233** | 0 |\n| mistral-large-2 | 22 | 22 | 20 | **64** | 4 |\n| qwen2.5-72b | 46 | 47 | 47 | **140** | 4 |\n| qwen3-235b-proxy | 232 | 232 | 230 | **694** | 118 |\n| **TOTAL** | **2100** | **2140** | **2077** | **6317** | |\n\n## 2. 覆盖度评估\n\n| 指标 | 要求 | 实际 | 通过？ |\n|---|---|---|---|\n| Judges 数量 | ≥ 5 | **9** | YES |\n| Target models 数量 | ≥ 6 | **3** | **NO** |\n| 所有 cell ≥ 20 | 全部 | min cell = 20 | YES |\n| Judges with ≥ 200 OK | — | 7/9 (mistral-large-2=64, qwen2.5-72b=140 不足) | — |\n\n注意事项：\n- **gemini-2.5-pro-proxy** 失败率极高（382/825 = 46%）\n- **deepseek-v4-pro-proxy** 失败率也高（187/623 = 30%）\n- 根目录合并文件仅含 llama/qwen/mistral 的 296 条，已跳过避免重复计数\n\n## 3. exp-003 可否启动\n\n**NO — target models 数量不足。** 当前只有 3 个 target models（gpt-3.5-turbo-0125, gpt-4-0314, gpt-4-0613），远低于 ≥6 的门槛。需要补充更多 target model 的 response 生成和 judgment 收集。\n\n## 4. Local Judge 自动重启状态\n\n- **auto-restart tmux session 运行中**，日志显示持续监控：\n  - llama: **499/500**（几乎完成）\n  - qwen: **496/500**（几乎完成）\n- 5 个 API judge session 活跃：judge-opus, judge-sonnet, judge-deepseek, judge-gemini, judge-qwen3\n- vLLM 推理服务运行中：vllm-llama, vllm-mistral\n- **mistral-large-2**（64 OK）和 **qwen2.5-72b**（140 OK）数据量偏低，local judge 正在补充中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-judge-model-coverage.md"
+}

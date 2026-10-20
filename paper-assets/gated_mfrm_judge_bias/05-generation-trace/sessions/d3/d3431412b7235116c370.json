@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3431412b7235116c370",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh quick diag opus mistral",
+  "task_key": "worker_ssh_quick_diag_opus_mistral_20260522T042954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_quick_diag_opus_mistral_20260522T042954_result.json",
+    "occurrence": 1,
+    "bytes": 1094,
+    "sha256": "59b2afc69dc2ecdf67804771fd7deac4e41e797d41df2349d7f0487ffca91e59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. 模型响应时间对比\n\n| 模型 | 延迟 |\n|------|------|\n| deepseek-v4-pro | 1.4s |\n| gpt-5.5 | 2.2s |\n| **claude-opus-4-7** | **4.5s** |\n| claude-sonnet-4 | 6.6s |\n\ncurl 测试 Opus 耗时 17.4s（含连接开销），**无 rate-limit headers 返回**（grep 无匹配）。\n\n**结论**：Opus 延迟 4.5s 属于模型本身 TTFT 较高，不是代理限速（无 rate-limit/retry-after headers）。Sonnet 反而更慢（6.6s），可能是偶发波动。整体看代理侧无明显限流。\n\n### 2. Mistral 下载进度\n\n- **Mistral-Large-Instruct-2407-AWQ**: 51GB, 8 个 safetensors 文件\n- AWQ 量化版完整大小约 50-52GB → **已下载完成 (100%)**\n\n### 3. Judge 收集进度\n\n| Judge | 条数 |\n|-------|------|\n| gpt-5.5-proxy | 38 |\n| qwen3-235b-proxy | 30 |\n| gemini-2.5-pro-proxy | 21 |\n| deepseek-v4-pro-proxy | 14 |\n| claude-sonnet-4.6-proxy | 12 |\n| claude-opus-4.7-proxy | 11 |\n\n总计 126 条，进度较早期。Opus/Sonnet 条数最少，与其较高延迟一致——单位时间吞吐低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-quick-diag-opus-mistral.md"
+}

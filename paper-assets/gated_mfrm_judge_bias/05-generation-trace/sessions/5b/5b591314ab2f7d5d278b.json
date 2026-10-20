@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b591314ab2f7d5d278b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh p1 kill unnecessary download",
+  "task_key": "worker_ssh_p1_kill_unnecessary_download_20260522T133400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p1_kill_unnecessary_download_20260522T133400_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "459ba337677c6998ee60941fd69d4b7e847832598ad8942bedc3c598e060fe17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**consolidated.00.pth 并未在下载。** Llama 下载进程 (PID 123917) 已正确使用 `ignore_file_pattern=['original/*']`，`original/` 目录只有小文件 (params.json + tokenizer.model)，没有 .pth 文件。\n\n当前状态汇总：\n\n### Llama-3.1-8B-Instruct (PID 123917)\n- 总量 ~13G，只下载 safetensors\n- `model-00001-of-00004.safetensors` (4.98G) — **已完成**\n- `model-00004-of-00004.safetensors` (1.17G) — **已完成**\n- `model-00002-of-00004.safetensors` (2.83G/4.66G) — **61%**，~430 kB/s\n- `model-00003-of-00004.safetensors` (5.58G/~4.58G) — **接近完成**，~800 kB/s\n- 速度很慢（<1 MB/s），但没有 consolidated.00.pth 占带宽\n\n### Mistral-7B-Instruct-v0.3 (PID 102451)\n- 7.1G 已下载，temp 目录还有 3 个 safetensors 文件在写入\n\n### Qwen2.5-7B-Instruct (PID 102451)\n- 仅 12M，几乎未开始（Mistral 下载完才会开始）\n\n### 其他已存在的模型\n- Qwen3-8B: 16G\n- gemma-2-9b-it: 18G\n\n**结论：无需 kill 任何进程。** consolidated.00.pth 没有在下载，带宽瓶颈是 AutoDL/ModelScope CDN 本身的速度限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p1-kill-unnecessary-download.md"
+}

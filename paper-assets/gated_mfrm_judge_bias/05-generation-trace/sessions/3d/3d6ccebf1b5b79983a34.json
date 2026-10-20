@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d6ccebf1b5b79983a34",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp017 murphy topel coverage",
+  "task_key": "worker_ssh_exp017_murphy_topel_coverage_20260523T064519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp017_murphy_topel_coverage_20260523T064519_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "9f9a51387ec7de2f2ec8f7587655b54af4f8bf432047955af92c993ac441ccff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Second timer also done. Job is running — nothing else needed here."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp017-murphy-topel-coverage.md"
+}

@@ -1,0 +1,76 @@
+paper_key: "wang2025mfrm_llm"
+title: "Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines: ["Human raters (R1, R2)", "ChatGPT 3.5", "ChatGPT 4", "ChatGPT 4o", "OpenAI o1", "Claude 3.5 Sonnet", "Gemini 1.5", "Gemini 1.5 Pro", "Gemini 2.0", "DeepSeek V3", "DeepSeek R1", "Ensemble models (A11-A16)"]
+  metrics:
+    - {name: "Quadratic Weighted Kappa (QWK)", direction: "higher_better"}
+    - {name: "Cronbach Alpha (intra-rater consistency)", direction: "higher_better"}
+    - {name: "Rater parameter (severity/leniency logit)", direction: "closer_to_zero_better"}
+    - {name: "Infit/Outfit Mean Square", direction: "closer_to_one_better"}
+  datasets:
+    - {name: "AP Chinese Exam essays", size: "30 students × 4 tasks × 12 raters = 1440 ratings"}
+  ablation_dimensions: ["Ensemble composition (progressive removal of worst LLMs)", "Holistic vs analytic scoring", "Task type (SN vs ER)", "Analytic trait (Task Completion / Delivery / Language Use)"]
+  training_recipe: {optimizer: "N/A (psychometric analysis)", lr: "N/A", hardware: "FACETS software v3.87.0"}
+  method_family: "Many-Facet Rasch Model (psychometric measurement)"
+
+positioning:
+  core_claim: "MFRM 可以系统量化 LLM rater 的 severity/leniency 和 central tendency 效应，揭示不同 LLM 的评分偏差模式，ChatGPT 4o / Claude 3.5 / Gemini 1.5 Pro 表现最优"
+  key_results: "Best AI QWK > human-human QWK on holistic scoring; Claude 3.5 highest consistency (α=0.94 analytic); Gemini 2.0 most severe (logit=1.25); human raters show central tendency (infit<0.7)"
+  limitations:
+    - "样本仅30人，FACETS手册推荐的最低样本量"
+    - "仅AP中文写作，未推广到英文/理科/数学"
+    - "仅两种任务类型（SN和ER），4道题目"
+    - "仅用few-shot prompting，未探索CoT或微调"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Performance assessment scoring is costly and error-prone — LLMs offer a solution but their rater effects are unknown"
+  tension: "几乎所有研究只关注LLM评分准确率，对LLM作为评分者的系统偏差（rater effects）无人研究"
+  key_insight: "在Methods段通过MFRM方程引入——将LLM和人类评分者放在同一psychometric量尺上，用rater parameter量化severity/leniency"
+  argument_chain: "performance assessment costly → LLMs promising but accuracy-only evaluation insufficient → rater effects matter for fairness → MFRM places all raters on common scale → empirical comparison of 10 LLMs + 2 humans → actionable recommendations"
+  contribution_framing: "3个研究问题驱动：accuracy, consistency, rater effects"
+  intro_structure: "7段：背景(2段) → 技术进展(2段) → LLM评分文献(1段) → rater effects定义(1段) → 研究问题(1段)"
+  notable_technique: "用Wright Map可视化将所有facets（学生能力、题目难度、评分者严苛度）放在同一logit量尺上，直觉展示评分者偏差"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Wright Map for Holistic Scores — 将30名学生、4道题目、12名评分者（2人+10AI）放在同一logit量尺上"
+    narrative_role: "核心结果可视化，一图展示所有facets的相对位置，直观显示Gemini 2.0极度严苛、R2和ChatGPT 3.5偏宽松"
+    design_elements: ["三列并排布局（学生/题目/评分者）", "logit量尺对齐", "标注extreme raters"]
+    visual_style: "FACETS软件标准Wright Map输出，黑白三列并排，logit尺度左侧"
+  result_figures:
+    - figure_id: "Figure 2-5"
+      viz_type: "Wright Map variants"
+      what_compared: "不同analytic trait下的rater severity分布"
+      how_gain_highlighted: "通过rater在logit尺上的位置变化展示trait-specific severity差异"
+      design_note: "每个trait一张Wright Map，允许读者对比rater在不同trait上的severity变化"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(holistic全景) → Figure 2(analytic全景) → Figure 3-5(三个trait分别)"
+
+tables:
+  table_count: 11
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (AI raters + ensembles)"
+    col_axis: "tasks × human raters"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "文字描述best performers，无bold/underline"
+    statistical_reporting: "单次评分，无重复统计"
+    num_baselines: 12
+    design_note: "每个AI rater对每个human rater单独报QWK，允许看到AI-R1 vs AI-R2的差异；ensemble部分渐进移除展示组合效果"
+  ablation_tables:
+    - table_id: "Tables 7-11"
+      what_varied: ["rater identity", "scoring type (holistic/analytic)", "trait"]
+      variation_style: "full_numbers"
+      design_note: "每张表报rater parameter + SE + infit + outfit，标准psychometric报告格式"
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix A: AI training protocol示例; Appendix B: 各rater评分标准差"
+    reason: "Training protocol细节和描述统计放附录，主文聚焦psychometric分析"

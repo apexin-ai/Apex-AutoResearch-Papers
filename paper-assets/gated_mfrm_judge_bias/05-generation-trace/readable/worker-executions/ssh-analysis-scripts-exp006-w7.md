@@ -1,0 +1,3815 @@
+# ssh analysis scripts exp006 w7
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_ssh_analysis_scripts_exp006_w7_20260522T222815.log`
+- **Structured JSON:** [`750ba2bcd9c9c7dca46b.json`](../../sessions/75/750ba2bcd9c9c7dca46b.json)
+
+## Before a recorded user message
+
+81 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ff5007bc-bcec-4224-8b29-ac01aae36939",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779493800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9b2cb1ef-2837-41f8-a4ec-c4b111fb92f8",
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to:
+1. Connect to autodl-8gpu server
+2. Explore the data directories for exp-006 and W7 ablation
+3. Write analysis scripts for both experiments
+4. Try running them if data is available
+
+Let me start by exploring the data directories on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "489f48f1-2c09-4984-80b9-e1e33794ec48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTVg4ayEbox9xNQcr9PUee",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13302,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13302
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先探测服务器上的数据目录结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "fac2773f-4aa4-44b4-93fe-bf4948040b65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTVg4ayEbox9xNQcr9PUee",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13302,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13302
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Qo15zLZG88VBwcJsXFLX4D`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "fee47d57-f8be-495d-b430-1f2bd248abb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTVg4ayEbox9xNQcr9PUee",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13302,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13302
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T22:28:27.847Z_
+
+<details><summary>↩ Tool result · `toolu_01Qo15zLZG88VBwcJsXFLX4D`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "8a4ea150-c418-4375-95a9-1800436c3ec5",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JRUNyzvcxWuSm6sX8guQWt`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -la /root/gated_mfrm_judge_bias/exp006/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "c73f8595-64de-4f26-ad79-3a56f50094e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4jSToaF7SekJyXdNx6gdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 770,
+      "cache_read_input_tokens": 24749,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 770
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PfDbv2VvMSCQvzpf5zbbjZ`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/gated_mfrm_judge_bias/ -name \"*ablation*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "56d1f11a-d3ba-4aa2-8eb3-b29087142093",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4jSToaF7SekJyXdNx6gdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 770,
+      "cache_read_input_tokens": 24749,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 770
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T22:28:32.857Z_
+
+<details><summary>↩ Tool result · `toolu_01JRUNyzvcxWuSm6sX8guQWt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x  4 root root   107 May 23 04:18 .\\ndrwxr-xr-x 17 root root  4096 May 23 05:46 ..\\ndrwxr-xr-x  2 root root  4096 May 23 04:09 results\\ndrwxr-xr-x  3 root root    27 May 23 04:18 results_full\\n-rw-r--r--  1 root root 22752 May 23 04:18 run_exp006.py\\n-rw-r--r--  1 root root 21227 May 23 04:17 run_exp006.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "4354863c-00fa-43a1-a9e0-0b505794321a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 56\\\\ndrwxr-xr-x  4 root root   107 May 23 04:18 .\\\\ndrwxr-xr-x 17 root root  4096 May 23 05:46 ..\\\\ndrwxr-xr-x  2 root root  4096 May 23 04:09 results\\\\ndrwxr-xr-x  3 root root    27 May 23 04:18 results_full\\\\n-rw-r--r--  1 root root 22752 May 23 04:18 run_exp006.py\\\\n-rw-r--r--  1 root root 21227 May 23 04:17 run_exp006.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x  4 root root   107 May 23 04:18 .\\ndrwxr-xr-x 17 root root  4096 May 23 05:46 ..\\ndrwxr-xr-x  2 root root  4096 May 23 04:09 results\\ndrwxr-xr-x  3 root root    27 May 23 04:18 results_full\\n-rw-r--r--  1 root root 22752 May 23 04:18 run_exp006.py\\n-rw-r--r--  1 root root 21227 May 23 04:17 run_exp006.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EVUPNLHsvfaWGB3wtQRgN7`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -la /root/gated_mfrm_judge_bias/exp007/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "53b2bfc2-a44a-4d5e-8d54-62a29ca3d962",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4jSToaF7SekJyXdNx6gdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 770,
+      "cache_read_input_tokens": 24749,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 770
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T22:28:33.386Z_
+
+<details><summary>↩ Tool result · `toolu_01PfDbv2VvMSCQvzpf5zbbjZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp_w7_ablation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "0f41431b-e1ab-47f7-92df-2fd89633e8fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp_w7_ablation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp_w7_ablation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T22:28:33.914Z_
+
+<details><summary>↩ Tool result · `toolu_01EVUPNLHsvfaWGB3wtQRgN7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gated_mfrm_judge_bias/exp007/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "426813d0-dcbf-4e77-8b88-7b2d4615a77c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/gated_mfrm_judge_bias/exp007/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gated_mfrm_judge_bias/exp007/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wxms4fzycrYhrsGbS4Km2Q`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -laR /root/gated_mfrm_judge_bias/exp006/results_full/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "ebe1d95e-afb4-4360-bc4d-de93a9d606ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCzDqsJwvnxE1VvkxRxZht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 25519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 888
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T22:28:38.346Z_
+
+<details><summary>↩ Tool result · `toolu_01Wxms4fzycrYhrsGbS4Km2Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp006/results_full/:\\ntotal 4\\ndrwxr-xr-x 3 root root   27 May 23 04:18 .\\ndrwxr-xr-x 4 root root  107 May 23 04:18 ..\\ndrwxr-xr-x 2 root root 4096 May 23 06:23 idata\\n\\n/root/gated_mfrm_judge_bias/exp006/results_full/idata:\\ntotal 187780\\ndrwxr-xr-x 2 root root    4096 May 23 06:23 .\\ndrwxr-xr-x 3 root root      27 May 23 04:18 ..\\n-rw-r--r-- 1 root root 5683902 May 23 04:22 idata_joint_gmfrm_k2_s1.nc\\n-rw-r--r-- 1 root root 4675482 May 23 04:24 idata_joint_gmfrm_k2_s2.nc\\n-rw-r--r-- 1 root root 1924506 May 23 04:25 idata_joint_gmfrm_k2_s3.nc\\n-rw-r--r-- 1 root root 3549726 May 23 04:27 idata_joint_gmfrm_k2_s4.nc\\n-rw-r--r-- 1 root root 1764570 May 23 04:28 idata_joint_gmfrm_k2_s5.nc\\n-rw-r--r-- 1 root root 2085318 May 23 04:30 idata_joint_gmfrm_k2_s6.nc\\n-rw-r--r-- 1 root root 5741034 May 23 04:31 idata_joint_gmfrm_k2_s7.nc\\n-rw-r--r-- 1 root root 4677942 May 23 04:33 idata_joint_gmfrm_k2_s8.nc\\n-rw-r--r-- 1 root root 5680134 May 23 04:35 idata_joint_gmfrm_k2_s9.nc\\n-rw-r--r-- 1 root root 2175894 May 23 04:37 idata_joint_gmfrm_k4_s0.nc\\n-rw-r--r-- 1 root root 5810790 May 23 04:39 idata_joint_gmfrm_k4_s1.nc\\n-rw-r--r-- 1 root root 4750062 May 23 04:40 idata_joint_gmfrm_k4_s2.nc\\n-rw-r--r-- 1 root root 3626670 May 23 04:42 idata_joint_gmfrm_k4_s3.nc\\n-rw-r--r-- 1 root root 5756106 May 23 04:44 idata_joint_gmfrm_k4_s4.nc\\n-rw-r--r-- 1 root root 5816190 May 23 04:46 idata_joint_gmfrm_k4_s5.nc\\n-rw-r--r-- 1 root root 4744650 May 23 04:48 idata_joint_gmfrm_k4_s6.nc\\n-rw-r--r-- 1 root root 3624882 May 23 04:49 idata_joint_gmfrm_k4_s7.nc\\n-rw-r--r-- 1 root root 3621114 May 23 04:51 idata_joint_gmfrm_k4_s8.nc\\n-rw-r--r-- 1 root root 5756838 May 23 04:53 idata_joint_gmfrm_k4_s9.nc\\n-rw-r--r-- 1 root root 5888550 May 23 05:25 idata_joint_gmfrm_k6_s0.nc\\n-rw-r--r-- 1 root root 5883114 May 23 05:51 idata_joint_gmfrm_k6_s1.nc\\n-rw-r--r-- 1 root root 5894730 May 23 06:23 idata_joint_gmfrm_k6_s2.nc\\n-rw-r--r-- 1 root root 5407878 May 23 04:21 idata_sequential_k2_s1.nc\\n-rw-r--r-- 1 root root 4399458 May 23 04:23 idata_sequential_k2_s2.nc\\n-rw-r--r-- 1 root root 1648482 May 23 04:24 idata_sequential_k2_s3.nc\\n-rw-r--r-- 1 root root 3273702 May 23 04:26 idata_sequential_k2_s4.nc\\n-rw-r--r-- 1 root root 1488546 May 23 04:27 idata_sequential_k2_s5.nc\\n-rw-r--r-- 1 root root 1809294 May 23 04:29 idata_sequential_k2_s6.nc\\n-rw-r--r-- 1 root root 5465010 May 23 04:30 idata_sequential_k2_s7.nc\\n-rw-r--r-- 1 root root 4401918 May 23 04:32 idata_sequential_k2_s8.nc\\n-rw-r--r-- 1 root root 5404110 May 23 04:34 idata_sequential_k2_s9.nc\\n-rw-r--r-- 1 root root 1899870 May 23 04:36 idata_sequential_k4_s0.nc\\n-rw-r--r-- 1 root root 5534766 May 23 04:37 idata_sequential_k4_s1.nc\\n-rw-r--r-- 1 root root 4474038 May 23 04:39 idata_sequential_k4_s2.nc\\n-rw-r--r-- 1 root root 3350646 May 23 04:41 idata_sequential_k4_s3.nc\\n-rw-r--r-- 1 root root 5480082 May 23 04:43 idata_sequential_k4_s4.nc\\n-rw-r--r-- 1 root root 5540166 May 23 04:45 idata_sequential_k4_s5.nc\\n-rw-r--r-- 1 root root 4468626 May 23 04:47 idata_sequential_k4_s6.nc\\n-rw-r--r-- 1 root root 3348858 May 23 04:48 idata_sequential_k4_s7.nc\\n-rw-r--r-- 1 root root 3345090 May 23 04:50 idata_sequential_k4_s8.nc\\n-rw-r--r-- 1 root root 5480814 May 23 04:52 idata_sequential_k4_s9.nc\\n-rw-r--r-- 1 root root 5612526 May 23 05:11 idata_sequential_k6_s0.nc\\n-rw-r--r-- 1 root root 5607090 May 23 05:38 idata_sequential_k6_s1.nc\\n-rw-r--r-- 1 root root 5618706 May 23 06:09 idata_sequential_k6_s2.nc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "77f8fcaa-44ba-4e24-b92d-8b0727e2bdf0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp006/results_full/:\\\\ntotal 4\\\\ndrwxr-xr-x 3 root root   27 May 23 04:18 .\\\\ndrwxr-xr-x 4 root root  107 May 23 04:18 ..\\\\ndrwxr-xr-x 2 root root 4096 May 23 06:23 idata\\\\n\\\\n/root/gated_mfrm_judge_bias/exp006/results_full/idata:\\\\ntotal 187780\\\\ndrwxr-xr-x 2 root root    4096 May 23 06:23 .\\\\ndrwxr-xr-x 3 root root      27 May 23 04:18 ..\\\\n-rw-r--r-- 1 root root 5683902 May 23 04:22 idata_joint_gmfrm_k2_s1.nc\\\\n-rw-r--r-- 1 root root 4675482 May 23 04:24 idata_joint_gmfrm_k2_s2.nc\\\\n-rw-r--r-- 1 root root 1924506 May 23 04:25 idata_joint_gmfrm_k2_s3.nc\\\\n-rw-r--r-- 1 root root 3549726 May 23 04:27 idata_joint_gmfrm_k2_s4.nc\\\\n-rw-r--r-- 1 root root 1764570 May 23 04:28 idata_joint_gmfrm_k2_s5.nc\\\\n-rw-r--r-- 1 root root 2085318 May 23 04:30 idata_joint_gmfrm_k2_s6.nc\\\\n-rw-r--r-- 1 root root 5741034 May 23 04:31 idata_joint_gmfrm_k2_s7.nc\\\\n-rw-r--r-- 1 root root 4677942 May 23 04:33 idata_joint_gmfrm_k2_s8.nc\\\\n-rw-r--r-- 1 root root 5680134 May 23 04:35 idata_joint_gmfrm_k2_s9.nc\\\\n-rw-r--r-- 1 root root 2175894 May 23 04:37 idata_joint_gmfrm_k4_s0.nc\\\\n-rw-r--r-- 1 root root 5810790 May 23 04:39 idata_joint_gmfrm_k4_s1.nc\\\\n-rw-r--r-- 1 root root 4750062 May 23 04:40 idata_joint_gmfrm_k4_s2.nc\\\\n-rw-r--r-- 1 root root 3626670 May 23 04:42 idata_joint_gmfrm_k4_s3.nc\\\\n-rw-r--r-- 1 root root 5756106 May 23 04:44 idata_joint_gmfrm_k4_s4.nc\\\\n-rw-r--r-- 1 root root 5816190 May 23 04:46 idata_joint_gmfrm_k4_s5.nc\\\\n-rw-r--r-- 1 root root 4744650 May 23 04:48 idata_joint_gmfrm_k4_s6.nc\\\\n-rw-r--r-- 1 root root 3624882 May 23 04:49 idata_joint_gmfrm_k4_s7.nc\\\\n-rw-r--r-- 1 root root 3621114 May 23 04:51 idata_joint_gmfrm_k4_s8.nc\\\\n-rw-r--r-- 1 root root 5756838 May 23 04:53 idata_joint_gmfrm_k4_s9.nc\\\\n-rw-r--r-- 1 root root 5888550 May 23 05:25 idata_joint_gmfrm_k6_s0.nc\\\\n-rw-r--r-- 1 root root 5883114 May 23 05:51 idata_joint_gmfrm_k6_s1.nc\\\\n-rw-r--r-- 1 root root 5894730 May 23 06:23 idata_joint_gmfrm_k6_s2.nc\\\\n-rw-r--r-- 1 root root 5407878 May 23 04:21 idata_sequential_k2_s1.nc\\\\n-rw-r--r-- 1 root root 4399458 May 23 04:23 idata_sequential_k2_s2.nc\\\\n-rw-r--r-- 1 root root 1648482 May 23 04:24 idata_sequential_k2_s3.nc\\\\n-rw-r--r-- 1 root root 3273702 May 23 04:26 idata_sequential_k2_s4.nc\\\\n-rw-r--r-- 1 root root 1488546 May 23 04:27 idata_sequential_k2_s5.nc\\\\n-rw-r--r-- 1 root root 1809294 May 23 04:29 idata_sequential_k2_s6.nc\\\\n-rw-r--r-- 1 root root 5465010 May 23 04:30 idata_sequential_k2_s7.nc\\\\n-rw-r--r-- 1 root root 4401918 May 23 04:32 idata_sequential_k2_s8.nc\\\\n-rw-r--r-- 1 root root 5404110 May 23 04:34 idata_sequential_k2_s9.nc\\\\n-rw-r--r-- 1 root root 1899870 May 23 04:36 idata_sequential_k4_s0.nc\\\\n-rw-r--r-- 1 root root 5534766 May 23 04:37 idata_sequential_k4_s1.nc\\\\n-rw-r--r-- 1 root root 4474038 May 23 04:39 idata_sequential_k4_s2.nc\\\\n-rw-r--r-- 1 root root 3350646 May 23 04:41 idata_sequential_k4_s3.nc\\\\n-rw-r--r-- 1 root root 5480082 May 23 04:43 idata_sequential_k4_s4.nc\\\\n-rw-r--r-- 1 root root 5540166 May 23 04:45 idata_sequential_k4_s5.nc\\\\n-rw-r--r-- 1 root root 4468626 May 23 04:47 idata_sequential_k4_s6.nc\\\\n-rw-r--r-- 1 root root 3348858 May 23 04:48 idata_sequential_k4_s7.nc\\\\n-rw-r--r-- 1 root root 3345090 May 23 04:50 idata_sequential_k4_s8.nc\\\\n-rw-r--r-- 1 root root 5480814 May 23 04:52 idata_sequential_k4_s9.nc\\\\n-rw-r--r-- 1 root root 5612526 May 23 05:11 idata_sequential_k6_s0.nc\\\\n-rw-r--r-- 1 root root 5607090 May 23 05:38 idata_sequential_k6_s1.nc\\\\n-rw-r--r-- 1 root root 5618706 May 23 06:09 idata_sequential_k6_s2.nc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp006/results_full/:\\ntotal 4\\ndrwxr-xr-x 3 root root   27 May 23 04:18 .\\ndrwxr-xr-x 4 root root  107 May 23 04:18 ..\\ndrwxr-xr-x 2 root root 4096 May 23 06:23 idata\\n\\n/root/gated_mfrm_judge_bias/exp006/results_full/idata:\\ntotal 187780\\ndrwxr-xr-x 2 root root    4096 May 23 06:23 .\\ndrwxr-xr-x 3 root root      27 May 23 04:18 ..\\n-rw-r--r-- 1 root root 5683902 May 23 04:22 idata_joint_gmfrm_k2_s1.nc\\n-rw-r--r-- 1 root root 4675482 May 23 04:24 idata_joint_gmfrm_k2_s2.nc\\n-rw-r--r-- 1 root root 1924506 May 23 04:25 idata_joint_gmfrm_k2_s3.nc\\n-rw-r--r-- 1 root root 3549726 May 23 04:27 idata_joint_gmfrm_k2_s4.nc\\n-rw-r--r-- 1 root root 1764570 May 23 04:28 idata_joint_gmfrm_k2_s5.nc\\n-rw-r--r-- 1 root root 2085318 May 23 04:30 idata_joint_gmfrm_k2_s6.nc\\n-rw-r--r-- 1 root root 5741034 May 23 04:31 idata_joint_gmfrm_k2_s7.nc\\n-rw-r--r-- 1 root root 4677942 May 23 04:33 idata_joint_gmfrm_k2_s8.nc\\n-rw-r--r-- 1 root root 5680134 May 23 04:35 idata_joint_gmfrm_k2_s9.nc\\n-rw-r--r-- 1 root root 2175894 May 23 04:37 idata_joint_gmfrm_k4_s0.nc\\n-rw-r--r-- 1 root root 5810790 May 23 04:39 idata_joint_gmfrm_k4_s1.nc\\n-rw-r--r-- 1 root root 4750062 May 23 04:40 idata_joint_gmfrm_k4_s2.nc\\n-rw-r--r-- 1 root root 3626670 May 23 04:42 idata_joint_gmfrm_k4_s3.nc\\n-rw-r--r-- 1 root root 5756106 May 23 04:44 idata_joint_gmfrm_k4_s4.nc\\n-rw-r--r-- 1 root root 5816190 May 23 04:46 idata_joint_gmfrm_k4_s5.nc\\n-rw-r--r-- 1 root root 4744650 May 23 04:48 idata_joint_gmfrm_k4_s6.nc\\n-rw-r--r-- 1 root root 3624882 May 23 04:49 idata_joint_gmfrm_k4_s7.nc\\n-rw-r--r-- 1 root root 3621114 May 23 04:51 idata_joint_gmfrm_k4_s8.nc\\n-rw-r--r-- 1 root root 5756838 May 23 04:53 idata_joint_gmfrm_k4_s9.nc\\n-rw-r--r-- 1 root root 5888550 May 23 05:25 idata_joint_gmfrm_k6_s0.nc\\n-rw-r--r-- 1 root root 5883114 May 23 05:51 idata_joint_gmfrm_k6_s1.nc\\n-rw-r--r-- 1 root root 5894730 May 23 06:23 idata_joint_gmfrm_k6_s2.nc\\n-rw-r--r-- 1 root root 5407878 May 23 04:21 idata_sequential_k2_s1.nc\\n-rw-r--r-- 1 root root 4399458 May 23 04:23 idata_sequential_k2_s2.nc\\n-rw-r--r-- 1 root root 1648482 May 23 04:24 idata_sequential_k2_s3.nc\\n-rw-r--r-- 1 root root 3273702 May 23 04:26 idata_sequential_k2_s4.nc\\n-rw-r--r-- 1 root root 1488546 May 23 04:27 idata_sequential_k2_s5.nc\\n-rw-r--r-- 1 root root 1809294 May 23 04:29 idata_sequential_k2_s6.nc\\n-rw-r--r-- 1 root root 5465010 May 23 04:30 idata_sequential_k2_s7.nc\\n-rw-r--r-- 1 root root 4401918 May 23 04:32 idata_sequential_k2_s8.nc\\n-rw-r--r-- 1 root root 5404110 May 23 04:34 idata_sequential_k2_s9.nc\\n-rw-r--r-- 1 root root 1899870 May 23 04:36 idata_sequential_k4_s0.nc\\n-rw-r--r-- 1 root root 5534766 May 23 04:37 idata_sequential_k4_s1.nc\\n-rw-r--r-- 1 root root 4474038 May 23 04:39 idata_sequential_k4_s2.nc\\n-rw-r--r-- 1 root root 3350646 May 23 04:41 idata_sequential_k4_s3.nc\\n-rw-r--r-- 1 root root 5480082 May 23 04:43 idata_sequential_k4_s4.nc\\n-rw-r--r-- 1 root root 5540166 May 23 04:45 idata_sequential_k4_s5.nc\\n-rw-r--r-- 1 root root 4468626 May 23 04:47 idata_sequential_k4_s6.nc\\n-rw-r--r-- 1 root root 3348858 May 23 04:48 idata_sequential_k4_s7.nc\\n-rw-r--r-- 1 root root 3345090 May 23 04:50 idata_sequential_k4_s8.nc\\n-rw-r--r-- 1 root root 5480814 May 23 04:52 idata_sequential_k4_s9.nc\\n-rw-r--r-- 1 root root 5612526 May 23 05:11 idata_sequential_k6_s0.nc\\n-rw-r--r-- 1 root root 5607090 May 23 05:38 idata_sequential_k6_s1.nc\\n-rw-r--r-- 1 root root 5618706 May 23 06:09 idata_sequential_k6_s2.nc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015nqJRyiYrNebLvijL64qHn`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -laR /root/gated_mfrm_judge_bias/exp006/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "854b83ce-2209-4bda-9bd2-e639aa158755",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCzDqsJwvnxE1VvkxRxZht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 25519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 888
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T22:28:39.349Z_
+
+<details><summary>↩ Tool result · `toolu_015nqJRyiYrNebLvijL64qHn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp006/results/:\\ntotal 220\\ndrwxr-xr-x 2 root root   4096 May 23 04:09 .\\ndrwxr-xr-x 4 root root    107 May 23 04:18 ..\\n-rw-r--r-- 1 root root  18247 May 23 04:09 leave_one_out.pdf\\n-rw-r--r-- 1 root root 100832 May 23 04:09 leave_one_out.png\\n-rw-r--r-- 1 root root    756 May 23 04:09 leave_one_out_results.csv\\n-rw-r--r-- 1 root root    991 May 23 04:09 results.json\\n-rw-r--r-- 1 root root   6352 May 23 04:09 sensitivity_results.csv\\n-rw-r--r-- 1 root root  16256 May 23 04:09 tau_vs_judge_count.pdf\\n-rw-r--r-- 1 root root  62512 May 23 04:09 tau_vs_judge_count.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "6425fefa-85df-4a33-99c5-3411545e33f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp006/results/:\\\\ntotal 220\\\\ndrwxr-xr-x 2 root root   4096 May 23 04:09 .\\\\ndrwxr-xr-x 4 root root    107 May 23 04:18 ..\\\\n-rw-r--r-- 1 root root  18247 May 23 04:09 leave_one_out.pdf\\\\n-rw-r--r-- 1 root root 100832 May 23 04:09 leave_one_out.png\\\\n-rw-r--r-- 1 root root    756 May 23 04:09 leave_one_out_results.csv\\\\n-rw-r--r-- 1 root root    991 May 23 04:09 results.json\\\\n-rw-r--r-- 1 root root   6352 May 23 04:09 sensitivity_results.csv\\\\n-rw-r--r-- 1 root root  16256 May 23 04:09 tau_vs_judge_count.pdf\\\\n-rw-r--r-- 1 root root  62512 May 23 04:09 tau_vs_judge_count.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp006/results/:\\ntotal 220\\ndrwxr-xr-x 2 root root   4096 May 23 04:09 .\\ndrwxr-xr-x 4 root root    107 May 23 04:18 ..\\n-rw-r--r-- 1 root root  18247 May 23 04:09 leave_one_out.pdf\\n-rw-r--r-- 1 root root 100832 May 23 04:09 leave_one_out.png\\n-rw-r--r-- 1 root root    756 May 23 04:09 leave_one_out_results.csv\\n-rw-r--r-- 1 root root    991 May 23 04:09 results.json\\n-rw-r--r-- 1 root root   6352 May 23 04:09 sensitivity_results.csv\\n-rw-r--r-- 1 root root  16256 May 23 04:09 tau_vs_judge_count.pdf\\n-rw-r--r-- 1 root root  62512 May 23 04:09 tau_vs_judge_count.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WLBBP5nzNox65ofgdi3zep`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -laR /root/gated_mfrm_judge_bias/exp_w7_ablation/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "ee0bdd4c-2640-4d66-ac33-d7b85e275cab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KCzDqsJwvnxE1VvkxRxZht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 25519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 888
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T22:28:39.946Z_
+
+<details><summary>↩ Tool result · `toolu_01WLBBP5nzNox65ofgdi3zep`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp_w7_ablation/:\\ntotal 28\\ndrwxr-xr-x  3 root root   103 May 23 04:08 .\\ndrwxr-xr-x 17 root root  4096 May 23 05:46 ..\\ndrwxr-xr-x  2 root root    50 May 23 02:36 __pycache__\\n-rw-r--r--  1 root root  4988 May 23 05:40 results_w7_ablation_partial.csv\\n-rw-r--r--  1 root root 14074 May 23 02:35 run_ablation.py\\n\\n/root/gated_mfrm_judge_bias/exp_w7_ablation/__pycache__:\\ntotal 24\\ndrwxr-xr-x 2 root root    50 May 23 02:36 .\\ndrwxr-xr-x 3 root root   103 May 23 04:08 ..\\n-rw-r--r-- 1 root root 22976 May 23 02:36 run_ablation.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "70fb5ddc-99fa-420a-bc27-7f5dd5354c21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp_w7_ablation/:\\\\ntotal 28\\\\ndrwxr-xr-x  3 root root   103 May 23 04:08 .\\\\ndrwxr-xr-x 17 root root  4096 May 23 05:46 ..\\\\ndrwxr-xr-x  2 root root    50 May 23 02:36 __pycache__\\\\n-rw-r--r--  1 root root  4988 May 23 05:40 results_w7_ablation_partial.csv\\\\n-rw-r--r--  1 root root 14074 May 23 02:35 run_ablation.py\\\\n\\\\n/root/gated_mfrm_judge_bias/exp_w7_ablation/__pycache__:\\\\ntotal 24\\\\ndrwxr-xr-x 2 root root    50 May 23 02:36 .\\\\ndrwxr-xr-x 3 root root   103 May 23 04:08 ..\\\\n-rw-r--r-- 1 root root 22976 May 23 02:36 run_ablation.cpython-312.pyc\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp_w7_ablation/:\\ntotal 28\\ndrwxr-xr-x  3 root root   103 May 23 04:08 .\\ndrwxr-xr-x 17 root root  4096 May 23 05:46 ..\\ndrwxr-xr-x  2 root root    50 May 23 02:36 __pycache__\\n-rw-r--r--  1 root root  4988 May 23 05:40 results_w7_ablation_partial.csv\\n-rw-r--r--  1 root root 14074 May 23 02:35 run_ablation.py\\n\\n/root/gated_mfrm_judge_bias/exp_w7_ablation/__pycache__:\\ntotal 24\\ndrwxr-xr-x 2 root root    50 May 23 02:36 .\\ndrwxr-xr-x 3 root root   103 May 23 04:08 ..\\n-rw-r--r-- 1 root root 22976 May 23 02:36 run_ablation.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I can see:
+1. exp006 has results in `results/` with existing plots and CSVs, and `results_full/idata/` with .nc (NetCDF/InferenceData) files still being generated (k6 only has s0-s2, k9 not started yet)
+2. exp_w7_ablation has a partial CSV results file
+
+Let me examine the existing data files to understand the format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "839d7239-4f36-43fd-b612-b9006a581962",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnDvfmrAWJg59NNMSNHgYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3337,
+      "cache_read_input_tokens": 26407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+数据已部分生成。检查现有数据格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "c8eaccd2-7bab-4547-951c-757922b9ea45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnDvfmrAWJg59NNMSNHgYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3337,
+      "cache_read_input_tokens": 26407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LQm4xULEoU8uwuCdvksRnQ`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp006/results/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "cbe04ab3-7fa1-4fd1-97f0-cad50c393b53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnDvfmrAWJg59NNMSNHgYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3337,
+      "cache_read_input_tokens": 26407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T22:28:48.285Z_
+
+<details><summary>↩ Tool result · `toolu_01LQm4xULEoU8uwuCdvksRnQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"judge_counts_tested\\\": [\\n    2,\\n    4,\\n    6,\\n    8,\\n    9\\n  ],\\n  \\\"methods\\\": [\\n    \\\"raw_average\\\"\\n  ],\\n  \\\"n_subsets_per_count\\\": 10,\\n  \\\"total_evaluations\\\": 40,\\n  \\\"crossover\\\": {\\n    \\\"crossover\\\": null,\\n    \\\"note\\\": \\\"insufficient data\\\"\\n  },\\n  \\\"per_count\\\": {\\n    \\\"2\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.754685545090674,\\n        \\\"std_tau\\\": 0.08782904721455212,\\n        \\\"n_subsets\\\": 10\\n      }\\n    },\\n    \\\"4\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.7785714285714285,\\n        \\\"std_tau\\\": 0.04054615801411048,\\n        \\\"n_subsets\\\": 10\\n      }\\n    },\\n    \\\"6\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.7999999999999999,\\n        \\\"std_tau\\\": 0.030116930096841743,\\n        \\\"n_subsets\\\": 10\\n      }\\n    },\\n    \\\"8\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.7857142857142856,\\n        \\\"std_tau\\\": 0.0,\\n        \\\"n_subsets\\\": 9\\n      }\\n    },\\n    \\\"9\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.7857142857142856,\\n        \\\"std_tau\\\": NaN,\\n        \\\"n_subsets\\\": 1\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "4845eeab-3e0d-450d-bbfe-6ded6ec9fc8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"judge_counts_tested\\\\\\\": [\\\\n    2,\\\\n    4,\\\\n    6,\\\\n    8,\\\\n    9\\\\n  ],\\\\n  \\\\\\\"methods\\\\\\\": [\\\\n    \\\\\\\"raw_average\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_subsets_per_count\\\\\\\": 10,\\\\n  \\\\\\\"total_evaluations\\\\\\\": 40,\\\\n  \\\\\\\"crossover\\\\\\\": {\\\\n    \\\\\\\"crossover\\\\\\\": null,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"insufficient data\\\\\\\"\\\\n  },\\\\n  \\\\\\\"per_count\\\\\\\": {\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"raw_average\\\\\\\": {\\\\n        \\\\\\\"mean_tau\\\\\\\": 0.754685545090674,\\\\n        \\\\\\\"std_tau\\\\\\\": 0.08782904721455212,\\\\n        \\\\\\\"n_subsets\\\\\\\": 10\\\\n      }\\\\n    },\\\\n    \\\\\\\"4\\\\\\\": {\\\\n      \\\\\\\"raw_average\\\\\\\": {\\\\n        \\\\\\\"mean_tau\\\\\\\": 0.7785714285714285,\\\\n        \\\\\\\"std_tau\\\\\\\": 0.04054615801411048,\\\\n        \\\\\\\"n_subsets\\\\\\\": 10\\\\n      }\\\\n    },\\\\n    \\\\\\\"6\\\\\\\": {\\\\n      \\\\\\\"raw_average\\\\\\\": {\\\\n        \\\\\\\"mean_tau\\\\\\\": 0.7999999999999999,\\\\n        \\\\\\\"std_tau\\\\\\\": 0.030116930096841743,\\\\n        \\\\\\\"n_subsets\\\\\\\": 10\\\\n      }\\\\n    },\\\\n    \\\\\\\"8\\\\\\\": {\\\\n      \\\\\\\"raw_average\\\\\\\": {\\\\n        \\\\\\\"mean_tau\\\\\\\": 0.7857142857142856,\\\\n        \\\\\\\"std_tau\\\\\\\": 0.0,\\\\n        \\\\\\\"n_subsets\\\\\\\": 9\\\\n      }\\\\n    },\\\\n    \\\\\\\"9\\\\\\\": {\\\\n      \\\\\\\"raw_average\\\\\\\": {\\\\n        \\\\\\\"mean_tau\\\\\\\": 0.7857142857142856,\\\\n        \\\\\\\"std_tau\\\\\\\": NaN,\\\\n        \\\\\\\"n_subsets\\\\\\\": 1\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"judge_counts_tested\\\": [\\n    2,\\n    4,\\n    6,\\n    8,\\n    9\\n  ],\\n  \\\"methods\\\": [\\n    \\\"raw_average\\\"\\n  ],\\n  \\\"n_subsets_per_count\\\": 10,\\n  \\\"total_evaluations\\\": 40,\\n  \\\"crossover\\\": {\\n    \\\"crossover\\\": null,\\n    \\\"note\\\": \\\"insufficient data\\\"\\n  },\\n  \\\"per_count\\\": {\\n    \\\"2\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.754685545090674,\\n        \\\"std_tau\\\": 0.08782904721455212,\\n        \\\"n_subsets\\\": 10\\n      }\\n    },\\n    \\\"4\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.7785714285714285,\\n        \\\"std_tau\\\": 0.04054615801411048,\\n        \\\"n_subsets\\\": 10\\n      }\\n    },\\n    \\\"6\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.7999999999999999,\\n        \\\"std_tau\\\": 0.030116930096841743,\\n        \\\"n_subsets\\\": 10\\n      }\\n    },\\n    \\\"8\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.7857142857142856,\\n        \\\"std_tau\\\": 0.0,\\n        \\\"n_subsets\\\": 9\\n      }\\n    },\\n    \\\"9\\\": {\\n      \\\"raw_average\\\": {\\n        \\\"mean_tau\\\": 0.7857142857142856,\\n        \\\"std_tau\\\": NaN,\\n        \\\"n_subsets\\\": 1\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013LX1hVXApXyqFGbKyAFGhA`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp006/results/sensitivity_results.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "6a5beeb1-8adf-4920-9a3d-096b72ee3492",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnDvfmrAWJg59NNMSNHgYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3337,
+      "cache_read_input_tokens": 26407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T22:28:49.222Z_
+
+<details><summary>↩ Tool result · `toolu_013LX1hVXApXyqFGbKyAFGhA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"judge_count,subset_idx,judges,method,kendall_tau,spearman_rho,n_matched,n_obs,elapsed_s\\n2,0,\\\"llama-3.3-70b,qwen3-235b-proxy\\\",raw_average,0.7142857142857142,0.8333333333333335,8,1144,0.0\\n2,1,\\\"gemini-2.5-pro-proxy,gpt-5.5-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1740,0.0\\n2,2,\\\"claude-opus-4.7-proxy,gemini-2.5-pro-proxy\\\",raw_average,0.8571428571428571,0.9523809523809524,8,1747,0.0\\n2,3,\\\"deepseek-v4-pro-proxy,mistral-large-2\\\",raw_average,0.7142857142857142,0.8333333333333335,8,613,0.0\\n2,4,\\\"claude-sonnet-4.6-proxy,qwen2.5-72b\\\",raw_average,0.8571428571428571,0.9523809523809524,8,1314,0.0\\n2,5,\\\"llama-3.3-70b,mistral-large-2\\\",raw_average,0.6182840223353117,0.790433332862751,8,625,0.0\\n2,6,\\\"gemini-2.5-pro-proxy,mistral-large-2\\\",raw_average,0.6428571428571428,0.7857142857142858,8,674,0.0\\n2,7,\\\"claude-opus-4.7-proxy,gpt-5.5-proxy\\\",raw_average,0.8571428571428571,0.9523809523809524,8,2499,0.0\\n2,8,\\\"claude-opus-4.7-proxy,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1952,0.0\\n2,9,\\\"gpt-5.5-proxy,mistral-large-2\\\",raw_average,0.7142857142857142,0.8571428571428572,8,1426,0.0\\n4,0,\\\"deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1552,0.0\\n4,1,\\\"claude-opus-4.7-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b\\\",raw_average,0.8571428571428571,0.9523809523809524,8,2976,0.0\\n4,2,\\\"claude-opus-4.7-proxy,gemini-2.5-pro-proxy,mistral-large-2,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2626,0.0\\n4,3,\\\"claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,mistral-large-2,qwen3-235b-proxy\\\",raw_average,0.7142857142857142,0.8571428571428572,8,2390,0.0\\n4,4,\\\"deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2421,0.0\\n4,5,\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3426,0.0\\n4,6,\\\"claude-opus-4.7-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2175,0.0\\n4,7,\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,qwen2.5-72b\\\",raw_average,0.7142857142857142,0.8571428571428572,8,2241,0.0\\n4,8,\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,mistral-large-2,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1927,0.0\\n4,9,\\\"gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2482,0.0\\n6,0,\\\"claude-opus-4.7-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4120,0.0\\n6,1,\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3667,0.0\\n6,2,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2\\\",raw_average,0.8571428571428571,0.9523809523809524,8,4635,0.0\\n6,3,\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4168,0.0\\n6,4,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.8571428571428571,0.9523809523809524,8,4205,0.0\\n6,5,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5093,0.0\\n6,6,\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4108,0.0\\n6,7,\\\"claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3132,0.0\\n6,8,\\\"deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3614,0.0\\n6,9,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3939,0.0\\n8,0,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5365,0.0\\n8,1,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5767,0.0\\n8,2,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5884,0.0\\n8,3,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5619,0.0\\n8,4,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4818,0.0\\n8,5,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5570,0.0\\n8,6,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5631,0.0\\n8,7,\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5047,0.0\\n8,8,\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4811,0.0\\n9,0,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,6064,0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "ad01c3e8-ee75-4d7d-af2b-0941ab0a0bd2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"judge_count,subset_idx,judges,method,kendall_tau,spearman_rho,n_matched,n_obs,elapsed_s\\\\n2,0,\\\\\\\"llama-3.3-70b,qwen3-235b-proxy\\\\\\\",raw_average,0.7142857142857142,0.8333333333333335,8,1144,0.0\\\\n2,1,\\\\\\\"gemini-2.5-pro-proxy,gpt-5.5-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1740,0.0\\\\n2,2,\\\\\\\"claude-opus-4.7-proxy,gemini-2.5-pro-proxy\\\\\\\",raw_average,0.8571428571428571,0.9523809523809524,8,1747,0.0\\\\n2,3,\\\\\\\"deepseek-v4-pro-proxy,mistral-large-2\\\\\\\",raw_average,0.7142857142857142,0.8333333333333335,8,613,0.0\\\\n2,4,\\\\\\\"claude-sonnet-4.6-proxy,qwen2.5-72b\\\\\\\",raw_average,0.8571428571428571,0.9523809523809524,8,1314,0.0\\\\n2,5,\\\\\\\"llama-3.3-70b,mistral-large-2\\\\\\\",raw_average,0.6182840223353117,0.790433332862751,8,625,0.0\\\\n2,6,\\\\\\\"gemini-2.5-pro-proxy,mistral-large-2\\\\\\\",raw_average,0.6428571428571428,0.7857142857142858,8,674,0.0\\\\n2,7,\\\\\\\"claude-opus-4.7-proxy,gpt-5.5-proxy\\\\\\\",raw_average,0.8571428571428571,0.9523809523809524,8,2499,0.0\\\\n2,8,\\\\\\\"claude-opus-4.7-proxy,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1952,0.0\\\\n2,9,\\\\\\\"gpt-5.5-proxy,mistral-large-2\\\\\\\",raw_average,0.7142857142857142,0.8571428571428572,8,1426,0.0\\\\n4,0,\\\\\\\"deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1552,0.0\\\\n4,1,\\\\\\\"claude-opus-4.7-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b\\\\\\\",raw_average,0.8571428571428571,0.9523809523809524,8,2976,0.0\\\\n4,2,\\\\\\\"claude-opus-4.7-proxy,gemini-2.5-pro-proxy,mistral-large-2,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2626,0.0\\\\n4,3,\\\\\\\"claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,mistral-large-2,qwen3-235b-proxy\\\\\\\",raw_average,0.7142857142857142,0.8571428571428572,8,2390,0.0\\\\n4,4,\\\\\\\"deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2421,0.0\\\\n4,5,\\\\\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3426,0.0\\\\n4,6,\\\\\\\"claude-opus-4.7-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2175,0.0\\\\n4,7,\\\\\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,qwen2.5-72b\\\\\\\",raw_average,0.7142857142857142,0.8571428571428572,8,2241,0.0\\\\n4,8,\\\\\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,mistral-large-2,qwen2.5-72b\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1927,0.0\\\\n4,9,\\\\\\\"gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2482,0.0\\\\n6,0,\\\\\\\"claude-opus-4.7-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4120,0.0\\\\n6,1,\\\\\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3667,0.0\\\\n6,2,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2\\\\\\\",raw_average,0.8571428571428571,0.9523809523809524,8,4635,0.0\\\\n6,3,\\\\\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4168,0.0\\\\n6,4,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.8571428571428571,0.9523809523809524,8,4205,0.0\\\\n6,5,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5093,0.0\\\\n6,6,\\\\\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4108,0.0\\\\n6,7,\\\\\\\"claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3132,0.0\\\\n6,8,\\\\\\\"deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3614,0.0\\\\n6,9,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,qwen2.5-72b\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3939,0.0\\\\n8,0,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5365,0.0\\\\n8,1,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5767,0.0\\\\n8,2,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5884,0.0\\\\n8,3,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5619,0.0\\\\n8,4,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4818,0.0\\\\n8,5,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5570,0.0\\\\n8,6,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5631,0.0\\\\n8,7,\\\\\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5047,0.0\\\\n8,8,\\\\\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4811,0.0\\\\n9,0,\\\\\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\\\\\",raw_average,0.7857142857142856,0.9047619047619048,8,6064,0.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"judge_count,subset_idx,judges,method,kendall_tau,spearman_rho,n_matched,n_obs,elapsed_s\\n2,0,\\\"llama-3.3-70b,qwen3-235b-proxy\\\",raw_average,0.7142857142857142,0.8333333333333335,8,1144,0.0\\n2,1,\\\"gemini-2.5-pro-proxy,gpt-5.5-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1740,0.0\\n2,2,\\\"claude-opus-4.7-proxy,gemini-2.5-pro-proxy\\\",raw_average,0.8571428571428571,0.9523809523809524,8,1747,0.0\\n2,3,\\\"deepseek-v4-pro-proxy,mistral-large-2\\\",raw_average,0.7142857142857142,0.8333333333333335,8,613,0.0\\n2,4,\\\"claude-sonnet-4.6-proxy,qwen2.5-72b\\\",raw_average,0.8571428571428571,0.9523809523809524,8,1314,0.0\\n2,5,\\\"llama-3.3-70b,mistral-large-2\\\",raw_average,0.6182840223353117,0.790433332862751,8,625,0.0\\n2,6,\\\"gemini-2.5-pro-proxy,mistral-large-2\\\",raw_average,0.6428571428571428,0.7857142857142858,8,674,0.0\\n2,7,\\\"claude-opus-4.7-proxy,gpt-5.5-proxy\\\",raw_average,0.8571428571428571,0.9523809523809524,8,2499,0.0\\n2,8,\\\"claude-opus-4.7-proxy,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1952,0.0\\n2,9,\\\"gpt-5.5-proxy,mistral-large-2\\\",raw_average,0.7142857142857142,0.8571428571428572,8,1426,0.0\\n4,0,\\\"deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1552,0.0\\n4,1,\\\"claude-opus-4.7-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b\\\",raw_average,0.8571428571428571,0.9523809523809524,8,2976,0.0\\n4,2,\\\"claude-opus-4.7-proxy,gemini-2.5-pro-proxy,mistral-large-2,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2626,0.0\\n4,3,\\\"claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,mistral-large-2,qwen3-235b-proxy\\\",raw_average,0.7142857142857142,0.8571428571428572,8,2390,0.0\\n4,4,\\\"deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2421,0.0\\n4,5,\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3426,0.0\\n4,6,\\\"claude-opus-4.7-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2175,0.0\\n4,7,\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,qwen2.5-72b\\\",raw_average,0.7142857142857142,0.8571428571428572,8,2241,0.0\\n4,8,\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,mistral-large-2,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1927,0.0\\n4,9,\\\"gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,2482,0.0\\n6,0,\\\"claude-opus-4.7-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4120,0.0\\n6,1,\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3667,0.0\\n6,2,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2\\\",raw_average,0.8571428571428571,0.9523809523809524,8,4635,0.0\\n6,3,\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4168,0.0\\n6,4,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.8571428571428571,0.9523809523809524,8,4205,0.0\\n6,5,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5093,0.0\\n6,6,\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4108,0.0\\n6,7,\\\"claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3132,0.0\\n6,8,\\\"deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3614,0.0\\n6,9,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,3939,0.0\\n8,0,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5365,0.0\\n8,1,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5767,0.0\\n8,2,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5884,0.0\\n8,3,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5619,0.0\\n8,4,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4818,0.0\\n8,5,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5570,0.0\\n8,6,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5631,0.0\\n8,7,\\\"claude-opus-4.7-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,5047,0.0\\n8,8,\\\"claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,4811,0.0\\n9,0,\\\"claude-opus-4.7-proxy,claude-sonnet-4.6-proxy,deepseek-v4-pro-proxy,gemini-2.5-pro-proxy,gpt-5.5-proxy,llama-3.3-70b,mistral-large-2,qwen2.5-72b,qwen3-235b-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,6064,0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Sst4Hm3CkVQUxgf5DtR6gv`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp006/results/leave_one_out_results.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "8c4a6a92-cfd0-425b-89aa-737ec23e4128",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnDvfmrAWJg59NNMSNHgYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3337,
+      "cache_read_input_tokens": 26407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T22:28:50.057Z_
+
+<details><summary>↩ Tool result · `toolu_01Sst4Hm3CkVQUxgf5DtR6gv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"left_out_judge,method,kendall_tau,tau_delta,spearman_rho,n_obs\\nclaude-opus-4.7-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,4811\\nclaude-sonnet-4.6-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5047\\ndeepseek-v4-pro-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5631\\ngemini-2.5-pro-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5570\\ngpt-5.5-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,4818\\nllama-3.3-70b,raw_average,0.7857142857142856,0.0,0.9047619047619048,5619\\nmistral-large-2,raw_average,0.7857142857142856,0.0,0.9047619047619048,5884\\nqwen2.5-72b,raw_average,0.7857142857142856,0.0,0.9047619047619048,5767\\nqwen3-235b-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5365\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "670da2df-181d-4259-b941-b444fd121563",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"left_out_judge,method,kendall_tau,tau_delta,spearman_rho,n_obs\\\\nclaude-opus-4.7-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,4811\\\\nclaude-sonnet-4.6-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5047\\\\ndeepseek-v4-pro-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5631\\\\ngemini-2.5-pro-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5570\\\\ngpt-5.5-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,4818\\\\nllama-3.3-70b,raw_average,0.7857142857142856,0.0,0.9047619047619048,5619\\\\nmistral-large-2,raw_average,0.7857142857142856,0.0,0.9047619047619048,5884\\\\nqwen2.5-72b,raw_average,0.7857142857142856,0.0,0.9047619047619048,5767\\\\nqwen3-235b-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5365\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"left_out_judge,method,kendall_tau,tau_delta,spearman_rho,n_obs\\nclaude-opus-4.7-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,4811\\nclaude-sonnet-4.6-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5047\\ndeepseek-v4-pro-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5631\\ngemini-2.5-pro-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5570\\ngpt-5.5-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,4818\\nllama-3.3-70b,raw_average,0.7857142857142856,0.0,0.9047619047619048,5619\\nmistral-large-2,raw_average,0.7857142857142856,0.0,0.9047619047619048,5884\\nqwen2.5-72b,raw_average,0.7857142857142856,0.0,0.9047619047619048,5767\\nqwen3-235b-proxy,raw_average,0.7857142857142856,0.0,0.9047619047619048,5365\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ay14vRCfiFS1ghr362Vpds`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -30 /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "fa20d40f-9945-44db-b729-63e76b4e4664",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnDvfmrAWJg59NNMSNHgYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3337,
+      "cache_read_input_tokens": 26407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T22:28:50.905Z_
+
+<details><summary>↩ Tool result · `toolu_01Ay14vRCfiFS1ghr362Vpds`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"theta_rmse,theta_tau,r_hat,ess,c_rmse,c_pearson,variant,seed,elapsed_s\\n0.12411725256511716,0.9216326530612245,1.01,499.0,0.35047669713434326,0.9484780674167487,full_gmfrm,0,237.40839338302612\\n0.1397406824121637,0.9020408163265307,1.01,387.0,0.6142761661766963,0.7442080152161626,binary_gating,0,405.7668209075928\\n0.11967898621179554,0.9167346938775511,1.01,1105.0,0.3855081701141572,0.9479215555524895,no_judge_severity,0,237.86562609672546\\n0.30054125451886904,0.8122448979591836,1.01,588.0,1.2037705773534326,0.9404122821838565,staged_estimation,0,251.02897214889526\\n0.1507490792724594,0.92,1.02,299.0,0.7356072749710157,0.7982964950005081,full_gmfrm,1,196.8665885925293\\n0.15332991168718862,0.9036734693877552,1.01,430.0,0.8423824872782287,0.6715604689898412,binary_gating,1,401.3062343597412\\n0.1450838761210493,0.9183673469387756,1.0,883.0,0.7811672780715748,0.7961468529253287,no_judge_severity,1,209.63159370422363\\n0.27006880161129276,0.8351020408163266,1.01,445.0,1.4975747226490193,0.7589256148192345,staged_estimation,1,243.19071102142334\\n0.13190956100245105,0.9167346938775511,1.01,381.0,0.753111487894359,0.7889639770881851,full_gmfrm,2,203.50539135932922\\n0.13843890990708618,0.9151020408163266,1.01,391.0,0.7765924885997472,0.8492832168006631,binary_gating,2,426.4959726333618\\n0.12812415232035348,0.9118367346938776,1.01,681.0,0.7651106273965484,0.7931704611678824,no_judge_severity,2,209.4803659915924\\n0.20973928223437086,0.8808163265306123,1.01,549.0,1.4870571660370784,0.7456556470123105,staged_estimation,2,262.22953605651855\\n0.10048917278000846,0.926530612244898,1.0,642.0,0.3094227936933459,0.9502957693509362,full_gmfrm,3,243.21292805671692\\n0.12026940557819572,0.9183673469387756,1.03,233.0,0.6644014024319723,0.7524639591604882,binary_gating,3,404.01664447784424\\n0.10869023748541413,0.9248979591836736,1.0,1089.0,0.3121637392417494,0.9495578134560043,no_judge_severity,3,236.2399570941925\\n0.26165143774261895,0.8073469387755102,1.01,556.0,1.188265205513021,0.9399620018120741,staged_estimation,3,252.13327074050903\\n0.12383611230377897,0.9167346938775511,1.01,388.0,0.8645338392823402,0.8921460137568316,full_gmfrm,4,211.26048755645752\\n0.1442252630146302,0.9102040816326531,1.01,335.0,1.2098187297654075,0.8524745437637856,binary_gating,4,408.38749837875366\\n0.12981373446732525,0.9151020408163266,1.0,863.0,0.9191391534522583,0.8900876123812391,no_judge_severity,4,210.3696165084839\\n0.23437401424595464,0.8759183673469388,1.01,541.0,1.5261901444243422,0.8523323611338641,staged_estimation,4,259.6823832988739\\n0.11746648584388578,0.9167346938775511,1.01,455.0,0.4754440557779371,0.8727567336665385,full_gmfrm,5,221.78403544425964\\n0.12568904019312452,0.9069387755102041,1.01,429.0,0.6542655372706866,0.7616225492226885,binary_gating,5,407.6336808204651\\n0.1124030672237581,0.9151020408163266,1.01,699.0,0.47884102753941526,0.8724580642832855,no_judge_severity,5,212.89105033874512\\n0.2853142502889522,0.7877551020408163,1.0,582.0,1.3953306552465006,0.8435440834343289,staged_estimation,5,261.6573598384857\\n0.15390042229437292,0.9118367346938776,1.01,296.0,0.6890029065555119,0.8004989128869798,full_gmfrm,6,246.09747171401978\\n0.15709229610601722,0.9053061224489797,1.01,379.0,0.6919219012064705,0.8209375870207005,binary_gating,6,416.1729099750519\\n0.14538773623748585,0.9102040816326531,1.0,889.0,0.7434636078418924,0.7965117683552702,no_judge_severity,6,220.62164330482483\\n0.2510398138755133,0.846530612244898,1.02,546.0,1.412097763005174,0.7383575429998313,staged_estimation,6,255.24401330947876\\n0.10001918999860052,0.9281632653061225,1.01,423.0,0.4599080024676294,0.9496940758054125,full_gmfrm,7,199.18004655838013\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "fd1810a7-5f68-4a32-badb-c029ef1811d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"theta_rmse,theta_tau,r_hat,ess,c_rmse,c_pearson,variant,seed,elapsed_s\\\\n0.12411725256511716,0.9216326530612245,1.01,499.0,0.35047669713434326,0.9484780674167487,full_gmfrm,0,237.40839338302612\\\\n0.1397406824121637,0.9020408163265307,1.01,387.0,0.6142761661766963,0.7442080152161626,binary_gating,0,405.7668209075928\\\\n0.11967898621179554,0.9167346938775511,1.01,1105.0,0.3855081701141572,0.9479215555524895,no_judge_severity,0,237.86562609672546\\\\n0.30054125451886904,0.8122448979591836,1.01,588.0,1.2037705773534326,0.9404122821838565,staged_estimation,0,251.02897214889526\\\\n0.1507490792724594,0.92,1.02,299.0,0.7356072749710157,0.7982964950005081,full_gmfrm,1,196.8665885925293\\\\n0.15332991168718862,0.9036734693877552,1.01,430.0,0.8423824872782287,0.6715604689898412,binary_gating,1,401.3062343597412\\\\n0.1450838761210493,0.9183673469387756,1.0,883.0,0.7811672780715748,0.7961468529253287,no_judge_severity,1,209.63159370422363\\\\n0.27006880161129276,0.8351020408163266,1.01,445.0,1.4975747226490193,0.7589256148192345,staged_estimation,1,243.19071102142334\\\\n0.13190956100245105,0.9167346938775511,1.01,381.0,0.753111487894359,0.7889639770881851,full_gmfrm,2,203.50539135932922\\\\n0.13843890990708618,0.9151020408163266,1.01,391.0,0.7765924885997472,0.8492832168006631,binary_gating,2,426.4959726333618\\\\n0.12812415232035348,0.9118367346938776,1.01,681.0,0.7651106273965484,0.7931704611678824,no_judge_severity,2,209.4803659915924\\\\n0.20973928223437086,0.8808163265306123,1.01,549.0,1.4870571660370784,0.7456556470123105,staged_estimation,2,262.22953605651855\\\\n0.10048917278000846,0.926530612244898,1.0,642.0,0.3094227936933459,0.9502957693509362,full_gmfrm,3,243.21292805671692\\\\n0.12026940557819572,0.9183673469387756,1.03,233.0,0.6644014024319723,0.7524639591604882,binary_gating,3,404.01664447784424\\\\n0.10869023748541413,0.9248979591836736,1.0,1089.0,0.3121637392417494,0.9495578134560043,no_judge_severity,3,236.2399570941925\\\\n0.26165143774261895,0.8073469387755102,1.01,556.0,1.188265205513021,0.9399620018120741,staged_estimation,3,252.13327074050903\\\\n0.12383611230377897,0.9167346938775511,1.01,388.0,0.8645338392823402,0.8921460137568316,full_gmfrm,4,211.26048755645752\\\\n0.1442252630146302,0.9102040816326531,1.01,335.0,1.2098187297654075,0.8524745437637856,binary_gating,4,408.38749837875366\\\\n0.12981373446732525,0.9151020408163266,1.0,863.0,0.9191391534522583,0.8900876123812391,no_judge_severity,4,210.3696165084839\\\\n0.23437401424595464,0.8759183673469388,1.01,541.0,1.5261901444243422,0.8523323611338641,staged_estimation,4,259.6823832988739\\\\n0.11746648584388578,0.9167346938775511,1.01,455.0,0.4754440557779371,0.8727567336665385,full_gmfrm,5,221.78403544425964\\\\n0.12568904019312452,0.9069387755102041,1.01,429.0,0.6542655372706866,0.7616225492226885,binary_gating,5,407.6336808204651\\\\n0.1124030672237581,0.9151020408163266,1.01,699.0,0.47884102753941526,0.8724580642832855,no_judge_severity,5,212.89105033874512\\\\n0.2853142502889522,0.7877551020408163,1.0,582.0,1.3953306552465006,0.8435440834343289,staged_estimation,5,261.6573598384857\\\\n0.15390042229437292,0.9118367346938776,1.01,296.0,0.6890029065555119,0.8004989128869798,full_gmfrm,6,246.09747171401978\\\\n0.15709229610601722,0.9053061224489797,1.01,379.0,0.6919219012064705,0.8209375870207005,binary_gating,6,416.1729099750519\\\\n0.14538773623748585,0.9102040816326531,1.0,889.0,0.7434636078418924,0.7965117683552702,no_judge_severity,6,220.62164330482483\\\\n0.2510398138755133,0.846530612244898,1.02,546.0,1.412097763005174,0.7383575429998313,staged_estimation,6,255.24401330947876\\\\n0.10001918999860052,0.9281632653061225,1.01,423.0,0.4599080024676294,0.9496940758054125,full_gmfrm,7,199.18004655838013\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"theta_rmse,theta_tau,r_hat,ess,c_rmse,c_pearson,variant,seed,elapsed_s\\n0.12411725256511716,0.9216326530612245,1.01,499.0,0.35047669713434326,0.9484780674167487,full_gmfrm,0,237.40839338302612\\n0.1397406824121637,0.9020408163265307,1.01,387.0,0.6142761661766963,0.7442080152161626,binary_gating,0,405.7668209075928\\n0.11967898621179554,0.9167346938775511,1.01,1105.0,0.3855081701141572,0.9479215555524895,no_judge_severity,0,237.86562609672546\\n0.30054125451886904,0.8122448979591836,1.01,588.0,1.2037705773534326,0.9404122821838565,staged_estimation,0,251.02897214889526\\n0.1507490792724594,0.92,1.02,299.0,0.7356072749710157,0.7982964950005081,full_gmfrm,1,196.8665885925293\\n0.15332991168718862,0.9036734693877552,1.01,430.0,0.8423824872782287,0.6715604689898412,binary_gating,1,401.3062343597412\\n0.1450838761210493,0.9183673469387756,1.0,883.0,0.7811672780715748,0.7961468529253287,no_judge_severity,1,209.63159370422363\\n0.27006880161129276,0.8351020408163266,1.01,445.0,1.4975747226490193,0.7589256148192345,staged_estimation,1,243.19071102142334\\n0.13190956100245105,0.9167346938775511,1.01,381.0,0.753111487894359,0.7889639770881851,full_gmfrm,2,203.50539135932922\\n0.13843890990708618,0.9151020408163266,1.01,391.0,0.7765924885997472,0.8492832168006631,binary_gating,2,426.4959726333618\\n0.12812415232035348,0.9118367346938776,1.01,681.0,0.7651106273965484,0.7931704611678824,no_judge_severity,2,209.4803659915924\\n0.20973928223437086,0.8808163265306123,1.01,549.0,1.4870571660370784,0.7456556470123105,staged_estimation,2,262.22953605651855\\n0.10048917278000846,0.926530612244898,1.0,642.0,0.3094227936933459,0.9502957693509362,full_gmfrm,3,243.21292805671692\\n0.12026940557819572,0.9183673469387756,1.03,233.0,0.6644014024319723,0.7524639591604882,binary_gating,3,404.01664447784424\\n0.10869023748541413,0.9248979591836736,1.0,1089.0,0.3121637392417494,0.9495578134560043,no_judge_severity,3,236.2399570941925\\n0.26165143774261895,0.8073469387755102,1.01,556.0,1.188265205513021,0.9399620018120741,staged_estimation,3,252.13327074050903\\n0.12383611230377897,0.9167346938775511,1.01,388.0,0.8645338392823402,0.8921460137568316,full_gmfrm,4,211.26048755645752\\n0.1442252630146302,0.9102040816326531,1.01,335.0,1.2098187297654075,0.8524745437637856,binary_gating,4,408.38749837875366\\n0.12981373446732525,0.9151020408163266,1.0,863.0,0.9191391534522583,0.8900876123812391,no_judge_severity,4,210.3696165084839\\n0.23437401424595464,0.8759183673469388,1.01,541.0,1.5261901444243422,0.8523323611338641,staged_estimation,4,259.6823832988739\\n0.11746648584388578,0.9167346938775511,1.01,455.0,0.4754440557779371,0.8727567336665385,full_gmfrm,5,221.78403544425964\\n0.12568904019312452,0.9069387755102041,1.01,429.0,0.6542655372706866,0.7616225492226885,binary_gating,5,407.6336808204651\\n0.1124030672237581,0.9151020408163266,1.01,699.0,0.47884102753941526,0.8724580642832855,no_judge_severity,5,212.89105033874512\\n0.2853142502889522,0.7877551020408163,1.0,582.0,1.3953306552465006,0.8435440834343289,staged_estimation,5,261.6573598384857\\n0.15390042229437292,0.9118367346938776,1.01,296.0,0.6890029065555119,0.8004989128869798,full_gmfrm,6,246.09747171401978\\n0.15709229610601722,0.9053061224489797,1.01,379.0,0.6919219012064705,0.8209375870207005,binary_gating,6,416.1729099750519\\n0.14538773623748585,0.9102040816326531,1.0,889.0,0.7434636078418924,0.7965117683552702,no_judge_severity,6,220.62164330482483\\n0.2510398138755133,0.846530612244898,1.02,546.0,1.412097763005174,0.7383575429998313,staged_estimation,6,255.24401330947876\\n0.10001918999860052,0.9281632653061225,1.01,423.0,0.4599080024676294,0.9496940758054125,full_gmfrm,7,199.18004655838013\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now I have a clear picture:
+
+**exp-006 data format:**
+- `sensitivity_results.csv`: columns = `judge_count, subset_idx, judges, method, kendall_tau, spearman_rho, n_matched, n_obs, elapsed_s`
+- Currently only has `raw_average` method. The MCMC results (joint_gmfrm, sequential) are still being computed in `results_full/idata/` as .nc files
+- `leave_one_out_results.csv`: columns = `left_out_judge, method, kendall_tau, tau_delta, spearman_rho, n_obs`
+
+
+- `results.json` contains summary statistics aggregated by judge count
+
+**exp_w7_ablation data format:**
+- `results_w7_ablation_partial.csv`: columns = `theta_rmse, theta_tau, r_hat, ess, c_rmse, c_pearson, variant, seed, elapsed_s`
+- 4 variants being tested: full_gmfrm, binary_gating, no_judge_severity, staged_estimation
+- Currently has seeds 0-7 (still running to completion at seed 20)
+
+I need to dig into more of the W7 ablation data and check the exp006 script to understand how these experiments are structured.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "7a80d728-f5af-4ca2-bc14-830a05aa0e7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017UPcVSyT3zVLraSqF9dGsh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7452,
+      "cache_read_input_tokens": 29744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7452
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+数据格式已清楚。检查 W7 完成度和 exp-006 脚本中的结果提取逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "28691df8-0d1f-4ce1-894e-34e5d9cc9059",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017UPcVSyT3zVLraSqF9dGsh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7452,
+      "cache_read_input_tokens": 29744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7452
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EuqVGzX7XkRp8y6VUFfVs7`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "wc -l /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "6bf5b977-7da1-416c-b2ee-ad31fadc7fc3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017UPcVSyT3zVLraSqF9dGsh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7452,
+      "cache_read_input_tokens": 29744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7452
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T22:29:07.511Z_
+
+<details><summary>↩ Tool result · `toolu_01EuqVGzX7XkRp8y6VUFfVs7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"41 /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "3173f061-8bd6-4233-a2f2-fae0789e4dae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"41 /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"41 /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WDkiUmmugsxnJHHN2yzt3R`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -10 /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "7ca49262-f417-4f3b-895e-4b3467cbbd8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017UPcVSyT3zVLraSqF9dGsh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7452,
+      "cache_read_input_tokens": 29744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7452
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T22:29:08.526Z_
+
+<details><summary>↩ Tool result · `toolu_01WDkiUmmugsxnJHHN2yzt3R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0.0985737399274389,0.926530612244898,1.0,1068.0,0.44884623463065726,0.9501733897559731,no_judge_severity,7,227.76285481452942\\n0.28818864839809727,0.769795918367347,1.01,516.0,1.1285334342359097,0.9072664413718521,staged_estimation,7,243.41709542274475\\n0.12355664488328226,0.9314285714285715,1.01,331.0,0.3168767948662105,0.9602508871243257,full_gmfrm,8,210.28793621063232\\n0.15042113804079682,0.8857142857142857,1.01,476.0,0.7018072505879162,0.8477800444136976,binary_gating,8,415.223335981369\\n0.14254424485037615,0.929795918367347,1.0,1078.0,0.3093680262544882,0.9618665714118458,no_judge_severity,8,237.76500844955444\\n0.3538132356106579,0.7910204081632654,1.01,398.0,1.3018424958738122,0.9369416625564988,staged_estimation,8,242.1813452243805\\n0.11726650958930464,0.926530612244898,1.0,420.0,0.48188767856860537,0.8999553018968386,full_gmfrm,9,217.64910244941711\\n0.12206211270158292,0.9395918367346939,1.01,489.0,0.7578192329903355,0.7100161268852941,binary_gating,9,431.1225187778473\\n0.12728017675667816,0.9314285714285715,1.0,855.0,0.5406416730951841,0.9012249335073816,no_judge_severity,9,215.63651156425476\\n0.2747468439182983,0.8497959183673469,1.01,417.0,1.273432891638443,0.8514889879268844,staged_estimation,9,235.89260029792786\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "3700d7b5-8a26-4880-917c-e78801c3ba0e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0.0985737399274389,0.926530612244898,1.0,1068.0,0.44884623463065726,0.9501733897559731,no_judge_severity,7,227.76285481452942\\\\n0.28818864839809727,0.769795918367347,1.01,516.0,1.1285334342359097,0.9072664413718521,staged_estimation,7,243.41709542274475\\\\n0.12355664488328226,0.9314285714285715,1.01,331.0,0.3168767948662105,0.9602508871243257,full_gmfrm,8,210.28793621063232\\\\n0.15042113804079682,0.8857142857142857,1.01,476.0,0.7018072505879162,0.8477800444136976,binary_gating,8,415.223335981369\\\\n0.14254424485037615,0.929795918367347,1.0,1078.0,0.3093680262544882,0.9618665714118458,no_judge_severity,8,237.76500844955444\\\\n0.3538132356106579,0.7910204081632654,1.01,398.0,1.3018424958738122,0.9369416625564988,staged_estimation,8,242.1813452243805\\\\n0.11726650958930464,0.926530612244898,1.0,420.0,0.48188767856860537,0.8999553018968386,full_gmfrm,9,217.64910244941711\\\\n0.12206211270158292,0.9395918367346939,1.01,489.0,0.7578192329903355,0.7100161268852941,binary_gating,9,431.1225187778473\\\\n0.12728017675667816,0.9314285714285715,1.0,855.0,0.5406416730951841,0.9012249335073816,no_judge_severity,9,215.63651156425476\\\\n0.2747468439182983,0.8497959183673469,1.01,417.0,1.273432891638443,0.8514889879268844,staged_estimation,9,235.89260029792786\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0.0985737399274389,0.926530612244898,1.0,1068.0,0.44884623463065726,0.9501733897559731,no_judge_severity,7,227.76285481452942\\n0.28818864839809727,0.769795918367347,1.01,516.0,1.1285334342359097,0.9072664413718521,staged_estimation,7,243.41709542274475\\n0.12355664488328226,0.9314285714285715,1.01,331.0,0.3168767948662105,0.9602508871243257,full_gmfrm,8,210.28793621063232\\n0.15042113804079682,0.8857142857142857,1.01,476.0,0.7018072505879162,0.8477800444136976,binary_gating,8,415.223335981369\\n0.14254424485037615,0.929795918367347,1.0,1078.0,0.3093680262544882,0.9618665714118458,no_judge_severity,8,237.76500844955444\\n0.3538132356106579,0.7910204081632654,1.01,398.0,1.3018424958738122,0.9369416625564988,staged_estimation,8,242.1813452243805\\n0.11726650958930464,0.926530612244898,1.0,420.0,0.48188767856860537,0.8999553018968386,full_gmfrm,9,217.64910244941711\\n0.12206211270158292,0.9395918367346939,1.01,489.0,0.7578192329903355,0.7100161268852941,binary_gating,9,431.1225187778473\\n0.12728017675667816,0.9314285714285715,1.0,855.0,0.5406416730951841,0.9012249335073816,no_judge_severity,9,215.63651156425476\\n0.2747468439182983,0.8497959183673469,1.01,417.0,1.273432891638443,0.8514889879268844,staged_estimation,9,235.89260029792786\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0135JT2MzvCsucqGXpfVLewV`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -80 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "280dbedc-ff8e-4c7e-949d-a4e9b121ae26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017UPcVSyT3zVLraSqF9dGsh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7452,
+      "cache_read_input_tokens": 29744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7452
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T22:29:09.048Z_
+
+<details><summary>↩ Tool result · `toolu_0135JT2MzvCsucqGXpfVLewV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\nimport arviz as az\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "7c182bbb-38fb-42d9-932c-b08b53135872",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-006: Judge Count Sensitivity Analysis.\\\\n\\\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\\\n\\\\nUsage:\\\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\\\n\\\\n  python run_exp006.py --dry-run  # validate data loading only\\\\n  python run_exp006.py --help\\\\n\\\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport itertools\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\\\nimport arviz as az\\\\n\\\\n\\\\nARENA_ELO = {\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 1105,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 1163,\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1130,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1170,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1208,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1187,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1272,\\\\n}\\\\n\\\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\\\nSEED = 42\\\\n\\\\n\\\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\\\n    if len(matched) < 3:\\\\n        return {\\\\\\\"kendall_tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"spearman_rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"n_matched\\\\\\\": len(matched)}\\\\n    models, thetas = zip(*matched)\\\\n    elos = [ARENA_ELO[m] for m in models]\\\\n    tau, tau_p = kendalltau(thetas, elos)\\\\n    rho, rho_p = spearmanr(thetas, elos)\\\\n    return {\\\\n        \\\\\\\"kendall_tau\\\\\\\": float(tau),\\\\n        \\\\\\\"kendall_p\\\\\\\": float(tau_p),\\\\n        \\\\\\\"spearman_rho\\\\\\\": float(rho),\\\\n        \\\\\\\"spearman_p\\\\\\\": float(rho_p),\\\\n        \\\\\\\"n_matched\\\\\\\": len(matched),\\\\n    }\\\\n\\\\n\\\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and preprocess all judgment data, returning observations + metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    records = load_judgments(judgment_dir)\\\\n    observations = preprocess(records)\\\\n\\\\n    all_judges = sorted({o[\\\\\\\"judge\\\\\\\"] for o in observations})\\\\n    all_models = sorted({o[\\\\\\\"model\\\\\\\"] for o in observations})\\\\n    all_items = sorted({o[\\\\\\\"item_id\\\\\\\"] for o in observations})\\\\n\\\\n    return observations, all_judges, all_models, all_items\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\nimport arviz as az\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+W7 data: 40 rows (header + 40 data rows), which is 10 seeds × 4 variants = 40. So seeds 0-9 are complete. The task said 20 seeds, so it's halfway done.
+
+For exp-006, I need to understand how the idata files will be processed into tau/rho. Let me check the part of run_exp006.py that processes the MCMC results, and also check what the "full" run is expected to produce.
+
+The sensitivity_results.csv currently only has `raw_average` method. The idata files in `results_full/` are named like `idata_joint_gmfrm_k2_s1.nc`, `idata_sequential_k2_s1.nc`, so these are the MCMC inference data files that need to be processed to extract θ estimates and compute tau.
+
+
+Now I'm examining the processing pipeline in run_exp006.py to see how these inference data objects get converted into the tau and rho values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "254c8a6f-7568-4c6e-8e51-aa6a1e3db17c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KB94uyJNe1dTU17RUnxHm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2883,
+      "cache_read_input_tokens": 37196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2883
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BQxHZw5pZEQKW9g53nypr4`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -250 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "d4ef4d9c-fbc2-4ddd-9473-3449a8757eff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KB94uyJNe1dTU17RUnxHm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2883,
+      "cache_read_input_tokens": 37196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2883
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T22:29:21.178Z_
+
+<details><summary>↩ Tool result · `toolu_01BQxHZw5pZEQKW9g53nypr4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\nimport arviz as az\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=mode\\n\\n... [截断: 输出过长，省略 1043 字符] ...\\n\\nx = rng.choice(len(all_combos), size=n_subsets, replace=False)\\n            subsets[k] = [list(all_combos[i]) for i in chosen_idx]\\n\\n    return subsets\\n\\n\\ndef fit_raw_average_subset(data: dict) -> dict:\\n    \\\"\\\"\\\"Raw average method (no MCMC, always available).\\\"\\\"\\\"\\n    N = data[\\\"N\\\"]\\n    model_idx = data[\\\"model_idx\\\"]\\n    y = data[\\\"y\\\"]\\n    theta_hat = np.zeros(N)\\n    for n in range(N):\\n        mask = model_idx == n\\n        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\"model_names\\\"])}\\n\\n\\ndef fit_methods_on_subset(data: dict, methods: list,\\n                          idata_dir: str = None, idata_label: str = \\\"\\\") -> dict:\\n    \\\"\\\"\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\"\\\"\\\"\\n    results = {}\\n\\n    if \\\"raw_average\\\" in methods:\\n        results[\\\"raw_average\\\"] = fit_raw_average_subset(data)\\n\\n    if \\\"mfrm_only\\\" in methods or \\\"sequential\\\" in methods or \\\"joint_gmfrm\\\" in methods:\\n        from models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\n\\n        if \\\"mfrm_only\\\" in methods:\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"mfrm_only\\\"] = {\\n                name: float(mfrm[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n            if idata_dir and mfrm.get(\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(mfrm[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_mfrm_only_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata mfrm_only: {e}\\\")\\n\\n        if \\\"sequential\\\" in methods:\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"sequential\\\"] = {\\n                name: float(seq[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n            if idata_dir and seq.get(\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(seq[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_sequential_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata sequential: {e}\\\")\\n\\n        if \\\"joint_gmfrm\\\" in methods:\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"joint_gmfrm\\\"] = {\\n                name: float(joint[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n            if idata_dir and joint.get(\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(joint[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_joint_gmfrm_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata joint_gmfrm: {e}\\\")\\n\\n    return results\\n\\n\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\n                             exposure_csv: str, judge_counts: list,\\n                             n_subsets: int, methods: list, seed: int,\\n                             output_dir: str = None) -> pd.DataFrame:\\n    \\\"\\\"\\\"Run full judge count sensitivity analysis.\\\"\\\"\\\"\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\n\\n    idata_dir = None\\n    if output_dir:\\n        idata_dir = str(Path(output_dir) / \\\"idata\\\")\\n        Path(idata_dir).mkdir(parents=True, exist_ok=True)\\n\\n    rows = []\\n    total = sum(len(v) for v in subsets.values())\\n    done = 0\\n\\n    for k in sorted(subsets.keys()):\\n        print(f\\\"\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\")\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\n            done += 1\\n            print(f\\\"    [{done}/{total}] Judges: {judge_subset}\\\")\\n\\n            filtered = filter_by_judges(observations, judge_subset)\\n            if not filtered:\\n                print(f\\\"      SKIP: no observations\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "4b268b07-aeb4-4be8-9bc6-bfe33a97cd16",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-006: Judge Count Sensitivity Analysis.\\\\n\\\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\\\n\\\\nUsage:\\\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\\\n\\\\n  python run_exp006.py --dry-run  # validate data loading only\\\\n  python run_exp006.py --help\\\\n\\\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport itertools\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\\\nimport arviz as az\\\\n\\\\n\\\\nARENA_ELO = {\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 1105,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 1163,\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1130,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1170,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1208,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1187,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1272,\\\\n}\\\\n\\\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\\\nSEED = 42\\\\n\\\\n\\\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\\\n    if len(matched) < 3:\\\\n        return {\\\\\\\"kendall_tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"spearman_rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"n_matched\\\\\\\": len(matched)}\\\\n    models, thetas = zip(*matched)\\\\n    elos = [ARENA_ELO[m] for m in models]\\\\n    tau, tau_p = kendalltau(thetas, elos)\\\\n    rho, rho_p = spearmanr(thetas, elos)\\\\n    return {\\\\n        \\\\\\\"kendall_tau\\\\\\\": float(tau),\\\\n        \\\\\\\"kendall_p\\\\\\\": float(tau_p),\\\\n        \\\\\\\"spearman_rho\\\\\\\": float(rho),\\\\n        \\\\\\\"spearman_p\\\\\\\": float(rho_p),\\\\n        \\\\\\\"n_matched\\\\\\\": len(matched),\\\\n    }\\\\n\\\\n\\\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and preprocess all judgment data, returning observations + metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    records = load_judgments(judgment_dir)\\\\n    observations = preprocess(records)\\\\n\\\\n    all_judges = sorted({o[\\\\\\\"judge\\\\\\\"] for o in observations})\\\\n    all_models = sorted({o[\\\\\\\"model\\\\\\\"] for o in observations})\\\\n    all_items = sorted({o[\\\\\\\"item_id\\\\\\\"] for o in observations})\\\\n\\\\n    return observations, all_judges, all_models, all_items\\\\n\\\\n\\\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Filter observations to only include specified judges.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    judge_set = set(judge_subset)\\\\n    return [o for o in observations if o[\\\\\\\"judge\\\\\\\"] in judge_set]\\\\n\\\\n\\\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build the data dict expected by G-MFRM fitting functions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from collections import defaultdict\\\\n\\\\n    # Filter items by minimum judge coverage\\\\n    judges_per_item = defaultdict(set)\\\\n    for o in filtered_obs:\\\\n        judges_per_item[o[\\\\\\\"item_id\\\\\\\"]].add(o[\\\\\\\"judge\\\\\\\"])\\\\n    valid_items = {item for item, judges in judges_per_item.items()\\\\n                   if len(judges) >= min(min_judges, len(set(o[\\\\\\\"judge\\\\\\\"] for o in filtered_obs)))}\\\\n    filtered_obs = [o for o in filtered_obs if o[\\\\\\\"item_id\\\\\\\"] in valid_items]\\\\n\\\\n    if not filtered_obs:\\\\n        return None\\\\n\\\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\\\n    N = len(model_to_idx)\\\\n    I = len(item_to_idx)\\\\n    J = len(judge_to_idx)\\\\n\\\\n    model_idx = np.array([model_to_idx[o[\\\\\\\"model\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    item_idx = np.array([item_to_idx[o[\\\\\\\"item_id\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    judge_idx = np.array([judge_to_idx[o[\\\\\\\"judge\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    y = np.array([o[\\\\\\\"y\\\\\\\"] for o in filtered_obs], dtype=np.float32)\\\\n\\\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\\\n\\\\n    model_names = sorted(model_to_idx, key=mode\\\\n\\\\n... [截断: 输出过长，省略 1043 字符] ...\\\\n\\\\nx = rng.choice(len(all_combos), size=n_subsets, replace=False)\\\\n            subsets[k] = [list(all_combos[i]) for i in chosen_idx]\\\\n\\\\n    return subsets\\\\n\\\\n\\\\ndef fit_raw_average_subset(data: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Raw average method (no MCMC, always available).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N = data[\\\\\\\"N\\\\\\\"]\\\\n    model_idx = data[\\\\\\\"model_idx\\\\\\\"]\\\\n    y = data[\\\\\\\"y\\\\\\\"]\\\\n    theta_hat = np.zeros(N)\\\\n    for n in range(N):\\\\n        mask = model_idx == n\\\\n        if mask.sum() > 0:\\\\n            theta_hat[n] = y[mask].mean()\\\\n    theta_hat = theta_hat - theta_hat.mean()\\\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])}\\\\n\\\\n\\\\ndef fit_methods_on_subset(data: dict, methods: list,\\\\n                          idata_dir: str = None, idata_label: str = \\\\\\\"\\\\\\\") -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = {}\\\\n\\\\n    if \\\\\\\"raw_average\\\\\\\" in methods:\\\\n        results[\\\\\\\"raw_average\\\\\\\"] = fit_raw_average_subset(data)\\\\n\\\\n    if \\\\\\\"mfrm_only\\\\\\\" in methods or \\\\\\\"sequential\\\\\\\" in methods or \\\\\\\"joint_gmfrm\\\\\\\" in methods:\\\\n        from models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\\\n\\\\n        if \\\\\\\"mfrm_only\\\\\\\" in methods:\\\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"mfrm_only\\\\\\\"] = {\\\\n                name: float(mfrm[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n            if idata_dir and mfrm.get(\\\\\\\"mcmc\\\\\\\"):\\\\n                try:\\\\n                    idata = az.from_numpyro(mfrm[\\\\\\\"mcmc\\\\\\\"])\\\\n                    idata.to_netcdf(f\\\\\\\"{idata_dir}/idata_mfrm_only_{idata_label}.nc\\\\\\\")\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"      Warning: failed to save idata mfrm_only: {e}\\\\\\\")\\\\n\\\\n        if \\\\\\\"sequential\\\\\\\" in methods:\\\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"sequential\\\\\\\"] = {\\\\n                name: float(seq[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n            if idata_dir and seq.get(\\\\\\\"mcmc\\\\\\\"):\\\\n                try:\\\\n                    idata = az.from_numpyro(seq[\\\\\\\"mcmc\\\\\\\"])\\\\n                    idata.to_netcdf(f\\\\\\\"{idata_dir}/idata_sequential_{idata_label}.nc\\\\\\\")\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"      Warning: failed to save idata sequential: {e}\\\\\\\")\\\\n\\\\n        if \\\\\\\"joint_gmfrm\\\\\\\" in methods:\\\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"joint_gmfrm\\\\\\\"] = {\\\\n                name: float(joint[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n            if idata_dir and joint.get(\\\\\\\"mcmc\\\\\\\"):\\\\n                try:\\\\n                    idata = az.from_numpyro(joint[\\\\\\\"mcmc\\\\\\\"])\\\\n                    idata.to_netcdf(f\\\\\\\"{idata_dir}/idata_joint_gmfrm_{idata_label}.nc\\\\\\\")\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"      Warning: failed to save idata joint_gmfrm: {e}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\\\n                             exposure_csv: str, judge_counts: list,\\\\n                             n_subsets: int, methods: list, seed: int,\\\\n                             output_dir: str = None) -> pd.DataFrame:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full judge count sensitivity analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\\\n\\\\n    idata_dir = None\\\\n    if output_dir:\\\\n        idata_dir = str(Path(output_dir) / \\\\\\\"idata\\\\\\\")\\\\n        Path(idata_dir).mkdir(parents=True, exist_ok=True)\\\\n\\\\n    rows = []\\\\n    total = sum(len(v) for v in subsets.values())\\\\n    done = 0\\\\n\\\\n    for k in sorted(subsets.keys()):\\\\n        print(f\\\\\\\"\\\\\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\\\\\")\\\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\\\n            done += 1\\\\n            print(f\\\\\\\"    [{done}/{total}] Judges: {judge_subset}\\\\\\\")\\\\n\\\\n            filtered = filter_by_judges(observations, judge_subset)\\\\n            if not filtered:\\\\n                print(f\\\\\\\"      SKIP: no observations\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\nimport arviz as az\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=mode\\n\\n... [截断: 输出过长，省略 1043 字符] ...\\n\\nx = rng.choice(len(all_combos), size=n_subsets, replace=False)\\n            subsets[k] = [list(all_combos[i]) for i in chosen_idx]\\n\\n    return subsets\\n\\n\\ndef fit_raw_average_subset(data: dict) -> dict:\\n    \\\"\\\"\\\"Raw average method (no MCMC, always available).\\\"\\\"\\\"\\n    N = data[\\\"N\\\"]\\n    model_idx = data[\\\"model_idx\\\"]\\n    y = data[\\\"y\\\"]\\n    theta_hat = np.zeros(N)\\n    for n in range(N):\\n        mask = model_idx == n\\n        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\"model_names\\\"])}\\n\\n\\ndef fit_methods_on_subset(data: dict, methods: list,\\n                          idata_dir: str = None, idata_label: str = \\\"\\\") -> dict:\\n    \\\"\\\"\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\"\\\"\\\"\\n    results = {}\\n\\n    if \\\"raw_average\\\" in methods:\\n        results[\\\"raw_average\\\"] = fit_raw_average_subset(data)\\n\\n    if \\\"mfrm_only\\\" in methods or \\\"sequential\\\" in methods or \\\"joint_gmfrm\\\" in methods:\\n        from models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\n\\n        if \\\"mfrm_only\\\" in methods:\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"mfrm_only\\\"] = {\\n                name: float(mfrm[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n            if idata_dir and mfrm.get(\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(mfrm[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_mfrm_only_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata mfrm_only: {e}\\\")\\n\\n        if \\\"sequential\\\" in methods:\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"sequential\\\"] = {\\n                name: float(seq[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n            if idata_dir and seq.get(\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(seq[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_sequential_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata sequential: {e}\\\")\\n\\n        if \\\"joint_gmfrm\\\" in methods:\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"joint_gmfrm\\\"] = {\\n                name: float(joint[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n            if idata_dir and joint.get(\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(joint[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_joint_gmfrm_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata joint_gmfrm: {e}\\\")\\n\\n    return results\\n\\n\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\n                             exposure_csv: str, judge_counts: list,\\n                             n_subsets: int, methods: list, seed: int,\\n                             output_dir: str = None) -> pd.DataFrame:\\n    \\\"\\\"\\\"Run full judge count sensitivity analysis.\\\"\\\"\\\"\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\n\\n    idata_dir = None\\n    if output_dir:\\n        idata_dir = str(Path(output_dir) / \\\"idata\\\")\\n        Path(idata_dir).mkdir(parents=True, exist_ok=True)\\n\\n    rows = []\\n    total = sum(len(v) for v in subsets.values())\\n    done = 0\\n\\n    for k in sorted(subsets.keys()):\\n        print(f\\\"\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\")\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\n            done += 1\\n            print(f\\\"    [{done}/{total}] Judges: {judge_subset}\\\")\\n\\n            filtered = filter_by_judges(observations, judge_subset)\\n            if not filtered:\\n                print(f\\\"      SKIP: no observations\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me see the rest of the script to understand the full output format and how the results CSV is built.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "5fdb3909-bd09-4a09-bfdf-738abe71c5ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YENjbsNNbjxnhJEJbaEMDA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3713,
+      "cache_read_input_tokens": 40079,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TTThnpSiKhmvx2uwp7v3Wb`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -200 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "be6c27d5-4bf6-47ce-8947-d4eb789b7ea9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YENjbsNNbjxnhJEJbaEMDA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3713,
+      "cache_read_input_tokens": 40079,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T22:29:26.578Z_
+
+<details><summary>↩ Tool result · `toolu_01TTThnpSiKhmvx2uwp7v3Wb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        ax.bar(x + i * width - 0.4 + width / 2, taus, width,\\n               label=method, color=colors.get(method, \\\"gray\\\"), alpha=0.8)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_ylabel(\\\"Kendall τ (without judge)\\\", fontsize=11)\\n    ax.set_title(\\\"(a) Leave-one-judge-out: τ\\\", fontsize=13)\\n    ax.legend(fontsize=8)\\n\\n    # Panel B: Δτ (change from full set)\\n    ax = axes[1]\\n    for i, method in enumerate(methods):\\n        mdf = df[df[\\\"method\\\"] == method]\\n        deltas = [mdf[mdf[\\\"left_out_judge\\\"] == j][\\\"tau_delta\\\"].values[0]\\n                  if len(mdf[mdf[\\\"left_out_judge\\\"] == j]) > 0 else np.nan\\n                  for j in judges]\\n        ax.bar(x + i * width - 0.4 + width / 2, deltas, width,\\n               label=method, color=colors.get(method, \\\"gray\\\"), alpha=0.8)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_ylabel(\\\"Δτ (vs full judge set)\\\", fontsize=11)\\n    ax.set_title(\\\"(b) Leave-one-judge-out: Δτ\\\", fontsize=13)\\n    ax.axhline(0, color=\\\"black\\\", linewidth=0.5, linestyle=\\\"--\\\")\\n    ax.legend(fontsize=8)\\n\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"leave_one_out.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"leave_one_out.pdf\\\", bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"  Saved leave_one_out.{{png,pdf}}\\\")\\n\\n\\ndef find_crossover_point(df: pd.DataFrame) -> dict:\\n    \\\"\\\"\\\"Find the minimum judge count where joint_gmfrm beats sequential.\\\"\\\"\\\"\\n    if df.empty or \\\"joint_gmfrm\\\" not in df[\\\"method\\\"].values:\\n        return {\\\"crossover\\\": None, \\\"note\\\": \\\"insufficient data\\\"}\\n\\n    crossover = None\\n    for k in sorted(df[\\\"judge_count\\\"].unique()):\\n        jdf = df[(df[\\\"judge_count\\\"] == k) & (df[\\\"method\\\"] == \\\"joint_gmfrm\\\")]\\n        sdf = df[(df[\\\"judge_count\\\"] == k) & (df[\\\"method\\\"] == \\\"sequential\\\")]\\n\\n        if jdf.empty or sdf.empty:\\n            continue\\n\\n        j_mean = jdf[\\\"kendall_tau\\\"].mean()\\n        s_mean = sdf[\\\"kendall_tau\\\"].mean()\\n\\n        if j_mean > s_mean:\\n            crossover = k\\n            break\\n\\n    return {\\n        \\\"crossover_judge_count\\\": crossover,\\n        \\\"note\\\": f\\\"joint_gmfrm first beats sequential at {crossover} judges\\\"\\n               if crossover else \\\"joint_gmfrm never beats sequential in tested range\\\",\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: Judge Count Sensitivity Analysis\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python run_exp006.py --dry-run           # validate data loading\\n  python run_exp006.py --methods raw_average  # fast CPU-only run\\n  python run_exp006.py --methods raw_average mfrm_only sequential joint_gmfrm  # full run (GPU)\\n  python run_exp006.py --judge-counts 4 6 9   # specific counts only\\\"\\\"\\\",\\n    )\\n    parser.add_argument(\\\"--judgment-dir\\\", default=\\\"/root/gated_mfrm_judge_bias/exp001/results\\\")\\n    parser.add_argument(\\\"--exposure-csv\\\", default=\\\"/root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv\\\")\\n    parser.add_argument(\\\"--output-dir\\\", default=\\\"/root/gated_mfrm_judge_bias/exp006/results\\\")\\n    parser.add_argument(\\\"--judge-counts\\\", type=int, nargs=\\\"+\\\", default=JUDGE_COUNTS,\\n                        help=\\\"Judge counts to test (default: 2 4 6 8 9)\\\")\\n    parser.add_argument(\\\"--n-subsets\\\", type=int, default=N_SUBSETS_PER_COUNT,\\n                        help=\\\"Max subsets per judge count (default: 10)\\\")\\n    parser.add_argument(\\\"--methods\\\", nargs=\\\"+\\\",\\n                        default=[\\\"raw_average\\\"],\\n                        choices=[\\\"raw_average\\\", \\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"],\\n                        help=\\\"Methods to evaluate (default: raw_average only for CPU)\\\")\\n    parser.add_argument(\\\"--run-loocv\\\", action=\\\"store_true\\\",\\n                        help=\\\"Also run leave-one-judge-out analysis\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=SEED)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                        help=\\\"Only validate imports a\\n\\n... [截断: 输出过长，省略 320 字符] ...\\n\\njudges, all_models, all_items = load_full_data(\\n        args.judgment_dir, args.exposure_csv)\\n    print(f\\\"  Observations: {len(observations)}\\\")\\n    print(f\\\"  Judges ({len(all_judges)}): {all_judges}\\\")\\n    print(f\\\"  Models ({len(all_models)}): {all_models}\\\")\\n    print(f\\\"  Items: {len(all_items)}\\\")\\n\\n    # Generate subsets\\n    print(f\\\"\\\\n[2/4] Generating judge subsets...\\\")\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\n    for k, subs in sorted(subsets.items()):\\n        print(f\\\"  k={k}: {len(subs)} subsets\\\")\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n[DRY RUN] Data loading OK. Summary:\\\")\\n        print(f\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\")\\n        print(f\\\"  Methods: {args.methods}\\\")\\n        if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n            print(\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\")\\n        return\\n\\n    # Run sensitivity analysis\\n    print(f\\\"\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\")\\n    if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n        sys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\n        import models  # noqa: verify import\\n\\n    df = run_sensitivity_analysis(\\n        observations, all_judges, args.exposure_csv,\\n        args.judge_counts, args.n_subsets, args.methods, args.seed,\\n        output_dir=str(output_dir))\\n\\n    # Save results\\n    csv_path = output_dir / \\\"sensitivity_results.csv\\\"\\n    df.to_csv(csv_path, index=False)\\n    print(f\\\"\\\\n  Saved {csv_path} ({len(df)} rows)\\\")\\n\\n    # Crossover analysis\\n    crossover = find_crossover_point(df)\\n    print(f\\\"\\\\n  Crossover analysis: {crossover}\\\")\\n\\n    # Leave-one-out\\n    loocv_df = pd.DataFrame()\\n    if args.run_loocv:\\n        print(\\\"\\\\n  Running leave-one-judge-out analysis...\\\")\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\n                                       args.exposure_csv, args.methods)\\n        if not loocv_df.empty:\\n            loocv_path = output_dir / \\\"leave_one_out_results.csv\\\"\\n            loocv_df.to_csv(loocv_path, index=False)\\n            print(f\\\"  Saved {loocv_path}\\\")\\n\\n    # Plots\\n    print(f\\\"\\\\n[4/4] Generating plots...\\\")\\n    plot_tau_vs_judge_count(df, output_dir)\\n    if not loocv_df.empty:\\n        plot_leave_one_out(loocv_df, output_dir)\\n\\n    # Save summary\\n    summary = {\\n        \\\"judge_counts_tested\\\": sorted(df[\\\"judge_count\\\"].unique().tolist()) if not df.empty else [],\\n        \\\"methods\\\": args.methods,\\n        \\\"n_subsets_per_count\\\": args.n_subsets,\\n        \\\"total_evaluations\\\": len(df),\\n        \\\"crossover\\\": crossover,\\n    }\\n\\n    if not df.empty:\\n        # Per-count summary\\n        summary[\\\"per_count\\\"] = {}\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            summary[\\\"per_count\\\"][int(k)] = {}\\n            for method in kdf[\\\"method\\\"].unique():\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                summary[\\\"per_count\\\"][int(k)][method] = {\\n                    \\\"mean_tau\\\": float(mdf[\\\"kendall_tau\\\"].mean()),\\n                    \\\"std_tau\\\": float(mdf[\\\"kendall_tau\\\"].std()),\\n                    \\\"n_subsets\\\": len(mdf),\\n                }\\n\\n    results_path = output_dir / \\\"results.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\n  Saved {results_path}\\\")\\n\\n    # Final summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n    if not df.empty:\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            line = f\\\"  k={k}:\\\"\\n            for method in sorted(kdf[\\\"method\\\"].unique()):\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                line += f\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\"\\n            print(line)\\n    print(f\\\"\\\\n  {crossover['note']}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "1da02bc0-fdf5-4b14-8a55-0a06130c4095",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        ax.bar(x + i * width - 0.4 + width / 2, taus, width,\\\\n               label=method, color=colors.get(method, \\\\\\\"gray\\\\\\\"), alpha=0.8)\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\\\\\"right\\\\\\\", fontsize=8)\\\\n    ax.set_ylabel(\\\\\\\"Kendall τ (without judge)\\\\\\\", fontsize=11)\\\\n    ax.set_title(\\\\\\\"(a) Leave-one-judge-out: τ\\\\\\\", fontsize=13)\\\\n    ax.legend(fontsize=8)\\\\n\\\\n    # Panel B: Δτ (change from full set)\\\\n    ax = axes[1]\\\\n    for i, method in enumerate(methods):\\\\n        mdf = df[df[\\\\\\\"method\\\\\\\"] == method]\\\\n        deltas = [mdf[mdf[\\\\\\\"left_out_judge\\\\\\\"] == j][\\\\\\\"tau_delta\\\\\\\"].values[0]\\\\n                  if len(mdf[mdf[\\\\\\\"left_out_judge\\\\\\\"] == j]) > 0 else np.nan\\\\n                  for j in judges]\\\\n        ax.bar(x + i * width - 0.4 + width / 2, deltas, width,\\\\n               label=method, color=colors.get(method, \\\\\\\"gray\\\\\\\"), alpha=0.8)\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\\\\\"right\\\\\\\", fontsize=8)\\\\n    ax.set_ylabel(\\\\\\\"Δτ (vs full judge set)\\\\\\\", fontsize=11)\\\\n    ax.set_title(\\\\\\\"(b) Leave-one-judge-out: Δτ\\\\\\\", fontsize=13)\\\\n    ax.axhline(0, color=\\\\\\\"black\\\\\\\", linewidth=0.5, linestyle=\\\\\\\"--\\\\\\\")\\\\n    ax.legend(fontsize=8)\\\\n\\\\n    plt.tight_layout()\\\\n    fig.savefig(output_dir / \\\\\\\"leave_one_out.png\\\\\\\", dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(output_dir / \\\\\\\"leave_one_out.pdf\\\\\\\", bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"  Saved leave_one_out.{{png,pdf}}\\\\\\\")\\\\n\\\\n\\\\ndef find_crossover_point(df: pd.DataFrame) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the minimum judge count where joint_gmfrm beats sequential.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if df.empty or \\\\\\\"joint_gmfrm\\\\\\\" not in df[\\\\\\\"method\\\\\\\"].values:\\\\n        return {\\\\\\\"crossover\\\\\\\": None, \\\\\\\"note\\\\\\\": \\\\\\\"insufficient data\\\\\\\"}\\\\n\\\\n    crossover = None\\\\n    for k in sorted(df[\\\\\\\"judge_count\\\\\\\"].unique()):\\\\n        jdf = df[(df[\\\\\\\"judge_count\\\\\\\"] == k) & (df[\\\\\\\"method\\\\\\\"] == \\\\\\\"joint_gmfrm\\\\\\\")]\\\\n        sdf = df[(df[\\\\\\\"judge_count\\\\\\\"] == k) & (df[\\\\\\\"method\\\\\\\"] == \\\\\\\"sequential\\\\\\\")]\\\\n\\\\n        if jdf.empty or sdf.empty:\\\\n            continue\\\\n\\\\n        j_mean = jdf[\\\\\\\"kendall_tau\\\\\\\"].mean()\\\\n        s_mean = sdf[\\\\\\\"kendall_tau\\\\\\\"].mean()\\\\n\\\\n        if j_mean > s_mean:\\\\n            crossover = k\\\\n            break\\\\n\\\\n    return {\\\\n        \\\\\\\"crossover_judge_count\\\\\\\": crossover,\\\\n        \\\\\\\"note\\\\\\\": f\\\\\\\"joint_gmfrm first beats sequential at {crossover} judges\\\\\\\"\\\\n               if crossover else \\\\\\\"joint_gmfrm never beats sequential in tested range\\\\\\\",\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"exp-006: Judge Count Sensitivity Analysis\\\\\\\",\\\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\\\n        epilog=\\\\\\\"\\\\\\\"\\\\\\\"Examples:\\\\n  python run_exp006.py --dry-run           # validate data loading\\\\n  python run_exp006.py --methods raw_average  # fast CPU-only run\\\\n  python run_exp006.py --methods raw_average mfrm_only sequential joint_gmfrm  # full run (GPU)\\\\n  python run_exp006.py --judge-counts 4 6 9   # specific counts only\\\\\\\"\\\\\\\"\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--judgment-dir\\\\\\\", default=\\\\\\\"/root/gated_mfrm_judge_bias/exp001/results\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--exposure-csv\\\\\\\", default=\\\\\\\"/root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=\\\\\\\"/root/gated_mfrm_judge_bias/exp006/results\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--judge-counts\\\\\\\", type=int, nargs=\\\\\\\"+\\\\\\\", default=JUDGE_COUNTS,\\\\n                        help=\\\\\\\"Judge counts to test (default: 2 4 6 8 9)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n-subsets\\\\\\\", type=int, default=N_SUBSETS_PER_COUNT,\\\\n                        help=\\\\\\\"Max subsets per judge count (default: 10)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--methods\\\\\\\", nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"raw_average\\\\\\\"],\\\\n                        choices=[\\\\\\\"raw_average\\\\\\\", \\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"],\\\\n                        help=\\\\\\\"Methods to evaluate (default: raw_average only for CPU)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--run-loocv\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Also run leave-one-judge-out analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=SEED)\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Only validate imports a\\\\n\\\\n... [截断: 输出过长，省略 320 字符] ...\\\\n\\\\njudges, all_models, all_items = load_full_data(\\\\n        args.judgment_dir, args.exposure_csv)\\\\n    print(f\\\\\\\"  Observations: {len(observations)}\\\\\\\")\\\\n    print(f\\\\\\\"  Judges ({len(all_judges)}): {all_judges}\\\\\\\")\\\\n    print(f\\\\\\\"  Models ({len(all_models)}): {all_models}\\\\\\\")\\\\n    print(f\\\\\\\"  Items: {len(all_items)}\\\\\\\")\\\\n\\\\n    # Generate subsets\\\\n    print(f\\\\\\\"\\\\\\\\n[2/4] Generating judge subsets...\\\\\\\")\\\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\\\n    for k, subs in sorted(subsets.items()):\\\\n        print(f\\\\\\\"  k={k}: {len(subs)} subsets\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"\\\\\\\\n[DRY RUN] Data loading OK. Summary:\\\\\\\")\\\\n        print(f\\\\\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\\\\\")\\\\n        print(f\\\\\\\"  Methods: {args.methods}\\\\\\\")\\\\n        if any(m in args.methods for m in [\\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"]):\\\\n            print(\\\\\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\\\\\")\\\\n        return\\\\n\\\\n    # Run sensitivity analysis\\\\n    print(f\\\\\\\"\\\\\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\\\\\")\\\\n    if any(m in args.methods for m in [\\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"]):\\\\n        sys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\n        import models  # noqa: verify import\\\\n\\\\n    df = run_sensitivity_analysis(\\\\n        observations, all_judges, args.exposure_csv,\\\\n        args.judge_counts, args.n_subsets, args.methods, args.seed,\\\\n        output_dir=str(output_dir))\\\\n\\\\n    # Save results\\\\n    csv_path = output_dir / \\\\\\\"sensitivity_results.csv\\\\\\\"\\\\n    df.to_csv(csv_path, index=False)\\\\n    print(f\\\\\\\"\\\\\\\\n  Saved {csv_path} ({len(df)} rows)\\\\\\\")\\\\n\\\\n    # Crossover analysis\\\\n    crossover = find_crossover_point(df)\\\\n    print(f\\\\\\\"\\\\\\\\n  Crossover analysis: {crossover}\\\\\\\")\\\\n\\\\n    # Leave-one-out\\\\n    loocv_df = pd.DataFrame()\\\\n    if args.run_loocv:\\\\n        print(\\\\\\\"\\\\\\\\n  Running leave-one-judge-out analysis...\\\\\\\")\\\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\\\n                                       args.exposure_csv, args.methods)\\\\n        if not loocv_df.empty:\\\\n            loocv_path = output_dir / \\\\\\\"leave_one_out_results.csv\\\\\\\"\\\\n            loocv_df.to_csv(loocv_path, index=False)\\\\n            print(f\\\\\\\"  Saved {loocv_path}\\\\\\\")\\\\n\\\\n    # Plots\\\\n    print(f\\\\\\\"\\\\\\\\n[4/4] Generating plots...\\\\\\\")\\\\n    plot_tau_vs_judge_count(df, output_dir)\\\\n    if not loocv_df.empty:\\\\n        plot_leave_one_out(loocv_df, output_dir)\\\\n\\\\n    # Save summary\\\\n    summary = {\\\\n        \\\\\\\"judge_counts_tested\\\\\\\": sorted(df[\\\\\\\"judge_count\\\\\\\"].unique().tolist()) if not df.empty else [],\\\\n        \\\\\\\"methods\\\\\\\": args.methods,\\\\n        \\\\\\\"n_subsets_per_count\\\\\\\": args.n_subsets,\\\\n        \\\\\\\"total_evaluations\\\\\\\": len(df),\\\\n        \\\\\\\"crossover\\\\\\\": crossover,\\\\n    }\\\\n\\\\n    if not df.empty:\\\\n        # Per-count summary\\\\n        summary[\\\\\\\"per_count\\\\\\\"] = {}\\\\n        for k in sorted(df[\\\\\\\"judge_count\\\\\\\"].unique()):\\\\n            kdf = df[df[\\\\\\\"judge_count\\\\\\\"] == k]\\\\n            summary[\\\\\\\"per_count\\\\\\\"][int(k)] = {}\\\\n            for method in kdf[\\\\\\\"method\\\\\\\"].unique():\\\\n                mdf = kdf[kdf[\\\\\\\"method\\\\\\\"] == method]\\\\n                summary[\\\\\\\"per_count\\\\\\\"][int(k)][method] = {\\\\n                    \\\\\\\"mean_tau\\\\\\\": float(mdf[\\\\\\\"kendall_tau\\\\\\\"].mean()),\\\\n                    \\\\\\\"std_tau\\\\\\\": float(mdf[\\\\\\\"kendall_tau\\\\\\\"].std()),\\\\n                    \\\\\\\"n_subsets\\\\\\\": len(mdf),\\\\n                }\\\\n\\\\n    results_path = output_dir / \\\\\\\"results.json\\\\\\\"\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\n  Saved {results_path}\\\\\\\")\\\\n\\\\n    # Final summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    if not df.empty:\\\\n        for k in sorted(df[\\\\\\\"judge_count\\\\\\\"].unique()):\\\\n            kdf = df[df[\\\\\\\"judge_count\\\\\\\"] == k]\\\\n            line = f\\\\\\\"  k={k}:\\\\\\\"\\\\n            for method in sorted(kdf[\\\\\\\"method\\\\\\\"].unique()):\\\\n                mdf = kdf[kdf[\\\\\\\"method\\\\\\\"] == method]\\\\n                line += f\\\\\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\\\\\"\\\\n            print(line)\\\\n    print(f\\\\\\\"\\\\\\\\n  {crossover['note']}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        ax.bar(x + i * width - 0.4 + width / 2, taus, width,\\n               label=method, color=colors.get(method, \\\"gray\\\"), alpha=0.8)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_ylabel(\\\"Kendall τ (without judge)\\\", fontsize=11)\\n    ax.set_title(\\\"(a) Leave-one-judge-out: τ\\\", fontsize=13)\\n    ax.legend(fontsize=8)\\n\\n    # Panel B: Δτ (change from full set)\\n    ax = axes[1]\\n    for i, method in enumerate(methods):\\n        mdf = df[df[\\\"method\\\"] == method]\\n        deltas = [mdf[mdf[\\\"left_out_judge\\\"] == j][\\\"tau_delta\\\"].values[0]\\n                  if len(mdf[mdf[\\\"left_out_judge\\\"] == j]) > 0 else np.nan\\n                  for j in judges]\\n        ax.bar(x + i * width - 0.4 + width / 2, deltas, width,\\n               label=method, color=colors.get(method, \\\"gray\\\"), alpha=0.8)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_ylabel(\\\"Δτ (vs full judge set)\\\", fontsize=11)\\n    ax.set_title(\\\"(b) Leave-one-judge-out: Δτ\\\", fontsize=13)\\n    ax.axhline(0, color=\\\"black\\\", linewidth=0.5, linestyle=\\\"--\\\")\\n    ax.legend(fontsize=8)\\n\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"leave_one_out.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"leave_one_out.pdf\\\", bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"  Saved leave_one_out.{{png,pdf}}\\\")\\n\\n\\ndef find_crossover_point(df: pd.DataFrame) -> dict:\\n    \\\"\\\"\\\"Find the minimum judge count where joint_gmfrm beats sequential.\\\"\\\"\\\"\\n    if df.empty or \\\"joint_gmfrm\\\" not in df[\\\"method\\\"].values:\\n        return {\\\"crossover\\\": None, \\\"note\\\": \\\"insufficient data\\\"}\\n\\n    crossover = None\\n    for k in sorted(df[\\\"judge_count\\\"].unique()):\\n        jdf = df[(df[\\\"judge_count\\\"] == k) & (df[\\\"method\\\"] == \\\"joint_gmfrm\\\")]\\n        sdf = df[(df[\\\"judge_count\\\"] == k) & (df[\\\"method\\\"] == \\\"sequential\\\")]\\n\\n        if jdf.empty or sdf.empty:\\n            continue\\n\\n        j_mean = jdf[\\\"kendall_tau\\\"].mean()\\n        s_mean = sdf[\\\"kendall_tau\\\"].mean()\\n\\n        if j_mean > s_mean:\\n            crossover = k\\n            break\\n\\n    return {\\n        \\\"crossover_judge_count\\\": crossover,\\n        \\\"note\\\": f\\\"joint_gmfrm first beats sequential at {crossover} judges\\\"\\n               if crossover else \\\"joint_gmfrm never beats sequential in tested range\\\",\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: Judge Count Sensitivity Analysis\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python run_exp006.py --dry-run           # validate data loading\\n  python run_exp006.py --methods raw_average  # fast CPU-only run\\n  python run_exp006.py --methods raw_average mfrm_only sequential joint_gmfrm  # full run (GPU)\\n  python run_exp006.py --judge-counts 4 6 9   # specific counts only\\\"\\\"\\\",\\n    )\\n    parser.add_argument(\\\"--judgment-dir\\\", default=\\\"/root/gated_mfrm_judge_bias/exp001/results\\\")\\n    parser.add_argument(\\\"--exposure-csv\\\", default=\\\"/root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv\\\")\\n    parser.add_argument(\\\"--output-dir\\\", default=\\\"/root/gated_mfrm_judge_bias/exp006/results\\\")\\n    parser.add_argument(\\\"--judge-counts\\\", type=int, nargs=\\\"+\\\", default=JUDGE_COUNTS,\\n                        help=\\\"Judge counts to test (default: 2 4 6 8 9)\\\")\\n    parser.add_argument(\\\"--n-subsets\\\", type=int, default=N_SUBSETS_PER_COUNT,\\n                        help=\\\"Max subsets per judge count (default: 10)\\\")\\n    parser.add_argument(\\\"--methods\\\", nargs=\\\"+\\\",\\n                        default=[\\\"raw_average\\\"],\\n                        choices=[\\\"raw_average\\\", \\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"],\\n                        help=\\\"Methods to evaluate (default: raw_average only for CPU)\\\")\\n    parser.add_argument(\\\"--run-loocv\\\", action=\\\"store_true\\\",\\n                        help=\\\"Also run leave-one-judge-out analysis\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=SEED)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                        help=\\\"Only validate imports a\\n\\n... [截断: 输出过长，省略 320 字符] ...\\n\\njudges, all_models, all_items = load_full_data(\\n        args.judgment_dir, args.exposure_csv)\\n    print(f\\\"  Observations: {len(observations)}\\\")\\n    print(f\\\"  Judges ({len(all_judges)}): {all_judges}\\\")\\n    print(f\\\"  Models ({len(all_models)}): {all_models}\\\")\\n    print(f\\\"  Items: {len(all_items)}\\\")\\n\\n    # Generate subsets\\n    print(f\\\"\\\\n[2/4] Generating judge subsets...\\\")\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\n    for k, subs in sorted(subsets.items()):\\n        print(f\\\"  k={k}: {len(subs)} subsets\\\")\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n[DRY RUN] Data loading OK. Summary:\\\")\\n        print(f\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\")\\n        print(f\\\"  Methods: {args.methods}\\\")\\n        if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n            print(\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\")\\n        return\\n\\n    # Run sensitivity analysis\\n    print(f\\\"\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\")\\n    if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n        sys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\n        import models  # noqa: verify import\\n\\n    df = run_sensitivity_analysis(\\n        observations, all_judges, args.exposure_csv,\\n        args.judge_counts, args.n_subsets, args.methods, args.seed,\\n        output_dir=str(output_dir))\\n\\n    # Save results\\n    csv_path = output_dir / \\\"sensitivity_results.csv\\\"\\n    df.to_csv(csv_path, index=False)\\n    print(f\\\"\\\\n  Saved {csv_path} ({len(df)} rows)\\\")\\n\\n    # Crossover analysis\\n    crossover = find_crossover_point(df)\\n    print(f\\\"\\\\n  Crossover analysis: {crossover}\\\")\\n\\n    # Leave-one-out\\n    loocv_df = pd.DataFrame()\\n    if args.run_loocv:\\n        print(\\\"\\\\n  Running leave-one-judge-out analysis...\\\")\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\n                                       args.exposure_csv, args.methods)\\n        if not loocv_df.empty:\\n            loocv_path = output_dir / \\\"leave_one_out_results.csv\\\"\\n            loocv_df.to_csv(loocv_path, index=False)\\n            print(f\\\"  Saved {loocv_path}\\\")\\n\\n    # Plots\\n    print(f\\\"\\\\n[4/4] Generating plots...\\\")\\n    plot_tau_vs_judge_count(df, output_dir)\\n    if not loocv_df.empty:\\n        plot_leave_one_out(loocv_df, output_dir)\\n\\n    # Save summary\\n    summary = {\\n        \\\"judge_counts_tested\\\": sorted(df[\\\"judge_count\\\"].unique().tolist()) if not df.empty else [],\\n        \\\"methods\\\": args.methods,\\n        \\\"n_subsets_per_count\\\": args.n_subsets,\\n        \\\"total_evaluations\\\": len(df),\\n        \\\"crossover\\\": crossover,\\n    }\\n\\n    if not df.empty:\\n        # Per-count summary\\n        summary[\\\"per_count\\\"] = {}\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            summary[\\\"per_count\\\"][int(k)] = {}\\n            for method in kdf[\\\"method\\\"].unique():\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                summary[\\\"per_count\\\"][int(k)][method] = {\\n                    \\\"mean_tau\\\": float(mdf[\\\"kendall_tau\\\"].mean()),\\n                    \\\"std_tau\\\": float(mdf[\\\"kendall_tau\\\"].std()),\\n                    \\\"n_subsets\\\": len(mdf),\\n                }\\n\\n    results_path = output_dir / \\\"results.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\n  Saved {results_path}\\\")\\n\\n    # Final summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n    if not df.empty:\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            line = f\\\"  k={k}:\\\"\\n            for method in sorted(kdf[\\\"method\\\"].unique()):\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                line += f\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\"\\n            print(line)\\n    print(f\\\"\\\\n  {crossover['note']}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the data format:
+
+**exp-006:**
+- `sensitivity_results.csv`: columns = `judge_count, subset_idx, judges, method, kendall_tau, spearman_rho, n_matched, n_obs, elapsed_s`
+- Currently only has `raw_average`. The full run with MCMC methods (sequential, joint_gmfrm) is in progress, saving idata .nc files.
+- When the full run completes, it will produce a new `sensitivity_results.csv` in `results_full/` (or update the existing one) with all 3 methods.
+
+
+- `leave_one_out_results.csv` has columns for `left_out_judge, method, kendall_tau, tau_delta, spearman_rho, n_obs`, and I can see idata files for k=2 through k=6 across both joint_gmfrm and sequential methods, though k=6 is still incomplete and k=8/k=9 haven't started yet.
+- The analysis script will need to read the sensitivity results once the full run finishes, then work with the NetCDF idata files that contain the raw MCMC samples.
+- I'm realizing the current CSV only has raw_average results, while the full GPU run is still generating idata files without a completed CSV yet — so I'll design the script to first try loading a comprehensive sensitivity_results.csv, and if that's not ready, fall back to extracting theta estimates directly from the idata files to compute the correlation metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "77786203-f376-4fbe-886b-6ab4ca49226f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yYqYdDs6v5Q8ops9nemJW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3646,
+      "cache_read_input_tokens": 43792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3646
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011QmZXWZeYMXk9AShQugX3F`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/gated_mfrm_judge_bias/exp006/results_full/ -name \"*.csv\" -o -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "ec5ac03b-ebbc-4f17-891c-5a7d2a7439ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yYqYdDs6v5Q8ops9nemJW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3646,
+      "cache_read_input_tokens": 43792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3646
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014RHrmYxjTT7XmmL5fCo7ze`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "997fb788-c576-43e1-9389-26b7e27eab2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yYqYdDs6v5Q8ops9nemJW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3646,
+      "cache_read_input_tokens": 43792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3646
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-22T22:29:48.954Z_
+
+<details><summary>↩ Tool result · `toolu_011QmZXWZeYMXk9AShQugX3F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "40976a91-62a7-428f-93df-be543a610e98",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T22:29:49.483Z_
+
+<details><summary>↩ Tool result · `toolu_014RHrmYxjTT7XmmL5fCo7ze`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp003b_diagnostics\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "68c8a680-28e7-492e-be2a-aa4ab7cbab2e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp003b_diagnostics\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp003b_diagnostics\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so:
+- No CSV/JSON in results_full yet — the run is still in progress and only saves the CSV at the end.
+- The idata .nc files are being saved incrementally.
+- artifacts/ only has exp003b_diagnostics.
+
+So for the analysis script, I need to:
+
+**exp-006 approach:**
+1. Primary: Read `results_full/sensitivity_results.csv` if it exists (will exist after the full run completes)
+2. Fallback: Process the idata .nc files to extract θ and compute tau. Parse filenames to get method/k/subset_idx.
+
+
+3. Always include raw_average from `results/sensitivity_results.csv`
+4. LOOCV from `results/leave_one_out_results.csv` (or a new one from results_full/)
+
+The run_exp006.py script saves the sensitivity and leave-one-out results CSVs at the end, so my analysis script should prioritize those final outputs when available, and fall back to reconstructing the data from the idata .nc files if needed. I'll load the idata files using arviz to extract the posterior samples and compute tau from there.
+
+Actually, I think the cleanest approach is to have the analysis script expect the final CSV files and gracefully handle missing data rather than trying to reconstruct everything from raw idata files. The user can run the analysis once the experiment completes, and if they want partial results, the script can still plot whatever's available from the sensitivity CSV. I'll try loading from results_full/ first, then fall back to results/, and if MCMC results are missing I'll attempt to process the idata files as a last resort.
+
+For the exp-006 analysis, I need to parse the idata filenames to extract the method and parameters, then load each file and extract the theta values to compute tau. For W7, I'm looking at boxplots of the RMSE metrics with Wilcoxon tests, handling whatever seed data is present. I also need to check how the experiment script extracts theta from the idata object so I'm using the right variable names.
+
+Looking at the code, theta_hat gets computed during the fitting process and stored in the CSV results, but the idata files contain the full posterior. The issue is that when loading an idata file with ArviZ, the theta dimension will just be numeric indices rather than model names, since the original data dictionary with model names isn't saved in the idata object. I need to figure out how to map those indices back to the actual model names.
+
+The most practical approach is to rely on the CSV output since that's what the fitting script produces and already has the theta estimates. I can add a fallback to check for partial results from earlier runs if needed, but the main script should work with the final CSV once it's complete.
+
+For the exp-006 analysis script, I'll search for the sensitivity results CSV in the results directories, load and plot the judge count versus tau curves, include LOOCV results if available, and save the plots to the artifacts folder. For the W7 script, I'll load the ablation results CSV and create boxplots.
+
+Writing both scripts now...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "99542936-9808-48d9-aaa7-cd3615a224fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHM6HSqWmnNQbpMs24ezjs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 47438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+数据格式清楚了。现在写两个分析脚本。
+
+**exp-006 状态:** `results/` 有 raw_average 的 CSV（40 条），`results_full/idata/` 有 sequential 和 joint_gmfrm 的 .nc 文件还在生成中（k6 到 s2），最终 CSV 尚未生成。
+
+**W7 状态:** 10 seeds × 4 variants = 40 行已完成（seeds 0-9），目标 20 seeds。
+
+开始写脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "e9395730-0fa1-4d95-a46c-3b47ec0d3d4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHM6HSqWmnNQbpMs24ezjs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 47438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011muBvMuqf7XEL8b2tgRt84`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -300 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "ce6c206f-b807-4208-9200-d0bb91b1c1d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHM6HSqWmnNQbpMs24ezjs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 47438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T22:30:26.138Z_
+
+<details><summary>↩ Tool result · `toolu_011muBvMuqf7XEL8b2tgRt84`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\nimport arviz as az\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=mode\\n\\n... [截断: 输出过长，省略 3063 字符] ...\\n\\n\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(seq[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_sequential_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata sequential: {e}\\\")\\n\\n        if \\\"joint_gmfrm\\\" in methods:\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"joint_gmfrm\\\"] = {\\n                name: float(joint[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n            if idata_dir and joint.get(\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(joint[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_joint_gmfrm_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata joint_gmfrm: {e}\\\")\\n\\n    return results\\n\\n\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\n                             exposure_csv: str, judge_counts: list,\\n                             n_subsets: int, methods: list, seed: int,\\n                             output_dir: str = None) -> pd.DataFrame:\\n    \\\"\\\"\\\"Run full judge count sensitivity analysis.\\\"\\\"\\\"\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\n\\n    idata_dir = None\\n    if output_dir:\\n        idata_dir = str(Path(output_dir) / \\\"idata\\\")\\n        Path(idata_dir).mkdir(parents=True, exist_ok=True)\\n\\n    rows = []\\n    total = sum(len(v) for v in subsets.values())\\n    done = 0\\n\\n    for k in sorted(subsets.keys()):\\n        print(f\\\"\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\")\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\n            done += 1\\n            print(f\\\"    [{done}/{total}] Judges: {judge_subset}\\\")\\n\\n            filtered = filter_by_judges(observations, judge_subset)\\n            if not filtered:\\n                print(f\\\"      SKIP: no observations\\\")\\n                continue\\n\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\n            if data is None:\\n                print(f\\\"      SKIP: could not build data dict\\\")\\n                continue\\n\\n            print(f\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\")\\n\\n            t0 = time.time()\\n            idata_label = f\\\"k{k}_s{s_idx}\\\" if idata_dir else \\\"\\\"\\n            theta_dicts = fit_methods_on_subset(data, methods,\\n                                                 idata_dir=idata_dir,\\n                                                 idata_label=idata_label)\\n            elapsed = time.time() - t0\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                rows.append({\\n                    \\\"judge_count\\\": k,\\n                    \\\"subset_idx\\\": s_idx,\\n                    \\\"judges\\\": \\\",\\\".join(sorted(judge_subset)),\\n                    \\\"method\\\": method,\\n                    \\\"kendall_tau\\\": corr[\\\"kendall_tau\\\"],\\n                    \\\"spearman_rho\\\": corr[\\\"spearman_rho\\\"],\\n                    \\\"n_matched\\\": corr[\\\"n_matched\\\"],\\n                    \\\"n_obs\\\": data[\\\"n_obs\\\"],\\n                    \\\"elapsed_s\\\": round(elapsed, 1),\\n                })\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                print(f\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\")\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef leave_one_judge_out(observations: list, all_judges: list,\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\n    \\\"\\\"\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\"\\\"\\\"\\n    rows = []\\n\\n    # Full-judge baseline\\n    full_data = build_data_dict(observations, exposure_csv)\\n    if full_data is None:\\n        return pd.DataFrame()\\n\\n    full_thetas = fit_methods_on_subset(full_data, methods)\\n    full_taus = {m: compute_arena_tau(t)[\\\"kendall_tau\\\"] for m, t in full_thetas.items()}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "36bfec8a-5cdf-4d0c-add1-2744e67996cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-006: Judge Count Sensitivity Analysis.\\\\n\\\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\\\n\\\\nUsage:\\\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\\\n\\\\n  python run_exp006.py --dry-run  # validate data loading only\\\\n  python run_exp006.py --help\\\\n\\\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport itertools\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\\\nimport arviz as az\\\\n\\\\n\\\\nARENA_ELO = {\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 1105,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 1163,\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1130,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1170,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1208,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1187,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1272,\\\\n}\\\\n\\\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\\\nSEED = 42\\\\n\\\\n\\\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\\\n    if len(matched) < 3:\\\\n        return {\\\\\\\"kendall_tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"spearman_rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"n_matched\\\\\\\": len(matched)}\\\\n    models, thetas = zip(*matched)\\\\n    elos = [ARENA_ELO[m] for m in models]\\\\n    tau, tau_p = kendalltau(thetas, elos)\\\\n    rho, rho_p = spearmanr(thetas, elos)\\\\n    return {\\\\n        \\\\\\\"kendall_tau\\\\\\\": float(tau),\\\\n        \\\\\\\"kendall_p\\\\\\\": float(tau_p),\\\\n        \\\\\\\"spearman_rho\\\\\\\": float(rho),\\\\n        \\\\\\\"spearman_p\\\\\\\": float(rho_p),\\\\n        \\\\\\\"n_matched\\\\\\\": len(matched),\\\\n    }\\\\n\\\\n\\\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and preprocess all judgment data, returning observations + metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    records = load_judgments(judgment_dir)\\\\n    observations = preprocess(records)\\\\n\\\\n    all_judges = sorted({o[\\\\\\\"judge\\\\\\\"] for o in observations})\\\\n    all_models = sorted({o[\\\\\\\"model\\\\\\\"] for o in observations})\\\\n    all_items = sorted({o[\\\\\\\"item_id\\\\\\\"] for o in observations})\\\\n\\\\n    return observations, all_judges, all_models, all_items\\\\n\\\\n\\\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Filter observations to only include specified judges.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    judge_set = set(judge_subset)\\\\n    return [o for o in observations if o[\\\\\\\"judge\\\\\\\"] in judge_set]\\\\n\\\\n\\\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build the data dict expected by G-MFRM fitting functions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from collections import defaultdict\\\\n\\\\n    # Filter items by minimum judge coverage\\\\n    judges_per_item = defaultdict(set)\\\\n    for o in filtered_obs:\\\\n        judges_per_item[o[\\\\\\\"item_id\\\\\\\"]].add(o[\\\\\\\"judge\\\\\\\"])\\\\n    valid_items = {item for item, judges in judges_per_item.items()\\\\n                   if len(judges) >= min(min_judges, len(set(o[\\\\\\\"judge\\\\\\\"] for o in filtered_obs)))}\\\\n    filtered_obs = [o for o in filtered_obs if o[\\\\\\\"item_id\\\\\\\"] in valid_items]\\\\n\\\\n    if not filtered_obs:\\\\n        return None\\\\n\\\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\\\n    N = len(model_to_idx)\\\\n    I = len(item_to_idx)\\\\n    J = len(judge_to_idx)\\\\n\\\\n    model_idx = np.array([model_to_idx[o[\\\\\\\"model\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    item_idx = np.array([item_to_idx[o[\\\\\\\"item_id\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    judge_idx = np.array([judge_to_idx[o[\\\\\\\"judge\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    y = np.array([o[\\\\\\\"y\\\\\\\"] for o in filtered_obs], dtype=np.float32)\\\\n\\\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\\\n\\\\n    model_names = sorted(model_to_idx, key=mode\\\\n\\\\n... [截断: 输出过长，省略 3063 字符] ...\\\\n\\\\n\\\\\\\"mcmc\\\\\\\"):\\\\n                try:\\\\n                    idata = az.from_numpyro(seq[\\\\\\\"mcmc\\\\\\\"])\\\\n                    idata.to_netcdf(f\\\\\\\"{idata_dir}/idata_sequential_{idata_label}.nc\\\\\\\")\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"      Warning: failed to save idata sequential: {e}\\\\\\\")\\\\n\\\\n        if \\\\\\\"joint_gmfrm\\\\\\\" in methods:\\\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"joint_gmfrm\\\\\\\"] = {\\\\n                name: float(joint[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n            if idata_dir and joint.get(\\\\\\\"mcmc\\\\\\\"):\\\\n                try:\\\\n                    idata = az.from_numpyro(joint[\\\\\\\"mcmc\\\\\\\"])\\\\n                    idata.to_netcdf(f\\\\\\\"{idata_dir}/idata_joint_gmfrm_{idata_label}.nc\\\\\\\")\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"      Warning: failed to save idata joint_gmfrm: {e}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\\\n                             exposure_csv: str, judge_counts: list,\\\\n                             n_subsets: int, methods: list, seed: int,\\\\n                             output_dir: str = None) -> pd.DataFrame:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full judge count sensitivity analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\\\n\\\\n    idata_dir = None\\\\n    if output_dir:\\\\n        idata_dir = str(Path(output_dir) / \\\\\\\"idata\\\\\\\")\\\\n        Path(idata_dir).mkdir(parents=True, exist_ok=True)\\\\n\\\\n    rows = []\\\\n    total = sum(len(v) for v in subsets.values())\\\\n    done = 0\\\\n\\\\n    for k in sorted(subsets.keys()):\\\\n        print(f\\\\\\\"\\\\\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\\\\\")\\\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\\\n            done += 1\\\\n            print(f\\\\\\\"    [{done}/{total}] Judges: {judge_subset}\\\\\\\")\\\\n\\\\n            filtered = filter_by_judges(observations, judge_subset)\\\\n            if not filtered:\\\\n                print(f\\\\\\\"      SKIP: no observations\\\\\\\")\\\\n                continue\\\\n\\\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\\\n            if data is None:\\\\n                print(f\\\\\\\"      SKIP: could not build data dict\\\\\\\")\\\\n                continue\\\\n\\\\n            print(f\\\\\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\\\\\")\\\\n\\\\n            t0 = time.time()\\\\n            idata_label = f\\\\\\\"k{k}_s{s_idx}\\\\\\\" if idata_dir else \\\\\\\"\\\\\\\"\\\\n            theta_dicts = fit_methods_on_subset(data, methods,\\\\n                                                 idata_dir=idata_dir,\\\\n                                                 idata_label=idata_label)\\\\n            elapsed = time.time() - t0\\\\n\\\\n            for method, theta_dict in theta_dicts.items():\\\\n                corr = compute_arena_tau(theta_dict)\\\\n                rows.append({\\\\n                    \\\\\\\"judge_count\\\\\\\": k,\\\\n                    \\\\\\\"subset_idx\\\\\\\": s_idx,\\\\n                    \\\\\\\"judges\\\\\\\": \\\\\\\",\\\\\\\".join(sorted(judge_subset)),\\\\n                    \\\\\\\"method\\\\\\\": method,\\\\n                    \\\\\\\"kendall_tau\\\\\\\": corr[\\\\\\\"kendall_tau\\\\\\\"],\\\\n                    \\\\\\\"spearman_rho\\\\\\\": corr[\\\\\\\"spearman_rho\\\\\\\"],\\\\n                    \\\\\\\"n_matched\\\\\\\": corr[\\\\\\\"n_matched\\\\\\\"],\\\\n                    \\\\\\\"n_obs\\\\\\\": data[\\\\\\\"n_obs\\\\\\\"],\\\\n                    \\\\\\\"elapsed_s\\\\\\\": round(elapsed, 1),\\\\n                })\\\\n\\\\n            for method, theta_dict in theta_dicts.items():\\\\n                corr = compute_arena_tau(theta_dict)\\\\n                print(f\\\\\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\\\\\")\\\\n\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef leave_one_judge_out(observations: list, all_judges: list,\\\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rows = []\\\\n\\\\n    # Full-judge baseline\\\\n    full_data = build_data_dict(observations, exposure_csv)\\\\n    if full_data is None:\\\\n        return pd.DataFrame()\\\\n\\\\n    full_thetas = fit_methods_on_subset(full_data, methods)\\\\n    full_taus = {m: compute_arena_tau(t)[\\\\\\\"kendall_tau\\\\\\\"] for m, t in full_thetas.items()}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\nimport arviz as az\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=mode\\n\\n... [截断: 输出过长，省略 3063 字符] ...\\n\\n\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(seq[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_sequential_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata sequential: {e}\\\")\\n\\n        if \\\"joint_gmfrm\\\" in methods:\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"joint_gmfrm\\\"] = {\\n                name: float(joint[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n            if idata_dir and joint.get(\\\"mcmc\\\"):\\n                try:\\n                    idata = az.from_numpyro(joint[\\\"mcmc\\\"])\\n                    idata.to_netcdf(f\\\"{idata_dir}/idata_joint_gmfrm_{idata_label}.nc\\\")\\n                except Exception as e:\\n                    print(f\\\"      Warning: failed to save idata joint_gmfrm: {e}\\\")\\n\\n    return results\\n\\n\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\n                             exposure_csv: str, judge_counts: list,\\n                             n_subsets: int, methods: list, seed: int,\\n                             output_dir: str = None) -> pd.DataFrame:\\n    \\\"\\\"\\\"Run full judge count sensitivity analysis.\\\"\\\"\\\"\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\n\\n    idata_dir = None\\n    if output_dir:\\n        idata_dir = str(Path(output_dir) / \\\"idata\\\")\\n        Path(idata_dir).mkdir(parents=True, exist_ok=True)\\n\\n    rows = []\\n    total = sum(len(v) for v in subsets.values())\\n    done = 0\\n\\n    for k in sorted(subsets.keys()):\\n        print(f\\\"\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\")\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\n            done += 1\\n            print(f\\\"    [{done}/{total}] Judges: {judge_subset}\\\")\\n\\n            filtered = filter_by_judges(observations, judge_subset)\\n            if not filtered:\\n                print(f\\\"      SKIP: no observations\\\")\\n                continue\\n\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\n            if data is None:\\n                print(f\\\"      SKIP: could not build data dict\\\")\\n                continue\\n\\n            print(f\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\")\\n\\n            t0 = time.time()\\n            idata_label = f\\\"k{k}_s{s_idx}\\\" if idata_dir else \\\"\\\"\\n            theta_dicts = fit_methods_on_subset(data, methods,\\n                                                 idata_dir=idata_dir,\\n                                                 idata_label=idata_label)\\n            elapsed = time.time() - t0\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                rows.append({\\n                    \\\"judge_count\\\": k,\\n                    \\\"subset_idx\\\": s_idx,\\n                    \\\"judges\\\": \\\",\\\".join(sorted(judge_subset)),\\n                    \\\"method\\\": method,\\n                    \\\"kendall_tau\\\": corr[\\\"kendall_tau\\\"],\\n                    \\\"spearman_rho\\\": corr[\\\"spearman_rho\\\"],\\n                    \\\"n_matched\\\": corr[\\\"n_matched\\\"],\\n                    \\\"n_obs\\\": data[\\\"n_obs\\\"],\\n                    \\\"elapsed_s\\\": round(elapsed, 1),\\n                })\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                print(f\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\")\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef leave_one_judge_out(observations: list, all_judges: list,\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\n    \\\"\\\"\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\"\\\"\\\"\\n    rows = []\\n\\n    # Full-judge baseline\\n    full_data = build_data_dict(observations, exposure_csv)\\n    if full_data is None:\\n        return pd.DataFrame()\\n\\n    full_thetas = fit_methods_on_subset(full_data, methods)\\n    full_taus = {m: compute_arena_tau(t)[\\\"kendall_tau\\\"] for m, t in full_thetas.items()}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the info I need. Let me write both scripts.
+
+For exp-006:
+- The final sensitivity_results.csv will have columns: judge_count, subset_idx, judges, method, kendall_tau, spearman_rho, n_matched, n_obs, elapsed_s
+- Methods: raw_average, sequential, joint_gmfrm
+- The script should look for `results_full/sensitivity_results.csv` first, then fall back to `results/sensitivity_results.csv`
+- LOOCV from leave_one_out_results.csv
+
+For W7:
+- CSV columns: theta_rmse, theta_tau, r_hat, ess, c_rmse, c_pearson, variant, seed, elapsed_s
+
+
+- 4 variants: full_gmfrm, binary_gating, no_judge_severity, staged_estimation
+
+Now I'll start writing the scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "cdec3d4a-cae7-48e0-b92c-60639f496b8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zV6LKiEQNZnAjoyj3LFAd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 48542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+Now writing both analysis scripts. Let me create the exp-006 script first, then the W7 script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "f409b62c-4a45-4075-8d44-f45913c42ad0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zV6LKiEQNZnAjoyj3LFAd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 48542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DMjWukkm4SiLtAw8cAPZLf`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "mkdir -p /root/gated_mfrm_judge_bias/artifacts/exp006_analysis /root/gated_mfrm_judge_bias/artifacts/w7_analysis",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "c15b4eab-dc12-49b0-880d-3367b67a19bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zV6LKiEQNZnAjoyj3LFAd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 48542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T22:30:36.463Z_
+
+<details><summary>↩ Tool result · `toolu_01DMjWukkm4SiLtAw8cAPZLf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "a545cd5a-781e-486f-a9bf-fe34dd1bf867",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019jQa7WUg1wYHhz2DYLghCg`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp006/analyze_exp006.py << 'SCRIPT_EOF'\n\"\"\"exp-006 analysis: Judge Count Sensitivity plots for the paper.\n\nReads sensitivity_results.csv (from results_full/ or results/) and\ngenerates publication-quality figures.\n\nUsage:\n  python analyze_exp006.py                        # auto-detect data\n  python analyze_exp006.py --data-dir results_full  # explicit path\n\"\"\"\n\nimport argparse\nimport sys\nfrom pathlib import Path\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as ticker\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\n\n# ── Style ────────────────────────────────────────────────────────────────\nplt.rcParams.update({\n    \"font.family\": \"serif\",\n    \"font.size\": 11,\n    \"axes.labelsize\": 13,\n    \"axes.titlesize\": 13,\n    \"legend.fontsize\": 9,\n    \"xtick.labelsize\": 10,\n    \"ytick.labelsize\": 10,\n    \"figure.dpi\": 150,\n    \"savefig.dpi\": 300,\n    \"savefig.bbox\": \"tight\",\n    \"pdf.fonttype\": 42,\n    \"ps.fonttype\": 42,\n})\n\nPALETTE = {\n    \"raw_average\": \"#4C72B0\",\n    \"sequential\": \"#DD8452\",\n    \"joint_gmfrm\": \"#55A868\",\n    \"mfrm_only\": \"#C44E52\",\n}\nMETHOD_LABELS = {\n    \"raw_average\": \"Raw Average\",\n    \"sequential\": \"Sequential\",\n    \"joint_gmfrm\": \"Joint G-MFRM\",\n    \"mfrm_only\": \"MFRM-only\",\n}\nMARKERS = {\n    \"raw_average\": \"s\",\n    \"sequential\": \"^\",\n    \"joint_gmfrm\": \"o\",\n    \"mfrm_only\": \"D\",\n}\n\nOUT_DIR = Path(\"/root/gated_mfrm_judge_bias/artifacts/exp006_analysis\")\n\n\ndef load_sensitivity_data(base: Path) -> pd.DataFrame:\n    \"\"\"Load sensitivity CSV, preferring results_full/ over results/.\"\"\"\n    candidates = [\n        base / \"results_full\" / \"sensitivity_results.csv\",\n        base / \"results\" / \"sensitivity_results.csv\",\n    ]\n    for p in candidates:\n        if p.exists():\n            df = pd.read_csv(p)\n            print(f\"Loaded {p}  ({len(df)} rows, methods: {sorted(df['method'].unique())})\")\n            return df\n    print(\"ERROR: no sensitivity_results.csv found\", file=sys.stderr)\n    sys.exit(1)\n\n\ndef load_loocv_data(base: Path) -> pd.DataFrame | None:\n    candidates = [\n        base / \"results_full\" / \"leave_one_out_results.csv\",\n        base / \"results\" / \"leave_one_out_results.csv\",\n    ]\n    for p in candidates:\n        if p.exists():\n            df = pd.read_csv(p)\n            print(f\"Loaded LOOCV: {p}  ({len(df)} rows)\")\n            return df\n    print(\"No LOOCV data found — skipping.\")\n    return None\n\n\n# ── Figure 1: Judge count vs τ (main figure) ─────────────────────────────\n\ndef plot_tau_vs_k(df: pd.DataFrame):\n    methods = [m for m in [\"raw_average\", \"sequential\", \"joint_gmfrm\", \"mfrm_only\"]\n               if m in df[\"method\"].unique()]\n    ks = sorted(df[\"judge_count\"].unique())\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.8))\n\n    crossover_k = None\n\n    for method in methods:\n        mdf = df[df[\"method\"] == method]\n        means, ci_lo, ci_hi = [], [], []\n        for k in ks:\n            vals = mdf[mdf[\"judge_count\"] == k][\"kendall_tau\"].dropna().values\n            if len(vals) == 0:\n                means.append(np.nan)\n                ci_lo.append(np.nan)\n                ci_hi.append(np.nan)\n                continue\n            m = vals.mean()\n            means.append(m)\n            if len(vals) > 1:\n                se = stats.sem(vals)\n                ci = 1.96 * se\n            else:\n                ci = 0\n            ci_lo.append(m - ci)\n            ci_hi.append(m + ci)\n\n        means = np.array(means)\n        ci_lo = np.array(ci_lo)\n        ci_hi = np.array(ci_hi)\n        color = PALETTE.get(method, \"gray\")\n        label = METHOD_LABELS.get(method, method)\n        marker = MARKERS.get(method, \"o\")\n\n        ax.plot(ks, means, marker=marker, color=color, label=label,\n                linewidth=1.5, markersize=5, zorder=3)\n        ax.fill_between(ks, ci_lo, ci_hi, color=color, alpha=0.15, zorder=1)\n\n    # Find crossover: where joint_gmfrm first exceeds sequential (or raw_average)\n    if \"joint_gmfrm\" in df[\"method\"].unique():\n        baseline = \"sequential\" if \"sequential\" in df[\"method\"].unique() else \"raw_average\"\n        for k in ks:\n            j_vals = df[(df[\"method\"] == \"joint_gmfrm\") & (df[\"judge_count\"] == k)][\"kendall_tau\"]\n            b_vals = df[(df[\"method\"] == baseline) & (df[\"judge_count\"] == k)][\"kendall_tau\"]\n            if len(j_vals) > 0 and len(b_vals) > 0:\n                if j_vals.mean() > b_vals.mean():\n                    crossover_k = k\n                    break\n\n        if crossover_k is not None:\n            ax.axvline(crossover_k, color=\"gray\", linestyle=\":\", linewidth=0.8, alpha=0.6)\n            y_range = ax.get_ylim()\n            ax.annotate(f\"G-MFRM\\nsurpasses\\n{METHOD_LABELS.get(baseline, baseline)}\\n(k={crossover_k})\",\n                        xy=(crossover_k, y_range[0] + 0.7 * (y_range[1] - y_range[0])),\n                        fontsize=7, ha=\"center\", color=\"gray\",\n                        bbox=dict(boxstyle=\"round,pad=0.2\", fc=\"white\", ec=\"gray\", alpha=0.7))\n\n    ax.set_xlabel(\"Number of judges ($k$)\")\n    ax.set_ylabel(\"Kendall $\\\\tau$ with Arena\")\n    ax.set_xticks(ks)\n    ax.legend(loc=\"lower right\", framealpha=0.9)\n    ax.grid(axis=\"y\", alpha=0.3, linewidth=0.5)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(OUT_DIR / f\"tau_vs_judge_count.{ext}\")\n    plt.close(fig)\n    print(f\"Saved tau_vs_judge_count.{{pdf,png}}\")\n\n\n# ── Figure 2: Δτ marginal gain ────────────────────────────────────────────\n\ndef plot_delta_tau(df: pd.DataFrame):\n    methods = [m for m in [\"raw_average\", \"sequential\", \"joint_gmfrm\"]\n               if m in df[\"method\"].unique()]\n    if len(methods) == 0:\n        return\n    ks = sorted(df[\"judge_count\"].unique())\n    if len(ks) < 2:\n        return\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.4))\n\n    bar_width = 0.8 / len(methods)\n    x = np.arange(len(ks) - 1)\n\n    for i, method in enumerate(methods):\n        mdf = df[df[\"method\"] == method]\n        means_by_k = {k: mdf[mdf[\"judge_count\"] == k][\"kendall_tau\"].mean() for k in ks}\n        deltas = [means_by_k.get(ks[j+1], np.nan) - means_by_k.get(ks[j], np.nan)\n                  for j in range(len(ks) - 1)]\n        color = PALETTE.get(method, \"gray\")\n        label = METHOD_LABELS.get(method, method)\n        offset = (i - len(methods) / 2 + 0.5) * bar_width\n        ax.bar(x + offset, deltas, bar_width, label=label, color=color, alpha=0.8)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels([f\"{ks[j]}→{ks[j+1]}\" for j in range(len(ks) - 1)])\n    ax.set_xlabel(\"Judge count transition\")\n    ax.set_ylabel(\"$\\\\Delta\\\\tau$\")\n    ax.axhline(0, color=\"black\", linewidth=0.5, linestyle=\"-\")\n    ax.legend(fontsize=8)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    ax.grid(axis=\"y\", alpha=0.3, linewidth=0.5)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(OUT_DIR / f\"delta_tau.{ext}\")\n    plt.close(fig)\n    print(f\"Saved delta_tau.{{pdf,png}}\")\n\n\n# ── Figure 3: LOOCV ──────────────────────────────────────────────────────\n\ndef plot_loocv(df: pd.DataFrame):\n    methods = [m for m in [\"raw_average\", \"sequential\", \"joint_gmfrm\"]\n               if m in df[\"method\"].unique()]\n    judges = sorted(df[\"left_out_judge\"].unique())\n\n    fig, axes = plt.subplots(1, 2, figsize=(7, 2.8), sharey=False)\n\n    # Panel A: τ per judge left out\n    ax = axes[0]\n    x = np.arange(len(judges))\n    bar_w = 0.8 / max(len(methods), 1)\n    for i, method in enumerate(methods):\n        mdf = df[df[\"method\"] == method]\n        taus = [mdf[mdf[\"left_out_judge\"] == j][\"kendall_tau\"].values[0]\n                if len(mdf[mdf[\"left_out_judge\"] == j]) > 0 else np.nan\n                for j in judges]\n        offset = (i - len(methods) / 2 + 0.5) * bar_w\n        ax.bar(x + offset, taus, bar_w,\n               label=METHOD_LABELS.get(method, method),\n               color=PALETTE.get(method, \"gray\"), alpha=0.85)\n    ax.set_xticks(x)\n    short_names = [j.replace(\"-proxy\", \"\").replace(\"claude-\", \"c-\").replace(\"gemini-\", \"g-\")\n                   for j in judges]\n    ax.set_xticklabels(short_names, rotation=45, ha=\"right\", fontsize=7)\n    ax.set_ylabel(\"Kendall $\\\\tau$\")\n    ax.set_title(\"(a) $\\\\tau$ without each judge\")\n    ax.legend(fontsize=7, loc=\"lower left\")\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n\n    # Panel B: Δτ\n    ax = axes[1]\n    for i, method in enumerate(methods):\n        mdf = df[df[\"method\"] == method]\n        deltas = [mdf[mdf[\"left_out_judge\"] == j][\"tau_delta\"].values[0]\n                  if len(mdf[mdf[\"left_out_judge\"] == j]) > 0 else np.nan\n                  for j in judges]\n        offset = (i - len(methods) / 2 + 0.5) * bar_w\n        ax.bar(x + offset, deltas, bar_w,\n               label=METHOD_LABELS.get(method, method),\n               color=PALETTE.get(method, \"gray\"), alpha=0.85)\n    ax.set_xticks(x)\n    ax.set_xticklabels(short_names, rotation=45, ha=\"right\", fontsize=7)\n    ax.set_ylabel(\"$\\\\Delta\\\\tau$\")\n    ax.set_title(\"(b) Impact of removing each judge\")\n    ax.axhline(0, color=\"black\", linewidth=0.5)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(OUT_DIR / f\"loocv.{ext}\")\n    plt.close(fig)\n    print(f\"Saved loocv.{{pdf,png}}\")\n\n\n# ── Summary table ─────────────────────────────────────────────────────────\n\ndef print_summary(df: pd.DataFrame):\n    methods = sorted(df[\"method\"].unique())\n    ks = sorted(df[\"judge_count\"].unique())\n    print(\"\\n\" + \"=\" * 70)\n    print(\"SUMMARY TABLE: mean τ ± std\")\n    print(\"=\" * 70)\n    header = f\"{'k':>4}\"\n    for m in methods:\n        header += f\"  {METHOD_LABELS.get(m, m):>20}\"\n    print(header)\n    print(\"-\" * len(header))\n    for k in ks:\n        line = f\"{k:>4}\"\n        for m in methods:\n            vals = df[(df[\"judge_count\"] == k) & (df[\"method\"] == m)][\"kendall_tau\"]\n            if len(vals) > 0:\n                line += f\"  {vals.mean():>8.4f} ± {vals.std():>6.4f}\"\n            else:\n                line += f\"  {'—':>20}\"\n        print(line)\n    print(\"=\" * 70)\n\n\n# ── Main ──────────────────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--base-dir\", default=\"/root/gated_mfrm_judge_bias/exp006\",\n                        help=\"Base directory for exp006\")\n    parser.add_argument(\"--out-dir\", default=str(OUT_DIR))\n    args = parser.parse_args()\n\n    base = Path(args.base_dir)\n    global OUT_DIR\n    OUT_DIR = Path(args.out_dir)\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\n\n    df = load_sensitivity_data(base)\n    print_summary(df)\n\n    plot_tau_vs_k(df)\n    plot_delta_tau(df)\n\n    loocv = load_loocv_data(base)\n    if loocv is not None and not loocv.empty:\n        plot_loocv(loocv)\n\n    print(f\"\\nAll outputs in {OUT_DIR}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "b8c9c40e-2534-463f-af2d-32afa56956f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMoxVveSr59fccthisepG7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 53437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T22:31:28.523Z_
+
+<details><summary>↩ Tool result · `toolu_019jQa7WUg1wYHhz2DYLghCg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "2c98389a-6232-4b29-8bd9-a003a9bec6c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FHaXNEFiXGe8Grq8361HLC`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp_w7_ablation/analyze_w7.py << 'SCRIPT_EOF'\n\"\"\"W7 ablation analysis: component ablation boxplots + statistical tests.\n\nReads results_w7_ablation_partial.csv (or results_w7_ablation.csv) and\ngenerates publication-quality figures.\n\nUsage:\n  python analyze_w7.py\n  python analyze_w7.py --data results_w7_ablation.csv\n\"\"\"\n\nimport argparse\nimport sys\nfrom pathlib import Path\nfrom itertools import combinations\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats as sp_stats\n\n# ── Style ────────────────────────────────────────────────────────────────\nplt.rcParams.update({\n    \"font.family\": \"serif\",\n    \"font.size\": 11,\n    \"axes.labelsize\": 13,\n    \"axes.titlesize\": 13,\n    \"legend.fontsize\": 9,\n    \"xtick.labelsize\": 10,\n    \"ytick.labelsize\": 10,\n    \"figure.dpi\": 150,\n    \"savefig.dpi\": 300,\n    \"savefig.bbox\": \"tight\",\n    \"pdf.fonttype\": 42,\n    \"ps.fonttype\": 42,\n})\n\nVARIANT_ORDER = [\"full_gmfrm\", \"no_judge_severity\", \"binary_gating\", \"staged_estimation\"]\nVARIANT_LABELS = {\n    \"full_gmfrm\": \"Full G-MFRM\",\n    \"no_judge_severity\": \"No Severity\",\n    \"binary_gating\": \"Binary Gate\",\n    \"staged_estimation\": \"Staged Est.\",\n}\nPALETTE = {\n    \"full_gmfrm\": \"#55A868\",\n    \"no_judge_severity\": \"#4C72B0\",\n    \"binary_gating\": \"#DD8452\",\n    \"staged_estimation\": \"#C44E52\",\n}\n\nOUT_DIR = Path(\"/root/gated_mfrm_judge_bias/artifacts/w7_analysis\")\nBASE_DIR = Path(\"/root/gated_mfrm_judge_bias/exp_w7_ablation\")\n\n\ndef load_data() -> pd.DataFrame:\n    candidates = [\n        BASE_DIR / \"results_w7_ablation.csv\",\n        BASE_DIR / \"results_w7_ablation_partial.csv\",\n    ]\n    for p in candidates:\n        if p.exists():\n            df = pd.read_csv(p)\n            n_seeds = df[\"seed\"].nunique()\n            variants = sorted(df[\"variant\"].unique())\n            print(f\"Loaded {p}\")\n            print(f\"  {len(df)} rows, {n_seeds} seeds, variants: {variants}\")\n            return df\n    print(\"ERROR: no W7 ablation CSV found\", file=sys.stderr)\n    sys.exit(1)\n\n\ndef sig_stars(p: float) -> str:\n    if p < 0.001:\n        return \"***\"\n    elif p < 0.01:\n        return \"**\"\n    elif p < 0.05:\n        return \"*\"\n    return \"n.s.\"\n\n\n# ── Figure 1: θ_RMSE + c_RMSE boxplots (main) ──────────────────────────\n\ndef plot_ablation_boxplots(df: pd.DataFrame, p_table: pd.DataFrame):\n    variants = [v for v in VARIANT_ORDER if v in df[\"variant\"].unique()]\n    labels = [VARIANT_LABELS.get(v, v) for v in variants]\n    colors = [PALETTE.get(v, \"gray\") for v in variants]\n\n    fig, axes = plt.subplots(1, 2, figsize=(7, 3.0))\n\n    for ax, metric, ylabel in zip(\n        axes,\n        [\"theta_rmse\", \"c_rmse\"],\n        [\"$\\\\theta$ RMSE\", \"$c$ RMSE\"],\n    ):\n        data_lists = [df[df[\"variant\"] == v][metric].dropna().values for v in variants]\n\n        bp = ax.boxplot(\n            data_lists,\n            positions=range(len(variants)),\n            widths=0.5,\n            patch_artist=True,\n            showfliers=True,\n            flierprops=dict(marker=\"o\", markersize=3, alpha=0.5),\n            medianprops=dict(color=\"black\", linewidth=1.2),\n        )\n        for patch, color in zip(bp[\"boxes\"], colors):\n            patch.set_facecolor(color)\n            patch.set_alpha(0.65)\n\n        for i, vals in enumerate(data_lists):\n            jitter = np.random.default_rng(42).uniform(-0.12, 0.12, size=len(vals))\n            ax.scatter(np.full_like(vals, i) + jitter, vals,\n                       color=colors[i], s=12, alpha=0.5, zorder=3, edgecolors=\"none\")\n\n        # Significance brackets vs full_gmfrm\n        if \"full_gmfrm\" in variants:\n            full_idx = variants.index(\"full_gmfrm\")\n            y_max = max(v.max() for v in data_lists if len(v) > 0) * 1.02\n            bracket_y = y_max\n            for j, v in enumerate(variants):\n                if v == \"full_gmfrm\":\n                    continue\n                row = p_table[(p_table[\"metric\"] == metric) & (p_table[\"variant\"] == v)]\n                if row.empty:\n                    continue\n                p_val = row[\"p_value\"].values[0]\n                stars = sig_stars(p_val)\n                if stars == \"n.s.\":\n                    continue\n                bracket_y += y_max * 0.06\n                ax.plot([full_idx, full_idx, j, j],\n                        [bracket_y - y_max * 0.01, bracket_y, bracket_y, bracket_y - y_max * 0.01],\n                        color=\"black\", linewidth=0.8)\n                ax.text((full_idx + j) / 2, bracket_y + y_max * 0.005, stars,\n                        ha=\"center\", va=\"bottom\", fontsize=8)\n\n        ax.set_xticks(range(len(variants)))\n        ax.set_xticklabels(labels, rotation=20, ha=\"right\")\n        ax.set_ylabel(ylabel)\n        ax.spines[\"top\"].set_visible(False)\n        ax.spines[\"right\"].set_visible(False)\n        ax.grid(axis=\"y\", alpha=0.3, linewidth=0.5)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(OUT_DIR / f\"ablation_boxplots.{ext}\")\n    plt.close(fig)\n    print(f\"Saved ablation_boxplots.{{pdf,png}}\")\n\n\n# ── Figure 2: θ_tau boxplot ──────────────────────────────────────────────\n\ndef plot_theta_tau_boxplot(df: pd.DataFrame):\n    variants = [v for v in VARIANT_ORDER if v in df[\"variant\"].unique()]\n    labels = [VARIANT_LABELS.get(v, v) for v in variants]\n    colors = [PALETTE.get(v, \"gray\") for v in variants]\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.8))\n\n    data_lists = [df[df[\"variant\"] == v][\"theta_tau\"].dropna().values for v in variants]\n\n    bp = ax.boxplot(\n        data_lists,\n        positions=range(len(variants)),\n        widths=0.5,\n        patch_artist=True,\n        showfliers=True,\n        flierprops=dict(marker=\"o\", markersize=3, alpha=0.5),\n        medianprops=dict(color=\"black\", linewidth=1.2),\n    )\n    for patch, color in zip(bp[\"boxes\"], colors):\n        patch.set_facecolor(color)\n        patch.set_alpha(0.65)\n\n    for i, vals in enumerate(data_lists):\n        jitter = np.random.default_rng(42).uniform(-0.12, 0.12, size=len(vals))\n        ax.scatter(np.full_like(vals, i) + jitter, vals,\n                   color=colors[i], s=12, alpha=0.5, zorder=3, edgecolors=\"none\")\n\n    ax.set_xticks(range(len(variants)))\n    ax.set_xticklabels(labels, rotation=20, ha=\"right\")\n    ax.set_ylabel(\"Kendall $\\\\tau$ (ability)\")\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    ax.grid(axis=\"y\", alpha=0.3, linewidth=0.5)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(OUT_DIR / f\"theta_tau_boxplot.{ext}\")\n    plt.close(fig)\n    print(f\"Saved theta_tau_boxplot.{{pdf,png}}\")\n\n\n# ── Statistical tests ─────────────────────────────────────────────────────\n\ndef run_tests(df: pd.DataFrame) -> pd.DataFrame:\n    variants = [v for v in VARIANT_ORDER if v in df[\"variant\"].unique()]\n    if \"full_gmfrm\" not in variants:\n        print(\"WARNING: full_gmfrm not found — skipping statistical tests\")\n        return pd.DataFrame()\n\n    full = df[df[\"variant\"] == \"full_gmfrm\"]\n    seeds_full = set(full[\"seed\"].values)\n\n    rows = []\n    metrics = [\"theta_rmse\", \"c_rmse\", \"theta_tau\"]\n    metric_labels = {\"theta_rmse\": \"θ RMSE\", \"c_rmse\": \"c RMSE\", \"theta_tau\": \"θ τ\"}\n\n    for metric in metrics:\n        for v in variants:\n            if v == \"full_gmfrm\":\n                continue\n            vdf = df[df[\"variant\"] == v]\n            common_seeds = sorted(seeds_full & set(vdf[\"seed\"].values))\n            if len(common_seeds) < 3:\n                continue\n            full_vals = full[full[\"seed\"].isin(common_seeds)].sort_values(\"seed\")[metric].values\n            v_vals = vdf[vdf[\"seed\"].isin(common_seeds)].sort_values(\"seed\")[metric].values\n\n            stat, p = sp_stats.wilcoxon(full_vals, v_vals, alternative=\"two-sided\")\n            effect = np.median(v_vals - full_vals)\n\n            rows.append({\n                \"metric\": metric,\n                \"metric_label\": metric_labels[metric],\n                \"variant\": v,\n                \"variant_label\": VARIANT_LABELS.get(v, v),\n                \"n_seeds\": len(common_seeds),\n                \"full_median\": np.median(full_vals),\n                \"variant_median\": np.median(v_vals),\n                \"median_diff\": effect,\n                \"wilcoxon_stat\": stat,\n                \"p_value\": p,\n                \"sig\": sig_stars(p),\n            })\n\n    p_df = pd.DataFrame(rows)\n    return p_df\n\n\ndef print_test_table(p_df: pd.DataFrame):\n    if p_df.empty:\n        return\n    print(\"\\n\" + \"=\" * 85)\n    print(\"PAIRED WILCOXON SIGNED-RANK TESTS (full_gmfrm vs each variant)\")\n    print(\"=\" * 85)\n    print(f\"{'Metric':<10} {'Variant':<16} {'Full med':>9} {'Var med':>9} \"\n          f\"{'Δ median':>9} {'W':>8} {'p':>10} {'Sig':>5}\")\n    print(\"-\" * 85)\n    for _, r in p_df.iterrows():\n        print(f\"{r['metric_label']:<10} {r['variant_label']:<16} \"\n              f\"{r['full_median']:>9.4f} {r['variant_median']:>9.4f} \"\n              f\"{r['median_diff']:>+9.4f} {r['wilcoxon_stat']:>8.0f} \"\n              f\"{r['p_value']:>10.4e} {r['sig']:>5}\")\n    print(\"=\" * 85)\n\n\n# ── Main ──────────────────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--data\", default=None, help=\"Explicit CSV path\")\n    parser.add_argument(\"--out-dir\", default=str(OUT_DIR))\n    args = parser.parse_args()\n\n    global OUT_DIR, BASE_DIR\n    OUT_DIR = Path(args.out_dir)\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\n\n    if args.data:\n        df = pd.read_csv(args.data)\n        print(f\"Loaded {args.data}  ({len(df)} rows)\")\n    else:\n        df = load_data()\n\n    p_df = run_tests(df)\n    print_test_table(p_df)\n\n    if not p_df.empty:\n        p_df.to_csv(OUT_DIR / \"wilcoxon_tests.csv\", index=False)\n        print(f\"Saved wilcoxon_tests.csv\")\n\n    plot_ablation_boxplots(df, p_df)\n    plot_theta_tau_boxplot(df)\n\n    # Summary stats\n    print(\"\\n\" + \"=\" * 60)\n    print(\"VARIANT SUMMARY (mean ± std)\")\n    print(\"=\" * 60)\n    for v in VARIANT_ORDER:\n        vdf = df[df[\"variant\"] == v]\n        if vdf.empty:\n            continue\n        print(f\"  {VARIANT_LABELS.get(v, v):<18} \"\n              f\"θ_RMSE={vdf['theta_rmse'].mean():.4f}±{vdf['theta_rmse'].std():.4f}  \"\n              f\"c_RMSE={vdf['c_rmse'].mean():.4f}±{vdf['c_rmse'].std():.4f}  \"\n              f\"θ_τ={vdf['theta_tau'].mean():.4f}±{vdf['theta_tau'].std():.4f}  \"\n              f\"(n={len(vdf)})\")\n    print(\"=\" * 60)\n\n    print(f\"\\nAll outputs in {OUT_DIR}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "13a525b3-f600-46f1-9ea0-aaf26cadf8b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRBckQsBCwWkr9nuhpxAZd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4157,
+      "cache_read_input_tokens": 53901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4157
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T22:32:20.716Z_
+
+<details><summary>↩ Tool result · `toolu_01FHaXNEFiXGe8Grq8361HLC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "e7ae797e-7fac-4c7b-b9c2-09619f28103d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+脚本写好了。现在用已有数据验证两个脚本能否正常运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "a99ba294-49a4-422e-810d-d9cbcd5638a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QaGGnaABE7LyfsjvJTHupd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3928,
+      "cache_read_input_tokens": 58058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3928
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TY5QwHMJnjjipGpUpGMe6H`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp006 && python analyze_exp006.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "2a7c77a8-e648-4642-92cd-acd0127fbf39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QaGGnaABE7LyfsjvJTHupd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3928,
+      "cache_read_input_tokens": 58058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3928
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-22T22:32:29.117Z_
+
+<details><summary>↩ Tool result · `toolu_01TY5QwHMJnjjipGpUpGMe6H`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp006 && python analyze_exp006.py 2>&1'\\n\\nExit code: 1\\n\\nStdout:\\n\\n  File \\\"/root/gated_mfrm_judge_bias/exp006/analyze_exp006.py\\\", line 302\\n    global OUT_DIR\\n    ^^^^^^^^^^^^^^\\nSyntaxError: name 'OUT_DIR' is used prior to global declaration\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "e8e23e26-b323-462f-b1ce-580aa778e533",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp006 && python analyze_exp006.py 2>&1'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n  File \\\\\\\"/root/gated_mfrm_judge_bias/exp006/analyze_exp006.py\\\\\\\", line 302\\\\n    global OUT_DIR\\\\n    ^^^^^^^^^^^^^^\\\\nSyntaxError: name 'OUT_DIR' is used prior to global declaration\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp006 && python analyze_exp006.py 2>&1'\\n\\nExit code: 1\\n\\nStdout:\\n\\n  File \\\"/root/gated_mfrm_judge_bias/exp006/analyze_exp006.py\\\", line 302\\n    global OUT_DIR\\n    ^^^^^^^^^^^^^^\\nSyntaxError: name 'OUT_DIR' is used prior to global declaration\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BDnHUXCT3ZBMFiVE9EpBPG`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp_w7_ablation && python analyze_w7.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "e43e32a9-d609-45e0-94f2-9f167e022b7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QaGGnaABE7LyfsjvJTHupd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3928,
+      "cache_read_input_tokens": 58058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3928
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-22T22:32:30.701Z_
+
+<details><summary>↩ Tool result · `toolu_01BDnHUXCT3ZBMFiVE9EpBPG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp_w7_ablation && python analyze_w7.py 2>&1'\\n\\nExit code: 1\\n\\nStdout:\\n\\n  File \\\"/root/gated_mfrm_judge_bias/exp_w7_ablation/analyze_w7.py\\\", line 269\\n    global OUT_DIR, BASE_DIR\\n    ^^^^^^^^^^^^^^^^^^^^^^^^\\nSyntaxError: name 'OUT_DIR' is used prior to global declaration\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "b2147d12-6238-407f-94c5-554b1096589c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp_w7_ablation && python analyze_w7.py 2>&1'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n  File \\\\\\\"/root/gated_mfrm_judge_bias/exp_w7_ablation/analyze_w7.py\\\\\\\", line 269\\\\n    global OUT_DIR, BASE_DIR\\\\n    ^^^^^^^^^^^^^^^^^^^^^^^^\\\\nSyntaxError: name 'OUT_DIR' is used prior to global declaration\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp_w7_ablation && python analyze_w7.py 2>&1'\\n\\nExit code: 1\\n\\nStdout:\\n\\n  File \\\"/root/gated_mfrm_judge_bias/exp_w7_ablation/analyze_w7.py\\\", line 269\\n    global OUT_DIR, BASE_DIR\\n    ^^^^^^^^^^^^^^^^^^^^^^^^\\nSyntaxError: name 'OUT_DIR' is used prior to global declaration\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to fix the `global` issue. In Python 3, you can't use `global` after the variable has been referenced in the function. The issue is that `OUT_DIR` is used as a default argument value which binds it at definition time. Let me restructure to avoid global.
+
+The simplest fix: don't use global. Pass OUT_DIR as a parameter to the plotting functions, or just set it at the module level and don't reassign in main(). Let me fix both scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "ece10f44-b60f-4b11-9b41-f8cddb9be5fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRsfQrMupPUxjmfK8kyLR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 61986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+修复 global 声明问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "73cc4ff2-ed37-4f05-8533-ea9af8e79232",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRsfQrMupPUxjmfK8kyLR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 61986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RvUeqiq4Q7zWSRcmVDtr35`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp006/analyze_exp006.py << 'SCRIPT_EOF'\n\"\"\"exp-006 analysis: Judge Count Sensitivity plots for the paper.\"\"\"\n\nimport argparse\nimport sys\nfrom pathlib import Path\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\n\nplt.rcParams.update({\n    \"font.family\": \"serif\",\n    \"font.size\": 11,\n    \"axes.labelsize\": 13,\n    \"axes.titlesize\": 13,\n    \"legend.fontsize\": 9,\n    \"xtick.labelsize\": 10,\n    \"ytick.labelsize\": 10,\n    \"figure.dpi\": 150,\n    \"savefig.dpi\": 300,\n    \"savefig.bbox\": \"tight\",\n    \"pdf.fonttype\": 42,\n    \"ps.fonttype\": 42,\n})\n\nPALETTE = {\n    \"raw_average\": \"#4C72B0\",\n    \"sequential\": \"#DD8452\",\n    \"joint_gmfrm\": \"#55A868\",\n    \"mfrm_only\": \"#C44E52\",\n}\nMETHOD_LABELS = {\n    \"raw_average\": \"Raw Average\",\n    \"sequential\": \"Sequential\",\n    \"joint_gmfrm\": \"Joint G-MFRM\",\n    \"mfrm_only\": \"MFRM-only\",\n}\nMARKERS = {\n    \"raw_average\": \"s\",\n    \"sequential\": \"^\",\n    \"joint_gmfrm\": \"o\",\n    \"mfrm_only\": \"D\",\n}\n\n\ndef load_sensitivity_data(base: Path) -> pd.DataFrame:\n    for p in [base / \"results_full\" / \"sensitivity_results.csv\",\n              base / \"results\" / \"sensitivity_results.csv\"]:\n        if p.exists():\n            df = pd.read_csv(p)\n            print(f\"Loaded {p}  ({len(df)} rows, methods: {sorted(df['method'].unique())})\")\n            return df\n    print(\"ERROR: no sensitivity_results.csv found\", file=sys.stderr)\n    sys.exit(1)\n\n\ndef load_loocv_data(base: Path):\n    for p in [base / \"results_full\" / \"leave_one_out_results.csv\",\n              base / \"results\" / \"leave_one_out_results.csv\"]:\n        if p.exists():\n            df = pd.read_csv(p)\n            print(f\"Loaded LOOCV: {p}  ({len(df)} rows)\")\n            return df\n    print(\"No LOOCV data found — skipping.\")\n    return None\n\n\ndef plot_tau_vs_k(df: pd.DataFrame, out_dir: Path):\n    methods = [m for m in [\"raw_average\", \"sequential\", \"joint_gmfrm\", \"mfrm_only\"]\n               if m in df[\"method\"].unique()]\n    ks = sorted(df[\"judge_count\"].unique())\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.8))\n\n    for method in methods:\n        mdf = df[df[\"method\"] == method]\n        means, ci_lo, ci_hi = [], [], []\n        for k in ks:\n            vals = mdf[mdf[\"judge_count\"] == k][\"kendall_tau\"].dropna().values\n            if len(vals) == 0:\n                means.append(np.nan); ci_lo.append(np.nan); ci_hi.append(np.nan)\n                continue\n            m = vals.mean()\n            means.append(m)\n            ci = 1.96 * stats.sem(vals) if len(vals) > 1 else 0\n            ci_lo.append(m - ci)\n            ci_hi.append(m + ci)\n\n        means = np.array(means)\n        ci_lo = np.array(ci_lo)\n        ci_hi = np.array(ci_hi)\n        color = PALETTE.get(method, \"gray\")\n\n        ax.plot(ks, means, marker=MARKERS.get(method, \"o\"), color=color,\n                label=METHOD_LABELS.get(method, method),\n                linewidth=1.5, markersize=5, zorder=3)\n        ax.fill_between(ks, ci_lo, ci_hi, color=color, alpha=0.15, zorder=1)\n\n    # Crossover annotation\n    if \"joint_gmfrm\" in df[\"method\"].unique():\n        baseline = \"sequential\" if \"sequential\" in df[\"method\"].unique() else \"raw_average\"\n        for k in ks:\n            j_vals = df[(df[\"method\"] == \"joint_gmfrm\") & (df[\"judge_count\"] == k)][\"kendall_tau\"]\n            b_vals = df[(df[\"method\"] == baseline) & (df[\"judge_count\"] == k)][\"kendall_tau\"]\n            if len(j_vals) > 0 and len(b_vals) > 0 and j_vals.mean() > b_vals.mean():\n                ax.axvline(k, color=\"gray\", linestyle=\":\", linewidth=0.8, alpha=0.6)\n                yl = ax.get_ylim()\n                ax.annotate(f\"G-MFRM surpasses\\n{METHOD_LABELS.get(baseline, baseline)}\\n(k={k})\",\n                            xy=(k, yl[0] + 0.7 * (yl[1] - yl[0])),\n                            fontsize=7, ha=\"center\", color=\"gray\",\n                            bbox=dict(boxstyle=\"round,pad=0.2\", fc=\"white\", ec=\"gray\", alpha=0.7))\n                break\n\n    ax.set_xlabel(\"Number of judges ($k$)\")\n    ax.set_ylabel(\"Kendall $\\\\tau$ with Arena\")\n    ax.set_xticks(ks)\n    ax.legend(loc=\"lower right\", framealpha=0.9)\n    ax.grid(axis=\"y\", alpha=0.3, linewidth=0.5)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(out_dir / f\"tau_vs_judge_count.{ext}\")\n    plt.close(fig)\n    print(f\"Saved tau_vs_judge_count.{{pdf,png}}\")\n\n\ndef plot_delta_tau(df: pd.DataFrame, out_dir: Path):\n    methods = [m for m in [\"raw_average\", \"sequential\", \"joint_gmfrm\"]\n               if m in df[\"method\"].unique()]\n    ks = sorted(df[\"judge_count\"].unique())\n    if len(ks) < 2 or len(methods) == 0:\n        return\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.4))\n\n    bar_width = 0.8 / len(methods)\n    x = np.arange(len(ks) - 1)\n\n    for i, method in enumerate(methods):\n        mdf = df[df[\"method\"] == method]\n        means_by_k = {k: mdf[mdf[\"judge_count\"] == k][\"kendall_tau\"].mean() for k in ks}\n        deltas = [means_by_k.get(ks[j+1], np.nan) - means_by_k.get(ks[j], np.nan)\n                  for j in range(len(ks) - 1)]\n        offset = (i - len(methods) / 2 + 0.5) * bar_width\n        ax.bar(x + offset, deltas, bar_width,\n               label=METHOD_LABELS.get(method, method),\n               color=PALETTE.get(method, \"gray\"), alpha=0.8)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels([f\"{ks[j]}→{ks[j+1]}\" for j in range(len(ks) - 1)])\n    ax.set_xlabel(\"Judge count transition\")\n    ax.set_ylabel(\"$\\\\Delta\\\\tau$\")\n    ax.axhline(0, color=\"black\", linewidth=0.5, linestyle=\"-\")\n    ax.legend(fontsize=8)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    ax.grid(axis=\"y\", alpha=0.3, linewidth=0.5)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(out_dir / f\"delta_tau.{ext}\")\n    plt.close(fig)\n    print(f\"Saved delta_tau.{{pdf,png}}\")\n\n\ndef plot_loocv(df: pd.DataFrame, out_dir: Path):\n    methods = [m for m in [\"raw_average\", \"sequential\", \"joint_gmfrm\"]\n               if m in df[\"method\"].unique()]\n    judges = sorted(df[\"left_out_judge\"].unique())\n\n    fig, axes = plt.subplots(1, 2, figsize=(7, 2.8), sharey=False)\n\n    x = np.arange(len(judges))\n    bar_w = 0.8 / max(len(methods), 1)\n    short_names = [j.replace(\"-proxy\", \"\").replace(\"claude-\", \"c-\").replace(\"gemini-\", \"g-\")\n                   for j in judges]\n\n    ax = axes[0]\n    for i, method in enumerate(methods):\n        mdf = df[df[\"method\"] == method]\n        taus = [mdf[mdf[\"left_out_judge\"] == j][\"kendall_tau\"].values[0]\n                if len(mdf[mdf[\"left_out_judge\"] == j]) > 0 else np.nan\n                for j in judges]\n        offset = (i - len(methods) / 2 + 0.5) * bar_w\n        ax.bar(x + offset, taus, bar_w,\n               label=METHOD_LABELS.get(method, method),\n               color=PALETTE.get(method, \"gray\"), alpha=0.85)\n    ax.set_xticks(x)\n    ax.set_xticklabels(short_names, rotation=45, ha=\"right\", fontsize=7)\n    ax.set_ylabel(\"Kendall $\\\\tau$\")\n    ax.set_title(\"(a) $\\\\tau$ without each judge\")\n    ax.legend(fontsize=7, loc=\"lower left\")\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n\n    ax = axes[1]\n    for i, method in enumerate(methods):\n        mdf = df[df[\"method\"] == method]\n        deltas = [mdf[mdf[\"left_out_judge\"] == j][\"tau_delta\"].values[0]\n                  if len(mdf[mdf[\"left_out_judge\"] == j]) > 0 else np.nan\n                  for j in judges]\n        offset = (i - len(methods) / 2 + 0.5) * bar_w\n        ax.bar(x + offset, deltas, bar_w,\n               label=METHOD_LABELS.get(method, method),\n               color=PALETTE.get(method, \"gray\"), alpha=0.85)\n    ax.set_xticks(x)\n    ax.set_xticklabels(short_names, rotation=45, ha=\"right\", fontsize=7)\n    ax.set_ylabel(\"$\\\\Delta\\\\tau$\")\n    ax.set_title(\"(b) Impact of removing each judge\")\n    ax.axhline(0, color=\"black\", linewidth=0.5)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(out_dir / f\"loocv.{ext}\")\n    plt.close(fig)\n    print(f\"Saved loocv.{{pdf,png}}\")\n\n\ndef print_summary(df: pd.DataFrame):\n    methods = sorted(df[\"method\"].unique())\n    ks = sorted(df[\"judge_count\"].unique())\n    print(\"\\n\" + \"=\" * 70)\n    print(\"SUMMARY TABLE: mean τ ± std\")\n    print(\"=\" * 70)\n    header = f\"{'k':>4}\"\n    for m in methods:\n        header += f\"  {METHOD_LABELS.get(m, m):>20}\"\n    print(header)\n    print(\"-\" * len(header))\n    for k in ks:\n        line = f\"{k:>4}\"\n        for m in methods:\n            vals = df[(df[\"judge_count\"] == k) & (df[\"method\"] == m)][\"kendall_tau\"]\n            if len(vals) > 0:\n                line += f\"  {vals.mean():>8.4f} ± {vals.std():>6.4f}\"\n            else:\n                line += f\"  {'—':>20}\"\n        print(line)\n    print(\"=\" * 70)\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--base-dir\", default=\"/root/gated_mfrm_judge_bias/exp006\")\n    parser.add_argument(\"--out-dir\",\n                        default=\"/root/gated_mfrm_judge_bias/artifacts/exp006_analysis\")\n    args = parser.parse_args()\n\n    base = Path(args.base_dir)\n    out_dir = Path(args.out_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n\n    df = load_sensitivity_data(base)\n    print_summary(df)\n\n    plot_tau_vs_k(df, out_dir)\n    plot_delta_tau(df, out_dir)\n\n    loocv = load_loocv_data(base)\n    if loocv is not None and not loocv.empty:\n        plot_loocv(loocv, out_dir)\n\n    print(f\"\\nAll outputs in {out_dir}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "b6bc631c-0c5b-4ae7-b137-bca2132459ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRsfQrMupPUxjmfK8kyLR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 61986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-22T22:33:21.124Z_
+
+<details><summary>↩ Tool result · `toolu_01RvUeqiq4Q7zWSRcmVDtr35`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "00ac1a45-186d-4679-9e00-03674ae7dce2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CAr8SsTn5yMUooN4ZNedYb`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp_w7_ablation/analyze_w7.py << 'SCRIPT_EOF'\n\"\"\"W7 ablation analysis: component ablation boxplots + statistical tests.\"\"\"\n\nimport argparse\nimport sys\nfrom pathlib import Path\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats as sp_stats\n\nplt.rcParams.update({\n    \"font.family\": \"serif\",\n    \"font.size\": 11,\n    \"axes.labelsize\": 13,\n    \"axes.titlesize\": 13,\n    \"legend.fontsize\": 9,\n    \"xtick.labelsize\": 10,\n    \"ytick.labelsize\": 10,\n    \"figure.dpi\": 150,\n    \"savefig.dpi\": 300,\n    \"savefig.bbox\": \"tight\",\n    \"pdf.fonttype\": 42,\n    \"ps.fonttype\": 42,\n})\n\nVARIANT_ORDER = [\"full_gmfrm\", \"no_judge_severity\", \"binary_gating\", \"staged_estimation\"]\nVARIANT_LABELS = {\n    \"full_gmfrm\": \"Full G-MFRM\",\n    \"no_judge_severity\": \"No Severity\",\n    \"binary_gating\": \"Binary Gate\",\n    \"staged_estimation\": \"Staged Est.\",\n}\nPALETTE = {\n    \"full_gmfrm\": \"#55A868\",\n    \"no_judge_severity\": \"#4C72B0\",\n    \"binary_gating\": \"#DD8452\",\n    \"staged_estimation\": \"#C44E52\",\n}\nBASE_DIR = Path(\"/root/gated_mfrm_judge_bias/exp_w7_ablation\")\n\n\ndef load_data() -> pd.DataFrame:\n    for p in [BASE_DIR / \"results_w7_ablation.csv\",\n              BASE_DIR / \"results_w7_ablation_partial.csv\"]:\n        if p.exists():\n            df = pd.read_csv(p)\n            n_seeds = df[\"seed\"].nunique()\n            variants = sorted(df[\"variant\"].unique())\n            print(f\"Loaded {p}\")\n            print(f\"  {len(df)} rows, {n_seeds} seeds, variants: {variants}\")\n            return df\n    print(\"ERROR: no W7 ablation CSV found\", file=sys.stderr)\n    sys.exit(1)\n\n\ndef sig_stars(p: float) -> str:\n    if p < 0.001: return \"***\"\n    elif p < 0.01: return \"**\"\n    elif p < 0.05: return \"*\"\n    return \"n.s.\"\n\n\ndef plot_ablation_boxplots(df: pd.DataFrame, p_table: pd.DataFrame, out_dir: Path):\n    variants = [v for v in VARIANT_ORDER if v in df[\"variant\"].unique()]\n    labels = [VARIANT_LABELS.get(v, v) for v in variants]\n    colors = [PALETTE.get(v, \"gray\") for v in variants]\n\n    fig, axes = plt.subplots(1, 2, figsize=(7, 3.0))\n\n    for ax, metric, ylabel in zip(\n        axes, [\"theta_rmse\", \"c_rmse\"], [\"$\\\\theta$ RMSE\", \"$c$ RMSE\"]\n    ):\n        data_lists = [df[df[\"variant\"] == v][metric].dropna().values for v in variants]\n\n        bp = ax.boxplot(\n            data_lists, positions=range(len(variants)), widths=0.5,\n            patch_artist=True, showfliers=True,\n            flierprops=dict(marker=\"o\", markersize=3, alpha=0.5),\n            medianprops=dict(color=\"black\", linewidth=1.2),\n        )\n        for patch, color in zip(bp[\"boxes\"], colors):\n            patch.set_facecolor(color)\n            patch.set_alpha(0.65)\n\n        for i, vals in enumerate(data_lists):\n            jitter = np.random.default_rng(42).uniform(-0.12, 0.12, size=len(vals))\n            ax.scatter(np.full_like(vals, i) + jitter, vals,\n                       color=colors[i], s=12, alpha=0.5, zorder=3, edgecolors=\"none\")\n\n        if \"full_gmfrm\" in variants and not p_table.empty:\n            full_idx = variants.index(\"full_gmfrm\")\n            y_max = max(v.max() for v in data_lists if len(v) > 0) * 1.02\n            bracket_y = y_max\n            for j, v in enumerate(variants):\n                if v == \"full_gmfrm\":\n                    continue\n                row = p_table[(p_table[\"metric\"] == metric) & (p_table[\"variant\"] == v)]\n                if row.empty:\n                    continue\n                stars = sig_stars(row[\"p_value\"].values[0])\n                if stars == \"n.s.\":\n                    continue\n                bracket_y += y_max * 0.06\n                ax.plot([full_idx, full_idx, j, j],\n                        [bracket_y - y_max * 0.01, bracket_y, bracket_y, bracket_y - y_max * 0.01],\n                        color=\"black\", linewidth=0.8)\n                ax.text((full_idx + j) / 2, bracket_y + y_max * 0.005, stars,\n                        ha=\"center\", va=\"bottom\", fontsize=8)\n\n        ax.set_xticks(range(len(variants)))\n        ax.set_xticklabels(labels, rotation=20, ha=\"right\")\n        ax.set_ylabel(ylabel)\n        ax.spines[\"top\"].set_visible(False)\n        ax.spines[\"right\"].set_visible(False)\n        ax.grid(axis=\"y\", alpha=0.3, linewidth=0.5)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(out_dir / f\"ablation_boxplots.{ext}\")\n    plt.close(fig)\n    print(f\"Saved ablation_boxplots.{{pdf,png}}\")\n\n\ndef plot_theta_tau_boxplot(df: pd.DataFrame, out_dir: Path):\n    variants = [v for v in VARIANT_ORDER if v in df[\"variant\"].unique()]\n    labels = [VARIANT_LABELS.get(v, v) for v in variants]\n    colors = [PALETTE.get(v, \"gray\") for v in variants]\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.8))\n\n    data_lists = [df[df[\"variant\"] == v][\"theta_tau\"].dropna().values for v in variants]\n\n    bp = ax.boxplot(\n        data_lists, positions=range(len(variants)), widths=0.5,\n        patch_artist=True, showfliers=True,\n        flierprops=dict(marker=\"o\", markersize=3, alpha=0.5),\n        medianprops=dict(color=\"black\", linewidth=1.2),\n    )\n    for patch, color in zip(bp[\"boxes\"], colors):\n        patch.set_facecolor(color)\n        patch.set_alpha(0.65)\n\n    for i, vals in enumerate(data_lists):\n        jitter = np.random.default_rng(42).uniform(-0.12, 0.12, size=len(vals))\n        ax.scatter(np.full_like(vals, i) + jitter, vals,\n                   color=colors[i], s=12, alpha=0.5, zorder=3, edgecolors=\"none\")\n\n    ax.set_xticks(range(len(variants)))\n    ax.set_xticklabels(labels, rotation=20, ha=\"right\")\n    ax.set_ylabel(\"Kendall $\\\\tau$ (ability)\")\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    ax.grid(axis=\"y\", alpha=0.3, linewidth=0.5)\n\n    fig.tight_layout()\n    for ext in [\"pdf\", \"png\"]:\n        fig.savefig(out_dir / f\"theta_tau_boxplot.{ext}\")\n    plt.close(fig)\n    print(f\"Saved theta_tau_boxplot.{{pdf,png}}\")\n\n\ndef run_tests(df: pd.DataFrame) -> pd.DataFrame:\n    variants = [v for v in VARIANT_ORDER if v in df[\"variant\"].unique()]\n    if \"full_gmfrm\" not in variants:\n        print(\"WARNING: full_gmfrm not found — skipping statistical tests\")\n        return pd.DataFrame()\n\n    full = df[df[\"variant\"] == \"full_gmfrm\"]\n    seeds_full = set(full[\"seed\"].values)\n\n    rows = []\n    metrics = [\"theta_rmse\", \"c_rmse\", \"theta_tau\"]\n    metric_labels = {\"theta_rmse\": \"θ RMSE\", \"c_rmse\": \"c RMSE\", \"theta_tau\": \"θ τ\"}\n\n    for metric in metrics:\n        for v in variants:\n            if v == \"full_gmfrm\":\n                continue\n            vdf = df[df[\"variant\"] == v]\n            common_seeds = sorted(seeds_full & set(vdf[\"seed\"].values))\n            if len(common_seeds) < 5:\n                continue\n            full_vals = full[full[\"seed\"].isin(common_seeds)].sort_values(\"seed\")[metric].values\n            v_vals = vdf[vdf[\"seed\"].isin(common_seeds)].sort_values(\"seed\")[metric].values\n\n            stat, p = sp_stats.wilcoxon(full_vals, v_vals, alternative=\"two-sided\")\n            rows.append({\n                \"metric\": metric,\n                \"metric_label\": metric_labels[metric],\n                \"variant\": v,\n                \"variant_label\": VARIANT_LABELS.get(v, v),\n                \"n_seeds\": len(common_seeds),\n                \"full_median\": np.median(full_vals),\n                \"variant_median\": np.median(v_vals),\n                \"median_diff\": np.median(v_vals - full_vals),\n                \"wilcoxon_stat\": stat,\n                \"p_value\": p,\n                \"sig\": sig_stars(p),\n            })\n\n    return pd.DataFrame(rows)\n\n\ndef print_test_table(p_df: pd.DataFrame):\n    if p_df.empty:\n        return\n    print(\"\\n\" + \"=\" * 85)\n    print(\"PAIRED WILCOXON SIGNED-RANK TESTS (full_gmfrm vs each variant)\")\n    print(\"=\" * 85)\n    print(f\"{'Metric':<10} {'Variant':<16} {'Full med':>9} {'Var med':>9} \"\n          f\"{'Δ median':>9} {'W':>8} {'p':>10} {'Sig':>5}\")\n    print(\"-\" * 85)\n    for _, r in p_df.iterrows():\n        print(f\"{r['metric_label']:<10} {r['variant_label']:<16} \"\n              f\"{r['full_median']:>9.4f} {r['variant_median']:>9.4f} \"\n              f\"{r['median_diff']:>+9.4f} {r['wilcoxon_stat']:>8.0f} \"\n              f\"{r['p_value']:>10.4e} {r['sig']:>5}\")\n    print(\"=\" * 85)\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--data\", default=None, help=\"Explicit CSV path\")\n    parser.add_argument(\"--out-dir\",\n                        default=\"/root/gated_mfrm_judge_bias/artifacts/w7_analysis\")\n    args = parser.parse_args()\n\n    out_dir = Path(args.out_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.data:\n        df = pd.read_csv(args.data)\n        print(f\"Loaded {args.data}  ({len(df)} rows)\")\n    else:\n        df = load_data()\n\n    p_df = run_tests(df)\n    print_test_table(p_df)\n\n    if not p_df.empty:\n        p_df.to_csv(out_dir / \"wilcoxon_tests.csv\", index=False)\n        print(f\"Saved wilcoxon_tests.csv\")\n\n    plot_ablation_boxplots(df, p_df, out_dir)\n    plot_theta_tau_boxplot(df, out_dir)\n\n    print(\"\\n\" + \"=\" * 60)\n    print(\"VARIANT SUMMARY (mean ± std)\")\n    print(\"=\" * 60)\n    for v in VARIANT_ORDER:\n        vdf = df[df[\"variant\"] == v]\n        if vdf.empty:\n            continue\n        print(f\"  {VARIANT_LABELS.get(v, v):<18} \"\n              f\"θ_RMSE={vdf['theta_rmse'].mean():.4f}±{vdf['theta_rmse'].std():.4f}  \"\n              f\"c_RMSE={vdf['c_rmse'].mean():.4f}±{vdf['c_rmse'].std():.4f}  \"\n              f\"θ_τ={vdf['theta_tau'].mean():.4f}±{vdf['theta_tau'].std():.4f}  \"\n              f\"(n={len(vdf)})\")\n    print(\"=\" * 60)\n\n    print(f\"\\nAll outputs in {out_dir}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "4f6cd4b1-da72-4f99-bf6c-4262fadee854",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRsfQrMupPUxjmfK8kyLR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 61986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-22T22:34:00.644Z_
+
+<details><summary>↩ Tool result · `toolu_01CAr8SsTn5yMUooN4ZNedYb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "dbf49648-5120-4b4b-a784-3b3dc222ef98",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+再次运行验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "20e72433-238e-478d-8772-e4c6edd31481",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FxmLRuY16XYiUWfXNC51rH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7710,
+      "cache_read_input_tokens": 62823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7710
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016WaKsUidhiutEX5MHGgx1k`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp006 && python analyze_exp006.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "131a4513-96ef-4673-8f28-b52492efdeb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FxmLRuY16XYiUWfXNC51rH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7710,
+      "cache_read_input_tokens": 62823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7710
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LbWzWGVhWkydXVhUxi8m11`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp_w7_ablation && python analyze_w7.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "01b1aea8-4812-462b-a298-ae082559f8f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FxmLRuY16XYiUWfXNC51rH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7710,
+      "cache_read_input_tokens": 62823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7710
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-22T22:34:07.168Z_
+
+<details><summary>↩ Tool result · `toolu_016WaKsUidhiutEX5MHGgx1k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded /root/gated_mfrm_judge_bias/exp006/results/sensitivity_results.csv  (40 rows, methods: ['raw_average'])\\n\\n======================================================================\\nSUMMARY TABLE: mean τ ± std\\n======================================================================\\n   k           Raw Average\\n--------------------------\\n   2    0.7547 ± 0.0878\\n   4    0.7786 ± 0.0405\\n   6    0.8000 ± 0.0301\\n   8    0.7857 ± 0.0000\\n   9    0.7857 ±    nan\\n======================================================================\\nSaved tau_vs_judge_count.{pdf,png}\\nSaved delta_tau.{pdf,png}\\nLoaded LOOCV: /root/gated_mfrm_judge_bias/exp006/results/leave_one_out_results.csv  (9 rows)\\nSaved loocv.{pdf,png}\\n\\nAll outputs in /root/gated_mfrm_judge_bias/artifacts/exp006_analysis\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "99717899-c204-4110-b650-8103a59de710",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded /root/gated_mfrm_judge_bias/exp006/results/sensitivity_results.csv  (40 rows, methods: ['raw_average'])\\\\n\\\\n======================================================================\\\\nSUMMARY TABLE: mean τ ± std\\\\n======================================================================\\\\n   k           Raw Average\\\\n--------------------------\\\\n   2    0.7547 ± 0.0878\\\\n   4    0.7786 ± 0.0405\\\\n   6    0.8000 ± 0.0301\\\\n   8    0.7857 ± 0.0000\\\\n   9    0.7857 ±    nan\\\\n======================================================================\\\\nSaved tau_vs_judge_count.{pdf,png}\\\\nSaved delta_tau.{pdf,png}\\\\nLoaded LOOCV: /root/gated_mfrm_judge_bias/exp006/results/leave_one_out_results.csv  (9 rows)\\\\nSaved loocv.{pdf,png}\\\\n\\\\nAll outputs in /root/gated_mfrm_judge_bias/artifacts/exp006_analysis\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded /root/gated_mfrm_judge_bias/exp006/results/sensitivity_results.csv  (40 rows, methods: ['raw_average'])\\n\\n======================================================================\\nSUMMARY TABLE: mean τ ± std\\n======================================================================\\n   k           Raw Average\\n--------------------------\\n   2    0.7547 ± 0.0878\\n   4    0.7786 ± 0.0405\\n   6    0.8000 ± 0.0301\\n   8    0.7857 ± 0.0000\\n   9    0.7857 ±    nan\\n======================================================================\\nSaved tau_vs_judge_count.{pdf,png}\\nSaved delta_tau.{pdf,png}\\nLoaded LOOCV: /root/gated_mfrm_judge_bias/exp006/results/leave_one_out_results.csv  (9 rows)\\nSaved loocv.{pdf,png}\\n\\nAll outputs in /root/gated_mfrm_judge_bias/artifacts/exp006_analysis\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-22T22:34:09.469Z_
+
+<details><summary>↩ Tool result · `toolu_01LbWzWGVhWkydXVhUxi8m11`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv\\n  40 rows, 10 seeds, variants: ['binary_gating', 'full_gmfrm', 'no_judge_severity', 'staged_estimation']\\n\\n=====================================================================================\\nPAIRED WILCOXON SIGNED-RANK TESTS (full_gmfrm vs each variant)\\n=====================================================================================\\nMetric     Variant           Full med   Var med  Δ median        W          p   Sig\\n-------------------------------------------------------------------------------------\\nθ RMSE     No Severity         0.1237    0.1277   -0.0026       23 6.9531e-01  n.s.\\nθ RMSE     Binary Gate         0.1237    0.1391   +0.0119        0 1.9531e-03    **\\nθ RMSE     Staged Est.         0.1237    0.2724   +0.1593        0 1.9531e-03    **\\nc RMSE     No Severity         0.4787    0.5097   +0.0235        7 3.7109e-02     *\\nc RMSE     Binary Gate         0.4787    0.6969   +0.2213        0 1.9531e-03    **\\nc RMSE     Staged Est.         0.4787    1.3486   +0.7768        0 1.9531e-03    **\\nθ τ        No Severity         0.9208    0.9176   -0.0016       10 6.4453e-02  n.s.\\nθ τ        Binary Gate         0.9208    0.9061   -0.0090        6 2.5391e-02     *\\nθ τ        Staged Est.         0.9208    0.8237   -0.0971        0 1.9531e-03    **\\n=====================================================================================\\nSaved wilcoxon_tests.csv\\nSaved ablation_boxplots.{pdf,png}\\nSaved theta_tau_boxplot.{pdf,png}\\n\\n============================================================\\nVARIANT SUMMARY (mean ± std)\\n============================================================\\n  Full G-MFRM        θ_RMSE=0.1243±0.0179  c_RMSE=0.5436±0.2011  θ_τ=0.9216±0.0063  (n=10)\\n  No Severity        θ_RMSE=0.1258±0.0160  c_RMSE=0.5684±0.2178  θ_τ=0.9200±0.0076  (n=10)\\n  Binary Gate        θ_RMSE=0.1377±0.0136  c_RMSE=0.7388±0.1932  θ_τ=0.9087±0.0140  (n=10)\\n  Staged Est.        θ_RMSE=0.2729±0.0391  c_RMSE=1.3414±0.1420  θ_τ=0.8256±0.0379  (n=10)\\n============================================================\\n\\nAll outputs in /root/gated_mfrm_judge_bias/artifacts/w7_analysis\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "13b32892-0dde-492a-8d2e-c0eed61a59eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv\\\\n  40 rows, 10 seeds, variants: ['binary_gating', 'full_gmfrm', 'no_judge_severity', 'staged_estimation']\\\\n\\\\n=====================================================================================\\\\nPAIRED WILCOXON SIGNED-RANK TESTS (full_gmfrm vs each variant)\\\\n=====================================================================================\\\\nMetric     Variant           Full med   Var med  Δ median        W          p   Sig\\\\n-------------------------------------------------------------------------------------\\\\nθ RMSE     No Severity         0.1237    0.1277   -0.0026       23 6.9531e-01  n.s.\\\\nθ RMSE     Binary Gate         0.1237    0.1391   +0.0119        0 1.9531e-03    **\\\\nθ RMSE     Staged Est.         0.1237    0.2724   +0.1593        0 1.9531e-03    **\\\\nc RMSE     No Severity         0.4787    0.5097   +0.0235        7 3.7109e-02     *\\\\nc RMSE     Binary Gate         0.4787    0.6969   +0.2213        0 1.9531e-03    **\\\\nc RMSE     Staged Est.         0.4787    1.3486   +0.7768        0 1.9531e-03    **\\\\nθ τ        No Severity         0.9208    0.9176   -0.0016       10 6.4453e-02  n.s.\\\\nθ τ        Binary Gate         0.9208    0.9061   -0.0090        6 2.5391e-02     *\\\\nθ τ        Staged Est.         0.9208    0.8237   -0.0971        0 1.9531e-03    **\\\\n=====================================================================================\\\\nSaved wilcoxon_tests.csv\\\\nSaved ablation_boxplots.{pdf,png}\\\\nSaved theta_tau_boxplot.{pdf,png}\\\\n\\\\n============================================================\\\\nVARIANT SUMMARY (mean ± std)\\\\n============================================================\\\\n  Full G-MFRM        θ_RMSE=0.1243±0.0179  c_RMSE=0.5436±0.2011  θ_τ=0.9216±0.0063  (n=10)\\\\n  No Severity        θ_RMSE=0.1258±0.0160  c_RMSE=0.5684±0.2178  θ_τ=0.9200±0.0076  (n=10)\\\\n  Binary Gate        θ_RMSE=0.1377±0.0136  c_RMSE=0.7388±0.1932  θ_τ=0.9087±0.0140  (n=10)\\\\n  Staged Est.        θ_RMSE=0.2729±0.0391  c_RMSE=1.3414±0.1420  θ_τ=0.8256±0.0379  (n=10)\\\\n============================================================\\\\n\\\\nAll outputs in /root/gated_mfrm_judge_bias/artifacts/w7_analysis\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded /root/gated_mfrm_judge_bias/exp_w7_ablation/results_w7_ablation_partial.csv\\n  40 rows, 10 seeds, variants: ['binary_gating', 'full_gmfrm', 'no_judge_severity', 'staged_estimation']\\n\\n=====================================================================================\\nPAIRED WILCOXON SIGNED-RANK TESTS (full_gmfrm vs each variant)\\n=====================================================================================\\nMetric     Variant           Full med   Var med  Δ median        W          p   Sig\\n-------------------------------------------------------------------------------------\\nθ RMSE     No Severity         0.1237    0.1277   -0.0026       23 6.9531e-01  n.s.\\nθ RMSE     Binary Gate         0.1237    0.1391   +0.0119        0 1.9531e-03    **\\nθ RMSE     Staged Est.         0.1237    0.2724   +0.1593        0 1.9531e-03    **\\nc RMSE     No Severity         0.4787    0.5097   +0.0235        7 3.7109e-02     *\\nc RMSE     Binary Gate         0.4787    0.6969   +0.2213        0 1.9531e-03    **\\nc RMSE     Staged Est.         0.4787    1.3486   +0.7768        0 1.9531e-03    **\\nθ τ        No Severity         0.9208    0.9176   -0.0016       10 6.4453e-02  n.s.\\nθ τ        Binary Gate         0.9208    0.9061   -0.0090        6 2.5391e-02     *\\nθ τ        Staged Est.         0.9208    0.8237   -0.0971        0 1.9531e-03    **\\n=====================================================================================\\nSaved wilcoxon_tests.csv\\nSaved ablation_boxplots.{pdf,png}\\nSaved theta_tau_boxplot.{pdf,png}\\n\\n============================================================\\nVARIANT SUMMARY (mean ± std)\\n============================================================\\n  Full G-MFRM        θ_RMSE=0.1243±0.0179  c_RMSE=0.5436±0.2011  θ_τ=0.9216±0.0063  (n=10)\\n  No Severity        θ_RMSE=0.1258±0.0160  c_RMSE=0.5684±0.2178  θ_τ=0.9200±0.0076  (n=10)\\n  Binary Gate        θ_RMSE=0.1377±0.0136  c_RMSE=0.7388±0.1932  θ_τ=0.9087±0.0140  (n=10)\\n  Staged Est.        θ_RMSE=0.2729±0.0391  c_RMSE=1.3414±0.1420  θ_τ=0.8256±0.0379  (n=10)\\n============================================================\\n\\nAll outputs in /root/gated_mfrm_judge_bias/artifacts/w7_analysis\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+两个脚本都正常运行，图已生成。验证输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "086cf7ab-0181-4675-9d91-b3e2f09f2409",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176brk445r9jMc6wZr5zKHd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1628,
+      "cache_read_input_tokens": 70533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1628
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AawJsR2umCPkcMwQ5LLsad`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -la /root/gated_mfrm_judge_bias/artifacts/exp006_analysis/ /root/gated_mfrm_judge_bias/artifacts/w7_analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "b8c02dde-fe2d-4866-9704-571c2e187b01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176brk445r9jMc6wZr5zKHd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1628,
+      "cache_read_input_tokens": 70533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1628
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-22T22:34:13.977Z_
+
+<details><summary>↩ Tool result · `toolu_01AawJsR2umCPkcMwQ5LLsad`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/artifacts/exp006_analysis/:\\ntotal 332\\ndrwxr-xr-x 2 root root    170 May 23 06:34 .\\ndrwxr-xr-x 5 root root     91 May 23 06:30 ..\\n-rw-r--r-- 1 root root  17863 May 23 06:34 delta_tau.pdf\\n-rw-r--r-- 1 root root  43454 May 23 06:34 delta_tau.png\\n-rw-r--r-- 1 root root  22022 May 23 06:34 loocv.pdf\\n-rw-r--r-- 1 root root 138736 May 23 06:34 loocv.png\\n-rw-r--r-- 1 root root  17107 May 23 06:34 tau_vs_judge_count.pdf\\n-rw-r--r-- 1 root root  89248 May 23 06:34 tau_vs_judge_count.png\\n\\n/root/gated_mfrm_judge_bias/artifacts/w7_analysis/:\\ntotal 272\\ndrwxr-xr-x 2 root root    172 May 23 06:34 .\\ndrwxr-xr-x 5 root root     91 May 23 06:30 ..\\n-rw-r--r-- 1 root root  21290 May 23 06:34 ablation_boxplots.pdf\\n-rw-r--r-- 1 root root 139328 May 23 06:34 ablation_boxplots.png\\n-rw-r--r-- 1 root root  17710 May 23 06:34 theta_tau_boxplot.pdf\\n-rw-r--r-- 1 root root  85318 May 23 06:34 theta_tau_boxplot.png\\n-rw-r--r-- 1 root root   1254 May 23 06:34 wilcoxon_tests.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "a552c3dd-6fb3-418b-9ec0-49200c8cbea3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/artifacts/exp006_analysis/:\\\\ntotal 332\\\\ndrwxr-xr-x 2 root root    170 May 23 06:34 .\\\\ndrwxr-xr-x 5 root root     91 May 23 06:30 ..\\\\n-rw-r--r-- 1 root root  17863 May 23 06:34 delta_tau.pdf\\\\n-rw-r--r-- 1 root root  43454 May 23 06:34 delta_tau.png\\\\n-rw-r--r-- 1 root root  22022 May 23 06:34 loocv.pdf\\\\n-rw-r--r-- 1 root root 138736 May 23 06:34 loocv.png\\\\n-rw-r--r-- 1 root root  17107 May 23 06:34 tau_vs_judge_count.pdf\\\\n-rw-r--r-- 1 root root  89248 May 23 06:34 tau_vs_judge_count.png\\\\n\\\\n/root/gated_mfrm_judge_bias/artifacts/w7_analysis/:\\\\ntotal 272\\\\ndrwxr-xr-x 2 root root    172 May 23 06:34 .\\\\ndrwxr-xr-x 5 root root     91 May 23 06:30 ..\\\\n-rw-r--r-- 1 root root  21290 May 23 06:34 ablation_boxplots.pdf\\\\n-rw-r--r-- 1 root root 139328 May 23 06:34 ablation_boxplots.png\\\\n-rw-r--r-- 1 root root  17710 May 23 06:34 theta_tau_boxplot.pdf\\\\n-rw-r--r-- 1 root root  85318 May 23 06:34 theta_tau_boxplot.png\\\\n-rw-r--r-- 1 root root   1254 May 23 06:34 wilcoxon_tests.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/artifacts/exp006_analysis/:\\ntotal 332\\ndrwxr-xr-x 2 root root    170 May 23 06:34 .\\ndrwxr-xr-x 5 root root     91 May 23 06:30 ..\\n-rw-r--r-- 1 root root  17863 May 23 06:34 delta_tau.pdf\\n-rw-r--r-- 1 root root  43454 May 23 06:34 delta_tau.png\\n-rw-r--r-- 1 root root  22022 May 23 06:34 loocv.pdf\\n-rw-r--r-- 1 root root 138736 May 23 06:34 loocv.png\\n-rw-r--r-- 1 root root  17107 May 23 06:34 tau_vs_judge_count.pdf\\n-rw-r--r-- 1 root root  89248 May 23 06:34 tau_vs_judge_count.png\\n\\n/root/gated_mfrm_judge_bias/artifacts/w7_analysis/:\\ntotal 272\\ndrwxr-xr-x 2 root root    172 May 23 06:34 .\\ndrwxr-xr-x 5 root root     91 May 23 06:30 ..\\n-rw-r--r-- 1 root root  21290 May 23 06:34 ablation_boxplots.pdf\\n-rw-r--r-- 1 root root 139328 May 23 06:34 ablation_boxplots.png\\n-rw-r--r-- 1 root root  17710 May 23 06:34 theta_tau_boxplot.pdf\\n-rw-r--r-- 1 root root  85318 May 23 06:34 theta_tau_boxplot.png\\n-rw-r--r-- 1 root root   1254 May 23 06:34 wilcoxon_tests.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+全部完成。
+
+---
+
+**脚本路径:**
+- exp-006: `/root/gated_mfrm_judge_bias/exp006/analyze_exp006.py`
+- W7 ablation: `/root/gated_mfrm_judge_bias/exp_w7_ablation/analyze_w7.py`
+
+**数据格式:**
+- exp-006 CSV: `judge_count, subset_idx, judges, method, kendall_tau, spearman_rho, n_matched, n_obs, elapsed_s` — 当前只有 `raw_average`（40行），`results_full/` 的 MCMC 方法（sequential + joint_gmfrm）仍在跑（k6 到 s2，k8/k9 未开始）。脚本优先读 `results_full/sensitivity_results.csv`，回退到 `results/`
+- W7 CSV: `theta_rmse, theta_tau, r_hat, ess, c_rmse, c_pearson, variant, seed, elapsed_s` — 10/20 seeds 完成
+
+**已用部分数据验证通过，生成了图表:**
+- `artifacts/exp006_analysis/`: tau_vs_judge_count, delta_tau, loocv（各 PDF+PNG）
+- `artifacts/w7_analysis/`: ablation_boxplots, theta_tau_boxplot（各 PDF+PNG）+ wilcoxon_tests.csv
+
+**W7 初步结论:** Full G-MFRM vs Staged Estimation 差异极显著（p=0.002），vs Binary Gating 显著（p=0.002），vs No Severity 差异不显著（θ_RMSE p=0.70）。实验完成后重跑脚本即可更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "uuid": "77e01c06-a17b-4c49-9aab-31c7c56341c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWT5j9ck9Vqg8Aqy3AhRhs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 788,
+      "cache_read_input_tokens": 72161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 788
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 81_
+
+全部完成。
+
+---
+
+**脚本路径:**
+- exp-006: `/root/gated_mfrm_judge_bias/exp006/analyze_exp006.py`
+- W7 ablation: `/root/gated_mfrm_judge_bias/exp_w7_ablation/analyze_w7.py`
+
+**数据格式:**
+- exp-006 CSV: `judge_count, subset_idx, judges, method, kendall_tau, spearman_rho, n_matched, n_obs, elapsed_s` — 当前只有 `raw_average`（40行），`results_full/` 的 MCMC 方法（sequential + joint_gmfrm）仍在跑（k6 到 s2，k8/k9 未开始）。脚本优先读 `results_full/sensitivity_results.csv`，回退到 `results/`
+- W7 CSV: `theta_rmse, theta_tau, r_hat, ess, c_rmse, c_pearson, variant, seed, elapsed_s` — 10/20 seeds 完成
+
+**已用部分数据验证通过，生成了图表:**
+- `artifacts/exp006_analysis/`: tau_vs_judge_count, delta_tau, loocv（各 PDF+PNG）
+- `artifacts/w7_analysis/`: ablation_boxplots, theta_tau_boxplot（各 PDF+PNG）+ wilcoxon_tests.csv
+
+**W7 初步结论:** Full G-MFRM vs Staged Estimation 差异极显著（p=0.002），vs Binary Gating 显著（p=0.002），vs No Severity 差异不显著（θ_RMSE p=0.70）。实验完成后重跑脚本即可更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 365662,
+  "duration_api_ms": 355993,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "d10dd2a0-cece-4e40-9f01-147b26760d94",
+  "total_cost_usd": 1.3252855,
+  "usage": {
+    "input_tokens": 21,
+    "cache_creation_input_tokens": 61502,
+    "cache_read_input_tokens": 767812,
+    "output_tokens": 22191,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 61502,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 463,
+        "cache_read_input_tokens": 72161,
+        "cache_creation_input_tokens": 788,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 788
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2002,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0021119999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 21,
+      "outputTokens": 22191,
+      "cacheReadInputTokens": 767812,
+      "cacheCreationInputTokens": 61502,
+      "webSearchRequests": 0,
+      "costUSD": 1.3231735,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "38004e19-dc67-4a42-b191-c5e6472b5fee"
+}
+```
+
+</details>
+
+---

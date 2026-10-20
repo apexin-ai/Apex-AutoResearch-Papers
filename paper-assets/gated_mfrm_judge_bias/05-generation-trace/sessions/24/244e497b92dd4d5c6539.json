@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "244e497b92dd4d5c6539",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh fix qwen download deploy vllm",
+  "task_key": "worker_ssh_fix_qwen_download_deploy_vllm_20260522T023333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_qwen_download_deploy_vllm_20260522T023333.log",
+    "occurrence": 1,
+    "bytes": 1448713,
+    "sha256": "f729a1c9c43d61b754647e6d31c18da181ecbe5e588bf58f9cdf978a64f93af7"
+  },
+  "statistics": {
+    "messages": 424,
+    "user_turns": 1,
+    "tool_calls": 138,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 140,
+      "tool_call": 138,
+      "tool_result": 138,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "244e497b92dd4d5c6539-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "244e497b92dd4d5c6539-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "244e497b92dd4d5c6539-part-0002.json",
+          "message_count": 105
+        },
+        {
+          "path": "244e497b92dd4d5c6539-part-0003.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-qwen-download-deploy-vllm.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b55255593b5022e8cb",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh 2h monitor post restart",
+  "task_key": "worker_ssh_2h_monitor_post_restart_20260524T040646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_2h_monitor_post_restart_20260524T040646_result.json",
+    "occurrence": 1,
+    "bytes": 2075,
+    "sha256": "31c8a5d759ab37219364bd73ba14e34ea9a649cce058f4982657210ef7bcf856"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## autodl-8gpu 状态报告\n\n### 1. collect.py 进程 — **6 个全部存活** ✓\n| Judge | PID | Workers | 类型 |\n|-------|-----|---------|------|\n| LLaMA-3.3-70B local | 503734 | 4 | local |\n| Qwen2.5-72B local | 505793 | 4 | local |\n| Claude Sonnet 4.6 | 506658 | 10 | proxy |\n| Gemini 2.5 Pro | 506876 | 10 | proxy |\n| DeepSeek V4 Pro | 506930 | 10 | proxy |\n| Qwen3-235B | 506990 | 10 | proxy |\n\n（ps 输出 11 行含 bash wrapper 进程，实际 python 进程 6 个，符合预期）\n\n### 2. vLLM — **2 个存活，健康检查通过** ✓\n- Port 8001 (LLaMA-3.3-70B-AWQ): HTTP 200\n- Port 8002 (Qwen2.5-72B-AWQ): HTTP 200\n\n### 3. Judge 进度（n17 轮次）\n\n| Judge | 完成 / 总数 | 进度 |\n|-------|------------|------|\n| Claude Sonnet 4.6 | 3,855 / 17,982 | 21.4% |\n| Qwen3-235B | 2,488 / 16,890 | 14.7% |\n| Gemini 2.5 Pro | 2,479 / 17,092 | 14.5% |\n| DeepSeek V4 Pro | 2,058 / 17,138 | 12.0% |\n| LLaMA-3.3-70B local | 328 / 17,982 | 1.8% |\n| Qwen2.5-72B local | 213 / 17,982 | 1.2% |\n\nLocal judge 速度慢（~0.0 items/s 显示），但进程在推进（行数在增长）。\n\n### 4. 日志 — **无异常** ✓\n所有 collector 正常推进，无错误输出。\n\n### 5. exp-017 — **存活** ✓\nPID 318082，已运行 21h03m32s。\n\n### 6. GPU\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 73.9 / 97.9 GB | 70% |\n| 1 | 90.1 / 97.9 GB | 100% |\n| 2 | 90.2 / 97.9 GB | 100% |\n| 3 | 0 / 97.9 GB | 0% (空闲) |\n\nGPU 1/2 被 vLLM 占满，GPU 0 被 exp-017 使用，GPU 3 空闲。\n\n### 7. 磁盘 — **85% 使用** ⚠️\n212G / 250G used，剩余 39G。暂可用但需关注。\n\n### 8. rtx6000-4x 连通性 — **不可达** ❌\nautodl-8gpu 无法解析 `rtx6000-4x` 主机名（该 hostname 配置在本地 `~/.ssh/config`，autodl-8gpu 上没有该配置，这是预期行为——rtx6000-4x 的连通性应从本地检查）。\n\n---\n\n**总结：所有关键进程正常运行，无异常。** 磁盘 85% 需留意，local judge 速度较慢但在推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-2h-monitor-post-restart.md"
+}

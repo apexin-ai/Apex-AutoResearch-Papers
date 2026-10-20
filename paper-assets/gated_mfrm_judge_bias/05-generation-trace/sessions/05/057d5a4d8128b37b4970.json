@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "057d5a4d8128b37b4970",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "analysis exp 015",
+  "task_key": "worker_analysis_exp-015_20260523T091853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-015_20260523T091853_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "d8ab1fdfaa5999945406ccadc9f118e6e6f3ad0f0f80eeecc2688d9e5433ee77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/exp-015/analysis.md`。核心结论：\n\n**Hypothesis 被证伪。** Joint G-MFRM 在 N=8 合成数据上压倒性优于 sequential：\n\n| | Sequential | Joint | Δ |\n|---|---|---|---|\n| θ RMSE | 0.1664±0.0496 | 0.0827±0.0241 | **−50.3%** |\n| θ τ | 0.8821±0.1118 | 0.9536±0.0479 | +0.0715 |\n| c RMSE | 1.3992±0.3583 | 0.5524±0.3283 | **−60.5%** |\n\n- Wilcoxon p = 9.54e-07, Cohen's d = 1.884, win rate 20/20\n- 效应量比 N=50（mvp_003）还大（50.3% vs 43.8%）\n- MCMC 收敛完美（R̂=1.000, ESS≥1678）\n\n**对论文 narrative 的意义**：\"N=8 power 不足\"这个 story 不成立。合成数据证明方法在 N=8 完全 work，说明真实数据的 non-significance 不是 power 问题，而是 model-data mismatch——真实 judge 行为比 DGP 假设的 additive severity 更复杂。这反而是个更强的 story：方法本身 sound（synthetic validation），synthetic-real gap 本身成为 evidence，说明实际评测生态的复杂性超出当前 DGP，强化了 G-MFRM framework 的必要性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-015.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "ba0751b57dd47f1c7842",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp002 simplified ei estimation",
+  "task_key": "worker_ssh_exp002_simplified_ei_estimation_20260522T091051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp002_simplified_ei_estimation_20260522T091051_result.json",
+    "occurrence": 1,
+    "bytes": 2312,
+    "sha256": "652f041bc8f94fe316dd22c5437a9214676f2728f480aa8d07322f7c1969672f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 重写结果\n\n### 重写的文件\n\n| 文件 | 状态 | 功能 |\n|------|------|------|\n| `sources/reference_anchoring.py` | **新建** | Source A：加载 exp-001 + Arena-Hard 判断数据，计算 per-item per-model win rate，spline difficulty correction，输出正向残差分数 |\n| `sources/cross_model_agreement.py` | **新建** | Source C：统计每个 item 跨模型的残差一致性 |\n| `sources/logprober.py` | **保留** | Source B（optional，标记 N/A） |\n| `composite.py` | **重写** | 新权重方案：有 B 时 0.6/0.2/0.2，无 B 时 0.75/0/0.25 |\n| `validation.py` | **重写** | 简化，不依赖 rephrased variants |\n| `run_exp002.py` | **重写** | 新入口，支持 `--arena-hard-dir` 补充数据 |\n| `sources/performance_gap.py` | **删除** | 旧版依赖 rephrased variants |\n| `sources/temporal_signal.py` | **删除** | 不可用 |\n| `mock_data.py`, `mock_output/`, `mock_results/` | **删除** | 旧测试 artifacts |\n\n### 数据格式 Schema\n\n**exp-001 judgments**:\n```json\n{\"item_id\": \"...\", \"model_a\": \"gpt-3.5-turbo-0125\", \"model_b\": \"gpt-4-0314\",\n \"judge\": \"gpt-5.5-proxy\", \"score\": 1.0, \"position\": \"AB\", \"status\": \"ok\"}\n```\n- `score`: 1.0=A wins, 0.0=B wins, 0.5=tie\n- `model_b` 始终为 gpt-4-0314 (baseline)\n\n### 运行结果\n\n- **493 items**，10 judges，2 target models (gpt-3.5-turbo-0125, gpt-4-0613)\n- **e_i 分布**: mean=0.236, median=0.126, std=0.247, 右偏 (skew=1.07)\n- **高曝光 (>0.7)**: 19 items (3.9%)\n- **低曝光 (<0.1)**: 234 items (47.5%)\n- **Top-9 items 均有 A_z=3.52 + C_z=1.48**（两个模型都显著超预期）\n- 权重自动选择：A=75%, C=25%（Source B 不可用）\n\n### 阻塞项\n\n- **只有 2 个 target models**（gpt-3.5-turbo-0125, gpt-4-0613）被判断。exp-001 还有 gpt-4o/llama-3.3-70b/qwen2.5-72b 等的 response 文件但尚未完成 judgment 收集。更多 target models 会大幅提升 e_i 的区分度。\n- **Source B (LogProber)** 无数据，标记为 N/A。如果有 vLLM logprob 端点可以后续补充。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "item_id": "...",
+              "model_a": "gpt-3.5-turbo-0125",
+              "model_b": "gpt-4-0314",
+              "judge": "gpt-5.5-proxy",
+              "score": 1.0,
+              "position": "AB",
+              "status": "ok"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp002-simplified-ei-estimation.md"
+}

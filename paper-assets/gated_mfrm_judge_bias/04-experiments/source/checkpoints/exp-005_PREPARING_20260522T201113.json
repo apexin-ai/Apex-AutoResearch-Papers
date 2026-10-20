@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-005",
+  "project": "gated_mfrm_judge_bias",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:08:35.591Z",
+    "updated_at": "2026-05-22T20:11:13.700Z",
+    "hypothesis": "exp-003b 估计的 c_n 分布（gpt-3.5=5.57 到 gpt-4o=0.88）与模型已知 contamination 风险一致：旧模型 c_n 显著高于新模型，且 c_n 排序与 benchmark contamination timeline 相关。calibration 通过比较 c_n 与外部 contamination proxy 验证。",
+    "parent": "exp-003b",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T20:11:13.758084+00:00",
+  "trigger": "update_registry"
+}

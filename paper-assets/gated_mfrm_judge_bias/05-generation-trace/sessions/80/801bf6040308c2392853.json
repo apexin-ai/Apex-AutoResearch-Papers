@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "801bf6040308c2392853",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh split fig6 and unify style",
+  "task_key": "worker_ssh_split-fig6-and-unify-style_20260525T124129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_split-fig6-and-unify-style_20260525T124129_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "57d6a34d1c19beb0dc698bbd2136a96b7691705fc6e182c2e30c7dd189b50bba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All figures generated and verified. Here's the summary:\n\n### 原始脚本\n- `scripts/generate_paper_figures.py` — 原来只生成 fig2_ovb_bias 和 fig4_bias_vs_rho\n- `exp008/generate_diagnostics.py` — 包含 forest_dj 的代码（诊断用，非论文风格）\n\n### 修改的脚本\n- **`/root/gated_mfrm_judge_bias/scripts/generate_paper_figures.py`** — 完全重写，统一 PAPER_STYLE，生成所有 4 个主文图\n\n### 生成的文件\n\n| 文件 | 大小 | figsize |\n|------|------|---------|\n| `fig2_ovb_bias.pdf` | 38 KB | (3.5, 2.8) |\n| `forest_dj.pdf` | 21 KB | (3.5, 2.8) |\n| `fig_contamination_bars.pdf` | 20 KB | (3.5, 2.8) |\n| `fig_bias_absorption.pdf` | 23 KB | (3.5, 2.8) |\n\n### 统一风格\n- `font.family: serif` (Times New Roman / DejaVu Serif)\n- `font.size: 10`, `axes.labelsize: 12`, `axes.titlesize: 12`\n- 去掉 top/right spines，`grid.alpha: 0.3`，`grid.linestyle: --`\n- `pdf.fonttype: 42`（嵌入字体），`figure.dpi: 300`\n- 所有图 figsize=(3.5, 2.8)，适合单栏 `\\columnwidth`\n\n### 关键数据\n- fig2: Pearson r=0.7949 (OVB bias vs c_n, 20 seeds synthetic)\n- fig_bias_absorption: Pearson r=0.9958 (θ_MFRM − θ_G-MFRM vs ĉ_n，来自 exp003b MCMC posteriors)\n- 数据源: `exp003/output_003b/joint_gmfrm_idata.nc` (G-MFRM) + `mfrm_only_idata.nc` (standard MFRM)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-split-fig6-and-unify-style.md"
+}

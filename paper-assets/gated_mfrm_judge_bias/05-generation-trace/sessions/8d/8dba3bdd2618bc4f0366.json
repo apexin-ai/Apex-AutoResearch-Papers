@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dba3bdd2618bc4f0366",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "fix exp 012 cleanup",
+  "task_key": "worker_fix_exp_012_cleanup_20260521T225611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_012_cleanup_20260521T225611_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "e1fb5e87c6d8395e374c9a05e7317ea1d5b9fc20c374b1de8ce634c7ff798714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 1. 删除旧 CSV\n`error_propagation.csv` 和 `summary.csv` 已删除。目录剩余：`cn_degradation.png`、`error_propagation.png`、`run_exp012.py`。\n\n### 2. Docstring 修改\n全文件仅 2 处匹配，均在 `generate_exp012_data` 的 docstring 中：\n\n- **`run_exp012.py:43`** — `bimodal e (Beta mixture), s ~ N(0, 0.8).` → `bimodal e: 30% high-exposure items uniform(0.7, 1.0),`\n- **`run_exp012.py:44`** — `Confounding: e correlated with -b, s correlated with -d, both via rho.` → `70% low-exposure items uniform(0.0, 0.2), s ~ N(0, 0.8).`\n- **`run_exp012.py:45`** — 新增 `Confounding: s correlated with -d via rho.`（保留原有的 s-d confounding 说明）\n\n无 \"Beta(2,5)\"、\"Beta(5,2)\"、\"rank-matching\" 的匹配。逻辑代码未修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-012-cleanup.md"
+}

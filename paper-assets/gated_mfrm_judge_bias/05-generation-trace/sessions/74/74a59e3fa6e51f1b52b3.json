@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74a59e3fa6e51f1b52b3",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mvp 003 check",
+  "task_key": "worker_ssh_mvp_003_check_20260521T204409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp_003_check_20260521T204409_result.json",
+    "occurrence": 1,
+    "bytes": 1895,
+    "sha256": "04b4048eeefbe223ac7305b652bc3086c00fb2ffa8bd1f2a49307fb7a7865c11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报如下：\n\n---\n\n## mvp_003 结果\n\n### 1. 结果表\n\n| method | RMSE mean±std | τ mean±std | p-value |\n|--------|--------------|------------|---------|\n| raw_average | 0.8063±0.0841 | 0.8401±0.0347 | — |\n| mfrm_only_v3 | 0.2539±0.0448 | 0.8388±0.0345 | — |\n| sequential_v3 | 0.2211±0.0376 | 0.8593±0.0293 | ref |\n| **joint_gmfrm_v3** | **0.1243±0.0164** | **0.9223±0.0098** | **0.000001** |\n\n### 2. 收敛诊断\n\n| 指标 | mvp_002 | mvp_003 | 变化 |\n|------|---------|---------|------|\n| max R̂ | 1.05 | **1.03** | 改善 |\n| min ESS | 47 | **224** | **4.8x 提升** |\n\nESS 从 47 提升到 224，远超 100 阈值。NCP + target_accept=0.95 + 2000 warmup + 4000 samples 的调优完全解决了收敛问题。\n\n### 3. VERDICT: **PASS**\n\n两项子检验均通过：\n- 收敛检验：PASS（R̂=1.03 < 1.05, ESS=224 > 100）\n- Wilcoxon 检验：PASS（p=0.000001）\n\n### 4. 与 mvp_002 对比\n\n| 指标 | mvp_002 | mvp_003 | 变化 |\n|------|---------|---------|------|\n| Verdict | **FAIL** | **PASS** | 翻转 |\n| joint RMSE | 0.1486±0.0199 | 0.1243±0.0164 | **-16.4%** |\n| joint τ | 0.9028±0.0181 | 0.9223±0.0098 | +0.0195 |\n| RMSE reduction vs seq | 32.8% | **43.8%** | +11pp |\n| joint τ std | 0.0181 | **0.0098** | 方差减半 |\n| 运行时间 | 1935s | 4385s | 2.3x（符合预期，4x samples） |\n\nMCMC 调优不仅修复了收敛，还带来了实质性的估计精度提升——joint RMSE 降低 16.4%，τ 方差减半，说明 mvp_002 的收敛不足确实导致了估计偏差。\n\n### 5. Registry 更新\n\n- `status`: RUNNING → **DONE**\n- `conclusion`: **success**\n- `metrics`: 完整记录（含 verdict, convergence, 各 method RMSE/τ, p-value, runtime）\n- `checkpoint_path`: `/root/gated_mfrm_judge_bias/mvp/results_mvp003.csv`\n- `log_path`: `/tmp/mvp_003.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mvp-003-check.md"
+}

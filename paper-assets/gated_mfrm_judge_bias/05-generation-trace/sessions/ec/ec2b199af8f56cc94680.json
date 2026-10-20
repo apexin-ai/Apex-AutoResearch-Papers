@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec2b199af8f56cc94680",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl small model batch inference",
+  "task_key": "worker_ssh_autodl_small_model_batch_inference_20260522T092638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_small_model_batch_inference_20260522T092638_result.json",
+    "occurrence": 1,
+    "bytes": 1473,
+    "sha256": "d04e46598595fb95fcf6f128a78495db22091c86e0bcddf3aa7fa04e5e7f6cdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n**下载进度：**\n- **Gemma-2-9b-it**: ModelScope 下载中，4.1GB/17.2GB（~24%），预估 ~55 min 剩余\n- **Llama-3.1-8B-Instruct**: 在 gemma 之后顺序下载，预估 gemma 完成后 ~60 min\n- **Qwen2.5-7B / Mistral-7B**: 编排脚本会在 gemma 完成后自动启动下载\n\n**编排逻辑（tmux: orchestrator）：**\n1. 等 gemma 权重完整 → GPU 0 启动推理 + 启动 Qwen/Mistral 下载\n2. 等 llama 权重完整 → GPU 1 启动推理\n3. 等 Qwen 权重完整 → GPU 2 启动推理\n4. 等 Mistral 权重完整 → GPU 3 启动推理\n\n**脚本修改：**\n- `generate_vllm_batch.py`: 加了 `enforce_eager=True`（跳过 Blackwell GPU 上的 torch.compile 卡顿），4 个小模型改用本地路径\n- `run_small_models.sh`: 自动编排下载→推理流水线\n\n**预估时间线：**\n- ~18:40 gemma 下载完 → 开始推理（~20-30min）+ 启动 Qwen/Mistral 下载\n- ~19:40 llama 下载完 → 开始推理\n- ~20:00 Qwen 下载完 → 开始推理\n- ~20:40 Mistral 下载完 → 开始推理\n- ~21:10 全部完成\n\n**磁盘**: 170GB 可用，足够\n\n**问题：**\n- Gemma 和 Llama 是 HuggingFace gated repo，无 HF token，使用 ModelScope 下载\n- AutoDL 下载带宽 ~4MB/s（ModelScope CDN），是主要瓶颈\n- Blackwell GPU (SM 12.x) 的 vLLM torch.compile 有问题，已用 `enforce_eager=True` 绕过\n\n要我定时轮询检查进度，还是你稍后再来查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-small-model-batch-inference.md"
+}

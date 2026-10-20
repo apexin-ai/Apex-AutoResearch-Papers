@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4264fcbee5b44c022d3",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix mcmc n17 scripts",
+  "task_key": "worker_ssh_fix-mcmc-n17-scripts_20260524T093235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-mcmc-n17-scripts_20260524T093235_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "4603778713c90ffa019395e697dbb1f0fe67b43f8d2fe7de1478ed6dc38b314b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个修复完成并验证通过：\n\n| Fix | 文件 | 状态 |\n|-----|------|------|\n| 1 | `run_exp003_n17.py` | `CUDA_VISIBLE_DEVICES = \"0,3\"` |\n| 2 | `run_n17_downstream.py` | `JUDGMENT_DIR_N17` → `exp003/judgment_data_n17` |\n| 3 | `evaluation.py` | `arena_correlation` 支持 `exclude_models` + `ARENA_NAME_MAPPING` |\n| 4 | `bootstrap_delta_tau.py` | 数据驱动（从 idata coords 读模型名）+ qwen3-8b 排除 + N=8 后向兼容 |\n| 5 | `run_n17_downstream.py` | `run_bootstrap()` 通过 symlink `output_003b→output_n17` 调用修复后的脚本 |\n| 6 | 语法检查 + import 验证 + functional test | 全部通过 |\n\nJudge eval 完成后可直接执行：\n```bash\ncd /root/gated_mfrm_judge_bias/exp003\npython run_exp003_n17.py --judgment-dir ./judgment_data_n17 --exposure-csv ../exp002/results/exposure_scores.csv --output-dir ./output_n17\npython run_n17_downstream.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-mcmc-n17-scripts.md"
+}

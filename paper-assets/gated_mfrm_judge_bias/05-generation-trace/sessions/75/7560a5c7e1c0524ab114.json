@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7560a5c7e1c0524ab114",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh n17 progress and llama fix",
+  "task_key": "worker_ssh_n17_progress_and_llama_fix_20260524T003749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_n17_progress_and_llama_fix_20260524T003749_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "5ad2cce07aeeb3e788e4a347af16234255f8b5a9b2e3a1937f68f8b7ced19aa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇总报告\n\n### 1. API Judge 进度 (N=17)\n\n| Judge | 完成 | 总数 | 进度 | 速率 | 预估剩余 |\n|-------|------|------|------|------|----------|\n| claude-sonnet-4.6 | ~880 | 17,982 | **4.9%** | 0.2 items/s | ~20h |\n| gemini-2.5-pro | ~593 | 17,982 | **3.3%** | 0.2 items/s | ~29.6h |\n| deepseek-v4-pro | ~504 | 17,982 | **2.8%** | 0.1 items/s | ~34.7h |\n| qwen3-235b | ~600 | 17,982 | **3.3%** | 0.2 items/s | ~28.8h |\n\n4 个进程全部存活。有间歇性 500 错误但自动重试中。\n\n### 2. LLaMA 下载\n\n- 已有 6/9 safetensors（缺 00002, 00006, 00009）\n- 旧下载进程已死，**已重启**，新 PID: **493983**（已确认存活）\n- 注意：未认证下载，速率可能受限\n\n### 3. exp-017\n\n- **182/800 fits** (22.8%)，当前 n_models=8, seed=182\n- 已运行 17.5h，预估剩余 ~61.9h (~2.6 天)\n- PID 318082 存活，CPU 103%，RSS ~27.5GB\n\n### 4. 磁盘\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp | 250G | 164G | **87G** | 66% |\n| / (根) | 30G | 15G | **16G** | 49% |\n\nLLaMA 剩余 3 个 shard 约 ~14GB，数据盘空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n17-progress-and-llama-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2adf65f275ea679def51",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh kill qwen vllm",
+  "task_key": "worker_ssh_kill-qwen-vllm_20260524T183416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-qwen-vllm_20260524T183416_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "0d2f4c2de14a93838b1f0fa9794f88ef474496e693216719938098ef67aac2a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Kill 的 PID：** 583073, 583078, 583362, 583627, 583628（Qwen vLLM APIServer + EngineCore + Worker_TP0 + Worker_TP1）\n\n**GPU 显存状态：**\n| GPU | 已用 | 总量 |\n|-----|------|------|\n| 0 | 0 MiB | 97887 MiB |\n| 1 | 0 MiB | 97887 MiB |\n| 2 | 0 MiB | 97887 MiB |\n| 3 | 0 MiB | 97887 MiB |\n\nGPU 2,3 已完全释放。\n\n**采集进程正常运行：**\n- DeepSeek 采集 (PID 592328) — `config_deepseek-v4-pro-proxy_arena_n17.yaml`\n- Qwen3 采集 (PID 592432) — `config_qwen3-235b-proxy_arena_n17.yaml`\n\n两个采集进程走 API，不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-qwen-vllm.md"
+}

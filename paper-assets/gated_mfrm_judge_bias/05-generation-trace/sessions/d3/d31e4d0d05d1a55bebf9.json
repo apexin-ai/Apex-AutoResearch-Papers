@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d31e4d0d05d1a55bebf9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx kill vllm dual llama",
+  "task_key": "worker_ssh_rtx_kill_vllm_dual_llama_20260522T233117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx_kill_vllm_dual_llama_20260522T233117_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "23f46d8064bf06ba9d117948549b5fdd068a7dfe517dcc0293970d7157ba1aa0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，汇报：\n\n---\n\n### 执行结果\n\n| 步骤 | 状态 |\n|------|------|\n| Kill Qwen vLLM (PID 420981) | 成功，cuda:1 显存已释放 |\n| 第二个 Llama vLLM (cuda:1, port 8004) | 运行中，tmux `vllm-llama-2` |\n| 第二个 collect.py | 运行中，tmux `judge-llama-b` |\n\n### 分工方式\n\n由于 collect.py 没有分片参数，两个 instance 如果跑相同 models 会 100% 重复。因此 kill 了原 collect.py，拆分 target_models：\n\n| Shard | Port | Models | 剩余 tasks | ETA |\n|-------|------|--------|-----------|-----|\n| A (`judge-llama-a`) | 8001 (cuda:2) | gpt-3.5-turbo-0125, gpt-4-0314, gpt-4-0613, gpt-4o, gpt-4o-mini | 2664 | ~700 min (11.7h) |\n| B (`judge-llama-b`) | 8004 (cuda:1) | llama-3.3-70b, qwen2.5-72b, gemma-2-9b, qwen3-8b | 2135 | ~593 min (9.9h) |\n\nShard B 写入独立目录 `results/llama-3.3-70b-shard2/`（已复制现有 JSONL 做 resume），后续需合并。\n\n### 加速效果\n\n- 原 ETA: **~21h** (单 instance, 4816 remaining)\n- 新 ETA: **~11.7h** (受限于 shard A 的 5 models)\n- 加速: **~1.8x**\n\n### GPU 状态\n\n| GPU | 用途 |\n|-----|------|\n| 0 | 空闲 |\n| 1 | Llama vLLM #2 (91GB) |\n| 2 | Llama vLLM #1 (91GB) |\n| 3 | Mistral vLLM (90GB) |\n\n### 注意事项\n\n- Shard B 的日志显示 \"Remaining: -199\" 是显示 bug（`done = len(completed)` 包含全部 model 的条目），实际 task list 构建正确 (2135 items)\n- 完成后需合并 `results/llama-3.3-70b/` 和 `results/llama-3.3-70b-shard2/` 两个 JSONL\n- GPU 0 仍空闲，如需进一步加速可再部署一个 vLLM instance"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx-kill-vllm-dual-llama.md"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp-012",
+  "project": "gated_mfrm_judge_bias",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:30:06.693Z",
+    "updated_at": "2026-05-21T23:03:18.531Z",
+    "hypothesis": "G-MFRM 的 staged estimation 对 e_i 估计噪声具有鲁棒性：当 e_i 注入 σ≤0.2 的 Gaussian 噪声时，θ̂ RMSE 退化 <10%，c_n 恢复精度退化 <15%；σ=0.5 时退化仍可控（<30%）。",
+    "parent": "mvp_003",
+    "server": "rtx6000-4x",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-4x",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-21T23:02:17.058Z"
+    }
+  },
+  "timestamp": "2026-05-21T23:03:18.549879+00:00",
+  "trigger": "update_registry"
+}

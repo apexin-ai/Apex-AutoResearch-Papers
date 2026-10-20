@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1249d7007b29a39f9b6",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh monitor response gen restart judges",
+  "task_key": "worker_ssh_monitor_response_gen_restart_judges_20260522T075512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_monitor_response_gen_restart_judges_20260522T075512_result.json",
+    "occurrence": 1,
+    "bytes": 62,
+    "sha256": "ce5f78a5390fc065b893898fa7fc3a416bbab5d5686130c22aed6faf4495628b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询 #1 完成。90s 后继续检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-monitor-response-gen-restart-judges.md"
+}

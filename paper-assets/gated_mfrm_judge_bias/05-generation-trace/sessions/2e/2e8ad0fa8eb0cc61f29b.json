@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e8ad0fa8eb0cc61f29b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx6000 connectivity check",
+  "task_key": "worker_ssh_rtx6000_connectivity_check_20260523T225856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx6000_connectivity_check_20260523T225856_result.json",
+    "occurrence": 1,
+    "bytes": 291,
+    "sha256": "c13415bb67d545f1a5d3ed84040603ebc52692941842c7f10c693f1622ac8b9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "连接失败。错误：`Unable to connect to port 23687 on 36.103.198.204`（connection refused）。\n\n服务器可能仍未恢复，或端口已变更。如果是 AutoDL 实例，重启后 SSH 端口会变，建议去控制台确认当前端口并更新 `~/.ssh/config`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx6000-connectivity-check.md"
+}

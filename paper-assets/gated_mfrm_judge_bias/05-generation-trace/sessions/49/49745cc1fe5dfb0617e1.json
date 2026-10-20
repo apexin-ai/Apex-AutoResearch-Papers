@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49745cc1fe5dfb0617e1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh wait restart llama qwen judges",
+  "task_key": "worker_ssh_wait_restart_llama_qwen_judges_20260522T082149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_wait_restart_llama_qwen_judges_20260522T082149_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "41883e177d6d31ba562d2ad17e4ebd42971d340e7cf5307e8289468e190864b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询状态：\n| Model | 进度 | 状态 |\n|-------|------|------|\n| llama-3.3-70b | 413/500 | 生成中 |\n| qwen2.5-72b | 331/500 | 生成中 |\n\n注意：实际 response 路径是 `/root/gated_mfrm_judge_bias/data/arena_hard/responses/`（不是任务描述中的 `exp001/results/arena_hard_responses/`）。3 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-wait-restart-llama-qwen-judges.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f50b1f52e9fa161f83f2",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "research uda author contact",
+  "task_key": "worker_research_uda_author_contact_20260522T035533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_uda_author_contact_20260522T035533_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "7c3db1102da03429bfc613a08e0670dbcce3221913bddca3d4029f37418055fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是结果：\n\n---\n\n## 联系人信息\n\n**首选联系人:** Cunxiang Wang\n- Email: wangcunxiang303@gmail.com（来源：[个人主页](https://wangcunxiang.github.io/)）\n- 备用: wangcunxiang@foxmail.com\n\n**备选联系人:** Guangsheng Bao\n- Email: baoguangsheng@westlake.edu.cn（来源：[个人主页](https://baoguangsheng.github.io/)）\n\n---\n\n## 邮件草稿\n\n**Subject:** Code Request for \"UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge\"\n\n**Body:**\n\n> Dear Dr. Wang,\n>\n> I hope this email finds you well. I am a researcher working on LLM judge bias, and I am writing to inquire about the code for your AAAI 2026 paper \"UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge.\"\n>\n> We are currently conducting a study on judge bias mitigation and would like to include UDA as a baseline in our experiments. However, the anonymous repository link referenced in the paper returns a 403 error, and we were unable to locate a public repository on GitHub.\n>\n> Would you be able to share the code or point us to the correct repository? We would be happy to cite your work appropriately and share our results.\n>\n> Thank you for your time, and looking forward to hearing from you.\n>\n> Best regards,\n> [Your Name]\n\n---\n\n建议同时抄送 Guangsheng Bao (baoguangsheng@westlake.edu.cn)，他在 GitHub 比较活跃，可能更快响应代码相关请求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-uda-author-contact.md"
+}

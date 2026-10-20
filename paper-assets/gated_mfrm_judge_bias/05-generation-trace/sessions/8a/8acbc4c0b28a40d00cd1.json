@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8acbc4c0b28a40d00cd1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003 dryrun autodl",
+  "task_key": "worker_ssh_exp003_dryrun_autodl_20260522T120246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003_dryrun_autodl_20260522T120246_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "6dd6afa879bddc1a34d6bdeb6dcb083e4b902aa35ab73f400868efaaee9682e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果\n\n| 项目 | 状态 |\n|------|------|\n| JAX | 0.10.1, CUDA, 4× CudaDevice ✓ |\n| NumPyro | 0.21.0 ✓ |\n| ArviZ | 1.1.0（刚装）✓ |\n| Blackwell 兼容性 | 无问题 ✓ |\n\n**代码位置**: `/root/gated_mfrm_judge_bias/mvp/` — `run_mvp_003.py` + `models_v3.py` + 依赖文件齐全\n\n**Pipeline 验证**（50wu + 50s，minimal params）:\n\n| 方法 | 耗时 | RMSE | Kendall τ |\n|------|------|------|-----------|\n| raw_average | 0.0s | 0.7595 | 0.8129 |\n| mfrm_only_v3 | 10.4s | 0.3014 | 0.8122 |\n| joint_gmfrm_v3 | 6.8s | 0.1215 | 0.9184 |\n\n**4-chain 并行**（`set_host_device_count(4)`）: Rhat=1.42, ESS=9 — 数值符合极少样本预期，4 GPU 并行正常。\n\n**代码就绪，可以启动 exp-003 正式拟合。** 完整 run_mvp_003.py（20 seeds × 4 methods × 2000wu+4000s×4chains）预计需要较长时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003-dryrun-autodl.md"
+}

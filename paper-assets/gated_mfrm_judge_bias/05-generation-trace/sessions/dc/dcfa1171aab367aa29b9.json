@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcfa1171aab367aa29b9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh investigate dangling refs",
+  "task_key": "worker_ssh_investigate_dangling_refs_20260524T051155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_investigate_dangling_refs_20260524T051155_result.json",
+    "occurrence": 1,
+    "bytes": 4357,
+    "sha256": "2051282cd85e0f9c675d8c0772bcc9e7817e6a0fa3785a18b49b1b4c6d3f3e8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成，以下是汇报。\n\n---\n\n## 1. Dangling References 的精确位置\n\n两个 reference 都在 `experiments.tex` **第 52 行**（同一段长文本中）：\n\n**Reference A — Prior robustness:**\n> `Results are robust to prior specification (Horseshoe \\citep{piironen2017horseshoe} vs.\\ HalfNormal: Pearson $r > 0.999$; Appendix)`\n\n注意：是裸文本 `Appendix`，没有 `\\ref{}`。\n\n**Reference B — Item-level diagnostics:**\n> `Model and judge facets show acceptable fit (all infit/outfit MNSQ within $[0.63, 1.07]$; item-level diagnostics in Appendix).`\n\n同样是裸文本 `Appendix`，无 `\\ref{}`。\n\n---\n\n## 2. appendix.tex 当前 sections（共 18 个）\n\n| # | Section | Label |\n|---|---------|-------|\n| 1 | Proof of Theorem | `app:proof` |\n| 2 | Explicit Form of OVB Coefficient γ_n | `app:gamma` |\n| 3 | Murphy–Topel Variance Correction | `app:murphy_topel` |\n| 4 | Ablation Study | `app:ablation` |\n| 5 | Posterior Predictive Check | `app:ppc` |\n| 6 | OVB Validation Across Confounding Levels | `app:ovb_validation` |\n| 7 | Contamination Susceptibility Recovery | `app:cn_recovery` |\n| 8 | Error Propagation Figure | `app:error_prop_fig` |\n| 9 | Self-Evaluation Robustness | `app:self_eval` |\n| 10 | Judge Severity Profiles | `app:judge_severity` |\n| 11 | Judge Count Sensitivity | `app:judge_count` |\n| 12 | Stage 2 Weight Robustness | `app:weight_robustness` |\n| 13 | Power Analysis | `app:power` |\n| 14 | Per-Model Estimates | `app:raw_scores` |\n| 15 | Contamination Bias Absorption | `app:bias_absorption` |\n| 16 | Synthetic Calibration at Matched Scale | `app:synthetic_calibration` |\n| 17 | CI Coverage Analysis | `app:ci_coverage` |\n| 18 | Use of AI Assistants | `app:ai_assistants` |\n\n**没有** prior robustness 或 item-level diagnostics 的 section。\n\n---\n\n## 3. 数据是否已存在\n\n### Reference A: Horseshoe vs. HalfNormal prior robustness\n\n**数据已存在，可直接计算 Pearson r。**\n\n两组 c_n 值来源：\n\n| Model | Horseshoe c_n | HalfNormal c_n |\n|-------|--------------|----------------|\n| gpt-3.5-turbo | 5.694 | 5.566 |\n| gpt-4-0613 | 4.245 | 4.146 |\n| qwen2.5-72b | 3.023 | 2.938 |\n| llama-3.3-70b | 2.503 | 2.458 |\n| gemma-2-9b | 1.611 | 1.653 |\n| qwen3-8b | 1.115 | 1.149 |\n| gpt-4o-mini | 0.844 | 0.916 |\n| gpt-4o | 0.790 | 0.875 |\n\n- **Horseshoe**: `/root/gated_mfrm_judge_bias/exp003/results/results.json` → `parameters.joint_gmfrm.c_values`\n- **HalfNormal**: `/root/gated_mfrm_judge_bias/exp003/output_003b/results.json` → `parameters.joint_gmfrm.c_values`\n\nθ 值也高度一致。θ 和 c_n 两组的 Pearson r 目测都 > 0.999。\n\n还有 `output_003b/analysis/refit_summary.json` 提供了 HalfNormal refit 的完整后验统计（mean/sd/CI/ESS/R-hat）。\n\nexp-016 无用：`results/` 目录为空（实验被 kill）。\n\n### Reference B: Item-level diagnostics\n\n**数据已存在，但仅为 .npy 数组，无直接可读的表格。**\n\n- `exp008/results/item_infit.npy` — 176 个 item 的 infit MNSQ\n- `exp008/results/item_outfit.npy` — 176 个 item 的 outfit MNSQ\n- `exp008/results/results.json` → `item_summary`：\n  - mean_infit = 0.779, sd = 0.411\n  - mean_outfit = 0.730, sd = 0.567\n  - n_overfit = 18, n_underfit = 74 (共 176 items)\n- 同一 JSON 还有 model-level 和 judge-level 的 infit/outfit（已在 experiments.tex 正文引用）\n\n缺少的是：item hash → infit/outfit 的映射表。npy 数组没有 item 标识，需要和原始数据的 item 顺序对齐才能生成可读表格。\n\n---\n\n## 4. 是否足够直接写附录 section\n\n### Prior robustness → **足够**\n两个 results.json 中的 c_n 和 θ 值可直接列成对比表，计算 Pearson r，加一段说明文字即可。还可以对比 ranking (τ)、convergence diagnostics。数据完整。\n\n### Item-level diagnostics → **基本足够，但需少量处理**\n有 176 个 item 的 infit/outfit 数值（.npy），也有 summary 统计。可以写成：\n- 一个 summary 段落（已有：mean/sd/overfit/underfit counts）\n- 一个 histogram 图（需从 .npy 生成）\n- 或一个按 infit/outfit 分位列出 flagged items 的表\n\n需要的额外工作：从 .npy 加载数据并对齐 item ID，生成可视化或表格。不需要重新跑实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-investigate-dangling-refs.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87b8feb2ebf55910d13b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check exp001 coverage progress",
+  "task_key": "worker_ssh_check_exp001_coverage_progress_20260522T103640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_exp001_coverage_progress_20260522T103640_result.json",
+    "occurrence": 1,
+    "bytes": 2100,
+    "sha256": "60be63af6c45af4e129dacb2a2546bf8b60e4cef8760286dae119486f407696b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总所有结果。\n\n---\n\n## exp-001 Judge 收集进度\n\n### Per-Judge 统计（9 judges 全部在线运行中）\n\n| Judge | Items | Workers | 类型 |\n|---|---|---|---|\n| gpt-5.5-proxy | **1,962** | 4 | API |\n| claude-opus-4.7-proxy | **1,701** | 4 | API |\n| claude-sonnet-4.6-proxy | **1,284** | 4 | API |\n| gemini-2.5-pro-proxy | **908** | 4 | API |\n| qwen3-235b-proxy | **895** | 4 | API |\n| deepseek-v4-pro-proxy | **676** | 4 | API |\n| llama-3.3-70b | **278** | 8 | Local |\n| qwen2.5-72b | **166** | 8 | Local |\n| mistral-large-2 | **83** | 8 | Local |\n\n**总计: 7,953 items across 9 judges**\n\n### Coverage Matrix (model_a vs gpt-4-0314 baseline, 7 target models)\n\n| Judge | gpt-3.5-turbo | gpt-4-0314 (self) | gpt-4-0613 | gpt-4o | gpt-4o-mini | llama-3.3-70b | qwen2.5-72b |\n|---|---|---|---|---|---|---|---|\n| gpt-5.5-proxy | 638 | 636 | 637 | 14 | 13 | ~13 | ~11 |\n| claude-opus-4.7 | 550 | 545 | 552 | 14 | 14 | ~13 | ~13 |\n| claude-sonnet-4.6 | 412 | 412 | 411 | 13 | 12 | ~12 | ~12 |\n| gemini-2.5-pro | 298 | 280 | 293 | 10 | 10 | ~9 | ~8 |\n| qwen3-235b | 285 | 286 | 286 | 10 | 10 | ~9 | ~9 |\n| deepseek-v4-pro | 224 | 203 | 222 | 8 | ~7 | 7 | ~5 |\n| llama-3.3-70b | 81 | 82 | 80 | 10 | 9 | ~8 | ~8 |\n| qwen2.5-72b | 48 | 48 | 48 | 6 | 6 | ~5 | ~5 |\n| mistral-large-2 | 24 | 23 | 21 | 4 | ~4 | 4 | ~3 |\n\n**前 3 个 target model（gpt-3.5-turbo, gpt-4-0314, gpt-4-0613）覆盖充足**；后 4 个（gpt-4o, gpt-4o-mini, llama, qwen）还在 ramp up（<15 items/cell）。\n\n### 运行进程\n**9 个 collect.py 进程**，全部于 18:30 启动。日志文件均为 0 bytes（尚未 flush）。\n\n---\n\n## exp-009 进度\n\n| 指标 | 值 |\n|---|---|\n| PID | 112923 |\n| 已运行 | **9h 31m** |\n| 当前进度 | **[99/200] rho=0.3 seed=48** |\n| 完成率 | **~49.5%** |\n| ETA | **~9.7 小时** (~35000s) |\n| 警告 | MCMC chains 串行执行（仅 1 GPU/CPU device，期望 4） |\n\n---\n\n## 磁盘\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|---|---|---|---|---|\n| / (overlay) | 30G | 10G | 21G | **34%** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp001-coverage-progress.md"
+}

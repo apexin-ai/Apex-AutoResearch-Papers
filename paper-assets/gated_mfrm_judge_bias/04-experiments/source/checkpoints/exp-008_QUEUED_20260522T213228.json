@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-008",
+  "project": "gated_mfrm_judge_bias",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:32:22.196Z",
+    "updated_at": "2026-05-22T21:32:28.803Z",
+    "hypothesis": "G-MFRM joint estimation produces acceptable model fit (infit/outfit MNSQ in [0.5, 1.5]) for model and judge facets, validating that the measurement model structure adequately captures response patterns. Item-level misfit identifies items with anomalous response patterns that may warrant exclusion.",
+    "parent": "exp-003b"
+  },
+  "timestamp": "2026-05-22T21:32:28.839463+00:00",
+  "trigger": "update_registry"
+}

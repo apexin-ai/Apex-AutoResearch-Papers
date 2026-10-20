@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04e98c5e9b83e603d1d4",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh w7 ablation synthetic",
+  "task_key": "worker_ssh_w7_ablation_synthetic_20260522T182720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w7_ablation_synthetic_20260522T182720_result.json",
+    "occurrence": 1,
+    "bytes": 1148,
+    "sha256": "0239140e4e50c54fc3a5328df743384d2093eab97f71cd567c924fc8adca728a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W7 ablation 实验在 autodl-8gpu 的 tmux session `w7_ablation` 中持续运行。当前状态：\n\n**已完成结果：**\n\n| Seed | Variant | θ RMSE | c RMSE | Kendall-τ | R-hat | 耗时 |\n|------|---------|--------|--------|-----------|-------|------|\n| 0 | full_gmfrm | 0.1241 | 0.3505 | 0.9216 | 1.010 | 237s |\n| 0 | binary_gating | 0.1397 | 0.6143 | 0.9020 | 1.010 | 406s |\n| 0 | no_judge_severity | 0.1197 | 0.3855 | 0.9167 | 1.010 | 238s |\n| 0 | staged_estimation | 0.3005 | 1.2038 | 0.8122 | 1.010 | 251s |\n| 1 | full_gmfrm | 0.1507 | 0.7356 | 0.9200 | 1.020 | 197s |\n\n**当前进度：** Seed 1 的 binary_gating 正在运行（~7 min/variant）。\n\n**初步观察（2 seeds）：**\n- staged_estimation 明显最差：θ RMSE 比 full_gmfrm 高 2.4x，c RMSE 高 3.4x\n- binary_gating 对 c 估计较差（c RMSE 0.6143 vs baseline 0.3505）\n- no_judge_severity 的 θ RMSE 与 full_gmfrm 相当，c RMSE 略差\n- 单 seed ~19 min，20 seeds 预计 ~6.3 小时，有 checkpoint 每 5 seeds 保存\n\n实验在 tmux 中后台运行，不需要持续轮询。等完成或到 checkpoint 时再查看结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w7-ablation-synthetic.md"
+}

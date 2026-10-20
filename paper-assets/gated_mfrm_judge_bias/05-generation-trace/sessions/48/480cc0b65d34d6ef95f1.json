@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "480cc0b65d34d6ef95f1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "research real data n expansion",
+  "task_key": "worker_research_real_data_n_expansion_20260523T123150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_real_data_n_expansion_20260523T123150_result.json",
+    "occurrence": 1,
+    "bytes": 1426,
+    "sha256": "79fd5bab7b606f1e91578ab34dbe5bbc357116f3375537f5478e83afc70973ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `artifacts/n17_feasibility_report.md`。\n\n## 结论：可行，预计 1.5-2 天，~$1,200\n\n### 核心发现\n\n**技术层面**：\n- 代码完全数据驱动，无 N=8 硬编码。exp-018 已在 N=20 synthetic 上跑通。\n- MCMC 参数量仅增加 18 个（9×θ + 9×c），被 I=316 项 item 参数主导，runtime 约 2x。\n\n**数据层面**：\n- Arena-Hard v0.1 HuggingFace 数据集有 **76 个模型**的预生成 responses 可直接下载\n- 其中 **30+ 个**同时有 Chatbot Arena ELO，可直接用作 target models\n- 推荐选 9 个（claude-3.5-sonnet, gpt-4-turbo, llama-3.1-70b, gemma-2-27b, claude-3-opus, llama-3-70b, mixtral-8x22b, claude-3-haiku, llama-3-8b），ELO 分布 ~1165-1299\n- 不推荐用已有本地 responses 的 4 个模型（claude-opus-4.7/sonnet-4.6, gpt-5.5, mistral-large-2），因为它们全是 judges，会把 judge-target overlap 推到 50%\n\n**成本层面**：\n- Response 生成：$0（用 HF 预生成数据）\n- Judge 评测：~$1,184（6 个 API judges × 9 个新模型 × 1000 calls/model）\n- 瓶颈：claude-opus/sonnet 50 RPM → ~3h wall time\n- 去掉 gpt-5.5 judge 可降至 $765\n\n**主要风险**：即使 N=17，real-data Δτ 仍可能不显著（exp-015 已证明是 model-data mismatch 而非 power 问题）。但 N=17 的 τ 分辨率从 1/28≈0.036 提高到 1/136≈0.0074，reviewer 攻击面显著缩小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-real-data-n-expansion.md"
+}

@@ -1,0 +1,62 @@
+{
+  "exp_id": "mvp_002",
+  "project": "eco_alpha_beta_diversity",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:33:48.911Z",
+    "updated_at": "2026-05-21T15:02:14.137Z",
+    "hypothesis": "语义级（sentence embedding 聚类）Hill number alpha-beta 分解能在 Doshi & Hauser 数据集上检测到 LLM 辅助写作的 alpha↑/beta↓ 模式，且效应量大于词汇级（mvp_001），因为语义向量维度固定不受文本长度线性影响，能排除长度混淆",
+    "parent": "mvp_001",
+    "spec": {
+      "command": "python run_semantic_mvp.py --nboot 200",
+      "server": "westd-25068",
+      "data_path": "/root/eco_alpha_beta_diversity/data/writers-2023-06-28.csv",
+      "data_count": 297,
+      "model_name": "all-MiniLM-L6-v2",
+      "seed": 42,
+      "checkpoint_source": "N/A",
+      "eval_data": "N/A",
+      "checkpoint_path": "N/A",
+      "log_path": "/root/eco_alpha_beta_diversity/semantic_mvp_results.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "n_stories": 297,
+      "avg_sentences_per_story": 7.8,
+      "avg_semantic_species_per_story": 5,
+      "embedding_model": "all-MiniLM-L6-v2",
+      "k_values_tested": [
+        50,
+        100,
+        200
+      ],
+      "hill_q1_alpha_k50": {
+        "no-AI": 4.26,
+        "AI-editor": 4.66,
+        "AI-ideas+editor": 4.5
+      },
+      "hill_q1_beta_k50": {
+        "no-AI": 9.09,
+        "AI-editor": 9.18,
+        "AI-ideas+editor": 9.6
+      },
+      "cosine_r": 0.041,
+      "pass1_alpha_up": false,
+      "pass2_beta_down": false,
+      "pass3_baselga": true,
+      "pass4_cosine": false,
+      "fail1_no_pattern": true,
+      "fail2_perpair_R2": 0.001,
+      "fail2_triggered": false,
+      "overall": "FAIL",
+      "k_sensitivity": "50/100/200 all FAIL, stable",
+      "root_cause": "sentence-level granularity too coarse (~8 sentences/story → ~5 semantic species)"
+    },
+    "completed_at": "2026-05-21T15:02:14.137Z"
+  },
+  "timestamp": "2026-05-21T15:02:14.147317+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-006",
+  "project": "gated_mfrm_judge_bias",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:08:31.926Z",
+    "updated_at": "2026-05-22T20:23:18.040Z",
+    "hypothesis": "G-MFRM joint estimation 的 Arena correlation (τ) 随 judge 数量单调递增且存在 diminishing returns：3 judges 即可超越 baseline (τ>0.786)，6+ judges 接近饱和。不同 judge subset 组合的方差随 judge 数增加而收缩。",
+    "parent": "exp-003b"
+  },
+  "timestamp": "2026-05-22T20:23:18.074167+00:00",
+  "trigger": "update_registry"
+}

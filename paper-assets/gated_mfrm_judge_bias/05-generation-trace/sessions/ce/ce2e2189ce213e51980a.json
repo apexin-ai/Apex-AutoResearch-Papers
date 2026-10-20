@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce2e2189ce213e51980a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003 final check",
+  "task_key": "worker_ssh_exp003_final_check_20260522T170217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003_final_check_20260522T170217_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "a9a77e04587e0181b4808bb1e200d77ea125420e3f9423c136a263a51dc76976"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "joint_gmfrm chain 3/4 at 79% sampling (~14 it/s)。预计 ~9 分钟后全部完成。已设置 2 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003-final-check.md"
+}

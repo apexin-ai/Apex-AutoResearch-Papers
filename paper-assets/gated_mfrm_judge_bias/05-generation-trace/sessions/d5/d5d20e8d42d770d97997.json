@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5d20e8d42d770d97997",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check exp001 target models",
+  "task_key": "worker_ssh_check_exp001_target_models_20260522T052851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_exp001_target_models_20260522T052851_result.json",
+    "occurrence": 1,
+    "bytes": 2451,
+    "sha256": "07954d9aa269a7346a326d0e248a3c12bc29f50313e65d20562b3608d41c3814"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n## 1. Target Models\n\n**当前实际评测 3 个 target models**（数据文件在 `data/arena_hard/responses/`）：\n\n| # | Target Model | Responses |\n|---|---|---|\n| 1 | gpt-3.5-turbo-0125 | 500 |\n| 2 | gpt-4-0314 | 500 |\n| 3 | gpt-4-0613 | 500 |\n\n`config.yaml` 列了 22 个 target models，但只有这 3 个有实际 response 数据。所有运行中的 per-judge config 也只指定了这 3 个。\n\n**Reference model**: `gpt-4-0314`（pairwise 对比的基准）\n\n---\n\n## 2. 各 Judge 收集进度\n\nArena-Hard pairwise + position_swap → 每个 judge 需 3 models × 500 prompts × 2 positions = **3000 judgments**。\n\n| Judge | 已收集 | 进度 | 错误数 | 状态 |\n|---|---|---|---|---|\n| llama-3.3-70b (local) | ~91* | ~3.0% | 0 | tmux 运行中 |\n| qwen2.5-72b (local) | ~91* | ~3.0% | 0 | tmux 运行中 |\n| mistral-large-2 (local) | ~91* | ~3.0% | 0 | tmux 运行中（刚启动 12:57） |\n| gpt-5.5-proxy | 406 | 13.5% | 21 | tmux 运行中 |\n| claude-opus-4.7-proxy | 428 | 14.3% | 99 | tmux 运行中 |\n| claude-sonnet-4.6-proxy | 390 | 13.0% | 83 | tmux 运行中 |\n| gemini-2.5-pro-proxy | 320 | 10.7% | **286** | tmux 运行中（89% 失败率极高） |\n| deepseek-v4-pro-proxy | 204 | 6.8% | 133 | tmux 运行中（65% 失败率） |\n| qwen3-235b-proxy | 215 | 7.2% | 81 | tmux 运行中 |\n\n\\* 三个 local judges 共用 `results/arena_hard_judgments.jsonl`（274 行，三个 judge 混写），各约 ~91 行。\n\n---\n\n## 3. 数据结构\n\n- **500 prompts**（`data/arena_hard/prompts.jsonl`）\n- 每个 prompt 有 3 个 target model 的 responses\n- Pairwise 模式：target_model vs reference_model (gpt-4-0314)，AB + BA 两个位置\n- 每个 judge 独立 JSONL 输出，支持 incremental resume\n\n---\n\n## 4. collect.py 核心逻辑\n\n遍历顺序：`for item → for target_model → for judge → for position(AB/BA)`。对每个组合调 `judge.evaluate(prompt, resp_target, resp_ref, swap)`，写入 JSONL。通过 `load_completed()` 实现断点续传，`RateLimiter` 控制每个 judge 的 RPM。\n\n---\n\n## 5. 关注点\n\n- **gemini-2.5-pro** 错误率 89%（286/320），**deepseek-v4-pro** 65%（133/204），需要排查 API 问题\n- 3 个 local judges 写同一个文件，可能存在并发写入竞争\n- config.yaml 规划了 22 个 target models，当前只跑了 3 个——后续需要收集剩余 19 个的 responses"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp001-target-models.md"
+}

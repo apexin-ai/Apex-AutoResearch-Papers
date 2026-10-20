@@ -1,0 +1,492 @@
+{
+  "schema_version": "1.0",
+  "id": "be937e32de4ebab39fe0",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "conversation",
+  "title": "ssh orphan bib audit",
+  "task_key": "worker_ssh_orphan_bib_audit_20260524T073745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_orphan_bib_audit_20260524T073745.jsonl",
+    "occurrence": 1,
+    "bytes": 17457,
+    "sha256": "f69d37f5bd4f83d27a0fc9eb20b5678c3a66cf5fabb060523273cfb421fcc8a1"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T07:38:55.517972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T07:38:55.518326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T07:38:55.518544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -rn \"sanmartin2016\" /root/gated_mfrm_judge_bias/paper/*.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T07:38:55.518691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -rn \"talts2018\" /root/gated_mfrm_judge_bias/paper/*.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T07:38:55.518835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/paper/appendix.tex:57:equals the conditional Fisher information for $(\\\\\\\\mathbf{b}, \\\\\\\\mathbf{d}, \\\\\\\\boldsymbol{\\\\\\\\tau})$ given $(\\\\\\\\boldsymbol{\\\\\\\\theta}, \\\\\\\\mathbf{c})$. Conditioning on $(\\\\\\\\boldsymbol{\\\\\\\\theta}, \\\\\\\\mathbf{c})$ with fixed $\\\\\\\\mathbf{e}$ reduces the model to a standard MFRM with known offsets $c_n \\\\\\\\cdot e_i$, whose identifiability is established by \\\\\\\\citet[Chapter~5]{sanmartin2016} under conditions~(i), (ii), and~(iv). Therefore $\\\\\\\\mathbf{S}$ is positive definite.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T07:38:55.518979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/paper/limitations.tex:3:Empirical CI coverage differs by parameter type: ability estimates $\\\\\\\\theta$ approach nominal coverage (${\\\\\\\\sim}$90\\\\\\\\% at $N = 8$), while contamination susceptibility $c_n$ exhibits posterior overconfidence (71\\\\\\\\% at $N = 50$, 68\\\\\\\\% at $N = 8$; \\\\\\\\citealp{talts2018sbc}), a structural issue from the multiplicative coupling $c_n \\\\\\\\cdot e_i$ and the HalfNormal boundary constraint at $c_n = 0$ that does not improve with sample size; $c_n$ credible intervals should be treated as lower bounds on uncertainty (Appendix~\\\\\\\\ref{app:ci_coverage}), with SBC-based recalibration as a direction for future work. The bilinear term also assumes rank-1 structure---a single contamination dimension per model---while contamination may be domain-specific (e.g., coding vs.\\\\\\\\ reasoning), requiring a higher-rank decomposition $\\\\\\\\sum_r c_{nr} \\\\\\\\cdot e_{ir}$ that the current model does not capture.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T07:38:55.519108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -rn \"vehtari2017\" /root/gated_mfrm_judge_bias/paper/*.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T07:38:55.519238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/paper/experiments.tex:48:\\\\\\\\paragraph{Predictive fit.} LOO cross-validation strongly favors G-MFRM ($\\\\\\\\Delta\\\\\\\\mathrm{ELPD}_{\\\\\\\\mathrm{LOO}} = -55.7$, SE $= 9.4$, $|\\\\\\\\Delta/\\\\\\\\mathrm{SE}| = 5.9$; \\\\\\\\citealp{vehtari2017loo}), with stacking weight 1.0 for G-MFRM versus 0.0 for MFRM-only. All Pareto $\\\\\\\\hat{k} < 0.7$, confirming reliable LOO estimates. The contamination gating term substantially improves held-out predictive fit.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T07:38:55.519374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -A 10 \"sanmartin2016\" /root/gated_mfrm_judge_bias/paper/references.bib",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T07:38:55.519531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"@incollection{sanmartin2016,\\\\n  author    = {San Mart{\\\\\\\\'\\\\\\\\i}n, Ernesto},\\\\n  title     = {Identification of Item Response Theory Models},\\\\n  booktitle = {Handbook of Item Response Theory, Volume Two: Statistical Tools},\\\\n  editor    = {van der Linden, Wim J.},\\\\n  publisher = {CRC Press},\\\\n  address   = {Boca Raton, FL},\\\\n  pages     = {127--150},\\\\n  year      = {2016},\\\\n}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T07:38:55.519658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -A 10 \"talts2018\" /root/gated_mfrm_judge_bias/paper/references.bib",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T07:38:55.519777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -A 10 \"vehtari2017\" /root/gated_mfrm_judge_bias/paper/references.bib",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T07:38:55.519905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"@article{talts2018sbc,\\\\n  author  = {Talts, Sean and Betancourt, Michael and Simpson, Daniel and Vehtari, Aki and Gelman, Andrew},\\\\n  title   = {Validating {B}ayesian Inference Algorithms with Simulation-Based Calibration},\\\\n  journal = {arXiv preprint arXiv:1804.06788},\\\\n  year    = {2018},\\\\n}\\\\n\\\\n% ------ Econometrics & Two-Step Estimation ------\\\\n\\\\n@book{angrist2009mostly,\\\\n  author    = {Angrist, Joshua D. and Pischke, J{\\\\\\\\\\\\\\\"o}rn-Steffen},\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T07:38:55.520032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"@article{vehtari2017loo,\\\\n  author  = {Vehtari, Aki and Gelman, Andrew and Gabry, Jonah},\\\\n  title   = {Practical {B}ayesian Model Evaluation Using Leave-One-Out Cross-Validation and {WAIC}},\\\\n  journal = {Statistics and Computing},\\\\n  volume  = {27},\\\\n  number  = {5},\\\\n  pages   = {1413--1432},\\\\n  year    = {2017},\\\\n  doi     = {10.1007/s11222-016-9696-4},\\\\n}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T07:38:55.520224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -ni \"identifiab\\|identific\" /root/gated_mfrm_judge_bias/paper/method.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T07:38:55.520364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T07:38:55.520504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -ni \"identifiab\" /root/gated_mfrm_judge_bias/paper/method.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T07:38:55.520623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "grep -ni \"identific\" /root/gated_mfrm_judge_bias/paper/method.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T07:38:55.520766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4:Section~\\\\\\\\ref{sec:confounding} established that omitting contamination from the measurement model produces directional bias in ability estimates (Observation~\\\\\\\\ref{obs:ovb}). We now introduce the Gated Many-Facet Rasch Model (G-MFRM), which jointly estimates ability, judge severity, and contamination susceptibility within a single measurement framework. The key design choices, staged estimation with externally fixed exposure and a hierarchical HalfNormal prior for the contamination term, are motivated by the identifiability analysis in \\\\\\\\S\\\\\\\\ref{sec:identifiability} and the error propagation bounds in \\\\\\\\S\\\\\\\\ref{sec:error_prop}.\\\\n27:The closest antecedent is the Doubly-Gated IRT model of \\\\\\\\citet{shu2013dgirt}, which introduced binary gating for item preknowledge in educational testing. Beyond extending DG-IRT to continuous exposure and multi-rater designs, G-MFRM's primary methodological contributions are analytical: the identifiability analysis (Propositions~\\\\\\\\ref{prop:no_new}--\\\\\\\\ref{prop:exposure_variation} and Theorem~\\\\\\\\ref{thm:sufficient}) provides the first formal conditions under which gated IRT parameters are separable, and the Murphy--Topel error propagation framework (\\\\\\\\S\\\\\\\\ref{sec:error_prop}) quantifies how staged estimation uncertainty propagates to downstream parameter estimates---neither of which exists for DG-IRT or any prior gated measurement model.\\\\n32:Joint estimation of all parameters in Eq.~\\\\\\\\ref{eq:gmfrm}, including $e_i$, would require identifying the bilinear product $c_n \\\\\\\\cdot e_i$ from response data alone. This creates a fundamental non-identifiability (Proposition~\\\\\\\\ref{prop:exposure_variation}). We resolve this through a three-stage procedure that fixes exposure externally before estimating the contamination parameters.\\\\n53:\\\\\\\\subsection{Identifiability}\\\\n54:\\\\\\\\label{sec:identifiability}\\\\n69:If $e_i = e$ for all $i$ (constant exposure), then $c_n$ a\n…[truncated 759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T07:38:55.520925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"56:Adding a multiplicative term to a measurement model raises the question of whether the new parameters can be separated from the existing ones. We establish that fixing $e_i$ externally is both necessary and sufficient for identification. All proofs assume the standard location constraint $\\\\\\\\sum_n \\\\\\\\theta_n = 0$.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T07:38:55.521085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "head -90 /root/gated_mfrm_judge_bias/paper/method.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T07:38:55.521321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{The G-MFRM Framework}\\\\n\\\\\\\\label{sec:method}\\\\n\\\\nSection~\\\\\\\\ref{sec:confounding} established that omitting contamination from the measurement model produces directional bias in ability estimates (Observation~\\\\\\\\ref{obs:ovb}). We now introduce the Gated Many-Facet Rasch Model (G-MFRM), which jointly estimates ability, judge severity, and contamination susceptibility within a single measurement framework. The key design choices, staged estimation with externally fixed exposure and a hierarchical HalfNormal prior for the contamination term, are motivated by the identifiability analysis in \\\\\\\\S\\\\\\\\ref{sec:identifiability} and the error propagation bounds in \\\\\\\\S\\\\\\\\ref{sec:error_prop}.\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{fig1_framework}\\\\n\\\\\\\\caption{Overview of the G-MFRM three-stage calibration procedure. Stage~1 fits a standard MFRM to obtain initial estimates $(\\\\\\\\hat{\\\\\\\\theta}, \\\\\\\\hat{b}, \\\\\\\\hat{d})$. Stage~2 estimates per-item exposure $e_i$ from external evidence (reference model anchoring and cross-model agreement). Stage~3 performs joint MCMC inference with $e_i$ fixed, recovering contamination-corrected ability $\\\\\\\\tilde{\\\\\\\\theta}_n$, contamination susceptibility $c_n$, and judge severity $d_j$.}\\\\n\\\\\\\\label{fig:framework}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\subsection{Model Specification}\\\\n\\\\\\\\label{sec:model_spec}\\\\n\\\\nG-MFRM extends the standard MFRM \\\\\\\\citep{linacre1989mfrm, linacre1994mfrm} by adding a multiplicative contamination gating term to the linear predictor (Eq.~\\\\\\\\ref{eq:mfrm}):\\\\n%\\\\n\\\\\\\\begin{equation}\\\\n\\\\\\\\label{eq:gmfrm}\\\\n\\\\\\\\log \\\\\\\\frac{P(Y_{nij} \\\\\\\\geq k)}{P(Y_{nij} < k)} = \\\\\\\\theta_n - b_i - d_j - \\\\\\\\tau_k + c_n \\\\\\\\cdot e_i,\\\\n\\\\\\\\end{equation}\\\\n%\\\\nwhere all terms carry the definitions from Section~\\\\\\\\ref{sec:confounding}. The gating structure $c_n \\\\\\\\cdot e_i$ separates the model-specific and item-specif\n…[truncated 6786 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T07:38:55.521557+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 entry 全部已被引用，审计完成。\n\n---\n\n**Entry 1: `sanmartin2016`**\n- **Bib 内容**: San Martín (2016), \"Identification of Item Response Theory Models\", Handbook of IRT Vol.2, CRC Press\n- **引用状态**: 已引用 at appendix.tex:57 (`\\citet[Chapter~5]{sanmartin2016}`)\n- **method.tex identifiability 讨论**: method.tex §3.3 (lines 53-82) 大量讨论 identifiability，但呈现的是本文自己的 Propositions/Theorem，proof 推迟到 Appendix。Appendix 证明中引用 San Martín 的已有 MFRM identifiability 结果，引用位置正确。method.tex 无需重复引用。\n- **决定**: 保留（已引用，位置正确）\n- **执行结果**: 无需修改\n\n**Entry 2: `talts2018sbc`**\n- **Bib 内容**: Talts et al. (2018), \"Validating Bayesian Inference Algorithms with Simulation-Based Calibration\", arXiv:1804.06788\n- **引用状态**: 已引用 at limitations.tex:3 (`\\citealp{talts2018sbc}`)\n- **上下文**: 讨论 CI coverage 的 posterior overconfidence 时引用 SBC，提出 SBC-based recalibration 作为未来方向\n- **决定**: 保留（已引用，位置正确）\n- **执行结果**: 无需修改\n\n**Entry 3: `vehtari2017loo`**\n- **Bib 内容**: Vehtari, Gelman & Gabry (2017), \"Practical Bayesian Model Evaluation Using LOO-CV and WAIC\", Statistics and Computing 27(5)\n- **引用状态**: 已引用 at experiments.tex:48 (`\\citealp{vehtari2017loo}`)\n- **上下文**: 报告 LOO cross-validation 结果（ΔELPD = -55.7, SE = 9.4）时引用\n- **决定**: 保留（已引用，位置正确）\n- **执行结果**: 无需修改\n\n**结论**: 3 个 entry 均非 orphan，全部在论文中被正确引用。无需修改，无需编译验证。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_orphan_bib_audit_20260524T073745"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-orphan-bib-audit.md"
+}

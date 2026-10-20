@@ -1,0 +1,93 @@
+paper_key: "lin2025psnirt"
+title: "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"
+venue: "AAAI 2026"
+full_text_available: true
+
+research:
+  baselines: ["IRT-MLE (4PL)", "IRT-MCMC (4PL)", "IRT-VI (4PL)", "IRT-VIBO (4PL)", "Deep-IRT (1PL)"]
+  metrics:
+    - {name: "Prediction Accuracy", direction: "higher_better"}
+    - {name: "F1 Score", direction: "higher_better"}
+    - {name: "ROC AUC", direction: "higher_better"}
+    - {name: "Kendall τ (rank stability)", direction: "higher_better"}
+    - {name: "Kendall τ (BAT agreement with human preference)", direction: "higher_better"}
+    - {name: "LEH (Local Efficiency Headroom)", direction: "higher_better"}
+    - {name: "Fisher Information", direction: "higher_better"}
+  datasets:
+    - {name: "11 LLM benchmarks (ARC-C, BBH, Chinese SimpleQA, GPQA Diamond, GSM8K, HellaSwag, HumanEval, MATH, MBPP, MMLU, TheoremQA)", size: "41,871 items total"}
+    - {name: "12 LLMs (8 strong + 4 weak)", size: "12 models"}
+  ablation_dimensions: ["Input representation (one-hot vs embedding)", "Backbone (MLP vs GNN)", "IRT parameter count (1PL-4PL)", "Data subset size (30%/50%/70%)"]
+  training_recipe: {optimizer: "Adam lr=0.003 weight_decay=0.0001", lr: "0.003", hardware: "single NVIDIA A800-80G GPU"}
+  method_family: "Neural IRT (Pseudo-Siamese Network + 4PL)"
+
+positioning:
+  core_claim: "PSN-IRT用双MLP网络准确估计4PL IRT参数，揭示现有LLM benchmark普遍存在饱和、难度天花板不足、数据污染风险，且Fisher信息选题可构建更小但更人类偏好对齐的评测集"
+  key_results: "PSN-IRT: ACC=0.7998, F1=0.8538, Kendall τ=1.000 vs Deep-IRT τ=0.9697; Fisher top-1000: τ=0.9048 vs all items τ=0.2381 (w/o weak models)"
+  limitations:
+    - "参数估计依赖训练数据，新item需重训练"
+    - "未显式讨论limitations section"
+    - "仅诊断benchmark质量，未提出修复方案"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Figure 1展示不同leaderboard的排名不一致和top模型间区分度差"
+  tension: "现有benchmark评测的两个核心问题：跨benchmark排名不一致 + top模型区分度差——说明benchmark本身有质量问题"
+  key_insight: "Section 5 Method — Pseudo-Siamese架构让model和item参数估计彼此独立但联合优化，保持IRT可解释性同时获得神经网络的拟合能力"
+  argument_chain: "benchmark inconsistency → IRT can diagnose → traditional IRT limitations → PSN-IRT architecture → validate estimation → diagnose 11 benchmarks → 5 findings → Fisher-based efficient benchmarking"
+  contribution_framing: "三条贡献：(1)PSN-IRT框架 (2)11个benchmark深度诊断 (3)Fisher选题提升人类偏好对齐"
+  intro_structure: "5段：benchmark问题 → IRT引入 → PSN-IRT方案 → 实验验证 → 贡献声明"
+  notable_technique: "五大发现(Findings 1-5)的叙事结构——每个finding先呈现Table 5排名再用Figure 3分布图佐证，形成'排名→解读→分布→结论'的四步论证"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "motivation"
+    description: "不同LLM leaderboard的排名不一致和top模型间分数接近"
+    narrative_role: "用一张直觉图建立motivation——为什么需要重新思考benchmarking"
+    design_elements: ["多leaderboard对比", "排名箭头/连线", "top模型分数差距标注"]
+    visual_style: "来自opencompass.org.cn的排行榜截图对比"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "method_overview"
+      what_compared: "PSN-IRT架构图"
+      how_gain_highlighted: "双路径设计突出model/item参数独立估计→IRT层融合"
+      design_note: "标准架构图，model network和item network两条路径汇入logistic calculation layer"
+    - figure_id: "Figure 3"
+      viz_type: "box/violin plot"
+      what_compared: "11个benchmark在6个psychometric维度上的分布"
+      how_gain_highlighted: "六子图并排，直观展示各benchmark的优劣势"
+      design_note: "6×11的分布图矩阵，每个维度一行每个benchmark一列"
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "difficulty vs discriminability的关系"
+      how_gain_highlighted: "U型关系揭示极端难度降低区分度"
+      design_note: "11个子图，每个benchmark一张scatter plot"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(motivation) → Figure 2(method) → Figure 3(benchmark诊断) → Figure 4(difficulty-discriminability关系) → Figure 5(case examples)"
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "metrics"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "单次运行"
+    num_baselines: 5
+    design_note: "简洁的method×metric矩阵，突出PSN-IRT在Kendall τ上的完美1.0"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["Input representation (embedding)", "Backbone (GNN)"]
+      variation_style: "full_numbers"
+      design_note: "证明one-hot+MLP优于semantic embedding和graph网络"
+    - table_id: "Table 7"
+      what_varied: ["IRT parameter count (1PL-4PL) × estimation method"]
+      variation_style: "full_numbers"
+      design_note: "全面的参数数×方法交叉对比，20行表格覆盖所有组合"
+  supplementary_tables:
+    in_appendix: false
+    content: "Table 5(benchmark ranking), Table 6(efficient benchmarking), Table 8(average properties)"
+    reason: "所有表格在主文中，无附录表"

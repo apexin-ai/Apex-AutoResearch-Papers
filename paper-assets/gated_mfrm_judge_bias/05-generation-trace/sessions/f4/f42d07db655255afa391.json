@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f42d07db655255afa391",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh diagnose gemini deepseek errors",
+  "task_key": "worker_ssh_diagnose_gemini_deepseek_errors_20260522T102615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_gemini_deepseek_errors_20260522T102615_result.json",
+    "occurrence": 1,
+    "bytes": 2217,
+    "sha256": "e0a6a56d649949e5d88ca761482c782e07a6a940fe3d27e24fad6065c4873b76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### Part 1: Gemini/DeepSeek 错误原因\n\n| Judge | 失败/总计 | 根因 | 当前状态 |\n|-------|-----------|------|----------|\n| Gemini | 394/855 (46%) | **输出截断** — 模型分析写太长，`[[A]]/[[B]]/[[C]]` 标签被截断掉，`_parse_verdict()` 返回 None | 最近条目（18:27+）正常 |\n| DeepSeek | 189/638 (30%) | **空响应 + 500 错误** — 大量 `raw_output: \"\"` + 日志可见 `Error code: 500 - Internal Server Error` | 最近条目正常，偶发 500 重试后成功 |\n\n**不是 402 残留**，是今天早期（12:25~17:00）proxy 不稳定导致的截断/空响应。proxy 现已恢复。\n\n**证据**：\n- Gemini 失败条目的 `raw_output` 有实质分析内容但中途断句，无 verdict tag\n- DeepSeek 失败条目多数 `raw_output: \"\"`，少数有部分内容也截断\n- 最近 1h 两个 judge 产出全部 status=ok\n\n### Part 2: Auto-restart 配置问题\n\n**严重配置缺陷**：所有 config 文件（llama/qwen/gemini/deepseek 全部）target_models 只有 3 个：\n\n```yaml\ntarget_models:\n  - gpt-3.5-turbo-0125\n  - gpt-4-0314\n  - gpt-4-0613\n```\n\n但 responses 目录有 **10 个模型**：gpt-3.5-turbo-0125, gpt-4-0314, gpt-4-0613, gpt-4o, gpt-4o-mini, gpt-5.5, llama-3.3-70b, qwen2.5-72b, claude-opus-4.7, mistral-large-2\n\n**结论**：auto-restart 启动的 judge-llama/judge-qwen **不会**评估 llama/qwen 作为 target model。它们只评估那 3 个 GPT 模型。\n\n**Auto-restart 当前状态**：\n- llama response 500/500 完成 → judge-llama 已启动（18:26:04）\n- qwen response 496/500 → 还差 4 条，未触发\n\n### 建议修复方案\n\n1. **失败条目不需要手动修复**：`load_completed()` 跳过 failed 条目，重启 collect 进程即可自动重试\n\n2. **必须更新 config 的 target_models**：将所有 config 中 target_models 改为完整的 10 个模型列表（或至少加上 gpt-4o, gpt-4o-mini, gpt-5.5, llama-3.3-70b, qwen2.5-72b, claude-opus-4.7, mistral-large-2）\n\n3. **DeepSeek 偶发 500**：当前 retry 逻辑能处理（`max_retries: 3`），无需降 workers。但可考虑将 `max_tokens` 从 4096 提高到 8192 防止 Gemini 截断"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-gemini-deepseek-errors.md"
+}

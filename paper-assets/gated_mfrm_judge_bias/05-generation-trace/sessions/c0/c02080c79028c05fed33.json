@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c02080c79028c05fed33",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp009 incremental write fix",
+  "task_key": "worker_ssh_exp009_incremental_write_fix_20260522T010329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp009_incremental_write_fix_20260522T010329_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "40a509b45e54e0c02483ef6baecf2b529ca7813c0039e9f5336f7b799daa6d70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 PID=112923 已在 GPU 0 上运行。等 ~4.5 分钟后检查 CSV 增量写入是否成功。\n\n**已完成的改动摘要：**\n\n| 位置 | 原代码 | 改为 |\n|------|--------|------|\n| L4 docstring | `x 100 seeds` | `x 50 seeds` |\n| L208 Part A flush | 每 5 pairs 写一次 (`len(buf) >= 10`) | 每个 pair 立即写入 |\n| L354 Part B flush | 每 5 seeds 写一次 (`(i+1) % 5 == 0`) | 每个 seed 立即写入 |\n\n断点续跑逻辑（`_completed_pairs_a` / `_completed_seeds_b`）原本已有，无需修改。核心问题只是 flush 粒度太粗，崩溃时最多丢 5 个 seed 的结果。现在改为每完成一个就 flush，最多丢当前正在跑的那个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp009-incremental-write-fix.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "59489e914ee8a4cc2725",
+  "project": "eco_alpha_beta_diversity",
+  "kind": "worker",
+  "title": "exec mvp 002 semantic",
+  "task_key": "worker_exec_mvp_002_semantic_20260521T143952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_mvp_002_semantic_20260521T143952.log",
+    "occurrence": 1,
+    "bytes": 858275,
+    "sha256": "5878e43f8690ae65062cf12c99dd9cbbaa34bc372f5dd5c64fe77ee03c70da4a"
+  },
+  "statistics": {
+    "messages": 321,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 97,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 321,
+      "chunks": [
+        {
+          "path": "59489e914ee8a4cc2725-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "59489e914ee8a4cc2725-part-0002.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exec-mvp-002-semantic.md"
+}

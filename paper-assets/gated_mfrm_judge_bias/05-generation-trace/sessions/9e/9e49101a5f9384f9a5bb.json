@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e49101a5f9384f9a5bb",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "figure fig1 framework paperbanana v2",
+  "task_key": "worker_figure_fig1-framework-paperbanana-v2_20260524T163756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1-framework-paperbanana-v2_20260524T163756_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "2c9af04c8798c480a59d669b056c15c46233235f8ef84cad2f31030bf6fc207a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**输出文件：**\n- `figures/paper/fig1_framework_v2.png` (3.9 MB, 2752×1536, 300 DPI)\n- `figures/paper/fig1_framework_v2.pdf`\n\n**LaTeX 更新：** `method.tex` 第 8 行已改为 `fig1_framework_v2`\n\n**内容完整性核查（32/32 通过）：**\n- Panel (a): Bias Correction / Contamination Adjustment boxes, OVB pill with confounding arrows, d_j↔c_n·e_i annotation, red ✗ + biased estimates\n- Panel (b) Stage 1: MFRM formula, Y_nij input, θ̂/b̂/d̂ outputs, NUTS sampler\n- Panel (b) Stage 2: Reference Anchoring 75%/gpt-4-0314, Cross-Model Agreement 25%/z-score, Identifiability (Thm. 1), LogProber optional, ê_i fixed externally\n- Panel (b) Stage 3: G-MFRM formula with c_n·e_i, σ_c~HalfNormal(1), c_n=c_n^raw·σ_c, Warm-start arrow, ê_i fixed arrow, θ̃_n/ĉ_n/d̂_j/b̂_i outputs with sublabels, NUTS + hierarchical priors\n- Green ✓ Corrected estimates"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-framework-paperbanana-v2.md"
+}

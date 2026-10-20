@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e3c7d960fabd02f06207",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh autodl download responses launch judges",
+  "task_key": "worker_ssh_autodl_download_responses_launch_judges_20260523T230852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_download_responses_launch_judges_20260523T230852.log",
+    "occurrence": 1,
+    "bytes": 669403,
+    "sha256": "c27dcc785ceaab6f2d579d081198f6ef6b21881de6ca871b9cde09a86f8fb95b"
+  },
+  "statistics": {
+    "messages": 333,
+    "user_turns": 1,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 54,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "e3c7d960fabd02f06207-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 308,
+      "chunks": [
+        {
+          "path": "e3c7d960fabd02f06207-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "e3c7d960fabd02f06207-part-0002.json",
+          "message_count": 153
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-autodl-download-responses-launch-judges.md"
+}

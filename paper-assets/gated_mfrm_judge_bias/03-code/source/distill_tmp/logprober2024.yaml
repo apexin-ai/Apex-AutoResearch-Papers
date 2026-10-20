@@ -1,0 +1,31 @@
+paper_key: "logprober2024"
+title: "LogProber: Disentangling confidence from contamination in LLM responses"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["CDD (Contamination Detection via Diversity)", "TS-Guessing"]
+  metrics:
+    - {name: "Safe Score", direction: "lower_means_contaminated"}
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Precision", direction: "higher_better"}
+    - {name: "Recall", direction: "higher_better"}
+    - {name: "F1", direction: "higher_better"}
+  datasets:
+    - {name: "Cognitive Reflection Test (CRT)", size: "oldCRT vs newCRT"}
+    - {name: "MMLU", size: "not specified"}
+    - {name: "BigCodeBench", size: "not specified"}
+    - {name: "MBXP", size: "not specified"}
+  ablation_dimensions: ["Contamination type (Q-A vs answer-only)", "Model family"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "Token log-probability analysis for contamination detection"
+
+positioning:
+  core_claim: "通过token log-probability曲线的AUC计算Safe Score，可区分模型真实能力和数据污染导致的虚高表现"
+  key_results: "MMLU上98% accuracy vs CDD的50%; 能检测Q-A contamination但对answer-only contamination失效"
+  limitations: ["需要logprob访问（gray-box）", "对answer-only contamination无效"]
+  relation_to_us: "component"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

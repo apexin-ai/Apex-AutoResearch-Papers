@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9452fcf5e6fe47b6a4fc",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh critical disk cleanup",
+  "task_key": "worker_ssh_critical_disk_cleanup_20260524T060228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_critical_disk_cleanup_20260524T060228_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "dfb9bc68b24ab129fee381de4c7cf6f3ef4c2bbf9edd2572ccfd21cd8a9acb5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp017 是 JAX/NumPyro MCMC 模拟，不加载 LLM 模型文件。\n\n**当前状态汇报：**\n\n### 已清理\n| 项目 | 大小 | 说明 |\n|------|------|------|\n| pip cache | 4.1G | 在根分区，未释放数据盘空间 |\n| conda pkgs | 0.5G | 同上 |\n| /tmp 日志 | ~30M | 已删 |\n| .pyc / __pycache__ / .lock | 微量 | 已删 |\n| 4个 snapshot_download 进程 | - | 已 kill |\n\n**数据盘空间未变：17G 可用，目标 >30G，缺口 13G+。**\n\n### 数据盘可清理候选\n\n| 候选 | 大小 | 风险 |\n|------|------|------|\n| `gemma-2-9b-it/` | 18G | 低 - 无 GPU 进程在用 |\n| `Llama-3.1-8B-Instruct/` | 15G | 低 - 无 GPU 进程在用 |\n| `Qwen/Qwen3-8B/` | 16G | 低 - 无 GPU 进程在用 |\n| `faithfulness_under_fire/checkpoints/` | 54G | 中 - 不同项目，无 registry |\n| `faithfulness_under_fire/sft_baseline/` | 6.6G | 中 - 不同项目 |\n\n**不可删：** Llama-3.3-70B-AWQ (GPU 1 serving), Qwen2.5-72B-AWQ (GPU 2 serving), Mistral-Large-AWQ (正在下载)\n\n### aria2c 状态\n**aria2c (PID 542911) 已死。** Mistral 下载了 11/14 shards（1-10, 14），缺 11/12/13。Shard 10 有 .aria2 控制文件，可能不完整。下载完成后需手动重启。\n\n---\n\n删除 `gemma-2-9b-it` (18G) 即可达标 (17+18=35G >30G)。要我删哪些？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-critical-disk-cleanup.md"
+}

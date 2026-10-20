@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97912998b1a1f85bc655",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code mvp gmfrm",
+  "task_key": "worker_code_mvp_gmfrm_20260521T163601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_gmfrm_20260521T163601_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "dd72337799c41fa6d75a5e9074c614c59412adca0164a69bca69c662db8e284c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件已创建并通过语法检查：\n\n| 文件 | 内容 |\n|------|------|\n| `data_gen.py` | 合成数据生成，ρ 控制 e_i-b_i confounding，logit 模型含 c_n·e_i 项 |\n| `models.py` | 4 种方法：raw average、标准 MFRM、sequential（MFRM+OLS 残差校正）、joint G-MFRM，NumPyro NUTS 2 chains |\n| `evaluate.py` | RMSE、Kendall-τ、多 seed 汇总、折线图、paired t-test |\n| `run_mvp.py` | 主脚本，sweep ρ∈{0,0.3,0.6}×10 seeds，输出 CSV/PNG，3 条 Pass/Fail 判定 |\n\n运行方式：`cd artifacts/mvp && python run_mvp.py`。需要 numpyro, jax, arviz, scipy, matplotlib, pandas。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-gmfrm.md"
+}

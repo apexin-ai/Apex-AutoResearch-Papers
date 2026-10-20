@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a08cac8153bb008d2074",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh kill all restart verified",
+  "task_key": "worker_ssh_kill_all_restart_verified_20260523T202803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_all_restart_verified_20260523T202803_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "f4b09a47f34ef9cce285231dba3e3b6f5d443337c804d7d9ed0e8b2e977024f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个 judge 启动完毕，等待 ~4.5 分钟后自动回来验证 throughput。\n\n当前状态汇总：\n- **Step 1** ✅ 无旧进程\n- **Step 2** ✅ 确认了 config 结构（`rpm` 字段，configs 在 exp001 根目录）\n- **Step 3** ✅ RPM 已修改（sonnet=150, gemini/deepseek/qwen3=100）\n- **Step 4** ✅ 7 个 collect.py 全部在跑 with `--workers 10`\n- **Step 5** ✅ Baseline 已记录\n- **vLLM** ✅ 3 个本地模型服务已启动（需要 `VLLM_USE_FLASHINFER_SAMPLER=0` 绕过 Blackwell GPU 的 FlashInfer 兼容性问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-all-restart-verified.md"
+}

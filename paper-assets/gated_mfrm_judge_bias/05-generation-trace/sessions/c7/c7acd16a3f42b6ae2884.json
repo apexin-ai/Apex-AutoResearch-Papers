@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7acd16a3f42b6ae2884",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh update ci coverage appendix",
+  "task_key": "worker_ssh_update-ci-coverage-appendix_20260524T091324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_update-ci-coverage-appendix_20260524T091324_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "fe78e887697acfadfeb189b015d99348f5daa2c8fb824b9b05b6b5b629568db8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix Q (CI Coverage) 已更新，编译通过（仅有图片文件缺失的预期错误，无语法错误）。\n\n**更新内容：**\n- 旧数据（exp-009）：N=8 (49 seeds) θ=90.1%, c_n=67.9%; N=50 (50 seeds) c_n=71%\n- 新数据（exp-017）：N=8 (200 seeds) θ=90.0%, c_n=65.6%; N=20 (51 seeds) θ=89.1%, c_n=64.7%\n- 叙事重点：c_n 的 ~30pp 欠覆盖在 N=8→20 之间几乎不变，确认 undershoot 是结构性的（Murphy-Topel 渐近校正收敛慢 + HalfNormal 先验边界约束），而非样本量不足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-update-ci-coverage-appendix.md"
+}

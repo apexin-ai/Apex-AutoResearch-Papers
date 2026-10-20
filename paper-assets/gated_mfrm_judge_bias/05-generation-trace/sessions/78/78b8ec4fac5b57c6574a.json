@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78b8ec4fac5b57c6574a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp003 wait and read",
+  "task_key": "worker_ssh_exp003_wait_and_read_20260522T170535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp003_wait_and_read_20260522T170535_result.json",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "b71f04e405585cbe2b88ddd66a5c993044b65a868bf472ae1ed31d438fbe19b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行（已 2h37m，PID 143769，4 chains GPU MCMC）。已设置后台等待标志文件 `/tmp/exp003_wait_done.flag`，4.5 分钟后轮询检查是否完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp003-wait-and-read.md"
+}

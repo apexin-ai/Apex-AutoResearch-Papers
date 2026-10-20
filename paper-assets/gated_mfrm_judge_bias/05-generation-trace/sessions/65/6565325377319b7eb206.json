@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "6565325377319b7eb206",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh mistral deploy cuda3",
+  "task_key": "worker_ssh_mistral_deploy_cuda3_20260524T044939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mistral_deploy_cuda3_20260524T044939.log",
+    "occurrence": 1,
+    "bytes": 958361,
+    "sha256": "fa88b74993c7b96081f1a9260080a3e3267b03e48bb6d1afcc7ec621ac1ed5fb"
+  },
+  "statistics": {
+    "messages": 771,
+    "user_turns": 0,
+    "tool_calls": 315,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 137,
+      "tool_call": 315,
+      "tool_result": 315,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 771,
+      "chunks": [
+        {
+          "path": "6565325377319b7eb206-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6565325377319b7eb206-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6565325377319b7eb206-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6565325377319b7eb206-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6565325377319b7eb206-part-0005.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-mistral-deploy-cuda3.md"
+}

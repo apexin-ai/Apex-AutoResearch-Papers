@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b71d2b5e8b39a6053707",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code mvp gmfrm update",
+  "task_key": "worker_code_mvp_gmfrm_update_20260521T163849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_gmfrm_update_20260521T163849_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "ee5f9d46d9a6a9cb0d9171ab1f9c0a3f569ad7736b8496472d3a5edf92b90f8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四个文件语法检查全部通过。变更总结：\n\n1. **`models.py`** — `fit_sequential` 从两次 MCMC 合并为一次，theta/b/d 从同一次 run 提取，diagnostics 也直接用该次结果\n2. **`evaluate.py`** — `run_significance_test` 从 paired t-test 改为 Wilcoxon signed-rank test（支持 `alternative` 参数）；新增 `evaluate_pass_fail` 函数实现三项 pass/fail 判定（收敛、rho=0.3/0.6 改善、rho=0 无退化），返回 PASS / CONDITIONAL PASS / FAIL\n3. **`run_mvp.py`** — 完整重写，20 seeds，中心化 theta_true，带格式化输出表（含 p-value 列）和 verdict 打印"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-gmfrm-update.md"
+}

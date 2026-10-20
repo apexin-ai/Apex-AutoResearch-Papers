@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bf6e86a4e6d1de0243d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh llama download modelscope",
+  "task_key": "worker_ssh_llama_download_modelscope_20260522T005753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama_download_modelscope_20260522T005753_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "fdaab859c0d01cebde9f89102b799cbc577c9bbfe212550fd05f0baac545f19d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载完成。**\n\n汇报：\n\n| 项目 | 状态 |\n|------|------|\n| 状态 | ✅ 已完成 |\n| 源 | `casperhansen/Llama-3.3-70B-Instruct-AWQ`（HF via AutoDL 代理） |\n| 路径 | `/root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/` |\n| 总大小 | **~38GB** |\n| 分片 | 9/9 safetensors 齐全 |\n| 配置文件 | config.json, tokenizer.json, generation_config.json 等均完整 |\n| 耗时 | ~17 分钟（恢复下载 3 个缺失分片） |\n\n模型已就绪，可直接加载使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-download-modelscope.md"
+}

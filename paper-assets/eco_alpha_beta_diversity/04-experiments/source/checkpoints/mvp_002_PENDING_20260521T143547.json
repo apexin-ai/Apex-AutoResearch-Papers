@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_002",
+  "project": "eco_alpha_beta_diversity",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:33:48.911Z",
+    "updated_at": "2026-05-21T14:35:47.870Z",
+    "hypothesis": "语义级（sentence embedding 聚类）Hill number alpha-beta 分解能在 Doshi & Hauser 数据集上检测到 LLM 辅助写作的 alpha↑/beta↓ 模式，且效应量大于词汇级（mvp_001），因为语义向量维度固定不受文本长度线性影响，能排除长度混淆",
+    "parent": "mvp_001"
+  },
+  "timestamp": "2026-05-21T14:35:47.901884+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "228c9586eb9240a931dc",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix slow judges rtx6000",
+  "task_key": "worker_ssh_fix_slow_judges_rtx6000_20260522T165813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_slow_judges_rtx6000_20260522T165813_result.json",
+    "occurrence": 1,
+    "bytes": 1319,
+    "sha256": "9ab6ce33fa41a8ee39f7e57ba4f35639b4c0af93172df44e0f3ebc4d5fa794a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切恢复正常。\n\n## 诊断与修复总结\n\n### 根因\n1. **qwen2.5-72b (port 8002)**: vLLM 在 01:02:30 因 `EngineDeadError` 崩溃（EngineCore worker 进程死亡），导致 collector 连接错误。在崩溃前 vLLM 正常运行，collector 实际已从 1640 恢复到 2180/8534。\n2. **mistral-large-2 (port 8003)**: `max-model-len=8192` 不够 — 部分 prompt 7169 tokens + 1024 output = 8193 超限。同时旧 vLLM 被 kill 后子进程（EngineCore worker PID 405731）未被回收，占住 GPU 90GB 内存。\n\n### 修复措施\n1. Kill 所有残留 vLLM 进程（包括孤儿 worker 405731）\n2. 重启 **qwen vLLM** → GPU 1, PID 420981, max-model-len=8192, CUDA_VISIBLE_DEVICES=1\n3. 重启 **mistral vLLM** → GPU 3, PID 421050, **max-model-len=16384**, CUDA_VISIBLE_DEVICES=3\n\n### 当前状态\n| GPU | 进程 | 显存 | GPU利用率 |\n|-----|------|------|-----------|\n| 0 | exp009 | 74/98 GB | 67% |\n| 1 | qwen vLLM (port 8002) | 90/98 GB | 96% |\n| 2 | llama vLLM (port 8001) | 91/98 GB | 100% |\n| 3 | mistral vLLM (port 8003) | 90/98 GB | 97% |\n\n两个 vLLM 都在正常服务 8 并发请求，全部 200 OK，零错误。mistral 的 token 超限问题已通过提升 max-model-len 到 16384 解决。Collector 进度更新会在 tee 缓冲刷新后显示。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-slow-judges-rtx6000.md"
+}

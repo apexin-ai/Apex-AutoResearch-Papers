@@ -529,6 +529,47 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39357442666"
+    },
+    "gated_mfrm_judge_bias/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 488202862,
+        "etag": "\"c54c241b28572455e698f6c518062917-59\"",
+        "modified": "2026-05-31T17:31:42+00:00"
+      },
+      "archive_sha256": "1cb586d13e2a4f20781cedf10ad45fec08644b423f1cb709d0f732d96a77a585",
+      "projects": [
+        "prod43",
+        "eco_alpha_beta_diversity",
+        "gated_mfrm_judge_bias"
+      ],
+      "counts": [
+        {
+          "project": "prod43",
+          "title": "prod43",
+          "paper_pdf": null,
+          "code_count": 0,
+          "data_count": 0,
+          "trace_count": 0
+        },
+        {
+          "project": "eco_alpha_beta_diversity",
+          "title": "eco alpha beta diversity",
+          "paper_pdf": null,
+          "code_count": 22,
+          "data_count": 40,
+          "trace_count": 20
+        },
+        {
+          "project": "gated_mfrm_judge_bias",
+          "title": "Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation",
+          "paper_pdf": "paper.pdf",
+          "code_count": 211,
+          "data_count": 329,
+          "trace_count": 973
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39361305910"
     }
   }
 }

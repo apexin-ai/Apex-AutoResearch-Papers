@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0ea3cb69475473813bbe",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh fix llama response and judge speed",
+  "task_key": "worker_ssh_fix_llama_response_and_judge_speed_20260522T065849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_llama_response_and_judge_speed_20260522T065849.log",
+    "occurrence": 1,
+    "bytes": 634387,
+    "sha256": "2f56cc220feb787a2e206faab144a7684a1ff1cb9e5e701719d93960e32c6868"
+  },
+  "statistics": {
+    "messages": 299,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 104,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 299,
+      "chunks": [
+        {
+          "path": "0ea3cb69475473813bbe-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ea3cb69475473813bbe-part-0002.json",
+          "message_count": 119
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-llama-response-and-judge-speed.md"
+}

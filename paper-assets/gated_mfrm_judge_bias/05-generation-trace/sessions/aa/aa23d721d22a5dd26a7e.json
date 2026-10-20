@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa23d721d22a5dd26a7e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mistral judge and cleanup",
+  "task_key": "worker_ssh_mistral_judge_and_cleanup_20260524T044244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mistral_judge_and_cleanup_20260524T044244_result.json",
+    "occurrence": 1,
+    "bytes": 3241,
+    "sha256": "051b6ff893d03f2775e9c857578627094983b06a907ded991e4d7eea37a1210e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇总报告\n\n### 1. Mistral-Large-2 (J=7) 部署方案\n\n**现状：**\n- N=8 结果已有：`exp001/results/mistral-large-2/arena_hard_judgments.jsonl`（583 行），通过本地 vLLM (`localhost:8003`) 完成\n- N=17 配置和结果均不存在\n\n**API proxy：不可用。** 现有 proxy judge（sonnet、deepseek、gemini、gpt-5.5、qwen3-235b、claude-opus）都没有 mistral 的 proxy 配置。\n\n**本地 cuda:3 部署：GPU 可行，磁盘不足。**\n- cuda:3 空闲（0/97887 MiB），VRAM 够\n- 但磁盘只剩 **39G**，Mistral-Large-2 AWQ 需要 ~60G，**放不下**\n- 当前只有 Mistral-7B-Instruct-v0.3（14G），不是 Mistral-Large-2\n\n**结论：** 需先完成磁盘清理（释放 ≥25G），然后下载 Mistral-Large-2-AWQ 模型才能本地部署。或者寻找 Mistral API proxy 方案。\n\n---\n\n### 2. 磁盘清理建议（当前 212G/250G = 85%）\n\n| 可删除项 | 大小 | 理由 | 风险 |\n|---------|------|------|------|\n| `Mistral-7B-Instruct-v0.3` | **14G** | 响应已生成为 JSONL，非 judge/target，无引用 | 安全 |\n| `Qwen2.5-7B-Instruct` | **15G** | 不在任何 config 中 | 安全 |\n| `pip cache` (`~/.cache/pip/`) | **4.1G** | 缓存，可重建 | 安全 |\n| `Llama-3.1-8B-Instruct` | **15G** | 目标模型是 llama-3-8b，响应 JSONL 已存在 | 低风险，建议确认 |\n| `Qwen/Qwen2.5-72B-Instruct-AWQ`（空目录） | 0G | 空 symlink，实际数据在 `Qwen2___5-` 下 | 安全 |\n| `casperhansen/`、`LLM-Research/` | ~0 | 空占位目录 | 安全 |\n\n**保守删除（不含 Llama-3.1-8B）：~33G → 剩 179G (72%)**\n**激进删除（含 Llama-3.1-8B）：~48G → 剩 164G (66%)**\n\n两种方案均达 75% 目标。\n\n---\n\n### 3. MCMC 数据准备\n\n**脚本输入格式：**\n- `--judgment-dir`：包含 per-judge 子目录，每个子目录有 `arena_hard_judgments.jsonl`\n- `data_loader.py` 用 `*/arena_hard_judgments.jsonl` glob 匹配\n- `--exposure-csv`：`exp002/results/exposure_scores.csv` ✅ 已存在\n\n**关键问题：脚本 usage 示例指向 `exp001_n17/results`，该目录不存在。** N=17 结果分散在 `exp001/results/` 中与 N=8 数据混合，以 `_n17` 后缀区分。\n\n**当前 N=17 judge 数据完成度：**\n\n| Judge | 行数 | 状态 |\n|-------|------|------|\n| claude-sonnet-4.6-proxy_n17 | 4380 | 看起来完整 |\n| qwen3-235b-proxy_n17 | 2916 | 看起来完整 |\n| gemini-2.5-pro-proxy_n17 | 2845 | 看起来完整 |\n| deepseek-v4-pro-proxy_n17 | 2383 | 可能未完成 |\n| llama-3.3-70b-local_n17 | 427 | **严重不完整**（刚开始跑，时间戳 2026-05-24T09:43） |\n| **mistral-large-2_n17** | — | **缺失** |\n| gpt-5.5-proxy_n17 | — | **缺失**（只有 N=8 版本） |\n| qwen2.5-72b-local_n17 | — | **缺失**（output 目录为空） |\n| claude-opus-4.7-proxy_n17 | — | **缺失**（只有 N=8） |\n\n**数据尚未就绪。** 运行 MCMC 前需要：\n1. 创建 `exp001_n17/results/` 目录，将 `_n17` 子目录集中或建 symlink\n2. 等 llama-3.3-70b-local_n17 跑完\n3. 补齐 mistral-large-2_n17（取决于任务 1 的部署方案）\n4. 确认其他缺失 judge 是否需要（gpt-5.5、qwen2.5-72b、claude-opus 的 N=17 版本）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mistral-judge-and-cleanup.md"
+}

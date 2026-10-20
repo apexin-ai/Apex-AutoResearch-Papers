@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfb66d9f1801564e908b",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh status check mistral exp006 w7",
+  "task_key": "worker_ssh_status_check_mistral_exp006_w7_20260523T002011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status_check_mistral_exp006_w7_20260523T002011_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "7c3d80c5076d19f43f63090244993e138c49039272fc23ea825a0f1e517ec25d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | 进度 | 状态 | ETA |\n|---|---|---|---|\n| **Mistral judge** (rtx6000-4x) | 9021 行 JSONL | **已完成** — vLLM 已关闭，回到 shell | - |\n| **exp-006** (autodl-8gpu) | 50/80 fits (k2✓ k4✓ k6=6/10 k9=0/10) | 运行中，当前 k6_s6 MCMC 59% | ~5-15h（k9 未知） |\n| **W7 ablation** (autodl-8gpu) | 19/20 seeds，当前 seed=18 binary_gating | 运行中 | ~25 min |\n\n备注：\n- Mistral：tmux `vllm-mistral` 里 vLLM 进程已正常退出，收集应已完成\n- exp-006：k2/k4 很快（~2min/seed），k6 ~40min/seed，k9 尚未开始且规模更大，预计耗时较长；LOOCV 也还没跑\n- W7：还剩 seed 18 的 2 个 variant + seed 19 全部 4 个 variant"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-check-mistral-exp006-w7.md"
+}

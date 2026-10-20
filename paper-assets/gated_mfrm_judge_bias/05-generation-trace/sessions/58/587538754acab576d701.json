@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "587538754acab576d701",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh orphan bib cleanup",
+  "task_key": "worker_ssh_orphan_bib_cleanup_20260524T065612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_orphan_bib_cleanup_20260524T065612_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "2ca9c9f70770e15af475f466e8d29370cc1286ae9c959ebc32678f85e0fc7efc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`sanmartin2016` **被引用了**，在 `appendix.tex:57`，用 `\\citet[Chapter~5]{sanmartin2016}` 引用，支撑 MFRM 可辨识性证明。\n\n该文献是 IRT Handbook 中关于 Item Response Theory 模型可辨识性的章节，与论文的 G-MFRM/IRT 主题直接相关。\n\n**结论：保留，不删除。** 这不是 orphan entry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-orphan-bib-cleanup.md"
+}

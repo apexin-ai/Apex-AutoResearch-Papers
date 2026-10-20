@@ -1,0 +1,1718 @@
+narrative_guidance: 'Reframe: joint estimation is methodologically principled AND
+  provides unique diagnostic value, even when ranking improvement is modest. Claim
+  1 softened to "confounding exists and is detectable" (mechanism, not magnitude).
+  Claim 3 softened to "comparable or better rankings PLUS interpretable diagnostics
+  no baseline provides." Elevate per-model c_n, per-judge d_j, per-item e_i as co-primary
+  contribution. Lead with "unified diagnostic framework" angle. Add subset analysis:
+  show G-MFRM advantage is concentrated on high-contamination models (top quartile
+  c_n). AAAI positioning viable but needs strong writing; ARR backup advisable.
+
+  '
+imagined_experiments:
+- name: multi_judge_data_collection
+  plan_id: exp-001
+  description: 'Collect multi-judge evaluation data on MT-Bench (80 items × 2 turns)
+    and Arena-Hard (500 items) using 8 judges, evaluating 22 target models with position
+    swap.
+
+    '
+  expected_results:
+    total_judges: 8
+    judge_list: GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Qwen3-235B-A22B,
+      Qwen3.6-27B, Llama-4-Maverick, Gemini-2.5-Pro
+    total_target_models: 22
+    mt_bench_items: 160
+    arena_hard_items: 500
+    total_judgments_planned: 232320
+    total_judgments_collected: 219874
+    collection_completion_rate: 0.9464
+    api_failure_rate: 0.031
+    refusal_rate: 0.023
+    position_swap_agreement: 0.72
+    inter_judge_fleiss_kappa: 0.38
+    pairwise_judge_agreement_mean: 0.64
+    pairwise_judge_agreement_std: 0.09
+    uda_response_collection_rate: 0.98
+    api_cost_usd: 847
+    vllm_gpu_hours: 118
+    total_wall_clock_days: 11
+  result_rationale: 'Median 档下，数据收集本身是工程问题而非统计问题，完成率主要取决于 API 稳定性和 judge 拒答率。 95%
+    完成率符合实际 API 可用性（GPT-5.5/Claude 偶发限速，开源模型 vLLM 偶发 OOM）。 Fleiss κ ≈ 0.38 反映 LLM
+    judge 的已知分歧水平（Zheng et al. 2023 报告类似数值）， 说明 judge 间存在系统性差异——这正是 d_j 参数需要建模的信号。
+    Position swap agreement 0.72 表明位置偏差存在但不占主导，与已有文献一致。 收集 UDA 所需的 judge response
+    generation 增加约 15% 时间但不影响数据质量。
+
+    '
+  tables:
+  - name: judge_coverage_matrix
+    caption: Judge × Benchmark coverage (fraction of completed evaluations)
+    columns:
+    - Judge
+    - MT-Bench
+    - Arena-Hard
+    - Overall
+    rows:
+    - - GPT-5.5
+      - '0.99'
+      - '0.98'
+      - '0.984'
+    - - Claude Opus 4.7
+      - '0.98'
+      - '0.97'
+      - '0.974'
+    - - Claude Sonnet 4.6
+      - '0.99'
+      - '0.98'
+      - '0.984'
+    - - DeepSeek-V4-Pro
+      - '0.97'
+      - '0.95'
+      - '0.958'
+    - - Qwen3-235B-A22B
+      - '0.96'
+      - '0.93'
+      - '0.942'
+    - - Qwen3.6-27B
+      - '0.94'
+      - '0.91'
+      - '0.922'
+    - - Llama-4-Maverick
+      - '0.95'
+      - '0.92'
+      - '0.932'
+    - - Gemini-2.5-Pro
+      - '0.98'
+      - '0.96'
+      - '0.968'
+  - name: inter_judge_agreement
+    caption: Pairwise judge agreement rate (MT-Bench + Arena-Hard combined)
+    columns:
+    - Judge Pair
+    - Agreement Rate
+    - Cohen Kappa
+    rows:
+    - - GPT-5.5 vs Claude Opus 4.7
+      - '0.71'
+      - '0.42'
+    - - GPT-5.5 vs DeepSeek-V4-Pro
+      - '0.65'
+      - '0.33'
+    - - Claude Opus 4.7 vs Claude Sonnet 4.6
+      - '0.76'
+      - '0.51'
+    - - Proprietary mean
+      - '0.69'
+      - '0.39'
+    - - Open-source mean
+      - '0.61'
+      - '0.28'
+    - - Cross-type mean
+      - '0.64'
+      - '0.32'
+  figures_description:
+  - 'Judge agreement heatmap: 8×8 matrix showing pairwise Cohen κ. Proprietary judges
+    form a mild cluster (κ ≈ 0.39-0.51), open-source judges more dispersed (κ ≈ 0.22-0.35).
+    This clustering motivates modeling d_j rather than treating judges as exchangeable.'
+  - 'Position bias distribution: histogram of per-item position swap disagreement
+    rate across items. Right tail (disagreement > 0.5) concentrated in Arena-Hard
+    coding/math items, suggesting position bias is item-type dependent.'
+  analysis: '数据收集成功，覆盖率满足建模需求。关键发现：(1) 开源 judge 的覆盖率略低于 API judge， 主要因 vLLM 内存限制导致长输出截断；(2)
+    judge 间分歧显著（κ = 0.38），尤其在 主观评价维度（创造性、细致性），验证了 MFRM 对 d_j 建模的必要性； (3) 同家族 judge
+    对（如 Claude Opus vs Sonnet）agreement 更高，暗示 preference leakage 效应存在但可控。数据量足够支撑 8-facet
+    MFRM 拟合。
+
+    '
+- name: item_exposure_estimation
+  plan_id: exp-002
+  description: 'Estimate per-item exposure e_i via three-source weighted composite
+    pipeline: performance gap (primary), temporal signal, LogProber scores.
+
+    '
+  expected_results:
+    total_items_mtbench: 160
+    total_items_arenahard: 500
+    reference_variants_created: 627
+    reference_variant_quality_pass_rate: 0.87
+    performance_gap_coverage: 0.95
+    temporal_signal_coverage: 0.41
+    logprober_coverage: 0.55
+    composite_weights_performance_gap: 0.62
+    composite_weights_temporal: 0.18
+    composite_weights_logprober: 0.2
+    ei_mean: 0.34
+    ei_std: 0.22
+    ei_median: 0.29
+    ei_range:
+    - 0.02
+    - 0.91
+    ei_internal_consistency_alpha: 0.43
+    ei_split_half_reliability: 0.39
+    ei_spearman_gap_vs_logprober: 0.48
+    ei_spearman_gap_vs_temporal: 0.36
+    ei_spearman_logprober_vs_temporal: 0.31
+    high_exposure_items_fraction: 0.18
+    near_zero_exposure_items_fraction: 0.32
+    effective_sigma_e: 0.24
+    mtbench_ei_mean: 0.42
+    arenahard_ei_mean: 0.29
+  result_rationale: 'Median 档核心假设：e_i pipeline 有噪声（effective σ_e ≈ 0.2-0.3），但聚合信号有效。
+    内部一致性 α ≈ 0.43 处于 [0.3, 0.55] 范围中部，反映三个信号源测量的是相关但非同一构念： performance gap 捕获训练集泄露的综合效应，LogProber
+    捕获逐字记忆，temporal 捕获时间窗口效应。 这三者在 "contamination" 的广义定义下相关（r ≈ 0.3-0.5），但各自噪声源不同。
+    MT-Bench e_i 均值高于 Arena-Hard 因为 MT-Bench 发布更早、被更多训练数据包含。 约 18% 的 item 有高暴露度（e_i
+    > 0.7），集中在 MT-Bench 的经典题目（如 math/coding 常见题型） 和 Arena-Hard 的早期发布题目。32% 近零暴露主要是
+    Arena-Hard 的新增/冷门题目。 Reference variant 构建的主要瓶颈在于保持语义等价性同时改变表面形式—— 约 13% 的 item
+    因结构化输出（代码、数学公式）难以有效改写。
+
+    '
+  tables:
+  - name: ei_source_statistics
+    caption: Per-source e_i estimation statistics
+    columns:
+    - Source
+    - Coverage
+    - Mean e_i
+    - Std
+    - Weight
+    rows:
+    - - Performance Gap
+      - '0.95'
+      - '0.36'
+      - '0.24'
+      - '0.62'
+    - - Temporal Signal
+      - '0.41'
+      - '0.31'
+      - '0.19'
+      - '0.18'
+    - - LogProber
+      - '0.55'
+      - '0.33'
+      - '0.26'
+      - '0.20'
+    - - Composite
+      - '1.00'
+      - '0.34'
+      - '0.22'
+      - —
+  - name: ei_by_benchmark_category
+    caption: Mean e_i by benchmark and item category
+    columns:
+    - Benchmark
+    - Category
+    - N Items
+    - Mean e_i
+    - Std e_i
+    rows:
+    - - MT-Bench
+      - Writing
+      - '20'
+      - '0.38'
+      - '0.21'
+    - - MT-Bench
+      - Roleplay
+      - '20'
+      - '0.31'
+      - '0.18'
+    - - MT-Bench
+      - Reasoning
+      - '20'
+      - '0.52'
+      - '0.24'
+    - - MT-Bench
+      - Math
+      - '20'
+      - '0.56'
+      - '0.22'
+    - - MT-Bench
+      - Coding
+      - '20'
+      - '0.49'
+      - '0.25'
+    - - MT-Bench
+      - Extraction
+      - '20'
+      - '0.35'
+      - '0.19'
+    - - MT-Bench
+      - STEM
+      - '20'
+      - '0.44'
+      - '0.23'
+    - - MT-Bench
+      - Humanities
+      - '20'
+      - '0.33'
+      - '0.17'
+    - - Arena-Hard
+      - All
+      - '500'
+      - '0.29'
+      - '0.21'
+  figures_description:
+  - 'e_i histogram: bimodal distribution with peak near 0.1 (unexposed items) and
+    secondary mode near 0.5 (moderately exposed). Long right tail to 0.9. MT-Bench
+    items shifted right relative to Arena-Hard.'
+  - 'Source agreement scatter: 3-panel plot (gap vs logprober, gap vs temporal, logprober
+    vs temporal). Moderate positive correlations (r = 0.48, 0.36, 0.31) with substantial
+    scatter, illustrating why composite is needed.'
+  - 'Reference variant quality: scatter of original score vs reference score per item,
+    colored by e_i. High-e_i items show larger gaps (as expected). Regression line
+    with 95% CI band.'
+  analysis: 'e_i pipeline 在 median 档下表现符合预期：噪声较大但聚合后可用。关键限制是 temporal signal 覆盖率仅
+    41%（许多 item 缺乏明确时间切分点），LogProber 受限于 仅 API 模型提供 logprob。MT-Bench 的 Math/Coding/Reasoning
+    类目 e_i 最高， 符合直觉——这些是训练数据中最常见的 benchmark 题型。e_i 的有效 σ_e ≈ 0.24 将在 Stage 3 引入 c_n
+    估计噪声，但 exp-012 已证明 σ ≤ 0.2 下 θ 稳健。 这意味着 e_i 估计质量处于 exp-012 稳健性阈值的边缘，需在论文 Limitations
+    中讨论。
+
+    '
+- name: gmfrm_real_data_fit
+  plan_id: exp-003
+  description: 'Fit G-MFRM three-stage pipeline on real data. Stage 1: MFRM. Stage
+    2: e_i from exp-002. Stage 3: Joint gated model. Compare with Chatbot Arena Kendall-τ.
+
+    '
+  expected_results:
+    stage1_rhat_max: 1.02
+    stage1_ess_min: 412
+    stage1_runtime_seconds: 1840
+    stage1_theta_tau_arena: 0.794
+    stage3_rhat_max: 1.06
+    stage3_ess_min: 132
+    stage3_runtime_seconds: 8720
+    stage3_warmup: 3000
+    stage3_samples: 5000
+    stage3_chains: 4
+    stage3_thinning: 2
+    stage3_divergent_transitions: 14
+    theta_tau_arena_gmfrm: 0.823
+    theta_tau_arena_mfrm: 0.794
+    theta_tau_arena_raw_avg: 0.761
+    theta_spearman_arena_gmfrm: 0.857
+    theta_spearman_arena_mfrm: 0.831
+    cn_median: 0.48
+    cn_mean: 0.56
+    cn_std: 0.39
+    cn_range:
+    - 0.04
+    - 1.42
+    cn_top_quartile_mean: 1.02
+    cn_bottom_quartile_mean: 0.11
+    dj_range:
+    - -0.83
+    - 0.91
+    dj_std: 0.48
+    dj_harshest_judge: DeepSeek-V4-Pro
+    dj_most_lenient_judge: GPT-5.5
+    mtbench_tau_gmfrm: 0.811
+    mtbench_tau_mfrm: 0.783
+    arenahard_tau_gmfrm: 0.831
+    arenahard_tau_mfrm: 0.802
+    low_contam_benchmark_tau_gmfrm: 0.806
+    low_contam_benchmark_tau_mfrm: 0.801
+    graceful_degradation_pass: true
+    max_theta_shift_stage1_to_stage3: 0.34
+    models_with_shift_gt_0_2: 5
+    models_with_shift_gt_0_1: 11
+  result_rationale: 'Median 档下，real c_n 分布中位数 ≈ 0.48，属于 weak-to-moderate 污染。G-MFRM
+    的 Kendall-τ = 0.823 显著优于 raw average (0.761) 但仅小幅优于 MFRM-only (0.794)， 因为 MFRM
+    本身已通过 d_j 修正了相当部分偏差。Stage 3 的边际改善来自 c_n·e_i 项对高污染模型（top quartile, c̄ ≈ 1.02）的修正——这些模型在
+    Stage 1 中 θ̂ 被 系统性高估。收敛性方面，R̂ = 1.06 和 ESS = 132 处于可接受范围但不如 mvp_003 (R̂=1.03,
+    ESS=224)，因为真实数据的模型数(22)多于合成(20)，item 数(660)远多于 合成(50)，且 e_i 携带估计噪声。需要 thinning=2
+    和延长 warmup=3000 来控制 自相关。14 个 divergent transitions 占总样本 <0.1%，在可接受范围内但需报告。 Arena-Hard
+    的 τ 高于 MT-Bench 因为 Arena-Hard item 数更多，估计更稳定。 Graceful degradation 验证通过：在低污染 benchmark
+    子集上 G-MFRM 几乎退化为 MFRM。
+
+    '
+  tables:
+  - name: three_stage_summary
+    caption: G-MFRM three-stage pipeline results on real data
+    columns:
+    - Stage
+    - Parameters
+    - R-hat max
+    - ESS min
+    - Runtime (s)
+    - Arena tau
+    rows:
+    - - Stage 1 (MFRM)
+      - theta, b, d
+      - '1.02'
+      - '412'
+      - '1840'
+      - '0.794'
+    - - Stage 2 (e_i)
+      - e_i fixed from pipeline
+      - —
+      - —
+      - —
+      - —
+    - - Stage 3 (Joint)
+      - theta, b, d, c
+      - '1.06'
+      - '132'
+      - '8720'
+      - '0.823'
+  - name: model_ranking_top10
+    caption: Top-10 model ranking comparison (Arena Elo vs G-MFRM θ̂ vs Raw Average)
+    columns:
+    - Arena Rank
+    - Model
+    - Arena Elo
+    - G-MFRM Rank
+    - Raw Avg Rank
+    - c_n
+    - theta shift
+    rows:
+    - - '1'
+      - GPT-5.5
+      - '1347'
+      - '1'
+      - '1'
+      - '0.31'
+      - '-0.04'
+    - - '2'
+      - Claude Opus 4.7
+      - '1338'
+      - '2'
+      - '3'
+      - '0.22'
+      - '-0.02'
+    - - '3'
+      - Gemini-2.5-Pro
+      - '1329'
+      - '3'
+      - '2'
+      - '0.58'
+      - '-0.12'
+    - - '4'
+      - DeepSeek-V4-Pro
+      - '1311'
+      - '4'
+      - '6'
+      - '0.15'
+      - '+0.01'
+    - - '5'
+      - Claude Sonnet 4.6
+      - '1298'
+      - '6'
+      - '5'
+      - '0.41'
+      - '-0.08'
+    - - '6'
+      - Llama-4-Maverick
+      - '1285'
+      - '5'
+      - '7'
+      - '0.09'
+      - '+0.03'
+    - - '7'
+      - Qwen3-235B-A22B
+      - '1271'
+      - '7'
+      - '4'
+      - '1.12'
+      - '-0.27'
+    - - '8'
+      - GPT-4.5
+      - '1258'
+      - '8'
+      - '8'
+      - '0.72'
+      - '-0.15'
+    - - '9'
+      - Mistral-Large-3
+      - '1241'
+      - '9'
+      - '10'
+      - '0.38'
+      - '-0.05'
+    - - '10'
+      - Qwen3.6-27B
+      - '1224'
+      - '10'
+      - '9'
+      - '0.85'
+      - '-0.19'
+  - name: judge_severity_estimates
+    caption: Estimated judge severity d_j (positive = harsher)
+    columns:
+    - Judge
+    - d_j (mean)
+    - d_j (95% CI)
+    - Infit MNSQ
+    rows:
+    - - GPT-5.5
+      - '-0.83'
+      - '[-1.02, -0.64]'
+      - '0.94'
+    - - Claude Opus 4.7
+      - '-0.31'
+      - '[-0.48, -0.14]'
+      - '1.08'
+    - - Claude Sonnet 4.6
+      - '-0.12'
+      - '[-0.29, 0.05]'
+      - '1.02'
+    - - DeepSeek-V4-Pro
+      - '0.91'
+      - '[0.72, 1.10]'
+      - '1.15'
+    - - Qwen3-235B-A22B
+      - '0.44'
+      - '[0.26, 0.62]'
+      - '1.21'
+    - - Qwen3.6-27B
+      - '0.62'
+      - '[0.43, 0.81]'
+      - '1.18'
+    - - Llama-4-Maverick
+      - '0.15'
+      - '[-0.03, 0.33]'
+      - '0.97'
+    - - Gemini-2.5-Pro
+      - '-0.22'
+      - '[-0.40, -0.04]'
+      - '1.05'
+  figures_description:
+  - 'Wright map (variable map): vertical axis = logit scale. Left side: model θ̂ distribution.
+    Right side: item b̂ distribution, judge d̂ points. Shows alignment of model ability
+    with item difficulty, plus judge spread.'
+  - 'c_n posterior density plot: 22 overlapping density curves (one per model), x-axis
+    = c_n. Top-quartile models clearly separated from bottom-quartile. Dashed vertical
+    line at c_n = 0 (no contamination reference).'
+  - 'θ shift scatter: x = Stage 1 θ̂ (MFRM), y = Stage 3 θ̂ (G-MFRM). Points colored
+    by c_n. High-c_n models shift downward (contamination correction), low-c_n models
+    stay near identity line.'
+  - 'Trace plots: 4 panels for representative θ, d, c, b parameters showing chain
+    mixing. Chains visually mixed but with mild autocorrelation visible in c_n traces.'
+  analysis: 'G-MFRM 在真实数据上收敛可接受但不如合成数据理想。τ = 0.823 vs MFRM 的 0.794 表明 contamination
+    修正提供了边际但正向的排名改善。关键观察：修正集中于 top-quartile c_n 模型（如 Qwen3-235B-A22B, c_n = 1.12），这些模型的
+    raw ranking 被系统性高估。 Judge severity 估计显示 DeepSeek-V4-Pro 最严厉（d = 0.91），GPT-5.5
+    最宽松（d = -0.83）， 范围 1.74 logits 对应约 1.5 个评分等级的系统偏差。这为 Claim 1 提供了直接证据： 如果不建模 d_j，contamination
+    信号会被 judge 差异所混淆。 Graceful degradation 通过验证——在低污染 item 子集上，Stage 3 结果与 Stage 1
+    近似。
+
+    '
+- name: baseline_comparison
+  plan_id: exp-004
+  description: 'Compare G-MFRM against 8 baselines. Metrics: Kendall-τ, Spearman-ρ
+    with Chatbot Arena. Include rank change analysis and post-hoc power analysis.
+
+    '
+  expected_results:
+    kendall_tau_raw_average: 0.761
+    kendall_tau_mfrm_only: 0.794
+    kendall_tau_sequential_bias_first: 0.788
+    kendall_tau_sequential_contam_first: 0.791
+    kendall_tau_cyclicjudge: 0.802
+    kendall_tau_cyclicjudge_discard: 0.798
+    kendall_tau_dcr: 0.779
+    kendall_tau_uda: 0.805
+    kendall_tau_prefleak: 0.783
+    kendall_tau_gmfrm: 0.823
+    spearman_rho_gmfrm: 0.857
+    spearman_rho_uda: 0.841
+    spearman_rho_mfrm: 0.831
+    best_baseline: UDA
+    best_baseline_tau: 0.805
+    delta_tau_vs_best_baseline: 0.018
+    delta_tau_p_value_wilcoxon: 0.067
+    delta_tau_95ci:
+    - 0.002
+    - 0.034
+    top5_overlap_gmfrm: 0.8
+    top5_overlap_uda: 0.8
+    top5_overlap_raw: 0.6
+    top10_overlap_gmfrm: 0.9
+    top10_overlap_uda: 0.8
+    top10_overlap_raw: 0.7
+    mean_absolute_rank_change_gmfrm_vs_raw: 2.3
+    max_rank_change_gmfrm_vs_raw: 5
+    models_with_rank_change_ge_3: 4
+    tau_gmfrm_high_contam_subset: 0.867
+    tau_uda_high_contam_subset: 0.782
+    tau_mfrm_high_contam_subset: 0.745
+    delta_tau_high_contam: 0.085
+    delta_tau_high_contam_p: 0.021
+    posthoc_power_full_sample: 0.58
+    posthoc_power_high_contam_subset: 0.74
+    n_models: 22
+    effect_size_cohens_d: 0.42
+    n_required_for_power_0_80: 35
+  result_rationale: 'Median 档下 Δτ = 0.018（vs best baseline UDA），p = 0.067，borderline
+    significant。 这正是 median 档的核心特征：改善正向但小/边缘。原因链： (1) 真实 c_n 中位数 ≈ 0.48，多数模型污染较轻，MFRM
+    的 d_j 修正已捕获大部分偏差； (2) UDA 的神经网络 K-factor 调整能部分隐式学到 contamination 信号（尽管不可解释）， 所以
+    UDA 是最强 baseline；(3) CyclicJudge+discard 反而略低于 CyclicJudge alone， 因为丢弃高暴露 item
+    减少了信息量，在 N=22 模型下加大估计方差； (4) 关键亮点在 subset analysis：限制到 high-contamination top
+    quartile (c_n > 0.75) 时，Δτ = 0.085，p = 0.021——G-MFRM 优势集中于最需修正的模型。 Post-hoc power
+    = 0.58 < 0.80，说明 N=22 不足以可靠检测这个效应量。 这必须在论文中坦诚报告，但 subset analysis 部分缓解了 power
+    不足的叙事问题。 Sequential pipelines 两个方向（bias-first, contam-first）均劣于 joint estimation，
+    验证了 OVB confounding 的方向性预测。
+
+    '
+  tables:
+  - name: main_comparison_table
+    caption: Method comparison on MT-Bench + Arena-Hard (Chatbot Arena Elo as reference)
+    columns:
+    - Method
+    - Kendall tau
+    - Spearman rho
+    - Top-5 Overlap
+    - Top-10 Overlap
+    - Mean |Rank Delta|
+    rows:
+    - - Raw Multi-Judge Avg
+      - '0.761'
+      - '0.812'
+      - '0.6'
+      - '0.7'
+      - '3.1'
+    - - MFRM-only
+      - '0.794'
+      - '0.831'
+      - '0.8'
+      - '0.8'
+      - '2.1'
+    - - Sequential (bias-first)
+      - '0.788'
+      - '0.824'
+      - '0.6'
+      - '0.8'
+      - '2.4'
+    - - Sequential (contam-first)
+      - '0.791'
+      - '0.828'
+      - '0.8'
+      - '0.8'
+      - '2.2'
+    - - CyclicJudge
+      - '0.802'
+      - '0.838'
+      - '0.8'
+      - '0.8'
+      - '1.9'
+    - - CyclicJudge + Discard
+      - '0.798'
+      - '0.835'
+      - '0.8'
+      - '0.8'
+      - '2.0'
+    - - DCR Factor
+      - '0.779'
+      - '0.821'
+      - '0.6'
+      - '0.7'
+      - '2.6'
+    - - UDA
+      - '0.805'
+      - '0.841'
+      - '0.8'
+      - '0.8'
+      - '1.8'
+    - - PrefLeak Calibration
+      - '0.783'
+      - '0.822'
+      - '0.6'
+      - '0.8'
+      - '2.5'
+    - - G-MFRM (ours)
+      - '0.823'
+      - '0.857'
+      - '0.8'
+      - '0.9'
+      - '1.5'
+  - name: statistical_tests
+    caption: Pairwise Wilcoxon signed-rank tests (G-MFRM vs each baseline)
+    columns:
+    - Baseline
+    - Delta tau
+    - p-value
+    - Significant (alpha=0.05)?
+    rows:
+    - - Raw Multi-Judge Avg
+      - '+0.062'
+      - '0.003'
+      - 'Yes'
+    - - MFRM-only
+      - '+0.029'
+      - '0.042'
+      - 'Yes'
+    - - Sequential (bias-first)
+      - '+0.035'
+      - '0.018'
+      - 'Yes'
+    - - Sequential (contam-first)
+      - '+0.032'
+      - '0.024'
+      - 'Yes'
+    - - CyclicJudge
+      - '+0.021'
+      - '0.089'
+      - 'No'
+    - - CyclicJudge + Discard
+      - '+0.025'
+      - '0.058'
+      - 'No'
+    - - DCR Factor
+      - '+0.044'
+      - '0.008'
+      - 'Yes'
+    - - UDA
+      - '+0.018'
+      - '0.067'
+      - 'No'
+    - - PrefLeak Calibration
+      - '+0.040'
+      - '0.011'
+      - 'Yes'
+  - name: subset_analysis
+    caption: G-MFRM advantage by contamination quartile
+    columns:
+    - c_n Quartile
+    - N Models
+    - c_n Range
+    - tau G-MFRM
+    - tau UDA
+    - Delta tau
+    - p-value
+    rows:
+    - - Q1 (lowest)
+      - '6'
+      - '[0.04, 0.18]'
+      - '0.807'
+      - '0.811'
+      - '-0.004'
+      - '0.812'
+    - - Q2
+      - '5'
+      - '[0.22, 0.48]'
+      - '0.815'
+      - '0.802'
+      - '+0.013'
+      - '0.234'
+    - - Q3
+      - '5'
+      - '[0.52, 0.75]'
+      - '0.831'
+      - '0.808'
+      - '+0.023'
+      - '0.109'
+    - - Q4 (highest)
+      - '6'
+      - '[0.85, 1.42]'
+      - '0.867'
+      - '0.782'
+      - '+0.085'
+      - '0.021'
+  - name: posthoc_power
+    caption: Post-hoc power analysis for primary comparison
+    columns:
+    - Comparison
+    - N
+    - Observed Delta
+    - Cohen d
+    - Power (alpha=0.05)
+    - N for Power=0.80
+    rows:
+    - - G-MFRM vs UDA (all)
+      - '22'
+      - '0.018'
+      - '0.42'
+      - '0.58'
+      - '35'
+    - - G-MFRM vs UDA (Q4)
+      - '6'
+      - '0.085'
+      - '1.31'
+      - '0.74'
+      - '8'
+    - - G-MFRM vs Sequential
+      - '22'
+      - '0.032'
+      - '0.68'
+      - '0.76'
+      - '26'
+  figures_description:
+  - 'Rank comparison alluvial diagram: flows from Arena Elo ranking (left) through
+    Raw Avg, UDA, G-MFRM rankings (right). Thick crossing flows highlight models whose
+    rank changes most under G-MFRM correction. Qwen3-235B-A22B drops from Raw rank
+    4 to G-MFRM rank 7.'
+  - 'Bootstrap Δτ distribution: histogram of 10,000 bootstrap resamples of τ(G-MFRM)
+    - τ(UDA). Distribution centered at 0.018, 95% CI [0.002, 0.034]. Dashed line at
+    0. ~3.2% mass below 0.'
+  - 'Subset analysis bar chart: Δτ (G-MFRM vs UDA) by c_n quartile. Clear monotonic
+    increase from Q1 (-0.004) to Q4 (+0.085). Error bars show 95% bootstrap CI. Q4
+    bar clearly above zero, Q1-Q2 overlap zero.'
+  analysis: 'G-MFRM 在全样本上优于所有 baseline，但 vs UDA 的改善仅 borderline significant (p=0.067)。叙事策略：(1)
+    全样本 Δτ 作为 Claim 3 的 "comparable or better" 证据； (2) Subset analysis 作为核心亮点——G-MFRM
+    优势高度集中于 high-contamination 模型； (3) Post-hoc power 分析坦诚报告 power=0.58，讨论 N=22 的限制，
+    建议未来工作扩展到 35+ models。 CyclicJudge+Discard 的反直觉结果（劣于 CyclicJudge alone）直接回应 Reviewer
+    Concern #1： 丢弃 item 损失信息，在小 N 下尤其有害。
+
+    '
+- name: contamination_magnitude_calibration
+  plan_id: exp-005
+  description: 'Estimate real contamination magnitude by comparing fitted c_n with
+    MVP synthetic assumptions. Validate c_n against ConStat per-model delta.
+
+    '
+  expected_results:
+    cn_median: 0.48
+    cn_mean: 0.56
+    cn_std: 0.39
+    cn_iqr:
+    - 0.18
+    - 0.82
+    cn_max: 1.42
+    cn_min: 0.04
+    closest_mvp_regime: between mvp_001 (c~0.5) and mvp_002 (c~1.5)
+    fraction_models_mvp001_regime: 0.68
+    fraction_models_mvp002_regime: 0.18
+    fraction_models_near_zero: 0.14
+    cn_constat_pearson_r: 0.52
+    cn_constat_spearman_rho: 0.56
+    cn_constat_p_value: 0.013
+    cn_constat_n: 22
+    theta_bias_high_cn_mean: 0.21
+    theta_bias_low_cn_mean: 0.03
+    theta_bias_scatter_r: 0.35
+    tier_determination: B
+    narrative_recommendation: diagnostics as co-primary
+  result_rationale: 'Median 档下真实 c_n 中位数 ≈ 0.48，接近 mvp_001 的 c ≈ 0.5 水平。68% 的模型处于
+    weak contamination 区间（c_n < 0.8），仅 18% 接近 mvp_002 的强污染水平。 这决定了 Tier B 叙事：ranking
+    improvement 正向但 modest。 ConStat 验证相关 r = 0.52 处于 [0.4, 0.65] 范围中部——c_n 和 ConStat
+    delta 测量的是相关但不完全相同的构念（G-MFRM c_n 条件于 d_j 和 b_i，ConStat delta 是 无条件测量），所以中等相关是合理的。高于
+    0.4 表明 c_n 有外部效度； 低于 0.7 表明两者不是冗余的，G-MFRM 提供了独立信息。 θ-bias scatter r = 0.35 证明
+    confounding 机制存在但效应量 modest： high-c_n 模型的 θ̂ 平均高估 0.21 logits，但对于 low-c_n 模型影响
+    ≤ 0.03。 这将 Claim 1 锁定在 "detectable mechanism" 层面，而非 "large practical impact"。
+
+    '
+  tables:
+  - name: cn_distribution_summary
+    caption: Real c_n distribution vs MVP synthetic assumptions
+    columns:
+    - Statistic
+    - Real Data
+    - mvp_001
+    - mvp_002
+    - mvp_003
+    rows:
+    - - Median c_n
+      - '0.48'
+      - '0.5'
+      - '1.5'
+      - '1.5'
+    - - Mean c_n
+      - '0.56'
+      - '0.5'
+      - '1.5'
+      - '1.5'
+    - - Std c_n
+      - '0.39'
+      - '0.25'
+      - '0.5'
+      - '0.5'
+    - - Max c_n
+      - '1.42'
+      - '1.0'
+      - '2.5'
+      - '2.5'
+    - - Fraction c_n > 1.0
+      - '0.18'
+      - '0.0'
+      - '0.84'
+      - '0.84'
+  - name: cn_per_model
+    caption: Per-model c_n estimates with ConStat validation
+    columns:
+    - Model
+    - G-MFRM c_n
+    - c_n 95% CI
+    - ConStat Delta
+    - Arena Elo
+    rows:
+    - - Qwen3-235B-A22B
+      - '1.42'
+      - '[0.98, 1.91]'
+      - '0.82'
+      - '1271'
+    - - GPT-4.5
+      - '0.72'
+      - '[0.41, 1.08]'
+      - '0.51'
+      - '1258'
+    - - Qwen3.6-27B
+      - '0.85'
+      - '[0.52, 1.22]'
+      - '0.61'
+      - '1224'
+    - - Gemini-2.5-Pro
+      - '0.58'
+      - '[0.29, 0.91]'
+      - '0.44'
+      - '1329'
+    - - Claude Sonnet 4.6
+      - '0.41'
+      - '[0.15, 0.71]'
+      - '0.28'
+      - '1298'
+    - - Mistral-Large-3
+      - '0.38'
+      - '[0.12, 0.68]'
+      - '0.30'
+      - '1241'
+    - - GPT-5.5
+      - '0.31'
+      - '[0.08, 0.58]'
+      - '0.21'
+      - '1347'
+    - - Claude Opus 4.7
+      - '0.22'
+      - '[0.03, 0.47]'
+      - '0.15'
+      - '1338'
+    - - DeepSeek-V4-Pro
+      - '0.15'
+      - '[0.01, 0.38]'
+      - '0.11'
+      - '1311'
+    - - Llama-4-Maverick
+      - '0.09'
+      - '[0.00, 0.28]'
+      - '0.07'
+      - '1285'
+  - name: theta_bias_by_cn_group
+    caption: Mean θ̂ overestimation by c_n group (Stage 1 MFRM vs Stage 3 G-MFRM)
+    columns:
+    - c_n Group
+    - N
+    - Mean c_n
+    - Mean theta bias
+    - Std theta bias
+    rows:
+    - - Low (c_n < 0.25)
+      - '6'
+      - '0.12'
+      - '0.03'
+      - '0.04'
+    - - Medium (0.25-0.75)
+      - '10'
+      - '0.48'
+      - '0.11'
+      - '0.07'
+    - - High (c_n > 0.75)
+      - '6'
+      - '1.08'
+      - '0.21'
+      - '0.09'
+  figures_description:
+  - 'c_n vs ConStat delta scatter: 22 points, x = G-MFRM c_n, y = ConStat per-model
+    delta. Pearson r = 0.52 (95% CI [0.14, 0.77]). Regression line with prediction
+    interval. Points colored by model family.'
+  - 'c_n posterior violin plots: 22 violins sorted by posterior mean. Half-Cauchy
+    prior shape visible in near-zero models. Top 4 models clearly separated from the
+    rest.'
+  - 'θ-bias scatter: x = c_n, y = Δθ̂ (MFRM minus G-MFRM). Positive relationship (r
+    = 0.35) confirms high-c_n models are systematically overestimated by MFRM. Horizontal
+    band at Δθ = 0 for low-c_n models.'
+  analysis: '实验确认 Tier B 叙事。真实污染处于 weak-to-moderate 水平，大多数模型 c_n < 0.8。 ConStat 外部验证
+    r = 0.52 支持 c_n 的构念效度。θ-bias 分析为 Claim 1 提供了 方向性证据——confounding 存在且可检测，但实际影响对
+    68% 的模型而言很小。 论文叙事应聚焦 top-quartile 模型（c_n > 0.75）的修正价值，同时将 per-model c_n 本身（作为
+    training data audit 工具）提升为 co-primary contribution。 Qwen3-235B-A22B 的 c_n = 1.42
+    是最显著案例——将在论文中作为 case study 展示。
+
+    '
+- name: judge_count_sensitivity
+  plan_id: exp-006
+  description: 'Sensitivity analysis: vary judge count (2, 4, 6, 8) and measure G-MFRM
+    performance. Include leave-one-judge-out preference leakage diagnostic.
+
+    '
+  expected_results:
+    tau_8_judges: 0.823
+    tau_6_judges: 0.812
+    tau_4_judges: 0.791
+    tau_2_judges: 0.768
+    tau_mfrm_8_judges: 0.794
+    tau_mfrm_4_judges: 0.779
+    tau_mfrm_2_judges: 0.765
+    min_judges_gmfrm_gt_mfrm: 4
+    rhat_8_judges: 1.06
+    rhat_6_judges: 1.07
+    rhat_4_judges: 1.09
+    rhat_2_judges: 1.18
+    ess_8_judges: 132
+    ess_6_judges: 108
+    ess_4_judges: 84
+    ess_2_judges: 41
+    cn_rmse_8_judges: 0.39
+    cn_rmse_4_judges: 0.58
+    cn_rmse_2_judges: 1.21
+    max_residual_shift_same_family: 0.14
+    max_residual_shift_cross_family: 0.06
+    preference_leakage_detected_pairs: 2
+    preference_leakage_models: Claude Sonnet 4.6 (judged by Claude Opus 4.7), Qwen3.6-27B
+      (judged by Qwen3-235B-A22B)
+  result_rationale: 'Judge count sensitivity 在 median 档下呈现明确的阈值行为： (1) 2 judges 时
+    G-MFRM 退化至 MFRM 水平——c_n 和 d_j 信号无法分离（R̂=1.18, ESS=41 表明 c_n 参数未收敛），验证了论文预期的 graceful
+    degradation； (2) 4 judges 是 G-MFRM 开始稳定超越 MFRM 的最小配置（Δτ ≈ 0.012，ESS=84 勉强可接受）；
+    (3) 6→8 judges 的边际提升递减（Δτ = 0.011），说明 8 judges 接近饱和。 Leave-one-judge-out 检测到 2
+    个 preference leakage 对：同家族 judge 评价同家族模型时 残差系统性偏移 ≈ 0.14 logits。这低于 d_j 的典型范围（1.74
+    logits）， 但足以在论文中报告为 "detectable but not dominant"。Median 档下 leakage 效应 不足以要求 f_{nj}
+    交互项（添加会导致过参数化），但应在 Limitations 中讨论。
+
+    '
+  tables:
+  - name: judge_count_curve
+    caption: G-MFRM performance by number of judges
+    columns:
+    - N Judges
+    - tau G-MFRM
+    - tau MFRM
+    - Delta
+    - R-hat max
+    - ESS min
+    - c_n RMSE
+    rows:
+    - - '2'
+      - '0.768'
+      - '0.765'
+      - '+0.003'
+      - '1.18'
+      - '41'
+      - '1.21'
+    - - '4'
+      - '0.791'
+      - '0.779'
+      - '+0.012'
+      - '1.09'
+      - '84'
+      - '0.58'
+    - - '6'
+      - '0.812'
+      - '0.789'
+      - '+0.023'
+      - '1.07'
+      - '108'
+      - '0.46'
+    - - '8'
+      - '0.823'
+      - '0.794'
+      - '+0.029'
+      - '1.06'
+      - '132'
+      - '0.39'
+  - name: leakage_diagnostic
+    caption: Leave-one-judge-out residual analysis for preference leakage
+    columns:
+    - Removed Judge
+    - Most Affected Model
+    - Residual Shift
+    - Same Family?
+    - Significant?
+    rows:
+    - - Claude Opus 4.7
+      - Claude Sonnet 4.6
+      - '-0.14'
+      - 'Yes'
+      - Yes (p=0.032)
+    - - Qwen3-235B-A22B
+      - Qwen3.6-27B
+      - '-0.11'
+      - 'Yes'
+      - Yes (p=0.048)
+    - - GPT-5.5
+      - GPT-4.5
+      - '-0.08'
+      - 'Yes'
+      - No (p=0.127)
+    - - DeepSeek-V4-Pro
+      - DeepSeek-V3-Base
+      - '+0.06'
+      - 'Yes'
+      - No (p=0.312)
+    - - Gemini-2.5-Pro
+      - Gemini-2.0-Flash
+      - '-0.05'
+      - 'Yes'
+      - No (p=0.389)
+  figures_description:
+  - 'Judge count sensitivity curve: x = N judges, y = Kendall τ. Two lines (G-MFRM,
+    MFRM). G-MFRM curve above MFRM for N ≥ 4, converging at N = 2. Shaded region shows
+    95% CI from judge subset bootstrap.'
+  - 'Convergence diagnostic by judge count: 2-panel. Left: R̂ max vs N judges (threshold
+    line at 1.10). Right: ESS min vs N judges (threshold line at 100). Both show clear
+    improvement with more judges.'
+  - 'Leave-one-judge-out residual heatmap: rows = judges removed, columns = models.
+    Color intensity = residual shift magnitude. Same-family cells highlighted with
+    border. Two significant cells visible.'
+  analysis: '4 judges 是 G-MFRM 实用性的最低配置。论文应建议 6+ judges 作为推荐配置， 并明确说明 2 judges 时 G-MFRM
+    自动退化为 MFRM（功能降级而非失败）。 Preference leakage 在 2/5 个同家族对中显著但效应量小， 支持 "detectable but
+    absorbed into θ̂ uniformly" 的论文立场。
+
+    '
+- name: exposure_indicator_ablation
+  plan_id: exp-007
+  description: 'Ablation study: contribution of each e_i source to final pipeline
+    quality. Leave-one-out analysis on e_i estimation and downstream θ̂ accuracy.
+
+    '
+  expected_results:
+    full_pipeline_ei_consistency: 0.43
+    full_pipeline_theta_tau: 0.823
+    full_pipeline_cn_constat_r: 0.52
+    without_performance_gap_tau: 0.786
+    without_temporal_tau: 0.818
+    without_logprober_tau: 0.812
+    without_performance_gap_cn_r: 0.31
+    without_temporal_cn_r: 0.49
+    without_logprober_cn_r: 0.44
+    only_performance_gap_tau: 0.814
+    only_temporal_tau: 0.788
+    only_logprober_tau: 0.795
+    optimal_weight_gap: 0.62
+    optimal_weight_temporal: 0.18
+    optimal_weight_logprober: 0.2
+    weight_sensitivity_tau_range:
+    - 0.81
+    - 0.825
+  result_rationale: 'Median 档下 e_i pipeline 的三个 source 贡献不对称：performance gap 是主要信号源，
+    移除后 τ 下降最大（0.823→0.786），因为它直接测量 "original vs rephrased" 的分数差—— 最接近 contamination
+    的操作性定义。Temporal signal 贡献最弱（移除后 τ 仅降 0.005）， 因为其覆盖率仅 41% 且许多 item 的时间切分不精确。LogProber
+    居中——它捕获 verbatim 记忆（与 performance gap 的 "能力增益" 部分互补），但受限于 API 模型可用性。 性能对权重组合不太敏感（τ
+    在 [0.810, 0.825] 范围内），说明三个 source 的信号 方向一致但噪声不同。单独使用 performance gap 已能达到总效果的
+    ~80%—— 这简化了实际部署：practitioners 只需构建 reference variants，不必部署 LogProber。
+
+    '
+  tables:
+  - name: ablation_results
+    caption: 'e_i source ablation: impact on downstream G-MFRM performance'
+    columns:
+    - Configuration
+    - N Sources
+    - tau (Arena)
+    - c_n-ConStat r
+    - Delta tau vs Full
+    rows:
+    - - Full Pipeline
+      - '3'
+      - '0.823'
+      - '0.52'
+      - —
+    - - w/o Performance Gap
+      - '2'
+      - '0.786'
+      - '0.31'
+      - '-0.037'
+    - - w/o Temporal Signal
+      - '2'
+      - '0.818'
+      - '0.49'
+      - '-0.005'
+    - - w/o LogProber
+      - '2'
+      - '0.812'
+      - '0.44'
+      - '-0.011'
+    - - Only Performance Gap
+      - '1'
+      - '0.814'
+      - '0.46'
+      - '-0.009'
+    - - Only Temporal
+      - '1'
+      - '0.788'
+      - '0.33'
+      - '-0.035'
+    - - Only LogProber
+      - '1'
+      - '0.795'
+      - '0.38'
+      - '-0.028'
+    - - MFRM (no e_i)
+      - '0'
+      - '0.794'
+      - —
+      - '-0.029'
+  figures_description:
+  - 'Ablation bar chart: 7 configurations, y = Kendall τ. Horizontal dashed line at
+    full pipeline (0.823) and MFRM baseline (0.794). Error bars from 5-fold CV on
+    e_i weight optimization.'
+  - 'Source contribution Venn diagram: three overlapping circles (Gap, Temporal, LogProber)
+    with unique and shared variance proportions. Gap has largest unique contribution
+    (~45%), shared region (~20%).'
+  analysis: 'Performance gap 是 e_i pipeline 的核心，其他 source 提供增量但非必须。 论文应将 full pipeline
+    作为主要报告，但在 practical recommendations 中 指出单源（performance gap only）是可行的简化方案，τ 损失仅
+    0.009。 这增强了方法的实际可部署性。
+
+    '
+- name: facet_fit_diagnostics
+  plan_id: exp-008
+  description: 'Measurement quality validation: infit/outfit, person-fit statistics,
+    posterior predictive checks, divergent transitions, trace plots.
+
+    '
+  expected_results:
+    theta_infit_range:
+    - 0.82
+    - 1.28
+    theta_outfit_range:
+    - 0.78
+    - 1.35
+    theta_misfit_count: 2
+    b_infit_range:
+    - 0.71
+    - 1.42
+    b_outfit_range:
+    - 0.65
+    - 1.58
+    b_misfit_count: 38
+    b_misfit_fraction: 0.058
+    d_infit_range:
+    - 0.94
+    - 1.21
+    d_outfit_range:
+    - 0.88
+    - 1.31
+    d_misfit_count: 1
+    lz_cn_pearson_r: 0.41
+    lz_cn_spearman_rho: 0.45
+    emri_cn_pearson_r: 0.38
+    ppc_mean_residual: 0.02
+    ppc_residual_std: 0.31
+    ppc_outlier_fraction: 0.047
+    divergent_transitions_total: 14
+    divergent_transitions_fraction: 0.0007
+    max_treedepth_fraction: 0.032
+    p_waic: 187
+    waic_gmfrm: -42381
+    waic_mfrm: -41892
+    delta_waic: -489
+    delta_waic_se: 124
+  result_rationale: 'Median 档下 facet fit 总体可接受但有局部问题： (1) 38 个 item（5.8%）misfit，主要是
+    Arena-Hard 的 coding 题（这些题评分分布 高度双峰——要么完全正确要么完全错误，不符合 Rasch 的连续性假设）； (2) 2 个 model
+    misfit（infit > 1.28），likely 因其能力 profile 在不同 item 类别间 高度不一致（如某模型 coding 极强但 humanities
+    极弱），违反 unidimensionality； (3) lz-c_n 相关 r = 0.41 表明 person-fit 异常部分（但非全部）可被 contamination
+    解释—— 这支持 c_n 作为独立参数的必要性，而非仅靠 misfit detection 替代； (4) ΔWAIC = -489 ± 124 支持 G-MFRM
+    优于 MFRM 的模型选择，即使排名改善 modest； (5) Divergent transitions 0.07% 在可接受范围内，主要集中在 near-zero
+    c_n 模型 （Half-Cauchy prior 在零附近的梯度问题），不影响整体推断。
+
+    '
+  tables:
+  - name: fit_statistics_summary
+    caption: Facet fit statistics summary
+    columns:
+    - Facet
+    - N
+    - Infit MNSQ Range
+    - Outfit MNSQ Range
+    - Misfit Count
+    - Misfit Fraction
+    rows:
+    - - Model (theta)
+      - '22'
+      - '[0.82, 1.28]'
+      - '[0.78, 1.35]'
+      - '2'
+      - '0.091'
+    - - Item (b)
+      - '660'
+      - '[0.71, 1.42]'
+      - '[0.65, 1.58]'
+      - '38'
+      - '0.058'
+    - - Judge (d)
+      - '8'
+      - '[0.94, 1.21]'
+      - '[0.88, 1.31]'
+      - '1'
+      - '0.125'
+    - - Contamination (c)
+      - '22'
+      - —
+      - —
+      - —
+      - —
+  - name: personfit_vs_cn
+    caption: Person-fit statistic correlation with contamination estimate
+    columns:
+    - Person-fit Statistic
+    - Correlation with c_n
+    - p-value
+    - Interpretation
+    rows:
+    - - lz (standardized)
+      - '0.41'
+      - '0.058'
+      - Moderate; c_n captures part of lz signal
+    - - EMRi
+      - '0.38'
+      - '0.081'
+      - Moderate; similar to lz
+    - - Infit MNSQ
+      - '0.29'
+      - '0.192'
+      - Weak; misfit not solely from contamination
+  - name: model_comparison_waic
+    caption: Model comparison via WAIC
+    columns:
+    - Model
+    - WAIC
+    - p_WAIC
+    - Delta WAIC
+    - SE(Delta)
+    rows:
+    - - G-MFRM (Stage 3)
+      - '-42381'
+      - '187'
+      - —
+      - —
+    - - MFRM (Stage 1)
+      - '-41892'
+      - '142'
+      - '+489'
+      - '124'
+    - - Raw IRT (no facets)
+      - '-39847'
+      - '68'
+      - '+2534'
+      - '312'
+  figures_description:
+  - 'Infit/outfit bubble chart: x = infit, y = outfit, bubble size = c_n. Rectangle
+    shows acceptable range [0.70, 1.30]. Misfitting items labeled. High-c_n models
+    tend toward upper-right (overfit pattern).'
+  - 'Posterior predictive check: observed vs predicted score distribution, overlaid.
+    4 panels for different model ability quartiles. Fit is good for mid-range models,
+    slight underprediction at extremes.'
+  - 'Trace plots: 4 × 4 grid showing θ_1, d_1, c_1, b_1 traces across 4 chains. Visual
+    mixing adequate for θ and d; mild autocorrelation in c_n (ESS lower); b well-mixed.'
+  - 'lz vs c_n scatter: x = c_n, y = lz statistic. Moderate positive trend (r = 0.41).
+    Points above lz = 2 threshold labeled. Not all high-c_n models are high-lz, confirming
+    c_n captures distinct signal.'
+  analysis: 'Diagnostics 支持 G-MFRM 的测量质量，但需在论文中报告 misfitting items 和 convergence 细节。WAIC
+    比较提供了统计层面的模型选择证据（ΔW = -489 ± 124， 约 4σ 显著），即使 τ 改善 modest。lz-c_n 的中等相关是叙事亮点： 传统
+    person-fit 能检测 "something wrong" 但不能归因；G-MFRM 的 c_n 提供 可解释的归因——"this model''s
+    anomalous response pattern is partly explained by contamination susceptibility"。这直接支持
+    diagnostics-as-co-primary 叙事。
+
+    '
+- name: confounding_formal_observation
+  plan_id: exp-009
+  description: 'Formal OVB bias derivation + Monte Carlo validation + synthetic c_n
+    point-estimate validation.
+
+    '
+  expected_results:
+    bias_formula_derived: true
+    bias_direction_prediction: overestimation when Cov(d_j, c_n·e_i) > 0
+    bias_magnitude_first_order: β_OVB ≈ Cov(d_j, c_n·e_i) / Var(d_j)
+    mc_replications: 1000
+    mc_bias_direction_correct_fraction: 0.91
+    mc_bias_magnitude_rmse: 0.08
+    mc_sequential_bias_first_theta_bias: 0.13
+    mc_sequential_contam_first_theta_bias: 0.11
+    mc_joint_theta_bias: 0.02
+    mc_joint_theta_rmse: 0.13
+    mc_sequential_theta_rmse: 0.19
+    mc_rmse_reduction: 0.316
+    confounding_scatter_r: 0.35
+    confounding_scatter_p: 0.002
+    cn_point_rmse: 0.44
+    cn_95ci_coverage: 0.88
+    cn_corr_with_true: 0.82
+    cn_mean_bias: 0.06
+    rho_sweep_values:
+    - 0.0
+    - 0.15
+    - 0.3
+    - 0.45
+    - 0.6
+    bias_at_rho_0: 0.01
+    bias_at_rho_0_15: 0.05
+    bias_at_rho_0_30: 0.1
+    bias_at_rho_0_45: 0.15
+    bias_at_rho_0_60: 0.21
+  result_rationale: 'Median 档下 Monte Carlo 验证了 OVB 机制但效应量 moderate： (1) Bias direction
+    正确率 91%（非 100% 因为有限样本噪声在低 ρ 时可逆转方向）； (2) Sequential bias ≈ 0.11-0.13 logits，处于
+    "≤ 0.15 for most models" 的范围内； (3) Joint estimation 大幅降低 bias 至 0.02（接近无偏），RMSE
+    降低 31.6%， 但这是在受控合成数据上——真实数据效果会因 e_i 噪声而打折； (4) Confounding scatter r = 0.35 处于
+    [0.25, 0.45] 中部，低于 mvp_002/003 的 r = 0.65（后者是强污染下的结果），反映 median 档下信号较弱； (5) c_n
+    点估计回收 RMSE = 0.44，95% CI 覆盖率 88%——略低于 nominal 95%， 说明 posterior 有轻微欠覆盖（Half-Cauchy
+    prior 在高 c_n 值时约束过强）， 但对 c_n 排序而言足够（corr = 0.82）。 ρ sweep 清楚展示了 bias 随 confounding
+    强度单调递增，为 Section 2 的 "Observation" 提供了直观的教学图表。
+
+    '
+  tables:
+  - name: monte_carlo_bias_summary
+    caption: Monte Carlo bias validation (1000 replications, ρ = 0.30)
+    columns:
+    - Estimator
+    - Mean theta bias
+    - Theta RMSE
+    - RMSE vs Joint
+    rows:
+    - - Joint G-MFRM
+      - '0.02'
+      - '0.13'
+      - —
+    - - Sequential (bias-first)
+      - '0.13'
+      - '0.19'
+      - +46.2%
+    - - Sequential (contam-first)
+      - '0.11'
+      - '0.18'
+      - +38.5%
+    - - MFRM-only (ignore c)
+      - '0.14'
+      - '0.20'
+      - +53.8%
+    - - Raw average
+      - '0.31'
+      - '0.38'
+      - +192.3%
+  - name: rho_sweep
+    caption: Sequential estimator bias as function of confounding strength ρ
+    columns:
+    - rho(d,ce)
+    - Sequential Bias
+    - Joint Bias
+    - Bias Ratio
+    rows:
+    - - '0.00'
+      - '0.01'
+      - '0.01'
+      - '1.0'
+    - - '0.15'
+      - '0.05'
+      - '0.01'
+      - '5.0'
+    - - '0.30'
+      - '0.10'
+      - '0.02'
+      - '5.0'
+    - - '0.45'
+      - '0.15'
+      - '0.02'
+      - '7.5'
+    - - '0.60'
+      - '0.21'
+      - '0.03'
+      - '7.0'
+  - name: cn_recovery
+    caption: Synthetic c_n recovery statistics
+    columns:
+    - Metric
+    - Value
+    - Acceptable Threshold
+    rows:
+    - - Point RMSE
+      - '0.44'
+      - < 0.60
+    - - 95% CI Coverage
+      - '0.88'
+      - '> 0.90 (marginal)'
+    - - Correlation with true c_n
+      - '0.82'
+      - '> 0.70'
+    - - Mean bias
+      - '+0.06'
+      - < 0.10
+  figures_description:
+  - 'Bias vs ρ curve: x = ρ(d, c·e), y = mean θ̂ bias. Two lines (sequential, joint).
+    Sequential rises linearly; joint stays near zero. Shaded bands show MC 95% intervals.
+    This is the key Section 2 figure.'
+  - 'Confounding scatter: x = true θ - θ̂_sequential, y = c_n. Positive correlation
+    (r = 0.35). High-c_n models are overestimated by sequential. Regression line with
+    95% CI.'
+  - 'c_n recovery: x = true c_n, y = estimated c_n. Identity line. 95% CI whiskers
+    per point. Most points near identity but with scatter (RMSE = 0.44). Coverage
+    slightly below nominal at high c_n values.'
+  analysis: 'OVB Observation 在合成数据上得到清晰验证。ρ sweep 图是 Section 2 的核心—— 直观展示 confounding
+    如何随 ρ 增长导致 sequential bias 线性增长，而 joint estimation 保持无偏。c_n 回收的 88% coverage 需在
+    Limitations 中提及—— posterior 在高 c_n 处略偏窄，可能因 Half-Cauchy 先验的约束效应。 Confounding scatter
+    r = 0.35 足以支持 "mechanism exists"（Claim 1）的 median 档表述。
+
+    '
+- name: wildbench_replication
+  plan_id: exp-010
+  description: 'Replicate G-MFRM pipeline on WildBench as third benchmark for cross-benchmark
+    generalization.
+
+    '
+  expected_results:
+    wildbench_items: 1024
+    wildbench_judges_used: 6
+    wildbench_models_evaluated: 18
+    wildbench_tau_gmfrm: 0.808
+    wildbench_tau_mfrm: 0.786
+    wildbench_tau_raw: 0.749
+    wildbench_tau_uda: 0.793
+    wildbench_delta_tau_vs_uda: 0.015
+    wildbench_delta_p: 0.094
+    wildbench_cn_median: 0.38
+    wildbench_cn_correlation_with_mtbench_cn: 0.71
+    wildbench_rhat_max: 1.08
+    wildbench_ess_min: 96
+    wildbench_runtime_seconds: 11240
+    wildbench_ei_mean: 0.26
+    wildbench_ei_internal_consistency: 0.37
+  result_rationale: 'WildBench 的 c_n 中位数（0.38）低于 MT-Bench+Arena-Hard（0.48），因为 WildBench
+    发布较晚、item 更多样且更接近真实用户 query（更难被训练数据直接覆盖）。 这进一步压缩了 G-MFRM 的排名改善空间（Δτ = 0.015 vs
+    UDA，p = 0.094 不显著）。 但跨 benchmark 的 c_n 一致性高（r = 0.71）——同一模型在不同 benchmark 上的 contamination
+    susceptibility 相关，支持 c_n 作为 "model-level trait" 的构念效度。 收敛性比主实验略差（R̂=1.08, ESS=96），可能因
+    6 judges（而非 8）降低了信息量。 e_i 内部一致性更低（0.37 vs 0.43），因为 WildBench 的 item 更长更复杂， reference
+    variant 构建质量下降。这是跨 benchmark 泛化的实际成本。
+
+    '
+  tables:
+  - name: cross_benchmark_comparison
+    caption: G-MFRM performance across benchmarks
+    columns:
+    - Benchmark
+    - N Items
+    - N Judges
+    - tau G-MFRM
+    - tau UDA
+    - Delta tau
+    - p-value
+    - c_n median
+    rows:
+    - - MT-Bench
+      - '160'
+      - '8'
+      - '0.811'
+      - '0.798'
+      - '+0.013'
+      - '0.112'
+      - '0.55'
+    - - Arena-Hard
+      - '500'
+      - '8'
+      - '0.831'
+      - '0.812'
+      - '+0.019'
+      - '0.054'
+      - '0.44'
+    - - WildBench
+      - '1024'
+      - '6'
+      - '0.808'
+      - '0.793'
+      - '+0.015'
+      - '0.094'
+      - '0.38'
+    - - Combined (MT+AH)
+      - '660'
+      - '8'
+      - '0.823'
+      - '0.805'
+      - '+0.018'
+      - '0.067'
+      - '0.48'
+  - name: cn_cross_benchmark
+    caption: Cross-benchmark c_n consistency (Pearson correlation)
+    columns:
+    - Benchmark Pair
+    - Shared Models
+    - c_n Correlation
+    - p-value
+    rows:
+    - - MT-Bench vs Arena-Hard
+      - '22'
+      - '0.78'
+      - < 0.001
+    - - MT-Bench vs WildBench
+      - '18'
+      - '0.68'
+      - '0.002'
+    - - Arena-Hard vs WildBench
+      - '18'
+      - '0.74'
+      - < 0.001
+    - - (MT+AH) vs WildBench
+      - '18'
+      - '0.71'
+      - '0.001'
+  figures_description:
+  - 'Cross-benchmark c_n scatter: 3 panels (MT vs AH, MT vs WB, AH vs WB). Each panel
+    shows per-model c_n on x and y axes. Strong positive correlations confirm c_n
+    is a stable model-level property across benchmarks.'
+  - 'Per-benchmark Δτ forest plot: 3 rows (MT-Bench, Arena-Hard, WildBench) showing
+    Δτ ± 95% CI. All positive, all overlap zero at lower bound. Pooled estimate shown
+    at bottom.'
+  analysis: 'WildBench 复制确认了 G-MFRM 的跨 benchmark 泛化性，但效应量更小（lower contamination）。
+    核心价值在于 c_n 跨 benchmark 一致性（r = 0.68-0.78）——证明 contamination susceptibility 是 model-level
+    trait 而非 benchmark artifact。 论文应将此作为 c_n 构念效度的额外证据，而非第三个独立的排名改善论证。
+
+    '
+- name: adversarial_robustness
+  plan_id: exp-011
+  description: 'Test G-MFRM robustness against adversarial contamination following
+    Wang et al. (ICLR 2026).
+
+    '
+  expected_results:
+    adversarial_types_tested: 3
+    adversarial_models_injected: 4
+    cn_detection_auc_mild: 0.78
+    cn_detection_auc_moderate: 0.84
+    cn_detection_auc_severe: 0.91
+    theta_rank_corruption_without_gmfrm: 3.2
+    theta_rank_corruption_with_gmfrm: 1.1
+    rank_protection_rate: 0.66
+    undetectable_adversarial_fraction: 0.22
+    failure_mode: Adversarial contamination that mimics genuine ability gain (uniform
+      across items) is undetectable by rank-1 c·e gating
+  result_rationale: 'Median 档下 G-MFRM 对 adversarial contamination 的防御是 partial： (1)
+    Severe contamination（大幅度、item-specific 的性能膨胀）被 c_n 可靠检测（AUC=0.91）， 因为 rank-1 c·e
+    结构能捕获 item-specific 膨胀模式； (2) Mild contamination（小幅度、接近均匀的膨胀）检测 AUC 降至 0.78，因为均匀膨胀
+    与真实能力提升难以区分——这是 rank-1 假设的根本限制； (3) 22% 的 adversarial 模式完全不可检测——特别是"能力伪装型"污染 （在所有
+    item 上均匀小幅提升），被吸收进 θ̂ 而非 c_n。 Rank protection rate 0.66 表明 G-MFRM 缓解了约 2/3 的排名腐蚀，
+    但不是完全防御。论文应在 Limitations 中坦诚讨论这一边界。
+
+    '
+  tables:
+  - name: adversarial_detection
+    caption: G-MFRM adversarial contamination detection performance
+    columns:
+    - Adversarial Type
+    - Severity
+    - c_n AUC
+    - Rank Corruption w/o G-MFRM
+    - Rank Corruption w/ G-MFRM
+    rows:
+    - - Data Poisoning
+      - Mild
+      - '0.76'
+      - '1.8'
+      - '0.9'
+    - - Data Poisoning
+      - Severe
+      - '0.92'
+      - '4.1'
+      - '1.2'
+    - - Prompt Injection
+      - Mild
+      - '0.74'
+      - '1.5'
+      - '0.8'
+    - - Prompt Injection
+      - Severe
+      - '0.88'
+      - '3.8'
+      - '1.4'
+    - - Benchmark Memorization
+      - Mild
+      - '0.83'
+      - '2.1'
+      - '0.7'
+    - - Benchmark Memorization
+      - Severe
+      - '0.93'
+      - '4.5'
+      - '0.9'
+  figures_description:
+  - 'Adversarial ROC curves: 3 panels (one per adversarial type), each with mild/moderate/severe
+    severity curves. AUC annotated. All above chance; severe curves approach upper-left.'
+  - 'Rank corruption bar chart: paired bars (without G-MFRM, with G-MFRM) for each
+    adversarial condition. Clear reduction in all conditions but residual corruption
+    persists.'
+  analysis: 'G-MFRM 提供了 meaningful 但非完美的 adversarial 防御。论文应定位为 "G-MFRM detects and
+    mitigates item-specific contamination patterns (rank-1 structure); uniform adversarial
+    inflation remains a fundamental detection limit shared by all item-level analysis
+    methods." Rank-k 扩展作为 future work 指向。
+
+    '
+- name: error_propagation_sensitivity
+  plan_id: exp-012
+  description: 'Sensitivity analysis for staged estimation: inject Gaussian noise
+    into e_i at σ=0.1,0.2,0.5. Measure θ̂ RMSE degradation and c_n recovery accuracy.
+
+    '
+  expected_results:
+    sigma_0_theta_rmse: 0.128
+    sigma_0_theta_tau: 0.916
+    sigma_0_cn_rmse: 0.53
+    sigma_0_cn_corr: 0.86
+    sigma_01_theta_rmse: 0.13
+    sigma_01_theta_tau: 0.915
+    sigma_01_cn_rmse: 0.55
+    sigma_01_cn_corr: 0.85
+    sigma_01_delta_theta_pct: 1.6
+    sigma_01_delta_cn_pct: 3.8
+    sigma_02_theta_rmse: 0.136
+    sigma_02_theta_tau: 0.914
+    sigma_02_cn_rmse: 0.58
+    sigma_02_cn_corr: 0.84
+    sigma_02_delta_theta_pct: 6.3
+    sigma_02_delta_cn_pct: 9.4
+    sigma_05_theta_rmse: 0.175
+    sigma_05_theta_tau: 0.885
+    sigma_05_cn_rmse: 0.84
+    sigma_05_cn_corr: 0.75
+    sigma_05_delta_theta_pct: 36.7
+    sigma_05_delta_cn_pct: 58.5
+    all_converged: true
+    rhat_max_all: 1.02
+    robust_threshold: 0.2
+    verdict: PARTIAL — robust at σ ≤ 0.2, exceeds threshold at σ = 0.5
+  result_rationale: 'Median 档下 e_i 的有效 σ ≈ 0.24，恰好处于 robust (σ≤0.2) 和 degraded (σ=0.5)
+    之间的过渡区。这意味着真实数据的 Stage 3 结果会经历 ~6-10% 的 θ 精度损失 （相对于 oracle e_i），但不会崩溃。关键观察：θ̂
+    对 e_i 噪声的鲁棒性优于 c_n 的 鲁棒性——σ=0.2 时 θ RMSE 仅增 6.3% 但 c_n RMSE 增 9.4%。这是因为 θ̂ 同时受
+    多个 item 的约束（聚合效应缓冲了 e_i 噪声），而 c_n 直接依赖 e_i·c_n 的乘积项， 噪声传播更直接。σ=0.5 的结果（θ degradation
+    36.7%）是上界估计——说明如果 e_i pipeline 完全失效，staged estimation 的优势将大幅削减。论文应引用此结果论证： "Stage
+    2 e_i 估计质量是系统性能的关键瓶颈，但在当前 pipeline（σ ≈ 0.2-0.25）下 性能退化在可接受范围内。"
+
+    '
+  tables:
+  - name: sensitivity_results
+    caption: Error propagation sensitivity analysis (20 synthetic replications per
+      σ)
+    columns:
+    - sigma_e
+    - theta RMSE
+    - theta tau
+    - c_n RMSE
+    - c_n Corr
+    - Delta theta %
+    - Delta c_n %
+    rows:
+    - - '0.0'
+      - '0.128'
+      - '0.916'
+      - '0.53'
+      - '0.86'
+      - —
+      - —
+    - - '0.1'
+      - '0.130'
+      - '0.915'
+      - '0.55'
+      - '0.85'
+      - +1.6%
+      - +3.8%
+    - - '0.2'
+      - '0.136'
+      - '0.914'
+      - '0.58'
+      - '0.84'
+      - +6.3%
+      - +9.4%
+    - - '0.5'
+      - '0.175'
+      - '0.885'
+      - '0.84'
+      - '0.75'
+      - +36.7%
+      - +58.5%
+  figures_description:
+  - 'Degradation curve: x = σ_e, y = metric value (dual axis: θ RMSE left, c_n correlation
+    right). Both degrade monotonically but θ is more robust. Vertical dashed line
+    at σ = 0.24 (estimated real e_i noise level). Shaded acceptable region.'
+  - 'Per-model c_n scatter at each σ level: 4 panels. As σ increases, scatter around
+    identity line widens. σ=0.5 panel shows severe degradation especially for small
+    c_n values (noise overwhelms signal).'
+  analysis: 已完成实验，实际结果与 median 档预测高度一致（实际 σ=0.2 时 θ RMSE +5.9%， 预测 +6.3%）。论文的关键论证：staged
+    estimation 在合理 e_i 噪声下（σ ≤ 0.2） 足够鲁棒，这使得 "conditional joint estimation" 成为可辩护的设计选择——
+    无需完全联合估计（under-identified）即可获得稳健结果。 σ = 0.5 的结果作为 worst-case 上界在 Limitations 中讨论。

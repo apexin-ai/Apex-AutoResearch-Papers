@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11d92898a7c67aa78f4a",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh restart qwen72b judge",
+  "task_key": "worker_ssh_restart_qwen72b_judge_20260522T220730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_restart_qwen72b_judge_20260522T220730_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "066a35880e0ff210cff2d100b425017dd41e539498fb560fbb8b9d8d275c300e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n**状态汇总：**\n- vLLM server (port 8002, qwen2.5-72b-instruct): 正常运行\n- collect.py 已在 tmux session `qwen72b-judge` 中启动\n- 启动命令: `PYTHONUNBUFFERED=1 python collect.py --config config_qwen_arena.yaml --benchmark arena_hard --workers 8`\n- 已完成: 8736/9000 (含 resume)\n- 剩余: 264 条\n- 速率: 0.2 items/s，预计 ~25 分钟完成\n- 9 个 target models: gpt-3.5-turbo-0125, gpt-4-0314, gpt-4-0613, gpt-4o, gpt-4o-mini, llama-3.3-70b, qwen2.5-72b, gemma-2-9b, qwen3-8b"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-restart-qwen72b-judge.md"
+}

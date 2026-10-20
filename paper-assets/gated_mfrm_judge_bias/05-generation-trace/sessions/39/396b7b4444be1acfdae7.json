@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "396b7b4444be1acfdae7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp001 maverick cuda2",
+  "task_key": "worker_ssh_exp001_maverick_cuda2_20260522T025849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_maverick_cuda2_20260522T025849_result.json",
+    "occurrence": 1,
+    "bytes": 1727,
+    "sha256": "5c56ab62617e3dc0ca0b816f27aa26020aa00a47f4952f9c81e939638a4d6bda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报：Llama 4 Maverick 无法部署在单卡 cuda:2 上\n\n### 当前服务器状态\n\n| GPU | 进程 | VRAM | 利用率 |\n|-----|-------|------|--------|\n| 0 | `run_exp009.py --part both` | 73.6GB / 96GB | 68% |\n| 1 | `run_exp012.py` | 73.7GB / 96GB | 64% |\n| 2 | vLLM (Llama-3.3-70B AWQ) → port 8001 | 90.1GB / 96GB | 100% |\n| 3 | vLLM (可能 Qwen2.5-72B AWQ) → port 8002 | 88.1GB / 96GB | 0% |\n\n- Arena-Hard 已用 llama-3.3-70b judge 收集 **41 条** judgment（数据已保留）\n- 磁盘：`/root/autodl-tmp/` 剩余 171GB\n- 本地无 Maverick 模型\n\n### Maverick 尺寸问题\n\nLlama 4 Maverick 是 MoE 模型（400B total, 128 experts, 17B active）：\n\n| 精度 | VRAM 需求 | 最少 GPU 数（96GB卡） |\n|------|-----------|---------------------|\n| BF16 | ~800GB | 9 卡 |\n| FP8 | ~400GB | 5 卡 |\n| INT4/AWQ | ~224GB | **3 卡** |\n| 1.78-bit GGUF | ~122GB | 2 卡（质量严重下降，vLLM 不支持 GGUF） |\n\n**单卡 96GB 完全不可能。** 即使最激进的合理量化（AWQ/W4A16）也需要 224GB，至少 3 张卡。\n\n### 可选方案\n\n1. **TP=3（GPU 2+3 + 停一个实验腾出 GPU 0 或 1）** — 3×96GB=288GB，可跑 AWQ。代价是停掉 exp009 或 exp012 之一 + 停掉一个现有 vLLM judge\n2. **TP=4（停掉全部，4 卡全给 Maverick）** — 384GB，FP8 也够。代价最大\n3. **放弃本地部署，走 API** — Together AI / Fireworks / Groq 都有 Maverick endpoint，无需本地 GPU。延迟会增加但不影响 judge 数据收集\n4. **保持现状用 Llama-3.3-70B** — 已在跑，数据正在收集，不需要任何改动\n\n请确认要走哪个方案。如果选方案 1，需要告知可以停哪个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp001-maverick-cuda2.md"
+}

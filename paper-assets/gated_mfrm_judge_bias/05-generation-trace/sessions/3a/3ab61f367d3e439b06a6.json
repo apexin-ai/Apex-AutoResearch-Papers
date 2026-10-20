@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ab61f367d3e439b06a6",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp013 weight sensitivity",
+  "task_key": "worker_ssh_exp013_weight_sensitivity_20260523T040709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp013_weight_sensitivity_20260523T040709_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "6f03875419a43e36eaec27f44631c705b3e4ab4aca57297f2046b6956a7f7fd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交。配置：\n- 4 种权重配置（50/50, 75/25, 90/10, 100/0）\n- 每种：加载对应 exposure scores → joint G-MFRM MCMC (warmup=2000, samples=2000, chains=2) → Kendall τ vs Arena Elo + exposure Spearman ρ vs default\n- 输出：`exp013/results/weight_sensitivity.csv` + 每个配置的 theta/c JSON\n\nMCMC 用了 chains=2、samples=2000 的配置（任务说明允许的较短 chain），4 个配置串行，预计总运行 30-60 分钟。需要我过一会儿检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp013-weight-sensitivity.md"
+}

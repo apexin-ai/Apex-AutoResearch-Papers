@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "bd3910d96fd82dedc5cd",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh w7 ablation synthetic",
+  "task_key": "worker_ssh_w7_ablation_synthetic_20260522T182720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w7_ablation_synthetic_20260522T182720.log",
+    "occurrence": 1,
+    "bytes": 1291963,
+    "sha256": "e5e98386b77c72a197891282b048e462c923937d2c26e9e2ee1c02907d1155c8"
+  },
+  "statistics": {
+    "messages": 781,
+    "user_turns": 1,
+    "tool_calls": 343,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 343,
+      "tool_result": 343,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 552,
+      "chunks": [
+        {
+          "path": "bd3910d96fd82dedc5cd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd3910d96fd82dedc5cd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd3910d96fd82dedc5cd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd3910d96fd82dedc5cd-part-0004.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "bd3910d96fd82dedc5cd-part-0004.json",
+          "message_count": 168
+        },
+        {
+          "path": "bd3910d96fd82dedc5cd-part-0005.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-w7-ablation-synthetic.md"
+}

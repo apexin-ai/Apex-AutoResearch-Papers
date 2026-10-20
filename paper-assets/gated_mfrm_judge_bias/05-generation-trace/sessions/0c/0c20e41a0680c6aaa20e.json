@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "0c20e41a0680c6aaa20e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "diagnose exp 017",
+  "task_key": "worker_diagnose_exp-017_20260524T070720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-017_20260524T070720_result.json",
+    "occurrence": 1,
+    "bytes": 2389,
+    "sha256": "010654c35c5c526abeaef346b008df12b05d054c4bc342091e04560a0e851335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Key finding: the elapsed_s per fit varies dramatically — N=8 early seeds took ~65s but later seeds took ~365s. The wall clock tells the real story.\n\n```json\n{\n  \"completed_fits\": 251,\n  \"total_fits\": 800,\n  \"fits_by_N\": {\"8\": 200, \"20\": 51, \"50\": 0, \"100\": 0},\n  \"avg_time_per_fit_seconds\": 343.7,\n  \"estimated_remaining_hours\": 52.3,\n  \"root_cause\": \"timeout (EXIT_CODE=124) after 251 fits in 86272s (~24h), likely 86400s timeout limit\",\n  \"partial_results_useful\": true,\n  \"has_enough_for_paper\": false,\n  \"recommendation\": \"resume with fixes\"\n}\n```\n\n**详细分析：**\n\n**Root cause**：进程在 86272s 处被 `timeout` 杀死（EXIT_CODE=124），刚好不到 24h（86400s）。\n\n**完成进度**：\n| N | 完成 seeds | 目标 | 状态 |\n|---|-----------|------|------|\n| 8 | 200/200 | 200 | 完成 |\n| 20 | 51/200 | 200 | 25.5% |\n| 50 | 0/200 | 200 | 未开始 |\n| 100 | 0/200 | 200 | 未开始 |\n\n**关键瓶颈**：4 条 MCMC chain 在 **1 个 GPU 上串行执行**（`expected 4 but got 1`），而 autodl-8gpu 有 8 张卡。这导致每个 fit 慢了约 4 倍。\n\n**时间估算**：\n- 当前均速 343.7s/fit（wall clock），剩余 549 fits ≈ 52.3h\n- 但 N=50/100 的 MCMC 每步计算量更大，实际可能 70-100h\n- 如果修复 chain 并行（4 GPU 并行 4 chains），可缩短到 **13-25h**\n\n**部分结果评估**：\n- N=8（200 seeds）和 N=20（51 seeds）可以做初步分析\n- 但 **缺少 N=50 和 N=100**，无法展示大样本下 coverage 趋向 nominal level 的收敛行为，论文不完整\n\n**Resume 建议**：\n1. 增大 timeout 至 ≥ 72h（`timeout 259200`）\n2. 在 `run_exp017.py` 开头加 `numpyro.set_host_device_count(4)` 或设置 `CUDA_VISIBLE_DEVICES=0,1,2,3` 让 4 chains 并行\n3. 脚本已 resume-capable（CSV append 模式），直接重启即可从 N=20 seed=51 继续"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "completed_fits": 251,
+              "total_fits": 800,
+              "fits_by_N": {
+                "8": 200,
+                "20": 51,
+                "50": 0,
+                "100": 0
+              },
+              "avg_time_per_fit_seconds": 343.7,
+              "estimated_remaining_hours": 52.3,
+              "root_cause": "timeout (EXIT_CODE=124) after 251 fits in 86272s (~24h), likely 86400s timeout limit",
+              "partial_results_useful": true,
+              "has_enough_for_paper": false,
+              "recommendation": "resume with fixes"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-017.md"
+}

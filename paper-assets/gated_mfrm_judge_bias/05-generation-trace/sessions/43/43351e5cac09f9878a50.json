@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43351e5cac09f9878a50",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh tp2 throughput check",
+  "task_key": "worker_ssh_tp2-throughput-check_20260524T110638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_tp2-throughput-check_20260524T110638_result.json",
+    "occurrence": 1,
+    "bytes": 1656,
+    "sha256": "29169c7a3d7604ea9d733e4a55aa31dabe9768148302e41e01a7c23c4be0ff9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 进程 — 全部正常运行\n\n| 组件 | 端口/配置 | GPU | 状态 |\n|------|-----------|-----|------|\n| vLLM LLaMA-3.3-70B-AWQ | :8001, TP=2 | GPU 0,1 | 运行中, 200 OK |\n| vLLM Qwen2.5-72B-AWQ | :8002, TP=2 | GPU 2,3 | 运行中, 200 OK |\n| collect LLaMA (workers=32) | — | — | 运行中 |\n| collect Qwen (workers=32) | — | — | 运行中 |\n| collect Claude-Sonnet (workers=10) | — | — | 运行中 |\n| collect Gemini-2.5-Pro (workers=10) | — | — | 运行中 |\n| collect DeepSeek-V4-Pro (workers=10) | — | — | 运行中 |\n| collect Qwen3-235B (workers=10) | — | — | 运行中 |\n\n### GPU 占用\n\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| 0 | 91.1 / 95.6 GB | 100% |\n| 1 | 91.1 / 95.6 GB | 100% |\n| 2 | 91.0 / 95.6 GB | 100% |\n| 3 | 91.0 / 95.6 GB | 100% |\n\n### 各 Judge 已收集 records 数\n\n| Judge | Records | 备注 |\n|-------|---------|------|\n| claude-sonnet-4.6-proxy | 9,484 | API |\n| qwen3-235b-proxy | 7,188 | API |\n| gemini-2.5-pro-proxy | 6,722 | API |\n| deepseek-v4-pro-proxy | 5,639 | API |\n| **llama-3.3-70b-local** | **3,779** | TP=2 重启后采集中 |\n| **qwen2.5-72b-local** | **2,521** | TP=2 重启后采集中 |\n\n### Qwen vLLM 吞吐（实时）\n- Prompt: **530 tokens/s**, Generation: **143 tokens/s**\n- 32 reqs 并发, 0 waiting, KV cache 8.6%, prefix cache hit 36.5%\n\n### 磁盘\n- 根分区: 13G / 30G used (41%)\n\nTP=2 重启后两个 local judge 都在正常采集，vLLM 全部 200 OK，4 卡满载。Local judges 的 records 数还较少（LLaMA 3.8k, Qwen 2.5k），启动约 1 小时，正在追赶中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-tp2-throughput-check.md"
+}

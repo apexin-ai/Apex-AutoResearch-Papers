@@ -1,0 +1,79 @@
+paper_key: "constat2024"
+title: "ConStat: Performance-Based Contamination Detection in Large Language Models"
+venue: "NeurIPS 2024"
+full_text_available: true
+
+research:
+  baselines: ["Carlini et al. (perplexity MIA)", "Mireshghallah et al.", "Yeom et al.", "Shi et al. (oracle)", "Shi et al. (realistic)"]
+  metrics:
+    - {name: "Detection rate (syntax-specific)", direction: "higher_better"}
+    - {name: "Detection rate (sample-specific)", direction: "higher_better"}
+    - {name: "Contamination estimate δ̂", direction: "diagnostic"}
+    - {name: "r² (estimated vs true δ)", direction: "higher_better"}
+    - {name: "p-value (BH-corrected)", direction: "lower_better"}
+  datasets:
+    - {name: "GSM8k", size: "2000 samples"}
+    - {name: "ARC-Challenge", size: "2000 samples"}
+    - {name: "MMLU", size: "2000 samples"}
+    - {name: "HellaSwag", size: "2000 samples"}
+  ablation_dimensions: ["Contamination type (syntax/sample/benchmark-specific)", "Reference benchmark type", "Finetuning epochs", "Learning rate", "Contamination proportion", "Base model"]
+  training_recipe: {optimizer: "N/A (statistical test, no training)", lr: "N/A", hardware: "LM Evaluation Harness, 5-shot"}
+  method_family: "Performance-based statistical contamination detection"
+
+positioning:
+  core_claim: "重新定义contamination为'不可泛化的虚高性能'（而非数据是否在训练集中），通过reference benchmark比较+bootstrap统计检验实现无先验知识的检测和量化，r²=0.94"
+  key_results: "Syntax detection 89.1% vs Shi realistic 21.7%; Sample detection 98.4% vs Shi realistic 16.4%; r²=0.94 quantification; Real models: Mistral/Llama/Yi/top-3 leaderboard models contaminated"
+  limitations:
+    - "依赖reference models——若reference models也被污染则只测相对效应"
+    - "合成数据可能有分布偏差和标注错误"
+    - "用于生成合成样本的模型自身检测不可靠"
+  relation_to_us: "component"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM benchmark竞争激烈，数据污染侵蚀评测可信度"
+  tension: "现有检测方法全部基于perplexity→容易被rephrased训练规避→且需要oracle知识——根本不实用"
+  key_insight: "Section 2 — 从'信息流'重新定义为'性能泛化'——conceptual shift是论文核心创新，在方法之前呈现"
+  argument_chain: "contamination undermines benchmarks → existing methods fail (evasion + oracle) → redefine as non-generalizing performance → 3-tier taxonomy → hardness correction + bootstrap → 89%/98% detection, r²=0.94 → real-world findings"
+  contribution_framing: "四条贡献：(1)performance-based定义 (2)ConStat统计检验 (3)控制实验验证 (4)流行模型审查"
+  intro_structure: "6段：竞争背景 → contamination问题 → 现有方法失败 → ConStat方案 → 评估范围 → 4条贡献"
+  notable_technique: "三层contamination taxonomy（syntax/sample/benchmark-specific）创建graduated severity框架，让整个评估叙事有结构"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "method_overview"
+    description: "ConStat四步工作流：选模型→选reference→拟合hardness correction→得结果"
+    narrative_role: "一图展示完整pipeline，让读者快速理解方法"
+    design_elements: ["四面板工作流", "hardness correction曲线", "结果示例（δ̂ + p-value）"]
+    visual_style: "四面板横排，蓝色调hardness correction曲线，结果面板用绿/红编码contaminated与否"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter"
+      what_compared: "Estimated δ̂ vs true δ"
+      how_gain_highlighted: "r²=0.94标注，近线性关系直观展示quantification准确性"
+      design_note: "scatter plot with 2-sigma error bars, 3个outlier标注ceiling effect"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(method overview) → Figure 2(quantification validation)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "contamination types (syntax vs sample detection rate)"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "百分比"
+    num_baselines: 5
+    design_note: "极简两列表格，一目了然展示ConStat全面优于所有baseline"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Reference models × benchmarks × contamination types"]
+      variation_style: "full_numbers"
+      design_note: "仅报显著结果，含p-value和95%下界，选择性报告增加可读性"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 17(全部检验结果)、详细ablation结果、InternLM-2和StableLM-2分析"
+    reason: "主文仅2张表保持极简，全部详细结果放附录"

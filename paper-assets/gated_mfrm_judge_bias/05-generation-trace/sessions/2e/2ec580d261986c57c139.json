@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ec580d261986c57c139",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp012 status and nvidia",
+  "task_key": "worker_ssh_exp012_status_and_nvidia_20260522T005735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp012_status_and_nvidia_20260522T005735_result.json",
+    "occurrence": 1,
+    "bytes": 2573,
+    "sha256": "3041e2abcffa6e001603fd7d2a858b2d2a483d46a64cff4cbdd7baf53f1b8b3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-012 状态报告\n\n### 进程状态\n| PID | 运行时间 | CPU | MEM | 状态 |\n|-----|---------|-----|-----|------|\n| 54823 | 1h53m32s | 105% | 0.9% | **运行中** |\n\n### 进度\n- **设计**: σ ∈ {0.0, 0.1, 0.2, 0.5} × 20 seeds = **80 runs**\n- **已完成**: 38 runs（σ=0.0 全部20 seeds + σ=0.1 前18 seeds）\n- **进度**: **47.5%**\n- **速率**: ~3 min/run\n- **ETA**: 剩余 42 runs × 3 min ≈ **2h06m**（约 11:04 完成）\n\n### 已有数据预览（σ=0.0, 20 seeds 完成）\n\n| 指标 | 均值 | std |\n|------|------|-----|\n| theta_rmse | 0.127 | 0.017 |\n| theta_tau | 0.916 | 0.011 |\n| cn_rmse | 0.531 | 0.183 |\n| cn_corr | 0.871 | 0.076 |\n| r_hat | 1.01 | 0.007 |\n| ess | 443 | 89 |\n\nσ=0.1（前18 seeds）看起来与 σ=0.0 非常接近，退化极小——theta_rmse 均值约 0.129（+1.6%），cn_rmse 约 0.511（-3.8%，可能是采样波动）。需要等全部 4 个 σ 完成后才能做正式退化分析。\n\n### nvidia-smi\n```\nFri May 22 08:58:05 2026\n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n|=========================================+========================+======================|\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |      0MiB /  97887MiB |      0%   P8   31C |\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |  73639MiB /  97887MiB |     65%   P0   36C |  ← exp-012\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |      0MiB /  97887MiB |      0%   P8   29C |\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |      0MiB /  97887MiB |      0%   P8   29C |\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|    1   N/A  N/A   54823   C   /root/miniconda3/bin/python3   73630MiB                   |\n+-----------------------------------------------------------------------------------------+\n```\n\n**总结**: exp-012 正常运行，GPU 1 占用 73.6GB / 98GB，温度正常（36°C）。收敛指标良好（r_hat ≤ 1.02）。GPU 0/2/3 空闲可用。预计约 2 小时后完成，届时可做完整退化分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp012-status-and-nvidia.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36cd4d82b61854c4da56",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix mistral download deploy cuda1",
+  "task_key": "worker_ssh_fix_mistral_download_deploy_cuda1_20260522T045354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_mistral_download_deploy_cuda1_20260522T045354_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "df93e2c4a33bdfc44ebba9965d516707a442754927892aac4df938772775cb05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n1. **Safetensors 分片**: 14/14 全部到位（无需补下载，任务描述中的缺失已不存在）\n2. **vLLM 启动**: 成功，port 8003 响应正常，served model = `mistral-large-instruct`\n3. **数据收集**: 已启动（tmux `exp001-mistral`），当前 199/3000 judgments，正在持续产出\n4. **cuda:1 VRAM**: 88129 / 97887 MiB（90%），utilization 100%\n5. **无失败步骤**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-mistral-download-deploy-cuda1.md"
+}

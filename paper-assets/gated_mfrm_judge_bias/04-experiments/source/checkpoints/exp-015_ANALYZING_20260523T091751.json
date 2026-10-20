@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp-015",
+  "project": "gated_mfrm_judge_bias",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T05:26:45.165Z",
+    "updated_at": "2026-05-23T09:17:51.115Z",
+    "hypothesis": "N=8 合成数据上 G-MFRM joint vs sequential 的 Δτ 存在但效应量小，统计 power 不足以在 20 seeds 下达到显著——与真实数据（N=8 models）non-significant bootstrap 结论一致，确认是 power 不足而非方法无效。",
+    "parent": "exp-003b",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp015 && python run_exp015.py",
+      "server": "autodl-8gpu",
+      "gpu": "cuda:1",
+      "pid": 291457,
+      "log_path": "~/runs/gated_mfrm_judge_bias/exp-015.log",
+      "submitted_at": "2026-05-23T05:49:42.262Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "synthetic (generated in-memory, N=8 I=176 J=9)",
+      "data_count": "20 seeds x 2 methods (sequential + joint_gmfrm)",
+      "model_name": "G-MFRM synthetic calibration at N=8",
+      "seed": "0-19",
+      "checkpoint_source": "mvp_003 DGP code + G-MFRM model",
+      "eval_data": "synthetic DGP (N=8, I=176, J=9, rho=0.6)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T09:17:50.890Z"
+    }
+  },
+  "timestamp": "2026-05-23T09:17:51.214054+00:00",
+  "trigger": "update_registry"
+}

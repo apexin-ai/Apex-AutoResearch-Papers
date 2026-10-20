@@ -1,0 +1,346 @@
+meta:
+  venue: "EMNLP 2026 ARR"
+  track: "long"
+  template: ""
+  template_note: "EMNLP 2026 uses ACL Rolling Review format. Need to download official ARR/ACL 2024+ template (acl_latex). Worker in Step 2 will fetch."
+  page_limit: 8
+  reference_limit: "unlimited"
+  deadline: "2026-05-26"
+  core_claim: "Sequential estimation of judge bias and contamination in LLM evaluation suffers from omitted variable confounding; G-MFRM resolves this via staged joint calibration with formal identifiability guarantees and quantified error propagation bounds."
+  created_at: "2026-05-22T10:00:00Z"
+  phased_delivery:
+    phase_1:
+      deadline: "2026-05-22"
+      sections: [abstract, introduction, background, method, related_work]
+      note: "Sections independent of real-data experiments (exp-001 through exp-005)"
+    phase_2:
+      deadline: "2026-05-24"
+      sections: [experiments, conclusion, limitations, abstract_update]
+      note: "After exp-001/002/003/004/005 complete"
+
+paper_outline:
+  - section: abstract
+    word_budget: 220
+    core_bullets:
+      - "Problem: LLM-as-a-judge evaluation corrects judge bias and benchmark contamination independently, but sequential correction produces biased estimates due to omitted variable confounding"
+      - "Method: G-MFRM jointly calibrates model ability, item difficulty, judge severity, and contamination susceptibility via staged estimation with formal identifiability guarantees"
+      - "Key result: [PLACEHOLDER] Synthetic: joint estimation reduces theta-RMSE by 43.8% vs sequential (p<1e-6); real-data numbers TBD"
+      - "Error propagation: robust to Stage 2 noise sigma<=0.2 (theta degradation <6%), with critical threshold sigma_crit = sqrt(Var(e_i))"
+    dependencies: [method, experiments]
+    phase: 1
+    notes: "Phase 1 placeholder: leave real-data numbers as [TBD]. Phase 2 fills them."
+
+  - section: introduction
+    word_budget: 1100
+    core_bullets:
+      - "Hook (quantitative shock): sequential estimation inflates ability estimates of contaminated models — 43.8% RMSE degradation in synthetic validation — because unmodeled contamination is absorbed into bias-corrected scores"
+      - "Gap: judge bias methods (CyclicJudge, UDA) ignore contamination; contamination methods (DCR, ConStat) ignore judge effects; sequential pipelines do not resolve the confounding"
+      - "Insight (OVB): under non-orthogonality of d_j and c_n*e_i, sequential estimators are asymptotically biased — standard result from Angrist & Pischke 2009, first applied to LLM evaluation"
+      - "Mechanism: G-MFRM extends MFRM with a gating term c_n*e_i (adapted from DG-IRT), using staged joint calibration with externally-anchored e_i"
+      - "Contributions: (C1) Formalize confounding as OVB in LLM evaluation with formal observation (C2) G-MFRM framework with identifiability proof (7 propositions + 1 theorem) and error propagation bounds (C3) Empirical validation: 43.8% RMSE reduction on synthetic data [real-data TBD]"
+    dependencies: [background, method]
+    figures: [fig1_framework]
+    registry_refs: [mvp_003]
+    citation_hints:
+      - "OVB: Angrist & Pischke 2009"
+      - "MFRM: Linacre 1989, Eckes 2011"
+      - "DG-IRT: Shu et al. 2013"
+      - "Baselines: CyclicJudge 2026, UDA 2026, DCR 2025, ConStat 2024"
+      - "MT-Bench/Arena: Zheng et al. 2023"
+    phase: 1
+
+  - section: background
+    title: "Confounding in LLM Evaluation"
+    word_budget: 650
+    core_bullets:
+      - "Standard MFRM: logit P(Y_{nij} >= k) = theta_n - b_i - d_j - tau_k; established for LLM rater calibration (Wang 2025)"
+      - "Contamination as unmodeled facet: c_n*e_i inflates scores for contaminated models on exposed items"
+      - "Observation 1 (OVB): when d_j and c_n*e_i are correlated (rho>0) and only one is modeled, the omitted facet's effect is absorbed into parameter estimates; bias direction follows Cov sign. Frame as domain application of Angrist & Pischke 2009, not original proposition."
+      - "Sequential failure illustration: bias-first correction absorbs contamination into theta-hat; contamination-first misattributes judge effects as contamination signals"
+    dependencies: []
+    figures: [fig2_ovb_bias]
+    registry_refs: [mvp_003, exp-009]
+    notation_table:
+      Y_nij: "ordinal rating by judge j for model n on item i"
+      theta_n: "ability of model n"
+      b_i: "difficulty of item i"
+      d_j: "severity of judge j"
+      c_n: "contamination susceptibility of model n (>=0)"
+      e_i: "exposure level of item i (fixed, externally estimated)"
+      tau_k: "threshold parameter for category k"
+    phase: 1
+
+  - section: method
+    title: "The G-MFRM Framework"
+    word_budget: 1600
+    core_bullets:
+      - "3.1 Model specification: logit P(Y_{nij} >= k) = theta_n - b_i - d_j - tau_k + c_n*e_i; c_n >= 0 via HalfNormal prior; e_i fixed from external estimation. Standard MFRM recovered when c_n=0 or e_i=0."
+      - "3.2 Three-stage estimation: Stage 1 standard MFRM for initial (theta,b,d). Stage 2 external e_i via performance gap (original vs reference items) with difficulty correction, supplemented by temporal signals and LogProber. Stage 3 joint MCMC with e_i fixed, NCP for c_n to avoid funnel geometry."
+      - "3.3 Identifiability analysis (selected from 7P+1T): P2 no new indeterminacy when e_i fixed (eliminates bilinear ambiguity — key structural insight). P3 Var(e_i)>0 necessary for c_n identification (constant exposure collapses to MFRM). T1 sufficient conditions: crossed design + J>=2 + Var(e_i)>0 implies Fisher info nonsingular via Cauchy-Schwarz on (theta_n,c_n) block."
+      - "3.4 Error propagation: staged estimation = generated regressors problem (Pagan 1984). c_n*e_i creates EIV with attenuation lambda=Var(e)/[Var(e)+sigma^2]. Critical threshold sigma_crit = sqrt(Var(e_i)) marks variance-to-bias transition. Exp-012: robust at sigma<=0.2 (theta +5.9%, c_n +7.9%), degrades at sigma=0.5 (theta +36.9%, c_n +57.9%). Murphy-Topel variance correction for honest credible intervals."
+      - "3.5 Fair scores and diagnostics: theta-hat from Stage 3 posterior mean as bias-and-contamination-corrected ability; per-model c_n for training data audit; per-judge d_j for calibration; per-item e_i for item retirement."
+    dependencies: [background]
+    figures: [fig3_error_propagation]
+    tables: [tab1_error_prop]
+    registry_refs: [mvp_003, exp-012]
+    citation_hints:
+      - "MFRM: Linacre 1989/1994, Eckes 2011"
+      - "DG-IRT gating: Shu et al. 2013 Psychometrika"
+      - "Identifiability: Rothenberg 1971, San Martin 2016"
+      - "Two-step: Murphy & Topel 1985, Heckman 1979, Pagan 1984"
+      - "EIV: Fuller 1987"
+      - "Cut feedback: Plummer 2015"
+      - "NCP: Betancourt & Girolami 2015 (reparameterization)"
+    phase: 1
+
+  - section: experiments
+    word_budget: 1600
+    core_bullets:
+      - "4.1 Setup: MT-Bench + Arena-Hard, 9 LLM judges (3 proprietary + 6 open-source via vLLM), ~20 target models, ground truth = Chatbot Arena Elo, metrics = Kendall-tau + Spearman-rho"
+      - "4.2 Synthetic validation (mvp_003): Joint G-MFRM RMSE=0.124 vs Sequential 0.221 (-43.8%, Wilcoxon p<1e-6), tau=0.922 vs 0.859 (+6.3pp), convergence R-hat=1.03 ESS=224. 20 seeds, N=50 I=100 J=8."
+      - "4.3 Real-data results: [Phase 2, depends exp-003/004] G-MFRM fair scores vs 7 baselines on Kendall-tau with Arena votes. Main table uses 10-12 representative models (per family: largest + smallest). Full 14+ model table in Appendix."
+      - "4.4 Baseline comparison: [Phase 2, exp-004] raw avg, MFRM-only, sequential, CyclicJudge, CyclicJudge+discard, DCR Factor, UDA, G-MFRM"
+      - "4.5 Within-family size comparison: [Phase 2] 3 clean ablation pairs (Llama 8B vs 70B, Qwen 7B vs 72B, Mistral 7B vs 123B) — does c_n increase/decrease/remain stable with model scale controlling for architecture? High reviewer value."
+      - "4.6 Sensitivity: error propagation table cross-referenced from Method 3.4"
+      - "4.7 OVB validation: [Phase 2, exp-009] bias monotonic in rho, G-MFRM recovers c_n with coverage>=0.90"
+    dependencies: [method]
+    tables: [tab2_synthetic, tab3_main_results, tab4_ablation, tab_appendix_full]
+    figures: [fig4_main_results, fig5_theta_cn_scatter]
+    registry_refs: [mvp_003, exp-001, exp-002, exp-003, exp-004, exp-005, exp-009, exp-012]
+    phase: 2
+
+  - section: related_work
+    word_budget: 650
+    core_bullets:
+      - "Judge bias in LLM evaluation: CyclicJudge (round-robin, no contamination), UDA (neural K-factor, black-box, -63.4% inter-judge std), Fiedler (J/delta-J diagnostics, classical test theory). None model contamination jointly."
+      - "Contamination detection and adjustment: ConStat (reference comparison, r^2=0.94), DCR (fuzzy inference adjustment), LogProber (token logprob, gray-box), Min-K% (perplexity-based). None incorporate judge effects or measurement model."
+      - "Preference leakage: Ye et al. 2025 quantify judge-side contamination (same-family PLS ~8.9%). Distinct from G-MFRM's examinee-side contamination; partially captured by d_j."
+      - "IRT and MFRM for LLM evaluation: Wang 2025 (MFRM for 10 LLM raters, no contamination), PSN-IRT (neural 4PL, scalable but no judge/contamination facets). DG-IRT (Shu et al. 2013) is G-MFRM's methodological ancestor (binary gating for educational cheating)."
+      - "Positioning: G-MFRM is first to jointly model judge bias and contamination within a single psychometric framework for LLM evaluation, with formal identifiability analysis and quantified error propagation."
+    dependencies: [introduction, method]
+    phase: 1
+
+  - section: conclusion
+    word_budget: 250
+    core_bullets:
+      - "Summary: formalized confounding via OVB + proposed G-MFRM framework + demonstrated improvement on synthetic (and real [Phase 2]) data"
+      - "Key message: joint estimation of bias and contamination is methodologically necessary, not merely convenient"
+      - "Future: rank-k interaction extension, judge-model interaction term f_{nj}, cross-benchmark (WildBench) validation, adaptive Stage 2 estimation"
+    dependencies: [experiments]
+    phase: 2
+
+  - section: limitations
+    word_budget: 150
+    core_bullets:
+      - "c_n >= 0 assumption precludes adversarial contamination (intentional performance degradation)"
+      - "Rank-1 interaction (c_n*e_i) assumes single contamination source; person-fit diagnostics (infit/outfit) detect violations but rank-k extension is future work"
+      - "Stable estimation requires >=4 judges; at 2 judges, G-MFRM degrades gracefully to standard MFRM (no contamination correction)"
+    dependencies: [experiments]
+    phase: 2
+    notes: "EMNLP 2026 rule: short paragraph (~3 points), does not count toward 8-page limit"
+
+visualization_plan:
+  - fig_id: fig1_framework
+    type: conceptual
+    tool: paperbanana
+    description: "Two-panel conceptual figure. Left: sequential correction pipeline showing two paths (bias-first and contamination-first) with red confounding arrows indicating cross-facet absorption of unmodeled effects. Right: G-MFRM joint framework with three stages (MFRM init, external e_i estimation, joint gated model) and gating mechanism c_n*e_i highlighted. Color-code judge severity (blue) vs contamination (orange) to visually separate the two facets."
+    narrative_intent: "Sequential pipelines cannot avoid confounding because the first stage's estimates are already biased by the unmodeled facet; G-MFRM resolves this by jointly calibrating all facets with externally-anchored exposure."
+    design_notes: []
+    data_source: "conceptual (no data)"
+    placement: introduction
+    aspect_ratio: "16:9"
+    phase: 1
+
+  - fig_id: fig2_ovb_bias
+    type: statistical
+    tool: matplotlib
+    description: "Scatter plot: x-axis = true c_n (contamination susceptibility), y-axis = sequential theta-hat bias (theta_seq - theta_true). Each point is one model averaged over 20 seeds. Regression line with 95% CI band. Annotate Pearson r=0.65 and p-value. Color gradient by c_n magnitude."
+    narrative_intent: "Sequential estimation systematically overestimates ability for models with high contamination susceptibility (r=0.65), confirming that unmodeled contamination inflates ability estimates."
+    design_notes:
+      - "Pattern B: regression line with shaded CI band"
+      - "Color gradient (viridis) by true c_n reinforces x-axis"
+      - "Annotate r, p in upper-left corner box"
+      - "Column-width figure (compact)"
+    data_source: "registry: mvp_003 (server: /root/gated_mfrm_judge_bias/mvp/results_mvp003.csv)"
+    placement: background
+    aspect_ratio: "1:1"
+    phase: 1
+
+  - fig_id: fig3_error_propagation
+    type: statistical
+    tool: matplotlib
+    description: "Dual-panel figure: (a) theta-RMSE vs sigma_e with std error bars across 20 seeds, (b) c_n-RMSE vs sigma_e with std error bars. Both panels: vertical dashed line at sigma_crit=0.2 labeled. Shaded regime bands: green (sigma<sigma_crit, robust), red (sigma>sigma_crit, degraded). Overlaid dashed curve = theoretical EIV attenuation prediction."
+    narrative_intent: "G-MFRM exhibits graceful degradation below sigma_crit ~ 0.2 (theta <6%, c_n <8% RMSE increase), but rapid nonlinear degradation beyond, establishing a falsifiable applicability boundary that makes the staged approximation scientifically testable."
+    design_notes:
+      - "Pattern A: regime bands (green/red) with sigma_crit divider"
+      - "Overlay theory curve (dashed) vs empirical (solid markers+errorbars)"
+      - "Annotate percentage degradation at each sigma level"
+      - "Full-width figure for readability"
+    data_source: "registry: exp-012 (server: /root/gated_mfrm_judge_bias/exp012/summary.csv)"
+    placement: method
+    aspect_ratio: "2:1"
+    phase: 1
+
+  - fig_id: fig4_main_results
+    type: statistical
+    tool: matplotlib
+    description: "Grouped bar chart or forest plot: Kendall-tau with Chatbot Arena human votes for each method (8 baselines + G-MFRM). Error bars from bootstrap 95% CI. G-MFRM bar highlighted with distinct color. Grouped by benchmark (MT-Bench, Arena-Hard)."
+    narrative_intent: "[Phase 2 — TBD] G-MFRM fair scores achieve higher agreement with human rankings than all baselines, with the largest gap on contamination-heavy benchmarks."
+    design_notes:
+      - "Pattern E: bootstrap CI error bars"
+      - "G-MFRM bar in distinct accent color"
+      - "Sort methods by performance within each group"
+      - "Horizontal line at raw average level for reference"
+    data_source: "registry: exp-003, exp-004"
+    placement: experiments
+    aspect_ratio: "4:3"
+    phase: 2
+
+  - fig_id: fig5_theta_cn_scatter
+    type: statistical
+    tool: matplotlib
+    description: "Scatter plot: x-axis = estimated theta-hat (fair score), y-axis = estimated c_n (contamination susceptibility). Each point = one target model. Color = model family (Llama=blue, Qwen=green, Mistral=red, GPT=purple, Claude=orange, etc.). Size = parameter count (7B small, 70B medium, 235B large). Annotate outlier models by name."
+    narrative_intent: "[Phase 2] Panoramic view of the evaluation landscape: which model families are most contaminated, and how contamination correlates (or not) with genuine ability after correction."
+    design_notes:
+      - "Color by family for clean grouping"
+      - "Size encoding for parameter count adds third dimension"
+      - "Annotate top-3 most contaminated and top-3 highest ability models"
+      - "Column-width figure"
+    data_source: "registry: exp-003"
+    placement: experiments
+    aspect_ratio: "1:1"
+    phase: 2
+
+table_plan:
+  - table_id: tab1_error_prop
+    caption: "Sensitivity of G-MFRM to Stage 2 exposure estimation noise. Metrics averaged over 20 seeds (N=50, I=100, J=8). sigma_crit = sqrt(Var(e_i)) approx 0.2 marks the transition from variance-dominated to bias-dominated degradation."
+    placement: method
+    type: comparison
+    columns: ["sigma_e", "theta-RMSE", "Delta_theta(%)", "c_n-RMSE", "Delta_c_n(%)", "lambda", "R-hat_max"]
+    data_source: "registry: exp-012"
+    notes: "4 rows (sigma=0, 0.1, 0.2, 0.5). Single column width. Bold the sigma_crit row."
+    phase: 1
+
+  - table_id: tab2_synthetic
+    caption: "Synthetic validation under judge-contamination confounding (rho=0.6, N=50, I=100, J=8, 20 seeds). G-MFRM reduces theta-RMSE by 43.8% over sequential pipeline."
+    placement: experiments
+    type: comparison
+    columns: ["Method", "theta-RMSE", "Kendall-tau", "Wilcoxon p"]
+    data_source: "registry: mvp_003"
+    notes: "4 rows: Raw Average, MFRM-only, Sequential, Joint G-MFRM. Bold best."
+    phase: 1
+
+  - table_id: tab3_main_results
+    caption: "[Phase 2] Agreement between corrected rankings and Chatbot Arena human votes."
+    placement: experiments
+    type: comparison
+    columns: ["Method", "MT-Bench tau", "MT-Bench rho", "Arena-Hard tau", "Arena-Hard rho"]
+    data_source: "registry: exp-003, exp-004"
+    notes: "10-12 representative models (per family: largest + smallest). 8 method rows. Bold best, underline second. Full 14+ model table in Appendix (tab_appendix_full)."
+    baseline_row: "G-MFRM"
+    phase: 2
+
+  - table_id: tab4_ablation
+    caption: "[Phase 2] Ablation: contribution of each G-MFRM component to ranking quality."
+    placement: experiments
+    type: ablation
+    columns: ["Configuration", "Kendall-tau", "Delta-tau"]
+    data_source: "registry: exp-003 (component ablation runs)"
+    baseline_row: "Full G-MFRM"
+    notes: "Rows: Full, w/o gating (c_n=0), w/o judge facet (d_j=0), w/o NCP, w/o Horseshoe prior. Full numbers. If 8-page overflow, this table is first to cut (Director approved)."
+    phase: 2
+
+  - table_id: tab_appendix_full
+    caption: "[Phase 2] Full results for all 14+ target models across all baselines."
+    placement: appendix
+    type: comparison
+    columns: ["Model", "Family", "Size", "Method", "MT-Bench tau", "Arena-Hard tau"]
+    data_source: "registry: exp-003, exp-004"
+    notes: "Complete table with all models. Main text refers to Appendix for full results."
+    phase: 2
+
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "LLM-as-a-judge evaluation methodology"
+    - "benchmark contamination detection and adjustment"
+    - "psychometric measurement models (IRT, MFRM)"
+    - "two-step econometric estimation and errors-in-variables"
+  micro_clusters:
+    - cluster_name: "Psychometric & IRT Foundations"
+      search_queries:
+        - "many-facet Rasch model rater effects psychometrika"
+        - "item response theory LLM evaluation benchmark"
+        - "deterministic gated IRT cheating detection Shu 2013"
+        - "Bayesian item response theory Fox 2010"
+      must_cite:
+        - "Shu et al. 2013 DG-IRT Psychometrika"
+        - "Linacre 1989 Many-Facet Rasch Measurement"
+        - "Eckes 2011 Introduction to Many-Facet Rasch Measurement"
+      target_count: 8
+
+    - cluster_name: "Judge Bias Correction"
+      search_queries:
+        - "LLM judge bias mitigation debiasing 2025 2026"
+        - "CyclicJudge round-robin LLM evaluation"
+        - "unsupervised debiasing alignment UDA LLM judges"
+      must_cite:
+        - "CyclicJudge 2026"
+        - "UDA 2026 AAAI"
+        - "Zheng et al. 2023 MT-Bench Chatbot Arena NeurIPS"
+      target_count: 6
+
+    - cluster_name: "Contamination Detection & Adjustment"
+      search_queries:
+        - "benchmark contamination detection LLM evaluation 2024 2025"
+        - "data contamination quantification language model ConStat"
+        - "Min-K% perplexity contamination Shi 2023"
+      must_cite:
+        - "ConStat 2024 NeurIPS"
+        - "DCR 2025 EMNLP"
+        - "Golchin & Surdeanu 2023 contamination"
+        - "Shi et al. 2023 Min-K%"
+      target_count: 7
+
+    - cluster_name: "Econometrics & Two-Step Estimation"
+      search_queries:
+        - "omitted variable bias Angrist Pischke econometrics"
+        - "two-step maximum likelihood Murphy Topel 1985"
+        - "errors in variables attenuation bias Fuller"
+        - "generated regressors Pagan 1984"
+      must_cite:
+        - "Angrist & Pischke 2009 Mostly Harmless Econometrics"
+        - "Murphy & Topel 1985 two-step variance"
+        - "Heckman 1979 sample selection"
+      target_count: 4
+
+    - cluster_name: "LLM Evaluation Benchmarks"
+      search_queries:
+        - "Arena-Hard LLM benchmark evaluation"
+        - "Chatbot Arena crowdsourced evaluation"
+        - "LiveBench contamination-free benchmark"
+      must_cite:
+        - "Zheng et al. 2023 Chatbot Arena"
+      target_count: 4
+
+    - cluster_name: "MFRM+DIF Educational Measurement"
+      search_queries:
+        - "differential item functioning many-facet Rasch"
+        - "Bayesian IRT rater effects Fox Glas 2001"
+        - "DIF detection LLM fairness"
+      must_cite:
+        - "Wind & Peterson 2018"
+        - "Fox & Glas 2001 Bayesian IRT"
+      target_count: 3
+
+writing_order:
+  # Phase 1 (today): sections not dependent on real-data experiments
+  - background       # foundational notation + OVB observation
+  - method           # G-MFRM model, staged estimation, identifiability, error propagation
+  - introduction     # motivation + hook + contributions (needs method context)
+  - related_work     # positioning (needs method for differentiation)
+  - abstract         # synthesizes all Phase 1 sections, placeholder for real-data numbers
+  # Phase 2 (after real-data experiments):
+  - experiments      # real-data results + synthetic validation
+  - conclusion       # summarizes all
+  - limitations      # 3 points, short paragraph

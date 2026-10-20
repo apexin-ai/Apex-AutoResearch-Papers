@@ -1,0 +1,4234 @@
+# ssh exp006 add idata save
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 91
+- **Recorded user turns:** 0
+- **Tool calls:** 34
+- **Original source:** `logs/workers/worker_ssh_exp006_add_idata_save_20260522T200954.log`
+- **Structured JSON:** [`bb85e2413a1736e1cc92.json`](../../sessions/bb/bb85e2413a1736e1cc92.json)
+
+## Before a recorded user message
+
+91 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b253f1ef-21dd-446b-b902-c664e33dbd4c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779493800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1446e032-0007-4342-aed9-4afcec7a0f9c",
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by checking the server environment and reading the current code.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "282c568a-5924-4241-b0aa-2d7e10c59484",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3hFjV4Y3VhaHzURPLZ7jn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12698,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12698
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HEAtHFvHKafePXemQ52EUU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "34452870-2a8f-4b09-9ca1-8ff1992e95a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3hFjV4Y3VhaHzURPLZ7jn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12698,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12698
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T20:10:12.950Z_
+
+<details><summary>↩ Tool result · `toolu_01HEAtHFvHKafePXemQ52EUU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "3c4f5db8-e72d-4e43-a5ac-b1f4073e3fae",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check arviz installation and read the current code in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "5055a64a-5323-47b2-8303-1a49f8cf1e58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012HMJxv1UgkAs8Xj7ma949k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 24145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016URcYDMAZQ2mpJFzEPckve`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "python3 -c \"import arviz; print(arviz.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "328362be-bdbf-4f0b-974a-a3ad87074e4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012HMJxv1UgkAs8Xj7ma949k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 24145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T20:10:16.744Z_
+
+<details><summary>↩ Tool result · `toolu_016URcYDMAZQ2mpJFzEPckve`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "dcd2231e-8fa1-47fb-8831-103f6b34ac67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mo53isM9KfPirLvDqZofAs`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "dff49b04-7cbe-42d7-83c6-0695565454b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012HMJxv1UgkAs8Xj7ma949k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 24145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T20:10:18.558Z_
+
+<details><summary>↩ Tool result · `toolu_01Mo53isM9KfPirLvDqZofAs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    j\\n\\n... [截断: 输出过长，省略 13208 字符] ...\\n\\na...\\\")\\n    observations, all_judges, all_models, all_items = load_full_data(\\n        args.judgment_dir, args.exposure_csv)\\n    print(f\\\"  Observations: {len(observations)}\\\")\\n    print(f\\\"  Judges ({len(all_judges)}): {all_judges}\\\")\\n    print(f\\\"  Models ({len(all_models)}): {all_models}\\\")\\n    print(f\\\"  Items: {len(all_items)}\\\")\\n\\n    # Generate subsets\\n    print(f\\\"\\\\n[2/4] Generating judge subsets...\\\")\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\n    for k, subs in sorted(subsets.items()):\\n        print(f\\\"  k={k}: {len(subs)} subsets\\\")\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n[DRY RUN] Data loading OK. Summary:\\\")\\n        print(f\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\")\\n        print(f\\\"  Methods: {args.methods}\\\")\\n        if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n            print(\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\")\\n        return\\n\\n    # Run sensitivity analysis\\n    print(f\\\"\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\")\\n    if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n        sys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\n        import exp003_models  # noqa: verify import\\n\\n    df = run_sensitivity_analysis(\\n        observations, all_judges, args.exposure_csv,\\n        args.judge_counts, args.n_subsets, args.methods, args.seed)\\n\\n    # Save results\\n    csv_path = output_dir / \\\"sensitivity_results.csv\\\"\\n    df.to_csv(csv_path, index=False)\\n    print(f\\\"\\\\n  Saved {csv_path} ({len(df)} rows)\\\")\\n\\n    # Crossover analysis\\n    crossover = find_crossover_point(df)\\n    print(f\\\"\\\\n  Crossover analysis: {crossover}\\\")\\n\\n    # Leave-one-out\\n    loocv_df = pd.DataFrame()\\n    if args.run_loocv:\\n        print(\\\"\\\\n  Running leave-one-judge-out analysis...\\\")\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\n                                       args.exposure_csv, args.methods)\\n        if not loocv_df.empty:\\n            loocv_path = output_dir / \\\"leave_one_out_results.csv\\\"\\n            loocv_df.to_csv(loocv_path, index=False)\\n            print(f\\\"  Saved {loocv_path}\\\")\\n\\n    # Plots\\n    print(f\\\"\\\\n[4/4] Generating plots...\\\")\\n    plot_tau_vs_judge_count(df, output_dir)\\n    if not loocv_df.empty:\\n        plot_leave_one_out(loocv_df, output_dir)\\n\\n    # Save summary\\n    summary = {\\n        \\\"judge_counts_tested\\\": sorted(df[\\\"judge_count\\\"].unique().tolist()) if not df.empty else [],\\n        \\\"methods\\\": args.methods,\\n        \\\"n_subsets_per_count\\\": args.n_subsets,\\n        \\\"total_evaluations\\\": len(df),\\n        \\\"crossover\\\": crossover,\\n    }\\n\\n    if not df.empty:\\n        # Per-count summary\\n        summary[\\\"per_count\\\"] = {}\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            summary[\\\"per_count\\\"][int(k)] = {}\\n            for method in kdf[\\\"method\\\"].unique():\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                summary[\\\"per_count\\\"][int(k)][method] = {\\n                    \\\"mean_tau\\\": float(mdf[\\\"kendall_tau\\\"].mean()),\\n                    \\\"std_tau\\\": float(mdf[\\\"kendall_tau\\\"].std()),\\n                    \\\"n_subsets\\\": len(mdf),\\n                }\\n\\n    results_path = output_dir / \\\"results.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\n  Saved {results_path}\\\")\\n\\n    # Final summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n    if not df.empty:\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            line = f\\\"  k={k}:\\\"\\n            for method in sorted(kdf[\\\"method\\\"].unique()):\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                line += f\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\"\\n            print(line)\\n    print(f\\\"\\\\n  {crossover['note']}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "a5e445a7-c755-4ff9-ab4b-5a08e41c962a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-006: Judge Count Sensitivity Analysis.\\\\n\\\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\\\n\\\\nUsage:\\\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\\\n\\\\n  python run_exp006.py --dry-run  # validate data loading only\\\\n  python run_exp006.py --help\\\\n\\\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport itertools\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\\\n\\\\n\\\\nARENA_ELO = {\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 1105,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 1163,\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1130,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1170,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1208,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1187,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1272,\\\\n}\\\\n\\\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\\\nSEED = 42\\\\n\\\\n\\\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\\\n    if len(matched) < 3:\\\\n        return {\\\\\\\"kendall_tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"spearman_rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"n_matched\\\\\\\": len(matched)}\\\\n    models, thetas = zip(*matched)\\\\n    elos = [ARENA_ELO[m] for m in models]\\\\n    tau, tau_p = kendalltau(thetas, elos)\\\\n    rho, rho_p = spearmanr(thetas, elos)\\\\n    return {\\\\n        \\\\\\\"kendall_tau\\\\\\\": float(tau),\\\\n        \\\\\\\"kendall_p\\\\\\\": float(tau_p),\\\\n        \\\\\\\"spearman_rho\\\\\\\": float(rho),\\\\n        \\\\\\\"spearman_p\\\\\\\": float(rho_p),\\\\n        \\\\\\\"n_matched\\\\\\\": len(matched),\\\\n    }\\\\n\\\\n\\\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and preprocess all judgment data, returning observations + metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    records = load_judgments(judgment_dir)\\\\n    observations = preprocess(records)\\\\n\\\\n    all_judges = sorted({o[\\\\\\\"judge\\\\\\\"] for o in observations})\\\\n    all_models = sorted({o[\\\\\\\"model\\\\\\\"] for o in observations})\\\\n    all_items = sorted({o[\\\\\\\"item_id\\\\\\\"] for o in observations})\\\\n\\\\n    return observations, all_judges, all_models, all_items\\\\n\\\\n\\\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Filter observations to only include specified judges.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    judge_set = set(judge_subset)\\\\n    return [o for o in observations if o[\\\\\\\"judge\\\\\\\"] in judge_set]\\\\n\\\\n\\\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build the data dict expected by G-MFRM fitting functions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from collections import defaultdict\\\\n\\\\n    # Filter items by minimum judge coverage\\\\n    judges_per_item = defaultdict(set)\\\\n    for o in filtered_obs:\\\\n        judges_per_item[o[\\\\\\\"item_id\\\\\\\"]].add(o[\\\\\\\"judge\\\\\\\"])\\\\n    valid_items = {item for item, judges in judges_per_item.items()\\\\n                   if len(judges) >= min(min_judges, len(set(o[\\\\\\\"judge\\\\\\\"] for o in filtered_obs)))}\\\\n    filtered_obs = [o for o in filtered_obs if o[\\\\\\\"item_id\\\\\\\"] in valid_items]\\\\n\\\\n    if not filtered_obs:\\\\n        return None\\\\n\\\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\\\n    N = len(model_to_idx)\\\\n    I = len(item_to_idx)\\\\n    J = len(judge_to_idx)\\\\n\\\\n    model_idx = np.array([model_to_idx[o[\\\\\\\"model\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    item_idx = np.array([item_to_idx[o[\\\\\\\"item_id\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    judge_idx = np.array([judge_to_idx[o[\\\\\\\"judge\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    y = np.array([o[\\\\\\\"y\\\\\\\"] for o in filtered_obs], dtype=np.float32)\\\\n\\\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\\\n\\\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\\\n    j\\\\n\\\\n... [截断: 输出过长，省略 13208 字符] ...\\\\n\\\\na...\\\\\\\")\\\\n    observations, all_judges, all_models, all_items = load_full_data(\\\\n        args.judgment_dir, args.exposure_csv)\\\\n    print(f\\\\\\\"  Observations: {len(observations)}\\\\\\\")\\\\n    print(f\\\\\\\"  Judges ({len(all_judges)}): {all_judges}\\\\\\\")\\\\n    print(f\\\\\\\"  Models ({len(all_models)}): {all_models}\\\\\\\")\\\\n    print(f\\\\\\\"  Items: {len(all_items)}\\\\\\\")\\\\n\\\\n    # Generate subsets\\\\n    print(f\\\\\\\"\\\\\\\\n[2/4] Generating judge subsets...\\\\\\\")\\\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\\\n    for k, subs in sorted(subsets.items()):\\\\n        print(f\\\\\\\"  k={k}: {len(subs)} subsets\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"\\\\\\\\n[DRY RUN] Data loading OK. Summary:\\\\\\\")\\\\n        print(f\\\\\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\\\\\")\\\\n        print(f\\\\\\\"  Methods: {args.methods}\\\\\\\")\\\\n        if any(m in args.methods for m in [\\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"]):\\\\n            print(\\\\\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\\\\\")\\\\n        return\\\\n\\\\n    # Run sensitivity analysis\\\\n    print(f\\\\\\\"\\\\\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\\\\\")\\\\n    if any(m in args.methods for m in [\\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"]):\\\\n        sys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\n        import exp003_models  # noqa: verify import\\\\n\\\\n    df = run_sensitivity_analysis(\\\\n        observations, all_judges, args.exposure_csv,\\\\n        args.judge_counts, args.n_subsets, args.methods, args.seed)\\\\n\\\\n    # Save results\\\\n    csv_path = output_dir / \\\\\\\"sensitivity_results.csv\\\\\\\"\\\\n    df.to_csv(csv_path, index=False)\\\\n    print(f\\\\\\\"\\\\\\\\n  Saved {csv_path} ({len(df)} rows)\\\\\\\")\\\\n\\\\n    # Crossover analysis\\\\n    crossover = find_crossover_point(df)\\\\n    print(f\\\\\\\"\\\\\\\\n  Crossover analysis: {crossover}\\\\\\\")\\\\n\\\\n    # Leave-one-out\\\\n    loocv_df = pd.DataFrame()\\\\n    if args.run_loocv:\\\\n        print(\\\\\\\"\\\\\\\\n  Running leave-one-judge-out analysis...\\\\\\\")\\\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\\\n                                       args.exposure_csv, args.methods)\\\\n        if not loocv_df.empty:\\\\n            loocv_path = output_dir / \\\\\\\"leave_one_out_results.csv\\\\\\\"\\\\n            loocv_df.to_csv(loocv_path, index=False)\\\\n            print(f\\\\\\\"  Saved {loocv_path}\\\\\\\")\\\\n\\\\n    # Plots\\\\n    print(f\\\\\\\"\\\\\\\\n[4/4] Generating plots...\\\\\\\")\\\\n    plot_tau_vs_judge_count(df, output_dir)\\\\n    if not loocv_df.empty:\\\\n        plot_leave_one_out(loocv_df, output_dir)\\\\n\\\\n    # Save summary\\\\n    summary = {\\\\n        \\\\\\\"judge_counts_tested\\\\\\\": sorted(df[\\\\\\\"judge_count\\\\\\\"].unique().tolist()) if not df.empty else [],\\\\n        \\\\\\\"methods\\\\\\\": args.methods,\\\\n        \\\\\\\"n_subsets_per_count\\\\\\\": args.n_subsets,\\\\n        \\\\\\\"total_evaluations\\\\\\\": len(df),\\\\n        \\\\\\\"crossover\\\\\\\": crossover,\\\\n    }\\\\n\\\\n    if not df.empty:\\\\n        # Per-count summary\\\\n        summary[\\\\\\\"per_count\\\\\\\"] = {}\\\\n        for k in sorted(df[\\\\\\\"judge_count\\\\\\\"].unique()):\\\\n            kdf = df[df[\\\\\\\"judge_count\\\\\\\"] == k]\\\\n            summary[\\\\\\\"per_count\\\\\\\"][int(k)] = {}\\\\n            for method in kdf[\\\\\\\"method\\\\\\\"].unique():\\\\n                mdf = kdf[kdf[\\\\\\\"method\\\\\\\"] == method]\\\\n                summary[\\\\\\\"per_count\\\\\\\"][int(k)][method] = {\\\\n                    \\\\\\\"mean_tau\\\\\\\": float(mdf[\\\\\\\"kendall_tau\\\\\\\"].mean()),\\\\n                    \\\\\\\"std_tau\\\\\\\": float(mdf[\\\\\\\"kendall_tau\\\\\\\"].std()),\\\\n                    \\\\\\\"n_subsets\\\\\\\": len(mdf),\\\\n                }\\\\n\\\\n    results_path = output_dir / \\\\\\\"results.json\\\\\\\"\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\n  Saved {results_path}\\\\\\\")\\\\n\\\\n    # Final summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    if not df.empty:\\\\n        for k in sorted(df[\\\\\\\"judge_count\\\\\\\"].unique()):\\\\n            kdf = df[df[\\\\\\\"judge_count\\\\\\\"] == k]\\\\n            line = f\\\\\\\"  k={k}:\\\\\\\"\\\\n            for method in sorted(kdf[\\\\\\\"method\\\\\\\"].unique()):\\\\n                mdf = kdf[kdf[\\\\\\\"method\\\\\\\"] == method]\\\\n                line += f\\\\\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\\\\\"\\\\n            print(line)\\\\n    print(f\\\\\\\"\\\\\\\\n  {crossover['note']}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    j\\n\\n... [截断: 输出过长，省略 13208 字符] ...\\n\\na...\\\")\\n    observations, all_judges, all_models, all_items = load_full_data(\\n        args.judgment_dir, args.exposure_csv)\\n    print(f\\\"  Observations: {len(observations)}\\\")\\n    print(f\\\"  Judges ({len(all_judges)}): {all_judges}\\\")\\n    print(f\\\"  Models ({len(all_models)}): {all_models}\\\")\\n    print(f\\\"  Items: {len(all_items)}\\\")\\n\\n    # Generate subsets\\n    print(f\\\"\\\\n[2/4] Generating judge subsets...\\\")\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\n    for k, subs in sorted(subsets.items()):\\n        print(f\\\"  k={k}: {len(subs)} subsets\\\")\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n[DRY RUN] Data loading OK. Summary:\\\")\\n        print(f\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\")\\n        print(f\\\"  Methods: {args.methods}\\\")\\n        if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n            print(\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\")\\n        return\\n\\n    # Run sensitivity analysis\\n    print(f\\\"\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\")\\n    if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n        sys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\n        import exp003_models  # noqa: verify import\\n\\n    df = run_sensitivity_analysis(\\n        observations, all_judges, args.exposure_csv,\\n        args.judge_counts, args.n_subsets, args.methods, args.seed)\\n\\n    # Save results\\n    csv_path = output_dir / \\\"sensitivity_results.csv\\\"\\n    df.to_csv(csv_path, index=False)\\n    print(f\\\"\\\\n  Saved {csv_path} ({len(df)} rows)\\\")\\n\\n    # Crossover analysis\\n    crossover = find_crossover_point(df)\\n    print(f\\\"\\\\n  Crossover analysis: {crossover}\\\")\\n\\n    # Leave-one-out\\n    loocv_df = pd.DataFrame()\\n    if args.run_loocv:\\n        print(\\\"\\\\n  Running leave-one-judge-out analysis...\\\")\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\n                                       args.exposure_csv, args.methods)\\n        if not loocv_df.empty:\\n            loocv_path = output_dir / \\\"leave_one_out_results.csv\\\"\\n            loocv_df.to_csv(loocv_path, index=False)\\n            print(f\\\"  Saved {loocv_path}\\\")\\n\\n    # Plots\\n    print(f\\\"\\\\n[4/4] Generating plots...\\\")\\n    plot_tau_vs_judge_count(df, output_dir)\\n    if not loocv_df.empty:\\n        plot_leave_one_out(loocv_df, output_dir)\\n\\n    # Save summary\\n    summary = {\\n        \\\"judge_counts_tested\\\": sorted(df[\\\"judge_count\\\"].unique().tolist()) if not df.empty else [],\\n        \\\"methods\\\": args.methods,\\n        \\\"n_subsets_per_count\\\": args.n_subsets,\\n        \\\"total_evaluations\\\": len(df),\\n        \\\"crossover\\\": crossover,\\n    }\\n\\n    if not df.empty:\\n        # Per-count summary\\n        summary[\\\"per_count\\\"] = {}\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            summary[\\\"per_count\\\"][int(k)] = {}\\n            for method in kdf[\\\"method\\\"].unique():\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                summary[\\\"per_count\\\"][int(k)][method] = {\\n                    \\\"mean_tau\\\": float(mdf[\\\"kendall_tau\\\"].mean()),\\n                    \\\"std_tau\\\": float(mdf[\\\"kendall_tau\\\"].std()),\\n                    \\\"n_subsets\\\": len(mdf),\\n                }\\n\\n    results_path = output_dir / \\\"results.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\n  Saved {results_path}\\\")\\n\\n    # Final summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n    if not df.empty:\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            line = f\\\"  k={k}:\\\"\\n            for method in sorted(kdf[\\\"method\\\"].unique()):\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                line += f\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\"\\n            print(line)\\n    print(f\\\"\\\\n  {crossover['note']}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. I need to see the full file, especially the MCMC fitting parts. Let me check arviz and get the key sections of the code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "9d910c88-0838-4c82-b98e-9d6b58b281ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q18mjAgYumJ15mkm45qLhq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3936,
+      "cache_read_input_tokens": 24831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Output was truncated. Let me get the critical sections — the MCMC fitting logic and the missing middle portion.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "eb63814f-de73-4980-b525-c5c81052b2d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q18mjAgYumJ15mkm45qLhq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3936,
+      "cache_read_input_tokens": 24831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TexG4BWFe1uWbk3xSkP9sk`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "python3 -c \"import arviz; print(arviz.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "70436b64-2811-4375-8919-08cb84d4ea9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q18mjAgYumJ15mkm45qLhq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3936,
+      "cache_read_input_tokens": 24831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T20:10:26.693Z_
+
+<details><summary>↩ Tool result · `toolu_01TexG4BWFe1uWbk3xSkP9sk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "6355da81-22fa-453d-9724-289b35d67989",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HsCncyHL2UhqFuKkR6iErT`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"mcmc\\|MCMC\\|mcmc.run\\|get_samples\\|numpyro\\|arviz\\|idata\\|InferenceData\\|\\.nc\\|netcdf\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "84ff0e98-59ed-444c-a914-888116f2f4b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q18mjAgYumJ15mkm45qLhq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3936,
+      "cache_read_input_tokens": 24831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T20:10:29.062Z_
+
+<details><summary>↩ Tool result · `toolu_01HsCncyHL2UhqFuKkR6iErT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "7f8e2d92-03e2-48da-8d9b-7ec2d6809bc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RgpAwQhcKN4ZcHsS6nfoho`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "wc -l /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "5f20d346-c8f9-4c0f-ad57-205f43526b4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q18mjAgYumJ15mkm45qLhq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3936,
+      "cache_read_input_tokens": 24831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T20:10:30.048Z_
+
+<details><summary>↩ Tool result · `toolu_01RgpAwQhcKN4ZcHsS6nfoho`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"565 /root/gated_mfrm_judge_bias/exp006/run_exp006.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "66be51ec-a03f-4a56-8385-e5b136c8b006",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"565 /root/gated_mfrm_judge_bias/exp006/run_exp006.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"565 /root/gated_mfrm_judge_bias/exp006/run_exp006.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011t7Zob3698yY7d4VMixdN6`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"mcmc\\|MCMC\\|get_samples\\|numpyro\\|arviz\\|idata\\|netcdf\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "90bad14d-86bf-4954-bb5f-bb25901e03d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiBnzB3J1hiQ8k45q6kjrg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 836,
+      "cache_read_input_tokens": 28767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 836
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T20:10:34.051Z_
+
+<details><summary>↩ Tool result · `toolu_011t7Zob3698yY7d4VMixdN6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "dd84b8d3-2cd2-438b-bbcc-cd3ab319a007",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TSeh5z7U6jf8xX4c5B9iRB`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "python3 -c \"import arviz; print(arviz.__version__)\" 2>/dev/null || pip install arviz",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "b1c38b25-3b5d-4760-a5ef-9468a116cb9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JiBnzB3J1hiQ8k45q6kjrg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 836,
+      "cache_read_input_tokens": 28767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 836
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T20:10:35.161Z_
+
+<details><summary>↩ Tool result · `toolu_01TSeh5z7U6jf8xX4c5B9iRB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import arviz; print(arviz.__version__)\\\" 2>/dev/null || pip install arviz'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: pip: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "ffba266e-da20-4b69-8464-048bde1dad99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import arviz; print(arviz.__version__)\\\\\\\" 2>/dev/null || pip install arviz'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: pip: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import arviz; print(arviz.__version__)\\\" 2>/dev/null || pip install arviz'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: pip: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to use the conda environment. Let me check the environment setup on this autodl server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "b5e63f8d-bc65-4869-ada7-6e34c9c4d8ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181hjUKf9T693TVKhKsEpMs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 29603,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Need to find the right Python/pip path. Let me check the environment and get the MCMC-related lines.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "198d5eb9-3b9b-48ce-bd56-32db3fa9d967",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181hjUKf9T693TVKhKsEpMs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 29603,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014CKVWmJbx6iMtPf5kFSoaz`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"mcmc\\|MCMC\\|get_samples\\|numpyro\\|arviz\\|idata\\|netcdf\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "d90e52c1-2be6-4489-ac7c-85e4eb2d33e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181hjUKf9T693TVKhKsEpMs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 29603,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T20:10:40.879Z_
+
+<details><summary>↩ Tool result · `toolu_014CKVWmJbx6iMtPf5kFSoaz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "bfdcb459-1932-4971-aadf-4ff7e3e33f2b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NHverMUfEeSyHjK2xaVpwK`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root -name \"pip\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "c69b03cd-913b-4a33-b3fc-e3841d383f68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181hjUKf9T693TVKhKsEpMs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 29603,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AaYrkZ1iJjapv8fParJ4Et`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root -name \"python3\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "ce2a85db-f566-460b-9986-865af3d78f56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0181hjUKf9T693TVKhKsEpMs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 29603,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T20:10:42.438Z_
+
+<details><summary>↩ Tool result · `toolu_01NHverMUfEeSyHjK2xaVpwK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/pip\\n/root/miniconda3/pkgs/pip-24.0-py312h06a4308_0/bin/pip\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "67f5e910-c673-42c7-ac96-deda36364db9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/pip\\\\n/root/miniconda3/pkgs/pip-24.0-py312h06a4308_0/bin/pip\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/pip\\n/root/miniconda3/pkgs/pip-24.0-py312h06a4308_0/bin/pip\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T20:10:43.102Z_
+
+<details><summary>↩ Tool result · `toolu_01AaYrkZ1iJjapv8fParJ4Et`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "93048166-d14f-4850-b05c-e78f072a42bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Uu7s98fAbGxHo8ah7CRSrc`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root -name \"python\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "a8a35713-8153-4705-958b-8cc8dc3f18de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P8Qshci4w9yUMT8ouAHY3e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 30276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 781
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T20:10:46.816Z_
+
+<details><summary>↩ Tool result · `toolu_01Uu7s98fAbGxHo8ah7CRSrc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "a903932a-bd17-4c83-a3c2-28754ef39de1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0171hkfUMaxzm79HPHav2iaM`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"mcmc\\|MCMC\\|get_samples\\|numpyro\\|arviz\\|idata\\|netcdf\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "5ccbcd2b-205f-46f2-b597-2d894ee9f22b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P8Qshci4w9yUMT8ouAHY3e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 30276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 781
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T20:10:46.972Z_
+
+<details><summary>↩ Tool result · `toolu_0171hkfUMaxzm79HPHav2iaM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "fb76b8f4-85c3-4af5-88ac-6351e02b05fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe character in the grep pattern is being blocked. I need to use extended regex or different approach. Let me use `-E` flag with grep or do separate greps. Actually, the issue is the `|` in the grep pattern is being interpreted as a shell pipe. I need to escape or quote it differently.
+
+Let me try using `-E` with the pattern properly quoted, or just do multiple separate greps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "0c5867c6-5f7f-4341-9210-d88302bde16c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjKxeXn9UuLkwxt3pCosJa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 31057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kx7sbQ9kBpyksk7MmbcTdJ`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"mcmc\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "b41d5b29-c8c0-4b23-83b1-260dcaf1dcdc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjKxeXn9UuLkwxt3pCosJa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 31057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T20:10:52.838Z_
+
+<details><summary>↩ Tool result · `toolu_01Kx7sbQ9kBpyksk7MmbcTdJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "e262d49d-bd9d-42e4-b204-a9370dc14d30",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CwhVN2jPjgPbeNZwHDogR7`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"MCMC\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "6d374949-8cab-450c-8b5a-34087f905ff7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjKxeXn9UuLkwxt3pCosJa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 31057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T20:10:53.884Z_
+
+<details><summary>↩ Tool result · `toolu_01CwhVN2jPjgPbeNZwHDogR7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"159:    \\\"\\\"\\\"Raw average method (no MCMC, always available).\\\"\\\"\\\"\\n482:            print(\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "514a7efd-80b9-4102-afc1-717a01bfffcd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"159:    \\\\\\\"\\\\\\\"\\\\\\\"Raw average method (no MCMC, always available).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n482:            print(\\\\\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"159:    \\\"\\\"\\\"Raw average method (no MCMC, always available).\\\"\\\"\\\"\\n482:            print(\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014Fu9aodrUH4ZQs8bgJbTzU`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"get_samples\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "627fae4d-4795-4b3d-8f36-d2dbd15c2013",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjKxeXn9UuLkwxt3pCosJa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 31057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T20:10:54.562Z_
+
+<details><summary>↩ Tool result · `toolu_014Fu9aodrUH4ZQs8bgJbTzU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "242c736d-81b5-48a8-9342-137e414a5456",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No `mcmc` (lowercase), no `get_samples` - interesting. This means the MCMC fitting is likely done through imported functions from `exp003_models`. Let me see the relevant fitting functions. Let me read the middle part of the file that was truncated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "f135e63b-f9c7-455d-8328-82319bf1f9ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ViRFkqMP9fqpc5FcmSBe6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 31539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+The MCMC logic is likely in imported `exp003_models`. Let me read the middle section of the file that was truncated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "475a2961-8f44-4d89-96e0-85ef4ff4e58f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ViRFkqMP9fqpc5FcmSBe6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 31539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EiJFNLw6x5tPh7LZ7E7bub`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -200 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "d268d776-c280-472c-9476-f455f157a073",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ViRFkqMP9fqpc5FcmSBe6U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 31539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T20:11:01.419Z_
+
+<details><summary>↩ Tool result · `toolu_01EiJFNLw6x5tPh7LZ7E7bub`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    judge_names = sorted(judge_to_idx, key=judge_to_idx.get)\\n\\n    return {\\n        \\\"model_idx\\\": model_idx,\\n        \\\"item_idx\\\": item_idx,\\n        \\\"judge_idx\\\": judge_idx,\\n        \\\"y\\\": y,\\n        \\\"model_names\\\": model_names,\\n        \\\"judge_names\\\": judge_names,\\n        \\\"e_i\\\": e_i,\\n        \\\"N\\\": N,\\n        \\\"I\\\": I,\\n        \\\"J\\\": J,\\n        \\\"n_obs\\\": len(y),\\n    }\\n\\n\\ndef generate_judge_subsets(all_judges: list, judge_counts: list,\\n                           n_subsets: int, seed: int) -> dict:\\n    \\\"\\\"\\\"Generate judge subsets for each count level.\\n\\n    For small counts (where C(9,k) <= n_subsets), use all combinations.\\n    Otherwise, sample randomly.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    subsets = {}\\n\\n    for k in judge_counts:\\n        if k >= len(all_judges):\\n            subsets[k] = [list(all_judges)]\\n            continue\\n\\n        all_combos = list(itertools.combinations(all_judges, k))\\n        if len(all_combos) <= n_subsets:\\n            subsets[k] = [list(c) for c in all_combos]\\n        else:\\n            chosen_idx = rng.choice(len(all_combos), size=n_subsets, replace=False)\\n            subsets[k] = [list(all_combos[i]) for i in chosen_idx]\\n\\n    return subsets\\n\\n\\ndef fit_raw_average_subset(data: dict) -> dict:\\n    \\\"\\\"\\\"Raw average method (no MCMC, always available).\\\"\\\"\\\"\\n    N = data[\\\"N\\\"]\\n    model_idx = data[\\\"model_idx\\\"]\\n    y = data[\\\"y\\\"]\\n    theta_hat = np.zeros(N)\\n    for n in range(N):\\n        mask = model_idx == n\\n        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\"model_names\\\"])}\\n\\n\\ndef fit_methods_on_subset(data: dict, methods: list) -> dict:\\n    \\\"\\\"\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\"\\\"\\\"\\n    results = {}\\n\\n    if \\\"raw_average\\\" in methods:\\n        results[\\\"raw_average\\\"] = fit_raw_average_subset(data)\\n\\n    if \\\"mfrm_only\\\" in methods or \\\"sequential\\\" in methods or \\\"joint_gmfrm\\\" in methods:\\n        from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\n\\n        if \\\"mfrm_only\\\" in methods:\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"mfrm_only\\\"] = {\\n                name: float(mfrm[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n        if \\\"sequential\\\" in methods:\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"sequential\\\"] = {\\n                name: float(seq[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n        if \\\"joint_gmfrm\\\" in methods:\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"joint_gmfrm\\\"] = {\\n                name: float(joint[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "1be78b8d-fedb-4b1d-9616-023c6ece40cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-006: Judge Count Sensitivity Analysis.\\\\n\\\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\\\n\\\\nUsage:\\\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\\\n\\\\n  python run_exp006.py --dry-run  # validate data loading only\\\\n  python run_exp006.py --help\\\\n\\\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport itertools\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\\\n\\\\n\\\\nARENA_ELO = {\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 1105,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 1163,\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1130,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1170,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1208,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1187,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1272,\\\\n}\\\\n\\\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\\\nSEED = 42\\\\n\\\\n\\\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\\\n    if len(matched) < 3:\\\\n        return {\\\\\\\"kendall_tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"spearman_rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"n_matched\\\\\\\": len(matched)}\\\\n    models, thetas = zip(*matched)\\\\n    elos = [ARENA_ELO[m] for m in models]\\\\n    tau, tau_p = kendalltau(thetas, elos)\\\\n    rho, rho_p = spearmanr(thetas, elos)\\\\n    return {\\\\n        \\\\\\\"kendall_tau\\\\\\\": float(tau),\\\\n        \\\\\\\"kendall_p\\\\\\\": float(tau_p),\\\\n        \\\\\\\"spearman_rho\\\\\\\": float(rho),\\\\n        \\\\\\\"spearman_p\\\\\\\": float(rho_p),\\\\n        \\\\\\\"n_matched\\\\\\\": len(matched),\\\\n    }\\\\n\\\\n\\\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and preprocess all judgment data, returning observations + metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    records = load_judgments(judgment_dir)\\\\n    observations = preprocess(records)\\\\n\\\\n    all_judges = sorted({o[\\\\\\\"judge\\\\\\\"] for o in observations})\\\\n    all_models = sorted({o[\\\\\\\"model\\\\\\\"] for o in observations})\\\\n    all_items = sorted({o[\\\\\\\"item_id\\\\\\\"] for o in observations})\\\\n\\\\n    return observations, all_judges, all_models, all_items\\\\n\\\\n\\\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Filter observations to only include specified judges.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    judge_set = set(judge_subset)\\\\n    return [o for o in observations if o[\\\\\\\"judge\\\\\\\"] in judge_set]\\\\n\\\\n\\\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build the data dict expected by G-MFRM fitting functions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from collections import defaultdict\\\\n\\\\n    # Filter items by minimum judge coverage\\\\n    judges_per_item = defaultdict(set)\\\\n    for o in filtered_obs:\\\\n        judges_per_item[o[\\\\\\\"item_id\\\\\\\"]].add(o[\\\\\\\"judge\\\\\\\"])\\\\n    valid_items = {item for item, judges in judges_per_item.items()\\\\n                   if len(judges) >= min(min_judges, len(set(o[\\\\\\\"judge\\\\\\\"] for o in filtered_obs)))}\\\\n    filtered_obs = [o for o in filtered_obs if o[\\\\\\\"item_id\\\\\\\"] in valid_items]\\\\n\\\\n    if not filtered_obs:\\\\n        return None\\\\n\\\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\\\n    N = len(model_to_idx)\\\\n    I = len(item_to_idx)\\\\n    J = len(judge_to_idx)\\\\n\\\\n    model_idx = np.array([model_to_idx[o[\\\\\\\"model\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    item_idx = np.array([item_to_idx[o[\\\\\\\"item_id\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    judge_idx = np.array([judge_to_idx[o[\\\\\\\"judge\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    y = np.array([o[\\\\\\\"y\\\\\\\"] for o in filtered_obs], dtype=np.float32)\\\\n\\\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\\\n\\\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\\\n    judge_names = sorted(judge_to_idx, key=judge_to_idx.get)\\\\n\\\\n    return {\\\\n        \\\\\\\"model_idx\\\\\\\": model_idx,\\\\n        \\\\\\\"item_idx\\\\\\\": item_idx,\\\\n        \\\\\\\"judge_idx\\\\\\\": judge_idx,\\\\n        \\\\\\\"y\\\\\\\": y,\\\\n        \\\\\\\"model_names\\\\\\\": model_names,\\\\n        \\\\\\\"judge_names\\\\\\\": judge_names,\\\\n        \\\\\\\"e_i\\\\\\\": e_i,\\\\n        \\\\\\\"N\\\\\\\": N,\\\\n        \\\\\\\"I\\\\\\\": I,\\\\n        \\\\\\\"J\\\\\\\": J,\\\\n        \\\\\\\"n_obs\\\\\\\": len(y),\\\\n    }\\\\n\\\\n\\\\ndef generate_judge_subsets(all_judges: list, judge_counts: list,\\\\n                           n_subsets: int, seed: int) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate judge subsets for each count level.\\\\n\\\\n    For small counts (where C(9,k) <= n_subsets), use all combinations.\\\\n    Otherwise, sample randomly.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n    subsets = {}\\\\n\\\\n    for k in judge_counts:\\\\n        if k >= len(all_judges):\\\\n            subsets[k] = [list(all_judges)]\\\\n            continue\\\\n\\\\n        all_combos = list(itertools.combinations(all_judges, k))\\\\n        if len(all_combos) <= n_subsets:\\\\n            subsets[k] = [list(c) for c in all_combos]\\\\n        else:\\\\n            chosen_idx = rng.choice(len(all_combos), size=n_subsets, replace=False)\\\\n            subsets[k] = [list(all_combos[i]) for i in chosen_idx]\\\\n\\\\n    return subsets\\\\n\\\\n\\\\ndef fit_raw_average_subset(data: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Raw average method (no MCMC, always available).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N = data[\\\\\\\"N\\\\\\\"]\\\\n    model_idx = data[\\\\\\\"model_idx\\\\\\\"]\\\\n    y = data[\\\\\\\"y\\\\\\\"]\\\\n    theta_hat = np.zeros(N)\\\\n    for n in range(N):\\\\n        mask = model_idx == n\\\\n        if mask.sum() > 0:\\\\n            theta_hat[n] = y[mask].mean()\\\\n    theta_hat = theta_hat - theta_hat.mean()\\\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])}\\\\n\\\\n\\\\ndef fit_methods_on_subset(data: dict, methods: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = {}\\\\n\\\\n    if \\\\\\\"raw_average\\\\\\\" in methods:\\\\n        results[\\\\\\\"raw_average\\\\\\\"] = fit_raw_average_subset(data)\\\\n\\\\n    if \\\\\\\"mfrm_only\\\\\\\" in methods or \\\\\\\"sequential\\\\\\\" in methods or \\\\\\\"joint_gmfrm\\\\\\\" in methods:\\\\n        from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\\\n\\\\n        if \\\\\\\"mfrm_only\\\\\\\" in methods:\\\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"mfrm_only\\\\\\\"] = {\\\\n                name: float(mfrm[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n\\\\n        if \\\\\\\"sequential\\\\\\\" in methods:\\\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"sequential\\\\\\\"] = {\\\\n                name: float(seq[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n\\\\n        if \\\\\\\"joint_gmfrm\\\\\\\" in methods:\\\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"joint_gmfrm\\\\\\\"] = {\\\\n                name: float(joint[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    judge_names = sorted(judge_to_idx, key=judge_to_idx.get)\\n\\n    return {\\n        \\\"model_idx\\\": model_idx,\\n        \\\"item_idx\\\": item_idx,\\n        \\\"judge_idx\\\": judge_idx,\\n        \\\"y\\\": y,\\n        \\\"model_names\\\": model_names,\\n        \\\"judge_names\\\": judge_names,\\n        \\\"e_i\\\": e_i,\\n        \\\"N\\\": N,\\n        \\\"I\\\": I,\\n        \\\"J\\\": J,\\n        \\\"n_obs\\\": len(y),\\n    }\\n\\n\\ndef generate_judge_subsets(all_judges: list, judge_counts: list,\\n                           n_subsets: int, seed: int) -> dict:\\n    \\\"\\\"\\\"Generate judge subsets for each count level.\\n\\n    For small counts (where C(9,k) <= n_subsets), use all combinations.\\n    Otherwise, sample randomly.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    subsets = {}\\n\\n    for k in judge_counts:\\n        if k >= len(all_judges):\\n            subsets[k] = [list(all_judges)]\\n            continue\\n\\n        all_combos = list(itertools.combinations(all_judges, k))\\n        if len(all_combos) <= n_subsets:\\n            subsets[k] = [list(c) for c in all_combos]\\n        else:\\n            chosen_idx = rng.choice(len(all_combos), size=n_subsets, replace=False)\\n            subsets[k] = [list(all_combos[i]) for i in chosen_idx]\\n\\n    return subsets\\n\\n\\ndef fit_raw_average_subset(data: dict) -> dict:\\n    \\\"\\\"\\\"Raw average method (no MCMC, always available).\\\"\\\"\\\"\\n    N = data[\\\"N\\\"]\\n    model_idx = data[\\\"model_idx\\\"]\\n    y = data[\\\"y\\\"]\\n    theta_hat = np.zeros(N)\\n    for n in range(N):\\n        mask = model_idx == n\\n        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\"model_names\\\"])}\\n\\n\\ndef fit_methods_on_subset(data: dict, methods: list) -> dict:\\n    \\\"\\\"\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\"\\\"\\\"\\n    results = {}\\n\\n    if \\\"raw_average\\\" in methods:\\n        results[\\\"raw_average\\\"] = fit_raw_average_subset(data)\\n\\n    if \\\"mfrm_only\\\" in methods or \\\"sequential\\\" in methods or \\\"joint_gmfrm\\\" in methods:\\n        from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\n\\n        if \\\"mfrm_only\\\" in methods:\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"mfrm_only\\\"] = {\\n                name: float(mfrm[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n        if \\\"sequential\\\" in methods:\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"sequential\\\"] = {\\n                name: float(seq[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n        if \\\"joint_gmfrm\\\" in methods:\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"joint_gmfrm\\\"] = {\\n                name: float(joint[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the key function `fit_methods_on_subset` (around line 175). It calls `fit_mfrm_only`, `fit_sequential`, `fit_joint_gmfrm` from `exp003_models`. The results are `mfrm`, `seq`, `joint` dicts with `theta_hat`. But these functions don't return the MCMC object - they return a dict.
+
+I need to see:
+1. What `fit_mfrm_only`, `fit_sequential`, `fit_joint_gmfrm` return - do they return the mcmc object?
+
+
+2. Looking at the rest of the file to understand how the results are processed and what happens with the MCMC chains after fitting.
+
+Let me check the exp003_models module to see what these fitting functions actually return.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "8b53b586-67c2-4bc7-be82-a237bc74533d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013feG1YggWCtKtPCfyLsxNY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3330,
+      "cache_read_input_tokens": 32385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3330
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GyYPV4wH4kakiMqjVeQZXA`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -400 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "31236c08-0307-4424-8655-85e0ba3ec927",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013feG1YggWCtKtPCfyLsxNY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3330,
+      "cache_read_input_tokens": 32385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3330
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-22T20:11:12.070Z_
+
+<details><summary>↩ Tool result · `toolu_01GyYPV4wH4kakiMqjVeQZXA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    j\\n\\n... [截断: 输出过长，省略 6342 字符] ...\\n\\n.DataFrame(rows)\\n\\n\\ndef plot_tau_vs_judge_count(df: pd.DataFrame, output_dir: Path):\\n    \\\"\\\"\\\"Plot Kendall-τ vs judge count for each method.\\\"\\\"\\\"\\n    if df.empty:\\n        print(\\\"  No data for tau vs judge count plot\\\")\\n        return\\n\\n    fig, ax = plt.subplots(figsize=(10, 6))\\n\\n    colors = {\\n        \\\"raw_average\\\": \\\"#9E9E9E\\\",\\n        \\\"mfrm_only\\\": \\\"#FF9800\\\",\\n        \\\"sequential\\\": \\\"#4CAF50\\\",\\n        \\\"joint_gmfrm\\\": \\\"#2196F3\\\",\\n    }\\n\\n    for method in df[\\\"method\\\"].unique():\\n        mdf = df[df[\\\"method\\\"] == method]\\n        grouped = mdf.groupby(\\\"judge_count\\\")[\\\"kendall_tau\\\"]\\n        means = grouped.mean()\\n        stds = grouped.std()\\n        counts = grouped.count()\\n\\n        ax.errorbar(means.index, means.values,\\n                    yerr=stds.values, fmt=\\\"o-\\\",\\n                    color=colors.get(method, \\\"gray\\\"),\\n                    label=method, capsize=4, markersize=6, linewidth=2)\\n\\n        # Annotate with sample count\\n        for jc, m, n in zip(means.index, means.values, counts.values):\\n            ax.annotate(f\\\"n={n}\\\", (jc, m), textcoords=\\\"offset points\\\",\\n                        xytext=(8, -12), fontsize=7, color=colors.get(method, \\\"gray\\\"))\\n\\n    ax.set_xlabel(\\\"Number of judges\\\", fontsize=13)\\n    ax.set_ylabel(\\\"Kendall τ vs Arena\\\", fontsize=13)\\n    ax.set_title(\\\"Judge Count Sensitivity: τ vs Number of Judges\\\", fontsize=14)\\n    ax.legend(fontsize=10)\\n    ax.set_xticks(sorted(df[\\\"judge_count\\\"].unique()))\\n    ax.grid(True, alpha=0.3)\\n\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"tau_vs_judge_count.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"tau_vs_judge_count.pdf\\\", bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"  Saved tau_vs_judge_count.{{png,pdf}}\\\")\\n\\n\\ndef plot_leave_one_out(df: pd.DataFrame, output_dir: Path):\\n    \\\"\\\"\\\"Plot leave-one-judge-out residual analysis.\\\"\\\"\\\"\\n    if df.empty:\\n        print(\\\"  No data for leave-one-out plot\\\")\\n        return\\n\\n    fig, axes = plt.subplots(1, 2, figsize=(14, 5))\\n\\n    methods = df[\\\"method\\\"].unique()\\n    colors = {\\n        \\\"raw_average\\\": \\\"#9E9E9E\\\",\\n        \\\"mfrm_only\\\": \\\"#FF9800\\\",\\n        \\\"sequential\\\": \\\"#4CAF50\\\",\\n        \\\"joint_gmfrm\\\": \\\"#2196F3\\\",\\n    }\\n\\n    # Panel A: τ for each leave-out\\n    ax = axes[0]\\n    judges = sorted(df[\\\"left_out_judge\\\"].unique())\\n    x = np.arange(len(judges))\\n    width = 0.8 / len(methods)\\n\\n    for i, method in enumerate(methods):\\n        mdf = df[df[\\\"method\\\"] == method]\\n        taus = [mdf[mdf[\\\"left_out_judge\\\"] == j][\\\"kendall_tau\\\"].values[0]\\n                if len(mdf[mdf[\\\"left_out_judge\\\"] == j]) > 0 else np.nan\\n                for j in judges]\\n        ax.bar(x + i * width - 0.4 + width / 2, taus, width,\\n               label=method, color=colors.get(method, \\\"gray\\\"), alpha=0.8)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_ylabel(\\\"Kendall τ (without judge)\\\", fontsize=11)\\n    ax.set_title(\\\"(a) Leave-one-judge-out: τ\\\", fontsize=13)\\n    ax.legend(fontsize=8)\\n\\n    # Panel B: Δτ (change from full set)\\n    ax = axes[1]\\n    for i, method in enumerate(methods):\\n        mdf = df[df[\\\"method\\\"] == method]\\n        deltas = [mdf[mdf[\\\"left_out_judge\\\"] == j][\\\"tau_delta\\\"].values[0]\\n                  if len(mdf[mdf[\\\"left_out_judge\\\"] == j]) > 0 else np.nan\\n                  for j in judges]\\n        ax.bar(x + i * width - 0.4 + width / 2, deltas, width,\\n               label=method, color=colors.get(method, \\\"gray\\\"), alpha=0.8)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_ylabel(\\\"Δτ (vs full judge set)\\\", fontsize=11)\\n    ax.set_title(\\\"(b) Leave-one-judge-out: Δτ\\\", fontsize=13)\\n    ax.axhline(0, color=\\\"black\\\", linewidth=0.5, linestyle=\\\"--\\\")\\n    ax.legend(fontsize=8)\\n\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"leave_one_out.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"leave_one_out.pdf\\\", bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"  Saved leave_one_out.{{png,pdf}}\\\")\\n\\n\\ndef find_crossover_point(df: pd.DataFrame) -> dict:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "32a618fc-680f-43fc-949a-e900be3cd57c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-006: Judge Count Sensitivity Analysis.\\\\n\\\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\\\n\\\\nUsage:\\\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\\\n\\\\n  python run_exp006.py --dry-run  # validate data loading only\\\\n  python run_exp006.py --help\\\\n\\\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport itertools\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\\\n\\\\n\\\\nARENA_ELO = {\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 1105,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 1163,\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1130,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1170,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1208,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1187,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1272,\\\\n}\\\\n\\\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\\\nSEED = 42\\\\n\\\\n\\\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\\\n    if len(matched) < 3:\\\\n        return {\\\\\\\"kendall_tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"spearman_rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"n_matched\\\\\\\": len(matched)}\\\\n    models, thetas = zip(*matched)\\\\n    elos = [ARENA_ELO[m] for m in models]\\\\n    tau, tau_p = kendalltau(thetas, elos)\\\\n    rho, rho_p = spearmanr(thetas, elos)\\\\n    return {\\\\n        \\\\\\\"kendall_tau\\\\\\\": float(tau),\\\\n        \\\\\\\"kendall_p\\\\\\\": float(tau_p),\\\\n        \\\\\\\"spearman_rho\\\\\\\": float(rho),\\\\n        \\\\\\\"spearman_p\\\\\\\": float(rho_p),\\\\n        \\\\\\\"n_matched\\\\\\\": len(matched),\\\\n    }\\\\n\\\\n\\\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and preprocess all judgment data, returning observations + metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    records = load_judgments(judgment_dir)\\\\n    observations = preprocess(records)\\\\n\\\\n    all_judges = sorted({o[\\\\\\\"judge\\\\\\\"] for o in observations})\\\\n    all_models = sorted({o[\\\\\\\"model\\\\\\\"] for o in observations})\\\\n    all_items = sorted({o[\\\\\\\"item_id\\\\\\\"] for o in observations})\\\\n\\\\n    return observations, all_judges, all_models, all_items\\\\n\\\\n\\\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Filter observations to only include specified judges.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    judge_set = set(judge_subset)\\\\n    return [o for o in observations if o[\\\\\\\"judge\\\\\\\"] in judge_set]\\\\n\\\\n\\\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build the data dict expected by G-MFRM fitting functions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from collections import defaultdict\\\\n\\\\n    # Filter items by minimum judge coverage\\\\n    judges_per_item = defaultdict(set)\\\\n    for o in filtered_obs:\\\\n        judges_per_item[o[\\\\\\\"item_id\\\\\\\"]].add(o[\\\\\\\"judge\\\\\\\"])\\\\n    valid_items = {item for item, judges in judges_per_item.items()\\\\n                   if len(judges) >= min(min_judges, len(set(o[\\\\\\\"judge\\\\\\\"] for o in filtered_obs)))}\\\\n    filtered_obs = [o for o in filtered_obs if o[\\\\\\\"item_id\\\\\\\"] in valid_items]\\\\n\\\\n    if not filtered_obs:\\\\n        return None\\\\n\\\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\\\n    N = len(model_to_idx)\\\\n    I = len(item_to_idx)\\\\n    J = len(judge_to_idx)\\\\n\\\\n    model_idx = np.array([model_to_idx[o[\\\\\\\"model\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    item_idx = np.array([item_to_idx[o[\\\\\\\"item_id\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    judge_idx = np.array([judge_to_idx[o[\\\\\\\"judge\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    y = np.array([o[\\\\\\\"y\\\\\\\"] for o in filtered_obs], dtype=np.float32)\\\\n\\\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\\\n\\\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\\\n    j\\\\n\\\\n... [截断: 输出过长，省略 6342 字符] ...\\\\n\\\\n.DataFrame(rows)\\\\n\\\\n\\\\ndef plot_tau_vs_judge_count(df: pd.DataFrame, output_dir: Path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Plot Kendall-τ vs judge count for each method.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if df.empty:\\\\n        print(\\\\\\\"  No data for tau vs judge count plot\\\\\\\")\\\\n        return\\\\n\\\\n    fig, ax = plt.subplots(figsize=(10, 6))\\\\n\\\\n    colors = {\\\\n        \\\\\\\"raw_average\\\\\\\": \\\\\\\"#9E9E9E\\\\\\\",\\\\n        \\\\\\\"mfrm_only\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n        \\\\\\\"sequential\\\\\\\": \\\\\\\"#4CAF50\\\\\\\",\\\\n        \\\\\\\"joint_gmfrm\\\\\\\": \\\\\\\"#2196F3\\\\\\\",\\\\n    }\\\\n\\\\n    for method in df[\\\\\\\"method\\\\\\\"].unique():\\\\n        mdf = df[df[\\\\\\\"method\\\\\\\"] == method]\\\\n        grouped = mdf.groupby(\\\\\\\"judge_count\\\\\\\")[\\\\\\\"kendall_tau\\\\\\\"]\\\\n        means = grouped.mean()\\\\n        stds = grouped.std()\\\\n        counts = grouped.count()\\\\n\\\\n        ax.errorbar(means.index, means.values,\\\\n                    yerr=stds.values, fmt=\\\\\\\"o-\\\\\\\",\\\\n                    color=colors.get(method, \\\\\\\"gray\\\\\\\"),\\\\n                    label=method, capsize=4, markersize=6, linewidth=2)\\\\n\\\\n        # Annotate with sample count\\\\n        for jc, m, n in zip(means.index, means.values, counts.values):\\\\n            ax.annotate(f\\\\\\\"n={n}\\\\\\\", (jc, m), textcoords=\\\\\\\"offset points\\\\\\\",\\\\n                        xytext=(8, -12), fontsize=7, color=colors.get(method, \\\\\\\"gray\\\\\\\"))\\\\n\\\\n    ax.set_xlabel(\\\\\\\"Number of judges\\\\\\\", fontsize=13)\\\\n    ax.set_ylabel(\\\\\\\"Kendall τ vs Arena\\\\\\\", fontsize=13)\\\\n    ax.set_title(\\\\\\\"Judge Count Sensitivity: τ vs Number of Judges\\\\\\\", fontsize=14)\\\\n    ax.legend(fontsize=10)\\\\n    ax.set_xticks(sorted(df[\\\\\\\"judge_count\\\\\\\"].unique()))\\\\n    ax.grid(True, alpha=0.3)\\\\n\\\\n    plt.tight_layout()\\\\n    fig.savefig(output_dir / \\\\\\\"tau_vs_judge_count.png\\\\\\\", dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(output_dir / \\\\\\\"tau_vs_judge_count.pdf\\\\\\\", bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"  Saved tau_vs_judge_count.{{png,pdf}}\\\\\\\")\\\\n\\\\n\\\\ndef plot_leave_one_out(df: pd.DataFrame, output_dir: Path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Plot leave-one-judge-out residual analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if df.empty:\\\\n        print(\\\\\\\"  No data for leave-one-out plot\\\\\\\")\\\\n        return\\\\n\\\\n    fig, axes = plt.subplots(1, 2, figsize=(14, 5))\\\\n\\\\n    methods = df[\\\\\\\"method\\\\\\\"].unique()\\\\n    colors = {\\\\n        \\\\\\\"raw_average\\\\\\\": \\\\\\\"#9E9E9E\\\\\\\",\\\\n        \\\\\\\"mfrm_only\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n        \\\\\\\"sequential\\\\\\\": \\\\\\\"#4CAF50\\\\\\\",\\\\n        \\\\\\\"joint_gmfrm\\\\\\\": \\\\\\\"#2196F3\\\\\\\",\\\\n    }\\\\n\\\\n    # Panel A: τ for each leave-out\\\\n    ax = axes[0]\\\\n    judges = sorted(df[\\\\\\\"left_out_judge\\\\\\\"].unique())\\\\n    x = np.arange(len(judges))\\\\n    width = 0.8 / len(methods)\\\\n\\\\n    for i, method in enumerate(methods):\\\\n        mdf = df[df[\\\\\\\"method\\\\\\\"] == method]\\\\n        taus = [mdf[mdf[\\\\\\\"left_out_judge\\\\\\\"] == j][\\\\\\\"kendall_tau\\\\\\\"].values[0]\\\\n                if len(mdf[mdf[\\\\\\\"left_out_judge\\\\\\\"] == j]) > 0 else np.nan\\\\n                for j in judges]\\\\n        ax.bar(x + i * width - 0.4 + width / 2, taus, width,\\\\n               label=method, color=colors.get(method, \\\\\\\"gray\\\\\\\"), alpha=0.8)\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\\\\\"right\\\\\\\", fontsize=8)\\\\n    ax.set_ylabel(\\\\\\\"Kendall τ (without judge)\\\\\\\", fontsize=11)\\\\n    ax.set_title(\\\\\\\"(a) Leave-one-judge-out: τ\\\\\\\", fontsize=13)\\\\n    ax.legend(fontsize=8)\\\\n\\\\n    # Panel B: Δτ (change from full set)\\\\n    ax = axes[1]\\\\n    for i, method in enumerate(methods):\\\\n        mdf = df[df[\\\\\\\"method\\\\\\\"] == method]\\\\n        deltas = [mdf[mdf[\\\\\\\"left_out_judge\\\\\\\"] == j][\\\\\\\"tau_delta\\\\\\\"].values[0]\\\\n                  if len(mdf[mdf[\\\\\\\"left_out_judge\\\\\\\"] == j]) > 0 else np.nan\\\\n                  for j in judges]\\\\n        ax.bar(x + i * width - 0.4 + width / 2, deltas, width,\\\\n               label=method, color=colors.get(method, \\\\\\\"gray\\\\\\\"), alpha=0.8)\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\\\\\"right\\\\\\\", fontsize=8)\\\\n    ax.set_ylabel(\\\\\\\"Δτ (vs full judge set)\\\\\\\", fontsize=11)\\\\n    ax.set_title(\\\\\\\"(b) Leave-one-judge-out: Δτ\\\\\\\", fontsize=13)\\\\n    ax.axhline(0, color=\\\\\\\"black\\\\\\\", linewidth=0.5, linestyle=\\\\\\\"--\\\\\\\")\\\\n    ax.legend(fontsize=8)\\\\n\\\\n    plt.tight_layout()\\\\n    fig.savefig(output_dir / \\\\\\\"leave_one_out.png\\\\\\\", dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(output_dir / \\\\\\\"leave_one_out.pdf\\\\\\\", bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    print(f\\\\\\\"  Saved leave_one_out.{{png,pdf}}\\\\\\\")\\\\n\\\\n\\\\ndef find_crossover_point(df: pd.DataFrame) -> dict:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    j\\n\\n... [截断: 输出过长，省略 6342 字符] ...\\n\\n.DataFrame(rows)\\n\\n\\ndef plot_tau_vs_judge_count(df: pd.DataFrame, output_dir: Path):\\n    \\\"\\\"\\\"Plot Kendall-τ vs judge count for each method.\\\"\\\"\\\"\\n    if df.empty:\\n        print(\\\"  No data for tau vs judge count plot\\\")\\n        return\\n\\n    fig, ax = plt.subplots(figsize=(10, 6))\\n\\n    colors = {\\n        \\\"raw_average\\\": \\\"#9E9E9E\\\",\\n        \\\"mfrm_only\\\": \\\"#FF9800\\\",\\n        \\\"sequential\\\": \\\"#4CAF50\\\",\\n        \\\"joint_gmfrm\\\": \\\"#2196F3\\\",\\n    }\\n\\n    for method in df[\\\"method\\\"].unique():\\n        mdf = df[df[\\\"method\\\"] == method]\\n        grouped = mdf.groupby(\\\"judge_count\\\")[\\\"kendall_tau\\\"]\\n        means = grouped.mean()\\n        stds = grouped.std()\\n        counts = grouped.count()\\n\\n        ax.errorbar(means.index, means.values,\\n                    yerr=stds.values, fmt=\\\"o-\\\",\\n                    color=colors.get(method, \\\"gray\\\"),\\n                    label=method, capsize=4, markersize=6, linewidth=2)\\n\\n        # Annotate with sample count\\n        for jc, m, n in zip(means.index, means.values, counts.values):\\n            ax.annotate(f\\\"n={n}\\\", (jc, m), textcoords=\\\"offset points\\\",\\n                        xytext=(8, -12), fontsize=7, color=colors.get(method, \\\"gray\\\"))\\n\\n    ax.set_xlabel(\\\"Number of judges\\\", fontsize=13)\\n    ax.set_ylabel(\\\"Kendall τ vs Arena\\\", fontsize=13)\\n    ax.set_title(\\\"Judge Count Sensitivity: τ vs Number of Judges\\\", fontsize=14)\\n    ax.legend(fontsize=10)\\n    ax.set_xticks(sorted(df[\\\"judge_count\\\"].unique()))\\n    ax.grid(True, alpha=0.3)\\n\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"tau_vs_judge_count.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"tau_vs_judge_count.pdf\\\", bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"  Saved tau_vs_judge_count.{{png,pdf}}\\\")\\n\\n\\ndef plot_leave_one_out(df: pd.DataFrame, output_dir: Path):\\n    \\\"\\\"\\\"Plot leave-one-judge-out residual analysis.\\\"\\\"\\\"\\n    if df.empty:\\n        print(\\\"  No data for leave-one-out plot\\\")\\n        return\\n\\n    fig, axes = plt.subplots(1, 2, figsize=(14, 5))\\n\\n    methods = df[\\\"method\\\"].unique()\\n    colors = {\\n        \\\"raw_average\\\": \\\"#9E9E9E\\\",\\n        \\\"mfrm_only\\\": \\\"#FF9800\\\",\\n        \\\"sequential\\\": \\\"#4CAF50\\\",\\n        \\\"joint_gmfrm\\\": \\\"#2196F3\\\",\\n    }\\n\\n    # Panel A: τ for each leave-out\\n    ax = axes[0]\\n    judges = sorted(df[\\\"left_out_judge\\\"].unique())\\n    x = np.arange(len(judges))\\n    width = 0.8 / len(methods)\\n\\n    for i, method in enumerate(methods):\\n        mdf = df[df[\\\"method\\\"] == method]\\n        taus = [mdf[mdf[\\\"left_out_judge\\\"] == j][\\\"kendall_tau\\\"].values[0]\\n                if len(mdf[mdf[\\\"left_out_judge\\\"] == j]) > 0 else np.nan\\n                for j in judges]\\n        ax.bar(x + i * width - 0.4 + width / 2, taus, width,\\n               label=method, color=colors.get(method, \\\"gray\\\"), alpha=0.8)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_ylabel(\\\"Kendall τ (without judge)\\\", fontsize=11)\\n    ax.set_title(\\\"(a) Leave-one-judge-out: τ\\\", fontsize=13)\\n    ax.legend(fontsize=8)\\n\\n    # Panel B: Δτ (change from full set)\\n    ax = axes[1]\\n    for i, method in enumerate(methods):\\n        mdf = df[df[\\\"method\\\"] == method]\\n        deltas = [mdf[mdf[\\\"left_out_judge\\\"] == j][\\\"tau_delta\\\"].values[0]\\n                  if len(mdf[mdf[\\\"left_out_judge\\\"] == j]) > 0 else np.nan\\n                  for j in judges]\\n        ax.bar(x + i * width - 0.4 + width / 2, deltas, width,\\n               label=method, color=colors.get(method, \\\"gray\\\"), alpha=0.8)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(judges, rotation=45, ha=\\\"right\\\", fontsize=8)\\n    ax.set_ylabel(\\\"Δτ (vs full judge set)\\\", fontsize=11)\\n    ax.set_title(\\\"(b) Leave-one-judge-out: Δτ\\\", fontsize=13)\\n    ax.axhline(0, color=\\\"black\\\", linewidth=0.5, linestyle=\\\"--\\\")\\n    ax.legend(fontsize=8)\\n\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"leave_one_out.png\\\", dpi=150, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"leave_one_out.pdf\\\", bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    print(f\\\"  Saved leave_one_out.{{png,pdf}}\\\")\\n\\n\\ndef find_crossover_point(df: pd.DataFrame) -> dict:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014NoRv2HwJfZoFQpESPe1Sa`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"def fit_mfrm_only\\|def fit_sequential\\|def fit_joint_gmfrm\\|return \" /root/gated_mfrm_judge_bias/exp003/exp003_models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "934849fb-7335-493d-bdd1-5d5a79a576b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013feG1YggWCtKtPCfyLsxNY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3330,
+      "cache_read_input_tokens": 32385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3330
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-22T20:11:12.649Z_
+
+<details><summary>↩ Tool result · `toolu_014NoRv2HwJfZoFQpESPe1Sa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "dd514c86-d1c3-4d4a-b026-781a662a8fce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to see:
+1. The middle part that was truncated (around lines 150-250 where `fit_methods_on_subset` is)
+2. The `exp003_models.py` to understand the return values
+
+Let me read lines 150-300 of the exp006 file and also the exp003_models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "42446989-f8dd-4215-b8a5-dbfc836daa04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1DbSJ5U8c361gH2JZCjR3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4316,
+      "cache_read_input_tokens": 35715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4316
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lj7b3Y5iu7a3DbMbScZmkq`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -400 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "14df418c-b8ae-43f3-83ff-5d2ca0ff71ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1DbSJ5U8c361gH2JZCjR3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4316,
+      "cache_read_input_tokens": 35715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4316
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T20:11:19.801Z_
+
+<details><summary>↩ Tool result · `toolu_01Lj7b3Y5iu7a3DbMbScZmkq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\"model_names\\\"])}\\n\\n\\ndef fit_methods_on_subset(data: dict, methods: list) -> dict:\\n    \\\"\\\"\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\"\\\"\\\"\\n    results = {}\\n\\n    if \\\"raw_average\\\" in methods:\\n        results[\\\"raw_average\\\"] = fit_raw_average_subset(data)\\n\\n    if \\\"mfrm_only\\\" in methods or \\\"sequential\\\" in methods or \\\"joint_gmfrm\\\" in methods:\\n        from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\n\\n        if \\\"mfrm_only\\\" in methods:\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"mfrm_only\\\"] = {\\n                name: float(mfrm[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n        if \\\"sequential\\\" in methods:\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"sequential\\\"] = {\\n                name: float(seq[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n        if \\\"joint_gmfrm\\\" in methods:\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"joint_gmfrm\\\"] = {\\n                name: float(joint[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n    return results\\n\\n\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\n                             exposure_csv: str, judge_counts: list,\\n                             n_subsets: int, methods: list, seed: int) -> pd.DataFrame:\\n    \\\"\\\"\\\"Run full judge count sensitivity analysis.\\\"\\\"\\\"\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\n\\n    rows = []\\n    total = sum(len(v) for v in subsets.values())\\n    done = 0\\n\\n    for k in sorted(subsets.keys()):\\n        print(f\\\"\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\")\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\n            done += 1\\n            print(f\\\"    [{done}/{total}] Judges: {judge_subset}\\\")\\n\\n            filtered = filter_by_judges(observations, judge_subset)\\n            if not filtered:\\n                print(f\\\"      SKIP: no observations\\\")\\n                continue\\n\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\n            if data is None:\\n                print(f\\\"      SKIP: could not build data dict\\\")\\n                continue\\n\\n            print(f\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\")\\n\\n            t0 = time.time()\\n            theta_dicts = fit_methods_on_subset(data, methods)\\n            elapsed = time.time() - t0\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                rows.append({\\n                    \\\"judge_count\\\": k,\\n                    \\\"subset_idx\\\": s_idx,\\n                    \\\"judges\\\": \\\",\\\".join(sorted(judge_subset)),\\n                    \\\"method\\\": method,\\n                    \\\"kendall_tau\\\": corr[\\\"kendall_tau\\\"],\\n                    \\\"spearman_rho\\\": corr[\\\"spearman_rho\\\"],\\n                    \\\"n_matched\\\": corr[\\\"n_matched\\\"],\\n                    \\\"n_obs\\\": data[\\\"n_obs\\\"],\\n                    \\\"elapsed_s\\\": round(elapsed, 1),\\n                })\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                print(f\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\")\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef leave_one_judge_out(observations: list, all_judges: list,\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\n    \\\"\\\"\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\"\\\"\\\"\\n    rows = []\\n\\n    # Full-judge baseline\\n    full_data = build_data_dict(observations, exposure_csv)\\n    if full_data is None:\\n        return pd.DataFrame()\\n\\n    full_thetas \\n\\n... [截断: 输出过长，省略 7775 字符] ...\\n\\na...\\\")\\n    observations, all_judges, all_models, all_items = load_full_data(\\n        args.judgment_dir, args.exposure_csv)\\n    print(f\\\"  Observations: {len(observations)}\\\")\\n    print(f\\\"  Judges ({len(all_judges)}): {all_judges}\\\")\\n    print(f\\\"  Models ({len(all_models)}): {all_models}\\\")\\n    print(f\\\"  Items: {len(all_items)}\\\")\\n\\n    # Generate subsets\\n    print(f\\\"\\\\n[2/4] Generating judge subsets...\\\")\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\n    for k, subs in sorted(subsets.items()):\\n        print(f\\\"  k={k}: {len(subs)} subsets\\\")\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n[DRY RUN] Data loading OK. Summary:\\\")\\n        print(f\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\")\\n        print(f\\\"  Methods: {args.methods}\\\")\\n        if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n            print(\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\")\\n        return\\n\\n    # Run sensitivity analysis\\n    print(f\\\"\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\")\\n    if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n        sys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\n        import exp003_models  # noqa: verify import\\n\\n    df = run_sensitivity_analysis(\\n        observations, all_judges, args.exposure_csv,\\n        args.judge_counts, args.n_subsets, args.methods, args.seed)\\n\\n    # Save results\\n    csv_path = output_dir / \\\"sensitivity_results.csv\\\"\\n    df.to_csv(csv_path, index=False)\\n    print(f\\\"\\\\n  Saved {csv_path} ({len(df)} rows)\\\")\\n\\n    # Crossover analysis\\n    crossover = find_crossover_point(df)\\n    print(f\\\"\\\\n  Crossover analysis: {crossover}\\\")\\n\\n    # Leave-one-out\\n    loocv_df = pd.DataFrame()\\n    if args.run_loocv:\\n        print(\\\"\\\\n  Running leave-one-judge-out analysis...\\\")\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\n                                       args.exposure_csv, args.methods)\\n        if not loocv_df.empty:\\n            loocv_path = output_dir / \\\"leave_one_out_results.csv\\\"\\n            loocv_df.to_csv(loocv_path, index=False)\\n            print(f\\\"  Saved {loocv_path}\\\")\\n\\n    # Plots\\n    print(f\\\"\\\\n[4/4] Generating plots...\\\")\\n    plot_tau_vs_judge_count(df, output_dir)\\n    if not loocv_df.empty:\\n        plot_leave_one_out(loocv_df, output_dir)\\n\\n    # Save summary\\n    summary = {\\n        \\\"judge_counts_tested\\\": sorted(df[\\\"judge_count\\\"].unique().tolist()) if not df.empty else [],\\n        \\\"methods\\\": args.methods,\\n        \\\"n_subsets_per_count\\\": args.n_subsets,\\n        \\\"total_evaluations\\\": len(df),\\n        \\\"crossover\\\": crossover,\\n    }\\n\\n    if not df.empty:\\n        # Per-count summary\\n        summary[\\\"per_count\\\"] = {}\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            summary[\\\"per_count\\\"][int(k)] = {}\\n            for method in kdf[\\\"method\\\"].unique():\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                summary[\\\"per_count\\\"][int(k)][method] = {\\n                    \\\"mean_tau\\\": float(mdf[\\\"kendall_tau\\\"].mean()),\\n                    \\\"std_tau\\\": float(mdf[\\\"kendall_tau\\\"].std()),\\n                    \\\"n_subsets\\\": len(mdf),\\n                }\\n\\n    results_path = output_dir / \\\"results.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\n  Saved {results_path}\\\")\\n\\n    # Final summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n    if not df.empty:\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            line = f\\\"  k={k}:\\\"\\n            for method in sorted(kdf[\\\"method\\\"].unique()):\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                line += f\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\"\\n            print(line)\\n    print(f\\\"\\\\n  {crossover['note']}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "9a52e647-3177-42be-88d8-0dbbffe470c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        if mask.sum() > 0:\\\\n            theta_hat[n] = y[mask].mean()\\\\n    theta_hat = theta_hat - theta_hat.mean()\\\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])}\\\\n\\\\n\\\\ndef fit_methods_on_subset(data: dict, methods: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = {}\\\\n\\\\n    if \\\\\\\"raw_average\\\\\\\" in methods:\\\\n        results[\\\\\\\"raw_average\\\\\\\"] = fit_raw_average_subset(data)\\\\n\\\\n    if \\\\\\\"mfrm_only\\\\\\\" in methods or \\\\\\\"sequential\\\\\\\" in methods or \\\\\\\"joint_gmfrm\\\\\\\" in methods:\\\\n        from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\\\n\\\\n        if \\\\\\\"mfrm_only\\\\\\\" in methods:\\\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"mfrm_only\\\\\\\"] = {\\\\n                name: float(mfrm[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n\\\\n        if \\\\\\\"sequential\\\\\\\" in methods:\\\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"sequential\\\\\\\"] = {\\\\n                name: float(seq[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n\\\\n        if \\\\\\\"joint_gmfrm\\\\\\\" in methods:\\\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\\\n            results[\\\\\\\"joint_gmfrm\\\\\\\"] = {\\\\n                name: float(joint[\\\\\\\"theta_hat\\\\\\\"][i])\\\\n                for i, name in enumerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\\\n                             exposure_csv: str, judge_counts: list,\\\\n                             n_subsets: int, methods: list, seed: int) -> pd.DataFrame:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full judge count sensitivity analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\\\n\\\\n    rows = []\\\\n    total = sum(len(v) for v in subsets.values())\\\\n    done = 0\\\\n\\\\n    for k in sorted(subsets.keys()):\\\\n        print(f\\\\\\\"\\\\\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\\\\\")\\\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\\\n            done += 1\\\\n            print(f\\\\\\\"    [{done}/{total}] Judges: {judge_subset}\\\\\\\")\\\\n\\\\n            filtered = filter_by_judges(observations, judge_subset)\\\\n            if not filtered:\\\\n                print(f\\\\\\\"      SKIP: no observations\\\\\\\")\\\\n                continue\\\\n\\\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\\\n            if data is None:\\\\n                print(f\\\\\\\"      SKIP: could not build data dict\\\\\\\")\\\\n                continue\\\\n\\\\n            print(f\\\\\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\\\\\")\\\\n\\\\n            t0 = time.time()\\\\n            theta_dicts = fit_methods_on_subset(data, methods)\\\\n            elapsed = time.time() - t0\\\\n\\\\n            for method, theta_dict in theta_dicts.items():\\\\n                corr = compute_arena_tau(theta_dict)\\\\n                rows.append({\\\\n                    \\\\\\\"judge_count\\\\\\\": k,\\\\n                    \\\\\\\"subset_idx\\\\\\\": s_idx,\\\\n                    \\\\\\\"judges\\\\\\\": \\\\\\\",\\\\\\\".join(sorted(judge_subset)),\\\\n                    \\\\\\\"method\\\\\\\": method,\\\\n                    \\\\\\\"kendall_tau\\\\\\\": corr[\\\\\\\"kendall_tau\\\\\\\"],\\\\n                    \\\\\\\"spearman_rho\\\\\\\": corr[\\\\\\\"spearman_rho\\\\\\\"],\\\\n                    \\\\\\\"n_matched\\\\\\\": corr[\\\\\\\"n_matched\\\\\\\"],\\\\n                    \\\\\\\"n_obs\\\\\\\": data[\\\\\\\"n_obs\\\\\\\"],\\\\n                    \\\\\\\"elapsed_s\\\\\\\": round(elapsed, 1),\\\\n                })\\\\n\\\\n            for method, theta_dict in theta_dicts.items():\\\\n                corr = compute_arena_tau(theta_dict)\\\\n                print(f\\\\\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\\\\\")\\\\n\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef leave_one_judge_out(observations: list, all_judges: list,\\\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rows = []\\\\n\\\\n    # Full-judge baseline\\\\n    full_data = build_data_dict(observations, exposure_csv)\\\\n    if full_data is None:\\\\n        return pd.DataFrame()\\\\n\\\\n    full_thetas \\\\n\\\\n... [截断: 输出过长，省略 7775 字符] ...\\\\n\\\\na...\\\\\\\")\\\\n    observations, all_judges, all_models, all_items = load_full_data(\\\\n        args.judgment_dir, args.exposure_csv)\\\\n    print(f\\\\\\\"  Observations: {len(observations)}\\\\\\\")\\\\n    print(f\\\\\\\"  Judges ({len(all_judges)}): {all_judges}\\\\\\\")\\\\n    print(f\\\\\\\"  Models ({len(all_models)}): {all_models}\\\\\\\")\\\\n    print(f\\\\\\\"  Items: {len(all_items)}\\\\\\\")\\\\n\\\\n    # Generate subsets\\\\n    print(f\\\\\\\"\\\\\\\\n[2/4] Generating judge subsets...\\\\\\\")\\\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\\\n    for k, subs in sorted(subsets.items()):\\\\n        print(f\\\\\\\"  k={k}: {len(subs)} subsets\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"\\\\\\\\n[DRY RUN] Data loading OK. Summary:\\\\\\\")\\\\n        print(f\\\\\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\\\\\")\\\\n        print(f\\\\\\\"  Methods: {args.methods}\\\\\\\")\\\\n        if any(m in args.methods for m in [\\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"]):\\\\n            print(\\\\\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\\\\\")\\\\n        return\\\\n\\\\n    # Run sensitivity analysis\\\\n    print(f\\\\\\\"\\\\\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\\\\\")\\\\n    if any(m in args.methods for m in [\\\\\\\"mfrm_only\\\\\\\", \\\\\\\"sequential\\\\\\\", \\\\\\\"joint_gmfrm\\\\\\\"]):\\\\n        sys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\n        import exp003_models  # noqa: verify import\\\\n\\\\n    df = run_sensitivity_analysis(\\\\n        observations, all_judges, args.exposure_csv,\\\\n        args.judge_counts, args.n_subsets, args.methods, args.seed)\\\\n\\\\n    # Save results\\\\n    csv_path = output_dir / \\\\\\\"sensitivity_results.csv\\\\\\\"\\\\n    df.to_csv(csv_path, index=False)\\\\n    print(f\\\\\\\"\\\\\\\\n  Saved {csv_path} ({len(df)} rows)\\\\\\\")\\\\n\\\\n    # Crossover analysis\\\\n    crossover = find_crossover_point(df)\\\\n    print(f\\\\\\\"\\\\\\\\n  Crossover analysis: {crossover}\\\\\\\")\\\\n\\\\n    # Leave-one-out\\\\n    loocv_df = pd.DataFrame()\\\\n    if args.run_loocv:\\\\n        print(\\\\\\\"\\\\\\\\n  Running leave-one-judge-out analysis...\\\\\\\")\\\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\\\n                                       args.exposure_csv, args.methods)\\\\n        if not loocv_df.empty:\\\\n            loocv_path = output_dir / \\\\\\\"leave_one_out_results.csv\\\\\\\"\\\\n            loocv_df.to_csv(loocv_path, index=False)\\\\n            print(f\\\\\\\"  Saved {loocv_path}\\\\\\\")\\\\n\\\\n    # Plots\\\\n    print(f\\\\\\\"\\\\\\\\n[4/4] Generating plots...\\\\\\\")\\\\n    plot_tau_vs_judge_count(df, output_dir)\\\\n    if not loocv_df.empty:\\\\n        plot_leave_one_out(loocv_df, output_dir)\\\\n\\\\n    # Save summary\\\\n    summary = {\\\\n        \\\\\\\"judge_counts_tested\\\\\\\": sorted(df[\\\\\\\"judge_count\\\\\\\"].unique().tolist()) if not df.empty else [],\\\\n        \\\\\\\"methods\\\\\\\": args.methods,\\\\n        \\\\\\\"n_subsets_per_count\\\\\\\": args.n_subsets,\\\\n        \\\\\\\"total_evaluations\\\\\\\": len(df),\\\\n        \\\\\\\"crossover\\\\\\\": crossover,\\\\n    }\\\\n\\\\n    if not df.empty:\\\\n        # Per-count summary\\\\n        summary[\\\\\\\"per_count\\\\\\\"] = {}\\\\n        for k in sorted(df[\\\\\\\"judge_count\\\\\\\"].unique()):\\\\n            kdf = df[df[\\\\\\\"judge_count\\\\\\\"] == k]\\\\n            summary[\\\\\\\"per_count\\\\\\\"][int(k)] = {}\\\\n            for method in kdf[\\\\\\\"method\\\\\\\"].unique():\\\\n                mdf = kdf[kdf[\\\\\\\"method\\\\\\\"] == method]\\\\n                summary[\\\\\\\"per_count\\\\\\\"][int(k)][method] = {\\\\n                    \\\\\\\"mean_tau\\\\\\\": float(mdf[\\\\\\\"kendall_tau\\\\\\\"].mean()),\\\\n                    \\\\\\\"std_tau\\\\\\\": float(mdf[\\\\\\\"kendall_tau\\\\\\\"].std()),\\\\n                    \\\\\\\"n_subsets\\\\\\\": len(mdf),\\\\n                }\\\\n\\\\n    results_path = output_dir / \\\\\\\"results.json\\\\\\\"\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\n  Saved {results_path}\\\\\\\")\\\\n\\\\n    # Final summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    if not df.empty:\\\\n        for k in sorted(df[\\\\\\\"judge_count\\\\\\\"].unique()):\\\\n            kdf = df[df[\\\\\\\"judge_count\\\\\\\"] == k]\\\\n            line = f\\\\\\\"  k={k}:\\\\\\\"\\\\n            for method in sorted(kdf[\\\\\\\"method\\\\\\\"].unique()):\\\\n                mdf = kdf[kdf[\\\\\\\"method\\\\\\\"] == method]\\\\n                line += f\\\\\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\\\\\"\\\\n            print(line)\\\\n    print(f\\\\\\\"\\\\\\\\n  {crossover['note']}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\"model_names\\\"])}\\n\\n\\ndef fit_methods_on_subset(data: dict, methods: list) -> dict:\\n    \\\"\\\"\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\"\\\"\\\"\\n    results = {}\\n\\n    if \\\"raw_average\\\" in methods:\\n        results[\\\"raw_average\\\"] = fit_raw_average_subset(data)\\n\\n    if \\\"mfrm_only\\\" in methods or \\\"sequential\\\" in methods or \\\"joint_gmfrm\\\" in methods:\\n        from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm\\n\\n        if \\\"mfrm_only\\\" in methods:\\n            mfrm = fit_mfrm_only(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"mfrm_only\\\"] = {\\n                name: float(mfrm[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n        if \\\"sequential\\\" in methods:\\n            seq = fit_sequential(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"sequential\\\"] = {\\n                name: float(seq[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n        if \\\"joint_gmfrm\\\" in methods:\\n            joint = fit_joint_gmfrm(data, warmup=1000, samples=2000, chains=2)\\n            results[\\\"joint_gmfrm\\\"] = {\\n                name: float(joint[\\\"theta_hat\\\"][i])\\n                for i, name in enumerate(data[\\\"model_names\\\"])\\n            }\\n\\n    return results\\n\\n\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\n                             exposure_csv: str, judge_counts: list,\\n                             n_subsets: int, methods: list, seed: int) -> pd.DataFrame:\\n    \\\"\\\"\\\"Run full judge count sensitivity analysis.\\\"\\\"\\\"\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\n\\n    rows = []\\n    total = sum(len(v) for v in subsets.values())\\n    done = 0\\n\\n    for k in sorted(subsets.keys()):\\n        print(f\\\"\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\")\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\n            done += 1\\n            print(f\\\"    [{done}/{total}] Judges: {judge_subset}\\\")\\n\\n            filtered = filter_by_judges(observations, judge_subset)\\n            if not filtered:\\n                print(f\\\"      SKIP: no observations\\\")\\n                continue\\n\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\n            if data is None:\\n                print(f\\\"      SKIP: could not build data dict\\\")\\n                continue\\n\\n            print(f\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\")\\n\\n            t0 = time.time()\\n            theta_dicts = fit_methods_on_subset(data, methods)\\n            elapsed = time.time() - t0\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                rows.append({\\n                    \\\"judge_count\\\": k,\\n                    \\\"subset_idx\\\": s_idx,\\n                    \\\"judges\\\": \\\",\\\".join(sorted(judge_subset)),\\n                    \\\"method\\\": method,\\n                    \\\"kendall_tau\\\": corr[\\\"kendall_tau\\\"],\\n                    \\\"spearman_rho\\\": corr[\\\"spearman_rho\\\"],\\n                    \\\"n_matched\\\": corr[\\\"n_matched\\\"],\\n                    \\\"n_obs\\\": data[\\\"n_obs\\\"],\\n                    \\\"elapsed_s\\\": round(elapsed, 1),\\n                })\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                print(f\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\")\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef leave_one_judge_out(observations: list, all_judges: list,\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\n    \\\"\\\"\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\"\\\"\\\"\\n    rows = []\\n\\n    # Full-judge baseline\\n    full_data = build_data_dict(observations, exposure_csv)\\n    if full_data is None:\\n        return pd.DataFrame()\\n\\n    full_thetas \\n\\n... [截断: 输出过长，省略 7775 字符] ...\\n\\na...\\\")\\n    observations, all_judges, all_models, all_items = load_full_data(\\n        args.judgment_dir, args.exposure_csv)\\n    print(f\\\"  Observations: {len(observations)}\\\")\\n    print(f\\\"  Judges ({len(all_judges)}): {all_judges}\\\")\\n    print(f\\\"  Models ({len(all_models)}): {all_models}\\\")\\n    print(f\\\"  Items: {len(all_items)}\\\")\\n\\n    # Generate subsets\\n    print(f\\\"\\\\n[2/4] Generating judge subsets...\\\")\\n    subsets = generate_judge_subsets(all_judges, args.judge_counts, args.n_subsets, args.seed)\\n    for k, subs in sorted(subsets.items()):\\n        print(f\\\"  k={k}: {len(subs)} subsets\\\")\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n[DRY RUN] Data loading OK. Summary:\\\")\\n        print(f\\\"  Would test {sum(len(v) for v in subsets.values())} subsets × {len(args.methods)} methods\\\")\\n        print(f\\\"  Methods: {args.methods}\\\")\\n        if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n            print(\\\"  NOTE: MCMC methods require GPU (JAX+CUDA). Use --methods raw_average for CPU-only.\\\")\\n        return\\n\\n    # Run sensitivity analysis\\n    print(f\\\"\\\\n[3/4] Running sensitivity analysis (methods: {args.methods})...\\\")\\n    if any(m in args.methods for m in [\\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"]):\\n        sys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\n        import exp003_models  # noqa: verify import\\n\\n    df = run_sensitivity_analysis(\\n        observations, all_judges, args.exposure_csv,\\n        args.judge_counts, args.n_subsets, args.methods, args.seed)\\n\\n    # Save results\\n    csv_path = output_dir / \\\"sensitivity_results.csv\\\"\\n    df.to_csv(csv_path, index=False)\\n    print(f\\\"\\\\n  Saved {csv_path} ({len(df)} rows)\\\")\\n\\n    # Crossover analysis\\n    crossover = find_crossover_point(df)\\n    print(f\\\"\\\\n  Crossover analysis: {crossover}\\\")\\n\\n    # Leave-one-out\\n    loocv_df = pd.DataFrame()\\n    if args.run_loocv:\\n        print(\\\"\\\\n  Running leave-one-judge-out analysis...\\\")\\n        loocv_df = leave_one_judge_out(observations, all_judges,\\n                                       args.exposure_csv, args.methods)\\n        if not loocv_df.empty:\\n            loocv_path = output_dir / \\\"leave_one_out_results.csv\\\"\\n            loocv_df.to_csv(loocv_path, index=False)\\n            print(f\\\"  Saved {loocv_path}\\\")\\n\\n    # Plots\\n    print(f\\\"\\\\n[4/4] Generating plots...\\\")\\n    plot_tau_vs_judge_count(df, output_dir)\\n    if not loocv_df.empty:\\n        plot_leave_one_out(loocv_df, output_dir)\\n\\n    # Save summary\\n    summary = {\\n        \\\"judge_counts_tested\\\": sorted(df[\\\"judge_count\\\"].unique().tolist()) if not df.empty else [],\\n        \\\"methods\\\": args.methods,\\n        \\\"n_subsets_per_count\\\": args.n_subsets,\\n        \\\"total_evaluations\\\": len(df),\\n        \\\"crossover\\\": crossover,\\n    }\\n\\n    if not df.empty:\\n        # Per-count summary\\n        summary[\\\"per_count\\\"] = {}\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            summary[\\\"per_count\\\"][int(k)] = {}\\n            for method in kdf[\\\"method\\\"].unique():\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                summary[\\\"per_count\\\"][int(k)][method] = {\\n                    \\\"mean_tau\\\": float(mdf[\\\"kendall_tau\\\"].mean()),\\n                    \\\"std_tau\\\": float(mdf[\\\"kendall_tau\\\"].std()),\\n                    \\\"n_subsets\\\": len(mdf),\\n                }\\n\\n    results_path = output_dir / \\\"results.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"\\\\n  Saved {results_path}\\\")\\n\\n    # Final summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n    if not df.empty:\\n        for k in sorted(df[\\\"judge_count\\\"].unique()):\\n            kdf = df[df[\\\"judge_count\\\"] == k]\\n            line = f\\\"  k={k}:\\\"\\n            for method in sorted(kdf[\\\"method\\\"].unique()):\\n                mdf = kdf[kdf[\\\"method\\\"] == method]\\n                line += f\\\"  {method}={mdf['kendall_tau'].mean():.4f}±{mdf['kendall_tau'].std():.4f}\\\"\\n            print(line)\\n    print(f\\\"\\\\n  {crossover['note']}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Au3wxXwswWs1RqtzvqrP8B`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"def fit_mfrm_only\\|def fit_sequential\\|def fit_joint_gmfrm\\|return {\" /root/gated_mfrm_judge_bias/exp003/exp003_models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "a63ccad1-a16d-49b7-a609-a9a51d5eeb4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1DbSJ5U8c361gH2JZCjR3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4316,
+      "cache_read_input_tokens": 35715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4316
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T20:11:20.751Z_
+
+<details><summary>↩ Tool result · `toolu_01Au3wxXwswWs1RqtzvqrP8B`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "e918ae8f-0d2b-4a3b-9004-b3d4e742b38a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can't use `|` in ssh_read_only. Let me use grep with `-E` flag (extended regex) and backslash-escaped pipe, or just do multiple greps. Actually let me just read the exp003_models.py file to understand the return format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "702d9c11-6367-4e91-8adc-52f9e945be3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CZueB3TMVJ1dU4pzZ2Lwox",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3775,
+      "cache_read_input_tokens": 40031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3775
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016zkHhyFdvVLR4KfVnhKqJS`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"def fit_mfrm_only\\|def fit_sequential\\|def fit_joint_gmfrm\" /root/gated_mfrm_judge_bias/exp003/exp003_models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "489a89d5-1b57-405d-9690-1c31dc0beb4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CZueB3TMVJ1dU4pzZ2Lwox",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3775,
+      "cache_read_input_tokens": 40031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3775
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-22T20:11:32.481Z_
+
+<details><summary>↩ Tool result · `toolu_016zkHhyFdvVLR4KfVnhKqJS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "73e9f312-8c67-45b3-865b-02b634988eaa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VuHD4EoRPNh7YVTHvau2Px`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "wc -l /root/gated_mfrm_judge_bias/exp003/exp003_models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "238d8a05-13d7-4ab4-9e25-5ed36206ef1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CZueB3TMVJ1dU4pzZ2Lwox",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3775,
+      "cache_read_input_tokens": 40031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3775
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-22T20:11:36.397Z_
+
+<details><summary>↩ Tool result · `toolu_01VuHD4EoRPNh7YVTHvau2Px`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/gated_mfrm_judge_bias/exp003/exp003_models.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "75c2f2c7-58a1-4eb9-b4d7-3a47b6764e82",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/gated_mfrm_judge_bias/exp003/exp003_models.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/gated_mfrm_judge_bias/exp003/exp003_models.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ku73frsXcHkg2euLaRXH84`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/gated_mfrm_judge_bias/exp003 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "99fcbcbe-596c-43b9-ae9a-de98b10ff872",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X5eSnF3dA8JChSWAj6aBKv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 43806,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-22T20:11:39.735Z_
+
+<details><summary>↩ Tool result · `toolu_01Ku73frsXcHkg2euLaRXH84`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp003/data_loader.py\\n/root/gated_mfrm_judge_bias/exp003/evaluation.py\\n/root/gated_mfrm_judge_bias/exp003/models.py\\n/root/gated_mfrm_judge_bias/exp003/run_exp003.py\\n/root/gated_mfrm_judge_bias/exp003/analyze_003b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "dd013285-74ba-4e74-a81f-0c08840813a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gated_mfrm_judge_bias/exp003/data_loader.py\\\\n/root/gated_mfrm_judge_bias/exp003/evaluation.py\\\\n/root/gated_mfrm_judge_bias/exp003/models.py\\\\n/root/gated_mfrm_judge_bias/exp003/run_exp003.py\\\\n/root/gated_mfrm_judge_bias/exp003/analyze_003b.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gated_mfrm_judge_bias/exp003/data_loader.py\\n/root/gated_mfrm_judge_bias/exp003/evaluation.py\\n/root/gated_mfrm_judge_bias/exp003/models.py\\n/root/gated_mfrm_judge_bias/exp003/run_exp003.py\\n/root/gated_mfrm_judge_bias/exp003/analyze_003b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The module is `exp003_models` but the actual file is `models.py` in exp003. The import is `from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm` — but since `sys.path.insert(0, "/root/gated_mfrm_judge_bias/exp003")` is used, the import `exp003_models` would need a file named `exp003_models.py`. But there's no such file. Let me check if maybe there's a re-export or something else going on. Wait — maybe the file is named differently or it's actually `models.py` imported as `exp003_models` somehow? Let me check. 
+
+Actually, looking at the path insertion and import statement more carefully, it's trying to import from `exp003_models.py` in that directory, but the file list shows `models.py` instead. This looks like a mismatch — either the import statement is wrong or the file needs to be renamed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "4d4ab5b0-5658-4aea-b4be-c858dc634694",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WrosyFe3sfWrvAiYvG4rdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 44412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0185W8KbYswmHhG7wRHgDsQh`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/gated_mfrm_judge_bias -name \"exp003_models*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "ba6fda08-8955-40ad-9d8c-cdacbf25ae8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WrosyFe3sfWrvAiYvG4rdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 44412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T20:11:49.957Z_
+
+<details><summary>↩ Tool result · `toolu_0185W8KbYswmHhG7wRHgDsQh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "221eef48-f83f-461f-8c06-ced92b0a82e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019XBD8x8LFYMMEmmW94PSGL`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"def fit_mfrm_only\" /root/gated_mfrm_judge_bias/exp003/models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "c49ddcc9-621b-45c4-a166-9c0ba4df619d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WrosyFe3sfWrvAiYvG4rdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 44412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T20:11:50.477Z_
+
+<details><summary>↩ Tool result · `toolu_019XBD8x8LFYMMEmmW94PSGL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"105:def fit_mfrm_only(data: dict, warmup=2000, samples=4000, chains=4,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "cf1c4c16-4526-4f21-897a-e994bb61462f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"105:def fit_mfrm_only(data: dict, warmup=2000, samples=4000, chains=4,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"105:def fit_mfrm_only(data: dict, warmup=2000, samples=4000, chains=4,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+So the module is `models.py` in exp003, but exp006 imports it as `exp003_models`. That's odd. Either:
+1. There's an `__init__.py` or a symlink
+2. The import will fail
+
+Actually, wait. Let me re-read the code more carefully. In the `fit_methods_on_subset` function:
+```python
+from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm
+
+
+```
+
+But there's also `sys.path.insert(0, "/root/gated_mfrm_judge_bias/exp003")` at the top of the file. So this import would look for `exp003_models.py` in `/root/gated_mfrm_judge_bias/exp003/`. The file is `models.py` not `exp003_models.py`. This might be an issue, but maybe I'm wrong. Let me check if there's a symlink or something.
+
+Actually, let me focus on what I need to do. I need to read the `models.py` in exp003 to see what the functions are doing.
+
+The core problem is that `fit_mfrm_only` and similar functions return a dict with `theta_hat`, but to create an arviz InferenceData object I need the actual MCMC object from numpyro. I could either modify the shared exp003 code to return the mcmc object alongside the results, or I could have exp006 run MCMC directly. The first approach is cleaner but touches shared code, while the second is more isolated but means duplicating logic. Since I'm supposed to modify exp006, let me first check what these fit functions actually return and whether the mcmc object is already available.
+
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "d07b6c83-7bb6-4589-a2e1-da5b718c2ac0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137Q77pnH3dkD2nXZZEdaiv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 44731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 827
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0162LMpxfkSFVdgdP6GJJZfJ`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -200 /root/gated_mfrm_judge_bias/exp003/models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "366b56b3-d0d6-46bf-99cd-c2496cfb2367",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137Q77pnH3dkD2nXZZEdaiv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 44731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 827
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-22T20:12:05.258Z_
+
+<details><summary>↩ Tool result · `toolu_0162LMpxfkSFVdgdP6GJJZfJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"G-MFRM fitting methods for sparse real-data observations.\\n\\nAdapted from mvp/models.py for sparse observation format:\\n  instead of a dense Y[N, I, J] tensor, observations are represented as\\n  parallel arrays (model_idx, item_idx, judge_idx, y).\\n\\nFour methods:\\n  1. raw_average — mean win rate per model (no MCMC)\\n  2. mfrm_only — standard 3-facet Rasch via NUTS\\n  3. sequential — MFRM then OLS residual regression on exposure\\n  4. joint_gmfrm — full G-MFRM with contamination term\\n\\nModel: logit(P(Y=1)) = theta_n - b_i - d_j + c_n * e_i\\n  theta_n: model ability, Normal(0,1), centered (sum-to-zero)\\n  b_i: item difficulty, Normal(0,1)\\n  d_j: judge severity, Normal(0,0.5), sum-to-zero via centering\\n  c_n: contamination susceptibility, Hierarchical HalfNormal\\n  e_i: item exposure (fixed, from exp-002)\\n\\nDependencies: numpy, jax, numpyro, arviz, scipy\\n\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport warnings\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"..\\\"))\\n\\nos.environ.setdefault(\\\"JAX_PLATFORMS\\\", \\\"cuda,cpu\\\")\\n\\nimport arviz as az\\nimport jax\\nimport jax.numpy as jnp\\nimport numpy as np\\nimport numpyro\\nimport numpyro.distributions as dist\\nfrom numpyro.infer import MCMC, NUTS\\nfrom scipy.special import expit\\n\\n\\n_CPU = None\\ndef _to_numpy(x):\\n    global _CPU\\n    if _CPU is None:\\n        _CPU = jax.devices('cpu')[0]\\n    return np.asarray(jax.device_put(x, _CPU))\\n\\n\\ndef _mcmc_diagnostics(mcmc: MCMC) -> dict:\\n    \\\"\\\"\\\"Return convergence diagnostics: max R-hat, min ESS, n_divergences.\\\"\\\"\\\"\\n    idata = az.from_numpyro(mcmc)\\n    summary = az.summary(idata)\\n    max_rhat = float(summary[\\\"r_hat\\\"].max())\\n    min_ess = float(summary[\\\"ess_bulk\\\"].min())\\n    n_div = int(idata.sample_stats[\\\"diverging\\\"].sum().values)\\n    return {\\\"r_hat\\\": max_rhat, \\\"ess\\\": min_ess, \\\"divergences\\\": n_div}\\n\\n\\ndef _run_mcmc(model_fn, rng_key, model_kwargs, warmup, samples, chains, target_accept):\\n    kernel = NUTS(model_fn, target_accept_prob=target_accept)\\n    mcmc = MCMC(kernel, num_warmup=warmup, num_samples=samples,\\n                num_chains=chains, chain_method='sequential', progress_bar=True)\\n    mcmc.run(rng_key, **model_kwargs)\\n    return mcmc\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 1: Raw average\\n# ---------------------------------------------------------------------------\\n\\ndef fit_raw_average(data: dict) -> dict:\\n    N = data[\\\"N\\\"]\\n    model_idx = data[\\\"model_idx\\\"]\\n    y = data[\\\"y\\\"]\\n\\n    theta_hat = np.zeros(N)\\n    for n in range(N):\\n        mask = model_idx == n\\n        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n\\n    return {\\n        \\\"method\\\": \\\"raw_average\\\",\\n        \\\"theta_hat\\\": theta_hat,\\n        \\\"diagnostics\\\": {\\\"r_hat\\\": float(\\\"nan\\\"), \\\"ess\\\": float(\\\"nan\\\"), \\\"divergences\\\": 0},\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 2: Standard MFRM\\n# ---------------------------------------------------------------------------\\n\\ndef _mfrm_model(model_idx, item_idx, judge_idx, y, N, I, J):\\n    theta_raw = numpyro.sample(\\\"theta_raw\\\", dist.Normal(0, 1).expand([N]))\\n    theta = numpyro.deterministic(\\\"theta\\\", theta_raw - theta_raw.mean())\\n    b = numpyro.sample(\\\"b\\\", dist.Normal(0, 1).expand([I]))\\n    d_raw = numpyro.sample(\\\"d_raw\\\", dist.Normal(0, 0.5).expand([J]))\\n    d = numpyro.deterministic(\\\"d\\\", d_raw - d_raw.mean())\\n\\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx]\\n    numpyro.sample(\\\"obs\\\", dist.Bernoulli(logits=logits), obs=y)\\n\\n\\ndef fit_mfrm_only(data: dict, warmup=2000, samples=4000, chains=4,\\n                   target_accept=0.95, seed=42) -> dict:\\n    model_idx = jnp.array(data[\\\"model_idx\\\"])\\n    item_idx = jnp.array(data[\\\"item_idx\\\"])\\n    judge_idx = jnp.array(data[\\\"judge_idx\\\"])\\n    y = jnp.array(data[\\\"y\\\"])\\n\\n    mcmc = _run_mcmc(\\n        _mfrm_model, jax.random.PRNGKey(seed),\\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\\n             y=y, N=data[\\\"N\\\"], I=data[\\\"I\\\"], J=data[\\\"J\\\"]),\\n        warmup, samples, chains, target_accept,\\n    )\\n\\n    samples_dict = mcmc.get_samples()\\n    theta_hat = _to_numpy(samples_dict[\\\"theta\\\"].mean(axis=0))\\n    b_hat = _to_numpy(samples_dict[\\\"b\\\"].mean(axis=0))\\n    d_hat = _to_numpy(samples_dict[\\\"d\\\"].mean(axis=0))\\n\\n    return {\\n        \\\"method\\\": \\\"mfrm_only\\\",\\n        \\\"theta_hat\\\": theta_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": _mcmc_diagnostics(mcmc),\\n        \\\"mcmc\\\": mcmc,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 3: Sequential (MFRM + OLS residual regression)\\n# ---------------------------------------------------------------------------\\n\\ndef fit_sequential(data: dict, warmup=2000, samples=4000, chains=4,\\n                   target_accept=0.95, seed=42) -> dict:\\n    e_i = data[\\\"e_i\\\"]\\n\\n    # Step A: fit MFRM\\n    mfrm_result = fit_mfrm_only(data, warmup, samples, chains, target_accept, seed)\\n    theta_mfrm = mfrm_result[\\\"theta_hat\\\"]\\n    b_hat = mfrm_result[\\\"b_hat\\\"]\\n    d_hat = mfrm_result[\\\"d_hat\\\"]\\n\\n    # Step B: compute residuals per (model, item) pair\\n    N, I = data[\\\"N\\\"], data[\\\"I\\\"]\\n    model_idx_np = data[\\\"model_idx\\\"]\\n    item_idx_np = data[\\\"item_idx\\\"]\\n    judge_idx_np = data[\\\"judge_idx\\\"]\\n    y_np = data[\\\"y\\\"]\\n\\n    logits = theta_mfrm[model_idx_np] - b_hat[item_idx_np] - d_hat[judge_idx_np]\\n    pred = expit(logits)\\n    residuals = y_np - pred\\n\\n    # Aggregate residuals per (model, item)\\n    r_ni = np.full((N, I), np.nan)\\n    r_ni_counts = np.zeros((N, I), dtype=int)\\n    for k in range(len(residuals)):\\n        n, i = model_idx_np[k], item_idx_np[k]\\n        if np.isnan(r_ni[n, i]):\\n            r_ni[n, i] = 0.0\\n        r_ni[n, i] += residuals[k]\\n        r_ni_counts[n, i] += 1\\n\\n    valid = r_ni_counts > 0\\n    r_ni[valid] /= r_ni_counts[valid]\\n\\n    # Step C: OLS per model — regress r_ni on e_i\\n    c_hat = np.zeros(N)\\n    e_centered = e_i - e_i.mean()\\n    e_var = (e_centered ** 2).sum()\\n    if e_var > 1e-10:\\n        for n in range(N):\\n            mask = ~np.isnan(r_ni[n])\\n            if mask.sum() > 2:\\n                c_hat[n] = (r_ni[n, mask] * e_centered[mask]).sum() / (e_centered[mask] ** 2).sum()\\n\\n    # Step D: adjust theta\\n    theta_seq = theta_mfrm - c_hat * e_i.mean()\\n    theta_seq = theta_seq - theta_seq.mean()\\n\\n    return {\\n        \\\"method\\\": \\\"sequential\\\",\\n        \\\"theta_hat\\\": theta_seq,\\n        \\\"c_hat\\\": c_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": mfrm_result[\\\"diagnostics\\\"],\\n        \\\"mcmc\\\": mfrm_result[\\\"mcmc\\\"],\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 4: Joint G-MFRM\\n# ---------------------------------------------------------------------------\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "c00605cc-cbbd-4cad-8fd0-a3af798b1940",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"G-MFRM fitting methods for sparse real-data observations.\\\\n\\\\nAdapted from mvp/models.py for sparse observation format:\\\\n  instead of a dense Y[N, I, J] tensor, observations are represented as\\\\n  parallel arrays (model_idx, item_idx, judge_idx, y).\\\\n\\\\nFour methods:\\\\n  1. raw_average — mean win rate per model (no MCMC)\\\\n  2. mfrm_only — standard 3-facet Rasch via NUTS\\\\n  3. sequential — MFRM then OLS residual regression on exposure\\\\n  4. joint_gmfrm — full G-MFRM with contamination term\\\\n\\\\nModel: logit(P(Y=1)) = theta_n - b_i - d_j + c_n * e_i\\\\n  theta_n: model ability, Normal(0,1), centered (sum-to-zero)\\\\n  b_i: item difficulty, Normal(0,1)\\\\n  d_j: judge severity, Normal(0,0.5), sum-to-zero via centering\\\\n  c_n: contamination susceptibility, Hierarchical HalfNormal\\\\n  e_i: item exposure (fixed, from exp-002)\\\\n\\\\nDependencies: numpy, jax, numpyro, arviz, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport sys\\\\nimport warnings\\\\n\\\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\\\\\"..\\\\\\\"))\\\\n\\\\nos.environ.setdefault(\\\\\\\"JAX_PLATFORMS\\\\\\\", \\\\\\\"cuda,cpu\\\\\\\")\\\\n\\\\nimport arviz as az\\\\nimport jax\\\\nimport jax.numpy as jnp\\\\nimport numpy as np\\\\nimport numpyro\\\\nimport numpyro.distributions as dist\\\\nfrom numpyro.infer import MCMC, NUTS\\\\nfrom scipy.special import expit\\\\n\\\\n\\\\n_CPU = None\\\\ndef _to_numpy(x):\\\\n    global _CPU\\\\n    if _CPU is None:\\\\n        _CPU = jax.devices('cpu')[0]\\\\n    return np.asarray(jax.device_put(x, _CPU))\\\\n\\\\n\\\\ndef _mcmc_diagnostics(mcmc: MCMC) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return convergence diagnostics: max R-hat, min ESS, n_divergences.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idata = az.from_numpyro(mcmc)\\\\n    summary = az.summary(idata)\\\\n    max_rhat = float(summary[\\\\\\\"r_hat\\\\\\\"].max())\\\\n    min_ess = float(summary[\\\\\\\"ess_bulk\\\\\\\"].min())\\\\n    n_div = int(idata.sample_stats[\\\\\\\"diverging\\\\\\\"].sum().values)\\\\n    return {\\\\\\\"r_hat\\\\\\\": max_rhat, \\\\\\\"ess\\\\\\\": min_ess, \\\\\\\"divergences\\\\\\\": n_div}\\\\n\\\\n\\\\ndef _run_mcmc(model_fn, rng_key, model_kwargs, warmup, samples, chains, target_accept):\\\\n    kernel = NUTS(model_fn, target_accept_prob=target_accept)\\\\n    mcmc = MCMC(kernel, num_warmup=warmup, num_samples=samples,\\\\n                num_chains=chains, chain_method='sequential', progress_bar=True)\\\\n    mcmc.run(rng_key, **model_kwargs)\\\\n    return mcmc\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Method 1: Raw average\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef fit_raw_average(data: dict) -> dict:\\\\n    N = data[\\\\\\\"N\\\\\\\"]\\\\n    model_idx = data[\\\\\\\"model_idx\\\\\\\"]\\\\n    y = data[\\\\\\\"y\\\\\\\"]\\\\n\\\\n    theta_hat = np.zeros(N)\\\\n    for n in range(N):\\\\n        mask = model_idx == n\\\\n        if mask.sum() > 0:\\\\n            theta_hat[n] = y[mask].mean()\\\\n    theta_hat = theta_hat - theta_hat.mean()\\\\n\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"raw_average\\\\\\\",\\\\n        \\\\\\\"theta_hat\\\\\\\": theta_hat,\\\\n        \\\\\\\"diagnostics\\\\\\\": {\\\\\\\"r_hat\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"ess\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"divergences\\\\\\\": 0},\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Method 2: Standard MFRM\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _mfrm_model(model_idx, item_idx, judge_idx, y, N, I, J):\\\\n    theta_raw = numpyro.sample(\\\\\\\"theta_raw\\\\\\\", dist.Normal(0, 1).expand([N]))\\\\n    theta = numpyro.deterministic(\\\\\\\"theta\\\\\\\", theta_raw - theta_raw.mean())\\\\n    b = numpyro.sample(\\\\\\\"b\\\\\\\", dist.Normal(0, 1).expand([I]))\\\\n    d_raw = numpyro.sample(\\\\\\\"d_raw\\\\\\\", dist.Normal(0, 0.5).expand([J]))\\\\n    d = numpyro.deterministic(\\\\\\\"d\\\\\\\", d_raw - d_raw.mean())\\\\n\\\\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx]\\\\n    numpyro.sample(\\\\\\\"obs\\\\\\\", dist.Bernoulli(logits=logits), obs=y)\\\\n\\\\n\\\\ndef fit_mfrm_only(data: dict, warmup=2000, samples=4000, chains=4,\\\\n                   target_accept=0.95, seed=42) -> dict:\\\\n    model_idx = jnp.array(data[\\\\\\\"model_idx\\\\\\\"])\\\\n    item_idx = jnp.array(data[\\\\\\\"item_idx\\\\\\\"])\\\\n    judge_idx = jnp.array(data[\\\\\\\"judge_idx\\\\\\\"])\\\\n    y = jnp.array(data[\\\\\\\"y\\\\\\\"])\\\\n\\\\n    mcmc = _run_mcmc(\\\\n        _mfrm_model, jax.random.PRNGKey(seed),\\\\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\\\\n             y=y, N=data[\\\\\\\"N\\\\\\\"], I=data[\\\\\\\"I\\\\\\\"], J=data[\\\\\\\"J\\\\\\\"]),\\\\n        warmup, samples, chains, target_accept,\\\\n    )\\\\n\\\\n    samples_dict = mcmc.get_samples()\\\\n    theta_hat = _to_numpy(samples_dict[\\\\\\\"theta\\\\\\\"].mean(axis=0))\\\\n    b_hat = _to_numpy(samples_dict[\\\\\\\"b\\\\\\\"].mean(axis=0))\\\\n    d_hat = _to_numpy(samples_dict[\\\\\\\"d\\\\\\\"].mean(axis=0))\\\\n\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"mfrm_only\\\\\\\",\\\\n        \\\\\\\"theta_hat\\\\\\\": theta_hat,\\\\n        \\\\\\\"b_hat\\\\\\\": b_hat,\\\\n        \\\\\\\"d_hat\\\\\\\": d_hat,\\\\n        \\\\\\\"diagnostics\\\\\\\": _mcmc_diagnostics(mcmc),\\\\n        \\\\\\\"mcmc\\\\\\\": mcmc,\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Method 3: Sequential (MFRM + OLS residual regression)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef fit_sequential(data: dict, warmup=2000, samples=4000, chains=4,\\\\n                   target_accept=0.95, seed=42) -> dict:\\\\n    e_i = data[\\\\\\\"e_i\\\\\\\"]\\\\n\\\\n    # Step A: fit MFRM\\\\n    mfrm_result = fit_mfrm_only(data, warmup, samples, chains, target_accept, seed)\\\\n    theta_mfrm = mfrm_result[\\\\\\\"theta_hat\\\\\\\"]\\\\n    b_hat = mfrm_result[\\\\\\\"b_hat\\\\\\\"]\\\\n    d_hat = mfrm_result[\\\\\\\"d_hat\\\\\\\"]\\\\n\\\\n    # Step B: compute residuals per (model, item) pair\\\\n    N, I = data[\\\\\\\"N\\\\\\\"], data[\\\\\\\"I\\\\\\\"]\\\\n    model_idx_np = data[\\\\\\\"model_idx\\\\\\\"]\\\\n    item_idx_np = data[\\\\\\\"item_idx\\\\\\\"]\\\\n    judge_idx_np = data[\\\\\\\"judge_idx\\\\\\\"]\\\\n    y_np = data[\\\\\\\"y\\\\\\\"]\\\\n\\\\n    logits = theta_mfrm[model_idx_np] - b_hat[item_idx_np] - d_hat[judge_idx_np]\\\\n    pred = expit(logits)\\\\n    residuals = y_np - pred\\\\n\\\\n    # Aggregate residuals per (model, item)\\\\n    r_ni = np.full((N, I), np.nan)\\\\n    r_ni_counts = np.zeros((N, I), dtype=int)\\\\n    for k in range(len(residuals)):\\\\n        n, i = model_idx_np[k], item_idx_np[k]\\\\n        if np.isnan(r_ni[n, i]):\\\\n            r_ni[n, i] = 0.0\\\\n        r_ni[n, i] += residuals[k]\\\\n        r_ni_counts[n, i] += 1\\\\n\\\\n    valid = r_ni_counts > 0\\\\n    r_ni[valid] /= r_ni_counts[valid]\\\\n\\\\n    # Step C: OLS per model — regress r_ni on e_i\\\\n    c_hat = np.zeros(N)\\\\n    e_centered = e_i - e_i.mean()\\\\n    e_var = (e_centered ** 2).sum()\\\\n    if e_var > 1e-10:\\\\n        for n in range(N):\\\\n            mask = ~np.isnan(r_ni[n])\\\\n            if mask.sum() > 2:\\\\n                c_hat[n] = (r_ni[n, mask] * e_centered[mask]).sum() / (e_centered[mask] ** 2).sum()\\\\n\\\\n    # Step D: adjust theta\\\\n    theta_seq = theta_mfrm - c_hat * e_i.mean()\\\\n    theta_seq = theta_seq - theta_seq.mean()\\\\n\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"sequential\\\\\\\",\\\\n        \\\\\\\"theta_hat\\\\\\\": theta_seq,\\\\n        \\\\\\\"c_hat\\\\\\\": c_hat,\\\\n        \\\\\\\"b_hat\\\\\\\": b_hat,\\\\n        \\\\\\\"d_hat\\\\\\\": d_hat,\\\\n        \\\\\\\"diagnostics\\\\\\\": mfrm_result[\\\\\\\"diagnostics\\\\\\\"],\\\\n        \\\\\\\"mcmc\\\\\\\": mfrm_result[\\\\\\\"mcmc\\\\\\\"],\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Method 4: Joint G-MFRM\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"G-MFRM fitting methods for sparse real-data observations.\\n\\nAdapted from mvp/models.py for sparse observation format:\\n  instead of a dense Y[N, I, J] tensor, observations are represented as\\n  parallel arrays (model_idx, item_idx, judge_idx, y).\\n\\nFour methods:\\n  1. raw_average — mean win rate per model (no MCMC)\\n  2. mfrm_only — standard 3-facet Rasch via NUTS\\n  3. sequential — MFRM then OLS residual regression on exposure\\n  4. joint_gmfrm — full G-MFRM with contamination term\\n\\nModel: logit(P(Y=1)) = theta_n - b_i - d_j + c_n * e_i\\n  theta_n: model ability, Normal(0,1), centered (sum-to-zero)\\n  b_i: item difficulty, Normal(0,1)\\n  d_j: judge severity, Normal(0,0.5), sum-to-zero via centering\\n  c_n: contamination susceptibility, Hierarchical HalfNormal\\n  e_i: item exposure (fixed, from exp-002)\\n\\nDependencies: numpy, jax, numpyro, arviz, scipy\\n\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport warnings\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"..\\\"))\\n\\nos.environ.setdefault(\\\"JAX_PLATFORMS\\\", \\\"cuda,cpu\\\")\\n\\nimport arviz as az\\nimport jax\\nimport jax.numpy as jnp\\nimport numpy as np\\nimport numpyro\\nimport numpyro.distributions as dist\\nfrom numpyro.infer import MCMC, NUTS\\nfrom scipy.special import expit\\n\\n\\n_CPU = None\\ndef _to_numpy(x):\\n    global _CPU\\n    if _CPU is None:\\n        _CPU = jax.devices('cpu')[0]\\n    return np.asarray(jax.device_put(x, _CPU))\\n\\n\\ndef _mcmc_diagnostics(mcmc: MCMC) -> dict:\\n    \\\"\\\"\\\"Return convergence diagnostics: max R-hat, min ESS, n_divergences.\\\"\\\"\\\"\\n    idata = az.from_numpyro(mcmc)\\n    summary = az.summary(idata)\\n    max_rhat = float(summary[\\\"r_hat\\\"].max())\\n    min_ess = float(summary[\\\"ess_bulk\\\"].min())\\n    n_div = int(idata.sample_stats[\\\"diverging\\\"].sum().values)\\n    return {\\\"r_hat\\\": max_rhat, \\\"ess\\\": min_ess, \\\"divergences\\\": n_div}\\n\\n\\ndef _run_mcmc(model_fn, rng_key, model_kwargs, warmup, samples, chains, target_accept):\\n    kernel = NUTS(model_fn, target_accept_prob=target_accept)\\n    mcmc = MCMC(kernel, num_warmup=warmup, num_samples=samples,\\n                num_chains=chains, chain_method='sequential', progress_bar=True)\\n    mcmc.run(rng_key, **model_kwargs)\\n    return mcmc\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 1: Raw average\\n# ---------------------------------------------------------------------------\\n\\ndef fit_raw_average(data: dict) -> dict:\\n    N = data[\\\"N\\\"]\\n    model_idx = data[\\\"model_idx\\\"]\\n    y = data[\\\"y\\\"]\\n\\n    theta_hat = np.zeros(N)\\n    for n in range(N):\\n        mask = model_idx == n\\n        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n\\n    return {\\n        \\\"method\\\": \\\"raw_average\\\",\\n        \\\"theta_hat\\\": theta_hat,\\n        \\\"diagnostics\\\": {\\\"r_hat\\\": float(\\\"nan\\\"), \\\"ess\\\": float(\\\"nan\\\"), \\\"divergences\\\": 0},\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 2: Standard MFRM\\n# ---------------------------------------------------------------------------\\n\\ndef _mfrm_model(model_idx, item_idx, judge_idx, y, N, I, J):\\n    theta_raw = numpyro.sample(\\\"theta_raw\\\", dist.Normal(0, 1).expand([N]))\\n    theta = numpyro.deterministic(\\\"theta\\\", theta_raw - theta_raw.mean())\\n    b = numpyro.sample(\\\"b\\\", dist.Normal(0, 1).expand([I]))\\n    d_raw = numpyro.sample(\\\"d_raw\\\", dist.Normal(0, 0.5).expand([J]))\\n    d = numpyro.deterministic(\\\"d\\\", d_raw - d_raw.mean())\\n\\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx]\\n    numpyro.sample(\\\"obs\\\", dist.Bernoulli(logits=logits), obs=y)\\n\\n\\ndef fit_mfrm_only(data: dict, warmup=2000, samples=4000, chains=4,\\n                   target_accept=0.95, seed=42) -> dict:\\n    model_idx = jnp.array(data[\\\"model_idx\\\"])\\n    item_idx = jnp.array(data[\\\"item_idx\\\"])\\n    judge_idx = jnp.array(data[\\\"judge_idx\\\"])\\n    y = jnp.array(data[\\\"y\\\"])\\n\\n    mcmc = _run_mcmc(\\n        _mfrm_model, jax.random.PRNGKey(seed),\\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\\n             y=y, N=data[\\\"N\\\"], I=data[\\\"I\\\"], J=data[\\\"J\\\"]),\\n        warmup, samples, chains, target_accept,\\n    )\\n\\n    samples_dict = mcmc.get_samples()\\n    theta_hat = _to_numpy(samples_dict[\\\"theta\\\"].mean(axis=0))\\n    b_hat = _to_numpy(samples_dict[\\\"b\\\"].mean(axis=0))\\n    d_hat = _to_numpy(samples_dict[\\\"d\\\"].mean(axis=0))\\n\\n    return {\\n        \\\"method\\\": \\\"mfrm_only\\\",\\n        \\\"theta_hat\\\": theta_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": _mcmc_diagnostics(mcmc),\\n        \\\"mcmc\\\": mcmc,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 3: Sequential (MFRM + OLS residual regression)\\n# ---------------------------------------------------------------------------\\n\\ndef fit_sequential(data: dict, warmup=2000, samples=4000, chains=4,\\n                   target_accept=0.95, seed=42) -> dict:\\n    e_i = data[\\\"e_i\\\"]\\n\\n    # Step A: fit MFRM\\n    mfrm_result = fit_mfrm_only(data, warmup, samples, chains, target_accept, seed)\\n    theta_mfrm = mfrm_result[\\\"theta_hat\\\"]\\n    b_hat = mfrm_result[\\\"b_hat\\\"]\\n    d_hat = mfrm_result[\\\"d_hat\\\"]\\n\\n    # Step B: compute residuals per (model, item) pair\\n    N, I = data[\\\"N\\\"], data[\\\"I\\\"]\\n    model_idx_np = data[\\\"model_idx\\\"]\\n    item_idx_np = data[\\\"item_idx\\\"]\\n    judge_idx_np = data[\\\"judge_idx\\\"]\\n    y_np = data[\\\"y\\\"]\\n\\n    logits = theta_mfrm[model_idx_np] - b_hat[item_idx_np] - d_hat[judge_idx_np]\\n    pred = expit(logits)\\n    residuals = y_np - pred\\n\\n    # Aggregate residuals per (model, item)\\n    r_ni = np.full((N, I), np.nan)\\n    r_ni_counts = np.zeros((N, I), dtype=int)\\n    for k in range(len(residuals)):\\n        n, i = model_idx_np[k], item_idx_np[k]\\n        if np.isnan(r_ni[n, i]):\\n            r_ni[n, i] = 0.0\\n        r_ni[n, i] += residuals[k]\\n        r_ni_counts[n, i] += 1\\n\\n    valid = r_ni_counts > 0\\n    r_ni[valid] /= r_ni_counts[valid]\\n\\n    # Step C: OLS per model — regress r_ni on e_i\\n    c_hat = np.zeros(N)\\n    e_centered = e_i - e_i.mean()\\n    e_var = (e_centered ** 2).sum()\\n    if e_var > 1e-10:\\n        for n in range(N):\\n            mask = ~np.isnan(r_ni[n])\\n            if mask.sum() > 2:\\n                c_hat[n] = (r_ni[n, mask] * e_centered[mask]).sum() / (e_centered[mask] ** 2).sum()\\n\\n    # Step D: adjust theta\\n    theta_seq = theta_mfrm - c_hat * e_i.mean()\\n    theta_seq = theta_seq - theta_seq.mean()\\n\\n    return {\\n        \\\"method\\\": \\\"sequential\\\",\\n        \\\"theta_hat\\\": theta_seq,\\n        \\\"c_hat\\\": c_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": mfrm_result[\\\"diagnostics\\\"],\\n        \\\"mcmc\\\": mfrm_result[\\\"mcmc\\\"],\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 4: Joint G-MFRM\\n# ---------------------------------------------------------------------------\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I can see the key details:
+
+1. **`models.py` already returns `"mcmc"` key** in `fit_mfrm_only` (line ~135) and `fit_sequential` (via `mfrm_result["mcmc"]`)
+2. **`models.py` already imports `arviz as az`** and uses it for diagnostics
+3. The file is `models.py` not `exp003_models.py` — but exp006 imports from `exp003_models`. Let me check if there's an alias.
+
+Wait, looking at the import in exp006 again:
+
+
+```python
+from exp003_models import fit_mfrm_only, fit_sequential, fit_joint_gmfrm
+```
+
+But the actual file is `/root/gated_mfrm_judge_bias/exp003/models.py`. There's no `exp003_models.py` file, so this import would fail unless there's a symlink or the module name is aliased somehow. Let me trace through `run_exp006.py` to see what's actually being called — the `fit_mfrm_only` function returns a dict that includes the MCMC samples, so I need to verify what key they're stored under.
+
+Looking at how the results are extracted, it seems the fit functions return the MCMC object nested in the result dict, but `fit_methods_on_subset` is stripping it out and only keeping the theta values. The real place to capture and save the InferenceData is in `run_sensitivity_analysis` where I have access to the loop variables for judge count and subset index. I think the cleanest approach is to have `fit_methods_on_subset` return both the theta dictionaries and the mcmc objects, then handle the InferenceData conversion and saving in `run_sensitivity_analysis` where I can add the judge count and subset identifier to the filenames. Let me also verify that `fit_joint_gmfrm` has the same mcmc key structure.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "0bf34bff-aaa4-4658-97fd-185c224a355c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8h9Qb3Xkpevvf2wzxPFeM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 45558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+Now I see the key insight: `models.py` already returns the `mcmc` object in each fit result, and already imports arviz. Let me check `fit_joint_gmfrm` too, and also figure out the import name issue.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "9aae38f9-2852-496c-9e51-6645b57f2702",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8h9Qb3Xkpevvf2wzxPFeM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 45558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J4bvhXzeNVupy9iCzwimXn`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"def fit_joint_gmfrm\" /root/gated_mfrm_judge_bias/exp003/models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "416bdeef-c2c2-4744-920f-6f8513d05e3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8h9Qb3Xkpevvf2wzxPFeM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 45558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-22T20:12:29.496Z_
+
+<details><summary>↩ Tool result · `toolu_01J4bvhXzeNVupy9iCzwimXn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"217:def fit_joint_gmfrm(data: dict, warmup=2000, samples=4000, chains=4,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "e7a40b96-1c7f-4067-abe1-c9ee01e2462e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"217:def fit_joint_gmfrm(data: dict, warmup=2000, samples=4000, chains=4,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"217:def fit_joint_gmfrm(data: dict, warmup=2000, samples=4000, chains=4,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lce6uMJ4T5BKEagYNZESPm`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/gated_mfrm_judge_bias -name \"exp003_models.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "50fdf10c-be96-4b2f-9ab8-2d4f4248cee8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8h9Qb3Xkpevvf2wzxPFeM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 45558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BPsyZkDhCwgJ7PmmMkJbsv`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -la /root/gated_mfrm_judge_bias/exp003/exp003_models*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "8ac3c30f-ebbb-41e8-8fc3-0ab79bee6a63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S8h9Qb3Xkpevvf2wzxPFeM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3653,
+      "cache_read_input_tokens": 45558,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3653
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T20:12:30.391Z_
+
+<details><summary>↩ Tool result · `toolu_01Lce6uMJ4T5BKEagYNZESPm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "4067fbe5-65e1-475f-afa7-51f588ec24cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-22T20:12:30.918Z_
+
+<details><summary>↩ Tool result · `toolu_01BPsyZkDhCwgJ7PmmMkJbsv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gated_mfrm_judge_bias/exp003/exp003_models*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "79da8301-b994-4ac8-9bce-91b5857c01ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/gated_mfrm_judge_bias/exp003/exp003_models*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gated_mfrm_judge_bias/exp003/exp003_models*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no `exp003_models.py` file! The import in exp006 would fail. The actual file is `models.py` in the exp003 directory. Since `sys.path` includes `/root/gated_mfrm_judge_bias/exp003`, the correct import should be `from models import ...`.
+
+This is either:
+1. A bug that hasn't been caught because the code hasn't been run yet
+2. Or there's something else going on
+
+Let me check the `__init__.py` in exp003 or if there's something else.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "aa81e7c7-ec57-4a30-bf8f-c1479be3f42f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D665BmQ58NkHPg7e3GQV9X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 49211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WTwkXcVkDi3dwzLFYqSR6k`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -la /root/gated_mfrm_judge_bias/exp003/__init__.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "68199594-9756-4fc3-bed7-221057a570ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D665BmQ58NkHPg7e3GQV9X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 49211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-22T20:12:37.479Z_
+
+<details><summary>↩ Tool result · `toolu_01WTwkXcVkDi3dwzLFYqSR6k`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gated_mfrm_judge_bias/exp003/__init__.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "ba105fba-2061-4c32-9b95-704f179cb968",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/gated_mfrm_judge_bias/exp003/__init__.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gated_mfrm_judge_bias/exp003/__init__.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0134gW19pFRtdLgk67fdcZAU`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -60 /root/gated_mfrm_judge_bias/exp003/models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "54f35c6d-30b1-4bd2-b24e-eb50f8f6ec0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D665BmQ58NkHPg7e3GQV9X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 49211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-22T20:12:38.005Z_
+
+<details><summary>↩ Tool result · `toolu_0134gW19pFRtdLgk67fdcZAU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"method\\\": \\\"sequential\\\",\\n        \\\"theta_hat\\\": theta_seq,\\n        \\\"c_hat\\\": c_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": mfrm_result[\\\"diagnostics\\\"],\\n        \\\"mcmc\\\": mfrm_result[\\\"mcmc\\\"],\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 4: Joint G-MFRM\\n# ---------------------------------------------------------------------------\\n\\ndef _gmfrm_model(model_idx, item_idx, judge_idx, y, e, N, I, J):\\n    theta_raw = numpyro.sample(\\\"theta_raw\\\", dist.Normal(0, 1).expand([N]))\\n    theta = numpyro.deterministic(\\\"theta\\\", theta_raw - theta_raw.mean())\\n    b = numpyro.sample(\\\"b\\\", dist.Normal(0, 1).expand([I]))\\n    d_raw = numpyro.sample(\\\"d_raw\\\", dist.Normal(0, 0.5).expand([J]))\\n    d = numpyro.deterministic(\\\"d\\\", d_raw - d_raw.mean())\\n\\n    # Hierarchical half-normal prior for contamination susceptibility\\n    sigma_c = numpyro.sample(\\\"sigma_c\\\", dist.HalfNormal(1.0))\\n    c_raw = numpyro.sample(\\\"c_raw\\\", dist.HalfNormal(jnp.ones(N) * 1.0))\\n    c = numpyro.deterministic(\\\"c\\\", c_raw * sigma_c)\\n\\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx] + c[model_idx] * e[item_idx]\\n    numpyro.sample(\\\"obs\\\", dist.Bernoulli(logits=logits), obs=y)\\n\\n\\ndef fit_joint_gmfrm(data: dict, warmup=2000, samples=4000, chains=4,\\n                     target_accept=0.95, seed=42) -> dict:\\n    model_idx = jnp.array(data[\\\"model_idx\\\"])\\n    item_idx = jnp.array(data[\\\"item_idx\\\"])\\n    judge_idx = jnp.array(data[\\\"judge_idx\\\"])\\n    y = jnp.array(data[\\\"y\\\"])\\n    e = jnp.array(data[\\\"e_i\\\"], dtype=jnp.float32)\\n\\n    mcmc = _run_mcmc(\\n        _gmfrm_model, jax.random.PRNGKey(seed),\\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\\n             y=y, e=e, N=data[\\\"N\\\"], I=data[\\\"I\\\"], J=data[\\\"J\\\"]),\\n        warmup, samples, chains, target_accept,\\n    )\\n\\n    samples_dict = mcmc.get_samples()\\n    theta_hat = _to_numpy(samples_dict[\\\"theta\\\"].mean(axis=0))\\n    c_hat = _to_numpy(samples_dict[\\\"c\\\"].mean(axis=0))\\n    b_hat = _to_numpy(samples_dict[\\\"b\\\"].mean(axis=0))\\n    d_hat = _to_numpy(samples_dict[\\\"d\\\"].mean(axis=0))\\n\\n    return {\\n        \\\"method\\\": \\\"joint_gmfrm\\\",\\n        \\\"theta_hat\\\": theta_hat,\\n        \\\"c_hat\\\": c_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": _mcmc_diagnostics(mcmc),\\n        \\\"mcmc\\\": mcmc,\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "538953dd-1921-47f2-af80-8ab67f3fddee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"method\\\\\\\": \\\\\\\"sequential\\\\\\\",\\\\n        \\\\\\\"theta_hat\\\\\\\": theta_seq,\\\\n        \\\\\\\"c_hat\\\\\\\": c_hat,\\\\n        \\\\\\\"b_hat\\\\\\\": b_hat,\\\\n        \\\\\\\"d_hat\\\\\\\": d_hat,\\\\n        \\\\\\\"diagnostics\\\\\\\": mfrm_result[\\\\\\\"diagnostics\\\\\\\"],\\\\n        \\\\\\\"mcmc\\\\\\\": mfrm_result[\\\\\\\"mcmc\\\\\\\"],\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Method 4: Joint G-MFRM\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _gmfrm_model(model_idx, item_idx, judge_idx, y, e, N, I, J):\\\\n    theta_raw = numpyro.sample(\\\\\\\"theta_raw\\\\\\\", dist.Normal(0, 1).expand([N]))\\\\n    theta = numpyro.deterministic(\\\\\\\"theta\\\\\\\", theta_raw - theta_raw.mean())\\\\n    b = numpyro.sample(\\\\\\\"b\\\\\\\", dist.Normal(0, 1).expand([I]))\\\\n    d_raw = numpyro.sample(\\\\\\\"d_raw\\\\\\\", dist.Normal(0, 0.5).expand([J]))\\\\n    d = numpyro.deterministic(\\\\\\\"d\\\\\\\", d_raw - d_raw.mean())\\\\n\\\\n    # Hierarchical half-normal prior for contamination susceptibility\\\\n    sigma_c = numpyro.sample(\\\\\\\"sigma_c\\\\\\\", dist.HalfNormal(1.0))\\\\n    c_raw = numpyro.sample(\\\\\\\"c_raw\\\\\\\", dist.HalfNormal(jnp.ones(N) * 1.0))\\\\n    c = numpyro.deterministic(\\\\\\\"c\\\\\\\", c_raw * sigma_c)\\\\n\\\\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx] + c[model_idx] * e[item_idx]\\\\n    numpyro.sample(\\\\\\\"obs\\\\\\\", dist.Bernoulli(logits=logits), obs=y)\\\\n\\\\n\\\\ndef fit_joint_gmfrm(data: dict, warmup=2000, samples=4000, chains=4,\\\\n                     target_accept=0.95, seed=42) -> dict:\\\\n    model_idx = jnp.array(data[\\\\\\\"model_idx\\\\\\\"])\\\\n    item_idx = jnp.array(data[\\\\\\\"item_idx\\\\\\\"])\\\\n    judge_idx = jnp.array(data[\\\\\\\"judge_idx\\\\\\\"])\\\\n    y = jnp.array(data[\\\\\\\"y\\\\\\\"])\\\\n    e = jnp.array(data[\\\\\\\"e_i\\\\\\\"], dtype=jnp.float32)\\\\n\\\\n    mcmc = _run_mcmc(\\\\n        _gmfrm_model, jax.random.PRNGKey(seed),\\\\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\\\\n             y=y, e=e, N=data[\\\\\\\"N\\\\\\\"], I=data[\\\\\\\"I\\\\\\\"], J=data[\\\\\\\"J\\\\\\\"]),\\\\n        warmup, samples, chains, target_accept,\\\\n    )\\\\n\\\\n    samples_dict = mcmc.get_samples()\\\\n    theta_hat = _to_numpy(samples_dict[\\\\\\\"theta\\\\\\\"].mean(axis=0))\\\\n    c_hat = _to_numpy(samples_dict[\\\\\\\"c\\\\\\\"].mean(axis=0))\\\\n    b_hat = _to_numpy(samples_dict[\\\\\\\"b\\\\\\\"].mean(axis=0))\\\\n    d_hat = _to_numpy(samples_dict[\\\\\\\"d\\\\\\\"].mean(axis=0))\\\\n\\\\n    return {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"joint_gmfrm\\\\\\\",\\\\n        \\\\\\\"theta_hat\\\\\\\": theta_hat,\\\\n        \\\\\\\"c_hat\\\\\\\": c_hat,\\\\n        \\\\\\\"b_hat\\\\\\\": b_hat,\\\\n        \\\\\\\"d_hat\\\\\\\": d_hat,\\\\n        \\\\\\\"diagnostics\\\\\\\": _mcmc_diagnostics(mcmc),\\\\n        \\\\\\\"mcmc\\\\\\\": mcmc,\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"method\\\": \\\"sequential\\\",\\n        \\\"theta_hat\\\": theta_seq,\\n        \\\"c_hat\\\": c_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": mfrm_result[\\\"diagnostics\\\"],\\n        \\\"mcmc\\\": mfrm_result[\\\"mcmc\\\"],\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 4: Joint G-MFRM\\n# ---------------------------------------------------------------------------\\n\\ndef _gmfrm_model(model_idx, item_idx, judge_idx, y, e, N, I, J):\\n    theta_raw = numpyro.sample(\\\"theta_raw\\\", dist.Normal(0, 1).expand([N]))\\n    theta = numpyro.deterministic(\\\"theta\\\", theta_raw - theta_raw.mean())\\n    b = numpyro.sample(\\\"b\\\", dist.Normal(0, 1).expand([I]))\\n    d_raw = numpyro.sample(\\\"d_raw\\\", dist.Normal(0, 0.5).expand([J]))\\n    d = numpyro.deterministic(\\\"d\\\", d_raw - d_raw.mean())\\n\\n    # Hierarchical half-normal prior for contamination susceptibility\\n    sigma_c = numpyro.sample(\\\"sigma_c\\\", dist.HalfNormal(1.0))\\n    c_raw = numpyro.sample(\\\"c_raw\\\", dist.HalfNormal(jnp.ones(N) * 1.0))\\n    c = numpyro.deterministic(\\\"c\\\", c_raw * sigma_c)\\n\\n    logits = theta[model_idx] - b[item_idx] - d[judge_idx] + c[model_idx] * e[item_idx]\\n    numpyro.sample(\\\"obs\\\", dist.Bernoulli(logits=logits), obs=y)\\n\\n\\ndef fit_joint_gmfrm(data: dict, warmup=2000, samples=4000, chains=4,\\n                     target_accept=0.95, seed=42) -> dict:\\n    model_idx = jnp.array(data[\\\"model_idx\\\"])\\n    item_idx = jnp.array(data[\\\"item_idx\\\"])\\n    judge_idx = jnp.array(data[\\\"judge_idx\\\"])\\n    y = jnp.array(data[\\\"y\\\"])\\n    e = jnp.array(data[\\\"e_i\\\"], dtype=jnp.float32)\\n\\n    mcmc = _run_mcmc(\\n        _gmfrm_model, jax.random.PRNGKey(seed),\\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\\n             y=y, e=e, N=data[\\\"N\\\"], I=data[\\\"I\\\"], J=data[\\\"J\\\"]),\\n        warmup, samples, chains, target_accept,\\n    )\\n\\n    samples_dict = mcmc.get_samples()\\n    theta_hat = _to_numpy(samples_dict[\\\"theta\\\"].mean(axis=0))\\n    c_hat = _to_numpy(samples_dict[\\\"c\\\"].mean(axis=0))\\n    b_hat = _to_numpy(samples_dict[\\\"b\\\"].mean(axis=0))\\n    d_hat = _to_numpy(samples_dict[\\\"d\\\"].mean(axis=0))\\n\\n    return {\\n        \\\"method\\\": \\\"joint_gmfrm\\\",\\n        \\\"theta_hat\\\": theta_hat,\\n        \\\"c_hat\\\": c_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": _mcmc_diagnostics(mcmc),\\n        \\\"mcmc\\\": mcmc,\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture:
+
+1. **All three MCMC fit functions (`fit_mfrm_only`, `fit_sequential`, `fit_joint_gmfrm`) return a `"mcmc"` key** with the numpyro MCMC object.
+
+2. **The import in exp006 is wrong**: it says `from exp003_models import ...` but the file is `models.py`, not `exp003_models.py`. I need to fix this too.
+
+3. **arviz is already used in `models.py`** but might not be installed on the server — I need to check/install it.
+   
+So my plan is to add the arviz import at the top of the file, fix the import statement from `exp003_models` to `models`, modify `fit_methods_on_subset` to return the raw fit results with mcmc objects, and then update `run_sensitivity_analysis` to convert each MCMC fit into an InferenceData object for saving.
+
+Actually, I need to verify whether `exp003_models` is the correct module name or if it should be `models`. Looking at the project structure, there's no `exp003_models.py` file — the actual module is `models.py`, so I need to fix both import locations to use the correct module name.
+
+I should be careful not to overstep the user's request, but if the imports are broken, the code won't run at all. I'll fix them and mention it.
+
+My approach is to modify `fit_methods_on_subset` to accept `output_dir` and `label` parameters so it can save InferenceData right after each fit, keeping the logic self-contained. I'll need to add the arviz import, fix the module imports, and update the function signature accordingly.
+
+Now I need to see the full `leave_one_judge_out` function and understand what's in the middle section I'm missing to apply the same changes there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "fcaf7666-512c-4076-859f-23f29e2bd1a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Z9yivu2xp5crDNdvPoT7T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1726,
+      "cache_read_input_tokens": 50840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1726
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+I now have the full picture. Let me also see the `leave_one_judge_out` function which was truncated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "9508774f-96a2-4f0a-b9de-0ad73078d272",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Z9yivu2xp5crDNdvPoT7T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1726,
+      "cache_read_input_tokens": 50840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1726
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0185jbJx2Skw3huD1UPEpKb8`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -310 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "635f0009-19a3-4d1a-9263-a2cf0db0fe46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Z9yivu2xp5crDNdvPoT7T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1726,
+      "cache_read_input_tokens": 50840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1726
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-22T20:13:09.742Z_
+
+<details><summary>↩ Tool result · `toolu_0185jbJx2Skw3huD1UPEpKb8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    j\\n\\n... [截断: 输出过长，省略 2853 字符] ...\\n\\nerate(data[\\\"model_names\\\"])\\n            }\\n\\n    return results\\n\\n\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\n                             exposure_csv: str, judge_counts: list,\\n                             n_subsets: int, methods: list, seed: int) -> pd.DataFrame:\\n    \\\"\\\"\\\"Run full judge count sensitivity analysis.\\\"\\\"\\\"\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\n\\n    rows = []\\n    total = sum(len(v) for v in subsets.values())\\n    done = 0\\n\\n    for k in sorted(subsets.keys()):\\n        print(f\\\"\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\")\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\n            done += 1\\n            print(f\\\"    [{done}/{total}] Judges: {judge_subset}\\\")\\n\\n            filtered = filter_by_judges(observations, judge_subset)\\n            if not filtered:\\n                print(f\\\"      SKIP: no observations\\\")\\n                continue\\n\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\n            if data is None:\\n                print(f\\\"      SKIP: could not build data dict\\\")\\n                continue\\n\\n            print(f\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\")\\n\\n            t0 = time.time()\\n            theta_dicts = fit_methods_on_subset(data, methods)\\n            elapsed = time.time() - t0\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                rows.append({\\n                    \\\"judge_count\\\": k,\\n                    \\\"subset_idx\\\": s_idx,\\n                    \\\"judges\\\": \\\",\\\".join(sorted(judge_subset)),\\n                    \\\"method\\\": method,\\n                    \\\"kendall_tau\\\": corr[\\\"kendall_tau\\\"],\\n                    \\\"spearman_rho\\\": corr[\\\"spearman_rho\\\"],\\n                    \\\"n_matched\\\": corr[\\\"n_matched\\\"],\\n                    \\\"n_obs\\\": data[\\\"n_obs\\\"],\\n                    \\\"elapsed_s\\\": round(elapsed, 1),\\n                })\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                print(f\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\")\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef leave_one_judge_out(observations: list, all_judges: list,\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\n    \\\"\\\"\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\"\\\"\\\"\\n    rows = []\\n\\n    # Full-judge baseline\\n    full_data = build_data_dict(observations, exposure_csv)\\n    if full_data is None:\\n        return pd.DataFrame()\\n\\n    full_thetas = fit_methods_on_subset(full_data, methods)\\n    full_taus = {m: compute_arena_tau(t)[\\\"kendall_tau\\\"] for m, t in full_thetas.items()}\\n\\n    for left_out in all_judges:\\n        remaining = [j for j in all_judges if j != left_out]\\n        filtered = filter_by_judges(observations, remaining)\\n        data = build_data_dict(filtered, exposure_csv)\\n        if data is None:\\n            continue\\n\\n        theta_dicts = fit_methods_on_subset(data, methods)\\n        for method, theta_dict in theta_dicts.items():\\n            corr = compute_arena_tau(theta_dict)\\n            rows.append({\\n                \\\"left_out_judge\\\": left_out,\\n                \\\"method\\\": method,\\n                \\\"kendall_tau\\\": corr[\\\"kendall_tau\\\"],\\n                \\\"tau_delta\\\": corr[\\\"kendall_tau\\\"] - full_taus.get(method, 0),\\n                \\\"spearman_rho\\\": corr[\\\"spearman_rho\\\"],\\n                \\\"n_obs\\\": data[\\\"n_obs\\\"],\\n            })\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef plot_tau_vs_judge_count(df: pd.DataFrame, output_dir: Path):\\n    \\\"\\\"\\\"Plot Kendall-τ vs judge count for each method.\\\"\\\"\\\"\\n    if df.empty:\\n        print(\\\"  No data for tau vs judge count plot\\\")\\n        return\\n\\n    fig, ax = plt.subplots(figsize=(10, 6))\\n\\n    colors = {\\n        \\\"raw_average\\\": \\\"#9E9E9E\\\",\\n        \\\"mfrm_only\\\": \\\"#FF9800\\\",\\n        \\\"sequential\\\": \\\"#4CAF50\\\",\\n        \\\"joint_gmfrm\\\": \\\"#2196F3\\\",\\n    }\\n\\n    for method in df[\\\"method\\\"].unique():\\n        mdf = df[df[\\\"method\\\"] == method]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "cb2daab9-af9e-448d-b9da-6d56e098dc87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp-006: Judge Count Sensitivity Analysis.\\\\n\\\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\\\n\\\\nUsage:\\\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\\\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\\\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\\\n\\\\n  python run_exp006.py --dry-run  # validate data loading only\\\\n  python run_exp006.py --help\\\\n\\\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport itertools\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import kendalltau, spearmanr\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/gated_mfrm_judge_bias/exp003\\\\\\\")\\\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\\\n\\\\n\\\\nARENA_ELO = {\\\\n    \\\\\\\"gpt-3.5-turbo-0125\\\\\\\": 1105,\\\\n    \\\\\\\"gpt-4-0613\\\\\\\": 1163,\\\\n    \\\\\\\"gemma-2-9b\\\\\\\": 1130,\\\\n    \\\\\\\"qwen3-8b\\\\\\\": 1170,\\\\n    \\\\\\\"llama-3.3-70b\\\\\\\": 1208,\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\": 1187,\\\\n    \\\\\\\"gpt-4o\\\\\\\": 1286,\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\": 1272,\\\\n}\\\\n\\\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\\\nSEED = 42\\\\n\\\\n\\\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\\\n    if len(matched) < 3:\\\\n        return {\\\\\\\"kendall_tau\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"spearman_rho\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"n_matched\\\\\\\": len(matched)}\\\\n    models, thetas = zip(*matched)\\\\n    elos = [ARENA_ELO[m] for m in models]\\\\n    tau, tau_p = kendalltau(thetas, elos)\\\\n    rho, rho_p = spearmanr(thetas, elos)\\\\n    return {\\\\n        \\\\\\\"kendall_tau\\\\\\\": float(tau),\\\\n        \\\\\\\"kendall_p\\\\\\\": float(tau_p),\\\\n        \\\\\\\"spearman_rho\\\\\\\": float(rho),\\\\n        \\\\\\\"spearman_p\\\\\\\": float(rho_p),\\\\n        \\\\\\\"n_matched\\\\\\\": len(matched),\\\\n    }\\\\n\\\\n\\\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and preprocess all judgment data, returning observations + metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    records = load_judgments(judgment_dir)\\\\n    observations = preprocess(records)\\\\n\\\\n    all_judges = sorted({o[\\\\\\\"judge\\\\\\\"] for o in observations})\\\\n    all_models = sorted({o[\\\\\\\"model\\\\\\\"] for o in observations})\\\\n    all_items = sorted({o[\\\\\\\"item_id\\\\\\\"] for o in observations})\\\\n\\\\n    return observations, all_judges, all_models, all_items\\\\n\\\\n\\\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Filter observations to only include specified judges.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    judge_set = set(judge_subset)\\\\n    return [o for o in observations if o[\\\\\\\"judge\\\\\\\"] in judge_set]\\\\n\\\\n\\\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build the data dict expected by G-MFRM fitting functions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from collections import defaultdict\\\\n\\\\n    # Filter items by minimum judge coverage\\\\n    judges_per_item = defaultdict(set)\\\\n    for o in filtered_obs:\\\\n        judges_per_item[o[\\\\\\\"item_id\\\\\\\"]].add(o[\\\\\\\"judge\\\\\\\"])\\\\n    valid_items = {item for item, judges in judges_per_item.items()\\\\n                   if len(judges) >= min(min_judges, len(set(o[\\\\\\\"judge\\\\\\\"] for o in filtered_obs)))}\\\\n    filtered_obs = [o for o in filtered_obs if o[\\\\\\\"item_id\\\\\\\"] in valid_items]\\\\n\\\\n    if not filtered_obs:\\\\n        return None\\\\n\\\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\\\n    N = len(model_to_idx)\\\\n    I = len(item_to_idx)\\\\n    J = len(judge_to_idx)\\\\n\\\\n    model_idx = np.array([model_to_idx[o[\\\\\\\"model\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    item_idx = np.array([item_to_idx[o[\\\\\\\"item_id\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    judge_idx = np.array([judge_to_idx[o[\\\\\\\"judge\\\\\\\"]] for o in filtered_obs], dtype=np.int32)\\\\n    y = np.array([o[\\\\\\\"y\\\\\\\"] for o in filtered_obs], dtype=np.float32)\\\\n\\\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\\\n\\\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\\\n    j\\\\n\\\\n... [截断: 输出过长，省略 2853 字符] ...\\\\n\\\\nerate(data[\\\\\\\"model_names\\\\\\\"])\\\\n            }\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\\\n                             exposure_csv: str, judge_counts: list,\\\\n                             n_subsets: int, methods: list, seed: int) -> pd.DataFrame:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full judge count sensitivity analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\\\n\\\\n    rows = []\\\\n    total = sum(len(v) for v in subsets.values())\\\\n    done = 0\\\\n\\\\n    for k in sorted(subsets.keys()):\\\\n        print(f\\\\\\\"\\\\\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\\\\\")\\\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\\\n            done += 1\\\\n            print(f\\\\\\\"    [{done}/{total}] Judges: {judge_subset}\\\\\\\")\\\\n\\\\n            filtered = filter_by_judges(observations, judge_subset)\\\\n            if not filtered:\\\\n                print(f\\\\\\\"      SKIP: no observations\\\\\\\")\\\\n                continue\\\\n\\\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\\\n            if data is None:\\\\n                print(f\\\\\\\"      SKIP: could not build data dict\\\\\\\")\\\\n                continue\\\\n\\\\n            print(f\\\\\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\\\\\")\\\\n\\\\n            t0 = time.time()\\\\n            theta_dicts = fit_methods_on_subset(data, methods)\\\\n            elapsed = time.time() - t0\\\\n\\\\n            for method, theta_dict in theta_dicts.items():\\\\n                corr = compute_arena_tau(theta_dict)\\\\n                rows.append({\\\\n                    \\\\\\\"judge_count\\\\\\\": k,\\\\n                    \\\\\\\"subset_idx\\\\\\\": s_idx,\\\\n                    \\\\\\\"judges\\\\\\\": \\\\\\\",\\\\\\\".join(sorted(judge_subset)),\\\\n                    \\\\\\\"method\\\\\\\": method,\\\\n                    \\\\\\\"kendall_tau\\\\\\\": corr[\\\\\\\"kendall_tau\\\\\\\"],\\\\n                    \\\\\\\"spearman_rho\\\\\\\": corr[\\\\\\\"spearman_rho\\\\\\\"],\\\\n                    \\\\\\\"n_matched\\\\\\\": corr[\\\\\\\"n_matched\\\\\\\"],\\\\n                    \\\\\\\"n_obs\\\\\\\": data[\\\\\\\"n_obs\\\\\\\"],\\\\n                    \\\\\\\"elapsed_s\\\\\\\": round(elapsed, 1),\\\\n                })\\\\n\\\\n            for method, theta_dict in theta_dicts.items():\\\\n                corr = compute_arena_tau(theta_dict)\\\\n                print(f\\\\\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\\\\\")\\\\n\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef leave_one_judge_out(observations: list, all_judges: list,\\\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rows = []\\\\n\\\\n    # Full-judge baseline\\\\n    full_data = build_data_dict(observations, exposure_csv)\\\\n    if full_data is None:\\\\n        return pd.DataFrame()\\\\n\\\\n    full_thetas = fit_methods_on_subset(full_data, methods)\\\\n    full_taus = {m: compute_arena_tau(t)[\\\\\\\"kendall_tau\\\\\\\"] for m, t in full_thetas.items()}\\\\n\\\\n    for left_out in all_judges:\\\\n        remaining = [j for j in all_judges if j != left_out]\\\\n        filtered = filter_by_judges(observations, remaining)\\\\n        data = build_data_dict(filtered, exposure_csv)\\\\n        if data is None:\\\\n            continue\\\\n\\\\n        theta_dicts = fit_methods_on_subset(data, methods)\\\\n        for method, theta_dict in theta_dicts.items():\\\\n            corr = compute_arena_tau(theta_dict)\\\\n            rows.append({\\\\n                \\\\\\\"left_out_judge\\\\\\\": left_out,\\\\n                \\\\\\\"method\\\\\\\": method,\\\\n                \\\\\\\"kendall_tau\\\\\\\": corr[\\\\\\\"kendall_tau\\\\\\\"],\\\\n                \\\\\\\"tau_delta\\\\\\\": corr[\\\\\\\"kendall_tau\\\\\\\"] - full_taus.get(method, 0),\\\\n                \\\\\\\"spearman_rho\\\\\\\": corr[\\\\\\\"spearman_rho\\\\\\\"],\\\\n                \\\\\\\"n_obs\\\\\\\": data[\\\\\\\"n_obs\\\\\\\"],\\\\n            })\\\\n\\\\n    return pd.DataFrame(rows)\\\\n\\\\n\\\\ndef plot_tau_vs_judge_count(df: pd.DataFrame, output_dir: Path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Plot Kendall-τ vs judge count for each method.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if df.empty:\\\\n        print(\\\\\\\"  No data for tau vs judge count plot\\\\\\\")\\\\n        return\\\\n\\\\n    fig, ax = plt.subplots(figsize=(10, 6))\\\\n\\\\n    colors = {\\\\n        \\\\\\\"raw_average\\\\\\\": \\\\\\\"#9E9E9E\\\\\\\",\\\\n        \\\\\\\"mfrm_only\\\\\\\": \\\\\\\"#FF9800\\\\\\\",\\\\n        \\\\\\\"sequential\\\\\\\": \\\\\\\"#4CAF50\\\\\\\",\\\\n        \\\\\\\"joint_gmfrm\\\\\\\": \\\\\\\"#2196F3\\\\\\\",\\\\n    }\\\\n\\\\n    for method in df[\\\\\\\"method\\\\\\\"].unique():\\\\n        mdf = df[df[\\\\\\\"method\\\\\\\"] == method]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models, thetas = zip(*matched)\\n    elos = [ARENA_ELO[m] for m in models]\\n    tau, tau_p = kendalltau(thetas, elos)\\n    rho, rho_p = spearmanr(thetas, elos)\\n    return {\\n        \\\"kendall_tau\\\": float(tau),\\n        \\\"kendall_p\\\": float(tau_p),\\n        \\\"spearman_rho\\\": float(rho),\\n        \\\"spearman_p\\\": float(rho_p),\\n        \\\"n_matched\\\": len(matched),\\n    }\\n\\n\\ndef load_full_data(judgment_dir: str, exposure_csv: str) -> tuple:\\n    \\\"\\\"\\\"Load and preprocess all judgment data, returning observations + metadata.\\\"\\\"\\\"\\n    records = load_judgments(judgment_dir)\\n    observations = preprocess(records)\\n\\n    all_judges = sorted({o[\\\"judge\\\"] for o in observations})\\n    all_models = sorted({o[\\\"model\\\"] for o in observations})\\n    all_items = sorted({o[\\\"item_id\\\"] for o in observations})\\n\\n    return observations, all_judges, all_models, all_items\\n\\n\\ndef filter_by_judges(observations: list, judge_subset: list) -> list:\\n    \\\"\\\"\\\"Filter observations to only include specified judges.\\\"\\\"\\\"\\n    judge_set = set(judge_subset)\\n    return [o for o in observations if o[\\\"judge\\\"] in judge_set]\\n\\n\\ndef build_data_dict(filtered_obs: list, exposure_csv: str, min_judges: int = 1) -> dict:\\n    \\\"\\\"\\\"Build the data dict expected by G-MFRM fitting functions.\\\"\\\"\\\"\\n    from collections import defaultdict\\n\\n    # Filter items by minimum judge coverage\\n    judges_per_item = defaultdict(set)\\n    for o in filtered_obs:\\n        judges_per_item[o[\\\"item_id\\\"]].add(o[\\\"judge\\\"])\\n    valid_items = {item for item, judges in judges_per_item.items()\\n                   if len(judges) >= min(min_judges, len(set(o[\\\"judge\\\"] for o in filtered_obs)))}\\n    filtered_obs = [o for o in filtered_obs if o[\\\"item_id\\\"] in valid_items]\\n\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    j\\n\\n... [截断: 输出过长，省略 2853 字符] ...\\n\\nerate(data[\\\"model_names\\\"])\\n            }\\n\\n    return results\\n\\n\\ndef run_sensitivity_analysis(observations: list, all_judges: list,\\n                             exposure_csv: str, judge_counts: list,\\n                             n_subsets: int, methods: list, seed: int) -> pd.DataFrame:\\n    \\\"\\\"\\\"Run full judge count sensitivity analysis.\\\"\\\"\\\"\\n    subsets = generate_judge_subsets(all_judges, judge_counts, n_subsets, seed)\\n\\n    rows = []\\n    total = sum(len(v) for v in subsets.values())\\n    done = 0\\n\\n    for k in sorted(subsets.keys()):\\n        print(f\\\"\\\\n  Judge count = {k} ({len(subsets[k])} subsets):\\\")\\n        for s_idx, judge_subset in enumerate(subsets[k]):\\n            done += 1\\n            print(f\\\"    [{done}/{total}] Judges: {judge_subset}\\\")\\n\\n            filtered = filter_by_judges(observations, judge_subset)\\n            if not filtered:\\n                print(f\\\"      SKIP: no observations\\\")\\n                continue\\n\\n            data = build_data_dict(filtered, exposure_csv, min_judges=1)\\n            if data is None:\\n                print(f\\\"      SKIP: could not build data dict\\\")\\n                continue\\n\\n            print(f\\\"      N={data['N']}, I={data['I']}, J={data['J']}, obs={data['n_obs']}\\\")\\n\\n            t0 = time.time()\\n            theta_dicts = fit_methods_on_subset(data, methods)\\n            elapsed = time.time() - t0\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                rows.append({\\n                    \\\"judge_count\\\": k,\\n                    \\\"subset_idx\\\": s_idx,\\n                    \\\"judges\\\": \\\",\\\".join(sorted(judge_subset)),\\n                    \\\"method\\\": method,\\n                    \\\"kendall_tau\\\": corr[\\\"kendall_tau\\\"],\\n                    \\\"spearman_rho\\\": corr[\\\"spearman_rho\\\"],\\n                    \\\"n_matched\\\": corr[\\\"n_matched\\\"],\\n                    \\\"n_obs\\\": data[\\\"n_obs\\\"],\\n                    \\\"elapsed_s\\\": round(elapsed, 1),\\n                })\\n\\n            for method, theta_dict in theta_dicts.items():\\n                corr = compute_arena_tau(theta_dict)\\n                print(f\\\"      {method}: τ={corr['kendall_tau']:.4f}, ρ={corr['spearman_rho']:.4f}\\\")\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef leave_one_judge_out(observations: list, all_judges: list,\\n                        exposure_csv: str, methods: list) -> pd.DataFrame:\\n    \\\"\\\"\\\"Leave-one-judge-out analysis: fit on N-1 judges, measure impact.\\\"\\\"\\\"\\n    rows = []\\n\\n    # Full-judge baseline\\n    full_data = build_data_dict(observations, exposure_csv)\\n    if full_data is None:\\n        return pd.DataFrame()\\n\\n    full_thetas = fit_methods_on_subset(full_data, methods)\\n    full_taus = {m: compute_arena_tau(t)[\\\"kendall_tau\\\"] for m, t in full_thetas.items()}\\n\\n    for left_out in all_judges:\\n        remaining = [j for j in all_judges if j != left_out]\\n        filtered = filter_by_judges(observations, remaining)\\n        data = build_data_dict(filtered, exposure_csv)\\n        if data is None:\\n            continue\\n\\n        theta_dicts = fit_methods_on_subset(data, methods)\\n        for method, theta_dict in theta_dicts.items():\\n            corr = compute_arena_tau(theta_dict)\\n            rows.append({\\n                \\\"left_out_judge\\\": left_out,\\n                \\\"method\\\": method,\\n                \\\"kendall_tau\\\": corr[\\\"kendall_tau\\\"],\\n                \\\"tau_delta\\\": corr[\\\"kendall_tau\\\"] - full_taus.get(method, 0),\\n                \\\"spearman_rho\\\": corr[\\\"spearman_rho\\\"],\\n                \\\"n_obs\\\": data[\\\"n_obs\\\"],\\n            })\\n\\n    return pd.DataFrame(rows)\\n\\n\\ndef plot_tau_vs_judge_count(df: pd.DataFrame, output_dir: Path):\\n    \\\"\\\"\\\"Plot Kendall-τ vs judge count for each method.\\\"\\\"\\\"\\n    if df.empty:\\n        print(\\\"  No data for tau vs judge count plot\\\")\\n        return\\n\\n    fig, ax = plt.subplots(figsize=(10, 6))\\n\\n    colors = {\\n        \\\"raw_average\\\": \\\"#9E9E9E\\\",\\n        \\\"mfrm_only\\\": \\\"#FF9800\\\",\\n        \\\"sequential\\\": \\\"#4CAF50\\\",\\n        \\\"joint_gmfrm\\\": \\\"#2196F3\\\",\\n    }\\n\\n    for method in df[\\\"method\\\"].unique():\\n        mdf = df[df[\\\"method\\\"] == method]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture of the code. Let me also check what the leave_one_judge_out function looks like in the truncated part and verify I have all the info. I already can see it from the tail output.
+
+Now I need to plan the changes:
+
+### Issues found:
+1. **Import bug**: `from exp003_models import` should be `from models import` (the file is `models.py`, not `exp003_models.py`)
+2. **Missing arviz import**: Need `import arviz as az`
+3. **No InferenceData saving**: Need to save after each MCMC fit
+
+
+4. **Return value issue**: `fit_methods_on_subset` currently discards the mcmc objects, so I can't save InferenceData later
+
+I'll modify `fit_methods_on_subset` to accept an optional `idata_dir` parameter that saves InferenceData directly within the function when provided.
+
+Modifying the function signature... Writing model fitting code...
+
+Now I need to thread the `output_dir` parameter through the sensitivity analysis functions, creating an `idata` subdirectory to store the inference data outputs with appropriate labels for each method. I'll also apply the same pattern to the `leave_one_judge_out` function, then write a Python script to apply these changes since I can't use sed directly on the remote server.
+
+The modifications involve adding the `arviz` import, fixing the model imports from `exp003_models` to `models`, and updating the function signatures to accept and pass through the output directory parameter.
+
+Writing Python script... Writing string replacement script... Continuing with the function body that fits each method on the subset, extracting theta estimates and converting them to floats for the results dictionary. Writing model fitting code... Modifying the sensitivity analysis function signature...
+
+Now I'm updating the function call to pass the idata directory and label parameters when fitting methods on each subset, then updating the main function to pass the output directory through to the sensitivity analysis. I'm realizing there's a complication with the string replacement approach—the `fit_methods_on_subset` call appears in multiple places with different contexts. In `run_sensitivity_analysis` it's straightforward, but `leave_one_judge_out` has two separate calls assigning to different variables. Since those calls don't pass an `idata_dir` parameter, they'll skip the InferenceData saving anyway, which is acceptable for now since the main use case is the sensitivity analysis function. Writing the replacement script... Writing the replacement script... Adding InferenceData saves... Continuing with the function modifications...
+
+I'm setting up the idata directory structure when an output directory is provided, then updating the fit call to generate appropriate labels for saving intermediate data arrays based on the subset parameters.
+
+Now I need to modify the main function to pass the output directory through to the sensitivity analysis, and then update the leave-one-judge-out function to also handle saving inference data. Updating the per-judge leave-one-out calls to pass the idata directory and generate appropriate labels for each iteration...
+
+Now I'm making the final modification to the main function's leave_one_judge_out call to include the output directory parameter, then writing the updated script back to the file. Wait, I need to verify something about the sequential method—it internally calls fit_mfrm_only and returns its mcmc object, so accessing seq["mcmc"] should give me the M
+
+-FRM mcmc trace, which is what I want to save since the sequential method's "C" step uses OLS rather than MCMC. I'm also thinking through the leave_one_judge_out baseline call that uses the full judge set—if I've already run the sensitivity analysis, the k=9 subset would generate an idata file, but since the labels differ there shouldn't be any file collision issues. Now I need to check whether arviz requires something specific for handling these traces.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "d1700b44-e39b-4b32-b813-1bb079bde1b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qsMruymz4oFYFL1MvjAZN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4680,
+      "cache_read_input_tokens": 52566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4680
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+Good findings. The `models.py` already returns `"mcmc"` objects in all three fit functions and already imports arviz. The import name is wrong though (`exp003_models` vs `models`).
+
+Let me check if arviz is available in the conda env, then apply all changes.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "624d579d-b05d-4f1f-aa9d-4f1d2eaae798",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qsMruymz4oFYFL1MvjAZN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4680,
+      "cache_read_input_tokens": 52566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4680
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TGrM3Q33HrupeawkyubJGA`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import arviz; print(arviz.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c49d6abb-e6b4-42c5-b5fe-2f3360232cf7",
+  "uuid": "eb8be4fc-bfd5-4224-8a6e-6e2d9b4e732e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qsMruymz4oFYFL1MvjAZN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4680,
+      "cache_read_input_tokens": 52566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4680
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

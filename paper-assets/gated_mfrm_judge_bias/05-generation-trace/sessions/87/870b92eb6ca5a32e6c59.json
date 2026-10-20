@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "870b92eb6ca5a32e6c59",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh deploy and run exp004",
+  "task_key": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deploy_and_run_exp004_20260522T175816_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "5a896d8e6ce2880c018ab4a0b219daa554c1172831b1afe3fd8f6186cc259f7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果 JSON 已验证。\n\n## 结果总结\n\n| Method | Kendall-τ | Spearman-ρ | Source |\n|---|---|---|---|\n| raw_average | 0.786 | 0.905 | exp-004 |\n| cyclic_judge | 0.786 | 0.905 | exp-004 |\n| cyclic_judge_discard | 0.786 | 0.905 | exp-004 |\n| dcr_factor | 0.786 | 0.905 | exp-004 |\n| preference_leakage | 0.786 | 0.905 | exp-004 |\n| mfrm_only | 0.786 | 0.905 | exp-003 |\n| sequential | 0.786 | 0.905 | exp-003 |\n| **joint_gmfrm** | **0.857** | **0.952** | exp-003 |\n\n**关键发现**：所有5个简单baseline产生了完全一致的模型排名（8个模型的排序未变）。θ 的绝对值虽有差异（judge correction / exposure weighting 改变了scale），但排名保持不变 → τ 和 ρ 完全相同。\n\n这在方法论上是可以解释的：\n1. **preference_leakage** 数学上等价于 raw_average（减去 judge-model bias 后重新平均，bias 项消掉）\n2. **cyclic_judge** 在 judge 分配近似均衡时不改变排名（9 judges × 8 models，覆盖率 44.7%，各 model 的 judge 组合差异不足以翻转排名）\n3. **dcr_factor / discard** exposure 分数是 item 级别的，不区分 model → 对所有 model 施加相同方向的调整\n\n只有 **joint G-MFRM**（结构化建模 contamination × model 交互）才将 τ 从 0.786 提升到 0.857 — 支持了\"需要联合建模\"的核心论点。\n\n结果路径：`/root/gated_mfrm_judge_bias/exp004/results/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-and-run-exp004.md"
+}

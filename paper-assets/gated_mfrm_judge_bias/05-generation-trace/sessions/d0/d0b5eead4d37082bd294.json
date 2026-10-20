@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0b5eead4d37082bd294",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp013 status check",
+  "task_key": "worker_ssh_exp013_status_check_20260523T043953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp013_status_check_20260523T043953_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "a688c2133208e2a58db2f29a36cf5a3dccaec72ac640f19611322f188c48ed9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-013 仍在运行中。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 558426 | 运行中，已 30 分 14 秒 |\n| GPU cuda:0 | 占用 73,530 MiB |\n| MCMC 进度 | `sample 3497/4000`（87%），~4.09 it/s，acc. prob=0.95 |\n| 结果目录 | 已创建但为空，尚无 `weight_sensitivity.csv` |\n\n当前正在拟合 joint G-MFRM（warmup=2000, samples=2000, chains=2），数据规模：9 个 judge、402 items、17,537 observations。当前 chain 剩余 ~503 iterations，约 2 分钟完成此 chain。\n\n因为实验包含 4 种权重配置，每个都要跑完整 MCMC，当前看起来还在第一个配置（或前几个），预计还需 15-30 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp013-status-check.md"
+}

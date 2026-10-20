@@ -1,0 +1,3 @@
+2026-05-21 21:15:40,954 INFO    core.tools.feishu  create_chat: name='审稿-gated_mfrm_judge_bias' → chat_id=oc_4ec7f5464e5f8985d29c475e59d2f3f6
+2026-05-21 21:15:40,957 INFO    core.tools.dream  [dream] auto-created Group C for project=gated_mfrm_judge_bias: oc_4ec7f5464e5f8985d29c475e59d2f3f6
+2026-05-21 21:15:41,139 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-prod43/config/mcp_config_dream_review_director.json

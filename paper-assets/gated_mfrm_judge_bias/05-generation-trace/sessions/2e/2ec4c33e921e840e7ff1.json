@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ec4c33e921e840e7ff1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper figure layout overhaul",
+  "task_key": "worker_paper_figure-layout-overhaul_20260525T121947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure-layout-overhaul_20260525T121947_result.json",
+    "occurrence": 1,
+    "bytes": 1981,
+    "sha256": "203b95b7d7974e81230a2c954933c18983247a3cf3da441df37bd9a3d2e2ab65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes complete. Here is the summary:\n\n## 每页布局\n- p1: Title + Abstract + Introduction\n- p2: **Figure 1** (框架图, figure\\*) + Introduction 继续\n- p3: **Figure 2** (OVB bias scatter, figure[t]) + Background\n- p4: **Table 1** (Error propagation, table[t]) + Method (Model Specification)\n- p5: **Figure 3** (Judge severity forest plot, figure[t]) + Method (Staged Estimation, Identifiability)\n- p6: **Table 2** (Main results, table[t]) + Experiments (Setup)\n- p7: **Figure 4** (Contamination profile, figure\\*[t]) + Experiments (Results)\n- p8: Experiments (Error Prop) + Conclusion + Limitations + References 开始\n\n## 移到 appendix 的图\n- `fig4_bias_vs_rho` → `app:bias_vs_rho` (Appendix S: Bias vs. Confounding Level)\n- `fig3_error_propagation` → `app:error_prop` (Appendix T: Error Propagation Visualization)\n- `fig5_cn_recovery` → `app:cn_recovery` (Appendix U: Contamination Recovery)\n\n## 引用更新\n- `background.tex:42` — `Figure~\\ref{fig:ovb_bias}b` → `Appendix~\\ref{app:bias_vs_rho}`\n- `background.tex:42` — `Figure~\\ref{fig:ovb_bias}a` → `Figure~\\ref{fig:ovb_bias}`\n- `method.tex:86` — `Figure~\\ref{fig:error_prop}` → `Appendix~\\ref{app:error_prop}`\n- `method.tex:70` — 新增 `Appendix~\\ref{app:cn_recovery}` 引用\n\n## 拆分的图\n- Figure 2 原始合并图 (`figure*` with fig2_ovb_bias + fig4_bias_vs_rho) → 拆为独立 `figure[t]` (ovb_bias 留正文) + appendix (bias_vs_rho)\n\n## Float 重排\n- Table 2 (main_results) 从 experiments.tex 移至 method.tex 末尾以 float 到 p6 顶部\n- Figure 3 (forest_dj) 从 experiments.tex 移至 method.tex identifiability 前以 float 到 p5\n- Figure 4 (cn_profile) 提前至 experiments.tex 开头以 float 到 p7\n\n## 编译结果\n- 页数：8（正文）+ 9（references + appendix）= 17 总页\n- undefined refs：0\n- multiply defined labels：0\n- warnings：仅 appendix 中 `[h]` → `[ht]` 浮动调整（无害）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-layout-overhaul.md"
+}

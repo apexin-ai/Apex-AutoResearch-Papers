@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "971d0537b9fce2e6c672",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp017 investigate and start",
+  "task_key": "worker_ssh_exp017_investigate_and_start_20260523T065425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp017_investigate_and_start_20260523T065425_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "4c68d4b7ebc518913d189965f2e9222fbc0a704282dabbf2c6a6d12241779b2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查结果：\n\n### 1. cuda:3 占用\n两个 `test_dry.py` 进程占满 GPU 3：\n- PID 308617: 73530 MiB\n- PID 310192: 23482 MiB\n- 总计 ~97 GB，与报告一致\n\n这不是 exp-014 残留，而是 `test_dry.py` 测试脚本。**不属于明确可 kill 的范畴，需要你确认是否 kill。**\n\n### 2. MCMC 参数确认\n`run_exp017.py` 第 108 行：`num_warmup=2000, num_samples=4000, num_chains=4` — 参数正确。\n\n### 3. 当前 GPU 分配\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | exp-014 (×2 instances) | Running |\n| 1 | exp-015 | Running |\n| 2 | exp-016 | Running |\n| 3 | test_dry.py (×2) | 占满 97GB |\n\n**需要你确认：是否 kill 掉 cuda:3 上的两个 `test_dry.py` 进程（PID 308617, 310192）以释放显存给 exp-017？**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp017-investigate-and-start.md"
+}

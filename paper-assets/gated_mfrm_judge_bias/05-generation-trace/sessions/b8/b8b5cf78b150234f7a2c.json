@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b8b5cf78b150234f7a2c",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "paper figure layout overhaul",
+  "task_key": "worker_paper_figure-layout-overhaul_20260525T121947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure-layout-overhaul_20260525T121947.log",
+    "occurrence": 1,
+    "bytes": 741777,
+    "sha256": "6b99ebd4825c984c1e8c85e109c542852ea5c37d6562a771d274bf370b614846"
+  },
+  "statistics": {
+    "messages": 178,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "b8b5cf78b150234f7a2c-part-0001.json",
+          "message_count": 124
+        },
+        {
+          "path": "b8b5cf78b150234f7a2c-part-0002.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-layout-overhaul.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25c7ff802eb217d62c90",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mistral e2e deploy collect",
+  "task_key": "worker_ssh_mistral_e2e_deploy_collect_20260524T060635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mistral_e2e_deploy_collect_20260524T060635_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "6fe8e15813440660a9d87d3130a0c8097c6fdde38f8d6cce99ac1f56497dfbb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态总结：\n- **下载进度**：12/14 shards 完成（52G），shard 11 正在 aria2c 重新下载（42%，ETA ~3 min），shard 12/13 缺失\n- **磁盘**：/root/autodl-tmp 250G 已用 235G，剩余 16G（够用，还需约 10G）\n- **自动化管道已在运行**：download_mistral_v3.sh → deploy_mistral_vllm.sh → auto_start_mistral_collect.sh\n- **其他进程正常**：exp017 on cuda:0, vLLM Llama on cuda:1 port 8001, 4 个 collect.py (sonnet/gemini/deepseek/qwen3)\n\n4.5 分钟后回来检查下载是否完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mistral-e2e-deploy-collect.md"
+}

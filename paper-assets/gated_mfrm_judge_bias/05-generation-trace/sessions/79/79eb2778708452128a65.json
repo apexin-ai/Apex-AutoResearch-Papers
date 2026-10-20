@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79eb2778708452128a65",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh waic loo check and collect",
+  "task_key": "worker_ssh_waic_loo_check_and_collect_20260523T004658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_waic_loo_check_and_collect_20260523T004658_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "da9978576be95171e10f6ed415f72d53027d98e7d5118d2cb10d1d7ddb02e2d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## WAIC/LOO-CV 任务状态\n\n### G-MFRM 结果（已完成）\n\n```\nG-MFRM:\n  WAIC:  4544.52 (SE: 38.50)\n  p_WAIC: 128.27\n  LOOIC: 4545.19 (SE: 38.50)\n  p_LOO:  128.61\n  Pareto-k > 0.7: 0/5661 (0.0%) — 全部 good\n  Pareto-k max: 0.276, mean: 0.027\n```\n\nPareto-k 诊断非常好，所有 5661 个观测点的 k 值都在 0.7 以下，LOO 估计可靠。\n\n### MFRM-only 对比模型（仍在运行）\n\n有两个 MFRM-only fitting 进程同时在跑：\n\n| PID | 脚本 | 启动时间 | 进度 | ETA |\n|-----|------|---------|------|-----|\n| 249604 | `scripts/waic_loo_comparison.py` | 08:07 | warmup 10% (783/8000) | ~2h22m（约 11:10 完成）|\n| 244822 | `compute_waic_loo.py` | 07:52 | 未知（无可见日志）| 未知 |\n\n`waic_loo_comparison.py` 配置为 warmup=2000, samples=2000, chains=2（可能是 4 chains based on 8000 total），每步 ~1.18s，当前仍在 warmup 阶段。\n\n### 其他任务状态\n\n- **exp005**: 已完成\n- **exp006_full**: sampling 68%（2035/3000），~3 min 剩余（这是单 chain 进度）\n- **refit003b**: 已失败（`TypeError: Invalid comparison between dtype=str and float`）\n\n### 结论\n\nG-MFRM 的 WAIC/LOO 已产出，MFRM-only baseline fitting 预计还需 ~2.5 小时。ΔWAIC 对比需等 MFRM-only 完成后才能计算。两个 MFRM-only 进程可能是重复任务，建议确认是否需要 kill 其中一个以释放 GPU 资源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-waic-loo-check-and-collect.md"
+}

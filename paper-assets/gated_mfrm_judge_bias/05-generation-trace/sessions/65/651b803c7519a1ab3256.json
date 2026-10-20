@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "651b803c7519a1ab3256",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp016 015 status check",
+  "task_key": "worker_ssh_exp016_015_status_check_20260523T075304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp016_015_status_check_20260523T075304_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "7e4b1bca00b837da418364ac1ff22d61debaca16207464413ecba77249a881d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n### exp-016 Prior Sensitivity (PID 316023)\n\n- **状态**: 运行中，已 53 分钟\n- **进度**: 仍在第 1 个 prior（HalfNormal(1.5)）的 **warmup 阶段**，step 1340/6000（22%）\n- **结果**: 空，尚无 CSV 输出\n- **问题**: warmup 速度在 step 1324 处从 ~4.6 it/s 骤降至 ~1.2 s/it（慢了约 5.5 倍）\n- **GPU 2**: 仅用 667 MiB / 97887 MiB，利用率 70%——进程主要跑在 CPU（100% CPU, 1.7GB RSS）\n- **预估**: 按当前速度，仅第一个 prior 的 warmup 还需 ~93 分钟，4 个 prior 全部完成可能需要 **10+ 小时**\n- **注意**: 日志末尾有前一次运行 (PID 293733) 被 Kill 的痕迹（EXIT_CODE=129）\n\n### exp-015 Synthetic N=8 (PID 291466)\n\n- **状态**: 运行中，已 2h 3min\n- **进度**: seed 12/20（60%），已输出 24 行（12 seeds × 2 methods）\n- **GPU 1**: 73583 MiB / 97887 MiB，61% 利用率\n- **收敛**: 全部 R-hat=1.000，ESS 健康（2000-3900）\n- **预估**: 剩余 8 seeds，每 seed ~10 min，约 **80 分钟**后完成\n\n**exp-015 已有结果汇总（12 seeds 均值）:**\n\n| 指标 | Sequential | Joint GMFRM | 改进 |\n|------|-----------|-------------|------|\n| theta_RMSE | 0.165 | 0.083 | **-50%** |\n| theta_tau (Kendall) | 0.853 | 0.964 | **+13%** |\n| c_RMSE | 1.389 | 0.597 | **-57%** |\n| c_pearson | 0.807 | 0.838 | +4% |\n| elapsed (s) | 256 | 345 | +35% |\n\nJoint GMFRM 在 theta 估计和 ranking agreement 上全面碾压 sequential，代价是每 seed 多 ~90 秒。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp016-015-status-check.md"
+}

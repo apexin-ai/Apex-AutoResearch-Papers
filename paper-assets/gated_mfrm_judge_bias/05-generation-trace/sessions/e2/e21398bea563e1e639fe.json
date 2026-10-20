@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e21398bea563e1e639fe",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl 8gpu env setup",
+  "task_key": "worker_ssh_autodl_8gpu_env_setup_20260522T091826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_8gpu_env_setup_20260522T091826_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "5c312b7bd52e2a2555ec5f39bba50b86806c4f09a4d9ffaaa13b361e72a580d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搭建完成。汇总：\n\n---\n\n## autodl-8gpu 环境状态\n\n### GPU\n| GPU | 型号 | VRAM |\n|-----|------|------|\n| 0-3 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 96GB x 4 |\n\n**注意：实际 4 GPU，不是 8。** 名字 autodl-8gpu 具有误导性。\n\n### 版本\n- **Python**: 3.12.3 (conda base)\n- **CUDA**: 12.8 (nvcc), Driver 580.95.05\n- **PyTorch**: 2.11.0+cu130, CUDA 可用\n- **JAX**: 0.10.1\n- **NumPyro**: 0.21.0\n- **Transformers**: 5.9.0\n- **vLLM**: 0.21.0\n- **其他**: accelerate, datasets, openai, httpx, aiohttp, einops, scipy, pandas 均已安装\n\n### 磁盘\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| 根 `/` | 30GB | 1.2GB | 29GB |\n| 数据盘 `/root/autodl-tmp` | 250GB | 76GB | 175GB |\n\n### AutoDL 专项配置\n- `network_turbo` ✓\n- `HF_HOME=/root/autodl-tmp/.hf_cache` ✓\n- `HF_HUB_DISABLE_XET=1` ✓\n- SSL 证书环境变量 ✓\n\n### SSH\n- rtx6000-4x → autodl-8gpu: SSH key 免密 ✓\n- 本地控制机 → autodl-8gpu: SSH key 免密 ✓\n- resources.yaml 已更新（env_activate, work_dir, GPU 信息）\n\n### 代码同步\n- `/root/gated_mfrm_judge_bias/` 已从 rtx6000-4x rsync 完成 ✓\n\n### 无阻塞项"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-8gpu-env-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e636fe7b51c3b2923930",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh push anon repo",
+  "task_key": "worker_ssh_push-anon-repo_20260525T090548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_push-anon-repo_20260525T090548_result.json",
+    "occurrence": 1,
+    "bytes": 131,
+    "sha256": "4978066329a485e70533063fabd67985bab7e00185a488f5e98fc0ddcc5b0003"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "仍在等待审批。请在飞书上点击审批卡片批准 PAT 请求，批准后我会继续执行推送操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-push-anon-repo.md"
+}

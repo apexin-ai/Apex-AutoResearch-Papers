@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c353b525dfbc8f7a28af",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh restart api judges new key",
+  "task_key": "worker_ssh_restart-api-judges-new-key_20260524T145413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_restart-api-judges-new-key_20260524T145413_result.json",
+    "occurrence": 1,
+    "bytes": 1735,
+    "sha256": "d7b2ac2a6a5308415160cc22e82e3fe5c1d53445b05c69b01736d4597d6926a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### Key 配置方式\n修改了 `exp001/judge_interface.py`，将 `_PROXY_URL` 从死掉的 `http://47.94.22.126/v1` 改为 `https://openrouter.ai/api/v1`，`_PROXY_KEY` 更新为新 OpenRouter key。模型名同步改为 OpenRouter 格式（`deepseek/deepseek-v4-pro`、`qwen/qwen3-235b-a22b`、`google/gemini-2.5-pro`、`anthropic/claude-sonnet-4.6`）。\n\n### 启动结果\n\n| Judge | PID | 状态 |\n|-------|-----|------|\n| DeepSeek-v4-pro | 592328 | ✅ 正常产出（9,824→9,861） |\n| Qwen3-235B | 592432 | ✅ 正常产出（11,550→11,648） |\n| Gemini 2.5 Pro | — | ❌ 403 \"This model is not available in your region\" |\n| Claude Sonnet 4.6 | — | ❌ 403 同上 |\n\n### 失败原因\nOpenRouter 对中国 IP 屏蔽了 Google 和 Anthropic 模型。旧 proxy（47.94.22.126）已不可达（超时）。AutoDL 的 `network_turbo` 代理出口仍为中国 IP，无法绕过。\n\n### 6 judge 最新 JSONL 行数\n\n| Judge | 行数 |\n|-------|------|\n| deepseek-v4-pro-proxy_n17 | 9,861 |\n| qwen3-235b-proxy_n17 | 11,648 |\n| gemini-2.5-pro-proxy_n17 | 11,253 |\n| claude-sonnet-4.6-proxy_n17 | 14,255 |\n| llama-3.3-70b-local_n17 | 14,848 |\n| qwen2.5-72b-local_n17 | 10,173 |\n\n### 当前 collect.py PID 列表\n- 584106 — LLaMA-3.3-70B (local, workers=64)\n- 584197 — Qwen2.5-72B (local, workers=64)\n- 592328 — DeepSeek-v4-pro (OpenRouter, workers=10)\n- 592432 — Qwen3-235B (OpenRouter, workers=10)\n\n### Gemini/Sonnet 恢复方案\n需要一个非中国 IP 的代理来访问 OpenRouter 的 Google/Anthropic 模型。选项：\n1. 恢复旧 proxy（47.94.22.126）\n2. 提供一个海外 HTTP 代理地址\n3. 在海外服务器上运行 Gemini/Sonnet 的采集"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-restart-api-judges-new-key.md"
+}

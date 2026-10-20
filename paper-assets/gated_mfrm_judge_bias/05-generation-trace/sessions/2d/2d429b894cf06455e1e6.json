@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d429b894cf06455e1e6",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "validation ovb figure",
+  "task_key": "worker_validation_ovb-figure_20260525T205104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validation_ovb-figure_20260525T205104_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "27e9cbe7d1f05f9e40943f83452908efe92232467b0495547432a53031ee9e53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CPU run complete.\n\n```\nOVB r=0.86: MISMATCH  实际=0.7949 (CPU) / 0.7950 (GPU), 数据源=generate_paper_figures.py::generate_ovb_scatter_data(), 参数=N=50/I=100/J=8/rho=0.6/n_seeds=20\n```\n\n**结论**：\n\n- CPU 和 GPU 后端结果一致：**r = 0.7949**（1000 个数据点，20 seeds）\n- 论文 caption 标注 r = 0.86，**实际值偏离 0.065**\n- 代码自初始提交以来未变更（仅 1 个 commit）\n- `generate_paper_figures.py` 中 `plot_fig2_ovb_bias()` 调用 `generate_ovb_scatter_data()` 使用默认参数 `N=50, I=100, J=8, rho=0.6, n_seeds=20`\n- 运行中的 r 值在 0.795-0.845 之间波动（依 seed 而定），最终收敛于 ~0.795\n\n**可能原因**：caption 中的 0.86 可能来自早期某个版本的代码/参数（如更高的 rho 或不同的 n_seeds），但当前代码无法复现该值。需要更新 caption 为 r ≈ 0.79。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validation-ovb-figure.md"
+}

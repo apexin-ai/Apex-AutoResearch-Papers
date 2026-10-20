@@ -1,0 +1,1334 @@
+# ssh exp014 exhaustive subsampling
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_ssh_exp014_exhaustive_subsampling_20260523T052727.jsonl`
+- **Structured JSON:** [`94e3f9ae35c3b649b42b.json`](../../sessions/94/94e3f9ae35c3b649b42b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T05:30:11.720211+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T05:30:11.720680+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T05:30:11.720914+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T05:30:11.721197+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\nimport arviz as az\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models,
+…[truncated 7304 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T05:30:11.721396+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "wc -l /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "wc -l /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T05:30:11.721581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"595 /root/gated_mfrm_judge_bias/exp006/run_exp006.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T05:30:11.721725+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp003/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp003/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T05:30:11.721861+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nanalyze_003b.py\\nbootstrap_delta_tau.py\\ncompute_waic_loo.py\\ndata_loader.py\\ndry_run\\nevaluation.py\\ngenerate_ppc.py\\nmodels.py\\nmodels.py.bak\\nmodels.py.bak.horseshoe\\noutput_003b\\nresults\\nresults_dryrun\\nrun.log\\nrun_exp003.py\\nrun_exp003.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T05:30:11.721986+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp006/results_full/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp006/results_full/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T05:30:11.722112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"idata\\nleave_one_out.pdf\\nleave_one_out.png\\nleave_one_out_results.csv\\nresults.json\\nsensitivity_results.csv\\ntau_vs_judge_count.pdf\\ntau_vs_judge_count.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T05:30:11.722233+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -300 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -300 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T05:30:11.722504+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-006: Judge Count Sensitivity Analysis.\\n\\nVaries judge count (2, 4, 6, 8, 9) and measures how many judges G-MFRM needs\\nto outperform sequential/baselines on Kendall-τ vs Arena.\\n\\nUsage:\\n  python run_exp006.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n                       --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n                       --output-dir /root/gated_mfrm_judge_bias/exp006/results\\n\\n  python run_exp006.py --dry-run  # validate data loading only\\n  python run_exp006.py --help\\n\\nDependencies: numpy, scipy, pandas, matplotlib, jax, numpyro\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport itertools\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import kendalltau, spearmanr\\n\\nsys.path.insert(0, \\\"/root/gated_mfrm_judge_bias/exp003\\\")\\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\\nimport arviz as az\\n\\n\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\nJUDGE_COUNTS = [2, 4, 6, 8, 9]\\nN_SUBSETS_PER_COUNT = 10  # max subsets to sample per judge count\\nSEED = 42\\n\\n\\ndef compute_arena_tau(theta_dict: dict) -> dict:\\n    \\\"\\\"\\\"Kendall-τ and Spearman-ρ with Arena Elo for matched models.\\\"\\\"\\\"\\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\\n    if len(matched) < 3:\\n        return {\\\"kendall_tau\\\": float(\\\"nan\\\"), \\\"spearman_rho\\\": float(\\\"nan\\\"),\\n                \\\"n_matched\\\": len(matched)}\\n    models,
+…[truncated 7170 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T05:30:11.722689+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -50 /root/gated_mfrm_judge_bias/exp003/models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -50 /root/gated_mfrm_judge_bias/exp003/models.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T05:30:11.722853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"G-MFRM fitting methods for sparse real-data observations.\\n\\nAdapted from mvp/models.py for sparse observation format:\\n  instead of a dense Y[N, I, J] tensor, observations are represented as\\n  parallel arrays (model_idx, item_idx, judge_idx, y).\\n\\nFour methods:\\n  1. raw_average — mean win rate per model (no MCMC)\\n  2. mfrm_only — standard 3-facet Rasch via NUTS\\n  3. sequential — MFRM then OLS residual regression on exposure\\n  4. joint_gmfrm — full G-MFRM with contamination term\\n\\nModel: logit(P(Y=1)) = theta_n - b_i - d_j + c_n * e_i\\n  theta_n: model ability, Normal(0,1), centered (sum-to-zero)\\n  b_i: item difficulty, Normal(0,1)\\n  d_j: judge severity, Normal(0,0.5), sum-to-zero via centering\\n  c_n: contamination susceptibility, Hierarchical HalfNormal\\n  e_i: item exposure (fixed, from exp-002)\\n\\nDependencies: numpy, jax, numpyro, arviz, scipy\\n\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport warnings\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"..\\\"))\\n\\nos.environ.setdefault(\\\"JAX_PLATFORMS\\\", \\\"cuda,cpu\\\")\\n\\nimport arviz as az\\nimport jax\\nimport jax.numpy as jnp\\nimport numpy as np\\nimport numpyro\\nimport numpyro.distributions as dist\\nfrom numpyro.infer import MCMC, NUTS\\nfrom scipy.special import expit\\n\\n\\n_CPU = None\\ndef _to_numpy(x):\\n    global _CPU\\n    if _CPU is None:\\n        _CPU = jax.devices('cpu')[0]\\n    return np.asarray(jax.device_put(x, _CPU))\\n\\n\\ndef _mcmc_diagnostics(mcmc: MCMC) -> dict:\\n    \\\"\\\"\\\"Return convergence diagnostics: max R-hat, min ESS, n_divergences.\\\"\\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T05:30:11.723030+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -n +130 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -n +130 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T05:30:11.723312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"n_obs\\\": len(y),\\n    }\\n\\n\\ndef generate_judge_subsets(all_judges: list, judge_counts: list,\\n                           n_subsets: int, seed: int) -> dict:\\n    \\\"\\\"\\\"Generate judge subsets for each count level.\\n\\n    For small counts (where C(9,k) <= n_subsets), use all combinations.\\n    Otherwise, sample randomly.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    subsets = {}\\n\\n    for k in judge_counts:\\n        if k >= len(all_judges):\\n            subsets[k] = [list(all_judges)]\\n            continue\\n\\n        all_combos = list(itertools.combinations(all_judges, k))\\n        if len(all_combos) <= n_subsets:\\n            subsets[k] = [list(c) for c in all_combos]\\n        else:\\n            chosen_idx = rng.choice(len(all_combos), size=n_subsets, replace=False)\\n            subsets[k] = [list(all_combos[i]) for i in chosen_idx]\\n\\n    return subsets\\n\\n\\ndef fit_raw_average_subset(data: dict) -> dict:\\n    \\\"\\\"\\\"Raw average method (no MCMC, always available).\\\"\\\"\\\"\\n    N = data[\\\"N\\\"]\\n    model_idx = data[\\\"model_idx\\\"]\\n    y = data[\\\"y\\\"]\\n    theta_hat = np.zeros(N)\\n    for n in range(N):\\n        mask = model_idx == n\\n        if mask.sum() > 0:\\n            theta_hat[n] = y[mask].mean()\\n    theta_hat = theta_hat - theta_hat.mean()\\n    return {name: float(theta_hat[i]) for i, name in enumerate(data[\\\"model_names\\\"])}\\n\\n\\ndef fit_methods_on_subset(data: dict, methods: list,\\n                          idata_dir: str = None, idata_label: str = \\\"\\\") -> dict:\\n    \\\"\\\"\\\"Fit specified methods on a judge subset. Returns theta dicts per method.\\\"\\\"\\\"\\n    results = {}\\n\\n    if \\\"raw_average\\\" in methods:\\n        results[\\\"raw_average\\\"] = fit_raw_average_subset(data)\\n\\n    if \\\"mfrm_only\\\" in methods or \\\"sequential\\\" in methods or \\\"joint_gmfrm\\\" in 
+…[truncated 7269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T05:30:11.723520+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"^def \" /root/gated_mfrm_judge_bias/exp003/models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep -n \"^def \" /root/gated_mfrm_judge_bias/exp003/models.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T05:30:11.723663+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"42:def _to_numpy(x):\\n49:def _mcmc_diagnostics(mcmc: MCMC) -> dict:\\n59:def _run_mcmc(model_fn, rng_key, model_kwargs, warmup, samples, chains, target_accept):\\n71:def fit_raw_average(data: dict) -> dict:\\n94:def _mfrm_model(model_idx, item_idx, judge_idx, y, N, I, J):\\n105:def fit_mfrm_only(data: dict, warmup=2000, samples=4000, chains=4,\\n138:def fit_sequential(data: dict, warmup=2000, samples=4000, chains=4,\\n201:def _gmfrm_model(model_idx, item_idx, judge_idx, y, e, N, I, J):\\n217:def fit_joint_gmfrm(data: dict, warmup=2000, samples=4000, chains=4,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T05:30:11.723794+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"def find_crossover_point\\|def plot_tau_vs_judge_count\\|def plot_leave_one_out\\|def leave_one_judge_out\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep -n \"def find_crossover_point\\|def plot_tau_vs_judge_count\\|def plot_leave_one_out\\|def leave_one_judge_out\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T05:30:11.723925+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T05:30:11.724047+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -5 /root/gated_mfrm_judge_bias/exp006/results_full/sensitivity_results.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -5 /root/gated_mfrm_judge_bias/exp006/results_full/sensitivity_results.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T05:30:11.724188+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"judge_count,subset_idx,judges,method,kendall_tau,spearman_rho,n_matched,n_obs,elapsed_s\\n2,0,\\\"llama-3.3-70b,qwen3-235b-proxy\\\",raw_average,0.7142857142857142,0.8333333333333335,8,1144,95.8\\n2,0,\\\"llama-3.3-70b,qwen3-235b-proxy\\\",sequential,0.7142857142857142,0.8333333333333335,8,1144,95.8\\n2,0,\\\"llama-3.3-70b,qwen3-235b-proxy\\\",joint_gmfrm,0.6428571428571428,0.7857142857142858,8,1144,95.8\\n2,1,\\\"gemini-2.5-pro-proxy,gpt-5.5-proxy\\\",raw_average,0.7857142857142856,0.9047619047619048,8,1740,107.4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T05:30:11.724313+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "grep -n \"def find_crossover_point\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "grep -n \"def find_crossover_point\" /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T05:30:11.724448+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"429:def find_crossover_point(df: pd.DataFrame) -> dict:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T05:30:11.724573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -n +100 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -n +100 /root/gated_mfrm_judge_bias/exp006/run_exp006.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T05:30:11.724841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n    if not filtered_obs:\\n        return None\\n\\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\\n    N = len(model_to_idx)\\n    I = len(item_to_idx)\\n    J = len(judge_to_idx)\\n\\n    model_idx = np.array([model_to_idx[o[\\\"model\\\"]] for o in filtered_obs], dtype=np.int32)\\n    item_idx = np.array([item_to_idx[o[\\\"item_id\\\"]] for o in filtered_obs], dtype=np.int32)\\n    judge_idx = np.array([judge_to_idx[o[\\\"judge\\\"]] for o in filtered_obs], dtype=np.int32)\\n    y = np.array([o[\\\"y\\\"] for o in filtered_obs], dtype=np.float32)\\n\\n    e_i = load_exposure(exposure_csv, item_to_idx)\\n\\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\\n    judge_names = sorted(judge_to_idx, key=judge_to_idx.get)\\n\\n    return {\\n        \\\"model_idx\\\": model_idx,\\n        \\\"item_idx\\\": item_idx,\\n        \\\"judge_idx\\\": judge_idx,\\n        \\\"y\\\": y,\\n        \\\"model_names\\\": model_names,\\n        \\\"judge_names\\\": judge_names,\\n        \\\"e_i\\\": e_i,\\n        \\\"N\\\": N,\\n        \\\"I\\\": I,\\n        \\\"J\\\": J,\\n        \\\"n_obs\\\": len(y),\\n    }\\n\\n\\ndef generate_judge_subsets(all_judges: list, judge_counts: list,\\n                           n_subsets: int, seed: int) -> dict:\\n    \\\"\\\"\\\"Generate judge subsets for each count level.\\n\\n    For small counts (where C(9,k) <= n_subsets), use all combinations.\\n    Otherwise, sample randomly.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    subsets = {}\\n\\n    for k in judge_counts:\\n        if k >= len(all_judges):\\n            subsets[k] = [list(all_judges)]\\n            continue\\n\\n        all_combos = list(itertools.combinations(all_judges, k))\\n        if len(all_combos) <= n_subsets:\\n            subsets[k] = [list(c) for c in all_combos]\\n        else:\\n            chosen_idx = rng.choice(len(all_combos), size=n_subsets, 
+…[truncated 7306 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T05:30:11.725028+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -n +105 /root/gated_mfrm_judge_bias/exp003/models.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -n +105 /root/gated_mfrm_judge_bias/exp003/models.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T05:30:11.725261+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def fit_mfrm_only(data: dict, warmup=2000, samples=4000, chains=4,\\n                   target_accept=0.95, seed=42) -> dict:\\n    model_idx = jnp.array(data[\\\"model_idx\\\"])\\n    item_idx = jnp.array(data[\\\"item_idx\\\"])\\n    judge_idx = jnp.array(data[\\\"judge_idx\\\"])\\n    y = jnp.array(data[\\\"y\\\"])\\n\\n    mcmc = _run_mcmc(\\n        _mfrm_model, jax.random.PRNGKey(seed),\\n        dict(model_idx=model_idx, item_idx=item_idx, judge_idx=judge_idx,\\n             y=y, N=data[\\\"N\\\"], I=data[\\\"I\\\"], J=data[\\\"J\\\"]),\\n        warmup, samples, chains, target_accept,\\n    )\\n\\n    samples_dict = mcmc.get_samples()\\n    theta_hat = _to_numpy(samples_dict[\\\"theta\\\"].mean(axis=0))\\n    b_hat = _to_numpy(samples_dict[\\\"b\\\"].mean(axis=0))\\n    d_hat = _to_numpy(samples_dict[\\\"d\\\"].mean(axis=0))\\n\\n    return {\\n        \\\"method\\\": \\\"mfrm_only\\\",\\n        \\\"theta_hat\\\": theta_hat,\\n        \\\"b_hat\\\": b_hat,\\n        \\\"d_hat\\\": d_hat,\\n        \\\"diagnostics\\\": _mcmc_diagnostics(mcmc),\\n        \\\"mcmc\\\": mcmc,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Method 3: Sequential (MFRM + OLS residual regression)\\n# ---------------------------------------------------------------------------\\n\\ndef fit_sequential(data: dict, warmup=2000, samples=4000, chains=4,\\n                   target_accept=0.95, seed=42) -> dict:\\n    e_i = data[\\\"e_i\\\"]\\n\\n    # Step A: fit MFRM\\n    mfrm_result = fit_mfrm_only(data, warmup, samples, chains, target_accept, seed)\\n    theta_mfrm = mfrm_result[\\\"theta_hat\\\"]\\n    b_hat = mfrm_result[\\\"b_hat\\\"]\\n    d_hat = mfrm_result[\\\"d_hat\\\"]\\n\\n    # Step B: compute residuals per (model, item) pair\\n    N, I = data[\\\"N\\\"], data[\\\"I\\\"]\\n    model_idx_np = data[\\\"model_idx\\\"]\\n    item_idx_np = data[\\\"item_idx\\\"]\\n    judge_
+…[truncated 3941 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T05:30:11.725473+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "mkdir -p /root/gated_mfrm_judge_bias/exp014/results",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "mkdir -p /root/gated_mfrm_judge_bias/exp014/results",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T05:30:11.725614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T05:30:11.725772+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp014/run_exp014.py << 'PYEOF'\n\"\"\"exp-014: Exhaustive Judge Subsampling.\n\nReplaces exp-006's 10 random subsets with exhaustive C(9,k) combinations.\nk=2(36), k=4(126), k=6(84), k=9(1) = 247 total subsets.\nEach subset: full G-MFRM MCMC → Kendall-τ vs Arena.\n\nUsage:\n  python run_exp014.py\n  python run_exp014.py --dry-run\n\"\"\"\n\nimport argparse\nimport csv\nimport itertools\nimport os\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import kendalltau\n\nos.environ.setdefault(\"JAX_PLATFORMS\", \"cuda,cpu\")\nos.environ.setdefault(\"CUDA_VISIBLE_DEVICES\", \"0\")\n\nsys.path.insert(0, \"/root/gated_mfrm_judge_bias/exp003\")\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\n\nJUDGMENT_DIR = \"/root/gated_mfrm_judge_bias/exp001/results\"\nEXPOSURE_CSV = \"/root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv\"\nOUTPUT_CSV = \"/root/gated_mfrm_judge_bias/exp014/results/exhaustive_subsampling.csv\"\n\nARENA_ELO = {\n    \"gpt-3.5-turbo-0125\": 1105,\n    \"gpt-4-0613\": 1163,\n    \"gemma-2-9b\": 1130,\n    \"qwen3-8b\": 1170,\n    \"llama-3.3-70b\": 1208,\n    \"qwen2.5-72b\": 1187,\n    \"gpt-4o\": 1286,\n    \"gpt-4o-mini\": 1272,\n}\n\nK_VALUES = [2, 4, 6, 9]\nWARMUP = 1000\nSAMPLES = 1000\nCHAINS = 2\n\n\ndef compute_tau(theta_dict: dict) -> float:\n    \"\"\"Kendall-τ between estimated abilities and Arena Elo.\"\"\"\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\n    if len(matched) < 3:\n        return float(\"nan\")\n    models, thetas = zip(*matched)\n    elos = [ARENA_ELO[m] for m in models]\n    tau, _ = kendalltau(thetas, elos)\n    return float(tau)\n\n\ndef load_data():\n    records = load_judgments(JUDGMENT_DIR)\n    observations = preprocess(records)\n    all_judges = sorted({o[\"judge\"] for o in observations})\n    return observations, all_judges\n\n\ndef filter_by_judges(observations, judge_subset):\n    judge_set = set(judge_subset)\n    return [o for o in observations if o[\"judge\"] in judge_set]\n\n\ndef build_data_dict(filtered_obs, min_judges=1):\n    from collections import defaultdict\n    judges_per_item = defaultdict(set)\n    for o in filtered_obs:\n        judges_per_item[o[\"item_id\"]].add(o[\"judge\"])\n    n_judges = len(set(o[\"judge\"] for o in filtered_obs))\n    valid_items = {item for item, judges in judges_per_item.items()\n                   if len(judges) >= min(min_judges, n_judges)}\n    filtered_obs = [o for o in filtered_obs if o[\"item_id\"] in valid_items]\n    if not filtered_obs:\n        return None\n\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\n    N = len(model_to_idx)\n    I = len(item_to_idx)\n    J = len(judge_to_idx)\n\n    model_idx = np.array([model_to_idx[o[\"model\"]] for o in filtered_obs], dtype=np.int32)\n    item_idx = np.array([item_to_idx[o[\"item_id\"]] for o in filtered_obs], dtype=np.int32)\n    judge_idx = np.array([judge_to_idx[o[\"judge\"]] for o in filtered_obs], dtype=np.int32)\n    y = np.array([o[\"y\"] for o in filtered_obs], dtype=np.float32)\n    e_i = load_exposure(EXPOSURE_CSV, item_to_idx)\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\n\n    return {\n        \"model_idx\": model_idx, \"item_idx\": item_idx,\n        \"judge_idx\": judge_idx, \"y\": y,\n        \"model_names\": model_names, \"e_i\": e_i,\n        \"N\": N, \"I\": I, \"J\": J, \"n_obs\": len(y),\n    }\n\n\ndef fit_raw_average(data):\n    N = data[\"N\"]\n    model_idx, y = data[\"model_idx\"], data[\"y\"]\n    theta = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            theta[n] = y[mask].mean()\n    theta -= theta.mean()\n    return {name: float(theta[i]) for i, name in enumerate(data[\"model_names\"])}\n\n\ndef fit_all_methods(data):\n    \"\"\"Fit raw_average, sequential, and joint_gmfrm. Returns tau for each.\"\"\"\n    from models import fit_sequential, fit_joint_gmfrm\n\n    tau_raw = compute_tau(fit_raw_average(data))\n\n    seq = fit_sequential(data, warmup=WARMUP, samples=SAMPLES, chains=CHAINS)\n    tau_seq = compute_tau({\n        name: float(seq[\"theta_hat\"][i])\n        for i, name in enumerate(data[\"model_names\"])\n    })\n\n    joint = fit_joint_gmfrm(data, warmup=WARMUP, samples=SAMPLES, chains=CHAINS)\n    tau_gmfrm = compute_tau({\n        name: float(joint[\"theta_hat\"][i])\n        for i, name in enumerate(data[\"model_names\"])\n    })\n\n    return tau_raw, tau_seq, tau_gmfrm\n\n\ndef generate_all_subsets(all_judges):\n    subsets = {}\n    for k in K_VALUES:\n        if k >= len(all_judges):\n            subsets[k] = [tuple(all_judges)]\n        else:\n            subsets[k] = list(itertools.combinations(all_judges, k))\n    return subsets\n\n\ndef already_done(output_csv):\n    \"\"\"Load completed (k, judges) pairs to support resume.\"\"\"\n    done = set()\n    if os.path.exists(output_csv):\n        df = pd.read_csv(output_csv)\n        for _, row in df.iterrows():\n            done.add((int(row[\"k\"]), row[\"subset_judges\"]))\n    return done\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    print(\"[1/3] Loading data...\")\n    observations, all_judges = load_data()\n    print(f\"  Judges ({len(all_judges)}): {all_judges}\")\n    print(f\"  Observations: {len(observations)}\")\n\n    subsets = generate_all_subsets(all_judges)\n    total = sum(len(v) for v in subsets.values())\n    print(f\"\\n[2/3] Subsets: {', '.join(f'k={k}:{len(v)}' for k, v in sorted(subsets.items()))} = {total} total\")\n\n    if args.dry_run:\n        print(f\"\\n[DRY RUN] Would run {total} subsets × 3 methods (raw, sequential, gmfrm)\")\n        print(f\"  MCMC: warmup={WARMUP}, samples={SAMPLES}, chains={CHAINS}\")\n        return\n\n    done = already_done(OUTPUT_CSV)\n    if done:\n        print(f\"  Resuming: {len(done)} subsets already completed\")\n\n    write_header = not os.path.exists(OUTPUT_CSV)\n    csvfile = open(OUTPUT_CSV, \"a\", newline=\"\")\n    writer = csv.writer(csvfile)\n    if write_header:\n        writer.writerow([\"k\", \"subset_judges\", \"tau_raw\", \"tau_sequential\", \"tau_gmfrm\"])\n        csvfile.flush()\n\n    completed = len(done)\n    t_start = time.time()\n\n    print(f\"\\n[3/3] Running exhaustive subsampling...\")\n    for k in sorted(subsets.keys()):\n        for judge_subset in subsets[k]:\n            judges_str = \",\".join(sorted(judge_subset))\n            if (k, judges_str) in done:\n                continue\n\n            completed += 1\n            elapsed_total = time.time() - t_start\n            eta = (elapsed_total / max(completed - len(done), 1)) * (total - completed) if completed > len(done) else 0\n            print(f\"  [{completed}/{total}] k={k} judges={judges_str}  (ETA: {eta/3600:.1f}h)\")\n\n            filtered = filter_by_judges(observations, list(judge_subset))\n            data = build_data_dict(filtered)\n            if data is None:\n                print(f\"    SKIP: empty data\")\n                writer.writerow([k, judges_str, \"nan\", \"nan\", \"nan\"])\n                csvfile.flush()\n                continue\n\n            try:\n                tau_raw, tau_seq, tau_gmfrm = fit_all_methods(data)\n                print(f\"    τ: raw={tau_raw:.4f}  seq={tau_seq:.4f}  gmfrm={tau_gmfrm:.4f}\")\n            except Exception as e:\n                print(f\"    ERROR: {e}\")\n                tau_raw, tau_seq, tau_gmfrm = \"nan\", \"nan\", \"nan\"\n\n            writer.writerow([k, judges_str, tau_raw, tau_seq, tau_gmfrm])\n            csvfile.flush()\n\n    csvfile.close()\n\n    elapsed = time.time() - t_start\n    print(f\"\\nDone. {completed} subsets in {elapsed/3600:.1f}h\")\n    print(f\"Results: {OUTPUT_CSV}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /root/gated_mfrm_judge_bias/exp014/run_exp014.py << 'PYEOF'\n\"\"\"exp-014: Exhaustive Judge Subsampling.\n\nReplaces exp-006's 10 random subsets with exhaustive C(9,k) combinations.\nk=2(36), k=4(126), k=6(84), k=9(1) = 247 total subsets.\nEach subset: full G-MFRM MCMC → Kendall-τ vs Arena.\n\nUsage:\n  python run_exp014.py\n  python run_exp014.py --dry-run\n\"\"\"\n\nimport argparse\nimport csv\nimport itertools\nimport os\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import kendalltau\n\nos.environ.setdefault(\"JAX_PLATFORMS\", \"cuda,cpu\")\nos.environ.setdefault(\"CUDA_VISIBLE_DEVICES\", \"0\")\n\nsys.path.insert(0, \"/root/gated_mfrm_judge_bias/exp003\")\nfrom data_loader import load_judgments, preprocess, build_indices, load_exposure\n\nJUDGMENT_DIR = \"/root/gated_mfrm_judge_bias/exp001/results\"\nEXPOSURE_CSV = \"/root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv\"\nOUTPUT_CSV = \"/root/gated_mfrm_judge_bias/exp014/results/exhaustive_subsampling.csv\"\n\nARENA_ELO = {\n    \"gpt-3.5-turbo-0125\": 1105,\n    \"gpt-4-0613\": 1163,\n    \"gemma-2-9b\": 1130,\n    \"qwen3-8b\": 1170,\n    \"llama-3.3-70b\": 1208,\n    \"qwen2.5-72b\": 1187,\n    \"gpt-4o\": 1286,\n    \"gpt-4o-mini\": 1272,\n}\n\nK_VALUES = [2, 4, 6, 9]\nWARMUP = 1000\nSAMPLES = 1000\nCHAINS = 2\n\n\ndef compute_tau(theta_dict: dict) -> float:\n    \"\"\"Kendall-τ between estimated abilities and Arena Elo.\"\"\"\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\n    if len(matched) < 3:\n        return float(\"nan\")\n    models, thetas = zip(*matched)\n    elos = [ARENA_ELO[m] for m in models]\n    tau, _ = kendalltau(thetas, elos)\n    return float(tau)\n\n\ndef load_data():\n    records = load_judgments(JUDGMENT_DIR)\n    observations = preprocess(records)\n    all_judges = sorted({o[\"judge\"] for o in observations})\n    return observations, all_judges\n\n\ndef filter_by_judges(observations, judge_subset):\n    judge_set = set(judge_subset)\n    return [o for o in observations if o[\"judge\"] in judge_set]\n\n\ndef build_data_dict(filtered_obs, min_judges=1):\n    from collections import defaultdict\n    judges_per_item = defaultdict(set)\n    for o in filtered_obs:\n        judges_per_item[o[\"item_id\"]].add(o[\"judge\"])\n    n_judges = len(set(o[\"judge\"] for o in filtered_obs))\n    valid_items = {item for item, judges in judges_per_item.items()\n                   if len(judges) >= min(min_judges, n_judges)}\n    filtered_obs = [o for o in filtered_obs if o[\"item_id\"] in valid_items]\n    if not filtered_obs:\n        return None\n\n    model_to_idx, item_to_idx, judge_to_idx = build_indices(filtered_obs)\n    N = len(model_to_idx)\n    I = len(item_to_idx)\n    J = len(judge_to_idx)\n\n    model_idx = np.array([model_to_idx[o[\"model\"]] for o in filtered_obs], dtype=np.int32)\n    item_idx = np.array([item_to_idx[o[\"item_id\"]] for o in filtered_obs], dtype=np.int32)\n    judge_idx = np.array([judge_to_idx[o[\"judge\"]] for o in filtered_obs], dtype=np.int32)\n    y = np.array([o[\"y\"] for o in filtered_obs], dtype=np.float32)\n    e_i = load_exposure(EXPOSURE_CSV, item_to_idx)\n    model_names = sorted(model_to_idx, key=model_to_idx.get)\n\n    return {\n        \"model_idx\": model_idx, \"item_idx\": item_idx,\n        \"judge_idx\": judge_idx, \"y\": y,\n        \"model_names\": model_names, \"e_i\": e_i,\n        \"N\": N, \"I\": I, \"J\": J, \"n_obs\": len(y),\n    }\n\n\ndef fit_raw_average(data):\n    N = data[\"N\"]\n    model_idx, y = data[\"model_idx\"], data[\"y\"]\n    theta = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            theta[n] = y[mask].mean()\n    theta -= theta.mean()\n    return {name: float(theta[i]) for i, name in enumerate(data[\"model_names\"])}\n\n\ndef fit_all_methods(data):\n    \"\"\"Fit raw_average, sequential, and joint_gmfrm. Returns tau for each.\"\"\"\n    from models import fit_sequential, fit_joint_gmfrm\n\n    tau_raw = compute_tau(fit_raw_average(data))\n\n    seq = fit_sequential(data, warmup=WARMUP, samples=SAMPLES, chains=CHAINS)\n    tau_seq = compute_tau({\n        name: float(seq[\"theta_hat\"][i])\n        for i, name in enumerate(data[\"model_names\"])\n    })\n\n    joint = fit_joint_gmfrm(data, warmup=WARMUP, samples=SAMPLES, chains=CHAINS)\n    tau_gmfrm = compute_tau({\n        name: float(joint[\"theta_hat\"][i])\n        for i, name in enumerate(data[\"model_names\"])\n    })\n\n    return tau_raw, tau_seq, tau_gmfrm\n\n\ndef generate_all_subsets(all_judges):\n    subsets = {}\n    for k in K_VALUES:\n        if k >= len(all_judges):\n            subsets[k] = [tuple(all_judges)]\n        else:\n            subsets[k] = list(itertools.combinations(all_judges, k))\n    return subsets\n\n\ndef already_done(output_csv):\n    \"\"\"Load completed (k, judges) pairs to support resume.\"\"\"\n    done = set()\n    if os.path.exists(output_csv):\n        df = pd.read_csv(output_csv)\n        for _, row in df.iterrows():\n            done.add((int(row[\"k\"]), row[\"subset_judges\"]))\n    return done\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    print(\"[1/3] Loading data...\")\n    observations, all_judges = load_data()\n    print(f\"  Judges ({len(all_judges)}): {all_judges}\")\n    print(f\"  Observations: {len(observations)}\")\n\n    subsets = generate_all_subsets(all_judges)\n    total = sum(len(v) for v in subsets.values())\n    print(f\"\\n[2/3] Subsets: {', '.join(f'k={k}:{len(v)}' for k, v in sorted(subsets.items()))} = {total} total\")\n\n    if args.dry_run:\n        print(f\"\\n[DRY RUN] Would run {total} subsets × 3 methods (raw, sequential, gmfrm)\")\n        print(f\"  MCMC: warmup={WARMUP}, samples={SAMPLES}, chains={CHAINS}\")\n        return\n\n    done = already_done(OUTPUT_CSV)\n    if done:\n        print(f\"  Resuming: {len(done)} subsets already completed\")\n\n    write_header = not os.path.exists(OUTPUT_CSV)\n    csvfile = open(OUTPUT_CSV, \"a\", newline=\"\")\n    writer = csv.writer(csvfile)\n    if write_header:\n        writer.writerow([\"k\", \"subset_judges\", \"tau_raw\", \"tau_sequential\", \"tau_gmfrm\"])\n        csvfile.flush()\n\n    completed = len(done)\n    t_start = time.time()\n\n    print(f\"\\n[3/3] Running exhaustive subsampling...\")\n    for k in sorted(subsets.keys()):\n        for judge_subset in subsets[k]:\n            judges_str = \",\".join(sorted(judge_subset))\n            if (k, judges_str) in done:\n                continue\n\n            completed += 1\n            elapsed_total = time.time() - t_start\n            eta = (elapsed_total / max(completed - len(done), 1)) * (total - completed) if completed > len(done) else 0\n            print(f\"  [{completed}/{total}] k={k} judges={judges_str}  (ETA: {eta/3600:.1f}h)\")\n\n            filtered = filter_by_judges(observations, list(judge_subset))\n            data = build_data_dict(filtered)\n            if data is None:\n                print(f\"    SKIP: empty data\")\n                writer.writerow([k, judges_str, \"nan\", \"nan\", \"nan\"])\n                csvfile.flush()\n                continue\n\n            try:\n                tau_raw, tau_seq, tau_gmfrm = fit_all_methods(data)\n                print(f\"    τ: raw={tau_raw:.4f}  seq={tau_seq:.4f}  gmfrm={tau_gmfrm:.4f}\")\n            except Exception as e:\n                print(f\"    ERROR: {e}\")\n                tau_raw, tau_seq, tau_gmfrm = \"nan\", \"nan\", \"nan\"\n\n            writer.writerow([k, judges_str, tau_raw, tau_seq, tau_gmfrm])\n            csvfile.flush()\n\n    csvfile.close()\n\n    elapsed = time.time() - t_start\n    print(f\"\\nDone. {completed} subsets in {elapsed/3600:.1f}h\")\n    print(f\"Results: {OUTPUT_CSV}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T05:30:11.725998+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T05:30:11.726146+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp014 && python run_exp014.py --dry-run\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp014 && python run_exp014.py --dry-run\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T05:30:11.726287+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[1/3] Loading data...\\n  Ties dropped (including conflicting AB/BA): 1025\\n  Judges (9): ['claude-opus-4.7-proxy', 'claude-sonnet-4.6-proxy', 'deepseek-v4-pro-proxy', 'gemini-2.5-pro-proxy', 'gpt-5.5-proxy', 'llama-3.3-70b', 'mistral-large-2', 'qwen2.5-72b', 'qwen3-235b-proxy']\\n  Observations: 6064\\n\\n[2/3] Subsets: k=2:36, k=4:126, k=6:84, k=9:1 = 247 total\\n\\n[DRY RUN] Would run 247 subsets × 3 methods (raw, sequential, gmfrm)\\n  MCMC: warmup=1000, samples=1000, chains=2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T05:30:11.726448+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "gpu_ids": "['cuda:0']",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp014 && python run_exp014.py\"",
+  "exp_id": "exp-014",
+  "account": "root",
+  "project": "gated_mfrm_judge_bias",
+  "timeout_hours": "24"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "gpu_ids": "['cuda:0']",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp014 && python run_exp014.py\"",
+    "exp_id": "exp-014",
+    "account": "root",
+    "project": "gated_mfrm_judge_bias",
+    "timeout_hours": "24"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T05:30:11.726591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"283050\", \"log_file\": \"~/runs/gated_mfrm_judge_bias/exp-014.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"autodl-8gpu\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"exp-014\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T05:30:11.726736+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -20 /root/runs/gated_mfrm_judge_bias/exp-014.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -20 /root/runs/gated_mfrm_judge_bias/exp-014.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T05:30:11.726859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T05:30:11.726975+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "tail -20 ~/runs/gated_mfrm_judge_bias/exp-014.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "tail -20 ~/runs/gated_mfrm_judge_bias/exp-014.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T05:30:11.727091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T05:30:11.727231+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls -la ~/runs/gated_mfrm_judge_bias/exp-014.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls -la ~/runs/gated_mfrm_judge_bias/exp-014.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T05:30:11.727350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 774 May 23 13:29 /root/runs/gated_mfrm_judge_bias/exp-014.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T05:30:11.727485+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat ~/runs/gated_mfrm_judge_bias/exp-014.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat ~/runs/gated_mfrm_judge_bias/exp-014.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T05:30:11.727628+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[1/3] Loading data...\\n  Ties dropped (including conflicting AB/BA): 1025\\n  Judges (9): ['claude-opus-4.7-proxy', 'claude-sonnet-4.6-proxy', 'deepseek-v4-pro-proxy', 'gemini-2.5-pro-proxy', 'gpt-5.5-proxy', 'llama-3.3-70b', 'mistral-large-2', 'qwen2.5-72b', 'qwen3-235b-proxy']\\n  Observations: 6064\\n\\n[2/3] Subsets: k=2:36, k=4:126, k=6:84, k=9:1 = 247 total\\n\\n[3/3] Running exhaustive subsampling...\\n  [1/247] k=2 judges=claude-opus-4.7-proxy,claude-sonnet-4.6-proxy  (ETA: 0.0h)\\n  Exposure: 251/251 items matched (317 in CSV)\\n\\r  0%|          | 0/2000 [00:00<?, ?it/s]\\rwarmup:   5%|▌         | 100/2000 [00:02<00:43, 44.11it/s, 31 steps of size 7.71e-02. acc. prob=0.92]\\rwarmup:  10%|█         | 200/2000 [00:02<00:24, 73.51it/s, 31 steps of size 1.81e-01. acc. prob=0.93]\\rwarmup:  15%|█▌        | 300/2000 [00:03<00:17, 96.77it/s, 31 steps of size 1.16e-01. acc. prob=0.93]\\rwarmup:  20%|██        | 400/2000 [00:04<00:14, 110.85it/s, 31 steps of size 1.51e-01. acc. prob=0.93]\\rwarmup:  25%|██▌       | 500/2000 [00:05<00:12, 119.80it/s, 31 steps of size 1.69e-01. acc. prob=0.94]\\rwarmup:  30%|███       | 600/2000 [00:05<00:10, 128.91it/s, 31 steps of size 1.46e-01. acc. prob=0.94]\\rwarmup:  35%|███▌      | 700/2000 [00:06<00:09, 135.36it/s, 31 steps of size 1.17e-01. acc. prob=0.94]\\rwarmup:  40%|████      | 800/2000 [00:07<00:08, 138.97it/s, 31 steps of size 1.41e-01. acc. prob=0.94]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-23T05:30:11.727802+00:00_
+
+任务正常运行中。第一个 subset (k=2) 的 MCMC warmup 已开始，约 ~140 it/s。
+
+**已完成：**
+- 创建 `/root/gated_mfrm_judge_bias/exp014/run_exp014.py`，穷举 C(9,k) 共 247 个 judge 组合
+- 每个 subset 跑 3 种方法 (raw_average, sequential, joint_gmfrm)，MCMC 参数 warmup=1000, samples=1000, chains=2
+- 支持断点续跑（已完成的 subset 会跳过）
+- 每完成一个 subset 立即 flush 写入 CSV
+- 已通过 `submit_training_job` 提交到 autodl-8gpu cuda:0，tmux session `exp-014`，日志 `~/runs/gated_mfrm_judge_bias/exp-014.log`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727"
+}
+```
+
+</details>
+
+---

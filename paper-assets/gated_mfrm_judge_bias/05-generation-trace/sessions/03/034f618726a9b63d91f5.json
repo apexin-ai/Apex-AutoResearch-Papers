@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "034f618726a9b63d91f5",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh prep mcmc n17",
+  "task_key": "worker_ssh_prep-mcmc-n17_20260524T173612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prep-mcmc-n17_20260524T173612_result.json",
+    "occurrence": 1,
+    "bytes": 1689,
+    "sha256": "33898e23b4db74bc15d91fbcc01dea08497f4ead06ca7a0ce1cba84768edaf47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run completed successfully. All 4 methods ran, model compiled, data loaded correctly. Convergence \"failed\" as expected with only 10 warmup/10 samples — that's normal for a dry-run.\n\nKey results:\n\n**Data summary:**\n- N=18 target models (17 original + qwen3-8b probe), I=355 items, J=6 judges\n- 26,154 observations after filtering mistral-large-2 (43 obs removed)\n- Judge coverage: llama-3.3-70b 79%, qwen2.5-72b 78.5%, qwen3-235b 81.5%, claude-sonnet 68.5%, deepseek 54.8%, gemini 47.1%\n\n**Dry-run timing (1 chain, 10+10):**\n- raw_average: 0s, mfrm_only: 11s (mostly JAX compilation), sequential: 5s, joint_gmfrm: 7s\n- Total: 24s\n\n**Full run time estimate:**\n- The 2000x extrapolation (from 20→40000 effective samples) is very rough. More realistic estimate: JAX compilation dominates the dry-run (~10s), so actual scaling is lower.\n- Based on prior exp003 runs with similar N/I/J dimensions, expect **2-4 hours** for the full 4-method run (6000 warmup + 4000 samples × 4 chains, sequential chain method).\n\n**Arena τ correlation (dry-run, unreliable with 10 samples):**\n- raw_average: τ=0.712, ρ=0.879\n- mfrm_only: τ=0.471, ρ=0.641\n- sequential: τ=0.471, ρ=0.644\n- joint_gmfrm: τ=0.706, ρ=0.868\n\nThe τ values will change substantially with proper MCMC samples; the dry-run just validates the pipeline runs end-to-end.\n\n**Script ready at:** `/root/gated_mfrm_judge_bias/run_mcmc_n17_exp020.py`\n\n**To launch full run:**\n```bash\nCUDA_VISIBLE_DEVICES=0 nohup python run_mcmc_n17_exp020.py \\\n  --output-dir /root/gated_mfrm_judge_bias/exp003/output_n17_exp020 \\\n  > /root/gated_mfrm_judge_bias/logs/exp020_mcmc.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prep-mcmc-n17-copy-2.md"
+}

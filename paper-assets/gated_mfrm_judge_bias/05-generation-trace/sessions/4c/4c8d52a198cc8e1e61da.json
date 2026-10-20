@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4c8d52a198cc8e1e61da",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh exp001 mmlu gsmk prep",
+  "task_key": "worker_ssh_exp001_mmlu_gsmk_prep_20260522T061523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_mmlu_gsmk_prep_20260522T061523.log",
+    "occurrence": 1,
+    "bytes": 581834,
+    "sha256": "f54f72ada596dfbb78426772c5ddd72e7283088d71a170c76a717a878c06aa23"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 1,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 90,
+      "user": 1,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "4c8d52a198cc8e1e61da-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "4c8d52a198cc8e1e61da-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "4c8d52a198cc8e1e61da-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-exp001-mmlu-gsmk-prep.md"
+}

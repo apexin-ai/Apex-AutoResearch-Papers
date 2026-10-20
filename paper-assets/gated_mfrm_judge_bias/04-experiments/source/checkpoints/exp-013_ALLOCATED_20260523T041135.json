@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-013",
+  "project": "gated_mfrm_judge_bias",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:06:39.679Z",
+    "updated_at": "2026-05-23T04:11:34.956Z",
+    "hypothesis": "Stage 2 exposure estimation 的 reference-anchoring vs cross-model-agreement 权重配置（50/50, 75/25, 90/10, 100/0）对 downstream G-MFRM τ 的影响有限，当前 75/25 默认配置是合理的（τ 变化 < 0.02）。",
+    "parent": "exp-003b",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp013 && python run_exp013.py\"",
+      "server": "rtx6000-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "558426",
+      "log_path": "~/runs/gated_mfrm_judge_bias/exp-013.log",
+      "submitted_at": "2026-05-23T04:10:02.611Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-23T04:11:35.005712+00:00",
+  "trigger": "update_registry"
+}

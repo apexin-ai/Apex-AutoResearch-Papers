@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "144e94fa90904d162e04",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260522T131730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260522T131730_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "316822e9b098b595d846ea707cda9f8812834de81d299277731bbf34aeaa645f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。5 段结构，约 1060 词：\n\n- **P1 Hook**: 两个矫正孤岛 → sequential RMSE 比 joint 高 43.8% 的定量冲击\n- **P2 Gap**: CyclicJudge/UDA/ConStat/DCR/LogProber 各自局限 → bias-first 和 contamination-first 都失败的结构性原因\n- **P3 Insight**: OVB 形式化，非正交条件，r=0.86 合成验证\n- **P4 Mechanism**: G-MFRM = MFRM + DG-IRT gating，三阶段校准，identifiability (7 propositions + 1 theorem)，error propagation (σ≤0.2 → <6%)，引用 Figure 1\n- **P5 Contributions**: 3 条，每条有 Section/Figure/Table 支撑\n\n所有 10 个 citation key 已使用，无 em-dash/en-dash，无 -ing 短语结尾，无黑名单词汇。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

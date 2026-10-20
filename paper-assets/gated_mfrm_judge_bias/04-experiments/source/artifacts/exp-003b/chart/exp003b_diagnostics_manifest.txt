@@ -1,0 +1,12 @@
+Remote artifacts on autodl-8gpu:/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics/
+
+Files:
+- trace_cn.pdf (6.2 MB) — 8 models c_n trace + KDE
+- trace_dj.pdf (6.6 MB) — 9 judges d_j trace + KDE
+- trace_sigma_c.pdf (757 KB) — global sigma_c trace + KDE
+- trace_theta.pdf (3.0 MB) — 4 representative theta trace + KDE
+- trace_b.pdf (4.4 MB) — 6 representative b_i trace + KDE
+- forest_cn.pdf (23 KB) — c_n forest plot with 94% HDI
+- forest_dj.pdf (25 KB) — d_j forest plot with 94% HDI
+
+PPC skipped: InferenceData has no posterior_predictive group.

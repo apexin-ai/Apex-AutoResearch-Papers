@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fea39fb3d2940cd268c",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx gpu reset cuda12",
+  "task_key": "worker_ssh_rtx_gpu_reset_cuda12_20260523T084851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx_gpu_reset_cuda12_20260523T084851_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "d635a530db3d4d2e58668b0960ec15f53d20661efbe1e09005a58a043645ae40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修复。前后对比：\n\n| GPU | 重置前 | 重置后 |\n|-----|--------|--------|\n| cuda:0 | 0%, P8, 34W | 0%, P8, 34W |\n| **cuda:1** | **100%, P0, 104W** | **0%, P8, 36W** |\n| **cuda:2** | **100%, P0, 105W** | **0%, P8, 38W** |\n| cuda:3 | 0%, P8, 35W | 0%, P8, 34W |\n\n`nvidia-smi --gpu-reset` 在此环境不受支持，改用 PyTorch CUDA context 接管 + `empty_cache` + `synchronize` 清除了残留 driver state。四卡全部空闲，0% utilization，0MiB 占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx-gpu-reset-cuda12.md"
+}

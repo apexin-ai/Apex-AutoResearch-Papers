@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ad6cb80b3c2ea5ce82d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mcmc trigger check",
+  "task_key": "worker_ssh_mcmc-trigger-check_20260524T204020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mcmc-trigger-check_20260524T204020_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "5f7989c8f7ff7c1e75e60b2b6a2726a672c255e8fb9265cd2457477d653b9a03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n### MCMC Phase 1\n- **已成功自动启动**，PID 614592，04:39:29 CST 触发\n- 当前正在跑 `mfrm_only` 模型的 warmup 阶段（~3% / 10000 iterations，~4.33 it/s，acc. prob=0.92）\n- `raw_average` 模型已完成\n- 使用 GPU 0，占用 667 MiB，利用率 76%\n\n### 数据汇总\n- 6 个 judge 纳入建模（排除了 mistral-large-2），33931 observations\n- N=18 models, I=500 items, J=6 judges\n\n### Qwen3 最终行数\n- `qwen3-235b-proxy`: 2091 行（n=1）\n- `qwen3-235b-proxy_n17`: 21519 行（n17）\n\n### DeepSeek 当前进度\n- `deepseek-v4-pro-proxy`: 1433 行（n=1，与启动 MCMC 时相同）\n- `deepseek-v4-pro-proxy_n17`: 16257 行（从 16219 增长到 16257，仍在采集中）\n\n### GPU 使用\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| 0 | 667 MiB | 76% (MCMC) |\n| 1-3 | 0 MiB | 0% |\n\nGPU 1-3 空闲，DeepSeek 走的是 API proxy 所以不占本地 GPU。一切按预期运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mcmc-trigger-check.md"
+}

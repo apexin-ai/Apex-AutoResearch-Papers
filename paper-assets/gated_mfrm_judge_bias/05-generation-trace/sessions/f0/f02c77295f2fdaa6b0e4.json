@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f02c77295f2fdaa6b0e4",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp 004 fix j6",
+  "task_key": "worker_code_exp-004-fix-j6_20260524T132313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-004-fix-j6_20260524T132313_result.json",
+    "occurrence": 1,
+    "bytes": 1365,
+    "sha256": "8cc75c2b05a0e0243e704262c86a2b7b0691fe08595e15171eb9904aec0ffdf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模式都跑通。结果汇总：\n\n### 修改摘要\n\n`run_baselines_n17.py` 新增：\n- `EXCLUDE_JUDGES = [\"mistral-large-2\"]` 常量\n- `filter_excluded_judges()` 函数 — 加载后过滤观测并重映射 judge 索引\n- `--include-mistral` flag — 默认 J=6（排除 Mistral），开启后 J=7\n- 输出标注 judge 配置（如 `J=6 (excluding mistral-large-2)`）\n- 结果 JSON 增加 `n_judges`、`excluded_judges`、`judge_config` 字段\n\n### J=6 vs J=7 τ 值对比\n\n| 模式 | Judges | Obs | τ | ρ |\n|------|--------|-----|------|------|\n| J=6（默认） | 6 | 17,899 | 0.8088 | 0.9240 |\n| J=7（--include-mistral） | 7 | 17,942 | 0.8088 | 0.9240 |\n\nτ/ρ 无差异 — Mistral 仅贡献 43 条观测（0.2%），对 baseline 排名无影响。这符合预期，也验证了排除决策的合理性。\n\n### 运行命令\n\n```bash\n# J=6 正式运行\npython exp004/run_baselines_n17.py --judgment-dir exp003/judgment_data_n17 --exposure-csv exp002/results/exposure_scores.csv --output-dir exp004/results_n17_j6\n\n# J=7 sensitivity（Appendix）\npython exp004/run_baselines_n17.py --judgment-dir exp003/judgment_data_n17 --exposure-csv exp002/results/exposure_scores.csv --output-dir exp004/results_n17_j7 --include-mistral\n```\n\nexp-020 完成后可一键运行，只需替换 `--judgment-dir` 路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-004-fix-j6.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3291b77675777d88a846",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh monitor exp003 completion",
+  "task_key": "worker_ssh_monitor_exp003_completion_20260522T165926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_monitor_exp003_completion_20260522T165926_result.json",
+    "occurrence": 1,
+    "bytes": 135,
+    "sha256": "e86f85bc951f71f3c03a94c9e61a3ec20e9e9c295b6e9bb1925d9d5a51a081ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动回来检查。当前进度：joint_gmfrm chain 3/4 sampling 33%，预计 ~20-25 min 后全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-monitor-exp003-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c8bf63a679043e93771",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp002 exposure estimation framework",
+  "task_key": "worker_code_exp002_exposure_estimation_framework_20260522T090231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_exposure_estimation_framework_20260522T090231_result.json",
+    "occurrence": 1,
+    "bytes": 1343,
+    "sha256": "b5f87ebbba1e42ac48815ab3f88067d5053e801bee2072a3190b63115d2e60d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 文件列表\n\n```\nexp002/\n├── __init__.py\n├── run_exp002.py              # 主入口 CLI\n├── sources/\n│   ├── __init__.py\n│   ├── performance_gap.py     # Source 1: 原始 vs rephrased gap + spline校正\n│   ├── temporal_signal.py     # Source 2: pre-cutoff vs post-cutoff\n│   └── logprober.py           # Source 3: Min-K% memorisation score\n├── composite.py               # 加权合成 + 权重调优\n├── validation.py              # ConStat delta vs c_n 相关性验证\n└── mock_data.py               # Mock 数据生成\n```\n\n## Dry-run 结果\n\n| 指标 | 值 |\n|------|-----|\n| 30 items, 4 models, 2 judges | 420 judgments |\n| Source 1 (gap) | 30 items, raw_gap mean=0.797, corrected mean≈0 |\n| Source 2 (temporal) | 15/30 items有temporal scores |\n| Source 3 (logprob) | 30 items |\n| Composite e_i | mean=0.483, std=0.281 |\n| Source coverage | 15 items 有2源, 15 items 有3源 |\n| ConStat vs c_n | Spearman ρ=1.000, Pearson r=0.995 |\n\nMock 数据中注入了差异化 contamination 信号 (gpt-4o=1.5, qwen=1.0, llama=0.3, mistral=0.1)，pipeline 成功检出：spline 校正去掉了 difficulty 成分，ConStat delta 与 c_n 完美相关。exp-001 数据到手后替换 `--data-dir` 即可运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-exposure-estimation-framework.md"
+}

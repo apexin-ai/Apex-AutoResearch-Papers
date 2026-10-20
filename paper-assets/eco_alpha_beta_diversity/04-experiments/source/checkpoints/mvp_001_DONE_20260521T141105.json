@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp_001",
+  "project": "eco_alpha_beta_diversity",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:10:36.107Z",
+    "updated_at": "2026-05-21T14:11:05.183Z",
+    "hypothesis": "词汇级（word unigram）Hill number alpha-beta 分解能在 Doshi & Hauser 数据集上检测到 LLM 辅助写作的 alpha↑/beta↓ 模式，且 Baselga 分解提供 flat metrics（cosine similarity）无法等价替代的诊断信息",
+    "spec": {
+      "command": "python run_mvp.py --nboot 200",
+      "server": "local",
+      "data_path": "artifacts/data/writers-2023-06-28.csv",
+      "data_count": 297,
+      "model_name": "N/A",
+      "seed": "N/A",
+      "checkpoint_path": "N/A",
+      "log_path": "artifacts/mvp_results.json"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T14:11:05.183Z"
+  },
+  "timestamp": "2026-05-21T14:11:05.190448+00:00",
+  "trigger": "update_registry"
+}

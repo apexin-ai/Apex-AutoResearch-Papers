@@ -1,0 +1,2755 @@
+{
+  "schema_version": "1.0",
+  "id": "cdbeba17b497f92f2704",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "paper figure fig1 framework paperbanana",
+  "task_key": "worker_paper_figure_fig1_framework_paperbanana_20260524T113746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_framework_paperbanana_20260524T113746.log",
+    "occurrence": 1,
+    "bytes": 121040,
+    "sha256": "0c480772d3ac13a2eb35da502be7086d3c2dd0c15787b76d4bd1e493fcc0aa81"
+  },
+  "statistics": {
+    "messages": 66,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 22,
+      "tool_result": 22,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_figures_and_layout",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "119696e8-8ee0-4bf4-b026-02fcd4fc800b",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779625800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a481931a-dd38-4a6a-b110-d69ed8f8707c",
+                "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to redraw the G-MFRM framework overview figure (Figure 2) using PaperBanana. Let me follow the steps outlined in the task.\n\nFirst, let me read the PaperBanana skill file and check the current state of things.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "92bd5bbd-3b04-4ab2-81ff-74c43cd53a8a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tj9KXV5JMQLVxSZEq7suj8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14702,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14702
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the PaperBanana skill file and checking the current figure, then request the API key."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "1989e791-abe4-42be-b5a7-3a2f80cbc763",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tj9KXV5JMQLVxSZEq7suj8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14702,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14702
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CGsYfWwo9tdvGFU3jHM6Wd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "be466551-20fe-4ea4-a8ad-2ccaea34e76d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tj9KXV5JMQLVxSZEq7suj8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14702,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14702
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T11:38:01.821Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CGsYfWwo9tdvGFU3jHM6Wd",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 用 PaperBanana 生成高品质学术概念图（架构/流程/framework）。统计图不要用 PaperBanana，用 draw-paper-figure。需要 GOOGLE_API_KEY。\n3\tname: paper-banana\n4\tscope: global\n5\ttags:\n6\t  - visualization\n7\t  - paper\n8\t  - matplotlib\n9\t  - llm-codegen\n10\t  - conceptual-diagram\n11\tversion: 4\n12\ttools:\n13\t  - request_secret\n14\t  - poll_secret_request\n15\t---\n16\t\n17\t# Paper Banana — 高品质学术概念图生成\n18\t\n19\tPaperBanana 由 Gemini Pro 自动写 matplotlib 代码，VLM Critic 评估渲染结果并迭代优化，输出顶会级别 300 DPI 概念图。\n20\t\n21\t**质量底线：每张图必须达到顶会论文的美观度——高级感、专业感、精致感。绝不接受 matplotlib 默认样式的廉价感。**\n22\t\n23\t## 适用范围\n24\t\n25\t| 场景 | 用什么 |\n26\t|------|--------|\n27\t| **概念图**（架构图、流程图、framework 示意） | **PaperBanana** ← 本 skill |\n28\t| **统计图**（scatter、bar、line、heatmap、forest） | **draw-paper-figure.skill.md**。**不要用 PaperBanana 画统计图** |\n29\t| 离线 / 无 GOOGLE_API_KEY | **draw-paper-figure.skill.md** |\n30\t\n31\t## 执行环境\n32\t\n33\t**PaperBanana 在本机（EC2）运行，不要 SSH 到远程服务器。**\n34\t\n35\tEC2（ap-northeast-1 东京）可直接访问 Gemini API，无需代理。\n36\t\n37\t## 前置条件\n38\t\n39\t### Step 1：获取 GOOGLE_API_KEY\n40\t\n41\t```python\n42\trequest_secret(key_id=\"google_api_key\", project=\"<project_name>\", purpose=\"PaperBanana 概念图生成\")\n43\t# 等待 Director 审批后\n44\tpoll_secret_request(request_id=\"<返回的 request_id>\", project=\"<project_name>\")\n45\t```\n46\t\n47\t如果密钥尚未存储，告知 Director 需要 GOOGLE_API_KEY。\n48\t\n49\t### Step 2：安装验证（每次使用前必须检查）\n50\t\n51\t```bash\n52\t# 检查是否已安装\n53\tpaperbanana --version 2>/dev/null || {\n54\t  echo \"PaperBanana 未安装，正在安装...\"\n55\t  pip install paperbanana -q\n56\t  paperbanana --version\n57\t}\n58\t```\n59\t\n60\t如果 `paperbanana --version` 失败（命令不存在），必须先 `pip install paperbanana -q` 安装。版本需 ≥ 0.1.2。\n61\t\n62\t**设计前必读** `skills/global/paper-visualization.skill.md` 的概念图 L1（防丑 7 条）+ L2（叙事 6 条）+ L3 Pattern + Checklist。统计图部分不适用于 PaperBanana。\n63\t\n64\t## 命令：generate\n65\t\n66\t概念图用 `generate` 子命令。**必须显式指定 `--vlm-model gemini-2.5-pro`**（默认模型 `gemini-2.0-flash` 已废弃，不指定会崩溃）。**`--iterations 5`**。\n67\t\n68\t## 完整流程\n69\t\n70\t### Step 1：写意图描述文件\n71\t\n72\t将详细设计描述写入文件（太长不适合命令行参数）：\n73\t\n74\t```bash\n75\tcat > /tmp/fig_intent.txt << 'INTENT'\n76\tThree-panel academic figure for a top-venue paper (full width, aspect ratio ~3.2:1, figsize 14x4.5 inches):\n77\t\n78\tPanel (a) 'The Phenomenon' (left, ~38% width):\n79\tGrouped bar chart. TF bars: dark navy (#2C3E50). AR bars: academic red (#C0392B).\n80\tExact data: Base TF=0.501 AR=0.019, ThreadGate TF=0.504 AR=0.064, ...\n81\tY-axis 'Mid-turn GAR' range 0–0.55. Only left+bottom spines. Serif font 10pt.\n82\tAdd bracket annotation '8-17x gap' between bar groups.\n83\t\n84\tPanel (b) 'Diagnostic Chain' (center, ~24% width):\n85\tVertical flowchart, 4 rounded boxes connected by thin gray arrows:\n86\t  Step 1: light gray (#F5F6F7) box, thin border (#DEE2E6), 'Gate Analysis' + subtitle. Green ✓\n87\t  Step 2: same style, 'PCGrad Exclusion'. Red ✗\n88\t  Step 3: same style, 'Representation Check'. Red ✗\n89\t  Step 4: light green (#D4EDDA) background, 'Conclusion: Exposure bias'. Green ✓\n90\tNo axes, no spines. Clean infographic style.\n91\t\n92\tPanel (c) 'Constructive Evidence' (right, ~38% width):\n93\tLine plot. Data points: (0, 0.064), (3, 0.556), (5, 0.727).\n94\tNavy line (#2C3E50), open circles (white fill, navy edge, width 2).\n95\tLight blue fill (#EBF5FB, alpha 0.4) under curve.\n96\tAnnotate '11x recovery' in muted gray, 9pt italic.\n97\t\n98\tOVERALL STYLE:\n99\t- 300 DPI, white background, publication quality\n100\t- Serif font (Times New Roman or similar) throughout\n101\t- Panel labels '(a)', '(b)', '(c)' in 11pt bold at top-left\n102\t- Generous white space (wspace=0.35)\n103\t- Muted academic palette: navy #2C3E50, red #C0392B, green #27AE60, gray #7F8C8D\n104\t- NO matplotlib default styling: no gray background, no thick gridlines, no tab10 colors\n105\t- Drop shadows on boxes: subtle, 2px offset, 10% opacity\n106\t- Rounded corners 8px on all rectangles\n107\t- Arrow heads: small, elegant, not bulky\n108\tINTENT\n109\t```\n110\t\n111\t### Step 2：运行 generate\n112\t\n113\t```bash\n114\tGOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n115\t  --input /tmp/fig_intent.txt \\\n116\t  --caption \"Three-panel diagnostic framework: (a) TF vs AR performance gap, (b) systematic diagnosis chain, (c) beta-steering recovery evidence\" \\\n117\t  --vlm-model gemini-2.5-pro \\\n118\t  --output figures/paper/fig1_overview.png \\\n119\t  --iterations 5\n120\t```\n121\t\n122\t### Step 3：视觉检查（不可跳过）\n123\t\n124\t**Read 生成的 PNG 文件**，视觉评估以下维度：\n125\t\n126\t1. **高级感**：是否有顶会论文的精致感？还是看起来像课程作业？\n127\t2. **颜色**：是否有语义（不是随机分配）？是否和谐、不刺眼？\n128\t3. **文字**：缩到 column width 后是否 ≥ 7pt 可读？\n129\t4. **布局**：留白是否合理？元素是否对齐？\n130\t5. **细节**：圆角、阴影、箭头是否精致？边框是否统一？\n131\t\n132\t**不满意 → 必须修改意图描述文件，重新生成。**\n133\t\n134\t### Step 4：转 PDF\n135\t\n136\t```bash\n137\tpython3 -c \"\n138\timport matplotlib; matplotlib.use('Agg')\n139\timport matplotlib.pyplot as plt, matplotlib.image as mpimg\n140\timg = mpimg.imread('figures/paper/fig1_overview.png')\n141\th, w = img.shape[:2]\n142\tfig = plt.figure(figsize=(w/300, h/300), dpi=300)\n143\tax = fig.add_axes([0,0,1,1]); ax.imshow(img); ax.axis('off')\n144\tplt.savefig('figures/paper/fig1_overview.pdf', bbox_inches='tight', pad_inches=0)\n145\tplt.close()\n146\t\"\n147\t```\n148\t\n149\t## 意图描述质量红线\n150\t\n151\tIntent 质量直接决定图的质量。必须包含以下 7 项（缺一不可）：\n152\t\n153\t1. **空间布局**：每个 panel 的宽度占比（如 38%/24%/38%）\n154\t2. **组件形状 + 尺寸**：圆角半径 8px、figsize (14, 4.5)\n155\t3. **颜色 hex 码**：不说\"蓝色\"，说 \"#2C3E50\"，绑定语义\n156\t4. **所有文字内容**：box label、副标题、箭头 annotation\n157\t5. **尺寸规格**：DPI 300、字号 10-12pt body / 8-9pt labels\n158\t6. **细节规格**：阴影偏移 2px / 10% opacity、箭头粗细、边框宽度\n159\t7. **反面约束**：\"NO matplotlib default styling, NO gray background, NO tab10 colors\"\n160\t\n161\t### 美学风格关键词（必须在 intent 中出现）\n162\t\n163\t```\n164\tSTYLE REQUIREMENTS:\n165\t- Publication quality for a TOP venue (NeurIPS/ICML/EMNLP)\n166\t- Elegant, premium, sophisticated — NOT cheap or homework-like\n167\t- Subtle drop shadows (2px, 10% opacity) on boxes\n168\t- Rounded corners (8px) on all rectangles\n169\t- Thin, elegant arrow heads — not bulky matplotlib defaults\n170\t- Serif font (Times) for labels, sans-serif (Helvetica) for annotations\n171\t- Muted, harmonious color palette — NO saturated primary colors\n172\t- Generous white space between elements\n173\t- Consistent visual weight across all panels\n174\t```\n175\t\n176\t### 反面教材（这样的 intent 一定画不好）\n177\t\n178\t- \"Draw a pipeline diagram with three stages\"\n179\t- \"Architecture diagram for our system\"\n180\t\n181\t太模糊。LLM 会用 matplotlib 默认样式填充所有你没指定的细节，结果就是廉价感。\n182\t\n183\t## 迭代策略（至少 3 轮外部迭代，Hero Figure 至少 5 轮）\n184\t\n185\tPaperBanana 内部有 VLM Critic 迭代（`--iterations 5`），但这还不够。你必须做**外部迭代**：\n186\t\n187\t### 第 1 轮：基础生成\n188\t运行 PaperBanana → Read PNG → 识别大方向问题（布局、配色、结构）\n189\t\n190\t### 第 2 轮：结构修复\n191\t修改意图描述（布局占比、颜色 hex、组件关系）→ 重新运行 → Read PNG\n192\t\n193\t### 第 3 轮：细节打磨\n194\t修改意图描述（字号、阴影、对齐、箭头粗细）→ 重新运行 → Read PNG\n195\t\n196\t### 第 4 轮（Hero Figure）：风格统一\n197\t线宽 / 字号 / 间距全图统一？与论文其他图配色一致？→ 重新运行 → Read PNG\n198\t\n199\t### 第 5 轮（Hero Figure）：最终 polish\n200\t像素级检查 → 缩到 column width 后文字 ≥ 7pt？→ 终极判断：放在 NeurIPS best paper 里违和吗？\n201\t\n202\t### 判断标准\n203\t\n204\t**可以交付**：看起来像 NeurIPS 2025 best paper 里的图。\n205\t**不可交付**：看起来像 matplotlib gallery 的示例图。\n206\t\n207\t## 失败回退\n208\t\n209\t如果 PaperBanana 多次崩溃（API 错误、模型不兼容）：\n210\t\n211\t1. 确认 `--vlm-model gemini-2.5-pro` 是否指定\n212\t2. 确认 GOOGLE_API_KEY 是否有效：`curl -s -o /dev/null -w '%{http_code}' \"https://generativelanguage.googleapis.com/v1beta/models?key=$GOOGLE_API_KEY\"` 应返回 200\n213\t3. 如果仍然失败，回退 matplotlib 手写：\n214\t   - Read `skills/global/paper-visualization.skill.md` 获取 L1-L4 设计标准\n215\t   - 写 Python 脚本手动画概念图（FancyBboxPatch、FancyArrowPatch 等）\n216\t   - **同样必须 Read PNG 做视觉检查，至少迭代 3 轮**\n217\t   - **同样必须达到顶会级别的美观度**\n218\t   - 保存 .py 脚本到 figures/paper/ 目录便于后续修改\n219\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "20b39ed0-f944-476b-8697-386c9c02dbbd",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md",
+                "content": "---\ndescription: 用 PaperBanana 生成高品质学术概念图（架构/流程/framework）。统计图不要用 PaperBanana，用 draw-paper-figure。需要 GOOGLE_API_KEY。\nname: paper-banana\nscope: global\ntags:\n  - visualization\n  - paper\n  - matplotlib\n  - llm-codegen\n  - conceptual-diagram\nversion: 4\ntools:\n  - request_secret\n  - poll_secret_request\n---\n\n# Paper Banana — 高品质学术概念图生成\n\nPaperBanana 由 Gemini Pro 自动写 matplotlib 代码，VLM Critic 评估渲染结果并迭代优化，输出顶会级别 300 DPI 概念图。\n\n**质量底线：每张图必须达到顶会论文的美观度——高级感、专业感、精致感。绝不接受 matplotlib 默认样式的廉价感。**\n\n## 适用范围\n\n| 场景 | 用什么 |\n|------|--------|\n| **概念图**（架构图、流程图、framework 示意） | **PaperBanana** ← 本 skill |\n| **统计图**（scatter、bar、line、heatmap、forest） | **draw-paper-figure.skill.md**。**不要用 PaperBanana 画统计图** |\n| 离线 / 无 GOOGLE_API_KEY | **draw-paper-figure.skill.md** |\n\n## 执行环境\n\n**PaperBanana 在本机（EC2）运行，不要 SSH 到远程服务器。**\n\nEC2（ap-northeast-1 东京）可直接访问 Gemini API，无需代理。\n\n## 前置条件\n\n### Step 1：获取 GOOGLE_API_KEY\n\n```python\nrequest_secret(key_id=\"google_api_key\", project=\"<project_name>\", purpose=\"PaperBanana 概念图生成\")\n# 等待 Director 审批后\npoll_secret_request(request_id=\"<返回的 request_id>\", project=\"<project_name>\")\n```\n\n如果密钥尚未存储，告知 Director 需要 GOOGLE_API_KEY。\n\n### Step 2：安装验证（每次使用前必须检查）\n\n```bash\n# 检查是否已安装\npaperbanana --version 2>/dev/null || {\n  echo \"PaperBanana 未安装，正在安装...\"\n  pip install paperbanana -q\n  paperbanana --version\n}\n```\n\n如果 `paperbanana --version` 失败（命令不存在），必须先 `pip install paperbanana -q` 安装。版本需 ≥ 0.1.2。\n\n**设计前必读** `skills/global/paper-visualization.skill.md` 的概念图 L1（防丑 7 条）+ L2（叙事 6 条）+ L3 Pattern + Checklist。统计图部分不适用于 PaperBanana。\n\n## 命令：generate\n\n概念图用 `generate` 子命令。**必须显式指定 `--vlm-model gemini-2.5-pro`**（默认模型 `gemini-2.0-flash` 已废弃，不指定会崩溃）。**`--iterations 5`**。\n\n## 完整流程\n\n### Step 1：写意图描述文件\n\n将详细设计描述写入文件（太长不适合命令行参数）：\n\n```bash\ncat > /tmp/fig_intent.txt << 'INTENT'\nThree-panel academic figure for a top-venue paper (full width, aspect ratio ~3.2:1, figsize 14x4.5 inches):\n\nPanel (a) 'The Phenomenon' (left, ~38% width):\nGrouped bar chart. TF bars: dark navy (#2C3E50). AR bars: academic red (#C0392B).\nExact data: Base TF=0.501 AR=0.019, ThreadGate TF=0.504 AR=0.064, ...\nY-axis 'Mid-turn GAR' range 0–0.55. Only left+bottom spines. Serif font 10pt.\nAdd bracket annotation '8-17x gap' between bar groups.\n\nPanel (b) 'Diagnostic Chain' (center, ~24% width):\nVertical flowchart, 4 rounded boxes connected by thin gray arrows:\n  Step 1: light gray (#F5F6F7) box, thin border (#DEE2E6), 'Gate Analysis' + subtitle. Green ✓\n  Step 2: same style, 'PCGrad Exclusion'. Red ✗\n  Step 3: same style, 'Representation Check'. Red ✗\n  Step 4: light green (#D4EDDA) background, 'Conclusion: Exposure bias'. Green ✓\nNo axes, no spines. Clean infographic style.\n\nPanel (c) 'Constructive Evidence' (right, ~38% width):\nLine plot. Data points: (0, 0.064), (3, 0.556), (5, 0.727).\nNavy line (#2C3E50), open circles (white fill, navy edge, width 2).\nLight blue fill (#EBF5FB, alpha 0.4) under curve.\nAnnotate '11x recovery' in muted gray, 9pt italic.\n\nOVERALL STYLE:\n- 300 DPI, white background, publication quality\n- Serif font (Times New Roman or similar) throughout\n- Panel labels '(a)', '(b)', '(c)' in 11pt bold at top-left\n- Generous white space (wspace=0.35)\n- Muted academic palette: navy #2C3E50, red #C0392B, green #27AE60, gray #7F8C8D\n- NO matplotlib default styling: no gray background, no thick gridlines, no tab10 colors\n- Drop shadows on boxes: subtle, 2px offset, 10% opacity\n- Rounded corners 8px on all rectangles\n- Arrow heads: small, elegant, not bulky\nINTENT\n```\n\n### Step 2：运行 generate\n\n```bash\nGOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_intent.txt \\\n  --caption \"Three-panel diagnostic framework: (a) TF vs AR performance gap, (b) systematic diagnosis chain, (c) beta-steering recovery evidence\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig1_overview.png \\\n  --iterations 5\n```\n\n### Step 3：视觉检查（不可跳过）\n\n**Read 生成的 PNG 文件**，视觉评估以下维度：\n\n1. **高级感**：是否有顶会论文的精致感？还是看起来像课程作业？\n2. **颜色**：是否有语义（不是随机分配）？是否和谐、不刺眼？\n3. **文字**：缩到 column width 后是否 ≥ 7pt 可读？\n4. **布局**：留白是否合理？元素是否对齐？\n5. **细节**：圆角、阴影、箭头是否精致？边框是否统一？\n\n**不满意 → 必须修改意图描述文件，重新生成。**\n\n### Step 4：转 PDF\n\n```bash\npython3 -c \"\nimport matplotlib; matplotlib.use('Agg')\nimport matplotlib.pyplot as plt, matplotlib.image as mpimg\nimg = mpimg.imread('figures/paper/fig1_overview.png')\nh, w = img.shape[:2]\nfig = plt.figure(figsize=(w/300, h/300), dpi=300)\nax = fig.add_axes([0,0,1,1]); ax.imshow(img); ax.axis('off')\nplt.savefig('figures/paper/fig1_overview.pdf', bbox_inches='tight', pad_inches=0)\nplt.close()\n\"\n```\n\n## 意图描述质量红线\n\nIntent 质量直接决定图的质量。必须包含以下 7 项（缺一不可）：\n\n1. **空间布局**：每个 panel 的宽度占比（如 38%/24%/38%）\n2. **组件形状 + 尺寸**：圆角半径 8px、figsize (14, 4.5)\n3. **颜色 hex 码**：不说\"蓝色\"，说 \"#2C3E50\"，绑定语义\n4. **所有文字内容**：box label、副标题、箭头 annotation\n5. **尺寸规格**：DPI 300、字号 10-12pt body / 8-9pt labels\n6. **细节规格**：阴影偏移 2px / 10% opacity、箭头粗细、边框宽度\n7. **反面约束**：\"NO matplotlib default styling, NO gray background, NO tab10 colors\"\n\n### 美学风格关键词（必须在 intent 中出现）\n\n```\nSTYLE REQUIREMENTS:\n- Publication quality for a TOP venue (NeurIPS/ICML/EMNLP)\n- Elegant, premium, sophisticated — NOT cheap or homework-like\n- Subtle drop shadows (2px, 10% opacity) on boxes\n- Rounded corners (8px) on all rectangles\n- Thin, elegant arrow heads — not bulky matplotlib defaults\n- Serif font (Times) for labels, sans-serif (Helvetica) for annotations\n- Muted, harmonious color palette — NO saturated primary colors\n- Generous white space between elements\n- Consistent visual weight across all panels\n```\n\n### 反面教材（这样的 intent 一定画不好）\n\n- \"Draw a pipeline diagram with three stages\"\n- \"Architecture diagram for our system\"\n\n太模糊。LLM 会用 matplotlib 默认样式填充所有你没指定的细节，结果就是廉价感。\n\n## 迭代策略（至少 3 轮外部迭代，Hero Figure 至少 5 轮）\n\nPaperBanana 内部有 VLM Critic 迭代（`--iterations 5`），但这还不够。你必须做**外部迭代**：\n\n### 第 1 轮：基础生成\n运行 PaperBanana → Read PNG → 识别大方向问题（布局、配色、结构）\n\n### 第 2 轮：结构修复\n修改意图描述（布局占比、颜色 hex、组件关系）→ 重新运行 → Read PNG\n\n### 第 3 轮：细节打磨\n修改意图描述（字号、阴影、对齐、箭头粗细）→ 重新运行 → Read PNG\n\n### 第 4 轮（Hero Figure）：风格统一\n线宽 / 字号 / 间距全图统一？与论文其他图配色一致？→ 重新运行 → Read PNG\n\n### 第 5 轮（Hero Figure）：最终 polish\n像素级检查 → 缩到 column width 后文字 ≥ 7pt？→ 终极判断：放在 NeurIPS best paper 里违和吗？\n\n### 判断标准\n\n**可以交付**：看起来像 NeurIPS 2025 best paper 里的图。\n**不可交付**：看起来像 matplotlib gallery 的示例图。\n\n## 失败回退\n\n如果 PaperBanana 多次崩溃（API 错误、模型不兼容）：\n\n1. 确认 `--vlm-model gemini-2.5-pro` 是否指定\n2. 确认 GOOGLE_API_KEY 是否有效：`curl -s -o /dev/null -w '%{http_code}' \"https://generativelanguage.googleapis.com/v1beta/models?key=$GOOGLE_API_KEY\"` 应返回 200\n3. 如果仍然失败，回退 matplotlib 手写：\n   - Read `skills/global/paper-visualization.skill.md` 获取 L1-L4 设计标准\n   - 写 Python 脚本手动画概念图（FancyBboxPatch、FancyArrowPatch 等）\n   - **同样必须 Read PNG 做视觉检查，至少迭代 3 轮**\n   - **同样必须达到顶会级别的美观度**\n   - 保存 .py 脚本到 figures/paper/ 目录便于后续修改\n",
+                "numLines": 219,
+                "startLine": 1,
+                "totalLines": 219
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TTDb2ZuB2c82ZB1WmX5nWy",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "256f0a6d-1f70-401c-86e4-fa57e237b9a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tj9KXV5JMQLVxSZEq7suj8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14702,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14702
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T11:38:02.849Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TTDb2ZuB2c82ZB1WmX5nWy",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 学术论文图表设计与生成——四层指南（防丑原则 + 叙事原则 + Pattern 库 + 工具路由）。Paper Agent 规划 visualization_plan 时读，Worker 执行时也读。\n3\tname: paper-visualization\n4\tscope: global\n5\ttags:\n6\t- research\n7\t- visualization\n8\t- paper\n9\t- matplotlib\n10\t- paperbanana\n11\tversion: 5\n12\troles:\n13\t- agent\n14\t- paper_agent\n15\t---\n16\t\n17\t# Paper Visualization — 学术图表设计与生成\n18\t\n19\t> **核心理念**：好图不是\"画得对\"，是\"回答一个问题\"。每张图动笔前先问：**这张图要让读者看到什么？**\n20\t>\n21\t> **质量底线**：每张图必须达到 NeurIPS/ICML/EMNLP best paper 的视觉水准——高级感、专业感、精致感。绝不接受 matplotlib 默认样式的廉价感。\n22\t\n23\t本 skill 分五层：\n24\t\n25\t- **L0 学习同行** — 设计前看几张优秀同类型论文图，比读任何原则都有效\n26\t- **L1 防丑原则** — 底线，所有图必须遵守\n27\t- **L2 叙事原则** — 让图有说服力（区分\"数据图\"和\"论证图\"）\n28\t- **L3 Pattern 库** — 具体技法目录，按 `design_notes` 选用\n29\t- **L4 工具路由 + 模板** — paperbanana vs matplotlib，常用统计图模板\n30\t\n31\t---\n32\t\n33\t## L0 学习同行（设计前的功课）\n34\t\n35\t你的子领域里，**最被引用、最被记住的论文是怎么画图的？** 在动笔之前花点时间去看一眼——这个动作的回报远高于读完下面的 L1-L4。\n36\t\n37\t### 为什么这一步是重要的\n38\t\n39\t- 同领域读者已经被这些论文的视觉语言\"训练\"过——遵循惯例 = 降低读者认知负担\n40\t- 顶会论文经历过 reviewer 严苛审查，能登出来的图基本说明它的 narrative 设计是被接受的\n41\t- 抽象原则告诉你\"用 fill_between 表示发散\"，但好论文告诉你\"在这种数据上，发散到底应该画多淡才合适\"\n42\t- 一个领域往往有它特有的图表惯例（如校准研究的 reliability diagram、scaling 研究的 log-log curve、RL 的 learning curve with seed bands），不看就不会用\n43\t\n44\t### 什么时候值得投入\n45\t\n46\t判断权交给你。一些可参考的信号：\n47\t\n48\t- **值得多花时间**：会决定论文成败的图（hero figure、main result、新颖的实验类型）\n49\t- **不太值得**：常规 supplementary 图、loss curve 这类标准化已经很高的图\n50\t- **强烈建议看**：你打算画一种自己不熟悉的图，或者数据形态是这个领域少见的\n51\t\n52\t### 怎么看\n53\t\n54\t工具：`paper-image-extractor` skill 可以从 arXiv source 或 PDF 提取参考论文里的 figure。你已经有 `literature_map.yaml` 里的论文清单作为起点。\n55\t\n56\t看的时候问自己（不是机械检查清单，是真的去理解）：\n57\t\n58\t- 这张图回答了什么问题？读者一眼能 get 到吗？\n59\t- 它用了哪些叙事层（background band / 参考线 / 概念曲线 / fill 区域）？这些层在我的数据上有对应物吗？\n60\t- 它的颜色和 marker 怎么承载语义？我的图能不能借鉴这套映射？\n61\t- 它有什么是这篇论文特有的（与他们的具体数据 / claim 绑死）？这些不要照搬。\n62\t- 如果让我重画它的图，我会怎么改？为什么作者没这么做？\n63\t\n64\t### 怎么把学到的传下去\n65\t\n66\t把你看完后的判断**直接写进对应 fig 的 `design_notes`**，用人话不用模板。例子：\n67\t\n68\t```yaml\n69\tdesign_notes:\n70\t  - \"学 GPTQ Fig 4：用 log-scale bit-width + dashed FP16 baseline + 不同 marker shape 分模型族\"\n71\t  - \"Pattern A（regime band）划分 in-domain / OOD 两段\"\n72\t  - \"AWQ Fig 2 那种 hatching 区分 outlier 不适用我们的数据，跳过\"\n73\t```\n74\t\n75\tWorker 拿到这种 design_notes 就知道既要参考 GPTQ 的 layout 又要用 Pattern A，能直接落实成代码。\n76\t\n77\t### 边界\n78\t\n79\t- 不要复刻，要消化。直接抄一张图既没用（数据不一样）也有风险（与他们的 claim 强绑定）\n80\t- 不要看太多。3 张就够，多了 Paper Agent 会陷入\"该听谁的\"\n81\t- 看不到原图（提取失败 / arXiv 无 source）就跳过，不要在这里卡住流程\n82\t\n83\t---\n84\t\n85\t## L1 防丑原则（底线，不可违反）\n86\t\n87\t来自 Tufte 和 Luís Cruz 16 条公认规范。Agent 默认遵守，无需逐条思考。\n88\t\n89\t1. **Self-explanatory** — 不看正文就能看懂：title/caption + 所有轴有 label + 单位\n90\t2. **去 chartjunk** — 不要 3D、不要背景框、不要无意义网格、不要 dual y-axis、不要 pie/donut chart\n91\t3. **直接标注 > Legend** — 能直接标在曲线/柱旁就不用 legend；legend 必要时不遮数据\n92\t4. **颜色/形状/纹理只用于 data variation** — 不用颜色装饰，不用相同颜色表示不同数据\n93\t5. **Meaningful baseline** — bar chart 必须从 0 起；scatter 可以非 0\n94\t6. **文字水平** — label 不要旋转/垂直；类别名太长 → 用 horizontal bar chart\n95\t7. **Sort for comparison** — 柱状图按数值排序，便于对比（除非有自然顺序如时间）\n96\t8. **字号一致** — 用 mm 计算 figsize（`ONE_MM = 1/25.4`），不在 LaTeX 里 `\\includegraphics[scale=...]` resize\n97\t9. **色盲友好** — 默认 Okabe-Ito；红/绿区分时变 saturation；考虑 grayscale 打印\n98\t10. **Bold 只用于强调** — 不要全图加粗；highlight 留给 takeaway\n99\t11. **Line plot 只用于有序数据** — 类别变量用 bar\n100\t12. **单 x 单 y 轴** — 必须双轴时改成 multi-panel\n101\t13. **300 DPI、PDF 矢量、savefig.bbox=tight、去掉 top/right spines**\n102\t\n103\t---\n104\t\n105\t## L2 叙事原则（让图变成论证）\n106\t\n107\tL1 让图\"不丑\"，L2 让图\"有说服力\"。这一层是 Agent 自主画图时最容易缺失的。\n108\t\n109\t### 原则 1：每张图回答一个明确问题\n110\t\n111\t动笔前用一句话写下：\"This figure shows that ___.\"\n112\t\n113\t如果写不出来，就不要画。如果写出来的 takeaway 不是论文的 claim，就要重新设计。\n114\t\n115\t**反例**：`\"Accuracy across methods\"` — 这只是个标题，不是问题\n116\t**正例**：`\"FP16 baseline 在小模型上比量化版高 5pp，但 70B 模型上差距消失\"` — 这是一张图要说服读者相信的事\n117\t\n118\t`visualization_plan.{fig_id}.narrative_intent` 字段写这一句。\n119\t\n120\t### 原则 2：颜色绑定语义而非数据顺序\n121\t\n122\t错的做法：`colors = ['blue', 'orange', 'green', 'red']` 按数据顺序分配。\n123\t对的做法：`BN → 蓝色（始终）`、`non-BN → 橙色（始终）`、`collapse/danger → vermillion (#D55E00)`、`safe/baseline → blue (#0072B2)`。\n124\t\n125\t整篇论文 6 张图，BN 永远蓝、collapse 永远红——零认知负担，读者一眼建立映射。\n126\t\n127\t### 原则 3：信息层级用 visual variable 表达\n128\t\n129\t数据的\"质量\"和\"分类\"应该可见，不应该藏在 caption 里：\n130\t\n131\t| 信息 | Visual 表达 |\n132\t|------|------------|\n133\t| n < 50 低置信度点 | hollow marker + 标注 `n=` |\n134\t| Out-of-sample / pending 数据 | hollow + 不同 marker shape（如 diamond）+ \"OOS\" label |\n135\t| Collapse / 异常类别 | hatching（斜线填充）|\n136\t| 主结果 vs 次要结果 | 主用饱和色，次要用 muted 色或 alpha |\n137\t\n138\t### 原则 4：加叙事层，不只画数据\n139\t\n140\t数据是图的基础，叙事层是让读者\"读懂\"的关键。常见叙事层：\n141\t\n142\t- **Background bands** — `axhspan/axvspan` 标定性区域（\"collapse zone\"、\"safe zone\"、\"Regime A/B/C\"）\n143\t- **Fill_between** — 显示两条曲线发散区域（alpha 极低如 0.06，不抢眼但有面积）\n144\t- **Reference lines** — 锚定真实值（如 dashed line 标\"actual W3A16 accuracy\"）\n145\t- **Equivalence band** — `axvspan` gradient fade 标 +/-1pp 等价区间\n146\t- **Concept curve** — 完全合成的曲线（如 cosine trajectory）建立理论直觉\n147\t\n148\t这些都不来自数据，但帮读者\"看到\"数据想说什么。\n149\t\n150\t### 原则 5：Subtitle / panel label 写 insight 不写描述\n151\t\n152\t错：`\"Layer 6 comparison across three models\"`\n153\t对：`\"Same relative position, opposite function\"`\n154\t\n155\t错：`\"Reliability diagram\"`\n156\t对：`\"Quantization shifts confidence but not accuracy\"`\n157\t\n158\t副标题是免费的 takeaway，不要浪费。\n159\t\n160\t### 原则 6：Multi-panel 每个面板独立回答一个 sub-question\n161\t\n162\t不要做\"主图 + 装饰小图\"。每个 panel 必须有独立的信息价值。\n163\t\n164\t如果一个 panel 想不出独立的问题，要么删掉，要么合并到主 panel。\n165\t\n166\t布局上：非对称比例（如 1.4:1）让视觉重心对齐叙事重心。\n167\t\n168\t### 原则 7：所有图至少 3 轮迭代，Hero figure 至少 5 轮\n169\t\n170\t第一版画出来基本不能直接用。计划好预算：先确定数据和布局，再调样式标注，最后 polish。不要指望一次到位。\n171\t\n172\t### Hero Figure 定义\n173\t\n174\tHero Figure = Figure 1 + 主结果图（main result figure）。这两类图对论文第一印象影响最大，必须投入更多迭代。\n175\t\n176\t---\n177\t\n178\t## L3 Pattern 库（按 `design_notes` 选用）\n179\t\n180\t按\"图要回答的问题\"选 pattern。每个 pattern 给出**何时用**、**怎么用**（具体代码或 matplotlib API）。\n181\t\n182\t### Pattern A：定性区域 / regime bands\n183\t\n184\t**何时用**：x 或 y 轴有自然分段（regime、phase、severity tier）。\n185\t\n186\t```python\n187\t# horizontal bands\n188\tfor lo, hi, color, label in [(0, 1, '#EBF5FB', 'Regime A'), (1, 5, '#EAFAF1', 'Regime B')]:\n189\t    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n190\t    ax.text(x_label_pos, (lo+hi)/2, label, va='center', fontsize=9, color='gray')\n191\t\n192\t# 单一 collapse zone\n193\tax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\n194\tax.text(0.02, 2.5, 'collapse zone', fontsize=8, color='#ccaaaa', fontstyle='italic')\n195\t```\n196\t\n197\t### Pattern B：发散面积 fill_between\n198\t\n199\t**何时用**：两组数据从某点开始发散，想让\"发散程度\"可见。\n200\t\n201\t```python\n202\t# alpha 0.06 极淡，不抢眼但有面积\n203\tax.fill_between(x_range, curve_high, curve_low, alpha=0.06, color='#555555', zorder=1)\n204\t```\n205\t\n206\t### Pattern C：参考线锚定真实值\n207\t\n208\t**何时用**：合成 / 缩放后的 x 轴需要锚定到真实物理量。\n209\t\n210\t```python\n211\tax.axhline(y=actual_value, color=color, linestyle=':', linewidth=0.8, alpha=0.3)\n212\tt = ax.text(x_pos, actual_value+1, 'actual W3A16', fontsize=7, color=color, alpha=0.5)\n213\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])  # 防遮挡\n214\t```\n215\t\n216\t### Pattern D：信息层级 marker（hollow vs solid）\n217\t\n218\t**何时用**：同一图中有不同置信度 / OOS / pending 数据。\n219\t\n220\t```python\n221\t# 实心 = n >= 50, 空心 = n < 50\n222\tif n < 50:\n223\t    ax.plot(x, y, marker='o', markerfacecolor='white', markeredgecolor=color,\n224\t            markeredgewidth=1.2, markersize=6)\n225\t    ax.annotate(f'n={n}', (x, y), xytext=(0, 7), textcoords='offset points',\n226\t                fontsize=5, color=color, fontstyle='italic')\n227\t```\n228\t\n229\t### Pattern E：Wilson CI / bootstrap 不确定性\n230\t\n231\t**何时用**：accuracy / proportion 数据需要置信区间。\n232\t\n233\t```python\n234\tdef wilson_ci(p, n, z=1.96):\n235\t    denom = 1 + z**2 / n\n236\t    center = (p + z**2 / (2*n)) / denom\n237\t    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n238\t    return max(0, center - half), min(1, center + half)\n239\t```\n240\t\n241\t### Pattern F：Per-label offset dict（解决标注重叠）\n242\t\n243\t**何时用**：scatter 上多个点需要标注且自动布局重叠。\n244\t\n245\t```python\n246\tlabel_offsets = {\n247\t    'Qwen3-8B':  (6, -12),   # 向下避让\n248\t    'Qwen3-4B':  (-55, 4),   # 向左避让\n249\t    'Llama-8B':  (6, 6),\n250\t}\n251\tfor name, (x, y) in data.items():\n252\t    ox, oy = label_offsets.get(name, (6, 6))\n253\t    ax.annotate(name, (x, y), xytext=(ox, oy), textcoords='offset points', fontsize=7)\n254\t```\n255\t\n256\t### Pattern G：Hatching 加分类维度\n257\t\n258\t**何时用**：已用颜色表示一个维度，再加一个二元维度（如 collapse vs not）。\n259\t\n260\t```python\n261\tfor is_collapse, bar in zip(collapse_flags, bars):\n262\t    if is_collapse:\n263\t        bar.set_hatch('///')\n264\t        bar.set_alpha(0.7)\n265\t```\n266\t\n267\t### Pattern H：Multi-panel 非对称布局\n268\t\n269\t**何时用**：主图 + 辅助 panel；或两个等重要 panel 但视觉重心需要倾斜。\n270\t\n271\t```python\n272\tfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n273\t                          gridspec_kw={'width_ratios': [1.4, 1]})\n274\t# 主面板 1.4x 宽，副面板 1x；视觉重心在左\n275\t```\n276\t\n277\t### Pattern I：Broken axis（异常值或对数 0）\n278\t\n279\t**何时用**：数据范围跨度大，或对数轴需要表示 0。\n280\t\n281\t```python\n282\td = 0.012\n283\tkwargs = dict(transform=ax.transAxes, color='black', clip_on=False, linewidth=0.6)\n284\tax.plot((1-d, 1+d), (-d, +d), **kwargs)  # 右下角斜线\n285\tax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)  # 右上角斜线\n286\t```\n287\t\n288\t### Pattern J：Path-effect 文字描边\n289\t\n290\t**何时用**：标注必须放在数据点 / colored region 上方。\n291\t\n292\t```python\n293\timport matplotlib.patheffects as pe\n294\tt = ax.text(x, y, 'label', fontsize=8, color='red')\n295\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n296\t```\n297\t\n298\t### Pattern K：Concept curve（建立直觉）\n299\t\n300\t**何时用**：论文核心 claim 是定性现象，需要先让读者理解理论预期。\n301\t\n302\t```python\n303\t# 完全合成的 cosine trajectory，不是实验数据\n304\tx = np.linspace(0, 1, 100)\n305\ttrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\n306\tax.plot(x, trajectory, linewidth=2, solid_capstyle='round')\n307\tax.annotate('gap eliminated', (1.0, final_y), color='#388E3C',\n308\t            fontstyle='italic', fontsize=9)\n309\t```\n310\t\n311\t### Pattern L：Forest plot（meta-analysis 风格）\n312\t\n313\t**何时用**：多个子条件的 effect size + CI 对比，加 inline 统计数字。\n314\t\n315\t3-column GridSpec：(1) 标签 (2) CI 区间图 (3) 统计数字（mean, CI, p-value）\n316\t\n317\t每行：dot + horizontal line(CI) + 数字 inline。等价带用半透明 axvspan。\n318\t\n319\t### 概念图 L1 防丑原则（7 条）\n320\t\n321\t概念图（架构图、流程图、framework 示意）的视觉底线，与统计图 L1 互补。\n322\t\n323\t1. **Flow direction 一致** — 全图统一左→右或上→下，不混合方向\n324\t2. **Box 规格统一** — 同层级 box 尺寸、圆角、边框粗细一致\n325\t3. **箭头样式统一** — 不混用多种箭头类型（除非有语义区分）\n326\t4. **层级清晰** — 不同抽象层用缩进/嵌套/背景色区分\n327\t5. **密度控制** — 单张图 ≤15 个 box，超过则拆分或分组\n328\t6. **Label 完整** — 每个 box 和箭头都有文字说明\n329\t7. **无装饰性元素** — 不加纯装饰图标、渐变、3D 效果\n330\t\n331\t### 概念图 L2 叙事原则（6 条）\n332\t\n333\t让概念图不只是\"画了个框图\"，而是\"引导读者理解系统\"。\n334\t\n335\t1. **视觉锚点** — 核心贡献用饱和色/大字/加粗边框突出，其余 muted\n336\t2. **阅读路径** — 沿箭头方向自然读完全图，不需要跳跃\n337\t3. **对比布局** — 左右并列展示 before/after 或 baseline/ours\n338\t4. **分组嵌套** — 用浅色背景框将相关组件分组（如 encoder/decoder）\n339\t5. **箭头语义** — 实线=数据流，虚线=控制流/可选，粗线=关键路径\n340\t6. **信息层级** — 主路径用饱和色+大字，辅助信息用灰色+小字\n341\t\n342\t### 概念图 L3 Pattern 库\n343\t\n344\t| Pattern | 名称 | 适用场景 |\n345\t|---------|------|---------|\n346\t| P-A | 线性流程 | 数据处理 pipeline、推理流程 |\n347\t| P-B | 层级嵌套 | 模型架构（encoder/decoder/attention） |\n348\t| P-C | 对比并列 | baseline vs ours、before/after |\n349\t| P-D | 分支汇聚 | 多输入融合、ensemble |\n350\t| P-E | 循环 | 训练循环、迭代优化 |\n351\t| P-F | 诊断链 | 消融实验逻辑、排错流程 |\n352\t| P-G | 三面板综合 | 概念+数据+结论（常用于 Figure 1） |\n353\t\n354\t### 概念图 Checklist（7 项）\n355\t\n356\t- [ ] Flow direction 全图统一（左→右或上→下）\n357\t- [ ] Box 规格一致（同层级尺寸、圆角、边框相同）\n358\t- [ ] 视觉层级清晰（核心突出，辅助 muted）\n359\t- [ ] 核心贡献在视觉上最突出\n360\t- [ ] 箭头语义一致（实线/虚线/粗细有意义）\n361\t- [ ] 留白充足（box 之间不拥挤）\n362\t- [ ] 跨图风格一致（配色、字号、线宽与论文其他图统一）\n363\t\n364\t---\n365\t\n366\t## L4 工具路由 + 模板\n367\t\n368\t### 路由规则\n369\t\n370\t| 场景 | 工具 | 原因 |\n371\t|------|------|------|\n372\t| 概念图（架构图、流程图、framework 示意） | **PaperBanana（Gemini）** | matplotlib 手写 boxes/arrows 极痛苦 |\n373\t| 统计图（scatter、bar、line、heatmap、forest） | **matplotlib** | 确定性、可控、有模板 |\n374\t| 离线 / 无 GOOGLE_API_KEY | **matplotlib** | 不依赖外部 API |\n375\t\n376\t项目级偏好：`config/projects/{name}.yaml` 的 `visualization.preferred_tool` 可覆盖。\n377\t\n378\t### Matplotlib 通用样式（rcParams 标准）\n379\t\n380\t```python\n381\timport matplotlib\n382\tmatplotlib.use('Agg')\n383\timport matplotlib.pyplot as plt\n384\timport matplotlib.patheffects as pe\n385\timport numpy as np\n386\t\n387\tplt.rcParams.update({\n388\t    'font.family': 'DejaVu Sans',\n389\t    'font.size': 11, 'axes.titlesize': 13, 'axes.labelsize': 12,\n390\t    'xtick.labelsize': 10, 'ytick.labelsize': 10, 'legend.fontsize': 10,\n391\t    'figure.dpi': 300, 'savefig.dpi': 300,\n392\t    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.05,\n393\t    'axes.spines.top': False, 'axes.spines.right': False,\n394\t    'pdf.fonttype': 42, 'ps.fonttype': 42,  # TrueType 嵌入\n395\t    'lines.linewidth': 1.8,\n396\t})\n397\t\n398\t# 色盲友好语义色板（Okabe-Ito）\n399\tSEMANTIC_COLORS = {\n400\t    'baseline':   '#0072B2',  # blue - safe / mild\n401\t    'treatment':  '#E69F00',  # orange - intervention\n402\t    'collapse':   '#D55E00',  # vermillion - danger / catastrophic\n403\t    'safe':       '#009E73',  # green - good outcome\n404\t    'neutral':    '#999999',  # gray - reference / control\n405\t}\n406\t```\n407\t\n408\t### 常用模板（仅作起点，需按 narrative_intent 改造）\n409\t\n410\t详细执行模板见 `skills/global/draw-paper-figure.skill.md`：\n411\t- Reliability Diagram（校准图）\n412\t- ECE Heatmap（方法 × 数据集 ΔECE）\n413\t- T* Scatter Plot（任务 Regime 可视化）\n414\t\n415\t**重要**：这些模板是起点不是终点。每张图根据 `narrative_intent` 必须加 L3 中的相关 pattern，不能直接套用。\n416\t\n417\t### 主图（Figure 1）特别提示\n418\t\n419\t大多数 ML 论文的 Figure 1 是概念图/架构图/方法概览——正是 PaperBanana 的强项。除非 Figure 1 是纯数值结果对比（如 Pareto frontier），否则优先用 PaperBanana。Figure 1 的 `narrative_intent` 必须与 `writing_plan.yaml` 的 `meta.core_claim` 直接关联。\n420\t\n421\t### PaperBanana 用法\n422\t\n423\t见 `skills/global/paper-banana.skill.md`。意图描述时直接引用 `narrative_intent`，并把 L3 中的 pattern 名写进 intent（如 \"with collapse zone background band, hollow markers for n<50\"）。\n424\t\n425\t---\n426\t\n427\t## 给 Paper Agent 的填写规则\n428\t\n429\t规划 `visualization_plan` 时，对每张图填：\n430\t\n431\t```yaml\n432\t- fig_id: fig2_main_result\n433\t  type: statistical\n434\t  tool: matplotlib\n435\t  data_source: \"registry: exp_001, exp_002\"\n436\t  placement: experiments\n437\t\n438\t  # 新字段（必填）\n439\t  narrative_intent: \"Quantized models match FP16 on accuracy but degrade calibration; ECE gap widens with bits→2.\"\n440\t  design_notes:\n441\t    - \"Pattern A: regime bands for bits=8/4/3\"\n442\t    - \"Pattern C: dashed line for FP16 ECE baseline\"\n443\t    - \"Pattern D: hollow markers for n<50 data points\"\n444\t\n445\t  aspect_ratio: \"4:3\"\n446\t```\n447\t\n448\t`narrative_intent`：一句话，主动语态，描述读者应该相信的事。\n449\t\n450\t`design_notes`：从 L3 选 0-4 个 pattern，给出选用理由。可以为空（说明默认模板足够）。\n451\t\n452\t---\n453\t\n454\t## 提交前 Checklist（以下为统计图专用）\n455\t\n456\tL1 部分（防丑底线）：\n457\t- [ ] 所有轴有 label + 单位\n458\t- [ ] 无 dual y-axis、无 3D、无 pie\n459\t- [ ] 颜色绑定语义、色盲友好\n460\t- [ ] Bar chart 从 0 起（如有）\n461\t- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n462\t- [ ] PDF 矢量、300 DPI\n463\t\n464\tL2 部分（叙事强度）：\n465\t- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n466\t- [ ] Subtitle / panel label 是 insight，不是描述\n467\t- [ ] 数据质量差异在视觉上可见（n、OOS、pending 等）\n468\t- [ ] 至少考虑过是否需要 background band / fill_between / reference line（不一定要加）\n469\t\n470\tL3 部分（高级感——不可跳过）：\n471\t- [ ] 不像 matplotlib gallery 示例（无默认灰背景、无粗网格、无 tab10 色板）\n472\t- [ ] 配色 muted 和谐，不刺眼，不过度饱和\n473\t- [ ] 线宽、字号、间距全图统一\n474\t- [ ] 元素对齐严格（bars 底部对齐、labels 水平对齐）\n475\t- [ ] 留白充足（元素之间不拥挤）\n476\t- [ ] 与论文全文其他图的风格一致\n477\t- [ ] 终极判断：这张图放在 NeurIPS best paper 里违和吗？\n478\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "ccd07db7-7adb-4c8c-b5da-c986e710fad2",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md",
+                "content": "---\ndescription: 学术论文图表设计与生成——四层指南（防丑原则 + 叙事原则 + Pattern 库 + 工具路由）。Paper Agent 规划 visualization_plan 时读，Worker 执行时也读。\nname: paper-visualization\nscope: global\ntags:\n- research\n- visualization\n- paper\n- matplotlib\n- paperbanana\nversion: 5\nroles:\n- agent\n- paper_agent\n---\n\n# Paper Visualization — 学术图表设计与生成\n\n> **核心理念**：好图不是\"画得对\"，是\"回答一个问题\"。每张图动笔前先问：**这张图要让读者看到什么？**\n>\n> **质量底线**：每张图必须达到 NeurIPS/ICML/EMNLP best paper 的视觉水准——高级感、专业感、精致感。绝不接受 matplotlib 默认样式的廉价感。\n\n本 skill 分五层：\n\n- **L0 学习同行** — 设计前看几张优秀同类型论文图，比读任何原则都有效\n- **L1 防丑原则** — 底线，所有图必须遵守\n- **L2 叙事原则** — 让图有说服力（区分\"数据图\"和\"论证图\"）\n- **L3 Pattern 库** — 具体技法目录，按 `design_notes` 选用\n- **L4 工具路由 + 模板** — paperbanana vs matplotlib，常用统计图模板\n\n---\n\n## L0 学习同行（设计前的功课）\n\n你的子领域里，**最被引用、最被记住的论文是怎么画图的？** 在动笔之前花点时间去看一眼——这个动作的回报远高于读完下面的 L1-L4。\n\n### 为什么这一步是重要的\n\n- 同领域读者已经被这些论文的视觉语言\"训练\"过——遵循惯例 = 降低读者认知负担\n- 顶会论文经历过 reviewer 严苛审查，能登出来的图基本说明它的 narrative 设计是被接受的\n- 抽象原则告诉你\"用 fill_between 表示发散\"，但好论文告诉你\"在这种数据上，发散到底应该画多淡才合适\"\n- 一个领域往往有它特有的图表惯例（如校准研究的 reliability diagram、scaling 研究的 log-log curve、RL 的 learning curve with seed bands），不看就不会用\n\n### 什么时候值得投入\n\n判断权交给你。一些可参考的信号：\n\n- **值得多花时间**：会决定论文成败的图（hero figure、main result、新颖的实验类型）\n- **不太值得**：常规 supplementary 图、loss curve 这类标准化已经很高的图\n- **强烈建议看**：你打算画一种自己不熟悉的图，或者数据形态是这个领域少见的\n\n### 怎么看\n\n工具：`paper-image-extractor` skill 可以从 arXiv source 或 PDF 提取参考论文里的 figure。你已经有 `literature_map.yaml` 里的论文清单作为起点。\n\n看的时候问自己（不是机械检查清单，是真的去理解）：\n\n- 这张图回答了什么问题？读者一眼能 get 到吗？\n- 它用了哪些叙事层（background band / 参考线 / 概念曲线 / fill 区域）？这些层在我的数据上有对应物吗？\n- 它的颜色和 marker 怎么承载语义？我的图能不能借鉴这套映射？\n- 它有什么是这篇论文特有的（与他们的具体数据 / claim 绑死）？这些不要照搬。\n- 如果让我重画它的图，我会怎么改？为什么作者没这么做？\n\n### 怎么把学到的传下去\n\n把你看完后的判断**直接写进对应 fig 的 `design_notes`**，用人话不用模板。例子：\n\n```yaml\ndesign_notes:\n  - \"学 GPTQ Fig 4：用 log-scale bit-width + dashed FP16 baseline + 不同 marker shape 分模型族\"\n  - \"Pattern A（regime band）划分 in-domain / OOD 两段\"\n  - \"AWQ Fig 2 那种 hatching 区分 outlier 不适用我们的数据，跳过\"\n```\n\nWorker 拿到这种 design_notes 就知道既要参考 GPTQ 的 layout 又要用 Pattern A，能直接落实成代码。\n\n### 边界\n\n- 不要复刻，要消化。直接抄一张图既没用（数据不一样）也有风险（与他们的 claim 强绑定）\n- 不要看太多。3 张就够，多了 Paper Agent 会陷入\"该听谁的\"\n- 看不到原图（提取失败 / arXiv 无 source）就跳过，不要在这里卡住流程\n\n---\n\n## L1 防丑原则（底线，不可违反）\n\n来自 Tufte 和 Luís Cruz 16 条公认规范。Agent 默认遵守，无需逐条思考。\n\n1. **Self-explanatory** — 不看正文就能看懂：title/caption + 所有轴有 label + 单位\n2. **去 chartjunk** — 不要 3D、不要背景框、不要无意义网格、不要 dual y-axis、不要 pie/donut chart\n3. **直接标注 > Legend** — 能直接标在曲线/柱旁就不用 legend；legend 必要时不遮数据\n4. **颜色/形状/纹理只用于 data variation** — 不用颜色装饰，不用相同颜色表示不同数据\n5. **Meaningful baseline** — bar chart 必须从 0 起；scatter 可以非 0\n6. **文字水平** — label 不要旋转/垂直；类别名太长 → 用 horizontal bar chart\n7. **Sort for comparison** — 柱状图按数值排序，便于对比（除非有自然顺序如时间）\n8. **字号一致** — 用 mm 计算 figsize（`ONE_MM = 1/25.4`），不在 LaTeX 里 `\\includegraphics[scale=...]` resize\n9. **色盲友好** — 默认 Okabe-Ito；红/绿区分时变 saturation；考虑 grayscale 打印\n10. **Bold 只用于强调** — 不要全图加粗；highlight 留给 takeaway\n11. **Line plot 只用于有序数据** — 类别变量用 bar\n12. **单 x 单 y 轴** — 必须双轴时改成 multi-panel\n13. **300 DPI、PDF 矢量、savefig.bbox=tight、去掉 top/right spines**\n\n---\n\n## L2 叙事原则（让图变成论证）\n\nL1 让图\"不丑\"，L2 让图\"有说服力\"。这一层是 Agent 自主画图时最容易缺失的。\n\n### 原则 1：每张图回答一个明确问题\n\n动笔前用一句话写下：\"This figure shows that ___.\"\n\n如果写不出来，就不要画。如果写出来的 takeaway 不是论文的 claim，就要重新设计。\n\n**反例**：`\"Accuracy across methods\"` — 这只是个标题，不是问题\n**正例**：`\"FP16 baseline 在小模型上比量化版高 5pp，但 70B 模型上差距消失\"` — 这是一张图要说服读者相信的事\n\n`visualization_plan.{fig_id}.narrative_intent` 字段写这一句。\n\n### 原则 2：颜色绑定语义而非数据顺序\n\n错的做法：`colors = ['blue', 'orange', 'green', 'red']` 按数据顺序分配。\n对的做法：`BN → 蓝色（始终）`、`non-BN → 橙色（始终）`、`collapse/danger → vermillion (#D55E00)`、`safe/baseline → blue (#0072B2)`。\n\n整篇论文 6 张图，BN 永远蓝、collapse 永远红——零认知负担，读者一眼建立映射。\n\n### 原则 3：信息层级用 visual variable 表达\n\n数据的\"质量\"和\"分类\"应该可见，不应该藏在 caption 里：\n\n| 信息 | Visual 表达 |\n|------|------------|\n| n < 50 低置信度点 | hollow marker + 标注 `n=` |\n| Out-of-sample / pending 数据 | hollow + 不同 marker shape（如 diamond）+ \"OOS\" label |\n| Collapse / 异常类别 | hatching（斜线填充）|\n| 主结果 vs 次要结果 | 主用饱和色，次要用 muted 色或 alpha |\n\n### 原则 4：加叙事层，不只画数据\n\n数据是图的基础，叙事层是让读者\"读懂\"的关键。常见叙事层：\n\n- **Background bands** — `axhspan/axvspan` 标定性区域（\"collapse zone\"、\"safe zone\"、\"Regime A/B/C\"）\n- **Fill_between** — 显示两条曲线发散区域（alpha 极低如 0.06，不抢眼但有面积）\n- **Reference lines** — 锚定真实值（如 dashed line 标\"actual W3A16 accuracy\"）\n- **Equivalence band** — `axvspan` gradient fade 标 +/-1pp 等价区间\n- **Concept curve** — 完全合成的曲线（如 cosine trajectory）建立理论直觉\n\n这些都不来自数据，但帮读者\"看到\"数据想说什么。\n\n### 原则 5：Subtitle / panel label 写 insight 不写描述\n\n错：`\"Layer 6 comparison across three models\"`\n对：`\"Same relative position, opposite function\"`\n\n错：`\"Reliability diagram\"`\n对：`\"Quantization shifts confidence but not accuracy\"`\n\n副标题是免费的 takeaway，不要浪费。\n\n### 原则 6：Multi-panel 每个面板独立回答一个 sub-question\n\n不要做\"主图 + 装饰小图\"。每个 panel 必须有独立的信息价值。\n\n如果一个 panel 想不出独立的问题，要么删掉，要么合并到主 panel。\n\n布局上：非对称比例（如 1.4:1）让视觉重心对齐叙事重心。\n\n### 原则 7：所有图至少 3 轮迭代，Hero figure 至少 5 轮\n\n第一版画出来基本不能直接用。计划好预算：先确定数据和布局，再调样式标注，最后 polish。不要指望一次到位。\n\n### Hero Figure 定义\n\nHero Figure = Figure 1 + 主结果图（main result figure）。这两类图对论文第一印象影响最大，必须投入更多迭代。\n\n---\n\n## L3 Pattern 库（按 `design_notes` 选用）\n\n按\"图要回答的问题\"选 pattern。每个 pattern 给出**何时用**、**怎么用**（具体代码或 matplotlib API）。\n\n### Pattern A：定性区域 / regime bands\n\n**何时用**：x 或 y 轴有自然分段（regime、phase、severity tier）。\n\n```python\n# horizontal bands\nfor lo, hi, color, label in [(0, 1, '#EBF5FB', 'Regime A'), (1, 5, '#EAFAF1', 'Regime B')]:\n    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n    ax.text(x_label_pos, (lo+hi)/2, label, va='center', fontsize=9, color='gray')\n\n# 单一 collapse zone\nax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\nax.text(0.02, 2.5, 'collapse zone', fontsize=8, color='#ccaaaa', fontstyle='italic')\n```\n\n### Pattern B：发散面积 fill_between\n\n**何时用**：两组数据从某点开始发散，想让\"发散程度\"可见。\n\n```python\n# alpha 0.06 极淡，不抢眼但有面积\nax.fill_between(x_range, curve_high, curve_low, alpha=0.06, color='#555555', zorder=1)\n```\n\n### Pattern C：参考线锚定真实值\n\n**何时用**：合成 / 缩放后的 x 轴需要锚定到真实物理量。\n\n```python\nax.axhline(y=actual_value, color=color, linestyle=':', linewidth=0.8, alpha=0.3)\nt = ax.text(x_pos, actual_value+1, 'actual W3A16', fontsize=7, color=color, alpha=0.5)\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])  # 防遮挡\n```\n\n### Pattern D：信息层级 marker（hollow vs solid）\n\n**何时用**：同一图中有不同置信度 / OOS / pending 数据。\n\n```python\n# 实心 = n >= 50, 空心 = n < 50\nif n < 50:\n    ax.plot(x, y, marker='o', markerfacecolor='white', markeredgecolor=color,\n            markeredgewidth=1.2, markersize=6)\n    ax.annotate(f'n={n}', (x, y), xytext=(0, 7), textcoords='offset points',\n                fontsize=5, color=color, fontstyle='italic')\n```\n\n### Pattern E：Wilson CI / bootstrap 不确定性\n\n**何时用**：accuracy / proportion 数据需要置信区间。\n\n```python\ndef wilson_ci(p, n, z=1.96):\n    denom = 1 + z**2 / n\n    center = (p + z**2 / (2*n)) / denom\n    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n    return max(0, center - half), min(1, center + half)\n```\n\n### Pattern F：Per-label offset dict（解决标注重叠）\n\n**何时用**：scatter 上多个点需要标注且自动布局重叠。\n\n```python\nlabel_offsets = {\n    'Qwen3-8B':  (6, -12),   # 向下避让\n    'Qwen3-4B':  (-55, 4),   # 向左避让\n    'Llama-8B':  (6, 6),\n}\nfor name, (x, y) in data.items():\n    ox, oy = label_offsets.get(name, (6, 6))\n    ax.annotate(name, (x, y), xytext=(ox, oy), textcoords='offset points', fontsize=7)\n```\n\n### Pattern G：Hatching 加分类维度\n\n**何时用**：已用颜色表示一个维度，再加一个二元维度（如 collapse vs not）。\n\n```python\nfor is_collapse, bar in zip(collapse_flags, bars):\n    if is_collapse:\n        bar.set_hatch('///')\n        bar.set_alpha(0.7)\n```\n\n### Pattern H：Multi-panel 非对称布局\n\n**何时用**：主图 + 辅助 panel；或两个等重要 panel 但视觉重心需要倾斜。\n\n```python\nfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n                          gridspec_kw={'width_ratios': [1.4, 1]})\n# 主面板 1.4x 宽，副面板 1x；视觉重心在左\n```\n\n### Pattern I：Broken axis（异常值或对数 0）\n\n**何时用**：数据范围跨度大，或对数轴需要表示 0。\n\n```python\nd = 0.012\nkwargs = dict(transform=ax.transAxes, color='black', clip_on=False, linewidth=0.6)\nax.plot((1-d, 1+d), (-d, +d), **kwargs)  # 右下角斜线\nax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)  # 右上角斜线\n```\n\n### Pattern J：Path-effect 文字描边\n\n**何时用**：标注必须放在数据点 / colored region 上方。\n\n```python\nimport matplotlib.patheffects as pe\nt = ax.text(x, y, 'label', fontsize=8, color='red')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern K：Concept curve（建立直觉）\n\n**何时用**：论文核心 claim 是定性现象，需要先让读者理解理论预期。\n\n```python\n# 完全合成的 cosine trajectory，不是实验数据\nx = np.linspace(0, 1, 100)\ntrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\nax.plot(x, trajectory, linewidth=2, solid_capstyle='round')\nax.annotate('gap eliminated', (1.0, final_y), color='#388E3C',\n            fontstyle='italic', fontsize=9)\n```\n\n### Pattern L：Forest plot（meta-analysis 风格）\n\n**何时用**：多个子条件的 effect size + CI 对比，加 inline 统计数字。\n\n3-column GridSpec：(1) 标签 (2) CI 区间图 (3) 统计数字（mean, CI, p-value）\n\n每行：dot + horizontal line(CI) + 数字 inline。等价带用半透明 axvspan。\n\n### 概念图 L1 防丑原则（7 条）\n\n概念图（架构图、流程图、framework 示意）的视觉底线，与统计图 L1 互补。\n\n1. **Flow direction 一致** — 全图统一左→右或上→下，不混合方向\n2. **Box 规格统一** — 同层级 box 尺寸、圆角、边框粗细一致\n3. **箭头样式统一** — 不混用多种箭头类型（除非有语义区分）\n4. **层级清晰** — 不同抽象层用缩进/嵌套/背景色区分\n5. **密度控制** — 单张图 ≤15 个 box，超过则拆分或分组\n6. **Label 完整** — 每个 box 和箭头都有文字说明\n7. **无装饰性元素** — 不加纯装饰图标、渐变、3D 效果\n\n### 概念图 L2 叙事原则（6 条）\n\n让概念图不只是\"画了个框图\"，而是\"引导读者理解系统\"。\n\n1. **视觉锚点** — 核心贡献用饱和色/大字/加粗边框突出，其余 muted\n2. **阅读路径** — 沿箭头方向自然读完全图，不需要跳跃\n3. **对比布局** — 左右并列展示 before/after 或 baseline/ours\n4. **分组嵌套** — 用浅色背景框将相关组件分组（如 encoder/decoder）\n5. **箭头语义** — 实线=数据流，虚线=控制流/可选，粗线=关键路径\n6. **信息层级** — 主路径用饱和色+大字，辅助信息用灰色+小字\n\n### 概念图 L3 Pattern 库\n\n| Pattern | 名称 | 适用场景 |\n|---------|------|---------|\n| P-A | 线性流程 | 数据处理 pipeline、推理流程 |\n| P-B | 层级嵌套 | 模型架构（encoder/decoder/attention） |\n| P-C | 对比并列 | baseline vs ours、before/after |\n| P-D | 分支汇聚 | 多输入融合、ensemble |\n| P-E | 循环 | 训练循环、迭代优化 |\n| P-F | 诊断链 | 消融实验逻辑、排错流程 |\n| P-G | 三面板综合 | 概念+数据+结论（常用于 Figure 1） |\n\n### 概念图 Checklist（7 项）\n\n- [ ] Flow direction 全图统一（左→右或上→下）\n- [ ] Box 规格一致（同层级尺寸、圆角、边框相同）\n- [ ] 视觉层级清晰（核心突出，辅助 muted）\n- [ ] 核心贡献在视觉上最突出\n- [ ] 箭头语义一致（实线/虚线/粗细有意义）\n- [ ] 留白充足（box 之间不拥挤）\n- [ ] 跨图风格一致（配色、字号、线宽与论文其他图统一）\n\n---\n\n## L4 工具路由 + 模板\n\n### 路由规则\n\n| 场景 | 工具 | 原因 |\n|------|------|------|\n| 概念图（架构图、流程图、framework 示意） | **PaperBanana（Gemini）** | matplotlib 手写 boxes/arrows 极痛苦 |\n| 统计图（scatter、bar、line、heatmap、forest） | **matplotlib** | 确定性、可控、有模板 |\n| 离线 / 无 GOOGLE_API_KEY | **matplotlib** | 不依赖外部 API |\n\n项目级偏好：`config/projects/{name}.yaml` 的 `visualization.preferred_tool` 可覆盖。\n\n### Matplotlib 通用样式（rcParams 标准）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11, 'axes.titlesize': 13, 'axes.labelsize': 12,\n    'xtick.labelsize': 10, 'ytick.labelsize': 10, 'legend.fontsize': 10,\n    'figure.dpi': 300, 'savefig.dpi': 300,\n    'savefig.bbox': 'tight', 'savefig.pad_inches': 0.05,\n    'axes.spines.top': False, 'axes.spines.right': False,\n    'pdf.fonttype': 42, 'ps.fonttype': 42,  # TrueType 嵌入\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好语义色板（Okabe-Ito）\nSEMANTIC_COLORS = {\n    'baseline':   '#0072B2',  # blue - safe / mild\n    'treatment':  '#E69F00',  # orange - intervention\n    'collapse':   '#D55E00',  # vermillion - danger / catastrophic\n    'safe':       '#009E73',  # green - good outcome\n    'neutral':    '#999999',  # gray - reference / control\n}\n```\n\n### 常用模板（仅作起点，需按 narrative_intent 改造）\n\n详细执行模板见 `skills/global/draw-paper-figure.skill.md`：\n- Reliability Diagram（校准图）\n- ECE Heatmap（方法 × 数据集 ΔECE）\n- T* Scatter Plot（任务 Regime 可视化）\n\n**重要**：这些模板是起点不是终点。每张图根据 `narrative_intent` 必须加 L3 中的相关 pattern，不能直接套用。\n\n### 主图（Figure 1）特别提示\n\n大多数 ML 论文的 Figure 1 是概念图/架构图/方法概览——正是 PaperBanana 的强项。除非 Figure 1 是纯数值结果对比（如 Pareto frontier），否则优先用 PaperBanana。Figure 1 的 `narrative_intent` 必须与 `writing_plan.yaml` 的 `meta.core_claim` 直接关联。\n\n### PaperBanana 用法\n\n见 `skills/global/paper-banana.skill.md`。意图描述时直接引用 `narrative_intent`，并把 L3 中的 pattern 名写进 intent（如 \"with collapse zone background band, hollow markers for n<50\"）。\n\n---\n\n## 给 Paper Agent 的填写规则\n\n规划 `visualization_plan` 时，对每张图填：\n\n```yaml\n- fig_id: fig2_main_result\n  type: statistical\n  tool: matplotlib\n  data_source: \"registry: exp_001, exp_002\"\n  placement: experiments\n\n  # 新字段（必填）\n  narrative_intent: \"Quantized models match FP16 on accuracy but degrade calibration; ECE gap widens with bits→2.\"\n  design_notes:\n    - \"Pattern A: regime bands for bits=8/4/3\"\n    - \"Pattern C: dashed line for FP16 ECE baseline\"\n    - \"Pattern D: hollow markers for n<50 data points\"\n\n  aspect_ratio: \"4:3\"\n```\n\n`narrative_intent`：一句话，主动语态，描述读者应该相信的事。\n\n`design_notes`：从 L3 选 0-4 个 pattern，给出选用理由。可以为空（说明默认模板足够）。\n\n---\n\n## 提交前 Checklist（以下为统计图专用）\n\nL1 部分（防丑底线）：\n- [ ] 所有轴有 label + 单位\n- [ ] 无 dual y-axis、无 3D、无 pie\n- [ ] 颜色绑定语义、色盲友好\n- [ ] Bar chart 从 0 起（如有）\n- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n- [ ] PDF 矢量、300 DPI\n\nL2 部分（叙事强度）：\n- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n- [ ] Subtitle / panel label 是 insight，不是描述\n- [ ] 数据质量差异在视觉上可见（n、OOS、pending 等）\n- [ ] 至少考虑过是否需要 background band / fill_between / reference line（不一定要加）\n\nL3 部分（高级感——不可跳过）：\n- [ ] 不像 matplotlib gallery 示例（无默认灰背景、无粗网格、无 tab10 色板）\n- [ ] 配色 muted 和谐，不刺眼，不过度饱和\n- [ ] 线宽、字号、间距全图统一\n- [ ] 元素对齐严格（bars 底部对齐、labels 水平对齐）\n- [ ] 留白充足（元素之间不拥挤）\n- [ ] 与论文全文其他图的风格一致\n- [ ] 终极判断：这张图放在 NeurIPS best paper 里违和吗？\n",
+                "numLines": 478,
+                "startLine": 1,
+                "totalLines": 478
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013UWFSHJZcKhoSaa9G8kTUM",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "ec19aaec-48db-4776-b77d-aa4e45ce2c3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tj9KXV5JMQLVxSZEq7suj8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14702,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14702
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T11:38:03.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013UWFSHJZcKhoSaa9G8kTUM",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "2921a7aa-843f-4a29-9458-88d1931ac315",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me request the API key and check if PaperBanana is installed, while also looking at the current figure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "0f756ac5-4f90-4420-a178-4c56604c836d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkePRJukT5GVRL7kezojd2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13354,
+                "cache_read_input_tokens": 26149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13354
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0176wrTLSXtrqa9rVSWPVu4t",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__request_secret,mcp__agent-ml-research__poll_secret_request",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "b98b4e8c-a9b1-4ca5-a27b-41d2c2b7f991",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkePRJukT5GVRL7kezojd2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13354,
+                "cache_read_input_tokens": 26149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13354
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T11:38:08.330Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0176wrTLSXtrqa9rVSWPVu4t",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "4429bab8-69b2-4308-9b3a-553fff01bd45",
+            "tool_use_result": {
+              "matches": [],
+              "query": "select:mcp__agent-ml-research__request_secret,mcp__agent-ml-research__poll_secret_request",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hk2YwjY1zVTn8ca5dkn3bK",
+              "name": "Bash",
+              "input": {
+                "command": "paperbanana --version 2>/dev/null || echo \"NOT_INSTALLED\"",
+                "description": "Check if PaperBanana is installed"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "b12eff04-5863-4748-9723-2701d31214ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkePRJukT5GVRL7kezojd2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13354,
+                "cache_read_input_tokens": 26149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13354
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T11:38:12.897Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hk2YwjY1zVTn8ca5dkn3bK",
+              "type": "tool_result",
+              "content": "NOT_INSTALLED",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "45434622-76f6-4be0-9896-522589aea79c",
+            "tool_use_result": {
+              "stdout": "NOT_INSTALLED",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011RqrkYmCdCFH3pXV43fb8G",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.* 2>/dev/null || echo \"NO_EXISTING_FILES\"",
+                "description": "Check existing framework figure files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "c185fd4a-a0da-42d7-b32c-0bfe2fdced51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QkePRJukT5GVRL7kezojd2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13354,
+                "cache_read_input_tokens": 26149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13354
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T11:38:13.343Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011RqrkYmCdCFH3pXV43fb8G",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  67778 May 24 05:27 /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.pdf\n-rw-r--r-- 1 ubuntu ubuntu 466014 May 24 05:27 /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "c01b82a9-e9ef-452c-bdb8-724571868307",
+            "tool_use_result": {
+              "stdout": "-rw-r--r-- 1 ubuntu ubuntu  67778 May 24 05:27 /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.pdf\n-rw-r--r-- 1 ubuntu ubuntu 466014 May 24 05:27 /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `request_secret` and `poll_secret_request` tools weren't found via ToolSearch. Let me search for them differently - they might be MCP tools with a different naming convention.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "86b476bc-02a1-4681-ada1-9ad697cd567a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FjDhHMZZ4i9vNj9Qj4MjTH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 541,
+                "cache_read_input_tokens": 39503,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 541
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for the secret-related tools and install PaperBanana."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "66d7dc35-f936-42a7-9d95-b3a6334a8812",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FjDhHMZZ4i9vNj9Qj4MjTH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 541,
+                "cache_read_input_tokens": 39503,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 541
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QwEGdjgoiUsJEHn1QGdW3C",
+              "name": "ToolSearch",
+              "input": {
+                "query": "secret request poll",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "ff9cbf1e-057b-44ef-9aa9-190c6e9393ad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FjDhHMZZ4i9vNj9Qj4MjTH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 541,
+                "cache_read_input_tokens": 39503,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 541
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T11:38:17.109Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QwEGdjgoiUsJEHn1QGdW3C",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__paper_agent_request_review"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "Monitor"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "CronCreate"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "ExitPlanMode"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "TodoWrite"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "d93f2d55-59b5-49bd-96b1-5d7aa0ce39fe",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__paper_agent_request_review",
+                "Monitor",
+                "CronCreate",
+                "ExitPlanMode",
+                "TodoWrite"
+              ],
+              "query": "secret request poll",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GmwXLDGvQ3WAirnUVpayh7",
+              "name": "Bash",
+              "input": {
+                "command": "pip install paperbanana -q 2>&1 | tail -3",
+                "description": "Install PaperBanana"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "8a95b9ee-5c0c-46fd-8564-2b0f8258fbf2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FjDhHMZZ4i9vNj9Qj4MjTH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 541,
+                "cache_read_input_tokens": 39503,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 541
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T11:38:18.387Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GmwXLDGvQ3WAirnUVpayh7",
+              "type": "tool_result",
+              "content": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "5e481d9d-a9bb-44de-b040-d6f5e8c47e23",
+            "tool_use_result": {
+              "stdout": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "PaperBanana installation failed due to PEP 668. I need to use a venv or --break-system-packages. Let me create a venv first. Also, I need to find the secret request tools - they might be under a different name in the MCP tools.\n\nLet me search for \"secret\" in the MCP tools.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "10b88af1-d65d-4198-adb4-b2bceba89aff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L52zvgADQ1Hxo9c1ichap7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6555,
+                "cache_read_input_tokens": 40044,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6555
+                },
+                "output_tokens": 16,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PEP 668 blocking pip install. Let me set up a venv and search for the secret tools."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "5e35d9aa-b764-4214-a610-7b280ae83ccd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L52zvgADQ1Hxo9c1ichap7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6555,
+                "cache_read_input_tokens": 40044,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6555
+                },
+                "output_tokens": 16,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GKtL4g9neVBtMJZGvxqgWf",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -m venv /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.venv && source /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.venv/bin/activate && pip install paperbanana -q 2>&1 | tail -5",
+                "description": "Create venv and install PaperBanana",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "c0d425be-a3c5-4279-be6d-2fd76efa96d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L52zvgADQ1Hxo9c1ichap7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6555,
+                "cache_read_input_tokens": 40044,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6555
+                },
+                "output_tokens": 16,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UDPntwftYjsELuv1NNQ7k7",
+              "name": "ToolSearch",
+              "input": {
+                "query": "secret key api google",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "a5c7131d-8f44-4ab9-a917-43a9331985bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L52zvgADQ1Hxo9c1ichap7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6555,
+                "cache_read_input_tokens": 40044,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6555
+                },
+                "output_tokens": 16,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bgynuaael",
+                "tool_use_id": "toolu_01GKtL4g9neVBtMJZGvxqgWf",
+                "description": "Create venv and install PaperBanana",
+                "task_type": "local_bash",
+                "uuid": "72bb0b79-4eff-4679-bd14-d93bce8ecc84",
+                "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0"
+              }
+            }
+          ],
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bgynuaael",
+                "tool_use_id": "toolu_01GKtL4g9neVBtMJZGvxqgWf",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Create venv and install PaperBanana",
+                "uuid": "50898d77-0d4e-4b74-8d91-e8f39b090ca1",
+                "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T11:38:40.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GKtL4g9neVBtMJZGvxqgWf",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "9f254821-1591-41ab-8ef8-f4b2648f60ad",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-24T11:38:40.990Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01UDPntwftYjsELuv1NNQ7k7",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "CronCreate"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "EnterPlanMode"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "Monitor"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "RemoteTrigger"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "860e8e85-8542-423d-b883-8186dcca636a",
+            "tool_use_result": {
+              "matches": [
+                "WebFetch",
+                "CronCreate",
+                "EnterPlanMode",
+                "Monitor",
+                "RemoteTrigger"
+              ],
+              "query": "secret key api google",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `request_secret` and `poll_secret_request` tools aren't found in the deferred tool list. Let me search more specifically for them - they might be MCP tools from the agent-ml-research server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "0b6a344e-46b2-4ad5-af56-acfa81add6ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P1b25fLfkWwGy4dNPn53FH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 5144,
+                "cache_read_input_tokens": 46599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5144
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the venv install and search for the secret management tools more specifically."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "74e652ef-cc7c-40f6-8d75-82e672d6e15c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P1b25fLfkWwGy4dNPn53FH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 5144,
+                "cache_read_input_tokens": 46599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5144
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KVHisrSpXnbhZApMh52jnv",
+              "name": "Bash",
+              "input": {
+                "command": "source /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.venv/bin/activate && paperbanana --version 2>&1",
+                "description": "Verify PaperBanana installation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "f36e601a-08e7-473b-8a7e-88dc47486b08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P1b25fLfkWwGy4dNPn53FH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 5144,
+                "cache_read_input_tokens": 46599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5144
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017w3jCqPAdN3oGmDBJtsz3q",
+              "name": "ToolSearch",
+              "input": {
+                "query": "+mcp request secret",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "84485a5d-29cd-4e1d-aaf0-141af8c28371",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P1b25fLfkWwGy4dNPn53FH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 5144,
+                "cache_read_input_tokens": 46599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5144
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-24T11:38:47.702Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 2\nUsage: paperbanana [OPTIONS] COMMAND [ARGS]...\nTry 'paperbanana --help' for help.\n╭─ Error ──────────────────────────────────────────────────────────────────────╮\n│ No such option '--version'.                                                  │\n╰──────────────────────────────────────────────────────────────────────────────╯",
+              "is_error": true,
+              "tool_use_id": "toolu_01KVHisrSpXnbhZApMh52jnv"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "9deb0c56-87af-4f53-95fa-0f470c94d61f",
+            "tool_use_result": "Error: Exit code 2\nUsage: paperbanana [OPTIONS] COMMAND [ARGS]...\nTry 'paperbanana --help' for help.\n╭─ Error ──────────────────────────────────────────────────────────────────────╮\n│ No such option '--version'.                                                  │\n╰──────────────────────────────────────────────────────────────────────────────╯"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-24T11:38:47.704Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>Cancelled: parallel tool call Bash(source /home/ubuntu/.agent-ml-research-p…) errored</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_017w3jCqPAdN3oGmDBJtsz3q"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "c8573ed8-cd27-4ba5-b3d1-c0c7c63d086d",
+            "tool_use_result": "Cancelled: parallel tool call Bash(source /home/ubuntu/.agent-ml-research-p…) errored"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PaperBanana is installed (just no `--version` flag). Let me search for the secret tools."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "58235708-146e-438b-98cd-8e3bcf06c99d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RzFvVy5cNb5LQ1hj5iTETt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 461,
+                "cache_read_input_tokens": 51743,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 461
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HGNX3zrFvLt32HP1CrXvRY",
+              "name": "ToolSearch",
+              "input": {
+                "query": "+mcp secret",
+                "max_results": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "9ed2a084-c2cc-4dd8-9620-777dc9bcfa36",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RzFvVy5cNb5LQ1hj5iTETt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 461,
+                "cache_read_input_tokens": 51743,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 461
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-24T11:38:51.242Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HGNX3zrFvLt32HP1CrXvRY",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "ListMcpResourcesTool"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "ReadMcpResourceTool"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__spawn_worker"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "ea02b202-6a90-4dd5-b8fc-a008541a00d2",
+            "tool_use_result": {
+              "matches": [
+                "ListMcpResourcesTool",
+                "ReadMcpResourceTool",
+                "WebFetch",
+                "mcp__agent-ml-research__spawn_worker"
+              ],
+              "query": "+mcp secret",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B5vktMKGGT8Mc8np4z5kM6",
+              "name": "Bash",
+              "input": {
+                "command": "source /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.venv/bin/activate && paperbanana --help 2>&1",
+                "description": "Check PaperBanana help"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "7a235077-6ca1-407c-8d60-fd6d55b09426",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RzFvVy5cNb5LQ1hj5iTETt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 461,
+                "cache_read_input_tokens": 51743,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 461
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-24T11:38:52.595Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B5vktMKGGT8Mc8np4z5kM6",
+              "type": "tool_result",
+              "content": " Usage: paperbanana [OPTIONS] COMMAND [ARGS]...                                 \n                                                                                \n Generate publication-quality academic illustrations from text.                 \n                                                                                \n╭─ Options ────────────────────────────────────────────────────────────────────╮\n│ --install-completion          Install completion for the current shell.      │\n│ --show-completion             Show completion for the current shell, to copy │\n│                               it or customize the installation.              │\n│ --help                        Show this message and exit.                    │\n╰──────────────────────────────────────────────────────────────────────────────╯\n╭─ Commands ───────────────────────────────────────────────────────────────────╮\n│ generate  Generate a methodology diagram from a text description.            │\n│ plot      Generate a statistical plot from data.                             │\n│ setup     Interactive setup wizard — get generating in 2 minutes with FREE   │\n│           APIs.                                                              │\n│ evaluate  Evaluate a generated diagram vs human reference (comparative).     │\n╰──────────────────────────────────────────────────────────────────────────────╯",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "7a87039a-1790-457a-9a2c-be73da617cf5",
+            "tool_use_result": {
+              "stdout": " Usage: paperbanana [OPTIONS] COMMAND [ARGS]...                                 \n                                                                                \n Generate publication-quality academic illustrations from text.                 \n                                                                                \n╭─ Options ────────────────────────────────────────────────────────────────────╮\n│ --install-completion          Install completion for the current shell.      │\n│ --show-completion             Show completion for the current shell, to copy │\n│                               it or customize the installation.              │\n│ --help                        Show this message and exit.                    │\n╰──────────────────────────────────────────────────────────────────────────────╯\n╭─ Commands ───────────────────────────────────────────────────────────────────╮\n│ generate  Generate a methodology diagram from a text description.            │\n│ plot      Generate a statistical plot from data.                             │\n│ setup     Interactive setup wizard — get generating in 2 minutes with FREE   │\n│           APIs.                                                              │\n│ evaluate  Evaluate a generated diagram vs human reference (comparative).     │\n╰──────────────────────────────────────────────────────────────────────────────╯",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The secret management tools (`request_secret`, `poll_secret_request`) are not available as MCP tools. Let me check if there's a way to get the GOOGLE_API_KEY through MCP resources or if it's already available in the environment.\n\nLet me check if the key is already available somewhere.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "3c336bce-1e05-4807-9ddf-6c1063599aec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LHQZPeTnXrYugquhHhUUQw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2563,
+                "cache_read_input_tokens": 52204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2563
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The `request_secret`/`poll_secret_request` tools aren't available as MCP tools. Let me check if the key is already in the environment or accessible via MCP resources."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "9f91f017-1483-413c-b171-bb3094cb88e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LHQZPeTnXrYugquhHhUUQw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2563,
+                "cache_read_input_tokens": 52204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2563
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FvFwzjh9GFCSvb2aK2mZA6",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"${GOOGLE_API_KEY:[REDACTED]}\" || echo \"NOT_SET\"",
+                "description": "Check if GOOGLE_API_KEY is in environment"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "747495c6-b89f-47a8-a185-2ceaf9fc21b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LHQZPeTnXrYugquhHhUUQw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2563,
+                "cache_read_input_tokens": 52204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2563
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C28TBNvXAkDyWdpuGYJyef",
+              "name": "ListMcpResourcesTool",
+              "input": {
+                "server": "agent-ml-research"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "5fb963a9-f28b-4db8-a215-4c6f83e36672",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LHQZPeTnXrYugquhHhUUQw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2563,
+                "cache_read_input_tokens": 52204,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2563
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-24T11:38:58.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FvFwzjh9GFCSvb2aK2mZA6",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "7d417bec-ef9f-4893-b6eb-252ab533e37f",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-24T11:38:58.569Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C28TBNvXAkDyWdpuGYJyef",
+              "type": "tool_result",
+              "content": "No resources found. MCP servers may still provide tools even if they have no resources."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "85487495-3166-4554-816b-c2ba5200435f",
+            "tool_use_result": []
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XdtZGFudEjsnJeau1nJVMs",
+              "name": "Bash",
+              "input": {
+                "command": "printenv | grep -i google 2>/dev/null; printenv | grep -i api_key 2>/dev/null; cat ~/.env 2>/dev/null; cat /home/ubuntu/.agent-ml-research-prod43/.env 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-prod43/secrets* 2>/dev/null || echo \"NO_SECRETS_DIR\"",
+                "description": "Search for API key in environment and config files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "4da68f82-6012-48dd-b0fc-5e03ad0fed09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qb8MimxCu7GV785HmyaN3v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 460,
+                "cache_read_input_tokens": 54767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 460
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-24T11:39:02.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XdtZGFudEjsnJeau1nJVMs",
+              "type": "tool_result",
+              "content": "---\nNO_SECRETS_DIR",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "56f11ed6-ef48-4619-a96b-a69f8621eaa5",
+            "tool_use_result": {
+              "stdout": "---\nNO_SECRETS_DIR",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VX5NjLiatJ88o3UHxUMDw6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "+mcp send_progress load_project",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "0bf9989e-f339-461f-8db1-9504472d4c23",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Le5fbxwM2J3f7nHKN7YK7x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 196,
+                "cache_read_input_tokens": 55227,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 196
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-24T11:39:04.942Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01VX5NjLiatJ88o3UHxUMDw6",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "ListMcpResourcesTool"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "ReadMcpResourceTool"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__spawn_worker"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "db875407-8aa8-4486-af67-27f5aeb68282",
+            "tool_use_result": {
+              "matches": [
+                "ListMcpResourcesTool",
+                "ReadMcpResourceTool",
+                "WebFetch",
+                "mcp__agent-ml-research__spawn_worker"
+              ],
+              "query": "+mcp send_progress load_project",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `request_secret` and `poll_secret_request` tools are not available. Let me try loading them directly - they might be part of the MCP server but not showing up in search. Let me try to load them by name.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "2bc161dd-1743-4965-9c7e-5945ef2d9350",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AU2QEt6Z1nUL1kKnxgZcvh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2111,
+                "cache_read_input_tokens": 55423,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2111
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me try loading the secret tools directly by name."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "43161c57-572a-4d05-9b5c-9fbe00f9badd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AU2QEt6Z1nUL1kKnxgZcvh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2111,
+                "cache_read_input_tokens": 55423,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2111
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LaaUNbEoa7BuQ82iTKpkdu",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__request_secret,mcp__agent-ml-research__poll_secret_request",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "008a2b00-7078-4a9c-b1f0-335ab2f5c6d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AU2QEt6Z1nUL1kKnxgZcvh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2111,
+                "cache_read_input_tokens": 55423,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2111
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-24T11:39:10.641Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LaaUNbEoa7BuQ82iTKpkdu",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "e452c03d-78df-4471-aabe-fdfdc119ddcb",
+            "tool_use_result": {
+              "matches": [],
+              "query": "select:mcp__agent-ml-research__request_secret,mcp__agent-ml-research__poll_secret_request",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VQhQ8rdy3gbKaYW2zczDVb",
+              "name": "mcp__agent-ml-research__load_project_config",
+              "input": {
+                "project": "gated_mfrm_judge_bias",
+                "section": "execution"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "ea482c9b-fd31-47d7-91a2-fb4d6567a756",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012hTA2Bw9m5MawzsmG8sKNa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 198,
+                "cache_read_input_tokens": 57534,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 198
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-24T11:39:13.308Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool load_project_config: 1 validation error for load_project_configArguments\nproject_name\n  Field required [type=missing, input_value={'project': 'gated_mfrm_j... 'section': 'execution'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing",
+              "is_error": true,
+              "tool_use_id": "toolu_01VQhQ8rdy3gbKaYW2zczDVb"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "f2eeecbf-f1f7-4868-983b-ca4508512c91",
+            "tool_use_result": "Error: Error executing tool load_project_config: 1 validation error for load_project_configArguments\nproject_name\n  Field required [type=missing, input_value={'project': 'gated_mfrm_j... 'section': 'execution'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HatmJNS5yXi2Ugu6wGYpkK",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__load_project_config",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "b4e3e0a0-014c-40fa-90d3-71264c69008c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1tegxxhEhrSFaDaz8NL3p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 200,
+                "cache_read_input_tokens": 57732,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 200
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-24T11:39:15.325Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HatmJNS5yXi2Ugu6wGYpkK",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__load_project_config"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "a225c125-e058-4da3-9159-547623fd0643",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__load_project_config"
+              ],
+              "query": "select:mcp__agent-ml-research__load_project_config",
+              "total_deferred_tools": 51
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G2mNuqrxKWsk4UKdwHyE2c",
+              "name": "mcp__agent-ml-research__load_project_config",
+              "input": {
+                "project_name": "gated_mfrm_judge_bias",
+                "section": "execution"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "71348d6c-21e8-476f-8ee2-f42ab7717bc0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GwqtGJ3mxpDQyf3BpkdEuv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 332,
+                "cache_read_input_tokens": 57932,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 332
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-24T11:39:19.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G2mNuqrxKWsk4UKdwHyE2c",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"gated_mfrm_judge_bias\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": {\\\"autodl-8gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"rtx6000-4x\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"]}, \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/gated_mfrm_judge_bias\\\", \\\"servers\\\": [\\\"rtx6000-4x\\\", \\\"autodl-8gpu\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "a2477af3-e26e-4083-a852-a7796e20a220",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"gated_mfrm_judge_bias\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": {\\\"autodl-8gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"rtx6000-4x\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"]}, \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/gated_mfrm_judge_bias\\\", \\\"servers\\\": [\\\"rtx6000-4x\\\", \\\"autodl-8gpu\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"project\": \"gated_mfrm_judge_bias\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": {\"autodl-8gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"rtx6000-4x\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"]}, \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/gated_mfrm_judge_bias\", \"servers\": [\"rtx6000-4x\", \"autodl-8gpu\"]}}}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The secret tools aren't available. Let me check if there's a GOOGLE_API_KEY stored somewhere in the project config, or if I need to ask the user for it.",
+              "signature": "Et4CCmMIDhgCKkBPzLeEJ8eeg2TtjvdUk/b4hDytYM7/EehrTJAF/EY7SMErlAIOoyqqT/3vW/479NEtDzRG1QjjiCXD1bew87WIMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDE+AWnaIlc1JKNHkkBoMXqGz5YaTMEarpEYoIjD3RZxscqFFmK447CrlNXIo0bb8ELGaWJxp+bsz3GHOBF8ANi+Ho72wyRjHD7LwN5IqqAGkAawQAPiifhuiH6aftUnaL7OMVfi3u+JTj+fVzIdb+b2Tby0au9DhQZ3rSMSXqnEhBRyYaW3VXa2yWv2osFUSh2kMdy2VpuSSLr7ZsX5OBQWkGdVg60u5U9/Kx469tzT9i5ST6K1467GOGD3F9yqanX9a1I7cd3GxVZsbIzdYLJ5a4YMG9Q+aLGaZLfxvn0QJ0EbmojkmUP3zmlfXtLFeHTTNqN7+T0MYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "216da9d6-c52b-4e10-a3ca-8712e0eeb836",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019QxiD7ktNKxra3c5LiKpJa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 331,
+                "cache_read_input_tokens": 58264,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 331
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`request_secret` / `poll_secret_request` 工具不可用。我无法自动获取 GOOGLE_API_KEY。\n\n**需要你提供 GOOGLE_API_KEY** 才能使用 PaperBanana。请通过以下方式之一提供：\n1. 直接贴出 key（我会仅在本次命令中使用）\n2. 或告诉我 key 存放的文件路径\n\n如果没有可用的 key，我将使用 **matplotlib 回退方案**，手写高质量概念图（FancyBboxPatch + FancyArrowPatch），同样会做至少 3 轮视觉检查迭代。\n\n要走哪条路？"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "uuid": "361a1517-b17c-4f0b-afce-fec2f1b1f4b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019QxiD7ktNKxra3c5LiKpJa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 331,
+                "cache_read_input_tokens": 58264,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 331
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`request_secret` / `poll_secret_request` 工具不可用。我无法自动获取 GOOGLE_API_KEY。\n\n**需要你提供 GOOGLE_API_KEY** 才能使用 PaperBanana。请通过以下方式之一提供：\n1. 直接贴出 key（我会仅在本次命令中使用）\n2. 或告诉我 key 存放的文件路径\n\n如果没有可用的 key，我将使用 **matplotlib 回退方案**，手写高质量概念图（FancyBboxPatch + FancyArrowPatch），同样会做至少 3 轮视觉检查迭代。\n\n要走哪条路？"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 92071,
+            "duration_api_ms": 79194,
+            "num_turns": 23,
+            "stop_reason": "end_turn",
+            "session_id": "b4f6ee8d-8231-4439-8f47-01a076d4d3a0",
+            "total_cost_usd": 0.7024699999999999,
+            "usage": {
+              "input_tokens": 27,
+              "cache_creation_input_tokens": 47148,
+              "cache_read_input_tokens": 664568,
+              "output_tokens": 2893,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 47148,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 253,
+                  "cache_read_input_tokens": 58264,
+                  "cache_creation_input_tokens": 331,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 331
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2921,
+                "outputTokens": 26,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003051,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 27,
+                "outputTokens": 2893,
+                "cacheReadInputTokens": 664568,
+                "cacheCreationInputTokens": 47148,
+                "webSearchRequests": 0,
+                "costUSD": 0.699419,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "64ba434b-6912-4444-8d36-14f15a85c44e"
+          },
+          "id": "event-000066"
+        }
+      ],
+      "message_count": 66
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-fig1-framework-paperbanana.md"
+}

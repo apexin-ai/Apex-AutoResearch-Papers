@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4b474b05e06e1b23dd9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh trace plots ppc",
+  "task_key": "worker_ssh_trace_plots_ppc_20260522T213844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_trace_plots_ppc_20260522T213844_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "99637041a9a7db9f9a31e0ead350491bdc8ccb3dbeb7e083d096c824325e4a78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部生成成功。结果汇总：\n\n**Trace plots (5 个)**\n| 文件 | 大小 |\n|------|------|\n| `trace_cn.pdf` — 8 个模型的 $c_n$ | 6.2 MB |\n| `trace_dj.pdf` — 9 个 judges 的 $d_j$ | 6.6 MB |\n| `trace_sigma_c.pdf` — 全局参数 $\\sigma_c$ | 757 KB |\n| `trace_theta.pdf` — 4 个选定模型的 $\\theta_n$ | 3.0 MB |\n| `trace_b.pdf` — 6 个选定 items 的 $b_i$（高/中/低 difficulty） | 4.4 MB |\n\n**Forest plots (2 个)**\n| 文件 | 大小 |\n|------|------|\n| `forest_cn.pdf` — $c_n$ 排序 + 94% CI | 23 KB |\n| `forest_dj.pdf` — $d_j$ 排序 + 94% CI | 25 KB |\n\n**PPC**: 跳过，InferenceData 中无 `posterior_predictive` group（原始 MCMC 未保存 predictive samples）。\n\n所有 PDF 保存在 `/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics/`，总计 ~21 MB。每个 trace plot 包含左侧 4-chain trace 和右侧 KDE 密度图。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-trace-plots-ppc.md"
+}

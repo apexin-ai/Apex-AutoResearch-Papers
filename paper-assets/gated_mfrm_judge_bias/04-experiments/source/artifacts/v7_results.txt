@@ -1,0 +1,32 @@
+=== v7: G-MFRM on e_i > 0 items only ===
+Total items after filtering: 231 (from 317 in v3)
+Observations: 19174
+Exposure range: [0.011, 1.000], mean=0.291
+Convergence: R_hat=1.0038, ESS=1044, divergences=0
+G-MFRM Kendall tau: 0.779
+G-MFRM Spearman rho: 0.904
+Raw average tau (same items): 0.779
+Raw average rho (same items): 0.917
+Delta_tau vs raw: 0.000 (v3 Delta_tau was -0.015)
+
+Per-model:
+Model                               Arena_R  Raw_R  v7_R    c_n   theta
+-----------------------------------------------------------------------
+claude-3-5-sonnet-20241022                2      2     1  2.121   2.175
+claude-3-haiku-20240307                  13     14    14  2.256  -1.058
+claude-3-opus-20240229                    7      9     7  1.513   0.420
+gemma-2-27b-it                           10     10    10  1.717   0.084
+gemma-2-9b-it                            12     13    13  1.572  -0.717
+gpt-3.5-turbo-0613                       17     18    18  2.572  -3.059
+gpt-4-0613                               14     17    17  2.734  -2.253
+gpt-4-turbo-2024-04-09                    5      1     2  3.083   2.092
+gpt-4o-2024-05-13                         1      4     4  1.609   1.833
+gpt-4o-mini-2024-07-18                    3      5     6  1.630   1.108
+llama-3-70b-instruct                     11     12    12  1.935  -0.334
+llama-3-8b-instruct                      15     16    16  2.167  -1.864
+llama-3.1-70b-instruct                    8      8     9  2.306   0.233
+llama-3.3-70b-instruct                    4      7     8  1.810   0.365
+mistral-large-2407                        9      6     5  1.564   1.148
+mixtral-8x22b-instruct-v0.1              16     15    15  2.221  -1.796
+qwen2.5-72b-instruct                      6      3     3  1.807   1.846
+qwen3-8b                                (ex)     11    11  2.285  -0.223

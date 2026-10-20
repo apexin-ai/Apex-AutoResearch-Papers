@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_002",
+  "project": "gated_mfrm_judge_bias",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:42:36.444Z",
+    "updated_at": "2026-05-21T18:42:36.444Z"
+  },
+  "timestamp": "2026-05-21T18:42:36.455673+00:00",
+  "trigger": "update_registry"
+}

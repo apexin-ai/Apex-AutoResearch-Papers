@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba8e89e9eb5abf490c25",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mvp 002 check",
+  "task_key": "worker_ssh_mvp_002_check_20260521T191830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp_002_check_20260521T191830_result.json",
+    "occurrence": 1,
+    "bytes": 1416,
+    "sha256": "f85f0a63097053f12776fa8776831c09870155b5881071d9d32cb0af38a1690e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报如下：\n\n---\n\n## 1. mvp_002 结果\n\n**VERDICT: FAIL（收敛问题）**\n\n| method | RMSE mean±std | τ mean±std | p-value |\n|--------|--------------|------------|---------|\n| raw_average | 0.8063±0.0841 | 0.8401±0.0347 | — |\n| mfrm_only | 0.2539±0.0449 | 0.8390±0.0351 | — |\n| sequential | 0.2211±0.0376 | 0.8596±0.0291 | ref |\n| **joint_gmfrm** | **0.1486±0.0199** | **0.9028±0.0181** | **0.000001** |\n\n**收敛诊断**：max R̂=1.05, min ESS=47 — **FAIL**（ESS 太低，R̂ 边界）\n\n**效果**：joint vs sequential RMSE 降低 32.8%，Wilcoxon p=1e-6 **PASS**。信号非常强，但部分 seed 的 MCMC chain 收敛不够（ESS<100）。\n\n核心矛盾：**统计检验强烈支持假设，但收敛诊断不过关。** 放大信号后 joint model 的优势很明显（mvp_001 无差异 → mvp_002 降 32.8%），问题出在采样器配置（warmup/步长/链数）需要调优。\n\n## 2. Registry 更新\n\n- status: DONE, conclusion: negative（因 VERDICT=FAIL）\n- metrics 已记录完整结果表、收敛诊断、scatter Pearson r\n- checkpoint_path / log_path 已设\n\n## 3. 散点图状态\n\n**已完成。** `diagnosis_bias_scatter.png`（82KB）已生成。\n\n- **Pearson r = 0.6534, p ≈ 0**（N=400 points）\n- 确认 DGP 中 contamination 与 judge bias 的相关性符合设定（ρ=0.6 → 实测 r=0.65）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mvp-002-check.md"
+}

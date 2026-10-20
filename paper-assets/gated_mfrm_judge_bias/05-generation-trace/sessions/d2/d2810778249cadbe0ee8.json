@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2810778249cadbe0ee8",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp020 v7 nonzero exposure",
+  "task_key": "worker_ssh_exp020-v7-nonzero-exposure_20260525T161724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp020-v7-nonzero-exposure_20260525T161724_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "640a1c19ac38275a4f6795856a63834b0142dd35f7f12072fe85594e1db75328"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v7 结果\n\n| 指标 | v7 (e_i>0, 231 items) | v3 (317 items) | raw_average (same items) |\n|------|----------------------|----------------|--------------------------|\n| Kendall τ | **0.779** | 0.809 | 0.779 |\n| Spearman ρ | 0.904 | 0.921 | 0.917 |\n| Δτ vs raw | **0.000** | -0.015 | — |\n| R̂ max | 1.0038 | — | — |\n| ESS min | 1044 | — | — |\n| Divergences | 0 | — | — |\n\n**判断**：Δτ = 0.000 > v3 的 -0.015，说明去掉 86 个 e_i=0 items 确实消除了 v3 中 G-MFRM 比 raw_average 差的问题。但 G-MFRM 仍然没有正向改善（Δτ 仍为零而非正数），即使在纯非零 exposure 的 items 上，contamination gating 也没能 beat raw_average。\n\n注意 v7 的绝对 τ (0.779) 低于 v3 (0.809)，这是因为 item pool 更小、信息更少，而非模型变差。c_n 分布合理——gpt-4-turbo 最高(3.08)、claude-3-opus 最低(1.51)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp020-v7-nonzero-exposure.md"
+}

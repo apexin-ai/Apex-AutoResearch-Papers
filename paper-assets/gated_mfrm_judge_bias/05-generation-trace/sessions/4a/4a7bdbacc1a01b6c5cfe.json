@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a7bdbacc1a01b6c5cfe",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh emergency fix auto restart",
+  "task_key": "worker_ssh_emergency_fix_auto_restart_20260522T084625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_emergency_fix_auto_restart_20260522T084625_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "2b69fa06ff609a9701ec81b1638392c2a8b76d2183f37c7000f32010eaadb514"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。状态：\n\n- `auto-restart` session 已重启，运行修正版脚本（无 `--generate-judge-responses`）\n- 无残留的错误 judge session\n- 当前进度：**Llama 488/500**，**Qwen 414/500**\n- 脚本每 3 分钟轮询，达到 500 后会启动 `collect.py` 收集 pairwise judgment"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-emergency-fix-auto-restart.md"
+}

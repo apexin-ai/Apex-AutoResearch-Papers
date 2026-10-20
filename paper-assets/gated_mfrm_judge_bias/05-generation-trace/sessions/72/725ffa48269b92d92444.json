@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "725ffa48269b92d92444",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check diag and prep v3",
+  "task_key": "worker_ssh_check-diag-and-prep-v3_20260525T153021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-diag-and-prep-v3_20260525T153021_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "84789529fbb8f50be9f512b274b668b2490e583a5da90c550276017d9e69e5f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `diagnosis_and_v3_results.txt`。汇总：\n\n---\n\n**Part 1: 诊断实验**\n\n| Method | tau | rho | R-hat | ESS |\n|--------|-----|-----|-------|-----|\n| Raw Average (500 items) | 0.838 | 0.949 | N/A | N/A |\n| Variant A: c_n=0 (pure MFRM) | 0.824 | 0.934 | 1.006 | 1304 |\n| Variant B: tighter prior (HN 0.3) | 0.794 | 0.926 | 1.008 | 1121 |\n| N=16 G-MFRM (excl gpt-4-turbo) | 0.817 | 0.935 | 1.013 | 680 |\n| exp-020 v2 joint_gmfrm (500 items) | 0.794 | 0.926 | 1.002 | 1240 |\n\n关键发现：\n- 去掉 c_n 后 tau 从 0.794 升到 0.824 — contamination gating 在 500 items 上确实损害排名\n- Tighter prior 无改善\n- 排除 gpt-4-turbo 后 tau 升到 0.817\n\n**Part 2: exp-020 v3 (I=317 filtered items)**\n\n| | v2 (I=500) | v3 (I=317) | Delta |\n|--|-----------|-----------|-------|\n| G-MFRM tau | 0.794 | 0.809 | **+0.015** |\n| G-MFRM rho | 0.926 | 0.929 | +0.002 |\n| raw_avg tau | 0.838 | 0.824 | -0.015 |\n\n- 收敛良好：R-hat=1.0086, ESS=1677, divergences=0\n- 过滤到 317 items 后 G-MFRM tau 改善了 +0.015\n- G-MFRM vs raw 的 gap 从 -0.044 缩小到 -0.015\n- c_n 值整体变大（exposure 信号更集中），尤其 gpt-4-0613 (3.775→4.263) 和 gpt-4-turbo (3.756→4.015)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-diag-and-prep-v3.md"
+}

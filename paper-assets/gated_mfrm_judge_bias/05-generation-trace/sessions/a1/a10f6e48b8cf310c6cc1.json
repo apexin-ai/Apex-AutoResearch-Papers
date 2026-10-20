@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a10f6e48b8cf310c6cc1",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh rtx6000 exp001 urgent check",
+  "task_key": "worker_ssh_rtx6000_exp001_urgent_check_20260522T230944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rtx6000_exp001_urgent_check_20260522T230944_result.json",
+    "occurrence": 1,
+    "bytes": 1580,
+    "sha256": "deaf5b6b1b5fd6d7bbe2800d0486e682f7ddcbbd10e69e7c41418f244ebf1ca0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### GPU 状态\n\n| GPU | 利用率 | 显存 | 进程 | 状态 |\n|-----|--------|------|------|------|\n| cuda:0 | 68% | 74.7/97.9 GB | exp009 (run_exp009.py) | 正常 |\n| cuda:1 | **0%** | 90.2/97.9 GB | vLLM Qwen2.5-72B (port 8002) | **空转** |\n| cuda:2 | 100% | 91.0/97.9 GB | vLLM Llama-3.3-70B (port 8001) | 正常 |\n| cuda:3 | 97% | 90.0/97.9 GB | vLLM Mistral-Large (port 8003) | 正常 |\n\n### 收集进度（本地 Judges）\n\n| Judge | 进度 | ETA | PID | 状态 |\n|-------|------|-----|-----|------|\n| **Qwen2.5-72B** | **9281 lines (8534 judgments) — 已完成** | — | — | collect.py 正常退出 |\n| Llama-3.3-70B | 4056/8311 (49%) | ~1248 min (~20.8h) | 332474 | 运行中 |\n| Mistral-Large-2 | 8133/8742 (93%) | ~107 min (~1.8h) | 332512 | 运行中 |\n\n### Proxy Judges 进度\n\n| Judge | Lines |\n|-------|-------|\n| claude-opus-4.7-proxy | 9138 |\n| claude-sonnet-4.6-proxy | 8774 |\n| gpt-5.5-proxy | 8447 |\n| qwen3-235b-proxy | 7235 |\n| gemini-2.5-pro-proxy | 6827 |\n| deepseek-v4-pro-proxy | 6129 |\n\n### 根因\n\n**没有进程崩溃。** Qwen2.5-72B 的 collect.py 已正常完成（\"Done. 8534 pairwise judgments in 549.2min\"），但 vLLM 服务器未被清理，仍占用 cuda:1 的 90GB 显存。Registry 状态未更新。\n\n### 建议操作\n\n1. **关掉 cuda:1 上的 Qwen vLLM 服务器**（PID 420981），释放 90GB 显存\n2. 更新 registry 标记 Qwen 为 COMPLETED\n3. 释放的 cuda:1 可用于加速 Llama 的收集（目前还需 ~21h）\n\n是否要我执行这些操作？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rtx6000-exp001-urgent-check.md"
+}

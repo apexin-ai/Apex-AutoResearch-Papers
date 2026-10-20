@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d4ebfcd210fd2ec624e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mvp 001 scatter",
+  "task_key": "worker_ssh_mvp_001_scatter_20260521T184333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp_001_scatter_20260521T184333_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "b4174f040088a1751429172a3d24bea16dd459b542d21c6b3b8989b77a8b0559"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态汇总：**\n- `bias_scatter.py` 已创建并在后台运行（nohup, PID=18202）\n- 当前进度：seed 4/20 完成\n- 用 CPU 跑 JAX（无 CUDA jaxlib），但 MCMC 仍在正常推进\n- GPU 状态：4x RTX PRO 6000 Blackwell (98GB each)，显存全空，GPU 1/3 利用率 100% 但无显存占用（可能是其他进程的残留状态）\n\n5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mvp-001-scatter.md"
+}

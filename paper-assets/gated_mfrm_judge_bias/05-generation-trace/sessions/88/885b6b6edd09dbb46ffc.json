@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "885b6b6edd09dbb46ffc",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh qwen vllm deploy cuda2",
+  "task_key": "worker_ssh_qwen_vllm_deploy_cuda2_20260524T014555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen_vllm_deploy_cuda2_20260524T014555_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "9b2d7e69138655179f43c1c32e92873ae17e847f4dc62186558f2723c572e84a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **vLLM** | PID 504616 · 健康 (200) · cuda:2 占用 90191 MiB / 97887 MiB |\n| **Config** | `/root/gated_mfrm_judge_bias/exp001/configs/config_qwen2.5-72b_local_n17.yaml` · 18 target_models ✓ |\n| **collect.py** | PID 505793 · Total 18000 judgments · 当前输出 2 行 (`arena_hard_judgments.jsonl`) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen-vllm-deploy-cuda2.md"
+}

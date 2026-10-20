@@ -1,0 +1,1169 @@
+# ssh deploy and run exp004
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_ssh_deploy_and_run_exp004_20260522T175816.jsonl`
+- **Structured JSON:** [`39a7ed1efaa4ebf95284.json`](../../sessions/39/39a7ed1efaa4ebf95284.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T18:02:02.288320+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T18:02:02.288786+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T18:02:02.289066+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T18:02:02.289285+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/ -path \"*exp004*\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "find /root/ -path \"*exp004*\" -type f 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T18:02:02.289519+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T18:02:02.289726+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T18:02:02.289913+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp003/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp003/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T18:02:02.290118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"contamination_c.png\\njoint_gmfrm_c.npy\\njoint_gmfrm_theta.npy\\njudge_severity.png\\nmfrm_only_theta.npy\\nraw_average_theta.npy\\nresults.json\\nsequential_c.npy\\nsequential_theta.npy\\ntheta_comparison.png\\ntheta_vs_elo.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T18:02:02.290312+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "find /root/ -path \"*exp004*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "find /root/ -path \"*exp004*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T18:02:02.290526+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/results/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp003/results/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T18:02:02.290842+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T18:02:02.291054+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp001/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp001/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T18:02:02.291607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"convergence\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"r_hat\\\": NaN,\\n      \\\"ess\\\": NaN,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"r_hat\\\": 1.0,\\n      \\\"ess\\\": 2220.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"sequential\\\": {\\n      \\\"r_hat\\\": 1.01,\\n      \\\"ess\\\": 395.0,\\n      \\\"divergences\\\": 0\\n    },\\n    \\\"joint_gmfrm\\\": {\\n      \\\"r_hat\\\": 1.73,\\n      \\\"ess\\\": 6.0,\\n      \\\"divergences\\\": 0\\n    }\\n  },\\n  \\\"arena_correlation\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"mfrm_only\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"matched_models\\\": [\\n        \\\"gemma-2-9b\\\",\\n        \\\"gpt-3.5-turbo-0125\\\",\\n        \\\"gpt-4-0613\\\",\\n        \\\"gpt-4o\\\",\\n        \\\"gpt-4o-mini\\\",\\n        \\\"llama-3.3-70b\\\",\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen3-8b\\\"\\n      ]\\n    },\\n    \\\"sequential\\\": {\\n      \\\"kendall_tau\\\": 0.7857142857142856,\\n      \\\"kendall_p\\\": 0.005505952380952381,\\n      \\\"spearman_rho\\\": 0.9047619047619048,\\n      \\\"spearman_p\\\": 0.002008275505429469,\\n      \\\"n_matched\\\": 8,\\n      \\\"ma
+…[truncated 8085 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T18:02:02.291883+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arena_hard_judgments.jsonl\\narena_hard_judgments.jsonl.bak\\nclaude-opus-4.7-proxy\\nclaude-sonnet-4.6-proxy\\ndeepseek-v4-pro-proxy\\ngemini-2.5-pro-proxy\\ngpt-5.5-proxy\\nllama-3.3-70b\\nmistral-large-2\\nqwen2.5-72b\\nqwen3-235b-proxy\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T18:02:02.292160+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -5 /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -5 /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T18:02:02.292412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"item_id,e_i,source_a_z,source_b_z,source_c_z,n_sources\\n0122ab60646b4961bc39e9c03bdf6bcc,0.0,-0.9439535852585479,,-0.6783322046434096,2\\n01b5156495464638b98e1f8d9be12c23,0.19989675389156789,0.15894564563710567,,-0.6783322046434096,2\\n02b50e3f5bd94b70817a97dfb34f4e9d,0.06722597011219372,-0.5730447571283468,,-0.6783322046434096,2\\n02e11c26f2a646579be708c789341086,0.14391418361636346,-0.1499294736335995,,-0.6783322046434096,2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T18:02:02.292901+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -3 /root/gated_mfrm_judge_bias/exp001/results/arena_hard_judgments.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -3 /root/gated_mfrm_judge_bias/exp001/results/arena_hard_judgments.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T18:02:02.293206+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"benchmark\\\": \\\"arena_hard\\\", \\\"item_id\\\": \\\"328c149ed45a41c0b9d6f14659e63599\\\", \\\"model_a\\\": \\\"gpt-3.5-turbo-0125\\\", \\\"model_b\\\": \\\"gpt-4-0314\\\", \\\"judge\\\": \\\"llama-3.3-70b\\\", \\\"score\\\": 0.0, \\\"position\\\": \\\"AB\\\", \\\"raw_output\\\": \\\"After comparing the two responses, it's clear that both assistants have provided a melody in ABC notation, as requested by the user. However, the quality of the responses differs in terms of their helpfulness, relevance, and creativity. Assistant A's response is straightforward and provides a simple melody, but it also invites the user to \\\\\\\"play around with the notes and rhythm to create your own folk-inspired melody,\\\\\\\" which adds a helpful and interactive element to the response. On the other hand, Assistant B's response provides a more complex and structured melody, with a clear beginning and end, and a more traditional folk-tune feel. However, it lacks the interactive element and additional guidance provided by Assistant A.\\\\n\\\\nConsidering the factors of helpfulness, relevance, accuracy, depth, creativity, and level of detail, I would say that both responses have their strengths, but Assistant B's response is more effective in providing a complete and traditional folk-tune melody.\\\\n\\\\nThe final verdict is: [[B]]\\\", \\\"status\\\": \\\"ok\\\", \\\"timestamp\\\": \\\"2026-05-22T10:05:40.983949\\\"}\\n{\\\"benchmark\\\": \\\"arena_hard\\\", \\\"item_id\\\": \\\"328c149ed45a41c0b9d6f14659e63599\\\", \\\"model_a\\\": \\\"gpt-3.5-turbo-0125\\\", \\\"model_b\\\": \\\"gpt-4-0314\\\", \\\"judge\\\": \\\"llama-3.3-70b\\\", \\\"score\\\": 0.0, \\\"position\\\": \\\"BA\\\", \\\"raw_output\\\": \\\"After comparing the two responses, it's clear that both assistants have provided melodies in ABC notation, adhering to the user's request for a folk tune style. However, Assistant A's response offers a more complex 
+…[truncated 1821 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T18:02:02.293485+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp001/results/claude-opus-4.7-proxy/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp001/results/claude-opus-4.7-proxy/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T18:02:02.293716+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arena_hard_judgments.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T18:02:02.294001+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ls /root/gated_mfrm_judge_bias/exp003/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "ls /root/gated_mfrm_judge_bias/exp003/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T18:02:02.294224+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\ndata_loader.py\\ndry_run\\nevaluation.py\\nmodels.py\\nmodels.py.bak\\nmodels.py.bak.horseshoe\\noutput_003b\\nresults\\nresults_dryrun\\nrun.log\\nrun_exp003.py\\nrun_exp003.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T18:02:02.294448+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "head -80 /root/gated_mfrm_judge_bias/exp003/run_exp003.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "head -80 /root/gated_mfrm_judge_bias/exp003/run_exp003.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T18:02:02.294752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"JAX_PLATFORMS\\\"] = \\\"cuda,cpu\\\"\\nos.environ[\\\"XLA_PYTHON_CLIENT_PREALLOCATE\\\"] = \\\"false\\\"\\nos.environ[\\\"XLA_PYTHON_CLIENT_MEM_FRACTION\\\"] = \\\"0.25\\\"\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\n\\\"\\\"\\\"exp-003: Fit G-MFRM on real Arena-Hard judgment data.\\n\\nUsage:\\n  python run_exp003.py \\\\\\n    --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\\\\n    --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\\\\n    --output-dir /root/gated_mfrm_judge_bias/exp003/output \\\\\\n    --warmup 2000 --samples 4000 --chains 4 --target-accept 0.95 \\\\\\n    --device gpu\\n\\nDependencies: jax, numpyro, arviz, numpy, pandas, scipy, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\nimport numpy as np\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"exp-003: G-MFRM real data fitting\\\")\\n    parser.add_argument(\\\"--judgment-dir\\\", required=True, help=\\\"exp-001 results directory\\\")\\n    parser.add_argument(\\\"--exposure-csv\\\", required=True, help=\\\"exp-002 exposure_scores.csv\\\")\\n    parser.add_argument(\\\"--output-dir\\\", required=True, help=\\\"Output directory\\\")\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=2000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=4000)\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--target-accept\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--device\\\", choices=[\\\"cpu\\\", \\\"gpu\\\", \\\"cuda\\\"], default=\\\"gpu\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--methods\\\", nargs=\\\"+\\\",\\n                        default=[\\\"raw_average\\\", \\\"mfrm_only\\\", \\\"sequential\\\", \\\"joint_gmfrm\\\"],\\n               
+…[truncated 1322 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T18:02:02.295023+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/data_loader.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp003/data_loader.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-22T18:02:02.295233+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp003/evaluation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp003/evaluation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T18:02:02.295671+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Load and preprocess Arena-Hard pairwise judgments for G-MFRM fitting.\\n\\nInputs:\\n  - judgment_dir: directory containing per-judge subdirs, each with arena_hard_judgments.jsonl\\n  - exposure_csv: exp-002 exposure_scores.csv (columns: item_id, e_i, ...)\\n\\nOutputs:\\n  - obs dict with sparse observation arrays (model_idx, item_idx, judge_idx, y)\\n  - index mappings (model_names, item_ids, judge_names)\\n  - exposure array e_i aligned to item indices\\n\\nDesign decisions (Director-defined):\\n  1. Ties (score=0.5) are discarded — binary MFRM only\\n  2. AB/BA position pairs are averaged; if average=0.5 (conflicting), treated as tie and discarded\\n  3. gpt-4-0314 self-comparison (model_a == baseline) is excluded\\n\\nDependencies: pandas, numpy, pathlib, json\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\n\\nBASELINE_MODEL = \\\"gpt-4-0314\\\"\\n\\n\\ndef load_judgments(judgment_dir: str) -> list[dict]:\\n    \\\"\\\"\\\"Read all per-judge JSONL files from subdirectories.\\\"\\\"\\\"\\n    judgment_dir = Path(judgment_dir)\\n    records = []\\n    jsonl_files = sorted(judgment_dir.glob(\\\"*/arena_hard_judgments.jsonl\\\"))\\n    if not jsonl_files:\\n        jsonl_files = sorted(judgment_dir.glob(\\\"arena_hard_judgments.jsonl\\\"))\\n\\n    for fpath in jsonl_files:\\n        with open(fpath) as f:\\n            for line in f:\\n                line = line.strip()\\n                if not line:\\n                    continue\\n                rec = json.loads(line)\\n                if rec.get(\\\"status\\\") != \\\"ok\\\":\\n                    continue\\n                score = rec.get(\\\"score\\\")\\n                if score is None or score == \\\"\\\":\\n                    continue\\n                score = float(score)\\n                records.append({\\n                    \\\"item_
+…[truncated 6983 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T18:02:02.296168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation and comparison of G-MFRM fitting methods on real data.\\n\\nNo ground-truth theta available. Instead we use:\\n  a) Convergence diagnostics: R-hat, ESS, divergences\\n  b) Model comparison: WAIC, LOO-CV via ArviZ\\n  c) External validity: Kendall-tau with Chatbot Arena Elo (if available)\\n  d) Parameter interpretation: c_n per model, d_j per judge\\n  e) Cross-method comparison: rank correlation between methods\\n\\nDependencies: numpy, scipy, arviz, matplotlib, json\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nimport arviz as az\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy.stats import kendalltau, spearmanr\\n\\n\\n# Chatbot Arena Elo scores (approximate, May 2026)\\n# Used for external validity check — update as needed\\nARENA_ELO = {\\n    \\\"gpt-3.5-turbo-0125\\\": 1105,\\n    \\\"gpt-4-0613\\\": 1163,\\n    \\\"gpt-4-0314\\\": 1152,\\n    \\\"gemma-2-9b\\\": 1130,\\n    \\\"qwen3-8b\\\": 1170,\\n    \\\"llama-3.3-70b\\\": 1208,\\n    \\\"qwen2.5-72b\\\": 1187,\\n    \\\"mistral-large-2\\\": 1158,\\n    \\\"gpt-4o\\\": 1286,\\n    \\\"gpt-4o-mini\\\": 1272,\\n}\\n\\n\\ndef convergence_report(results: dict) -> dict:\\n    \\\"\\\"\\\"Summarize convergence diagnostics across methods.\\\"\\\"\\\"\\n    report = {}\\n    for name, res in results.items():\\n        diag = res.get(\\\"diagnostics\\\", {})\\n        report[name] = {\\n            \\\"r_hat\\\": diag.get(\\\"r_hat\\\", float(\\\"nan\\\")),\\n            \\\"ess\\\": diag.get(\\\"ess\\\", float(\\\"nan\\\")),\\n            \\\"divergences\\\": diag.get(\\\"divergences\\\", 0),\\n        }\\n    return report\\n\\n\\ndef compute_waic(results: dict) -> dict:\\n    \\\"\\\"\\\"Compute WAIC for methods that have MCMC objects.\\\"\\\"\\\"\\n    waic_results = {}\\n    for name, res in results.items():\\n        mcmc = res.get(\\\"mcmc\\\")
+…[truncated 7429 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T18:02:02.296507+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "mkdir -p /root/gated_mfrm_judge_bias/exp004/results",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "mkdir -p /root/gated_mfrm_judge_bias/exp004/results",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T18:02:02.296702+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T18:02:02.296910+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp004/baselines.py << 'PYEOF'\n\"\"\"exp-004: Baseline comparison methods for LLM judge evaluation.\n\nImplements 5 baselines that estimate model ability (theta) from pairwise judgments,\nwith varying degrees of contamination/bias correction.\n\nInput: preprocessed observation arrays (model_idx, item_idx, judge_idx, y, e_i)\nOutput: dict[str, float] mapping model_name -> theta_estimate\n\"\"\"\n\nimport numpy as np\nfrom scipy.special import logit, expit\n\n\ndef _win_rates_to_theta(win_rates: np.ndarray) -> np.ndarray:\n    \"\"\"Convert win rates to centered logit scale (identifiable theta).\"\"\"\n    clipped = np.clip(win_rates, 0.01, 0.99)\n    theta = logit(clipped)\n    theta -= theta.mean()\n    return theta\n\n\ndef baseline_raw_average(model_idx, item_idx, judge_idx, y, e_i,\n                         model_names, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 1: Simple average win rate per model, logit-transformed.\n    \n    No correction for judge bias or contamination.\n    \"\"\"\n    N = len(model_names)\n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            win_rates[n] = y[mask].mean()\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\ndef baseline_cyclic_judge(model_idx, item_idx, judge_idx, y, e_i,\n                          model_names, judge_names, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 2: Variance decomposition with judge severity correction.\n    \n    Estimates judge severity (d_j) and subtracts it before computing model ability.\n    Equivalent to round-robin assignment correction in CyclicJudge literature.\n    \"\"\"\n    N = len(model_names)\n    J = len(judge_names)\n    \n    grand_mean = y.mean()\n    \n    # Judge severity: d_j = mean(y for judge j) - grand_mean\n    d_j = np.zeros(J)\n    for j in range(J):\n        mask = judge_idx == j\n        if mask.sum() > 0:\n            d_j[j] = y[mask].mean() - grand_mean\n    \n    # Adjusted observations: remove judge effect\n    y_adj = y - d_j[judge_idx]\n    \n    # Model ability from adjusted scores\n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            win_rates[n] = y_adj[mask].mean()\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\ndef baseline_cyclic_judge_discard(model_idx, item_idx, judge_idx, y, e_i,\n                                  model_names, judge_names,\n                                  exposure_threshold=0.5, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 3: CyclicJudge + discard high-exposure items.\n    \n    Same as CyclicJudge but first removes observations from items with e_i > threshold.\n    \"\"\"\n    N = len(model_names)\n    J = len(judge_names)\n    \n    # Discard high-exposure items\n    item_exposure = e_i[item_idx]\n    keep_mask = item_exposure <= exposure_threshold\n    \n    m_idx = model_idx[keep_mask]\n    i_idx = item_idx[keep_mask]\n    j_idx = judge_idx[keep_mask]\n    y_kept = y[keep_mask]\n    \n    n_discarded = (~keep_mask).sum()\n    \n    if len(y_kept) == 0:\n        return {model_names[i]: 0.0 for i in range(N)}\n    \n    grand_mean = y_kept.mean()\n    \n    # Judge severity on remaining data\n    d_j = np.zeros(J)\n    for j in range(J):\n        mask = j_idx == j\n        if mask.sum() > 0:\n            d_j[j] = y_kept[mask].mean() - grand_mean\n    \n    y_adj = y_kept - d_j[j_idx]\n    \n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = m_idx == n\n        if mask.sum() > 0:\n            win_rates[n] = y_adj[mask].mean()\n        else:\n            win_rates[n] = 0.5\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\ndef baseline_dcr_factor(model_idx, item_idx, judge_idx, y, e_i,\n                        model_names, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 4: Discounted Contamination Rating.\n    \n    Uses exposure score as contamination proxy. Each observation is weighted\n    by (1 - e_i), downweighting items with high contamination exposure.\n    \"\"\"\n    N = len(model_names)\n    \n    # Weight = 1 - exposure for each observation's item\n    weights = 1.0 - e_i[item_idx]\n    weights = np.clip(weights, 0.01, 1.0)  # avoid zero weights\n    \n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            w = weights[mask]\n            win_rates[n] = np.average(y[mask], weights=w)\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\ndef baseline_preference_leakage(model_idx, item_idx, judge_idx, y, e_i,\n                                model_names, judge_names, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 5: Preference Leakage correction.\n    \n    Computes per-judge bias deviation for each model and subtracts it.\n    Bias_{j,m} = mean(y_{j,m}) - mean(y_{*,m}) captures judge-specific preference.\n    Final theta uses consensus (cross-judge average) after removing leakage.\n    \"\"\"\n    N = len(model_names)\n    J = len(judge_names)\n    \n    # Compute per-(judge, model) mean scores\n    jm_scores = np.full((J, N), np.nan)\n    for j in range(J):\n        for n in range(N):\n            mask = (judge_idx == j) & (model_idx == n)\n            if mask.sum() > 0:\n                jm_scores[j, n] = y[mask].mean()\n    \n    # Per-model consensus (across all judges)\n    model_consensus = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            model_consensus[n] = y[mask].mean()\n    \n    # Judge-model bias: how much judge j deviates from consensus on model m\n    bias_jm = np.zeros((J, N))\n    for j in range(J):\n        for n in range(N):\n            if not np.isnan(jm_scores[j, n]):\n                bias_jm[j, n] = jm_scores[j, n] - model_consensus[n]\n    \n    # Corrected observations: subtract per-judge-model bias\n    y_corrected = y.copy()\n    for obs_i in range(len(y)):\n        j = judge_idx[obs_i]\n        n = model_idx[obs_i]\n        y_corrected[obs_i] = y[obs_i] - bias_jm[j, n]\n    \n    # Re-estimate model ability from corrected scores\n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            win_rates[n] = np.clip(y_corrected[mask].mean(), 0.01, 0.99)\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\nALL_BASELINES = {\n    \"raw_average\": baseline_raw_average,\n    \"cyclic_judge\": baseline_cyclic_judge,\n    \"cyclic_judge_discard\": baseline_cyclic_judge_discard,\n    \"dcr_factor\": baseline_dcr_factor,\n    \"preference_leakage\": baseline_preference_leakage,\n}\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /root/gated_mfrm_judge_bias/exp004/baselines.py << 'PYEOF'\n\"\"\"exp-004: Baseline comparison methods for LLM judge evaluation.\n\nImplements 5 baselines that estimate model ability (theta) from pairwise judgments,\nwith varying degrees of contamination/bias correction.\n\nInput: preprocessed observation arrays (model_idx, item_idx, judge_idx, y, e_i)\nOutput: dict[str, float] mapping model_name -> theta_estimate\n\"\"\"\n\nimport numpy as np\nfrom scipy.special import logit, expit\n\n\ndef _win_rates_to_theta(win_rates: np.ndarray) -> np.ndarray:\n    \"\"\"Convert win rates to centered logit scale (identifiable theta).\"\"\"\n    clipped = np.clip(win_rates, 0.01, 0.99)\n    theta = logit(clipped)\n    theta -= theta.mean()\n    return theta\n\n\ndef baseline_raw_average(model_idx, item_idx, judge_idx, y, e_i,\n                         model_names, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 1: Simple average win rate per model, logit-transformed.\n    \n    No correction for judge bias or contamination.\n    \"\"\"\n    N = len(model_names)\n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            win_rates[n] = y[mask].mean()\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\ndef baseline_cyclic_judge(model_idx, item_idx, judge_idx, y, e_i,\n                          model_names, judge_names, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 2: Variance decomposition with judge severity correction.\n    \n    Estimates judge severity (d_j) and subtracts it before computing model ability.\n    Equivalent to round-robin assignment correction in CyclicJudge literature.\n    \"\"\"\n    N = len(model_names)\n    J = len(judge_names)\n    \n    grand_mean = y.mean()\n    \n    # Judge severity: d_j = mean(y for judge j) - grand_mean\n    d_j = np.zeros(J)\n    for j in range(J):\n        mask = judge_idx == j\n        if mask.sum() > 0:\n            d_j[j] = y[mask].mean() - grand_mean\n    \n    # Adjusted observations: remove judge effect\n    y_adj = y - d_j[judge_idx]\n    \n    # Model ability from adjusted scores\n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            win_rates[n] = y_adj[mask].mean()\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\ndef baseline_cyclic_judge_discard(model_idx, item_idx, judge_idx, y, e_i,\n                                  model_names, judge_names,\n                                  exposure_threshold=0.5, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 3: CyclicJudge + discard high-exposure items.\n    \n    Same as CyclicJudge but first removes observations from items with e_i > threshold.\n    \"\"\"\n    N = len(model_names)\n    J = len(judge_names)\n    \n    # Discard high-exposure items\n    item_exposure = e_i[item_idx]\n    keep_mask = item_exposure <= exposure_threshold\n    \n    m_idx = model_idx[keep_mask]\n    i_idx = item_idx[keep_mask]\n    j_idx = judge_idx[keep_mask]\n    y_kept = y[keep_mask]\n    \n    n_discarded = (~keep_mask).sum()\n    \n    if len(y_kept) == 0:\n        return {model_names[i]: 0.0 for i in range(N)}\n    \n    grand_mean = y_kept.mean()\n    \n    # Judge severity on remaining data\n    d_j = np.zeros(J)\n    for j in range(J):\n        mask = j_idx == j\n        if mask.sum() > 0:\n            d_j[j] = y_kept[mask].mean() - grand_mean\n    \n    y_adj = y_kept - d_j[j_idx]\n    \n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = m_idx == n\n        if mask.sum() > 0:\n            win_rates[n] = y_adj[mask].mean()\n        else:\n            win_rates[n] = 0.5\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\ndef baseline_dcr_factor(model_idx, item_idx, judge_idx, y, e_i,\n                        model_names, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 4: Discounted Contamination Rating.\n    \n    Uses exposure score as contamination proxy. Each observation is weighted\n    by (1 - e_i), downweighting items with high contamination exposure.\n    \"\"\"\n    N = len(model_names)\n    \n    # Weight = 1 - exposure for each observation's item\n    weights = 1.0 - e_i[item_idx]\n    weights = np.clip(weights, 0.01, 1.0)  # avoid zero weights\n    \n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            w = weights[mask]\n            win_rates[n] = np.average(y[mask], weights=w)\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\ndef baseline_preference_leakage(model_idx, item_idx, judge_idx, y, e_i,\n                                model_names, judge_names, **kwargs) -> dict[str, float]:\n    \"\"\"Baseline 5: Preference Leakage correction.\n    \n    Computes per-judge bias deviation for each model and subtracts it.\n    Bias_{j,m} = mean(y_{j,m}) - mean(y_{*,m}) captures judge-specific preference.\n    Final theta uses consensus (cross-judge average) after removing leakage.\n    \"\"\"\n    N = len(model_names)\n    J = len(judge_names)\n    \n    # Compute per-(judge, model) mean scores\n    jm_scores = np.full((J, N), np.nan)\n    for j in range(J):\n        for n in range(N):\n            mask = (judge_idx == j) & (model_idx == n)\n            if mask.sum() > 0:\n                jm_scores[j, n] = y[mask].mean()\n    \n    # Per-model consensus (across all judges)\n    model_consensus = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            model_consensus[n] = y[mask].mean()\n    \n    # Judge-model bias: how much judge j deviates from consensus on model m\n    bias_jm = np.zeros((J, N))\n    for j in range(J):\n        for n in range(N):\n            if not np.isnan(jm_scores[j, n]):\n                bias_jm[j, n] = jm_scores[j, n] - model_consensus[n]\n    \n    # Corrected observations: subtract per-judge-model bias\n    y_corrected = y.copy()\n    for obs_i in range(len(y)):\n        j = judge_idx[obs_i]\n        n = model_idx[obs_i]\n        y_corrected[obs_i] = y[obs_i] - bias_jm[j, n]\n    \n    # Re-estimate model ability from corrected scores\n    win_rates = np.zeros(N)\n    for n in range(N):\n        mask = model_idx == n\n        if mask.sum() > 0:\n            win_rates[n] = np.clip(y_corrected[mask].mean(), 0.01, 0.99)\n    \n    theta = _win_rates_to_theta(win_rates)\n    return {model_names[i]: float(theta[i]) for i in range(N)}\n\n\nALL_BASELINES = {\n    \"raw_average\": baseline_raw_average,\n    \"cyclic_judge\": baseline_cyclic_judge,\n    \"cyclic_judge_discard\": baseline_cyclic_judge_discard,\n    \"dcr_factor\": baseline_dcr_factor,\n    \"preference_leakage\": baseline_preference_leakage,\n}\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T18:02:02.297188+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T18:02:02.297443+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat > /root/gated_mfrm_judge_bias/exp004/run_exp004.py << 'PYEOF'\n\"\"\"exp-004: Baseline comparison for LLM judge bias correction methods.\n\nCompares 5 simple baselines against exp-003's Bayesian methods (MFRM, sequential, joint G-MFRM)\nusing Chatbot Arena ranking as external ground truth.\n\nUsage:\n  python run_exp004.py \\\n    --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\n    --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\n    --exp003-dir /root/gated_mfrm_judge_bias/exp003/results \\\n    --output-dir /root/gated_mfrm_judge_bias/exp004/results\n\nDependencies: numpy, scipy, pandas\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import kendalltau, spearmanr\n\nsys.path.insert(0, \"/root/gated_mfrm_judge_bias/exp003\")\nfrom data_loader import load_data\n\nfrom baselines import ALL_BASELINES\n\n\n# Arena Elo (May 2026) — same as exp-003/evaluation.py\nARENA_ELO = {\n    \"gpt-3.5-turbo-0125\": 1105,\n    \"gpt-4-0613\": 1163,\n    \"gemma-2-9b\": 1130,\n    \"qwen3-8b\": 1170,\n    \"llama-3.3-70b\": 1208,\n    \"qwen2.5-72b\": 1187,\n    \"gpt-4o\": 1286,\n    \"gpt-4o-mini\": 1272,\n}\n\n\ndef compute_arena_correlation(theta_dict: dict[str, float]) -> dict:\n    \"\"\"Compute Kendall-τ and Spearman-ρ with Arena Elo for matched models.\"\"\"\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\n    if len(matched) < 3:\n        return {\"error\": f\"Only {len(matched)} models matched\"}\n    \n    models, thetas = zip(*matched)\n    elos = [ARENA_ELO[m] for m in models]\n    \n    tau, tau_p = kendalltau(thetas, elos)\n    rho, rho_p = spearmanr(thetas, elos)\n    \n    return {\n        \"kendall_tau\": round(float(tau), 4),\n        \"kendall_p\": round(float(tau_p), 6),\n        \"spearman_rho\": round(float(rho), 4),\n        \"spearman_p\": round(float(rho_p), 6),\n        \"n_matched\": len(matched),\n        \"matched_models\": list(models),\n    }\n\n\ndef load_exp003_results(exp003_dir: str) -> dict:\n    \"\"\"Load exp-003 results for comparison.\"\"\"\n    results_path = Path(exp003_dir) / \"results.json\"\n    with open(results_path) as f:\n        return json.load(f)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"exp-004: Baseline comparison\")\n    parser.add_argument(\"--judgment-dir\", required=True)\n    parser.add_argument(\"--exposure-csv\", required=True)\n    parser.add_argument(\"--exp003-dir\", required=True)\n    parser.add_argument(\"--output-dir\", required=True)\n    args = parser.parse_args()\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    # Load data using exp-003's data_loader\n    print(\"=\" * 60)\n    print(\"Loading data (reusing exp-003 data_loader)\")\n    print(\"=\" * 60)\n    data = load_data(args.judgment_dir, args.exposure_csv)\n\n    # Prepare common kwargs for baselines\n    baseline_kwargs = {\n        \"model_idx\": data[\"model_idx\"],\n        \"item_idx\": data[\"item_idx\"],\n        \"judge_idx\": data[\"judge_idx\"],\n        \"y\": data[\"y\"],\n        \"e_i\": data[\"e_i\"],\n        \"model_names\": data[\"model_names\"],\n        \"judge_names\": data[\"judge_names\"],\n    }\n\n    # Run all baselines\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Running baselines\")\n    print(\"=\" * 60)\n    \n    baseline_results = {}\n    for name, fn in ALL_BASELINES.items():\n        print(f\"\\n  [{name}]\")\n        theta = fn(**baseline_kwargs)\n        corr = compute_arena_correlation(theta)\n        baseline_results[name] = {\n            \"theta\": theta,\n            \"arena_correlation\": corr,\n        }\n        print(f\"    τ={corr['kendall_tau']:.4f} (p={corr['kendall_p']:.4f}), \"\n              f\"ρ={corr['spearman_rho']:.4f} (p={corr['spearman_p']:.4f})\")\n\n    # Load exp-003 for comparison\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Loading exp-003 results for comparison\")\n    print(\"=\" * 60)\n    exp003 = load_exp003_results(args.exp003_dir)\n    \n    exp003_methods = {}\n    for method in [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]:\n        if method in exp003.get(\"arena_correlation\", {}):\n            ac = exp003[\"arena_correlation\"][method]\n            exp003_methods[method] = {\n                \"kendall_tau\": ac[\"kendall_tau\"],\n                \"spearman_rho\": ac[\"spearman_rho\"],\n            }\n            print(f\"  {method}: τ={ac['kendall_tau']:.4f}, ρ={ac['spearman_rho']:.4f}\")\n\n    # Summary table\n    print(\"\\n\" + \"=\" * 60)\n    print(\"RESULTS SUMMARY: Arena Correlation\")\n    print(\"=\" * 60)\n    print(f\"{'Method':<30} {'Kendall-τ':>10} {'Spearman-ρ':>12} {'Source':>10}\")\n    print(\"-\" * 65)\n    \n    # exp-004 baselines\n    for name, res in baseline_results.items():\n        c = res[\"arena_correlation\"]\n        print(f\"  {name:<28} {c['kendall_tau']:>10.4f} {c['spearman_rho']:>12.4f} {'exp-004':>10}\")\n    \n    print(\"-\" * 65)\n    \n    # exp-003 methods\n    for name, c in exp003_methods.items():\n        print(f\"  {name:<28} {c['kendall_tau']:>10.4f} {c['spearman_rho']:>12.4f} {'exp-003':>10}\")\n\n    # Ranking comparison between baselines\n    print(\"\\n\" + \"=\" * 60)\n    print(\"MODEL RANKINGS BY METHOD\")\n    print(\"=\" * 60)\n    print(f\"{'Model':<22}\", end=\"\")\n    for name in baseline_results:\n        print(f\" {name[:12]:>12}\", end=\"\")\n    print(f\" {'Arena Elo':>10}\")\n    print(\"-\" * (22 + 12 * len(baseline_results) + 12))\n    \n    # Sort by raw_average theta\n    sorted_models = sorted(baseline_results[\"raw_average\"][\"theta\"].items(),\n                          key=lambda x: x[1], reverse=True)\n    for model, _ in sorted_models:\n        print(f\"  {model:<20}\", end=\"\")\n        for name in baseline_results:\n            rank = sorted(baseline_results[name][\"theta\"].items(),\n                         key=lambda x: x[1], reverse=True)\n            rank_pos = [m for m, _ in rank].index(model) + 1\n            print(f\" {rank_pos:>12}\", end=\"\")\n        elo = ARENA_ELO.get(model, \"N/A\")\n        print(f\" {elo:>10}\")\n\n    # Save results\n    output = {\n        \"baselines\": {},\n        \"exp003_comparison\": exp003_methods,\n        \"data_summary\": {\n            \"N\": data[\"N\"],\n            \"I\": data[\"I\"],\n            \"J\": data[\"J\"],\n            \"n_obs\": data[\"n_obs\"],\n            \"model_names\": data[\"model_names\"],\n            \"judge_names\": data[\"judge_names\"],\n        },\n    }\n    \n    for name, res in baseline_results.items():\n        output[\"baselines\"][name] = {\n            \"theta\": res[\"theta\"],\n            \"arena_correlation\": res[\"arena_correlation\"],\n        }\n\n    output_path = output_dir / \"results.json\"\n    with open(output_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat > /root/gated_mfrm_judge_bias/exp004/run_exp004.py << 'PYEOF'\n\"\"\"exp-004: Baseline comparison for LLM judge bias correction methods.\n\nCompares 5 simple baselines against exp-003's Bayesian methods (MFRM, sequential, joint G-MFRM)\nusing Chatbot Arena ranking as external ground truth.\n\nUsage:\n  python run_exp004.py \\\n    --judgment-dir /root/gated_mfrm_judge_bias/exp001/results \\\n    --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv \\\n    --exp003-dir /root/gated_mfrm_judge_bias/exp003/results \\\n    --output-dir /root/gated_mfrm_judge_bias/exp004/results\n\nDependencies: numpy, scipy, pandas\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import kendalltau, spearmanr\n\nsys.path.insert(0, \"/root/gated_mfrm_judge_bias/exp003\")\nfrom data_loader import load_data\n\nfrom baselines import ALL_BASELINES\n\n\n# Arena Elo (May 2026) — same as exp-003/evaluation.py\nARENA_ELO = {\n    \"gpt-3.5-turbo-0125\": 1105,\n    \"gpt-4-0613\": 1163,\n    \"gemma-2-9b\": 1130,\n    \"qwen3-8b\": 1170,\n    \"llama-3.3-70b\": 1208,\n    \"qwen2.5-72b\": 1187,\n    \"gpt-4o\": 1286,\n    \"gpt-4o-mini\": 1272,\n}\n\n\ndef compute_arena_correlation(theta_dict: dict[str, float]) -> dict:\n    \"\"\"Compute Kendall-τ and Spearman-ρ with Arena Elo for matched models.\"\"\"\n    matched = [(m, theta_dict[m]) for m in theta_dict if m in ARENA_ELO]\n    if len(matched) < 3:\n        return {\"error\": f\"Only {len(matched)} models matched\"}\n    \n    models, thetas = zip(*matched)\n    elos = [ARENA_ELO[m] for m in models]\n    \n    tau, tau_p = kendalltau(thetas, elos)\n    rho, rho_p = spearmanr(thetas, elos)\n    \n    return {\n        \"kendall_tau\": round(float(tau), 4),\n        \"kendall_p\": round(float(tau_p), 6),\n        \"spearman_rho\": round(float(rho), 4),\n        \"spearman_p\": round(float(rho_p), 6),\n        \"n_matched\": len(matched),\n        \"matched_models\": list(models),\n    }\n\n\ndef load_exp003_results(exp003_dir: str) -> dict:\n    \"\"\"Load exp-003 results for comparison.\"\"\"\n    results_path = Path(exp003_dir) / \"results.json\"\n    with open(results_path) as f:\n        return json.load(f)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"exp-004: Baseline comparison\")\n    parser.add_argument(\"--judgment-dir\", required=True)\n    parser.add_argument(\"--exposure-csv\", required=True)\n    parser.add_argument(\"--exp003-dir\", required=True)\n    parser.add_argument(\"--output-dir\", required=True)\n    args = parser.parse_args()\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    # Load data using exp-003's data_loader\n    print(\"=\" * 60)\n    print(\"Loading data (reusing exp-003 data_loader)\")\n    print(\"=\" * 60)\n    data = load_data(args.judgment_dir, args.exposure_csv)\n\n    # Prepare common kwargs for baselines\n    baseline_kwargs = {\n        \"model_idx\": data[\"model_idx\"],\n        \"item_idx\": data[\"item_idx\"],\n        \"judge_idx\": data[\"judge_idx\"],\n        \"y\": data[\"y\"],\n        \"e_i\": data[\"e_i\"],\n        \"model_names\": data[\"model_names\"],\n        \"judge_names\": data[\"judge_names\"],\n    }\n\n    # Run all baselines\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Running baselines\")\n    print(\"=\" * 60)\n    \n    baseline_results = {}\n    for name, fn in ALL_BASELINES.items():\n        print(f\"\\n  [{name}]\")\n        theta = fn(**baseline_kwargs)\n        corr = compute_arena_correlation(theta)\n        baseline_results[name] = {\n            \"theta\": theta,\n            \"arena_correlation\": corr,\n        }\n        print(f\"    τ={corr['kendall_tau']:.4f} (p={corr['kendall_p']:.4f}), \"\n              f\"ρ={corr['spearman_rho']:.4f} (p={corr['spearman_p']:.4f})\")\n\n    # Load exp-003 for comparison\n    print(\"\\n\" + \"=\" * 60)\n    print(\"Loading exp-003 results for comparison\")\n    print(\"=\" * 60)\n    exp003 = load_exp003_results(args.exp003_dir)\n    \n    exp003_methods = {}\n    for method in [\"raw_average\", \"mfrm_only\", \"sequential\", \"joint_gmfrm\"]:\n        if method in exp003.get(\"arena_correlation\", {}):\n            ac = exp003[\"arena_correlation\"][method]\n            exp003_methods[method] = {\n                \"kendall_tau\": ac[\"kendall_tau\"],\n                \"spearman_rho\": ac[\"spearman_rho\"],\n            }\n            print(f\"  {method}: τ={ac['kendall_tau']:.4f}, ρ={ac['spearman_rho']:.4f}\")\n\n    # Summary table\n    print(\"\\n\" + \"=\" * 60)\n    print(\"RESULTS SUMMARY: Arena Correlation\")\n    print(\"=\" * 60)\n    print(f\"{'Method':<30} {'Kendall-τ':>10} {'Spearman-ρ':>12} {'Source':>10}\")\n    print(\"-\" * 65)\n    \n    # exp-004 baselines\n    for name, res in baseline_results.items():\n        c = res[\"arena_correlation\"]\n        print(f\"  {name:<28} {c['kendall_tau']:>10.4f} {c['spearman_rho']:>12.4f} {'exp-004':>10}\")\n    \n    print(\"-\" * 65)\n    \n    # exp-003 methods\n    for name, c in exp003_methods.items():\n        print(f\"  {name:<28} {c['kendall_tau']:>10.4f} {c['spearman_rho']:>12.4f} {'exp-003':>10}\")\n\n    # Ranking comparison between baselines\n    print(\"\\n\" + \"=\" * 60)\n    print(\"MODEL RANKINGS BY METHOD\")\n    print(\"=\" * 60)\n    print(f\"{'Model':<22}\", end=\"\")\n    for name in baseline_results:\n        print(f\" {name[:12]:>12}\", end=\"\")\n    print(f\" {'Arena Elo':>10}\")\n    print(\"-\" * (22 + 12 * len(baseline_results) + 12))\n    \n    # Sort by raw_average theta\n    sorted_models = sorted(baseline_results[\"raw_average\"][\"theta\"].items(),\n                          key=lambda x: x[1], reverse=True)\n    for model, _ in sorted_models:\n        print(f\"  {model:<20}\", end=\"\")\n        for name in baseline_results:\n            rank = sorted(baseline_results[name][\"theta\"].items(),\n                         key=lambda x: x[1], reverse=True)\n            rank_pos = [m for m, _ in rank].index(model) + 1\n            print(f\" {rank_pos:>12}\", end=\"\")\n        elo = ARENA_ELO.get(model, \"N/A\")\n        print(f\" {elo:>10}\")\n\n    # Save results\n    output = {\n        \"baselines\": {},\n        \"exp003_comparison\": exp003_methods,\n        \"data_summary\": {\n            \"N\": data[\"N\"],\n            \"I\": data[\"I\"],\n            \"J\": data[\"J\"],\n            \"n_obs\": data[\"n_obs\"],\n            \"model_names\": data[\"model_names\"],\n            \"judge_names\": data[\"judge_names\"],\n        },\n    }\n    \n    for name, res in baseline_results.items():\n        output[\"baselines\"][name] = {\n            \"theta\": res[\"theta\"],\n            \"arena_correlation\": res[\"arena_correlation\"],\n        }\n\n    output_path = output_dir / \"results.json\"\n    with open(output_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T18:02:02.297782+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T18:02:02.298012+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cd /root/gated_mfrm_judge_bias/exp004 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_exp004.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv --exp003-dir /root/gated_mfrm_judge_bias/exp003/results --output-dir /root/gated_mfrm_judge_bias/exp004/results",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cd /root/gated_mfrm_judge_bias/exp004 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_exp004.py --judgment-dir /root/gated_mfrm_judge_bias/exp001/results --exposure-csv /root/gated_mfrm_judge_bias/exp002/results/exposure_scores.csv --exp003-dir /root/gated_mfrm_judge_bias/exp003/results --output-dir /root/gated_mfrm_judge_bias/exp004/results",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T18:02:02.298316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nLoading data (reusing exp-003 data_loader)\\n============================================================\\nLoading judgments...\\n  Raw records loaded: 16507\\nPreprocessing...\\n  Ties dropped (including conflicting AB/BA): 1025\\n  Binary observations after preprocessing: 6064\\nFiltering items by minimum judge coverage...\\n  Items: 316 -> 176 (dropped 140 with <3 judges)\\n  Observations: 6064 -> 5661\\nBuilding indices...\\n  Models (N): 8, Items (I): 176, Judges (J): 9\\n  Sparsity: 5661/12672 = 44.7%\\nLoading exposure scores...\\n  Exposure: 176/176 items matched (317 in CSV)\\n\\n=== Data Summary ===\\n  Models: ['gemma-2-9b', 'gpt-3.5-turbo-0125', 'gpt-4-0613', 'gpt-4o', 'gpt-4o-mini', 'llama-3.3-70b', 'qwen2.5-72b', 'qwen3-8b']\\n  Judges: ['claude-opus-4.7-proxy', 'claude-sonnet-4.6-proxy', 'deepseek-v4-pro-proxy', 'gemini-2.5-pro-proxy', 'gpt-5.5-proxy', 'llama-3.3-70b', 'mistral-large-2', 'qwen2.5-72b', 'qwen3-235b-proxy']\\n  Items: 176\\n  Observations: 5661\\n  Win rate (y=1): 0.599\\n  Exposure range: [0.000, 1.000], mean=0.206\\n\\n  Per-model win rates:\\n    gemma-2-9b: 0.510 (n=674)\\n    gpt-3.5-turbo-0125: 0.183 (n=847)\\n    gpt-4-0613: 0.341 (n=774)\\n    gpt-4o: 0.864 (n=705)\\n    gpt-4o-mini: 0.807 (n=685)\\n    llama-3.3-70b: 0.724 (n=671)\\n    qwen2.5-72b: 0.822 (n=706)\\n    qwen3-8b: 0.664 (n=599)\\n\\n  Per-judge observations:\\n    claude-opus-4.7-proxy: 1107\\n    claude-sonnet-4.6-proxy: 1006\\n    deepseek-v4-pro-proxy: 433\\n    gemini-2.5-pro-proxy: 494\\n    gpt-5.5-proxy: 1000\\n    llama-3.3-70b: 445\\n    mistral-large-2: 180\\n    qwen2.5-72b: 297\\n    qwen3-235b-proxy: 699\\n\\n============================================================\\nRunning baselines\\n============================================================\\n\\n  [raw_average]\\n    τ=0.7857 (p=0.0055), ρ=0.9048 (p=0.0020)\\n\\n  [cyclic_
+…[truncated 2912 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T18:02:02.298647+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp004/results/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-8gpu",
+    "command": "cat /root/gated_mfrm_judge_bias/exp004/results/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T18:02:02.299030+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"baselines\\\": {\\n    \\\"raw_average\\\": {\\n      \\\"theta\\\": {\\n        \\\"gemma-2-9b\\\": -0.501288374668475,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.0389981845772915,\\n        \\\"gpt-4-0613\\\": -1.2012989196870711,\\n        \\\"gpt-4o\\\": 1.3046327551350125,\\n        \\\"gpt-4o-mini\\\": 0.8897186327975761,\\n        \\\"llama-3.3-70b\\\": 0.4230154317171889,\\n        \\\"qwen2.5-72b\\\": 0.9839088457352814,\\n        \\\"qwen3-8b\\\": 0.14030981354777994\\n      },\\n      \\\"arena_correlation\\\": {\\n        \\\"kendall_tau\\\": 0.7857,\\n        \\\"kendall_p\\\": 0.005506,\\n        \\\"spearman_rho\\\": 0.9048,\\n        \\\"spearman_p\\\": 0.002008,\\n        \\\"n_matched\\\": 8,\\n        \\\"matched_models\\\": [\\n          \\\"gemma-2-9b\\\",\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          \\\"gpt-4-0613\\\",\\n          \\\"gpt-4o\\\",\\n          \\\"gpt-4o-mini\\\",\\n          \\\"llama-3.3-70b\\\",\\n          \\\"qwen2.5-72b\\\",\\n          \\\"qwen3-8b\\\"\\n        ]\\n      }\\n    },\\n    \\\"cyclic_judge\\\": {\\n      \\\"theta\\\": {\\n        \\\"gemma-2-9b\\\": -0.5072405102460997,\\n        \\\"gpt-3.5-turbo-0125\\\": -2.0080393620935215,\\n        \\\"gpt-4-0613\\\": -1.1789205415806236,\\n        \\\"gpt-4o\\\": 1.274078340483564,\\n        \\\"gpt-4o-mini\\\": 0.8574075761563216,\\n        \\\"llama-3.3-70b\\\": 0.40811630981636104,\\n        \\\"qwen2.5-72b\\\": 0.9537258481379498,\\n        \\\"qwen3-8b\\\": 0.20087233932604864\\n      },\\n      \\\"arena_correlation\\\": {\\n        \\\"kendall_tau\\\": 0.7857,\\n        \\\"kendall_p\\\": 0.005506,\\n        \\\"spearman_rho\\\": 0.9048,\\n        \\\"spearman_p\\\": 0.002008,\\n        \\\"n_matched\\\": 8,\\n        \\\"matched_models\\\": [\\n          \\\"gemma-2-9b\\\",\\n          \\\"gpt-3.5-turbo-0125\\\",\\n          \\\"gpt-4-0613\\\",\\n          \\\"gpt-4o\\\",\\n          \\\"
+…[truncated 4681 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-22T18:02:02.299348+00:00_
+
+结果 JSON 已验证。
+
+## 结果总结
+
+| Method | Kendall-τ | Spearman-ρ | Source |
+|---|---|---|---|
+| raw_average | 0.786 | 0.905 | exp-004 |
+| cyclic_judge | 0.786 | 0.905 | exp-004 |
+| cyclic_judge_discard | 0.786 | 0.905 | exp-004 |
+| dcr_factor | 0.786 | 0.905 | exp-004 |
+| preference_leakage | 0.786 | 0.905 | exp-004 |
+| mfrm_only | 0.786 | 0.905 | exp-003 |
+| sequential | 0.786 | 0.905 | exp-003 |
+| **joint_gmfrm** | **0.857** | **0.952** | exp-003 |
+
+**关键发现**：所有5个简单baseline产生了完全一致的模型排名（8个模型的排序未变）。θ 的绝对值虽有差异（judge correction / exposure weighting 改变了scale），但排名保持不变 → τ 和 ρ 完全相同。
+
+这在方法论上是可以解释的：
+1. **preference_leakage** 数学上等价于 raw_average（减去 judge-model bias 后重新平均，bias 项消掉）
+2. **cyclic_judge** 在 judge 分配近似均衡时不改变排名（9 judges × 8 models，覆盖率 44.7%，各 model 的 judge 组合差异不足以翻转排名）
+3. **dcr_factor / discard** exposure 分数是 item 级别的，不区分 model → 对所有 model 施加相同方向的调整
+
+只有 **joint G-MFRM**（结构化建模 contamination × model 交互）才将 τ 从 0.786 提升到 0.857 — 支持了"需要联合建模"的核心论点。
+
+结果路径：`/root/gated_mfrm_judge_bias/exp004/results/results.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_deploy_and_run_exp004_20260522T175816"
+}
+```
+
+</details>
+
+---

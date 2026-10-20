@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "064985b625476cd61474",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh autodl small model batch inference",
+  "task_key": "worker_ssh_autodl_small_model_batch_inference_20260522T092638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_small_model_batch_inference_20260522T092638.log",
+    "occurrence": 1,
+    "bytes": 944453,
+    "sha256": "919544f77eacd6f9f8a8189dc457842525324fe4930de0cf085572cab11abf0f"
+  },
+  "statistics": {
+    "messages": 481,
+    "user_turns": 0,
+    "tool_calls": 172,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 133,
+      "tool_call": 172,
+      "tool_result": 172,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 481,
+      "chunks": [
+        {
+          "path": "064985b625476cd61474-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "064985b625476cd61474-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "064985b625476cd61474-part-0003.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-autodl-small-model-batch-inference.md"
+}

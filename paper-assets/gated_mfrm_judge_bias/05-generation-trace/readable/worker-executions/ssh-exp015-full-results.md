@@ -1,0 +1,806 @@
+# ssh exp015 full results
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_ssh_exp015_full_results_20260523T092231.log`
+- **Structured JSON:** [`f2e3bfa825a1c44aeb6c.json`](../../sessions/f2/f2e3bfa825a1c44aeb6c.json)
+
+## Before a recorded user message
+
+14 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "4538034b-7db0-4797-9aaf-7db2c7cf5717",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779531600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5d8fd8d0-95d2-473a-a0c1-4f4bc2cc5249",
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to fetch results from the autodl-8gpu server. Let me execute the three commands they specified.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "e33318a3-f9bb-4e6f-8204-bc96bc2989b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tt5sAzBwzXsXJrdFmhn6e8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12195,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12195
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HSFMLmQTZ2YAmhiPMxf9UM`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "bd7c76ef-1f23-4fd0-8624-71fa7e58d680",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tt5sAzBwzXsXJrdFmhn6e8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12195,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12195
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T09:22:44.811Z_
+
+<details><summary>↩ Tool result · `toolu_01HSFMLmQTZ2YAmhiPMxf9UM`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "d3246c91-b083-4c53-8468-bf812c8e5a1b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XQu5ue4k77ioaBAkoK76AQ`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp015/results/synthetic_n8.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "fb520cc6-c291-4758-87bd-12e40e5447d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gv46x8bXo53wQi5B81Szc5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 466,
+      "cache_read_input_tokens": 23642,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 466
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MQRzVbtK1Ar9ECaouGVqhx`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "cat /root/gated_mfrm_judge_bias/exp015/results/summary_n8.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "4b575086-3047-4291-a9fc-bf5ca52d57b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gv46x8bXo53wQi5B81Szc5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 466,
+      "cache_read_input_tokens": 23642,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 466
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T09:22:48.674Z_
+
+<details><summary>↩ Tool result · `toolu_01XQu5ue4k77ioaBAkoK76AQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"seed,method,theta_rmse,theta_tau,c_rmse,c_pearson,r_hat,ess,elapsed_s\\n0,sequential,0.14095536826452082,0.7857142857142856,1.2130050700507966,0.9663670627152735,1.0,3273.0,242.42710542678833\\n0,joint_gmfrm,0.04502616285412902,0.9999999999999998,0.12189185979255401,0.9910819688591187,1.0,3241.0,336.8649251461029\\n1,sequential,0.22491180211393383,0.5714285714285714,2.0677153747795978,0.8504519567292175,1.0,2931.0,245.66389346122742\\n1,joint_gmfrm,0.11464447182927386,0.8571428571428571,1.0454309290609423,0.9009074136466428,1.0,3126.0,325.97209215164185\\n2,sequential,0.1968481908294999,0.9999999999999998,1.7654939339516946,0.9420990745532876,1.0,2014.0,218.28511929512024\\n2,joint_gmfrm,0.08364821006592404,0.9999999999999998,0.6334430559225528,0.9397222971423955,1.0,3199.0,337.69262528419495\\n3,sequential,0.16700536197841562,0.8571428571428571,1.3540611582621631,0.8852497530876462,1.0,3352.0,242.2297546863556\\n3,joint_gmfrm,0.08998891182824031,0.9285714285714285,0.4610980333466484,0.910614029648014,1.0,3703.0,336.00932121276855\\n4,sequential,0.12428574200458711,0.8571428571428571,1.1864641731608436,0.9360691213133955,1.0,3640.0,247.47697401046753\\n4,joint_gmfrm,0.07290439951451896,0.9285714285714285,0.3212033026994702,0.9211755501751587,1.0,3374.0,339.12853837013245\\n5,sequential,0.2215507898422225,0.8571428571428571,1.5417537097955074,0.8932327224441817,1.0,3121.0,237.19132709503174\\n5,joint_gmfrm,0.11815673801493087,0.9999999999999998,0.48920362317098637,0.9143334773024911,1.0,3316.0,336.39352202415466\\n6,sequential,0.1440364655670846,0.9285714285714285,1.1241413145994046,0.8062958238608855,1.0,3391.0,237.2329456806183\\n6,joint_gmfrm,0.06233039312142427,0.9999999999999998,0.5690595996585819,0.7962275054028976,1.0,3501.0,346.19015288352966\\n7,sequential,0.07772858697586396,0.9999999999999998,1.34096152775027,0.4437271001350791,1.0,3480.0,276.7325644493103\\n7,joint_gmfrm,0.06010733664188874,0.9999999999999998,1.0181164841026347,0.4411416574080722,1.0,2878.0,362.51393246650696\\n8,sequential,0.12591667279395383,0.9285714285714285,1.3758884603430703,0.5135965951073975,1.0,1678.0,245.2144477367401\\n8,joint_gmfrm,0.036981904801579424,0.9285714285714285,0.9433124981982437,0.5117863330149732,1.0,3828.0,345.2622592449188\\n9,sequential,0.11601011501355915,0.9999999999999998,1.1521319372223353,0.7891860219568447,1.0,3206.0,292.0811188220978\\n9,joint_gmfrm,0.09333400474707147,0.9999999999999998,0.7448484884935335,0.8156248676518087,1.0,3354.0,356.69363236427307\\n10,sequential,0.19603566487674862,0.8571428571428571,1.1870801469353152,0.8344598283102921,1.0,3287.0,291.5413112640381\\n10,joint_gmfrm,0.1156283791130391,0.9999999999999998,0.4376976136110004,0.9520691679659132,1.0,2503.0,363.800888299942\\n11,sequential,0.24882567736934658,0.6428571428571428,1.58167843605835,0.9576816938819932,1.0,3885.0,295.327579498291\\n11,joint_gmfrm,0.09944340250443034,0.9285714285714285,0.3708439117380738,0.9543984458779764,1.0,2503.0,365.9719114303589\\n12,sequential,0.17518958307399993,0.8571428571428571,1.1344225355432584,0.9471324608902498,1.0,3712.0,299.2601056098938\\n12,joint_gmfrm,0.08330927895306164,0.9285714285714285,0.2386952068695657,0.9731406569171983,1.0,3347.0,365.5558114051819\\n13,sequential,0.17454309587220482,0.9285714285714285,2.186421772610873,0.8563114993205148,1.0,3570.0,262.5041198730469\\n13,joint_gmfrm,0.06904469614874986,0.9285714285714285,1.4260395637631758,0.7426742667636697,1.0,4139.0,357.3163528442383\\n14,sequential,0.16697267614413708,0.9999999999999998,1.4924191530273336,0.9087115276694496,1.0,3766.0,283.38082814216614\\n14,joint_gmfrm,0.061525885621904024,0.9999999999999998,0.40286533588253426,0.9709615805382689,1.0,3134.0,361.10468459129333\\n15,sequential,0.2718228021397229,0.9285714285714285,1.6943030176790685,0.9752477541128051,1.0,2184.0,272.9770197868347\\n15,joint_gmfrm,0.08968409691382866,0.9285714285714285,0.47452403827778683,0.9751062834770465,1.0,3051.0,367.01276183128357\\n16,sequential,0.1719838004183817,0.8571428571428571,1.5106019763854475,0.9374661186288793,1.0,2451.0,259.8976480960846\\n16,joint_gmfrm,0.07983991586760357,0.8571428571428571,0.2515956389001442,0.984075808468822,1.0,3301.0,359.94880771636963\\n17,sequential,0.1508564116881877,0.9285714285714285,1.1172657010387559,0.9303800114380838,1.0,2462.0,260.9473352432251\\n17,joint_gmfrm,0.06563322377213156,0.9999999999999998,0.43724755342180177,0.9322571040025851,1.0,3391.0,357.7456126213074\\n18,sequential,0.12646578044634108,0.9285714285714285,1.3706132290323074,0.7698887252435381,1.0,2028.0,245.50359582901\\n18,joint_gmfrm,0.12295717074265437,0.9285714285714285,0.3051802131877761,0.8035872921857078,1.0,2527.0,365.6304678916931\\n19,sequential,0.10629983320471113,0.9285714285714285,0.5875385673263007,0.8559794713248877,1.0,3388.0,287.9212555885315\\n19,joint_gmfrm,0.09066096667807493,0.9285714285714285,0.35511032044779045,0.8867754635538627,1.0,2989.0,357.2465817928314\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "ed48447e-ec3a-4da2-89d0-24e34835ea14",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"seed,method,theta_rmse,theta_tau,c_rmse,c_pearson,r_hat,ess,elapsed_s\\\\n0,sequential,0.14095536826452082,0.7857142857142856,1.2130050700507966,0.9663670627152735,1.0,3273.0,242.42710542678833\\\\n0,joint_gmfrm,0.04502616285412902,0.9999999999999998,0.12189185979255401,0.9910819688591187,1.0,3241.0,336.8649251461029\\\\n1,sequential,0.22491180211393383,0.5714285714285714,2.0677153747795978,0.8504519567292175,1.0,2931.0,245.66389346122742\\\\n1,joint_gmfrm,0.11464447182927386,0.8571428571428571,1.0454309290609423,0.9009074136466428,1.0,3126.0,325.97209215164185\\\\n2,sequential,0.1968481908294999,0.9999999999999998,1.7654939339516946,0.9420990745532876,1.0,2014.0,218.28511929512024\\\\n2,joint_gmfrm,0.08364821006592404,0.9999999999999998,0.6334430559225528,0.9397222971423955,1.0,3199.0,337.69262528419495\\\\n3,sequential,0.16700536197841562,0.8571428571428571,1.3540611582621631,0.8852497530876462,1.0,3352.0,242.2297546863556\\\\n3,joint_gmfrm,0.08998891182824031,0.9285714285714285,0.4610980333466484,0.910614029648014,1.0,3703.0,336.00932121276855\\\\n4,sequential,0.12428574200458711,0.8571428571428571,1.1864641731608436,0.9360691213133955,1.0,3640.0,247.47697401046753\\\\n4,joint_gmfrm,0.07290439951451896,0.9285714285714285,0.3212033026994702,0.9211755501751587,1.0,3374.0,339.12853837013245\\\\n5,sequential,0.2215507898422225,0.8571428571428571,1.5417537097955074,0.8932327224441817,1.0,3121.0,237.19132709503174\\\\n5,joint_gmfrm,0.11815673801493087,0.9999999999999998,0.48920362317098637,0.9143334773024911,1.0,3316.0,336.39352202415466\\\\n6,sequential,0.1440364655670846,0.9285714285714285,1.1241413145994046,0.8062958238608855,1.0,3391.0,237.2329456806183\\\\n6,joint_gmfrm,0.06233039312142427,0.9999999999999998,0.5690595996585819,0.7962275054028976,1.0,3501.0,346.19015288352966\\\\n7,sequential,0.07772858697586396,0.9999999999999998,1.34096152775027,0.4437271001350791,1.0,3480.0,276.7325644493103\\\\n7,joint_gmfrm,0.06010733664188874,0.9999999999999998,1.0181164841026347,0.4411416574080722,1.0,2878.0,362.51393246650696\\\\n8,sequential,0.12591667279395383,0.9285714285714285,1.3758884603430703,0.5135965951073975,1.0,1678.0,245.2144477367401\\\\n8,joint_gmfrm,0.036981904801579424,0.9285714285714285,0.9433124981982437,0.5117863330149732,1.0,3828.0,345.2622592449188\\\\n9,sequential,0.11601011501355915,0.9999999999999998,1.1521319372223353,0.7891860219568447,1.0,3206.0,292.0811188220978\\\\n9,joint_gmfrm,0.09333400474707147,0.9999999999999998,0.7448484884935335,0.8156248676518087,1.0,3354.0,356.69363236427307\\\\n10,sequential,0.19603566487674862,0.8571428571428571,1.1870801469353152,0.8344598283102921,1.0,3287.0,291.5413112640381\\\\n10,joint_gmfrm,0.1156283791130391,0.9999999999999998,0.4376976136110004,0.9520691679659132,1.0,2503.0,363.800888299942\\\\n11,sequential,0.24882567736934658,0.6428571428571428,1.58167843605835,0.9576816938819932,1.0,3885.0,295.327579498291\\\\n11,joint_gmfrm,0.09944340250443034,0.9285714285714285,0.3708439117380738,0.9543984458779764,1.0,2503.0,365.9719114303589\\\\n12,sequential,0.17518958307399993,0.8571428571428571,1.1344225355432584,0.9471324608902498,1.0,3712.0,299.2601056098938\\\\n12,joint_gmfrm,0.08330927895306164,0.9285714285714285,0.2386952068695657,0.9731406569171983,1.0,3347.0,365.5558114051819\\\\n13,sequential,0.17454309587220482,0.9285714285714285,2.186421772610873,0.8563114993205148,1.0,3570.0,262.5041198730469\\\\n13,joint_gmfrm,0.06904469614874986,0.9285714285714285,1.4260395637631758,0.7426742667636697,1.0,4139.0,357.3163528442383\\\\n14,sequential,0.16697267614413708,0.9999999999999998,1.4924191530273336,0.9087115276694496,1.0,3766.0,283.38082814216614\\\\n14,joint_gmfrm,0.061525885621904024,0.9999999999999998,0.40286533588253426,0.9709615805382689,1.0,3134.0,361.10468459129333\\\\n15,sequential,0.2718228021397229,0.9285714285714285,1.6943030176790685,0.9752477541128051,1.0,2184.0,272.9770197868347\\\\n15,joint_gmfrm,0.08968409691382866,0.9285714285714285,0.47452403827778683,0.9751062834770465,1.0,3051.0,367.01276183128357\\\\n16,sequential,0.1719838004183817,0.8571428571428571,1.5106019763854475,0.9374661186288793,1.0,2451.0,259.8976480960846\\\\n16,joint_gmfrm,0.07983991586760357,0.8571428571428571,0.2515956389001442,0.984075808468822,1.0,3301.0,359.94880771636963\\\\n17,sequential,0.1508564116881877,0.9285714285714285,1.1172657010387559,0.9303800114380838,1.0,2462.0,260.9473352432251\\\\n17,joint_gmfrm,0.06563322377213156,0.9999999999999998,0.43724755342180177,0.9322571040025851,1.0,3391.0,357.7456126213074\\\\n18,sequential,0.12646578044634108,0.9285714285714285,1.3706132290323074,0.7698887252435381,1.0,2028.0,245.50359582901\\\\n18,joint_gmfrm,0.12295717074265437,0.9285714285714285,0.3051802131877761,0.8035872921857078,1.0,2527.0,365.6304678916931\\\\n19,sequential,0.10629983320471113,0.9285714285714285,0.5875385673263007,0.8559794713248877,1.0,3388.0,287.9212555885315\\\\n19,joint_gmfrm,0.09066096667807493,0.9285714285714285,0.35511032044779045,0.8867754635538627,1.0,2989.0,357.2465817928314\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"seed,method,theta_rmse,theta_tau,c_rmse,c_pearson,r_hat,ess,elapsed_s\\n0,sequential,0.14095536826452082,0.7857142857142856,1.2130050700507966,0.9663670627152735,1.0,3273.0,242.42710542678833\\n0,joint_gmfrm,0.04502616285412902,0.9999999999999998,0.12189185979255401,0.9910819688591187,1.0,3241.0,336.8649251461029\\n1,sequential,0.22491180211393383,0.5714285714285714,2.0677153747795978,0.8504519567292175,1.0,2931.0,245.66389346122742\\n1,joint_gmfrm,0.11464447182927386,0.8571428571428571,1.0454309290609423,0.9009074136466428,1.0,3126.0,325.97209215164185\\n2,sequential,0.1968481908294999,0.9999999999999998,1.7654939339516946,0.9420990745532876,1.0,2014.0,218.28511929512024\\n2,joint_gmfrm,0.08364821006592404,0.9999999999999998,0.6334430559225528,0.9397222971423955,1.0,3199.0,337.69262528419495\\n3,sequential,0.16700536197841562,0.8571428571428571,1.3540611582621631,0.8852497530876462,1.0,3352.0,242.2297546863556\\n3,joint_gmfrm,0.08998891182824031,0.9285714285714285,0.4610980333466484,0.910614029648014,1.0,3703.0,336.00932121276855\\n4,sequential,0.12428574200458711,0.8571428571428571,1.1864641731608436,0.9360691213133955,1.0,3640.0,247.47697401046753\\n4,joint_gmfrm,0.07290439951451896,0.9285714285714285,0.3212033026994702,0.9211755501751587,1.0,3374.0,339.12853837013245\\n5,sequential,0.2215507898422225,0.8571428571428571,1.5417537097955074,0.8932327224441817,1.0,3121.0,237.19132709503174\\n5,joint_gmfrm,0.11815673801493087,0.9999999999999998,0.48920362317098637,0.9143334773024911,1.0,3316.0,336.39352202415466\\n6,sequential,0.1440364655670846,0.9285714285714285,1.1241413145994046,0.8062958238608855,1.0,3391.0,237.2329456806183\\n6,joint_gmfrm,0.06233039312142427,0.9999999999999998,0.5690595996585819,0.7962275054028976,1.0,3501.0,346.19015288352966\\n7,sequential,0.07772858697586396,0.9999999999999998,1.34096152775027,0.4437271001350791,1.0,3480.0,276.7325644493103\\n7,joint_gmfrm,0.06010733664188874,0.9999999999999998,1.0181164841026347,0.4411416574080722,1.0,2878.0,362.51393246650696\\n8,sequential,0.12591667279395383,0.9285714285714285,1.3758884603430703,0.5135965951073975,1.0,1678.0,245.2144477367401\\n8,joint_gmfrm,0.036981904801579424,0.9285714285714285,0.9433124981982437,0.5117863330149732,1.0,3828.0,345.2622592449188\\n9,sequential,0.11601011501355915,0.9999999999999998,1.1521319372223353,0.7891860219568447,1.0,3206.0,292.0811188220978\\n9,joint_gmfrm,0.09333400474707147,0.9999999999999998,0.7448484884935335,0.8156248676518087,1.0,3354.0,356.69363236427307\\n10,sequential,0.19603566487674862,0.8571428571428571,1.1870801469353152,0.8344598283102921,1.0,3287.0,291.5413112640381\\n10,joint_gmfrm,0.1156283791130391,0.9999999999999998,0.4376976136110004,0.9520691679659132,1.0,2503.0,363.800888299942\\n11,sequential,0.24882567736934658,0.6428571428571428,1.58167843605835,0.9576816938819932,1.0,3885.0,295.327579498291\\n11,joint_gmfrm,0.09944340250443034,0.9285714285714285,0.3708439117380738,0.9543984458779764,1.0,2503.0,365.9719114303589\\n12,sequential,0.17518958307399993,0.8571428571428571,1.1344225355432584,0.9471324608902498,1.0,3712.0,299.2601056098938\\n12,joint_gmfrm,0.08330927895306164,0.9285714285714285,0.2386952068695657,0.9731406569171983,1.0,3347.0,365.5558114051819\\n13,sequential,0.17454309587220482,0.9285714285714285,2.186421772610873,0.8563114993205148,1.0,3570.0,262.5041198730469\\n13,joint_gmfrm,0.06904469614874986,0.9285714285714285,1.4260395637631758,0.7426742667636697,1.0,4139.0,357.3163528442383\\n14,sequential,0.16697267614413708,0.9999999999999998,1.4924191530273336,0.9087115276694496,1.0,3766.0,283.38082814216614\\n14,joint_gmfrm,0.061525885621904024,0.9999999999999998,0.40286533588253426,0.9709615805382689,1.0,3134.0,361.10468459129333\\n15,sequential,0.2718228021397229,0.9285714285714285,1.6943030176790685,0.9752477541128051,1.0,2184.0,272.9770197868347\\n15,joint_gmfrm,0.08968409691382866,0.9285714285714285,0.47452403827778683,0.9751062834770465,1.0,3051.0,367.01276183128357\\n16,sequential,0.1719838004183817,0.8571428571428571,1.5106019763854475,0.9374661186288793,1.0,2451.0,259.8976480960846\\n16,joint_gmfrm,0.07983991586760357,0.8571428571428571,0.2515956389001442,0.984075808468822,1.0,3301.0,359.94880771636963\\n17,sequential,0.1508564116881877,0.9285714285714285,1.1172657010387559,0.9303800114380838,1.0,2462.0,260.9473352432251\\n17,joint_gmfrm,0.06563322377213156,0.9999999999999998,0.43724755342180177,0.9322571040025851,1.0,3391.0,357.7456126213074\\n18,sequential,0.12646578044634108,0.9285714285714285,1.3706132290323074,0.7698887252435381,1.0,2028.0,245.50359582901\\n18,joint_gmfrm,0.12295717074265437,0.9285714285714285,0.3051802131877761,0.8035872921857078,1.0,2527.0,365.6304678916931\\n19,sequential,0.10629983320471113,0.9285714285714285,0.5875385673263007,0.8559794713248877,1.0,3388.0,287.9212555885315\\n19,joint_gmfrm,0.09066096667807493,0.9285714285714285,0.35511032044779045,0.8867754635538627,1.0,2989.0,357.2465817928314\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DhHDA2GsJnnxdRp8xPibjg`</summary>
+
+```json
+{
+  "server": "autodl-8gpu",
+  "command": "ps -p 291466 -o pid,state",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "f34ac12d-106f-48a7-8329-50be3b491a28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gv46x8bXo53wQi5B81Szc5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 466,
+      "cache_read_input_tokens": 23642,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 466
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T09:22:49.208Z_
+
+<details><summary>↩ Tool result · `toolu_01MQRzVbtK1Ar9ECaouGVqhx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"sequential\\\": {\\n    \\\"theta_rmse\\\": \\\"0.1664+/-0.0496\\\",\\n    \\\"theta_tau\\\": \\\"0.8821+/-0.1118\\\",\\n    \\\"c_rmse\\\": \\\"1.3992+/-0.3583\\\",\\n    \\\"c_pearson\\\": \\\"0.8500+/-0.1409\\\",\\n    \\\"r_hat_max\\\": 1.0,\\n    \\\"ess_min\\\": 1678.0,\\n    \\\"mean_time_s\\\": 262.18980247974395\\n  },\\n  \\\"joint_gmfrm\\\": {\\n    \\\"theta_rmse\\\": \\\"0.0827+/-0.0241\\\",\\n    \\\"theta_tau\\\": \\\"0.9536+/-0.0479\\\",\\n    \\\"c_rmse\\\": \\\"0.5524+/-0.3283\\\",\\n    \\\"c_pearson\\\": \\\"0.8659+/-0.1505\\\",\\n    \\\"r_hat_max\\\": 1.0,\\n    \\\"ess_min\\\": 2503.0,\\n    \\\"mean_time_s\\\": 352.20274407863616\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "7e375dfa-b06f-4c01-9c67-e41e31fa5b86",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"sequential\\\\\\\": {\\\\n    \\\\\\\"theta_rmse\\\\\\\": \\\\\\\"0.1664+/-0.0496\\\\\\\",\\\\n    \\\\\\\"theta_tau\\\\\\\": \\\\\\\"0.8821+/-0.1118\\\\\\\",\\\\n    \\\\\\\"c_rmse\\\\\\\": \\\\\\\"1.3992+/-0.3583\\\\\\\",\\\\n    \\\\\\\"c_pearson\\\\\\\": \\\\\\\"0.8500+/-0.1409\\\\\\\",\\\\n    \\\\\\\"r_hat_max\\\\\\\": 1.0,\\\\n    \\\\\\\"ess_min\\\\\\\": 1678.0,\\\\n    \\\\\\\"mean_time_s\\\\\\\": 262.18980247974395\\\\n  },\\\\n  \\\\\\\"joint_gmfrm\\\\\\\": {\\\\n    \\\\\\\"theta_rmse\\\\\\\": \\\\\\\"0.0827+/-0.0241\\\\\\\",\\\\n    \\\\\\\"theta_tau\\\\\\\": \\\\\\\"0.9536+/-0.0479\\\\\\\",\\\\n    \\\\\\\"c_rmse\\\\\\\": \\\\\\\"0.5524+/-0.3283\\\\\\\",\\\\n    \\\\\\\"c_pearson\\\\\\\": \\\\\\\"0.8659+/-0.1505\\\\\\\",\\\\n    \\\\\\\"r_hat_max\\\\\\\": 1.0,\\\\n    \\\\\\\"ess_min\\\\\\\": 2503.0,\\\\n    \\\\\\\"mean_time_s\\\\\\\": 352.20274407863616\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"sequential\\\": {\\n    \\\"theta_rmse\\\": \\\"0.1664+/-0.0496\\\",\\n    \\\"theta_tau\\\": \\\"0.8821+/-0.1118\\\",\\n    \\\"c_rmse\\\": \\\"1.3992+/-0.3583\\\",\\n    \\\"c_pearson\\\": \\\"0.8500+/-0.1409\\\",\\n    \\\"r_hat_max\\\": 1.0,\\n    \\\"ess_min\\\": 1678.0,\\n    \\\"mean_time_s\\\": 262.18980247974395\\n  },\\n  \\\"joint_gmfrm\\\": {\\n    \\\"theta_rmse\\\": \\\"0.0827+/-0.0241\\\",\\n    \\\"theta_tau\\\": \\\"0.9536+/-0.0479\\\",\\n    \\\"c_rmse\\\": \\\"0.5524+/-0.3283\\\",\\n    \\\"c_pearson\\\": \\\"0.8659+/-0.1505\\\",\\n    \\\"r_hat_max\\\": 1.0,\\n    \\\"ess_min\\\": 2503.0,\\n    \\\"mean_time_s\\\": 352.20274407863616\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T09:22:49.746Z_
+
+<details><summary>↩ Tool result · `toolu_01DhHDA2GsJnnxdRp8xPibjg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID S\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "21c48b9b-63b6-4786-af13-a7d4540b1e20",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID S\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"   PID S\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+进程 291466 已退出。完整结果如下：
+
+## Per-seed CSV（synthetic_n8.csv）
+
+| seed | method | theta_rmse | theta_tau | c_rmse | c_pearson | r_hat | ess | elapsed_s |
+|------|--------|-----------|-----------|--------|-----------|-------|-----|-----------|
+| 0 | sequential | 0.1410 | 0.7857 | 1.2130 | 0.9664 | 1.0 | 3273 | 242.4 |
+| 0 | joint_gmfrm | 0.0450 | 1.0000 | 0.1219 | 0.9911 | 1.0 | 3241 | 336.9 |
+| 1 | sequential | 0.2249 | 0.5714 | 2.0677 | 0.8505 | 1.0 | 2931 | 245.7 |
+| 1 | joint_gmfrm | 0.1146 | 0.8571 | 1.0454 | 0.9009 | 1.0 | 3126 | 326.0 |
+| 2 | sequential | 0.1968 | 1.0000 | 1.7655 | 0.9421 | 1.0 | 2014 | 218.3 |
+| 2 | joint_gmfrm | 0.0836 | 1.0000 | 0.6334 | 0.9397 | 1.0 | 3199 | 337.7 |
+| 3 | sequential | 0.1670 | 0.8571 | 1.3541 | 0.8852 | 1.0 | 3352 | 242.2 |
+| 3 | joint_gmfrm | 0.0900 | 0.9286 | 0.4611 | 0.9106 | 1.0 | 3703 | 336.0 |
+| 4 | sequential | 0.1243 | 0.8571 | 1.1865 | 0.9361 | 1.0 | 3640 | 247.5 |
+| 4 | joint_gmfrm | 0.0729 | 0.9286 | 0.3212 | 0.9212 | 1.0 | 3374 | 339.1 |
+| 5 | sequential | 0.2216 | 0.8571 | 1.5418 | 0.8932 | 1.0 | 3121 | 237.2 |
+| 5 | joint_gmfrm | 0.1182 | 1.0000 | 0.4892 | 0.9143 | 1.0 | 3316 | 336.4 |
+| 6 | sequential | 0.1440 | 0.9286 | 1.1241 | 0.8063 | 1.0 | 3391 | 237.2 |
+| 6 | joint_gmfrm | 0.0623 | 1.0000 | 0.5691 | 0.7962 | 1.0 | 3501 | 346.2 |
+| 7 | sequential | 0.0777 | 1.0000 | 1.3410 | 0.4437 | 1.0 | 3480 | 276.7 |
+| 7 | joint_gmfrm | 0.0601 | 1.0000 | 1.0181 | 0.4411 | 1.0 | 2878 | 362.5 |
+| 8 | sequential | 0.1259 | 0.9286 | 1.3759 | 0.5136 | 1.0 | 1678 | 245.2 |
+| 8 | joint_gmfrm | 0.0370 | 0.9286 | 0.9433 | 0.5118 | 1.0 | 3828 | 345.3 |
+| 9 | sequential | 0.1160 | 1.0000 | 1.1521 | 0.7892 | 1.0 | 3206 | 292.1 |
+| 9 | joint_gmfrm | 0.0933 | 1.0000 | 0.7448 | 0.8156 | 1.0 | 3354 | 356.7 |
+| 10 | sequential | 0.1960 | 0.8571 | 1.1871 | 0.8345 | 1.0 | 3287 | 291.5 |
+| 10 | joint_gmfrm | 0.1156 | 1.0000 | 0.4377 | 0.9521 | 1.0 | 2503 | 363.8 |
+| 11 | sequential | 0.2488 | 0.6429 | 1.5817 | 0.9577 | 1.0 | 3885 | 295.3 |
+| 11 | joint_gmfrm | 0.0994 | 0.9286 | 0.3708 | 0.9544 | 1.0 | 2503 | 366.0 |
+| 12 | sequential | 0.1752 | 0.8571 | 1.1344 | 0.9471 | 1.0 | 3712 | 299.3 |
+| 12 | joint_gmfrm | 0.0833 | 0.9286 | 0.2387 | 0.9731 | 1.0 | 3347 | 365.6 |
+| 13 | sequential | 0.1745 | 0.9286 | 2.1864 | 0.8563 | 1.0 | 3570 | 262.5 |
+| 13 | joint_gmfrm | 0.0690 | 0.9286 | 1.4260 | 0.7427 | 1.0 | 4139 | 357.3 |
+| 14 | sequential | 0.1670 | 1.0000 | 1.4924 | 0.9087 | 1.0 | 3766 | 283.4 |
+| 14 | joint_gmfrm | 0.0615 | 1.0000 | 0.4029 | 0.9710 | 1.0 | 3134 | 361.1 |
+| 15 | sequential | 0.2718 | 0.9286 | 1.6943 | 0.9752 | 1.0 | 2184 | 273.0 |
+| 15 | joint_gmfrm | 0.0897 | 0.9286 | 0.4745 | 0.9751 | 1.0 | 3051 | 367.0 |
+| 16 | sequential | 0.1720 | 0.8571 | 1.5106 | 0.9375 | 1.0 | 2451 | 259.9 |
+| 16 | joint_gmfrm | 0.0798 | 0.8571 | 0.2516 | 0.9841 | 1.0 | 3301 | 359.9 |
+| 17 | sequential | 0.1509 | 0.9286 | 1.1173 | 0.9304 | 1.0 | 2462 | 260.9 |
+| 17 | joint_gmfrm | 0.0656 | 1.0000 | 0.4372 | 0.9323 | 1.0 | 3391 | 357.7 |
+| 18 | sequential | 0.1265 | 0.9286 | 1.3706 | 0.7699 | 1.0 | 2028 | 245.5 |
+| 18 | joint_gmfrm | 0.1230 | 0.9286 | 0.3052 | 0.8036 | 1.0 | 2527 | 365.6 |
+| 19 | sequential | 0.1063 | 0.9286 | 0.5875 | 0.8560 | 1.0 | 3388 | 287.9 |
+| 19 | joint_gmfrm | 0.0907 | 0.9286 | 0.3551 | 0.8868 | 1.0 | 2989 | 357.2 |
+
+## Summary（summary_n8.json）
+
+| metric | sequential | joint_gmfrm |
+|--------|-----------|-------------|
+| theta_rmse | **0.1664 ± 0.0496** | **0.0827 ± 0.0241** |
+| theta_tau | 0.8821 ± 0.1118 | **0.9536 ± 0.0479** |
+| c_rmse | 1.3992 ± 0.3583 | **0.5524 ± 0.3283** |
+| c_pearson | 0.8500 ± 0.1409 | 0.8659 ± 0.1505 |
+| r_hat_max | 1.0 | 1.0 |
+| ess_min | 1678 | 2503 |
+| mean_time_s | 262.2 | 352.2 |
+
+joint_gmfrm 在所有核心指标上优于 sequential：theta_rmse 降低 50%，c_rmse 降低 60%，theta_tau 提升 8pp。收敛诊断良好（r_hat=1.0，ESS 充足）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "uuid": "7a51b17d-1b0a-4692-8cde-b2c3988d9aa2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AhXMjXQPM2x36qpnwjVCXJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3465,
+      "cache_read_input_tokens": 24108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3465
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 14_
+
+进程 291466 已退出。完整结果如下：
+
+## Per-seed CSV（synthetic_n8.csv）
+
+| seed | method | theta_rmse | theta_tau | c_rmse | c_pearson | r_hat | ess | elapsed_s |
+|------|--------|-----------|-----------|--------|-----------|-------|-----|-----------|
+| 0 | sequential | 0.1410 | 0.7857 | 1.2130 | 0.9664 | 1.0 | 3273 | 242.4 |
+| 0 | joint_gmfrm | 0.0450 | 1.0000 | 0.1219 | 0.9911 | 1.0 | 3241 | 336.9 |
+| 1 | sequential | 0.2249 | 0.5714 | 2.0677 | 0.8505 | 1.0 | 2931 | 245.7 |
+| 1 | joint_gmfrm | 0.1146 | 0.8571 | 1.0454 | 0.9009 | 1.0 | 3126 | 326.0 |
+| 2 | sequential | 0.1968 | 1.0000 | 1.7655 | 0.9421 | 1.0 | 2014 | 218.3 |
+| 2 | joint_gmfrm | 0.0836 | 1.0000 | 0.6334 | 0.9397 | 1.0 | 3199 | 337.7 |
+| 3 | sequential | 0.1670 | 0.8571 | 1.3541 | 0.8852 | 1.0 | 3352 | 242.2 |
+| 3 | joint_gmfrm | 0.0900 | 0.9286 | 0.4611 | 0.9106 | 1.0 | 3703 | 336.0 |
+| 4 | sequential | 0.1243 | 0.8571 | 1.1865 | 0.9361 | 1.0 | 3640 | 247.5 |
+| 4 | joint_gmfrm | 0.0729 | 0.9286 | 0.3212 | 0.9212 | 1.0 | 3374 | 339.1 |
+| 5 | sequential | 0.2216 | 0.8571 | 1.5418 | 0.8932 | 1.0 | 3121 | 237.2 |
+| 5 | joint_gmfrm | 0.1182 | 1.0000 | 0.4892 | 0.9143 | 1.0 | 3316 | 336.4 |
+| 6 | sequential | 0.1440 | 0.9286 | 1.1241 | 0.8063 | 1.0 | 3391 | 237.2 |
+| 6 | joint_gmfrm | 0.0623 | 1.0000 | 0.5691 | 0.7962 | 1.0 | 3501 | 346.2 |
+| 7 | sequential | 0.0777 | 1.0000 | 1.3410 | 0.4437 | 1.0 | 3480 | 276.7 |
+| 7 | joint_gmfrm | 0.0601 | 1.0000 | 1.0181 | 0.4411 | 1.0 | 2878 | 362.5 |
+| 8 | sequential | 0.1259 | 0.9286 | 1.3759 | 0.5136 | 1.0 | 1678 | 245.2 |
+| 8 | joint_gmfrm | 0.0370 | 0.9286 | 0.9433 | 0.5118 | 1.0 | 3828 | 345.3 |
+| 9 | sequential | 0.1160 | 1.0000 | 1.1521 | 0.7892 | 1.0 | 3206 | 292.1 |
+| 9 | joint_gmfrm | 0.0933 | 1.0000 | 0.7448 | 0.8156 | 1.0 | 3354 | 356.7 |
+| 10 | sequential | 0.1960 | 0.8571 | 1.1871 | 0.8345 | 1.0 | 3287 | 291.5 |
+| 10 | joint_gmfrm | 0.1156 | 1.0000 | 0.4377 | 0.9521 | 1.0 | 2503 | 363.8 |
+| 11 | sequential | 0.2488 | 0.6429 | 1.5817 | 0.9577 | 1.0 | 3885 | 295.3 |
+| 11 | joint_gmfrm | 0.0994 | 0.9286 | 0.3708 | 0.9544 | 1.0 | 2503 | 366.0 |
+| 12 | sequential | 0.1752 | 0.8571 | 1.1344 | 0.9471 | 1.0 | 3712 | 299.3 |
+| 12 | joint_gmfrm | 0.0833 | 0.9286 | 0.2387 | 0.9731 | 1.0 | 3347 | 365.6 |
+| 13 | sequential | 0.1745 | 0.9286 | 2.1864 | 0.8563 | 1.0 | 3570 | 262.5 |
+| 13 | joint_gmfrm | 0.0690 | 0.9286 | 1.4260 | 0.7427 | 1.0 | 4139 | 357.3 |
+| 14 | sequential | 0.1670 | 1.0000 | 1.4924 | 0.9087 | 1.0 | 3766 | 283.4 |
+| 14 | joint_gmfrm | 0.0615 | 1.0000 | 0.4029 | 0.9710 | 1.0 | 3134 | 361.1 |
+| 15 | sequential | 0.2718 | 0.9286 | 1.6943 | 0.9752 | 1.0 | 2184 | 273.0 |
+| 15 | joint_gmfrm | 0.0897 | 0.9286 | 0.4745 | 0.9751 | 1.0 | 3051 | 367.0 |
+| 16 | sequential | 0.1720 | 0.8571 | 1.5106 | 0.9375 | 1.0 | 2451 | 259.9 |
+| 16 | joint_gmfrm | 0.0798 | 0.8571 | 0.2516 | 0.9841 | 1.0 | 3301 | 359.9 |
+| 17 | sequential | 0.1509 | 0.9286 | 1.1173 | 0.9304 | 1.0 | 2462 | 260.9 |
+| 17 | joint_gmfrm | 0.0656 | 1.0000 | 0.4372 | 0.9323 | 1.0 | 3391 | 357.7 |
+| 18 | sequential | 0.1265 | 0.9286 | 1.3706 | 0.7699 | 1.0 | 2028 | 245.5 |
+| 18 | joint_gmfrm | 0.1230 | 0.9286 | 0.3052 | 0.8036 | 1.0 | 2527 | 365.6 |
+| 19 | sequential | 0.1063 | 0.9286 | 0.5875 | 0.8560 | 1.0 | 3388 | 287.9 |
+| 19 | joint_gmfrm | 0.0907 | 0.9286 | 0.3551 | 0.8868 | 1.0 | 2989 | 357.2 |
+
+## Summary（summary_n8.json）
+
+| metric | sequential | joint_gmfrm |
+|--------|-----------|-------------|
+| theta_rmse | **0.1664 ± 0.0496** | **0.0827 ± 0.0241** |
+| theta_tau | 0.8821 ± 0.1118 | **0.9536 ± 0.0479** |
+| c_rmse | 1.3992 ± 0.3583 | **0.5524 ± 0.3283** |
+| c_pearson | 0.8500 ± 0.1409 | 0.8659 ± 0.1505 |
+| r_hat_max | 1.0 | 1.0 |
+| ess_min | 1678 | 2503 |
+| mean_time_s | 262.2 | 352.2 |
+
+joint_gmfrm 在所有核心指标上优于 sequential：theta_rmse 降低 50%，c_rmse 降低 60%，theta_tau 提升 8pp。收敛诊断良好（r_hat=1.0，ESS 充足）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 43867,
+  "duration_api_ms": 43847,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "26929f98-187f-4dc4-8a82-c36fb68fdfaa",
+  "total_cost_usd": 0.20794300000000002,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 16126,
+    "cache_read_input_tokens": 59197,
+    "output_tokens": 3063,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16126,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2601,
+        "cache_read_input_tokens": 24108,
+        "cache_creation_input_tokens": 3465,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3465
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 852,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000947,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 3063,
+      "cacheReadInputTokens": 59197,
+      "cacheCreationInputTokens": 16126,
+      "webSearchRequests": 0,
+      "costUSD": 0.206996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0c491c31-27d7-4442-b53c-15eb6ab385be"
+}
+```
+
+</details>
+
+---

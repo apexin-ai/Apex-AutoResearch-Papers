@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1ac8e8f1ba6cb07549",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "validation dataset stats",
+  "task_key": "worker_validation_dataset-stats_20260525T203822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validation_dataset-stats_20260525T203822_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "6c0e55c869c73f9630dd90cba4c7f70aed90e4f9ee74b5d8340ea67cee971be9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are clear. Here's the verification summary:\n\n```\nItem 1 (Fill rate): [MATCH] 论文=~58%, 实际=57.6% (36274/63000, N=18, I=500, J=7, ties discarded)\n\nItem 2 (Judge coverage): [PARTIAL MISMATCH]\n  Sonnet:  论文≈79%, 实际=78.4% (392/500 raw) → MATCH\n  Gemini:  论文≈63%, 实际=59.8% (299/500 raw) → MISMATCH (差 ~3pp)\n  \n  注意：Gemini 有大量 failed 记录。198/299 items 有 ok 状态，101 items 全部 failed。\n  如果论文的\"coverage\"指 status=ok，Gemini 只有 39.6%，更不匹配。\n  如果指 raw（曾尝试评判），是 59.8%，仍差 3pp。\n\nItem 3 (Exposure coverage): [MATCH]\n  论文=46% → 实际=231/500=46.2% ✓\n  论文=73% → 实际=231/317=72.9% ✓\n  论文=231 exposed-only → 实际=231 ✓\n  Filtered set = 317 items (exposure CSV 行数) ✓\n```\n\n**需要关注的问题**：Gemini coverage 59.8% vs 论文 63%。可能原因：\n1. 论文写作时数据版本不同（后续 retry 增加或减少了成功数）\n2. 论文对 coverage 有不同定义（如只算 J=6 子集中的相对比例）\n3. 论文 ~63% 是近似值但实际误差偏大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validation-dataset-stats.md"
+}

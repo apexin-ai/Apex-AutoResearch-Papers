@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d7996de033747ce2ede",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp 001 dual mode",
+  "task_key": "worker_code_exp_001_dual_mode_20260521T233811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001_dual_mode_20260521T233811_result.json",
+    "occurrence": 1,
+    "bytes": 1740,
+    "sha256": "6995f14a9b2348fa9f5d8e5e02e1b30b7d4d514673ed75d0ab6489b2ce55249a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。修改摘要：\n\n### judge_interface.py (229→299 行, +70)\n- **L16-30**: 新增 `POINTWISE_JUDGE_PROMPT` (MT-Bench 标准模板)\n- **L53-58**: `_parse_verdict` 解析失败返回 `None` (原 `0.5`)\n- **L61-68**: 新增 `_parse_pointwise_score` (提取 `[[N]]`, 范围 1-10)\n- **L79-86**: 基类新增 `evaluate_pointwise` 抽象方法\n- **L97-99**: 新增 `_build_pointwise_prompt` 辅助方法\n- **L101-103**: `_make_result` 增加 `score is not None` 守卫 (BA 翻转时)\n- **L105-107**: 新增 `_make_pointwise_result` 辅助方法\n- **每个子类**: 提取 `_call()` 方法 + 新增 `evaluate_pointwise()`\n\n### collect.py (186→316 行, +130)\n- **L43-56**: `load_completed` 新增 `mode` 参数，pointwise key = `(item_id, model, judge)`\n- **L70-79**: 新增 `evaluate_pointwise_with_retry`\n- **L82-99**: `collect_judgments` 签名改为 `(benchmark, judge_configs, target_models, output_dir, reference_model, mode, ...)`\n- **L101-108**: auto mode 解析逻辑\n- **L127-175**: `_collect_pointwise` — pointwise 收集主循环，输出含 `status` 字段\n- **L178-234**: `_collect_pairwise` — pairwise 收集 (target vs reference_model)\n- **L237-270**: `main()` 适配新 config 结构 (多 benchmark + `--benchmark` 参数)\n\n### config.yaml (23→64 行, +41)\n- 顶层 `benchmark` / `model_pairs` → `benchmarks` (mt_bench + arena_hard 双轨)\n- judges 扩充至 9 个 (新增 gpt-5.5, claude-opus-4.7, deepseek-v4-pro RPM 调整)\n- target_models 扩充至 22 个模型\n\n### data_loader.py (74→91 行, +17)\n- **L73-82**: 新增 `load_mt_bench_responses(model_name)` 和 `load_arena_hard_responses(model_name)` 便捷函数\n- docstring 更新反映双轨设计"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001-dual-mode.md"
+}

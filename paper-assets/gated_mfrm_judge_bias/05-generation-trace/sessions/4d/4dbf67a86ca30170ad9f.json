@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dbf67a86ca30170ad9f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp019 mfrm delta theta",
+  "task_key": "worker_ssh_exp019_mfrm_delta_theta_20260523T085423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp019_mfrm_delta_theta_20260523T085423_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "14cdb420c8971d927688ce2370df2b346d7a853cd093dde0152703305757574c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-019 完成。\n\n**结果**：\n\n| Model | θ_MFRM | θ_GMFRM | Δθ | c_n |\n|---|---|---|---|---|\n| gpt-3.5-turbo-0125 | -2.487 | -3.274 | **+0.786** | 5.587 |\n| gpt-4-0613 | -1.446 | -1.877 | **+0.431** | 4.168 |\n| qwen2.5-72b | 1.213 | 1.178 | +0.035 | 2.961 |\n| llama-3.3-70b | 0.518 | 0.539 | -0.022 | 2.478 |\n| gemma-2-9b | -0.661 | -0.500 | -0.161 | 1.654 |\n| qwen3-8b | 0.208 | 0.513 | **-0.305** | 1.178 |\n| gpt-4o-mini | 1.064 | 1.432 | **-0.368** | 0.934 |\n| gpt-4o | 1.591 | 1.988 | **-0.397** | 0.880 |\n\n**Spearman ρ(Δθ, c_n) = 1.0000** — 完美秩相关。高 c_n 模型（gpt-3.5, gpt-4-0613）在 MFRM-only 中 ability 被系统性高估，低 c_n 模型（gpt-4o, gpt-4o-mini）被低估。contamination bias 在不建模时完全被吸收进 θ。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp019-mfrm-delta-theta.md"
+}

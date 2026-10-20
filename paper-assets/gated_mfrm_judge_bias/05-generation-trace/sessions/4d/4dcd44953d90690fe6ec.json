@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "4dcd44953d90690fe6ec",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper figure fig1 framework paperbanana v3",
+  "task_key": "worker_paper_figure_fig1_framework_paperbanana_v3_20260524T121347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_framework_paperbanana_v3_20260524T121347_result.json",
+    "occurrence": 1,
+    "bytes": 2112578,
+    "sha256": "77563e90745d435d4e9f33fd48c9df1b157c17913cf4004f0b873cc0c131bb41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "4dcd44953d90690fe6ec-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-framework-paperbanana-v3.md"
+}

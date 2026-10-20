@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-002",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:20:47.813Z",
+    "updated_at": "2026-05-22T19:18:42.715Z",
+    "hypothesis": "Simplified two-source e_i estimation (reference model anchoring + cross-model agreement) can identify contaminated benchmark items without requiring rephrased variants: items where multiple target models systematically outperform difficulty-adjusted expectations against gpt-4-0314 anchor will have high e_i, correlating with known contamination signals.",
+    "spec": {
+      "command": "python run_exp002.py --data-dir /root/gated_mfrm_judge_bias/exp001/results/arena_hard_judgments/ --arena-hard-dir /root/gated_mfrm_judge_bias/data/arena_hard/ --output-dir results/",
+      "server": "rtx6000-4x",
+      "data_path": "/root/gated_mfrm_judge_bias/exp002/results/",
+      "data_count": "493 items x 2 target models (incremental)",
+      "model_name": "Reference anchoring (gpt-4-0314) + Cross-model agreement",
+      "seed": "N/A (deterministic)",
+      "gpu": "CPU only",
+      "checkpoint_path": "/root/gated_mfrm_judge_bias/exp002/results/",
+      "log_path": "/root/gated_mfrm_judge_bias/exp002/results/summary.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T19:18:42.716Z"
+  },
+  "timestamp": "2026-05-22T19:18:42.745657+00:00",
+  "trigger": "update_registry"
+}

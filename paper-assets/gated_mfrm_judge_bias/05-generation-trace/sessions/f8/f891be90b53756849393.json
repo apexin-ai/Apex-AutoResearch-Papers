@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f891be90b53756849393",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh autodl status check 2h",
+  "task_key": "worker_ssh_autodl_status_check_2h_20260524T003359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_autodl_status_check_2h_20260524T003359_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "f1a25f43125432a96e7c8ca8cc635b6b301658ac5463cc76cb3c68826f9a97db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. API Judges (n17 run, /17982 total)\n\n| Judge | 完成 | 进度 | 速率 | ETA | 500错误/100行 |\n|-------|------|------|------|-----|---------------|\n| claude-sonnet-4.6 | 849 | 4.7% | 0.2/s | ~19.5h | 17 |\n| gemini-2.5-pro | 580 | 3.2% | 0.2/s | ~28.5h | 15 |\n| deepseek-v4-pro | 491 | 2.7% | 0.1/s | ~33.5h | 8 |\n| qwen3-235b | 583 | 3.2% | 0.2/s | ~28h | 11 |\n\n4个进程全部存活。500 错误频率偏高（每100行日志 8-17 次），但都在 retry 处理。DeepSeek 最慢（0.1/s）。\n\n### 2. LLaMA 下载：**未完成，已停滞**\n\n6/9 safetensors 已下载（29GB），缺 shard 00002、00006、00009。无下载进程在运行，无 .incomplete/.tmp 文件。下载进程已死，需要重新启动下载。\n\n**不部署 vLLM。**\n\n### 3. rtx6000-4x：**断连**\n\n连接被拒（port 23687），服务器可能已关机或端口已变更。\n\n### 4. 磁盘\n\n| 分区 | 使用 | 可用 | 使用率 |\n|------|------|------|--------|\n| /root/autodl-tmp | 164G | 87G | 66% |\n| / (root) | 15G | 16G | 49% |\n\n空间充足。\n\n---\n\n**需要决策：**\n1. LLaMA 下载停滞 — 是否重新启动下载（补齐 3 个缺失 shard）？\n2. rtx6000-4x 断连 — 是否需要去控制台检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-autodl-status-check-2h.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d03ff84304b772d3dd2",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp002 weight sensitivity",
+  "task_key": "worker_ssh_exp002_weight_sensitivity_20260522T170028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp002_weight_sensitivity_20260522T170028_result.json",
+    "occurrence": 1,
+    "bytes": 1719,
+    "sha256": "358aac3e8fa2010a1b0cd298eb04be0acee27b8a4bb420a3839ea82edbcb423b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Sensitivity Analysis 结果\n\n### 对比表\n\n| Variant | Weights (A,C) | Mean | Std | Median | Q1 | Q3 | e_i>0.5 (%) | Spearman vs 75/25 |\n|---------|--------------|------|-----|--------|-----|-----|-------------|-------------------|\n| **Current** | **(75,25)** | **0.2121** | **0.2359** | **0.1251** | **0.0000** | **0.3228** | **59/317 (18.6%)** | **1.000** |\n| A | (100,0) | 0.2008 | 0.2124 | 0.1358 | 0.0000 | 0.3140 | 41/317 (12.9%) | 0.998 |\n| B | (50,50) | 0.2268 | 0.2708 | 0.0965 | 0.0000 | 0.3536 | 71/317 (22.4%) | 0.998 |\n| C | (90,10) | 0.2050 | 0.2207 | 0.1289 | 0.0000 | 0.3147 | 44/317 (13.9%) | 0.999 |\n\n### Rank Stability\n- 所有变体与 baseline 的 category agreement（low/med/high）均 **>92%**\n- Top-20 overlap: 14-16/20\n\n### Pairwise Spearman Matrix\n所有 pair 间 ρ ≥ 0.992。\n\n### 产出路径\n- `results/sensitivity_100_0/exposure_scores.csv`\n- `results/sensitivity_50_50/exposure_scores.csv`\n- `results/sensitivity_90_10/exposure_scores.csv`\n\n### 结论\n\n**权重选择对 e_i 排序几乎没有影响**（Spearman ≥ 0.992），但对分布形态有显著影响：\n- 增大 Source C 权重（50/50）→ 标准差增大到 0.271，高 exposure 比例升至 22.4%（因为 Source C 的 z-score 分布更 heavy-tailed）\n- 纯 Source A（100/0）→ 标准差压缩到 0.212，高 exposure 比例降至 12.9%\n- 当前 75/25 和 90/10 差异很小\n\n**核心发现：权重改变的是 e_i 的阈值灵敏度（有多少 items 被标为 \"high exposure\"），而非 items 的相对排序。** 75/25 是一个合理的折中——如果需要更保守的 gating（更少 items 被 flag），可用 90/10；如果想更激进，用 50/50。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp002-weight-sensitivity.md"
+}

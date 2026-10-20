@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9aa1971043b35dd75cc9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh urgent all status check",
+  "task_key": "worker_ssh_urgent_all_status_check_20260523T070644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_all_status_check_20260523T070644_result.json",
+    "occurrence": 1,
+    "bytes": 3834,
+    "sha256": "4dc989e50cddeceabc63dc2224610b9ad80e08b953f02631f3963e42d9676cf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全量状态汇报\n\n---\n\n### 命令 1 — `tail -50 ~/runs/gated_mfrm_judge_bias/exp-017.log`\n\n```\n  Deduped /root/gated_mfrm_judge_bias/exp017/results/coverage_simulation.csv: 12 -> 7 rows\nCoverage Simulation: 7 done, 793 remaining\nN_models: [8, 20, 50, 100], seeds: 200\nI=176, J=9, rho=0.6\nMCMC: chains=4, warmup=2000, samples=4000, target_accept=0.95\n\n  [8/800] N=  8 seed=  7 | 0s | ETA 0s   /root/gated_mfrm_judge_bias/exp017/run_exp017.py:107: UserWarning: There are not enough devices to run parallel chains: expected 4 but got 1. Chains will be drawn sequentially. If you are running MCMC in CPU, consider using `numpyro.set_host_device_count(4)` at the beginning of your program. You can double-check how many devices are available in your system using `jax.local_device_count()`.\n  mcmc = MCMC(kernel, num_warmup=2000, num_samples=4000, num_chains=4,\n```\n\n**状态：运行中。** 800 个任务已完成 7 个（~1%），当前在 seed=7, N=8。有 warning 提示 4 chains 只能串行跑（单 GPU）。\n\n---\n\n### 命令 2 — `ls -la` 结果目录\n\n`~/runs/gated_mfrm_judge_bias/exp-017*/` 路径不存在。实际结果在 `/root/gated_mfrm_judge_bias/exp017/results/`：\n\n```\ntotal 4\ndrwxr-xr-x 2 root root  45 May 23 14:56 .\ndrwxr-xr-x 4 root root  77 May 23 15:03 ..\n-rw-r--r-- 1 root root 668 May 23 15:04 coverage_simulation.csv\n```\n\n只有一个文件 `coverage_simulation.csv`（668 bytes）。\n\n---\n\n### 命令 3 — `ps aux | grep exp.017`\n\n三个实验都在运行：\n\n| 实验 | PID | GPU | CPU% | MEM(RSS) | 启动时间 | 状态 |\n|------|-----|-----|------|----------|----------|------|\n| **exp-015** | 291466 | CUDA:1 | 103% | ~7.1GB | 13:49 | `Rl` (运行中) |\n| **exp-016** | 316023 | CUDA:2 | 104% | ~1.7GB | 14:59 | `Rl` (运行中) |\n| **exp-017** | 318082 | CUDA:0 | 112% | ~4.2GB | 15:04 | `Rl` (运行中) |\n\n另有 tmux session `orchestrator2` 在跑 exp001 的 `run_remaining.sh`（PID 110804，自 May22 起）。\n\n---\n\n### 命令 4 — `tail -5 ~/runs/gated_mfrm_judge_bias/exp-015.log`\n\n```\n  sequential: theta_RMSE=0.1440 tau=0.9286 c_RMSE=1.1241 c_r=0.8063 Rhat=1.000 ESS=3391 237s\n  joint_gmfrm: theta_RMSE=0.0623 tau=1.0000 c_RMSE=0.5691 c_r=0.7962 Rhat=1.000 ESS=3501 346s\n  flushed 2 rows\n[8/20] seed=7\n  sequential: theta_RMSE=0.0777 tau=1.0000 c_RMSE=1.3410 c_r=0.4437 Rhat=1.000 ESS=3480 277s\n```\n\n**状态：运行中。** 20 个任务进行到第 8 个（seed=7），sequential 方法刚完成。\n\n---\n\n### 命令 5 — `tail -5 ~/runs/gated_mfrm_judge_bias/exp-016.log`\n\n输出极长（被截断，含 >2M 字符的 warmup 进度条）。关键信息：\n\n- 最后一个 Prior 正在处理：`Prior: HalfNormal(1.5)`\n- warmup 进度在 22%（1340/6000），速度已降至 ~1.22s/it（从初始 ~4.7it/s 大幅减速）\n- **末尾有前一轮被 kill 的记录：**\n  ```\n  bash: line 1: 293733 Killed   timeout 86400 env bash -c ...\n  EXIT_CODE=129\n  ```\n  这是前一次 exp-016 进程被杀的残留日志。当前进程（PID 316023）是重启后的新实例，正在 warmup 阶段。\n\n---\n\n### 命令 6 — `wc -l` 结果文件行数\n\n| 文件 | 行数 |\n|------|------|\n| `exp017/results/coverage_simulation.csv` | **8**（含 header，7 条数据） |\n| `exp015/results/synthetic_n8.csv` | **15**（含 header，14 条数据） |\n| `exp016/results/prior_sensitivity.csv` | **不存在**（No such file or directory） |\n\n---\n\n### 汇总\n\n- **exp-015**：运行中，GPU:1，已完成 ~8/20 seeds，有结果文件 14 行\n- **exp-016**：运行中，GPU:2，当前 Prior HalfNormal(1.5) 的 warmup 22%，**尚无结果文件**（前一轮被 kill 过，EXIT_CODE=129）\n- **exp-017**：运行中，GPU:0，800 个任务完成 7 个（~1%），结果文件 7 行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-all-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb1675d3ac4453289007",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh llama status rtx retry",
+  "task_key": "worker_ssh_llama_status_rtx_retry_20260523T231001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama_status_rtx_retry_20260523T231001_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "bef721f5d9c0f16aef02f263b5edaac4548007fbd64f0515111208d2269c83be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 1. LLaMA-70B-AWQ（autodl-8gpu）\n\n- **进程**: HF 下载进程存活（PID 480645），但卡在 read timeout，正在尝试 resume `model-00005-of-00009.safetensors`\n- **已下载**: 仅 7.8GB 不完整分片（`.incomplete`），**无完整的 safetensors 权重文件**\n- **ModelScope 尝试**: 失败 — `casperhansen/Llama-3.3-70B-Instruct-AWQ` 在 ModelScope 上不存在（404）\n- **根因**: 未设 HF_TOKEN（限速 + 超时），AutoDL 直连 HF 太慢\n\n**需要处理**：当前进程基本卡死。建议 kill 后用 `network_turbo` + `HF_TOKEN` 重新下载，或在 ModelScope 上搜索其他组织发布的 LLaMA-3.3-70B AWQ 量化版本（如 `LLM-Research` 等镜像账号）。是否现在操作？\n\n### 2. rtx6000-4x\n\n- **不可达**：连接端口 23687 被拒绝（`Unable to connect to port 23687 on 36.103.198.204`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-status-rtx-retry.md"
+}

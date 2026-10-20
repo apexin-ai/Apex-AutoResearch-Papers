@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5982df5667ca82646527",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh check exp020 progress",
+  "task_key": "worker_ssh_check-exp020-progress_20260524T092543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-exp020-progress_20260524T092543_result.json",
+    "occurrence": 1,
+    "bytes": 1319,
+    "sha256": "b7c8a95fa31b51de695ff1e1361a206ca4aaa17c6e0e99d275bafb289e321c9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-020 N=17 Judge Collection 进度\n\n| Judge | 类型 | 进程状态 | 已完成 | /18000 | 完成% | 速率 | 预估剩余 |\n|-------|------|---------|--------|--------|-------|------|---------|\n| Claude Sonnet 4.6 | API | **运行中** | 8124 | 18000 | 45.1% | 0.2 it/s | ~12h |\n| Qwen3 235B | API | **运行中** | 6049 | 18000 | 33.6% | 0.2 it/s | ~18h |\n| Gemini 2.5 Pro | API | **运行中** | 5700 | 18000 | 31.7% | 0.2 it/s | ~21h |\n| DeepSeek V4 Pro | API | **运行中** | 4863 | 18000 | 27.0% | 0.1 it/s | ~25h |\n| LLaMA 3.3 70B | Local | **运行中** | 1504 | 18000 | 8.4% | ~3.2 it/min | ~3.5d |\n| Qwen2.5 72B | Local | **运行中** | 1012 | 18000 | 5.6% | ~2.2 it/min | ~5.3d |\n| Mistral Large 2 | Local | **已停止** | 118 | 18000 | 0.7% | — | — |\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 / 95.6 GB | 0% (空闲) |\n| 1 | 90.7 / 95.6 GB | 100% |\n| 2 | 89.0 / 95.6 GB | 100% |\n| 3 | 0 / 95.6 GB | 0% (空闲) |\n\n### 磁盘\n30G 总量，已用 12G (40%)，剩余 19G。\n\n### 问题\n**Mistral Large 2 已崩溃** — 进程不存在，文件最后修改时间 17:03（约 25 分钟前停止更新），仅采集 118 条。日志文件为空。GPU 0 和 3 均空闲，可能是 Mistral 释放的。需要重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp020-progress.md"
+}

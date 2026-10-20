@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad018a498c5fdd13b02d",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "knowledge fix error prop theory",
+  "task_key": "worker_knowledge_fix_error_prop_theory_20260522T042849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_fix_error_prop_theory_20260522T042849_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "469418ff7481f3c3e2dfb9f1f0b0c45ef46acc7984042defcaaceeb9f778c5ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four modifications complete:\n\n1. **Sensitivity ratio → qualitative**: Added blockquote caveat in §3.4 after the 2.9× calculation, and rewrote the §4.3 comparison paragraph to frame the ratio as a qualitative directional prediction with explicit explanation of the discrepancy (linearization + logistic saturation).\n\n2. **σ_crit DGP-dependent**: Updated §4.1 (added \"DGP-specific\" label + full parenthetical for exp-012), §4.4 (added formula + DGP note), and §5.3 (added formula + \"DGP-specific, governed by item exposure heterogeneity\"). §3.3, §5.4, §5.5 already had the formula and were left as-is.\n\n3. **Proposition → Approximate Result**: Renamed all three to \"Approximate Result 1/2/3\", added \"under the linearized model approximation\" to Result 1's setup, and updated all cross-references.\n\n4. **Absorption mechanism expanded**: Rewrote the absorption paragraph in §3.4 to explain the variance redistribution mechanism, the systematic θ inflation for contaminated models, and the direct connection to the paper's core argument (no joint estimation → contaminated models get inflated ability estimates)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-fix-error-prop-theory.md"
+}

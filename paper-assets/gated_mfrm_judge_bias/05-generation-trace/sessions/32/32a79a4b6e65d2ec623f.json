@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32a79a4b6e65d2ec623f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp005 006 prep",
+  "task_key": "worker_code_exp005_006_prep_20260522T181943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp005_006_prep_20260522T181943_result.json",
+    "occurrence": 1,
+    "bytes": 1206,
+    "sha256": "2777c402706ed10b5eb9da9761a8e4f4a8fa753002311bb3ce44cee3f197e4cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署并验证通过。\n\n**exp-005 dry-run 结果：**\n- `joint_gmfrm_c`: shape=(8,), mean=2.4782, std=1.6543, range=[0.79, 5.69]\n- `sequential_c`: shape=(8,), mean=0.0587, std=0.2770, range=[-0.24, 0.55]\n- exp-003b 数据尚未生成\n\n**exp-006 dry-run 结果：**\n- 9 judges, 8 models, 316 items, 6064 observations\n- 生成了 40 个 judge subsets（k=2/4/6/8/9）\n\n**文件位置：**\n- `/root/gated_mfrm_judge_bias/exp005/run_exp005.py` (472 行)\n- `/root/gated_mfrm_judge_bias/exp006/run_exp006.py` (565 行)\n\n**运行方式：**\n```bash\n# exp-005: CPU 即可运行\npython run_exp005.py\n\n# exp-006: raw_average 模式 CPU 可跑，MCMC 方法需要 GPU\npython run_exp006.py --methods raw_average                    # CPU 快速版\npython run_exp006.py --methods raw_average mfrm_only sequential joint_gmfrm --run-loocv  # 完整版(GPU)\n```\n\n初步观察：joint_gmfrm 的 c_n 均值 2.48 远超 mvp_002 的 σ=1.5（HalfNormal mean≈1.20），说明真实 contamination 可能比 MVP strong 设定还强。sequential 的 c_n 接近 0，OLS 残差回归信号太弱——这和 exp-003 中 sequential 与 raw_average τ 相同的结果一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp005-006-prep.md"
+}

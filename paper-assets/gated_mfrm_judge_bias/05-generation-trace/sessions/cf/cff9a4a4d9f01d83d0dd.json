@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cff9a4a4d9f01d83d0dd",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh n17 local judges deploy",
+  "task_key": "worker_ssh_n17_local_judges_deploy_20260523T143909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_n17_local_judges_deploy_20260523T143909_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "089becfc8b9fa173fabeb794838225d39c56c4249770e9c0ac8d0e25d646fe5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 3 个评测正在运行：\n- LLaMA: 6200→6201（计数增加中），GPU 0 利用率 100%\n- Qwen: 9281，GPU 1 利用率 100%\n- Mistral: 9021，GPU 2 利用率 100%\n\n## 部署总结\n\n| 组件 | GPU | 端口 | Model Name | 状态 |\n|------|-----|------|-----------|------|\n| vLLM LLaMA-3.3-70B-AWQ | GPU 0 | 8001 | llama-3.3-70b-instruct | 运行中 |\n| vLLM Qwen2.5-72B-AWQ | GPU 1 | 8002 | qwen2.5-72b-instruct | 运行中 |\n| vLLM Mistral-Large-2-AWQ | GPU 2 | 8003 | mistral-large-instruct | 运行中 |\n\n**评测进度**（目标 ~18000/judge）：\n- judge_llama: 6201/18000 (34%)\n- judge_qwen: 9281/18000 (52%)  \n- judge_mistral: 9021/18000 (50%)\n\n3 个 GPU 利用率均 100%，GPU 3 空闲。tmux sessions: `vllm_llama`, `vllm_qwen`, `vllm_mistral` (vLLM 服务) + `judge_llama`, `judge_qwen`, `judge_mistral` (评测脚本)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-n17-local-judges-deploy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfc0202c3dc3b30986dd",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh urgent autodl status check",
+  "task_key": "worker_ssh_urgent_autodl_status_check_20260522T120555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_autodl_status_check_20260522T120555_result.json",
+    "occurrence": 1,
+    "bytes": 3141,
+    "sha256": "caabee0a482d25b1643d073fbe7964bd8f48f805d721c1a54ce2427d638ea2c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 状态报告 — autodl-8gpu (2026-05-22 20:06 UTC)\n\n### 1. GPU 使用\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell (96GB) | 0% | 0 / 97887 MiB |\n| 1 | RTX PRO 6000 Blackwell (96GB) | 0% | 0 / 97887 MiB |\n| 2 | RTX PRO 6000 Blackwell (96GB) | 0% | 0 / 97887 MiB |\n| 3 | RTX PRO 6000 Blackwell (96GB) | 0% | 0 / 97887 MiB |\n\n**全部空闲，无 GPU 进程。**\n\n---\n\n### 2. 推理进程\n\n无 vLLM / inference 进程运行。\n\n**tmux sessions:** `orchestrator2` 存在，正在运行 `run_remaining.sh`，当前**阻塞在等待 Llama-3.1-8B-Instruct 下载完成**（`sleep 30` 循环检测中）。\n\n---\n\n### 3. Response 文件状态\n\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| gemma-2-9b.jsonl | 500 | ✅ 完成 |\n| qwen3-8b.jsonl | 500 | ✅ 完成 |\n| gpt-3.5-turbo-0125.jsonl | 500 | ✅ 完成 |\n| gpt-4-0314.jsonl | 500 | ✅ 完成 |\n| gpt-4-0613.jsonl | 500 | ✅ 完成 |\n| gpt-4o-mini.jsonl | 500 | ✅ 完成 |\n| gpt-4o.jsonl | 500 | ✅ 完成 |\n| llama-3.3-70b.jsonl | 491 | ⚠️ 差 9 条 |\n| qwen2.5-72b.jsonl | 484 | ⚠️ 差 16 条 |\n| mistral-large-2.jsonl | 90 | ⚠️ 未完成 |\n| claude-opus-4.7.jsonl | 88 | ⚠️ 未完成 |\n| gpt-5.5.jsonl | 15 | ⚠️ 未完成 |\n\n---\n\n### 4. 模型下载进度\n\n**两个 ModelScope 下载进程正在运行：**\n\n| 模型 | 大小 | safetensors | 状态 |\n|------|------|-------------|------|\n| gemma-2-9b-it | 18G | 4/4 | ✅ 完成 |\n| Qwen3-8B | 16G | 5/5 | ✅ 完成（已存在） |\n| Llama-3.1-8B-Instruct | 8.5G | 1/4 完成 + 3/4 在 temp | 🔄 下载中（~61%/26%/26%，速度 370-900 KB/s） |\n| Qwen2.5-7B-Instruct | 12M | 0 | 🔄 仅 metadata，safetensors 未开始 |\n| Mistral-7B-Instruct-v0.3 | — | — | ❌ 目录不存在，未开始 |\n\n**下载速度极慢**（ModelScope ~370KB/s-900KB/s）。Llama 还在下载 `original/consolidated.00.pth`（15GB，8%），但 orchestrator 只需要 safetensors 文件和空 `._____temp/`。\n\n**预估 ETA：**\n- Llama safetensors 完成：约 2-3 小时\n- Qwen2.5 开始/完成：在 Llama 之后（串行下载），再 1-2 小时\n- Mistral：排在 Qwen2.5 之后\n\n---\n\n### 5. 磁盘\n\n| 分区 | 大小 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (root) | 30G | 14G | 17G | 47% |\n| /root/autodl-tmp | 250G | 117G | 134G | 47% |\n\n空间充足。\n\n---\n\n### 6. Orchestrator 日志\n\n```\n[19:10:52] Waiting for Llama-3.1-8B-Instruct weights at /root/autodl-tmp/models/Llama-3.1-8B-Instruct ...\n```\n\n一直阻塞在此处。orchestrator 逻辑：等 safetensors 齐全 + `._____temp/` 为空后才启动 vLLM 生成。\n\n---\n\n### 总结\n\n- **gemma-2-9b 和 Qwen3-8B response 已全部完成（各 500 条）**\n- GPU 全部空闲，等待模型下载\n- 瓶颈是 ModelScope 下载速度极慢（~500KB/s），Llama 预计还需 2-3 小时，全部模型就绪可能需要 5-6 小时\n- 注意：Llama 下载进程同时在拉 15GB 的 `original/consolidated.00.pth`（非必需文件），会占用带宽"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-autodl-status-check.md"
+}

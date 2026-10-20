@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e5e137d35faeda7bf52",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh kill mistral restart local judges",
+  "task_key": "worker_ssh_kill-mistral-restart-local-judges_20260524T090047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-mistral-restart-local-judges_20260524T090047_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "5e344be55292802f1b4c95e8a89d361f68a142bdef66b894b904df77d22e3a89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行完成。最终状态：\n\n```\nMistral: KILLED ✅ (cuda:3 完全释放, 0 MiB)\n\nLLaMA: PID=564416, workers=32, records/min≈14.5, ETA≈19h\n  - 当前 1245/18000 records (18 models × 500 prompts × 2 positions)\n\nQwen:  PID=564492, workers=32, records/min≈16.0, ETA≈18h\n  - 当前 800/18000 records\n\nGPU: cuda:0 FREE, cuda:1 LLaMA vLLM 100%, cuda:2 Qwen vLLM 100%, cuda:3 FREE\nDisk: 40% (19G available)\n```\n\n**说明**：collect.py 无 `--models` 参数，但有 resume（自动跳过已完成记录）。所有 18 个模型在 n17 结果中均只 ~6% 进度，因此用完整 config + workers=32 重启，resume 跳过已完成条目的开销可忽略，实际效果等同于\"仅跑新模型\"。API judges（sonnet/gemini/deepseek/qwen3）未受影响，继续运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-mistral-restart-local-judges.md"
+}

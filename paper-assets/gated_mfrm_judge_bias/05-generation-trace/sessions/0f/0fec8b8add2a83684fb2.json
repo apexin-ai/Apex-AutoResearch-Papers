@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fec8b8add2a83684fb2",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp014 fix mcmc params",
+  "task_key": "worker_ssh_exp014_fix_mcmc_params_20260523T054655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp014_fix_mcmc_params_20260523T054655_result.json",
+    "occurrence": 1,
+    "bytes": 257,
+    "sha256": "85a111d1967f812ee73f6fb7ca622fe4d8f2447a461644865c04abffdfe68768"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。exp-014 已用正确的 MCMC 参数重新提交：\n\n- **WARMUP=2000, SAMPLES=4000, CHAINS=4**（与 exp-003b 一致）\n- 旧结果已清理，GPU 0 上重新启动\n- PID: 289621, 日志: `~/runs/gated_mfrm_judge_bias/exp-014.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp014-fix-mcmc-params.md"
+}

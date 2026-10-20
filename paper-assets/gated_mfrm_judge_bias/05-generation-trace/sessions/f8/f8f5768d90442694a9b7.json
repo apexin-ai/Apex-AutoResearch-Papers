@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8f5768d90442694a9b7",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "paper figure fig1 framework v4 twopanel",
+  "task_key": "worker_paper_figure_fig1_framework_v4_twopanel_20260524T123602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_framework_v4_twopanel_20260524T123602_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "4ffab57b285df0103cf6f6efea6666ce557a32f37ecab0361e22cea3e249fb97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files generated successfully:\n- **PNG**: 2.2 MB, 2752×1536 px, 300 DPI\n- **PDF**: 3.7 MB\n\n**Summary**: Figure 1 v4 generated with 4 external PaperBanana iterations. The final version includes all required elements: dual-panel structure with \"vs\" separator, red OVB confounding arc in Panel (a), three-stage pipeline in Panel (b) with LogProber in dashed \"optional\" style, warm-start/ê_i fixed arrows, green ✓/red ✗ visual contrast, Identifiability (Thm. 1) annotation, and NUTS sampler bottom bar."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-framework-v4-twopanel.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fefc8e6c154d4140747c",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh fix name mapping critical",
+  "task_key": "worker_ssh_fix-name-mapping-critical_20260524T095914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-name-mapping-critical_20260524T095914_result.json",
+    "occurrence": 1,
+    "bytes": 3681,
+    "sha256": "2650e92ef16860c07b80c9402279ce4fb52430ff527e75b62b2374d5591687ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No git history to diff against (bare repo). All fixes applied and verified. Here's the summary:\n\n---\n\n## 产出\n\n### 1. Diff 摘要\n\n**evaluation.py** (3 处修改):\n\n```diff\n # 新增 EXCLUDE_MODELS (line 66)\n+EXCLUDE_MODELS = [\"qwen3-8b\", \"mistral-large-2407\"]\n\n # arena_correlation() 中新增 assertion\n+    expected = set(model_names) - set(exclude_models)\n+    unmatched = expected - set(matched_models)\n+    assert not unmatched, f\"ARENA_NAME_MAPPING incomplete — unmatched models: {unmatched}\"\n\n # run_evaluation() 中传入 exclude_models\n-    arena_corr = arena_correlation(results, model_names)\n+    arena_corr = arena_correlation(results, model_names, exclude_models=EXCLUDE_MODELS)\n```\n\n注意：evaluation.py 的 `ARENA_NAME_MAPPING` 已有 3 个映射和 `mistral-large-2407`，无需修改。\n\n**bootstrap_delta_tau.py** (4 处修改):\n\n```diff\n # ARENA_ELO 新增 mistral-large-2407\n     \"gpt-3.5-turbo-0125\": 1125,\n+    \"mistral-large-2407\": 1250,\n }\n\n # ARENA_NAME_MAPPING 新增 4 条\n     \"mixtral-8x22b\": \"mixtral-8x22b-instruct-v0.1\",\n+    \"llama-3.3-70b-instruct\": \"llama-3.3-70b\",\n+    \"qwen2.5-72b-instruct\": \"qwen2.5-72b\",\n+    \"gpt-3.5-turbo-0613\": \"gpt-3.5-turbo-0125\",\n+    \"mistral-large-2407\": \"mistral-large-2407\",\n }\n\n # EXCLUDE_MODELS 更新\n-EXCLUDE_MODELS = [\"qwen3-8b\"]\n+EXCLUDE_MODELS = [\"qwen3-8b\", \"mistral-large-2407\"]\n\n # main() 中新增 assertion\n+    unmatched = set(active_models) - set(matched_models)\n+    assert not unmatched, f\"ARENA_NAME_MAPPING incomplete — unmatched models: {unmatched}\"\n```\n\n### 2. Dry-run 验证结果\n\n```\nMatched (16):\n  claude-3-5-sonnet-20241022 -> claude-3-5-sonnet-20241022 (ELO=1298)\n  claude-3-haiku-20240307    -> claude-3-haiku-20240307    (ELO=1195)\n  claude-3-opus-20240229     -> claude-3-opus-20240229     (ELO=1262)\n  gemma-2-27b-it             -> gemma-2-27b-it             (ELO=1231)\n  gemma-2-9b-it              -> gemma-2-9b                 (ELO=1207)\n  gpt-3.5-turbo-0613         -> gpt-3.5-turbo-0125         (ELO=1125)\n  gpt-4-0613                 -> gpt-4-0613                 (ELO=1186)\n  gpt-4-turbo-2024-04-09     -> gpt-4-turbo-2024-04-09     (ELO=1272)\n  gpt-4o-2024-05-13          -> gpt-4o                     (ELO=1300)\n  gpt-4o-mini-2024-07-18     -> gpt-4o-mini                (ELO=1286)\n  llama-3-70b-instruct       -> llama-3-70b-instruct       (ELO=1221)\n  llama-3-8b-instruct        -> llama-3-8b-instruct        (ELO=1166)\n  llama-3.1-70b-instruct     -> llama-3.1-70b-instruct     (ELO=1261)\n  llama-3.3-70b-instruct     -> llama-3.3-70b              (ELO=1275)\n  mixtral-8x22b-instruct-v0.1-> mixtral-8x22b-instruct-v0.1(ELO=1162)\n  qwen2.5-72b-instruct       -> qwen2.5-72b                (ELO=1269)\n\nExcluded (2): mistral-large-2407, qwen3-8b\nUnmatched (0): (none)\n\nALL CHECKS PASSED: 16 matched + 2 excluded + 0 unmatched = 18 total\n```\n\n### 3. 18 个 target models（judgment_data_n17）\n\n| # | Model |\n|---|-------|\n| 1 | claude-3-5-sonnet-20241022 |\n| 2 | claude-3-haiku-20240307 |\n| 3 | claude-3-opus-20240229 |\n| 4 | gemma-2-27b-it |\n| 5 | gemma-2-9b-it |\n| 6 | gpt-3.5-turbo-0613 |\n| 7 | gpt-4-0613 |\n| 8 | gpt-4-turbo-2024-04-09 |\n| 9 | gpt-4o-2024-05-13 |\n| 10 | gpt-4o-mini-2024-07-18 |\n| 11 | llama-3-70b-instruct |\n| 12 | llama-3-8b-instruct |\n| 13 | llama-3.1-70b-instruct |\n| 14 | llama-3.3-70b-instruct |\n| 15 | mistral-large-2407 |\n| 16 | mixtral-8x22b-instruct-v0.1 |\n| 17 | qwen2.5-72b-instruct |\n| 18 | qwen3-8b |\n\n### 4. 语法验证\n\n`Syntax OK for both files` — py_compile 通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-name-mapping-critical.md"
+}

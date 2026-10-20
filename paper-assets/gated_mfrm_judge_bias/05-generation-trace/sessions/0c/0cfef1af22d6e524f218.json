@@ -1,0 +1,744 @@
+{
+  "schema_version": "1.0",
+  "id": "0cfef1af22d6e524f218",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "code cyclic judge baseline",
+  "task_key": "worker_code_cyclic_judge_baseline_20260521T230859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cyclic_judge_baseline_20260521T230859.log",
+    "occurrence": 1,
+    "bytes": 28100,
+    "sha256": "99370b52926cc8ee91e5072c116cbb0312a95dc7ea15d64c18d36e8ad804999d"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "70b985e3-7015-468b-b80c-724483640919",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779406800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "12f5efb7-a0d6-4e47-871d-b9a48f3b1f70",
+                "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me implement the CyclicJudge baseline on the rtx6000-4x server. I need to:\n1. Create the baselines directory\n2. Create the cyclic_judge.py file\n3. Run the verification script\n\nLet me first check the existing data_gen module to understand the data format.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "13d79d01-42e2-41bb-9924-6e11afbf5ed0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XierNBNVhrVRbVr3S3Ytju",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12912,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12912
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J7syhP7g3UtR9jzNA7fHBE",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "f4d1642b-1c73-459e-864d-d5ec7a769d28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XierNBNVhrVRbVr3S3Ytju",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12912,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12912
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T23:09:10.635Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01J7syhP7g3UtR9jzNA7fHBE",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "c9a0ce86-828f-42d9-97d8-6857c1eeffee",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me first check the data_gen module to understand the data format.",
+              "signature": "EooCCmMIDRgCKkD5JGZhGNq4bzQ9o7BIacLrJ5cSIXju7ezlWXI7M4OTiF2P3is8QAGWJFg2oJNppG2vK4fU1YlpBc1FzoPzLcQFMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDFSbz0rZTd2pCCZiURoMu+uuhstasnKfaQ0gIjBJmL0UcX4C9tx+JwYJ/KOIdyNl1akopmjs9CdYikG51Gqq6XEb/d/cmDMjSSIEFycqVUf3xlPiWXj554+BD+wang7MjolyAkHSyHQDeo4/h2AZ/0Q/sgvwdWf4YCztQttz8S4EBcu1iAp5lifrCz0zP60FHMvnQyujSTsROr5vXXVujim6rWcYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "6278251d-f92c-4920-8c43-aaab746e573d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L7rdRwfdCpqacx35QujmBb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 755,
+                "cache_read_input_tokens": 24359,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 755
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kk8nfKAbLafNV4gzT4a4EU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-4x",
+                "command": "cat /root/gated_mfrm_judge_bias/mvp/data_gen.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "cfd63300-e9fc-4ffb-9716-d46cb09c8089",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L7rdRwfdCpqacx35QujmBb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 755,
+                "cache_read_input_tokens": 24359,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 755
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T23:09:15.172Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kk8nfKAbLafNV4gzT4a4EU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Synthetic data generation for Gated Multi-Facet Rasch Model (G-MFRM).\\\\n\\\\nGenerates binary response tensors Y[n,i,j] from the model:\\\\n    logit(P_nij) = theta_n - b_i - d_j + c_n * e_i * (1 + s_j)\\\\n\\\\nTwo confounding mechanisms controlled by rho:\\\\n  A) Item-level: e_i correlated with -b_i (easy items get high exposure).\\\\n  B) Judge-level: s_j (contamination sensitivity) correlated with -d_j\\\\n     (strict judges dampen contamination signal), so d̂_j absorbs part of\\\\n     the c_n·e_i effect when contamination is unmodeled.\\\\n\\\\nDependencies: numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nfrom scipy.special import expit\\\\n\\\\n\\\\ndef generate_gated_mfrm_data(\\\\n    N: int = 20,\\\\n    I: int = 100,\\\\n    J: int = 5,\\\\n    rho: float = 0.3,\\\\n    seed: int = 42,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate synthetic G-MFRM data with item-level and judge-level confounding.\\\\n\\\\n    Args:\\\\n        N: Number of models (examinees).\\\\n        I: Number of items.\\\\n        J: Number of judges.\\\\n        rho: Controls both confounding strengths: (A) corr(e_i, -b_i) for\\\\n             item-level and (B) corr(s_j, -d_j) for judge-level.\\\\n        seed: Random seed for reproducibility.\\\\n\\\\n    Returns:\\\\n        Dict with keys:\\\\n            responses: (N, I, J) binary numpy array.\\\\n            true_params: dict of theta (N,), b (I,), d (J,), c (N,), e (I,), s (J,).\\\\n            config: dict of N, I, J, rho, seed.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n\\\\n    theta = rng.standard_normal(N)\\\\n    b = rng.standard_normal(I)\\\\n    d = rng.normal(0, 0.5, size=J)\\\\n    c = np.abs(rng.normal(0, 0.5, size=N))\\\\n\\\\n    # Confounding A (item-level): e_i correlated with -b_i (easy items get high exposure)\\\\n    b_std = b.std()\\\\n    if b_std < 1e-8:\\\\n        b_std = 1.0\\\\n    z = rng.standard_normal(I)\\\\n    e_raw = rho * (-b / b_std) + np.sqrt(1 - rho**2) * z\\\\n    e = expit(e_raw)  # map to [0, 1]\\\\n\\\\n    # Confounding B (judge-level): s_j correlated with -d_j\\\\n    # Strict judges (high d_j) get negative s_j → dampen contamination signal\\\\n    d_std = d.std()\\\\n    if d_std < 1e-8:\\\\n        d_std = 1.0\\\\n    z_s = rng.standard_normal(J)\\\\n    s = 0.3 * (-rho * (d / d_std) + np.sqrt(1 - rho**2) * z_s)\\\\n\\\\n    # logit(P_nij) = theta_n - b_i - d_j + c_n * e_i * (1 + s_j)\\\\n    contamination = c[:, None, None] * e[None, :, None] * (1.0 + s[None, None, :])\\\\n    logits = (\\\\n        theta[:, None, None]\\\\n        - b[None, :, None]\\\\n        - d[None, None, :]\\\\n        + contamination\\\\n    )\\\\n    probs = expit(logits)\\\\n    responses = rng.binomial(1, probs).astype(np.int8)\\\\n\\\\n    return {\\\\n        \\\\\\\"responses\\\\\\\": responses,\\\\n        \\\\\\\"true_params\\\\\\\": {\\\\n            \\\\\\\"theta\\\\\\\": theta,\\\\n            \\\\\\\"b\\\\\\\": b,\\\\n            \\\\\\\"d\\\\\\\": d,\\\\n            \\\\\\\"c\\\\\\\": c,\\\\n            \\\\\\\"e\\\\\\\": e,\\\\n            \\\\\\\"s\\\\\\\": s,\\\\n        },\\\\n        \\\\\\\"config\\\\\\\": {\\\\\\\"N\\\\\\\": N, \\\\\\\"I\\\\\\\": I, \\\\\\\"J\\\\\\\": J, \\\\\\\"rho\\\\\\\": rho, \\\\\\\"seed\\\\\\\": seed},\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "a94d9c6c-fe5f-47e2-bd4e-803ab28fea64",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Synthetic data generation for Gated Multi-Facet Rasch Model (G-MFRM).\\\\n\\\\nGenerates binary response tensors Y[n,i,j] from the model:\\\\n    logit(P_nij) = theta_n - b_i - d_j + c_n * e_i * (1 + s_j)\\\\n\\\\nTwo confounding mechanisms controlled by rho:\\\\n  A) Item-level: e_i correlated with -b_i (easy items get high exposure).\\\\n  B) Judge-level: s_j (contamination sensitivity) correlated with -d_j\\\\n     (strict judges dampen contamination signal), so d̂_j absorbs part of\\\\n     the c_n·e_i effect when contamination is unmodeled.\\\\n\\\\nDependencies: numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nfrom scipy.special import expit\\\\n\\\\n\\\\ndef generate_gated_mfrm_data(\\\\n    N: int = 20,\\\\n    I: int = 100,\\\\n    J: int = 5,\\\\n    rho: float = 0.3,\\\\n    seed: int = 42,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate synthetic G-MFRM data with item-level and judge-level confounding.\\\\n\\\\n    Args:\\\\n        N: Number of models (examinees).\\\\n        I: Number of items.\\\\n        J: Number of judges.\\\\n        rho: Controls both confounding strengths: (A) corr(e_i, -b_i) for\\\\n             item-level and (B) corr(s_j, -d_j) for judge-level.\\\\n        seed: Random seed for reproducibility.\\\\n\\\\n    Returns:\\\\n        Dict with keys:\\\\n            responses: (N, I, J) binary numpy array.\\\\n            true_params: dict of theta (N,), b (I,), d (J,), c (N,), e (I,), s (J,).\\\\n            config: dict of N, I, J, rho, seed.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n\\\\n    theta = rng.standard_normal(N)\\\\n    b = rng.standard_normal(I)\\\\n    d = rng.normal(0, 0.5, size=J)\\\\n    c = np.abs(rng.normal(0, 0.5, size=N))\\\\n\\\\n    # Confounding A (item-level): e_i correlated with -b_i (easy items get high exposure)\\\\n    b_std = b.std()\\\\n    if b_std < 1e-8:\\\\n        b_std = 1.0\\\\n    z = rng.standard_normal(I)\\\\n    e_raw = rho * (-b / b_std) + np.sqrt(1 - rho**2) * z\\\\n    e = expit(e_raw)  # map to [0, 1]\\\\n\\\\n    # Confounding B (judge-level): s_j correlated with -d_j\\\\n    # Strict judges (high d_j) get negative s_j → dampen contamination signal\\\\n    d_std = d.std()\\\\n    if d_std < 1e-8:\\\\n        d_std = 1.0\\\\n    z_s = rng.standard_normal(J)\\\\n    s = 0.3 * (-rho * (d / d_std) + np.sqrt(1 - rho**2) * z_s)\\\\n\\\\n    # logit(P_nij) = theta_n - b_i - d_j + c_n * e_i * (1 + s_j)\\\\n    contamination = c[:, None, None] * e[None, :, None] * (1.0 + s[None, None, :])\\\\n    logits = (\\\\n        theta[:, None, None]\\\\n        - b[None, :, None]\\\\n        - d[None, None, :]\\\\n        + contamination\\\\n    )\\\\n    probs = expit(logits)\\\\n    responses = rng.binomial(1, probs).astype(np.int8)\\\\n\\\\n    return {\\\\n        \\\\\\\"responses\\\\\\\": responses,\\\\n        \\\\\\\"true_params\\\\\\\": {\\\\n            \\\\\\\"theta\\\\\\\": theta,\\\\n            \\\\\\\"b\\\\\\\": b,\\\\n            \\\\\\\"d\\\\\\\": d,\\\\n            \\\\\\\"c\\\\\\\": c,\\\\n            \\\\\\\"e\\\\\\\": e,\\\\n            \\\\\\\"s\\\\\\\": s,\\\\n        },\\\\n        \\\\\\\"config\\\\\\\": {\\\\\\\"N\\\\\\\": N, \\\\\\\"I\\\\\\\": I, \\\\\\\"J\\\\\\\": J, \\\\\\\"rho\\\\\\\": rho, \\\\\\\"seed\\\\\\\": seed},\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Synthetic data generation for Gated Multi-Facet Rasch Model (G-MFRM).\\n\\nGenerates binary response tensors Y[n,i,j] from the model:\\n    logit(P_nij) = theta_n - b_i - d_j + c_n * e_i * (1 + s_j)\\n\\nTwo confounding mechanisms controlled by rho:\\n  A) Item-level: e_i correlated with -b_i (easy items get high exposure).\\n  B) Judge-level: s_j (contamination sensitivity) correlated with -d_j\\n     (strict judges dampen contamination signal), so d̂_j absorbs part of\\n     the c_n·e_i effect when contamination is unmodeled.\\n\\nDependencies: numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom scipy.special import expit\\n\\n\\ndef generate_gated_mfrm_data(\\n    N: int = 20,\\n    I: int = 100,\\n    J: int = 5,\\n    rho: float = 0.3,\\n    seed: int = 42,\\n) -> dict:\\n    \\\"\\\"\\\"Generate synthetic G-MFRM data with item-level and judge-level confounding.\\n\\n    Args:\\n        N: Number of models (examinees).\\n        I: Number of items.\\n        J: Number of judges.\\n        rho: Controls both confounding strengths: (A) corr(e_i, -b_i) for\\n             item-level and (B) corr(s_j, -d_j) for judge-level.\\n        seed: Random seed for reproducibility.\\n\\n    Returns:\\n        Dict with keys:\\n            responses: (N, I, J) binary numpy array.\\n            true_params: dict of theta (N,), b (I,), d (J,), c (N,), e (I,), s (J,).\\n            config: dict of N, I, J, rho, seed.\\n    \\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n\\n    theta = rng.standard_normal(N)\\n    b = rng.standard_normal(I)\\n    d = rng.normal(0, 0.5, size=J)\\n    c = np.abs(rng.normal(0, 0.5, size=N))\\n\\n    # Confounding A (item-level): e_i correlated with -b_i (easy items get high exposure)\\n    b_std = b.std()\\n    if b_std < 1e-8:\\n        b_std = 1.0\\n    z = rng.standard_normal(I)\\n    e_raw = rho * (-b / b_std) + np.sqrt(1 - rho**2) * z\\n    e = expit(e_raw)  # map to [0, 1]\\n\\n    # Confounding B (judge-level): s_j correlated with -d_j\\n    # Strict judges (high d_j) get negative s_j → dampen contamination signal\\n    d_std = d.std()\\n    if d_std < 1e-8:\\n        d_std = 1.0\\n    z_s = rng.standard_normal(J)\\n    s = 0.3 * (-rho * (d / d_std) + np.sqrt(1 - rho**2) * z_s)\\n\\n    # logit(P_nij) = theta_n - b_i - d_j + c_n * e_i * (1 + s_j)\\n    contamination = c[:, None, None] * e[None, :, None] * (1.0 + s[None, None, :])\\n    logits = (\\n        theta[:, None, None]\\n        - b[None, :, None]\\n        - d[None, None, :]\\n        + contamination\\n    )\\n    probs = expit(logits)\\n    responses = rng.binomial(1, probs).astype(np.int8)\\n\\n    return {\\n        \\\"responses\\\": responses,\\n        \\\"true_params\\\": {\\n            \\\"theta\\\": theta,\\n            \\\"b\\\": b,\\n            \\\"d\\\": d,\\n            \\\"c\\\": c,\\n            \\\"e\\\": e,\\n            \\\"s\\\": s,\\n        },\\n        \\\"config\\\": {\\\"N\\\": N, \\\"I\\\": I, \\\"J\\\": J, \\\"rho\\\": rho, \\\"seed\\\": seed},\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Data is binary (0/1), shape (N, I, J). Now I'll create the baselines directory and the implementation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "a32666e2-1867-48b1-bc7e-0088ac72247f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FpFDaLkzKRiQhaxV925MyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1474,
+                "cache_read_input_tokens": 25114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1474
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011eYRuUK6GQbRKjs2oqLpqE",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx6000-4x",
+                "command": "mkdir -p /root/gated_mfrm_judge_bias/baselines && cat > /root/gated_mfrm_judge_bias/baselines/cyclic_judge.py << 'EOF'\n\"\"\"CyclicJudge baseline: round-robin judge assignment + average score.\"\"\"\n\nimport numpy as np\n\n\ndef fit_cyclic_judge(data: dict) -> dict:\n    \"\"\"Estimate theta using CyclicJudge round-robin strategy.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n              data[\"responses\"] shape (N, I, J).\n\n    Returns:\n        Dict with theta_hat (N,), r_hat=NaN, ess=NaN.\n    \"\"\"\n    responses = data[\"responses\"].astype(np.float64)\n    N, I, J = responses.shape\n\n    theta_hat = np.zeros(N)\n    for n in range(N):\n        scores = []\n        for i in range(I):\n            j = i % J\n            val = responses[n, i, j]\n            if not np.isnan(val):\n                scores.append(val)\n        theta_hat[n] = np.mean(scores) if scores else 0.0\n\n    theta_hat -= theta_hat.mean()\n\n    return {\"theta_hat\": theta_hat, \"r_hat\": np.nan, \"ess\": np.nan}\n\n\ndef fit_cyclic_judge_balanced(data: dict, k: int = 2) -> dict:\n    \"\"\"CyclicJudge with k judges per item (balanced assignment).\n\n    Each item is judged by k judges in round-robin.\n    More robust than single-judge assignment.\n\n    Args:\n        data: Output of generate_gated_mfrm_data().\n        k: Number of judges per item.\n\n    Returns:\n        Dict with theta_hat (N,), r_hat=NaN, ess=NaN.\n    \"\"\"\n    responses = data[\"responses\"].astype(np.float64)\n    N, I, J = responses.shape\n    k = min(k, J)\n\n    theta_hat = np.zeros(N)\n    for n in range(N):\n        scores = []\n        for i in range(I):\n            for offset in range(k):\n                j = (i + offset) % J\n                val = responses[n, i, j]\n                if not np.isnan(val):\n                    scores.append(val)\n        theta_hat[n] = np.mean(scores) if scores else 0.0\n\n    theta_hat -= theta_hat.mean()\n\n    return {\"theta_hat\": theta_hat, \"r_hat\": np.nan, \"ess\": np.nan}\nEOF\necho \"DONE\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "07bd127d-8cfc-440f-b116-c2c84d13f2a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FpFDaLkzKRiQhaxV925MyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1474,
+                "cache_read_input_tokens": 25114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1474
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T23:09:25.885Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011eYRuUK6GQbRKjs2oqLpqE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "ec84b59b-bf14-4ba0-b430-fe7fee9a5b79",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AZ6vfgpTJnAbz3NxMB127F",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx6000-4x",
+                "command": "/root/miniconda3/bin/python3 -c \"\nimport sys; sys.path.insert(0, '/root/gated_mfrm_judge_bias/mvp')\nfrom data_gen import generate_gated_mfrm_data\nsys.path.insert(0, '/root/gated_mfrm_judge_bias/baselines')\nfrom cyclic_judge import fit_cyclic_judge, fit_cyclic_judge_balanced\nimport numpy as np\n\ndata = generate_gated_mfrm_data(rho=0.6, seed=42)\nresult = fit_cyclic_judge(data)\nprint(f'theta_hat shape: {result[\\\"theta_hat\\\"].shape}')\nprint(f'theta_hat mean: {result[\\\"theta_hat\\\"].mean():.6f}')\nprint(f'theta_hat std: {result[\\\"theta_hat\\\"].std():.4f}')\n\nresult_k2 = fit_cyclic_judge_balanced(data, k=2)\nprint(f'balanced k=2 shape: {result_k2[\\\"theta_hat\\\"].shape}')\nprint(f'balanced k=2 mean: {result_k2[\\\"theta_hat\\\"].mean():.6f}')\n\n# Compare with raw average\nraw_avg = data['responses'].astype(float).mean(axis=(1,2))\nraw_avg -= raw_avg.mean()\nrmse_cyclic = np.sqrt(((result['theta_hat'] - raw_avg)**2).mean())\nrmse_balanced = np.sqrt(((result_k2['theta_hat'] - raw_avg)**2).mean())\nprint(f'RMSE cyclic vs raw_avg: {rmse_cyclic:.4f}')\nprint(f'RMSE balanced vs raw_avg: {rmse_balanced:.4f}')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "a1539bc5-a612-4a4c-9e6f-f38a6b7b378d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178VT4mHjJg8G9v8U38RzWm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 869,
+                "cache_read_input_tokens": 26588,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 869
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T23:09:33.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AZ6vfgpTJnAbz3NxMB127F",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"theta_hat shape: (20,)\\\\ntheta_hat mean: -0.000000\\\\ntheta_hat std: 0.1774\\\\nbalanced k=2 shape: (20,)\\\\nbalanced k=2 mean: -0.000000\\\\nRMSE cyclic vs raw_avg: 0.0473\\\\nRMSE balanced vs raw_avg: 0.0253\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "3fd18904-874d-48ab-92c1-1a94ff73c50b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"theta_hat shape: (20,)\\\\ntheta_hat mean: -0.000000\\\\ntheta_hat std: 0.1774\\\\nbalanced k=2 shape: (20,)\\\\nbalanced k=2 mean: -0.000000\\\\nRMSE cyclic vs raw_avg: 0.0473\\\\nRMSE balanced vs raw_avg: 0.0253\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"theta_hat shape: (20,)\\ntheta_hat mean: -0.000000\\ntheta_hat std: 0.1774\\nbalanced k=2 shape: (20,)\\nbalanced k=2 mean: -0.000000\\nRMSE cyclic vs raw_avg: 0.0473\\nRMSE balanced vs raw_avg: 0.0253\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**结果**:\n- 文件: `/root/gated_mfrm_judge_bias/baselines/cyclic_judge.py`，58 行\n- `fit_cyclic_judge`: shape (20,), mean=0.000000, std=0.1774\n- `fit_cyclic_judge_balanced(k=2)`: shape (20,), mean=0.000000\n- RMSE vs raw_avg: cyclic=0.0473, balanced=0.0253（接近但不同，balanced 更接近 raw_avg 符合预期——用了更多 judge 信息）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "uuid": "3207b176-7c52-40b6-afcc-489f92f96558",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BufMFL6hHSCSejSMjabba6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 727,
+                "cache_read_input_tokens": 27457,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 727
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**结果**:\n- 文件: `/root/gated_mfrm_judge_bias/baselines/cyclic_judge.py`，58 行\n- `fit_cyclic_judge`: shape (20,), mean=0.000000, std=0.1774\n- `fit_cyclic_judge_balanced(k=2)`: shape (20,), mean=0.000000\n- RMSE vs raw_avg: cyclic=0.0473, balanced=0.0253（接近但不同，balanced 更接近 raw_avg 符合预期——用了更多 judge 信息）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 32764,
+            "duration_api_ms": 31820,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "478d232d-c5f0-4ab9-8fc1-25dafd92fe16",
+            "total_cost_usd": 0.20998075,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 16737,
+              "cache_read_input_tokens": 114965,
+              "output_tokens": 1846,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 16737,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 160,
+                  "cache_read_input_tokens": 27457,
+                  "cache_creation_input_tokens": 727,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 727
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1607,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001697,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1846,
+                "cacheReadInputTokens": 114965,
+                "cacheCreationInputTokens": 16737,
+                "webSearchRequests": 0,
+                "costUSD": 0.20828375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "73320e02-2c2d-4fcd-9c42-316e4417ff23"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cyclic-judge-baseline.md"
+}

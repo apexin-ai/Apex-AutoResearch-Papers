@@ -1,0 +1,45 @@
+_next_id: 5
+decisions:
+- id: D001
+  date: 2026-05-21 12:01 UTC
+  summary: MVP 方案：在 Doshi & Hauser 数据集上用词汇级 Hill number + Baselga 分解验证核心假设
+  rationale: 选择 Doshi & Hauser 数据集因其条件最清晰（3 级 LLM 介入度）且 CC-BY 可用；选择词汇级特征因无需 GPU、实现最快；Pass/Fail
+    标准覆盖核心假设的四个维度（alpha↑、beta↓、Baselga 分解有诊断力、flat metrics 违反独立性）。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-21 14:12 UTC
+  summary: MVP 词汇级 FAIL 但不立即 kill：延伸 MVP 做 coverage-based rarefaction + 修复 FAIL test
+    2 设计缺陷，再做最终判断
+  rationale: FAIL 部分源于测试方法论问题而非框架本身失败：(1) size-based rarefaction 到 31 词过于激进，coverage-based
+    standardization 更合理；(2) FAIL test 2 中 balanced/total ratio≈0.92 近似常数，任何预测器都能恢复，测试退化；(3)
+    PASS 3 (Baselga 分解) 在真实数据上通过，证明框架诊断能力有效；(4) q=2 beta 显著下降说明框架确实能在不同 q 值捕捉不同维度信号；(5)
+    词汇级是三个特征层级中最弱的，IDEA_BRIEF 核心价值在语义层级。延伸成本极低（CPU 小时级）。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-21 14:14 UTC
+  summary: 词汇级 MVP 彻底 FAIL（coverage-based 确认 alpha↑ 是长度伪影），启动语义级快速验证
+  rationale: Coverage-based rarefaction 后差异 <1%，确认词汇级 alpha↑ 完全由文本长度驱动。但 q=2 beta
+    显著下降 + Baselga 分解有效，说明框架本身未失败，是特征层级太弱。语义 embedding 维度固定不受文本长度线性影响，是框架的核心应用场景。成本仅
+    1-2 GPU·h，用户已提供 RTX 6000。按 D002 决策树执行。
+  related_experiments: []
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-21 15:07 UTC
+  summary: KILL 项目：词汇级 + 语义级 MVP 均 FAIL，用户确认归档
+  rationale: mvp_001（词汇级）alpha↑ 是文本长度伪影，coverage-based rarefaction 后信号消失；mvp_002（语义级）每故事仅
+    ~8 句导致语义物种不足，三个 k 值全部 FAIL。框架数学本身有效（Baselga 分解两轮 PASS + cosine 正交性确认），但 Doshi
+    & Hauser 数据集短文本特性无法验证核心 alpha↑ beta↓ 假设。按 D003 预设规则和用户确认执行 kill。保留的经验：Baselga
+    丰度分解对文本生态系统有独特诊断价值，未来有更长文本数据集时可复用。
+  related_experiments:
+  - exp_id: mvp_001
+    role: primary
+    result: negative
+  - exp_id: mvp_002
+    role: primary
+    result: negative
+  depends_on:
+  - D003

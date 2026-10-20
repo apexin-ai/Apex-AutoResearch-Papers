@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2429c38368ad65fc0b5f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp018 completion check",
+  "task_key": "worker_ssh_exp018_completion_check_20260523T113836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp018_completion_check_20260523T113836_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "58ac4dce3184a5f056ef8a21140966a65d7dbff92e0bf912014dedc3cc88c49b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-018 结果汇总\n\n**状态：成功完成。** 20/20 seeds 全部跑完，CSV 完整（41 行）。总耗时 2.66 小时。\n\n### 汇总统计\n\n| 指标 | sequential | joint_gmfrm | \n|------|-----------|-------------|\n| θ_RMSE | 0.1714 ± 0.0487 | **0.0940 ± 0.0185** |\n| θ_τ (Kendall) | 0.8911 ± 0.0376 | **0.9432 ± 0.0362** |\n| c_RMSE | 1.3752 ± 0.2781 | **0.6262 ± 0.2627** |\n| c_Pearson | 0.8167 ± 0.0955 | **0.8424 ± 0.1058** |\n\n### Wilcoxon 检验\n\n**Δτ (theta_tau):**\n- Wins/Ties/Losses = **18/1/1**\n- Non-zero pairs: 19/20\n- Mean Δτ = +0.0521\n- p = **1.81e-04**\n\n**θ_RMSE:**\n- Win rate: **20/20** (joint 全胜)\n- p = **1.91e-06**\n- Cohen's d = **1.914** (极大效应量)\n\n**c_RMSE:**\n- Win rate: **20/20** (joint 全胜)\n- p = **1.91e-06**\n\nJoint GMFRM 在所有指标上显著优于 sequential baseline，θ_RMSE 降低 45%，c_RMSE 降低 54%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp018-completion-check.md"
+}

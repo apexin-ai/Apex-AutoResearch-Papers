@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9e06ec79256880efe80",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh power analysis delta tau",
+  "task_key": "worker_ssh_power_analysis_delta_tau_20260523T012958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_power_analysis_delta_tau_20260523T012958_result.json",
+    "occurrence": 1,
+    "bytes": 1241,
+    "sha256": "e1065ba9b1573204f57e72431d316f4f8c164603f61573541cc69a533975d6ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPower Analysis for Δτ = 0.071:\n\nBootstrap empirical std (N=8): 0.0360\nScaling assumption: std(N) = std(8) * sqrt(8/N)\n\nMinimum N for 80% power (α=0.05, two-sided): 17\n\nPower table:\n  N=  8: std=0.0360, power=0.505  <-- current\n  N= 10: std=0.0322, power=0.597\n  N= 12: std=0.0294, power=0.676\n  N= 15: std=0.0263, power=0.771\n  N= 20: std=0.0228, power=0.877\n  N= 25: std=0.0204, power=0.937\n  N= 30: std=0.0186, power=0.969\n  N= 40: std=0.0161, power=0.993\n  N= 50: std=0.0144, power=0.999\n\nNote: The exact Kendall τ variance formula gives much larger std values (0.289 at N=8 vs 0.036),\nconfirming that the bootstrap std reflects the variance of the *difference* in posterior-mean τ\n(not a single τ), which is heavily reduced by the paired/dependent structure.\nThe 1/sqrt(N) scaling is an approximation — actual scaling depends on how adding models\naffects the posterior mean correlation structure. This estimate is likely optimistic\n(true minimum N may be somewhat higher).\n```\n\n**Minimum N = 17 target models** to detect Δτ=0.071 at 80% power. Current N=8 only has ~50% power, explaining the non-significant result. Doubling to N≈20 would give ~88% power with comfortable margin."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-power-analysis-delta-tau.md"
+}

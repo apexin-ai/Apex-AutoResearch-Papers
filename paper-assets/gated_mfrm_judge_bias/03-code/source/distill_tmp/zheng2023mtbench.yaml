@@ -1,0 +1,88 @@
+paper_key: "zheng2023mtbench"
+title: "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena"
+venue: "NeurIPS 2023"
+full_text_available: true
+
+research:
+  baselines: ["Human evaluators (58 experts + 2114 crowdsource)", "GPT-4 judge", "GPT-3.5 judge", "Claude-V1 judge", "Fine-tuned Vicuna-13B judge"]
+  metrics:
+    - {name: "Agreement rate with human", direction: "higher_better"}
+    - {name: "Position bias consistency", direction: "higher_better"}
+    - {name: "Verbosity bias failure rate", direction: "lower_better"}
+    - {name: "Math grading failure rate", direction: "lower_better"}
+    - {name: "MT-Bench score (1-10)", direction: "higher_better"}
+    - {name: "Win rate", direction: "higher_better"}
+  datasets:
+    - {name: "MT-Bench", size: "80 multi-turn questions × 8 categories"}
+    - {name: "Chatbot Arena", size: "30K votes from 2114 users"}
+    - {name: "Expert human votes", size: "~3K controlled expert votes"}
+  ablation_dimensions: ["Judge type (pairwise/single/reference-guided)", "Position swap", "Few-shot vs zero-shot", "CoT vs default prompt", "Multi-turn prompt design"]
+  training_recipe: {optimizer: "N/A (evaluation framework)", lr: "N/A", hardware: "GPT-4 API"}
+  method_family: "LLM-as-a-judge evaluation paradigm"
+
+positioning:
+  core_claim: "GPT-4作为judge与人类评估者的一致率超过80%（与人类间一致率相当），LLM-as-a-judge是可扩展且可解释的人类偏好近似方法"
+  key_results: "GPT-4 vs Human agreement: 85% (non-tie); Human-Human: 81%; Position bias consistency: GPT-4 65% vs Claude 23.8%; Verbosity bias: GPT-4 8.7% failure vs others 91.3%; Few-shot improves consistency 65%→77.5%"
+  limitations:
+    - "仅关注helpfulness，忽略safety和honesty"
+    - "多维度（accuracy/relevance/creativity）合并为单一指标"
+    - "LLM judge在math/reasoning上能力有限"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Figure 1对比LLaMA vs Vicuna——传统benchmark分不出但人类明显偏好Vicuna，说明现有评测有根本缺陷"
+  tension: "传统benchmark（MMLU/HELM）无法衡量human alignment，人类评估昂贵不可扩展——需要自动化方案但必须验证其可信度"
+  key_insight: "Section 4.2 — 用3K专家票+3K众包票系统验证GPT-4 judge与人类一致率≥80%，与人类间一致率相当——'gold standard validation'"
+  argument_chain: "traditional benchmarks fail → MT-bench + Arena as preference benchmarks → LLM-as-judge as automation → systematic bias study (position/verbosity/self-enhancement/reasoning) → mitigations → human agreement validation → hybrid framework recommendation"
+  contribution_framing: "两条贡献：(1)LLM-as-judge系统研究 (2)MT-bench + Arena人类偏好数据集"
+  intro_structure: "6段：问题提出 → discrepancy论证 → benchmark介绍 → LLM-as-judge概念 → validation预览 → 贡献声明"
+  notable_technique: "Figure 1的'one example tells the story'技巧——用一个具体对话对比代替抽象论述，让读者直觉理解benchmark misalignment"
+
+figures:
+  figure_count: 19
+  figure1:
+    type: "motivation"
+    description: "LLaMA-13B vs Vicuna-13B在同一MMLU问题上的多轮对话对比，GPT-4判定Vicuna更好"
+    narrative_role: "用具体案例建立'传统benchmark评不出人类偏好差异'的直觉"
+    design_elements: ["双列对话展示", "GPT-4判断标注", "MMLU分数对比"]
+    visual_style: "聊天界面风格的对话截图，对比布局"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "6模型在不同judge下的MT-bench平均win rate"
+      how_gain_highlighted: "多judge对比展示ranking一致性"
+      design_note: "grouped bars per model"
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "9模型在Arena下不同judge的win rate"
+      how_gain_highlighted: "Arena数据验证MT-bench趋势"
+      design_note: "同Figure 2格式但Arena数据"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(motivation) → Figures 2-3(judge comparison) → Figures 4-9(prompts) → Figures 10-15(bias examples) → Figures 16-18(platform screenshots)"
+
+tables:
+  table_count: 16
+  main_result_table:
+    table_id: "Table 5"
+    row_axis: "judge pairs"
+    col_axis: "agreement metrics (S1/S2)"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "无显式bold，文字描述key findings"
+    statistical_reporting: "agreement百分比 + vote count"
+    num_baselines: 4
+    design_note: "上下两部分（MT-bench/Arena），agreement百分比为核心指标"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["LLM judge identity × prompt type"]
+      variation_style: "full_numbers"
+      design_note: "Position bias的consistency/bias/error三指标"
+    - table_id: "Table 4"
+      what_varied: ["Prompt type (default/CoT/reference-guided)"]
+      variation_style: "full_numbers"
+      design_note: "Math failure rate under different prompting strategies"
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 10-16: detailed position bias by category/model pair/few-shot, extended agreement, Vicuna training details, fine-tuned judge results"
+    reason: "详细分解分析放附录，主文保持高层叙事"

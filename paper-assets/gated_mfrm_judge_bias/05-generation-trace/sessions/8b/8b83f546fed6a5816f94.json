@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b83f546fed6a5816f94",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp017 018 progress v2",
+  "task_key": "worker_ssh_exp017_018_progress_v2_20260523T105802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp017_018_progress_v2_20260523T105802_result.json",
+    "occurrence": 1,
+    "bytes": 2001,
+    "sha256": "2acbc2845bd2c02c7e68e7aae3a4b2de834b96ee4183e067d2d3557dbf9a9ed3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进度汇总\n\n### GPU 状态\n```\nGPU 0:  0% util,  73613 / 97887 MiB  ← exp-017 (JAX 预分配显存，MCMC 实际计算量低)\nGPU 1:  0% util,      0 / 97887 MiB\nGPU 2: 70% util,  73609 / 97887 MiB  ← exp-018 活跃\nGPU 3:  0% util,      0 / 97887 MiB\n```\n\n---\n\n### exp-018 (cuda:2, N=20 synthetic)\n\n**进度: 15/20 seeds (75%)**，正在运行 seed=15\n\nCSV 31 行 (header + 30 rows = 15 seeds × 2 methods)\n\n最近 5 行：\n```\nseed | method        | theta_RMSE | tau    | c_RMSE | c_r    | Rhat | ESS  | time(s)\n12   | sequential    | 0.1712     | 0.9368 | 1.0764 | 0.8689 | 1.01 | 667  | 162\n12   | joint_gmfrm   | 0.0886     | 0.9579 | 0.3349 | 0.9001 | 1.01 | 1367 | 328\n13   | sequential    | 0.1754     | 0.9368 | 1.5775 | 0.8229 | 1.01 | 601  | 164\n13   | joint_gmfrm   | 0.0847     | 0.9789 | 0.6215 | 0.9047 | 1.01 | 809  | 254\n14   | sequential    | 0.1661     | 0.9368 | 1.2335 | 0.8740 | 1.01 | 699  | 162\n14   | joint_gmfrm   | 0.0917     | 0.9895 | 0.5126 | 0.9235 | 1.00 | 1195 | 302\n```\n\n每 seed 约 ~464s (sequential ~162s + joint ~302s)，剩 5 seeds ≈ **~39 分钟完成**。\n\n---\n\n### exp-017 (cuda:0, Murphy-Topel coverage)\n\n**进度: 48/800 iterations (6%)**，ETA 日志显示 ~260000s ≈ **~72 小时**\n\nCSV 48 行 (header + 47 rows)\n\n最近 5 行：\n```\nN | seed | cov1  | cov2  | RMSE   | SE     | Rhat | ESS  | time(s)\n8 | 43   | 0.75  | 1.0   | 0.726  | 0.291  | 1.0  | 3010 | 332\n8 | 44   | 0.375 | 1.0   | 1.074  | 0.307  | 1.0  | 3012 | 343\n8 | 45   | 0.5   | 0.875 | 0.815  | 0.288  | 1.0  | 2710 | 348\n8 | 46   | 0.375 | 0.875 | 0.592  | 0.275  | 1.0  | 2901 | 346\n```\n\n**警告**: 4 chains 在单设备上顺序执行（非并行），每 iteration ~345s。如果能 `numpyro.set_host_device_count(4)` 或分配多 GPU 可显著加速。\n\n---\n\n**总结**: exp-018 约 39 分钟内完成，数据质量良好(Rhat≤1.01)。exp-017 仅完成 6%，按当前速度需 ~3 天，是瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp017-018-progress-v2.md"
+}

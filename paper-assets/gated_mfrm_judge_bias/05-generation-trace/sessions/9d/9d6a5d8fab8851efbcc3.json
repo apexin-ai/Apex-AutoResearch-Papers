@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "9d6a5d8fab8851efbcc3",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "worker",
+  "title": "ssh qwen7b fix download",
+  "task_key": "worker_ssh_qwen7b_fix_download_20260522T191051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen7b_fix_download_20260522T191051.log",
+    "occurrence": 1,
+    "bytes": 933248,
+    "sha256": "9f5f54f4e2b2d1e8dfc675a9bfbce9a132f40e7ed8d2d4438434cfb9b585f0da"
+  },
+  "statistics": {
+    "messages": 549,
+    "user_turns": 0,
+    "tool_calls": 179,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 187,
+      "tool_call": 179,
+      "tool_result": 179,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 549,
+      "chunks": [
+        {
+          "path": "9d6a5d8fab8851efbcc3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d6a5d8fab8851efbcc3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d6a5d8fab8851efbcc3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d6a5d8fab8851efbcc3-part-0004.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-qwen7b-fix-download.md"
+}

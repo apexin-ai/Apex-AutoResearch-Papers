@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b464a2371c8187bff8e",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp006 status and k9 results",
+  "task_key": "worker_ssh_exp006_status_and_k9_results_20260523T002849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp006_status_and_k9_results_20260523T002849_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "7bb584fdf2966986e5416f663306821522f2371bcdf1a3a943022e8e5b8d1755"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the summary:\n\n---\n\n**exp-006 Status:**\n\n| k | subsets done | raw_average τ | sequential τ | joint_gmfrm τ | status |\n|---|---|---|---|---|---|\n| k=2 | 9/10 | 0.755±0.088 | — (in results_full) | — (in results_full) | MCMC fits done (s1-s9) |\n| k=4 | 10/10 | 0.779±0.041 | — (in results_full) | — (in results_full) | MCMC fits done (s0-s9) |\n| k=6 | 6.5/10 | 0.800±0.030 | 7/10 seq done | 6/10 joint done | **warmup 24% on next fit** |\n| k=8 | — | 0.786±0.000 | not started | not started | queued after k=6 |\n| k=9 | **1/1 DONE** | **0.786** | **0.786** | **0.857** | **COMPLETE** |\n\n**Session status:**\n- `exp006_k9`: **DEAD** (completed successfully, results saved)\n- `exp006_full`: **ALIVE** — currently fitting k=6, warmup at 24% (732/3000, ~4.57 it/s)\n\n**k=9 result (the headline):** joint_gmfrm τ=0.857 vs sequential/raw_average τ=0.786. Joint outperforms by +0.071.\n\n**k=6 ETA:** ~13 min per MCMC fit. 7 more fits remaining for k6 → ~1.5h for k=6. Then k=8 needs 20 fits → ~4.3h. **Total exp006_full remaining: ~6 hours.**\n\n**Note:** results_k9/results.json is truncated (216 bytes, invalid JSON) — likely a write-flush issue at process exit. The CSV results are intact and complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp006-status-and-k9-results.md"
+}

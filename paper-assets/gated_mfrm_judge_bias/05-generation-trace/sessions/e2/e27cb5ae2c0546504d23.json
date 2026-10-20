@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "e27cb5ae2c0546504d23",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh waic loo comparison",
+  "task_key": "worker_ssh_waic_loo_comparison_20260522T234222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_waic_loo_comparison_20260522T234222_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "bfbc37fa78701db8f25f94e767935dd4f9d38221db92e57073585eea49680097"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011CbJWgZ7K4xwYStGeqQ9gv\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "overloaded_error",
+                "message": "Overloaded"
+              },
+              "request_id": "req_011CbJWgZ7K4xwYStGeqQ9gv"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-waic-loo-comparison.md"
+}

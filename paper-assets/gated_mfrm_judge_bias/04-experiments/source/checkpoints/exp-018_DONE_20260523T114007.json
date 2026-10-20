@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-018",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:53:33.035Z",
+    "updated_at": "2026-05-23T11:40:07.196Z",
+    "hypothesis": "Scaling synthetic calibration from N=8 to N=20 models will yield statistically significant Δτ (theta_tau improvement) for joint G-MFRM over sequential MFRM, confirming that exp-015's non-significance was a power issue due to small N.",
+    "parent": "",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias/exp018 && CUDA_VISIBLE_DEVICES=2 python run_exp018.py",
+      "server": "autodl-8gpu",
+      "gpu_ids": [
+        2
+      ],
+      "data_path": "synthetic (generated in-script)",
+      "data_count": "N=20 models x I=176 items x J=9 judges x 20 seeds",
+      "model_name": "G-MFRM (NumPyro/JAX)",
+      "seed": "0-19",
+      "checkpoint_path": "/root/gated_mfrm_judge_bias/exp018/results/",
+      "log_path": "/root/gated_mfrm_judge_bias/exp018/results/exp018.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T11:40:07.196Z"
+  },
+  "timestamp": "2026-05-23T11:40:07.307260+00:00",
+  "trigger": "update_registry"
+}

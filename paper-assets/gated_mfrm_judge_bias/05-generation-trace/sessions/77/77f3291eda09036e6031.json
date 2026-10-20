@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77f3291eda09036e6031",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh quick status all",
+  "task_key": "worker_ssh_quick_status_all_20260522T234328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_quick_status_all_20260522T234328_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "5ae23828031adf4b0d53b2fa8ed12eaa2a8411254fed47d803e4e0b420e3e505"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### autodl-8gpu\n\n| 实验 | GPU | 进度 | ETA | 状态 |\n|------|-----|------|-----|------|\n| **exp-006** (sensitivity full) | cuda:1 (68%, 865M) | [26/31] configs, MCMC 2613/3000 (87%) | ~45-60min (sensitivity 部分) + LOOCV | 🟢 运行中 |\n| **W7 ablation** | cuda:2 (65%, 4.9G) | [17/20] seeds, binary_gating ~400s/method | ~30-45min | 🟢 运行中 |\n| **WAIC/orchestrator2** | cuda:0 (0%, 0M) | — | — | ⚪ 无活跃进程，GPU 空闲 |\n\n### rtx6000-4x\n\n| 实验 | GPU | 进度 | ETA | 状态 |\n|------|-----|------|-----|------|\n| **Mistral judge** | cuda:3 (100%, 90G) | 7500/8742 (86%) | ~107min (~1.8h) | 🟢 运行中 |\n| **Llama shard A** | cuda:2 (100%, 91G) | 30/2664 (刚启动) | ~477min (~8h) | 🟢 刚启动 |\n| **Llama shard B** | cuda:1 (100%, 91G) | 30/2135 (刚启动) | ~477min (~8h) | 🟢 刚启动 |\n| — | cuda:0 (0%, 0M) | — | — | ⚪ 空闲 |\n\n**要点：**\n- autodl-8gpu 的 exp-006 和 w7 ablation 预计 1h 内完成 sensitivity/ablation 部分（exp-006 还有 LOOCV 待跑）\n- rtx6000-4x 的 Mistral 约 2h 完成；Llama 双分片刚启动，预计 8h+\n- autodl-8gpu cuda:0 和 rtx6000-4x cuda:0 均空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-quick-status-all.md"
+}

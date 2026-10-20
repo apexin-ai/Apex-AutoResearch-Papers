@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "287b9e49097ac3f05cf9",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh posterior predictive",
+  "task_key": "worker_ssh_posterior_predictive_20260522T222746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_posterior_predictive_20260522T222746_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "9090530473b4d50fe5e26e638225889fc19480a13b7acbdb174eacecb0512a03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n- **Predictive samples**: 1000 draws（从 16000 posterior samples 中随机抽取），每 draw 5661 observations → PPC shape `(1000, 5661)`\n- **PPC mean win rate**: 0.5934，观测值 0.5987 — 模型拟合良好\n- **新 InferenceData 文件**: `/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata_with_ppc.nc`，35.7 MB，包含 `posterior`, `sample_stats`, `observed_data`, `posterior_predictive` 四个 group\n- **PPC 图**: 已保存至 `/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics/ppc.pdf`（左：整体 win rate 分布 vs 观测值；右：per-model win rate 95% CI vs 观测值）\n- 执行耗时约 5 秒，无错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-posterior-predictive.md"
+}

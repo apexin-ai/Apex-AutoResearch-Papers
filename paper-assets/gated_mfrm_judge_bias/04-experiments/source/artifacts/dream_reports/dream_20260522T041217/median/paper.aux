@@ -1,0 +1,117 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{zheng2023judging}
+\citation{zheng2023judging,li2024cyclicjudge}
+\citation{golchin2023time,shi2023detecting}
+\citation{li2024cyclicjudge}
+\citation{son2024uda}
+\citation{oren2024constat}
+\citation{dekoninck2024dcr}
+\citation{angrist2009mostly}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The confounding problem.}{1}{section*.1}\protected@file@percent }
+\citation{angrist2009mostly}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Motivating Observation: Confounding in LLM Evaluation}{2}{section.2}\protected@file@percent }
+\newlabel{sec:observation}{{2}{2}{Motivating Observation: Confounding in LLM Evaluation}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Setup}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:dgp}{{1}{2}{Setup}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Omitted Variable Bias}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Monte Carlo Validation}{2}{subsection.2.3}\protected@file@percent }
+\citation{linacre1989manyfacet,eckes2011introduction}
+\citation{heckman1979sample}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Monte Carlo bias validation (1000 replications, $\rho = 0.30$). Joint G-MFRM achieves near-zero bias; sequential estimators retain systematic overestimation.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:mc_bias}{{1}{3}{Monte Carlo bias validation (1000 replications, $\rho = 0.30$). Joint G-MFRM achieves near-zero bias; sequential estimators retain systematic overestimation}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Sequential estimator bias as a function of confounding strength $\rho (d_j, c_n \cdot e_i)$.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:rho_sweep}{{2}{3}{Sequential estimator bias as a function of confounding strength $\rho (d_j, c_n \cdot e_i)$}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Gated Many-Facet Rasch Model}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method: Gated Many-Facet Rasch Model}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Standard MFRM}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:mfrm}{{3}{3}{Stage 1: Standard MFRM}{equation.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: External Exposure Estimation}{3}{subsection.3.2}\protected@file@percent }
+\citation{li2024cyclicjudge}
+\citation{dekoninck2024dcr}
+\citation{son2024uda}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Judge coverage matrix (fraction of completed evaluations).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:judge_coverage}{{3}{4}{Judge coverage matrix (fraction of completed evaluations)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 3: Conditional Joint Estimation}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{eq:gmfrm}{{5}{4}{Stage 3: Conditional Joint Estimation}{equation.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Identifiability.}{4}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inference.}{4}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Collection}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Per-Item Exposure Estimation}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-source $e_i$ estimation statistics.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:ei_sources}{{4}{5}{Per-source $e_i$ estimation statistics}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Method comparison on MT-Bench + Arena-Hard (Chatbot Arena Elo as reference ranking).}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:main_comparison}{{5}{5}{Method comparison on MT-Bench + Arena-Hard (Chatbot Arena Elo as reference ranking)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baselines}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{5}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Comparison}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Subset Analysis: High-Contamination Models}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces G-MFRM advantage by model contamination quartile (vs.\ UDA).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:subset}{{6}{6}{G-MFRM advantage by model contamination quartile (vs.\ UDA)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Estimated judge severity $d_j$ (positive = harsher).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:judge_severity}{{7}{6}{Estimated judge severity $d_j$ (positive = harsher)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Diagnostic Outputs}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge severity profiles.}{6}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-model contamination susceptibility.}{6}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Theta overestimation by contamination level.}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Model Fit and Convergence}{6}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-model $c_n$ estimates (top-10 by Arena Elo) with ConStat validation. $\theta $ shift: Stage 1 $\to $ Stage 3.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:cn_per_model}{{8}{7}{Per-model $c_n$ estimates (top-10 by Arena Elo) with ConStat validation. $\theta $ shift: Stage 1 $\to $ Stage 3}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Facet fit statistics summary.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:fit_stats}{{9}{7}{Facet fit statistics summary}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{7}{section.6}\protected@file@percent }
+\newlabel{sec:analysis}{{6}{7}{Analysis}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Exposure Indicator Ablation}{7}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Judge Count Sensitivity}{7}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Preference leakage diagnostic.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Cross-Benchmark Generalization}{7}{subsection.6.3}\protected@file@percent }
+\citation{wang2026adversarial}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces $e_i$ source ablation: impact on downstream G-MFRM performance.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:ablation}{{10}{8}{$e_i$ source ablation: impact on downstream G-MFRM performance}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces G-MFRM performance by number of judges.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:judge_count}{{11}{8}{G-MFRM performance by number of judges}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Error Propagation Sensitivity}{8}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Adversarial Robustness}{8}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Post-Hoc Power Analysis}{8}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibstyle{aaai}
+\bibcite{angrist2009mostly}{{1}{2009}{{Angrist and Pischke}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-benchmark performance and $c_n$ consistency.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{12}{9}{Cross-benchmark performance and $c_n$ consistency}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Error propagation sensitivity (20 replications per $\sigma $).}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:sensitivity}{{13}{9}{Error propagation sensitivity (20 replications per $\sigma $)}{table.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Statistical power.}{9}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exposure estimation noise.}{9}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rank-1 assumption.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge-model interaction.}{9}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Convergence.}{9}{section*.14}\protected@file@percent }
+\bibcite{dekoninck2024dcr}{{2}{2024}{{Dekoninck et~al.}}{{}}}
+\bibcite{eckes2011introduction}{{3}{2011}{{Eckes}}{{}}}
+\bibcite{engelhard2013invariant}{{4}{2013}{{Engelhard}}{{}}}
+\bibcite{fox2010bayesian}{{5}{2010}{{Fox}}{{}}}
+\bibcite{fox2001bayesian}{{6}{2001}{{Fox and Glas}}{{}}}
+\bibcite{golchin2023time}{{7}{2023}{{Golchin and Surdeanu}}{{}}}
+\bibcite{heckman1979sample}{{8}{1979}{{Heckman}}{{}}}
+\bibcite{li2024cyclicjudge}{{9}{2024}{{Li et~al.}}{{}}}
+\bibcite{linacre1989manyfacet}{{10}{1989}{{Linacre}}{{}}}
+\bibcite{lord1968statistical}{{11}{1968}{{Lord and Novick}}{{}}}
+\bibcite{oren2024constat}{{12}{2024}{{Oren et~al.}}{{}}}
+\bibcite{patz2002mcmc}{{13}{2002}{{Patz et~al.}}{{}}}
+\bibcite{rasch1960probabilistic}{{14}{1960}{{Rasch}}{{}}}
+\bibcite{robitzsch2020dif}{{15}{2020}{{Robitzsch}}{{}}}
+\bibcite{shi2023detecting}{{16}{2023}{{Shi et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Adversarial contamination detection and rank protection.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:adversarial}{{14}{10}{Adversarial contamination detection and rank protection}{table.14}{}}
+\bibcite{shu2013dg}{{17}{2013}{{Shu et~al.}}{{}}}
+\bibcite{son2024uda}{{18}{2024}{{Son et~al.}}{{}}}
+\bibcite{wang2026adversarial}{{19}{2026}{{Wang et~al.}}{{}}}
+\bibcite{wind2018dif}{{20}{2018}{{Wind and Peterson}}{{}}}
+\bibcite{zheng2023judging}{{21}{2023}{{Zheng et~al.}}{{}}}
+\gdef \@abspage@last{11}

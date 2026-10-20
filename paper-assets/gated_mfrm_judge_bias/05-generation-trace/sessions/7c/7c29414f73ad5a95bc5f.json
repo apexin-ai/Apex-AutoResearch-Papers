@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c29414f73ad5a95bc5f",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp014 exhaustive subsampling",
+  "task_key": "worker_ssh_exp014_exhaustive_subsampling_20260523T052727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp014_exhaustive_subsampling_20260523T052727_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "2a78dada9f7d3de87d6f4e3d61471bbc255913d2af5d30fa1aa4da740bc45068"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务正常运行中。第一个 subset (k=2) 的 MCMC warmup 已开始，约 ~140 it/s。\n\n**已完成：**\n- 创建 `/root/gated_mfrm_judge_bias/exp014/run_exp014.py`，穷举 C(9,k) 共 247 个 judge 组合\n- 每个 subset 跑 3 种方法 (raw_average, sequential, joint_gmfrm)，MCMC 参数 warmup=1000, samples=1000, chains=2\n- 支持断点续跑（已完成的 subset 会跳过）\n- 每完成一个 subset 立即 flush 写入 CSV\n- 已通过 `submit_training_job` 提交到 autodl-8gpu cuda:0，tmux session `exp-014`，日志 `~/runs/gated_mfrm_judge_bias/exp-014.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp014-exhaustive-subsampling.md"
+}

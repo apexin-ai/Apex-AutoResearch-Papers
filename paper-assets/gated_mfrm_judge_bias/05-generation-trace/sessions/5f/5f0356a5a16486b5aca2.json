@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f0356a5a16486b5aca2",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp013 final csv",
+  "task_key": "worker_ssh_exp013_final_csv_20260523T054830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp013_final_csv_20260523T054830_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "0c12fe264a32f88edda33265061e28b96c935d0b3f9293ad278d648227974a11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已完成，结果已保存。4 种权重配置的完整结果：\n\n| weight_config | ref_weight | cma_weight | exposure_spearman_rho | gmfrm_tau | delta_tau_vs_default | r_hat | ess_min | divergences |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| 50_50 | 0.50 | 0.50 | 0.9981 | 0.7857 | -0.0 | 1.02 | 196.0 | 0 |\n| 75_25 | 0.75 | 0.25 | 1.0000 | 0.7857 | -0.0 | 1.04 | 115.0 | 0 |\n| 90_10 | 0.90 | 0.10 | 0.9991 | 0.7857 | -0.0 | 1.01 | 432.0 | 0 |\n| 100_0 | 1.00 | 0.00 | 0.9978 | 0.7857 | -0.0 | 1.01 | 668.0 | 0 |\n\n关键发现：\n\n- **Kendall tau 完全不变**：所有 4 种权重配置的 `gmfrm_tau` 都是 0.7857，`delta_tau_vs_default` 全为 0。权重配置对排名结果没有影响。\n- **Exposure 极度稳定**：`exposure_spearman_rho` 在 0.9978–1.0000 之间，曝光度参数几乎不受权重变化影响。\n- **收敛质量良好**：所有配置 divergences=0，r_hat ≤ 1.04。但 75_25 的 ESS 偏低（115），50_50 也只有 196。\n- **结论**：G-MFRM 对 ref/CMA 权重比例高度鲁棒，模型排名在 50/50 到 100/0 的全范围内完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp013-final-csv.md"
+}

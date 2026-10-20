@@ -1,0 +1,3 @@
+Remote: autodl-8gpu:/root/gated_mfrm_judge_bias/artifacts/exp003b_diagnostics/ppc.pdf
+InferenceData with PPC: autodl-8gpu:/root/gated_mfrm_judge_bias/exp003/output_003b/joint_gmfrm_idata_with_ppc.nc (35.7MB)
+PPC: 1000 draws x 5661 observations. Mean predicted win rate: 0.5934, observed: 0.5987.

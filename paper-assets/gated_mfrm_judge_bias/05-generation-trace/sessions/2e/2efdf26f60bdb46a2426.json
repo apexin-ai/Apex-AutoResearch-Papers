@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2efdf26f60bdb46a2426",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "code exp 009 formal ovb",
+  "task_key": "worker_code_exp_009_formal_ovb_20260521T223155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_009_formal_ovb_20260521T223155_result.json",
+    "occurrence": 1,
+    "bytes": 1494,
+    "sha256": "f45cbb123bfab62b59fcd03043b1b3a35301db0430923327ebfa012dc0396d47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。汇报结果：\n\n---\n\n**代码路径**: `/root/gated_mfrm_judge_bias/exp009/`\n\n| 文件 | 行数 | 说明 |\n|------|------|------|\n| `run_exp009.py` | 420 | 主脚本 |\n\n**输出文件**（dry-run 生成）:\n- `bias_vs_rho.csv` — 8 rows (2 seeds × 2 rhos × 2 methods)\n- `bias_vs_rho.png` — 双面板折线图（signed bias + RMSE vs ρ）\n- `cn_recovery.csv` — 100 rows (2 seeds × 50 models)\n- `cn_recovery_scatter.png` — c_true vs c_hat scatter\n\n**Dry-run 结果** (2 seeds × 2 rhos):\n- Part A 耗时 808s，Part B 耗时 293s，总计 ~18 min\n- 每个 (rho, seed) pair 平均 ~200s（含 2 次 MCMC fit）\n- Part B 每 seed ~150s（1 次 MCMC fit）\n- mean_bias ≈ 0（centering 约束导致，符合理论预期）\n- RMSE: sequential 0.22-0.26 vs joint 0.12-0.15\n- c_n recovery: RMSE=0.54, coverage=0.80, corr=0.81\n\n**预估全量运行时间**:\n- Part A: 400 pairs × 200s ≈ **22 小时**\n- Part B: 50 seeds × 150s ≈ **2 小时**\n- 总计: **~24 小时**（CPU-only，无 CUDA jaxlib）\n\n**注意**: 服务器有 RTX PRO 6000 Blackwell GPU 但 JAX 未安装 CUDA 版本，全程在 CPU 上运行。安装 `jax[cuda]` 可显著加速。\n\n**全量运行命令**:\n```bash\ncd /root/gated_mfrm_judge_bias/exp009 && rm -f bias_vs_rho.csv cn_recovery.csv && \\\nnohup /root/miniconda3/bin/python3 run_exp009.py --part both > /tmp/exp009_full.log 2>&1 &\n```\n\n支持中断恢复（逐 seed 保存 checkpoint）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-009-formal-ovb.md"
+}

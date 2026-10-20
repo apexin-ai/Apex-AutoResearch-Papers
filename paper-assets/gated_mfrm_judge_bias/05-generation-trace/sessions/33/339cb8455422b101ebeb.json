@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "339cb8455422b101ebeb",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh speed check 10min",
+  "task_key": "worker_ssh_speed_check_10min_20260524T023739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_speed_check_10min_20260524T023739_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "9e5afe6a270014d7e2c7b60bee9daa912978e1be8cc28c01a7463940e94a5355"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 10 分钟速率测量报告\n\n**T0**: 02:38:50 UTC — **T1**: 02:49:29 UTC — **间隔**: 10.65 min\n\n### API Judges\n\n| Judge | T0 | T1 | Δ | items/min | 剩余 | ETA (h) |\n|-------|----:|----:|--:|----------:|------:|--------:|\n| claude-sonnet-4.6 | 2647 | 2806 | 159 | **14.9** | ~14,200 | 15.9 |\n| gemini-2.5-pro | 1566 | 1684 | 118 | **11.1** | ~15,400 | 23.2 |\n| deepseek-v4-pro | 1258 | 1368 | 110 | **10.3** | ~15,800 | 25.4 |\n| qwen3-235b | 1509 | 1632 | 123 | **11.5** | ~15,300 | 22.0 |\n| **API 总计** | | | **510** | **47.9** | | |\n\n### Local Judges\n\n| Judge | T0 | T1 | Δ | items/min | 剩余 | ETA (h) |\n|-------|----:|----:|--:|----------:|------:|--------:|\n| llama-3.3-70b | 132 | 154 | 22 | 2.1 | ~17,800 | **143** |\n| qwen2.5-72b | 83 | 99 | 16 | 1.5 | ~17,900 | **199** |\n\n### 关键判断\n\n**N=17 主路径可行。** API 总速率 47.9/min，远超 8/min 阈值。每个 API judge 单独都在 10-15/min，最慢的 deepseek 也有 10.3/min。API judges 全部在 ~1 天内可完成。\n\n**Local judges 是瓶颈。** LLaMA 和 Qwen2.5 本地推理极慢（1.5-2.1 items/min），ETA 分别 6 天和 8 天。需要关注 local judges 是否有加速空间（增加 batch size、换更快的推理后端等），否则它们会拖住整体进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-speed-check-10min.md"
+}

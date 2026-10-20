@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "012e860dccc81d032b84",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh exp001 recovery check",
+  "task_key": "worker_ssh_exp001_recovery_check_20260523T034734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp001_recovery_check_20260523T034734_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "5f33b9cecc9cfad5821fe2b642ffb677cbac1652e1346840422c841bc7fec61f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-001 Llama Judge 数据收集状态\n\n### 1. 进程状态：全部正常运行\n\n| 组件 | PID | 端口/配置 | GPU | 启动时间 |\n|------|-----|-----------|-----|---------|\n| vLLM 实例 1 | 122778 | port 8001 | cuda:2 | May 22 |\n| vLLM 实例 2 | 523916 | port 8004 | cuda:1 | 今天 07:33 |\n| collect.py shard A | 525427 | config_llama_arena_a.yaml | - | 今天 07:37 |\n| collect.py shard B | 525429 | config_llama_arena_b.yaml | - | 今天 07:37 |\n\nvLLM 实例 2 和两个 collect.py 是今天 07:33-07:37 重启的（可能是之前的自动恢复脚本）。\n\n### 2. 当前进度\n\n| Shard | 进度 | 完成率 | ETA |\n|-------|------|--------|-----|\n| A | 1340/2664 | **50.3%** | ~246 min (~4.1h) |\n| B | 1160/2135 | **54.3%** | ~210 min (~3.5h) |\n\n速度稳定 ~0.1 items/s。相比之前的 32%，进度显著推进。\n\n### 3. GPU 占用\n\n| GPU | 显存 | 利用率 | 状态 |\n|-----|------|--------|------|\n| 0 | 0/98GB | 0% | **空闲** |\n| 1 | 91/98GB | 100% | vLLM (port 8004) |\n| 2 | 91/98GB | 100% | vLLM (port 8001) |\n| 3 | 0/98GB | 0% | **空闲** |\n\n### 4. 已收集数据\n- `arena_hard_judgments.jsonl`：**5551 行**，8.4MB\n- 文件最后修改：2026-05-23 11:48:27（几秒前仍在写入）\n- 总需求：4799 items（2664 + 2135），已完成约 2500 items（52%）\n\n### 5. 结论\n\n**无需干预。** 两个 shard 都在正常运行，预计 ~4 小时后全部完成（约今天下午 15:50 CST）。GPU 0 和 3 空闲可用于其他任务。系统标记的 \"failed\" 是误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp001-recovery-check.md"
+}

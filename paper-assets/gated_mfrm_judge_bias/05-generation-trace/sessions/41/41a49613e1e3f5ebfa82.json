@@ -1,0 +1,612 @@
+{
+  "schema_version": "1.0",
+  "id": "41a49613e1e3f5ebfa82",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "conversation",
+  "title": "ssh llama download resume",
+  "task_key": "worker_ssh_llama_download_resume_20260524T005404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_llama_download_resume_20260524T005404.jsonl",
+    "occurrence": 1,
+    "bytes": 17705,
+    "sha256": "f98bb84619ca623e4043f5c69fc821991e683e66aadd95e73f4d08032eaad149"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T00:56:59.778509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T00:56:59.778947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T00:56:59.779224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ls -lh /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model*.safetensors 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T00:56:59.779410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T00:56:59.779596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ls -lh /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T00:56:59.779729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ps aux | grep -E \"snapshot_download|hf_hub\" | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T00:56:59.779870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 31G\\\\n-rw-r--r-- 1 root root 3.3K May 24 06:54 README.md\\\\n-rw-r--r-- 1 root root 1.2K May 24 06:54 config.json\\\\n-rw-r--r-- 1 root root  184 May 24 06:54 generation_config.json\\\\n-rw-r--r-- 1 root root 4.7G May 24 07:32 model-00001-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 07:54 model-00003-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 07:44 model-00004-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 07:50 model-00005-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 08:50 model-00006-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 07:31 model-00007-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 3.2G May 24 07:53 model-00008-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 148K May 24 07:05 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root  454 May 24 07:05 special_tokens_map.json\\\\n-rw-r--r-- 1 root root  17M May 24 07:06 tokenizer.json\\\\n-rw-r--r-- 1 root root  55K May 24 07:06 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T00:56:59.780021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T00:56:59.780269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "source /etc/network_turbo 2>/dev/null; export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt; export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt; export HF_HUB_DISABLE_XET=1; PYTHONUNBUFFERED=1 nohup python3 -c \"\nfrom huggingface_hub import snapshot_download\nsnapshot_download(\n    'casperhansen/Llama-3.3-70B-Instruct-AWQ',\n    local_dir='/root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ',\n    resume_download=True\n)\nprint('DOWNLOAD_COMPLETE')\n\" > /tmp/llama_resume_download.log 2>&1 &\necho \"Download PID: $!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T00:56:59.780482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nDownload PID: 495986\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T00:56:59.780649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "sleep 30 && ps -p 495986 -o pid,etime,rss --no-headers 2>/dev/null && echo \"PROCESS_ALIVE\" || echo \"PROCESS_DEAD\"; tail -10 /tmp/llama_resume_download.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T00:56:59.780783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'sleep 30 && ps -p 495986 -o pid,etime,rss --no-headers 2>/dev/null && echo \\\\\\\"PROCESS_ALIVE\\\\\\\" || echo \\\\\\\"PROCESS_DEAD\\\\\\\"; tail -10 /tmp/llama_resume_download.log'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T00:56:59.781017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ps -p 495986 -o pid,etime,rss --no-headers 2>/dev/null && echo \"PROCESS_ALIVE\" || echo \"PROCESS_DEAD\"; tail -10 /tmp/llama_resume_download.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T00:56:59.781219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PROCESS_DEAD\\\\nnohup: failed to run command 'python3': No such file or directory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T00:56:59.781484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "which python3 2>/dev/null; which python 2>/dev/null; ls /root/miniconda3/bin/python* 2>/dev/null; ls /usr/bin/python* 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T00:56:59.781726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'which python3 2>/dev/null; which python 2>/dev/null; ls /root/miniconda3/bin/python* 2>/dev/null; ls /usr/bin/python* 2>/dev/null'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python3-config\\\\n/root/miniconda3/bin/python3.1\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T00:56:59.781981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "source /etc/network_turbo 2>/dev/null; export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt; export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt; export HF_HUB_DISABLE_XET=1; export PATH=/root/miniconda3/bin:$PATH; PYTHONUNBUFFERED=1 nohup /root/miniconda3/bin/python3 -c \"\nfrom huggingface_hub import snapshot_download\nsnapshot_download(\n    'casperhansen/Llama-3.3-70B-Instruct-AWQ',\n    local_dir='/root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ',\n    resume_download=True\n)\nprint('DOWNLOAD_COMPLETE')\n\" > /tmp/llama_resume_download.log 2>&1 &\necho \"Download PID: $!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T00:56:59.782143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nDownload PID: 496428\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T00:56:59.782291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "sleep 5; ps -p 496428 -o pid,etime,rss --no-headers 2>/dev/null && echo \"PROCESS_ALIVE\" || echo \"PROCESS_DEAD\"; tail -15 /tmp/llama_resume_download.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T00:56:59.782481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"496428       00:09 49700\\\\nPROCESS_ALIVE\\\\n/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:189: UserWarning: The `resume_download` argument is deprecated and ignored in `snapshot_download`. Downloads always resume whenever possible.\\\\n  warnings.warn(\\\\n\\\\rFetching 17 files:   0%|          | 0/17 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T00:56:59.782693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "sleep 20; ps -p 496428 -o pid,etime --no-headers 2>/dev/null && echo \"ALIVE\" || echo \"DEAD\"; tail -5 /tmp/llama_resume_download.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T00:56:59.782836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"496428       00:33\\\\nALIVE\\\\n/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:189: UserWarning: The `resume_download` argument is deprecated and ignored in `snapshot_download`. Downloads always resume whenever possible.\\\\n  warnings.warn(\\\\n\\\\rFetching 17 files:   0%|          | 0/17 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 20.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T00:56:59.782999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "sleep 25; tail -3 /tmp/llama_resume_download.log; echo \"---\"; ls -lh /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model-0000*.safetensors 2>/dev/null; ps -p 496428 -o pid= 2>/dev/null && echo \"ALIVE\" || echo \"DEAD\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T00:56:59.783141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:189: UserWarning: The `resume_download` argument is deprecated and ignored in `snapshot_download`. Downloads always resume whenever possible.\\\\n  warnings.warn(\\\\n\\\\rFetching 17 files:   0%|          | 0/17 [00:00<?, ?it/s]---\\\\n-rw-r--r-- 1 root root 4.7G May 24 07:32 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model-00001-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 07:54 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model-00003-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 07:44 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model-00004-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 07:50 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model-00005-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 08:50 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model-00006-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 4.6G May 24 07:31 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model-00007-of-00009.safetensors\\\\n-rw-r--r-- 1 root root 3.2G May 24 07:53 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/model-00008-of-00009.safetensors\\\\n496428\\\\nALIVE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 25.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T00:56:59.783301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "find /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/ -name \"*.incomplete\" -o -name \"*.tmp\" -o -name \".*.incomplete\" 2>/dev/null; echo \"---\"; ls -la /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/.cache/ 2>/dev/null; echo \"---\"; du -sh /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T00:56:59.783468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/.cache/huggingface/download/yuVulc4YeTNXejtaZ2kK8j1ycp0=.372c6e5d53bd9726764eee52767b6b6e7aab86064ad68b6d0dc9159cb8d62cd8.incomplete\\\\n/root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/.cache/huggingface/download/_rpzUhTkYXMRzx1YZhMdbHmD_T8=.0349dd5ce2807e440204d54df109b7540c0b90fc9a450097d47ccde5de358c7a.incomplete\\\\n---\\\\ntotal 4\\\\ndrwxr-xr-x 3 root root   33 May 24 06:54 .\\\\ndrwxr-xr-x 3 root root 4096 May 24 08:50 ..\\\\ndrwxr-xr-x 3 root root   76 May 24 06:54 huggingface\\\\n---\\\\n40G\\\\t/root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T00:56:59.783638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-8gpu",
+              "command": "ls -lh /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/.cache/huggingface/download/*.incomplete",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T00:56:59.783779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 720M May 24 08:56 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/.cache/huggingface/download/_rpzUhTkYXMRzx1YZhMdbHmD_T8=.0349dd5ce2807e440204d54df109b7540c0b90fc9a450097d47ccde5de358c7a.incomplete\\\\n-rw-r--r-- 1 root root 4.3G May 24 08:56 /root/autodl-tmp/models/Llama-3.3-70B-Instruct-AWQ/.cache/huggingface/download/yuVulc4YeTNXejtaZ2kK8j1ycp0=.372c6e5d53bd9726764eee52767b6b6e7aab86064ad68b6d0dc9159cb8d62cd8.incomplete\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T00:56:59.783940+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行：\n- 文件 A：4.3G（接近完成，shard 约 4.6G）\n- 文件 B：720M（刚开始）\n\n**汇总：**\n- **已完成 shards**：00001, 00003, 00004, 00005, 00006, 00007, 00008（7/9）\n- **下载中 shards**：00002, 00009\n- **下载 PID**：496428，进程活跃\n- 其中一个 shard 已下载 4.3G/~4.6G，即将完成；另一个 720M，还需几分钟"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_llama_download_resume_20260524T005404"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-llama-download-resume.md"
+}

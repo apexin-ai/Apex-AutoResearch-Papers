@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9abc7809ee089aeefe08",
+  "project": "gated_mfrm_judge_bias",
+  "kind": "result",
+  "title": "ssh mvp 003 run",
+  "task_key": "worker_ssh_mvp_003_run_20260521T192325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp_003_run_20260521T192325_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "4948e7ad57b812ec4864f4e13929e29e7bf9e35f394b4721b7564840e21270de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID**: 21823\n- **Registry**: mvp_003 → RUNNING\n- **预计运行时间**: mvp_002 用 2 chains × 1000wu+2000s 跑 20 seeds；mvp_003 用 4 chains × 2000wu+4000s，采样量 ×4、warmup ×2，CPU 模式下估计 **40-80 分钟**（取决于 CPU 核心数和 JAX 并行效率）。可用 `tail -20 /tmp/mvp_003.log` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mvp-003-run.md"
+}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "mvp_001",
+  "project": "gated_mfrm_judge_bias",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:54:38.130Z",
+    "updated_at": "2026-05-21T18:06:21.457Z",
+    "hypothesis": "当 d_j 与 c_n·e_i 存在 confounding（item-level + judge-level, ρ>0）时，joint G-MFRM 对 θ_true 的恢复精度（RMSE）显著优于 sequential pipeline，因为 joint estimation 避免了 contamination 效应被 d̂_j 和 b̂_i 吸收。",
+    "spec": {
+      "command": "python3 run_mvp.py",
+      "server": "rtx6000-4x",
+      "data_path": "synthetic (generated in-memory)",
+      "data_count": "N=20 models x I=100 items x J=5 judges x 20 seeds x 3 rhos",
+      "model_name": "G-MFRM (NumPyro MCMC)",
+      "seed": "0-19 per rho",
+      "gpu": "CPU only",
+      "pid": 9423,
+      "log_path": "/tmp/mvp_run.log"
+    }
+  },
+  "timestamp": "2026-05-21T18:06:21.463761+00:00",
+  "trigger": "update_registry"
+}
